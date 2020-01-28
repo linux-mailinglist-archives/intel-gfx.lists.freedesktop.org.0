@@ -2,39 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 480E714BDA1
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 17:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F07A14BD8F
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2020 17:18:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67A546E0D2;
-	Tue, 28 Jan 2020 16:24:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 550B66EEB3;
+	Tue, 28 Jan 2020 16:18:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36D676E0D2
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 16:24:42 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2020 08:24:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,374,1574150400"; d="scan'208";a="223575220"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by fmsmga008.fm.intel.com with ESMTP; 28 Jan 2020 08:24:40 -0800
-Date: Tue, 28 Jan 2020 21:45:45 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200128161545.GF24118@intel.com>
-References: <20200128135425.14596-1-anshuman.gupta@intel.com>
- <20200128135425.14596-2-anshuman.gupta@intel.com>
- <87d0b3d5os.fsf@intel.com> <20200128154444.GE24118@intel.com>
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98BE66EEB2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 16:18:46 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id 77so12513622oty.6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 28 Jan 2020 08:18:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=ClKCoonKd7SvNsujEr5t4ecQ8hunfK+U8DDqUMgCUzc=;
+ b=jUqHApJZcogIIPQ0bfvYi8RFO/krOov6JPM+ZmWHIwI52C+W4cwsXk8dTxb5mypfJm
+ upzFdioTK9riP6CUIoT1C717mBfXl9Nfpg1Vz6quQVfN8KpS4jmLOVFQTGP+hjOmdX+W
+ fP7ghXSPiwgQVh4cIKFwb6/ulwVKcHWceHOV4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=ClKCoonKd7SvNsujEr5t4ecQ8hunfK+U8DDqUMgCUzc=;
+ b=PVbMpZR2bXXz6+V1HSKmgVyUxONinV3PeoeGdjbTEdTob43Op+vs70CgM5XJoqBuKG
+ DGZCoOBKRi+k2qvsHmhl24pFzrg7cRZxiV9sncWNnbFZAMbJmaW5M//39F/VG2rF3LU7
+ svi0/4vO1uXe7uMGE6UIMKwvynX61Mgy9LlCiR45c8TRXzHwHcRG4aIO+NgUnGW5Fgk+
+ IazpCMxib8P5RdrRjCQ1jGAZ3J3V/Gc/3SYFAOeeJuUFIHdPjAyx8VlhbKAFV1Z9ZsmO
+ tQDp4CGvZ+xh+AOE/r9mpNobLORn2xAn0614wP95bIAqqhaIz4IeJ9a5z3ge4aW8bSYf
+ BTYQ==
+X-Gm-Message-State: APjAAAXo9vnZgVJH8uC77blA12eJ0xODcI/+my0+IHf1Qsbd8a2RrhrV
+ RQreIZf+uzvjuJkgI7o9rbb+edOcWQ4GSh4IQ3ZMaQ==
+X-Google-Smtp-Source: APXvYqw9Y1a6Kw7GhsYwXMiP5HONeoMuUH7AkUVc3XuydI8xh7m++tOlLVR3jvEHIuuuFOmQ0/KwJLx00vOl4+79NSI=
+X-Received: by 2002:a9d:7696:: with SMTP id j22mr17797077otl.188.1580228325858; 
+ Tue, 28 Jan 2020 08:18:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200128154444.GE24118@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/hdcp: Update CP as per the
- kernel internal state
+References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
+ <20200128151758.GI43062@phenom.ffwll.local> <20200128161536.GL13686@intel.com>
+In-Reply-To: <20200128161536.GL13686@intel.com>
+From: Daniel Vetter <daniel@ffwll.ch>
+Date: Tue, 28 Jan 2020 17:18:34 +0100
+Message-ID: <CAKMK7uGjtJOU_+Hv=A1LbOoqwO-FSC4iOxbb__r0iN+v5FpgRA@mail.gmail.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/8] drm/edid: Check the number of detailed
+ timing descriptors in the CEA ext block
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,130 +60,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Allen Chen <allen.chen@ite.com.tw>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-01-28 at 21:14:44 +0530, Anshuman Gupta wrote:
-> On 2020-01-28 at 16:19:31 +0200, Jani Nikula wrote:
-> > On Tue, 28 Jan 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> > > Content Protection property should be updated as per the kernel
-> > > internal state. Let's say if Content protection is disabled
-> > > by userspace, CP property should be set to UNDESIRED so that
-> > > reauthentication will not happen until userspace request it again,
-> > > but when kernel disables the HDCP due to any DDI disabling sequences
-> > > like modeset/DPMS operation, kernel should set the property to
-> > > DESIRED, so that when opportunity arises, kernel will start the
-> > > HDCP authentication on its own.
-> > >
-> > > Somewhere in the line, state machine to set content protection to
-> > > DESIRED from kernel was broken and IGT coverage was missing for it.
-> > > This patch fixes it.
-> > > IGT patch to catch further regression on this features is being
-> > > worked upon.
-> > >
-> > > CC: Ramalingam C <ramalingam.c@intel.com>
-> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c |  4 +++
-> > >  drivers/gpu/drm/i915/display/intel_hdcp.c    | 26 ++++++++++++++++++++
-> > >  drivers/gpu/drm/i915/display/intel_hdcp.h    |  2 ++
-> > >  3 files changed, 32 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index da5266e76738..934cdf1f1858 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -14595,6 +14595,10 @@ static int intel_atomic_check(struct drm_device *dev,
-> > >  		goto fail;
-> > >  
-> > >  	if (any_ms) {
-> > > +		/*
-> > > +		 * When there is modeset fix the hdcp uapi CP state.
-> > > +		 */
-> > > +		intel_hdcp_post_need_modeset_check(state);
-> > >  		ret = intel_modeset_checks(state);
-> > >  		if (ret)
-> > >  			goto fail;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > index 0fdbd39f6641..be083136eee2 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > @@ -2074,6 +2074,32 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
-> > >  	crtc_state->mode_changed = true;
-> > >  }
-> > >  
-> > > +/**
-> > > + * intel_hdcp_post_need_modeset_check.
-> > > + * @state: intel atomic state.
-> > > + *
-> > > + * This function fix the HDCP uapi state when hdcp disabling initiated from
-> > > + * modeset DDI disabling sequence. It updates uapi CP state from ENABLED to
-> > > + * DESIRED so that HDCP uapi state can be restored as per HDCP Auth state.
-> > > + * This function should be called only in case of in case of modeset.
-> > > + * FIXME: As per HDCP content protection property uapi doc, an uevent()
-> > > + * need to be sent if there is transition from ENABLED->DESIRED.
-> > > + */
-> > > +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state)
-> > > +{
-> > > +	struct drm_connector *connector;
-> > > +	struct drm_connector_state *old_state;
-> > > +	struct drm_connector_state *new_state;
-> > > +	int i;
-> > > +
-> > > +	for_each_oldnew_connector_in_state(&state->base, connector, old_state,
-> > > +					   new_state, i) {
-> > > +		if (old_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
-> > > +		    new_state->content_protection != DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
-> > > +			new_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-> > > +	}
-> > > +}
-> > > +
-> > 
-> > Why does this feel like duplication of what you already have in
-> > intel_hdcp_atomic_check()?
-> intel_hdcp_atomic_check() have checks that for disconnected connector and it doesn't look for 
-typo here, "intel_hdcp_atomic_check() checks that for disconnected connector and it doesn't check for new state shouldn't be UNDESIRED" 
-> old state, that is not sufficient to fix the hdcp CP uapi state, it need to be fix only in case of
-> modeset, Later on a fastset check can disable the modeset and we would endup calling intel_hdcp_enable
-> while hdcp is already enabled. That is the reason i think we would require a new API to
-> fix the uapi state.
-> Thanks ,
-> Anshuman Gupta.
-> > 
-> > BR,
-> > Jani.
-> > 
-> > 
-> > >  /* Handles the CP_IRQ raised from the DP HDCP sink */
-> > >  void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
-> > >  {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > > index f3c3272e712a..7bf46bc3c348 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-> > > @@ -13,6 +13,7 @@
-> > >  struct drm_connector;
-> > >  struct drm_connector_state;
-> > >  struct drm_i915_private;
-> > > +struct intel_atomic_state;
-> > >  struct intel_connector;
-> > >  struct intel_hdcp_shim;
-> > >  enum port;
-> > > @@ -21,6 +22,7 @@ enum transcoder;
-> > >  void intel_hdcp_atomic_check(struct drm_connector *connector,
-> > >  			     struct drm_connector_state *old_state,
-> > >  			     struct drm_connector_state *new_state);
-> > > +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state);
-> > >  int intel_hdcp_init(struct intel_connector *connector,
-> > >  		    const struct intel_hdcp_shim *hdcp_shim);
-> > >  int intel_hdcp_enable(struct intel_connector *connector,
-> > 
-> > -- 
-> > Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCBKYW4gMjgsIDIwMjAgYXQgNToxNSBQTSBWaWxsZSBTeXJqw6Rsw6QKPHZpbGxlLnN5
+cmphbGFAbGludXguaW50ZWwuY29tPiB3cm90ZToKPgo+IE9uIFR1ZSwgSmFuIDI4LCAyMDIwIGF0
+IDA0OjE3OjU4UE0gKzAxMDAsIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gPiBPbiBGcmksIEphbiAy
+NCwgMjAyMCBhdCAxMDowMjoyNFBNICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+ID4gPiBG
+cm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4g
+Pgo+ID4gPiBDRUEtODYxIHNheXMgOgo+ID4gPiAiZCA9IG9mZnNldCBmb3IgdGhlIGJ5dGUgZm9s
+bG93aW5nIHRoZSByZXNlcnZlZCBkYXRhIGJsb2NrLgo+ID4gPiAgSWYgbm8gZGF0YSBpcyBwcm92
+aWRlZCBpbiB0aGUgcmVzZXJ2ZWQgZGF0YSBibG9jaywgdGhlbiBkPTQuCj4gPiA+ICBJZiBubyBE
+VERzIGFyZSBwcm92aWRlZCwgdGhlbiBkPTAuIgo+ID4gPgo+ID4gPiBTbyBsZXQncyBub3QgbG9v
+ayBmb3IgRFREcyB3aGVuIGQ9PTAuIEluIGZhY3QgbGV0J3MganVzdCBtYWtlIHRoYXQKPiA+ID4g
+PDQgc2luY2UgdGhvc2UgdmFsdWVzIHdvdWxkIGp1c3QgbWVhbiB0aGF0IGhlIERURHMgb3Zlcmxh
+cCB0aGUgYmxvY2sKPiA+ID4gaGVhZGVyLiBBbmQgbGV0J3MgYWxzbyBjaGVjayB0aGF0IGQgaXNu
+J3Qgc28gYmlnIGFzIHRvIGRlY2xhcmUKPiA+ID4gdGhlIGRlc2NyaXB0b3JzIHRvIGxpdmUgcGFz
+dCB0aGUgYmxvY2sgZW5kLCBhbHRob3VnaCB0aGUgY29kZQo+ID4gPiBkb2VzIGFscmVhZHkgc3Vy
+dml2ZSB0aGF0IGNhc2UgYXMgd2UnZCBqdXN0IGVuZCB1cCB3aXRoIGEgbmVnYXRpdmUKPiA+ID4g
+bnVtYmVyIG9mIGRlc2NyaXB0b3JzIGFuZCB0aGUgbG9vcCB3b3VsZCBub3QgZG8gYW55dGhpbmcu
+Cj4gPiA+Cj4gPiA+IENjOiBBbGxlbiBDaGVuIDxhbGxlbi5jaGVuQGl0ZS5jb20udHc+Cj4gPiA+
+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+Cj4gPgo+ID4gSG0gSSB0aGluayBlZGlkIHBhcnNpbmcgaXMgbGlrZSB0aGUgcGVyZmVj
+dCB1c2UtY2FzZSBmb3Igc29tZSBpbi1rZXJuZWwKPiA+IHVuaXQgdGVzdHMgLi4uIEluIGNhc2Ug
+YW55b25lIGZlZWxzIG1vdGl2YXRlZD8KPgo+IEFub3RoZXIgaWRlYSBJJ3ZlIGJlZW4gcHV0dGlu
+ZyBvZmYgaXMgc2ltcGx5IHNob3ZpbmcgdGhlIHBhcnNlciBpbnRvCj4gdXNlcnNwYWNlLiBLaW5k
+YSBsb29rcyBsaWtlIHdpdGggZm9ya191c2VybW9kZV9ibG9iKCkgd2UgY291bGQgZW1iZWQKPiB0
+aGUgZXhlY3V0YWJsZSBpbnRvIHRoZSBrZXJuZWwvbW9kdWxlIGFuZCB0aHVzIGF2b2lkIHRoZSBw
+cm9ibGVtIG9mCj4gYWN0dWFsbHkgc2hpcHBpbmcgdGhlIGJpbmFyeSBzb21laG93LgoKIkhvdyB0
+byBydW4gdW5pdCB0ZXN0cyB3aXRob3V0IGxvc2luZyBoYWlyIiBpcyBlc3NlbnRpYWxseSB3aGF0
+IGt1bml0CnRyaWVzIHRvIHNvbHZlLiBJIHRoaW5rIHdlIHNob3VsZCBjdXQgb3ZlciB0byB0aGF0
+IChpdCdzIG1lcmdlZCBub3csCnNob3VsZCBiZSBnb29kIGVub3VnaCBmb3IgYXQgbGVhc3QgdGhl
+IGVkaWQgcGFyc2VyLCBtb2NraW5nIHN0dWZmCmlzbid0IHRoZXJlIHRoZXJlKSwgYW5kIHRoZW4g
+bWFrZSBzdXJlIENJIHJ1bnMgdGhhdCBzdHVmZiBmb3IgdXMuIFRoZW4Kd2UgY291bGQgY29udmVy
+dCBvdmVyIGF0IGxlYXN0IHRoZSB1bml0IHRlc3QgbGlrZSBzZWxmdGVzdHMgZXZlbnR1YWxseQp0
+b28uCi1EYW5pZWwKLS0gCkRhbmllbCBWZXR0ZXIKU29mdHdhcmUgRW5naW5lZXIsIEludGVsIENv
+cnBvcmF0aW9uCis0MSAoMCkgNzkgMzY1IDU3IDQ4IC0gaHR0cDovL2Jsb2cuZmZ3bGwuY2gKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
