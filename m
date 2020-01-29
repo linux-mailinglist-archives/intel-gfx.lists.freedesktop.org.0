@@ -2,32 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2162B14D349
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 23:54:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B4F14D33E
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 23:52:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81FCC6F8AD;
-	Wed, 29 Jan 2020 22:54:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 786D86E452;
+	Wed, 29 Jan 2020 22:52:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141C46F8AD
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 22:54:28 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 036756E452
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 22:52:17 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 14:54:27 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 14:52:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,379,1574150400"; d="scan'208";a="402133813"
-Received: from anusha.jf.intel.com ([10.165.21.155])
- by orsmga005.jf.intel.com with ESMTP; 29 Jan 2020 14:54:27 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jan 2020 14:42:06 -0800
-Message-Id: <20200129224206.10577-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.0
+X-IronPort-AV: E=Sophos;i="5.70,379,1574150400"; d="scan'208";a="229763368"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+ by orsmga003.jf.intel.com with ESMTP; 29 Jan 2020 14:52:13 -0800
+Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
+ ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 29 Jan 2020 14:52:13 -0800
+From: Vivek Kasireddy <vivek.kasireddy@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Date: Wed, 29 Jan 2020 14:47:29 -0800
+Message-ID: <20200129224729.4684-1-vivek.kasireddy@intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
+X-Originating-IP: [10.22.254.138]
+Subject: [Intel-gfx] [PATCH] drm/i915/hotplug: Use phy to get the hpd_pin
+ instead of the port
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,62 +45,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable Inter and intra Read Suppression (bit 15) and
-Early Read and Src Swap (bit 14) by setting the chicken
-register.
-
-BSpec: 46045,52890
-
-v2: Follow the Bspec implementation for the WA.
-v3: Have 2 separate defines for bit 14 and 15.
-- Rename register definitions with TGL_ prefix
-
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
- drivers/gpu/drm/i915/i915_reg.h             | 2 ++
- 2 files changed, 8 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 5a7db279f702..1f84cd595f88 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -593,6 +593,12 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
- 	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
- 			    FF_MODE2_TDS_TIMER_MASK);
-+
-+	/* Wa_1606931601:tgl */
-+	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2,
-+			  GEN12_EARLY_READ_SRC0_DISABLE |
-+			  GEN12_INTER_INTRA_READ_SUPPRESSION_DISABLE);
-+
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4c72b8ac0f2e..70ead809c706 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9149,6 +9149,8 @@ enum {
- #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
- #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
- #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
-+#define   GEN12_EARLY_READ_SRC0_DISABLE		(1 << 14)
-+#define   GEN12_INTER_INTRA_READ_SUPPRESSION_DISABLE	(1 << 15)
- 
- #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
- #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gc29tZSBwbGF0Zm9ybXMgc3VjaCBhcyBFbGtoYXJ0IExha2UsIGFsdGhvdWdoIHdlIG1heSB1
+c2UgRERJIEQKdG8gZHJpdmUgYSBjb25uZWN0b3IsIHdlIGhhdmUgdG8gdXNlIFBIWSBBIChDb21i
+byBQaHkgUE9SVCBBKSB0bwpkZXRlY3QgdGhlIGhvdHBsdWcgaW50ZXJydXB0cyBhcyBwZXIgdGhl
+IHNwZWMgYmVjYXVzZSB0aGVyZSBpcyBubwpvbmUtdG8tb25lIG1hcHBpbmcgYmV0d2VlbiBERElz
+IGFuZCBQSFlzLiBUaGVyZWZvcmUsIHVzZSB0aGUKZnVuY3Rpb24gaW50ZWxfcG9ydF90b19waHko
+KSB3aGljaCBjb250YWlucyB0aGUgbG9naWMgZm9yIHN1Y2gKbWFwcGluZyhzKSB0byBmaW5kIHRo
+ZSBjb3JyZWN0IGhwZF9waW4uCgpUaGlzIGNoYW5nZSBzaG91bGQgbm90IGFmZmVjdCBvdGhlciBw
+bGF0Zm9ybXMgYXMgdGhlcmUgaXMgYWx3YXlzCmEgb25lLXRvLW9uZSBtYXBwaW5nIGJldHdlZW4g
+RERJcyBhbmQgUEhZcy4KCkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29t
+PgpDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClNpZ25l
+ZC1vZmYtYnk6IFZpdmVrIEthc2lyZWRkeSA8dml2ZWsua2FzaXJlZGR5QGludGVsLmNvbT4KLS0t
+CiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYyB8IDUgKysrLS0K
+IDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYwppbmRleCAwNDJkOThiYWUx
+ZWEuLjQ5MWY2YjZmOTIwZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9ob3RwbHVnLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9ob3RwbHVnLmMKQEAgLTg5LDcgKzg5LDggQEAKIGVudW0gaHBkX3BpbiBpbnRlbF9ocGRfcGlu
+X2RlZmF1bHQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAogCQkJCSAgIGVudW0g
+cG9ydCBwb3J0KQogewotCXN3aXRjaCAocG9ydCkgeworCWVudW0gcGh5IHBoeSA9IGludGVsX3Bv
+cnRfdG9fcGh5KGRldl9wcml2LCBwb3J0KTsKKwlzd2l0Y2ggKHBoeSkgewogCWNhc2UgUE9SVF9B
+OgogCQlyZXR1cm4gSFBEX1BPUlRfQTsKIAljYXNlIFBPUlRfQjoKQEAgLTExMSw3ICsxMTIsNyBA
+QCBlbnVtIGhwZF9waW4gaW50ZWxfaHBkX3Bpbl9kZWZhdWx0KHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdiwKIAljYXNlIFBPUlRfSToKIAkJcmV0dXJuIEhQRF9QT1JUX0k7CiAJZGVm
+YXVsdDoKLQkJTUlTU0lOR19DQVNFKHBvcnQpOworCQlNSVNTSU5HX0NBU0UocGh5KTsKIAkJcmV0
+dXJuIEhQRF9OT05FOwogCX0KIH0KLS0gCjIuMjEuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
+YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
