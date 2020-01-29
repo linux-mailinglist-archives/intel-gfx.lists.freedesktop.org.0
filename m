@@ -2,40 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F2514C9FA
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 12:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6036114CA41
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 13:07:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BADE6E326;
-	Wed, 29 Jan 2020 11:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9C646F51E;
+	Wed, 29 Jan 2020 12:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE6D66E326
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 11:58:04 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34BEB6F51E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 12:07:01 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 03:58:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,377,1574150400"; d="scan'208";a="232408467"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 29 Jan 2020 03:58:01 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Jan 2020 13:58:00 +0200
-Date: Wed, 29 Jan 2020 13:58:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200129115800.GV13686@intel.com>
-References: <20200128235241.169694-1-jose.souza@intel.com>
- <20200129114449.GS13686@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 04:07:00 -0800
+X-IronPort-AV: E=Sophos;i="5.70,377,1574150400"; d="scan'208";a="222433237"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 04:06:58 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200129115738.GU13686@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200117150551.9836-1-jani.nikula@intel.com>
+ <20200129115738.GU13686@intel.com>
+Date: Wed, 29 Jan 2020 14:06:56 +0200
+Message-ID: <87o8umbh5r.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200129114449.GS13686@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/display/fbc: Make fences a
- nice-to-have for GEN9+
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: remove i915_dpcd file
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,111 +43,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2020 at 01:44:49PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Tue, Jan 28, 2020 at 03:52:40PM -0800, Jos=E9 Roberto de Souza wrote:
-> > dGFX have local memory so it do not have aperture and do not support
-> > CPU fences but even for iGFX it have a small number of fences.
-> > =
-
-> > As replacement for fences to track frontbuffer modifications by CPU
-> > we have a software tracking that is already in used by FBC and PSR.
-> > PSR don't support fences so it shows that this tracking is reliable.
-> > =
-
-> > So lets make fences a nice-to-have to activate FBC for GEN9+(as we
-> > only have a good CI coverage for GEN9+), this will allow us to enable
-> > FBC for dGFXs and iGFXs even when there is no available fence.
-> > =
-
-> > intel_fbc_hw_tracking_covers_screen() maybe can also have the same
-> > treatment as fences but BSpec is not clear if the size limitation is
-> > for hardware tracking or general use of FBC and I don't have a 5K
-> > display to test it, so keeping as is for safety.
-> > =
-
-> > Cc: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++++----
-> >  1 file changed, 8 insertions(+), 4 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm=
-/i915/display/intel_fbc.c
-> > index 2a3f1333c8ff..1f0d24a1dec1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > @@ -717,11 +717,15 @@ static bool intel_fbc_can_activate(struct intel_c=
-rtc *crtc)
-> >  		return false;
-> >  	}
-> >  =
-
-> > -	/* The use of a CPU fence is mandatory in order to detect writes
-> > -	 * by the CPU to the scanout and trigger updates to the FBC.
-> > +	/* The use of a CPU fence is one of two ways to detect writes by the
-> > +	 * CPU to the scanout and trigger updates to the FBC.
-> > +	 *
-> > +	 * The other method is by software tracking(see
-> > +	 * intel_fbc_invalidate/flush()), it will manually notify FBC and nuke
-> > +	 * the current compressed buffer and recompress it.
-> >  	 *
-> >  	 * Note that is possible for a tiled surface to be unmappable (and
-> > -	 * so have no fence associated with it) due to aperture constaints
-> > +	 * so have no fence associated with it) due to aperture constraints
-> >  	 * at the time of pinning.
-> >  	 *
-> >  	 * FIXME with 90/270 degree rotation we should use the fence on
-> > @@ -730,7 +734,7 @@ static bool intel_fbc_can_activate(struct intel_crt=
-c *crtc)
-> >  	 * For now this will effecively disable FBC with 90/270 degree
-> >  	 * rotation.
-> >  	 */
-> > -	if (cache->fence_id < 0) {
-> > +	if (cache->fence_id < 0 && INTEL_GEN(dev_priv) < 9) {
-> =
-
-> Not enough. We need to check that the tiling format is actually supported.
-
-Actually not sure if all of them are or not. IIRC some docs just said
-X/Y tile is supported (and in some other place linear was also listed).
-
-> Also the tracking stuff is busted in intel ddx so need to get
-> https://patchwork.freedesktop.org/series/70636/ merged somehow.
-> =
-
-> >  		fbc->no_fbc_reason =3D "framebuffer not tiled or fenced";
-> >  		return false;
-> >  	}
-> > -- =
-
-> > 2.25.0
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyOSBKYW4gMjAyMCwgVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
+LmludGVsLmNvbT4gd3JvdGU6Cj4gT24gRnJpLCBKYW4gMTcsIDIwMjAgYXQgMDU6MDU6NTFQTSAr
+MDIwMCwgSmFuaSBOaWt1bGEgd3JvdGU6Cj4+IFdlJ3ZlIGxvbmcgaGFkIHRoZSBtb3JlIGdlbmVy
+aWMgL2Rldi9kcm1fZHBfYXV4TiBkZXZpY2VzIGZvciB0aGUgc2FtZQo+PiBwdXJwb3NlLiBEcm9w
+IHRoZSByZWR1bmRhbnQgYW5kIGxpbWl0ZWQgRFBDRCBkZWJ1Z2ZzIGZpbGUuCj4+IAo+PiBTaWdu
+ZWQtb2ZmLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgo+Cj4gUmV2aWV3
+ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CgpU
+aGFua3MsIHB1c2hlZCB0byBkaW5xLgoKQlIsCkphbmkuCgo+Cj4+IC0tLQo+PiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9kZWJ1Z2ZzLmMgfCA2NCAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQo+PiAgMSBmaWxlIGNoYW5nZWQsIDY0IGRlbGV0aW9ucygtKQo+PiAKPj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9kZWJ1Z2ZzLmMKPj4gaW5kZXggYzA1ZmE0MjA1ZGU4Li5lMzIwYjk1N2I3OTIg
+MTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jCj4+ICsr
+KyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZGVidWdmcy5jCj4+IEBAIC00MzI5LDY1ICs0
+MzI5LDYgQEAgaW50IGk5MTVfZGVidWdmc19yZWdpc3RlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
+ZSAqZGV2X3ByaXYpCj4+ICAJCQkJCW1pbm9yLT5kZWJ1Z2ZzX3Jvb3QsIG1pbm9yKTsKPj4gIH0K
+Pj4gIAo+PiAtc3RydWN0IGRwY2RfYmxvY2sgewo+PiAtCS8qIERQQ0QgZHVtcCBzdGFydCBhZGRy
+ZXNzLiAqLwo+PiAtCXVuc2lnbmVkIGludCBvZmZzZXQ7Cj4+IC0JLyogRFBDRCBkdW1wIGVuZCBh
+ZGRyZXNzLCBpbmNsdXNpdmUuIElmIHVuc2V0LCAuc2l6ZSB3aWxsIGJlIHVzZWQuICovCj4+IC0J
+dW5zaWduZWQgaW50IGVuZDsKPj4gLQkvKiBEUENEIGR1bXAgc2l6ZS4gVXNlZCBpZiAuZW5kIGlz
+IHVuc2V0LiBJZiB1bnNldCwgZGVmYXVsdHMgdG8gMS4gKi8KPj4gLQlzaXplX3Qgc2l6ZTsKPj4g
+LQkvKiBPbmx5IHZhbGlkIGZvciBlRFAuICovCj4+IC0JYm9vbCBlZHA7Cj4+IC19Owo+PiAtCj4+
+IC1zdGF0aWMgY29uc3Qgc3RydWN0IGRwY2RfYmxvY2sgaTkxNV9kcGNkX2RlYnVnW10gPSB7Cj4+
+IC0JeyAub2Zmc2V0ID0gRFBfRFBDRF9SRVYsIC5zaXplID0gRFBfUkVDRUlWRVJfQ0FQX1NJWkUg
+fSwKPj4gLQl7IC5vZmZzZXQgPSBEUF9QU1JfU1VQUE9SVCwgLmVuZCA9IERQX1BTUl9DQVBTIH0s
+Cj4+IC0JeyAub2Zmc2V0ID0gRFBfRE9XTlNUUkVBTV9QT1JUXzAsIC5zaXplID0gMTYgfSwKPj4g
+LQl7IC5vZmZzZXQgPSBEUF9MSU5LX0JXX1NFVCwgLmVuZCA9IERQX0VEUF9DT05GSUdVUkFUSU9O
+X1NFVCB9LAo+PiAtCXsgLm9mZnNldCA9IERQX1NJTktfQ09VTlQsIC5lbmQgPSBEUF9BREpVU1Rf
+UkVRVUVTVF9MQU5FMl8zIH0sCj4+IC0JeyAub2Zmc2V0ID0gRFBfU0VUX1BPV0VSIH0sCj4+IC0J
+eyAub2Zmc2V0ID0gRFBfRURQX0RQQ0RfUkVWIH0sCj4+IC0JeyAub2Zmc2V0ID0gRFBfRURQX0dF
+TkVSQUxfQ0FQXzEsIC5lbmQgPSBEUF9FRFBfR0VORVJBTF9DQVBfMyB9LAo+PiAtCXsgLm9mZnNl
+dCA9IERQX0VEUF9ESVNQTEFZX0NPTlRST0xfUkVHSVNURVIsIC5lbmQgPSBEUF9FRFBfQkFDS0xJ
+R0hUX0ZSRVFfQ0FQX01BWF9MU0IgfSwKPj4gLQl7IC5vZmZzZXQgPSBEUF9FRFBfREJDX01JTklN
+VU1fQlJJR0hUTkVTU19TRVQsIC5lbmQgPSBEUF9FRFBfREJDX01BWElNVU1fQlJJR0hUTkVTU19T
+RVQgfSwKPj4gLX07Cj4+IC0KPj4gLXN0YXRpYyBpbnQgaTkxNV9kcGNkX3Nob3coc3RydWN0IHNl
+cV9maWxlICptLCB2b2lkICpkYXRhKQo+PiAtewo+PiAtCXN0cnVjdCBkcm1fY29ubmVjdG9yICpj
+b25uZWN0b3IgPSBtLT5wcml2YXRlOwo+PiAtCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPQo+
+PiAtCQllbmNfdG9faW50ZWxfZHAoaW50ZWxfYXR0YWNoZWRfZW5jb2Rlcih0b19pbnRlbF9jb25u
+ZWN0b3IoY29ubmVjdG9yKSkpOwo+PiAtCXU4IGJ1ZlsxNl07Cj4+IC0Jc3NpemVfdCBlcnI7Cj4+
+IC0JaW50IGk7Cj4+IC0KPj4gLQlpZiAoY29ubmVjdG9yLT5zdGF0dXMgIT0gY29ubmVjdG9yX3N0
+YXR1c19jb25uZWN0ZWQpCj4+IC0JCXJldHVybiAtRU5PREVWOwo+PiAtCj4+IC0JZm9yIChpID0g
+MDsgaSA8IEFSUkFZX1NJWkUoaTkxNV9kcGNkX2RlYnVnKTsgaSsrKSB7Cj4+IC0JCWNvbnN0IHN0
+cnVjdCBkcGNkX2Jsb2NrICpiID0gJmk5MTVfZHBjZF9kZWJ1Z1tpXTsKPj4gLQkJc2l6ZV90IHNp
+emUgPSBiLT5lbmQgPyBiLT5lbmQgLSBiLT5vZmZzZXQgKyAxIDogKGItPnNpemUgPzogMSk7Cj4+
+IC0KPj4gLQkJaWYgKGItPmVkcCAmJgo+PiAtCQkgICAgY29ubmVjdG9yLT5jb25uZWN0b3JfdHlw
+ZSAhPSBEUk1fTU9ERV9DT05ORUNUT1JfZURQKQo+PiAtCQkJY29udGludWU7Cj4+IC0KPj4gLQkJ
+LyogbG93IHRlY2ggZm9yIG5vdyAqLwo+PiAtCQlpZiAoV0FSTl9PTihzaXplID4gc2l6ZW9mKGJ1
+ZikpKQo+PiAtCQkJY29udGludWU7Cj4+IC0KPj4gLQkJZXJyID0gZHJtX2RwX2RwY2RfcmVhZCgm
+aW50ZWxfZHAtPmF1eCwgYi0+b2Zmc2V0LCBidWYsIHNpemUpOwo+PiAtCQlpZiAoZXJyIDwgMCkK
+Pj4gLQkJCXNlcV9wcmludGYobSwgIiUwNHg6IEVSUk9SICVkXG4iLCBiLT5vZmZzZXQsIChpbnQp
+ZXJyKTsKPj4gLQkJZWxzZQo+PiAtCQkJc2VxX3ByaW50ZihtLCAiJTA0eDogJSpwaFxuIiwgYi0+
+b2Zmc2V0LCAoaW50KWVyciwgYnVmKTsKPj4gLQl9Cj4+IC0KPj4gLQlyZXR1cm4gMDsKPj4gLX0K
+Pj4gLURFRklORV9TSE9XX0FUVFJJQlVURShpOTE1X2RwY2QpOwo+PiAtCj4+ICBzdGF0aWMgaW50
+IGk5MTVfcGFuZWxfc2hvdyhzdHJ1Y3Qgc2VxX2ZpbGUgKm0sIHZvaWQgKmRhdGEpCj4+ICB7Cj4+
+ICAJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5lY3RvciA9IG0tPnByaXZhdGU7Cj4+IEBAIC00
+NTUyLDExICs0NDkzLDYgQEAgaW50IGk5MTVfZGVidWdmc19jb25uZWN0b3JfYWRkKHN0cnVjdCBk
+cm1fY29ubmVjdG9yICpjb25uZWN0b3IpCj4+ICAJaWYgKCFyb290KQo+PiAgCQlyZXR1cm4gLUVO
+T0RFVjsKPj4gIAo+PiAtCWlmIChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERSTV9NT0RF
+X0NPTk5FQ1RPUl9EaXNwbGF5UG9ydCB8fAo+PiAtCSAgICBjb25uZWN0b3ItPmNvbm5lY3Rvcl90
+eXBlID09IERSTV9NT0RFX0NPTk5FQ1RPUl9lRFApCj4+IC0JCWRlYnVnZnNfY3JlYXRlX2ZpbGUo
+Imk5MTVfZHBjZCIsIFNfSVJVR08sIHJvb3QsCj4+IC0JCQkJICAgIGNvbm5lY3RvciwgJmk5MTVf
+ZHBjZF9mb3BzKTsKPj4gLQo+PiAgCWlmIChjb25uZWN0b3ItPmNvbm5lY3Rvcl90eXBlID09IERS
+TV9NT0RFX0NPTk5FQ1RPUl9lRFApIHsKPj4gIAkJZGVidWdmc19jcmVhdGVfZmlsZSgiaTkxNV9w
+YW5lbF90aW1pbmdzIiwgU19JUlVHTywgcm9vdCwKPj4gIAkJCQkgICAgY29ubmVjdG9yLCAmaTkx
+NV9wYW5lbF9mb3BzKTsKPj4gLS0gCj4+IDIuMjAuMQo+PiAKPj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+
+PiBJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+IGh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4CgotLSAKSmFuaSBOaWt1bGEsIElu
+dGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
+bi9saXN0aW5mby9pbnRlbC1nZngK
