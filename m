@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FEE14D126
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 20:21:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C33614D176
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 20:55:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EADE6E42C;
-	Wed, 29 Jan 2020 19:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4AFA6F87B;
+	Wed, 29 Jan 2020 19:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 035336E42C
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 19:21:09 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 11:19:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="222551176"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 29 Jan 2020 11:19:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Jan 2020 21:19:11 +0200
-Date: Wed, 29 Jan 2020 21:19:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200129191911.GY13686@intel.com>
-References: <20191209150137.18578-1-ville.syrjala@linux.intel.com>
- <20191209150137.18578-2-ville.syrjala@linux.intel.com>
- <157590439302.6399.13307864068739805449@skylake-alporthouse-com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08A0A6F87B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 19:55:00 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20052292-1500050 
+ for multiple; Wed, 29 Jan 2020 19:54:52 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2020 19:54:52 +0000
+Message-Id: <20200129195452.1278481-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <157590439302.6399.13307864068739805449@skylake-alporthouse-com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH xf86-video-intel 2/2] sna: Eliminate
- sna_mode_wants_tear_free()
+Subject: [Intel-gfx] [PATCH] drm/i915: Use the async worker to avoid reclaim
+ tainting the ggtt->mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,59 +37,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 09, 2019 at 03:13:13PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrjala (2019-12-09 15:01:37)
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+On Braswell and Broxton (also known as Valleyview and Apollolake), we
+need to serialise updates of the GGTT using the big stop_machine()
+hammer. This has the side effect of appearing to lockdep as a possible
+reclaim (since it uses the cpuhp mutex and that is tainted by per-cpu
+allocations). However, we want to use vm->mutex (including ggtt->mutex)
+from wthin the shrinker and so must avoid such possible taints. For this
+purpose, we introduced the asynchronous vma binding and we can apply it
+to the PIN_GLOBAL so long as take care to add the necessary waits for
+the worker afterwards.
 
-> > The modparam checks performed by sna_mode_wants_tear_free() don't
-> > generally work when the server is running as a regular user. Hence
-> > we can't rely on them to indicate whether FBC/PSR/etc is enabled.
-> > A lso the "Panel Self-Refresh" connector property doesn't actually
-> > exist so we can nuke that part as well. Let's just nuke the whole
-> > thing and assume we want dirtyfb always when tearfree is not enabled.
-> > =
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/211
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c |  7 +++---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c      |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt.c        |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ring.c      |  6 ++---
+ drivers/gpu/drm/i915/gt/intel_timeline.c  |  4 ++--
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  4 ++--
+ drivers/gpu/drm/i915/i915_gem.c           |  6 +++++
+ drivers/gpu/drm/i915/i915_vma.c           | 27 ++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_vma.h           |  2 ++
+ 10 files changed, 46 insertions(+), 15 deletions(-)
 
-> > I'll anyway want to enable FBC by default across the board soonish
-> > so the check wouldn't really buy us much (would just exclude i830
-> > and a few old desktop chipsets which don't have FBC hardware).
-> > =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 39fe9a5b4820..2504f4d05edf 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -527,7 +527,6 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
+ {
+ 	unsigned int flags;
+ 
+-	flags = PIN_GLOBAL;
+ 	if (!HAS_LLC(engine->i915) && i915_ggtt_has_aperture(engine->gt->ggtt))
+ 		/*
+ 		 * On g33, we cannot place HWS above 256MiB, so
+@@ -540,11 +539,11 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
+ 		 * above the mappable region (even though we never
+ 		 * actually map it).
+ 		 */
+-		flags |= PIN_MAPPABLE;
++		flags = PIN_MAPPABLE;
+ 	else
+-		flags |= PIN_HIGH;
++		flags = PIN_HIGH;
+ 
+-	return i915_vma_pin(vma, 0, 0, flags);
++	return i915_ggtt_pin(vma, 0, flags);
+ }
+ 
+ static int init_status_page(struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index 79096722ce16..6af50d62d712 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -881,6 +881,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
+ 		if (ggtt->vm.clear_range != nop_clear_range)
+ 			ggtt->vm.clear_range = bxt_vtd_ggtt_clear_range__BKL;
++		ggtt->vm.bind_async_flags = I915_VMA_GLOBAL_BIND;
+ 	}
+ 
+ 	ggtt->invalidate = gen8_ggtt_invalidate;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index 143268083135..bf6c0f949e35 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -345,7 +345,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
+ 		goto err_unref;
+ 	}
+ 
+-	ret = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	ret = i915_ggtt_pin(vma, 0, PIN_HIGH);
+ 	if (ret)
+ 		goto err_unref;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 8f15ab7d8d88..e63ae4a17110 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3259,7 +3259,7 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
+ 		goto err;
+ 	}
+ 
+-	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
+ 	if (err)
+ 		goto err;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 374b28f13ca0..366013367526 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -31,17 +31,15 @@ int intel_ring_pin(struct intel_ring *ring)
+ 	if (atomic_fetch_inc(&ring->pin_count))
+ 		return 0;
+ 
+-	flags = PIN_GLOBAL;
+-
+ 	/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
+-	flags |= PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
++	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
+ 
+ 	if (vma->obj->stolen)
+ 		flags |= PIN_MAPPABLE;
+ 	else
+ 		flags |= PIN_HIGH;
+ 
+-	ret = i915_vma_pin(vma, 0, 0, flags);
++	ret = i915_ggtt_pin(vma, 0, flags);
+ 	if (unlikely(ret))
+ 		goto err_unpin;
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 87716529cd2f..465f87b65901 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -308,7 +308,7 @@ int intel_timeline_pin(struct intel_timeline *tl)
+ 	if (atomic_add_unless(&tl->pin_count, 1, 0))
+ 		return 0;
+ 
+-	err = i915_vma_pin(tl->hwsp_ggtt, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	err = i915_ggtt_pin(tl->hwsp_ggtt, 0, PIN_HIGH);
+ 	if (err)
+ 		return err;
+ 
+@@ -431,7 +431,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 		goto err_rollback;
+ 	}
+ 
+-	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
+ 	if (err) {
+ 		__idle_hwsp_free(vma->private, cacheline);
+ 		goto err_rollback;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 5d00a3b2d914..c4c1523da7a6 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -678,8 +678,8 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
+ 	if (IS_ERR(vma))
+ 		goto err;
+ 
+-	flags = PIN_GLOBAL | PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
+-	ret = i915_vma_pin(vma, 0, 0, flags);
++	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
++	ret = i915_ggtt_pin(vma, 0, flags);
+ 	if (ret) {
+ 		vma = ERR_PTR(ret);
+ 		goto err;
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index ff79da5657f8..dda1a0365f39 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1009,6 +1009,12 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
+ 	if (ret)
+ 		return ERR_PTR(ret);
+ 
++	ret = i915_vma_wait_for_bind(vma);
++	if (ret) {
++		i915_vma_unpin(vma);
++		return ERR_PTR(ret);
++	}
++
+ 	return vma;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 84e03da0d5f9..f11abd9553e8 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -339,6 +339,25 @@ struct i915_vma_work *i915_vma_work(void)
+ 	return vw;
+ }
+ 
++int i915_vma_wait_for_bind(struct i915_vma *vma)
++{
++	int err = 0;
++
++	if (!rcu_access_pointer(vma->active.excl.fence)) {
++		struct dma_fence *fence;
++
++		rcu_read_lock();
++		fence = dma_fence_get_rcu_safe(&vma->active.excl.fence);
++		rcu_read_unlock();
++		if (fence) {
++			err = dma_fence_wait(fence, MAX_SCHEDULE_TIMEOUT);
++			dma_fence_put(fence);
++		}
++	}
++
++	return err;
++}
++
+ /**
+  * i915_vma_bind - Sets up PTEs for an VMA in it's corresponding address space.
+  * @vma: VMA to map
+@@ -977,8 +996,14 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
+ 
+ 	do {
+ 		err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
+-		if (err != -ENOSPC)
++		if (err != -ENOSPC) {
++			if (!err) {
++				err = i915_vma_wait_for_bind(vma);
++				if (err)
++					i915_vma_unpin(vma);
++			}
+ 			return err;
++		}
+ 
+ 		/* Unlike i915_vma_pin, we don't take no for an answer! */
+ 		flush_idle_contexts(vm->gt);
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 02b31a62951e..e1ced1df13e1 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -375,6 +375,8 @@ struct i915_vma *i915_vma_make_unshrinkable(struct i915_vma *vma);
+ void i915_vma_make_shrinkable(struct i915_vma *vma);
+ void i915_vma_make_purgeable(struct i915_vma *vma);
+ 
++int i915_vma_wait_for_bind(struct i915_vma *vma);
++
+ static inline int i915_vma_sync(struct i915_vma *vma)
+ {
+ 	/* Wait for the asynchronous bindings and pending GPU reads */
+-- 
+2.25.0
 
-> > Additionally if we don't have working dirtyfb we really should
-> > enable tearfree by default because otherwise we're going to
-> > get horrible lag due to missing frontbuffer flushes.
-> =
-
-> But we also want to enable TearFree anyway in most cases, and here we
-> are defaulting to off in cases where it was already on.
-> =
-
-> I still don't know on what grounds the cut-off should be based, the
-> primary question is can we afford to keep an extra framebuffer plus any
-> gubbins memory? The worry about perf are now larger moot, so it boils
-> down to available memory -- in quite a few cases TearFree is a big
-> improvement on power management, but that I guess is currently snb+
-> (although we can fix ilk render powerstandby).
-> =
-
-> How about GTT > mappable aperture, based on the idea that we have room
-> to spare that can't be used for scanout? That would only disable gen2 by
-> default.
-
-So thinking about this thing again. If we go with the mappable vs. gtt
-size check, what do we want to do with the meson/autoconf tearfree knob.
-Just nuke it? Or maybe we want it to override all the heuristics?
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
