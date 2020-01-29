@@ -1,37 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F01AF14CB38
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:12:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A300514CB51
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:17:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C3776E33D;
-	Wed, 29 Jan 2020 13:12:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81E696E395;
+	Wed, 29 Jan 2020 13:16:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FBD66E33D
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:11:59 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 05:11:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="217942930"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga007.jf.intel.com with ESMTP; 29 Jan 2020 05:11:57 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 6122D5C1DFA; Wed, 29 Jan 2020 15:11:10 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200128204318.4182039-1-chris@chris-wilson.co.uk>
-References: <20200128204318.4182039-1-chris@chris-wilson.co.uk>
-Date: Wed, 29 Jan 2020 15:11:10 +0200
-Message-ID: <87eevi9zm9.fsf@gaia.fi.intel.com>
+Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF8E46E372;
+ Wed, 29 Jan 2020 13:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
+ ; s=ds201912;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=088J6zul/ms40YvFF1jL5fQpUK3E/9pYydqTGXobSPQ=; b=cJGD7dlQrjP6G6pWqTN7uWrcW8
+ XsEfWifVY42P5UK/t5+BPwyBpy7ykk8pAve4upHmfhDb1XNh4eXheb9dkJKfvTHoqCbn3jK2VJhOX
+ 6nr+51kxNaOoNpj0i7aDif0iOt0yERtPFpApyCuz8MGj9pw4oOilGBBFecC5vIrjjUHMrZOnjGvvw
+ m+6W1KxdCtngraSoblpfaqnMD6ELPV0OtQo5pIt+2bSqnZ2WPnVRPsfN4vVtKclIv1wZyEXmhtpcW
+ eGtPGnZ402pjbmiJvTZRoNwlCbbf6w2Km0bKZkzwbgNjRNqUG4uGCIFEWiZ7byJ3plTtQUI/9WMbF
+ Gai5eW0g==;
+Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:59890
+ helo=[192.168.10.61])
+ by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ (Exim 4.92) (envelope-from <noralf@tronnes.org>)
+ id 1iwnDC-0004Ur-LA; Wed, 29 Jan 2020 14:16:54 +0100
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+ <20200129082410.1691996-4-daniel.vetter@ffwll.ch>
+From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
+Message-ID: <b9214acc-24ea-4007-643b-a07f6b6db065@tronnes.org>
+Date: Wed, 29 Jan 2020 14:16:49 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915/execlist: Mark up racy read of
- execlists->pending[0]
+In-Reply-To: <20200129082410.1691996-4-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 3/5] drm/client: Rename _force to _locked
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,51 +54,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> We write to execlists->pending[0] in process_csb() to acknowledge the
-> completion of the ESLP update, outside of the main spinlock. When we
-> check the current status of the previous submission in
-> __execlists_submission_tasklet() we should therefore use READ_ONCE() to
-> reflect and document the unsynchronized read.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-From other thread so also in here,
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index cf6c43bd540a..058484958e87 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2347,7 +2347,7 @@ static void process_csb(struct intel_engine_cs *engine)
->  static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
->  {
->  	lockdep_assert_held(&engine->active.lock);
-> -	if (!engine->execlists.pending[0]) {
-> +	if (!READ_ONCE(engine->execlists.pending[0])) {
->  		rcu_read_lock(); /* protect peeking at execlists->active */
->  		execlists_dequeue(engine);
->  		rcu_read_unlock();
-> -- 
-> 2.25.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CgpEZW4gMjkuMDEuMjAyMCAwOS4yNCwgc2tyZXYgRGFuaWVsIFZldHRlcjoKPiBQbHVzIGV4dGVu
+ZCB0aGUga2VybmVsZG9jIGEgYml0IHRvIGV4cGxhaW4gaG93IHRoaXMgc2hvdWxkIGJlIHVzZWQu
+Cj4gV2l0aCB0aGUgcHJldmlvdXMgcGF0Y2ggdG8gZHJvcCB0aGUgZm9yY2UgcmVzdG9yZSB0aGUg
+bWFpbiB1c2VyIG9mCj4gdGhpcyBmdW5jdGlvbiBpcyBub3QgZW1waGFzaXMgb24gdGhlICJJIGhv
+bGQgdGhlIGludGVybmFsIG1hc3RlciBsb2NrCgpUaGUgX25vdF8gY29uZnVzZXMgbWUsIHRoZSBl
+bXBoYXNpcyBpcyBub3cgdGhhdCAiSSBob2xkIHRoZSBsb2NrIiByaWdodD8KCj4gYWxyZWFkeSIg
+YXNwZWN0LCBzbyByZW5hbWUgdGhlIGZ1bmN0aW9uIHRvIG1hdGNoLgo+IAo+IFN1Z2dlc3RlZCBi
+eSBOb3JhbGYuCj4gCj4gQ2M6IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgo+
+IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+
+IC0tLQoKUmV2aWV3ZWQtYnk6IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
