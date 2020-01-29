@@ -1,60 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E69E14CF3A
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 18:07:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 093BC14CFBE
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 18:37:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEF16E408;
-	Wed, 29 Jan 2020 17:07:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D26A86F600;
+	Wed, 29 Jan 2020 17:37:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE966F5F3
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 17:07:25 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id k11so182715wrd.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 09:07:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=kZXLxhP26JqQjMxcWBpM4BT3E/16GxQl/5I2CsQ6SDE=;
- b=LO7FarI8ddOQD0UYjVsqMANDCmMEPMLUTWknyPq8IjapZrIZY/ic6lX9HPRacxkyMb
- OVJgOn56QITKmERHJ7Vt/qz9sftGW76swhq5wAx5SrjkH0WPwNRIufJVJneyi54NGYTN
- vmMg/RxpaFjilURSE1aKMvMTW0LmKV6WqipQI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=kZXLxhP26JqQjMxcWBpM4BT3E/16GxQl/5I2CsQ6SDE=;
- b=NFkKV+BP5rEchwb1zFHXsyRL/vKrOb1wYy9yYfdt5aJiAcy9Pf7mioma0JrbAA11Xe
- TrI6ihtwcNle8mw55GfhqQ/vtw80RLvZgiWnzYNjBxgKDlmgFtjQOKGK+leMV+rKlNsx
- qguFhZ/acKQJS7wfAdR7Mc20j0VZLYkAOOoNKdYxagvckl8KTivISkIH+NQLeUHyTbU9
- GX7jWyh3U1MBXHCWr3h3gBonv5JUF6cE3HC/UYABGzrgc7C0z0HFPV3M3FoP8H25T3uR
- SUM7EiOh2FNvw90ikLhFngnXQFv9dFrilsnu6224bmpzmsIeDZggNEsUeRdhxFNP/myU
- GGgA==
-X-Gm-Message-State: APjAAAVVJUQk3PduAvgRs+8R5NnQwWUc4iDSCArgnSuP0aiKEmQRKAc9
- pmcSoitW1haEELvKwjzqTqhocw==
-X-Google-Smtp-Source: APXvYqxQvIbWEQZEa5ia4EzS/ChBFGaEfNjjaqXNYwG/N2NhJ43OU+xO7DpCmzvXJLI/Lu4E8MmTQw==
-X-Received: by 2002:a5d:4e0a:: with SMTP id p10mr38858887wrt.229.1580317644134; 
- Wed, 29 Jan 2020 09:07:24 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id 16sm3047625wmi.0.2020.01.29.09.07.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 Jan 2020 09:07:23 -0800 (PST)
-Date: Wed, 29 Jan 2020 18:07:21 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20200129170721.GN43062@phenom.ffwll.local>
-References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
- <20200129082410.1691996-6-daniel.vetter@ffwll.ch>
- <20200129164733.GB22331@ravnborg.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C3A46F5FE;
+ Wed, 29 Jan 2020 17:37:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 844ADA0118;
+ Wed, 29 Jan 2020 17:37:48 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200129164733.GB22331@ravnborg.org>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm: Nerv drm_global_mutex BKL for good
- drivers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Wed, 29 Jan 2020 17:37:48 -0000
+Message-ID: <158031946852.5463.183210206065290241@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_disable_drm=5Fglobal=5Fmutex_for_most_drivers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,199 +38,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2020 at 05:47:33PM +0100, Sam Ravnborg wrote:
-> Hi Daniel.
-> 
-> In the nit-pick department today - sorry.
-> 
-> Subject: [PATCH 5/5] drm: Nerv drm_global_mutex BKL for good drivers
-> I did not understand this subject... - what is "Nerv"?
+== Series Details ==
 
-It's a typo, supposed to be nerf:
+Series: disable drm_global_mutex for most drivers
+URL   : https://patchwork.freedesktop.org/series/72711/
+State : warning
 
-https://www.urbandictionary.com/define.php?term=nerf
+== Summary ==
 
-Cheers, Daniel
-> 
-> 	Sam
-> 
-> On Wed, Jan 29, 2020 at 09:24:10AM +0100, Daniel Vetter wrote:
-> > This catches the majority of drivers (unfortunately not if we take
-> > users into account, because all the big drivers have at least a
-> > lastclose hook).
-> > 
-> > With the prep patches out of the way all drm state is fully protected
-> > and either prevents or can deal with the races from dropping the BKL
-> > around open/close. The only thing left to audit are the various driver
-> > hooks - by keeping the BKL around if any of them are set we have a
-> > very simple cop-out!
-> > 
-> > Note that one of the biggest prep pieces to get here was making
-> > dev->open_count atomic, which was done in
-> > 
-> > commit 7e13ad896484a0165a68197a2e64091ea28c9602
-> > Author: Chris Wilson <chris@chris-wilson.co.uk>
-> > Date:   Fri Jan 24 13:01:07 2020 +0000
-> > 
-> >     drm: Avoid drm_global_mutex for simple inc/dec of dev->open_count
-> > 
-> > Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c      |  6 +++--
-> >  drivers/gpu/drm/drm_file.c     | 46 ++++++++++++++++++++++++++++++----
-> >  drivers/gpu/drm/drm_internal.h |  1 +
-> >  3 files changed, 46 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 05bdf0b9d2b3..9fcd6ab3c154 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -946,7 +946,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
-> >  	struct drm_driver *driver = dev->driver;
-> >  	int ret;
-> >  
-> > -	mutex_lock(&drm_global_mutex);
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_lock(&drm_global_mutex);
-> >  
-> >  	if (dev->driver->load) {
-> >  		if (!drm_core_check_feature(dev, DRIVER_LEGACY))
-> > @@ -992,7 +993,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
-> >  	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
-> >  	drm_minor_unregister(dev, DRM_MINOR_RENDER);
-> >  out_unlock:
-> > -	mutex_unlock(&drm_global_mutex);
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_unlock(&drm_global_mutex);
-> >  	return ret;
-> >  }
-> >  EXPORT_SYMBOL(drm_dev_register);
-> > diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> > index d36cb74ebe0c..efd6fe0b6b4f 100644
-> > --- a/drivers/gpu/drm/drm_file.c
-> > +++ b/drivers/gpu/drm/drm_file.c
-> > @@ -51,6 +51,37 @@
-> >  /* from BKL pushdown */
-> >  DEFINE_MUTEX(drm_global_mutex);
-> >  
-> > +bool drm_dev_needs_global_mutex(struct drm_device *dev)
-> > +{
-> > +	/*
-> > +	 * Legacy drivers rely on all kinds of BKL locking semantics, don't
-> > +	 * bother. They also still need BKL locking for their ioctls, so better
-> > +	 * safe than sorry.
-> > +	 */
-> > +	if (drm_core_check_feature(dev, DRIVER_LEGACY))
-> > +		return true;
-> > +
-> > +	/*
-> > +	 * The deprecated ->load callback must be called after the driver is
-> > +	 * already registered. This means such drivers rely on the BKL to make
-> > +	 * sure an open can't proceed until the driver is actually fully set up.
-> > +	 * Similar hilarity holds for the unload callback.
-> > +	 */
-> > +	if (dev->driver->load || dev->driver->unload)
-> > +		return true;
-> > +
-> > +	/*
-> > +	 * Drivers with the lastclose callback assume that it's synchronized
-> > +	 * against concurrent opens, which again needs the BKL. The proper fix
-> > +	 * is to use the drm_client infrastructure with proper locking for each
-> > +	 * client.
-> > +	 */
-> > +	if (dev->driver->lastclose)
-> > +		return true;
-> > +
-> > +	return false;
-> > +}
-> > +
-> >  /**
-> >   * DOC: file operations
-> >   *
-> > @@ -378,9 +409,10 @@ int drm_open(struct inode *inode, struct file *filp)
-> >  	if (IS_ERR(minor))
-> >  		return PTR_ERR(minor);
-> >  
-> > -	mutex_unlock(&drm_global_mutex);
-> > -
-> >  	dev = minor->dev;
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_unlock(&drm_global_mutex);
-> > +
-> >  	if (!atomic_fetch_inc(&dev->open_count))
-> >  		need_setup = 1;
-> >  
-> > @@ -398,13 +430,15 @@ int drm_open(struct inode *inode, struct file *filp)
-> >  		}
-> >  	}
-> >  
-> > -	mutex_unlock(&drm_global_mutex);
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_unlock(&drm_global_mutex);
-> >  
-> >  	return 0;
-> >  
-> >  err_undo:
-> >  	atomic_dec(&dev->open_count);
-> > -	mutex_unlock(&drm_global_mutex);
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_unlock(&drm_global_mutex);
-> >  	drm_minor_release(minor);
-> >  	return retcode;
-> >  }
-> > @@ -444,6 +478,7 @@ int drm_release(struct inode *inode, struct file *filp)
-> >  	struct drm_minor *minor = file_priv->minor;
-> >  	struct drm_device *dev = minor->dev;
-> >  
-> > +	if (drm_dev_needs_global_mutex(dev))
-> >  	mutex_lock(&drm_global_mutex);
-> >  
-> >  	DRM_DEBUG("open_count = %d\n", atomic_read(&dev->open_count));
-> > @@ -453,7 +488,8 @@ int drm_release(struct inode *inode, struct file *filp)
-> >  	if (atomic_dec_and_test(&dev->open_count))
-> >  		drm_lastclose(dev);
-> >  
-> > -	mutex_unlock(&drm_global_mutex);
-> > +	if (drm_dev_needs_global_mutex(dev))
-> > +		mutex_unlock(&drm_global_mutex);
-> >  
-> >  	drm_minor_release(minor);
-> >  
-> > diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> > index 6937bf923f05..aeec2e68d772 100644
-> > --- a/drivers/gpu/drm/drm_internal.h
-> > +++ b/drivers/gpu/drm/drm_internal.h
-> > @@ -41,6 +41,7 @@ struct drm_printer;
-> >  
-> >  /* drm_file.c */
-> >  extern struct mutex drm_global_mutex;
-> > +bool drm_dev_needs_global_mutex(struct drm_device *dev);
-> >  struct drm_file *drm_file_alloc(struct drm_minor *minor);
-> >  void drm_file_free(struct drm_file *file);
-> >  void drm_lastclose(struct drm_device *dev);
-> > -- 
-> > 2.24.1
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+$ dim checkpatch origin/drm-tip
+4c86ec07f811 drm: Complain if drivers still use the ->load callback
+-:48: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+42ee1c03e770 drm/fbdev-helper: don't force restores
+-:70: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 29 lines checked
+ca5ca224d1e1 drm/client: Rename _force to _locked
+-:97: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 60 lines checked
+7c9238faf93b drm: Push drm_global_mutex locking in drm_open
+-:87: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+bffddad1dd65 drm: Nerv drm_global_mutex BKL for good drivers
+-:19: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 7e13ad896484 ("drm: Avoid drm_global_mutex for simple inc/dec of dev->open_count")'
+#19: 
+commit 7e13ad896484a0165a68197a2e64091ea28c9602
+
+-:130: WARNING:SUSPECT_CODE_INDENT: suspect code indent for conditional statements (8, 8)
+#130: FILE: drivers/gpu/drm/drm_file.c:481:
++	if (drm_dev_needs_global_mutex(dev))
+ 	mutex_lock(&drm_global_mutex);
+
+-:155: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
+
+total: 1 errors, 2 warnings, 0 checks, 107 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
