@@ -1,34 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2FF914CEB2
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 17:54:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C4414CEA4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 17:45:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23E7E6F5DD;
-	Wed, 29 Jan 2020 16:54:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 064856E3F9;
+	Wed, 29 Jan 2020 16:45:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78D5F6F5DD
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 16:54:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 08:54:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="261863896"
-Received: from amanna.iind.intel.com ([10.223.74.53])
- by fmsmga002.fm.intel.com with ESMTP; 29 Jan 2020 08:54:23 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jan 2020 22:13:26 +0530
-Message-Id: <20200129164326.26579-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.24.0
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 511C56E3F9;
+ Wed, 29 Jan 2020 16:45:51 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id 30107804E7;
+ Wed, 29 Jan 2020 17:45:46 +0100 (CET)
+Date: Wed, 29 Jan 2020 17:45:45 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200129164545.GA22331@ravnborg.org>
+References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+ <20200129082410.1691996-5-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC] drm/i915/dsb: Pre allocate and late cleanup of
- cmd buffer.
+Content-Disposition: inline
+In-Reply-To: <20200129082410.1691996-5-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=taGs_qngAAAA:8
+ a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=mkuqXOTpuORTtGt2Qt4A:9
+ a=llfO7MrySwjLa4GP:21 a=mdBBOxew0v2lbHCs:21 a=CjuIK1q_8ugA:10
+ a=DM_PlaNYpjARcMQr2apF:22 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 4/5] drm: Push drm_global_mutex locking in
+ drm_open
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,257 +48,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, daniel.vetter@intel.com
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pre-allocate buffer object in atomic_check using intel_dsb_init
-function which will allocate a gem object and used later to pin and
-map the buffer in atomic_commit.
+Hi Daniel.
 
-No chnage is dsb write/commit functions.
+On Wed, Jan 29, 2020 at 09:24:09AM +0100, Daniel Vetter wrote:
+> We want to only take the BKL on crap drivers, but to know whether
+The BKL was killed long time ago..
+In other words I was confused until I realized that
+- BKL
+- drm_global_mutex BKL
+- drm_global_mutex
 
-Now dsb get/put function is refactored and currently used only for
-reference counting. Below dsb api added to do respective job
-mentioned below.
+Was all the same. At least my OCD color me confused as is.
 
-intel_dsb_init - allocate the DSB buffer.
-intel_dsb_prepare - pin and map the buffer.
-intel_dsb_cleanup - Unpin and release the gem object.
+> we have a crap driver we first need to look it up. Split this shuffle
+> out from the main BKL-disabling patch, for more clarity.
+> 
+> Since the minors are refcounted drm_minor_acquire is purely internal
+> and this does not have a driver visible effect.
+> 
+> v2: Push the locking even further into drm_open(), suggested by Chris.
+> This gives us more symmetry with drm_release(), and maybe a futuer
+> avenue where we make drm_globale_mutex locking (partially) opt-in like
+s/drm_globale_mutex/drm_global_mutex/
 
-RFC: Inital patch for design review.
+> with drm_release_noglobal().
+> 
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c |  17 ++++
- drivers/gpu/drm/i915/display/intel_dsb.c     | 102 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_dsb.h     |   4 +
- 3 files changed, 100 insertions(+), 23 deletions(-)
+Above is IMO fix-while-committing stuff.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c0e5002ce64c..7c6068cdad16 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -12698,6 +12698,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 		ret = intel_color_check(crtc_state);
- 		if (ret)
- 			return ret;
-+		intel_dsb_init(crtc);
- 	}
- 
- 	ret = 0;
-@@ -14939,6 +14940,19 @@ static int intel_atomic_check(struct drm_device *dev,
- 
- static int intel_atomic_prepare_commit(struct intel_atomic_state *state)
- {
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int i;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-+		bool mode_changed = needs_modeset(crtc_state);
-+
-+		if (mode_changed || crtc_state->update_pipe ||
-+		    crtc_state->uapi.color_mgmt_changed) {
-+			intel_dsb_prepare(crtc);
-+		}
-+	}
-+
- 	return drm_atomic_helper_prepare_planes(state->base.dev,
- 						&state->base);
- }
-@@ -15637,6 +15651,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	if (state->modeset && intel_can_enable_sagv(state))
- 		intel_enable_sagv(dev_priv);
- 
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-+		intel_dsb_cleanup(crtc);
-+
- 	drm_atomic_helper_commit_hw_done(&state->base);
- 
- 	if (state->modeset) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 9dd18144a664..70cecf98c41f 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -84,45 +84,58 @@ static inline bool intel_dsb_disable_engine(struct intel_dsb *dsb)
- }
- 
- /**
-- * intel_dsb_get() - Allocate DSB context and return a DSB instance.
-+ * intel_dsb_init() - During initialization create a gem object.
-  * @crtc: intel_crtc structure to get pipe info.
-  *
-- * This function provides handle of a DSB instance, for the further DSB
-- * operations.
-+ * This function create the gem object which will be used for
-+ * preparing command buffer for DSB.
-+ */
-+
-+void intel_dsb_init(struct intel_crtc *crtc)
-+{
-+	struct drm_device *dev = crtc->base.dev;
-+	struct drm_i915_private *i915 = to_i915(dev);
-+	struct intel_dsb *dsb = &crtc->dsb;
-+
-+	if (!HAS_DSB(i915))
-+		return;
-+
-+	dsb->obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
-+	if (IS_ERR(dsb->obj)) {
-+		DRM_ERROR("Gem object creation failed\n");
-+		dsb->obj = NULL;
-+	}
-+}
-+
-+/**
-+ * intel_dsb_prepare() - Pin and map the DSB command buffer.
-+ * @crtc: intel_crtc structure to get pipe info.
-  *
-- * Returns: address of Intel_dsb instance requested for.
-- * Failure: Returns the same DSB instance, but without a command buffer.
-+ * This function prepare the command buffer which is used to store dsb
-+ * instructions with data.
-  */
- 
--struct intel_dsb *
--intel_dsb_get(struct intel_crtc *crtc)
-+void intel_dsb_prepare(struct intel_crtc *crtc)
- {
- 	struct drm_device *dev = crtc->base.dev;
- 	struct drm_i915_private *i915 = to_i915(dev);
- 	struct intel_dsb *dsb = &crtc->dsb;
--	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 	u32 *buf;
- 	intel_wakeref_t wakeref;
- 
- 	if (!HAS_DSB(i915))
--		return dsb;
-+		return;
- 
--	if (dsb->refcount++ != 0)
--		return dsb;
-+	if (!dsb->obj)
-+		return;
- 
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
--	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
--	if (IS_ERR(obj)) {
--		DRM_ERROR("Gem object creation failed\n");
--		goto out;
--	}
--
--	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
-+	vma = i915_gem_object_ggtt_pin(dsb->obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
- 		DRM_ERROR("Vma creation failed\n");
--		i915_gem_object_put(obj);
-+		i915_gem_object_put(dsb->obj);
- 		goto out;
- 	}
- 
-@@ -145,7 +158,52 @@ intel_dsb_get(struct intel_crtc *crtc)
- 	 */
- 
- 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-+}
-+
-+/**
-+ * intel_dsb_cleanup() - To cleanup DSB context.
-+ * @dsb: intel_dsb structure.
-+ *
-+ * This function cleanup the DSB context by unpinning and releasing
-+ * the VMA object associated with it.
-+ */
-+
-+void intel_dsb_cleanup(struct intel_crtc *crtc)
-+{
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	struct intel_dsb *dsb = &crtc->dsb;
-+
-+	if (!HAS_DSB(i915))
-+		return;
-+
-+	if (!dsb->vma) {
-+		i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
-+		dsb->vma = NULL;
-+		dsb->cmd_buf = NULL;
-+	}
-+}
-+
-+/**
-+ * intel_dsb_get() - Return a DSB instance and increase ref-count.
-+ * @crtc: intel_crtc structure to get pipe info.
-+ *
-+ * This function provides handle of a DSB instance, for the further DSB
-+ * operations.
-+ *
-+ * Returns: address of Intel_dsb instance requested for.
-+ */
- 
-+struct intel_dsb *
-+intel_dsb_get(struct intel_crtc *crtc)
-+{
-+	struct drm_device *dev = crtc->base.dev;
-+	struct drm_i915_private *i915 = to_i915(dev);
-+	struct intel_dsb *dsb = &crtc->dsb;
-+
-+	if (!HAS_DSB(i915))
-+		return dsb;
-+
-+	dsb->refcount++;
- 	return dsb;
- }
- 
-@@ -153,8 +211,8 @@ intel_dsb_get(struct intel_crtc *crtc)
-  * intel_dsb_put() - To destroy DSB context.
-  * @dsb: intel_dsb structure.
-  *
-- * This function destroys the DSB context allocated by a dsb_get(), by
-- * unpinning and releasing the VMA object associated with it.
-+ * This function decrease the reference count and reset the command
-+ * buffer position.
-  */
- 
- void intel_dsb_put(struct intel_dsb *dsb)
-@@ -169,8 +227,6 @@ void intel_dsb_put(struct intel_dsb *dsb)
- 		return;
- 
- 	if (--dsb->refcount == 0) {
--		i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
--		dsb->cmd_buf = NULL;
- 		dsb->free_pos = 0;
- 		dsb->ins_start_offset = 0;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
-index 395ef9ce558e..2654da2a3784 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.h
-@@ -25,6 +25,7 @@ struct intel_dsb {
- 	long refcount;
- 	enum dsb_id id;
- 	u32 *cmd_buf;
-+	struct drm_i915_gem_object *obj;
- 	struct i915_vma *vma;
- 
- 	/*
-@@ -41,6 +42,9 @@ struct intel_dsb {
- 	u32 ins_start_offset;
- };
- 
-+void intel_dsb_init(struct intel_crtc *crtc);
-+void intel_dsb_prepare(struct intel_crtc *crtc);
-+void intel_dsb_cleanup(struct intel_crtc *crtc);
- struct intel_dsb *
- intel_dsb_get(struct intel_crtc *crtc);
- void intel_dsb_put(struct intel_dsb *dsb);
--- 
-2.24.0
+	Sam
 
+> ---
+>  drivers/gpu/drm/drm_drv.c  | 14 +++++---------
+>  drivers/gpu/drm/drm_file.c |  6 ++++++
+>  2 files changed, 11 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 8deff75b484c..05bdf0b9d2b3 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -1085,17 +1085,14 @@ static int drm_stub_open(struct inode *inode, struct file *filp)
+>  
+>  	DRM_DEBUG("\n");
+>  
+> -	mutex_lock(&drm_global_mutex);
+>  	minor = drm_minor_acquire(iminor(inode));
+> -	if (IS_ERR(minor)) {
+> -		err = PTR_ERR(minor);
+> -		goto out_unlock;
+> -	}
+> +	if (IS_ERR(minor))
+> +		return PTR_ERR(minor);
+>  
+>  	new_fops = fops_get(minor->dev->driver->fops);
+>  	if (!new_fops) {
+>  		err = -ENODEV;
+> -		goto out_release;
+> +		goto out;
+>  	}
+>  
+>  	replace_fops(filp, new_fops);
+> @@ -1104,10 +1101,9 @@ static int drm_stub_open(struct inode *inode, struct file *filp)
+>  	else
+>  		err = 0;
+>  
+> -out_release:
+> +out:
+>  	drm_minor_release(minor);
+> -out_unlock:
+> -	mutex_unlock(&drm_global_mutex);
+> +
+>  	return err;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index 1075b3a8b5b1..d36cb74ebe0c 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -378,6 +378,8 @@ int drm_open(struct inode *inode, struct file *filp)
+>  	if (IS_ERR(minor))
+>  		return PTR_ERR(minor);
+>  
+> +	mutex_unlock(&drm_global_mutex);
+> +
+>  	dev = minor->dev;
+>  	if (!atomic_fetch_inc(&dev->open_count))
+>  		need_setup = 1;
+> @@ -395,10 +397,14 @@ int drm_open(struct inode *inode, struct file *filp)
+>  			goto err_undo;
+>  		}
+>  	}
+> +
+> +	mutex_unlock(&drm_global_mutex);
+> +
+>  	return 0;
+>  
+>  err_undo:
+>  	atomic_dec(&dev->open_count);
+> +	mutex_unlock(&drm_global_mutex);
+>  	drm_minor_release(minor);
+>  	return retcode;
+>  }
+> -- 
+> 2.24.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
