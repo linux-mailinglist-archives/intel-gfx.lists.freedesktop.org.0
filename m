@@ -2,42 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468D314D0DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 20:01:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1FEE14D126
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 20:21:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A283C89B96;
-	Wed, 29 Jan 2020 19:01:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EADE6E42C;
+	Wed, 29 Jan 2020 19:21:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE01289B96
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 19:01:07 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035336E42C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 19:21:09 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 10:44:17 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 11:19:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="261902781"
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="222551176"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 29 Jan 2020 10:44:15 -0800
+ by orsmga008.jf.intel.com with SMTP; 29 Jan 2020 11:19:11 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 29 Jan 2020 20:44:14 +0200
-Date: Wed, 29 Jan 2020 20:44:14 +0200
+ Wed, 29 Jan 2020 21:19:11 +0200
+Date: Wed, 29 Jan 2020 21:19:11 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200129184414.GX13686@intel.com>
-References: <20200129182034.26138-1-ville.syrjala@linux.intel.com>
- <20200129182034.26138-6-ville.syrjala@linux.intel.com>
- <158032272436.13511.14294498438655990456@skylake-alporthouse-com>
+Message-ID: <20200129191911.GY13686@intel.com>
+References: <20191209150137.18578-1-ville.syrjala@linux.intel.com>
+ <20191209150137.18578-2-ville.syrjala@linux.intel.com>
+ <157590439302.6399.13307864068739805449@skylake-alporthouse-com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <158032272436.13511.14294498438655990456@skylake-alporthouse-com>
+In-Reply-To: <157590439302.6399.13307864068739805449@skylake-alporthouse-com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 6/9] drm/i915/dsb: Inline DSB_CTRL writes
- into intel_dsb_commit()
+Subject: Re: [Intel-gfx] [PATCH xf86-video-intel 2/2] sna: Eliminate
+ sna_mode_wants_tear_free()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,22 +55,48 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2020 at 06:32:04PM +0000, Chris Wilson wrote:
-> Quoting Ville Syrjala (2020-01-29 18:20:31)
-> > +       intel_de_write(dev_priv, DSB_CTRL(pipe, dsb->id),
-> > +                      DSB_ENABLE);
-> > +       intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
-> > +                      i915_ggtt_offset(dsb->vma));
-> >         intel_de_write(dev_priv, DSB_TAIL(pipe, dsb->id),
-> >                        i915_ggtt_offset(dsb->vma) + tail);
+On Mon, Dec 09, 2019 at 03:13:13PM +0000, Chris Wilson wrote:
+> Quoting Ville Syrjala (2019-12-09 15:01:37)
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
+
+> > The modparam checks performed by sna_mode_wants_tear_free() don't
+> > generally work when the server is running as a regular user. Hence
+> > we can't rely on them to indicate whether FBC/PSR/etc is enabled.
+> > A lso the "Panel Self-Refresh" connector property doesn't actually
+> > exist so we can nuke that part as well. Let's just nuke the whole
+> > thing and assume we want dirtyfb always when tearfree is not enabled.
+> > =
+
+> > I'll anyway want to enable FBC by default across the board soonish
+> > so the check wouldn't really buy us much (would just exclude i830
+> > and a few old desktop chipsets which don't have FBC hardware).
+> > =
+
+> > Additionally if we don't have working dirtyfb we really should
+> > enable tearfree by default because otherwise we're going to
+> > get horrible lag due to missing frontbuffer flushes.
 > =
 
-> I still say this order looks dodgy for a ringbuffer. Is it all truly
-> latched by DSB_TAIL or might it start passing on being enabled and HEAD
-> !=3D TAIL?
+> But we also want to enable TearFree anyway in most cases, and here we
+> are defaulting to off in cases where it was already on.
+> =
 
-My initial thoughts as well, but indeed it's the tail write that
-makes it go (or at least that's what the docs say).
+> I still don't know on what grounds the cut-off should be based, the
+> primary question is can we afford to keep an extra framebuffer plus any
+> gubbins memory? The worry about perf are now larger moot, so it boils
+> down to available memory -- in quite a few cases TearFree is a big
+> improvement on power management, but that I guess is currently snb+
+> (although we can fix ilk render powerstandby).
+> =
+
+> How about GTT > mappable aperture, based on the idea that we have room
+> to spare that can't be used for scanout? That would only disable gen2 by
+> default.
+
+So thinking about this thing again. If we go with the mappable vs. gtt
+size check, what do we want to do with the meson/autoconf tearfree knob.
+Just nuke it? Or maybe we want it to override all the heuristics?
 
 -- =
 
