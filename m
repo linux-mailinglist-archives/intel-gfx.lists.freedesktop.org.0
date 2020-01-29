@@ -1,33 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A40214CB9C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:43:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7910114CBF4
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:59:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4B426F55B;
-	Wed, 29 Jan 2020 13:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C6246F569;
+	Wed, 29 Jan 2020 13:59:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 833DA6F55B
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:43:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20047986-1500050 for multiple; Wed, 29 Jan 2020 13:42:26 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88316F569;
+ Wed, 29 Jan 2020 13:59:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 05:59:31 -0800
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="401994886"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 05:59:27 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
+In-Reply-To: <87h80eaciw.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200122125750.9737-1-wambui.karugax@gmail.com>
+ <20200122125750.9737-2-wambui.karugax@gmail.com>
+ <b97de5b8-b87f-3b2d-e8bc-942fc21b266e@linux.intel.com>
+ <87h80fd751.fsf@intel.com>
+ <158023610727.2129.14756905957829283843@skylake-alporthouse-com>
+ <87h80eaciw.fsf@intel.com>
+Date: Wed, 29 Jan 2020 15:59:24 +0200
+Message-ID: <87lfpqbbyb.fsf@intel.com>
 MIME-Version: 1.0
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200129133912.810-1-mika.kuoppala@linux.intel.com>
-References: <20200129133912.810-1-mika.kuoppala@linux.intel.com>
-Message-ID: <158030534546.11197.11834221479926714378@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 29 Jan 2020 13:42:25 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Park faster to alleviate kept
- forcewake
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gem: initial conversion to new
+ logging macros using coccinelle
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,32 +52,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stable <stable@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-01-29 13:39:12)
-> To avoid context corruption on some gens, we need to hold forcewake
-> for long periods of time. This leads to increased energy expenditure
-> for mostly idle workloads.
-> 
-> To combat the increased power consumption, park GPU more hastily.
-> 
-> As the HW isn't so quick to end up in rc6, this software mechanism
-> supplements it. So we can apply it, across all gens.
-> 
-> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Testcase: igt/i915_pm_rc6_residency/rc6-idle
-> References: "Add RC6 CTX corruption WA"
-> Cc: Stable <stable@vger.kernel.org>    # v4.19+
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+On Wed, 29 Jan 2020, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 28 Jan 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>> Quoting Jani Nikula (2020-01-28 13:48:10)
+>>> On Tue, 28 Jan 2020, Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com> wrote:
+>>> >> -DRM_DEBUG(
+>>> >> +drm_dbg(&T->drm,
+>>> >
+>>> > This changes DRM_UT_CORE to DRM_UT_DRIVER so our typical drm.debug=0xe 
+>>> > becomes much more spammy.
+>>> 
+>>> This is what I've instructed Wambui to do in i915. It's my mistake that
+>>> I haven't requested this to be pointed out in the commit message.
+>>> 
+>>> DRM_DEBUG() and DRM_DEBUG_DRIVER() have been conflated over the
+>>> years. The former is supposed to be for drm core code only, but drivers
+>>> are littered with it. I'm hoping drivers are less likely to use the new
+>>> drm_dbg_core() which maps to DRM_DEBUG(). The shorter drm_dbg() is the
+>>> new DRM_DEBUG_DRIVER().
+>>> 
+>>> If you think drm.debug=0xe is too spammy now, the fix is not to abuse
+>>> DRM_UT_CORE as a spare category
+>>
+>> That mistake was made when that category was assigned to user debug like
+>> ioctls.
+>>
+>> Shall I send a revert to remove the spam?
+>
+> Fine. Please suggest an alternative to DRM_UT_CORE to use here.
 
-Seems to work and play nice with the older style of locking,
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+How about this for the time being, to continue the conversion:
+
+1. Selectively revert the DRM_DEBUG() calls that were converted to
+   drm_dbg() back to DRM_DEBUG() in gt/ and gem/. Let the others be. I
+   think elsewhere the conversion is fine.
+
+2. Continue the conversion otherwise, but leave current DRM_DEBUG()
+   intact. Except in display/ where I think the conversion is fine.
+
+3. Deal with the DRM_DEBUG() later once we figure out what we want.
+
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
