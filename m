@@ -2,37 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FBFA14D2D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 23:10:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA5E14D30D
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 23:25:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C62A89BF3;
-	Wed, 29 Jan 2020 22:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 650C16F89F;
+	Wed, 29 Jan 2020 22:25:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5CFE89BF3
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 22:10:18 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 14:10:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,379,1574150400"; d="scan'208";a="428109072"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
- by fmsmga005.fm.intel.com with ESMTP; 29 Jan 2020 14:10:17 -0800
-Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
- ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 29 Jan 2020 14:10:16 -0800
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Date: Wed, 29 Jan 2020 14:05:40 -0800
-Message-ID: <20200129220540.7608-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.21.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63C8B6F8A1;
+ Wed, 29 Jan 2020 22:25:15 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20053177-1500050 
+ for multiple; Wed, 29 Jan 2020 22:24:56 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2020 22:24:56 +0000
+Message-Id: <20200129222456.1503424-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-X-Originating-IP: [10.22.254.138]
-Subject: [Intel-gfx] [PATCH] drm/i915/ddi: Ensure that the value assigned to
- ddi_clk_needed is a bool
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_reloc: Add SIGINT injection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,38 +36,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, the value assigned to the bool variable ddi_clk_needed
-is a pointer -- which appears to have happened inadvertently. Therefore,
-add a "!!" before the expression on the right to ensure that it results
-in a bool.
+Do a pass over gem_exec_reloc where we inject lots of SIGINTs.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Vivek Kasireddy <vivek.kasireddy@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Antonio Argenziano <antonio.argenziano@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests/i915/gem_exec_reloc.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index c96f629cddc3..6df485289bc6 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3109,7 +3109,7 @@ void icl_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
- 	}
+diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
+index bc904a0ae..1aa03fba3 100644
+--- a/tests/i915/gem_exec_reloc.c
++++ b/tests/i915/gem_exec_reloc.c
+@@ -379,7 +379,8 @@ static bool has_64b_reloc(int fd)
  
- 	port_mask = BIT(encoder->port);
--	ddi_clk_needed = encoder->base.crtc;
-+	ddi_clk_needed = !!encoder->base.crtc;
+ #define NORELOC 1
+ #define ACTIVE 2
+-#define HANG 4
++#define INTERRUPTIBLE 4
++#define HANG 8
+ static void basic_reloc(int fd, unsigned before, unsigned after, unsigned flags)
+ {
+ #define OBJSZ 8192
+@@ -735,6 +736,7 @@ igt_main
+ 		{ "", 0 , true},
+ 		{ "-noreloc", NORELOC, true },
+ 		{ "-active", ACTIVE, true },
++		{ "-interruptible", ACTIVE | INTERRUPTIBLE },
+ 		{ "-hang", ACTIVE | HANG },
+ 		{ },
+ 	}, *f;
+@@ -762,14 +764,17 @@ igt_main
+ 					      f->name) {
+ 					if ((m->before | m->after) & I915_GEM_DOMAIN_WC)
+ 						igt_require(gem_mmap__has_wc(fd));
+-					basic_reloc(fd, m->before, m->after, f->flags);
++					igt_while_interruptible(f->flags & INTERRUPTIBLE)
++						basic_reloc(fd, m->before, m->after, f->flags);
+ 				}
+ 			}
  
- 	if (encoder->type == INTEL_OUTPUT_DSI) {
- 		struct intel_encoder *other_encoder;
+ 			if (!(f->flags & NORELOC)) {
+ 				igt_subtest_f("%srange%s",
+-					      f->basic ? "basic-" : "", f->name)
+-					basic_range(fd, f->flags);
++					      f->basic ? "basic-" : "", f->name) {
++					igt_while_interruptible(f->flags & INTERRUPTIBLE)
++						basic_range(fd, f->flags);
++				}
+ 			}
+ 
+ 			igt_fixture {
 -- 
-2.21.1
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
