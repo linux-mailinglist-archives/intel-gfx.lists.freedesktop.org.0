@@ -1,30 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C7AC14CD4E
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 16:26:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2FF914CEB2
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 17:54:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AAB6E3D3;
-	Wed, 29 Jan 2020 15:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E7E6F5DD;
+	Wed, 29 Jan 2020 16:54:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D63E06E3BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 15:26:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20049248-1500050 
- for multiple; Wed, 29 Jan 2020 15:26:08 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78D5F6F5DD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 16:54:25 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 08:54:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="261863896"
+Received: from amanna.iind.intel.com ([10.223.74.53])
+ by fmsmga002.fm.intel.com with ESMTP; 29 Jan 2020 08:54:23 -0800
+From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jan 2020 15:26:08 +0000
-Message-Id: <20200129152608.1179739-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Date: Wed, 29 Jan 2020 22:13:26 +0530
+Message-Id: <20200129164326.26579-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Yield the timeslice if caught
- waiting on a user semaphore
+Subject: [Intel-gfx] [RFC] drm/i915/dsb: Pre allocate and late cleanup of
+ cmd buffer.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,232 +41,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, daniel.vetter@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice, if we have
-another context to yield to!
+Pre-allocate buffer object in atomic_check using intel_dsb_init
+function which will allocate a gem object and used later to pin and
+map the buffer in atomic_commit.
 
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is, we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
-the interrupt and apply it to the next timeslice regardless of whether it
-was active at the time.
+No chnage is dsb write/commit functions.
 
-v2: We use semaphores in preempt-to-busy, within the timeslicing
-implementation itself! Ergo, when we do insert a preemption due to an
-expired timeslice, the new context may start with the missed semaphore
-flagged by the retired context and be yielded, ad infinitum. To avoid
-this, read the context id at the time of the semaphore interrupt and
-only yield if that context is still active.
+Now dsb get/put function is refactored and currently used only for
+reference counting. Below dsb api added to do respective job
+mentioned below.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+intel_dsb_init - allocate the DSB buffer.
+intel_dsb_prepare - pin and map the buffer.
+intel_dsb_cleanup - Unpin and release the gem object.
+
+RFC: Inital patch for design review.
+
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 +++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 +++++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 13 ++++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 40 +++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h              |  5 +++
- 5 files changed, 65 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |  17 ++++
+ drivers/gpu/drm/i915/display/intel_dsb.c     | 102 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dsb.h     |   4 +
+ 3 files changed, 100 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 39fe9a5b4820..4a2693fb5f8d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1277,6 +1277,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 
- 	if (engine->id == RENDER_CLASS && IS_GEN_RANGE(dev_priv, 4, 7))
- 		drm_printf(m, "\tCCID: 0x%08x\n", ENGINE_READ(engine, CCID));
-+	if (HAS_EXECLISTS(dev_priv)) {
-+		drm_printf(m, "\tEL_CCID:    0x%08x\n",
-+			   ENGINE_READ(engine, EXECLIST_CCID));
-+		drm_printf(m, "\tEL_STATUS:  0x%08x\n",
-+			   ENGINE_READ(engine, EXECLIST_STATUS));
-+	}
- 	drm_printf(m, "\tRING_START: 0x%08x\n",
- 		   ENGINE_READ(engine, RING_START));
- 	drm_printf(m, "\tRING_HEAD:  0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index abd1de3b83a8..c7ea986878c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -156,6 +156,15 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_priolist default_priolist;
- 
-+	/**
-+	 * @yield: CCID at the time of the last semaphore-wait interrupt.
-+	 *
-+	 * Instead of leaving a semaphore busy-spinning on an engine, we would
-+	 * like to switch to another ready context, i.e. yielding the semaphore
-+	 * timeslice.
-+	 */
-+	u32 yield;
-+
- 	/**
- 	 * @error_interrupt: CS Master EIR
- 	 *
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f0e7fd95165a..975064edd956 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -39,6 +39,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c0e5002ce64c..7c6068cdad16 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -12698,6 +12698,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+ 		ret = intel_color_check(crtc_state);
+ 		if (ret)
+ 			return ret;
++		intel_dsb_init(crtc);
  	}
  
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		WRITE_ONCE(engine->execlists.yield,
-+			   ENGINE_READ_FW(engine, EXECLIST_CCID));
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
+ 	ret = 0;
+@@ -14939,6 +14940,19 @@ static int intel_atomic_check(struct drm_device *dev,
+ 
+ static int intel_atomic_prepare_commit(struct intel_atomic_state *state)
+ {
++	struct intel_crtc_state *crtc_state;
++	struct intel_crtc *crtc;
++	int i;
++
++	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
++		bool mode_changed = needs_modeset(crtc_state);
++
++		if (mode_changed || crtc_state->update_pipe ||
++		    crtc_state->uapi.color_mgmt_changed) {
++			intel_dsb_prepare(crtc);
++		}
 +	}
 +
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
+ 	return drm_atomic_helper_prepare_planes(state->base.dev,
+ 						&state->base);
+ }
+@@ -15637,6 +15651,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 	if (state->modeset && intel_can_enable_sagv(state))
+ 		intel_enable_sagv(dev_priv);
  
-@@ -228,7 +235,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -366,7 +374,8 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	const u32 gt_interrupts[] = {
- 		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
- 		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 8f15ab7d8d88..fb112fc463c7 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1661,7 +1661,8 @@ static void defer_active(struct intel_engine_cs *engine)
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
++		intel_dsb_cleanup(crtc);
++
+ 	drm_atomic_helper_commit_hw_done(&state->base);
+ 
+ 	if (state->modeset) {
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 9dd18144a664..70cecf98c41f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -84,45 +84,58 @@ static inline bool intel_dsb_disable_engine(struct intel_dsb *dsb)
  }
  
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1677,6 +1678,31 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_yield(const struct intel_engine_execlists *el,
-+		const struct i915_request *rq)
+ /**
+- * intel_dsb_get() - Allocate DSB context and return a DSB instance.
++ * intel_dsb_init() - During initialization create a gem object.
+  * @crtc: intel_crtc structure to get pipe info.
+  *
+- * This function provides handle of a DSB instance, for the further DSB
+- * operations.
++ * This function create the gem object which will be used for
++ * preparing command buffer for DSB.
++ */
++
++void intel_dsb_init(struct intel_crtc *crtc)
 +{
-+	/*
-+	 * Once bitten, forever smitten!
-+	 *
-+	 * If the active context ever busy-waited on a semaphore,
-+	 * it will be treated as a hog until the end of its timeslice.
-+	 * The HW only sends an interrupt on the first miss, and we
-+	 * do know if that semaphore has been signaled, or even if it
-+	 * is now stuck on another semaphore. Play safe, yield if it
-+	 * might be stuck -- it will be given a fresh timeslice in
-+	 * the near future.
-+	 */
-+	return upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield);
++	struct drm_device *dev = crtc->base.dev;
++	struct drm_i915_private *i915 = to_i915(dev);
++	struct intel_dsb *dsb = &crtc->dsb;
++
++	if (!HAS_DSB(i915))
++		return;
++
++	dsb->obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
++	if (IS_ERR(dsb->obj)) {
++		DRM_ERROR("Gem object creation failed\n");
++		dsb->obj = NULL;
++	}
 +}
 +
-+static bool
-+timeslice_expired(const struct intel_engine_execlists *el,
-+		  const struct i915_request *rq)
-+{
-+	return timer_expired(&el->timer) || timeslice_yield(el, rq);
++/**
++ * intel_dsb_prepare() - Pin and map the DSB command buffer.
++ * @crtc: intel_crtc structure to get pipe info.
+  *
+- * Returns: address of Intel_dsb instance requested for.
+- * Failure: Returns the same DSB instance, but without a command buffer.
++ * This function prepare the command buffer which is used to store dsb
++ * instructions with data.
+  */
+ 
+-struct intel_dsb *
+-intel_dsb_get(struct intel_crtc *crtc)
++void intel_dsb_prepare(struct intel_crtc *crtc)
+ {
+ 	struct drm_device *dev = crtc->base.dev;
+ 	struct drm_i915_private *i915 = to_i915(dev);
+ 	struct intel_dsb *dsb = &crtc->dsb;
+-	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
+ 	u32 *buf;
+ 	intel_wakeref_t wakeref;
+ 
+ 	if (!HAS_DSB(i915))
+-		return dsb;
++		return;
+ 
+-	if (dsb->refcount++ != 0)
+-		return dsb;
++	if (!dsb->obj)
++		return;
+ 
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+-	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
+-	if (IS_ERR(obj)) {
+-		DRM_ERROR("Gem object creation failed\n");
+-		goto out;
+-	}
+-
+-	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
++	vma = i915_gem_object_ggtt_pin(dsb->obj, NULL, 0, 0, 0);
+ 	if (IS_ERR(vma)) {
+ 		DRM_ERROR("Vma creation failed\n");
+-		i915_gem_object_put(obj);
++		i915_gem_object_put(dsb->obj);
+ 		goto out;
+ 	}
+ 
+@@ -145,7 +158,52 @@ intel_dsb_get(struct intel_crtc *crtc)
+ 	 */
+ 
+ 	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
 +}
 +
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1692,8 +1718,7 @@ timeslice(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.timeslice_duration_ms);
++/**
++ * intel_dsb_cleanup() - To cleanup DSB context.
++ * @dsb: intel_dsb structure.
++ *
++ * This function cleanup the DSB context by unpinning and releasing
++ * the VMA object associated with it.
++ */
++
++void intel_dsb_cleanup(struct intel_crtc *crtc)
++{
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_dsb *dsb = &crtc->dsb;
++
++	if (!HAS_DSB(i915))
++		return;
++
++	if (!dsb->vma) {
++		i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
++		dsb->vma = NULL;
++		dsb->cmd_buf = NULL;
++	}
++}
++
++/**
++ * intel_dsb_get() - Return a DSB instance and increase ref-count.
++ * @crtc: intel_crtc structure to get pipe info.
++ *
++ * This function provides handle of a DSB instance, for the further DSB
++ * operations.
++ *
++ * Returns: address of Intel_dsb instance requested for.
++ */
+ 
++struct intel_dsb *
++intel_dsb_get(struct intel_crtc *crtc)
++{
++	struct drm_device *dev = crtc->base.dev;
++	struct drm_i915_private *i915 = to_i915(dev);
++	struct intel_dsb *dsb = &crtc->dsb;
++
++	if (!HAS_DSB(i915))
++		return dsb;
++
++	dsb->refcount++;
+ 	return dsb;
  }
  
--static unsigned long
--active_timeslice(const struct intel_engine_cs *engine)
-+static unsigned long active_timeslice(const struct intel_engine_cs *engine)
- {
- 	const struct i915_request *rq = *engine->execlists.active;
+@@ -153,8 +211,8 @@ intel_dsb_get(struct intel_crtc *crtc)
+  * intel_dsb_put() - To destroy DSB context.
+  * @dsb: intel_dsb structure.
+  *
+- * This function destroys the DSB context allocated by a dsb_get(), by
+- * unpinning and releasing the VMA object associated with it.
++ * This function decrease the reference count and reset the command
++ * buffer position.
+  */
  
-@@ -1844,13 +1869,14 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(execlists, last)) {
- 			ENGINE_TRACE(engine,
--				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
-+				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
- 				     last->fence.seqno,
- 				     last->sched.attr.priority,
--				     execlists->queue_priority_hint);
-+				     execlists->queue_priority_hint,
-+				     yesno(timeslice_yield(execlists, last)));
+ void intel_dsb_put(struct intel_dsb *dsb)
+@@ -169,8 +227,6 @@ void intel_dsb_put(struct intel_dsb *dsb)
+ 		return;
  
- 			ring_set_paused(engine, 1);
- 			defer_active(engine);
-@@ -2110,6 +2136,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		}
- 		clear_ports(port + 1, last_port - port);
+ 	if (--dsb->refcount == 0) {
+-		i915_vma_unpin_and_release(&dsb->vma, I915_VMA_RELEASE_MAP);
+-		dsb->cmd_buf = NULL;
+ 		dsb->free_pos = 0;
+ 		dsb->ins_start_offset = 0;
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.h b/drivers/gpu/drm/i915/display/intel_dsb.h
+index 395ef9ce558e..2654da2a3784 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.h
++++ b/drivers/gpu/drm/i915/display/intel_dsb.h
+@@ -25,6 +25,7 @@ struct intel_dsb {
+ 	long refcount;
+ 	enum dsb_id id;
+ 	u32 *cmd_buf;
++	struct drm_i915_gem_object *obj;
+ 	struct i915_vma *vma;
  
-+		WRITE_ONCE(execlists->yield, -1);
- 		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine);
- 	} else {
-@@ -4341,6 +4368,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
- 	engine->irq_keep_mask |= GT_CS_MASTER_ERROR_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
+ 	/*
+@@ -41,6 +42,9 @@ struct intel_dsb {
+ 	u32 ins_start_offset;
+ };
  
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 4c72b8ac0f2e..e5cff51343af 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3088,6 +3088,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
-@@ -4039,6 +4040,10 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define   CCID_EN			BIT(0)
- #define   CCID_EXTENDED_STATE_RESTORE	BIT(2)
- #define   CCID_EXTENDED_STATE_SAVE	BIT(3)
-+
-+#define EXECLIST_STATUS(base)	_MMIO((base) + 0x234)
-+#define EXECLIST_CCID(base)	_MMIO((base) + 0x238)
-+
- /*
-  * Notes on SNB/IVB/VLV context size:
-  * - Power context is saved elsewhere (LLC or stolen)
++void intel_dsb_init(struct intel_crtc *crtc);
++void intel_dsb_prepare(struct intel_crtc *crtc);
++void intel_dsb_cleanup(struct intel_crtc *crtc);
+ struct intel_dsb *
+ intel_dsb_get(struct intel_crtc *crtc);
+ void intel_dsb_put(struct intel_dsb *dsb);
 -- 
-2.25.0
+2.24.0
 
 _______________________________________________
 Intel-gfx mailing list
