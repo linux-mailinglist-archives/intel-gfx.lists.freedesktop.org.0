@@ -2,46 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A300514CB51
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 302DD14CB8A
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:40:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81E696E395;
-	Wed, 29 Jan 2020 13:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0906E391;
+	Wed, 29 Jan 2020 13:40:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [194.63.252.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF8E46E372;
- Wed, 29 Jan 2020 13:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds201912;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=088J6zul/ms40YvFF1jL5fQpUK3E/9pYydqTGXobSPQ=; b=cJGD7dlQrjP6G6pWqTN7uWrcW8
- XsEfWifVY42P5UK/t5+BPwyBpy7ykk8pAve4upHmfhDb1XNh4eXheb9dkJKfvTHoqCbn3jK2VJhOX
- 6nr+51kxNaOoNpj0i7aDif0iOt0yERtPFpApyCuz8MGj9pw4oOilGBBFecC5vIrjjUHMrZOnjGvvw
- m+6W1KxdCtngraSoblpfaqnMD6ELPV0OtQo5pIt+2bSqnZ2WPnVRPsfN4vVtKclIv1wZyEXmhtpcW
- eGtPGnZ402pjbmiJvTZRoNwlCbbf6w2Km0bKZkzwbgNjRNqUG4uGCIFEWiZ7byJ3plTtQUI/9WMbF
- Gai5eW0g==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:59890
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1iwnDC-0004Ur-LA; Wed, 29 Jan 2020 14:16:54 +0100
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
- <20200129082410.1691996-4-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Message-ID: <b9214acc-24ea-4007-643b-a07f6b6db065@tronnes.org>
-Date: Wed, 29 Jan 2020 14:16:49 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A18226E391
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:40:00 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 05:39:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="229614367"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga003.jf.intel.com with ESMTP; 29 Jan 2020 05:39:58 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2020 18:56:19 +0530
+Message-Id: <20200129132619.4727-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20200128135425.14596-3-anshuman.gupta@intel.com>
+References: <20200128135425.14596-3-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200129082410.1691996-4-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 3/5] drm/client: Rename _force to _locked
+Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: HDCP support on above PORT_E
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,23 +42,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpEZW4gMjkuMDEuMjAyMCAwOS4yNCwgc2tyZXYgRGFuaWVsIFZldHRlcjoKPiBQbHVzIGV4dGVu
-ZCB0aGUga2VybmVsZG9jIGEgYml0IHRvIGV4cGxhaW4gaG93IHRoaXMgc2hvdWxkIGJlIHVzZWQu
-Cj4gV2l0aCB0aGUgcHJldmlvdXMgcGF0Y2ggdG8gZHJvcCB0aGUgZm9yY2UgcmVzdG9yZSB0aGUg
-bWFpbiB1c2VyIG9mCj4gdGhpcyBmdW5jdGlvbiBpcyBub3QgZW1waGFzaXMgb24gdGhlICJJIGhv
-bGQgdGhlIGludGVybmFsIG1hc3RlciBsb2NrCgpUaGUgX25vdF8gY29uZnVzZXMgbWUsIHRoZSBl
-bXBoYXNpcyBpcyBub3cgdGhhdCAiSSBob2xkIHRoZSBsb2NrIiByaWdodD8KCj4gYWxyZWFkeSIg
-YXNwZWN0LCBzbyByZW5hbWUgdGhlIGZ1bmN0aW9uIHRvIG1hdGNoLgo+IAo+IFN1Z2dlc3RlZCBi
-eSBOb3JhbGYuCj4gCj4gQ2M6IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgo+
-IFNpZ25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgo+
-IC0tLQoKUmV2aWV3ZWQtYnk6IE5vcmFsZiBUcsO4bm5lcyA8bm9yYWxmQHRyb25uZXMub3JnPgpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
-bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
-cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+As Gen12 onwards there are HDCP instances for each transcoder
+instead of port, remove the (port < PORT_E) hdcp support
+limitation for platform >= Gen12.
+
+v2:
+ - Nuke the comment and cosmetic changes. [Jani]
+
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index be083136eee2..231b9c12c0b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -921,8 +921,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+ 
+ bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+ {
+-	/* PORT E doesn't have HDCP, and PORT F is disabled */
+-	return INTEL_INFO(dev_priv)->display.has_hdcp && port < PORT_E;
++	return INTEL_INFO(dev_priv)->display.has_hdcp &&
++			(INTEL_GEN(dev_priv) >= 12 || port < PORT_E);
+ }
+ 
+ static int
+-- 
+2.24.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
