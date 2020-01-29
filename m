@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDDD14CFFB
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 18:59:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5E114D03C
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 19:16:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0530F6F5FC;
-	Wed, 29 Jan 2020 17:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 801F86F61E;
+	Wed, 29 Jan 2020 18:16:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BF9E6F5FC;
- Wed, 29 Jan 2020 17:59:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20051116-1500050 for multiple; Wed, 29 Jan 2020 17:59:20 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7726F61E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 18:16:42 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 10:16:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="402067312"
+Received: from cblaim-mobl.ger.corp.intel.com (HELO delly.ger.corp.intel.com)
+ ([10.252.51.159])
+ by orsmga005.jf.intel.com with ESMTP; 29 Jan 2020 10:16:40 -0800
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2020 20:16:38 +0200
+Message-Id: <20200129181638.1528150-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-To: DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200129082410.1691996-6-daniel.vetter@ffwll.ch>
-References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
- <20200129082410.1691996-6-daniel.vetter@ffwll.ch>
-Message-ID: <158032075960.11197.12460347497729057056@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 29 Jan 2020 17:59:19 +0000
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm: Nerv drm_global_mutex BKL for good
- drivers
+Subject: [Intel-gfx] [PATCH] drm/i915: add extra slice common debug registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,38 +41,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Daniel Vetter (2020-01-29 08:24:10)
-> @@ -378,9 +409,10 @@ int drm_open(struct inode *inode, struct file *filp)
->         if (IS_ERR(minor))
->                 return PTR_ERR(minor);
->  
-> -       mutex_unlock(&drm_global_mutex);
-> -
->         dev = minor->dev;
-> +       if (drm_dev_needs_global_mutex(dev))
-> +               mutex_unlock(&drm_global_mutex);
+Could be helpful for debugging purposes.
 
-Too soon, too soon.
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c    | 6 ++++++
+ drivers/gpu/drm/i915/gt/intel_engine_types.h | 1 +
+ drivers/gpu/drm/i915/i915_gpu_error.c        | 8 ++++++++
+ drivers/gpu/drm/i915/i915_reg.h              | 2 ++
+ 4 files changed, 17 insertions(+)
 
-> +
->         if (!atomic_fetch_inc(&dev->open_count))
->                 need_setup = 1;
->  
-> @@ -398,13 +430,15 @@ int drm_open(struct inode *inode, struct file *filp)
->                 }
->         }
->  
-> -       mutex_unlock(&drm_global_mutex);
-> +       if (drm_dev_needs_global_mutex(dev))
-> +               mutex_unlock(&drm_global_mutex);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index f451ef376548..a3089872cda9 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -981,6 +981,12 @@ void intel_engine_get_instdone(const struct intel_engine_cs *engine,
+ 
+ 		instdone->slice_common =
+ 			intel_uncore_read(uncore, GEN7_SC_INSTDONE);
++		if (INTEL_GEN(i915) >= 12) {
++			instdone->slice_common_extra[0] =
++				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA);
++			instdone->slice_common_extra[1] =
++				intel_uncore_read(uncore, GEN12_SC_INSTDONE_EXTRA2);
++		}
+ 		for_each_instdone_slice_subslice(i915, sseu, slice, subslice) {
+ 			instdone->sampler[slice][subslice] =
+ 				read_subslice_reg(engine, slice, subslice,
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 00287515e7af..3b7e00ba72a0 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -75,6 +75,7 @@ struct intel_instdone {
+ 	u32 instdone;
+ 	/* The following exist only in the RCS engine */
+ 	u32 slice_common;
++	u32 slice_common_extra[2];
+ 	u32 sampler[I915_MAX_SLICES][I915_MAX_SUBSLICES];
+ 	u32 row[I915_MAX_SLICES][I915_MAX_SUBSLICES];
+ };
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 4c1836f0a991..2c631799f5e6 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -450,6 +450,14 @@ static void error_print_instdone(struct drm_i915_error_state_buf *m,
+ 		err_printf(m, "  ROW_INSTDONE[%d][%d]: 0x%08x\n",
+ 			   slice, subslice,
+ 			   ee->instdone.row[slice][subslice]);
++
++	if (INTEL_GEN(m->i915) < 12)
++		return;
++
++	err_printf(m, "  SC_INSTDONE_EXTRA: 0x%08x\n",
++		   ee->instdone.slice_common_extra[0]);
++	err_printf(m, "  SC_INSTDONE_EXTRA2: 0x%08x\n",
++		   ee->instdone.slice_common_extra[1]);
+ }
+ 
+ static void error_print_request(struct drm_i915_error_state_buf *m,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 6cc55c103f67..5fc251ba8915 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -2626,6 +2626,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define IPEIR_I965	_MMIO(0x2064)
+ #define IPEHR_I965	_MMIO(0x2068)
+ #define GEN7_SC_INSTDONE	_MMIO(0x7100)
++#define GEN12_SC_INSTDONE_EXTRA		_MMIO(0x7104)
++#define GEN12_SC_INSTDONE_EXTRA2	_MMIO(0x7108)
+ #define GEN7_SAMPLER_INSTDONE	_MMIO(0xe160)
+ #define GEN7_ROW_INSTDONE	_MMIO(0xe164)
+ #define GEN8_MCR_SELECTOR		_MMIO(0xfdc)
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
