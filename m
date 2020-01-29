@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C33614D176
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 20:55:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F33614D243
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 22:05:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4AFA6F87B;
-	Wed, 29 Jan 2020 19:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5916E437;
+	Wed, 29 Jan 2020 21:04:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08A0A6F87B
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 19:55:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20052292-1500050 
- for multiple; Wed, 29 Jan 2020 19:54:52 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jan 2020 19:54:52 +0000
-Message-Id: <20200129195452.1278481-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C6B8C6E030;
+ Wed, 29 Jan 2020 21:04:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6C9BA011A;
+ Wed, 29 Jan 2020 21:04:55 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Use the async worker to avoid reclaim
- tainting the ggtt->mutex
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 29 Jan 2020 21:04:55 -0000
+Message-ID: <158033189572.5462.12082983274885826085@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129152608.1179739-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200129152608.1179739-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Yield_the_timeslice_if_caught_waiting_on_a_user_sem?=
+ =?utf-8?q?aphore?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,241 +39,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Braswell and Broxton (also known as Valleyview and Apollolake), we
-need to serialise updates of the GGTT using the big stop_machine()
-hammer. This has the side effect of appearing to lockdep as a possible
-reclaim (since it uses the cpuhp mutex and that is tainted by per-cpu
-allocations). However, we want to use vm->mutex (including ggtt->mutex)
-from wthin the shrinker and so must avoid such possible taints. For this
-purpose, we introduced the asynchronous vma binding and we can apply it
-to the PIN_GLOBAL so long as take care to add the necessary waits for
-the worker afterwards.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/211
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c |  7 +++---
- drivers/gpu/drm/i915/gt/intel_ggtt.c      |  1 +
- drivers/gpu/drm/i915/gt/intel_gt.c        |  2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 +-
- drivers/gpu/drm/i915/gt/intel_ring.c      |  6 ++---
- drivers/gpu/drm/i915/gt/intel_timeline.c  |  4 ++--
- drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  4 ++--
- drivers/gpu/drm/i915/i915_gem.c           |  6 +++++
- drivers/gpu/drm/i915/i915_vma.c           | 27 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_vma.h           |  2 ++
- 10 files changed, 46 insertions(+), 15 deletions(-)
+Series: drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+URL   : https://patchwork.freedesktop.org/series/72724/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 39fe9a5b4820..2504f4d05edf 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -527,7 +527,6 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
- {
- 	unsigned int flags;
- 
--	flags = PIN_GLOBAL;
- 	if (!HAS_LLC(engine->i915) && i915_ggtt_has_aperture(engine->gt->ggtt))
- 		/*
- 		 * On g33, we cannot place HWS above 256MiB, so
-@@ -540,11 +539,11 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
- 		 * above the mappable region (even though we never
- 		 * actually map it).
- 		 */
--		flags |= PIN_MAPPABLE;
-+		flags = PIN_MAPPABLE;
- 	else
--		flags |= PIN_HIGH;
-+		flags = PIN_HIGH;
- 
--	return i915_vma_pin(vma, 0, 0, flags);
-+	return i915_ggtt_pin(vma, 0, flags);
- }
- 
- static int init_status_page(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 79096722ce16..6af50d62d712 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -881,6 +881,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
- 		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
- 		if (ggtt->vm.clear_range != nop_clear_range)
- 			ggtt->vm.clear_range = bxt_vtd_ggtt_clear_range__BKL;
-+		ggtt->vm.bind_async_flags = I915_VMA_GLOBAL_BIND;
- 	}
- 
- 	ggtt->invalidate = gen8_ggtt_invalidate;
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 143268083135..bf6c0f949e35 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -345,7 +345,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
- 		goto err_unref;
- 	}
- 
--	ret = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	ret = i915_ggtt_pin(vma, 0, PIN_HIGH);
- 	if (ret)
- 		goto err_unref;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 8f15ab7d8d88..e63ae4a17110 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3259,7 +3259,7 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
- 		goto err;
- 	}
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
- 	if (err)
- 		goto err;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 374b28f13ca0..366013367526 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -31,17 +31,15 @@ int intel_ring_pin(struct intel_ring *ring)
- 	if (atomic_fetch_inc(&ring->pin_count))
- 		return 0;
- 
--	flags = PIN_GLOBAL;
--
- 	/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
--	flags |= PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-+	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
- 
- 	if (vma->obj->stolen)
- 		flags |= PIN_MAPPABLE;
- 	else
- 		flags |= PIN_HIGH;
- 
--	ret = i915_vma_pin(vma, 0, 0, flags);
-+	ret = i915_ggtt_pin(vma, 0, flags);
- 	if (unlikely(ret))
- 		goto err_unpin;
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-index 87716529cd2f..465f87b65901 100644
---- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-@@ -308,7 +308,7 @@ int intel_timeline_pin(struct intel_timeline *tl)
- 	if (atomic_add_unless(&tl->pin_count, 1, 0))
- 		return 0;
- 
--	err = i915_vma_pin(tl->hwsp_ggtt, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_ggtt_pin(tl->hwsp_ggtt, 0, PIN_HIGH);
- 	if (err)
- 		return err;
- 
-@@ -431,7 +431,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
- 		goto err_rollback;
- 	}
- 
--	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
- 	if (err) {
- 		__idle_hwsp_free(vma->private, cacheline);
- 		goto err_rollback;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 5d00a3b2d914..c4c1523da7a6 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -678,8 +678,8 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
- 	if (IS_ERR(vma))
- 		goto err;
- 
--	flags = PIN_GLOBAL | PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
--	ret = i915_vma_pin(vma, 0, 0, flags);
-+	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-+	ret = i915_ggtt_pin(vma, 0, flags);
- 	if (ret) {
- 		vma = ERR_PTR(ret);
- 		goto err;
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index ff79da5657f8..dda1a0365f39 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -1009,6 +1009,12 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		return ERR_PTR(ret);
- 
-+	ret = i915_vma_wait_for_bind(vma);
-+	if (ret) {
-+		i915_vma_unpin(vma);
-+		return ERR_PTR(ret);
-+	}
-+
- 	return vma;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 84e03da0d5f9..f11abd9553e8 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -339,6 +339,25 @@ struct i915_vma_work *i915_vma_work(void)
- 	return vw;
- }
- 
-+int i915_vma_wait_for_bind(struct i915_vma *vma)
-+{
-+	int err = 0;
-+
-+	if (!rcu_access_pointer(vma->active.excl.fence)) {
-+		struct dma_fence *fence;
-+
-+		rcu_read_lock();
-+		fence = dma_fence_get_rcu_safe(&vma->active.excl.fence);
-+		rcu_read_unlock();
-+		if (fence) {
-+			err = dma_fence_wait(fence, MAX_SCHEDULE_TIMEOUT);
-+			dma_fence_put(fence);
-+		}
-+	}
-+
-+	return err;
-+}
-+
- /**
-  * i915_vma_bind - Sets up PTEs for an VMA in it's corresponding address space.
-  * @vma: VMA to map
-@@ -977,8 +996,14 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
- 
- 	do {
- 		err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
--		if (err != -ENOSPC)
-+		if (err != -ENOSPC) {
-+			if (!err) {
-+				err = i915_vma_wait_for_bind(vma);
-+				if (err)
-+					i915_vma_unpin(vma);
-+			}
- 			return err;
-+		}
- 
- 		/* Unlike i915_vma_pin, we don't take no for an answer! */
- 		flush_idle_contexts(vm->gt);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index 02b31a62951e..e1ced1df13e1 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -375,6 +375,8 @@ struct i915_vma *i915_vma_make_unshrinkable(struct i915_vma *vma);
- void i915_vma_make_shrinkable(struct i915_vma *vma);
- void i915_vma_make_purgeable(struct i915_vma *vma);
- 
-+int i915_vma_wait_for_bind(struct i915_vma *vma);
-+
- static inline int i915_vma_sync(struct i915_vma *vma)
- {
- 	/* Wait for the asynchronous bindings and pending GPU reads */
--- 
-2.25.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7838 -> Patchwork_16315
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16315 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-u3:          [PASS][3] -> [INCOMPLETE][4] ([i915#140])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-icl-u3/igt@i915_selftest@live_execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-icl-u3/igt@i915_selftest@live_execlists.html
+
+  * igt@prime_self_import@basic-with_fd_dup:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bdw-5557u:       [TIMEOUT][11] ([fdo#112271]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#111096] / [i915#323]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc-pipe-a:
+    - fi-icl-dsi:         [DMESG-WARN][15] ([i915#109]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-icl-dsi/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-icl-dsi/igt@kms_pipe_crc_basic@hang-read-crc-pipe-a.html
+
+  * igt@prime_self_import@basic-llseek-size:
+    - fi-tgl-y:           [DMESG-WARN][17] ([CI#94] / [i915#402]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][19] ([i915#553] / [i915#725]) -> [DMESG-FAIL][20] ([i915#725])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [INCOMPLETE][21] ([i915#140]) -> [DMESG-FAIL][22] ([fdo#108569])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7838/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#109]: https://gitlab.freedesktop.org/drm/intel/issues/109
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (50 -> 47)
+------------------------------
+
+  Additional (2): fi-byt-n2820 fi-bwr-2160 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7838 -> Patchwork_16315
+
+  CI-20190529: 20190529
+  CI_DRM_7838: d3d96beea538c8de906a1c4d7e6793a47d17a471 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5404: 4147bab8e3dcaf11bd657b5fb4c109708e94e60c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16315: dd2d791ab01d1f713e41d432b018712954f609d2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+dd2d791ab01d drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16315/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
