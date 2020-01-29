@@ -1,35 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D05F14C726
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 09:04:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B03AB14C744
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 09:15:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8B096F46F;
-	Wed, 29 Jan 2020 08:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4E996F484;
+	Wed, 29 Jan 2020 08:14:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B4656F477;
- Wed, 29 Jan 2020 08:04:55 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20043647-1500050 for multiple; Wed, 29 Jan 2020 08:04:51 +0000
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBF16F482
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 08:14:54 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id f129so5345340wmf.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 00:14:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=OzZ5MyAWppw3BriyyWTAbdH6cnMV4POzNYoBCRMCBy0=;
+ b=h7OxoWXzhB+MZU9ZUTeb+2WrN3pKpDXCHCo501mRgHZ9djV0tgGGDKxjl+6O18R826
+ akFA7BTyir5FgHRRU/zqYAw1TtpyVXroJ8VTtyDywb1KScL5ve/pA2AeEOKSYzcptDIs
+ kHeSAQVaRRT7HL4hRPGDHuJ5pW1UCfvGc14OQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=OzZ5MyAWppw3BriyyWTAbdH6cnMV4POzNYoBCRMCBy0=;
+ b=U05erOtKsQUalRcGOusUHe8/X/eSp/7xuAhSX19BxLN7Rjcja0GFp0An8ghR9+bKsT
+ vkXc2d0ZE+xWlk+iuyFtL/aTXFbDFH505sUI1J7Tl0/nH+gQP280Wki2DzW+5a95cNHj
+ jOfSS4UXBnz0K49TMIOiT+ltbECY65T3q5UXgu3HQOJlheCqvOkGMGRWcojThLC+0/U/
+ vsEp+yDFZhjODwErK2Yka0se6Pihb9cqzcAAddmFx5jAFfXdRMUoWPUoLF0sPgBQ8Enn
+ xGTHGd9Hx5xXr37kwVefOMr6KAve7phOySBA3Hc/TanajAG4CkTUS3ief+CmdarulDp2
+ oIeA==
+X-Gm-Message-State: APjAAAUulyoH9uQYg+yaZkK+aKFwuUq85LQrJ7h9FOOmm9z1wcpAchkt
+ 9j3uYGnTCyWNMhzLOv7UCFiHyzHedtzsgg==
+X-Google-Smtp-Source: APXvYqwjbvM5HRMxslBJ/PZoEnkE2ajEVMaSkwqhNN2iC1zrce7Bh4bofqBSMCSfM8zUtRcVxZx8rg==
+X-Received: by 2002:a7b:cd14:: with SMTP id f20mr9871915wmj.43.1580285693543; 
+ Wed, 29 Jan 2020 00:14:53 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id k7sm1334243wmi.19.2020.01.29.00.14.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 Jan 2020 00:14:52 -0800 (PST)
+Date: Wed, 29 Jan 2020 09:14:50 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28VMware=29?= <thomas_os@shipmail.org>
+Message-ID: <20200129081450.GL43062@phenom.ffwll.local>
+References: <20200127100203.1299322-1-daniel.vetter@ffwll.ch>
+ <326bfd15-e739-7c19-ec9d-602fc72c7d83@shipmail.org>
 MIME-Version: 1.0
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <158026656059.5462.9234818109723299870@emeril.freedesktop.org>
-References: <20200128230741.340859-1-chris@chris-wilson.co.uk>
- <158026656059.5462.9234818109723299870@emeril.freedesktop.org>
-Message-ID: <158028508984.10244.7444448640588833364@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 29 Jan 2020 08:04:49 +0000
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Trim_default_context_register_state_for_gen9?=
+Content-Disposition: inline
+In-Reply-To: <326bfd15-e739-7c19-ec9d-602fc72c7d83@shipmail.org>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/auth: Drop master_create/destroy hooks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,23 +66,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Patchwork (2020-01-29 02:56:00)
->   * igt@i915_selftest@live_execlists:
->     - fi-skl-lmem:        [PASS][1] -> [DMESG-FAIL][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-skl-lmem/igt@i915_selftest@live_execlists.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16308/fi-skl-lmem/igt@i915_selftest@live_execlists.html
->     - fi-cfl-8109u:       [PASS][3] -> [DMESG-FAIL][4]
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7833/fi-cfl-8109u/igt@i915_selftest@live_execlists.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16308/fi-cfl-8109u/igt@i915_selftest@live_execlists.html
+On Mon, Jan 27, 2020 at 01:14:37PM +0100, Thomas Hellstr=F6m (VMware) wrote:
+> On 1/27/20 11:02 AM, Daniel Vetter wrote:
+> > vmwgfx stopped using them.
+> > =
 
-Hey, selftests proving useful!
--Chris
+> > With the drm device model that we've slowly evolved over the past few
+> > years master status essentially controls access to display resources,
+> > and nothing else. Since that's a pure access permission check drivers
+> > should have no need at all to track additional state on a per file
+> > basis.
+> > =
+
+> > Aside: For cleanup and restoring kernel-internal clients the grand
+> > plan is to move everyone over to drm_client and
+> > drm_master_internal_acquire/release, like the generic fbdev code
+> > already does. That should get rid of most ->lastclose implementations,
+> > and I think also subsumes any processing vmwgfx does in
+> > master_set/drop.
+> > =
+
+> > Cc: "Thomas Hellstr=F6m (VMware)" <thomas_os@shipmail.org>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> =
+
+> Reviewed-by: Thomas Hellstrom <thellstrom@vmware.com>
+
+Thanks for your review, patch applied.
+-Daniel
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
