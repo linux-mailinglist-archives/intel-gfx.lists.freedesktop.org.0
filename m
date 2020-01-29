@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 302DD14CB8A
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:40:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 071CA14CB86
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:39:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0906E391;
-	Wed, 29 Jan 2020 13:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D8406F55A;
+	Wed, 29 Jan 2020 13:39:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A18226E391
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:40:00 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E25DF6F563
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:39:22 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2020 05:39:58 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 05:39:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="229614367"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by orsmga003.jf.intel.com with ESMTP; 29 Jan 2020 05:39:58 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="314307282"
+Received: from rosetta.fi.intel.com ([10.237.72.194])
+ by fmsmga001.fm.intel.com with ESMTP; 29 Jan 2020 05:39:20 -0800
+Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
+ id 91E9784411F; Wed, 29 Jan 2020 15:39:16 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 29 Jan 2020 18:56:19 +0530
-Message-Id: <20200129132619.4727-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200128135425.14596-3-anshuman.gupta@intel.com>
-References: <20200128135425.14596-3-anshuman.gupta@intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 2/4] drm/i915: HDCP support on above PORT_E
+Date: Wed, 29 Jan 2020 15:39:12 +0200
+Message-Id: <20200129133912.810-1-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] drm/i915: Park faster to alleviate kept
+ forcewake
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,43 +42,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Stable <stable@vger.kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As Gen12 onwards there are HDCP instances for each transcoder
-instead of port, remove the (port < PORT_E) hdcp support
-limitation for platform >= Gen12.
+To avoid context corruption on some gens, we need to hold forcewake
+for long periods of time. This leads to increased energy expenditure
+for mostly idle workloads.
 
-v2:
- - Nuke the comment and cosmetic changes. [Jani]
+To combat the increased power consumption, park GPU more hastily.
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+As the HW isn't so quick to end up in rc6, this software mechanism
+supplements it. So we can apply it, across all gens.
+
+Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+Testcase: igt/i915_pm_rc6_residency/rc6-idle
+References: "Add RC6 CTX corruption WA"
+Cc: Stable <stable@vger.kernel.org>    # v4.19+
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_gem.c  | 2 +-
+ drivers/gpu/drm/i915/intel_lrc.c | 5 +++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index be083136eee2..231b9c12c0b6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -921,8 +921,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index c7d05ac7af3c..6ddc75098b28 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -197,7 +197,7 @@ void i915_gem_park(struct drm_i915_private *i915)
+ 		return;
  
- bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
- {
--	/* PORT E doesn't have HDCP, and PORT F is disabled */
--	return INTEL_INFO(dev_priv)->display.has_hdcp && port < PORT_E;
-+	return INTEL_INFO(dev_priv)->display.has_hdcp &&
-+			(INTEL_GEN(dev_priv) >= 12 || port < PORT_E);
+ 	/* Defer the actual call to __i915_gem_park() to prevent ping-pongs */
+-	mod_delayed_work(i915->wq, &i915->gt.idle_work, msecs_to_jiffies(100));
++	mod_delayed_work(i915->wq, &i915->gt.idle_work, 1);
  }
  
- static int
+ void i915_gem_unpark(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/intel_lrc.c b/drivers/gpu/drm/i915/intel_lrc.c
+index 13e97faabaa7..284ffdfd8840 100644
+--- a/drivers/gpu/drm/i915/intel_lrc.c
++++ b/drivers/gpu/drm/i915/intel_lrc.c
+@@ -388,7 +388,12 @@ execlists_user_begin(struct intel_engine_execlists *execlists,
+ inline void
+ execlists_user_end(struct intel_engine_execlists *execlists)
+ {
++	struct intel_engine_cs *engine =
++		container_of(execlists, typeof(*engine), execlists);
++
+ 	execlists_clear_active(execlists, EXECLISTS_ACTIVE_USER);
++
++	mod_delayed_work(engine->i915->wq, &engine->i915->gt.retire_work, 0);
+ }
+ 
+ static inline void
 -- 
-2.24.0
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
