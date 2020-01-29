@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D68414CAFB
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 13:51:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C69A414CB2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 14:10:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 603AE6E369;
-	Wed, 29 Jan 2020 12:51:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BDA289A5D;
+	Wed, 29 Jan 2020 13:10:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BAF266E369;
- Wed, 29 Jan 2020 12:51:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2607A0096;
- Wed, 29 Jan 2020 12:51:10 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4BD789565
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 13:10:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2020 05:10:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,378,1574150400"; d="scan'208";a="247052257"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga002.jf.intel.com with ESMTP; 29 Jan 2020 05:10:04 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 1C7275C1DFA; Wed, 29 Jan 2020 15:09:17 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158029040255.10244.7113266483710281976@skylake-alporthouse-com>
+References: <20200128171614.3845825-1-chris@chris-wilson.co.uk>
+ <87k15aa9vc.fsf@gaia.fi.intel.com>
+ <158029040255.10244.7113266483710281976@skylake-alporthouse-com>
+Date: Wed, 29 Jan 2020 15:09:17 +0200
+Message-ID: <87h80e9zpe.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
-Date: Wed, 29 Jan 2020 12:51:10 -0000
-Message-ID: <158030227070.5461.11359839951006151367@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200129081939.18265-1-kai.vehmanen@linux.intel.com>
-In-Reply-To: <20200129081939.18265-1-kai.vehmanen@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Add_missing_HDMI_audio_pixel_clocks_for_gen12_=28rev2?=
- =?utf-8?q?=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlist: Mark up racy read of
+ execlists->pending[0]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,154 +46,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915: Add missing HDMI audio pixel clocks for gen12 (rev2)
-URL   : https://patchwork.freedesktop.org/series/72617/
-State : success
+> Quoting Mika Kuoppala (2020-01-29 09:29:43)
+>> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>> 
+>> > We write to execlists->pending[0] in process_csb() to acknowledge the
+>> > completion of the ESLP update, outside of the main spinlock. When we
+>> > check the current status of the previous submission in
+>> > __execlists_submission_tasklet() we should therefore use READ_ONCE() to
+>> > reflect and document the unsynchronized read.
+>> >
+>> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
+>> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> > index cf6c43bd540a..058484958e87 100644
+>> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> > @@ -2347,7 +2347,7 @@ static void process_csb(struct intel_engine_cs *engine)
+>> >  static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
+>> >  {
+>> >       lockdep_assert_held(&engine->active.lock);
+>> > -     if (!engine->execlists.pending[0]) {
+>> > +     if (!READ_ONCE(engine->execlists.pending[0])) {
+>> 
+>> With same token, should we also include assert_pending_invalid()
+>> read of pending with READ_ONCE?
+>
+> That happens on the control paths, so the state of pending[] at that
+> point should be static (and the compiler can be left to its own
+> devices).
 
-== Summary ==
+It should be static. Fair enough
 
-CI Bug Log - changes from CI_DRM_7835 -> Patchwork_16310
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16310:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - {fi-ehl-1}:         [SKIP][1] ([i915#968]) -> [SKIP][2] +3 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-ehl-1/igt@kms_psr@sprite_plane_onoff.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-ehl-1/igt@kms_psr@sprite_plane_onoff.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16310 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gtt:
-    - fi-cfl-guc:         [PASS][3] -> [TIMEOUT][4] ([fdo#112271])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-cfl-guc/igt@i915_selftest@live_gtt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-cfl-guc/igt@i915_selftest@live_gtt.html
-
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][9] ([CI#94]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@prime_self_import@basic-with_one_bo:
-    - fi-tgl-y:           [DMESG-WARN][13] ([CI#94] / [i915#402]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-tgl-y/igt@prime_self_import@basic-with_one_bo.html
-
-  
-#### Warnings ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [TIMEOUT][15] ([fdo#112271] / [i915#816]) -> [INCOMPLETE][16] ([i915#45])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][17] ([i915#725]) -> [DMESG-FAIL][18] ([i915#563])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-ivb-3770/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][19] ([i915#553] / [i915#725]) -> [DMESG-FAIL][20] ([i915#770])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7835/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#968]: https://gitlab.freedesktop.org/drm/intel/issues/968
-
-
-Participating hosts (48 -> 40)
-------------------------------
-
-  Additional (5): fi-kbl-soraka fi-kbl-7560u fi-kbl-7500u fi-cfl-8109u fi-blb-e6850 
-  Missing    (13): fi-ilk-m540 fi-bsw-n3050 fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bsw-kefka fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-skl-6600u fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7835 -> Patchwork_16310
-
-  CI-20190529: 20190529
-  CI_DRM_7835: 0be6c5b2b0f10f7612f8639da87022816f189681 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5398: c662007d7e45a596e62e93f5cca8d47e6cee520e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16310: 828725e1c6407ab18e30591bc869d3dc4f366f18 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-828725e1c640 drm/i915: Add missing HDMI audio pixel clocks for gen12
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16310/index.html
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
