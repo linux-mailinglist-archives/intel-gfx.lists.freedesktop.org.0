@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61FD514CEAA
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 17:47:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 570C014CED1
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2020 17:59:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EA26F5DC;
-	Wed, 29 Jan 2020 16:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B56FA6F5E4;
+	Wed, 29 Jan 2020 16:59:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D5646F5D8;
- Wed, 29 Jan 2020 16:47:36 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id 5A66D804D9;
- Wed, 29 Jan 2020 17:47:34 +0100 (CET)
-Date: Wed, 29 Jan 2020 17:47:33 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200129164733.GB22331@ravnborg.org>
-References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
- <20200129082410.1691996-6-daniel.vetter@ffwll.ch>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFDF6F5E4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2020 16:59:43 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20050396-1500050 
+ for multiple; Wed, 29 Jan 2020 16:59:35 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2020 16:59:35 +0000
+Message-Id: <20200129165935.1266132-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200129082410.1691996-6-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=taGs_qngAAAA:8
- a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=7MAtAuzRj727R3ULzZsA:9
- a=Bl1jj0yxZQ0AK27T:21 a=y7hNXV0kitRAVPp4:21 a=CjuIK1q_8ugA:10
- a=DM_PlaNYpjARcMQr2apF:22 a=Vxmtnl_E_bksehYqCbjh:22
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm: Nerv drm_global_mutex BKL for good
- drivers
+Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Ignore discrepancies in
+ pending[] across resets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,186 +37,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel.
+When we reset the engine, we first remove the guilty request from the
+active list. If it so happens that there is a pending preemption event
+to process before we handle the reset, when we inspect that event we
+find ourselves a little confused as we have bent the rules slightly to
+perform the reset.
 
-In the nit-pick department today - sorry.
+Just ignore any discrepancies inside reset, we know we'll start again
+from scratch afterwards.
 
-Subject: [PATCH 5/5] drm: Nerv drm_global_mutex BKL for good drivers
-I did not understand this subject... - what is "Nerv"?
+<0>[  536.940213]   <idle>-0       6..s1 537441383us : execlists_reset: 0000:00:02.0 vcs0: reset for CS error
+<0>[  536.940213] i915_sel-7302    2d..1 537441386us : trace_ports: 0000:00:02.0 vcs0: submit { 10c59:2*, 10c5a:2 }
+<0>[  536.940213]   <idle>-0       6d.s2 537471320us : __i915_request_unsubmit: 0000:00:02.0 vcs0: fence 10c59:2, current 1
+<0>[  536.940213]   <idle>-0       6d.s2 537471321us : execlists_hold: 0000:00:02.0 vcs0: fence 10c59:2, current 1 on hold
+<0>[  536.940213]   <idle>-0       6.Ns1 537471328us : intel_engine_reset: 0000:00:02.0 vcs0: flags=10
+<0>[  536.940213]   <idle>-0       6.Ns1 537471421us : execlists_reset_prepare: 0000:00:02.0 vcs0: depth<-1
+<0>[  536.940213]   <idle>-0       6.Ns1 537471422us : intel_engine_stop_cs: 0000:00:02.0 vcs0:
+<0>[  536.940213]   <idle>-0       6.Ns1 537472424us : intel_engine_stop_cs: 0000:00:02.0 vcs0: timed out on STOP_RING -> IDLE
+<0>[  536.940213]   <idle>-0       6.Ns1 537472429us : __intel_gt_reset: 0000:00:02.0 engine_mask=4
+<0>[  536.940213]   <idle>-0       6.Ns1 537472442us : execlists_reset_rewind: 0000:00:02.0 vcs0:
+<0>[  536.940213]   <idle>-0       6dNs2 537472443us : process_csb: 0000:00:02.0 vcs0: cs-irq head=4, tail=5
+<0>[  536.940213]   <idle>-0       6dNs2 537472444us : process_csb: 0000:00:02.0 vcs0: csb[5]: status=0x00008002:0x20000060
+<0>[  536.940213]   <idle>-0       6dNs2 537472464us : trace_ports: 0000:00:02.0 vcs0: preempted { 10c59:2*, 0:0 }
+<0>[  536.940213]   <idle>-0       6dNs2 537472465us : trace_ports: 0000:00:02.0 vcs0: promote { 10c59:2*, 10c5a:2 }
+<0>[  536.940213]   <idle>-0       6dNs2 537472706us : assert_pending_valid: assert_pending_valid:1417 GEM_BUG_ON(!i915_request_is_active(rq))
 
-	Sam
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-On Wed, Jan 29, 2020 at 09:24:10AM +0100, Daniel Vetter wrote:
-> This catches the majority of drivers (unfortunately not if we take
-> users into account, because all the big drivers have at least a
-> lastclose hook).
-> 
-> With the prep patches out of the way all drm state is fully protected
-> and either prevents or can deal with the races from dropping the BKL
-> around open/close. The only thing left to audit are the various driver
-> hooks - by keeping the BKL around if any of them are set we have a
-> very simple cop-out!
-> 
-> Note that one of the biggest prep pieces to get here was making
-> dev->open_count atomic, which was done in
-> 
-> commit 7e13ad896484a0165a68197a2e64091ea28c9602
-> Author: Chris Wilson <chris@chris-wilson.co.uk>
-> Date:   Fri Jan 24 13:01:07 2020 +0000
-> 
->     drm: Avoid drm_global_mutex for simple inc/dec of dev->open_count
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/drm_drv.c      |  6 +++--
->  drivers/gpu/drm/drm_file.c     | 46 ++++++++++++++++++++++++++++++----
->  drivers/gpu/drm/drm_internal.h |  1 +
->  3 files changed, 46 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 05bdf0b9d2b3..9fcd6ab3c154 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -946,7 +946,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
->  	struct drm_driver *driver = dev->driver;
->  	int ret;
->  
-> -	mutex_lock(&drm_global_mutex);
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_lock(&drm_global_mutex);
->  
->  	if (dev->driver->load) {
->  		if (!drm_core_check_feature(dev, DRIVER_LEGACY))
-> @@ -992,7 +993,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
->  	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
->  	drm_minor_unregister(dev, DRM_MINOR_RENDER);
->  out_unlock:
-> -	mutex_unlock(&drm_global_mutex);
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_unlock(&drm_global_mutex);
->  	return ret;
->  }
->  EXPORT_SYMBOL(drm_dev_register);
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index d36cb74ebe0c..efd6fe0b6b4f 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -51,6 +51,37 @@
->  /* from BKL pushdown */
->  DEFINE_MUTEX(drm_global_mutex);
->  
-> +bool drm_dev_needs_global_mutex(struct drm_device *dev)
-> +{
-> +	/*
-> +	 * Legacy drivers rely on all kinds of BKL locking semantics, don't
-> +	 * bother. They also still need BKL locking for their ioctls, so better
-> +	 * safe than sorry.
-> +	 */
-> +	if (drm_core_check_feature(dev, DRIVER_LEGACY))
-> +		return true;
-> +
-> +	/*
-> +	 * The deprecated ->load callback must be called after the driver is
-> +	 * already registered. This means such drivers rely on the BKL to make
-> +	 * sure an open can't proceed until the driver is actually fully set up.
-> +	 * Similar hilarity holds for the unload callback.
-> +	 */
-> +	if (dev->driver->load || dev->driver->unload)
-> +		return true;
-> +
-> +	/*
-> +	 * Drivers with the lastclose callback assume that it's synchronized
-> +	 * against concurrent opens, which again needs the BKL. The proper fix
-> +	 * is to use the drm_client infrastructure with proper locking for each
-> +	 * client.
-> +	 */
-> +	if (dev->driver->lastclose)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->  /**
->   * DOC: file operations
->   *
-> @@ -378,9 +409,10 @@ int drm_open(struct inode *inode, struct file *filp)
->  	if (IS_ERR(minor))
->  		return PTR_ERR(minor);
->  
-> -	mutex_unlock(&drm_global_mutex);
-> -
->  	dev = minor->dev;
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_unlock(&drm_global_mutex);
-> +
->  	if (!atomic_fetch_inc(&dev->open_count))
->  		need_setup = 1;
->  
-> @@ -398,13 +430,15 @@ int drm_open(struct inode *inode, struct file *filp)
->  		}
->  	}
->  
-> -	mutex_unlock(&drm_global_mutex);
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_unlock(&drm_global_mutex);
->  
->  	return 0;
->  
->  err_undo:
->  	atomic_dec(&dev->open_count);
-> -	mutex_unlock(&drm_global_mutex);
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_unlock(&drm_global_mutex);
->  	drm_minor_release(minor);
->  	return retcode;
->  }
-> @@ -444,6 +478,7 @@ int drm_release(struct inode *inode, struct file *filp)
->  	struct drm_minor *minor = file_priv->minor;
->  	struct drm_device *dev = minor->dev;
->  
-> +	if (drm_dev_needs_global_mutex(dev))
->  	mutex_lock(&drm_global_mutex);
->  
->  	DRM_DEBUG("open_count = %d\n", atomic_read(&dev->open_count));
-> @@ -453,7 +488,8 @@ int drm_release(struct inode *inode, struct file *filp)
->  	if (atomic_dec_and_test(&dev->open_count))
->  		drm_lastclose(dev);
->  
-> -	mutex_unlock(&drm_global_mutex);
-> +	if (drm_dev_needs_global_mutex(dev))
-> +		mutex_unlock(&drm_global_mutex);
->  
->  	drm_minor_release(minor);
->  
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-> index 6937bf923f05..aeec2e68d772 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -41,6 +41,7 @@ struct drm_printer;
->  
->  /* drm_file.c */
->  extern struct mutex drm_global_mutex;
-> +bool drm_dev_needs_global_mutex(struct drm_device *dev);
->  struct drm_file *drm_file_alloc(struct drm_minor *minor);
->  void drm_file_free(struct drm_file *file);
->  void drm_lastclose(struct drm_device *dev);
-> -- 
-> 2.24.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index fb112fc463c7..fd68a1c7e62f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1389,6 +1389,12 @@ trace_ports(const struct intel_engine_execlists *execlists,
+ 		     ports[1] ? ports[1]->fence.seqno : 0);
+ }
+ 
++static inline bool
++reset_in_progress(const struct intel_engine_execlists *execlists)
++{
++	return unlikely(!__tasklet_is_enabled(&execlists->tasklet));
++}
++
+ static __maybe_unused bool
+ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 		     const char *msg)
+@@ -1398,6 +1404,10 @@ assert_pending_valid(const struct intel_engine_execlists *execlists,
+ 
+ 	trace_ports(execlists, msg, execlists->pending);
+ 
++	/* We may be messing around with the lists during reset, lalala */
++	if (reset_in_progress(execlists))
++		return true;
++
+ 	if (!execlists->pending[0]) {
+ 		GEM_TRACE_ERR("Nothing pending for promotion!\n");
+ 		return false;
+@@ -2169,12 +2179,6 @@ invalidate_csb_entries(const u32 *first, const u32 *last)
+ 	clflush((void *)last);
+ }
+ 
+-static inline bool
+-reset_in_progress(const struct intel_engine_execlists *execlists)
+-{
+-	return unlikely(!__tasklet_is_enabled(&execlists->tasklet));
+-}
+-
+ /*
+  * Starting with Gen12, the status has a new format:
+  *
+-- 
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
