@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3F7D14E0A1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 19:14:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB5914E0A8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 19:17:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 295236E8C0;
-	Thu, 30 Jan 2020 18:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F526FA18;
+	Thu, 30 Jan 2020 18:17:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 78A666E8C0;
- Thu, 30 Jan 2020 18:14:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 70965A0019;
- Thu, 30 Jan 2020 18:14:48 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20296FA18
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 18:17:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20063786-1500050 
+ for multiple; Thu, 30 Jan 2020 18:17:12 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Jan 2020 18:17:08 +0000
+Message-Id: <20200130181710.2030251-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Thu, 30 Jan 2020 18:14:48 -0000
-Message-ID: <158040808845.21034.2414125648466044589@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200129235900.7670-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20200129235900.7670-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_extract_engine_WA_progr?=
- =?utf-8?q?amming_to_common_resume_function_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Skip global serialisation of
+ clear_range for bxt vtd
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,137 +37,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+VT'd on Broxton and on Braswell require serialisation of GGTT updates.
+However, it seems to only be required for insertion, so drop the
+complication and heavyweight stop_machine() for clears. The range will
+be serialised again before use.
 
-Series: series starting with [1/2] drm/i915: extract engine WA programming to common resume function (rev2)
-URL   : https://patchwork.freedesktop.org/series/72753/
-State : failure
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c | 27 ---------------------------
+ 1 file changed, 27 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index fdfed921402b..f83070b5e6ed 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -350,31 +350,6 @@ static void bxt_vtd_ggtt_insert_entries__BKL(struct i915_address_space *vm,
+ 	stop_machine(bxt_vtd_ggtt_insert_entries__cb, &arg, NULL);
+ }
+ 
+-struct clear_range {
+-	struct i915_address_space *vm;
+-	u64 start;
+-	u64 length;
+-};
+-
+-static int bxt_vtd_ggtt_clear_range__cb(void *_arg)
+-{
+-	struct clear_range *arg = _arg;
+-
+-	gen8_ggtt_clear_range(arg->vm, arg->start, arg->length);
+-	bxt_vtd_ggtt_wa(arg->vm);
+-
+-	return 0;
+-}
+-
+-static void bxt_vtd_ggtt_clear_range__BKL(struct i915_address_space *vm,
+-					  u64 start,
+-					  u64 length)
+-{
+-	struct clear_range arg = { vm, start, length };
+-
+-	stop_machine(bxt_vtd_ggtt_clear_range__cb, &arg, NULL);
+-}
+-
+ static void gen6_ggtt_clear_range(struct i915_address_space *vm,
+ 				  u64 start, u64 length)
+ {
+@@ -881,8 +856,6 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
+ 	    IS_CHERRYVIEW(i915) /* fails with concurrent use/update */) {
+ 		ggtt->vm.insert_entries = bxt_vtd_ggtt_insert_entries__BKL;
+ 		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
+-		if (ggtt->vm.clear_range != nop_clear_range)
+-			ggtt->vm.clear_range = bxt_vtd_ggtt_clear_range__BKL;
+ 	}
+ 
+ 	ggtt->invalidate = gen8_ggtt_invalidate;
+-- 
+2.25.0
 
-CI Bug Log - changes from CI_DRM_7844 -> Patchwork_16338
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16338 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16338, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16338:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_gt_lrc:
-    - fi-bwr-2160:        [PASS][1] -> [DMESG-WARN][2] +12 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-bwr-2160/igt@i915_selftest@live_gt_lrc.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-bwr-2160/igt@i915_selftest@live_gt_lrc.html
-
-  * igt@i915_selftest@live_uncore:
-    - fi-bwr-2160:        [PASS][3] -> [DMESG-FAIL][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-bwr-2160/igt@i915_selftest@live_uncore.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-bwr-2160/igt@i915_selftest@live_uncore.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16338 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#563])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][7] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][9] ([i915#178]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([fdo#111096] / [i915#323]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][13] ([fdo#109271]) -> [FAIL][14] ([i915#704])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7844/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
-  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-
-
-Participating hosts (46 -> 43)
-------------------------------
-
-  Additional (7): fi-glk-dsi fi-ilk-650 fi-whl-u fi-cfl-8109u fi-blb-e6850 fi-skl-6600u fi-kbl-r 
-  Missing    (10): fi-icl-1065g7 fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-skl-lmem fi-kbl-7560u fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7844 -> Patchwork_16338
-
-  CI-20190529: 20190529
-  CI_DRM_7844: 47faa2a989ef89a15089190a5f942a2d2a34fda5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16338: 0ffdd4bb5d73aa6965410f663afa73268f3427d8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0ffdd4bb5d73 drm/i915: Move ringbuffer WAs to engine workaround list
-60ab9a27c1fb drm/i915: extract engine WA programming to common resume function
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16338/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
