@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC6414DBC1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 14:29:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1DE14DC10
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 14:35:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D259C6F9B2;
-	Thu, 30 Jan 2020 13:29:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F37789F2E;
+	Thu, 30 Jan 2020 13:35:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E8B966F9B0;
- Thu, 30 Jan 2020 13:29:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8BA8A0118;
- Thu, 30 Jan 2020 13:29:11 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBCA089F2E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 13:35:24 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2020 05:35:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="222795800"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 30 Jan 2020 05:35:21 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Jan 2020 15:35:20 +0200
+Date: Thu, 30 Jan 2020 15:35:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200130133520.GA13686@intel.com>
+References: <20200123132659.725-1-anshuman.gupta@intel.com>
+ <20200123132659.725-3-anshuman.gupta@intel.com>
+ <20200123134057.GL13686@intel.com>
+ <20200130120201.GG24118@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 30 Jan 2020 13:29:11 -0000
-Message-ID: <158039095188.21035.6419812140719265258@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200130115827.1855959-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200130115827.1855959-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Warn_about_the_hidden_i915=5Fvma=5Fpin_in_timeline?=
- =?utf-8?q?=5Fget=5Fseqno?=
+Content-Disposition: inline
+In-Reply-To: <20200130120201.GG24118@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RFC 2/6] drm/i915: Remove (pipe == crtc->index)
+ asummption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,114 +51,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Jan 30, 2020 at 05:32:01PM +0530, Anshuman Gupta wrote:
+> On 2020-01-23 at 15:40:57 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Jan 23, 2020 at 06:56:55PM +0530, Anshuman Gupta wrote:
+> > > we can't have (pipe =3D=3D crtc->index) assumption in
+> > > driver in order to support 3 non-contiguous
+> > > display pipe system.
+> > > =
 
-Series: drm/i915/gt: Warn about the hidden i915_vma_pin in timeline_get_seqno
-URL   : https://patchwork.freedesktop.org/series/72770/
-State : failure
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++------
+> > >  1 file changed, 4 insertions(+), 6 deletions(-)
+> > > =
 
-== Summary ==
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+> > > index 878d331b9e8c..afd8d43160c6 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -14070,11 +14070,11 @@ verify_single_dpll_state(struct drm_i915_pr=
+ivate *dev_priv,
+> > >  	if (new_crtc_state->hw.active)
+> > >  		I915_STATE_WARN(!(pll->active_mask & crtc_mask),
+> > >  				"pll active mismatch (expected pipe %c in active mask 0x%02x)\n",
+> > > -				pipe_name(drm_crtc_index(&crtc->base)), pll->active_mask);
+> > > +				pipe_name(crtc->pipe), pll->active_mask);
+> > >  	else
+> > >  		I915_STATE_WARN(pll->active_mask & crtc_mask,
+> > >  				"pll active mismatch (didn't expect pipe %c in active mask 0x%02=
+x)\n",
+> > > -				pipe_name(drm_crtc_index(&crtc->base)), pll->active_mask);
+> > > +				pipe_name(crtc->pipe), pll->active_mask);
+> > >  =
 
-CI Bug Log - changes from CI_DRM_7842 -> Patchwork_16334
-====================================================
+> > >  	I915_STATE_WARN(!(pll->state.crtc_mask & crtc_mask),
+> > >  			"pll enabled crtcs mismatch (expected 0x%x in 0x%02x)\n",
+> > > @@ -14103,10 +14103,10 @@ verify_shared_dpll_state(struct intel_crtc =
+*crtc,
+> > >  =
 
-Summary
--------
+> > >  		I915_STATE_WARN(pll->active_mask & crtc_mask,
+> > >  				"pll active mismatch (didn't expect pipe %c in active mask)\n",
+> > > -				pipe_name(drm_crtc_index(&crtc->base)));
+> > > +				pipe_name(crtc->pipe));
+> > >  		I915_STATE_WARN(pll->state.crtc_mask & crtc_mask,
+> > >  				"pll enabled crtcs mismatch (found %x in enabled mask)\n",
+> > > -				pipe_name(drm_crtc_index(&crtc->base)));
+> > > +				pipe_name(crtc->pipe));
+> > >  	}
+> > >  }
+> > >  =
 
-  **FAILURE**
+> > > @@ -16485,8 +16485,6 @@ static int intel_crtc_init(struct drm_i915_pr=
+ivate *dev_priv, enum pipe pipe)
+> > >  =
 
-  Serious unknown changes coming with Patchwork_16334 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16334, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> > >  	intel_color_init(crtc);
+> > >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/index.html
+> > > -	WARN_ON(drm_crtc_index(&crtc->base) !=3D crtc->pipe);
+> > > -
+> > =
 
-Possible new issues
--------------------
+> > The first and second hunks don't really have anything to do with
+> > each other. Also the WARN_ON() should not be removed until all the
+> > assumptions are fixed.
+> True there can be other assumptions as well, there are few, i have come t=
+o know
+> drm_handle_vblank(&dev_priv->drm, pipe) in gen8_de_irq_handler()
 
-  Here are the unknown changes that may have been introduced in Patchwork_16334:
+In fact it's in all irq handlers.
 
-### IGT changes ###
+> drm_wait_one_vblank(&dev_priv->drm, pipe) in intel_wait_for_vblank(),
 
-#### Possible regressions ####
+Good catch. Totally forgot about these.
 
-  * igt@runner@aborted:
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/fi-hsw-peppy/igt@runner@aborted.html
+> i will fix these assumptions is next update, are there any other similar =
+kind of
+> assumption on which u can throw some light to look for?
+> I am not sure how does above WARN_ON helps to know all such kind of =
 
-  
-Known issues
-------------
+> assumptions, but it make sense to have it with FIXME.
 
-  Here are the changes found in Patchwork_16334 that come from known issues:
+It doesn't help finding them, what it does is make people realize
+that they're running a driver which is known to be broken.
 
-### IGT changes ###
+-- =
 
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-hsw-peppy:       [PASS][2] -> [TIMEOUT][3] ([fdo#112271])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7842/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-byt-n2820:       [DMESG-FAIL][4] ([i915#725]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7842/fi-byt-n2820/igt@i915_selftest@live_blt.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/fi-byt-n2820/igt@i915_selftest@live_blt.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [TIMEOUT][6] ([fdo#112271]) -> [FAIL][7] ([i915#694])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7842/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (48 -> 43)
-------------------------------
-
-  Additional (4): fi-glk-dsi fi-tgl-y fi-tgl-u fi-bwr-2160 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ivb-3770 fi-skl-lmem fi-byt-clapper fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7842 -> Patchwork_16334
-
-  CI-20190529: 20190529
-  CI_DRM_7842: 34f535513361a22f81bc3b7388755872b73b18f3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16334: 6215ed3cf29c56cf9f5d41457f5984dfc5014cb4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6215ed3cf29c drm/i915/gt: Warn about the hidden i915_vma_pin in timeline_get_seqno
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16334/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
