@@ -2,41 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A79E14DFD8
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 18:24:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 352F414DFB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 18:17:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 806A26E8A8;
-	Thu, 30 Jan 2020 17:24:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B30B6E8A1;
+	Thu, 30 Jan 2020 17:17:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB9DB6E8A8;
- Thu, 30 Jan 2020 17:24:39 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 09:16:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="233012800"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 30 Jan 2020 09:16:01 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Jan 2020 19:16:00 +0200
-Date: Thu, 30 Jan 2020 19:16:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200130171600.GG13686@intel.com>
-References: <20200117015837.402239-1-jose.souza@intel.com>
- <20200117015837.402239-3-jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619EF6E8A1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 17:17:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20063004-1500050 
+ for multiple; Thu, 30 Jan 2020 17:17:10 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Jan 2020 17:17:10 +0000
+Message-Id: <20200130171710.1996964-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200117015837.402239-3-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display: Remove useless call
- intel_dp_mst_encoder_cleanup()
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Rename
+ i915_gem_restore_ggtt_mappings() for its new placement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,62 +37,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2020 at 05:58:36PM -0800, Jos=E9 Roberto de Souza wrote:
-> This is a eDP function and it will always returns true for non-eDP
-> ports.
-> =
+The i915_ggtt now sits beneath gt/ outside of the auspices of gem/ and
+should be given a fresh name to reflect that. We also want to give it a
+name that reflects its role in the system suspend/resume, with the
+intention of pulling together all the GGTT operations (e.g. restoring
+the fence registers once they are pulled under gt/intel_ggtt_detiler.c)
 
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 -
->  1 file changed, 1 deletion(-)
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c      | 34 +++--------------------
+ drivers/gpu/drm/i915/gt/intel_gtt.h       |  4 +--
+ drivers/gpu/drm/i915/i915_drv.c           |  4 +--
+ drivers/gpu/drm/i915/i915_gem.c           |  2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem.c |  6 ++--
+ 5 files changed, 12 insertions(+), 38 deletions(-)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 4074d83b1a5f..a50b5b6dd009 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -7537,7 +7537,6 @@ intel_dp_init_connector(struct intel_digital_port *=
-intel_dig_port,
->  =
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index fdfed921402b..dcbf09ca6a4c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -104,27 +104,12 @@ static bool needs_idle_maps(struct drm_i915_private *i915)
+ 	return IS_GEN(i915, 5) && IS_MOBILE(i915) && intel_vtd_active();
+ }
+ 
+-static void ggtt_suspend_mappings(struct i915_ggtt *ggtt)
++void i915_ggtt_suspend(struct i915_ggtt *ggtt)
+ {
+-	struct drm_i915_private *i915 = ggtt->vm.i915;
+-
+-	/*
+-	 * Don't bother messing with faults pre GEN6 as we have little
+-	 * documentation supporting that it's a good idea.
+-	 */
+-	if (INTEL_GEN(i915) < 6)
+-		return;
+-
+-	intel_gt_check_and_clear_faults(ggtt->vm.gt);
+-
+ 	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
+-
+ 	ggtt->invalidate(ggtt);
+-}
+ 
+-void i915_gem_suspend_gtt_mappings(struct drm_i915_private *i915)
+-{
+-	ggtt_suspend_mappings(&i915->ggtt);
++	intel_gt_check_and_clear_faults(ggtt->vm.gt);
+ }
+ 
+ void gen6_ggtt_invalidate(struct i915_ggtt *ggtt)
+@@ -1182,7 +1167,7 @@ void i915_ggtt_disable_guc(struct i915_ggtt *ggtt)
+ 	ggtt->invalidate(ggtt);
+ }
+ 
+-static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
++void i915_ggtt_resume(struct i915_ggtt *ggtt)
+ {
+ 	struct i915_vma *vma;
+ 	bool flush = false;
+@@ -1190,8 +1175,6 @@ static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
+ 
+ 	intel_gt_check_and_clear_faults(ggtt->vm.gt);
+ 
+-	mutex_lock(&ggtt->vm.mutex);
+-
+ 	/* First fill our portion of the GTT with scratch pages */
+ 	ggtt->vm.clear_range(&ggtt->vm, 0, ggtt->vm.total);
+ 
+@@ -1218,19 +1201,10 @@ static void ggtt_restore_mappings(struct i915_ggtt *ggtt)
+ 	atomic_set(&ggtt->vm.open, open);
+ 	ggtt->invalidate(ggtt);
+ 
+-	mutex_unlock(&ggtt->vm.mutex);
+-
+ 	if (flush)
+ 		wbinvd_on_all_cpus();
+-}
+-
+-void i915_gem_restore_gtt_mappings(struct drm_i915_private *i915)
+-{
+-	struct i915_ggtt *ggtt = &i915->ggtt;
+-
+-	ggtt_restore_mappings(ggtt);
+ 
+-	if (INTEL_GEN(i915) >= 8)
++	if (INTEL_GEN(ggtt->vm.i915) >= 8)
+ 		setup_private_pat(ggtt->vm.gt->uncore);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index 7da7681c20b1..23004445806a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -512,8 +512,8 @@ int i915_ppgtt_init_hw(struct intel_gt *gt);
+ 
+ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt);
+ 
+-void i915_gem_suspend_gtt_mappings(struct drm_i915_private *i915);
+-void i915_gem_restore_gtt_mappings(struct drm_i915_private *i915);
++void i915_ggtt_suspend(struct i915_ggtt *gtt);
++void i915_ggtt_resume(struct i915_ggtt *ggtt);
+ 
+ u64 gen8_pte_encode(dma_addr_t addr,
+ 		    enum i915_cache_level level,
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 5a5846d892f4..4661c5f1f297 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1719,7 +1719,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+ 
+ 	intel_suspend_hw(dev_priv);
+ 
+-	i915_gem_suspend_gtt_mappings(dev_priv);
++	i915_ggtt_suspend(&dev_priv->ggtt);
+ 
+ 	i915_save_state(dev_priv);
+ 
+@@ -1832,7 +1832,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 	if (ret)
+ 		DRM_ERROR("failed to re-enable GGTT\n");
+ 
+-	i915_gem_restore_gtt_mappings(dev_priv);
++	i915_ggtt_resume(&dev_priv->ggtt);
+ 	i915_gem_restore_fences(&dev_priv->ggtt);
+ 
+ 	intel_csr_ucode_resume(dev_priv);
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index ff79da5657f8..25fce35a46f9 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1153,7 +1153,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 
+ 		/* Minimal basic recovery for KMS */
+ 		ret = i915_ggtt_enable_hw(dev_priv);
+-		i915_gem_restore_gtt_mappings(dev_priv);
++		i915_ggtt_resume(&dev_priv->ggtt);
+ 		i915_gem_restore_fences(&dev_priv->ggtt);
+ 		intel_init_clock_gating(dev_priv);
+ 	}
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+index 78f36faf2bbe..623759b73bb4 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+@@ -98,7 +98,7 @@ static void pm_suspend(struct drm_i915_private *i915)
+ 	intel_wakeref_t wakeref;
+ 
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+-		i915_gem_suspend_gtt_mappings(i915);
++		i915_ggtt_suspend(&i915->ggtt);
+ 		i915_gem_suspend_late(i915);
+ 	}
+ }
+@@ -108,7 +108,7 @@ static void pm_hibernate(struct drm_i915_private *i915)
+ 	intel_wakeref_t wakeref;
+ 
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+-		i915_gem_suspend_gtt_mappings(i915);
++		i915_ggtt_suspend(&i915->ggtt);
+ 
+ 		i915_gem_freeze(i915);
+ 		i915_gem_freeze_late(i915);
+@@ -124,7 +124,7 @@ static void pm_resume(struct drm_i915_private *i915)
+ 	 * that runtime-pm just works.
+ 	 */
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+-		i915_gem_restore_gtt_mappings(i915);
++		i915_ggtt_resume(&i915->ggtt);
+ 		i915_gem_restore_fences(&i915->ggtt);
+ 
+ 		i915_gem_resume(i915);
+-- 
+2.25.0
 
->  	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
->  		intel_dp_aux_fini(intel_dp);
-> -		intel_dp_mst_encoder_cleanup(intel_dig_port);
-
-This makes the unwind look incomplete to the causual reader. The cleanup
-function does both anyway so cross checking is harder if they're not
-consistent. So not sure I like it. Hmm. The ordering of these two also
-looks off here.
-
-Maybe nicer to just move the whole onion to the end of function
-(we alredy have one layer there)?
-
->  		goto fail;
->  	}
->  =
-
-> -- =
-
-> 2.25.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
