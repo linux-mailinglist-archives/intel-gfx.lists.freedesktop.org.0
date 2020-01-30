@@ -1,40 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E2A14E457
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:56:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDA214E458
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:57:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8D86E90F;
-	Thu, 30 Jan 2020 20:56:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFB646E911;
+	Thu, 30 Jan 2020 20:57:03 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5246E90F;
- Thu, 30 Jan 2020 20:56:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 12:56:27 -0800
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="218401484"
-Received: from lodierna-mobl.ger.corp.intel.com (HELO [10.252.22.225])
- ([10.252.22.225])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 30 Jan 2020 12:56:26 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-References: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
- <158041727856.18112.4906224695590570854@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <f12e30f0-a287-f821-4bc4-c7545e9821b6@linux.intel.com>
-Date: Thu, 30 Jan 2020 20:56:23 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0336E6E910;
+ Thu, 30 Jan 2020 20:57:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20065386-1500050 for multiple; Thu, 30 Jan 2020 20:56:58 +0000
 MIME-Version: 1.0
-In-Reply-To: <158041727856.18112.4906224695590570854@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] tests/i915/gem_ctx_persistence:
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ igt-dev@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200130205256.2021-1-tvrtko.ursulin@linux.intel.com>
+References: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
+ <20200130205256.2021-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <158041781735.18112.13290397906308346272@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 30 Jan 2020 20:56:57 +0000
+Subject: Re: [Intel-gfx] [PATCH i-g-t v2] tests/i915/gem_ctx_persistence:
  Convert engine subtests to dynamic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,167 +43,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
  Intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Tvrtko Ursulin (2020-01-30 20:52:56)
+> @@ -772,91 +787,64 @@ igt_main
+>                 igt_allow_hang(i915, 0, 0);
+>         }
+>  
+> -       igt_subtest("idempotent")
+> -               test_idempotent(i915);
+> -
+> -       igt_subtest("clone")
+> -               test_clone(i915);
+> -
+> -       igt_subtest("file")
+> -               test_nonpersistent_file(i915);
+> -
+> -       igt_subtest("process")
+> -               test_process(i915);
+> -
+> -       igt_subtest("processes")
+> -               test_processes(i915);
+> -
+> -       igt_subtest("hostile")
+> -               test_nohangcheck_hostile(i915);
+> -       igt_subtest("hang")
+> -               test_nohangcheck_hang(i915);
 
-On 30/01/2020 20:47, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-01-30 20:41:24)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Converts all per-engine tests into dynamic subtests and in the process:
->>
->>   * Put back I915_EXEC_BSD legacy coverage.
->>   * Remove one added static engine list usage.
->>   * Compact code by driving two groups of the name/func table.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
->> ---
->>   tests/i915/gem_ctx_persistence.c | 97 +++++++++++++-------------------
->>   1 file changed, 39 insertions(+), 58 deletions(-)
->>
->> diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
->> index 8b9633b214ff..0d5b22d2b162 100644
->> --- a/tests/i915/gem_ctx_persistence.c
->> +++ b/tests/i915/gem_ctx_persistence.c
->> @@ -759,7 +759,20 @@ static void smoketest(int i915)
->>   
->>   igt_main
->>   {
->> -       const struct intel_execution_engine2 *e;
->> +       struct {
->> +               const char *name;
->> +               void (*func)(int fd, unsigned int engine);
->> +       } *test, tests[] = {
->> +               { "persistence", test_persistence },
->> +               { "cleanup", test_nonpersistent_cleanup },
->> +               { "queued", test_nonpersistent_queued },
->> +               { "mixed", test_nonpersistent_mixed },
->> +               { "mixed-process", test_process_mixed },
->> +               { "hostile", test_nonpersistent_hostile },
->> +               { "hostile-preempt", test_nonpersistent_hostile_preempt },
->> +               { "hang", test_nonpersistent_hang },
->> +               { NULL, NULL },
-> 
-> Heh, that's what I was tempted to suggest but did want to seem like I
-> was requesting too much :)
+Could we keep these outside of the engine subtest groups?
+I'd like to keep them distinct as they aren't written with verifying
+engines per se, but the general context parameter.
 
-Yeah, much less typing, especially with dynamic subtests.
-
-> 
->> +       };
->>          int i915;
->>   
->>          igt_fixture {
->> @@ -792,72 +805,40 @@ igt_main
->>          igt_subtest("hang")
->>                  test_nohangcheck_hang(i915);
->>   
->> -       __for_each_static_engine(e) {
->> -               igt_subtest_group {
->> -                       igt_fixture {
->> -                               gem_require_ring(i915, e->flags);
->> -                               gem_require_contexts(i915);
->> -                       }
->> -
->> -                       igt_subtest_f("legacy-%s-persistence", e->name)
->> -                               test_persistence(i915, e->flags);
->> -
->> -                       igt_subtest_f("legacy-%s-cleanup", e->name)
->> -                               test_nonpersistent_cleanup(i915, e->flags);
->> -
->> -                       igt_subtest_f("legacy-%s-queued", e->name)
->> -                               test_nonpersistent_queued(i915, e->flags);
->> -
->> -                       igt_subtest_f("legacy-%s-mixed", e->name)
->> -                               test_nonpersistent_mixed(i915, e->flags);
->> -
->> -                       igt_subtest_f("legacy-%s-mixed-process", e->name)
->> -                               test_process_mixed(i915, e->flags);
->> -
->> -                       igt_subtest_f("legacy-%s-hostile", e->name)
->> -                               test_nonpersistent_hostile(i915, e->flags);
->> +       igt_subtest("smoketest")
->> +               smoketest(i915);
->>   
->> -                       igt_subtest_f("legacy-%s-hostile-preempt", e->name)
->> -                               test_nonpersistent_hostile_preempt(i915,
->> -                                                                  e->flags);
->> +       igt_subtest_group {
->> +               igt_fixture
->> +                       gem_require_contexts(i915);
->> +
->> +               for (test = tests; test->name; test++) {
->> +                       igt_subtest_with_dynamic_f("legacy-engines-%s",
->> +                                                  test->name) {
->> +                               for_each_engine(e, i915) {
-> 
-> Don't we need a
->    if (!gem_has_ring(i915, eb_ring(e)) continue;
-> here?
-
-It's built in to for_each_engine, yay for dynamic subtests! :)
-
-> 
->> +                                       igt_dynamic_f("%s", e->name)
->> +                                               test->func(i915, eb_ring(e));
->> +                               }
->> +                       }
->>                  }
->>          }
->>   
->> -        __for_each_physical_engine(i915, e) {
->> -                igt_subtest_group {
->> -                        igt_fixture
->> -                                gem_require_contexts(i915);
->> -
->> -                       igt_subtest_f("%s-persistence", e->name)
->> -                               test_persistence(i915, e->flags);
->> -
->> -                       igt_subtest_f("%s-cleanup", e->name)
->> -                               test_nonpersistent_cleanup(i915, e->flags);
->> -
->> -                       igt_subtest_f("%s-queued", e->name)
->> -                               test_nonpersistent_queued(i915, e->flags);
->> -
->> -                       igt_subtest_f("%s-mixed", e->name)
->> -                               test_nonpersistent_mixed(i915, e->flags);
->> -
->> -                       igt_subtest_f("%s-mixed-process", e->name)
->> -                               test_process_mixed(i915, e->flags);
->> +       igt_subtest_group {
->> +               const struct intel_execution_engine2 *e;
->>   
->> -                       igt_subtest_f("%s-hostile", e->name)
->> -                               test_nonpersistent_hostile(i915, e->flags);
->> +               igt_fixture
->> +                       gem_require_contexts(i915);
->>   
->> -                       igt_subtest_f("%s-hostile-preempt", e->name)
->> -                               test_nonpersistent_hostile_preempt(i915,
->> -                                                                  e->flags);
->> -
->> -                       igt_subtest_f("%s-hang", e->name)
->> -                               test_nonpersistent_hang(i915, e->flags);
->> +               for (test = tests; test->name; test++) {
->> +                       igt_subtest_with_dynamic_f("engines-%s", test->name) {
->> +                               __for_each_physical_engine(i915, e) {
->> +                                       igt_dynamic_f("%s", e->name)
->> +                                               test->func(i915, e->flags);
->> +                               }
->> +                       }
->>                  }
-> 
-> Then I had a plan to add the pathological engines[] here.
-
-Will see later what you exactly mean.
-
-Regards,
-
-Tvrtko
+There should be per-engine equivalents to the above already where
+appropriate.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
