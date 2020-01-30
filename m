@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0131C14DF61
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 17:44:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C0D514DF68
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 17:46:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4714F6E899;
-	Thu, 30 Jan 2020 16:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C24EB89017;
+	Thu, 30 Jan 2020 16:46:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A61366E898
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 16:44:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF5B989017
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 16:46:09 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20062517-1500050 
- for multiple; Thu, 30 Jan 2020 16:43:31 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20062541-1500050 
+ for multiple; Thu, 30 Jan 2020 16:45:54 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jan 2020 16:43:30 +0000
-Message-Id: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+Date: Thu, 30 Jan 2020 16:45:53 +0000
+Message-Id: <20200130164553.1937718-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+References: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gem: Require per-engine reset support
  for non-persistent contexts
@@ -58,7 +60,7 @@ Cc: Jon Bloomfield <jon.bloomfield@intel.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 86eef1bcfcb3..c8417fe3f32c 100644
+index da1ba8feeedc..1e173dd5ed54 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
 @@ -565,6 +565,10 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
@@ -66,7 +68,7 @@ index 86eef1bcfcb3..c8417fe3f32c 100644
  			return -ENODEV;
  
 +		/* If the cancel fails, we then need to reset, cleanly! */
-+		if (!intel_has_reset_engine(ctx->gt))
++		if (!intel_has_reset_engine(&ctx->i915->gt))
 +			return -ENODEV;
 +
  		i915_gem_context_clear_persistence(ctx);
