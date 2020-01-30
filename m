@@ -1,48 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1AD214E32C
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 20:26:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3146614E34C
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 20:37:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 321CA6E8E7;
-	Thu, 30 Jan 2020 19:26:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD876E8EA;
+	Thu, 30 Jan 2020 19:37:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BD2B6E8E7
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 19:26:07 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 11:26:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="218379800"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 30 Jan 2020 11:26:03 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 30 Jan 2020 21:26:03 +0200
-Date: Thu, 30 Jan 2020 21:26:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20200130192603.GJ13686@intel.com>
-References: <20200129235900.7670-1-daniele.ceraolospurio@intel.com>
- <158036696815.21034.751097000968180593@emeril.freedesktop.org>
- <158039146921.16598.16786857738481185551@skylake-alporthouse-com>
- <20200130135813.GB13686@intel.com>
- <158039328550.16598.12823982178337123688@skylake-alporthouse-com>
- <2386521b-8b7a-a8be-60a7-f6dc56fa7b7d@intel.com>
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC1D66E8EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 19:37:54 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id h32so1629468uah.4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 11:37:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=VU929v4ztjGxSuSWp+vtS+0PoApl/C7WbCgca5uoQNg=;
+ b=d2YDhlo3jRmIitKzYF8xcjckrB/O9XPhjdhIpm/XV+dlbNGR8c0LTrJwwPLZoWDP4L
+ 8qgp3UOX142psXaSXANDMj1SQpfPVWHjHSyWojfCpyL+tHhVjZAuYL1rERLLfloJBCX8
+ jXzO3HJo6PlFxt1tdBh3n0cW2Jc85A9i66WlgQzP9aIucAh33gPAa0PdA7yVIcSv2B3X
+ u5A7BqOPNuuXITBDHGmEy2rU/DC38gWJj252VizlOMJ41fx8bezZphwk51uh5rgmzHyT
+ nkFuUngh4L6g28qGwONJpXw4Tax6UVI49b4EmqUAVV5eVSJaBVn3xe9PPc55uRsynOXZ
+ N3HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=VU929v4ztjGxSuSWp+vtS+0PoApl/C7WbCgca5uoQNg=;
+ b=b4U7jy8aGD3L8fYbhRZsqmiVhaT1tXP2pfU9/YcQ0Y07k89VKIa5IS1Pb8Aj6XUd0A
+ 8Qwq3At+ciskQT89u7/DBH+DHSMyEru/qhTab9eP52kiylef+A/z8u/bHEb5bwVB4+9A
+ 7bgYWMMLEiIu9WDN6xczWTL9VeE5iLxi3i+tfgsiqg5kq5Bhiv/6NyGfeAHP3/Jropig
+ 7lTYk494BPMsPA+exYt3cFmgouVV5lP7ps5zlfBglqXmClLu3dqc+JXx6fagFqQhoT1h
+ btiGMU9tHN5miRUBsypORUs2lHDGuLukuBMjXsj3DypYOS+4Dyay47QMh4ntgf48MlKr
+ imnw==
+X-Gm-Message-State: APjAAAXK6r4piyGBhC9qSRwlQZwnccbtYkZTClROqxi7sI9Tb5ri6vBH
+ x0exjIA+a5poLmMuv6jDKd/slBE+nHbHpZN1mSE=
+X-Google-Smtp-Source: APXvYqy0savcPFuHa2CovlJ6EP39pOEo/ciIMglvqY3adcKqV/fsm8tR7jerNzDN/zWCApxy6RnktkX/a3nTakQAI8c=
+X-Received: by 2002:a9f:2635:: with SMTP id 50mr3735933uag.2.1580413073934;
+ Thu, 30 Jan 2020 11:37:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2386521b-8b7a-a8be-60a7-f6dc56fa7b7d@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_extract_engine_WA_progr?=
- =?utf-8?q?amming_to_common_resume_function?=
+References: <20200130181710.2030251-1-chris@chris-wilson.co.uk>
+ <20200130181710.2030251-3-chris@chris-wilson.co.uk>
+In-Reply-To: <20200130181710.2030251-3-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 30 Jan 2020 19:37:28 +0000
+Message-ID: <CAM0jSHM4c4S-SzBoA0VVWtt26heXKxruxX8b-_fvFMEMTvBm3Q@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: Use the async worker to avoid
+ reclaim tainting the ggtt->mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,56 +62,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2020 at 11:20:00AM -0800, Daniele Ceraolo Spurio wrote:
-> =
-
-> =
-
-> On 1/30/20 6:08 AM, Chris Wilson wrote:
-> > Quoting Ville Syrj=E4l=E4 (2020-01-30 13:58:13)
-> >> On Thu, Jan 30, 2020 at 01:37:49PM +0000, Chris Wilson wrote:
-> >>> Quoting Patchwork (2020-01-30 06:49:28)
-> >>>> #### Possible regressions ####
-> >>>>
-> >>>>    * igt@i915_selftest@live_active:
-> >>>>      - fi-bwr-2160:        [PASS][1] -> [DMESG-WARN][2] +12 similar =
-issues
-> >>>>     [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7840/fi-bwr=
--2160/igt@i915_selftest@live_active.html
-> >>>>     [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16327/fi=
--bwr-2160/igt@i915_selftest@live_active.html
-> >>>
-> >>> Well it works on Crestline. Broadwater snafu?
-> >>
-> >> Does the w/a thing actually work correctly for masked registers?
-> >> It look to use rmw even for masked registers and IIRC some masked
-> >> registers return 0xffff for the mask when read. I lost track of the
-> >> values and masks being passed around before I got down that deep so
-> >> can't immediatly see if the code is guaranteed to set only the
-> >> expected mask bit(s) for the write.
-> =
-
-> But does it make any difference is the mask is returned or not with rmw? =
-
-> if it is, we reprogram the lower 16 bits with the original value + our =
-
-> diff, while if it isn't we just toggle in place the bit we're interested =
-
-> in. The result should be the same in both cases.
-
-Some bits can also have side effects (eg. sync flush trigger bits and
-whatnot).
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+On Thu, 30 Jan 2020 at 18:17, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> On Braswell and Broxton (also known as Valleyview and Apollolake), we
+> need to serialise updates of the GGTT using the big stop_machine()
+> hammer. This has the side effect of appearing to lockdep as a possible
+> reclaim (since it uses the cpuhp mutex and that is tainted by per-cpu
+> allocations). However, we want to use vm->mutex (including ggtt->mutex)
+> from within the shrinker and so must avoid such possible taints. For this
+> purpose, we introduced the asynchronous vma binding and we can apply it
+> to the PIN_GLOBAL so long as take care to add the necessary waits for
+> the worker afterwards.
+>
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/211
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
