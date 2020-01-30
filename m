@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9712114E430
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:45:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 789B814E43B
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:46:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF2E6E903;
-	Thu, 30 Jan 2020 20:45:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92E1B6E903;
- Thu, 30 Jan 2020 20:45:01 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 12:45:00 -0800
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="218399509"
-Received: from lodierna-mobl.ger.corp.intel.com (HELO [10.252.22.225])
- ([10.252.22.225])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 30 Jan 2020 12:44:59 -0800
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-References: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <d295e6e3-7022-de90-ae9e-36ac2baeb750@linux.intel.com>
-Date: Thu, 30 Jan 2020 20:44:57 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC7576E90C;
+	Thu, 30 Jan 2020 20:46:37 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 665236E904;
+ Thu, 30 Jan 2020 20:46:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5DA67A0119;
+ Thu, 30 Jan 2020 20:46:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t]
- tests/i915/gem_ctx_persistence: Convert engine subtests to dynamic
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 30 Jan 2020 20:46:36 -0000
+Message-ID: <158041719637.21032.12705615935784297746@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Require_per-engine_reset_support_for_non-persisten?=
+ =?utf-8?q?t_contexts_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,167 +39,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
- Intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 30/01/2020 20:41, Tvrtko Ursulin wrote:
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> Converts all per-engine tests into dynamic subtests and in the process:
-> 
->   * Put back I915_EXEC_BSD legacy coverage.
->   * Remove one added static engine list usage.
->   * Compact code by driving two groups of the name/func table.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
-> ---
->   tests/i915/gem_ctx_persistence.c | 97 +++++++++++++-------------------
->   1 file changed, 39 insertions(+), 58 deletions(-)
-> 
-> diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
-> index 8b9633b214ff..0d5b22d2b162 100644
-> --- a/tests/i915/gem_ctx_persistence.c
-> +++ b/tests/i915/gem_ctx_persistence.c
-> @@ -759,7 +759,20 @@ static void smoketest(int i915)
->   
->   igt_main
->   {
-> -	const struct intel_execution_engine2 *e;
-> +	struct {
-> +		const char *name;
-> +		void (*func)(int fd, unsigned int engine);
-> +	} *test, tests[] = {
-> +		{ "persistence", test_persistence },
-> +		{ "cleanup", test_nonpersistent_cleanup },
-> +		{ "queued", test_nonpersistent_queued },
-> +		{ "mixed", test_nonpersistent_mixed },
-> +		{ "mixed-process", test_process_mixed },
-> +		{ "hostile", test_nonpersistent_hostile },
-> +		{ "hostile-preempt", test_nonpersistent_hostile_preempt },
-> +		{ "hang", test_nonpersistent_hang },
-> +		{ NULL, NULL },
-> +	};
->   	int i915;
->   
->   	igt_fixture {
-> @@ -792,72 +805,40 @@ igt_main
->   	igt_subtest("hang")
->   		test_nohangcheck_hang(i915);
->   
-> -	__for_each_static_engine(e) {
-> -		igt_subtest_group {
-> -			igt_fixture {
-> -				gem_require_ring(i915, e->flags);
-> -				gem_require_contexts(i915);
-> -			}
-> -
-> -			igt_subtest_f("legacy-%s-persistence", e->name)
-> -				test_persistence(i915, e->flags);
-> -
-> -			igt_subtest_f("legacy-%s-cleanup", e->name)
-> -				test_nonpersistent_cleanup(i915, e->flags);
-> -
-> -			igt_subtest_f("legacy-%s-queued", e->name)
-> -				test_nonpersistent_queued(i915, e->flags);
-> -
-> -			igt_subtest_f("legacy-%s-mixed", e->name)
-> -				test_nonpersistent_mixed(i915, e->flags);
-> -
-> -			igt_subtest_f("legacy-%s-mixed-process", e->name)
-> -				test_process_mixed(i915, e->flags);
-> -
-> -			igt_subtest_f("legacy-%s-hostile", e->name)
-> -				test_nonpersistent_hostile(i915, e->flags);
-> +	igt_subtest("smoketest")
-> +		smoketest(i915);
->   
-> -			igt_subtest_f("legacy-%s-hostile-preempt", e->name)
-> -				test_nonpersistent_hostile_preempt(i915,
-> -								   e->flags);
-> +	igt_subtest_group {
-> +		igt_fixture
-> +			gem_require_contexts(i915);
-> +
-> +		for (test = tests; test->name; test++) {
-> +			igt_subtest_with_dynamic_f("legacy-engines-%s",
-> +						   test->name) {
-> +				for_each_engine(e, i915) {
-> +					igt_dynamic_f("%s", e->name)
-> +						test->func(i915, eb_ring(e));
-> +				}
-> +			}
->   		}
->   	}
->   
-> -        __for_each_physical_engine(i915, e) {
-> -                igt_subtest_group {
-> -                        igt_fixture
-> -                                gem_require_contexts(i915);
-> -
-> -			igt_subtest_f("%s-persistence", e->name)
-> -				test_persistence(i915, e->flags);
-> -
-> -			igt_subtest_f("%s-cleanup", e->name)
-> -				test_nonpersistent_cleanup(i915, e->flags);
-> -
-> -			igt_subtest_f("%s-queued", e->name)
-> -				test_nonpersistent_queued(i915, e->flags);
-> -
-> -			igt_subtest_f("%s-mixed", e->name)
-> -				test_nonpersistent_mixed(i915, e->flags);
-> -
-> -			igt_subtest_f("%s-mixed-process", e->name)
-> -				test_process_mixed(i915, e->flags);
-> +	igt_subtest_group {
-> +		const struct intel_execution_engine2 *e;
->   
-> -			igt_subtest_f("%s-hostile", e->name)
-> -				test_nonpersistent_hostile(i915, e->flags);
-> +		igt_fixture
-> +			gem_require_contexts(i915);
->   
-> -			igt_subtest_f("%s-hostile-preempt", e->name)
-> -				test_nonpersistent_hostile_preempt(i915,
-> -								   e->flags);
-> -
-> -			igt_subtest_f("%s-hang", e->name)
-> -				test_nonpersistent_hang(i915, e->flags);
-> +		for (test = tests; test->name; test++) {
-> +			igt_subtest_with_dynamic_f("engines-%s", test->name) {
-> +				__for_each_physical_engine(i915, e) {
-> +					igt_dynamic_f("%s", e->name)
-> +						test->func(i915, e->flags);
-> +				}
-> +			}
->   		}
->   	}
->   
-> -	igt_subtest("smoketest")
-> -		smoketest(i915);
+Series: drm/i915/gem: Require per-engine reset support for non-persistent contexts (rev2)
+URL   : https://patchwork.freedesktop.org/series/72785/
+State : success
 
-I also moved this one to before the default context is configured with 
-engine map, since it uses legacy for_each_physical_engine, and is 
-therefore confused as to engine selection.
+== Summary ==
 
-But perhaps better would be to leave it last and convert to 
-__for_each_physical_engine. In the spirit of a smoke test is to exercise 
-all engines after all.
+CI Bug Log - changes from CI_DRM_7845 -> Patchwork_16342
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
 
-> -
->   	igt_fixture {
->   		close(i915);
->   	}
-> 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16342 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+    - fi-byt-n2820:       [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#1084] / [i915#816])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#553] / [i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][7] -> [DMESG-FAIL][8] ([i915#725])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][9] -> [DMESG-FAIL][10] ([fdo#108569])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][11] -> [INCOMPLETE][12] ([i915#424])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([CI#94] / [i915#402]) +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_create@basic-files:
+    - fi-icl-guc:         [INCOMPLETE][15] ([fdo#109100]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-icl-guc/igt@gem_ctx_create@basic-files.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-icl-guc/igt@gem_ctx_create@basic-files.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][17] ([CI#94]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][19] ([CI#94] / [i915#402]) -> [PASS][20] +1 similar issue
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][21] ([i915#725]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-byt-n2820:       [FAIL][23] ([i915#999]) -> [FAIL][24] ([i915#816])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7845/fi-byt-n2820/igt@runner@aborted.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/fi-byt-n2820/igt@runner@aborted.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109100]: https://bugs.freedesktop.org/show_bug.cgi?id=109100
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#999]: https://gitlab.freedesktop.org/drm/intel/issues/999
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (4): fi-kbl-soraka fi-bdw-gvtdvm fi-hsw-peppy fi-elk-e7500 
+  Missing    (8): fi-icl-1065g7 fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-cfl-8109u fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7845 -> Patchwork_16342
+
+  CI-20190529: 20190529
+  CI_DRM_7845: 87712fc2ff1634223e993da943bc3c9c7ce96bad @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16342: a35e6e581d78fdbfaf896b3197f188aef8168cfe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a35e6e581d78 drm/i915/gem: Require per-engine reset support for non-persistent contexts
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16342/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
