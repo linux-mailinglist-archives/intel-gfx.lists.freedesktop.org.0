@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0D514DF68
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 17:46:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A79E14DFD8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 18:24:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C24EB89017;
-	Thu, 30 Jan 2020 16:46:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 806A26E8A8;
+	Thu, 30 Jan 2020 17:24:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF5B989017
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 16:46:09 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20062541-1500050 
- for multiple; Thu, 30 Jan 2020 16:45:54 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jan 2020 16:45:53 +0000
-Message-Id: <20200130164553.1937718-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
-References: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9DB6E8A8;
+ Thu, 30 Jan 2020 17:24:39 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2020 09:16:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="233012800"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 30 Jan 2020 09:16:01 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Jan 2020 19:16:00 +0200
+Date: Thu, 30 Jan 2020 19:16:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200130171600.GG13686@intel.com>
+References: <20200117015837.402239-1-jose.souza@intel.com>
+ <20200117015837.402239-3-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Require per-engine reset support
- for non-persistent contexts
+Content-Disposition: inline
+In-Reply-To: <20200117015837.402239-3-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display: Remove useless call
+ intel_dp_mst_encoder_cleanup()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,44 +49,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To enable non-persistent contexts, we require a means of cancelling any
-inflight work from that context. This is first done "gracefully" by
-using preemption to kick the active context off the engine, and then
-forcefully by resetting the engine if it is active. If we are unable to
-reset the engine to remove hostile userspace, we should not allow
-userspace to opt into using non-persistent contexts.
+On Thu, Jan 16, 2020 at 05:58:36PM -0800, Jos=E9 Roberto de Souza wrote:
+> This is a eDP function and it will always returns true for non-eDP
+> ports.
+> =
 
-Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jon Bloomfield <jon.bloomfield@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 1 -
+>  1 file changed, 1 deletion(-)
+> =
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index da1ba8feeedc..1e173dd5ed54 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -565,6 +565,10 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
- 		if (!(ctx->i915->caps.scheduler & I915_SCHEDULER_CAP_PREEMPTION))
- 			return -ENODEV;
- 
-+		/* If the cancel fails, we then need to reset, cleanly! */
-+		if (!intel_has_reset_engine(&ctx->i915->gt))
-+			return -ENODEV;
-+
- 		i915_gem_context_clear_persistence(ctx);
- 	}
- 
--- 
-2.25.0
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 4074d83b1a5f..a50b5b6dd009 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -7537,7 +7537,6 @@ intel_dp_init_connector(struct intel_digital_port *=
+intel_dig_port,
+>  =
 
+>  	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
+>  		intel_dp_aux_fini(intel_dp);
+> -		intel_dp_mst_encoder_cleanup(intel_dig_port);
+
+This makes the unwind look incomplete to the causual reader. The cleanup
+function does both anyway so cross checking is harder if they're not
+consistent. So not sure I like it. Hmm. The ordering of these two also
+looks off here.
+
+Maybe nicer to just move the whole onion to the end of function
+(we alredy have one layer there)?
+
+>  		goto fail;
+>  	}
+>  =
+
+> -- =
+
+> 2.25.0
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
