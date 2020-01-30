@@ -1,30 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2C4914DC4E
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 14:51:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ABFA14DC5E
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 14:58:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D70196F9BE;
-	Thu, 30 Jan 2020 13:51:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C6696E843;
+	Thu, 30 Jan 2020 13:58:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960BB6F9BE
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 13:51:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20060269-1500050 
- for multiple; Thu, 30 Jan 2020 13:51:37 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Jan 2020 13:51:36 +0000
-Message-Id: <20200130135136.1878646-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37AB86F9BF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 13:58:17 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2020 05:58:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="218285150"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 30 Jan 2020 05:58:14 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Jan 2020 15:58:13 +0200
+Date: Thu, 30 Jan 2020 15:58:13 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200130135813.GB13686@intel.com>
+References: <20200129235900.7670-1-daniele.ceraolospurio@intel.com>
+ <158036696815.21034.751097000968180593@emeril.freedesktop.org>
+ <158039146921.16598.16786857738481185551@skylake-alporthouse-com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/fbc: __intel_fbc_cleanup_cfb() may be
- called multiple times
+Content-Disposition: inline
+In-Reply-To: <158039146921.16598.16786857738481185551@skylake-alporthouse-com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_extract_engine_WA_progr?=
+ =?utf-8?q?amming_to_common_resume_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,33 +51,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXZvaWQgcmVsZWFzaW5nIHRoZSBzYW1lIHN0b2xlbiBub2RlcyBjYXVzaW5nIGEgdXNlLWFmdGVy
-LWZyZWUgYW5kL29yCmV4cGxvc2lvbnMgYXMgdGhlIHNlbGYtY2hlY2tzIGZhaWwsIGFzIF9faW50
-ZWxfZmJjX2NsZWFudXBfY2ZiKCkgbWF5IGJlCmNhbGxlZCBtdWx0aXBsZSB0aW1lcyBkdXJpbmcg
-bW9kdWxlIHVubG9hZC4KClNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMt
-d2lsc29uLmNvLnVrPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIHwg
-NiArKysrLS0KIDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMKaW5kZXggMmEzZjEzMzNj
-OGZmLi5hYjY3NmM2NzU2YWYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZmJjLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9m
-YmMuYwpAQCAtNTM3LDEzICs1MzcsMTUgQEAgc3RhdGljIHZvaWQgX19pbnRlbF9mYmNfY2xlYW51
-cF9jZmIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewogCXN0cnVjdCBpbnRl
-bF9mYmMgKmZiYyA9ICZkZXZfcHJpdi0+ZmJjOwogCi0JaWYgKGRybV9tbV9ub2RlX2FsbG9jYXRl
-ZCgmZmJjLT5jb21wcmVzc2VkX2ZiKSkKLQkJaTkxNV9nZW1fc3RvbGVuX3JlbW92ZV9ub2RlKGRl
-dl9wcml2LCAmZmJjLT5jb21wcmVzc2VkX2ZiKTsKKwlpZiAoIWRybV9tbV9ub2RlX2FsbG9jYXRl
-ZCgmZmJjLT5jb21wcmVzc2VkX2ZiKSkKKwkJcmV0dXJuOwogCiAJaWYgKGZiYy0+Y29tcHJlc3Nl
-ZF9sbGIpIHsKIAkJaTkxNV9nZW1fc3RvbGVuX3JlbW92ZV9ub2RlKGRldl9wcml2LCBmYmMtPmNv
-bXByZXNzZWRfbGxiKTsKIAkJa2ZyZWUoZmJjLT5jb21wcmVzc2VkX2xsYik7CiAJfQorCisJaTkx
-NV9nZW1fc3RvbGVuX3JlbW92ZV9ub2RlKGRldl9wcml2LCAmZmJjLT5jb21wcmVzc2VkX2ZiKTsK
-IH0KIAogdm9pZCBpbnRlbF9mYmNfY2xlYW51cF9jZmIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2KQotLSAKMi4yNS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Thu, Jan 30, 2020 at 01:37:49PM +0000, Chris Wilson wrote:
+> Quoting Patchwork (2020-01-30 06:49:28)
+> > #### Possible regressions ####
+> > =
+
+> >   * igt@i915_selftest@live_active:
+> >     - fi-bwr-2160:        [PASS][1] -> [DMESG-WARN][2] +12 similar issu=
+es
+> >    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7840/fi-bwr-216=
+0/igt@i915_selftest@live_active.html
+> >    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16327/fi-bwr=
+-2160/igt@i915_selftest@live_active.html
+> =
+
+> Well it works on Crestline. Broadwater snafu?
+
+Does the w/a thing actually work correctly for masked registers?
+It look to use rmw even for masked registers and IIRC some masked
+registers return 0xffff for the mask when read. I lost track of the
+values and masks being passed around before I got down that deep so
+can't immediatly see if the code is guaranteed to set only the
+expected mask bit(s) for the write.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
