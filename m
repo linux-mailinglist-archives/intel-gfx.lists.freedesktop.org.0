@@ -1,36 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9A8E14E428
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:42:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9712114E430
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 21:45:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D38C6E901;
-	Thu, 30 Jan 2020 20:42:53 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E0576E901
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 20:42:51 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF2E6E903;
+	Thu, 30 Jan 2020 20:45:02 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92E1B6E903;
+ Thu, 30 Jan 2020 20:45:01 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 12:42:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="309815401"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga001.jf.intel.com with SMTP; 30 Jan 2020 12:42:50 -0800
-Date: Thu, 30 Jan 2020 12:42:50 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Message-ID: <20200130204250.GC116423@mdroper-desk1.amr.corp.intel.com>
-References: <20200129224206.10577-1-anusha.srivatsa@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2020 12:45:00 -0800
+X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="218399509"
+Received: from lodierna-mobl.ger.corp.intel.com (HELO [10.252.22.225])
+ ([10.252.22.225])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 30 Jan 2020 12:44:59 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+References: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <d295e6e3-7022-de90-ae9e-36ac2baeb750@linux.intel.com>
+Date: Thu, 30 Jan 2020 20:44:57 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200129224206.10577-1-anusha.srivatsa@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
+In-Reply-To: <20200130204124.29907-1-tvrtko.ursulin@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t]
+ tests/i915/gem_ctx_persistence: Convert engine subtests to dynamic
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,98 +47,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2020 at 02:42:06PM -0800, Anusha Srivatsa wrote:
-> Disable Inter and intra Read Suppression (bit 15) and
-> Early Read and Src Swap (bit 14) by setting the chicken
-> register.
-> 
-> BSpec: 46045,52890
-> 
-> v2: Follow the Bspec implementation for the WA.
-> v3: Have 2 separate defines for bit 14 and 15.
-> - Rename register definitions with TGL_ prefix
 
-The hardware guys changed their mind again and we're back to only
-needing bit 14 now.  They updated the bspec and the underlying database
-yet again.  :-/
-
+On 30/01/2020 20:41, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+> Converts all per-engine tests into dynamic subtests and in the process:
+> 
+>   * Put back I915_EXEC_BSD legacy coverage.
+>   * Remove one added static engine list usage.
+>   * Compact code by driving two groups of the name/func table.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
->  drivers/gpu/drm/i915/i915_reg.h             | 2 ++
->  2 files changed, 8 insertions(+)
+>   tests/i915/gem_ctx_persistence.c | 97 +++++++++++++-------------------
+>   1 file changed, 39 insertions(+), 58 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 5a7db279f702..1f84cd595f88 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -593,6 +593,12 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
->  	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
->  			    FF_MODE2_TDS_TIMER_MASK);
+> diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+> index 8b9633b214ff..0d5b22d2b162 100644
+> --- a/tests/i915/gem_ctx_persistence.c
+> +++ b/tests/i915/gem_ctx_persistence.c
+> @@ -759,7 +759,20 @@ static void smoketest(int i915)
+>   
+>   igt_main
+>   {
+> -	const struct intel_execution_engine2 *e;
+> +	struct {
+> +		const char *name;
+> +		void (*func)(int fd, unsigned int engine);
+> +	} *test, tests[] = {
+> +		{ "persistence", test_persistence },
+> +		{ "cleanup", test_nonpersistent_cleanup },
+> +		{ "queued", test_nonpersistent_queued },
+> +		{ "mixed", test_nonpersistent_mixed },
+> +		{ "mixed-process", test_process_mixed },
+> +		{ "hostile", test_nonpersistent_hostile },
+> +		{ "hostile-preempt", test_nonpersistent_hostile_preempt },
+> +		{ "hang", test_nonpersistent_hang },
+> +		{ NULL, NULL },
+> +	};
+>   	int i915;
+>   
+>   	igt_fixture {
+> @@ -792,72 +805,40 @@ igt_main
+>   	igt_subtest("hang")
+>   		test_nohangcheck_hang(i915);
+>   
+> -	__for_each_static_engine(e) {
+> -		igt_subtest_group {
+> -			igt_fixture {
+> -				gem_require_ring(i915, e->flags);
+> -				gem_require_contexts(i915);
+> -			}
+> -
+> -			igt_subtest_f("legacy-%s-persistence", e->name)
+> -				test_persistence(i915, e->flags);
+> -
+> -			igt_subtest_f("legacy-%s-cleanup", e->name)
+> -				test_nonpersistent_cleanup(i915, e->flags);
+> -
+> -			igt_subtest_f("legacy-%s-queued", e->name)
+> -				test_nonpersistent_queued(i915, e->flags);
+> -
+> -			igt_subtest_f("legacy-%s-mixed", e->name)
+> -				test_nonpersistent_mixed(i915, e->flags);
+> -
+> -			igt_subtest_f("legacy-%s-mixed-process", e->name)
+> -				test_process_mixed(i915, e->flags);
+> -
+> -			igt_subtest_f("legacy-%s-hostile", e->name)
+> -				test_nonpersistent_hostile(i915, e->flags);
+> +	igt_subtest("smoketest")
+> +		smoketest(i915);
+>   
+> -			igt_subtest_f("legacy-%s-hostile-preempt", e->name)
+> -				test_nonpersistent_hostile_preempt(i915,
+> -								   e->flags);
+> +	igt_subtest_group {
+> +		igt_fixture
+> +			gem_require_contexts(i915);
 > +
-> +	/* Wa_1606931601:tgl */
-> +	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2,
-> +			  GEN12_EARLY_READ_SRC0_DISABLE |
-> +			  GEN12_INTER_INTRA_READ_SUPPRESSION_DISABLE);
+> +		for (test = tests; test->name; test++) {
+> +			igt_subtest_with_dynamic_f("legacy-engines-%s",
+> +						   test->name) {
+> +				for_each_engine(e, i915) {
+> +					igt_dynamic_f("%s", e->name)
+> +						test->func(i915, eb_ring(e));
+> +				}
+> +			}
+>   		}
+>   	}
+>   
+> -        __for_each_physical_engine(i915, e) {
+> -                igt_subtest_group {
+> -                        igt_fixture
+> -                                gem_require_contexts(i915);
+> -
+> -			igt_subtest_f("%s-persistence", e->name)
+> -				test_persistence(i915, e->flags);
+> -
+> -			igt_subtest_f("%s-cleanup", e->name)
+> -				test_nonpersistent_cleanup(i915, e->flags);
+> -
+> -			igt_subtest_f("%s-queued", e->name)
+> -				test_nonpersistent_queued(i915, e->flags);
+> -
+> -			igt_subtest_f("%s-mixed", e->name)
+> -				test_nonpersistent_mixed(i915, e->flags);
+> -
+> -			igt_subtest_f("%s-mixed-process", e->name)
+> -				test_process_mixed(i915, e->flags);
+> +	igt_subtest_group {
+> +		const struct intel_execution_engine2 *e;
+>   
+> -			igt_subtest_f("%s-hostile", e->name)
+> -				test_nonpersistent_hostile(i915, e->flags);
+> +		igt_fixture
+> +			gem_require_contexts(i915);
+>   
+> -			igt_subtest_f("%s-hostile-preempt", e->name)
+> -				test_nonpersistent_hostile_preempt(i915,
+> -								   e->flags);
+> -
+> -			igt_subtest_f("%s-hang", e->name)
+> -				test_nonpersistent_hang(i915, e->flags);
+> +		for (test = tests; test->name; test++) {
+> +			igt_subtest_with_dynamic_f("engines-%s", test->name) {
+> +				__for_each_physical_engine(i915, e) {
+> +					igt_dynamic_f("%s", e->name)
+> +						test->func(i915, e->flags);
+> +				}
+> +			}
+>   		}
+>   	}
+>   
+> -	igt_subtest("smoketest")
+> -		smoketest(i915);
 
-I think Daniele already mentioned this on the other discussion, but
-ROW_CHICKEN2 isn't part of the context image on gen12 (see bspec page
-46255).  This is a change from ICL where it *was* part of the context
-(see bspec page 18907), so even though we handled this register in the
-ctx_workarounds_init for ICL, that's not the appropriate place to put it
-for TGL.
+I also moved this one to before the default context is configured with 
+engine map, since it uses legacy for_each_physical_engine, and is 
+therefore confused as to engine selection.
 
-Since this isn't a context workaround, we need to determine whether it's
-a general GT workaround (which would be initialized in
-tgl_gt_workarounds_init) or an engine workaround (which would be
-initialized in {rcs,xcs}_engine_wa_init.  In this case the register
-we're modifying is 0xe49c; according to bspec page 52078 this falls in
-one of the forcewake ranges listed under the render engine column
-(0E000-0E8FF).  So I believe in this case that means we want to update
-rcs_engine_wa_init() with this workaround --- that ensures that the
-workaround will be re-applied any time the engine is reset (even if it's
-not a full-GPU reset).
+But perhaps better would be to leave it last and convert to 
+__for_each_physical_engine. In the spirit of a smoke test is to exercise 
+all engines after all.
 
+Regards,
 
+Tvrtko
 
-Matt
-
-> +
->  }
->  
->  static void
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 4c72b8ac0f2e..70ead809c706 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9149,6 +9149,8 @@ enum {
->  #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
->  #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
->  #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
-> +#define   GEN12_EARLY_READ_SRC0_DISABLE		(1 << 14)
-> +#define   GEN12_INTER_INTRA_READ_SUPPRESSION_DISABLE	(1 << 15)
->  
->  #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
->  #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
-> -- 
-> 2.25.0
+> -
+>   	igt_fixture {
+>   		close(i915);
+>   	}
 > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
