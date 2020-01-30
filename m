@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC44514DC71
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 15:07:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B3514DC72
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2020 15:08:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 983FB6E831;
-	Thu, 30 Jan 2020 14:07:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDF76E838;
+	Thu, 30 Jan 2020 14:08:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBA96E831
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 14:07:53 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 06:07:52 -0800
-X-IronPort-AV: E=Sophos;i="5.70,382,1574150400"; d="scan'208";a="222803769"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 06:07:49 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-In-Reply-To: <20200128071437.9284-1-wambui.karugax@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200128071437.9284-1-wambui.karugax@gmail.com>
-Date: Thu, 30 Jan 2020 16:07:46 +0200
-Message-ID: <87tv4d9gwd.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20ABC6E837
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 14:08:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20060507-1500050 for multiple; Thu, 30 Jan 2020 14:08:07 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 0/8] drm/i915/gt conversion to new drm
- logging macros.
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200130135813.GB13686@intel.com>
+References: <20200129235900.7670-1-daniele.ceraolospurio@intel.com>
+ <158036696815.21034.751097000968180593@emeril.freedesktop.org>
+ <158039146921.16598.16786857738481185551@skylake-alporthouse-com>
+ <20200130135813.GB13686@intel.com>
+Message-ID: <158039328550.16598.12823982178337123688@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 30 Jan 2020 14:08:05 +0000
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_extract_engine_WA_progr?=
+ =?utf-8?q?amming_to_common_resume_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,55 +45,33 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jan 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> This series continues the conversion to the new drm logging macros
-> focused on the drm/i915/gt folder. This was done both manually and using
-> coccinelle.
-
-Thanks for the patches, for now pushed only the non-contentions ones
-that don't convert DRM_DEBUG() -> drm_dbg().
-
-BR,
-Jani.
-
-
->
-> Wambui Karuga (8):
->   drm/i915/gt: conversion to struct drm_device macros when struct
->     drm_i915_private is available.
->   drm/i915/ggtt: use new drm logging macros in gt/intel_ggtt.c
->   drm/i915/reset: conversion to new drm logging macros in
->     gt/intel_reset.c
->   drm/i915/engine_cs: use new drm logging macros in gt/intel_engine_cs.c
->   drm/i915/lrc: conversion to new drm logging macros in gt/intel_lrc.c
->   drm/i915/gt: convert to new logging macros in gt/intel_gt.c
->   drm/i915/ring: convert to new logging macros in
->     gt/intel_ring_submission.c
->   drm/i915/rps: move to new drm logging macros in gt/intel_rps.c
->
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 11 +--
->  drivers/gpu/drm/i915/gt/intel_engine_user.c   |  2 +-
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 63 +++++++++------
->  drivers/gpu/drm/i915/gt/intel_gt.c            | 49 ++++++-----
->  drivers/gpu/drm/i915/gt/intel_lrc.c           | 24 +++---
->  drivers/gpu/drm/i915/gt/intel_rc6.c           | 30 ++++---
->  drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
->  drivers/gpu/drm/i915/gt/intel_reset.c         | 48 ++++++-----
->  .../gpu/drm/i915/gt/intel_ring_submission.c   | 36 +++++----
->  drivers/gpu/drm/i915/gt/intel_rps.c           | 81 +++++++++----------
->  drivers/gpu/drm/i915/gt/intel_workarounds.c   |  7 +-
->  drivers/gpu/drm/i915/gt/uc/intel_guc_log.c    |  3 +-
->  drivers/gpu/drm/i915/gt/uc/intel_uc.c         |  4 +-
->  13 files changed, 196 insertions(+), 164 deletions(-)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDEtMzAgMTM6NTg6MTMpCj4gT24gVGh1LCBK
+YW4gMzAsIDIwMjAgYXQgMDE6Mzc6NDlQTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
+UXVvdGluZyBQYXRjaHdvcmsgKDIwMjAtMDEtMzAgMDY6NDk6MjgpCj4gPiA+ICMjIyMgUG9zc2li
+bGUgcmVncmVzc2lvbnMgIyMjIwo+ID4gPiAKPiA+ID4gICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxp
+dmVfYWN0aXZlOgo+ID4gPiAgICAgLSBmaS1id3ItMjE2MDogICAgICAgIFtQQVNTXVsxXSAtPiBb
+RE1FU0ctV0FSTl1bMl0gKzEyIHNpbWlsYXIgaXNzdWVzCj4gPiA+ICAgIFsxXTogaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fNzg0MC9maS1id3ItMjE2MC9p
+Z3RAaTkxNV9zZWxmdGVzdEBsaXZlX2FjdGl2ZS5odG1sCj4gPiA+ICAgIFsyXTogaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTYzMjcvZmktYndyLTIx
+NjAvaWd0QGk5MTVfc2VsZnRlc3RAbGl2ZV9hY3RpdmUuaHRtbAo+ID4gCj4gPiBXZWxsIGl0IHdv
+cmtzIG9uIENyZXN0bGluZS4gQnJvYWR3YXRlciBzbmFmdT8KPiAKPiBEb2VzIHRoZSB3L2EgdGhp
+bmcgYWN0dWFsbHkgd29yayBjb3JyZWN0bHkgZm9yIG1hc2tlZCByZWdpc3RlcnM/Cj4gSXQgbG9v
+ayB0byB1c2Ugcm13IGV2ZW4gZm9yIG1hc2tlZCByZWdpc3RlcnMgYW5kIElJUkMgc29tZSBtYXNr
+ZWQKPiByZWdpc3RlcnMgcmV0dXJuIDB4ZmZmZiBmb3IgdGhlIG1hc2sgd2hlbiByZWFkLiBJIGxv
+c3QgdHJhY2sgb2YgdGhlCj4gdmFsdWVzIGFuZCBtYXNrcyBiZWluZyBwYXNzZWQgYXJvdW5kIGJl
+Zm9yZSBJIGdvdCBkb3duIHRoYXQgZGVlcCBzbwo+IGNhbid0IGltbWVkaWF0bHkgc2VlIGlmIHRo
+ZSBjb2RlIGlzIGd1YXJhbnRlZWQgdG8gc2V0IG9ubHkgdGhlCj4gZXhwZWN0ZWQgbWFzayBiaXQo
+cykgZm9yIHRoZSB3cml0ZS4KClRoZSByZWFkIGJhY2sgZ2l2ZXMgMHgxMDEwMSwgdGhlIHcvYSBp
+cyB0byAweDQwMDA0MCAoYW5kIHdlIGV4cGVjdCB0bwpzZWUgMHg0MCBzZXQgaW4gdGhlIHJlYWRi
+YWNrKS4KClRoYXQgcGFydCBsb29rcyBjb25zaXN0ZW50IChhbmQgaXMgcGFzc2luZyBvbiBnZW40
+LWdlbjYgZXhjZXB0IGZvciBDSSdzCmJ3KS4KCkhtbSwgZG9uJ3QgcmVjYWxsIHRoYXQgaXQgdXNl
+ZCBybXcgZm9yIHNldHRpbmcgdGhlIG1hc2tlZCBtbWlvLCBzbyBsZXRzCmNoZWNrIHRoYXQuCi1D
+aHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
