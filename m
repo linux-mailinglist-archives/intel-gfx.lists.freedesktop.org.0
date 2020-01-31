@@ -1,36 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E758814ED06
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 14:12:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E204F14ED11
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 14:15:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A3F6E99C;
-	Fri, 31 Jan 2020 13:12:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E556E998;
+	Fri, 31 Jan 2020 13:15:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3FC6E998;
- Fri, 31 Jan 2020 13:12:52 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A92436E217
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 13:15:29 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 05:12:51 -0800
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223138262"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 05:12:50 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 14:12:34 +0100
-Message-Id: <20200131131234.23058-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200131131234.23058-1-janusz.krzysztofik@linux.intel.com>
-References: <20200131131234.23058-1-janusz.krzysztofik@linux.intel.com>
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 05:15:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="230250552"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga003.jf.intel.com with ESMTP; 31 Jan 2020 05:15:27 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 7A1DF5C0D3B; Fri, 31 Jan 2020 15:14:38 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158047170013.2430.15418748422936870751@skylake-alporthouse-com>
+References: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+ <87y2tn973j.fsf@gaia.fi.intel.com>
+ <158047170013.2430.15418748422936870751@skylake-alporthouse-com>
+Date: Fri, 31 Jan 2020 15:14:38 +0200
+Message-ID: <87tv4b939d.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t 1/1] tests/gem_mmap_offset: Exercise
- mapping to userptr
+Subject: Re: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,102 +45,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Creating a mapping to a userptr backed GEM object may cause a currently
-unavoidable lockdep splat inside the i915 driver.  Then, such operation
-is expected to fail to prevent from that badness to happen.
-
-Add a respective subtest for each mapping type.
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_mmap_offset.c | 55 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
-
-diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
-index 7c4088cdf..a5f28328b 100644
---- a/tests/i915/gem_mmap_offset.c
-+++ b/tests/i915/gem_mmap_offset.c
-@@ -141,6 +141,36 @@ static void bad_extensions(int i915)
- 	gem_close(i915, arg.handle);
- }
- 
-+static bool has_userptr(int i915)
-+{
-+	uint32_t handle = 0;
-+	void *ptr;
-+
-+	igt_assert_eq(posix_memalign(&ptr, 4096, 4096), 0);
-+	if (__gem_userptr(i915, ptr, 4096, 0, 0, &handle) == 0)
-+		gem_close(i915, handle);
-+	free(ptr);
-+
-+	return handle;
-+}
-+
-+static void userptr(int i915, uint64_t flags)
-+{
-+	struct drm_i915_gem_mmap_offset arg = {
-+		.flags = flags,
-+	};
-+	void *ptr;
-+
-+	igt_assert_eq(posix_memalign(&ptr, 4096, 4096), 0);
-+
-+	gem_userptr(i915, ptr, 4096, 0, 0, &arg.handle);
-+
-+	igt_assert_eq(mmap_offset_ioctl(i915, &arg), -EINVAL);
-+
-+	gem_close(i915, arg.handle);
-+	free(ptr);
-+}
-+
- static void basic_uaf(int i915)
- {
- 	const uint32_t obj_size = 4096;
-@@ -461,6 +491,31 @@ igt_main
- 	igt_subtest_f("bad-extensions")
- 		bad_extensions(i915);
- 
-+	igt_subtest_group {
-+		igt_fixture
-+			igt_require(has_userptr(i915));
-+
-+		for_each_mmap_offset_type(t) {
-+			igt_describe_f("Verify %s mapping to userptr backed GEM object will fail",
-+				       t->name);
-+			igt_subtest_f("userptr-%s-mapping", t->name) {
-+				switch (t->type) {
-+				case I915_MMAP_OFFSET_GTT:
-+					gem_require_mappable_ggtt(i915);
-+					break;
-+				case I915_MMAP_OFFSET_WC:
-+				case I915_MMAP_OFFSET_UC:
-+					igt_require(gem_mmap_offset__has_wc(i915));
-+					break;
-+				defalut:
-+					break;
-+				}
-+
-+				userptr(i915, t->type);
-+			}
-+		}
-+	}
-+
- 	igt_describe("Check buffer object mapping persists after gem_close");
- 	igt_subtest_f("basic-uaf")
- 		basic_uaf(i915);
--- 
-2.21.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gUXVvdGlu
+ZyBNaWthIEt1b3BwYWxhICgyMDIwLTAxLTMxIDExOjUxOjQ0KQo+PiBDaHJpcyBXaWxzb24gPGNo
+cmlzQGNocmlzLXdpbHNvbi5jby51az4gd3JpdGVzOgo+PiAKPj4gPiBBIG1hc2tlZCByZWdpc3Rl
+ciBkb2VzIG5vdCBuZWVkIHJtdyB0byB1cGRhdGUsIGFuZCBpdCBpcyBiZXN0IG5vdCB0byB1c2UK
+Pj4gPiBzdWNoIGEgc2VxdWVuY2UuCj4+ID4KPj4gPiBSZXBvcnRlZC1ieTogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gPiBTaWduZWQtb2ZmLWJ5OiBD
+aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPj4gPiBDYzogVmlsbGUgU3ly
+asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4gPiBDYzogVHZydGtvIFVy
+c3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPj4gPiAtLS0KPj4gPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyB8IDMyICsrKysrKysrKysrKysrLS0t
+LS0tLQo+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25z
+KC0pCj4+ID4KPj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxf
+d29ya2Fyb3VuZHMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRz
+LmMKPj4gPiBpbmRleCA1YTdkYjI3OWY3MDIuLmU0YzJiNmQ0MmY0NiAxMDA2NDQKPj4gPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4+ID4gKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwo+PiA+IEBAIC0xMTYs
+NyArMTE2LDggQEAgc3RhdGljIHZvaWQgX3dhX2FkZChzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWws
+IGNvbnN0IHN0cnVjdCBpOTE1X3dhICp3YSkKPj4gPiAgICAgICAgICAgICAgIH0gZWxzZSB7Cj4+
+ID4gICAgICAgICAgICAgICAgICAgICAgIHdhXyA9ICZ3YWwtPmxpc3RbbWlkXTsKPj4gPiAgCj4+
+ID4gLSAgICAgICAgICAgICAgICAgICAgIGlmICgod2EtPm1hc2sgJiB+d2FfLT5tYXNrKSA9PSAw
+KSB7Cj4+ID4gKyAgICAgICAgICAgICAgICAgICAgIGlmICgod2EtPm1hc2sgfCB3YV8tPm1hc2sp
+ICYmCj4+IAo+PiBEb24ndCB3ZSB3YW50IHRvIGRpc2NhcmQgaWYgc29tZW9uZSB0cmllcyB0byBk
+ZW1vdGUgYSBtYXNrZWQKPj4gb25lIGludG8gYSBwbGFpbj8KPgo+IFRoYXQgc2hvdWxkIHRocm93
+IHRoZSBlcnJvciwgcmlnaHQ/Cj4KPiBJZiBlaXRoZXIgdXNlZCBhIG1hc2sgYW5kIG5vdyB3ZSBk
+b24ndCwgdGhlbiAwICYgeCA9PSAwID0+IERSTV9FUlJPUi4KClllcywgaXQgd2lsbCB0aHJvdyB0
+aGUgZXJyb3IuIE15IG1pc3Rha2UuCgpCdXQgaWYgd2UgaGF2ZSBhIG1hc2ssIHdlIHNob3VsZCBu
+b3QgYWxsb3cgbm9ubWFza2VkIGFkZGl0aW9ucwphc3dlbGw/IFNvIG1hc2sgPT0gMCB3b3VsZCBh
+bHdheXMgYmUgbWFza2VkIHJlZ2lzdGVyIGFuZCB5b3UKY2FuJ3QgbWl4LgoKLU1pa2EKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
