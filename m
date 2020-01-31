@@ -1,40 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8614A14EC0D
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:52:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B871214EC1B
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:55:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1EAF6E96F;
-	Fri, 31 Jan 2020 11:52:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 009D789954;
+	Fri, 31 Jan 2020 11:55:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 617426E96F
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:52:05 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 03:52:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="247706414"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 31 Jan 2020 03:51:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 Jan 2020 13:51:59 +0200
-Date: Fri, 31 Jan 2020 13:51:59 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200131115159.GM13686@intel.com>
-References: <20200131063038.GA15798@plaxmina-desktop.iind.intel.com>
- <87pnez99ou.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AB4989954
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:55:05 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20071502-1500050 for multiple; Fri, 31 Jan 2020 11:55:02 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87pnez99ou.fsf@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] RFC: pipe writeback design for i915
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+ <87y2tn973j.fsf@gaia.fi.intel.com>
+In-Reply-To: <87y2tn973j.fsf@gaia.fi.intel.com>
+Message-ID: <158047170013.2430.15418748422936870751@skylake-alporthouse-com>
+Date: Fri, 31 Jan 2020 11:55:00 +0000
+Subject: Re: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +40,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2020 at 12:55:45PM +0200, Jani Nikula wrote:
-> On Fri, 31 Jan 2020, "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@in=
-tel.com> wrote:
-> > I am exploring the way of implementing the pipe writeback feature in i9=
-15 and
-> > would like to get early feedback on design.
-> >
-> > We have a Wireless display(WD) transcoder which can be used for capturi=
-ng
-> > display pipe output to memory. It is generally intended for wireless di=
-splay,
-> > but can be used for other functions such as in validation automation wh=
-ere crc
-> > based comparison is not feasible.
-> =
-
-> I think you should probably explore the use case and driver/igt impact
-> further before embarking on the implementation.
-> =
-
-> - How much do you need to modify existing code in kernel and igt to make
->   use of writeback connectors?
-> =
-
-> - What kind of test coverage do you get? Pipe CRC is used in connection
->   with the physical encoders. In contrast, you won't have that with WD
->   transcoders. (Design wise I think this may mean you'll also need
->   "writeback encoders", instead of trying to plug it into existing
->   encoders.) So you'll only test the pipe side of things, which roughly
->   corresponds to pipe CRC coverage I guess. I guess it could speed up
->   that part of testing because you can then skip the physical
->   connectors, but you do have to test them also. So it's not a panacea.
-
-The main benefit I'm looking forward to is for reverse engineering.
-As in answwering the age old question: "let me see wtf the hw is
-actually doing to my pixels?". I want this!
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
----------------------------------------------------------------------
-Intel Finland Oy
-Registered Address: PL 281, 00181 Helsinki =
-
-Business Identity Code: 0357606 - 4 =
-
-Domiciled in Helsinki =
-
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBNaWthIEt1b3BwYWxhICgyMDIwLTAxLTMxIDExOjUxOjQ0KQo+IENocmlzIFdpbHNv
+biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cml0ZXM6Cj4gCj4gPiBBIG1hc2tlZCByZWdp
+c3RlciBkb2VzIG5vdCBuZWVkIHJtdyB0byB1cGRhdGUsIGFuZCBpdCBpcyBiZXN0IG5vdCB0byB1
+c2UKPiA+IHN1Y2ggYSBzZXF1ZW5jZS4KPiA+Cj4gPiBSZXBvcnRlZC1ieTogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IENo
+cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+ID4gQ2M6IFZpbGxlIFN5cmrD
+pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogVHZydGtvIFVyc3Vs
+aW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPiA+IC0tLQo+ID4gIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCAzMiArKysrKysrKysrKysrKy0tLS0tLS0K
+PiA+ICAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pCj4g
+Pgo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91
+bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4gPiBp
+bmRleCA1YTdkYjI3OWY3MDIuLmU0YzJiNmQ0MmY0NiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMKPiA+IEBAIC0xMTYsNyArMTE2LDggQEAg
+c3RhdGljIHZvaWQgX3dhX2FkZChzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwsIGNvbnN0IHN0cnVj
+dCBpOTE1X3dhICp3YSkKPiA+ICAgICAgICAgICAgICAgfSBlbHNlIHsKPiA+ICAgICAgICAgICAg
+ICAgICAgICAgICB3YV8gPSAmd2FsLT5saXN0W21pZF07Cj4gPiAgCj4gPiAtICAgICAgICAgICAg
+ICAgICAgICAgaWYgKCh3YS0+bWFzayAmIH53YV8tPm1hc2spID09IDApIHsKPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICBpZiAoKHdhLT5tYXNrIHwgd2FfLT5tYXNrKSAmJgo+IAo+IERvbid0IHdl
+IHdhbnQgdG8gZGlzY2FyZCBpZiBzb21lb25lIHRyaWVzIHRvIGRlbW90ZSBhIG1hc2tlZAo+IG9u
+ZSBpbnRvIGEgcGxhaW4/CgpUaGF0IHNob3VsZCB0aHJvdyB0aGUgZXJyb3IsIHJpZ2h0PwoKSWYg
+ZWl0aGVyIHVzZWQgYSBtYXNrIGFuZCBub3cgd2UgZG9uJ3QsIHRoZW4gMCAmIHggPT0gMCA9PiBE
+Uk1fRVJST1IuCi1DaHJpcwpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
