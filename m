@@ -2,51 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04EB14F3D7
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C54E914F3D5
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7E16FBF4;
-	Fri, 31 Jan 2020 21:35:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBE6D6FBF3;
+	Fri, 31 Jan 2020 21:35:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com
- [IPv6:2a00:1450:4864:20::541])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25AF6E9B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 14:50:53 +0000 (UTC)
-Received: by mail-ed1-x541.google.com with SMTP id e10so8016890edv.9
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 06:50:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=rmDzB40SFo8FH/064o8OJtcjSAFb8OG30BItrnUomNI=;
- b=auhYkKjQcWPloxllUmCLsj733jXwS65SHSHo0qLbDDvXcNbWdRzutV/FPfxyrFDCHs
- ZYlUKsmRUUtoG3xH3UlsxeyaKdpuHtiAiodvZnPw+mZHyPTMba76A8sWrC3Podgq2jJ4
- 7arnh4wlLMNyXEdPJzM/TZiMqnwO5uMNFRlp2W+XCGRILp0sj84u1TbZv16ngqqXEHTX
- lTRF3Nfs97/GscceyM2ogkcOTl/IvohgKTsScUxavJT/x+LkE+jTWULaIXbN2VK/3G4p
- WpY8uLeDCCdF5JoUiHOwd1AYEkzQ+doNUZsHcLvJhp6o/QmiPz1qHMZVkWJmtVm5Yxv8
- aXkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=rmDzB40SFo8FH/064o8OJtcjSAFb8OG30BItrnUomNI=;
- b=maqiwiT4zafxqAKmbk2yb9UIREQ0c+jn2aZ7NT8omwcbQnlVC4BbzHIe6uhHHQTC0V
- UbSHJ5ETRizQr/GfldsnX0a1boxhaY2sbN5e6BzMxLe9gfF1XDPgoDJsZ38ORVCHpwxT
- JAidPqyr6fz7JBsyAQjIQLp+JdrwwPR8cey7GMutn1p9+wloF6wyyzuj+D0kkuErsMPg
- hDpCOTPe0u1AnEeJoObeAqkAIubW4CHZmUxHeSIXTc6MbN5/Bm1Df0b6tjPU9rjhfeKI
- NLbrK/do6/COk0DizINH3JyUKoRjtr3J5YLLRzNwENfU2GojNkFLs+TYCR4M4hrOOo2B
- ewYA==
-X-Gm-Message-State: APjAAAXpJiOiNlhZl51vNCXHSatnrpJqMufXurQthiIkpd3rSlA+/9px
- 19Uoilbv+UlyX/kmJxHFvZU20i+UJzI95lW4YsJi9odt
-X-Google-Smtp-Source: APXvYqxT8WBUwaXGw6Osa2QFxiWpf7kEd6Rcv93DEZrwaC8DmtMC11VlSfbvQhWnY4lPprfVmMebNkpeM8VYRNnqTfI=
-X-Received: by 2002:aa7:dd95:: with SMTP id g21mr587326edv.355.1580482252122; 
- Fri, 31 Jan 2020 06:50:52 -0800 (PST)
-MIME-Version: 1.0
-From: Egor Suldin <rd3tap@gmail.com>
-Date: Fri, 31 Jan 2020 17:50:40 +0300
-Message-ID: <CAEtm4fVuQV1AYDrk1GQmKKJWKf0XszGDNMY5YbpqUe9mR9ukSA@mail.gmail.com>
+X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
+ Fri, 31 Jan 2020 15:11:31 UTC
+Received: from forward105o.mail.yandex.net (forward105o.mail.yandex.net
+ [37.140.190.183])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D6E6E9BB
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 15:11:31 +0000 (UTC)
+Received: from mxback28g.mail.yandex.net (mxback28g.mail.yandex.net
+ [IPv6:2a02:6b8:0:1472:2741:0:8b7:328])
+ by forward105o.mail.yandex.net (Yandex) with ESMTP id C8E474200DED
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 18:06:12 +0300 (MSK)
+Received: from localhost (localhost [::1])
+ by mxback28g.mail.yandex.net (mxback/Yandex) with ESMTP id ZTnaPMYRrd-6Cf4tG2b;
+ Fri, 31 Jan 2020 18:06:12 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
+ t=1580483172; bh=U+EbfvRFDILsQ8GCbH1kd7qWP0FtTeufjvs2/oR83Ho=;
+ h=Message-Id:Date:Subject:To:From;
+ b=jXHwV1LkNEiH141YslK/oZroTEuPXJo3VOaDwXqFn+vV3zchJbNHX6zc7DtYc6DL9
+ YdSXRVeFfDI7OWePvlaDG0S2ecKzbIAiQGD/H/RWREEbtskQLJtZLGGcWoJjrxabjZ
+ 42vJaiw6uvTdsuWRnYXOo0xWZO1ROb/Ty/ZGtG5I=
+Authentication-Results: mxback28g.mail.yandex.net;
+ dkim=pass header.i=@yandex.com
+Received: by sas2-4fe1bb3c0a49.qloud-c.yandex.net with HTTP;
+ Fri, 31 Jan 2020 18:06:12 +0300
+From: ##### ##### <rd3tap@yandex.com>
+Envelope-From: rd3tap@yandex.ru
 To: intel-gfx@lists.freedesktop.org
+MIME-Version: 1.0
+X-Mailer: Yamail [ http://yandex.ru ] 5.0
+Date: Fri, 31 Jan 2020 18:06:12 +0300
+Message-Id: <760391580483172@sas2-4fe1bb3c0a49.qloud-c.yandex.net>
 X-Mailman-Approved-At: Fri, 31 Jan 2020 21:35:26 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tracepoints: Don't compile-out
- low-level tracepoints
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tracepoints: Don't
+	compile-out	 low-level tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,91 +54,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1434153908=="
+Content-Type: multipart/mixed; boundary="===============0179623364=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1434153908==
-Content-Type: multipart/alternative; boundary="000000000000362ec5059d70b370"
+--===============0179623364==
+Content-Transfer-Encoding: base64
+Content-Type: text/html; charset=utf-8
 
---000000000000362ec5059d70b370
-Content-Type: text/plain; charset="UTF-8"
+PGRpdj48ZGl2PkhpITwvZGl2PjxkaXY+SSB1c2UgR1BVVmlzIGFuZCBub3cgSW50ZWwgVnR1bmUg
+UHJvZmlsZXIuIFRoZXNlIHRvb2xzIGRvbid0IHdvcmsgb3V0LW9mLXRoZS1ib3ggb24gYWxsIExp
+bnV4IGJhc2VkIHN5c3RlbXMgZm9yIEludGVsIGludGVncmF0ZWQgZ3JhcGhpY3MuPC9kaXY+PGRp
+dj5JdCBpcyBuZWVkZWQgdG8gcmVidWlsZCBhdCBsZWFzdCBpOTE1IG1vZHVsZS4gQW5kIGVhY2gg
+dGltZSB3aGVuIHRoZSBrZXJuZWwgaXMgdXBkYXRlZCBpdCBpcyBuZWVkZWQgdG8gcmVidWlsZCBp
+OTE1IG1vZHVsZSBhZ2Fpbi48L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj4mZ3Q7IE5vIG51bWJlcnMg
+ZnJvbSAobWljcm8tKWJlY2htYXJrcyBzaG93aW5nIGhvdyBzbWFsbCB0aGUgaW1wYWN0IG9mIGRv
+aW5nPC9kaXY+PGRpdj4mZ3Q7IHRoaXMgaXM/IEkgdGhvdWdodCBKb2huIHdhcyBjb21waWxpbmcg
+dGhpcyBkYXRhLiBJdCB3aWxsIGJlIGp1c3QgYSBuby1vcDwvZGl2PjxkaXY+Jmd0OyBvbiB0aGUg
+ZmFzdCBwYXRoLCBidXQgYSBiaXQgbW9yZSBnZW5lcmF0ZWQgY29kZS48L2Rpdj48ZGl2PkhhdmUg
+eW91IGNvbGxlY3RlZCB0aGUgcmVzdWx0cz8gSWYgbm90LCBJJ3ZlIGRvbmUgaXQgZm9yIHlvdTo8
+L2Rpdj48ZGl2PkJlbmNobWFyayBmb3IgTWV0cm8gMjAzMyBMYXN0IExpZ2h0IFJlZHV4OjwvZGl2
+PjxkaXY+dy9vIGV2ZW50czo8L2Rpdj48ZGl2PjFzdCBydW4gYXZlci4gZnBzOiAzNi4wNjwvZGl2
+PjxkaXY+Mm5kIHJ1biBhdmVyLiBmcHM6IDM1Ljg3PC9kaXY+PGRpdj53IGV2ZW50czo8L2Rpdj48
+ZGl2PjxkaXY+MXN0IHJ1biBhdmVyLiBmcHM6IDM2LjA1PC9kaXY+PGRpdj4ybmQgcnVuIGF2ZXIu
+IGZwczogMzUuOTI8L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj5UaGVyZSBpcyBubyBkaWZmZXJlbmNl
+LiBJdCB3YXMgcnVuIG9uIEludGVsIENvcmUgaTktOTkwMEsgQ1BVIEAgMy42MEdIeiBvbiBpbnRl
+Z3JhdGVkIGdyYXBoaWNzLjwvZGl2PjxkaXY+wqA8L2Rpdj48ZGl2PiZndDsgQXNzdW1pbmcgdGhh
+dCB3aWxsIGJlIGZpbmUsIHRoZSBvbmx5IHBvdGVudGlhbGx5IHByb2JsZW1hdGljIGFzcGVjdCB0
+aGF0PC9kaXY+PGRpdj4mZ3Q7IGNvbWVzIHRvIG1pbmQgaXMgdGhlIGZhY3QgbWVhbmluZyBvZiB0
+aGVzZSB0cmFjZXBvaW50cyBpcyBhIGJpdDwvZGl2PjxkaXY+Jmd0OyBkaWZmZXJlbnQgYmV0d2Vl
+biBleGVjbGlzdHMgYW5kIGd1Yy4gQnV0IG1heWJlIHRoYXQgaXMgdGhpbmtpbmcgdG8gbG93PC9k
+aXY+PGRpdj4mZ3Q7IGxldmVsICghKSAtIGluIGZhY3QgdGhleSBhcmUgaW4gYm90aCBjYXNlcyBh
+dCBwb2ludHMgd2hlcmUgaTkxNSBpczwvZGl2PjxkaXY+Jmd0O3Bhc3NpbmcvcmVjZWl2aW5nIHJl
+cXVlc3RzIHRvL2Zyb20gaGFyZHdhcmUgc28gbm90IGFuIGlzc3VlPzwvZGl2PjxkaXY+SW4gbXkg
+dmlldywgaXQgaXMgbm90IGFuIGlzc3VlLiBUaGUgcmVhbCBpc3N1ZSBub3cgdGhhdCB5b3UgY2Fu
+bm90IGNvbGxlY3QgcGVyZm9ybWFuY2UgcmVzdWx0cyBmb3IgSW50ZWwgR1BVPC9kaXY+PGRpdj5v
+biBMaW51eCBzeXN0ZW1zIHdpdGhvdXQgcmVidWlsZGluZyB0aGUgaTkxNSBtb2R1bGUuIFlvdSBj
+YW5ub3QgZGVidWcgcGVyZm9ybWFuY2UgcHJvYmxlbXM8L2Rpdj48ZGl2Pm9uIHRoZSBzeXN0ZW0g
+ZXZlbiBpZiB5b3UgdXNlIHRvb2xzIGZyb20gSW50ZWwuIERvIHlvdSBoYXZlIEVUQSB0byBhY2Nl
+cHQgdGhpcyBwYXRjaD88L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj5UaGFua3MsPC9kaXY+PGRpdj5F
+Z29yPC9kaXY+PC9kaXY+PC9kaXY+
 
- Hi!
-I use GPUVis and now Intel Vtune Profiler. These tools don't work
-out-of-the-box on all Linux based systems for Intel integrated graphics.
-It is needed to rebuild at least i915 module. And each time when the kernel
-is updated it is needed to rebuild i915 module again.
-
-> No numbers from (micro-)bechmarks showing how small the impact of doing
-> this is? I thought John was compiling this data. It will be just a no-op
-> on the fast path, but a bit more generated code.
-Have you collected the results? If not, I've done it for you:
-Benchmark for Metro 2033 Last Light Redux:
-w/o events:
-1st run aver. fps: 36.06
-2nd run aver. fps: 35.87
-w events:
-1st run aver. fps: 36.05
-2nd run aver. fps: 35.92
-
-There is no difference. It was run on Intel Core i9-9900K CPU @ 3.60GHz on
-integrated graphics.
-
-> Assuming that will be fine, the only potentially problematic aspect that
-> comes to mind is the fact meaning of these tracepoints is a bit
-> different between execlists and guc. But maybe that is thinking to low
-> level (!) - in fact they are in both cases at points where i915 is
->passing/receiving requests to/from hardware so not an issue?
-In my view, it is not an issue. The real issue now that you cannot collect
-performance results for Intel GPU
-on Linux systems without rebuilding the i915 module. You cannot debug
-performance problems
-on the system even if you use tools from Intel. Do you have ETA to accept
-this patch?
-
-Thanks,
-Egor
-
---000000000000362ec5059d70b370
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">
-<div>Hi!</div><div>I use GPUVis and now Intel Vtune Profiler. These=20
-tools don&#39;t work out-of-the-box on all Linux based systems for Intel=20
-integrated graphics.</div><div>It is needed to rebuild at least i915=20
-module. And each time when the kernel is updated it is needed to rebuild
- i915 module again.</div><div><br></div><div>&gt; No numbers from (micro-)b=
-echmarks showing how small the impact of doing<br></div><div>&gt; this is? =
-I thought John was compiling this data. It will be just a no-op<br></div><d=
-iv>&gt; on the fast path, but a bit more generated code.</div><div>Have you=
- collected the results? If not, I&#39;ve done it for you:</div><div>
-Benchmark
-
-for Metro 2033 Last Light Redux:</div><div>w/o events:</div><div>1st run av=
-er. fps: 36.06</div><div>2nd run aver. fps: 35.87</div><div>w events:</div>=
-<div>
-<div>1st run aver. fps: 36.05</div><div>2nd run aver. fps: 35.92</div><div>=
-<br></div><div>There is no difference. It was run on Intel Core i9-9900K CP=
-U @ 3.60GHz on integrated graphics.</div><div><br></div><div>&gt; Assuming =
-that will be fine, the only potentially problematic aspect that <br></div><=
-div>&gt; comes to mind is the fact meaning of these tracepoints is a bit <b=
-r></div><div>&gt; different between execlists and guc. But maybe that is th=
-inking to low <br></div><div>&gt; level (!) - in fact they are in both case=
-s at points where i915 is <br></div><div>&gt;passing/receiving requests to/=
-from hardware so not an issue?</div><div>In my view, it is not an issue. Th=
-e real issue now that you cannot collect performance results for Intel GPU<=
-br></div><div>on Linux systems without rebuilding the i915 module. You cann=
-ot debug performance problems</div><div> on the system even if you use tool=
-s from Intel. Do you have ETA to accept this patch?<br></div><div><br></div=
-><div>Thanks,</div><div>Egor</div></div>
-
-</div>
-
---000000000000362ec5059d70b370--
-
---===============1434153908==
+--===============0179623364==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -154,4 +106,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1434153908==--
+--===============0179623364==--
