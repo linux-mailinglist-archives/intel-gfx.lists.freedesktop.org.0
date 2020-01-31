@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E868B14ECA5
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 13:46:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D98714ECD5
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 14:03:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E621B6E210;
-	Fri, 31 Jan 2020 12:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84E806E994;
+	Fri, 31 Jan 2020 13:03:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6242E6E210;
- Fri, 31 Jan 2020 12:46:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5AA33A010F;
- Fri, 31 Jan 2020 12:46:50 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59FC16E994
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 13:03:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20072512-1500050 
+ for multiple; Fri, 31 Jan 2020 13:03:20 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 13:03:19 +0000
+Message-Id: <20200131130319.2998318-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Fri, 31 Jan 2020 12:46:50 -0000
-Message-ID: <158047481034.13124.15229681961771244723@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200131093416.28431-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200131093416.28431-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_conversion_to_new_struct_drm=5Fdevice_based_log?=
- =?utf-8?q?ging_macros=2E?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Disable heartbeat around
+ hang tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,52 +37,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If the heartbeat fires in the middle of the preempt-hang test, it
+consumes our forced hang disrupting the test.
 
-Series: drm/i915: conversion to new struct drm_device based logging macros.
-URL   : https://patchwork.freedesktop.org/series/72812/
-State : warning
+Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-be9ed48fe6e7 drm/i915: conversion to drm_device logging macros when drm_i915_private is present.
--:86: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#86: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-
-total: 0 errors, 1 warnings, 0 checks, 727 lines checked
-5e3766f431a0 drm/i915/debugfs: conversion to drm_device based logging macros.
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-
-total: 0 errors, 1 warnings, 0 checks, 61 lines checked
-cf40c77787e9 drm/i915/cmd_parser: conversion to struct drm_device logging macros.
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-
-total: 0 errors, 1 warnings, 0 checks, 55 lines checked
-629879bbcc3c drm/i915/perf: conversion to struct drm_device based logging macros.
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-
--:310: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#310: FILE: drivers/gpu/drm/i915/i915_perf.c:4053:
- 	if (!oa_config) {
-+		drm_dbg(&perf->i915->drm,
-
-total: 0 errors, 2 warnings, 0 checks, 385 lines checked
-9b2c54ed27f3 drm/i915/pci: conversion to drm_device based logging macros.
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 5e04ecb61dcc..f5214a374fb7 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -2452,15 +2452,19 @@ static int live_preempt_hang(void *arg)
+ 		I915_USER_PRIORITY(I915_CONTEXT_MIN_USER_PRIORITY);
+ 
+ 	for_each_engine(engine, gt, id) {
++		unsigned long heartbeat;
+ 		struct i915_request *rq;
+ 
+ 		if (!intel_engine_has_preemption(engine))
+ 			continue;
+ 
++		engine_heartbeat_disable(engine, &heartbeat);
++
+ 		rq = spinner_create_request(&spin_lo, ctx_lo, engine,
+ 					    MI_ARB_CHECK);
+ 		if (IS_ERR(rq)) {
+ 			err = PTR_ERR(rq);
++			engine_heartbeat_enable(engine, heartbeat);
+ 			goto err_ctx_lo;
+ 		}
+ 
+@@ -2470,6 +2474,7 @@ static int live_preempt_hang(void *arg)
+ 			GEM_TRACE_DUMP();
+ 			intel_gt_set_wedged(gt);
+ 			err = -EIO;
++			engine_heartbeat_enable(engine, heartbeat);
+ 			goto err_ctx_lo;
+ 		}
+ 
+@@ -2477,6 +2482,7 @@ static int live_preempt_hang(void *arg)
+ 					    MI_ARB_CHECK);
+ 		if (IS_ERR(rq)) {
+ 			igt_spinner_end(&spin_lo);
++			engine_heartbeat_enable(engine, heartbeat);
+ 			err = PTR_ERR(rq);
+ 			goto err_ctx_lo;
+ 		}
+@@ -2491,6 +2497,7 @@ static int live_preempt_hang(void *arg)
+ 			pr_err("Preemption did not occur within timeout!");
+ 			GEM_TRACE_DUMP();
+ 			intel_gt_set_wedged(gt);
++			engine_heartbeat_enable(engine, heartbeat);
+ 			err = -EIO;
+ 			goto err_ctx_lo;
+ 		}
+@@ -2505,12 +2512,15 @@ static int live_preempt_hang(void *arg)
+ 			GEM_TRACE("hi spinner failed to start\n");
+ 			GEM_TRACE_DUMP();
+ 			intel_gt_set_wedged(gt);
++			engine_heartbeat_enable(engine, heartbeat);
+ 			err = -EIO;
+ 			goto err_ctx_lo;
+ 		}
+ 
+ 		igt_spinner_end(&spin_hi);
+ 		igt_spinner_end(&spin_lo);
++		engine_heartbeat_enable(engine, heartbeat);
++
+ 		if (igt_flush_test(gt->i915)) {
+ 			err = -EIO;
+ 			goto err_ctx_lo;
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
