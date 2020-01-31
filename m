@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F8D114EED7
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 15:56:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E90114EEDC
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 15:57:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA986FB79;
-	Fri, 31 Jan 2020 14:56:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD886FB7A;
+	Fri, 31 Jan 2020 14:57:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F15D46FB79;
- Fri, 31 Jan 2020 14:56:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 06:56:23 -0800
-X-IronPort-AV: E=Sophos;i="5.70,386,1574150400"; d="scan'208";a="223160468"
-Received: from jkrzyszt-desk.igk.intel.com (HELO
- jkrzyszt-desk.ger.corp.intel.com) ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 06:56:21 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Date: Fri, 31 Jan 2020 15:56:16 +0100
-Message-ID: <8594269.vUTOBfTAz2@jkrzyszt-desk.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <158048142584.2430.6713808810476573778@skylake-alporthouse-com>
-References: <20200131131234.23058-1-janusz.krzysztofik@linux.intel.com>
- <20200131131234.23058-2-janusz.krzysztofik@linux.intel.com>
- <158048142584.2430.6713808810476573778@skylake-alporthouse-com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F27A96FB7A;
+ Fri, 31 Jan 2020 14:57:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EA923A0118;
+ Fri, 31 Jan 2020 14:57:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC PATCH i-g-t 1/1] tests/gem_mmap_offset:
- Exercise mapping to userptr
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Date: Fri, 31 Jan 2020 14:57:25 -0000
+Message-ID: <158048264595.13124.7046577460225362662@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200131114258.22306-1-animesh.manna@intel.com>
+In-Reply-To: <20200131114258.22306-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dsb=3A_Enable_lmem_for_dsb?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,84 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Friday, January 31, 2020 3:37:05 PM CET Chris Wilson wrote:
-> Quoting Janusz Krzysztofik (2020-01-31 13:12:34)
-> > Creating a mapping to a userptr backed GEM object may cause a currently
-> > unavoidable lockdep splat inside the i915 driver.  Then, such operation
-> > is expected to fail to prevent from that badness to happen.
-> > 
-> > Add a respective subtest for each mapping type.
-> > 
-> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >  tests/i915/gem_mmap_offset.c | 55 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 55 insertions(+)
-> > 
-> > diff --git a/tests/i915/gem_mmap_offset.c b/tests/i915/gem_mmap_offset.c
-> > index 7c4088cdf..a5f28328b 100644
-> > --- a/tests/i915/gem_mmap_offset.c
-> > +++ b/tests/i915/gem_mmap_offset.c
-> > @@ -141,6 +141,36 @@ static void bad_extensions(int i915)
-> >         gem_close(i915, arg.handle);
-> >  }
-> >  
-> > +static bool has_userptr(int i915)
-> > +{
-> > +       uint32_t handle = 0;
-> > +       void *ptr;
-> > +
-> > +       igt_assert_eq(posix_memalign(&ptr, 4096, 4096), 0);
-> > +       if (__gem_userptr(i915, ptr, 4096, 0, 0, &handle) == 0)
-> > +               gem_close(i915, handle);
-> > +       free(ptr);
-> > +
-> > +       return handle;
-> > +}
-> > +
-> > +static void userptr(int i915, uint64_t flags)
-> > +{
-> > +       struct drm_i915_gem_mmap_offset arg = {
-> > +               .flags = flags,
-> > +       };
-> > +       void *ptr;
-> > +
-> > +       igt_assert_eq(posix_memalign(&ptr, 4096, 4096), 0);
-> > +
-> > +       gem_userptr(i915, ptr, 4096, 0, 0, &arg.handle);
-> > +
-> > +       igt_assert_eq(mmap_offset_ioctl(i915, &arg), -EINVAL);
-> 
-> Not quite. The only reason it doesn't work is because the implementation
-> ties itself into knots, not that it is meant to not work. :|
+== Series Details ==
 
-Are you suggesting the test should fail if the IOCTL fails?  That would be 
-fair, but how are we going to have that accepted by CI then, and merged?
+Series: drm/i915/dsb: Enable lmem for dsb
+URL   : https://patchwork.freedesktop.org/series/72818/
+State : warning
 
-Skipping also doesn't seem a good option to me.
+== Summary ==
 
-I can add some more exhaustive examination should the IOCTL succeed, but that 
-won't help to make CI happy.
+$ dim checkpatch origin/drm-tip
+1dd958225f8b drm/i915/dsb: Enable lmem for dsb
+-:6: WARNING:TYPO_SPELLING: 'memeory' may be misspelled - perhaps 'memory'?
+#6: 
+If lmem is supported DSB should use local memeory instead
 
-From your long experience, what approach should we take?
-
-Thanks,
-Janusz
-
-
-> -Chris
-> 
-
-
-
+total: 0 errors, 1 warnings, 0 checks, 19 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
