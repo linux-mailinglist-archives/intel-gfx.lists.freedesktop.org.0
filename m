@@ -2,35 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E2014EC10
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8614A14EC0D
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:52:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4078D6FB1A;
-	Fri, 31 Jan 2020 11:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1EAF6E96F;
+	Fri, 31 Jan 2020 11:52:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 852C86FB1A
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:52:35 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 617426E96F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:52:05 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 03:52:35 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 03:52:03 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223117239"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 31 Jan 2020 03:52:33 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 3F0B65C0D3B; Fri, 31 Jan 2020 13:51:44 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
-References: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
-Date: Fri, 31 Jan 2020 13:51:44 +0200
-Message-ID: <87y2tn973j.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="247706414"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 31 Jan 2020 03:51:59 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 31 Jan 2020 13:51:59 +0200
+Date: Fri, 31 Jan 2020 13:51:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200131115159.GM13686@intel.com>
+References: <20200131063038.GA15798@plaxmina-desktop.iind.intel.com>
+ <87pnez99ou.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
+Content-Disposition: inline
+In-Reply-To: <87pnez99ou.fsf@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] RFC: pipe writeback design for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,72 +47,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gQSBtYXNr
-ZWQgcmVnaXN0ZXIgZG9lcyBub3QgbmVlZCBybXcgdG8gdXBkYXRlLCBhbmQgaXQgaXMgYmVzdCBu
-b3QgdG8gdXNlCj4gc3VjaCBhIHNlcXVlbmNlLgo+Cj4gUmVwb3J0ZWQtYnk6IFZpbGxlIFN5cmrD
-pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQ2hy
-aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFZpbGxlIFN5cmrDpGzD
-pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IFR2cnRrbyBVcnN1bGluIDx0
-dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX3dvcmthcm91bmRzLmMgfCAzMiArKysrKysrKysrKysrKy0tLS0tLS0KPiAgMSBmaWxl
-IGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4gaW5kZXggNWE3ZGIyNzlmNzAy
-Li5lNGMyYjZkNDJmNDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfd29ya2Fyb3VuZHMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dv
-cmthcm91bmRzLmMKPiBAQCAtMTE2LDcgKzExNiw4IEBAIHN0YXRpYyB2b2lkIF93YV9hZGQoc3Ry
-dWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBjb25zdCBzdHJ1Y3QgaTkxNV93YSAqd2EpCj4gIAkJfSBl
-bHNlIHsKPiAgCQkJd2FfID0gJndhbC0+bGlzdFttaWRdOwo+ICAKPiAtCQkJaWYgKCh3YS0+bWFz
-ayAmIH53YV8tPm1hc2spID09IDApIHsKPiArCQkJaWYgKCh3YS0+bWFzayB8IHdhXy0+bWFzaykg
-JiYKCkRvbid0IHdlIHdhbnQgdG8gZGlzY2FyZCBpZiBzb21lb25lIHRyaWVzIHRvIGRlbW90ZSBh
-IG1hc2tlZApvbmUgaW50byBhIHBsYWluPwoKLU1pa2EKCj4gKwkJCSAgICAod2EtPm1hc2sgJiB+
-d2FfLT5tYXNrKSA9PSAwKSB7Cj4gIAkJCQlEUk1fRVJST1IoIkRpc2NhcmRpbmcgb3ZlcndyaXR0
-ZW4gdy9hIGZvciByZWcgJTA0eCAobWFzazogJTA4eCwgdmFsdWU6ICUwOHgpXG4iLAo+ICAJCQkJ
-CSAgaTkxNV9tbWlvX3JlZ19vZmZzZXQod2FfLT5yZWcpLAo+ICAJCQkJCSAgd2FfLT5tYXNrLCB3
-YV8tPnZhbCk7Cj4gQEAgLTE2NywxMiArMTY4LDYgQEAgd2Ffd3JpdGVfbWFza2VkX29yKHN0cnVj
-dCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiBtYXNrLAo+ICAJd2FfYWRk
-KHdhbCwgcmVnLCBtYXNrLCB2YWwsIG1hc2spOwo+ICB9Cj4gIAo+IC1zdGF0aWMgdm9pZAo+IC13
-YV9tYXNrZWRfZW4oc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1X3JlZ190IHJlZywgdTMy
-IHZhbCkKPiAtewo+IC0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgcmVnLCB2YWwsIF9NQVNLRURf
-QklUX0VOQUJMRSh2YWwpKTsKPiAtfQo+IC0KPiAgc3RhdGljIHZvaWQKPiAgd2Ffd3JpdGUoc3Ry
-dWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1X3JlZ190IHJlZywgdTMyIHZhbCkKPiAgewo+IEBA
-IC0xODUsMTQgKzE4MCwyNiBAQCB3YV93cml0ZV9vcihzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWws
-IGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQo+ICAJd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgcmVn
-LCB2YWwsIHZhbCk7Cj4gIH0KPiAgCj4gK3N0YXRpYyB2b2lkCj4gK3dhX21hc2tlZF9lbihzdHJ1
-Y3QgaTkxNV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQo+ICt7Cj4gKwl3
-YV9hZGQod2FsLCByZWcsIDAsIF9NQVNLRURfQklUX0VOQUJMRSh2YWwpLCB2YWwpOwo+ICt9Cj4g
-Kwo+ICtzdGF0aWMgdm9pZAo+ICt3YV9tYXNrZWRfZGlzKHN0cnVjdCBpOTE1X3dhX2xpc3QgKndh
-bCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCj4gK3sKPiArCXdhX2FkZCh3YWwsIHJlZywgMCwg
-X01BU0tFRF9CSVRfRElTQUJMRSh2YWwpLCB2YWwpOwo+ICt9Cj4gKwo+ICAjZGVmaW5lIFdBX1NF
-VF9CSVRfTUFTS0VEKGFkZHIsIG1hc2spIFwKPiAtCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChh
-ZGRyKSwgKG1hc2spLCBfTUFTS0VEX0JJVF9FTkFCTEUobWFzaykpCj4gKwl3YV9tYXNrZWRfZW4o
-d2FsLCAoYWRkciksIG1hc2spCj4gIAo+ICAjZGVmaW5lIFdBX0NMUl9CSVRfTUFTS0VEKGFkZHIs
-IG1hc2spIFwKPiAtCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRyKSwgKG1hc2spLCBfTUFT
-S0VEX0JJVF9ESVNBQkxFKG1hc2spKQo+ICsJd2FfbWFza2VkX2Rpcyh3YWwsIChhZGRyKSwgbWFz
-aykKPiAgCj4gICNkZWZpbmUgV0FfU0VUX0ZJRUxEX01BU0tFRChhZGRyLCBtYXNrLCB2YWx1ZSkg
-XAo+IC0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgKGFkZHIpLCAobWFzayksIF9NQVNLRURfRklF
-TEQoKG1hc2spLCAodmFsdWUpKSkKPiArCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRyKSwg
-MCwgX01BU0tFRF9GSUVMRCgobWFzayksICh2YWx1ZSkpKQo+ICAKPiAgc3RhdGljIHZvaWQgZ2Vu
-OF9jdHhfd29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCj4g
-IAkJCQkgICAgICBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCj4gQEAgLTEwMjAsNyArMTAyNywx
-MCBAQCB3YV9saXN0X2FwcGx5KHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSwgY29uc3Qgc3Ry
-dWN0IGk5MTVfd2FfbGlzdCAqd2FsKQo+ICAJaW50ZWxfdW5jb3JlX2ZvcmNld2FrZV9nZXRfX2xv
-Y2tlZCh1bmNvcmUsIGZ3KTsKPiAgCj4gIAlmb3IgKGkgPSAwLCB3YSA9IHdhbC0+bGlzdDsgaSA8
-IHdhbC0+Y291bnQ7IGkrKywgd2ErKykgewo+IC0JCWludGVsX3VuY29yZV9ybXdfZncodW5jb3Jl
-LCB3YS0+cmVnLCB3YS0+bWFzaywgd2EtPnZhbCk7Cj4gKwkJaWYgKHdhLT5tYXNrKQo+ICsJCQlp
-bnRlbF91bmNvcmVfcm13X2Z3KHVuY29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOwo+
-ICsJCWVsc2UKPiArCQkJaW50ZWxfdW5jb3JlX3dyaXRlX2Z3KHVuY29yZSwgd2EtPnJlZywgd2Et
-PnZhbCk7Cj4gIAkJaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX0dFTSkpCj4g
-IAkJCXdhX3ZlcmlmeSh3YSwKPiAgCQkJCSAgaW50ZWxfdW5jb3JlX3JlYWRfZncodW5jb3JlLCB3
-YS0+cmVnKSwKPiAtLSAKPiAyLjI1LjAKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+On Fri, Jan 31, 2020 at 12:55:45PM +0200, Jani Nikula wrote:
+> On Fri, 31 Jan 2020, "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@in=
+tel.com> wrote:
+> > I am exploring the way of implementing the pipe writeback feature in i9=
+15 and
+> > would like to get early feedback on design.
+> >
+> > We have a Wireless display(WD) transcoder which can be used for capturi=
+ng
+> > display pipe output to memory. It is generally intended for wireless di=
+splay,
+> > but can be used for other functions such as in validation automation wh=
+ere crc
+> > based comparison is not feasible.
+> =
+
+> I think you should probably explore the use case and driver/igt impact
+> further before embarking on the implementation.
+> =
+
+> - How much do you need to modify existing code in kernel and igt to make
+>   use of writeback connectors?
+> =
+
+> - What kind of test coverage do you get? Pipe CRC is used in connection
+>   with the physical encoders. In contrast, you won't have that with WD
+>   transcoders. (Design wise I think this may mean you'll also need
+>   "writeback encoders", instead of trying to plug it into existing
+>   encoders.) So you'll only test the pipe side of things, which roughly
+>   corresponds to pipe CRC coverage I guess. I guess it could speed up
+>   that part of testing because you can then skip the physical
+>   connectors, but you do have to test them also. So it's not a panacea.
+
+The main benefit I'm looking forward to is for reverse engineering.
+As in answwering the age old question: "let me see wtf the hw is
+actually doing to my pixels?". I want this!
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+---------------------------------------------------------------------
+Intel Finland Oy
+Registered Address: PL 281, 00181 Helsinki =
+
+Business Identity Code: 0357606 - 4 =
+
+Domiciled in Helsinki =
+
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
