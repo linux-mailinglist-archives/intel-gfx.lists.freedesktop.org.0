@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E162B14EA7E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4465014EA84
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:15:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7636FAE0;
-	Fri, 31 Jan 2020 10:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFCF6E954;
+	Fri, 31 Jan 2020 10:15:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE8C86FAE0
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 10:12:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 02:12:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="262499613"
-Received: from adlugosz-mobl1.ger.corp.intel.com (HELO [10.252.51.231])
- ([10.252.51.231])
- by fmsmga002.fm.intel.com with ESMTP; 31 Jan 2020 02:12:37 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200130115827.1855959-1-chris@chris-wilson.co.uk>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ae3af0ea-d33e-8379-4f81-4b0268253ea7@linux.intel.com>
-Date: Fri, 31 Jan 2020 11:12:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68EC16E954
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 10:15:21 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20069917-1500050 for multiple; Fri, 31 Jan 2020 10:15:18 +0000
 MIME-Version: 1.0
-In-Reply-To: <20200130115827.1855959-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200130115827.1855959-1-chris@chris-wilson.co.uk>
+ <ae3af0ea-d33e-8379-4f81-4b0268253ea7@linux.intel.com>
+In-Reply-To: <ae3af0ea-d33e-8379-4f81-4b0268253ea7@linux.intel.com>
+Message-ID: <158046571650.2430.4180506316142759842@skylake-alporthouse-com>
+Date: Fri, 31 Jan 2020 10:15:16 +0000
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Warn about the hidden
  i915_vma_pin in timeline_get_seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -51,39 +46,43 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 30-01-2020 om 12:58 schreef Chris Wilson:
-> On seqno rollover, we need to allocate ourselves a new cacheline. This
-> might incur grabbing a new page and pinning it into the GGTT, with some
-> rather unfortunate lockdep implications.
->
-> To avoid a mutex, and more specifically pinning in the GGTT from inside
-> the kernel context being used to flush the GGTT in emergencies, we will
-> likely need to lift the next-cacheline allocation to a pre-reservation.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> index 465f87b65901..54e1e55f3c81 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> @@ -406,6 +406,8 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
->  	void *vaddr;
->  	int err;
->  
-> +	might_lock(&tl->gt->ggtt->vm.mutex);
-> +
->  	/*
->  	 * If there is an outstanding GPU reference to this cacheline,
->  	 * such as it being sampled by a HW semaphore on another timeline,
+Quoting Maarten Lankhorst (2020-01-31 10:12:36)
+> Op 30-01-2020 om 12:58 schreef Chris Wilson:
+> > On seqno rollover, we need to allocate ourselves a new cacheline. This
+> > might incur grabbing a new page and pinning it into the GGTT, with some
+> > rather unfortunate lockdep implications.
+> >
+> > To avoid a mutex, and more specifically pinning in the GGTT from inside
+> > the kernel context being used to flush the GGTT in emergencies, we will
+> > likely need to lift the next-cacheline allocation to a pre-reservation.
+> >
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_timeline.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > index 465f87b65901..54e1e55f3c81 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+> > @@ -406,6 +406,8 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+> >       void *vaddr;
+> >       int err;
+> >  
+> > +     might_lock(&tl->gt->ggtt->vm.mutex);
+> > +
+> >       /*
+> >        * If there is an outstanding GPU reference to this cacheline,
+> >        * such as it being sampled by a HW semaphore on another timeline,
+> 
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> 
+> If this breaks on lockdep, it was already broken.
 
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-If this breaks on lockdep, it was already broken.
-
+I have to write a selftest to cause seqno wrap on the kernel_context to
+readily demonstrate the breakage. :|
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
