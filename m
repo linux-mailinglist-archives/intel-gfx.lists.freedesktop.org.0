@@ -1,33 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0456214EC13
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:53:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E2014EC10
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:52:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4396FB1B;
-	Fri, 31 Jan 2020 11:53:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4078D6FB1A;
+	Fri, 31 Jan 2020 11:52:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5D696FB1B
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:53:48 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 852C86FB1A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:52:35 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 03:53:48 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 03:52:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="230233376"
-Received: from amanna.iind.intel.com ([10.223.74.53])
- by orsmga003.jf.intel.com with ESMTP; 31 Jan 2020 03:53:46 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 17:12:58 +0530
-Message-Id: <20200131114258.22306-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.24.0
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223117239"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga008.jf.intel.com with ESMTP; 31 Jan 2020 03:52:33 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 3F0B65C0D3B; Fri, 31 Jan 2020 13:51:44 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+References: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+Date: Fri, 31 Jan 2020 13:51:44 +0200
+Message-ID: <87y2tn973j.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dsb: Enable lmem for dsb
+Subject: Re: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,58 +43,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If lmem is supported DSB should use local memeory instead
-of system memory. Using local memory surely bring performance
-improvement as local memory is close to gpu. Also want to avoid
-multiple gpu using system memory.
-
-Used LMEM api to create gem object needed for DSB command buffer.
-
-v1: Initial patch.
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 9dd18144a664..d67b6a764ba0 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -6,6 +6,7 @@
- 
- #include "i915_drv.h"
- #include "intel_display_types.h"
-+#include "gem/i915_gem_lmem.h"
- 
- #define DSB_BUF_SIZE    (2 * PAGE_SIZE)
- 
-@@ -113,7 +114,11 @@ intel_dsb_get(struct intel_crtc *crtc)
- 
- 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 
--	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
-+	if (HAS_LMEM(i915))
-+		obj = i915_gem_object_create_lmem(i915, DSB_BUF_SIZE, 0);
-+	else
-+		obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
-+
- 	if (IS_ERR(obj)) {
- 		DRM_ERROR("Gem object creation failed\n");
- 		goto out;
--- 
-2.24.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyaXRlczoKCj4gQSBtYXNr
+ZWQgcmVnaXN0ZXIgZG9lcyBub3QgbmVlZCBybXcgdG8gdXBkYXRlLCBhbmQgaXQgaXMgYmVzdCBu
+b3QgdG8gdXNlCj4gc3VjaCBhIHNlcXVlbmNlLgo+Cj4gUmVwb3J0ZWQtYnk6IFZpbGxlIFN5cmrD
+pGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQ2hy
+aXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IFR2cnRrbyBVcnN1bGluIDx0
+dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
+L2ludGVsX3dvcmthcm91bmRzLmMgfCAzMiArKysrKysrKysrKysrKy0tLS0tLS0KPiAgMSBmaWxl
+IGNoYW5nZWQsIDIxIGluc2VydGlvbnMoKyksIDExIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgYi9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4gaW5kZXggNWE3ZGIyNzlmNzAy
+Li5lNGMyYjZkNDJmNDYgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
+ZWxfd29ya2Fyb3VuZHMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dv
+cmthcm91bmRzLmMKPiBAQCAtMTE2LDcgKzExNiw4IEBAIHN0YXRpYyB2b2lkIF93YV9hZGQoc3Ry
+dWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBjb25zdCBzdHJ1Y3QgaTkxNV93YSAqd2EpCj4gIAkJfSBl
+bHNlIHsKPiAgCQkJd2FfID0gJndhbC0+bGlzdFttaWRdOwo+ICAKPiAtCQkJaWYgKCh3YS0+bWFz
+ayAmIH53YV8tPm1hc2spID09IDApIHsKPiArCQkJaWYgKCh3YS0+bWFzayB8IHdhXy0+bWFzaykg
+JiYKCkRvbid0IHdlIHdhbnQgdG8gZGlzY2FyZCBpZiBzb21lb25lIHRyaWVzIHRvIGRlbW90ZSBh
+IG1hc2tlZApvbmUgaW50byBhIHBsYWluPwoKLU1pa2EKCj4gKwkJCSAgICAod2EtPm1hc2sgJiB+
+d2FfLT5tYXNrKSA9PSAwKSB7Cj4gIAkJCQlEUk1fRVJST1IoIkRpc2NhcmRpbmcgb3ZlcndyaXR0
+ZW4gdy9hIGZvciByZWcgJTA0eCAobWFzazogJTA4eCwgdmFsdWU6ICUwOHgpXG4iLAo+ICAJCQkJ
+CSAgaTkxNV9tbWlvX3JlZ19vZmZzZXQod2FfLT5yZWcpLAo+ICAJCQkJCSAgd2FfLT5tYXNrLCB3
+YV8tPnZhbCk7Cj4gQEAgLTE2NywxMiArMTY4LDYgQEAgd2Ffd3JpdGVfbWFza2VkX29yKHN0cnVj
+dCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiBtYXNrLAo+ICAJd2FfYWRk
+KHdhbCwgcmVnLCBtYXNrLCB2YWwsIG1hc2spOwo+ICB9Cj4gIAo+IC1zdGF0aWMgdm9pZAo+IC13
+YV9tYXNrZWRfZW4oc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1X3JlZ190IHJlZywgdTMy
+IHZhbCkKPiAtewo+IC0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgcmVnLCB2YWwsIF9NQVNLRURf
+QklUX0VOQUJMRSh2YWwpKTsKPiAtfQo+IC0KPiAgc3RhdGljIHZvaWQKPiAgd2Ffd3JpdGUoc3Ry
+dWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1X3JlZ190IHJlZywgdTMyIHZhbCkKPiAgewo+IEBA
+IC0xODUsMTQgKzE4MCwyNiBAQCB3YV93cml0ZV9vcihzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWws
+IGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQo+ICAJd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgcmVn
+LCB2YWwsIHZhbCk7Cj4gIH0KPiAgCj4gK3N0YXRpYyB2b2lkCj4gK3dhX21hc2tlZF9lbihzdHJ1
+Y3QgaTkxNV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQo+ICt7Cj4gKwl3
+YV9hZGQod2FsLCByZWcsIDAsIF9NQVNLRURfQklUX0VOQUJMRSh2YWwpLCB2YWwpOwo+ICt9Cj4g
+Kwo+ICtzdGF0aWMgdm9pZAo+ICt3YV9tYXNrZWRfZGlzKHN0cnVjdCBpOTE1X3dhX2xpc3QgKndh
+bCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCj4gK3sKPiArCXdhX2FkZCh3YWwsIHJlZywgMCwg
+X01BU0tFRF9CSVRfRElTQUJMRSh2YWwpLCB2YWwpOwo+ICt9Cj4gKwo+ICAjZGVmaW5lIFdBX1NF
+VF9CSVRfTUFTS0VEKGFkZHIsIG1hc2spIFwKPiAtCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChh
+ZGRyKSwgKG1hc2spLCBfTUFTS0VEX0JJVF9FTkFCTEUobWFzaykpCj4gKwl3YV9tYXNrZWRfZW4o
+d2FsLCAoYWRkciksIG1hc2spCj4gIAo+ICAjZGVmaW5lIFdBX0NMUl9CSVRfTUFTS0VEKGFkZHIs
+IG1hc2spIFwKPiAtCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRyKSwgKG1hc2spLCBfTUFT
+S0VEX0JJVF9ESVNBQkxFKG1hc2spKQo+ICsJd2FfbWFza2VkX2Rpcyh3YWwsIChhZGRyKSwgbWFz
+aykKPiAgCj4gICNkZWZpbmUgV0FfU0VUX0ZJRUxEX01BU0tFRChhZGRyLCBtYXNrLCB2YWx1ZSkg
+XAo+IC0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgKGFkZHIpLCAobWFzayksIF9NQVNLRURfRklF
+TEQoKG1hc2spLCAodmFsdWUpKSkKPiArCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRyKSwg
+MCwgX01BU0tFRF9GSUVMRCgobWFzayksICh2YWx1ZSkpKQo+ICAKPiAgc3RhdGljIHZvaWQgZ2Vu
+OF9jdHhfd29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCj4g
+IAkJCQkgICAgICBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCj4gQEAgLTEwMjAsNyArMTAyNywx
+MCBAQCB3YV9saXN0X2FwcGx5KHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSwgY29uc3Qgc3Ry
+dWN0IGk5MTVfd2FfbGlzdCAqd2FsKQo+ICAJaW50ZWxfdW5jb3JlX2ZvcmNld2FrZV9nZXRfX2xv
+Y2tlZCh1bmNvcmUsIGZ3KTsKPiAgCj4gIAlmb3IgKGkgPSAwLCB3YSA9IHdhbC0+bGlzdDsgaSA8
+IHdhbC0+Y291bnQ7IGkrKywgd2ErKykgewo+IC0JCWludGVsX3VuY29yZV9ybXdfZncodW5jb3Jl
+LCB3YS0+cmVnLCB3YS0+bWFzaywgd2EtPnZhbCk7Cj4gKwkJaWYgKHdhLT5tYXNrKQo+ICsJCQlp
+bnRlbF91bmNvcmVfcm13X2Z3KHVuY29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOwo+
+ICsJCWVsc2UKPiArCQkJaW50ZWxfdW5jb3JlX3dyaXRlX2Z3KHVuY29yZSwgd2EtPnJlZywgd2Et
+PnZhbCk7Cj4gIAkJaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX0dFTSkpCj4g
+IAkJCXdhX3ZlcmlmeSh3YSwKPiAgCQkJCSAgaW50ZWxfdW5jb3JlX3JlYWRfZncodW5jb3JlLCB3
+YS0+cmVnKSwKPiAtLSAKPiAyLjI1LjAKPgo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBs
+aXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
+by9pbnRlbC1nZngK
