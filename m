@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2FF014EA1D
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 10:34:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C810A14EA1F
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 10:34:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3CEA6FAB7;
-	Fri, 31 Jan 2020 09:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3156FAD2;
+	Fri, 31 Jan 2020 09:34:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7301E6FAB7
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 09:34:30 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id a6so7719145wrx.12
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 01:34:30 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D20FC6FAD2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 09:34:33 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id t14so7859183wmi.5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 01:34:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=JbofSBJ3U9yyX3AEoY7F8yj2+goGqyDdcWpouaLqR88=;
- b=m+PMABe1dFM21BbGQCIJef1VwiwuiNtL3Hyqe9+xMTIsPfUGtZ67cosuGcMJwCnCXl
- iuMRCddQxP75kJH4fnfzD834ZGueJNjkCvmCz3MkSNIXAGLazUTTi1DZUCcRzA0q9iR3
- rxjHtlRYu1kaC5+5FRWVy0yiClpXXHCv7txvjCEDna5+Vsp9JqnezjSunaq/QJQTJsYU
- tlRP4IWjU4cxCd5VdFTGhJfLaF0xtGnMXXdfvjkfO0LAT8ujj9M4XNlBb4EcfYLwwfFZ
- 9FoKwYWY0nDL/1V0NBaMphxpwPT8fs/3EwzD5vkm7+zi1n7qSDPj5itnHJ4Qne98kNgP
- wojg==
+ bh=X0PIGPoeDr/pIJJ229fSfp8aRbECbdp8XnsQ57/IaUw=;
+ b=BLmeigFVI213Tbu/uRcWfIaEAF4Ry1R9SNXvOcxUaFp7OaxpWTiR1C6nUSvXvDXwwn
+ iAPMMxwjdHTealBXypleyQBVZ/UAcG4dxf3ncfLRFReyXwKReA+z4Qhke6uzJfQ9qO5C
+ r17t4p8yw6f5PzF2B7k7ev//ymw2UNBEUzHOcA2SuQSPkVXjV7HmFhw1c88BbK9qXMfV
+ 17BtZePPZ9YgrQ1GdmLFd0b8Y3+dnQVpUJZ698Yvz1QqGA1goQT12YMcV4AvHFtFhEYq
+ bsqygvGtxqqHqErw0IwkVS6mGm2/hj98lcb5GONKhSl8R8JF650GSuKiQm505dXqePjb
+ q1/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=JbofSBJ3U9yyX3AEoY7F8yj2+goGqyDdcWpouaLqR88=;
- b=nMtEumIPdryi4MmuqPQNS/Z040ElbRZ+P5gC+ziNlj+zhizmfEYs8TokLeGM1ddYyD
- 6IOr3idDFNWVneUqi3Sv32VQNeHtvbtlwQ0WP7gBLLxikZgVfHHy5Cjz5gxOSf+sNahP
- dpdk6sxtDqDYcnJL2OskQKa0HFQxSEejVna6X6DaCfiV9tWelF+etOiq7TV6vvWO3oRW
- Ph4iB5o7o9/rPOB9Q61YLEVnW+IHOCXk7JGuX/HQwfEwxwzt6iTSTB+IxNQpdtN2Tx4q
- 6kis7v/ctcvUCUTl7pasTyz+A8333ksOctXGCsN+YG3aoBFWfhdWBXpkqJ4+rc4SzoS8
- 4s+g==
-X-Gm-Message-State: APjAAAXsh7bR3jpdMOs80mSajCOIxzmxhT4v7PNknWX9KzkpWyloLAkT
- mSBwLRCoBRbkFcgK0kPe1Bk=
-X-Google-Smtp-Source: APXvYqxLnEN+1bC6XK4uk5xFhTUFQ8vNDdfjN1dNOwq8JMmvsFNxJ57atbgElnv+0F7lJPgbp3sFrA==
-X-Received: by 2002:adf:ee0b:: with SMTP id y11mr735955wrn.62.1580463269051;
- Fri, 31 Jan 2020 01:34:29 -0800 (PST)
+ bh=X0PIGPoeDr/pIJJ229fSfp8aRbECbdp8XnsQ57/IaUw=;
+ b=jkMuc1enu+/JuL3XGu9H7IFJ6p3VErMX4IVV8oZBVFD4X8vduvaBs0Gpp/x1JnbASr
+ hn3VGWB82hzUbUSxhvy7GpyVAfpulz+4rBYwfc6Hb+YTxIags+HEudluhAa1wsLSn4Te
+ kzKZ8Fh39musyfeRq4EmBXEUMHFiUYtrecZvR3ydwjRLayMV7KvL45cYpub6Hmr9btts
+ zjOjujJFqMtKVKy611eFx4pFJ2LKa5yt0p/rYu4JQjLF7HpZR1CHkD4opivCQQFWwHyJ
+ OoyCQJAl+Vd8wJFuqEWTT8oLgrx273qGuKlKNEKJvH7ld4SJr09xDPHm9rJbbCxHwBh8
+ ejUg==
+X-Gm-Message-State: APjAAAUHVSiW9WEwyK9+1QjCpmqSMUwovDyZrvvrXabjldJF8VKm2FMq
+ Kpw7Pt2JCte2Ehv7UAX1GHw=
+X-Google-Smtp-Source: APXvYqwD89831Notqh1iTguhgY1plST5SMuUY+04oAj3vHpImUuEMzchGDQZecdoxc1gvE/t+N758w==
+X-Received: by 2002:a05:600c:295d:: with SMTP id
+ n29mr10985995wmd.101.1580463272463; 
+ Fri, 31 Jan 2020 01:34:32 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id b67sm10365360wmc.38.2020.01.31.01.34.26
+ by smtp.googlemail.com with ESMTPSA id b67sm10365360wmc.38.2020.01.31.01.34.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2020 01:34:28 -0800 (PST)
+ Fri, 31 Jan 2020 01:34:31 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Fri, 31 Jan 2020 12:34:13 +0300
-Message-Id: <20200131093416.28431-3-wambui.karugax@gmail.com>
+Date: Fri, 31 Jan 2020 12:34:14 +0300
+Message-Id: <20200131093416.28431-4-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200131093416.28431-1-wambui.karugax@gmail.com>
 References: <20200131093416.28431-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/5] drm/i915/debugfs: conversion to drm_device
- based logging macros.
+Subject: [Intel-gfx] [PATCH 3/5] drm/i915/cmd_parser: conversion to struct
+ drm_device logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,90 +75,82 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Manual conversion of printk based logging macros to the struct
-drm_device based logging macros in i915/i915_debugfs.c.
-Also involves extracting the struct drm_i915_private device from various
-intel types to use in the macros.
+Manually convert printk based drm logging macros to the struct
+drm_device based logging macros in i915/i915_cmd_parser.c.
+This also involves extracting the drm_i915_private device from various
+intel types for use in the macros.
 
-This does not convert various instances of the DRM_DEBUG macro due to
-the lack of an analogous struct drm_device based logging macro.
+Instances of the DRM_DEBUG macro are not converted due to the lack of a
+similar struct drm_device based logging macro.
 
 References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 21 +++++++++++++--------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_cmd_parser.c | 29 +++++++++++++++-----------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 350ebfe79de4..6eaa9c72126c 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -2845,7 +2845,8 @@ static ssize_t i915_ipc_status_write(struct file *file, const char __user *ubuf,
+diff --git a/drivers/gpu/drm/i915/i915_cmd_parser.c b/drivers/gpu/drm/i915/i915_cmd_parser.c
+index a0e437aa65b7..189b573d02be 100644
+--- a/drivers/gpu/drm/i915/i915_cmd_parser.c
++++ b/drivers/gpu/drm/i915/i915_cmd_parser.c
+@@ -803,10 +803,11 @@ static bool validate_cmds_sorted(const struct intel_engine_cs *engine,
+ 			u32 curr = desc->cmd.value & desc->cmd.mask;
  
- 	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
- 		if (!dev_priv->ipc_enabled && enable)
--			DRM_INFO("Enabling IPC: WM will be proper only after next commit\n");
-+			drm_info(&dev_priv->drm,
-+				 "Enabling IPC: WM will be proper only after next commit\n");
- 		dev_priv->wm.distrust_bios_wm = true;
- 		dev_priv->ipc_enabled = enable;
- 		intel_enable_ipc(dev_priv);
-@@ -3054,7 +3055,8 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
- 	if (IS_ERR(input_buffer))
- 		return PTR_ERR(input_buffer);
+ 			if (curr < previous) {
+-				DRM_ERROR("CMD: %s [%d] command table not sorted: "
+-					  "table=%d entry=%d cmd=0x%08X prev=0x%08X\n",
+-					  engine->name, engine->id,
+-					  i, j, curr, previous);
++				drm_err(&engine->i915->drm,
++					"CMD: %s [%d] command table not sorted: "
++					"table=%d entry=%d cmd=0x%08X prev=0x%08X\n",
++					engine->name, engine->id,
++					i, j, curr, previous);
+ 				ret = false;
+ 			}
  
--	DRM_DEBUG_DRIVER("Copied %d bytes from user\n", (unsigned int)len);
-+	drm_dbg(&to_i915(dev)->drm,
-+		"Copied %d bytes from user\n", (unsigned int)len);
+@@ -829,10 +830,11 @@ static bool check_sorted(const struct intel_engine_cs *engine,
+ 		u32 curr = i915_mmio_reg_offset(reg_table[i].addr);
  
- 	drm_connector_list_iter_begin(dev, &conn_iter);
- 	drm_for_each_connector_iter(connector, &conn_iter) {
-@@ -3073,7 +3075,8 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
- 			status = kstrtoint(input_buffer, 10, &val);
- 			if (status < 0)
- 				break;
--			DRM_DEBUG_DRIVER("Got %d for test active\n", val);
-+			drm_dbg(&to_i915(dev)->drm,
-+				"Got %d for test active\n", val);
- 			/* To prevent erroneous activation of the compliance
- 			 * testing code, only accept an actual value of 1 here
- 			 */
-@@ -3642,7 +3645,8 @@ i915_cache_sharing_set(void *data, u64 val)
- 	if (val > 3)
- 		return -EINVAL;
+ 		if (curr < previous) {
+-			DRM_ERROR("CMD: %s [%d] register table not sorted: "
+-				  "entry=%d reg=0x%08X prev=0x%08X\n",
+-				  engine->name, engine->id,
+-				  i, curr, previous);
++			drm_err(&engine->i915->drm,
++				"CMD: %s [%d] register table not sorted: "
++				"entry=%d reg=0x%08X prev=0x%08X\n",
++				engine->name, engine->id,
++				i, curr, previous);
+ 			ret = false;
+ 		}
  
--	DRM_DEBUG_DRIVER("Manually setting uncore sharing to %llu\n", val);
-+	drm_dbg(&dev_priv->drm,
-+		"Manually setting uncore sharing to %llu\n", val);
- 	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
- 		u32 snpcr;
+@@ -1010,18 +1012,21 @@ void intel_engine_init_cmd_parser(struct intel_engine_cs *engine)
+ 	}
  
-@@ -4442,20 +4446,21 @@ static ssize_t i915_dsc_fec_support_write(struct file *file,
- 	struct drm_connector *connector =
- 		((struct seq_file *)file->private_data)->private;
- 	struct intel_encoder *encoder = intel_attached_encoder(to_intel_connector(connector));
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	if (!validate_cmds_sorted(engine, cmd_tables, cmd_table_count)) {
+-		DRM_ERROR("%s: command descriptions are not sorted\n",
+-			  engine->name);
++		drm_err(&engine->i915->drm,
++			"%s: command descriptions are not sorted\n",
++			engine->name);
+ 		return;
+ 	}
+ 	if (!validate_regs_sorted(engine)) {
+-		DRM_ERROR("%s: registers are not sorted\n", engine->name);
++		drm_err(&engine->i915->drm,
++			"%s: registers are not sorted\n", engine->name);
+ 		return;
+ 	}
  
- 	if (len == 0)
- 		return 0;
- 
--	DRM_DEBUG_DRIVER("Copied %zu bytes from user to force DSC\n",
--			 len);
-+	drm_dbg(&i915->drm,
-+		"Copied %zu bytes from user to force DSC\n", len);
- 
- 	ret = kstrtobool_from_user(ubuf, len, &dsc_enable);
- 	if (ret < 0)
- 		return ret;
- 
--	DRM_DEBUG_DRIVER("Got %s for DSC Enable\n",
--			 (dsc_enable) ? "true" : "false");
-+	drm_dbg(&i915->drm, "Got %s for DSC Enable\n",
-+		(dsc_enable) ? "true" : "false");
- 	intel_dp->force_dsc_en = dsc_enable;
- 
- 	*offp += len;
+ 	ret = init_hash_table(engine, cmd_tables, cmd_table_count);
+ 	if (ret) {
+-		DRM_ERROR("%s: initialised failed!\n", engine->name);
++		drm_err(&engine->i915->drm,
++			"%s: initialised failed!\n", engine->name);
+ 		fini_hash_table(engine);
+ 		return;
+ 	}
 -- 
 2.25.0
 
