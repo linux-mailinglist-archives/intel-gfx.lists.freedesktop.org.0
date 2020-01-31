@@ -1,43 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098B314F10F
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 18:06:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25C5914F126
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 18:15:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33BD56FB9E;
-	Fri, 31 Jan 2020 17:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F0FC6FBA0;
+	Fri, 31 Jan 2020 17:14:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05FB56FB9E
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 17:06:33 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E580B6FBA0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 17:14:56 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 09:04:31 -0800
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 09:14:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,386,1574150400"; d="scan'208";a="278130357"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by FMSMGA003.fm.intel.com with ESMTP; 31 Jan 2020 09:04:28 -0800
-Received: from mwajdecz-mobl1.ger.corp.intel.com
- (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 00VH4R8b031702; Fri, 31 Jan 2020 17:04:27 GMT
-To: "Chris Wilson" <chris@chris-wilson.co.uk>, "Matthew Brost"
- <matthew.brost@intel.com>
-References: <20200131145834.77756-1-michal.wajdeczko@intel.com>
- <158048483501.2430.4544818151209295353@skylake-alporthouse-com>
- <20200131164011.GA41457@sdutt-xeon>
-Date: Fri, 31 Jan 2020 18:04:27 +0100
+X-IronPort-AV: E=Sophos;i="5.70,386,1574150400"; d="scan'208";a="253389937"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga004.fm.intel.com with ESMTP; 31 Jan 2020 09:14:49 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 09:15:45 -0800
+Message-Id: <20200131171547.25938-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Message-ID: <op.0e9odpp9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-In-Reply-To: <20200131164011.GA41457@sdutt-xeon>
-User-Agent: Opera Mail/1.0 (Win32)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/guc: Stop using mutex while
- sending CTB messages
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Introduce
+ encoder->compute_config_late()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,42 +41,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 31 Jan 2020 17:40:12 +0100, Matthew Brost  
-<matthew.brost@intel.com> wrote:
-
-> On Fri, Jan 31, 2020 at 03:33:55PM +0000, Chris Wilson wrote:
->> Quoting Michal Wajdeczko (2020-01-31 14:58:34)
->>> While we are always using CT "send" buffer to send request messages
->>> to GuC, we usually don't ask GuC to use CT "receive" buffer to send
->>> back response messages, since almost all returned data can fit into
->>> reserved bits in status dword inside CT descriptor. However, relying
->>> on data modifications inside CT descriptor requires use of mutex to
->>> allow only single CT request in flight, until we read back that status
->>> dword from the CT descriptor.
->>
->> Q. do we need the same lock for ct_read() and ct_write()?
->>
->> Could ct_read() use a lock-free ringbuffer, and then if I've read it
->> right, you wouldn't have any overlapping spinlock between the interrupt
->> handler and the rest (thus avoiding the interrupt-off).
->> -Chris
->
-> Agree with Chris, it would nice if ct_read() didn't need a lock. At a  
-> minimum I
-> think it needs a different lock than the write path.
-
-two options:
-1) reuse gt->irq_lock for ct_read() and use ct->lock for ct_write()
-2) define lock as part of ct->ctbs[] for dedicated use by ct_read()/write()
-
-I guess 2 is clearer
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkFk
+ZCBhbiBvcHRpb25hbCBzZWNvbmRhcnkgZW5jb2RlciBzdGF0ZSBjb21wdXRlIGhvb2suIFRoaXMg
+Z2V0cwpjYWxsZWQgYWZ0ZXIgdGhlIG5vcm1hayAuY29tcHV0ZV9jb25maWcoKSBoYXMgYmVlbiBj
+YWxsZWQgZm9yCmFsbCB0aGUgZW5jb2RlcnMgaW4gdGhlIHN0YXRlLiBUaHVzIGluIHRoZSBuZXcg
+aG9vayB3ZSBjYW4gcmVseQpvbiBhbGwgZGVyaXZlZCBzdGF0ZSBwb3B1bGF0ZWQgYnkgLmNvbXB1
+dGVfY29uZmlnKCkgdG8gYmUgYWxyZWFkeQpzZXQgdXAuIFNob3VsZCBiZSB1c2VmdWwgZm9yIE1T
+VCBhbmQgcG9ydCBzeW5jIG1hc3Rlci9zbGF2ZQp0cmFuc2NvZGVyIHNlbGVjdGlvbi4KClNpZ25l
+ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgIHwgMzkg
+KysrKysrKysrKysrKysrKysrKwogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90
+eXBlcy5oICAgIHwgIDMgKysKIDIgZmlsZXMgY2hhbmdlZCwgNDIgaW5zZXJ0aW9ucygrKQoKZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggYzBlNTAw
+MmNlNjRjLi5kZTRhYjUxMjE2ZjYgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jCkBAIC0xMzQxNiw2ICsxMzQxNiwzNSBAQCBpbnRlbF9tb2Rlc2V0X3Bp
+cGVfY29uZmlnKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKIAlyZXR1cm4g
+MDsKIH0KIAorc3RhdGljIGludAoraW50ZWxfbW9kZXNldF9waXBlX2NvbmZpZ19sYXRlKHN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQoreworCXN0cnVjdCBpbnRlbF9hdG9taWNf
+c3RhdGUgKnN0YXRlID0KKwkJdG9faW50ZWxfYXRvbWljX3N0YXRlKGNydGNfc3RhdGUtPnVhcGku
+c3RhdGUpOworCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0
+YXRlLT51YXBpLmNydGMpOworCXN0cnVjdCBkcm1fY29ubmVjdG9yX3N0YXRlICpjb25uX3N0YXRl
+OworCXN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3I7CisJaW50IGk7CisKKwlmb3JfZWFj
+aF9uZXdfY29ubmVjdG9yX2luX3N0YXRlKCZzdGF0ZS0+YmFzZSwgY29ubmVjdG9yLAorCQkJCQlj
+b25uX3N0YXRlLCBpKSB7CisJCXN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyID0KKwkJCXRv
+X2ludGVsX2VuY29kZXIoY29ubl9zdGF0ZS0+YmVzdF9lbmNvZGVyKTsKKwkJaW50IHJldDsKKwor
+CQlpZiAoY29ubl9zdGF0ZS0+Y3J0YyAhPSAmY3J0Yy0+YmFzZSB8fAorCQkgICAgIWVuY29kZXIt
+PmNvbXB1dGVfY29uZmlnX2xhdGUpCisJCQljb250aW51ZTsKKworCQlyZXQgPSBlbmNvZGVyLT5j
+b21wdXRlX2NvbmZpZ19sYXRlKGVuY29kZXIsIGNydGNfc3RhdGUsCisJCQkJCQkgICBjb25uX3N0
+YXRlKTsKKwkJaWYgKHJldCkKKwkJCXJldHVybiByZXQ7CisJfQorCisJcmV0dXJuIDA7Cit9CisK
+IGJvb2wgaW50ZWxfZnV6enlfY2xvY2tfY2hlY2soaW50IGNsb2NrMSwgaW50IGNsb2NrMikKIHsK
+IAlpbnQgZGlmZjsKQEAgLTE0ODE3LDYgKzE0ODQ2LDE2IEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRv
+bWljX2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAJCXJldCA9IGludGVsX21vZGVzZXRf
+cGlwZV9jb25maWcobmV3X2NydGNfc3RhdGUpOwogCQlpZiAocmV0KQogCQkJZ290byBmYWlsOwor
+CX0KKworCWZvcl9lYWNoX29sZG5ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBjcnRjLCBv
+bGRfY3J0Y19zdGF0ZSwKKwkJCQkJICAgIG5ld19jcnRjX3N0YXRlLCBpKSB7CisJCWlmICghbmVl
+ZHNfbW9kZXNldChuZXdfY3J0Y19zdGF0ZSkpCisJCQljb250aW51ZTsKKworCQlyZXQgPSBpbnRl
+bF9tb2Rlc2V0X3BpcGVfY29uZmlnX2xhdGUobmV3X2NydGNfc3RhdGUpOworCQlpZiAocmV0KQor
+CQkJZ290byBmYWlsOwogCiAJCWludGVsX2NydGNfY2hlY2tfZmFzdHNldChvbGRfY3J0Y19zdGF0
+ZSwgbmV3X2NydGNfc3RhdGUpOwogCX0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKaW5kZXggMzNiYTkzODYzNDg4Li41MWYwMTA4YTZl
+MDkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eV90eXBlcy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eV90eXBlcy5oCkBAIC0xNDAsNiArMTQwLDkgQEAgc3RydWN0IGludGVsX2VuY29kZXIgewogCWlu
+dCAoKmNvbXB1dGVfY29uZmlnKShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqLAogCQkJICAgICAgc3Ry
+dWN0IGludGVsX2NydGNfc3RhdGUgKiwKIAkJCSAgICAgIHN0cnVjdCBkcm1fY29ubmVjdG9yX3N0
+YXRlICopOworCWludCAoKmNvbXB1dGVfY29uZmlnX2xhdGUpKHN0cnVjdCBpbnRlbF9lbmNvZGVy
+ICosCisJCQkJICAgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKiwKKwkJCQkgICBzdHJ1Y3QgZHJt
+X2Nvbm5lY3Rvcl9zdGF0ZSAqKTsKIAl2b2lkICgqdXBkYXRlX3ByZXBhcmUpKHN0cnVjdCBpbnRl
+bF9hdG9taWNfc3RhdGUgKiwKIAkJCSAgICAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqLAogCQkJ
+ICAgICAgIHN0cnVjdCBpbnRlbF9jcnRjICopOwotLSAKMi4xOS4xCgpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0Cklu
+dGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5v
+cmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
