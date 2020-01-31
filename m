@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D8B14F374
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 21:53:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0EFF14F3B4
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:24:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 512D96E9FF;
-	Fri, 31 Jan 2020 20:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4CC6FBEC;
+	Fri, 31 Jan 2020 21:24:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D16396E9FF
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 20:53:47 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF4BC6FBEC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 21:24:02 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 12:53:47 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 13:24:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,387,1574150400"; d="scan'208";a="430487017"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga006.fm.intel.com with ESMTP; 31 Jan 2020 12:53:47 -0800
-Date: Fri, 31 Jan 2020 12:54:52 -0800
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200131205451.GA26836@intel.com>
-References: <20200131171547.25938-1-manasi.d.navare@intel.com>
- <20200131171547.25938-3-manasi.d.navare@intel.com>
- <20200131175323.GV13686@intel.com>
- <20200131194625.GA26562@intel.com>
- <20200131200503.GX13686@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,387,1574150400"; d="scan'208";a="224554375"
+Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
+ ([10.23.184.150])
+ by fmsmga008.fm.intel.com with ESMTP; 31 Jan 2020 13:24:02 -0800
+Date: Fri, 31 Jan 2020 13:24:01 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Message-ID: <20200131212401.GD39410@orsosgc001.amr.corp.intel.com>
+References: <20200124013701.40609-1-umesh.nerlige.ramappa@intel.com>
+ <0f632875-e78a-22f1-2259-d65fa5e74ef5@intel.com>
+ <20200127053052.GB35901@orsosgc001.amr.corp.intel.com>
+ <fcd5d9ab-6687-890a-c872-ea048718792d@intel.com>
+ <20200130235414.GB39410@orsosgc001.amr.corp.intel.com>
+ <36baf9cc-f3d7-cfd1-1de3-ade6c8657793@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200131200503.GX13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/dp: Add all tiled and port
- sync conns to modeset
+In-Reply-To: <36baf9cc-f3d7-cfd1-1de3-ade6c8657793@intel.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Fix OA context id overlap
+ with idle context id
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,454 +50,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, Chris Wilson <chris.p.wilson@intel.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2020 at 10:05:03PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Jan 31, 2020 at 11:46:25AM -0800, Manasi Navare wrote:
-> > On Fri, Jan 31, 2020 at 07:53:23PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Fri, Jan 31, 2020 at 09:15:47AM -0800, Manasi Navare wrote:
-> > > > If one of the synced crtcs needs a full modeset, we need
-> > > > to make sure all the synced crtcs are forced a full
-> > > > modeset.
-> > > > =
-
-> > > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_display.c |  88 +------------
-> > > >  drivers/gpu/drm/i915/display/intel_dp.c      | 131 +++++++++++++++=
-+++-
-> > > >  2 files changed, 131 insertions(+), 88 deletions(-)
-> > > > =
-
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
-/gpu/drm/i915/display/intel_display.c
-> > > > index e638543f5f87..709a737638b6 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > > @@ -13123,8 +13123,7 @@ intel_modeset_pipe_config(struct intel_crtc=
-_state *pipe_config)
-> > > >  	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc-=
->dev);
-> > > >  	struct drm_connector *connector;
-> > > >  	struct drm_connector_state *connector_state;
-> > > > -	int base_bpp, ret;
-> > > > -	int i, tile_group_id =3D -1, num_tiled_conns =3D 0;
-> > > > +	int base_bpp, ret, i;
-> > > >  	bool retry =3D true;
-> > > >  =
-
-> > > >  	pipe_config->cpu_transcoder =3D
-> > > > @@ -14559,76 +14558,6 @@ static bool intel_cpu_transcoders_need_mod=
-eset(struct intel_atomic_state *state,
-> > > >  	return false;
-> > > >  }
-> > > >  =
-
-> > > > -static int
-> > > > -intel_modeset_all_tiles(struct intel_atomic_state *state, int tile=
-_grp_id)
-> > > > -{
-> > > > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > -	struct drm_connector *connector;
-> > > > -	struct drm_connector_list_iter conn_iter;
-> > > > -	int ret =3D 0;
-> > > > -
-> > > > -	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > > -	drm_for_each_connector_iter(connector, &conn_iter) {
-> > > > -		struct drm_connector_state *conn_state;
-> > > > -		struct drm_crtc_state *crtc_state;
-> > > > -
-> > > > -		if (!connector->has_tile ||
-> > > > -		    connector->tile_group->id !=3D tile_grp_id)
-> > > > -			continue;
-> > > > -		conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > > > -							    connector);
-> > > > -		if (IS_ERR(conn_state)) {
-> > > > -			ret =3D  PTR_ERR(conn_state);
-> > > > -			break;
-> > > > -		}
-> > > > -
-> > > > -		if (!conn_state->crtc)
-> > > > -			continue;
-> > > > -
-> > > > -		crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> > > > -						       conn_state->crtc);
-> > > > -		if (IS_ERR(crtc_state)) {
-> > > > -			ret =3D PTR_ERR(crtc_state);
-> > > > -			break;
-> > > > -		}
-> > > > -		crtc_state->mode_changed =3D true;
-> > > > -		ret =3D drm_atomic_add_affected_connectors(&state->base,
-> > > > -							 conn_state->crtc);
-> > > > -		if (ret)
-> > > > -			break;
-> > > > -	}
-> > > > -	drm_connector_list_iter_end(&conn_iter);
-> > > > -
-> > > > -	return ret;
-> > > > -}
-> > > > -
-> > > > -static int
-> > > > -intel_atomic_check_tiled_conns(struct intel_atomic_state *state)
-> > > > -{
-> > > > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > -	struct drm_connector *connector;
-> > > > -	struct drm_connector_state *old_conn_state, *new_conn_state;
-> > > > -	int i, ret;
-> > > > -
-> > > > -	if (INTEL_GEN(dev_priv) < 11)
-> > > > -		return 0;
-> > > > -
-> > > > -	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
-> > > > -	for_each_oldnew_connector_in_state(&state->base, connector,
-> > > > -					   old_conn_state, new_conn_state, i) {
-> > > > -		if (!connector->has_tile)
-> > > > -			continue;
-> > > > -		if (!intel_connector_needs_modeset(state, connector))
-> > > > -			continue;
-> > > > -
-> > > > -		ret =3D intel_modeset_all_tiles(state, connector->tile_group->id=
-);
-> > > > -		if (ret)
-> > > > -			return ret;
-> > > > -	}
-> > > > -
-> > > > -	return 0;
-> > > > -}
-> > > > -
-> > > >  /**
-> > > >   * intel_atomic_check - validate state object
-> > > >   * @dev: drm device
-> > > > @@ -14656,21 +14585,6 @@ static int intel_atomic_check(struct drm_d=
-evice *dev,
-> > > >  	if (ret)
-> > > >  		goto fail;
-> > > >  =
-
-> > > > -	/**
-> > > > -	 * This check adds all the connectors in current state that belon=
-g to
-> > > > -	 * the same tile group to a full modeset.
-> > > > -	 * This function directly sets the mode_changed to true and we al=
-so call
-> > > > -	 * drm_atomic_add_affected_connectors(). Hence we are not explici=
-tly
-> > > > -	 * calling drm_atomic_helper_check_modeset() after this.
-> > > > -	 *
-> > > > -	 * Fixme: Handle some corner cases where one of the
-> > > > -	 * tiled connectors gets disconnected and tile info is lost but s=
-ince it
-> > > > -	 * was previously synced to other conn, we need to add that to th=
-e modeset.
-> > > > -	 */
-> > > > -	ret =3D intel_atomic_check_tiled_conns(state);
-> > > > -	if (ret)
-> > > > -		goto fail;
-> > > > -
-> > > >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> > > >  					    new_crtc_state, i) {
-> > > >  		if (!needs_modeset(new_crtc_state)) {
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/=
-drm/i915/display/intel_dp.c
-> > > > index f4dede6253f8..7eb4b3dbbcb3 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > > @@ -6582,6 +6582,135 @@ void intel_dp_encoder_reset(struct drm_enco=
-der *encoder)
-> > > >  	}
-> > > >  }
-> > > >  =
-
-> > > > +static int intel_modeset_tile_group(struct intel_atomic_state *sta=
-te,
-> > > > +				    int tile_group_id)
-> > > > +{
-> > > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > +	struct drm_connector_list_iter conn_iter;
-> > > > +	struct drm_connector *connector;
-> > > > +	int ret =3D 0;
-> > > > +
-> > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > > +	drm_for_each_connector_iter(connector, &conn_iter) {
-> > > > +		struct drm_connector_state *conn_state;
-> > > > +		struct intel_crtc_state *crtc_state;
-> > > > +		struct intel_crtc *crtc;
-> > > > +
-> > > > +		if (!connector->has_tile ||
-> > > > +		    connector->tile_group->id !=3D tile_group_id)
-> > > > +			continue;
-> > > > +
-> > > > +		conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > > > +							    connector);
-> > > > +		if (IS_ERR(conn_state)) {
-> > > > +			ret =3D PTR_ERR(conn_state);
-> > > > +			break;
-> > > > +		}
-> > > > +
-> > > > +		crtc =3D to_intel_crtc(conn_state->crtc);
-> > > > +
-> > > > +		if (!crtc)
-> > > > +			continue;
-> > > > +
-> > > > +		crtc_state =3D intel_atomic_get_crtc_state(&state->base, crtc);
-> > > > +		if (IS_ERR(crtc_state)) {
-> > > > +			ret =3D PTR_ERR(crtc_state);
-> > > > +			break;
-> > > > +		}
-> > > > +
-> > > > +		crtc_state->uapi.mode_changed =3D true;
-> > > > +
-> > > > +		ret =3D drm_atomic_add_affected_planes(&state->base, &crtc->base=
-);
-> > > > +		if (ret)
-> > > > +			break;
-> > > > +	}
-> > > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > > +
-> > > > +	return ret;
-> > > > +}
-> > > > +
-> > > > +static int intel_modeset_affected_transcoders(struct intel_atomic_=
-state *state, u8 transcoders)
-> > > > +{
-> > > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > > +	struct intel_crtc *crtc;
-> > > > +
-> > > > +	if (transcoders =3D=3D 0)
-> > > > +		return 0;
-> > > > +
-> > > > +	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> > > > +		struct intel_crtc_state *crtc_state;
-> > > > +		int ret;
-> > > > +
-> > > > +		if ((transcoders & BIT(crtc->pipe)) =3D=3D 0)
-> > > > +			continue;
-> > > =
-
-> > > Dropping the EDP transcoder on the floor here. I think we should just=
- do
-> > > the guaranteed correct thing and look at the cpu_transcoder instead.
-> > > Yes, that does mean we more or less end up adding all crtcs to the st=
-ate =
-
-> > > whenever modesetting any synced crtc, but so be it. We can think of w=
-ays
-> > > to optimize that later.
-> > >
-> > =
-
-> > So should i not even do this check of trans & BIT(crtc->pipe) ? Instead=
- just proceed
-> > to go get the crtc state and then check if trans & BIT(crtc_state->cpu_=
-trans) ?
-> =
-
-> Yeah, I think that's fine for now. We can try to optimize it later if
-> needed.
-> =
-
-> > =
-
-> > Or should I keep this as is and then add the second loop like in your b=
-ranch?
-> >  =
-
-> > > > +
-> > > > +		crtc_state =3D intel_atomic_get_crtc_state(&state->base, crtc);
-> > > > +		if (IS_ERR(crtc_state))
-> > > > +			return PTR_ERR(crtc_state);
-> > > > +
-> > > > +		if (!crtc_state->hw.enable)
-> > > > +			continue;
-> > > > +
-> > > > +		crtc_state->uapi.mode_changed =3D true;
-> > > > +
-> > > > +		ret =3D drm_atomic_add_affected_connectors(&state->base, &crtc->=
-base);
-> > > > +		if (ret)
-> > > > +			return ret;
-> > > =
-
-> > > Missing add_affected_planes() here I think. Or was that guaranteed to=
- be
-> > > done by the helper? Can't recall.
-> > >
-> > =
-
-> > No i think i missed it, will add that
-> >  =
-
-> > > > +
-> > > > +		WARN_ON((enum transcoder)crtc->pipe !=3D crtc_state->cpu_transco=
-der);
-> > > > +
-> > > > +		transcoders &=3D ~BIT(crtc_state->cpu_transcoder);
-> > > > +	}
-> > > > +
-> > > > +	WARN_ON(transcoders !=3D 0);
-> > > > +
-> > > > +	return 0;
-> > > > +
-> > > > +}
-> > > > +
-> > > > +static int intel_modeset_synced_crtcs(struct intel_atomic_state *s=
-tate,
-> > > > +				      struct drm_connector *connector)
-> > > > +{
-> > > > +	const struct drm_connector_state *old_conn_state =3D
-> > > > +		drm_atomic_get_old_connector_state(&state->base, connector);
-> > > > +	const struct intel_crtc_state *old_crtc_state;
-> > > > +	struct intel_crtc *crtc;
-> > > > +
-> > > > +	crtc =3D to_intel_crtc(old_conn_state->crtc);
-> > > > +	if (!crtc)
-> > > > +		return 0;
-> > > > +
-> > > > +	old_crtc_state =3D intel_atomic_get_old_crtc_state(state, crtc);
-> > > > +
-> > > > +	if (!old_crtc_state->hw.active)
-> > > > +		return 0;
-> > > > +
-> > > > +	return intel_modeset_affected_transcoders(state,
-> > > > +						  (old_crtc_state->sync_mode_slaves_mask |
-> > > > +						   BIT(old_crtc_state->master_transcoder)) &
-> > > =
-
-> > > This seems to have the same master=3D=3DINVALID problem that we faced
-> > > elsewhere already.
-> > >
-> > =
-
-> > Yes will have to add the same check and add it only for master_trans !=
-=3D INVALID, will add that
-> >  =
-
-> > > > +						  ~BIT(old_crtc_state->cpu_transcoder));
-> > > =
-
-> > > I guess this part is redundant. Or can we somehow have our own
-> > > transcoder be included in sync_mode_slaves_mask/master_transcoder?
-> > >
-> > =
-
-> > Actually shouldnt it be:
-> > =
-
-> > if old_crtc_state->needs_modeset() {
-> =
-
-> That would need to be new_crtc_state. And yes we should skip this
-> (and also intel_modeset_tile_group()) when there's no modeset.
-> =
-
-> So the whole thing could probably look something like:
-> {
-> 	intel_digital_connector_atomic_check();
-> =
-
-> 	if (!intel_connector_needs_modeset(connector))
-> 		return 0;
-> =
-
-> 	if (tile)
-> 		intel_modeset_tile_group()
-> 	=
-
-> 	intel_modeset_synced_crtcs();
-> }
-
-Great yea this makes sense.
-So then keep the ~BIT(old_crtc_state->cpu_transcoder)); right? so we dont f=
-orec modeset =
-
-on the current crtc?
-
-Manasi
-
-> =
-
-> > 	 then call intel_modeset_affected_transcoders(state,
-> > 							(old_crtc_state->sync_mode_slaves_mask |
-> > 							 BIT(old_crtc_state->master_transcoder)) &
-> > 							~BIT(old_crtc_state->cpu_transcoder));
-> > =
-
-> > dont understand why ~BIT(old_crtc_state->cpu_transcoder) is redundant? =
-why do we need to =
-
-> > force modeset there if we add this needs_modeset check?
-> > =
-
-> > Manasi
-> > =
-
-> > > > +}
-> > > > +
-> > > > +static int intel_dp_connector_atomic_check(struct drm_connector *c=
-onn,
-> > > > +					   struct drm_atomic_state *_state)
-> > > > +{
-> > > > +	struct drm_i915_private *dev_priv =3D to_i915(conn->dev);
-> > > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(_state=
-);
-> > > > +	int ret;
-> > > > +
-> > > > +	ret =3D intel_digital_connector_atomic_check(conn, &state->base);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +
-> > > > +	if (INTEL_GEN(dev_priv) >=3D 11 && conn->has_tile) {
-> > > > +		ret =3D intel_modeset_tile_group(state, conn->tile_group->id);
-> > > > +		if (ret)
-> > > > +			return ret;
-> > > > +	}
-> > > > +
-> > > > +	return intel_modeset_synced_crtcs(state, conn);
-> > > =
-
-> > > No gen check... Ah, yeah we don't need it because the port sync state
-> > > will be INVALID/0.
-> > > =
-
-> > > > +}
-> > > > +
-> > > >  static const struct drm_connector_funcs intel_dp_connector_funcs =
-=3D {
-> > > >  	.force =3D intel_dp_force,
-> > > >  	.fill_modes =3D drm_helper_probe_single_connector_modes,
-> > > > @@ -6598,7 +6727,7 @@ static const struct drm_connector_helper_func=
-s intel_dp_connector_helper_funcs =3D
-> > > >  	.detect_ctx =3D intel_dp_detect,
-> > > >  	.get_modes =3D intel_dp_get_modes,
-> > > >  	.mode_valid =3D intel_dp_mode_valid,
-> > > > -	.atomic_check =3D intel_digital_connector_atomic_check,
-> > > > +	.atomic_check =3D intel_dp_connector_atomic_check,
-> > > >  };
-> > > >  =
-
-> > > >  static const struct drm_encoder_funcs intel_dp_enc_funcs =3D {
-> > > > -- =
-
-> > > > 2.19.1
-> > > =
-
-> > > -- =
-
-> > > Ville Syrj=E4l=E4
-> > > Intel
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCBKYW4gMzEsIDIwMjAgYXQgMDE6MDA6NTRQTSArMDIwMCwgTGlvbmVsIExhbmR3ZXJs
+aW4gd3JvdGU6Cj5PbiAzMS8wMS8yMDIwIDAxOjU0LCBVbWVzaCBOZXJsaWdlIFJhbWFwcGEgd3Jv
+dGU6Cj4+T24gTW9uLCBKYW4gMjcsIDIwMjAgYXQgMTE6MTY6MzJBTSArMDIwMCwgTGlvbmVsIExh
+bmR3ZXJsaW4gd3JvdGU6Cj4+Cj4+W3NuaXBdCj4+Cj4+Pj4+Pi0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfcGVyZi5jCj4+Pj4+PisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cGVyZi5jCj4+Pj4+PkBAIC0xMzIzLDcgKzEzMjMsMTIgQEAgc3RhdGljIGludCAKPj4+Pj4+b2Ff
+Z2V0X3JlbmRlcl9jdHhfaWQoc3RydWN0IGk5MTVfcGVyZl9zdHJlYW0gKnN0cmVhbSkKPj4+Pj4+
+wqDCoMKgwqAgY2FzZSAxMjogewo+Pj4+Pj7CoMKgwqDCoMKgwqDCoMKgIHN0cmVhbS0+c3BlY2lm
+aWNfY3R4X2lkX21hc2sgPQo+Pj4+Pj7CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKCgxVSA8PCBH
+RU4xMV9TV19DVFhfSURfV0lEVEgpIC0gMSkgPDwgCj4+Pj4+PihHRU4xMV9TV19DVFhfSURfU0hJ
+RlQgLSAzMik7Cj4+Pj4+Pi3CoMKgwqDCoMKgwqDCoCBzdHJlYW0tPnNwZWNpZmljX2N0eF9pZCA9
+IHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkX21hc2s7Cj4+Pj4+PivCoMKgwqDCoMKgwqDCoCAvKiBQ
+aWNrIGFuIHVudXNlZCBjb250ZXh0IGlkCj4+Pj4+PivCoMKgwqDCoMKgwqDCoMKgICogMCAtIChO
+VU1fQ09OVEVYVF9UQUcgLSAxKSBhcmUgdXNlZCBieSBvdGhlciBjb250ZXh0cwo+Pj4+Pj4rwqDC
+oMKgwqDCoMKgwqDCoCAqIEdFTjEyX01BWF9DT05URVhUX0hXX0lEICgweDdmZikgaXMgdXNlZCBi
+eSBpZGxlIGNvbnRleHQKPj4+Pj4+K8KgwqDCoMKgwqDCoMKgwqAgKi8KPj4+Pj4+K8KgwqDCoMKg
+wqDCoMKgIHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkID0gKEdFTjEyX01BWF9DT05URVhUX0hXX0lE
+IAo+Pj4+Pj4tIDEpIDw8IChHRU4xMV9TV19DVFhfSURfU0hJRlQgLSAzMik7Cj4+Pj4+PivCoMKg
+wqDCoMKgwqDCoCBCVUlMRF9CVUdfT04oKEdFTjEyX01BWF9DT05URVhUX0hXX0lEIC0gMSkgPCAK
+Pj4+Pj4+TlVNX0NPTlRFWFRfVEFHKTsKPj4+Pj4KPj4+Pj4KPj4+Pj5BcmcgeWVhaCwgd2UgY2Fu
+J3QgdXNlIGFuIGlkIHRoYXQgaGFzIGFsbCBiaXRzIHRvIDEgYmVjYXVzZSAKPj4+Pj50aGF0IG1h
+dGNoZXMgdGhlIGlkbGUgdmFsdWUgaW4gdGhlIE9BIHJlcG9ydHMgOi8KPj4+Pj4KPj4+Pj5UaGlz
+IGFsc28gYWZmZWN0cyBnZW44LTEwIGNhc2VzIChhZmFpaykuCj4+Pj4KPj4+PkZvciBnZW44LTEw
+LCBJIGRpZCBub3Qgc2VlIGEgc3BlY2lmaWMgZGVmaW5pdGlvbiBmb3IgYW4gaWRsZSAKPj4+PmNv
+bnRleHQgaWQuwqAgVGhlIGZyb20vdG8gaWRsZSBjb250ZXh0IHN3aXRjaGVzIGFyZSBpbmRpY2F0
+ZWQgYnkgCj4+Pj5kZWRpY2F0ZWQgYml0cyBpbiB0aGUgQ1NCIGluc3RlYWQgKGZyb20gc3BlYyku
+Cj4+Pgo+Pj4KPj4+SSBtZWFudCB0aGF0IEkgcmVtZW1iZXIgdGhlIHBlcmlvZGljIE9BIHJlcG9y
+dHMgd2hlbiBIVyBpcyBpZGxlIHRvIAo+Pj5oYXZlIHRoZSBjb250ZXhfaWQ9MHhmZmZmZmZmZi4K
+Pj4KPj5Gb3IgdGhlc2UgZ2VucyB3ZSB1c2UgMHgxZmZmZmYgYXMgdGhlIGNvbnRleHQgaWQuIEJl
+Zm9yZSB3ZSByZXR1cm4gCj4+cmVwb3J0cyB0byB0aGUgdXNlciwgd2UgYXJlIHNldHRpbmcgY29u
+dGV4dCBpZCB0byAweGZmZmZmZmZmIGZvciAKPj5pbnZhbGlkIGFuZCBpcnJlbGV2YW50IGNvbnRl
+eHRzLgo+Pgo+PlRoYW5rcywKPj5VbWVzaAo+Cj4KPlNvcnJ5LCBJJ3ZlIGJlZW4gYSBiaXQgb3V0
+IG9mIHRoZSBsb29wIG9uIE9BIHJlcG9ydHMgbGF0ZWx5Lgo+Cj5JIGp1c3Qgbm90aWNlZCB0aGF0
+IHRoZSBjb250ZXh0IHZhbGlkIGJpdCBpcyBub3QgY2hlY2tlZCBvbiBnZW4xMiBhbnltb3JlLgo+
+Cj5UaGUgZG9jdW1lbnRhdGlvbiBpcyByZWFsbHkgaG9ycmlibGUsIGJ1dCBCU3BlYyA1MjE5OCBz
+ZWVtcyB0byAKPmluZGljYXRlIHRoZSBiaXQgaXMgc3RpbGwgYXJvdW5kLgoKSSBhbSBsb29raW5n
+IGF0IHRoZSBmaXJzdCB0YWJsZSBkZXNjcmliaW5nIHRoZSByZXBvcnQgSUQgaW4gNTIxOTggd2hp
+Y2ggCmhhcyBUR0wgbmV4dCB0byBpdC4gSSBkb24ndCBzZWUgYSBkZWZpbml0aW9uIGZvciB0aGlz
+IGJpdC4KCkkgd2lsbCB0cnkgdG8gYXNrIGFyb3VuZCB0byBzZWUgaWYgdGhhdCdzIG5vdCB0aGUg
+Y2FzZS4KPgo+Cj5Db3VsZCBpdCBiZSB0aGUgc291cmNlIG9mIHRoZSBpc3N1ZT8KWW91IG1lYW4g
+LSBzZWVpbmcgMHhmZmZmZmZmZiBkdXJpbmcgaWRsZSBpbiBwZXJpb2RpYyByZXBvcnRzPwoKVGhh
+bmtzLApVbWVzaAoKPgo+Cj5UaGFua3MgZm9yIHlvdXIgaGVscCA6KQo+Cj4KPi1MaW9uZWwKPgo+
+Cj4+Pgo+Pj5JIGNvdWxkIHJlbWVtYmVyIHdyb25nIDovCj4+Pgo+Pj4KPj4+LUxpb25lbAo+Pj4K
+Pj4+Cj4+Pj4KPj4+PlRoYW5rcywKPj4+PlVtZXNoCj4+Pj4KPj4+Pj4KPj4+Pj4KPj4+Pj5UaGFu
+a3MgZm9yIHNwb3R0aW5nIHRoaXMhCj4+Pj4+Cj4+Pj4+Cj4+Pj4+LUxpb25lbAo+Pj4+Pgo+Pj4+
+Pgo+Pj4+Pj7CoMKgwqDCoMKgwqDCoMKgIGJyZWFrOwo+Pj4+Pj7CoMKgwqDCoCB9Cj4+Pj4+PkBA
+IC0xMzMxLDcgKzEzMzYsNyBAQCBzdGF0aWMgaW50IG9hX2dldF9yZW5kZXJfY3R4X2lkKHN0cnVj
+dCAKPj4+Pj4+aTkxNV9wZXJmX3N0cmVhbSAqc3RyZWFtKQo+Pj4+Pj7CoMKgwqDCoMKgwqDCoMKg
+IE1JU1NJTkdfQ0FTRShJTlRFTF9HRU4oY2UtPmVuZ2luZS0+aTkxNSkpOwo+Pj4+Pj7CoMKgwqDC
+oCB9Cj4+Pj4+Pi3CoMKgwqAgY2UtPnRhZyA9IHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkX21hc2s7
+Cj4+Pj4+PivCoMKgwqAgY2UtPnRhZyA9IHN0cmVhbS0+c3BlY2lmaWNfY3R4X2lkOwo+Pj4+Pj7C
+oMKgwqDCoCBEUk1fREVCVUdfRFJJVkVSKCJmaWx0ZXJpbmcgb24gY3R4X2lkPTB4JXggY3R4X2lk
+X21hc2s9MHgleFxuIiwKPj4+Pj4+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RyZWFtLT5z
+cGVjaWZpY19jdHhfaWQsCj4+Pj4+Cj4+Pj4+Cj4+Pgo+Cl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
