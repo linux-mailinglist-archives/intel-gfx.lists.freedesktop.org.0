@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB73B14EB35
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:46:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8D4414EB4D
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:54:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56DEB6E963;
-	Fri, 31 Jan 2020 10:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C3AE6E968;
+	Fri, 31 Jan 2020 10:54:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA6F6E962
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 10:46:06 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20070424-1500050 
- for multiple; Fri, 31 Jan 2020 10:45:51 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 10:45:48 +0000
-Message-Id: <20200131104548.2451485-12-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200131104548.2451485-1-chris@chris-wilson.co.uk>
-References: <20200131104548.2451485-1-chris@chris-wilson.co.uk>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD0616E968
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 10:54:05 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 02:54:05 -0800
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="218577593"
+Received: from jlahtine-desk.ger.corp.intel.com (HELO localhost)
+ ([10.252.21.8])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 02:54:03 -0800
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915/gem: Honour O_NONBLOCK before
- throttling execbuf submissions
+In-Reply-To: <20200130164553.1937718-1-chris@chris-wilson.co.uk>
+References: <20200130164330.1922670-1-chris@chris-wilson.co.uk>
+ <20200130164553.1937718-1-chris@chris-wilson.co.uk>
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Date: Fri, 31 Jan 2020 12:54:00 +0200
+Message-ID: <158046804087.8720.14184392770463408179@jlahtine-desk.ger.corp.intel.com>
+User-Agent: alot/0.8.1
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Require per-engine reset
+ support for non-persistent contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,57 +51,30 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check the user's flags on the struct file before deciding whether or not
-to stall before submitting a request. This allows us to reasonably
-cheaply honour O_NONBLOCK without checking at more critical phases
-during request submission.
+Quoting Chris Wilson (2020-01-30 18:45:53)
+> To enable non-persistent contexts, we require a means of cancelling any
+> inflight work from that context. This is first done "gracefully" by
+> using preemption to kick the active context off the engine, and then
+> forcefully by resetting the engine if it is active. If we are unable to
+> reset the engine to remove hostile userspace, we should not allow
+> userspace to opt into using non-persistent contexts.
+> 
+> Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jon Bloomfield <jon.bloomfield@intel.com>
 
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Steve Carbonari <steven.carbonari@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 21 ++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+Maybe worth noting that we might still ultimately end up at using
+the sledge hammer called full GPU reset, in the rare cases when
+engine reset fails. But it makes sense to avoid the situation
+when it's guaranteed to be attempted.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 87fa5f42c39a..8646d76f4b6e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2327,15 +2327,22 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
- 	intel_context_timeline_unlock(tl);
- 
- 	if (rq) {
--		if (i915_request_wait(rq,
--				      I915_WAIT_INTERRUPTIBLE,
--				      MAX_SCHEDULE_TIMEOUT) < 0) {
--			i915_request_put(rq);
--			err = -EINTR;
--			goto err_exit;
--		}
-+		bool nonblock = eb->file->filp->f_flags & O_NONBLOCK;
-+		long timeout;
-+
-+		timeout = MAX_SCHEDULE_TIMEOUT;
-+		if (nonblock)
-+			timeout = 0;
- 
-+		timeout = i915_request_wait(rq,
-+					    I915_WAIT_INTERRUPTIBLE,
-+					    timeout);
- 		i915_request_put(rq);
-+
-+		if (timeout < 0) {
-+			err = nonblock ? -EWOULDBLOCK : timeout;
-+			goto err_exit;
-+		}
- 	}
- 
- 	eb->engine = ce->engine;
--- 
-2.25.0
+Avoiding collateral damage is a worthy motive for the long
+running compute cases.
 
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+
+Regards, Joonas
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
