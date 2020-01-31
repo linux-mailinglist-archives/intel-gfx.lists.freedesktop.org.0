@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C3614EB2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:46:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AA314EB2F
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 11:46:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 530CE6E960;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E08C6E95E;
 	Fri, 31 Jan 2020 10:46:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2754E6E961
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9966B6E95C
  for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 10:46:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20070418-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20070419-1500050 
  for multiple; Fri, 31 Jan 2020 10:45:50 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 10:45:42 +0000
-Message-Id: <20200131104548.2451485-6-chris@chris-wilson.co.uk>
+Date: Fri, 31 Jan 2020 10:45:43 +0000
+Message-Id: <20200131104548.2451485-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200131104548.2451485-1-chris@chris-wilson.co.uk>
 References: <20200131104548.2451485-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/12] drm/i915/gt: Pull sseu context updates
- under gt
+Subject: [Intel-gfx] [PATCH 07/12] drm/i915/gt: Move move context layout
+ registers and offsets to lrc_reg.h
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,127 +39,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGlmdCB0aGUgcm91dGluZXMgdG8gZW1pdCBhIHJlcXVlc3QgdG8gdXBkYXRlIHRoZSBTU0VVIG9u
-IHRoZQppbnRlbF9jb250ZXh0IG91dCBvZiBpOTE1X2dlbV9jb250ZXh0LgoKU2lnbmVkLW9mZi1i
-eTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Ci0tLQogZHJpdmVycy9n
-cHUvZHJtL2k5MTUvTWFrZWZpbGUgICAgICAgICAgICAgICAgfCAgMSArCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jICB8IDg1IC0tLS0tLS0tLS0tLS0tLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0LmggICAgICB8ICAzICsKIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHRfc3NldS5jIHwgOTggKysrKysrKysrKysr
-KysrKysrKysKIDQgZmlsZXMgY2hhbmdlZCwgMTAyIGluc2VydGlvbnMoKyksIDg1IGRlbGV0aW9u
-cygtKQogY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2Nv
-bnRleHRfc3NldS5jCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZQppbmRleCAzYzg4ZDdkOGM3NjQuLjdkMDRk
-YjkyYWFlNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUKQEAgLTgxLDYgKzgxLDcgQEAgZ3QteSArPSBc
-CiAJZ3QvZ2VuOF9wcGd0dC5vIFwKIAlndC9pbnRlbF9icmVhZGNydW1icy5vIFwKIAlndC9pbnRl
-bF9jb250ZXh0Lm8gXAorCWd0L2ludGVsX2NvbnRleHRfc3NldS5vIFwKIAlndC9pbnRlbF9lbmdp
-bmVfY3MubyBcCiAJZ3QvaW50ZWxfZW5naW5lX2hlYXJ0YmVhdC5vIFwKIAlndC9pbnRlbF9lbmdp
-bmVfcG0ubyBcCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1f
-Y29udGV4dC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYwpp
-bmRleCAxZTE3M2RkNWVkNTQuLjkxMzA3MDY0MTdjMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCkBAIC03Miw5ICs3Miw3IEBACiAjaW5jbHVkZSAiZ3Qv
-Z2VuNl9wcGd0dC5oIgogI2luY2x1ZGUgImd0L2ludGVsX2NvbnRleHQuaCIKICNpbmNsdWRlICJn
-dC9pbnRlbF9lbmdpbmVfaGVhcnRiZWF0LmgiCi0jaW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lX3Bt
-LmgiCiAjaW5jbHVkZSAiZ3QvaW50ZWxfZW5naW5lX3VzZXIuaCIKLSNpbmNsdWRlICJndC9pbnRl
-bF9scmNfcmVnLmgiCiAjaW5jbHVkZSAiZ3QvaW50ZWxfcmluZy5oIgogCiAjaW5jbHVkZSAiaTkx
-NV9nZW1fY29udGV4dC5oIgpAQCAtMTE3Miw4OSArMTE3MCw2IEBAIHN0YXRpYyBpbnQgc2V0X3Bw
-Z3R0KHN0cnVjdCBkcm1faTkxNV9maWxlX3ByaXZhdGUgKmZpbGVfcHJpdiwKIAlyZXR1cm4gZXJy
-OwogfQogCi1zdGF0aWMgaW50IGdlbjhfZW1pdF9ycGNzX2NvbmZpZyhzdHJ1Y3QgaTkxNV9yZXF1
-ZXN0ICpycSwKLQkJCQkgc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAotCQkJCSBzdHJ1Y3QgaW50
-ZWxfc3NldSBzc2V1KQotewotCXU2NCBvZmZzZXQ7Ci0JdTMyICpjczsKLQotCWNzID0gaW50ZWxf
-cmluZ19iZWdpbihycSwgNCk7Ci0JaWYgKElTX0VSUihjcykpCi0JCXJldHVybiBQVFJfRVJSKGNz
-KTsKLQotCW9mZnNldCA9IGk5MTVfZ2d0dF9vZmZzZXQoY2UtPnN0YXRlKSArCi0JCSBMUkNfU1RB
-VEVfUE4gKiBQQUdFX1NJWkUgKwotCQkgQ1RYX1JfUFdSX0NMS19TVEFURSAqIDQ7Ci0KLQkqY3Mr
-KyA9IE1JX1NUT1JFX0RXT1JEX0lNTV9HRU40IHwgTUlfVVNFX0dHVFQ7Ci0JKmNzKysgPSBsb3dl
-cl8zMl9iaXRzKG9mZnNldCk7Ci0JKmNzKysgPSB1cHBlcl8zMl9iaXRzKG9mZnNldCk7Ci0JKmNz
-KysgPSBpbnRlbF9zc2V1X21ha2VfcnBjcyhycS0+aTkxNSwgJnNzZXUpOwotCi0JaW50ZWxfcmlu
-Z19hZHZhbmNlKHJxLCBjcyk7Ci0KLQlyZXR1cm4gMDsKLX0KLQotc3RhdGljIGludAotZ2VuOF9t
-b2RpZnlfcnBjcyhzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UsIHN0cnVjdCBpbnRlbF9zc2V1IHNz
-ZXUpCi17Ci0Jc3RydWN0IGk5MTVfcmVxdWVzdCAqcnE7Ci0JaW50IHJldDsKLQotCWxvY2tkZXBf
-YXNzZXJ0X2hlbGQoJmNlLT5waW5fbXV0ZXgpOwotCi0JLyoKLQkgKiBJZiB0aGUgY29udGV4dCBp
-cyBub3QgaWRsZSwgd2UgaGF2ZSB0byBzdWJtaXQgYW4gb3JkZXJlZCByZXF1ZXN0IHRvCi0JICog
-bW9kaWZ5IGl0cyBjb250ZXh0IGltYWdlIHZpYSB0aGUga2VybmVsIGNvbnRleHQgKHdyaXRpbmcg
-dG8gb3VyIG93bgotCSAqIGltYWdlLCBvciBpbnRvIHRoZSByZWdpc3RlcnMgZGlyZWN0b3J5LCBk
-b2VzIG5vdCBzdGljaykuIFByaXN0aW5lCi0JICogYW5kIGlkbGUgY29udGV4dHMgd2lsbCBiZSBj
-b25maWd1cmVkIG9uIHBpbm5pbmcuCi0JICovCi0JaWYgKCFpbnRlbF9jb250ZXh0X3Bpbl9pZl9h
-Y3RpdmUoY2UpKQotCQlyZXR1cm4gMDsKLQotCXJxID0gaW50ZWxfZW5naW5lX2NyZWF0ZV9rZXJu
-ZWxfcmVxdWVzdChjZS0+ZW5naW5lKTsKLQlpZiAoSVNfRVJSKHJxKSkgewotCQlyZXQgPSBQVFJf
-RVJSKHJxKTsKLQkJZ290byBvdXRfdW5waW47Ci0JfQotCi0JLyogU2VyaWFsaXNlIHdpdGggdGhl
-IHJlbW90ZSBjb250ZXh0ICovCi0JcmV0ID0gaW50ZWxfY29udGV4dF9wcmVwYXJlX3JlbW90ZV9y
-ZXF1ZXN0KGNlLCBycSk7Ci0JaWYgKHJldCA9PSAwKQotCQlyZXQgPSBnZW44X2VtaXRfcnBjc19j
-b25maWcocnEsIGNlLCBzc2V1KTsKLQotCWk5MTVfcmVxdWVzdF9hZGQocnEpOwotb3V0X3VucGlu
-OgotCWludGVsX2NvbnRleHRfdW5waW4oY2UpOwotCXJldHVybiByZXQ7Ci19Ci0KLXN0YXRpYyBp
-bnQKLWludGVsX2NvbnRleHRfcmVjb25maWd1cmVfc3NldShzdHJ1Y3QgaW50ZWxfY29udGV4dCAq
-Y2UsIHN0cnVjdCBpbnRlbF9zc2V1IHNzZXUpCi17Ci0JaW50IHJldDsKLQotCUdFTV9CVUdfT04o
-SU5URUxfR0VOKGNlLT5lbmdpbmUtPmk5MTUpIDwgOCk7Ci0KLQlyZXQgPSBpbnRlbF9jb250ZXh0
-X2xvY2tfcGlubmVkKGNlKTsKLQlpZiAocmV0KQotCQlyZXR1cm4gcmV0OwotCi0JLyogTm90aGlu
-ZyB0byBkbyBpZiB1bm1vZGlmaWVkLiAqLwotCWlmICghbWVtY21wKCZjZS0+c3NldSwgJnNzZXUs
-IHNpemVvZihzc2V1KSkpCi0JCWdvdG8gdW5sb2NrOwotCi0JcmV0ID0gZ2VuOF9tb2RpZnlfcnBj
-cyhjZSwgc3NldSk7Ci0JaWYgKCFyZXQpCi0JCWNlLT5zc2V1ID0gc3NldTsKLQotdW5sb2NrOgot
-CWludGVsX2NvbnRleHRfdW5sb2NrX3Bpbm5lZChjZSk7Ci0JcmV0dXJuIHJldDsKLX0KLQogc3Rh
-dGljIGludAogdXNlcl90b19jb250ZXh0X3NzZXUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5
-MTUsCiAJCSAgICAgY29uc3Qgc3RydWN0IGRybV9pOTE1X2dlbV9jb250ZXh0X3BhcmFtX3NzZXUg
-KnVzZXIsCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0
-LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0LmgKaW5kZXggMzBiZDI0
-ODgyN2Q4Li42MDRkNWNmYzQ2YmEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0
-L2ludGVsX2NvbnRleHQuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250
-ZXh0LmgKQEAgLTM1LDYgKzM1LDkgQEAgaW50IGludGVsX2NvbnRleHRfYWxsb2Nfc3RhdGUoc3Ry
-dWN0IGludGVsX2NvbnRleHQgKmNlKTsKIAogdm9pZCBpbnRlbF9jb250ZXh0X2ZyZWUoc3RydWN0
-IGludGVsX2NvbnRleHQgKmNlKTsKIAoraW50IGludGVsX2NvbnRleHRfcmVjb25maWd1cmVfc3Nl
-dShzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UsCisJCQkJICAgY29uc3Qgc3RydWN0IGludGVsX3Nz
-ZXUgc3NldSk7CisKIC8qKgogICogaW50ZWxfY29udGV4dF9sb2NrX3Bpbm5lZCAtIFN0YWJsaXNl
-cyB0aGUgJ3Bpbm5lZCcgc3RhdHVzIG9mIHRoZSBIVyBjb250ZXh0CiAgKiBAY2UgLSB0aGUgY29u
-dGV4dApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfY29udGV4dF9z
-c2V1LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3NzZXUuYwpuZXcg
-ZmlsZSBtb2RlIDEwMDY0NAppbmRleCAwMDAwMDAwMDAwMDAuLjU3YTMwOTU2YzkyMgotLS0gL2Rl
-di9udWxsCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHRfc3NldS5j
-CkBAIC0wLDAgKzEsOTggQEAKKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKKy8qCisg
-KiBDb3B5cmlnaHQgwqkgMjAxOSBJbnRlbCBDb3Jwb3JhdGlvbgorICovCisKKyNpbmNsdWRlICJp
-OTE1X2Rydi5oIgorI2luY2x1ZGUgImk5MTVfdm1hLmgiCisjaW5jbHVkZSAiaW50ZWxfY29udGV4
-dC5oIgorI2luY2x1ZGUgImludGVsX2VuZ2luZV9wbS5oIgorI2luY2x1ZGUgImludGVsX2dwdV9j
-b21tYW5kcy5oIgorI2luY2x1ZGUgImludGVsX2xyYy5oIgorI2luY2x1ZGUgImludGVsX2xyY19y
-ZWcuaCIKKyNpbmNsdWRlICJpbnRlbF9yaW5nLmgiCisjaW5jbHVkZSAiaW50ZWxfc3NldS5oIgor
-CitzdGF0aWMgaW50IGdlbjhfZW1pdF9ycGNzX2NvbmZpZyhzdHJ1Y3QgaTkxNV9yZXF1ZXN0ICpy
-cSwKKwkJCQkgY29uc3Qgc3RydWN0IGludGVsX2NvbnRleHQgKmNlLAorCQkJCSBjb25zdCBzdHJ1
-Y3QgaW50ZWxfc3NldSBzc2V1KQoreworCXU2NCBvZmZzZXQ7CisJdTMyICpjczsKKworCWNzID0g
-aW50ZWxfcmluZ19iZWdpbihycSwgNCk7CisJaWYgKElTX0VSUihjcykpCisJCXJldHVybiBQVFJf
-RVJSKGNzKTsKKworCW9mZnNldCA9IGk5MTVfZ2d0dF9vZmZzZXQoY2UtPnN0YXRlKSArCisJCSBM
-UkNfU1RBVEVfUE4gKiBQQUdFX1NJWkUgKworCQkgQ1RYX1JfUFdSX0NMS19TVEFURSAqIDQ7CisK
-KwkqY3MrKyA9IE1JX1NUT1JFX0RXT1JEX0lNTV9HRU40IHwgTUlfVVNFX0dHVFQ7CisJKmNzKysg
-PSBsb3dlcl8zMl9iaXRzKG9mZnNldCk7CisJKmNzKysgPSB1cHBlcl8zMl9iaXRzKG9mZnNldCk7
-CisJKmNzKysgPSBpbnRlbF9zc2V1X21ha2VfcnBjcyhycS0+aTkxNSwgJnNzZXUpOworCisJaW50
-ZWxfcmluZ19hZHZhbmNlKHJxLCBjcyk7CisKKwlyZXR1cm4gMDsKK30KKworc3RhdGljIGludAor
-Z2VuOF9tb2RpZnlfcnBjcyhzdHJ1Y3QgaW50ZWxfY29udGV4dCAqY2UsIGNvbnN0IHN0cnVjdCBp
-bnRlbF9zc2V1IHNzZXUpCit7CisJc3RydWN0IGk5MTVfcmVxdWVzdCAqcnE7CisJaW50IHJldDsK
-KworCWxvY2tkZXBfYXNzZXJ0X2hlbGQoJmNlLT5waW5fbXV0ZXgpOworCisJLyoKKwkgKiBJZiB0
-aGUgY29udGV4dCBpcyBub3QgaWRsZSwgd2UgaGF2ZSB0byBzdWJtaXQgYW4gb3JkZXJlZCByZXF1
-ZXN0IHRvCisJICogbW9kaWZ5IGl0cyBjb250ZXh0IGltYWdlIHZpYSB0aGUga2VybmVsIGNvbnRl
-eHQgKHdyaXRpbmcgdG8gb3VyIG93bgorCSAqIGltYWdlLCBvciBpbnRvIHRoZSByZWdpc3RlcnMg
-ZGlyZWN0b3J5LCBkb2VzIG5vdCBzdGljaykuIFByaXN0aW5lCisJICogYW5kIGlkbGUgY29udGV4
-dHMgd2lsbCBiZSBjb25maWd1cmVkIG9uIHBpbm5pbmcuCisJICovCisJaWYgKCFpbnRlbF9jb250
-ZXh0X3Bpbl9pZl9hY3RpdmUoY2UpKQorCQlyZXR1cm4gMDsKKworCXJxID0gaW50ZWxfZW5naW5l
-X2NyZWF0ZV9rZXJuZWxfcmVxdWVzdChjZS0+ZW5naW5lKTsKKwlpZiAoSVNfRVJSKHJxKSkgewor
-CQlyZXQgPSBQVFJfRVJSKHJxKTsKKwkJZ290byBvdXRfdW5waW47CisJfQorCisJLyogU2VyaWFs
-aXNlIHdpdGggdGhlIHJlbW90ZSBjb250ZXh0ICovCisJcmV0ID0gaW50ZWxfY29udGV4dF9wcmVw
-YXJlX3JlbW90ZV9yZXF1ZXN0KGNlLCBycSk7CisJaWYgKHJldCA9PSAwKQorCQlyZXQgPSBnZW44
-X2VtaXRfcnBjc19jb25maWcocnEsIGNlLCBzc2V1KTsKKworCWk5MTVfcmVxdWVzdF9hZGQocnEp
-Oworb3V0X3VucGluOgorCWludGVsX2NvbnRleHRfdW5waW4oY2UpOworCXJldHVybiByZXQ7Cit9
-CisKK2ludAoraW50ZWxfY29udGV4dF9yZWNvbmZpZ3VyZV9zc2V1KHN0cnVjdCBpbnRlbF9jb250
-ZXh0ICpjZSwKKwkJCSAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfc3NldSBzc2V1KQoreworCWlu
-dCByZXQ7CisKKwlHRU1fQlVHX09OKElOVEVMX0dFTihjZS0+ZW5naW5lLT5pOTE1KSA8IDgpOwor
-CisJcmV0ID0gaW50ZWxfY29udGV4dF9sb2NrX3Bpbm5lZChjZSk7CisJaWYgKHJldCkKKwkJcmV0
-dXJuIHJldDsKKworCS8qIE5vdGhpbmcgdG8gZG8gaWYgdW5tb2RpZmllZC4gKi8KKwlpZiAoIW1l
-bWNtcCgmY2UtPnNzZXUsICZzc2V1LCBzaXplb2Yoc3NldSkpKQorCQlnb3RvIHVubG9jazsKKwor
-CXJldCA9IGdlbjhfbW9kaWZ5X3JwY3MoY2UsIHNzZXUpOworCWlmICghcmV0KQorCQljZS0+c3Nl
-dSA9IHNzZXU7CisKK3VubG9jazoKKwlpbnRlbF9jb250ZXh0X3VubG9ja19waW5uZWQoY2UpOwor
-CXJldHVybiByZXQ7Cit9Ci0tIAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+Cleanup intel_lrc.h by moving some of the residual common register
+definitions into intel_lrc_reg.h, prior to rebranding and splitting off
+the submission backends.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  6 +++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.h           | 45 -------------------
+ drivers/gpu/drm/i915/gt/intel_lrc_reg.h       | 39 ++++++++++++++++
+ drivers/gpu/drm/i915/gvt/mmio_context.h       |  2 +
+ 5 files changed, 48 insertions(+), 46 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index ca1420fb8b53..99822e5ae0bb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -24,6 +24,12 @@ struct i915_vma;
+ struct intel_context;
+ struct intel_ring;
+ 
++enum { /* XXX misnamed? */
++	INTEL_CONTEXT_SCHEDULE_IN = 0,
++	INTEL_CONTEXT_SCHEDULE_OUT,
++	INTEL_CONTEXT_SCHEDULE_PREEMPTED,
++};
++
+ struct intel_context_ops {
+ 	int (*alloc)(struct intel_context *ce);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index a14b2f9e0155..2aa3bb883cb3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -36,7 +36,7 @@
+ #include "intel_gt.h"
+ #include "intel_gt_requests.h"
+ #include "intel_gt_pm.h"
+-#include "intel_lrc.h"
++#include "intel_lrc_reg.h"
+ #include "intel_reset.h"
+ #include "intel_ring.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.h b/drivers/gpu/drm/i915/gt/intel_lrc.h
+index dfbc214e14f5..0e5e820df5f7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.h
+@@ -34,51 +34,6 @@ struct i915_request;
+ struct intel_context;
+ struct intel_engine_cs;
+ 
+-/* Execlists regs */
+-#define RING_ELSP(base)				_MMIO((base) + 0x230)
+-#define RING_EXECLIST_STATUS_LO(base)		_MMIO((base) + 0x234)
+-#define RING_EXECLIST_STATUS_HI(base)		_MMIO((base) + 0x234 + 4)
+-#define RING_CONTEXT_CONTROL(base)		_MMIO((base) + 0x244)
+-#define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	(1 << 3)
+-#define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	(1 << 0)
+-#define   CTX_CTRL_RS_CTX_ENABLE		(1 << 1)
+-#define	  CTX_CTRL_ENGINE_CTX_SAVE_INHIBIT	(1 << 2)
+-#define	  GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE	(1 << 8)
+-#define RING_CONTEXT_STATUS_PTR(base)		_MMIO((base) + 0x3a0)
+-#define RING_EXECLIST_SQ_CONTENTS(base)		_MMIO((base) + 0x510)
+-#define RING_EXECLIST_CONTROL(base)		_MMIO((base) + 0x550)
+-
+-#define	  EL_CTRL_LOAD				(1 << 0)
+-
+-/* The docs specify that the write pointer wraps around after 5h, "After status
+- * is written out to the last available status QW at offset 5h, this pointer
+- * wraps to 0."
+- *
+- * Therefore, one must infer than even though there are 3 bits available, 6 and
+- * 7 appear to be * reserved.
+- */
+-#define GEN8_CSB_ENTRIES 6
+-#define GEN8_CSB_PTR_MASK 0x7
+-#define GEN8_CSB_READ_PTR_MASK (GEN8_CSB_PTR_MASK << 8)
+-#define GEN8_CSB_WRITE_PTR_MASK (GEN8_CSB_PTR_MASK << 0)
+-
+-#define GEN11_CSB_ENTRIES 12
+-#define GEN11_CSB_PTR_MASK 0xf
+-#define GEN11_CSB_READ_PTR_MASK (GEN11_CSB_PTR_MASK << 8)
+-#define GEN11_CSB_WRITE_PTR_MASK (GEN11_CSB_PTR_MASK << 0)
+-
+-#define MAX_CONTEXT_HW_ID (1<<21) /* exclusive */
+-#define MAX_GUC_CONTEXT_HW_ID (1 << 20) /* exclusive */
+-#define GEN11_MAX_CONTEXT_HW_ID (1<<11) /* exclusive */
+-/* in Gen12 ID 0x7FF is reserved to indicate idle */
+-#define GEN12_MAX_CONTEXT_HW_ID	(GEN11_MAX_CONTEXT_HW_ID - 1)
+-
+-enum {
+-	INTEL_CONTEXT_SCHEDULE_IN = 0,
+-	INTEL_CONTEXT_SCHEDULE_OUT,
+-	INTEL_CONTEXT_SCHEDULE_PREEMPTED,
+-};
+-
+ /* Logical Rings */
+ void intel_logical_ring_cleanup(struct intel_engine_cs *engine);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+index 08a3be65f700..43ee761e3087 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+@@ -52,4 +52,43 @@
+ #define GEN11_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT	0x1A
+ #define GEN12_CTX_RCS_INDIRECT_CTX_OFFSET_DEFAULT	0xD
+ 
++/* Execlists regs */
++#define RING_ELSP(base)				_MMIO((base) + 0x230)
++#define RING_EXECLIST_STATUS_LO(base)		_MMIO((base) + 0x234)
++#define RING_EXECLIST_STATUS_HI(base)		_MMIO((base) + 0x234 + 4)
++#define RING_CONTEXT_CONTROL(base)		_MMIO((base) + 0x244)
++#define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
++#define   CTX_CTRL_RS_CTX_ENABLE		REG_BIT(1)
++#define	  CTX_CTRL_ENGINE_CTX_SAVE_INHIBIT	REG_BIT(2)
++#define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
++#define	  GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE	REG_BIT(8)
++#define RING_CONTEXT_STATUS_PTR(base)		_MMIO((base) + 0x3a0)
++#define RING_EXECLIST_SQ_CONTENTS(base)		_MMIO((base) + 0x510)
++#define RING_EXECLIST_CONTROL(base)		_MMIO((base) + 0x550)
++#define	  EL_CTRL_LOAD				REG_BIT(0)
++
++/*
++ * The docs specify that the write pointer wraps around after 5h, "After status
++ * is written out to the last available status QW at offset 5h, this pointer
++ * wraps to 0."
++ *
++ * Therefore, one must infer than even though there are 3 bits available, 6 and
++ * 7 appear to be * reserved.
++ */
++#define GEN8_CSB_ENTRIES 6
++#define GEN8_CSB_PTR_MASK 0x7
++#define GEN8_CSB_READ_PTR_MASK	(GEN8_CSB_PTR_MASK << 8)
++#define GEN8_CSB_WRITE_PTR_MASK	(GEN8_CSB_PTR_MASK << 0)
++
++#define GEN11_CSB_ENTRIES 12
++#define GEN11_CSB_PTR_MASK 0xf
++#define GEN11_CSB_READ_PTR_MASK		(GEN11_CSB_PTR_MASK << 8)
++#define GEN11_CSB_WRITE_PTR_MASK	(GEN11_CSB_PTR_MASK << 0)
++
++#define MAX_CONTEXT_HW_ID	(1 << 21) /* exclusive */
++#define MAX_GUC_CONTEXT_HW_ID	(1 << 20) /* exclusive */
++#define GEN11_MAX_CONTEXT_HW_ID	(1 << 11) /* exclusive */
++/* in Gen12 ID 0x7FF is reserved to indicate idle */
++#define GEN12_MAX_CONTEXT_HW_ID	(GEN11_MAX_CONTEXT_HW_ID - 1)
++
+ #endif /* _INTEL_LRC_REG_H_ */
+diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.h b/drivers/gpu/drm/i915/gvt/mmio_context.h
+index f7eaa442403f..bfab3276ff8f 100644
+--- a/drivers/gpu/drm/i915/gvt/mmio_context.h
++++ b/drivers/gpu/drm/i915/gvt/mmio_context.h
+@@ -36,6 +36,8 @@
+ #ifndef __GVT_RENDER_H__
+ #define __GVT_RENDER_H__
+ 
++#include "gt/intel_lrc_reg.h"
++
+ struct engine_mmio {
+ 	int ring_id;
+ 	i915_reg_t reg;
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
