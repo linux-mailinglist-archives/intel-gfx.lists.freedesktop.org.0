@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B981C14E687
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 01:23:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDF114E688
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 01:23:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0356E93A;
-	Fri, 31 Jan 2020 00:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BA16FA54;
+	Fri, 31 Jan 2020 00:23:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A924F6E93A
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 00:23:00 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 16:23:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,383,1574150400"; d="scan'208";a="430207735"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
- by fmsmga006.fm.intel.com with ESMTP; 30 Jan 2020 16:23:00 -0800
-Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
- ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 30 Jan 2020 16:23:00 -0800
-Received: from vkasired-desk2.fm.intel.com (10.22.254.138) by
- ORSMSX113.amr.corp.intel.com (10.22.240.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 30 Jan 2020 16:22:59 -0800
-From: Vivek Kasireddy <vivek.kasireddy@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-Date: Thu, 30 Jan 2020 16:18:16 -0800
-Message-ID: <20200131001816.32741-1-vivek.kasireddy@intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <0b0038baaa75ed086bf8ba27d126136f601d6bce.camel@intel.com>
-References: <0b0038baaa75ed086bf8ba27d126136f601d6bce.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25F1E6FA53;
+ Fri, 31 Jan 2020 00:23:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1D4EAA0071;
+ Fri, 31 Jan 2020 00:23:07 +0000 (UTC)
 MIME-Version: 1.0
-X-Originating-IP: [10.22.254.138]
-Subject: [Intel-gfx] [PATCH] drm/i915/hotplug: Use phy to get the hpd_pin
- instead of the port (v3)
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 31 Jan 2020 00:23:07 -0000
+Message-ID: <158043018711.13120.17936381663194156369@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200130171710.1996964-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200130171710.1996964-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Rename_i915=5Fgem=5Frestore=5Fggtt=5Fmappings=28=29?=
+ =?utf-8?q?_for_its_new_placement?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,51 +39,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gc29tZSBwbGF0Zm9ybXMgc3VjaCBhcyBFbGtoYXJ0IExha2UsIGFsdGhvdWdoIHdlIG1heSB1
-c2UgRERJIEQKdG8gZHJpdmUgYSBjb25uZWN0b3IsIHdlIGhhdmUgdG8gdXNlIFBIWSBBIChDb21i
-byBQaHkgUE9SVCBBKSB0bwpkZXRlY3QgdGhlIGhvdHBsdWcgaW50ZXJydXB0cyBhcyBwZXIgdGhl
-IHNwZWMgYmVjYXVzZSB0aGVyZSBpcyBubwpvbmUtdG8tb25lIG1hcHBpbmcgYmV0d2VlbiBERElz
-IGFuZCBQSFlzLiBUaGVyZWZvcmUsIHVzZSB0aGUKZnVuY3Rpb24gaW50ZWxfcG9ydF90b19waHko
-KSB3aGljaCBjb250YWlucyB0aGUgbG9naWMgZm9yIHN1Y2gKbWFwcGluZyhzKSB0byBmaW5kIHRo
-ZSBjb3JyZWN0IGhwZF9waW4uCgpUaGlzIGNoYW5nZSBzaG91bGQgbm90IGFmZmVjdCBvdGhlciBw
-bGF0Zm9ybXMgYXMgdGhlcmUgaXMgYWx3YXlzCmEgb25lLXRvLW9uZSBtYXBwaW5nIGJldHdlZW4g
-RERJcyBhbmQgUEhZcy4KCnYyOgotIENvbnZlcnQgdGhlIGNhc2Ugc3RhdGVtZW50cyB0byB1c2Ug
-UEhZcyBpbnN0ZWFkIG9mIFBPUlRzIChKYW5pKQoKdjM6Ci0gUmVmYWN0b3IgdGhlIGZ1bmN0aW9u
-IHRvIHJlZHVjZSB0aGUgbnVtYmVyIG9mIHJldHVybiBzdGF0ZW1lbnRzIGJ5CiAgbHVtcGluZyBh
-bGwgdGhlIGNhc2Ugc3RhdGVtZW50cyB0b2dldGhlciBleGNlcHQgUEhZX0Ygd2hpY2ggbmVlZHMK
-ICBzcGVjaWFsIGhhbmRsaW5nIChKb3NlKQoKQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
-bnRlbC5jb20+CkNjOiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpDYzog
-Sm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+ClNpZ25lZC1vZmYt
-Ynk6IFZpdmVrIEthc2lyZWRkeSA8dml2ZWsua2FzaXJlZGR5QGludGVsLmNvbT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYyB8IDM3ICsrKysrKysrLS0t
-LS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMjIgZGVsZXRpb25z
-KC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3Rw
-bHVnLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcuYwppbmRl
-eCAwNDJkOThiYWUxZWEuLjI3ZTMwMzMyNzhhMCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9ob3RwbHVnLmMKQEAgLTg5LDI5ICs4OSwyMiBAQAogZW51bSBocGRfcGlu
-IGludGVsX2hwZF9waW5fZGVmYXVsdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
-CiAJCQkJICAgZW51bSBwb3J0IHBvcnQpCiB7Ci0Jc3dpdGNoIChwb3J0KSB7Ci0JY2FzZSBQT1JU
-X0E6Ci0JCXJldHVybiBIUERfUE9SVF9BOwotCWNhc2UgUE9SVF9COgotCQlyZXR1cm4gSFBEX1BP
-UlRfQjsKLQljYXNlIFBPUlRfQzoKLQkJcmV0dXJuIEhQRF9QT1JUX0M7Ci0JY2FzZSBQT1JUX0Q6
-Ci0JCXJldHVybiBIUERfUE9SVF9EOwotCWNhc2UgUE9SVF9FOgotCQlyZXR1cm4gSFBEX1BPUlRf
-RTsKLQljYXNlIFBPUlRfRjoKLQkJaWYgKElTX0NOTF9XSVRIX1BPUlRfRihkZXZfcHJpdikpCi0J
-CQlyZXR1cm4gSFBEX1BPUlRfRTsKLQkJcmV0dXJuIEhQRF9QT1JUX0Y7Ci0JY2FzZSBQT1JUX0c6
-Ci0JCXJldHVybiBIUERfUE9SVF9HOwotCWNhc2UgUE9SVF9IOgotCQlyZXR1cm4gSFBEX1BPUlRf
-SDsKLQljYXNlIFBPUlRfSToKLQkJcmV0dXJuIEhQRF9QT1JUX0k7CisJZW51bSBwaHkgcGh5ID0g
-aW50ZWxfcG9ydF90b19waHkoZGV2X3ByaXYsIHBvcnQpOworCisJc3dpdGNoIChwaHkpIHsKKwlj
-YXNlIFBIWV9GOgorCQlyZXR1cm4gSVNfQ05MX1dJVEhfUE9SVF9GKGRldl9wcml2KSA/IEhQRF9Q
-T1JUX0UgOiBIUERfUE9SVF9GOworCWNhc2UgUEhZX0E6CisJY2FzZSBQSFlfQjoKKwljYXNlIFBI
-WV9DOgorCWNhc2UgUEhZX0Q6CisJY2FzZSBQSFlfRToKKwljYXNlIFBIWV9HOgorCWNhc2UgUEhZ
-X0g6CisJY2FzZSBQSFlfSToKKwkJcmV0dXJuIEhQRF9QT1JUX0EgKyBwaHk7CiAJZGVmYXVsdDoK
-LQkJTUlTU0lOR19DQVNFKHBvcnQpOworCQlNSVNTSU5HX0NBU0UocGh5KTsKIAkJcmV0dXJuIEhQ
-RF9OT05FOwogCX0KIH0KLS0gCjIuMjEuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/gt: Rename i915_gem_restore_ggtt_mappings() for its new placement
+URL   : https://patchwork.freedesktop.org/series/72786/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7847 -> Patchwork_16343
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16343 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_addfb_basic@bo-too-small:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-tgl-y/igt@kms_addfb_basic@bo-too-small.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-tgl-y/igt@kms_addfb_basic@bo-too-small.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [TIMEOUT][5] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_flink_basic@bad-flink:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][11] ([fdo#108569]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [INCOMPLETE][13] ([fdo#106070] / [i915#424]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bwr-2160:        [FAIL][15] ([i915#34]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (47 -> 41)
+------------------------------
+
+  Additional (5): fi-hsw-peppy fi-bdw-gvtdvm fi-kbl-7500u fi-gdg-551 fi-elk-e7500 
+  Missing    (11): fi-icl-1065g7 fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-skl-6770hq fi-bsw-cyan fi-cfl-8109u fi-skl-lmem fi-kbl-7560u fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7847 -> Patchwork_16343
+
+  CI-20190529: 20190529
+  CI_DRM_7847: 2515f8cc5d56f8791232dc6b077a370658d4cecf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16343: 2bf30759f0c61de5e22a914c213f288e5a9f95dc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2bf30759f0c6 drm/i915/gt: Rename i915_gem_restore_ggtt_mappings() for its new placement
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16343/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
