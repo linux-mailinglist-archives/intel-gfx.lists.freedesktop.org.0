@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D266214EC1E
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:57:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 482E614EC2D
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 13:03:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34C4989304;
-	Fri, 31 Jan 2020 11:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DF336FB1D;
+	Fri, 31 Jan 2020 12:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4441889304
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:57:50 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C5536FB1D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 12:03:33 +0000 (UTC)
 X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 03:57:49 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 04:03:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223599439"
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="224431536"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 31 Jan 2020 03:57:46 -0800
+ by fmsmga008.fm.intel.com with SMTP; 31 Jan 2020 04:03:30 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 Jan 2020 13:57:46 +0200
-Date: Fri, 31 Jan 2020 13:57:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-To: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200131115746.GN13686@intel.com>
-References: <20200131063038.GA15798@plaxmina-desktop.iind.intel.com>
+ Fri, 31 Jan 2020 14:03:29 +0200
+Date: Fri, 31 Jan 2020 14:03:29 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Message-ID: <20200131120329.GO13686@intel.com>
+References: <20200131114258.22306-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200131063038.GA15798@plaxmina-desktop.iind.intel.com>
+In-Reply-To: <20200131114258.22306-1-animesh.manna@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] RFC: pipe writeback design for i915
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dsb: Enable lmem for dsb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,112 +46,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2020 at 12:00:39PM +0530, Bharadiya,Pankaj wrote:
-> I am exploring the way of implementing the pipe writeback feature in i915=
- and
-> would like to get early feedback on design.
+On Fri, Jan 31, 2020 at 05:12:58PM +0530, Animesh Manna wrote:
+> If lmem is supported DSB should use local memeory instead
+> of system memory. Using local memory surely bring performance
+> improvement as local memory is close to gpu. Also want to avoid
+> multiple gpu using system memory.
 > =
 
-> We have a Wireless display(WD) transcoder which can be used for capturing
-> display pipe output to memory. It is generally intended for wireless disp=
-lay,
-> but can be used for other functions such as in validation automation wher=
-e crc
-> based comparison is not feasible.
-> =
+> Used LMEM api to create gem object needed for DSB command buffer.
 
-> Bspec: 49275
-> =
-
-> DRM core provides writeback connectors framework (drm_writeback.c) which =
-can
-> be used to expose hardware which can write the output from a pipe to a me=
-mory
-> buffer.
-> =
-
-> Writeback connectors have some additional properties, which userspace can=
- use
-> to query and control them, For more details, please refer [1]
-> =
-
-> [1] https://01.org/linuxgraphics/gfx-docs/drm/gpu/drm-kms.html#writeback-=
-connectors
-> =
+The whole point of the dsb is to avoid doing mmio.a Now you're
+replacing the nice dma with mmio again. Granted lmem is probably
+wc so maybe not as slow as direct mmio register access, and also
+we can do this ahead of time so not as time critical as direct
+mmio during the the vblank.
 
 > =
 
-> In order to implement pipe writeback feature in i915 using drm writeback
-> connector framework, I am exploring below possibilities.
+> v1: Initial patch.
 > =
 
->   1. Extend the intel_connector to support writeback
->   2. Introduce new intel_writeback_connector type
->   3. ?? (any other better way?)
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > =
 
-> 1# Extend the intel_connector to support writeback
-> --------------------------------------------------
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
+915/display/intel_dsb.c
+> index 9dd18144a664..d67b6a764ba0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -6,6 +6,7 @@
+>  =
+
+>  #include "i915_drv.h"
+>  #include "intel_display_types.h"
+> +#include "gem/i915_gem_lmem.h"
+>  =
+
+>  #define DSB_BUF_SIZE    (2 * PAGE_SIZE)
+>  =
+
+> @@ -113,7 +114,11 @@ intel_dsb_get(struct intel_crtc *crtc)
+>  =
+
+>  	wakeref =3D intel_runtime_pm_get(&i915->runtime_pm);
+>  =
+
+> -	obj =3D i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
+> +	if (HAS_LMEM(i915))
+> +		obj =3D i915_gem_object_create_lmem(i915, DSB_BUF_SIZE, 0);
+> +	else
+> +		obj =3D i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
+> +
+>  	if (IS_ERR(obj)) {
+>  		DRM_ERROR("Gem object creation failed\n");
+>  		goto out;
+> -- =
+
+> 2.24.0
 > =
 
-> drm_writeback connector is of drm_connector type and intel_connector is a=
-lso
-> of drm_connector type.
-> =
-
->   +----------------------------------------------------------------------=
--------+
->   |                                     |                                =
-       |
->   | struct drm_writeback_connector {    |    struct intel_connector {    =
-       |
->   |         struct drm_connector base;  |            struct drm_connector=
- base; |
->   |         .                           |            .                   =
-       |
->   |         .                           |            .                   =
-       |
->   |         .                           |            .                   =
-       |
->   | };                                  |    };                          =
-       |
->   |                                     |                                =
-       |
->   +----------------------------------------------------------------------=
--------+
-
-That's a bit unfortunate. We like to use intel_connector quite a bit in
-i915 so having two different types is going to be a pita. Ideally I
-guess the writeback connector shouldn't be a drm_connector at all and
-instead it would just provide some kind of thing to embed into the
-driver's connector struct. But that would mean the writeback helpers
-would need some other way to get at that data rather than just
-container_of().
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
 Ville Syrj=E4l=E4
 Intel
----------------------------------------------------------------------
-Intel Finland Oy
-Registered Address: PL 281, 00181 Helsinki =
-
-Business Identity Code: 0357606 - 4 =
-
-Domiciled in Helsinki =
-
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
