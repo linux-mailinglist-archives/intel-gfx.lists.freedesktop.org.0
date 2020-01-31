@@ -1,56 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6365D14E925
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 08:34:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D6A814E944
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 08:57:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 291AA6E94F;
-	Fri, 31 Jan 2020 07:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F17CF6FA90;
+	Fri, 31 Jan 2020 07:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98D196E94F
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:34:20 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z3so7432832wru.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 23:34:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=owDgY2hN74svhwO6V6vESJaP7KSYIDvwh0UpgYJP8tc=;
- b=W5QRTWPq5V1gfy2LTbkoaVWqpWIoew8i2DeZXV+kuXCdSPClSdS8DrQsRlQaLiqrn7
- SabGhJ0iUS/0C9J+n+RaDAKKMwWFY6K5vb6OVMjFSFlUUU9UYeC80j6CVbXtvdWem14s
- IsH/Hjq9Oa5D0p7TSXPBQTztEm1Mcdgik97M1ALqmknH/s18LhzHAHlhoyE14iXhsW3W
- GiTb0w9nkasDAUls/iGZp+RyZP+T8wiYazTdY1DAVB4e7F6+Zeit+HobTIrVOuZbNaNp
- tbtcHlWhTEqviWnCbABW5hHpVC3tN9c40PnMngS1eOjUo5SqMFNmth405QeznNdb925G
- VSgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=owDgY2hN74svhwO6V6vESJaP7KSYIDvwh0UpgYJP8tc=;
- b=B0L9o4c5s804rAO+oQ6QyG+m1iDZ1HwJcuXqRh/x0MnBGccVIZ21RacUWER8YklChk
- I/EWveT9icxwoCXSZk81J4KvDjoHk2EjFXtgmtNzzWi1lQyD1mmdex+GaZPbeabes0lb
- 94/uxsRMt1dKgGbCMK5k+dDkPWUSil4uCFvgkJl+aDt+s8fjuqNuBD5npRY1e79rTMCV
- NZdSdoY5yzVXfE1XvF9465zGGznPawO5YbqcqBebAl2D5R9tBvptLBeWCbbk9ONNt5eJ
- uMhZmW0cnARMGbHilTDMQS6xD1EvcCZiSRvSa1xMg9FWnmfUgxEIgP0Nf4pek0pQY5hI
- j01w==
-X-Gm-Message-State: APjAAAVcSkk1McN7TL7uQ7HcEPRw/+T6T5C0BLdpWZCiNLqm2ILQzo9o
- AG6babOd1jEg/Bg/IwGZP6ATsrZWz92IVd9PITKrLA==
-X-Google-Smtp-Source: APXvYqxE2D1GUZqbFQ7juYd6KtGB0wWZIYc2Q/xIq23fGh/WL0GBK5zKH9bzu3lOwV9+kWP54Y3iKcuDHp21ot8TOJQ=
-X-Received: by 2002:a5d:6445:: with SMTP id d5mr8923297wrw.244.1580456059067; 
- Thu, 30 Jan 2020 23:34:19 -0800 (PST)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B7266FA88
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:57:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20068048-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:57:17 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 07:57:14 +0000
+Message-Id: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-References: <20180705101043.4883-1-daniel.vetter@ffwll.ch>
- <20180705102121.5091-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20180705102121.5091-1-daniel.vetter@ffwll.ch>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 31 Jan 2020 07:34:00 +0000
-Message-ID: <CAPj87rN48S8+pLd0ksOX4pdCTqtO=bDgjhkPxpWr_AnpVvgaSQ@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
- nonblocking atomic modesets
+Subject: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,47 +36,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable@vger.kernel.org, DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 5 Jul 2018 at 11:21, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> pull in arbitrary other resources, including CRTCs (e.g. when
-> reconfiguring global resources).
->
-> But in nonblocking mode userspace has then no idea this happened,
-> which can lead to spurious EBUSY calls, both:
-> - when that other CRTC is currently busy doing a page_flip the
->   ALLOW_MODESET commit can fail with an EBUSY
-> - on the other CRTC a normal atomic flip can fail with EBUSY because
->   of the additional commit inserted by the kernel without userspace's
->   knowledge
->
-> For blocking commits this isn't a problem, because everyone else will
-> just block until all the CRTC are reconfigured. Only thing userspace
-> can notice is the dropped frames without any reason for why frames got
-> dropped.
->
-> Consensus is that we need new uapi to handle this properly, but no one
-> has any idea what exactly the new uapi should look like. As a stop-gap
-> plug this problem by demoting nonblocking commits which might cause
-> issues by including CRTCs not in the original request to blocking
-> commits.
-
-Thanks for writing this up Daniel, and for reminding me about it some
-time later as well ...
-
-Reviewed-by: Daniel Stone <daniels@collabora.com>
-
-Cheers,
-Daniel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QSBtYXNrZWQgcmVnaXN0ZXIgZG9lcyBub3QgbmVlZCBybXcgdG8gdXBkYXRlLCBhbmQgaXQgaXMg
+YmVzdCBub3QgdG8gdXNlCnN1Y2ggYSBzZXF1ZW5jZS4KClJlcG9ydGVkLWJ5OiBWaWxsZSBTeXJq
+w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBDaHJp
+cyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8
+dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBUdnJ0a28gVXJzdWxpbiA8dHZydGtv
+LnVyc3VsaW5AaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dv
+cmthcm91bmRzLmMgfCAzMiArKysrKysrKysrKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAy
+MSBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfd29ya2Fyb3VuZHMuYwppbmRleCA1YTdkYjI3OWY3MDIuLmU0YzJiNmQ0MmY0NiAx
+MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCkBAIC0xMTYs
+NyArMTE2LDggQEAgc3RhdGljIHZvaWQgX3dhX2FkZChzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWws
+IGNvbnN0IHN0cnVjdCBpOTE1X3dhICp3YSkKIAkJfSBlbHNlIHsKIAkJCXdhXyA9ICZ3YWwtPmxp
+c3RbbWlkXTsKIAotCQkJaWYgKCh3YS0+bWFzayAmIH53YV8tPm1hc2spID09IDApIHsKKwkJCWlm
+ICgod2EtPm1hc2sgfCB3YV8tPm1hc2spICYmCisJCQkgICAgKHdhLT5tYXNrICYgfndhXy0+bWFz
+aykgPT0gMCkgewogCQkJCURSTV9FUlJPUigiRGlzY2FyZGluZyBvdmVyd3JpdHRlbiB3L2EgZm9y
+IHJlZyAlMDR4IChtYXNrOiAlMDh4LCB2YWx1ZTogJTA4eClcbiIsCiAJCQkJCSAgaTkxNV9tbWlv
+X3JlZ19vZmZzZXQod2FfLT5yZWcpLAogCQkJCQkgIHdhXy0+bWFzaywgd2FfLT52YWwpOwpAQCAt
+MTY3LDEyICsxNjgsNiBAQCB3YV93cml0ZV9tYXNrZWRfb3Ioc3RydWN0IGk5MTVfd2FfbGlzdCAq
+d2FsLCBpOTE1X3JlZ190IHJlZywgdTMyIG1hc2ssCiAJd2FfYWRkKHdhbCwgcmVnLCBtYXNrLCB2
+YWwsIG1hc2spOwogfQogCi1zdGF0aWMgdm9pZAotd2FfbWFza2VkX2VuKHN0cnVjdCBpOTE1X3dh
+X2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCi17Ci0Jd2Ffd3JpdGVfbWFza2Vk
+X29yKHdhbCwgcmVnLCB2YWwsIF9NQVNLRURfQklUX0VOQUJMRSh2YWwpKTsKLX0KLQogc3RhdGlj
+IHZvaWQKIHdhX3dyaXRlKHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcs
+IHUzMiB2YWwpCiB7CkBAIC0xODUsMTQgKzE4MCwyNiBAQCB3YV93cml0ZV9vcihzdHJ1Y3QgaTkx
+NV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQogCXdhX3dyaXRlX21hc2tl
+ZF9vcih3YWwsIHJlZywgdmFsLCB2YWwpOwogfQogCitzdGF0aWMgdm9pZAord2FfbWFza2VkX2Vu
+KHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCit7CisJ
+d2FfYWRkKHdhbCwgcmVnLCAwLCBfTUFTS0VEX0JJVF9FTkFCTEUodmFsKSwgdmFsKTsKK30KKwor
+c3RhdGljIHZvaWQKK3dhX21hc2tlZF9kaXMoc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1
+X3JlZ190IHJlZywgdTMyIHZhbCkKK3sKKwl3YV9hZGQod2FsLCByZWcsIDAsIF9NQVNLRURfQklU
+X0RJU0FCTEUodmFsKSwgdmFsKTsKK30KKwogI2RlZmluZSBXQV9TRVRfQklUX01BU0tFRChhZGRy
+LCBtYXNrKSBcCi0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgKGFkZHIpLCAobWFzayksIF9NQVNL
+RURfQklUX0VOQUJMRShtYXNrKSkKKwl3YV9tYXNrZWRfZW4od2FsLCAoYWRkciksIG1hc2spCiAK
+ICNkZWZpbmUgV0FfQ0xSX0JJVF9NQVNLRUQoYWRkciwgbWFzaykgXAotCXdhX3dyaXRlX21hc2tl
+ZF9vcih3YWwsIChhZGRyKSwgKG1hc2spLCBfTUFTS0VEX0JJVF9ESVNBQkxFKG1hc2spKQorCXdh
+X21hc2tlZF9kaXMod2FsLCAoYWRkciksIG1hc2spCiAKICNkZWZpbmUgV0FfU0VUX0ZJRUxEX01B
+U0tFRChhZGRyLCBtYXNrLCB2YWx1ZSkgXAotCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRy
+KSwgKG1hc2spLCBfTUFTS0VEX0ZJRUxEKChtYXNrKSwgKHZhbHVlKSkpCisJd2Ffd3JpdGVfbWFz
+a2VkX29yKHdhbCwgKGFkZHIpLCAwLCBfTUFTS0VEX0ZJRUxEKChtYXNrKSwgKHZhbHVlKSkpCiAK
+IHN0YXRpYyB2b2lkIGdlbjhfY3R4X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGludGVsX2VuZ2lu
+ZV9jcyAqZW5naW5lLAogCQkJCSAgICAgIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKQEAgLTEw
+MjAsNyArMTAyNywxMCBAQCB3YV9saXN0X2FwcGx5KHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29y
+ZSwgY29uc3Qgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQogCWludGVsX3VuY29yZV9mb3JjZXdh
+a2VfZ2V0X19sb2NrZWQodW5jb3JlLCBmdyk7CiAKIAlmb3IgKGkgPSAwLCB3YSA9IHdhbC0+bGlz
+dDsgaSA8IHdhbC0+Y291bnQ7IGkrKywgd2ErKykgewotCQlpbnRlbF91bmNvcmVfcm13X2Z3KHVu
+Y29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOworCQlpZiAod2EtPm1hc2spCisJCQlp
+bnRlbF91bmNvcmVfcm13X2Z3KHVuY29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOwor
+CQllbHNlCisJCQlpbnRlbF91bmNvcmVfd3JpdGVfZncodW5jb3JlLCB3YS0+cmVnLCB3YS0+dmFs
+KTsKIAkJaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX0dFTSkpCiAJCQl3YV92
+ZXJpZnkod2EsCiAJCQkJICBpbnRlbF91bmNvcmVfcmVhZF9mdyh1bmNvcmUsIHdhLT5yZWcpLAot
+LSAKMi4yNS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
