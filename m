@@ -1,30 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D98714ECD5
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 14:03:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6CF814ED05
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 14:12:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84E806E994;
-	Fri, 31 Jan 2020 13:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7261A6E996;
+	Fri, 31 Jan 2020 13:12:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59FC16E994
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 13:03:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20072512-1500050 
- for multiple; Fri, 31 Jan 2020 13:03:20 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 13:03:19 +0000
-Message-Id: <20200131130319.2998318-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABEA66E217;
+ Fri, 31 Jan 2020 13:12:50 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 05:12:50 -0800
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223138254"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 05:12:48 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 14:12:33 +0100
+Message-Id: <20200131131234.23058-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Disable heartbeat around
- hang tests
+Subject: [Intel-gfx] [RFC PATCH i-g-t 0/1] tests/gem_mmap_offset: Exercise
+ mapping to userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,87 +41,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the heartbeat fires in the middle of the preempt-hang test, it
-consumes our forced hang disrupting the test.
+I'm adding a cover letter in case it is required for having a related
+kernel side patch been tested with this one.  Since I've proposed to
+change an error code returned by an IOCTL, this patch is expected to
+fail when tested alone, without the kernel side counterpart.
 
-Reported-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Thanks,
+Janusz
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 5e04ecb61dcc..f5214a374fb7 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -2452,15 +2452,19 @@ static int live_preempt_hang(void *arg)
- 		I915_USER_PRIORITY(I915_CONTEXT_MIN_USER_PRIORITY);
- 
- 	for_each_engine(engine, gt, id) {
-+		unsigned long heartbeat;
- 		struct i915_request *rq;
- 
- 		if (!intel_engine_has_preemption(engine))
- 			continue;
- 
-+		engine_heartbeat_disable(engine, &heartbeat);
-+
- 		rq = spinner_create_request(&spin_lo, ctx_lo, engine,
- 					    MI_ARB_CHECK);
- 		if (IS_ERR(rq)) {
- 			err = PTR_ERR(rq);
-+			engine_heartbeat_enable(engine, heartbeat);
- 			goto err_ctx_lo;
- 		}
- 
-@@ -2470,6 +2474,7 @@ static int live_preempt_hang(void *arg)
- 			GEM_TRACE_DUMP();
- 			intel_gt_set_wedged(gt);
- 			err = -EIO;
-+			engine_heartbeat_enable(engine, heartbeat);
- 			goto err_ctx_lo;
- 		}
- 
-@@ -2477,6 +2482,7 @@ static int live_preempt_hang(void *arg)
- 					    MI_ARB_CHECK);
- 		if (IS_ERR(rq)) {
- 			igt_spinner_end(&spin_lo);
-+			engine_heartbeat_enable(engine, heartbeat);
- 			err = PTR_ERR(rq);
- 			goto err_ctx_lo;
- 		}
-@@ -2491,6 +2497,7 @@ static int live_preempt_hang(void *arg)
- 			pr_err("Preemption did not occur within timeout!");
- 			GEM_TRACE_DUMP();
- 			intel_gt_set_wedged(gt);
-+			engine_heartbeat_enable(engine, heartbeat);
- 			err = -EIO;
- 			goto err_ctx_lo;
- 		}
-@@ -2505,12 +2512,15 @@ static int live_preempt_hang(void *arg)
- 			GEM_TRACE("hi spinner failed to start\n");
- 			GEM_TRACE_DUMP();
- 			intel_gt_set_wedged(gt);
-+			engine_heartbeat_enable(engine, heartbeat);
- 			err = -EIO;
- 			goto err_ctx_lo;
- 		}
- 
- 		igt_spinner_end(&spin_hi);
- 		igt_spinner_end(&spin_lo);
-+		engine_heartbeat_enable(engine, heartbeat);
-+
- 		if (igt_flush_test(gt->i915)) {
- 			err = -EIO;
- 			goto err_ctx_lo;
+Janusz Krzysztofik (1):
+  tests/gem_mmap_offset: Exercise mapping to userptr
+
+ tests/i915/gem_mmap_offset.c | 55 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
 -- 
-2.25.0
+2.21.0
 
 _______________________________________________
 Intel-gfx mailing list
