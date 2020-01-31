@@ -1,51 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E4E14F3D4
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A04EB14F3D7
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BFE56FBF2;
-	Fri, 31 Jan 2020 21:35:27 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com
- [IPv6:2a00:1450:4864:20::544])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E996E9AD
- for <Intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 14:05:26 +0000 (UTC)
-Received: by mail-ed1-x544.google.com with SMTP id p23so7892155edr.5
- for <Intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 06:05:26 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7E16FBF4;
+	Fri, 31 Jan 2020 21:35:30 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com
+ [IPv6:2a00:1450:4864:20::541])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A25AF6E9B6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 14:50:53 +0000 (UTC)
+Received: by mail-ed1-x541.google.com with SMTP id e10so8016890edv.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 06:50:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:from:date:message-id:subject:to;
- bh=9IKqpnwwrykiW85GeFOFbpJf9Qkv9AygbSAt1ehTp4o=;
- b=TlY+ynxjmth1UUPZDJdYTrc4o3EfxejsSgNBK6FX0JWmKVnY3i1Kc4liIoqcwhXQI4
- LRED+Zz/qDPZrdGNrWfz1aJC5AZ2y0tWuLub5Rj1OJoQW2rv+1ZTvu7CNkBgEQBBgG7U
- FJVA+aeicIUoJaQbo/ChMjnR3qROVvkBvbehwhEQ9zQa6TZtnjAYjqlnPm9jl6X+h2KJ
- zhMPn6H5nBTOOgIR3/MuZA4EWtB7S5qK/UOkwYx6AxgmHij3w0psQ68IOd2mxOa6OTFo
- 8NEXbwS0ZBhOzMsgv9eckrdBlHd3PbHI8Ag45p9s9y9zMzkhDJQdc4gqREl4Ygrfm2Yi
- c84g==
+ bh=rmDzB40SFo8FH/064o8OJtcjSAFb8OG30BItrnUomNI=;
+ b=auhYkKjQcWPloxllUmCLsj733jXwS65SHSHo0qLbDDvXcNbWdRzutV/FPfxyrFDCHs
+ ZYlUKsmRUUtoG3xH3UlsxeyaKdpuHtiAiodvZnPw+mZHyPTMba76A8sWrC3Podgq2jJ4
+ 7arnh4wlLMNyXEdPJzM/TZiMqnwO5uMNFRlp2W+XCGRILp0sj84u1TbZv16ngqqXEHTX
+ lTRF3Nfs97/GscceyM2ogkcOTl/IvohgKTsScUxavJT/x+LkE+jTWULaIXbN2VK/3G4p
+ WpY8uLeDCCdF5JoUiHOwd1AYEkzQ+doNUZsHcLvJhp6o/QmiPz1qHMZVkWJmtVm5Yxv8
+ aXkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=9IKqpnwwrykiW85GeFOFbpJf9Qkv9AygbSAt1ehTp4o=;
- b=sFP3BCEXv42+m7jHfCdOm/qXi8JJQjMUNA7bhPXBjG2WzQc+3DtdfBQk2T14lIUUhP
- M73jvcCUaJ9UhRYTATT/ix9UU71AKNg3vCgHf5dq+zylUOeU6Dk0jC2Ll/loy5I9uVwo
- 1tpz4rnkEXq4MvwAGg4RL2QYkntzHneyG9CPEEVdFFHfLVYGOU8a/PtV5N65Dv/fvMOO
- eiWeNPtjTFpfYp6UK7ExVO/Ys0FOOQZV2u5Evd2g6i2LAgl4QHwvBgDPX8XAxi3nzDwb
- 2V1S5iU5y/rvjUaA4Q3uahSssTicfDYX/iKUfZKNZXTzWJOVhsTWjSGW6d0iqb/wTgEn
- uTNg==
-X-Gm-Message-State: APjAAAUXBMpe/zADTOgjU+QDQkBkcB9iGCQoJiSTeUm2wW8tB0XW+vEn
- d201eEAyXthqmKvo4dhWcqmSetx+4uonE2KwE3KhBGll
-X-Google-Smtp-Source: APXvYqyOUKl2mCKZnR+23VGwjNJvSk2s9VIcUgUJZJO6BDCo9qkQ6Imy3tY0CEJ9DWFZzJEzS1bSx0OcyXvJrDxlCO8=
-X-Received: by 2002:a50:d78e:: with SMTP id w14mr414738edi.20.1580479525113;
- Fri, 31 Jan 2020 06:05:25 -0800 (PST)
+ bh=rmDzB40SFo8FH/064o8OJtcjSAFb8OG30BItrnUomNI=;
+ b=maqiwiT4zafxqAKmbk2yb9UIREQ0c+jn2aZ7NT8omwcbQnlVC4BbzHIe6uhHHQTC0V
+ UbSHJ5ETRizQr/GfldsnX0a1boxhaY2sbN5e6BzMxLe9gfF1XDPgoDJsZ38ORVCHpwxT
+ JAidPqyr6fz7JBsyAQjIQLp+JdrwwPR8cey7GMutn1p9+wloF6wyyzuj+D0kkuErsMPg
+ hDpCOTPe0u1AnEeJoObeAqkAIubW4CHZmUxHeSIXTc6MbN5/Bm1Df0b6tjPU9rjhfeKI
+ NLbrK/do6/COk0DizINH3JyUKoRjtr3J5YLLRzNwENfU2GojNkFLs+TYCR4M4hrOOo2B
+ ewYA==
+X-Gm-Message-State: APjAAAXpJiOiNlhZl51vNCXHSatnrpJqMufXurQthiIkpd3rSlA+/9px
+ 19Uoilbv+UlyX/kmJxHFvZU20i+UJzI95lW4YsJi9odt
+X-Google-Smtp-Source: APXvYqxT8WBUwaXGw6Osa2QFxiWpf7kEd6Rcv93DEZrwaC8DmtMC11VlSfbvQhWnY4lPprfVmMebNkpeM8VYRNnqTfI=
+X-Received: by 2002:aa7:dd95:: with SMTP id g21mr587326edv.355.1580482252122; 
+ Fri, 31 Jan 2020 06:50:52 -0800 (PST)
 MIME-Version: 1.0
 From: Egor Suldin <rd3tap@gmail.com>
-Date: Fri, 31 Jan 2020 17:05:13 +0300
-Message-ID: <CAEtm4fWUteSJkXUHiz0gcqjLSe+Lg36U7dJOaTGRo6_noLbFOw@mail.gmail.com>
-To: Intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 17:50:40 +0300
+Message-ID: <CAEtm4fVuQV1AYDrk1GQmKKJWKf0XszGDNMY5YbpqUe9mR9ukSA@mail.gmail.com>
+To: intel-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Fri, 31 Jan 2020 21:35:26 +0000
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/tracepoints: Don't compile-out
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tracepoints: Don't compile-out
  low-level tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,17 +59,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1484295281=="
+Content-Type: multipart/mixed; boundary="===============1434153908=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1484295281==
-Content-Type: multipart/alternative; boundary="000000000000ab50cf059d701055"
+--===============1434153908==
+Content-Type: multipart/alternative; boundary="000000000000362ec5059d70b370"
 
---000000000000ab50cf059d701055
+--000000000000362ec5059d70b370
 Content-Type: text/plain; charset="UTF-8"
 
-Hi!
+ Hi!
 I use GPUVis and now Intel Vtune Profiler. These tools don't work
 out-of-the-box on all Linux based systems for Intel integrated graphics.
 It is needed to rebuild at least i915 module. And each time when the kernel
@@ -99,26 +99,26 @@ In my view, it is not an issue. The real issue now that you cannot collect
 performance results for Intel GPU
 on Linux systems without rebuilding the i915 module. You cannot debug
 performance problems
-on the system even if you use tools from Intel. Do you have ETA for
-accepting this patch?
+on the system even if you use tools from Intel. Do you have ETA to accept
+this patch?
 
 Thanks,
 Egor
 
---000000000000ab50cf059d701055
+--000000000000362ec5059d70b370
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi!</div><div>I use GPUVis and now Intel Vtune Profil=
-er. These tools don&#39;t work out-of-the-box on all Linux based systems fo=
-r Intel integrated graphics.</div><div>It is needed to rebuild at least i91=
-5 module. And each time when the kernel is updated it is needed to rebuild =
-i915 module again.</div><div></div><div><br></div><div>&gt; No numbers from=
- (micro-)bechmarks showing how small the impact of doing<br></div><div>&gt;=
- this is? I thought John was compiling this data. It will be just a no-op<b=
-r></div><div>&gt; on the fast path, but a bit more generated code.</div><di=
-v>Have you collected the results? If not, I&#39;ve done it for you:</div><d=
-iv>
+<div dir=3D"ltr">
+<div>Hi!</div><div>I use GPUVis and now Intel Vtune Profiler. These=20
+tools don&#39;t work out-of-the-box on all Linux based systems for Intel=20
+integrated graphics.</div><div>It is needed to rebuild at least i915=20
+module. And each time when the kernel is updated it is needed to rebuild
+ i915 module again.</div><div><br></div><div>&gt; No numbers from (micro-)b=
+echmarks showing how small the impact of doing<br></div><div>&gt; this is? =
+I thought John was compiling this data. It will be just a no-op<br></div><d=
+iv>&gt; on the fast path, but a bit more generated code.</div><div>Have you=
+ collected the results? If not, I&#39;ve done it for you:</div><div>
 Benchmark
 
 for Metro 2033 Last Light Redux:</div><div>w/o events:</div><div>1st run av=
@@ -136,18 +136,14 @@ from hardware so not an issue?</div><div>In my view, it is not an issue. Th=
 e real issue now that you cannot collect performance results for Intel GPU<=
 br></div><div>on Linux systems without rebuilding the i915 module. You cann=
 ot debug performance problems</div><div> on the system even if you use tool=
-s from Intel. Do you have ETA for accepting this patch?<br></div><div></div=
-><div><br></div><div>Thanks,</div><div>Egor<br></div><div>
+s from Intel. Do you have ETA to accept this patch?<br></div><div><br></div=
+><div>Thanks,</div><div>Egor</div></div>
 
 </div>
 
-</div>
+--000000000000362ec5059d70b370--
 
-</div>
-
---000000000000ab50cf059d701055--
-
---===============1484295281==
+--===============1434153908==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,4 +154,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1484295281==--
+--===============1434153908==--
