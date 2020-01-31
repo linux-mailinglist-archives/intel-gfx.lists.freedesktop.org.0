@@ -2,41 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32DBB14EBDA
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0456214EC13
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:53:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB076E97B;
-	Fri, 31 Jan 2020 11:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4396FB1B;
+	Fri, 31 Jan 2020 11:53:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46C816E97B
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:42:55 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5D696FB1B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:53:48 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 03:42:54 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 03:53:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="323342529"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 31 Jan 2020 03:42:52 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 Jan 2020 13:42:52 +0200
-Date: Fri, 31 Jan 2020 13:42:52 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <20200131114252.GL13686@intel.com>
-References: <20200129182034.26138-1-ville.syrjala@linux.intel.com>
- <db28322f94782e13905cac3ccdaaef9e3cb665b7.camel@intel.com>
- <5a7b6710-fb66-ca0e-666b-4b98c0e8052e@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="230233376"
+Received: from amanna.iind.intel.com ([10.223.74.53])
+ by orsmga003.jf.intel.com with ESMTP; 31 Jan 2020 03:53:46 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 31 Jan 2020 17:12:58 +0530
+Message-Id: <20200131114258.22306-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <5a7b6710-fb66-ca0e-666b-4b98c0e8052e@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915/dsb: Replace HAS_DSB check
- with dsb->cmd_buf check
+Subject: [Intel-gfx] [PATCH] drm/i915/dsb: Enable lmem for dsb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,79 +40,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2020 at 03:04:17PM +0530, Manna, Animesh wrote:
-> =
+If lmem is supported DSB should use local memeory instead
+of system memory. Using local memory surely bring performance
+improvement as local memory is close to gpu. Also want to avoid
+multiple gpu using system memory.
 
-> On 30-01-2020 23:43, Souza, Jose wrote:
-> > On Wed, 2020-01-29 at 20:20 +0200, Ville Syrjala wrote:
-> >> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >>
-> >> We may want to not use the DSB even if the platform has one.
-> >> So replace the HAS_DSB check in the _put() with a cmd_buf check
-> >> that will work in either case.
-> > Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> >
-> >> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dsb.c | 3 +--
-> >>   1 file changed, 1 insertion(+), 2 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> b/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> index 9dd18144a664..12776f09f227 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> >> @@ -160,9 +160,8 @@ intel_dsb_get(struct intel_crtc *crtc)
-> >>   void intel_dsb_put(struct intel_dsb *dsb)
-> >>   {
-> >>   	struct intel_crtc *crtc =3D container_of(dsb, typeof(*crtc),
-> >> dsb);
-> >> -	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
-> >>   =
+Used LMEM api to create gem object needed for DSB command buffer.
 
-> >> -	if (!HAS_DSB(i915))
-> >> +	if (!dsb->cmd_buf)
-> =
+v1: Initial patch.
 
-> Ville and Jose,
-> =
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-> Have a concern here. In intel_dsb_get() if get failure during i915_gem_ob=
-ject_create_internal, i915_gem_object_ggtt_pin, i915_gem_object_pin_map the=
-n we may not have dsb->cmd_buf.
-> Then ref-count mechanism will break.
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 9dd18144a664..d67b6a764ba0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -6,6 +6,7 @@
+ 
+ #include "i915_drv.h"
+ #include "intel_display_types.h"
++#include "gem/i915_gem_lmem.h"
+ 
+ #define DSB_BUF_SIZE    (2 * PAGE_SIZE)
+ 
+@@ -113,7 +114,11 @@ intel_dsb_get(struct intel_crtc *crtc)
+ 
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+-	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
++	if (HAS_LMEM(i915))
++		obj = i915_gem_object_create_lmem(i915, DSB_BUF_SIZE, 0);
++	else
++		obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
++
+ 	if (IS_ERR(obj)) {
+ 		DRM_ERROR("Gem object creation failed\n");
+ 		goto out;
+-- 
+2.24.0
 
-Hmm. Yeah. The refcount WARN could easily be fixed by either
-decrementung refcount on get() fail or doing the "let's never use
-DSB" patch after the refcount inc.
-
-> I feel HAS_DSB(i915) check is better than dsb->cmd_buf otherwise need to =
-do some cleanup is intel_dsb_get() as well.
-> =
-
-> Regards,
-> Animesh
-> =
-
-> >>   		return;
-> >>   =
-
-> >>   	if (WARN_ON(dsb->refcount =3D=3D 0))
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
