@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA4F14E8E1
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 07:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EE5714E8E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 07:43:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF2AC6E948;
-	Fri, 31 Jan 2020 06:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD7826E949;
+	Fri, 31 Jan 2020 06:43:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B2F46E948
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 06:42:05 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2020 22:42:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,384,1574150400"; d="scan'208";a="253252251"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by fmsmga004.fm.intel.com with ESMTP; 30 Jan 2020 22:42:02 -0800
-Date: Fri, 31 Jan 2020 12:00:39 +0530
-From: "Bharadiya,Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-To: pankaj.laxminarayan.bharadiya@intel.com, jani.nikula@linux.intel.com,
- daniel@ffwll.ch, imre.deak@intel.com, rodrigo.vivi@intel.com,
- ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org,
- uma.shankar@intel.com
-Message-ID: <20200131063038.GA15798@plaxmina-desktop.iind.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9AE6B6E949;
+ Fri, 31 Jan 2020 06:43:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9301BA0119;
+ Fri, 31 Jan 2020 06:43:28 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: [Intel-gfx] RFC: pipe writeback design for i915
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 31 Jan 2020 06:43:28 -0000
+Message-ID: <158045300859.13124.3644138822136520467@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZGlz?=
+ =?utf-8?q?able_drm=5Fglobal=5Fmutex_for_most_drivers_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,169 +38,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I am exploring the way of implementing the pipe writeback feature in i915 and
-would like to get early feedback on design.
+== Series Details ==
 
-We have a Wireless display(WD) transcoder which can be used for capturing
-display pipe output to memory. It is generally intended for wireless display,
-but can be used for other functions such as in validation automation where crc
-based comparison is not feasible.
+Series: disable drm_global_mutex for most drivers (rev3)
+URL   : https://patchwork.freedesktop.org/series/72711/
+State : failure
 
-Bspec: 49275
+== Summary ==
 
-DRM core provides writeback connectors framework (drm_writeback.c) which can
-be used to expose hardware which can write the output from a pipe to a memory
-buffer.
+CI Bug Log - changes from CI_DRM_7847 -> Patchwork_16349
+====================================================
 
-Writeback connectors have some additional properties, which userspace can use
-to query and control them, For more details, please refer [1]
+Summary
+-------
 
-[1] https://01.org/linuxgraphics/gfx-docs/drm/gpu/drm-kms.html#writeback-connectors
+  **FAILURE**
 
+  Serious unknown changes coming with Patchwork_16349 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16349, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-In order to implement pipe writeback feature in i915 using drm writeback
-connector framework, I am exploring below possibilities.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/index.html
 
-  1. Extend the intel_connector to support writeback
-  2. Introduce new intel_writeback_connector type
-  3. ?? (any other better way?)
+Possible new issues
+-------------------
 
-1# Extend the intel_connector to support writeback
---------------------------------------------------
+  Here are the unknown changes that may have been introduced in Patchwork_16349:
 
-drm_writeback connector is of drm_connector type and intel_connector is also
-of drm_connector type.
+### IGT changes ###
 
-  +-----------------------------------------------------------------------------+
-  |                                     |                                       |
-  | struct drm_writeback_connector {    |    struct intel_connector {           |
-  |         struct drm_connector base;  |            struct drm_connector base; |
-  |         .                           |            .                          |
-  |         .                           |            .                          |
-  |         .                           |            .                          |
-  | };                                  |    };                                 |
-  |                                     |                                       |
-  +-----------------------------------------------------------------------------+
+#### Possible regressions ####
 
-I see below issues for extending intel_connector to support
-drm_writeback_connector
+  * igt@i915_selftest@live_execlists:
+    - fi-cml-u2:          [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-cml-u2/igt@i915_selftest@live_execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-cml-u2/igt@i915_selftest@live_execlists.html
 
-   - extending intel_connector as drm_writeback connector will introduce 2
-     copies of drm_connector.
+  
+Known issues
+------------
 
-        struct intel_connector {
-        		struct drm_connector base;
+  Here are the changes found in Patchwork_16349 that come from known issues:
 
-			// new addition to handle wirteback
-        		struct drm_writeback_connector wb_conn;
-        		.
-        		.
-        		.
-        };
+### IGT changes ###
 
-   - drm_writeback_connector_init() will initalize wb_conn.base (drm_connector)
-     and we extract intel_encoder related functions (update_prepare, pre_enable,
-     disable, etc) from intel_connector.base (which will never get initialized
-     for writeback connector use case)
+#### Issues hit ####
 
-     e.g. intel_display.c
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-hsw-4770r/igt@i915_selftest@live_blt.html
 
-          static void intel_encoders_update_prepare(struct intel_atomic_state *state)
-          {
-          .
-          .
-          .
-           intel_connector = to_intel_connector(connector);
-          				encoder = intel_connector_primary_encoder(intel_connector);
-          				if (!encoder->update_prepare)
-          						continue;
+  
+#### Possible fixes ####
 
-          				crtc = new_conn_state->crtc ?
-          						to_intel_crtc(new_conn_state->crtc) : NULL;
-          				encoder->update_prepare(state, encoder, crtc);
-          }
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [TIMEOUT][5] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-byt-n2820/igt@gem_close_race@basic-threads.html
 
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][7] ([fdo#108569]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-icl-y/igt@i915_selftest@live_execlists.html
 
-Extending intel_connector to support drm_writeback_connector does not seem to
-be logical to me.
-Am I missing anything here? Can someone suggest a better approach?
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [INCOMPLETE][9] ([fdo#106070] / [i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
 
+  
+#### Warnings ####
 
-2. Introduce new intel_writeback_connector connector type
----------------------------------------------------------
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#725]) -> [DMESG-FAIL][12] ([i915#553] / [i915#725])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-hsw-4770/igt@i915_selftest@live_blt.html
 
-I feel introducing the intel_writeback_connector is a logical approach, as it
-will follow the standard way of derivation from drm core structs (like
-intel_connector -> drm_connector, intel_encoder -> drm_encoder, etc)
+  * igt@runner@aborted:
+    - fi-byt-n2820:       [FAIL][13] ([i915#816]) -> [FAIL][14] ([i915#999])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-byt-n2820/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-byt-n2820/igt@runner@aborted.html
 
-        struct intel_writeback_connector {
-        		struct drm_writeback_connector base;
-        		.
-        		.
-        		.
-        };
-
-And, I am thinking of below design -
+  
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#999]: https://gitlab.freedesktop.org/drm/intel/issues/999
 
 
-         +--------------------------------------------------------------+
-         |                          DRM CORE                            |
-         |                                                              |
-         |   +-------------------------+       +--------------------+   |
-         |   | drm writeback connector |------>|   drm connector    |   |
-         |   +-------------------------+       +--------------------+   |
-         |      ^                                                  ^    |
-         +------|--------------------------------------------------|----+
-                |                       ^                          |
-                |                       |                          |
-                |                       v                          |
-                |       +--------------------------------+         |
-                |       |        intel display           |         |
-                |       |      (intel_display.c)         |         |
-                |       +--------------------------------+         |
-                |              ^                  ^                |
-                |              |                  |                |
-                |              v                  v                |
-     +-----------+       +-----------+      +-----------+       +-----------+
-     | intel     |       |           |      |   intel   |       |  intel    |
-     | writeback |<------|  intel wd | ...  |   hdmi    |------>|  connector|
-     | connector |       |           |      |           |       |           |
-     +-----------+       +-----------+      +-----------+       +-----------+
-    (intel_writeback     (intel_wd.c)       (intel_hdmi.c)      (intel_connector.c)
-     _connector.c)
+Participating hosts (47 -> 40)
+------------------------------
+
+  Additional (4): fi-bdw-gvtdvm fi-gdg-551 fi-elk-e7500 fi-kbl-7500u 
+  Missing    (11): fi-icl-1065g7 fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-bsw-cyan fi-bwr-2160 fi-skl-lmem fi-blb-e6850 fi-tgl-y fi-skl-6600u fi-kbl-r 
 
 
-   - Introduce intel_writeback_connector struct which will be of
-     drm_writeback_connector type.
-   - intel_writeback_connector.c: Will have intel writeback connector helper
-     functions.
-   - intel_wd.c: will register the drm_writeback_connector and will have
-     WD transcoder implementation
+Build changes
+-------------
 
-To support this design, we will have to modify the intel_connector
-related macros and portion display driver where intel_connector related calls
-are made(and may be some other part of code).
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7847 -> Patchwork_16349
 
-Ex:
-   - Identify the drm_connector type (drm_connector.connector_type,
-     DRM_MODE_CONNECTOR_WRITEBACK) and based on connector type select either
-     intel_connector or intel_writeback_connector and identify correct
-     intel_encoder to make encoder related calls (update_prepare, pre_enable,
-     disable, etc) 
+  CI-20190529: 20190529
+  CI_DRM_7847: 2515f8cc5d56f8791232dc6b077a370658d4cecf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16349: ad79bc5f5388f9d9888c7bd9b86c5eed776c6b00 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Is this the right approach? Do you see any issues/challenges with this?
 
-I would like to get early feedback before I really dive into code. 
-Your thoughts and suggestions are much appreciated.
+== Linux commits ==
 
-Thanks,
-Pankaj
+ad79bc5f5388 drm: Nerf drm_global_mutex BKL for good drivers
+e55cc9d8da91 drm: Push drm_global_mutex locking in drm_open
+819b18c6d96b drm/client: Rename _force to _locked
+769f93d67513 drm/fbdev-helper: don't force restores
+5b5c3976292b drm: Complain if drivers still use the ->load callback
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
