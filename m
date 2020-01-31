@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D6A814E944
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 08:57:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC6F14E946
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 08:57:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F17CF6FA90;
-	Fri, 31 Jan 2020 07:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9C256FA95;
+	Fri, 31 Jan 2020 07:57:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B7266FA88
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:57:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B0E26FA91
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:57:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20068048-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20068049-1500050 
  for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:57:17 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 07:57:14 +0000
-Message-Id: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+Date: Fri, 31 Jan 2020 07:57:15 +0000
+Message-Id: <20200131075716.2212299-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
+References: <20200131075716.2212299-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/3] drm/i915/gt: Skip rmw for masked registers
+Subject: [Intel-gfx] [CI 2/3] drm/i915: extract engine WA programming to
+ common resume function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,63 +39,126 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QSBtYXNrZWQgcmVnaXN0ZXIgZG9lcyBub3QgbmVlZCBybXcgdG8gdXBkYXRlLCBhbmQgaXQgaXMg
-YmVzdCBub3QgdG8gdXNlCnN1Y2ggYSBzZXF1ZW5jZS4KClJlcG9ydGVkLWJ5OiBWaWxsZSBTeXJq
-w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBDaHJp
-cyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8
-dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBUdnJ0a28gVXJzdWxpbiA8dHZydGtv
-LnVyc3VsaW5AaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dv
-cmthcm91bmRzLmMgfCAzMiArKysrKysrKysrKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAy
-MSBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-Z3QvaW50ZWxfd29ya2Fyb3VuZHMuYwppbmRleCA1YTdkYjI3OWY3MDIuLmU0YzJiNmQ0MmY0NiAx
-MDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCkBAIC0xMTYs
-NyArMTE2LDggQEAgc3RhdGljIHZvaWQgX3dhX2FkZChzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWws
-IGNvbnN0IHN0cnVjdCBpOTE1X3dhICp3YSkKIAkJfSBlbHNlIHsKIAkJCXdhXyA9ICZ3YWwtPmxp
-c3RbbWlkXTsKIAotCQkJaWYgKCh3YS0+bWFzayAmIH53YV8tPm1hc2spID09IDApIHsKKwkJCWlm
-ICgod2EtPm1hc2sgfCB3YV8tPm1hc2spICYmCisJCQkgICAgKHdhLT5tYXNrICYgfndhXy0+bWFz
-aykgPT0gMCkgewogCQkJCURSTV9FUlJPUigiRGlzY2FyZGluZyBvdmVyd3JpdHRlbiB3L2EgZm9y
-IHJlZyAlMDR4IChtYXNrOiAlMDh4LCB2YWx1ZTogJTA4eClcbiIsCiAJCQkJCSAgaTkxNV9tbWlv
-X3JlZ19vZmZzZXQod2FfLT5yZWcpLAogCQkJCQkgIHdhXy0+bWFzaywgd2FfLT52YWwpOwpAQCAt
-MTY3LDEyICsxNjgsNiBAQCB3YV93cml0ZV9tYXNrZWRfb3Ioc3RydWN0IGk5MTVfd2FfbGlzdCAq
-d2FsLCBpOTE1X3JlZ190IHJlZywgdTMyIG1hc2ssCiAJd2FfYWRkKHdhbCwgcmVnLCBtYXNrLCB2
-YWwsIG1hc2spOwogfQogCi1zdGF0aWMgdm9pZAotd2FfbWFza2VkX2VuKHN0cnVjdCBpOTE1X3dh
-X2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCi17Ci0Jd2Ffd3JpdGVfbWFza2Vk
-X29yKHdhbCwgcmVnLCB2YWwsIF9NQVNLRURfQklUX0VOQUJMRSh2YWwpKTsKLX0KLQogc3RhdGlj
-IHZvaWQKIHdhX3dyaXRlKHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcs
-IHUzMiB2YWwpCiB7CkBAIC0xODUsMTQgKzE4MCwyNiBAQCB3YV93cml0ZV9vcihzdHJ1Y3QgaTkx
-NV93YV9saXN0ICp3YWwsIGk5MTVfcmVnX3QgcmVnLCB1MzIgdmFsKQogCXdhX3dyaXRlX21hc2tl
-ZF9vcih3YWwsIHJlZywgdmFsLCB2YWwpOwogfQogCitzdGF0aWMgdm9pZAord2FfbWFza2VkX2Vu
-KHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCwgaTkxNV9yZWdfdCByZWcsIHUzMiB2YWwpCit7CisJ
-d2FfYWRkKHdhbCwgcmVnLCAwLCBfTUFTS0VEX0JJVF9FTkFCTEUodmFsKSwgdmFsKTsKK30KKwor
-c3RhdGljIHZvaWQKK3dhX21hc2tlZF9kaXMoc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsLCBpOTE1
-X3JlZ190IHJlZywgdTMyIHZhbCkKK3sKKwl3YV9hZGQod2FsLCByZWcsIDAsIF9NQVNLRURfQklU
-X0RJU0FCTEUodmFsKSwgdmFsKTsKK30KKwogI2RlZmluZSBXQV9TRVRfQklUX01BU0tFRChhZGRy
-LCBtYXNrKSBcCi0Jd2Ffd3JpdGVfbWFza2VkX29yKHdhbCwgKGFkZHIpLCAobWFzayksIF9NQVNL
-RURfQklUX0VOQUJMRShtYXNrKSkKKwl3YV9tYXNrZWRfZW4od2FsLCAoYWRkciksIG1hc2spCiAK
-ICNkZWZpbmUgV0FfQ0xSX0JJVF9NQVNLRUQoYWRkciwgbWFzaykgXAotCXdhX3dyaXRlX21hc2tl
-ZF9vcih3YWwsIChhZGRyKSwgKG1hc2spLCBfTUFTS0VEX0JJVF9ESVNBQkxFKG1hc2spKQorCXdh
-X21hc2tlZF9kaXMod2FsLCAoYWRkciksIG1hc2spCiAKICNkZWZpbmUgV0FfU0VUX0ZJRUxEX01B
-U0tFRChhZGRyLCBtYXNrLCB2YWx1ZSkgXAotCXdhX3dyaXRlX21hc2tlZF9vcih3YWwsIChhZGRy
-KSwgKG1hc2spLCBfTUFTS0VEX0ZJRUxEKChtYXNrKSwgKHZhbHVlKSkpCisJd2Ffd3JpdGVfbWFz
-a2VkX29yKHdhbCwgKGFkZHIpLCAwLCBfTUFTS0VEX0ZJRUxEKChtYXNrKSwgKHZhbHVlKSkpCiAK
-IHN0YXRpYyB2b2lkIGdlbjhfY3R4X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGludGVsX2VuZ2lu
-ZV9jcyAqZW5naW5lLAogCQkJCSAgICAgIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkKQEAgLTEw
-MjAsNyArMTAyNywxMCBAQCB3YV9saXN0X2FwcGx5KHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29y
-ZSwgY29uc3Qgc3RydWN0IGk5MTVfd2FfbGlzdCAqd2FsKQogCWludGVsX3VuY29yZV9mb3JjZXdh
-a2VfZ2V0X19sb2NrZWQodW5jb3JlLCBmdyk7CiAKIAlmb3IgKGkgPSAwLCB3YSA9IHdhbC0+bGlz
-dDsgaSA8IHdhbC0+Y291bnQ7IGkrKywgd2ErKykgewotCQlpbnRlbF91bmNvcmVfcm13X2Z3KHVu
-Y29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOworCQlpZiAod2EtPm1hc2spCisJCQlp
-bnRlbF91bmNvcmVfcm13X2Z3KHVuY29yZSwgd2EtPnJlZywgd2EtPm1hc2ssIHdhLT52YWwpOwor
-CQllbHNlCisJCQlpbnRlbF91bmNvcmVfd3JpdGVfZncodW5jb3JlLCB3YS0+cmVnLCB3YS0+dmFs
-KTsKIAkJaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9JOTE1X0RFQlVHX0dFTSkpCiAJCQl3YV92
-ZXJpZnkod2EsCiAJCQkJICBpbnRlbF91bmNvcmVfcmVhZF9mdyh1bmNvcmUsIHdhLT5yZWcpLAot
-LSAKMi4yNS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+The workarounds are a common "feature" across gens and submission
+mechanisms and we already call the other WA related functions from
+common engine ones (<setup/cleanup>_common), so it makes sense to
+do the same with WA application. Medium-term, This will help us
+reduce the duplication once the GuC resume function is added, but short
+term it will also allow us to use the workaround lists for pre-gen8
+engine workarounds.
+
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h    |  2 ++
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 14 ++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c     |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c       |  3 ---
+ drivers/gpu/drm/i915/gt/intel_reset.c     |  4 ++--
+ 5 files changed, 19 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index 5df003061e44..b36ec1fddc3d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -192,6 +192,8 @@ void intel_engines_free(struct intel_gt *gt);
+ int intel_engine_init_common(struct intel_engine_cs *engine);
+ void intel_engine_cleanup_common(struct intel_engine_cs *engine);
+ 
++int intel_engine_resume(struct intel_engine_cs *engine);
++
+ int intel_ring_submission_setup(struct intel_engine_cs *engine);
+ 
+ int intel_engine_stop_cs(struct intel_engine_cs *engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 86af5edd6933..b1c7b1ed6149 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -841,6 +841,20 @@ void intel_engine_cleanup_common(struct intel_engine_cs *engine)
+ 	intel_wa_list_free(&engine->whitelist);
+ }
+ 
++/**
++ * intel_engine_resume - re-initializes the HW state of the engine
++ * @engine: Engine to resume.
++ *
++ * Returns zero on success or an error code on failure.
++ */
++int intel_engine_resume(struct intel_engine_cs *engine)
++{
++	intel_engine_apply_workarounds(engine);
++	intel_engine_apply_whitelist(engine);
++
++	return engine->resume(engine);
++}
++
+ u64 intel_engine_get_active_head(const struct intel_engine_cs *engine)
+ {
+ 	struct drm_i915_private *i915 = engine->i915;
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+index d1c2f034296a..8b653c0f5e5f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.c
+@@ -216,7 +216,7 @@ int intel_gt_resume(struct intel_gt *gt)
+ 		intel_engine_pm_get(engine);
+ 
+ 		engine->serial++; /* kernel context lost */
+-		err = engine->resume(engine);
++		err = intel_engine_resume(engine);
+ 
+ 		intel_engine_pm_put(engine);
+ 		if (err) {
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 5906fc7df2a4..c196fb90c59f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -3435,9 +3435,6 @@ static bool unexpected_starting_state(struct intel_engine_cs *engine)
+ 
+ static int execlists_resume(struct intel_engine_cs *engine)
+ {
+-	intel_engine_apply_workarounds(engine);
+-	intel_engine_apply_whitelist(engine);
+-
+ 	intel_mocs_init_engine(engine);
+ 
+ 	intel_engine_reset_breadcrumbs(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index d77a1a32da78..a8317e046f81 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -986,7 +986,7 @@ static int resume(struct intel_gt *gt)
+ 	int ret;
+ 
+ 	for_each_engine(engine, gt, id) {
+-		ret = engine->resume(engine);
++		ret = intel_engine_resume(engine);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -1161,7 +1161,7 @@ int intel_engine_reset(struct intel_engine_cs *engine, const char *msg)
+ 	 * have been reset to their default values. Follow the init_ring
+ 	 * process to program RING_MODE, HWSP and re-enable submission.
+ 	 */
+-	ret = engine->resume(engine);
++	ret = intel_engine_resume(engine);
+ 
+ out:
+ 	intel_engine_cancel_stop_cs(engine);
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
