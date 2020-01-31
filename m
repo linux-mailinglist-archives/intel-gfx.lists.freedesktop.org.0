@@ -2,31 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AB114EB99
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:17:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1E314EBA0
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 12:21:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58D76FB02;
-	Fri, 31 Jan 2020 11:17:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2726A6FB07;
+	Fri, 31 Jan 2020 11:20:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557916FB02
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 11:17:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20070980-1500050 
- for multiple; Fri, 31 Jan 2020 11:17:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 31 Jan 2020 11:17:11 +0000
-Message-Id: <20200131111711.2546105-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200131081543.2251298-2-chris@chris-wilson.co.uk>
-References: <20200131081543.2251298-2-chris@chris-wilson.co.uk>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FB66FB0A;
+ Fri, 31 Jan 2020 11:20:58 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 03:20:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="278062747"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 31 Jan 2020 03:20:55 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 31 Jan 2020 13:20:54 +0200
+Date: Fri, 31 Jan 2020 13:20:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200131112054.GK13686@intel.com>
+References: <20200117015837.402239-1-jose.souza@intel.com>
+ <20200117015837.402239-4-jose.souza@intel.com>
+ <20200130172502.GH13686@intel.com>
+ <2c578720445cfb0a036502b7dba94f1ebd2e8ca0.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Also wait for the scratch
- buffer to be bound
+Content-Disposition: inline
+In-Reply-To: <2c578720445cfb0a036502b7dba94f1ebd2e8ca0.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/display: Set
+ TRANS_DDI_MODE_SELECT to default value when disabling TRANS_DDI
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,64 +51,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since PIN_GLOBAL is no longer guaranteed to be synchronous, we must no
-forget to include a wait-for-vma prior to execution.
+On Thu, Jan 30, 2020 at 08:07:07PM +0000, Souza, Jose wrote:
+> On Thu, 2020-01-30 at 19:25 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Thu, Jan 16, 2020 at 05:58:37PM -0800, Jos=E9 Roberto de Souza
+> > wrote:
+> > > TGL timeouts when disabling MST transcoder and fifo underruns over
+> > > MST
+> > > transcoders are fixed when setting TRANS_DDI_MODE_SELECT to 0(HDMI
+> > > mode) during the disable sequence.
+> > > =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c    | 10 ++++++++++
- drivers/gpu/drm/i915/gt/selftest_workarounds.c |  9 +++++++++
- 2 files changed, 19 insertions(+)
+> > > Although BSpec disable sequence don't require this step it is a
+> > > harmless change and it is also done by Windows driver.
+> > > Anyhow HW team was notified about that but it can take some time to
+> > > documentation to be updated.
+> > > =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 5a7db279f702..8d7c3191137c 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1612,6 +1612,16 @@ static int engine_wa_list_verify(struct intel_context *ce,
- 		goto err_vma;
- 	}
- 
-+	i915_vma_lock(vma);
-+	err = i915_request_await_object(rq, vma->obj, true);
-+	if (err == 0)
-+		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
-+	i915_vma_unlock(vma);
-+	if (err) {
-+		i915_request_add(rq);
-+		goto err_vma;
-+	}
-+
- 	err = wa_list_srm(rq, wal, vma);
- 	if (err)
- 		goto err_vma;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_workarounds.c b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-index ac1921854cbf..5ed323254ee1 100644
---- a/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_workarounds.c
-@@ -583,6 +583,15 @@ static int check_dirty_whitelist(struct intel_context *ce)
- 		if (err)
- 			goto err_request;
- 
-+		i915_vma_lock(scratch);
-+		err = i915_request_await_object(rq, scratch->obj, true);
-+		if (err == 0)
-+			err = i915_vma_move_to_active(scratch, rq,
-+						      EXEC_OBJECT_WRITE);
-+		i915_vma_unlock(scratch);
-+		if (err)
-+			goto err_request;
-+
- 		err = engine->emit_bb_start(rq,
- 					    batch->node.start, PAGE_SIZE,
- 					    0);
--- 
-2.25.0
+> > > A case that always lead to those issues is:
+> > > - do a modeset enabling pipe A and pipe B in the same MST stream
+> > > leaving A as master
+> > > - disable pipe A, promote B as master doing a full modeset in A
+> > > - enable pipe A, changing the master transcoder back to A(doing a
+> > > full modeset in B)
+> > > - Pow: underruns and timeouts
+> > > =
 
+> > > The transcoders involved will only work again when complete
+> > > disabled
+> > > and their power wells turned off causing a reset in their
+> > > registers.
+> > > =
+
+> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > index 32ea3c7e8b62..82e90f271974 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -1997,6 +1997,7 @@ void intel_ddi_disable_transcoder_func(const
+> > > struct intel_crtc_state *crtc_state
+> > >  =
+
+> > >  	val =3D I915_READ(TRANS_DDI_FUNC_CTL(cpu_transcoder));
+> > >  	val &=3D ~TRANS_DDI_FUNC_ENABLE;
+> > > +	val &=3D ~TRANS_DDI_MODE_SELECT_MASK;
+> > =
+
+> > Feels a bit early since IIRC we still leave a bunch of other stuff
+> > enabled/selected here. In fact we don't seem to be clearing the DDI
+> > select
+> > anywhere at all? That one I would be more suspicious of than the
+> > mode.
+> > But maybe we should just clear both somewhere? I would suggest it
+> > should
+> > be when we clear the port select finally.
+> =
+
+> We are clearing DDI select, in our code it is named as
+> TGL_TRANS_DDI_PORT_MASK/TRANS_DDI_PORT_MASK.
+> =
+
+> For TGL in MST mode we clear DDI select in the block below for MST
+> slaves and then in intel_ddi_post_disable_dp() for MST master as
+> instructed by Display port sequences.
+
+Ah. Hmm, so that can't be it then. Bummer. I guess I would still feel
+a bit safer if we clear the mode select alongside the the DDI select
+for the master. Since the spec says the DDI select must remain set for
+the master there must be something still going on, and so I worry that
+something might not work quite right if we change the mode
+prematurely.
+
+> =
+
+> > =
+
+> > >  =
+
+> > >  	if (INTEL_GEN(dev_priv) >=3D 12) {
+> > >  		if (!intel_dp_mst_is_master_trans(crtc_state))
+> > > -- =
+
+> > > 2.25.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
