@@ -1,31 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EE5714E8E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 07:43:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6365D14E925
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 08:34:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD7826E949;
-	Fri, 31 Jan 2020 06:43:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 291AA6E94F;
+	Fri, 31 Jan 2020 07:34:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9AE6B6E949;
- Fri, 31 Jan 2020 06:43:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9301BA0119;
- Fri, 31 Jan 2020 06:43:28 +0000 (UTC)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98D196E94F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 07:34:20 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id z3so7432832wru.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2020 23:34:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=owDgY2hN74svhwO6V6vESJaP7KSYIDvwh0UpgYJP8tc=;
+ b=W5QRTWPq5V1gfy2LTbkoaVWqpWIoew8i2DeZXV+kuXCdSPClSdS8DrQsRlQaLiqrn7
+ SabGhJ0iUS/0C9J+n+RaDAKKMwWFY6K5vb6OVMjFSFlUUU9UYeC80j6CVbXtvdWem14s
+ IsH/Hjq9Oa5D0p7TSXPBQTztEm1Mcdgik97M1ALqmknH/s18LhzHAHlhoyE14iXhsW3W
+ GiTb0w9nkasDAUls/iGZp+RyZP+T8wiYazTdY1DAVB4e7F6+Zeit+HobTIrVOuZbNaNp
+ tbtcHlWhTEqviWnCbABW5hHpVC3tN9c40PnMngS1eOjUo5SqMFNmth405QeznNdb925G
+ VSgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=owDgY2hN74svhwO6V6vESJaP7KSYIDvwh0UpgYJP8tc=;
+ b=B0L9o4c5s804rAO+oQ6QyG+m1iDZ1HwJcuXqRh/x0MnBGccVIZ21RacUWER8YklChk
+ I/EWveT9icxwoCXSZk81J4KvDjoHk2EjFXtgmtNzzWi1lQyD1mmdex+GaZPbeabes0lb
+ 94/uxsRMt1dKgGbCMK5k+dDkPWUSil4uCFvgkJl+aDt+s8fjuqNuBD5npRY1e79rTMCV
+ NZdSdoY5yzVXfE1XvF9465zGGznPawO5YbqcqBebAl2D5R9tBvptLBeWCbbk9ONNt5eJ
+ uMhZmW0cnARMGbHilTDMQS6xD1EvcCZiSRvSa1xMg9FWnmfUgxEIgP0Nf4pek0pQY5hI
+ j01w==
+X-Gm-Message-State: APjAAAVcSkk1McN7TL7uQ7HcEPRw/+T6T5C0BLdpWZCiNLqm2ILQzo9o
+ AG6babOd1jEg/Bg/IwGZP6ATsrZWz92IVd9PITKrLA==
+X-Google-Smtp-Source: APXvYqxE2D1GUZqbFQ7juYd6KtGB0wWZIYc2Q/xIq23fGh/WL0GBK5zKH9bzu3lOwV9+kWP54Y3iKcuDHp21ot8TOJQ=
+X-Received: by 2002:a5d:6445:: with SMTP id d5mr8923297wrw.244.1580456059067; 
+ Thu, 30 Jan 2020 23:34:19 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Fri, 31 Jan 2020 06:43:28 -0000
-Message-ID: <158045300859.13124.3644138822136520467@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZGlz?=
- =?utf-8?q?able_drm=5Fglobal=5Fmutex_for_most_drivers_=28rev3=29?=
+References: <20180705101043.4883-1-daniel.vetter@ffwll.ch>
+ <20180705102121.5091-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20180705102121.5091-1-daniel.vetter@ffwll.ch>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Fri, 31 Jan 2020 07:34:00 +0000
+Message-ID: <CAPj87rN48S8+pLd0ksOX4pdCTqtO=bDgjhkPxpWr_AnpVvgaSQ@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
+ nonblocking atomic modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,140 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 5 Jul 2018 at 11:21, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
+> pull in arbitrary other resources, including CRTCs (e.g. when
+> reconfiguring global resources).
+>
+> But in nonblocking mode userspace has then no idea this happened,
+> which can lead to spurious EBUSY calls, both:
+> - when that other CRTC is currently busy doing a page_flip the
+>   ALLOW_MODESET commit can fail with an EBUSY
+> - on the other CRTC a normal atomic flip can fail with EBUSY because
+>   of the additional commit inserted by the kernel without userspace's
+>   knowledge
+>
+> For blocking commits this isn't a problem, because everyone else will
+> just block until all the CRTC are reconfigured. Only thing userspace
+> can notice is the dropped frames without any reason for why frames got
+> dropped.
+>
+> Consensus is that we need new uapi to handle this properly, but no one
+> has any idea what exactly the new uapi should look like. As a stop-gap
+> plug this problem by demoting nonblocking commits which might cause
+> issues by including CRTCs not in the original request to blocking
+> commits.
 
-Series: disable drm_global_mutex for most drivers (rev3)
-URL   : https://patchwork.freedesktop.org/series/72711/
-State : failure
+Thanks for writing this up Daniel, and for reminding me about it some
+time later as well ...
 
-== Summary ==
+Reviewed-by: Daniel Stone <daniels@collabora.com>
 
-CI Bug Log - changes from CI_DRM_7847 -> Patchwork_16349
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16349 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16349, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16349:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-cml-u2:          [PASS][1] -> [TIMEOUT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-cml-u2/igt@i915_selftest@live_execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-cml-u2/igt@i915_selftest@live_execlists.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16349 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [TIMEOUT][5] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [DMESG-FAIL][7] ([fdo#108569]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-icl-y/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [INCOMPLETE][9] ([fdo#106070] / [i915#424]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][11] ([i915#725]) -> [DMESG-FAIL][12] ([i915#553] / [i915#725])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@runner@aborted:
-    - fi-byt-n2820:       [FAIL][13] ([i915#816]) -> [FAIL][14] ([i915#999])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7847/fi-byt-n2820/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/fi-byt-n2820/igt@runner@aborted.html
-
-  
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#999]: https://gitlab.freedesktop.org/drm/intel/issues/999
-
-
-Participating hosts (47 -> 40)
-------------------------------
-
-  Additional (4): fi-bdw-gvtdvm fi-gdg-551 fi-elk-e7500 fi-kbl-7500u 
-  Missing    (11): fi-icl-1065g7 fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-bsw-cyan fi-bwr-2160 fi-skl-lmem fi-blb-e6850 fi-tgl-y fi-skl-6600u fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7847 -> Patchwork_16349
-
-  CI-20190529: 20190529
-  CI_DRM_7847: 2515f8cc5d56f8791232dc6b077a370658d4cecf @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5407: a9d69f51dadbcbc53527671f87572d05c3370cba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16349: ad79bc5f5388f9d9888c7bd9b86c5eed776c6b00 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ad79bc5f5388 drm: Nerf drm_global_mutex BKL for good drivers
-e55cc9d8da91 drm: Push drm_global_mutex locking in drm_open
-819b18c6d96b drm/client: Rename _force to _locked
-769f93d67513 drm/fbdev-helper: don't force restores
-5b5c3976292b drm: Complain if drivers still use the ->load callback
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16349/index.html
+Cheers,
+Daniel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
