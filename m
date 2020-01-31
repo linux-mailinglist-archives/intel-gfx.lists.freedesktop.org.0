@@ -1,47 +1,99 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54E914F3D5
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB6614F3D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 22:35:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBE6D6FBF3;
-	Fri, 31 Jan 2020 21:35:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D94356FBF6;
+	Fri, 31 Jan 2020 21:35:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 314 seconds by postgrey-1.36 at gabe;
- Fri, 31 Jan 2020 15:11:31 UTC
-Received: from forward105o.mail.yandex.net (forward105o.mail.yandex.net
- [37.140.190.183])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D6E6E9BB
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 15:11:31 +0000 (UTC)
-Received: from mxback28g.mail.yandex.net (mxback28g.mail.yandex.net
- [IPv6:2a02:6b8:0:1472:2741:0:8b7:328])
- by forward105o.mail.yandex.net (Yandex) with ESMTP id C8E474200DED
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 18:06:12 +0300 (MSK)
-Received: from localhost (localhost [::1])
- by mxback28g.mail.yandex.net (mxback/Yandex) with ESMTP id ZTnaPMYRrd-6Cf4tG2b;
- Fri, 31 Jan 2020 18:06:12 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.com; s=mail;
- t=1580483172; bh=U+EbfvRFDILsQ8GCbH1kd7qWP0FtTeufjvs2/oR83Ho=;
- h=Message-Id:Date:Subject:To:From;
- b=jXHwV1LkNEiH141YslK/oZroTEuPXJo3VOaDwXqFn+vV3zchJbNHX6zc7DtYc6DL9
- YdSXRVeFfDI7OWePvlaDG0S2ecKzbIAiQGD/H/RWREEbtskQLJtZLGGcWoJjrxabjZ
- 42vJaiw6uvTdsuWRnYXOo0xWZO1ROb/Ty/ZGtG5I=
-Authentication-Results: mxback28g.mail.yandex.net;
- dkim=pass header.i=@yandex.com
-Received: by sas2-4fe1bb3c0a49.qloud-c.yandex.net with HTTP;
- Fri, 31 Jan 2020 18:06:12 +0300
-From: ##### ##### <rd3tap@yandex.com>
-Envelope-From: rd3tap@yandex.ru
-To: intel-gfx@lists.freedesktop.org
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2078.outbound.protection.outlook.com [40.107.237.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3DA26E23D;
+ Fri, 31 Jan 2020 20:24:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=JTwvQlUpkBvZ4gWCiYAS71hym+l9sqOgrzmea6UywJ5ec9Nb97ErzDqaKASQ7dtOh3L3GZ62bXdM3+pfz1tlDQvykyEnVJOJJBViKMm7cVREIAiydKmGpcGhD7zRd0+GoO534pSnufWEdv1ImHQW0Ux0cc0q7AlHfQGFmDpqM/4/+Br3kSDIR46N97ad814mZe9Vktt/NF1GLvCmDiIEEdNq/8B2oLFzZEB72Nj8yTiQa9Pa0ZyITD8aWVMM1H03Yk0NAXDU29K+bLF6WhKPPnaN1QEvSRbO5z/wE2ez/rDimrIW6zeMpv0bjnI+5Tj/X1cRSCRJxHFqr/1byjR9zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3PacQ0liBxEnuqspbDm+qjz52BplWu6gwKmxy7n8DjQ=;
+ b=BjhPGPb3eSiLtkz07Ictb8G232QXe9DlyOdcF1s8U82VPB3LArifJ4dAgQy9vH95Sq/KynQEFD3e772nnUMZqe+jLGZ7sU9f/xx961aRMajYhj/XWTTzXCIFJzpKyYAUXhJX1udzdZRYMd6+ONo9SBFA2lqXfiga1ccYTcX9BXHoIyYC3m0AfRqd0m6iXotPs55K4l9lRIhEWnIx5ZVyM27aGc1unuh6Vm+s+Erw7ecxusLXwzcyky7KqP56/xLWJQcpSJAlgBfazUiWj3xQMAuLBCMa1jmAV/irHYg/2pVK2BEWLt1s5k+7fwB5+KvLnYtztbETi99OjtO8939OTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=permerror action=none header.from=amd.com; dkim=none (message not
+ signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3PacQ0liBxEnuqspbDm+qjz52BplWu6gwKmxy7n8DjQ=;
+ b=drKcKg/4UkzluVmvYwcufmGphYQahvQABdoUajIru0vZhLweoNkMo3HWjgEXECLcVgenYbtzO4VTNTGL5+2RT2Wfs6PlpqXtX8yNqHp78AO69nSDCKwiQ4j0KtKku9uLMqE9VShNeuuSEjhdmKi85relRvwGG8cXWCc/xM+0Taw=
+Received: from BN6PR1201CA0022.namprd12.prod.outlook.com
+ (2603:10b6:405:4c::32) by DM6PR12MB3196.namprd12.prod.outlook.com
+ (2603:10b6:5:187::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.24; Fri, 31 Jan
+ 2020 20:24:58 +0000
+Received: from BN8NAM11FT015.eop-nam11.prod.protection.outlook.com
+ (2a01:111:f400:7eae::200) by BN6PR1201CA0022.outlook.office365.com
+ (2603:10b6:405:4c::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2686.28 via Frontend
+ Transport; Fri, 31 Jan 2020 20:24:58 +0000
+Authentication-Results: spf=none (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=permerror action=none
+ header.from=amd.com;
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+Received: from SATLEXMB02.amd.com (165.204.84.17) by
+ BN8NAM11FT015.mail.protection.outlook.com (10.13.176.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.2686.25 via Frontend Transport; Fri, 31 Jan 2020 20:24:57 +0000
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB02.amd.com
+ (10.181.40.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
+ 2020 14:24:56 -0600
+Received: from SATLEXMB01.amd.com (10.181.40.142) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 31 Jan
+ 2020 14:24:56 -0600
+Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB01.amd.com
+ (10.181.40.142) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Fri, 31 Jan 2020 14:24:56 -0600
+From: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
+To: <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <amd-gfx@lists.freedesktop.org>
+Date: Fri, 31 Jan 2020 15:24:51 -0500
+Message-ID: <20200131202451.8994-1-Jerry.Zuo@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Mailer: Yamail [ http://yandex.ru ] 5.0
-Date: Fri, 31 Jan 2020 18:06:12 +0300
-Message-Id: <760391580483172@sas2-4fe1bb3c0a49.qloud-c.yandex.net>
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:165.204.84.17; IPV:; CTRY:US; EFV:NLI;
+ SFV:NSPM;
+ SFS:(10009020)(4636009)(136003)(39860400002)(376002)(396003)(346002)(428003)(189003)(199004)(81166006)(81156014)(70586007)(186003)(8936002)(26005)(70206006)(4326008)(36756003)(336012)(86362001)(6666004)(2616005)(5660300002)(54906003)(7696005)(1076003)(2906002)(110136005)(478600001)(356004)(316002)(426003)(8676002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB3196; H:SATLEXMB02.amd.com; FPR:;
+ SPF:None; LANG:en; PTR:InfoDomainNonexistent; MX:1; A:1; 
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ec4b3ba8-12a4-4e51-3a2e-08d7a68ba3eb
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3196:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB3196FB26868D63EA1D565CDEE5070@DM6PR12MB3196.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:820;
+X-Forefront-PRVS: 029976C540
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ov4CRJAc3m/rMj6uhyh7wOjlfJ63D5WozvIC65uDOWq/94X3+hcTawqRA82LD0LFpLYBBHb/bCBO7JCRMMpGlngGdzVEVfM/BIYgRsGvmUJP6ZTaiVZI96eldPbKT4y2HKqUqUKUowM2rkRmAc75ET04J6v88XL8EGmuxGLh+r7PM28Jk8RB6QzaC61bkQ3fnSr/7F5Ze8hTtb+skpv+CYeZ9RBmQkDeb1/4/nE8fAvihhQYyO5gLjNkVi3/CeG6KMt+AZ33CCiMH8SW7vh7j5oY3scyQQwrvRGMy+2Wm7rgLdNjjIHijCksAFrGFuaq8DC1qZdoV3+A6ll5fP7KACtvBfLMl+4iKIwPCLL2EJXY6BCVaN2RJR5f60Dpyq3AqNvrQ0n4ncEAOghQq9xfD1XSPJgD5JpC8qJckKO27VSQe92lfCa1Zkue3dLqgdaH
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Jan 2020 20:24:57.6551 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec4b3ba8-12a4-4e51-3a2e-08d7a68ba3eb
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB02.amd.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3196
 X-Mailman-Approved-At: Fri, 31 Jan 2020 21:35:26 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/tracepoints: Don't
-	compile-out	 low-level tracepoints
+Subject: [Intel-gfx] [PATCH V5] drm: Add support for DP 1.4 Compliance edid
+ corruption test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,56 +106,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0179623364=="
+Cc: rodrigo.siqueira@amd.com, Jerry.Zuo@amd.com, Alexander.Deucher@amd.com,
+ harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0179623364==
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset=utf-8
+Unlike DP 1.2 edid corruption test, DP 1.4 requires to calculate
+real CRC value of the last edid data block, and write it back.
+Current edid CRC calculates routine adds the last CRC byte,
+and check if non-zero.
 
-PGRpdj48ZGl2PkhpITwvZGl2PjxkaXY+SSB1c2UgR1BVVmlzIGFuZCBub3cgSW50ZWwgVnR1bmUg
-UHJvZmlsZXIuIFRoZXNlIHRvb2xzIGRvbid0IHdvcmsgb3V0LW9mLXRoZS1ib3ggb24gYWxsIExp
-bnV4IGJhc2VkIHN5c3RlbXMgZm9yIEludGVsIGludGVncmF0ZWQgZ3JhcGhpY3MuPC9kaXY+PGRp
-dj5JdCBpcyBuZWVkZWQgdG8gcmVidWlsZCBhdCBsZWFzdCBpOTE1IG1vZHVsZS4gQW5kIGVhY2gg
-dGltZSB3aGVuIHRoZSBrZXJuZWwgaXMgdXBkYXRlZCBpdCBpcyBuZWVkZWQgdG8gcmVidWlsZCBp
-OTE1IG1vZHVsZSBhZ2Fpbi48L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj4mZ3Q7IE5vIG51bWJlcnMg
-ZnJvbSAobWljcm8tKWJlY2htYXJrcyBzaG93aW5nIGhvdyBzbWFsbCB0aGUgaW1wYWN0IG9mIGRv
-aW5nPC9kaXY+PGRpdj4mZ3Q7IHRoaXMgaXM/IEkgdGhvdWdodCBKb2huIHdhcyBjb21waWxpbmcg
-dGhpcyBkYXRhLiBJdCB3aWxsIGJlIGp1c3QgYSBuby1vcDwvZGl2PjxkaXY+Jmd0OyBvbiB0aGUg
-ZmFzdCBwYXRoLCBidXQgYSBiaXQgbW9yZSBnZW5lcmF0ZWQgY29kZS48L2Rpdj48ZGl2PkhhdmUg
-eW91IGNvbGxlY3RlZCB0aGUgcmVzdWx0cz8gSWYgbm90LCBJJ3ZlIGRvbmUgaXQgZm9yIHlvdTo8
-L2Rpdj48ZGl2PkJlbmNobWFyayBmb3IgTWV0cm8gMjAzMyBMYXN0IExpZ2h0IFJlZHV4OjwvZGl2
-PjxkaXY+dy9vIGV2ZW50czo8L2Rpdj48ZGl2PjFzdCBydW4gYXZlci4gZnBzOiAzNi4wNjwvZGl2
-PjxkaXY+Mm5kIHJ1biBhdmVyLiBmcHM6IDM1Ljg3PC9kaXY+PGRpdj53IGV2ZW50czo8L2Rpdj48
-ZGl2PjxkaXY+MXN0IHJ1biBhdmVyLiBmcHM6IDM2LjA1PC9kaXY+PGRpdj4ybmQgcnVuIGF2ZXIu
-IGZwczogMzUuOTI8L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj5UaGVyZSBpcyBubyBkaWZmZXJlbmNl
-LiBJdCB3YXMgcnVuIG9uIEludGVsIENvcmUgaTktOTkwMEsgQ1BVIEAgMy42MEdIeiBvbiBpbnRl
-Z3JhdGVkIGdyYXBoaWNzLjwvZGl2PjxkaXY+wqA8L2Rpdj48ZGl2PiZndDsgQXNzdW1pbmcgdGhh
-dCB3aWxsIGJlIGZpbmUsIHRoZSBvbmx5IHBvdGVudGlhbGx5IHByb2JsZW1hdGljIGFzcGVjdCB0
-aGF0PC9kaXY+PGRpdj4mZ3Q7IGNvbWVzIHRvIG1pbmQgaXMgdGhlIGZhY3QgbWVhbmluZyBvZiB0
-aGVzZSB0cmFjZXBvaW50cyBpcyBhIGJpdDwvZGl2PjxkaXY+Jmd0OyBkaWZmZXJlbnQgYmV0d2Vl
-biBleGVjbGlzdHMgYW5kIGd1Yy4gQnV0IG1heWJlIHRoYXQgaXMgdGhpbmtpbmcgdG8gbG93PC9k
-aXY+PGRpdj4mZ3Q7IGxldmVsICghKSAtIGluIGZhY3QgdGhleSBhcmUgaW4gYm90aCBjYXNlcyBh
-dCBwb2ludHMgd2hlcmUgaTkxNSBpczwvZGl2PjxkaXY+Jmd0O3Bhc3NpbmcvcmVjZWl2aW5nIHJl
-cXVlc3RzIHRvL2Zyb20gaGFyZHdhcmUgc28gbm90IGFuIGlzc3VlPzwvZGl2PjxkaXY+SW4gbXkg
-dmlldywgaXQgaXMgbm90IGFuIGlzc3VlLiBUaGUgcmVhbCBpc3N1ZSBub3cgdGhhdCB5b3UgY2Fu
-bm90IGNvbGxlY3QgcGVyZm9ybWFuY2UgcmVzdWx0cyBmb3IgSW50ZWwgR1BVPC9kaXY+PGRpdj5v
-biBMaW51eCBzeXN0ZW1zIHdpdGhvdXQgcmVidWlsZGluZyB0aGUgaTkxNSBtb2R1bGUuIFlvdSBj
-YW5ub3QgZGVidWcgcGVyZm9ybWFuY2UgcHJvYmxlbXM8L2Rpdj48ZGl2Pm9uIHRoZSBzeXN0ZW0g
-ZXZlbiBpZiB5b3UgdXNlIHRvb2xzIGZyb20gSW50ZWwuIERvIHlvdSBoYXZlIEVUQSB0byBhY2Nl
-cHQgdGhpcyBwYXRjaD88L2Rpdj48ZGl2PsKgPC9kaXY+PGRpdj5UaGFua3MsPC9kaXY+PGRpdj5F
-Z29yPC9kaXY+PC9kaXY+PC9kaXY+
+This behavior is not accurate; actually, we need to return
+the actual CRC value when corruption is detected.
+This commit changes this issue by returning the calculated CRC,
+and initiate the required sequence.
 
---===============0179623364==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Change since v5
+- Obtain real CRC value before dumping bad edid
+
+Change since v4
+- Fix for CI.CHECKPATCH
+
+Change since v3
+- Fix a minor typo.
+
+Change since v2
+- Rewrite checksum computation routine to avoid duplicated code.
+- Rename to avoid confusion.
+
+Change since v1
+- Have separate routine for returning real CRC.
+
+Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
+---
+ drivers/gpu/drm/drm_dp_helper.c | 35 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_edid.c      | 23 ++++++++++++++++++----
+ include/drm/drm_connector.h     |  6 ++++++
+ include/drm/drm_dp_helper.h     |  3 +++
+ 4 files changed, 63 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index f629fc5494a4..18b285fa1a42 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -351,6 +351,41 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
+ }
+ EXPORT_SYMBOL(drm_dp_dpcd_read_link_status);
+ 
++/**
++ * drm_dp_send_real_edid_checksum() - send back real edid checksum value
++ * @aux: DisplayPort AUX channel
++ * @real_edid_checksum: real edid checksum for the last block
++ *
++ * Returns true on success
++ */
++bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
++                                    u8 real_edid_checksum)
++{
++	u8 link_edid_read = 0, auto_test_req = 0, test_resp = 0;
++
++	drm_dp_dpcd_read(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req, 1);
++	auto_test_req &= DP_AUTOMATED_TEST_REQUEST;
++
++	drm_dp_dpcd_read(aux, DP_TEST_REQUEST, &link_edid_read, 1);
++	link_edid_read &= DP_TEST_LINK_EDID_READ;
++
++	if (!auto_test_req || !link_edid_read) {
++		DRM_DEBUG_KMS("Source DUT does not support TEST_EDID_READ\n");
++		return false;
++	}
++
++	drm_dp_dpcd_write(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req, 1);
++
++	/* send back checksum for the last edid extension block data */
++	drm_dp_dpcd_write(aux, DP_TEST_EDID_CHECKSUM, &real_edid_checksum, 1);
++
++	test_resp |= DP_TEST_EDID_CHECKSUM_WRITE;
++	drm_dp_dpcd_write(aux, DP_TEST_RESPONSE, &test_resp, 1);
++
++	return true;
++}
++EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
++
+ /**
+  * drm_dp_downstream_max_clock() - extract branch device max
+  *                                 pixel rate for legacy VGA
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 99769d6c9f84..f064e75fb4c5 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -1590,11 +1590,22 @@ static int validate_displayid(u8 *displayid, int length, int idx);
+ static int drm_edid_block_checksum(const u8 *raw_edid)
+ {
+ 	int i;
+-	u8 csum = 0;
+-	for (i = 0; i < EDID_LENGTH; i++)
++	u8 csum = 0, crc = 0;
++
++	for (i = 0; i < EDID_LENGTH - 1; i++)
+ 		csum += raw_edid[i];
+ 
+-	return csum;
++	crc = 0x100 - csum;
++
++	return crc;
++}
++
++static bool drm_edid_block_checksum_diff(const u8 *raw_edid, u8 real_checksum)
++{
++	if (raw_edid[EDID_LENGTH - 1] != real_checksum)
++		return true;
++	else
++		return false;
+ }
+ 
+ static bool drm_edid_is_zero(const u8 *in_edid, int length)
+@@ -1652,7 +1663,7 @@ bool drm_edid_block_valid(u8 *raw_edid, int block, bool print_bad_edid,
+ 	}
+ 
+ 	csum = drm_edid_block_checksum(raw_edid);
+-	if (csum) {
++	if (drm_edid_block_checksum_diff(raw_edid, csum)) {
+ 		if (edid_corrupt)
+ 			*edid_corrupt = true;
+ 
+@@ -1793,6 +1804,10 @@ static void connector_bad_edid(struct drm_connector *connector,
+ 			       u8 *edid, int num_blocks)
+ {
+ 	int i;
++	u8 num_of_ext = edid[0x7e];
++
++	/* Calculate real checksum for the last edid extension block data */
++	connector->real_edid_checksum = drm_edid_block_checksum(edid + num_of_ext * EDID_LENGTH);
+ 
+ 	if (connector->bad_edid_counter++ && !drm_debug_enabled(DRM_UT_KMS))
+ 		return;
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 2113500b4075..b3815371c271 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1357,6 +1357,12 @@ struct drm_connector {
+ 	 * rev1.1 4.2.2.6
+ 	 */
+ 	bool edid_corrupt;
++	/**
++	 * @real_edid_checksum: real edid checksum for corrupted edid block.
++	 * Required in Displayport 1.4 compliance testing
++	 * rev1.1 4.2.2.6
++	 */
++	u8 real_edid_checksum;
+ 
+ 	/** @debugfs_entry: debugfs directory for this connector */
+ 	struct dentry *debugfs_entry;
+diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+index 127d6e1d3338..957a3d00ee05 100644
+--- a/include/drm/drm_dp_helper.h
++++ b/include/drm/drm_dp_helper.h
+@@ -1459,6 +1459,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm_dp_aux *aux,
+ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
+ 				 u8 status[DP_LINK_STATUS_SIZE]);
+ 
++bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
++				    u8 real_edid_checksum);
++
+ int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+ 				const u8 port_cap[4]);
+ int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+-- 
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0179623364==--
