@@ -1,32 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7806A14F2D7
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 20:38:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F13314F2DE
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 20:39:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01CAF6FBE2;
-	Fri, 31 Jan 2020 19:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA6E46FBE0;
+	Fri, 31 Jan 2020 19:39:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1FD2C6FBE0;
- Fri, 31 Jan 2020 19:38:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 16EB2A0094;
- Fri, 31 Jan 2020 19:38:23 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FBE96FBE0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 19:39:10 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 11:39:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,386,1574150400"; d="scan'208";a="218706746"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 31 Jan 2020 11:39:06 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 31 Jan 2020 21:39:05 +0200
+Date: Fri, 31 Jan 2020 21:39:05 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <20200131193905.GW13686@intel.com>
+References: <20200201031951.3209-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 31 Jan 2020 19:38:23 -0000
-Message-ID: <158049950309.13121.7138322619293038399@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200131081543.2251298-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200131081543.2251298-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/2=5D_drm/i915/gt=3A_Also_use_async_bin?=
- =?utf-8?q?d_for_PIN=5FUSER_into_bsw/bxt_ggtt_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <20200201031951.3209-1-matthew.s.atwood@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [v2] drm/i915/tgl: Add Wa_1606054188:tgl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,37 +46,128 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Jan 31, 2020 at 10:19:51PM -0500, Matt Atwood wrote:
+> On Tiger Lake we do not support source keying in the pixel formats P010,
+> P012, P016.
+> =
 
-Series: series starting with [1/2] drm/i915/gt: Also use async bind for PIN_USER into bsw/bxt ggtt (rev3)
-URL   : https://patchwork.freedesktop.org/series/72809/
-State : failure
+> v2: Move WA to end of function. Create helper function for format
+> check. Less verbose debugging messaging.
+> =
 
-== Summary ==
+> Bspec: 52890
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> CC: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
 
-Applying: drm/i915/gt: Also use async bind for PIN_USER into bsw/bxt ggtt
-.git/rebase-apply/patch:15: space before tab in indent.
-		       	I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND;
-warning: 1 line adds whitespace errors.
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gt/intel_ggtt.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/gt/intel_ggtt.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gt/intel_ggtt.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 drm/i915/gt: Also use async bind for PIN_USER into bsw/bxt ggtt
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Wrong address
 
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_sprite.c | 22 +++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 2f277d1fc6f1..6e4d73588b48 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -2070,6 +2070,18 @@ vlv_sprite_check(struct intel_crtc_state *crtc_sta=
+te,
+>  	return 0;
+>  }
+>  =
+
+> +static bool intel_format_is_p01x(int format)
+                                    ^^^
+u32
+
+> +{
+> +	switch(format){
+
+Missing spaces
+
+> +		case DRM_FORMAT_P010:
+> +		case DRM_FORMAT_P012:
+> +		case DRM_FORMAT_P016:
+> +			return true;
+> +		default:
+> +			return false;
+
+Wrong indentantion
+
+> +	}
+> +}
+> +
+>  static int skl_plane_check_fb(const struct intel_crtc_state *crtc_state,
+>  			      const struct intel_plane_state *plane_state)
+>  {
+> @@ -2143,6 +2155,16 @@ static int skl_plane_check_fb(const struct intel_c=
+rtc_state *crtc_state,
+>  		return -EINVAL;
+>  	}
+>  =
+
+> +	/* Wa_1606054188:tgl
+> +	 *
+> +	 * TODO: Add format RGB64i when implemented.
+> +	 *
+> +	 */
+
+Wrong comment format
+
+> +	if(IS_GEN(dev_priv, 12) &&
+
+Missing space
+
+> +	   plane_state->ckey.flags & I915_SET_COLORKEY_SOURCE &&
+> +	   intel_format_is_p01x(fb->format->format))
+> +		DRM_DEBUG_KMS("Source color keying not supported with P01x formats\n");
+
+Missing error return.
+
+Was also going to suggest you should use drm_dbg_kms() now, but
+looks like this file hasn't been converted yet. Well, I guess
+there'd be no harm in using drm_dbg_kms() anyway if you want.
+
+As for the w/a itself, not sure it's any more broken than any other
+planar format (don't have the hw to test it right now). But I just
+tried my wip colorkey test on glk with nv12/p010 and while it
+more or less seems to work the chroma upsampling is definitely
+making it impossible to test with crcs. I guess we'll get to
+testing out eventually to see if it is actually more broken than
+that. Certainly wouldn't be the first time the hw has issues with
+the >8bpc to 8bpc conversion for the key match. Just a bit
+surprising that it would be limited to just the specific combo
+of tgl and P01x formats.
+
+> +
+>  	return 0;
+>  }
+>  =
+
+> -- =
+
+> 2.21.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
