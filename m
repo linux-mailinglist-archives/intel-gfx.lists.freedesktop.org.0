@@ -1,62 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 125BC14EA21
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 10:34:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC88B14EA1B
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 10:34:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52C6288161;
-	Fri, 31 Jan 2020 09:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3876E202;
+	Fri, 31 Jan 2020 09:34:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB35F6FAD4
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 09:34:41 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id t14so7859602wmi.5
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 01:34:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=1om9VHbaLA2HO3oYnW/IwfmS0msvq4o/d8ocZPKzdSI=;
- b=iWAKOwfMmkMwcET+yAsbLjxobp+8kmOi81vV02j3aUf97WaYfhYxeswEqIPpR18rDK
- UzbhJD9LVTgqVRO7uEl+Prnfm4dvfxiQkkVL/p2+L29dGh9HfBacmzefGKuwpvC1PDwH
- jefZkTwWsYR62KSmtRQIz52lzhPxSGNISKaYLMBD7NpacHkBpH9HBJABQ88BNWppxScd
- oUXjWHpEHB/C521Qkb5OJj+V7MbC4r80zcDJBzSReiERSy39hYjTMX4wp+ExaEYGqvCf
- BOB0ABQtLSXAn4jTc9Z3kb5v8spe6JaVmzuZcHWMFe3u7/GCCRRAn18Q87G6TaR6jgs7
- Cc9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=1om9VHbaLA2HO3oYnW/IwfmS0msvq4o/d8ocZPKzdSI=;
- b=AuQ81v29bruXN990QFSPdmL2fMhaChhFZamtiGSyCBiYC9sc87ENKmZL/Fpk2vsRdk
- 3JTLlg/T9eMQZGSq7/m3LE0K5VlWo7pxUYeY2XyJVEb3zsXGMtnvB3nZtxQM3akzzCtn
- aTy+Ynsh0Sxg+opHkffzfxr7xVmcyKwSQmjwqOviwRt+rWbUCrxiYaze21rYR/RM0rx0
- tobdI2H+FPqMmy+pEX88LgtXMPIERSe/Fe6Y1UpMyv5A0MwHPpfCiihtJuKBZ67+ZBs8
- JNZ9XYiPXgtu+sVTZGxSekt+bY80LuTOBsJRyhhHVNxubEavqqiUFql9ISkVphR+XntX
- 10hg==
-X-Gm-Message-State: APjAAAWiVYm0KW2RXJk0pp70aa6Cqe8v8aBF+1GtouySiiRYOgNphNAj
- xuJYI30Pq+kGZmuW4Lq8h68=
-X-Google-Smtp-Source: APXvYqz0YtzXnbmOS6Wchk9YMMq3U4LFRye1xDcoWsz8rZAvIZ+117QSz7pAg+ydDePDX9g58fEpWQ==
-X-Received: by 2002:a1c:988a:: with SMTP id
- a132mr10539042wme.113.1580463279449; 
- Fri, 31 Jan 2020 01:34:39 -0800 (PST)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id b67sm10365360wmc.38.2020.01.31.01.34.35
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2020 01:34:38 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Fri, 31 Jan 2020 12:34:16 +0300
-Message-Id: <20200131093416.28431-6-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200131093416.28431-1-wambui.karugax@gmail.com>
-References: <20200131093416.28431-1-wambui.karugax@gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 958306E202
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 09:34:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2020 01:34:24 -0800
+X-IronPort-AV: E=Sophos;i="5.70,385,1574150400"; d="scan'208";a="223087253"
+Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.66.114.55])
+ ([10.66.114.55])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 31 Jan 2020 01:34:22 -0800
+To: "Souza, Jose" <jose.souza@intel.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20200129182034.26138-1-ville.syrjala@linux.intel.com>
+ <db28322f94782e13905cac3ccdaaef9e3cb665b7.camel@intel.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <5a7b6710-fb66-ca0e-666b-4b98c0e8052e@intel.com>
+Date: Fri, 31 Jan 2020 15:04:17 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/pci: conversion to drm_device
- based logging macros.
+In-Reply-To: <db28322f94782e13905cac3ccdaaef9e3cb665b7.camel@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm/i915/dsb: Replace HAS_DSB check
+ with dsb->cmd_buf check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +49,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Manual conversion of instances of printk based drm logging macros to the
-struct drm_device based logging macros in i915/i915_pci.c.
-
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 741bffc22867..6413f22356ae 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -960,7 +960,8 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	if (intel_info->require_force_probe &&
- 	    !force_probe(pdev->device, i915_modparams.force_probe)) {
--		DRM_INFO("Your graphics device %04x is not properly supported by the driver in this\n"
-+		drm_info(&pdev_to_i915(pdev)->drm,
-+			 "Your graphics device %04x is not properly supported by the driver in this\n"
- 			 "kernel version. To force driver probe anyway, use i915.force_probe=%04x\n"
- 			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
- 			 "or (recommended) check for kernel updates.\n",
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDMwLTAxLTIwMjAgMjM6NDMsIFNvdXphLCBKb3NlIHdyb3RlOgo+IE9uIFdlZCwgMjAyMC0w
+MS0yOSBhdCAyMDoyMCArMDIwMCwgVmlsbGUgU3lyamFsYSB3cm90ZToKPj4gRnJvbTogVmlsbGUg
+U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4KPj4gV2UgbWF5IHdh
+bnQgdG8gbm90IHVzZSB0aGUgRFNCIGV2ZW4gaWYgdGhlIHBsYXRmb3JtIGhhcyBvbmUuCj4+IFNv
+IHJlcGxhY2UgdGhlIEhBU19EU0IgY2hlY2sgaW4gdGhlIF9wdXQoKSB3aXRoIGEgY21kX2J1ZiBj
+aGVjawo+PiB0aGF0IHdpbGwgd29yayBpbiBlaXRoZXIgY2FzZS4KPiBSZXZpZXdlZC1ieTogSm9z
+w6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Cj4KPj4gU2lnbmVkLW9m
+Zi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPj4g
+LS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYyB8IDMgKy0t
+Cj4+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAyIGRlbGV0aW9ucygtKQo+Pgo+
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYwo+
+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMKPj4gaW5kZXggOWRk
+MTgxNDRhNjY0Li4xMjc3NmYwOWYyMjcgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMKPj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kc2IuYwo+PiBAQCAtMTYwLDkgKzE2MCw4IEBAIGludGVsX2RzYl9nZXQoc3Ry
+dWN0IGludGVsX2NydGMgKmNydGMpCj4+ICAgdm9pZCBpbnRlbF9kc2JfcHV0KHN0cnVjdCBpbnRl
+bF9kc2IgKmRzYikKPj4gICB7Cj4+ICAgCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gY29udGFp
+bmVyX29mKGRzYiwgdHlwZW9mKCpjcnRjKSwKPj4gZHNiKTsKPj4gLQlzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwo+PiAgIAo+PiAtCWlmICgh
+SEFTX0RTQihpOTE1KSkKPj4gKwlpZiAoIWRzYi0+Y21kX2J1ZikKClZpbGxlIGFuZCBKb3NlLAoK
+SGF2ZSBhIGNvbmNlcm4gaGVyZS4gSW4gaW50ZWxfZHNiX2dldCgpIGlmIGdldCBmYWlsdXJlIGR1
+cmluZyBpOTE1X2dlbV9vYmplY3RfY3JlYXRlX2ludGVybmFsLCBpOTE1X2dlbV9vYmplY3RfZ2d0
+dF9waW4sIGk5MTVfZ2VtX29iamVjdF9waW5fbWFwIHRoZW4gd2UgbWF5IG5vdCBoYXZlIGRzYi0+
+Y21kX2J1Zi4KVGhlbiByZWYtY291bnQgbWVjaGFuaXNtIHdpbGwgYnJlYWsuCkkgZmVlbCBIQVNf
+RFNCKGk5MTUpIGNoZWNrIGlzIGJldHRlciB0aGFuIGRzYi0+Y21kX2J1ZiBvdGhlcndpc2UgbmVl
+ZCB0byBkbyBzb21lIGNsZWFudXAgaXMgaW50ZWxfZHNiX2dldCgpIGFzIHdlbGwuCgpSZWdhcmRz
+LApBbmltZXNoCgo+PiAgIAkJcmV0dXJuOwo+PiAgIAo+PiAgIAlpZiAoV0FSTl9PTihkc2ItPnJl
+ZmNvdW50ID09IDApKQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCj4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
