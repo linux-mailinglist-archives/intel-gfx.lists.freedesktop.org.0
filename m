@@ -1,44 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BF714F305
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 21:05:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E72A514F30E
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2020 21:08:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E43476E23B;
-	Fri, 31 Jan 2020 20:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E116E237;
+	Fri, 31 Jan 2020 20:08:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 552F16E237
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2020 20:05:06 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2020 12:05:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,387,1574150400"; d="scan'208";a="262662639"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 31 Jan 2020 12:05:03 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 31 Jan 2020 22:05:03 +0200
-Date: Fri, 31 Jan 2020 22:05:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200131200503.GX13686@intel.com>
-References: <20200131171547.25938-1-manasi.d.navare@intel.com>
- <20200131171547.25938-3-manasi.d.navare@intel.com>
- <20200131175323.GV13686@intel.com>
- <20200131194625.GA26562@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF5096E237;
+ Fri, 31 Jan 2020 20:08:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DDE0AA0096;
+ Fri, 31 Jan 2020 20:08:13 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200131194625.GA26562@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/dp: Add all tiled and port
- sync conns to modeset
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Fri, 31 Jan 2020 20:08:13 -0000
+Message-ID: <158050129387.13123.12775169312703219912@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200129082410.1691996-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZGlz?=
+ =?utf-8?q?able_drm=5Fglobal=5Fmutex_for_most_drivers_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,427 +38,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2020 at 11:46:25AM -0800, Manasi Navare wrote:
-> On Fri, Jan 31, 2020 at 07:53:23PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Jan 31, 2020 at 09:15:47AM -0800, Manasi Navare wrote:
-> > > If one of the synced crtcs needs a full modeset, we need
-> > > to make sure all the synced crtcs are forced a full
-> > > modeset.
-> > > =
+== Series Details ==
 
-> > > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c |  88 +------------
-> > >  drivers/gpu/drm/i915/display/intel_dp.c      | 131 +++++++++++++++++=
-+-
-> > >  2 files changed, 131 insertions(+), 88 deletions(-)
-> > > =
+Series: disable drm_global_mutex for most drivers (rev4)
+URL   : https://patchwork.freedesktop.org/series/72711/
+State : success
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index e638543f5f87..709a737638b6 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -13123,8 +13123,7 @@ intel_modeset_pipe_config(struct intel_crtc_s=
-tate *pipe_config)
-> > >  	struct drm_i915_private *i915 =3D to_i915(pipe_config->uapi.crtc->d=
-ev);
-> > >  	struct drm_connector *connector;
-> > >  	struct drm_connector_state *connector_state;
-> > > -	int base_bpp, ret;
-> > > -	int i, tile_group_id =3D -1, num_tiled_conns =3D 0;
-> > > +	int base_bpp, ret, i;
-> > >  	bool retry =3D true;
-> > >  =
+== Summary ==
 
-> > >  	pipe_config->cpu_transcoder =3D
-> > > @@ -14559,76 +14558,6 @@ static bool intel_cpu_transcoders_need_modes=
-et(struct intel_atomic_state *state,
-> > >  	return false;
-> > >  }
-> > >  =
+CI Bug Log - changes from CI_DRM_7853 -> Patchwork_16357
+====================================================
 
-> > > -static int
-> > > -intel_modeset_all_tiles(struct intel_atomic_state *state, int tile_g=
-rp_id)
-> > > -{
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > -	struct drm_connector *connector;
-> > > -	struct drm_connector_list_iter conn_iter;
-> > > -	int ret =3D 0;
-> > > -
-> > > -	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > -	drm_for_each_connector_iter(connector, &conn_iter) {
-> > > -		struct drm_connector_state *conn_state;
-> > > -		struct drm_crtc_state *crtc_state;
-> > > -
-> > > -		if (!connector->has_tile ||
-> > > -		    connector->tile_group->id !=3D tile_grp_id)
-> > > -			continue;
-> > > -		conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > > -							    connector);
-> > > -		if (IS_ERR(conn_state)) {
-> > > -			ret =3D  PTR_ERR(conn_state);
-> > > -			break;
-> > > -		}
-> > > -
-> > > -		if (!conn_state->crtc)
-> > > -			continue;
-> > > -
-> > > -		crtc_state =3D drm_atomic_get_crtc_state(&state->base,
-> > > -						       conn_state->crtc);
-> > > -		if (IS_ERR(crtc_state)) {
-> > > -			ret =3D PTR_ERR(crtc_state);
-> > > -			break;
-> > > -		}
-> > > -		crtc_state->mode_changed =3D true;
-> > > -		ret =3D drm_atomic_add_affected_connectors(&state->base,
-> > > -							 conn_state->crtc);
-> > > -		if (ret)
-> > > -			break;
-> > > -	}
-> > > -	drm_connector_list_iter_end(&conn_iter);
-> > > -
-> > > -	return ret;
-> > > -}
-> > > -
-> > > -static int
-> > > -intel_atomic_check_tiled_conns(struct intel_atomic_state *state)
-> > > -{
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > -	struct drm_connector *connector;
-> > > -	struct drm_connector_state *old_conn_state, *new_conn_state;
-> > > -	int i, ret;
-> > > -
-> > > -	if (INTEL_GEN(dev_priv) < 11)
-> > > -		return 0;
-> > > -
-> > > -	/* Is tiled, mark all other tiled CRTCs as needing a modeset */
-> > > -	for_each_oldnew_connector_in_state(&state->base, connector,
-> > > -					   old_conn_state, new_conn_state, i) {
-> > > -		if (!connector->has_tile)
-> > > -			continue;
-> > > -		if (!intel_connector_needs_modeset(state, connector))
-> > > -			continue;
-> > > -
-> > > -		ret =3D intel_modeset_all_tiles(state, connector->tile_group->id);
-> > > -		if (ret)
-> > > -			return ret;
-> > > -	}
-> > > -
-> > > -	return 0;
-> > > -}
-> > > -
-> > >  /**
-> > >   * intel_atomic_check - validate state object
-> > >   * @dev: drm device
-> > > @@ -14656,21 +14585,6 @@ static int intel_atomic_check(struct drm_dev=
-ice *dev,
-> > >  	if (ret)
-> > >  		goto fail;
-> > >  =
+Summary
+-------
 
-> > > -	/**
-> > > -	 * This check adds all the connectors in current state that belong =
-to
-> > > -	 * the same tile group to a full modeset.
-> > > -	 * This function directly sets the mode_changed to true and we also=
- call
-> > > -	 * drm_atomic_add_affected_connectors(). Hence we are not explicitly
-> > > -	 * calling drm_atomic_helper_check_modeset() after this.
-> > > -	 *
-> > > -	 * Fixme: Handle some corner cases where one of the
-> > > -	 * tiled connectors gets disconnected and tile info is lost but sin=
-ce it
-> > > -	 * was previously synced to other conn, we need to add that to the =
-modeset.
-> > > -	 */
-> > > -	ret =3D intel_atomic_check_tiled_conns(state);
-> > > -	if (ret)
-> > > -		goto fail;
-> > > -
-> > >  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
-> > >  					    new_crtc_state, i) {
-> > >  		if (!needs_modeset(new_crtc_state)) {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
-m/i915/display/intel_dp.c
-> > > index f4dede6253f8..7eb4b3dbbcb3 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -6582,6 +6582,135 @@ void intel_dp_encoder_reset(struct drm_encode=
-r *encoder)
-> > >  	}
-> > >  }
-> > >  =
+  **SUCCESS**
 
-> > > +static int intel_modeset_tile_group(struct intel_atomic_state *state,
-> > > +				    int tile_group_id)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > +	struct drm_connector_list_iter conn_iter;
-> > > +	struct drm_connector *connector;
-> > > +	int ret =3D 0;
-> > > +
-> > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > +	drm_for_each_connector_iter(connector, &conn_iter) {
-> > > +		struct drm_connector_state *conn_state;
-> > > +		struct intel_crtc_state *crtc_state;
-> > > +		struct intel_crtc *crtc;
-> > > +
-> > > +		if (!connector->has_tile ||
-> > > +		    connector->tile_group->id !=3D tile_group_id)
-> > > +			continue;
-> > > +
-> > > +		conn_state =3D drm_atomic_get_connector_state(&state->base,
-> > > +							    connector);
-> > > +		if (IS_ERR(conn_state)) {
-> > > +			ret =3D PTR_ERR(conn_state);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		crtc =3D to_intel_crtc(conn_state->crtc);
-> > > +
-> > > +		if (!crtc)
-> > > +			continue;
-> > > +
-> > > +		crtc_state =3D intel_atomic_get_crtc_state(&state->base, crtc);
-> > > +		if (IS_ERR(crtc_state)) {
-> > > +			ret =3D PTR_ERR(crtc_state);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		crtc_state->uapi.mode_changed =3D true;
-> > > +
-> > > +		ret =3D drm_atomic_add_affected_planes(&state->base, &crtc->base);
-> > > +		if (ret)
-> > > +			break;
-> > > +	}
-> > > +	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int intel_modeset_affected_transcoders(struct intel_atomic_st=
-ate *state, u8 transcoders)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > > +	struct intel_crtc *crtc;
-> > > +
-> > > +	if (transcoders =3D=3D 0)
-> > > +		return 0;
-> > > +
-> > > +	for_each_intel_crtc(&dev_priv->drm, crtc) {
-> > > +		struct intel_crtc_state *crtc_state;
-> > > +		int ret;
-> > > +
-> > > +		if ((transcoders & BIT(crtc->pipe)) =3D=3D 0)
-> > > +			continue;
-> > =
+  No regressions found.
 
-> > Dropping the EDP transcoder on the floor here. I think we should just do
-> > the guaranteed correct thing and look at the cpu_transcoder instead.
-> > Yes, that does mean we more or less end up adding all crtcs to the stat=
-e =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/index.html
 
-> > whenever modesetting any synced crtc, but so be it. We can think of ways
-> > to optimize that later.
-> >
-> =
+Known issues
+------------
 
-> So should i not even do this check of trans & BIT(crtc->pipe) ? Instead j=
-ust proceed
-> to go get the crtc state and then check if trans & BIT(crtc_state->cpu_tr=
-ans) ?
+  Here are the changes found in Patchwork_16357 that come from known issues:
 
-Yeah, I think that's fine for now. We can try to optimize it later if
-needed.
+### IGT changes ###
 
-> =
+#### Issues hit ####
 
-> Or should I keep this as is and then add the second loop like in your bra=
-nch?
->  =
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-hsw-4770r/igt@i915_selftest@live_blt.html
 
-> > > +
-> > > +		crtc_state =3D intel_atomic_get_crtc_state(&state->base, crtc);
-> > > +		if (IS_ERR(crtc_state))
-> > > +			return PTR_ERR(crtc_state);
-> > > +
-> > > +		if (!crtc_state->hw.enable)
-> > > +			continue;
-> > > +
-> > > +		crtc_state->uapi.mode_changed =3D true;
-> > > +
-> > > +		ret =3D drm_atomic_add_affected_connectors(&state->base, &crtc->ba=
-se);
-> > > +		if (ret)
-> > > +			return ret;
-> > =
+  
+#### Possible fixes ####
 
-> > Missing add_affected_planes() here I think. Or was that guaranteed to be
-> > done by the helper? Can't recall.
-> >
-> =
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][3] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+    - fi-byt-n2820:       [TIMEOUT][5] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-byt-n2820/igt@gem_close_race@basic-threads.html
 
-> No i think i missed it, will add that
->  =
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [DMESG-WARN][7] ([IGT#4]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
 
-> > > +
-> > > +		WARN_ON((enum transcoder)crtc->pipe !=3D crtc_state->cpu_transcode=
-r);
-> > > +
-> > > +		transcoders &=3D ~BIT(crtc_state->cpu_transcoder);
-> > > +	}
-> > > +
-> > > +	WARN_ON(transcoders !=3D 0);
-> > > +
-> > > +	return 0;
-> > > +
-> > > +}
-> > > +
-> > > +static int intel_modeset_synced_crtcs(struct intel_atomic_state *sta=
-te,
-> > > +				      struct drm_connector *connector)
-> > > +{
-> > > +	const struct drm_connector_state *old_conn_state =3D
-> > > +		drm_atomic_get_old_connector_state(&state->base, connector);
-> > > +	const struct intel_crtc_state *old_crtc_state;
-> > > +	struct intel_crtc *crtc;
-> > > +
-> > > +	crtc =3D to_intel_crtc(old_conn_state->crtc);
-> > > +	if (!crtc)
-> > > +		return 0;
-> > > +
-> > > +	old_crtc_state =3D intel_atomic_get_old_crtc_state(state, crtc);
-> > > +
-> > > +	if (!old_crtc_state->hw.active)
-> > > +		return 0;
-> > > +
-> > > +	return intel_modeset_affected_transcoders(state,
-> > > +						  (old_crtc_state->sync_mode_slaves_mask |
-> > > +						   BIT(old_crtc_state->master_transcoder)) &
-> > =
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
-> > This seems to have the same master=3D=3DINVALID problem that we faced
-> > elsewhere already.
-> >
-> =
+  
+#### Warnings ####
 
-> Yes will have to add the same check and add it only for master_trans !=3D=
- INVALID, will add that
->  =
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][11] ([i915#579]) -> [SKIP][12] ([fdo#109271])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7853/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
 
-> > > +						  ~BIT(old_crtc_state->cpu_transcoder));
-> > =
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
 
-> > I guess this part is redundant. Or can we somehow have our own
-> > transcoder be included in sync_mode_slaves_mask/master_transcoder?
-> >
-> =
 
-> Actually shouldnt it be:
-> =
+Participating hosts (47 -> 45)
+------------------------------
 
-> if old_crtc_state->needs_modeset() {
+  Additional (4): fi-skl-6700k2 fi-cfl-8109u fi-skl-6600u fi-snb-2600 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
 
-That would need to be new_crtc_state. And yes we should skip this
-(and also intel_modeset_tile_group()) when there's no modeset.
 
-So the whole thing could probably look something like:
-{
-	intel_digital_connector_atomic_check();
+Build changes
+-------------
 
-	if (!intel_connector_needs_modeset(connector))
-		return 0;
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7853 -> Patchwork_16357
 
-	if (tile)
-		intel_modeset_tile_group()
-	=
+  CI-20190529: 20190529
+  CI_DRM_7853: 1df04205c16923e525efe9c26d6e98612d38c9b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5409: 93aefe6baa3fabf8c0cabe83e185f7b8f8d8753d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16357: 0aa851bfac6dd1e5818bab37e3a722e736d276ca @ git://anongit.freedesktop.org/gfx-ci/linux
 
-	intel_modeset_synced_crtcs();
-}
 
-> 	 then call intel_modeset_affected_transcoders(state,
-> 							(old_crtc_state->sync_mode_slaves_mask |
-> 							 BIT(old_crtc_state->master_transcoder)) &
-> 							~BIT(old_crtc_state->cpu_transcoder));
-> =
+== Linux commits ==
 
-> dont understand why ~BIT(old_crtc_state->cpu_transcoder) is redundant? wh=
-y do we need to =
+0aa851bfac6d drm: Nerf drm_global_mutex BKL for good drivers
+850beb19ef64 drm: Push drm_global_mutex locking in drm_open
+edabfe0698c0 drm/client: Rename _force to _locked
+58509b1c6e52 drm/fbdev-helper: don't force restores
+ec6b1085531d drm: Complain if drivers still use the ->load callback
 
-> force modeset there if we add this needs_modeset check?
-> =
+== Logs ==
 
-> Manasi
-> =
-
-> > > +}
-> > > +
-> > > +static int intel_dp_connector_atomic_check(struct drm_connector *con=
-n,
-> > > +					   struct drm_atomic_state *_state)
-> > > +{
-> > > +	struct drm_i915_private *dev_priv =3D to_i915(conn->dev);
-> > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(_state);
-> > > +	int ret;
-> > > +
-> > > +	ret =3D intel_digital_connector_atomic_check(conn, &state->base);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && conn->has_tile) {
-> > > +		ret =3D intel_modeset_tile_group(state, conn->tile_group->id);
-> > > +		if (ret)
-> > > +			return ret;
-> > > +	}
-> > > +
-> > > +	return intel_modeset_synced_crtcs(state, conn);
-> > =
-
-> > No gen check... Ah, yeah we don't need it because the port sync state
-> > will be INVALID/0.
-> > =
-
-> > > +}
-> > > +
-> > >  static const struct drm_connector_funcs intel_dp_connector_funcs =3D=
- {
-> > >  	.force =3D intel_dp_force,
-> > >  	.fill_modes =3D drm_helper_probe_single_connector_modes,
-> > > @@ -6598,7 +6727,7 @@ static const struct drm_connector_helper_funcs =
-intel_dp_connector_helper_funcs =3D
-> > >  	.detect_ctx =3D intel_dp_detect,
-> > >  	.get_modes =3D intel_dp_get_modes,
-> > >  	.mode_valid =3D intel_dp_mode_valid,
-> > > -	.atomic_check =3D intel_digital_connector_atomic_check,
-> > > +	.atomic_check =3D intel_dp_connector_atomic_check,
-> > >  };
-> > >  =
-
-> > >  static const struct drm_encoder_funcs intel_dp_enc_funcs =3D {
-> > > -- =
-
-> > > 2.19.1
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16357/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
