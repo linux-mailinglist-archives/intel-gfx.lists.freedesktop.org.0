@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A773F14F787
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 11:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6735214F78C
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 11:45:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C88286EA2E;
-	Sat,  1 Feb 2020 10:32:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB18A6EA39;
+	Sat,  1 Feb 2020 10:45:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8035F6EA2E
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Feb 2020 10:32:29 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20081773-1500050 
- for multiple; Sat, 01 Feb 2020 10:32:00 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat,  1 Feb 2020 10:31:59 +0000
-Message-Id: <20200201103159.3596604-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A433A6EA37;
+ Sat,  1 Feb 2020 10:45:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9B58CA0118;
+ Sat,  1 Feb 2020 10:45:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Defer application of initial
- chv_phy_control
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 01 Feb 2020 10:45:51 -0000
+Message-ID: <158055395160.32693.1678130154406324974@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/audio=3A_Skip_the_cdclk_modeset_if_no_pipes_attached?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,73 +38,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To write to the DISPLAY_PHY_CONTROL requires holding the powerwells,
-which during early resume we have not yet acquired until later in
-intel_display_power_init_hw(). So compute the initial chv_phy_control,
-but leave the HW unset until we first acquire the powerwell.
+== Series Details ==
 
-<7> [120.055984] i915 0000:00:02.0: [drm:intel_power_domains_init_hw [i915]] rawclk rate: 200000 kHz
-<4> [120.056381] ------------[ cut here ]------------
-<4> [120.056621] i915 0000:00:02.0: Unclaimed write to register 0x1e0100
-<4> [120.056924] WARNING: CPU: 1 PID: 164 at drivers/gpu/drm/i915/intel_uncore.c:1166 __unclaimed_reg_debug+0x69/0x80 [i915]
-<4> [120.056935] Modules linked in: vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic btusb btrtl btbcm btintel i915 bluetooth coretemp crct10dif_pclmul crc32_pclmul snd_hda_intel snd_intel_dspcfg snd_hda_codec ghash_clmulni_intel snd_hwdep ecdh_generic ecc snd_hda_core r8169 snd_pcm lpc_ich realtek pinctrl_cherryview i2c_designware_pci prime_numbers
-<4> [120.057027] CPU: 1 PID: 164 Comm: kworker/u4:3 Tainted: G     U            5.5.0-CI-CI_DRM_7854+ #1
-<4> [120.057038] Hardware name:  /NUC5CPYB, BIOS PYBSWCEL.86A.0055.2016.0812.1130 08/12/2016
-<4> [120.057058] Workqueue: events_unbound async_run_entry_fn
-<4> [120.057275] RIP: 0010:__unclaimed_reg_debug+0x69/0x80 [i915]
-<4> [120.057289] Code: 48 8b 78 18 48 8b 5f 50 48 85 db 74 2d e8 1f a0 3f e1 45 89 e8 48 89 e9 48 89 da 48 89 c6 48 c7 c7 00 8c 48 a0 e8 67 82 df e0 <0f> 0b 83 2d ce e2 2b 00 01 5b 5d 41 5c 41 5d c3 48 8b 1f eb ce 66
-<4> [120.057301] RSP: 0018:ffffc90000bcfd08 EFLAGS: 00010082
-<4> [120.057315] RAX: 0000000000000000 RBX: ffff888079919b60 RCX: 0000000000000003
-<4> [120.057326] RDX: 0000000080000003 RSI: 0000000000000000 RDI: 00000000ffffffff
-<4> [120.057336] RBP: ffffffffa04c9f4e R08: 0000000000000000 R09: 0000000000000001
-<4> [120.057348] R10: 0000000025c3d560 R11: 000000006815f798 R12: 0000000000000000
-<4> [120.057359] R13: 00000000001e0100 R14: 0000000000000286 R15: ffffffff8234a76b
-<4> [120.057371] FS:  0000000000000000(0000) GS:ffff888074b00000(0000) knlGS:0000000000000000
-<4> [120.057382] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [120.057393] CR2: 000055f4197df0d8 CR3: 000000006f326000 CR4: 00000000001006e0
-<4> [120.057404] Call Trace:
-<4> [120.057635]  fwtable_write32+0x114/0x1d0 [i915]
-<4> [120.057892]  intel_power_domains_init_hw+0x4ff/0x650 [i915]
-<4> [120.058150]  intel_power_domains_resume+0x3d/0x70 [i915]
-<4> [120.058363]  i915_drm_resume_early+0x97/0xd0 [i915]
-<4> [120.058575]  ? i915_resume_switcheroo+0x30/0x30 [i915]
-<4> [120.058594]  dpm_run_callback+0x64/0x280
-<4> [120.058626]  device_resume_early+0xa7/0xe0
-<4> [120.058652]  async_resume_early+0x14/0x40
+Series: drm/i915/audio: Skip the cdclk modeset if no pipes attached
+URL   : https://patchwork.freedesktop.org/series/72863/
+State : success
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1089
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 64943179c05e..492668d5a193 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -5163,11 +5163,10 @@ static void chv_phy_control_init(struct drm_i915_private *dev_priv)
- 		dev_priv->chv_phy_assert[DPIO_PHY1] = true;
- 	}
- 
--	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
--		       dev_priv->chv_phy_control);
--
- 	drm_dbg_kms(&dev_priv->drm, "Initial PHY_CONTROL=0x%08x\n",
- 		    dev_priv->chv_phy_control);
-+
-+	/* Defer application of initial phy_control to enabling the powerwell */
- }
- 
- static void vlv_cmnlane_wa(struct drm_i915_private *dev_priv)
--- 
-2.25.0
+CI Bug Log - changes from CI_DRM_7854 -> Patchwork_16373
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16373 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@reload:
+    - fi-icl-u2:          [PASS][1] -> [DMESG-WARN][2] ([i915#289]) +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@i915_module_load@reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-icl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#770])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][7] -> [FAIL][8] ([i915#262])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([fdo#111407])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@reload-no-display:
+    - fi-glk-dsi:         [TIMEOUT][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-glk-dsi/igt@i915_module_load@reload-no-display.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-glk-dsi/igt@i915_module_load@reload-no-display.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][13] ([i915#263]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][15] ([i915#323]) -> [DMESG-WARN][16] ([IGT#4] / [i915#263])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@vga-edid-read:
+    - fi-icl-u2:          [SKIP][17] ([fdo#109309]) -> [FAIL][18] ([i915#217])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/fi-icl-u2/igt@kms_chamelium@vga-edid-read.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#109309]: https://bugs.freedesktop.org/show_bug.cgi?id=109309
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+
+
+Participating hosts (48 -> 44)
+------------------------------
+
+  Additional (4): fi-hsw-peppy fi-skl-lmem fi-gdg-551 fi-ivb-3770 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7854 -> Patchwork_16373
+
+  CI-20190529: 20190529
+  CI_DRM_7854: 727605cdef77d1e7eafb7e4c05b0ee74132a0930 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5410: 9d3872ede14307ef4adb0866f8474f5c41e6b1c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16373: 74fe991ad91484f836665768ff3264723ff00e0f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+74fe991ad914 drm/i915/audio: Skip the cdclk modeset if no pipes attached
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16373/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
