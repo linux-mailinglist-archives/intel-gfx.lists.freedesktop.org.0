@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD99B14F76C
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 10:46:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A17B714F77D
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 11:06:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83BD36E4DE;
-	Sat,  1 Feb 2020 09:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 510796E4B1;
+	Sat,  1 Feb 2020 10:06:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F356E4DE
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Feb 2020 09:46:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBCB16E4B1
+ for <intel-gfx@lists.freedesktop.org>; Sat,  1 Feb 2020 10:06:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20081252-1500050 
- for multiple; Sat, 01 Feb 2020 09:46:42 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20081498-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sat, 01 Feb 2020 10:06:30 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat,  1 Feb 2020 09:46:41 +0000
-Message-Id: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
+Date: Sat,  1 Feb 2020 10:06:29 +0000
+Message-Id: <20200201100629.3594490-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/audio: Skip the cdclk modeset if no
- pipes attached
+Subject: [Intel-gfx] [CI] drm/i915: Move ringbuffer WAs to engine workaround
+ list
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,94 +42,144 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the display is not driving any pipes, we cannot change the bclk and
-doing so risks chasing NULL pointers:
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-<6> [278.907105] snd_hda_intel 0000:00:0e.0: DSP detected with PCI class/subclass/prog-if info 0x040100
-<6> [278.909936] snd_hda_intel 0000:00:0e.0: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
-<7> [278.910078] i915 0000:00:02.0: [drm:intel_power_well_enable [i915]] enabling power well 2
-<1> [278.910228] BUG: kernel NULL pointer dereference, address: 0000000000000080
-<1> [278.910243] #PF: supervisor read access in kernel mode
-<1> [278.910251] #PF: error_code(0x0000) - not-present page
-<6> [278.910260] PGD 0 P4D 0
-<4> [278.910267] Oops: 0000 [#1] PREEMPT SMP PTI
-<4> [278.910276] CPU: 0 PID: 5 Comm: kworker/0:0 Tainted: G     U            5.5.0-CI-CI_DRM_7853+ #1
-<4> [278.910289] Hardware name: Intel Corp. Geminilake/GLK RVP2 LP4SD (07), BIOS GELKRVPA.X64.0062.B30.1708222146 08/22/2017
-<4> [278.910312] Workqueue: events azx_probe_work [snd_hda_intel]
-<4> [278.910327] RIP: 0010:__ww_mutex_lock.constprop.15+0x5e/0x1090
-<4> [278.910338] Code: 75 88 be a7 03 00 00 65 48 8b 04 25 28 00 00 00 48 89 45 c8 31 c0 4c 89 c3 e8 5e b3 6d ff 44 8b 3d 2f 24 37 02 45 85 ff 75 0a <4d> 3b 6d 58 0f 85 3f 07 00 00 48 85 db 74 22 49 8b 95 80 00 00 00
-<4> [278.910362] RSP: 0018:ffffc9000008bc10 EFLAGS: 00010246
-<4> [278.910371] RAX: 0000000000000246 RBX: ffffc9000008bd30 RCX: 0000000000000001
-<4> [278.910382] RDX: 0000000000000000 RSI: ffffffff82647c60 RDI: ffff88817b27d848
-<4> [278.910393] RBP: ffffc9000008bcc0 R08: 0000000000000000 R09: 0000000000000001
-<4> [278.910404] R10: ffffc9000008bce0 R11: 0000000000000000 R12: ffffffff8168f0fc
-<4> [278.910414] R13: 0000000000000028 R14: ffffc9000008bd60 R15: 0000000000000000
-<4> [278.910425] FS:  0000000000000000(0000) GS:ffff88817bc00000(0000) knlGS:0000000000000000
-<4> [278.910437] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [278.910446] CR2: 0000000000000080 CR3: 00000001650da000 CR4: 0000000000340ef0
-<4> [278.910456] Call Trace:
-<4> [278.910468]  ? mark_held_locks+0x49/0x70
-<4> [278.910479]  ? ww_mutex_lock+0x39/0x70
-<4> [278.910487]  ww_mutex_lock+0x39/0x70
-<4> [278.910497]  drm_modeset_lock+0x6c/0x120
-<4> [278.910575]  glk_force_audio_cdclk+0x7d/0x140 [i915]
-<4> [278.910656]  i915_audio_component_get_power+0xf2/0x110 [i915]
-<4> [278.910673]  snd_hdac_display_power+0x7d/0x120 [snd_hda_core]
-<4> [278.910686]  azx_probe_work+0x88/0x7e0 [snd_hda_intel]
+Now that intel_engine_apply_workarounds is called on all gens, we can
+use the engine workaround lists for pre-gen8 workarounds as well to be
+consistent in the way we handle and dump the WAs.
 
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 37 --------------
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 49 ++++++++++++++++++-
+ 2 files changed, 47 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index e3efd81c5855..3d92849811e1 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -810,16 +810,14 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 9aa86ba15ce7..9537d4912225 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -858,43 +858,6 @@ static int rcs_resume(struct intel_engine_cs *engine)
+ 		intel_uncore_write(uncore, ECOSKPD,
+ 			   _MASKED_BIT_ENABLE(ECO_CONSTANT_BUFFER_SR_DISABLE));
+ 
+-	/* WaTimedSingleVertexDispatch:cl,bw,ctg,elk,ilk,snb */
+-	if (IS_GEN_RANGE(i915, 4, 6))
+-		intel_uncore_write(uncore, MI_MODE,
+-				   _MASKED_BIT_ENABLE(VS_TIMER_DISPATCH));
+-
+-	/* We need to disable the AsyncFlip performance optimisations in order
+-	 * to use MI_WAIT_FOR_EVENT within the CS. It should already be
+-	 * programmed to '1' on all products.
+-	 *
+-	 * WaDisableAsyncFlipPerfMode:snb,ivb,hsw,vlv
+-	 */
+-	if (IS_GEN_RANGE(i915, 6, 7))
+-		intel_uncore_write(uncore, MI_MODE,
+-				   _MASKED_BIT_ENABLE(ASYNC_FLIP_PERF_DISABLE));
+-
+-	/* Required for the hardware to program scanline values for waiting */
+-	/* WaEnableFlushTlbInvalidationMode:snb */
+-	if (IS_GEN(i915, 6))
+-		intel_uncore_write(uncore, GFX_MODE,
+-			   _MASKED_BIT_ENABLE(GFX_TLB_INVALIDATE_EXPLICIT));
+-
+-	/* WaBCSVCSTlbInvalidationMode:ivb,vlv,hsw */
+-	if (IS_GEN(i915, 7))
+-		intel_uncore_write(uncore, GFX_MODE_GEN7,
+-			   _MASKED_BIT_ENABLE(GFX_TLB_INVALIDATE_EXPLICIT) |
+-			   _MASKED_BIT_ENABLE(GFX_REPLAY_MODE));
+-
+-	if (IS_GEN(i915, 6)) {
+-		/* From the Sandybridge PRM, volume 1 part 3, page 24:
+-		 * "If this bit is set, STCunit will have LRA as replacement
+-		 *  policy. [...] This bit must be reset.  LRA replacement
+-		 *  policy is not supported."
+-		 */
+-		intel_uncore_write(uncore, CACHE_MODE_0,
+-			   _MASKED_BIT_DISABLE(CM0_STC_EVICT_DISABLE_LRA_SNB));
+-	}
+-
+ 	if (IS_GEN_RANGE(i915, 6, 7))
+ 		intel_uncore_write(uncore, INSTPM,
+ 				   _MASKED_BIT_ENABLE(INSTPM_FORCE_ORDERING));
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 857337f323ee..edf0d8ab5669 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1464,6 +1464,51 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ 			    GEN8_L3SQCREG4,
+ 			    GEN8_LQSC_FLUSH_COHERENT_LINES);
  	}
++
++	if (IS_GEN(i915, 7))
++		/* WaBCSVCSTlbInvalidationMode:ivb,vlv,hsw */
++		wa_masked_en(wal,
++			     GFX_MODE_GEN7,
++			     GFX_TLB_INVALIDATE_EXPLICIT | GFX_REPLAY_MODE);
++
++	if (IS_GEN_RANGE(i915, 6, 7))
++		/*
++		 * We need to disable the AsyncFlip performance optimisations in
++		 * order to use MI_WAIT_FOR_EVENT within the CS. It should
++		 * already be programmed to '1' on all products.
++		 *
++		 * WaDisableAsyncFlipPerfMode:snb,ivb,hsw,vlv
++		 */
++		wa_masked_en(wal,
++			     MI_MODE,
++			     ASYNC_FLIP_PERF_DISABLE);
++
++	if (IS_GEN(i915, 6)) {
++		/*
++		 * Required for the hardware to program scanline values for
++		 * waiting
++		 * WaEnableFlushTlbInvalidationMode:snb
++		 */
++		wa_masked_en(wal,
++			     GFX_MODE,
++			     GFX_TLB_INVALIDATE_EXPLICIT);
++
++		/*
++		 * From the Sandybridge PRM, volume 1 part 3, page 24:
++		 * "If this bit is set, STCunit will have LRA as replacement
++		 *  policy. [...] This bit must be reset. LRA replacement
++		 *  policy is not supported."
++		 */
++		wa_masked_dis(wal,
++			      CACHE_MODE_0,
++			      CM0_STC_EVICT_DISABLE_LRA_SNB);
++	}
++
++	if (IS_GEN_RANGE(i915, 4, 6))
++		/* WaTimedSingleVertexDispatch:cl,bw,ctg,elk,ilk,snb */
++		wa_masked_en(wal,
++			     MI_MODE,
++			     VS_TIMER_DISPATCH);
  }
  
--static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
-+static int glk_force_audio_cdclk_commit(struct intel_crtc *crtc,
-+					struct intel_atomic_state *state,
- 					bool enable)
+ static void
+@@ -1482,7 +1527,7 @@ xcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+ static void
+ engine_init_workarounds(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_cdclk_state *cdclk_state;
--	struct intel_crtc *crtc;
- 	int ret;
+-	if (I915_SELFTEST_ONLY(INTEL_GEN(engine->i915) < 8))
++	if (I915_SELFTEST_ONLY(INTEL_GEN(engine->i915) < 4))
+ 		return;
  
- 	/* need to hold at least one crtc lock for the global state */
--	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
- 	ret = drm_modeset_lock(&crtc->base.mutex, state->base.acquire_ctx);
- 	if (ret)
- 		return ret;
-@@ -843,8 +841,13 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
+ 	if (engine->class == RENDER_CLASS)
+@@ -1495,7 +1540,7 @@ void intel_engine_init_workarounds(struct intel_engine_cs *engine)
  {
- 	struct drm_modeset_acquire_ctx ctx;
- 	struct drm_atomic_state *state;
-+	struct intel_crtc *crtc;
- 	int ret;
+ 	struct i915_wa_list *wal = &engine->wa_list;
  
-+	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-+	if (!crtc)
-+		return;
-+
- 	drm_modeset_acquire_init(&ctx, 0);
- 	state = drm_atomic_state_alloc(&dev_priv->drm);
- 	if (WARN_ON(!state))
-@@ -853,7 +856,9 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
- 	state->acquire_ctx = &ctx;
+-	if (INTEL_GEN(engine->i915) < 8)
++	if (INTEL_GEN(engine->i915) < 4)
+ 		return;
  
- retry:
--	ret = glk_force_audio_cdclk_commit(to_intel_atomic_state(state), enable);
-+	ret = glk_force_audio_cdclk_commit(crtc,
-+					   to_intel_atomic_state(state),
-+					   enable);
- 	if (ret == -EDEADLK) {
- 		drm_atomic_state_clear(state);
- 		drm_modeset_backoff(&ctx);
+ 	wa_init_start(wal, "engine", engine->name);
 -- 
 2.25.0
 
