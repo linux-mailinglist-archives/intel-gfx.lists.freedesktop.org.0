@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFB614FA23
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 20:16:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52AE714FA29
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 20:21:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AAFE6E2A9;
-	Sat,  1 Feb 2020 19:16:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EB256E2C8;
+	Sat,  1 Feb 2020 19:21:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87AA96E2A9
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Feb 2020 19:16:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20085199-1500050 for multiple; Sat, 01 Feb 2020 19:16:39 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6596B6E2BD;
+ Sat,  1 Feb 2020 19:21:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53536A00C7;
+ Sat,  1 Feb 2020 19:21:26 +0000 (UTC)
 MIME-Version: 1.0
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200201135231.104080-1-michal.wajdeczko@intel.com>
-References: <20200201135231.104080-1-michal.wajdeczko@intel.com>
-Message-ID: <158058459689.15137.10552857473732703836@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Sat, 01 Feb 2020 19:16:36 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/guc: Stop using mutex while
- sending CTB messages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 01 Feb 2020 19:21:26 -0000
+Message-ID: <158058488631.32694.12797123761348173186@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200201100629.3594490-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200201100629.3594490-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Move_ringbuffer_WAs_to_engine_workaround_list_=28rev2?=
+ =?utf-8?q?=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,67 +39,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Wajdeczko (2020-02-01 13:52:31)
->  void intel_guc_ct_init_early(struct intel_guc_ct *ct)
->  {
-> +       int i;
-> +
->         spin_lock_init(&ct->requests.lock);
->         INIT_LIST_HEAD(&ct->requests.pending);
->         INIT_LIST_HEAD(&ct->requests.incoming);
->         INIT_WORK(&ct->requests.worker, ct_incoming_request_worker_func);
-> +       for (i = 0; i < ARRAY_SIZE(ct->ctbs); i++) {
-> +               spin_lock_init(&ct->ctbs[i].lock);
-> +               lockdep_set_subclass(&ct->ctbs[i].lock, i);
+== Series Details ==
 
-Ugh this then hits the lockdep bug where the lock has to be used or else
-it miscounts.
+Series: drm/i915: Move ringbuffer WAs to engine workaround list (rev2)
+URL   : https://patchwork.freedesktop.org/series/72864/
+State : failure
 
-<4>[  276.588423] DEBUG_LOCKS_WARN_ON(debug_atomic_read(nr_unused_locks) != nr_unused)
-<4>[  276.588431] WARNING: CPU: 9 PID: 1107 at kernel/locking/lockdep_proc.c:249 lockdep_stats_show+0x9b8/0xa40
-<4>[  276.588452] Modules linked in: vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic x86_pkg_temp_thermal coretemp snd_intel_dspcfg snd_hda_codec mei_hdcp snd_hwdep crct10dif_pclmul snd_hda_core crc32_pclmul snd_pcm ghash_clmulni_intel e1000e mei_me ptp mei pps_core prime_numbers [last unloaded: i915]
-<4>[  276.588492] CPU: 9 PID: 1107 Comm: igt_runner Tainted: G     U            5.5.0-CI-Patchwork_16376+ #1
-<4>[  276.588504] Hardware name: Micro-Star International Co., Ltd. MS-7B54/Z370M MORTAR (MS-7B54), BIOS 1.10 12/28/2017
-<4>[  276.588519] RIP: 0010:lockdep_stats_show+0x9b8/0xa40
-<4>[  276.588527] Code: 00 85 c0 0f 84 6e f8 ff ff 8b 05 03 bd 62 01 85 c0 0f 85 60 f8 ff ff 48 c7 c6 28 fd 2c 82 48 c7 c7 82 c7 2b 82 e8 38 30 f9 ff <0f> 0b e9 46 f8 ff ff 48 c7 44 24 50 00 00 00 00 45 31 e4 48 c7 44
-<4>[  276.588549] RSP: 0018:ffffc90000e37dc0 EFLAGS: 00010282
-<4>[  276.588557] RAX: 0000000000000000 RBX: 0000000000000474 RCX: 0000000000000001
-<4>[  276.588567] RDX: 0000000080000001 RSI: 0000000000000000 RDI: ffffffff8112e5bc
-<4>[  276.588576] RBP: 0000000000000043 R08: 0000000000000000 R09: 000000000003ae40
-<4>[  276.588586] R10: ffffc90000e37dc0 R11: 0000000000000453 R12: 0000000000013384
-<4>[  276.588595] R13: 0000000000000014 R14: ffff88823c4fc238 R15: 0000000000000003
-<4>[  276.588605] FS:  00007fd2e01b8980(0000) GS:ffff888266c80000(0000) knlGS:0000000000000000
-<4>[  276.588616] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4>[  276.588624] CR2: 00007ffd8febc150 CR3: 0000000252cd4006 CR4: 00000000003606e0
-<4>[  276.588633] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-<4>[  276.588642] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-<4>[  276.588652] Call Trace:
-<4>[  276.588663]  seq_read+0xdb/0x3f0
-<4>[  276.588671]  ? do_sys_open+0x13b/0x250
-<4>[  276.588680]  proc_reg_read+0x34/0x60
-<4>[  276.588687]  vfs_read+0x96/0x160
-<4>[  276.588695]  ksys_read+0x9f/0xe0
-<4>[  276.588703]  do_syscall_64+0x4f/0x220
-<4>[  276.588711]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
+== Summary ==
 
-        /*
-         * Due to an interesting quirk in lockdep's internal debug tracking,
-         * after setting a subclass we must ensure the lock is used. Otherwise,
-         * nr_unused_locks is incremented once too often.
-         */
-#ifdef CONFIG_DEBUG_LOCK_ALLOC
-        lock_map_acquire(&ct->ctbs[i].lock.dep_map);
-        lock_map_release(&ct->ctbs[i].lock.dep_map);
-#endif
+CI Bug Log - changes from CI_DRM_7854 -> Patchwork_16377
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16377 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16377, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16377:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bwr-2160:        [PASS][1] -> [DMESG-WARN][2] +14 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-bwr-2160/igt@i915_selftest@live_gtt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-bwr-2160/igt@i915_selftest@live_gtt.html
+
+  * igt@i915_selftest@live_hangcheck:
+    - fi-bwr-2160:        [PASS][3] -> [DMESG-FAIL][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-bwr-2160/igt@i915_selftest@live_hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-bwr-2160/igt@i915_selftest@live_hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16377 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][5] -> [TIMEOUT][6] ([fdo#112271] / [i915#1084] / [i915#816])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_module_load@reload:
+    - fi-icl-u2:          [PASS][7] -> [DMESG-WARN][8] ([i915#289]) +2 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@i915_module_load@reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-icl-u2/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][11] -> [DMESG-FAIL][12] ([i915#725])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][13] -> [FAIL][14] ([fdo#111096] / [i915#323])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][15] ([fdo#112271] / [i915#1084] / [i915#816]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - fi-icl-u2:          [DMESG-WARN][17] ([i915#263]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-icl-u2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][19] ([i915#323]) -> [DMESG-WARN][20] ([IGT#4] / [i915#263])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7854/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#263]: https://gitlab.freedesktop.org/drm/intel/issues/263
+  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
 
 
-> +       }
->  }
+Participating hosts (48 -> 41)
+------------------------------
+
+  Additional (3): fi-skl-lmem fi-gdg-551 fi-ivb-3770 
+  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-cfl-8109u fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7854 -> Patchwork_16377
+
+  CI-20190529: 20190529
+  CI_DRM_7854: 727605cdef77d1e7eafb7e4c05b0ee74132a0930 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5410: 9d3872ede14307ef4adb0866f8474f5c41e6b1c1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16377: 4f67eafb874d6af675af9a994d7846d9d397b6da @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4f67eafb874d drm/i915: Move ringbuffer WAs to engine workaround list
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16377/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
