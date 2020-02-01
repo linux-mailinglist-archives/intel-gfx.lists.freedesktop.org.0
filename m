@@ -2,35 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB9B614F7CB
-	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 13:36:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C491D14F7CF
+	for <lists+intel-gfx@lfdr.de>; Sat,  1 Feb 2020 13:43:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB8F6EA75;
-	Sat,  1 Feb 2020 12:36:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1E4D6EA7A;
+	Sat,  1 Feb 2020 12:43:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF366EA75
- for <intel-gfx@lists.freedesktop.org>; Sat,  1 Feb 2020 12:36:50 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98E716EA78;
+ Sat,  1 Feb 2020 12:43:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2020 04:36:50 -0800
-X-IronPort-AV: E=Sophos;i="5.70,389,1574150400"; d="scan'208";a="223424316"
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 01 Feb 2020 04:43:26 -0800
+X-IronPort-AV: E=Sophos;i="5.70,389,1574150400"; d="scan'208";a="223424880"
 Received: from nreina-mobl.ger.corp.intel.com (HELO localhost) ([10.252.52.61])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2020 04:36:48 -0800
+ 01 Feb 2020 04:43:24 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200131214701.1085737-9-gwan-gyeong.mun@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
-Date: Sat, 01 Feb 2020 14:36:46 +0200
-Message-ID: <87zhe25vs1.fsf@intel.com>
+References: <20200131214701.1085737-1-gwan-gyeong.mun@intel.com>
+ <20200131214701.1085737-9-gwan-gyeong.mun@intel.com>
+Date: Sat, 01 Feb 2020 14:43:22 +0200
+Message-ID: <87wo965vh1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/audio: Skip the cdclk modeset if
- no pipes attached
+Subject: Re: [Intel-gfx] [PATCH 08/18] drm/i915/dp: Add logging function for
+ DP VSC SDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,110 +45,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vehmanen, Kai" <kai.vehmanen@intel.com>
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 01 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> If the display is not driving any pipes, we cannot change the bclk and
-> doing so risks chasing NULL pointers:
+On Fri, 31 Jan 2020, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
+> When receiving video it is very useful to be able to log DP VSC SDP.
+> This greatly simplifies debugging.
 
-Does this mean we can't probe hda if there are no displays attached at
-boot on GLK?
+Seems like a lot of the functions should really be in drm core.
 
 BR,
 Jani.
 
-
-
 >
-> <6> [278.907105] snd_hda_intel 0000:00:0e.0: DSP detected with PCI class/subclass/prog-if info 0x040100
-> <6> [278.909936] snd_hda_intel 0000:00:0e.0: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
-> <7> [278.910078] i915 0000:00:02.0: [drm:intel_power_well_enable [i915]] enabling power well 2
-> <1> [278.910228] BUG: kernel NULL pointer dereference, address: 0000000000000080
-> <1> [278.910243] #PF: supervisor read access in kernel mode
-> <1> [278.910251] #PF: error_code(0x0000) - not-present page
-> <6> [278.910260] PGD 0 P4D 0
-> <4> [278.910267] Oops: 0000 [#1] PREEMPT SMP PTI
-> <4> [278.910276] CPU: 0 PID: 5 Comm: kworker/0:0 Tainted: G     U            5.5.0-CI-CI_DRM_7853+ #1
-> <4> [278.910289] Hardware name: Intel Corp. Geminilake/GLK RVP2 LP4SD (07), BIOS GELKRVPA.X64.0062.B30.1708222146 08/22/2017
-> <4> [278.910312] Workqueue: events azx_probe_work [snd_hda_intel]
-> <4> [278.910327] RIP: 0010:__ww_mutex_lock.constprop.15+0x5e/0x1090
-> <4> [278.910338] Code: 75 88 be a7 03 00 00 65 48 8b 04 25 28 00 00 00 48 89 45 c8 31 c0 4c 89 c3 e8 5e b3 6d ff 44 8b 3d 2f 24 37 02 45 85 ff 75 0a <4d> 3b 6d 58 0f 85 3f 07 00 00 48 85 db 74 22 49 8b 95 80 00 00 00
-> <4> [278.910362] RSP: 0018:ffffc9000008bc10 EFLAGS: 00010246
-> <4> [278.910371] RAX: 0000000000000246 RBX: ffffc9000008bd30 RCX: 0000000000000001
-> <4> [278.910382] RDX: 0000000000000000 RSI: ffffffff82647c60 RDI: ffff88817b27d848
-> <4> [278.910393] RBP: ffffc9000008bcc0 R08: 0000000000000000 R09: 0000000000000001
-> <4> [278.910404] R10: ffffc9000008bce0 R11: 0000000000000000 R12: ffffffff8168f0fc
-> <4> [278.910414] R13: 0000000000000028 R14: ffffc9000008bd60 R15: 0000000000000000
-> <4> [278.910425] FS:  0000000000000000(0000) GS:ffff88817bc00000(0000) knlGS:0000000000000000
-> <4> [278.910437] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [278.910446] CR2: 0000000000000080 CR3: 00000001650da000 CR4: 0000000000340ef0
-> <4> [278.910456] Call Trace:
-> <4> [278.910468]  ? mark_held_locks+0x49/0x70
-> <4> [278.910479]  ? ww_mutex_lock+0x39/0x70
-> <4> [278.910487]  ww_mutex_lock+0x39/0x70
-> <4> [278.910497]  drm_modeset_lock+0x6c/0x120
-> <4> [278.910575]  glk_force_audio_cdclk+0x7d/0x140 [i915]
-> <4> [278.910656]  i915_audio_component_get_power+0xf2/0x110 [i915]
-> <4> [278.910673]  snd_hdac_display_power+0x7d/0x120 [snd_hda_core]
-> <4> [278.910686]  azx_probe_work+0x88/0x7e0 [snd_hda_intel]
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_audio.c | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 173 ++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.h |   4 +
+>  2 files changed, 177 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index e3efd81c5855..3d92849811e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -810,16 +810,14 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 6756030692c8..e33488222ac5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5090,6 +5090,179 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
 >  	}
 >  }
 >  
-> -static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
-> +static int glk_force_audio_cdclk_commit(struct intel_crtc *crtc,
-> +					struct intel_atomic_state *state,
->  					bool enable)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
->  	struct intel_cdclk_state *cdclk_state;
-> -	struct intel_crtc *crtc;
->  	int ret;
->  
->  	/* need to hold at least one crtc lock for the global state */
-> -	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
->  	ret = drm_modeset_lock(&crtc->base.mutex, state->base.acquire_ctx);
->  	if (ret)
->  		return ret;
-> @@ -843,8 +841,13 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
->  {
->  	struct drm_modeset_acquire_ctx ctx;
->  	struct drm_atomic_state *state;
-> +	struct intel_crtc *crtc;
->  	int ret;
->  
-> +	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-> +	if (!crtc)
-> +		return;
+> +static const char *dp_colorspace_get_name(enum dp_colorspace colorspace)
+> +{
+> +	if (colorspace < 0 || colorspace > DP_COLORSPACE_RESERVED)
+> +		return "Invalid";
 > +
->  	drm_modeset_acquire_init(&ctx, 0);
->  	state = drm_atomic_state_alloc(&dev_priv->drm);
->  	if (WARN_ON(!state))
-> @@ -853,7 +856,9 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
->  	state->acquire_ctx = &ctx;
+> +	switch (colorspace) {
+> +	case DP_COLORSPACE_RGB:
+> +		return "RGB";
+> +	case DP_COLORSPACE_YUV444:
+> +		return "YUV444";
+> +	case DP_COLORSPACE_YUV422:
+> +		return "YUV422";
+> +	case DP_COLORSPACE_YUV420:
+> +		return "YUV420";
+> +	case DP_COLORSPACE_Y_ONLY:
+> +		return "Y_ONLY";
+> +	case DP_COLORSPACE_RAW:
+> +		return "RAW";
+> +	default:
+> +		return "Reserved";
+> +	}
+> +}
+> +
+> +static const char *dp_colorimetry_get_name(enum dp_colorspace colorspace,
+> +					   enum dp_colorimetry colorimetry)
+> +{
+> +	if (colorspace < 0 || colorspace > DP_COLORSPACE_RESERVED)
+> +		return "Invalid";
+> +
+> +	switch (colorimetry) {
+> +	case DP_COLORIMETRY_DEFAULT:
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "sRGB";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "BT.601";
+> +		case DP_COLORSPACE_Y_ONLY:
+> +			return "DICOM PS3.14";
+> +		case DP_COLORSPACE_RAW:
+> +			return "Custom Color Profile";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_RGB_WIDE_FIXED: /* and DP_COLORIMETRY_BT709_YCC */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "Wide Fixed";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "BT.709";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_RGB_WIDE_FLOAT: /* and DP_COLORIMETRY_XVYCC_601 */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "Wide Float";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "xvYCC 601";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_OPRGB: /* and DP_COLORIMETRY_XVYCC_709 */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "OpRGB";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "xvYCC 709";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_DCI_P3_RGB: /* and DP_COLORIMETRY_SYCC_601 */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "DCI-P3";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "sYCC 601";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_RGB_CUSTOM: /* and DP_COLORIMETRY_OPYCC_601 */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "Custom Profile";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "OpYCC 601";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_BT2020_RGB: /* and DP_COLORIMETRY_BT2020_CYCC */
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_RGB:
+> +			return "BT.2020 RGB";
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "BT.2020 CYCC";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	case DP_COLORIMETRY_BT2020_YCC:
+> +		switch (colorspace) {
+> +		case DP_COLORSPACE_YUV444:
+> +		case DP_COLORSPACE_YUV422:
+> +		case DP_COLORSPACE_YUV420:
+> +			return "BT.2020 YCC";
+> +		default:
+> +			return "Reserved";
+> +		}
+> +	default:
+> +		return "Invalid";
+> +	}
+> +}
+> +
+> +static const char *dp_dynamic_range_get_name(enum dp_dynamic_range dynamic_range)
+> +{
+> +	switch (dynamic_range) {
+> +	case DP_DYNAMIC_RANGE_VESA:
+> +		return "VESA range";
+> +	case DP_DYNAMIC_RANGE_CTA:
+> +		return "CTA range";
+> +	default:
+> +		return "Invalid";
+> +	}
+> +}
+> +
+> +static const char *dp_content_type_get_name(enum dp_content_type content_type)
+> +{
+> +	switch (content_type) {
+> +	case DP_CONTENT_TYPE_NOT_DEFINED:
+> +		return "Not defined";
+> +	case DP_CONTENT_TYPE_GRAPHICS:
+> +		return "Graphics";
+> +	case DP_CONTENT_TYPE_PHOTO:
+> +		return "Photo";
+> +	case DP_CONTENT_TYPE_VIDEO:
+> +		return "Video";
+> +	case DP_CONTENT_TYPE_GAME:
+> +		return "Game";
+> +	default:
+> +		return "Reserved";
+> +	}
+> +}
+> +
+> +#define dp_sdp_log(fmt, ...) dev_printk(level, dev, fmt, ##__VA_ARGS__)
+> +void intel_dp_vsc_sdp_log(const char *level, struct device *dev,
+> +			  const struct intel_dp_vsc_sdp *vsc)
+> +{
+> +	dp_sdp_log("DP SDP: %s, revision %u, length %u\n", "VSC",
+> +		   vsc->revision, vsc->length);
+> +	dp_sdp_log("    colorspace: %s\n",
+> +			dp_colorspace_get_name(vsc->colorspace));
+> +	dp_sdp_log("    colorimetry: %s\n",
+> +			dp_colorimetry_get_name(vsc->colorspace, vsc->colorimetry));
+> +	dp_sdp_log("    bpc: %u\n",vsc->bpc);
+> +	dp_sdp_log("    dynamic range: %s\n",
+> +			dp_dynamic_range_get_name(vsc->dynamic_range));
+> +	dp_sdp_log("    content type: %s\n",
+> +			dp_content_type_get_name(vsc->content_type));
+> +}
+> +#undef dp_sdp_log
+> +
+>  static void
+>  intel_dp_setup_vsc_sdp(struct intel_dp *intel_dp,
+>  		       const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index e8f9ba962d09..03b300b58fd0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -7,6 +7,7 @@
+>  #define __INTEL_DP_H__
 >  
->  retry:
-> -	ret = glk_force_audio_cdclk_commit(to_intel_atomic_state(state), enable);
-> +	ret = glk_force_audio_cdclk_commit(crtc,
-> +					   to_intel_atomic_state(state),
-> +					   enable);
->  	if (ret == -EDEADLK) {
->  		drm_atomic_state_clear(state);
->  		drm_modeset_backoff(&ctx);
+>  #include <linux/types.h>
+> +#include <linux/device.h>
+>  
+>  #include <drm/i915_drm.h>
+>  
+> @@ -23,6 +24,7 @@ struct intel_crtc_state;
+>  struct intel_digital_port;
+>  struct intel_dp;
+>  struct intel_encoder;
+> +struct intel_dp_vsc_sdp;
+>  
+>  struct link_config_limits {
+>  	int min_clock, max_clock;
+> @@ -122,6 +124,8 @@ void intel_dp_set_infoframes(struct intel_encoder *encoder, bool enable,
+>  void intel_read_dp_sdp(struct intel_encoder *encoder,
+>  		       struct intel_crtc_state *crtc_state,
+>  		       unsigned int type);
+> +void intel_dp_vsc_sdp_log(const char *level, struct device *dev,
+> +			  const struct intel_dp_vsc_sdp *vsc);
+>  bool intel_digital_port_connected(struct intel_encoder *encoder);
+>  
+>  static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
