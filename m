@@ -1,58 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E109714FE5C
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 17:42:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460AD14FE60
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 17:43:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C53176E0CF;
-	Sun,  2 Feb 2020 16:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4230E6EB01;
+	Sun,  2 Feb 2020 16:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
  [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3057B6E0CF
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Feb 2020 16:42:11 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id k11so14866030wrd.9
- for <intel-gfx@lists.freedesktop.org>; Sun, 02 Feb 2020 08:42:11 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B64416E0D6
+ for <intel-gfx@lists.freedesktop.org>; Sun,  2 Feb 2020 16:43:09 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id c9so14887380wrw.8
+ for <intel-gfx@lists.freedesktop.org>; Sun, 02 Feb 2020 08:43:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=B2z3mogKcy0xJhRngVdq+5os5lXZKpIatWVOL2fLzG8=;
- b=luu/SpSE04/8sOOPQCMT68BFHhhJWll3v0mesXR+eM76/2WqGezDN+cz5wr7IHDvOs
- gfXJAq3nbMrGQorcbtJm+/Z8t5ljp5Up/hzXiVXDR6kz3cNIVa8r3j39x2cgXA6N5T04
- evEEf6ln1sth8koPJG2J8pobYmoCYUHKPFbjM=
+ bh=oKxhO9qiKY5KoKoC+IjW7wZDfQGuny83n7+HRt7kNGo=;
+ b=WXo+nGOUep9GiiQXiaMx1VVZTcN8wcNNXjEybYENqnARgMcdMNDfwBICwBt3zGsV8n
+ ZzX75Ok+lz6nDtMv9kaJooX139wnFD12p4aK7HZ8fWr0F7S1VOl1HSyfa6mpyKZ3+tcd
+ 5XfuzJciVbvV038iMtCMkBh2aRGkA1tEfiNuA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=B2z3mogKcy0xJhRngVdq+5os5lXZKpIatWVOL2fLzG8=;
- b=YEfz7pYpaGvLSspydtrz0eJCqi89jhfvv1gDlUuSiL7Ivy2W6bUt4EiK8ksLt5osEo
- wpdezmwaDS1sBjCPLasNA9pDw+8ywoS6FHu0rENq3he3jzaDTJODyKVk1XP+nYunTS1g
- dxJ+FGGhXOdp6QSmmzWEoQZcWL9O2DvcQblUi4pcKYw9w3DAYnJ7EmelknguXXjG0UUN
- mpVrDt+OTDbmnmu8yUu0rAJwdE8iI44hoLL6MdyIHR538h0dhCxWqPdmc5jjbPkDdtkg
- pTCm9QjOCbpt8licN2mHzSicW996jpInewQaJEOE2h59oOeRXKLvGWCbv5uhJY5ORljC
- U+Ig==
-X-Gm-Message-State: APjAAAUkAwIK3kLZiOv8S635Oo/yv1shkM6T0mFHAZYQfiHVAiOcxDrO
- N6EpBwhwjV4nn7zvaEBEpeRSKg==
-X-Google-Smtp-Source: APXvYqze0DZAhRmfkC5IRlmqXX/qBqys//AAmWc1M4GUPpdT3cKjU9I3dmFbKQ8PwG/y36iae995rQ==
-X-Received: by 2002:adf:e746:: with SMTP id c6mr10238712wrn.323.1580661729637; 
- Sun, 02 Feb 2020 08:42:09 -0800 (PST)
+ bh=oKxhO9qiKY5KoKoC+IjW7wZDfQGuny83n7+HRt7kNGo=;
+ b=eGWnv/PUOwGMHX6dewTlXZBaNUt7Uocw5AR89dCHaj9pp2BYswJy4uqEMDTujFFB2C
+ 9v1A03gbrRp2YExsKYfpHP4X7jTXC4LlMlijSvsZ3A+vxSfmOEru/4rrQ0+PCZO8/oe0
+ b+BJZ4m/NFZT0pngjeRb7v1Wn4Bu6081VUg4Nfd1ylztTSVWTRG9l+LPWe06I6VUUre2
+ AprCfn7gxoIX+B6EKjosEGn6wm+PHhNryd5o7xfI/Byh7EdNov5r44092jD1EQX7ByeT
+ eRo8Yqq0N+/Guou9qiyx2s1j7p1yjJF9gX/iHaHwRlUmKa/WAPI+B6AmGhlMQwmMiXWZ
+ Rh8g==
+X-Gm-Message-State: APjAAAWM1baaYRCB8tV8OrjO7Mpp32wol6fZZoZbDrRW6cYNqj81Hssb
+ vQUbeSc/Dw5TT9FQsufEJ57xzuzKbYN5mQ==
+X-Google-Smtp-Source: APXvYqy8vTmPakSDyd9zPcYFoUOTSn3PagUfsV44KVdme6TKEVEXU4xzeAkjvVcAGB8TBrQBBhZ90Q==
+X-Received: by 2002:a5d:4c88:: with SMTP id z8mr10748338wrs.395.1580661788447; 
+ Sun, 02 Feb 2020 08:43:08 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id k7sm19369213wmi.19.2020.02.02.08.42.08
+ by smtp.gmail.com with ESMTPSA id a1sm21367490wrr.80.2020.02.02.08.43.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 02 Feb 2020 08:42:08 -0800 (PST)
-Date: Sun, 2 Feb 2020 17:42:07 +0100
+ Sun, 02 Feb 2020 08:43:07 -0800 (PST)
+Date: Sun, 2 Feb 2020 17:43:06 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200202164207.GP43062@phenom.ffwll.local>
-References: <20200202153934.3899472-1-chris@chris-wilson.co.uk>
+Message-ID: <20200202164306.GQ43062@phenom.ffwll.local>
+References: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200202153934.3899472-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
 X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Wean off
- drm_pci_alloc/drm_pci_free
+Subject: Re: [Intel-gfx] [PATCH] drm: Remove PageReserved manipulation from
+ drm_pci_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,16 +65,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 02, 2020 at 03:39:34PM +0000, Chris Wilson wrote:
-> drm_pci_alloc and drm_pci_free are just very thin wrappers around
-> dma_alloc_coherent, with a note that we should be removing them.
-> Furthermore since
+On Sun, Feb 02, 2020 at 04:10:09PM +0000, Chris Wilson wrote:
+> drm_pci_alloc/drm_pci_free are very thin wrappers around the core dma
+> facilities, and we have no special reason within the drm layer to behave
+> differently. In particular, since
 > 
 > commit de09d31dd38a50fdce106c15abd68432eebbd014
 > Author: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
@@ -85,9 +86,8 @@ On Sun, Feb 02, 2020 at 03:39:34PM +0000, Chris Wilson wrote:
 >     As far as I can see there's no users of PG_reserved on compound pages.
 >     Let's use PF_NO_COMPOUND here.
 > 
-> drm_pci_alloc has been declared broken since it mixes GFP_COMP and
-> SetPageReserved. Avoid this conflict by weaning ourselves off using the
-> abstraction and using the dma functions directly.
+> it has been illegal to combine GFP_COMP with SetPageReserved, so lets
+> stop doing both and leave the dma layer to its own devices.
 > 
 > Reported-by: Taketo Kabe
 > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1027
@@ -95,247 +95,78 @@ On Sun, Feb 02, 2020 at 03:39:34PM +0000, Chris Wilson wrote:
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: <stable@vger.kernel.org> # v4.5+
 
-Assuming i915gm or whatever phys_cursor machine you have around is still
-happy with all that (not even sure we ever managed to create igts for
-testing the cursor on these properly).
+Given that after your i915 patch only mga and r128 still use this I think
+deleting code is the best action here.
 
 Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
->  .../gpu/drm/i915/gem/i915_gem_object_types.h  |  3 -
->  drivers/gpu/drm/i915/gem/i915_gem_phys.c      | 98 ++++++++++---------
->  drivers/gpu/drm/i915/i915_gem.c               |  8 +-
->  4 files changed, 55 insertions(+), 56 deletions(-)
+>  drivers/gpu/drm/drm_pci.c | 23 ++---------------------
+>  1 file changed, 2 insertions(+), 21 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b0af37fb6d4a..1f584263aa97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -11234,7 +11234,7 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
->  	u32 base;
->  
->  	if (INTEL_INFO(dev_priv)->display.cursor_needs_physical)
-> -		base = obj->phys_handle->busaddr;
-> +		base = sg_dma_address(obj->mm.pages->sgl);
->  	else
->  		base = intel_plane_ggtt_offset(plane_state);
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index f64ad77e6b1e..c2174da35bb0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -285,9 +285,6 @@ struct drm_i915_gem_object {
->  
->  		void *gvt_info;
->  	};
-> -
-> -	/** for phys allocated objects */
-> -	struct drm_dma_handle *phys_handle;
->  };
->  
->  static inline struct drm_i915_gem_object *
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> index b1b7c1b3038a..b07bb40edd5a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> @@ -22,88 +22,87 @@
->  static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
+> diff --git a/drivers/gpu/drm/drm_pci.c b/drivers/gpu/drm/drm_pci.c
+> index f2e43d341980..d16dac4325f9 100644
+> --- a/drivers/gpu/drm/drm_pci.c
+> +++ b/drivers/gpu/drm/drm_pci.c
+> @@ -51,8 +51,6 @@
+>  drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t align)
 >  {
->  	struct address_space *mapping = obj->base.filp->f_mapping;
-> -	struct drm_dma_handle *phys;
-> -	struct sg_table *st;
->  	struct scatterlist *sg;
-> -	char *vaddr;
-> +	struct sg_table *st;
-> +	dma_addr_t dma;
-> +	void *vaddr;
-> +	void *dst;
->  	int i;
-> -	int err;
+>  	drm_dma_handle_t *dmah;
+> -	unsigned long addr;
+> -	size_t sz;
 >  
->  	if (WARN_ON(i915_gem_object_needs_bit17_swizzle(obj)))
->  		return -EINVAL;
+>  	/* pci_alloc_consistent only guarantees alignment to the smallest
+>  	 * PAGE_SIZE order which is greater than or equal to the requested size.
+> @@ -68,20 +66,13 @@ drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t ali
+>  	dmah->size = size;
+>  	dmah->vaddr = dma_alloc_coherent(&dev->pdev->dev, size,
+>  					 &dmah->busaddr,
+> -					 GFP_KERNEL | __GFP_COMP);
+> +					 GFP_KERNEL);
 >  
-> -	/* Always aligning to the object size, allows a single allocation
-> +	/*
-> +	 * Always aligning to the object size, allows a single allocation
->  	 * to handle all possible callers, and given typical object sizes,
->  	 * the alignment of the buddy allocation will naturally match.
->  	 */
-> -	phys = drm_pci_alloc(obj->base.dev,
-> -			     roundup_pow_of_two(obj->base.size),
-> -			     roundup_pow_of_two(obj->base.size));
-> -	if (!phys)
-> +	vaddr = dma_alloc_coherent(&obj->base.dev->pdev->dev,
-> +				   roundup_pow_of_two(obj->base.size),
-> +				   &dma, GFP_KERNEL);
-> +	if (!vaddr)
->  		return -ENOMEM;
+>  	if (dmah->vaddr == NULL) {
+>  		kfree(dmah);
+>  		return NULL;
+>  	}
 >  
-> -	vaddr = phys->vaddr;
-> +	st = kmalloc(sizeof(*st), GFP_KERNEL);
-> +	if (!st)
-> +		goto err_pci;
-> +
-> +	if (sg_alloc_table(st, 1, GFP_KERNEL))
-> +		goto err_st;
-> +
-> +	sg = st->sgl;
-> +	sg->offset = 0;
-> +	sg->length = obj->base.size;
-> +
-> +	sg_assign_page(sg, (struct page *)vaddr);
-> +	sg_dma_address(sg) = dma;
-> +	sg_dma_len(sg) = obj->base.size;
-> +
-> +	dst = vaddr;
->  	for (i = 0; i < obj->base.size / PAGE_SIZE; i++) {
->  		struct page *page;
-> -		char *src;
-> +		void *src;
+> -	/* XXX - Is virt_to_page() legal for consistent mem? */
+> -	/* Reserve */
+> -	for (addr = (unsigned long)dmah->vaddr, sz = size;
+> -	     sz > 0; addr += PAGE_SIZE, sz -= PAGE_SIZE) {
+> -		SetPageReserved(virt_to_page((void *)addr));
+> -	}
+> -
+>  	return dmah;
+>  }
 >  
->  		page = shmem_read_mapping_page(mapping, i);
-> -		if (IS_ERR(page)) {
-> -			err = PTR_ERR(page);
-> -			goto err_phys;
+> @@ -94,19 +85,9 @@ EXPORT_SYMBOL(drm_pci_alloc);
+>   */
+>  void __drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
+>  {
+> -	unsigned long addr;
+> -	size_t sz;
+> -
+> -	if (dmah->vaddr) {
+> -		/* XXX - Is virt_to_page() legal for consistent mem? */
+> -		/* Unreserve */
+> -		for (addr = (unsigned long)dmah->vaddr, sz = dmah->size;
+> -		     sz > 0; addr += PAGE_SIZE, sz -= PAGE_SIZE) {
+> -			ClearPageReserved(virt_to_page((void *)addr));
 > -		}
-> +		if (IS_ERR(page))
-> +			goto err_st;
->  
->  		src = kmap_atomic(page);
-> -		memcpy(vaddr, src, PAGE_SIZE);
-> -		drm_clflush_virt_range(vaddr, PAGE_SIZE);
-> +		memcpy(dst, src, PAGE_SIZE);
-> +		drm_clflush_virt_range(dst, PAGE_SIZE);
->  		kunmap_atomic(src);
->  
->  		put_page(page);
-> -		vaddr += PAGE_SIZE;
-> +		dst += PAGE_SIZE;
->  	}
->  
->  	intel_gt_chipset_flush(&to_i915(obj->base.dev)->gt);
->  
-> -	st = kmalloc(sizeof(*st), GFP_KERNEL);
-> -	if (!st) {
-> -		err = -ENOMEM;
-> -		goto err_phys;
+> +	if (dmah->vaddr)
+>  		dma_free_coherent(&dev->pdev->dev, dmah->size, dmah->vaddr,
+>  				  dmah->busaddr);
 > -	}
-> -
-> -	if (sg_alloc_table(st, 1, GFP_KERNEL)) {
-> -		kfree(st);
-> -		err = -ENOMEM;
-> -		goto err_phys;
-> -	}
-> -
-> -	sg = st->sgl;
-> -	sg->offset = 0;
-> -	sg->length = obj->base.size;
-> -
-> -	sg_dma_address(sg) = phys->busaddr;
-> -	sg_dma_len(sg) = obj->base.size;
-> -
-> -	obj->phys_handle = phys;
-> -
->  	__i915_gem_object_set_pages(obj, st, sg->length);
->  
->  	return 0;
->  
-> -err_phys:
-> -	drm_pci_free(obj->base.dev, phys);
-> -
-> -	return err;
-> +err_st:
-> +	kfree(st);
-> +err_pci:
-> +	dma_free_coherent(&obj->base.dev->pdev->dev,
-> +			  roundup_pow_of_two(obj->base.size),
-> +			  vaddr, dma);
-> +	return -ENOMEM;
 >  }
 >  
->  static void
->  i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
->  			       struct sg_table *pages)
->  {
-> +	dma_addr_t dma = sg_dma_address(pages->sgl);
-> +	void *vaddr = sg_page(pages->sgl);
-> +
->  	__i915_gem_object_release_shmem(obj, pages, false);
->  
->  	if (obj->mm.dirty) {
->  		struct address_space *mapping = obj->base.filp->f_mapping;
-> -		char *vaddr = obj->phys_handle->vaddr;
-> +		void *src = vaddr;
->  		int i;
->  
->  		for (i = 0; i < obj->base.size / PAGE_SIZE; i++) {
-> @@ -115,15 +114,16 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
->  				continue;
->  
->  			dst = kmap_atomic(page);
-> -			drm_clflush_virt_range(vaddr, PAGE_SIZE);
-> -			memcpy(dst, vaddr, PAGE_SIZE);
-> +			drm_clflush_virt_range(src, PAGE_SIZE);
-> +			memcpy(dst, src, PAGE_SIZE);
->  			kunmap_atomic(dst);
->  
->  			set_page_dirty(page);
->  			if (obj->mm.madv == I915_MADV_WILLNEED)
->  				mark_page_accessed(page);
->  			put_page(page);
-> -			vaddr += PAGE_SIZE;
-> +
-> +			src += PAGE_SIZE;
->  		}
->  		obj->mm.dirty = false;
->  	}
-> @@ -131,7 +131,9 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
->  	sg_free_table(pages);
->  	kfree(pages);
->  
-> -	drm_pci_free(obj->base.dev, obj->phys_handle);
-> +	dma_free_coherent(&obj->base.dev->pdev->dev,
-> +			  roundup_pow_of_two(obj->base.size),
-> +			  vaddr, dma);
->  }
->  
->  static void phys_release(struct drm_i915_gem_object *obj)
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index 7245e056ce77..a712e60b016a 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -180,7 +180,7 @@ i915_gem_phys_pwrite(struct drm_i915_gem_object *obj,
->  		     struct drm_i915_gem_pwrite *args,
->  		     struct drm_file *file)
->  {
-> -	void *vaddr = obj->phys_handle->vaddr + args->offset;
-> +	void *vaddr = sg_page(obj->mm.pages->sgl) + args->offset;
->  	char __user *user_data = u64_to_user_ptr(args->data_ptr);
->  
->  	/*
-> @@ -844,10 +844,10 @@ i915_gem_pwrite_ioctl(struct drm_device *dev, void *data,
->  		ret = i915_gem_gtt_pwrite_fast(obj, args);
->  
->  	if (ret == -EFAULT || ret == -ENOSPC) {
-> -		if (obj->phys_handle)
-> -			ret = i915_gem_phys_pwrite(obj, args, file);
-> -		else
-> +		if (i915_gem_object_has_struct_page(obj))
->  			ret = i915_gem_shmem_pwrite(obj, args);
-> +		else
-> +			ret = i915_gem_phys_pwrite(obj, args, file);
->  	}
->  
->  	i915_gem_object_unpin_pages(obj);
+>  /**
 > -- 
 > 2.25.0
 > 
 > _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
 -- 
 Daniel Vetter
