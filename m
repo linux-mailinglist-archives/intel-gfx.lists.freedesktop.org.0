@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A3A14FE94
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 18:20:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E30414FE9D
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 18:25:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4866E0D2;
-	Sun,  2 Feb 2020 17:20:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B64566EB17;
+	Sun,  2 Feb 2020 17:25:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CF9E86E0CC;
- Sun,  2 Feb 2020 17:20:48 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8C01A6E0CC;
+ Sun,  2 Feb 2020 17:25:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C0077A011C;
- Sun,  2 Feb 2020 17:20:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84084A0096;
+ Sun,  2 Feb 2020 17:25:21 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 02 Feb 2020 17:20:48 -0000
-Message-ID: <158066404876.17038.14610950634325427415@emeril.freedesktop.org>
+Date: Sun, 02 Feb 2020 17:25:21 -0000
+Message-ID: <158066432151.17037.1223362855543114764@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Remove_PageReserved_manipulation_from_drm=5Fpci=5Falloc?=
+References: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/5=5D_drm=3A_Remove_PageReserved_m?=
+ =?utf-8?q?anipulation_from_drm=5Fpci=5Falloc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,114 +48,78 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm: Remove PageReserved manipulation from drm_pci_alloc
-URL   : https://patchwork.freedesktop.org/series/72882/
-State : success
+Series: series starting with [1/5] drm: Remove PageReserved manipulation from drm_pci_alloc
+URL   : https://patchwork.freedesktop.org/series/72883/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7856 -> Patchwork_16384
-====================================================
+$ dim checkpatch origin/drm-tip
+0aa4536eb0f4 drm: Remove PageReserved manipulation from drm_pci_alloc
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages")'
+#10: 
+commit de09d31dd38a50fdce106c15abd68432eebbd014
 
-Summary
--------
+-:22: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Taketo Kabe'
+#22: 
+Reported-by: Taketo Kabe
 
-  **SUCCESS**
+total: 2 errors, 0 warnings, 0 checks, 49 lines checked
+5daedabb367b drm: Remove the dma_alloc_coherent wrapper for internal usage
+35048571697e drm/r128: Wean off drm_pci_alloc
+-:11: WARNING:OBSOLETE: drivers/gpu/drm/r128/ati_pcigart.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  No regressions found.
+-:14: WARNING:OBSOLETE: drivers/gpu/drm/r128/ati_pcigart.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/index.html
+-:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#24: FILE: drivers/gpu/drm/r128/ati_pcigart.c:49:
++		dma_alloc_coherent(&dev->pdev->dev,
++				  gart_info->table_size,
 
-Known issues
-------------
+-:25: CHECK:SPACING: spaces preferred around that '^' (ctx:ExV)
+#25: FILE: drivers/gpu/drm/r128/ati_pcigart.c:50:
++				  ^gart_info->bus_addr,
+ 				  ^
 
-  Here are the changes found in Patchwork_16384 that come from known issues:
+-:102: WARNING:OBSOLETE: drivers/gpu/drm/r128/ati_pcigart.h is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-### IGT changes ###
+-:105: WARNING:OBSOLETE: drivers/gpu/drm/r128/ati_pcigart.h is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
 
-#### Issues hit ####
+total: 0 errors, 4 warnings, 2 checks, 88 lines checked
+4a38cc58ae16 drm/i915: Wean off drm_pci_alloc/drm_pci_free
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages")'
+#10: 
+commit de09d31dd38a50fdce106c15abd68432eebbd014
 
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084] / [i915#816])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-    - fi-hsw-4770:        [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#1084])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@gem_close_race@basic-threads.html
+-:23: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Taketo Kabe'
+#23: 
+Reported-by: Taketo Kabe
 
-  * igt@i915_selftest@live_gtt:
-    - fi-icl-u3:          [PASS][5] -> [TIMEOUT][6] ([fdo#112271])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-icl-u3/igt@i915_selftest@live_gtt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-icl-u3/igt@i915_selftest@live_gtt.html
+total: 2 errors, 0 warnings, 0 checks, 198 lines checked
+c2cfb483f90b drm: Remove exports for drm_pci_alloc/drm_pci_free
+-:51: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#51: FILE: drivers/gpu/drm/drm_legacy.h:215:
+ 
++
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111407])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+-:56: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#56: FILE: drivers/gpu/drm/drm_legacy.h:220:
++void drm_legacy_pci_free(struct drm_device *dev, struct drm_dma_handle * dmah);
 
-  
-#### Possible fixes ####
+-:98: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#98: FILE: drivers/gpu/drm/drm_pci.c:42:
++drm_legacy_pci_alloc(struct drm_device * dev, size_t size, size_t align)
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][9] ([i915#178]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+-:117: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#117: FILE: drivers/gpu/drm/drm_pci.c:70:
++void drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
 
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-ivb-3770/igt@i915_selftest@live_blt.html
-    - fi-hsw-4770:        [DMESG-FAIL][13] ([i915#553] / [i915#725]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@i915_selftest@live_blt.html
+-:117: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#117: FILE: drivers/gpu/drm/drm_pci.c:70:
++void drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
 
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [DMESG-FAIL][15] ([fdo#108569]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-icl-y/igt@i915_selftest@live_execlists.html
+total: 4 errors, 0 warnings, 1 checks, 133 lines checked
 
-  * igt@i915_selftest@live_gtt:
-    - fi-hsw-4770:        [TIMEOUT][17] ([fdo#112271]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@i915_selftest@live_gtt.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@i915_selftest@live_gtt.html
-
-  
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-
-
-Participating hosts (43 -> 43)
-------------------------------
-
-  Additional (8): fi-bdw-5557u fi-byt-j1900 fi-bwr-2160 fi-ilk-650 fi-bsw-kefka fi-skl-lmem fi-kbl-7560u fi-skl-6600u 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bdw-gvtdvm fi-bsw-cyan fi-cfl-8109u fi-elk-e7500 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7856 -> Patchwork_16384
-
-  CI-20190529: 20190529
-  CI_DRM_7856: a113999b001035a5b6474407b228363c163574a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5411: 86c6ab8a0b6696bdb2153febd350af7fa02fbb00 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16384: 955e2e4c57d71230ad63fa9c069bce65fb906532 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-955e2e4c57d7 drm: Remove PageReserved manipulation from drm_pci_alloc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
