@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A040514FE8C
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 18:16:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9A3A14FE94
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 18:20:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 345B06EB0E;
-	Sun,  2 Feb 2020 17:16:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4866E0D2;
+	Sun,  2 Feb 2020 17:20:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 451916EB0F;
- Sun,  2 Feb 2020 17:16:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20091966-1500050 
- for multiple; Sun, 02 Feb 2020 17:16:36 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: dri-devel@lists.freedesktop.org
-Date: Sun,  2 Feb 2020 17:16:35 +0000
-Message-Id: <20200202171635.4039044-5-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
-References: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF9E86E0CC;
+ Sun,  2 Feb 2020 17:20:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0077A011C;
+ Sun,  2 Feb 2020 17:20:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm: Remove exports for
- drm_pci_alloc/drm_pci_free
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sun, 02 Feb 2020 17:20:48 -0000
+Message-ID: <158066404876.17038.14610950634325427415@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Remove_PageReserved_manipulation_from_drm=5Fpci=5Falloc?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,183 +38,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The drm_pci_alloc routines have been a thin wrapper around the core dma
-coherent routines. Remove the crutch of a wrapper and the exported
-symbols, marking it for only internal legacy use.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/drm_bufs.c   |  5 +++--
- drivers/gpu/drm/drm_legacy.h | 23 +++++++++++++++++++++++
- drivers/gpu/drm/drm_pci.c    | 31 ++++++-------------------------
- include/drm/drm_pci.h        | 18 ------------------
- 4 files changed, 32 insertions(+), 45 deletions(-)
+Series: drm: Remove PageReserved manipulation from drm_pci_alloc
+URL   : https://patchwork.freedesktop.org/series/72882/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_bufs.c b/drivers/gpu/drm/drm_bufs.c
-index 19297e58b232..a33df3744f76 100644
---- a/drivers/gpu/drm/drm_bufs.c
-+++ b/drivers/gpu/drm/drm_bufs.c
-@@ -675,7 +675,7 @@ static void drm_cleanup_buf_error(struct drm_device *dev,
- 	if (entry->seg_count) {
- 		for (i = 0; i < entry->seg_count; i++) {
- 			if (entry->seglist[i]) {
--				drm_pci_free(dev, entry->seglist[i]);
-+				drm_legacy_pci_free(dev, entry->seglist[i]);
- 			}
- 		}
- 		kfree(entry->seglist);
-@@ -975,7 +975,8 @@ int drm_legacy_addbufs_pci(struct drm_device *dev,
- 
- 	while (entry->buf_count < count) {
- 
--		dmah = drm_pci_alloc(dev, PAGE_SIZE << page_order, 0x1000);
-+		dmah = drm_legacy_pci_alloc(dev,
-+					    PAGE_SIZE << page_order, 0x1000);
- 
- 		if (!dmah) {
- 			/* Set count correctly so we free the proper amount. */
-diff --git a/drivers/gpu/drm/drm_legacy.h b/drivers/gpu/drm/drm_legacy.h
-index 1be3ea320474..3853b45341c7 100644
---- a/drivers/gpu/drm/drm_legacy.h
-+++ b/drivers/gpu/drm/drm_legacy.h
-@@ -36,6 +36,7 @@
- 
- struct agp_memory;
- struct drm_device;
-+struct drm_dma_handle;
- struct drm_file;
- struct drm_buf_desc;
- 
-@@ -211,4 +212,26 @@ void drm_master_legacy_init(struct drm_master *master);
- static inline void drm_master_legacy_init(struct drm_master *master) {}
- #endif
- 
-+
-+#if IS_ENABLED(CONFIG_DRM_LEGACY) && IS_ENABLED(CONFIG_PCI)
-+
-+struct drm_dma_handle *
-+drm_legacy_pci_alloc(struct drm_device *dev, size_t size, size_t align);
-+void drm_legacy_pci_free(struct drm_device *dev, struct drm_dma_handle * dmah);
-+
-+#else
-+
-+static inline struct drm_dma_handle *
-+drm_legacy_pci_alloc(struct drm_device *dev, size_t size, size_t align)
-+{
-+	return NULL;
-+}
-+
-+static inline void drm_legacy_pci_free(struct drm_device *dev,
-+				       struct drm_dma_handle *dmah)
-+{
-+}
-+
-+#endif
-+
- #endif /* __DRM_LEGACY_H__ */
-diff --git a/drivers/gpu/drm/drm_pci.c b/drivers/gpu/drm/drm_pci.c
-index c6bb98729a26..12239498538c 100644
---- a/drivers/gpu/drm/drm_pci.c
-+++ b/drivers/gpu/drm/drm_pci.c
-@@ -36,19 +36,10 @@
- #include "drm_internal.h"
- #include "drm_legacy.h"
- 
--/**
-- * drm_pci_alloc - Allocate a PCI consistent memory block, for DMA.
-- * @dev: DRM device
-- * @size: size of block to allocate
-- * @align: alignment of block
-- *
-- * FIXME: This is a needless abstraction of the Linux dma-api and should be
-- * removed.
-- *
-- * Return: A handle to the allocated memory block on success or NULL on
-- * failure.
-- */
--drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t align)
-+#if IS_ENABLED(CONFIG_DRM_LEGACY) && IS_ENABLED(CONFIG_PCI)
-+
-+drm_dma_handle_t *
-+drm_legacy_pci_alloc(struct drm_device * dev, size_t size, size_t align)
- {
- 	drm_dma_handle_t *dmah;
- 
-@@ -76,24 +67,14 @@ drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t ali
- 	return dmah;
- }
- 
--EXPORT_SYMBOL(drm_pci_alloc);
--
--/**
-- * drm_pci_free - Free a PCI consistent memory block
-- * @dev: DRM device
-- * @dmah: handle to memory block
-- *
-- * FIXME: This is a needless abstraction of the Linux dma-api and should be
-- * removed.
-- */
--void drm_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
-+void drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
- {
- 	dma_free_coherent(&dev->pdev->dev, dmah->size, dmah->vaddr,
- 			  dmah->busaddr);
- 	kfree(dmah);
- }
- 
--EXPORT_SYMBOL(drm_pci_free);
-+#endif
- 
- static int drm_get_pci_domain(struct drm_device *dev)
- {
-diff --git a/include/drm/drm_pci.h b/include/drm/drm_pci.h
-index 9031e217b506..cade5b60b643 100644
---- a/include/drm/drm_pci.h
-+++ b/include/drm/drm_pci.h
-@@ -34,34 +34,16 @@
- 
- #include <linux/pci.h>
- 
--struct drm_dma_handle;
--struct drm_device;
- struct drm_driver;
--struct drm_master;
- 
- #ifdef CONFIG_PCI
- 
--struct drm_dma_handle *drm_pci_alloc(struct drm_device *dev, size_t size,
--				     size_t align);
--void drm_pci_free(struct drm_device *dev, struct drm_dma_handle * dmah);
--
- int drm_get_pci_dev(struct pci_dev *pdev,
- 		    const struct pci_device_id *ent,
- 		    struct drm_driver *driver);
- 
- #else
- 
--static inline struct drm_dma_handle *drm_pci_alloc(struct drm_device *dev,
--						   size_t size, size_t align)
--{
--	return NULL;
--}
--
--static inline void drm_pci_free(struct drm_device *dev,
--				struct drm_dma_handle *dmah)
--{
--}
--
- static inline int drm_get_pci_dev(struct pci_dev *pdev,
- 				  const struct pci_device_id *ent,
- 				  struct drm_driver *driver)
--- 
-2.25.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7856 -> Patchwork_16384
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16384 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+    - fi-hsw-4770:        [PASS][3] -> [TIMEOUT][4] ([fdo#112271] / [i915#1084])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-u3:          [PASS][5] -> [TIMEOUT][6] ([fdo#112271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-icl-u3/igt@i915_selftest@live_gtt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-icl-u3/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111407])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][9] ([i915#178]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][11] ([i915#725]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-ivb-3770/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [DMESG-FAIL][13] ([i915#553] / [i915#725]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][15] ([fdo#108569]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-hsw-4770:        [TIMEOUT][17] ([fdo#112271]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-hsw-4770/igt@i915_selftest@live_gtt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/fi-hsw-4770/igt@i915_selftest@live_gtt.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (8): fi-bdw-5557u fi-byt-j1900 fi-bwr-2160 fi-ilk-650 fi-bsw-kefka fi-skl-lmem fi-kbl-7560u fi-skl-6600u 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bdw-gvtdvm fi-bsw-cyan fi-cfl-8109u fi-elk-e7500 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7856 -> Patchwork_16384
+
+  CI-20190529: 20190529
+  CI_DRM_7856: a113999b001035a5b6474407b228363c163574a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5411: 86c6ab8a0b6696bdb2153febd350af7fa02fbb00 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16384: 955e2e4c57d71230ad63fa9c069bce65fb906532 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+955e2e4c57d7 drm: Remove PageReserved manipulation from drm_pci_alloc
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16384/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
