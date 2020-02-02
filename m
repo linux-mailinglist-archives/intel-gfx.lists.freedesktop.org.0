@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AECC14FE6A
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 17:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED5D214FE72
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 18:07:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47DF86E0E0;
-	Sun,  2 Feb 2020 16:57:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 309BA6E0E1;
+	Sun,  2 Feb 2020 17:07:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 004976E0D8;
- Sun,  2 Feb 2020 16:57:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ED94DA0078;
- Sun,  2 Feb 2020 16:57:20 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 531126E0CA;
+ Sun,  2 Feb 2020 17:06:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20091882-1500050 for multiple; Sun, 02 Feb 2020 17:06:51 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sun, 02 Feb 2020 16:57:20 -0000
-Message-ID: <158066264095.17037.11798128981757173061@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+To: Daniel Vetter <daniel@ffwll.ch>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200202164306.GQ43062@phenom.ffwll.local>
 References: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Remove_PageReserved_manipulation_from_drm=5Fpci=5Fal?=
- =?utf-8?q?loc?=
+ <20200202164306.GQ43062@phenom.ffwll.local>
+Message-ID: <158066320986.17828.7875090801235082375@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Sun, 02 Feb 2020 17:06:49 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm: Remove PageReserved manipulation from
+ drm_pci_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Daniel Vetter (2020-02-02 16:43:06)
+> On Sun, Feb 02, 2020 at 04:10:09PM +0000, Chris Wilson wrote:
+> > drm_pci_alloc/drm_pci_free are very thin wrappers around the core dma
+> > facilities, and we have no special reason within the drm layer to behave
+> > differently. In particular, since
+> > 
+> > commit de09d31dd38a50fdce106c15abd68432eebbd014
+> > Author: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
+> > Date:   Fri Jan 15 16:51:42 2016 -0800
+> > 
+> >     page-flags: define PG_reserved behavior on compound pages
+> > 
+> >     As far as I can see there's no users of PG_reserved on compound pages.
+> >     Let's use PF_NO_COMPOUND here.
+> > 
+> > it has been illegal to combine GFP_COMP with SetPageReserved, so lets
+> > stop doing both and leave the dma layer to its own devices.
+> > 
+> > Reported-by: Taketo Kabe
+> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1027
+> > Fixes: de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: <stable@vger.kernel.org> # v4.5+
+> 
+> Given that after your i915 patch only mga and r128 still use this I think
+> deleting code is the best action here.
 
-Series: drm: Remove PageReserved manipulation from drm_pci_alloc
-URL   : https://patchwork.freedesktop.org/series/72882/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-955e2e4c57d7 drm: Remove PageReserved manipulation from drm_pci_alloc
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages")'
-#10: 
-commit de09d31dd38a50fdce106c15abd68432eebbd014
-
--:22: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Taketo Kabe'
-#22: 
-Reported-by: Taketo Kabe
-
-total: 2 errors, 0 warnings, 0 checks, 49 lines checked
-
+drm_bufs.c has a little sting in its tail with the inclusion of the
+drm_dma_handle struct in its seglist. Certainly after removing r128 we
+can remove the EXPORT_SYMBOL and make it internal.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
