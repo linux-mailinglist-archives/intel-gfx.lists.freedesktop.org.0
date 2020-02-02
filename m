@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA9F14FEC7
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 19:35:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88DC614FED1
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 20:03:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87986EB31;
-	Sun,  2 Feb 2020 18:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B837D6E109;
+	Sun,  2 Feb 2020 19:03:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C68146EB30;
- Sun,  2 Feb 2020 18:35:48 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id F094120022;
- Sun,  2 Feb 2020 19:35:46 +0100 (CET)
-Date: Sun, 2 Feb 2020 19:35:45 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200202183545.GB18495@ravnborg.org>
-References: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A7B56E0D5;
+ Sun,  2 Feb 2020 19:03:11 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2020 11:03:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,394,1574150400"; d="scan'208";a="263179118"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga002.fm.intel.com with ESMTP; 02 Feb 2020 11:03:07 -0800
+Date: Mon, 3 Feb 2020 00:33:14 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Sean Paul <sean@poorly.run>
+Message-ID: <20200202190314.GC30003@intel.com>
+References: <20200117193103.156821-1-sean@poorly.run>
+ <20200117193103.156821-9-sean@poorly.run>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200117193103.156821-9-sean@poorly.run>
 User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=IkcTkHD0fZMA:10 a=QyXUC8HyAAAA:8
- a=e5mUnYsNAAAA:8 a=taGs_qngAAAA:8 a=VwQbUJbxAAAA:8 a=6WBxI-KXEXGNoQ-2y5gA:9
- a=bhQ34oRM2GccxT0d:21 a=5fb4q4EQECoogPcF:21 a=QEXdDO2ut3YA:10
- a=Vxmtnl_E_bksehYqCbjh:22 a=DM_PlaNYpjARcMQr2apF:22
- a=AjGcO6oz07-iQ99wixmX:22 a=pHzHmUro8NiASowvMSCR:22
- a=n87TN5wuljxrRezIQYnT:22
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm: Remove PageReserved manipulation
- from drm_pci_alloc
+Subject: Re: [Intel-gfx] [PATCH v3 08/12] drm/i915: Don't fully disable HDCP
+ on a port if multiple pipes are using it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,132 +45,258 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: daniel.vetter@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ Sean Paul <seanpaul@chromium.org>, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgQ2hyaXMuCgpPbiBTdW4sIEZlYiAwMiwgMjAyMCBhdCAwNToxNjozMVBNICswMDAwLCBDaHJp
-cyBXaWxzb24gd3JvdGU6Cj4gZHJtX3BjaV9hbGxvYy9kcm1fcGNpX2ZyZWUgYXJlIHZlcnkgdGhp
-biB3cmFwcGVycyBhcm91bmQgdGhlIGNvcmUgZG1hCj4gZmFjaWxpdGllcywgYW5kIHdlIGhhdmUg
-bm8gc3BlY2lhbCByZWFzb24gd2l0aGluIHRoZSBkcm0gbGF5ZXIgdG8gYmVoYXZlCj4gZGlmZmVy
-ZW50bHkuIEluIHBhcnRpY3VsYXIsIHNpbmNlCj4gCj4gY29tbWl0IGRlMDlkMzFkZDM4YTUwZmRj
-ZTEwNmMxNWFiZDY4NDMyZWViYmQwMTQKPiBBdXRob3I6IEtpcmlsbCBBLiBTaHV0ZW1vdiA8a2ly
-aWxsLnNodXRlbW92QGxpbnV4LmludGVsLmNvbT4KPiBEYXRlOiAgIEZyaSBKYW4gMTUgMTY6NTE6
-NDIgMjAxNiAtMDgwMAo+IAo+ICAgICBwYWdlLWZsYWdzOiBkZWZpbmUgUEdfcmVzZXJ2ZWQgYmVo
-YXZpb3Igb24gY29tcG91bmQgcGFnZXMKPiAKPiAgICAgQXMgZmFyIGFzIEkgY2FuIHNlZSB0aGVy
-ZSdzIG5vIHVzZXJzIG9mIFBHX3Jlc2VydmVkIG9uIGNvbXBvdW5kIHBhZ2VzLgo+ICAgICBMZXQn
-cyB1c2UgUEZfTk9fQ09NUE9VTkQgaGVyZS4KPiAKPiBpdCBoYXMgYmVlbiBpbGxlZ2FsIHRvIGNv
-bWJpbmUgR0ZQX0NPTVAgd2l0aCBTZXRQYWdlUmVzZXJ2ZWQsIHNvIGxldHMKPiBzdG9wIGRvaW5n
-IGJvdGggYW5kIGxlYXZlIHRoZSBkbWEgbGF5ZXIgdG8gaXRzIG93biBkZXZpY2VzLgo+IAo+IFJl
-cG9ydGVkLWJ5OiBUYWtldG8gS2FiZQo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0
-b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTAyNwo+IEZpeGVzOiBkZTA5ZDMxZGQzOGEgKCJwYWdl
-LWZsYWdzOiBkZWZpbmUgUEdfcmVzZXJ2ZWQgYmVoYXZpb3Igb24gY29tcG91bmQgcGFnZXMiKQo+
-IFNpZ25lZC1vZmYtYnk6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgo+
-IENjOiA8c3RhYmxlQHZnZXIua2VybmVsLm9yZz4gIyB2NC41Kwo+IC0tLQpPdXQgb2YgY3VyaW9z
-aXR5IEkgYWRkZWQgdGhlIGZ1bGwgc2VyaWVzIGFuZCB0cmllZCB0byBidWlsZCBpdC4KSSBkaWQg
-bm90IHJlYWxseSB0YWtlIHRoZSB0aW1lIHRvIHJldmlldyB0aGUgcGF0Y2hlcy4KCgpJdCBmYWls
-ZWQgd2l0aCBhbHBoYSBhbGxtb2Rjb25maWcgbGlrZSB0aGlzOgooT24gdG9wIG9mIGRybS1taXNj
-LW5leHQgYXMgb2YgeWVzdGVyZGF5KQoKL2hvbWUvc2FtL2RybS9saW51eC5naXQvZHJpdmVycy9n
-cHUvZHJtL3IxMjgvYXRpX3BjaWdhcnQuYzogSW4gZnVuY3Rpb24g4oCYZHJtX2F0aV9hbGxvY19w
-Y2lnYXJ0X3RhYmxl4oCZOgovaG9tZS9zYW0vZHJtL2xpbnV4LmdpdC9kcml2ZXJzL2dwdS9kcm0v
-cjEyOC9hdGlfcGNpZ2FydC5jOjUwOjc6IGVycm9yOiBleHBlY3RlZCBleHByZXNzaW9uIGJlZm9y
-ZSDigJhe4oCZIHRva2VuCiAgIDUwIHwgICAgICAgXmdhcnRfaW5mby0+YnVzX2FkZHIsCiAgICAg
-IHwgICAgICAgXgovaG9tZS9zYW0vZHJtL2xpbnV4LmdpdC9kcml2ZXJzL2dwdS9kcm0vcjEyOC9h
-dGlfcGNpZ2FydC5jOjQ4OjM6IGVycm9yOiB0b28gZmV3IGFyZ3VtZW50cyB0byBmdW5jdGlvbiDi
-gJhkbWFfYWxsb2NfY29oZXJlbnTigJkKICAgNDggfCAgIGRtYV9hbGxvY19jb2hlcmVudCgmZGV2
-LT5wZGV2LT5kZXYsCiAgICAgIHwgICBefn5+fn5+fn5+fn5+fn5+fn4KSW4gZmlsZSBpbmNsdWRl
-ZCBmcm9tIC9ob21lL3NhbS9kcm0vbGludXguZ2l0L2FyY2gvYWxwaGEvaW5jbHVkZS9hc20vcGNp
-Lmg6OCwKICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL3NhbS9kcm0vbGludXguZ2l0L2luY2x1
-ZGUvbGludXgvcGNpLmg6MTc3NywKICAgICAgICAgICAgICAgICBmcm9tIC9ob21lL3NhbS9kcm0v
-bGludXguZ2l0L2luY2x1ZGUvZHJtL2RybV9wY2kuaDozNSwKICAgICAgICAgICAgICAgICBmcm9t
-IC9ob21lL3NhbS9kcm0vbGludXguZ2l0L2RyaXZlcnMvZ3B1L2RybS9yMTI4L2F0aV9wY2lnYXJ0
-LmM6Mzc6Ci9ob21lL3NhbS9kcm0vbGludXguZ2l0L2luY2x1ZGUvbGludXgvZG1hLW1hcHBpbmcu
-aDo2NDE6MjE6IG5vdGU6IGRlY2xhcmVkIGhlcmUKICA2NDEgfCBzdGF0aWMgaW5saW5lIHZvaWQg
-KmRtYV9hbGxvY19jb2hlcmVudChzdHJ1Y3QgZGV2aWNlICpkZXYsIHNpemVfdCBzaXplLAogICAg
-ICB8ICAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+Ci9ob21lL3NhbS9kcm0v
-bGludXguZ2l0L2RyaXZlcnMvZ3B1L2RybS9yMTI4L2F0aV9wY2lnYXJ0LmM6IEF0IHRvcCBsZXZl
-bDoKL2hvbWUvc2FtL2RybS9saW51eC5naXQvZHJpdmVycy9ncHUvZHJtL3IxMjgvYXRpX3BjaWdh
-cnQuYzoxMDE6MjogZXJyb3I6IGV4cGVjdGVkIGlkZW50aWZpZXIgb3Ig4oCYKOKAmSBiZWZvcmUg
-4oCYcmV0dXJu4oCZCiAgMTAxIHwgIHJldHVybiAxOwogICAgICB8ICBefn5+fn4KL2hvbWUvc2Ft
-L2RybS9saW51eC5naXQvZHJpdmVycy9ncHUvZHJtL3IxMjgvYXRpX3BjaWdhcnQuYzoxMDI6MTog
-ZXJyb3I6IGV4cGVjdGVkIGlkZW50aWZpZXIgb3Ig4oCYKOKAmSBiZWZvcmUg4oCYfeKAmSB0b2tl
-bgogIDEwMiB8IH0KICAgICAgfCBeCi9ob21lL3NhbS9kcm0vbGludXguZ2l0L2RyaXZlcnMvZ3B1
-L2RybS9yMTI4L2F0aV9wY2lnYXJ0LmM6IEluIGZ1bmN0aW9uIOKAmGRybV9hdGlfcGNpZ2FydF9p
-bml04oCZOgovaG9tZS9zYW0vZHJtL2xpbnV4LmdpdC9kcml2ZXJzL2dwdS9kcm0vcjEyOC9hdGlf
-cGNpZ2FydC5jOjE2ODoxMzogd2FybmluZzogYXNzaWdubWVudCB0byDigJh1MzIgKuKAmSB7YWth
-IOKAmHVuc2lnbmVkIGludCAq4oCZfSBmcm9tIOKAmHVuc2lnbmVkIGludOKAmSBtYWtlcyBwb2lu
-dGVyIGZyb20gaW50ZWdlciB3aXRob3V0IGEgY2FzdCBbLVdpbnQtY29udmVyc2lvbl0KICAxNjgg
-fCAgIHBhZ2VfYmFzZSA9ICh1MzIpIGVudHJ5LT5idXNhZGRyW2ldOwogICAgICB8ICAgICAgICAg
-ICAgIF4KL2hvbWUvc2FtL2RybS9saW51eC5naXQvZHJpdmVycy9ncHUvZHJtL3IxMjgvYXRpX3Bj
-aWdhcnQuYzoxNzY6MjE6IGVycm9yOiBpbnZhbGlkIG9wZXJhbmRzIHRvIGJpbmFyeSB8IChoYXZl
-IOKAmHUzMiAq4oCZIHtha2Eg4oCYdW5zaWduZWQgaW50ICrigJl9IGFuZCDigJhpbnTigJkpCiAg
-MTc2IHwgICAgIHZhbCA9IHBhZ2VfYmFzZSB8IDB4YzsKICAgICAgfCAgICAgICAgICAgICAgICAg
-ICAgIF4KL2hvbWUvc2FtL2RybS9saW51eC5naXQvZHJpdmVycy9ncHUvZHJtL3IxMjgvYXRpX3Bj
-aWdhcnQuYzoxNzk6MjI6IGVycm9yOiBpbnZhbGlkIG9wZXJhbmRzIHRvIGJpbmFyeSA+PiAoaGF2
-ZSDigJh1MzIgKuKAmSB7YWthIOKAmHVuc2lnbmVkIGludCAq4oCZfSBhbmQg4oCYaW504oCZKQog
-IDE3OSB8ICAgICB2YWwgPSAocGFnZV9iYXNlID4+IDgpIHwgMHhjOwogICAgICB8ICAgICAgICAg
-ICAgICAgICAgICAgIF5+Ci9ob21lL3NhbS9kcm0vbGludXguZ2l0L2RyaXZlcnMvZ3B1L2RybS9y
-MTI4L2F0aV9wY2lnYXJ0LmM6MTgzOjk6IHdhcm5pbmc6IGFzc2lnbm1lbnQgdG8g4oCYdTMy4oCZ
-IHtha2Eg4oCYdW5zaWduZWQgaW504oCZfSBmcm9tIOKAmHUzMiAq4oCZIHtha2Eg4oCYdW5zaWdu
-ZWQgaW50ICrigJl9IG1ha2VzIGludGVnZXIgZnJvbSBwb2ludGVyIHdpdGhvdXQgYSBjYXN0IFst
-V2ludC1jb252ZXJzaW9uXQogIDE4MyB8ICAgICB2YWwgPSBwYWdlX2Jhc2U7CiAgICAgIHwgICAg
-ICAgICBeCi9ob21lL3NhbS9kcm0vbGludXguZ2l0L2RyaXZlcnMvZ3B1L2RybS9yMTI4L2F0aV9w
-Y2lnYXJ0LmM6MTg4OjEyOiB3YXJuaW5nOiBkZXJlZmVyZW5jaW5nIOKAmHZvaWQgKuKAmSBwb2lu
-dGVyCiAgMTg4IHwgICAgIGFkZHJlc3NbZ2FydF9pZHhdID0gY3B1X3RvX2xlMzIodmFsKTsKCgpJ
-IGRpZCBub3QgdHJ5IG90aGVyIGFyY2hpdGVjdHVyZXMgYW5kIGRpZCBub3QgdHJ5IHRvIGZpeCBp
-dC4KCldoZW4gSSBhcHBsaWVkIHRoZSBwYXRjaGVzIGNoZWNrcGF0Y2ggd2FzIG5vIHRvbyBoYXBw
-eToKCkFwcGx5aW5nOiBkcm06IFJlbW92ZSBQYWdlUmVzZXJ2ZWQgbWFuaXB1bGF0aW9uIGZyb20g
-ZHJtX3BjaV9hbGxvYwpbc2FtLXBjaSBmYTRhMTE0NmFmNTldIGRybTogUmVtb3ZlIFBhZ2VSZXNl
-cnZlZCBtYW5pcHVsYXRpb24gZnJvbSBkcm1fcGNpX2FsbG9jCiBBdXRob3I6IENocmlzIFdpbHNv
-biA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgogRGF0ZTogU3VuIEZlYiAyIDE3OjE2OjMxIDIw
-MjAgKzAwMDAKIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIxIGRlbGV0aW9ucygt
-KQpmYTRhMTE0NmFmNTkgKEhFQUQgLT4gc2FtLXBjaSkgZHJtOiBSZW1vdmUgUGFnZVJlc2VydmVk
-IG1hbmlwdWxhdGlvbiBmcm9tIGRybV9wY2lfYWxsb2MKLToxMDogRVJST1I6R0lUX0NPTU1JVF9J
-RDogUGxlYXNlIHVzZSBnaXQgY29tbWl0IGRlc2NyaXB0aW9uIHN0eWxlICdjb21taXQgPDEyKyBj
-aGFycyBvZiBzaGExPiAoIjx0aXRsZSBsaW5lPiIpJyAtIGllOiAnY29tbWl0IGRlMDlkMzFkZDM4
-YSAoInBhZ2UtZmxhZ3M6IGRlZmluZSBQR19yZXNlcnZlZCBiZWhhdmlvciBvbiBjb21wb3VuZCBw
-YWdlcyIpJwojMTA6IApjb21taXQgZGUwOWQzMWRkMzhhNTBmZGNlMTA2YzE1YWJkNjg0MzJlZWJi
-ZDAxNAoKLToyMjogRVJST1I6QkFEX1NJR05fT0ZGOiBVbnJlY29nbml6ZWQgZW1haWwgYWRkcmVz
-czogJ1Rha2V0byBLYWJlJwojMjI6IApSZXBvcnRlZC1ieTogVGFrZXRvIEthYmUKCltzYW0tcGNp
-IGI1NTNjZjQ4YjU0OF0gZHJtL3IxMjg6IFdlYW4gb2ZmIGRybV9wY2lfYWxsb2MKIEF1dGhvcjog
-Q2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+CiBEYXRlOiBTdW4gRmViIDIg
-MTc6MTY6MzMgMjAyMCArMDAwMAogMiBmaWxlcyBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspLCAx
-NyBkZWxldGlvbnMoLSkKYjU1M2NmNDhiNTQ4IChIRUFEIC0+IHNhbS1wY2kpIGRybS9yMTI4OiBX
-ZWFuIG9mZiBkcm1fcGNpX2FsbG9jCi06MTM6IFdBUk5JTkc6T0JTT0xFVEU6IGRyaXZlcnMvZ3B1
-L2RybS9yMTI4L2F0aV9wY2lnYXJ0LmMgaXMgbWFya2VkIGFzICdvYnNvbGV0ZScgaW4gdGhlIE1B
-SU5UQUlORVJTIGhpZXJhcmNoeS4gIE5vIHVubmVjZXNzYXJ5IG1vZGlmaWNhdGlvbnMgcGxlYXNl
-LgoKLToxNjogV0FSTklORzpPQlNPTEVURTogZHJpdmVycy9ncHUvZHJtL3IxMjgvYXRpX3BjaWdh
-cnQuYyBpcyBtYXJrZWQgYXMgJ29ic29sZXRlJyBpbiB0aGUgTUFJTlRBSU5FUlMgaGllcmFyY2h5
-LiAgTm8gdW5uZWNlc3NhcnkgbW9kaWZpY2F0aW9ucyBwbGVhc2UuCgotOjI2OiBDSEVDSzpQQVJF
-TlRIRVNJU19BTElHTk1FTlQ6IEFsaWdubWVudCBzaG91bGQgbWF0Y2ggb3BlbiBwYXJlbnRoZXNp
-cwojMjY6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9yMTI4L2F0aV9wY2lnYXJ0LmM6NDk6CisJCWRt
-YV9hbGxvY19jb2hlcmVudCgmZGV2LT5wZGV2LT5kZXYsCisJCQkJICBnYXJ0X2luZm8tPnRhYmxl
-X3NpemUsCgotOjI3OiBDSEVDSzpTUEFDSU5HOiBzcGFjZXMgcHJlZmVycmVkIGFyb3VuZCB0aGF0
-ICdeJyAoY3R4OkV4VikKIzI3OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vcjEyOC9hdGlfcGNpZ2Fy
-dC5jOjUwOgorCQkJCSAgXmdhcnRfaW5mby0+YnVzX2FkZHIsCiAJCQkJICBeCgpbc2FtLXBjaSA3
-ZTc3YzNlZTI4MmRdIGRybTogUmVtb3ZlIGV4cG9ydHMgZm9yIGRybV9wY2lfYWxsb2MvZHJtX3Bj
-aV9mcmVlCiBBdXRob3I6IENocmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgog
-RGF0ZTogU3VuIEZlYiAyIDE3OjE2OjM1IDIwMjAgKzAwMDAKIDQgZmlsZXMgY2hhbmdlZCwgMzIg
-aW5zZXJ0aW9ucygrKSwgNDUgZGVsZXRpb25zKC0pCjdlNzdjM2VlMjgyZCAoSEVBRCAtPiBzYW0t
-cGNpKSBkcm06IFJlbW92ZSBleHBvcnRzIGZvciBkcm1fcGNpX2FsbG9jL2RybV9wY2lfZnJlZQot
-OjUzOiBDSEVDSzpMSU5FX1NQQUNJTkc6IFBsZWFzZSBkb24ndCB1c2UgbXVsdGlwbGUgYmxhbmsg
-bGluZXMKIzUzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vZHJtX2xlZ2FjeS5oOjIxNToKCisKCi06
-NTg6IEVSUk9SOlBPSU5URVJfTE9DQVRJT046ICJmb28gKiBiYXIiIHNob3VsZCBiZSAiZm9vICpi
-YXIiCiM1ODogRklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9sZWdhY3kuaDoyMjA6Cit2b2lkIGRy
-bV9sZWdhY3lfcGNpX2ZyZWUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgc3RydWN0IGRybV9kbWFf
-aGFuZGxlICogZG1haCk7CgotOjEwMDogRVJST1I6UE9JTlRFUl9MT0NBVElPTjogImZvbyAqIGJh
-ciIgc2hvdWxkIGJlICJmb28gKmJhciIKIzEwMDogRklMRTogZHJpdmVycy9ncHUvZHJtL2RybV9w
-Y2kuYzo0MjoKK2RybV9sZWdhY3lfcGNpX2FsbG9jKHN0cnVjdCBkcm1fZGV2aWNlICogZGV2LCBz
-aXplX3Qgc2l6ZSwgc2l6ZV90IGFsaWduKQoKLToxMTk6IEVSUk9SOlBPSU5URVJfTE9DQVRJT046
-ICJmb28gKiBiYXIiIHNob3VsZCBiZSAiZm9vICpiYXIiCiMxMTk6IEZJTEU6IGRyaXZlcnMvZ3B1
-L2RybS9kcm1fcGNpLmM6NzA6Cit2b2lkIGRybV9sZWdhY3lfcGNpX2ZyZWUoc3RydWN0IGRybV9k
-ZXZpY2UgKiBkZXYsIGRybV9kbWFfaGFuZGxlX3QgKiBkbWFoKQoKLToxMTk6IEVSUk9SOlBPSU5U
-RVJfTE9DQVRJT046ICJmb28gKiBiYXIiIHNob3VsZCBiZSAiZm9vICpiYXIiCiMxMTk6IEZJTEU6
-IGRyaXZlcnMvZ3B1L2RybS9kcm1fcGNpLmM6NzA6Cit2b2lkIGRybV9sZWdhY3lfcGNpX2ZyZWUo
-c3RydWN0IGRybV9kZXZpY2UgKiBkZXYsIGRybV9kbWFfaGFuZGxlX3QgKiBkbWFoKQoKCglTYW0K
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 2020-01-17 at 14:30:59 -0500, Sean Paul wrote:
+> From: Sean Paul <seanpaul@chromium.org>
+> 
+> This patch is required for HDCP over MST. If a port is being used for
+> multiple HDCP streams, we don't want to fully disable HDCP on a port if
+> one of them is disabled. Instead, we just disable the HDCP signalling on
+> that particular pipe and exit early. The last pipe to disable HDCP will
+> also bring down HDCP on the port.
+> 
+> In order to achieve this, we need to keep a refcount in intel_digital_port
+> and protect it using a new hdcp_mutex.
+
+Sean,
+
+Sorry for late review.
+But got a question in my head. May be due to lag of MST understanding,
+which i will try to gain for this review. But still before my study of MST
+I am posting my question here.
+
+As you know, though hdcp state machine is associated to the connector at
+SW, HDCP engine is at DDI for <= Gen11 and for gen12+ it is at
+transcoder.
+
+So when a transcoder and DDI is paired(1:1) for normal DP, we configure the
+HDCP engine (either in DDI/Trancoder) from the connector->hdcp struct.
+
+In case of MST, with <=gen11, this series will take care of required
+changes as HDCP engine is at DDI and to which multiple transcoder's data
+streams are channelised.
+
+But with gen12+, on MST, single SW instance(connector->hdcp associated to
+the DDI used) need to enable the many HDCP engines situated at all
+transcoders, those feed the data streams to the single DDI ?
+
+Considering the MST addition, possibily we might need to revisit the
+HDCP support we have for gen12+.
+
+I am not seeing this scenario addressed in this series. Am I missing something?
+
+-Ram
+> 
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-8-sean@poorly.run #v1
+> Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-9-sean@poorly.run #v2
+> 
+> Changes in v2:
+> - Move the toggle_signalling call into _intel_hdcp_disable so it's called from check_work
+> Changes in v3:
+> - None
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  3 ++
+>  .../drm/i915/display/intel_display_types.h    |  5 ++
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  2 +
+>  drivers/gpu/drm/i915/display/intel_hdcp.c     | 52 +++++++++++++++----
+>  drivers/gpu/drm/i915/display/intel_hdmi.c     |  2 +
+>  5 files changed, 55 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index a90ce672d2cf..4073dd96b83e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4815,6 +4815,9 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
+>  
+>  	encoder = &intel_dig_port->base;
+>  
+> +	mutex_init(&intel_dig_port->hdcp_mutex);
+> +	intel_dig_port->num_hdcp_streams = 0;
+> +
+>  	drm_encoder_init(&dev_priv->drm, &encoder->base, &intel_ddi_funcs,
+>  			 DRM_MODE_ENCODER_TMDS, "DDI %c", port_name(port));
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8a96fedefad3..b488e8b1478e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1355,6 +1355,11 @@ struct intel_digital_port {
+>  	enum phy_fia tc_phy_fia;
+>  	u8 tc_phy_fia_idx;
+>  
+> +	/* protects num_hdcp_streams reference count */
+> +	struct mutex hdcp_mutex;
+> +	/* the number of pipes using HDCP signalling out of this port */
+> +	unsigned int num_hdcp_streams;
+> +
+>  	void (*write_infoframe)(struct intel_encoder *encoder,
+>  				const struct intel_crtc_state *crtc_state,
+>  				unsigned int type,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 89501b7525a9..a91f65ba35a1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -7583,6 +7583,8 @@ bool intel_dp_init(struct drm_i915_private *dev_priv,
+>  	intel_encoder = &intel_dig_port->base;
+>  	encoder = &intel_encoder->base;
+>  
+> +	mutex_init(&intel_dig_port->hdcp_mutex);
+> +
+>  	if (drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+>  			     &intel_dp_enc_funcs, DRM_MODE_ENCODER_TMDS,
+>  			     "DP %c", port_name(port)))
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index fabacfb1b644..dc83d81c6df0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -779,6 +779,19 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+>  	DRM_DEBUG_KMS("[%s:%d] HDCP is being disabled...\n",
+>  		      connector->base.name, connector->base.base.id);
+>  
+> +	/*
+> +	 * If there are other connectors on this port using HDCP, don't disable
+> +	 * it. Instead, toggle the HDCP signalling off on that particular
+> +	 * connector/pipe and exit.
+> +	 */
+> +	if (intel_dig_port->num_hdcp_streams > 0) {
+> +		ret = hdcp->shim->toggle_signalling(intel_dig_port,
+> +						    cpu_transcoder, false);
+> +		if (ret)
+> +			DRM_ERROR("Failed to disable HDCP signalling\n");
+> +		return ret;
+> +	}
+> +
+>  	hdcp->hdcp_encrypted = false;
+>  	I915_WRITE(HDCP_CONF(dev_priv, cpu_transcoder, port), 0);
+>  	if (intel_de_wait_for_clear(dev_priv,
+> @@ -855,6 +868,7 @@ struct intel_connector *intel_hdcp_to_connector(struct intel_hdcp *hdcp)
+>  static void intel_hdcp_update_value(struct intel_connector *connector,
+>  				    u64 value, bool update_property)
+>  {
+> +	struct intel_digital_port *intel_dig_port = conn_to_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  
+>  	WARN_ON(!mutex_is_locked(&hdcp->mutex));
+> @@ -862,6 +876,15 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
+>  	if (hdcp->value == value)
+>  		return;
+>  
+> +	WARN_ON(!mutex_is_locked(&intel_dig_port->hdcp_mutex));
+> +
+> +	if (hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
+> +		if (!WARN_ON(intel_dig_port->num_hdcp_streams == 0))
+> +			intel_dig_port->num_hdcp_streams--;
+> +	} else if (value == DRM_MODE_CONTENT_PROTECTION_ENABLED) {
+> +		intel_dig_port->num_hdcp_streams++;
+> +	}
+> +
+>  	hdcp->value = value;
+>  	if (update_property) {
+>  		drm_connector_get(&connector->base);
+> @@ -880,6 +903,8 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
+>  	int ret = 0;
+>  
+>  	mutex_lock(&hdcp->mutex);
+> +	mutex_lock(&intel_dig_port->hdcp_mutex);
+> +
+>  	cpu_transcoder = hdcp->cpu_transcoder;
+>  
+>  	/* Check_link valid only when HDCP1.4 is enabled */
+> @@ -931,6 +956,7 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
+>  	}
+>  
+>  out:
+> +	mutex_unlock(&intel_dig_port->hdcp_mutex);
+>  	mutex_unlock(&hdcp->mutex);
+>  	return ret;
+>  }
+> @@ -1996,6 +2022,7 @@ int intel_hdcp_enable(struct intel_connector *connector,
+>  		      enum transcoder cpu_transcoder, u8 content_type)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> +	struct intel_digital_port *intel_dig_port = conn_to_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	unsigned long check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
+>  	int ret = -EINVAL;
+> @@ -2004,6 +2031,7 @@ int intel_hdcp_enable(struct intel_connector *connector,
+>  		return -ENOENT;
+>  
+>  	mutex_lock(&hdcp->mutex);
+> +	mutex_lock(&intel_dig_port->hdcp_mutex);
+>  	WARN_ON(hdcp->value == DRM_MODE_CONTENT_PROTECTION_ENABLED);
+>  	hdcp->content_type = content_type;
+>  
+> @@ -2038,12 +2066,14 @@ int intel_hdcp_enable(struct intel_connector *connector,
+>  					true);
+>  	}
+>  
+> +	mutex_unlock(&intel_dig_port->hdcp_mutex);
+>  	mutex_unlock(&hdcp->mutex);
+>  	return ret;
+>  }
+>  
+>  int intel_hdcp_disable(struct intel_connector *connector)
+>  {
+> +	struct intel_digital_port *intel_dig_port = conn_to_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	int ret = 0;
+>  
+> @@ -2051,17 +2081,21 @@ int intel_hdcp_disable(struct intel_connector *connector)
+>  		return -ENOENT;
+>  
+>  	mutex_lock(&hdcp->mutex);
+> +	mutex_lock(&intel_dig_port->hdcp_mutex);
+>  
+> -	if (hdcp->value != DRM_MODE_CONTENT_PROTECTION_UNDESIRED) {
+> -		intel_hdcp_update_value(connector,
+> -					DRM_MODE_CONTENT_PROTECTION_UNDESIRED,
+> -					false);
+> -		if (hdcp->hdcp2_encrypted)
+> -			ret = _intel_hdcp2_disable(connector);
+> -		else if (hdcp->hdcp_encrypted)
+> -			ret = _intel_hdcp_disable(connector);
+> -	}
+> +	if (hdcp->value == DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
+> +		goto out;
+> +
+> +	intel_hdcp_update_value(connector,
+> +				DRM_MODE_CONTENT_PROTECTION_UNDESIRED, false);
+>  
+> +	if (hdcp->hdcp2_encrypted)
+> +		ret = _intel_hdcp2_disable(connector);
+> +	else if (hdcp->hdcp_encrypted)
+> +		ret = _intel_hdcp_disable(connector);
+> +
+> +out:
+> +	mutex_unlock(&intel_dig_port->hdcp_mutex);
+>  	mutex_unlock(&hdcp->mutex);
+>  	cancel_delayed_work_sync(&hdcp->check_work);
+>  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 6b28c00d7289..68b648ec6abb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -3252,6 +3252,8 @@ void intel_hdmi_init(struct drm_i915_private *dev_priv,
+>  
+>  	intel_encoder = &intel_dig_port->base;
+>  
+> +	mutex_init(&intel_dig_port->hdcp_mutex);
+> +
+>  	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+>  			 &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
+>  			 "HDMI %c", port_name(port));
+> -- 
+> Sean Paul, Software Engineer, Google / Chromium OS
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
