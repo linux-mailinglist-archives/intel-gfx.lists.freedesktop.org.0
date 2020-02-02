@@ -1,58 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460AD14FE60
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 17:43:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D07A14FE67
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2020 17:53:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4230E6EB01;
-	Sun,  2 Feb 2020 16:43:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017FF6EB05;
+	Sun,  2 Feb 2020 16:53:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B64416E0D6
- for <intel-gfx@lists.freedesktop.org>; Sun,  2 Feb 2020 16:43:09 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id c9so14887380wrw.8
- for <intel-gfx@lists.freedesktop.org>; Sun, 02 Feb 2020 08:43:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=oKxhO9qiKY5KoKoC+IjW7wZDfQGuny83n7+HRt7kNGo=;
- b=WXo+nGOUep9GiiQXiaMx1VVZTcN8wcNNXjEybYENqnARgMcdMNDfwBICwBt3zGsV8n
- ZzX75Ok+lz6nDtMv9kaJooX139wnFD12p4aK7HZ8fWr0F7S1VOl1HSyfa6mpyKZ3+tcd
- 5XfuzJciVbvV038iMtCMkBh2aRGkA1tEfiNuA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=oKxhO9qiKY5KoKoC+IjW7wZDfQGuny83n7+HRt7kNGo=;
- b=eGWnv/PUOwGMHX6dewTlXZBaNUt7Uocw5AR89dCHaj9pp2BYswJy4uqEMDTujFFB2C
- 9v1A03gbrRp2YExsKYfpHP4X7jTXC4LlMlijSvsZ3A+vxSfmOEru/4rrQ0+PCZO8/oe0
- b+BJZ4m/NFZT0pngjeRb7v1Wn4Bu6081VUg4Nfd1ylztTSVWTRG9l+LPWe06I6VUUre2
- AprCfn7gxoIX+B6EKjosEGn6wm+PHhNryd5o7xfI/Byh7EdNov5r44092jD1EQX7ByeT
- eRo8Yqq0N+/Guou9qiyx2s1j7p1yjJF9gX/iHaHwRlUmKa/WAPI+B6AmGhlMQwmMiXWZ
- Rh8g==
-X-Gm-Message-State: APjAAAWM1baaYRCB8tV8OrjO7Mpp32wol6fZZoZbDrRW6cYNqj81Hssb
- vQUbeSc/Dw5TT9FQsufEJ57xzuzKbYN5mQ==
-X-Google-Smtp-Source: APXvYqy8vTmPakSDyd9zPcYFoUOTSn3PagUfsV44KVdme6TKEVEXU4xzeAkjvVcAGB8TBrQBBhZ90Q==
-X-Received: by 2002:a5d:4c88:: with SMTP id z8mr10748338wrs.395.1580661788447; 
- Sun, 02 Feb 2020 08:43:08 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a1sm21367490wrr.80.2020.02.02.08.43.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 02 Feb 2020 08:43:07 -0800 (PST)
-Date: Sun, 2 Feb 2020 17:43:06 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200202164306.GQ43062@phenom.ffwll.local>
-References: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E6A3E6E0E0;
+ Sun,  2 Feb 2020 16:53:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DF131A0093;
+ Sun,  2 Feb 2020 16:53:33 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200202161009.3969641-1-chris@chris-wilson.co.uk>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm: Remove PageReserved manipulation from
- drm_pci_alloc
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Sun, 02 Feb 2020 16:53:33 -0000
+Message-ID: <158066241388.17037.966856580285605248@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200202154938.1129610-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200202154938.1129610-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW4g?=
+ =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,113 +39,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, stable@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 02, 2020 at 04:10:09PM +0000, Chris Wilson wrote:
-> drm_pci_alloc/drm_pci_free are very thin wrappers around the core dma
-> facilities, and we have no special reason within the drm layer to behave
-> differently. In particular, since
-> 
-> commit de09d31dd38a50fdce106c15abd68432eebbd014
-> Author: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
-> Date:   Fri Jan 15 16:51:42 2016 -0800
-> 
->     page-flags: define PG_reserved behavior on compound pages
-> 
->     As far as I can see there's no users of PG_reserved on compound pages.
->     Let's use PF_NO_COMPOUND here.
-> 
-> it has been illegal to combine GFP_COMP with SetPageReserved, so lets
-> stop doing both and leave the dma layer to its own devices.
-> 
-> Reported-by: Taketo Kabe
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1027
-> Fixes: de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: <stable@vger.kernel.org> # v4.5+
+== Series Details ==
 
-Given that after your i915 patch only mga and r128 still use this I think
-deleting code is the best action here.
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev2)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : failure
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/drm_pci.c | 23 ++---------------------
->  1 file changed, 2 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_pci.c b/drivers/gpu/drm/drm_pci.c
-> index f2e43d341980..d16dac4325f9 100644
-> --- a/drivers/gpu/drm/drm_pci.c
-> +++ b/drivers/gpu/drm/drm_pci.c
-> @@ -51,8 +51,6 @@
->  drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t align)
->  {
->  	drm_dma_handle_t *dmah;
-> -	unsigned long addr;
-> -	size_t sz;
->  
->  	/* pci_alloc_consistent only guarantees alignment to the smallest
->  	 * PAGE_SIZE order which is greater than or equal to the requested size.
-> @@ -68,20 +66,13 @@ drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t ali
->  	dmah->size = size;
->  	dmah->vaddr = dma_alloc_coherent(&dev->pdev->dev, size,
->  					 &dmah->busaddr,
-> -					 GFP_KERNEL | __GFP_COMP);
-> +					 GFP_KERNEL);
->  
->  	if (dmah->vaddr == NULL) {
->  		kfree(dmah);
->  		return NULL;
->  	}
->  
-> -	/* XXX - Is virt_to_page() legal for consistent mem? */
-> -	/* Reserve */
-> -	for (addr = (unsigned long)dmah->vaddr, sz = size;
-> -	     sz > 0; addr += PAGE_SIZE, sz -= PAGE_SIZE) {
-> -		SetPageReserved(virt_to_page((void *)addr));
-> -	}
-> -
->  	return dmah;
->  }
->  
-> @@ -94,19 +85,9 @@ EXPORT_SYMBOL(drm_pci_alloc);
->   */
->  void __drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
->  {
-> -	unsigned long addr;
-> -	size_t sz;
-> -
-> -	if (dmah->vaddr) {
-> -		/* XXX - Is virt_to_page() legal for consistent mem? */
-> -		/* Unreserve */
-> -		for (addr = (unsigned long)dmah->vaddr, sz = dmah->size;
-> -		     sz > 0; addr += PAGE_SIZE, sz -= PAGE_SIZE) {
-> -			ClearPageReserved(virt_to_page((void *)addr));
-> -		}
-> +	if (dmah->vaddr)
->  		dma_free_coherent(&dev->pdev->dev, dmah->size, dmah->vaddr,
->  				  dmah->busaddr);
-> -	}
->  }
->  
->  /**
-> -- 
-> 2.25.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+CI Bug Log - changes from CI_DRM_7856 -> Patchwork_16383
+====================================================
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16383 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16383, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16383:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cfl-8109u:       [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+    - fi-skl-6770hq:      [PASS][3] -> [TIMEOUT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
+    - fi-apl-guc:         [PASS][5] -> [TIMEOUT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-apl-guc/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@runner@aborted:
+    - fi-whl-u:           NOTRUN -> [FAIL][7]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-whl-u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16383 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][8] ([i915#725]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][10] ([i915#1052]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-soraka:      [FAIL][12] ([fdo#109383] / [fdo#111012]) -> [FAIL][13] ([i915#192] / [i915#193] / [i915#194])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-kbl-soraka/igt@runner@aborted.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-kbl-soraka/igt@runner@aborted.html
+    - fi-cml-s:           [FAIL][14] ([fdo#111012] / [fdo#111764] / [i915#577]) -> [FAIL][15] ([i915#577])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7856/fi-cml-s/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/fi-cml-s/igt@runner@aborted.html
+
+  
+  [fdo#109383]: https://bugs.freedesktop.org/show_bug.cgi?id=109383
+  [fdo#111012]: https://bugs.freedesktop.org/show_bug.cgi?id=111012
+  [fdo#111764]: https://bugs.freedesktop.org/show_bug.cgi?id=111764
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#577]: https://gitlab.freedesktop.org/drm/intel/issues/577
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-ilk-650 fi-bsw-kefka fi-skl-lmem fi-skl-6600u 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-hsw-4770 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7856 -> Patchwork_16383
+
+  CI-20190529: 20190529
+  CI_DRM_7856: a113999b001035a5b6474407b228363c163574a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5411: 86c6ab8a0b6696bdb2153febd350af7fa02fbb00 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16383: 2e4da14a99b99a3a1860113c6cde8be40256a50d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2e4da14a99b9 drm/i915/psr: Use new DP VSC SDP compute routine on PSR
+948bdde86a99 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+3045bd7f3d1c drm/i915: Stop sending DP SDPs on intel_ddi_post_disable_dp()
+203b78b49e5d drm/i915: Program DP SDPs on pipe updates
+b00ca0ef9afa drm/i915: Add state readout for DP VSC SDP
+0c1409bfc54e drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+05f50974f33c drm/i915: Program DP SDPs with computed configs
+f53de2c1ea0a drm/i915: Include DP VSC SDP in the crtc state dump
+4feab04a1555 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+1fd82d1db39d drm/i915: Include HDMI DRM infoframe in the crtc state dump
+a13ab11796ef drm/i915/dp: Add logging function for DP VSC SDP
+56220d9f4ad2 drm/i915/dp: Read out DP SDPs (Secondary Data Packet)
+1cb28037364e video/hdmi: Add Unpack only function for DRM infoframe
+94709dc29218 drm/i915/dp: Add writing of DP SDPs (Secondary Data Packet)
+b82b2a59941d drm/i915/dp: Add compute routine for DP HDR Metadata Infoframe SDP
+c5ac25c1a5f8 drm/i915/dp: Add compute routine for DP VSC SDP
+fd79588e7005 drm/i915: Add DP VSC SDP payload data to intel_crtc_state.infoframes
+20e405544f77 drm: add DP 1.4 VSC SDP Payload related enums
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16383/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
