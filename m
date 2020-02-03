@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53BD915037D
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:42:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F9150380
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:42:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B9CF6EB7F;
-	Mon,  3 Feb 2020 09:42:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84EE26EB7E;
+	Mon,  3 Feb 2020 09:42:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 480A86EB7D
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:42:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D95C6EB7E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:42:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096986-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096987-1500050 
  for multiple; Mon, 03 Feb 2020 09:41:54 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 09:41:47 +0000
-Message-Id: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
+Date: Mon,  3 Feb 2020 09:41:48 +0000
+Message-Id: <20200203094152.4150550-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
+References: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/6] drm/i915: Hold reference to previous active
- fence as we queue
+Subject: [Intel-gfx] [PATCH 2/6] drm/i915: Initialise basic fence before
+ acquiring seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,55 +45,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Take a reference to the previous exclusive fence on the i915_active, as
-we wish to add an await to it in the caller (and so must prevent it from
-being freed until we have completed that task).
+Inside the intel_timeline_get_seqno(), we currently track the retirement
+of the old cachelines by listening to the new request. This requires
+that the new request is ready to be used and so requires a minimum bit
+of initialisation prior to getting the new seqno.
 
-Fixes: e3793468b466 ("drm/i915: Use the async worker to avoid reclaim tainting the ggtt->mutex")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/i915_active.c | 6 +++++-
- drivers/gpu/drm/i915/i915_vma.c    | 4 +++-
- 2 files changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 21 ++++++++++++++-------
+ 1 file changed, 14 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index da58e5d084f4..9ccb931a733e 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -398,9 +398,13 @@ i915_active_set_exclusive(struct i915_active *ref, struct dma_fence *f)
- 	/* We expect the caller to manage the exclusive timeline ordering */
- 	GEM_BUG_ON(i915_active_is_idle(ref));
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 78a5f5d3c070..f56b046a32de 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -595,6 +595,8 @@ static void __i915_request_ctor(void *arg)
+ 	i915_sw_fence_init(&rq->submit, submit_notify);
+ 	i915_sw_fence_init(&rq->semaphore, semaphore_notify);
  
-+	rcu_read_lock();
- 	prev = __i915_active_fence_set(&ref->excl, f);
--	if (!prev)
-+	if (prev)
-+		prev = dma_fence_get_rcu(prev);
-+	else
- 		atomic_inc(&ref->count);
-+	rcu_read_unlock();
++	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
++
+ 	rq->file_priv = NULL;
+ 	rq->capture_list = NULL;
  
- 	return prev;
- }
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index e801e28de470..74dc3ba59ce5 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -422,10 +422,12 @@ int i915_vma_bind(struct i915_vma *vma,
- 		 * execution and not content or object's backing store lifetime.
- 		 */
- 		prev = i915_active_set_exclusive(&vma->active, &work->base.dma);
--		if (prev)
-+		if (prev) {
- 			__i915_sw_fence_await_dma_fence(&work->base.chain,
- 							prev,
- 							&work->cb);
-+			dma_fence_put(prev);
-+		}
+@@ -653,25 +655,30 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 		}
+ 	}
  
- 		work->base.dma.error = 0; /* enable the queue_work() */
+-	ret = intel_timeline_get_seqno(tl, rq, &seqno);
+-	if (ret)
+-		goto err_free;
+-
+ 	rq->i915 = ce->engine->i915;
+ 	rq->context = ce;
+ 	rq->engine = ce->engine;
+ 	rq->ring = ce->ring;
+ 	rq->execution_mask = ce->engine->mask;
  
++	kref_init(&rq->fence.refcount);
++	rq->fence.flags = 0;
++	rq->fence.error = 0;
++	INIT_LIST_HEAD(&rq->fence.cb_list);
++
++	ret = intel_timeline_get_seqno(tl, rq, &seqno);
++	if (ret)
++		goto err_free;
++
++	rq->fence.context = tl->fence_context;
++	rq->fence.seqno = seqno;
++
+ 	RCU_INIT_POINTER(rq->timeline, tl);
+ 	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
+ 	rq->hwsp_seqno = tl->hwsp_seqno;
+ 
+ 	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
+ 
+-	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock,
+-		       tl->fence_context, seqno);
+-
+ 	/* We bump the ref for the fence chain */
+ 	i915_sw_fence_reinit(&i915_request_get(rq)->submit);
+ 	i915_sw_fence_reinit(&i915_request_get(rq)->semaphore);
 -- 
 2.25.0
 
