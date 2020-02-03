@@ -1,75 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574B915091A
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 16:07:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB40515094C
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 16:12:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902FE6E3AC;
-	Mon,  3 Feb 2020 15:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDE36EC1D;
+	Mon,  3 Feb 2020 15:12:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from esa3.hc3370-68.iphmx.com (esa3.hc3370-68.iphmx.com
- [216.71.145.155])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D12A6E3AC;
- Mon,  3 Feb 2020 15:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
- d=citrix.com; s=securemail; t=1580742427;
- h=from:to:cc:subject:date:message-id:mime-version;
- bh=VJnsOBv+HbyyQwVNpnxzDWPoec7REoI1chc1vV9mKGk=;
- b=ctOhKRrrcjUalGZjl0zhxbx1Bjhf2ISVuWzkuKN1u5SkY5F4sbwKxELD
- RYu7Ygoh6JlUZFv6YuA4Odwae28dDkq4ia7JPYLacmMvNH4itSh/HN4rb
- 80QPUMdwNdPieuX2ILiM3Rp7v6MS+3McPvkDHBC0gCj1wjXRjLObCtTZy M=;
-Authentication-Results: esa3.hc3370-68.iphmx.com;
- dkim=none (message not signed) header.i=none;
- spf=None smtp.pra=igor.druzhinin@citrix.com;
- spf=Pass smtp.mailfrom=igor.druzhinin@citrix.com;
- spf=None smtp.helo=postmaster@mail.citrix.com
-Received-SPF: None (esa3.hc3370-68.iphmx.com: no sender
- authenticity information available from domain of
- igor.druzhinin@citrix.com) identity=pra;
- client-ip=162.221.158.21; receiver=esa3.hc3370-68.iphmx.com;
- envelope-from="igor.druzhinin@citrix.com";
- x-sender="igor.druzhinin@citrix.com";
- x-conformance=sidf_compatible
-Received-SPF: Pass (esa3.hc3370-68.iphmx.com: domain of
- igor.druzhinin@citrix.com designates 162.221.158.21 as
- permitted sender) identity=mailfrom;
- client-ip=162.221.158.21; receiver=esa3.hc3370-68.iphmx.com;
- envelope-from="igor.druzhinin@citrix.com";
- x-sender="igor.druzhinin@citrix.com";
- x-conformance=sidf_compatible; x-record-type="v=spf1";
- x-record-text="v=spf1 ip4:209.167.231.154 ip4:178.63.86.133
- ip4:195.66.111.40/30 ip4:85.115.9.32/28 ip4:199.102.83.4
- ip4:192.28.146.160 ip4:192.28.146.107 ip4:216.52.6.88
- ip4:216.52.6.188 ip4:162.221.158.21 ip4:162.221.156.83
- ip4:168.245.78.127 ~all"
-Received-SPF: None (esa3.hc3370-68.iphmx.com: no sender
- authenticity information available from domain of
- postmaster@mail.citrix.com) identity=helo;
- client-ip=162.221.158.21; receiver=esa3.hc3370-68.iphmx.com;
- envelope-from="igor.druzhinin@citrix.com";
- x-sender="postmaster@mail.citrix.com";
- x-conformance=sidf_compatible
-IronPort-SDR: n3OuRVe8G9eYufmHAZT/P2q6Wa0Z7PfSRehb4qvjsUHNrmDY7kTjv5xRnF+nprqvB4gH049Amu
- 8trAFQQCmgcbK/5Ib1odEq2crfCL+oWZO136igJoPR4+WxBZod7RUdE0tweEhCv3hpEq5JJ3q0
- lM0PQ+W3voIT6R378+qVbizA3ZQK1vpZiIzChRAgzMCM6SB+FQdw5japO6k7ZoRbmttWJgi/L7
- EnhslDdgNFtvrDX39N+oOXaxxbj9hPFNMV2PgVzWqiQ2S8iarz6d01XhFHeKwCWlNVQi8n8d/r
- xHk=
-X-SBRS: 2.7
-X-MesageID: 11848962
-X-Ironport-Server: esa3.hc3370-68.iphmx.com
-X-Remote-IP: 162.221.158.21
-X-Policy: $RELAYED
-X-IronPort-AV: E=Sophos;i="5.70,398,1574139600"; d="scan'208";a="11848962"
-From: Igor Druzhinin <igor.druzhinin@citrix.com>
-To: <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-gvt-dev@lists.freedesktop.org>
-Date: Mon, 3 Feb 2020 15:07:01 +0000
-Message-ID: <1580742421-25194-1-git-send-email-igor.druzhinin@citrix.com>
-X-Mailer: git-send-email 2.7.4
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12B886EC20;
+ Mon,  3 Feb 2020 15:12:40 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 07:12:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="310747262"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 03 Feb 2020 07:12:36 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 03 Feb 2020 17:12:36 +0200
+Date: Mon, 3 Feb 2020 17:12:36 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Message-ID: <20200203151236.GG13686@intel.com>
+References: <20200203120421.113744-1-gwan-gyeong.mun@intel.com>
+ <20200203120421.113744-2-gwan-gyeong.mun@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gvt: more locking for ppgtt mm LRU list
+Content-Disposition: inline
+In-Reply-To: <20200203120421.113744-2-gwan-gyeong.mun@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Add checking of YCBCR420
+ Pass-through to YCBCR420 outputs.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,40 +48,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Igor
- Druzhinin <igor.druzhinin@citrix.com>, airlied@linux.ie
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When the lock was introduced in 72aabfb862e40 ("drm/i915/gvt: Add mutual
-lock for ppgtt mm LRU list") one place got lost.
+On Mon, Feb 03, 2020 at 02:04:21PM +0200, Gwan-gyeong Mun wrote:
+> When a DP downstream uses a DP to HDMI active converter, the active
+> converter needs to support YCbCr420 Pass-through to enable DP YCbCr 4:2:0
+> outputs.
+> =
 
-Signed-off-by: Igor Druzhinin <igor.druzhinin@citrix.com>
----
- drivers/gpu/drm/i915/gvt/gtt.c | 4 ++++
- 1 file changed, 4 insertions(+)
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 26 +++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> =
 
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 34cb404..4a48280 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -1956,7 +1956,11 @@ void _intel_vgpu_mm_release(struct kref *mm_ref)
- 
- 	if (mm->type == INTEL_GVT_MM_PPGTT) {
- 		list_del(&mm->ppgtt_mm.list);
-+
-+		mutex_lock(&mm->vgpu->gvt->gtt.ppgtt_mm_lock);
- 		list_del(&mm->ppgtt_mm.lru_list);
-+		mutex_unlock(&mm->vgpu->gvt->gtt.ppgtt_mm_lock);
-+
- 		invalidate_ppgtt_mm(mm);
- 	} else {
- 		vfree(mm->ggtt_mm.virtual_ggtt);
--- 
-2.7.4
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index f4dede6253f8..824ed8096426 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2298,6 +2298,22 @@ intel_dp_compute_link_config(struct intel_encoder =
+*encoder,
+>  	return 0;
+>  }
+>  =
 
+> +static bool
+> +intel_dp_downstream_is_hdmi_detailed_cap_info(struct intel_dp *intel_dp)
+> +{
+> +	int type =3D intel_dp->downstream_ports[0] & DP_DS_PORT_TYPE_MASK;
+> +	bool detailed_cap_info =3D intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] &
+> +				 DP_DETAILED_CAP_INFO_AVAILABLE;
+> +
+> +	return type =3D=3D DP_DS_PORT_TYPE_HDMI && detailed_cap_info;
+
+This looks a bit incomplete, and should really be in the core. I have a
+bunch of stuff for DFPs sitting in a branch. I'll just post the whole
+thing...
+
+> +}
+> +
+> +static bool
+> +intel_dp_downstream_supports_ycbcr_420_passthru(struct intel_dp *intel_d=
+p)
+> +{
+> +	return intel_dp->downstream_ports[3] & DP_DS_YCBCR420_PASSTHRU_SUPPORT;
+> +}
+> +
+>  static int
+>  intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+>  			 struct drm_connector *connector,
+> @@ -2314,6 +2330,16 @@ intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+>  	    !connector->ycbcr_420_allowed)
+>  		return 0;
+>  =
+
+> +	/*
+> +	 * When a DP downstream uses a DP to HDMI active converter,
+> +	 * the active converter needs to support YCbCr420 Pass-through.
+> +	 */
+> +	if (drm_dp_is_branch(intel_dp->dpcd)) {
+> +		if (intel_dp_downstream_is_hdmi_detailed_cap_info(intel_dp) &&
+> +		    !intel_dp_downstream_supports_ycbcr_420_passthru(intel_dp))
+> +			return 0;
+> +	}
+> +
+>  	crtc_state->output_format =3D INTEL_OUTPUT_FORMAT_YCBCR420;
+>  =
+
+>  	/* YCBCR 420 output conversion needs a scaler */
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
