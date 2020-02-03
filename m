@@ -2,29 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AA61504AA
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 11:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EC121504B1
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 11:56:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7526E89FA0;
-	Mon,  3 Feb 2020 10:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5A266EBC3;
+	Mon,  3 Feb 2020 10:55:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9A889F99;
- Mon,  3 Feb 2020 10:55:03 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20098027-1500050 
- for multiple; Mon, 03 Feb 2020 10:54:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 10:54:01 +0000
-Message-Id: <20200203105401.17340-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0EE56E2DD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 10:55:56 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 02:55:56 -0800
+X-IronPort-AV: E=Sophos;i="5.70,397,1574150400"; d="scan'208";a="223900608"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
+ ([10.252.21.249])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 03 Feb 2020 02:55:54 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
+ <20200203094152.4150550-2-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <9ed6606c-650f-3a32-5c85-c0b244ac1ea7@linux.intel.com>
+Date: Mon, 3 Feb 2020 10:55:52 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_eio: Don't mix INVALID_CS and
- the cmdparser
+In-Reply-To: <20200203094152.4150550-2-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915: Initialise basic fence before
+ acquiring seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,44 +48,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: matthew.auld@intel.com
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the cmdparser causes it to discard the batch with INVALID_CS, we
-are not being as thorough in our testing on gen9/bcs as we expect.
-Furthermore, snb just dies, so don't.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- tests/i915/gem_eio.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On 03/02/2020 09:41, Chris Wilson wrote:
+> Inside the intel_timeline_get_seqno(), we currently track the retirement
+> of the old cachelines by listening to the new request. This requires
+> that the new request is ready to be used and so requires a minimum bit
+> of initialisation prior to getting the new seqno.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 21 ++++++++++++++-------
+>   1 file changed, 14 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 78a5f5d3c070..f56b046a32de 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -595,6 +595,8 @@ static void __i915_request_ctor(void *arg)
+>   	i915_sw_fence_init(&rq->submit, submit_notify);
+>   	i915_sw_fence_init(&rq->semaphore, semaphore_notify);
+>   
+> +	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
+> +
+>   	rq->file_priv = NULL;
+>   	rq->capture_list = NULL;
+>   
+> @@ -653,25 +655,30 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+>   		}
+>   	}
+>   
+> -	ret = intel_timeline_get_seqno(tl, rq, &seqno);
+> -	if (ret)
+> -		goto err_free;
+> -
+>   	rq->i915 = ce->engine->i915;
+>   	rq->context = ce;
+>   	rq->engine = ce->engine;
+>   	rq->ring = ce->ring;
+>   	rq->execution_mask = ce->engine->mask;
+>   
+> +	kref_init(&rq->fence.refcount);
+> +	rq->fence.flags = 0;
+> +	rq->fence.error = 0;
+> +	INIT_LIST_HEAD(&rq->fence.cb_list);
 
-diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
-index aa4accc9d..d226d7428 100644
---- a/tests/i915/gem_eio.c
-+++ b/tests/i915/gem_eio.c
-@@ -187,10 +187,13 @@ static igt_spin_t * __spin_poll(int fd, uint32_t ctx, unsigned long flags)
- 		.engine = flags,
- 		.flags = (IGT_SPIN_FAST |
- 			  IGT_SPIN_NO_PREEMPTION |
--			  IGT_SPIN_INVALID_CS |
- 			  IGT_SPIN_FENCE_OUT),
- 	};
- 
-+	if (!gem_has_cmdparser(fd, opts.engine) &&
-+	    intel_gen(intel_get_drm_devid(fd)) != 6)
-+		opts.flags |= IGT_SPIN_INVALID_CS;
-+
- 	if (gem_can_store_dword(fd, opts.engine))
- 		opts.flags |= IGT_SPIN_POLL_RUN;
- 
--- 
-2.25.0
+One of these fields the previous user leaves in a non-empty state?
 
+Regards,
+
+Tvrtko
+
+> +
+> +	ret = intel_timeline_get_seqno(tl, rq, &seqno);
+> +	if (ret)
+> +		goto err_free;
+> +
+> +	rq->fence.context = tl->fence_context;
+> +	rq->fence.seqno = seqno;
+> +
+>   	RCU_INIT_POINTER(rq->timeline, tl);
+>   	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
+>   	rq->hwsp_seqno = tl->hwsp_seqno;
+>   
+>   	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
+>   
+> -	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock,
+> -		       tl->fence_context, seqno);
+> -
+>   	/* We bump the ref for the fence chain */
+>   	i915_sw_fence_reinit(&i915_request_get(rq)->submit);
+>   	i915_sw_fence_reinit(&i915_request_get(rq)->semaphore);
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
