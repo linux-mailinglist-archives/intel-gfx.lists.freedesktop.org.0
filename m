@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F9150380
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:42:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53D9F150381
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:42:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84EE26EB7E;
-	Mon,  3 Feb 2020 09:42:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A04DA6EB82;
+	Mon,  3 Feb 2020 09:42:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D95C6EB7E
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:42:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2587D6EB82
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:42:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096987-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096988-1500050 
  for multiple; Mon, 03 Feb 2020 09:41:54 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 09:41:48 +0000
-Message-Id: <20200203094152.4150550-2-chris@chris-wilson.co.uk>
+Date: Mon,  3 Feb 2020 09:41:49 +0000
+Message-Id: <20200203094152.4150550-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
 References: <20200203094152.4150550-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/6] drm/i915: Initialise basic fence before
- acquiring seqno
+Subject: [Intel-gfx] [PATCH 3/6] drm/i915/gt: Warn about the hidden
+ i915_vma_pin in timeline_get_seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,69 +45,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Inside the intel_timeline_get_seqno(), we currently track the retirement
-of the old cachelines by listening to the new request. This requires
-that the new request is ready to be used and so requires a minimum bit
-of initialisation prior to getting the new seqno.
+On seqno rollover, we need to allocate ourselves a new cacheline. This
+might incur grabbing a new page and pinning it into the GGTT, with some
+rather unfortunate lockdep implications.
+
+To avoid a mutex, and more specifically pinning in the GGTT from inside
+the kernel context being used to flush the GGTT in emergencies, we will
+likely need to lift the next-cacheline allocation to a pre-reservation.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_timeline.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 78a5f5d3c070..f56b046a32de 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -595,6 +595,8 @@ static void __i915_request_ctor(void *arg)
- 	i915_sw_fence_init(&rq->submit, submit_notify);
- 	i915_sw_fence_init(&rq->semaphore, semaphore_notify);
+diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
+index 465f87b65901..54e1e55f3c81 100644
+--- a/drivers/gpu/drm/i915/gt/intel_timeline.c
++++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
+@@ -406,6 +406,8 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
+ 	void *vaddr;
+ 	int err;
  
-+	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock, 0, 0);
++	might_lock(&tl->gt->ggtt->vm.mutex);
 +
- 	rq->file_priv = NULL;
- 	rq->capture_list = NULL;
- 
-@@ -653,25 +655,30 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 		}
- 	}
- 
--	ret = intel_timeline_get_seqno(tl, rq, &seqno);
--	if (ret)
--		goto err_free;
--
- 	rq->i915 = ce->engine->i915;
- 	rq->context = ce;
- 	rq->engine = ce->engine;
- 	rq->ring = ce->ring;
- 	rq->execution_mask = ce->engine->mask;
- 
-+	kref_init(&rq->fence.refcount);
-+	rq->fence.flags = 0;
-+	rq->fence.error = 0;
-+	INIT_LIST_HEAD(&rq->fence.cb_list);
-+
-+	ret = intel_timeline_get_seqno(tl, rq, &seqno);
-+	if (ret)
-+		goto err_free;
-+
-+	rq->fence.context = tl->fence_context;
-+	rq->fence.seqno = seqno;
-+
- 	RCU_INIT_POINTER(rq->timeline, tl);
- 	RCU_INIT_POINTER(rq->hwsp_cacheline, tl->hwsp_cacheline);
- 	rq->hwsp_seqno = tl->hwsp_seqno;
- 
- 	rq->rcustate = get_state_synchronize_rcu(); /* acts as smp_mb() */
- 
--	dma_fence_init(&rq->fence, &i915_fence_ops, &rq->lock,
--		       tl->fence_context, seqno);
--
- 	/* We bump the ref for the fence chain */
- 	i915_sw_fence_reinit(&i915_request_get(rq)->submit);
- 	i915_sw_fence_reinit(&i915_request_get(rq)->semaphore);
+ 	/*
+ 	 * If there is an outstanding GPU reference to this cacheline,
+ 	 * such as it being sampled by a HW semaphore on another timeline,
 -- 
 2.25.0
 
