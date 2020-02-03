@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE85150C18
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 17:33:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57BE3150C9A
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 17:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 550C16E3EC;
-	Mon,  3 Feb 2020 16:33:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FDF66EA0E;
+	Mon,  3 Feb 2020 16:38:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CEDB6E3EC
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 16:33:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 08:33:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="231072764"
-Received: from rosetta.fi.intel.com ([10.237.72.194])
- by orsmga003.jf.intel.com with ESMTP; 03 Feb 2020 08:33:21 -0800
-Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id CE03A843BE6; Mon,  3 Feb 2020 18:33:13 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 18:33:12 +0200
-Message-Id: <20200203163312.15475-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Remove lite restore defines
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B93FA6EA0E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 16:38:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20102553-1500050 for multiple; Mon, 03 Feb 2020 16:37:45 +0000
+MIME-Version: 1.0
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200203163312.15475-1-mika.kuoppala@linux.intel.com>
+References: <20200203163312.15475-1-mika.kuoppala@linux.intel.com>
+Message-ID: <158074786303.25650.15234899454433495338@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 03 Feb 2020 16:37:43 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove lite restore defines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,62 +39,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We have switched from tail manipulation to forced context restore
-to implement WaIdleLiteRestore. Remove the useless defines and comments.
+Quoting Mika Kuoppala (2020-02-03 16:33:12)
+> We have switched from tail manipulation to forced context restore
+> to implement WaIdleLiteRestore. Remove the useless defines and comments.
 
-References: f26a9e959a7b ("drm/i915/gt: Detect if we miss WaIdleLiteRestore")
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 18 ------------------
- 1 file changed, 18 deletions(-)
+We still use the wa_tail as the first pass to avoid having to do
+WaIdleLiteRestore. And we do need to reset the ring after a
+suspend/resume because of the wa_tail. Hopefully, our selftest for the
+latter still detects such bugs...
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c196fb90c59f..bc0835c3fb2c 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -176,8 +176,6 @@
- 
- /* Typical size of the average request (2 pipecontrols and a MI_BB) */
- #define EXECLISTS_REQUEST_SIZE 64 /* bytes */
--#define WA_TAIL_DWORDS 2
--#define WA_TAIL_BYTES (sizeof(u32) * WA_TAIL_DWORDS)
- 
- struct virtual_engine {
- 	struct intel_engine_cs base;
-@@ -2927,22 +2925,6 @@ static void execlists_context_reset(struct intel_context *ce)
- 	CE_TRACE(ce, "reset\n");
- 	GEM_BUG_ON(!intel_context_is_pinned(ce));
- 
--	/*
--	 * Because we emit WA_TAIL_DWORDS there may be a disparity
--	 * between our bookkeeping in ce->ring->head and ce->ring->tail and
--	 * that stored in context. As we only write new commands from
--	 * ce->ring->tail onwards, everything before that is junk. If the GPU
--	 * starts reading from its RING_HEAD from the context, it may try to
--	 * execute that junk and die.
--	 *
--	 * The contexts that are stilled pinned on resume belong to the
--	 * kernel, and are local to each engine. All other contexts will
--	 * have their head/tail sanitized upon pinning before use, so they
--	 * will never see garbage,
--	 *
--	 * So to avoid that we reset the context images upon resume. For
--	 * simplicity, we just zero everything out.
--	 */
- 	intel_ring_reset(ce->ring, ce->ring->emit);
- 
- 	/* Scrub away the garbage */
--- 
-2.17.1
-
+We just aren't using the macro any more.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
