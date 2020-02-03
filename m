@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1082F150366
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 600CC15036D
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:37:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 369276EB72;
-	Mon,  3 Feb 2020 09:31:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2EE66EB77;
+	Mon,  3 Feb 2020 09:37:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32AF66E221
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:31:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096857-1500050 
- for multiple; Mon, 03 Feb 2020 09:31:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 09:31:10 +0000
-Message-Id: <20200203093110.4138277-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200203093110.4138277-1-chris@chris-wilson.co.uk>
-References: <20200203093110.4138277-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BBD9A6EB77;
+ Mon,  3 Feb 2020 09:37:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B7F46A00C7;
+ Mon,  3 Feb 2020 09:37:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/audio: Skip the cdclk modeset if
- no pipes attached
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Mon, 03 Feb 2020 09:37:07 -0000
+Message-ID: <158072262775.3015.4502941794441985828@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200203074756.10549-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200203074756.10549-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/3=5D_drm/i915=3A_Introduce_encoder-?=
+ =?utf-8?q?=3Ecompute=5Fconfig=5Flate=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,103 +39,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the display is not driving any pipes, we cannot change the bclk and
-doing so risks chasing NULL pointers:
+== Series Details ==
 
-<6> [278.907105] snd_hda_intel 0000:00:0e.0: DSP detected with PCI class/subclass/prog-if info 0x040100
-<6> [278.909936] snd_hda_intel 0000:00:0e.0: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
-<7> [278.910078] i915 0000:00:02.0: [drm:intel_power_well_enable [i915]] enabling power well 2
-<1> [278.910228] BUG: kernel NULL pointer dereference, address: 0000000000000080
-<1> [278.910243] #PF: supervisor read access in kernel mode
-<1> [278.910251] #PF: error_code(0x0000) - not-present page
-<6> [278.910260] PGD 0 P4D 0
-<4> [278.910267] Oops: 0000 [#1] PREEMPT SMP PTI
-<4> [278.910276] CPU: 0 PID: 5 Comm: kworker/0:0 Tainted: G     U            5.5.0-CI-CI_DRM_7853+ #1
-<4> [278.910289] Hardware name: Intel Corp. Geminilake/GLK RVP2 LP4SD (07), BIOS GELKRVPA.X64.0062.B30.1708222146 08/22/2017
-<4> [278.910312] Workqueue: events azx_probe_work [snd_hda_intel]
-<4> [278.910327] RIP: 0010:__ww_mutex_lock.constprop.15+0x5e/0x1090
-<4> [278.910338] Code: 75 88 be a7 03 00 00 65 48 8b 04 25 28 00 00 00 48 89 45 c8 31 c0 4c 89 c3 e8 5e b3 6d ff 44 8b 3d 2f 24 37 02 45 85 ff 75 0a <4d> 3b 6d 58 0f 85 3f 07 00 00 48 85 db 74 22 49 8b 95 80 00 00 00
-<4> [278.910362] RSP: 0018:ffffc9000008bc10 EFLAGS: 00010246
-<4> [278.910371] RAX: 0000000000000246 RBX: ffffc9000008bd30 RCX: 0000000000000001
-<4> [278.910382] RDX: 0000000000000000 RSI: ffffffff82647c60 RDI: ffff88817b27d848
-<4> [278.910393] RBP: ffffc9000008bcc0 R08: 0000000000000000 R09: 0000000000000001
-<4> [278.910404] R10: ffffc9000008bce0 R11: 0000000000000000 R12: ffffffff8168f0fc
-<4> [278.910414] R13: 0000000000000028 R14: ffffc9000008bd60 R15: 0000000000000000
-<4> [278.910425] FS:  0000000000000000(0000) GS:ffff88817bc00000(0000) knlGS:0000000000000000
-<4> [278.910437] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-<4> [278.910446] CR2: 0000000000000080 CR3: 00000001650da000 CR4: 0000000000340ef0
-<4> [278.910456] Call Trace:
-<4> [278.910468]  ? mark_held_locks+0x49/0x70
-<4> [278.910479]  ? ww_mutex_lock+0x39/0x70
-<4> [278.910487]  ww_mutex_lock+0x39/0x70
-<4> [278.910497]  drm_modeset_lock+0x6c/0x120
-<4> [278.910575]  glk_force_audio_cdclk+0x7d/0x140 [i915]
-<4> [278.910656]  i915_audio_component_get_power+0xf2/0x110 [i915]
-<4> [278.910673]  snd_hdac_display_power+0x7d/0x120 [snd_hda_core]
-<4> [278.910686]  azx_probe_work+0x88/0x7e0 [snd_hda_intel]
+Series: series starting with [v2,1/3] drm/i915: Introduce encoder->compute_config_late()
+URL   : https://patchwork.freedesktop.org/series/72891/
+State : success
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/display/intel_audio.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 13833a7a8f27..a8ed58e29442 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -810,16 +810,14 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
- 	}
- }
- 
--static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
-+static int glk_force_audio_cdclk_commit(struct intel_crtc *crtc,
-+					struct intel_atomic_state *state,
- 					bool enable)
- {
--	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	struct intel_cdclk_state *cdclk_state;
--	struct intel_crtc *crtc;
- 	int ret;
- 
- 	/* need to hold at least one crtc lock for the global state */
--	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
- 	ret = drm_modeset_lock(&crtc->base.mutex, state->base.acquire_ctx);
- 	if (ret)
- 		return ret;
-@@ -843,8 +841,13 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
- {
- 	struct drm_modeset_acquire_ctx ctx;
- 	struct drm_atomic_state *state;
-+	struct intel_crtc *crtc;
- 	int ret;
- 
-+	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-+	if (!crtc)
-+		return;
-+
- 	drm_modeset_acquire_init(&ctx, 0);
- 	state = drm_atomic_state_alloc(&dev_priv->drm);
- 	if (drm_WARN_ON(&dev_priv->drm, !state))
-@@ -853,7 +856,9 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
- 	state->acquire_ctx = &ctx;
- 
- retry:
--	ret = glk_force_audio_cdclk_commit(to_intel_atomic_state(state), enable);
-+	ret = glk_force_audio_cdclk_commit(crtc,
-+					   to_intel_atomic_state(state),
-+					   enable);
- 	if (ret == -EDEADLK) {
- 		drm_atomic_state_clear(state);
- 		drm_modeset_backoff(&ctx);
--- 
-2.25.0
+CI Bug Log - changes from CI_DRM_7857 -> Patchwork_16387
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16387 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7857/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [PASS][3] -> [DMESG-FAIL][4] ([i915#1052])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7857/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [INCOMPLETE][5] ([fdo#106070] / [i915#424]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7857/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][7] ([i915#694]) -> [TIMEOUT][8] ([fdo#112271] / [i915#1084])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7857/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (47 -> 36)
+------------------------------
+
+  Additional (3): fi-skl-6770hq fi-bwr-2160 fi-bsw-nick 
+  Missing    (14): fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-kbl-7500u fi-whl-u fi-gdg-551 fi-cfl-8109u fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7857 -> Patchwork_16387
+
+  CI-20190529: 20190529
+  CI_DRM_7857: 8ec40a15b9a930df9e445f17c5e01cdb6f80353a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5411: 86c6ab8a0b6696bdb2153febd350af7fa02fbb00 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16387: 4e5443593875f7b5c107caae700bd2e93d50ca3b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4e5443593875 drm/i915/dp: Add all tiled and port sync conns to modeset
+59036ac4423f drm/i915/dp: Compute port sync crtc states post compute_config()
+17cfa5f19e38 drm/i915: Introduce encoder->compute_config_late()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16387/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
