@@ -1,41 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DB91508B4
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 15:46:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BFFC1508E7
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 15:59:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED0D26EC0E;
-	Mon,  3 Feb 2020 14:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A8A16E3B0;
+	Mon,  3 Feb 2020 14:59:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F93A6EC0E
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 14:46:35 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F156E3B0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 14:59:22 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 06:46:34 -0800
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 06:53:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="263441193"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 06:46:33 -0800
-Date: Mon, 3 Feb 2020 16:46:32 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20200203132317.GZ13686@intel.com>
-Message-ID: <alpine.DEB.2.21.2002031636000.2957@eliteleevi.tm.intel.com>
-References: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
- <20200203132317.GZ13686@intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="263443288"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 06:53:34 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Feb 2020 16:50:10 +0200
+Message-Id: <20200203145010.6239-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200203140747.22771-4-stanislav.lisovskiy@intel.com>
+References: <20200203140747.22771-4-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="-318106570-2079791448-1580741194=:2957"
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/audio: Skip the cdclk modeset if
- no pipes attached
+Subject: [Intel-gfx] [PATCH v14 3/7] drm/i915: Init obj state in
+ intel_atomic_get_old/new_global_obj_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,43 +43,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+We might be willing to call intel_atomic_get_old_global_obj_state
+and intel_atomic_get_new_global_obj_state right away, however
+those are not initializing global obj state as
+intel_atomic_get_global_obj_state does.
+Extracted initializing part to separate function and now using this
+also in intel_atomic_get_old_global_obj_state and intel_atomic_get_new_global_obj_state
 
----318106570-2079791448-1580741194=:2957
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: 8BIT
+v2: - Fixed typo in function call
 
-Hey,
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c       | 28 ++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bw.h       |  9 ++++++
+ .../gpu/drm/i915/display/intel_global_state.c | 30 +++++++++++++------
+ 3 files changed, 57 insertions(+), 10 deletions(-)
 
-On Mon, 3 Feb 2020, Ville Syrjälä wrote:
-
-> >  	/* need to hold at least one crtc lock for the global state */
-> > -	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-> 
-> Was thinking a simple 'return 0' would do the trick, but maybe we
-> don't want to call this at all. OTOH not sure why we would even
-> register the audio component if there are no pipes. Does the audio
-> driver get confused if we don't do that?
-
-that's ok as well, audio driver will return fail for the probe, but in 
-this case I guess this is ok (and even expected).
-
-Br, Kai
-
----318106570-2079791448-1580741194=:2957
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index 26fa94329eda..f48b5c74cc3b 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -373,7 +373,33 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+ 	return data_rate;
+ }
+ 
+-static struct intel_bw_state *
++struct intel_bw_state *
++intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_global_state *bw_state;
++
++	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->bw_obj);
++	if (IS_ERR(bw_state))
++		return ERR_CAST(bw_state);
++
++	return to_intel_bw_state(bw_state);
++}
++
++struct intel_bw_state *
++intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
++{
++	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
++	struct intel_global_state *bw_state;
++	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
++
++	if (IS_ERR(bw_state))
++		return ERR_CAST(bw_state);
++
++	return to_intel_bw_state(bw_state);
++}
++
++struct intel_bw_state *
+ intel_atomic_get_bw_state(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+index a8aa7624c5aa..ac004d6f4276 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.h
++++ b/drivers/gpu/drm/i915/display/intel_bw.h
+@@ -24,6 +24,15 @@ struct intel_bw_state {
+ 
+ #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+ 
++struct intel_bw_state *
++intel_atomic_get_old_bw_state(struct intel_atomic_state *state);
++
++struct intel_bw_state *
++intel_atomic_get_new_bw_state(struct intel_atomic_state *state);
++
++struct intel_bw_state *
++intel_atomic_get_bw_state(struct intel_atomic_state *state);
++
+ void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+ int intel_bw_init(struct drm_i915_private *dev_priv);
+ int intel_bw_atomic_check(struct intel_atomic_state *state);
+diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/gpu/drm/i915/display/intel_global_state.c
+index a0cc894c3868..89e85048329f 100644
+--- a/drivers/gpu/drm/i915/display/intel_global_state.c
++++ b/drivers/gpu/drm/i915/display/intel_global_state.c
+@@ -67,19 +67,15 @@ static void assert_global_state_read_locked(struct intel_atomic_state *state)
+ 	WARN(1, "Global state not read locked\n");
+ }
+ 
+-struct intel_global_state *
+-intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
++static struct intel_global_state *
++_intel_atomic_init_global_obj_state(struct intel_atomic_state *state,
+ 				  struct intel_global_obj *obj)
+ {
+-	int index, num_objs, i;
++	int index, num_objs;
+ 	size_t size;
+ 	struct __intel_global_objs_state *arr;
+ 	struct intel_global_state *obj_state;
+ 
+-	for (i = 0; i < state->num_global_objs; i++)
+-		if (obj == state->global_objs[i].ptr)
+-			return state->global_objs[i].state;
+-
+ 	assert_global_state_read_locked(state);
+ 
+ 	num_objs = state->num_global_objs + 1;
+@@ -112,6 +108,20 @@ intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
+ 	return obj_state;
+ }
+ 
++
++struct intel_global_state *
++intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
++				  struct intel_global_obj *obj)
++{
++	int i;
++
++	for (i = 0; i < state->num_global_objs; i++)
++		if (obj == state->global_objs[i].ptr)
++			return state->global_objs[i].state;
++
++	return _intel_atomic_init_global_obj_state(state, obj);
++}
++
+ struct intel_global_state *
+ intel_atomic_get_old_global_obj_state(struct intel_atomic_state *state,
+ 				      struct intel_global_obj *obj)
+@@ -122,7 +132,9 @@ intel_atomic_get_old_global_obj_state(struct intel_atomic_state *state,
+ 		if (obj == state->global_objs[i].ptr)
+ 			return state->global_objs[i].old_state;
+ 
+-	return NULL;
++	_intel_atomic_init_global_obj_state(state, obj);
++
++	return obj->state;
+ }
+ 
+ struct intel_global_state *
+@@ -135,7 +147,7 @@ intel_atomic_get_new_global_obj_state(struct intel_atomic_state *state,
+ 		if (obj == state->global_objs[i].ptr)
+ 			return state->global_objs[i].new_state;
+ 
+-	return NULL;
++	return _intel_atomic_init_global_obj_state(state, obj);
+ }
+ 
+ void intel_atomic_swap_global_state(struct intel_atomic_state *state)
+-- 
+2.24.1.485.gad05a3d8e5
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
----318106570-2079791448-1580741194=:2957--
