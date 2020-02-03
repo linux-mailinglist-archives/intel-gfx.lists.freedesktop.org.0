@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D684315113A
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 21:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C2A15120D
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 22:45:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C113A6ED03;
-	Mon,  3 Feb 2020 20:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C57DE6E03D;
+	Mon,  3 Feb 2020 21:45:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com
- [IPv6:2607:f8b0:4864:20::742])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 765196ED03;
- Mon,  3 Feb 2020 20:43:06 +0000 (UTC)
-Received: by mail-qk1-x742.google.com with SMTP id u19so7991255qku.8;
- Mon, 03 Feb 2020 12:43:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=JB5uHQw1J4sRAGvv5N+NclAp27+FxAP/ILtnurNfAww=;
- b=fUTpdrQQ84L47+CtICvABIN6sIWJnNzE2xfhD4rOtKbMjtfmb3Ewns2D2V+8lsAVm4
- +kV70nDHQF5tiiiqOD9qxuZX6/QPF7624PLHHB+8622ufmCkAv4ZCcFP9N7qRrFAxIjm
- cZcpZCtPNC9DAP+zt+3QRIP4C+wPPVT1/csdsleNKplVqClUYJKpU6mHGEoZ9dsI2u9I
- Yck3trHBrIp15Y3DJdCjB5qP8BADaZV3v/09MDgJKPh+zu6JGCKoZ9RC7/Cp86JJRBAf
- 8eKZJloBlGynknJeSVsfcg14yR4NlEAZjW1kRQoe+mFJvvsqVWlokxazeIkUvvwHYYiG
- ii/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=JB5uHQw1J4sRAGvv5N+NclAp27+FxAP/ILtnurNfAww=;
- b=ksMt1ZDSCU8h6paMaFr3pevB5HwzKbZrm8sMnB3S6QGyJb08cuz7lRiTSZ+ArKMvTu
- veTox/ZNtBFvatjUFHkhymgnxvT3uBd26ln3R7h3jMRtNpFe/oZbvf5wFNNQa/RnlJxS
- FUeXD/ye47c3LGd1hs0OrMGoooPzU2PDD00ZesIQPB4p7tpSs5FCzcgnIVBMwsm8tOZF
- hRh7WeEtmOKe+mSQP7P3Lt4eKdK6YljdWFqKRhvqWM03LYJBbHc1Pxei2yygyZHoqBEp
- PkiLruGh6MEo/McTxtTyM5/WFjq/Nl9ZmF7HiT0KqYvrWswncqhYouDCSmJsPtUf1i/U
- UBtQ==
-X-Gm-Message-State: APjAAAWpDpMjh5TmF66T7ZHOSWb3hEqkF/q9sdU58BhEy3+i0jbb3qnH
- dicysfdGCsi75woUMYM1rkk=
-X-Google-Smtp-Source: APXvYqyfRn82DOpRc7Y1pDwt2dTsj6ijLX7wWXXI0PUPv+PA6UPE2NF34u4ENkQzxZgkfDCJIKoXlw==
-X-Received: by 2002:a05:620a:2050:: with SMTP id
- d16mr25614121qka.473.1580762585516; 
- Mon, 03 Feb 2020 12:43:05 -0800 (PST)
-Received: from smtp.gmail.com ([165.204.55.250])
- by smtp.gmail.com with ESMTPSA id m10sm9821960qki.74.2020.02.03.12.43.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 03 Feb 2020 12:43:04 -0800 (PST)
-Date: Mon, 3 Feb 2020 15:43:01 -0500
-From: Rodrigo Siqueira <rodrigosiqueiramelo@gmail.com>
-To: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
-Message-ID: <20200203204301.6hqg7xglumvvugwz@smtp.gmail.com>
-References: <20200131202451.8994-1-Jerry.Zuo@amd.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B3456E03D;
+ Mon,  3 Feb 2020 21:45:46 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20105622-1500050 
+ for multiple; Mon, 03 Feb 2020 21:45:19 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Feb 2020 21:45:18 +0000
+Message-Id: <20200203214518.723198-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <20200131202451.8994-1-Jerry.Zuo@amd.com>
-Subject: Re: [Intel-gfx] [PATCH V5] drm: Add support for DP 1.4 Compliance
- edid corruption test
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_basic: Drop per-engine
+ testing of *execbuf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,275 +37,241 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, rodrigo.siqueira@amd.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Alexander.Deucher@amd.com, nicholas.kazlauskas@amd.com
-Content-Type: multipart/mixed; boundary="===============0604710457=="
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+The gtt/readonly tests are nothing to do with execution and engines;
+they are strictly checking the copy-from-user of the ioctl arguments.
+Drop the silly per-engine tests.
 
---===============0604710457==
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jjlxqyjqd4bclb7n"
-Content-Disposition: inline
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Antonio Argenziano <antonio.argenziano@intel.com>
+---
+ tests/i915/gem_exec_basic.c  | 109 +++++------------------------------
+ tests/i915/gem_exec_params.c |  61 ++++++++++++++++++++
+ 2 files changed, 76 insertions(+), 94 deletions(-)
 
-
---jjlxqyjqd4bclb7n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jerry,
-
-First of all, thanks for your patch. You can see some comments inline,
-just simple things.
-
-On 01/31, Jerry (Fangzhi) Zuo wrote:
-> Unlike DP 1.2 edid corruption test, DP 1.4 requires to calculate
-> real CRC value of the last edid data block, and write it back.
-> Current edid CRC calculates routine adds the last CRC byte,
-> and check if non-zero.
->=20
-> This behavior is not accurate; actually, we need to return
-> the actual CRC value when corruption is detected.
-> This commit changes this issue by returning the calculated CRC,
-> and initiate the required sequence.
->=20
-> Change since v5
-> - Obtain real CRC value before dumping bad edid
->=20
-> Change since v4
-> - Fix for CI.CHECKPATCH
->=20
-> Change since v3
-> - Fix a minor typo.
->=20
-> Change since v2
-> - Rewrite checksum computation routine to avoid duplicated code.
-> - Rename to avoid confusion.
->=20
-> Change since v1
-> - Have separate routine for returning real CRC.
->=20
-> Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
-> ---
->  drivers/gpu/drm/drm_dp_helper.c | 35 +++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/drm_edid.c      | 23 ++++++++++++++++++----
->  include/drm/drm_connector.h     |  6 ++++++
->  include/drm/drm_dp_helper.h     |  3 +++
->  4 files changed, 63 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
-per.c
-> index f629fc5494a4..18b285fa1a42 100644
-> --- a/drivers/gpu/drm/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/drm_dp_helper.c
-> @@ -351,6 +351,41 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *=
-aux,
->  }
->  EXPORT_SYMBOL(drm_dp_dpcd_read_link_status);
-> =20
-> +/**
-> + * drm_dp_send_real_edid_checksum() - send back real edid checksum value
-> + * @aux: DisplayPort AUX channel
-> + * @real_edid_checksum: real edid checksum for the last block
-> + *
-> + * Returns true on success
-
-I think this should be:
-
-Returns:
-True on success...
-
-> + */
-> +bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
-> +                                    u8 real_edid_checksum)
-
-Use tabs intead of space
-
-> +{
-> +	u8 link_edid_read =3D 0, auto_test_req =3D 0, test_resp =3D 0;
-> +
-> +	drm_dp_dpcd_read(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req, 1);
-
-drm_dp_dpcd_read() documentation says:
-
- [..]
- Returns the number of bytes transferred on success, or a negative error
- code on failure. [..][1]
-
-How about catching the return value of drm_dp_dpcd_read() and handle it?
-
-1. drivers/gpu/drm/drm_dp_helper.c
-
-> +	auto_test_req &=3D DP_AUTOMATED_TEST_REQUEST;
-> +
-> +	drm_dp_dpcd_read(aux, DP_TEST_REQUEST, &link_edid_read, 1);
-
-Same
-
-> +	link_edid_read &=3D DP_TEST_LINK_EDID_READ;
-> +
-> +	if (!auto_test_req || !link_edid_read) {
-> +		DRM_DEBUG_KMS("Source DUT does not support TEST_EDID_READ\n");
-
-I'm not 100% sure, but I think that drm_dbg_kms() represents the new
-approach for handling debug messages. Could you confirm that? If so,
-could you update it?
-
-> +		return false;
-> +	}
-> +
-> +	drm_dp_dpcd_write(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req, 1);
-> +
-> +	/* send back checksum for the last edid extension block data */
-> +	drm_dp_dpcd_write(aux, DP_TEST_EDID_CHECKSUM, &real_edid_checksum, 1);
-
-Again, how about handling the return from drm_dp_dpcd_write?
-
-> +
-> +	test_resp |=3D DP_TEST_EDID_CHECKSUM_WRITE;
-> +	drm_dp_dpcd_write(aux, DP_TEST_RESPONSE, &test_resp, 1);
-> +
-> +	return true;
-> +}
-> +EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
-> +
->  /**
->   * drm_dp_downstream_max_clock() - extract branch device max
->   *                                 pixel rate for legacy VGA
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index 99769d6c9f84..f064e75fb4c5 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -1590,11 +1590,22 @@ static int validate_displayid(u8 *displayid, int =
-length, int idx);
->  static int drm_edid_block_checksum(const u8 *raw_edid)
->  {
->  	int i;
-> -	u8 csum =3D 0;
-> -	for (i =3D 0; i < EDID_LENGTH; i++)
-> +	u8 csum =3D 0, crc =3D 0;
-> +
-> +	for (i =3D 0; i < EDID_LENGTH - 1; i++)
->  		csum +=3D raw_edid[i];
-> =20
-> -	return csum;
-> +	crc =3D 0x100 - csum;
-> +
-> +	return crc;
-> +}
-> +
-> +static bool drm_edid_block_checksum_diff(const u8 *raw_edid, u8 real_che=
-cksum)
-> +{
-> +	if (raw_edid[EDID_LENGTH - 1] !=3D real_checksum)
-> +		return true;
-> +	else
-> +		return false;
->  }
-> =20
->  static bool drm_edid_is_zero(const u8 *in_edid, int length)
-> @@ -1652,7 +1663,7 @@ bool drm_edid_block_valid(u8 *raw_edid, int block, =
-bool print_bad_edid,
->  	}
-> =20
->  	csum =3D drm_edid_block_checksum(raw_edid);
-> -	if (csum) {
-> +	if (drm_edid_block_checksum_diff(raw_edid, csum)) {
->  		if (edid_corrupt)
->  			*edid_corrupt =3D true;
-> =20
-> @@ -1793,6 +1804,10 @@ static void connector_bad_edid(struct drm_connecto=
-r *connector,
->  			       u8 *edid, int num_blocks)
->  {
->  	int i;
-> +	u8 num_of_ext =3D edid[0x7e];
-> +
-> +	/* Calculate real checksum for the last edid extension block data */
-> +	connector->real_edid_checksum =3D drm_edid_block_checksum(edid + num_of=
-_ext * EDID_LENGTH);
-> =20
->  	if (connector->bad_edid_counter++ && !drm_debug_enabled(DRM_UT_KMS))
->  		return;
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 2113500b4075..b3815371c271 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -1357,6 +1357,12 @@ struct drm_connector {
->  	 * rev1.1 4.2.2.6
->  	 */
->  	bool edid_corrupt;
-> +	/**
-> +	 * @real_edid_checksum: real edid checksum for corrupted edid block.
-> +	 * Required in Displayport 1.4 compliance testing
-> +	 * rev1.1 4.2.2.6
-> +	 */
-> +	u8 real_edid_checksum;
-> =20
->  	/** @debugfs_entry: debugfs directory for this connector */
->  	struct dentry *debugfs_entry;
-> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-> index 127d6e1d3338..957a3d00ee05 100644
-> --- a/include/drm/drm_dp_helper.h
-> +++ b/include/drm/drm_dp_helper.h
-> @@ -1459,6 +1459,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm=
-_dp_aux *aux,
->  int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
->  				 u8 status[DP_LINK_STATUS_SIZE]);
-> =20
-> +bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
-> +				    u8 real_edid_checksum);
-> +
->  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				const u8 port_cap[4]);
->  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-> --=20
-> 2.17.1
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
---=20
-Rodrigo Siqueira
-Software Engineer, Advanced Micro Devices (AMD)
-https://siqueira.tech
-
---jjlxqyjqd4bclb7n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl44hc8ACgkQWJzP/com
-vP9H2BAAxSjPX2v0rVLB7w/jUsBH/vhW77H40YOLnonnoRhxs2fbAkX5ispMo17m
-LnzZzAOWO+LXFC3Q8PyXE9th+9fMi8mMA6RTKHa/0EOfRqYEEa0Kz1JWVrRl5qlw
-i1MWSGtovlGfK72MoRaIF1GQwIynV5voId/FMuJlHrthJRQWq0CZbfizeZNW/YCC
-qlxpoUQ38Iy3Ehf3UHOzYzmOUKm+ub3BLZ6bUxIf6c1v3bkJt4UdVuV7R+q/9rLN
-icvbcQGg/GIRRlX27HHFGLEO61YWRCV7/aotLcq9Fr/a7xY3BVy/ZwpWEHGxpcV4
-1exdNfDsYSoOq16pr2rA1qLrpLN9XtH/DpCjlHwZIn/xo2UX7436EttmOOg0hlvi
-ID2V4C35FLyg1Xi70IVc6S6UIbW35MIfs6yIIxd1r92ayglxgHUxhN6by0PlppeA
-4TV2+lyshleAPpzsBnS/90v7s4jiMhy6l46KM+eZi7q1IqqxzmruL3eOfPkQq2M6
-eVG8/vkxw8hdaHWLd1X8gfHT00MmKSUx9WM4QZ8jh6d7dhoYX7DSormQzZj5vL4P
-uiHGYM2fhnKotQVNenpnUby/yq1vgAH2ygfIX/MOwhAMnG20hLwnrErHYnmBXEMd
-pN6ksMGo1vLwfXqd2m+uZPVA5VY6uikQrlqWUkeuQPqmXOYUZWU=
-=UJNw
------END PGP SIGNATURE-----
-
---jjlxqyjqd4bclb7n--
-
---===============0604710457==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/tests/i915/gem_exec_basic.c b/tests/i915/gem_exec_basic.c
+index 70dce34b5..0d05819ce 100644
+--- a/tests/i915/gem_exec_basic.c
++++ b/tests/i915/gem_exec_basic.c
+@@ -36,84 +36,6 @@ static uint32_t batch_create(int fd)
+ 	return handle;
+ }
+ 
+-static void batch_fini(int fd, uint32_t handle)
+-{
+-	gem_sync(fd, handle); /* catch any GPU hang */
+-	gem_close(fd, handle);
+-}
+-
+-static void noop(int fd, uint64_t flags)
+-{
+-	struct drm_i915_gem_execbuffer2 execbuf;
+-	struct drm_i915_gem_exec_object2 exec;
+-
+-	gem_require_ring(fd, flags);
+-
+-	memset(&exec, 0, sizeof(exec));
+-
+-	exec.handle = batch_create(fd);
+-
+-	memset(&execbuf, 0, sizeof(execbuf));
+-	execbuf.buffers_ptr = to_user_pointer(&exec);
+-	execbuf.buffer_count = 1;
+-	execbuf.flags = flags;
+-	gem_execbuf(fd, &execbuf);
+-
+-	batch_fini(fd, exec.handle);
+-}
+-
+-static void readonly(int fd, uint64_t flags)
+-{
+-	struct drm_i915_gem_execbuffer2 *execbuf;
+-	struct drm_i915_gem_exec_object2 exec;
+-
+-	gem_require_ring(fd, flags);
+-
+-	memset(&exec, 0, sizeof(exec));
+-	exec.handle = batch_create(fd);
+-
+-	execbuf = mmap(NULL, 4096, PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
+-	igt_assert(execbuf != NULL);
+-
+-	execbuf->buffers_ptr = to_user_pointer(&exec);
+-	execbuf->buffer_count = 1;
+-	execbuf->flags = flags;
+-	igt_assert(mprotect(execbuf, 4096, PROT_READ) == 0);
+-
+-	gem_execbuf(fd, execbuf);
+-
+-	munmap(execbuf, 4096);
+-
+-	batch_fini(fd, exec.handle);
+-}
+-
+-static void gtt(int fd, uint64_t flags)
+-{
+-	struct drm_i915_gem_execbuffer2 *execbuf;
+-	struct drm_i915_gem_exec_object2 *exec;
+-	uint32_t handle;
+-
+-	gem_require_ring(fd, flags);
+-
+-	handle = gem_create(fd, 4096);
+-
+-	gem_set_domain(fd, handle, I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
+-	execbuf = gem_mmap__gtt(fd, handle, 4096, PROT_WRITE);
+-	exec = (struct drm_i915_gem_exec_object2 *)(execbuf + 1);
+-	gem_close(fd, handle);
+-
+-	exec->handle = batch_create(fd);
+-
+-	execbuf->buffers_ptr = to_user_pointer(exec);
+-	execbuf->buffer_count = 1;
+-	execbuf->flags = flags;
+-
+-	gem_execbuf(fd, execbuf);
+-
+-	batch_fini(fd, exec->handle);
+-	munmap(execbuf, 4096);
+-}
+-
+ igt_main
+ {
+ 	const struct intel_execution_engine2 *e;
+@@ -121,30 +43,29 @@ igt_main
+ 
+ 	igt_fixture {
+ 		fd = drm_open_driver(DRIVER_INTEL);
+-		igt_require_gem(fd);
+-
++		/* igt_require_gem(fd); // test is mandatory */
+ 		igt_fork_hang_detector(fd);
+ 	}
+ 
+ 	igt_subtest_with_dynamic("basic") {
+-		__for_each_physical_engine(fd, e) {
+-			igt_dynamic_f("%s", e->name)
+-				noop(fd, e->flags);
+-		}
+-	}
++		struct drm_i915_gem_exec_object2 exec = {
++			.handle = batch_create(fd),
++		};
+ 
+-	igt_subtest_with_dynamic("readonly") {
+ 		__for_each_physical_engine(fd, e) {
+-			igt_dynamic_f("%s", e->name)
+-				readonly(fd, e->flags);
++			igt_dynamic_f("%s", e->name) {
++				struct drm_i915_gem_execbuffer2 execbuf = {
++					.buffers_ptr = to_user_pointer(&exec),
++					.buffer_count = 1,
++					.flags = e->flags,
++				};
++
++				gem_execbuf(fd, &execbuf);
++			}
+ 		}
+-	}
+ 
+-	igt_subtest_with_dynamic("gtt") {
+-		__for_each_physical_engine(fd, e) {
+-			igt_dynamic_f("%s", e->name)
+-				gtt(fd, e->flags);
+-		}
++		gem_sync(fd, exec.handle); /* catch any GPU hang */
++		gem_close(fd, exec.handle);
+ 	}
+ 
+ 	igt_fixture {
+diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
+index 9c3525698..094fa904c 100644
+--- a/tests/i915/gem_exec_params.c
++++ b/tests/i915/gem_exec_params.c
+@@ -206,6 +206,61 @@ static int has_secure_batches(const int fd)
+ 	return v > 0;
+ }
+ 
++static uint32_t batch_create(int fd)
++{
++	const uint32_t bbe = MI_BATCH_BUFFER_END;
++	uint32_t handle;
++
++	handle = gem_create(fd, 4096);
++	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
++
++	return handle;
++}
++
++static void readonly(int i915)
++{
++	struct drm_i915_gem_execbuffer2 *execbuf;
++	struct drm_i915_gem_exec_object2 exec = {
++		batch_create(i915)
++	};
++
++	execbuf = mmap(NULL, 4096, PROT_WRITE, MAP_ANON | MAP_PRIVATE, -1, 0);
++	igt_assert(execbuf != MAP_FAILED);
++
++	execbuf->buffers_ptr = to_user_pointer(&exec);
++	execbuf->buffer_count = 1;
++	igt_assert(mprotect(execbuf, 4096, PROT_READ) == 0);
++
++	gem_execbuf(i915, execbuf);
++	gem_close(i915, exec.handle);
++
++	munmap(execbuf, 4096);
++}
++
++static void mmapped(int i915)
++{
++	struct drm_i915_gem_execbuffer2 *execbuf;
++	struct drm_i915_gem_exec_object2 *exec;
++	uint32_t handle;
++
++	handle = gem_create(i915, 4096);
++
++	gem_set_domain(i915, handle, I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
++	execbuf = gem_mmap__gtt(i915, handle, 4096, PROT_WRITE);
++	exec = (struct drm_i915_gem_exec_object2 *)(execbuf + 1);
++	gem_close(i915, handle);
++
++	exec->handle = batch_create(i915);
++
++	execbuf->buffers_ptr = to_user_pointer(exec);
++	execbuf->buffer_count = 1;
++
++	gem_execbuf(i915, execbuf);
++	gem_close(i915, exec->handle);
++
++	munmap(execbuf, 4096);
++}
++
+ struct drm_i915_gem_execbuffer2 execbuf;
+ struct drm_i915_gem_exec_object2 gem_exec[1];
+ uint32_t batch[2] = {MI_BATCH_BUFFER_END};
+@@ -256,6 +311,12 @@ igt_main
+ 		}
+ 	}
+ 
++	igt_subtest("readonly")
++		readonly(fd);
++
++	igt_subtest("mmapped")
++		mmapped(fd);
++
+ #define RUN_FAIL(expected_errno) do { \
+ 		igt_assert_eq(__gem_execbuf(fd, &execbuf), -expected_errno); \
+ 	} while(0)
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0604710457==--
