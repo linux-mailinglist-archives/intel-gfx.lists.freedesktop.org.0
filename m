@@ -2,35 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 661A31504F0
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 12:13:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C662150525
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 12:20:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B35B6E2BC;
-	Mon,  3 Feb 2020 11:13:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FAEE6E2CA;
+	Mon,  3 Feb 2020 11:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C28216E2BC
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 11:13:05 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20098308-1500050 for multiple; Mon, 03 Feb 2020 11:13:01 +0000
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E80F76E2CA;
+ Mon,  3 Feb 2020 11:20:25 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 03:20:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,397,1574150400"; d="scan'208";a="263381118"
+Received: from unknown (HELO helsinki.fi.intel.com) ([10.237.66.150])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 03:20:23 -0800
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Feb 2020 13:20:22 +0200
+Message-Id: <20200203112022.105392-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <op.0ferumxwxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-References: <20200203095413.45084-1-michal.wajdeczko@intel.com>
- <20200203105816.104544-1-michal.wajdeczko@intel.com>
- <158072767986.20090.689300096596597771@skylake-alporthouse-com>
- <op.0ferumxwxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Message-ID: <158072837850.20090.9533091025903952086@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 03 Feb 2020 11:12:58 +0000
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/guc: Stop using mutex while
- sending CTB messages
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Add checking of YCBCR420
+ Pass-through to YCBCR420 outputs.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,29 +41,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dri-devel@lists.freedesktop.org,
+	"../kernel_patch/dp_dongle_01/0001-drm-Add-a-detailed-DP-HDMI-branch-info-on-debugfs.patch"@freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Wajdeczko (2020-02-03 11:07:24)
-> 
-> >> +               /* CTB_RECV lock will be used with irq disabled */
-> >
-> > ...will be used inside the interrupt handler
-> >
-> > I think is a more descriptive comment.
-> 
-> Well, we usually call intel_guc_ct_event_handler() from irq handler,
-> but we are also calling it from guc_enable_communication(), that's
-> outside irq handler (but with irq disabled)
+When a DP downstream uses a DP to HDMI active converter, the active
+converter needs to support YCbCr420 Pass-through to enable DP YCbCr 4:2:0
+outputs.
 
-I think the sole reason for the distinction between the two cases is that
-only RECV is used from interrupt paths (we could always reorder the
-guc_enable_communication if that was not the case). That I think
-explains why keeping the two locks separate is important (or more
-nuanced than usual).
--Chris
+Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 26 +++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f4dede6253f8..824ed8096426 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2298,6 +2298,22 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 	return 0;
+ }
+ 
++static bool
++intel_dp_downstream_is_hdmi_detailed_cap_info(struct intel_dp *intel_dp)
++{
++	int type = intel_dp->downstream_ports[0] & DP_DS_PORT_TYPE_MASK;
++	bool detailed_cap_info = intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] &
++				 DP_DETAILED_CAP_INFO_AVAILABLE;
++
++	return type == DP_DS_PORT_TYPE_HDMI && detailed_cap_info;
++}
++
++static bool
++intel_dp_downstream_supports_ycbcr_420_passthru(struct intel_dp *intel_dp)
++{
++	return intel_dp->downstream_ports[3] & DP_DS_YCBCR420_PASSTHRU_SUPPORT;
++}
++
+ static int
+ intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+ 			 struct drm_connector *connector,
+@@ -2314,6 +2330,16 @@ intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
+ 	    !connector->ycbcr_420_allowed)
+ 		return 0;
+ 
++	/*
++	 * When a DP downstream uses a DP to HDMI active converter,
++	 * the active converter needs to support YCbCr420 Pass-through.
++	 */
++	if (drm_dp_is_branch(intel_dp->dpcd)) {
++		if (intel_dp_downstream_is_hdmi_detailed_cap_info(intel_dp) &&
++		    !intel_dp_downstream_supports_ycbcr_420_passthru(intel_dp))
++			return 0;
++	}
++
+ 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+ 
+ 	/* YCBCR 420 output conversion needs a scaler */
+-- 
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
