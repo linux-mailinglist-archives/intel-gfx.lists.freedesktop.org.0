@@ -2,35 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 424D91505D5
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 13:04:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95190150637
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 13:32:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3D86EBE7;
-	Mon,  3 Feb 2020 12:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C146E321;
+	Mon,  3 Feb 2020 12:32:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C874B6EBDF;
- Mon,  3 Feb 2020 12:04:25 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8DE06E321
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 12:32:23 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 04:04:25 -0800
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 04:32:23 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,397,1574150400"; d="scan'208";a="219357447"
-Received: from unknown (HELO helsinki.fi.intel.com) ([10.237.66.150])
- by orsmga007.jf.intel.com with ESMTP; 03 Feb 2020 04:04:24 -0800
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 14:04:21 +0200
-Message-Id: <20200203120421.113744-2-gwan-gyeong.mun@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200203120421.113744-1-gwan-gyeong.mun@intel.com>
-References: <20200203120421.113744-1-gwan-gyeong.mun@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,397,1574150400"; d="scan'208";a="263400588"
+Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.66.115.214])
+ ([10.66.115.214])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 04:32:21 -0800
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200129182034.26138-1-ville.syrjala@linux.intel.com>
+ <20200129182034.26138-9-ville.syrjala@linux.intel.com>
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+Organization: Intel
+Message-ID: <5c257393-dbf2-81da-908a-8b131bac2920@intel.com>
+Date: Mon, 3 Feb 2020 18:02:20 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/dp: Add checking of YCBCR420
- Pass-through to YCBCR420 outputs.
+In-Reply-To: <20200129182034.26138-9-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/i915/dsb: Nuke the 'dev' variables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,69 +48,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When a DP downstream uses a DP to HDMI active converter, the active
-converter needs to support YCbCr420 Pass-through to enable DP YCbCr 4:2:0
-outputs.
-
-Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 26 +++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f4dede6253f8..824ed8096426 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2298,6 +2298,22 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
-+static bool
-+intel_dp_downstream_is_hdmi_detailed_cap_info(struct intel_dp *intel_dp)
-+{
-+	int type = intel_dp->downstream_ports[0] & DP_DS_PORT_TYPE_MASK;
-+	bool detailed_cap_info = intel_dp->dpcd[DP_DOWNSTREAMPORT_PRESENT] &
-+				 DP_DETAILED_CAP_INFO_AVAILABLE;
-+
-+	return type == DP_DS_PORT_TYPE_HDMI && detailed_cap_info;
-+}
-+
-+static bool
-+intel_dp_downstream_supports_ycbcr_420_passthru(struct intel_dp *intel_dp)
-+{
-+	return intel_dp->downstream_ports[3] & DP_DS_YCBCR420_PASSTHRU_SUPPORT;
-+}
-+
- static int
- intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
- 			 struct drm_connector *connector,
-@@ -2314,6 +2330,16 @@ intel_dp_ycbcr420_config(struct intel_dp *intel_dp,
- 	    !connector->ycbcr_420_allowed)
- 		return 0;
- 
-+	/*
-+	 * When a DP downstream uses a DP to HDMI active converter,
-+	 * the active converter needs to support YCbCr420 Pass-through.
-+	 */
-+	if (drm_dp_is_branch(intel_dp->dpcd)) {
-+		if (intel_dp_downstream_is_hdmi_detailed_cap_info(intel_dp) &&
-+		    !intel_dp_downstream_supports_ycbcr_420_passthru(intel_dp))
-+			return 0;
-+	}
-+
- 	crtc_state->output_format = INTEL_OUTPUT_FORMAT_YCBCR420;
- 
- 	/* YCBCR 420 output conversion needs a scaler */
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjktSmFuLTIwIDExOjUwIFBNLCBWaWxsZSBTeXJqYWxhIHdyb3RlOgo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gTm8gcG9pbnQg
+aW4gaGF2aW5nIHRoZXNlIGRybV9kZXZpY2UgdmFyaWFibGVzIGFyb3VuZC4gR2V0IHJpZCBvZiB0
+aGVtLgoKUmV2aWV3ZWQtYnk6IFN3YXRpIFNoYXJtYSA8c3dhdGkyLnNoYXJtYUBpbnRlbC5jb20+
+Cgo+IAo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+Cj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2RzYi5jIHwgNiArKy0tLS0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDQg
+ZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZHNiLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RzYi5j
+Cj4gaW5kZXggNTY3OTBmYWU2Mzg2Li5jOTdiNjQ0MDFjMjMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kc2IuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHNiLmMKPiBAQCAtNTcsOCArNTcsNyBAQCBzdGF0aWMgaW5s
+aW5lIGJvb2wgaXNfZHNiX2J1c3koc3RydWN0IGludGVsX2RzYiAqZHNiKQo+ICAgc3RydWN0IGlu
+dGVsX2RzYiAqCj4gICBpbnRlbF9kc2JfZ2V0KHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQo+ICAg
+ewo+IC0Jc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGNydGMtPmJhc2UuZGV2Owo+IC0Jc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGRldik7Cj4gKwlzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoY3J0Yy0+YmFzZS5kZXYpOwo+ICAgCXN0cnVjdCBp
+bnRlbF9kc2IgKmRzYiA9ICZjcnRjLT5kc2I7Cj4gICAJc3RydWN0IGRybV9pOTE1X2dlbV9vYmpl
+Y3QgKm9iajsKPiAgIAlzdHJ1Y3QgaTkxNV92bWEgKnZtYTsKPiBAQCAtMjc2LDggKzI3NSw3IEBA
+IHN0YXRpYyB1MzIgaW50ZWxfZHNiX2FsaWduX3RhaWwoc3RydWN0IGludGVsX2RzYiAqZHNiKQo+
+ICAgdm9pZCBpbnRlbF9kc2JfY29tbWl0KHN0cnVjdCBpbnRlbF9kc2IgKmRzYikKPiAgIHsKPiAg
+IAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IGNvbnRhaW5lcl9vZihkc2IsIHR5cGVvZigqY3J0
+YyksIGRzYik7Cj4gLQlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gY3J0Yy0+YmFzZS5kZXY7Cj4g
+LQlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGRldik7Cj4gKwlz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2
+KTsKPiAgIAllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7Cj4gICAJdTMyIHRhaWw7Cj4gICAK
+PiAKCi0tIAp+U3dhdGkgU2hhcm1hCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
