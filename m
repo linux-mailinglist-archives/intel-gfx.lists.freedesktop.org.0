@@ -1,64 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CA21510D2
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 21:16:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776541510F1
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 21:21:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C88FD6ECDB;
-	Mon,  3 Feb 2020 20:15:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF5A6ECEC;
+	Mon,  3 Feb 2020 20:21:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 344FF6E435;
- Mon,  3 Feb 2020 20:15:57 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 12:15:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="263573937"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 12:15:55 -0800
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 3 Feb 2020 12:15:54 -0800
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 3 Feb 2020 12:15:54 -0800
-Received: from bgsmsx103.gar.corp.intel.com (10.223.4.130) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 3 Feb 2020 12:15:54 -0800
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.36]) by
- BGSMSX103.gar.corp.intel.com ([169.254.4.106]) with mapi id 14.03.0439.000;
- Tue, 4 Feb 2020 01:45:52 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID CEA
- data block revision
-Thread-Index: AQHV0vFRvK3Rx8nvZ0q0EHz2sUQxxagJ9d2A
-Date: Mon, 3 Feb 2020 20:15:51 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823AA020@BGSMSX104.gar.corp.intel.com>
-References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
- <20200124200231.10517-6-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200124200231.10517-6-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjdlNTI4ZTItZjE3OC00M2U1LWEwNTItZDE0MTJlOWMxNWFiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiU2ZcLzRtaVwvUVpNb3NBNmRvWUFcLzNLcXlVYjVmUEVKQjNSeGxZZzNMTmdLa1dxNndrcUlaTWJRdGdEbVRzTjBCUiJ9
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B0716ECEC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 20:21:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20105140-1500050 
+ for multiple; Mon, 03 Feb 2020 20:21:11 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  3 Feb 2020 20:21:10 +0000
+Message-Id: <20200203202110.670209-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID CEA
- data block revision
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Fix rc6 on Ivybridge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,46 +36,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Andres Rodriguez <andresx7@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwtZ2Z4IDxpbnRl
-bC1nZngtYm91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBWaWxsZSBT
-eXJqYWxhDQo+IFNlbnQ6IFNhdHVyZGF5LCBKYW51YXJ5IDI1LCAyMDIwIDE6MzIgQU0NCj4gVG86
-IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IGludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmc7IEFuZHJlcyBSb2RyaWd1ZXogPGFuZHJlc3g3QGdtYWlsLmNvbT4NCj4g
-U3ViamVjdDogW0ludGVsLWdmeF0gW1BBVENIIDYvOF0gZHJtL2VkaWQ6IEFkZCBhIEZJWE1FIGFi
-b3V0IERpc3BJRCBDRUEgZGF0YSBibG9jaw0KPiByZXZpc2lvbg0KPiANCj4gRnJvbTogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gDQo+IEkgZG9uJ3Qg
-dW5kZXJzdGFuZCB3aGF0IHRoZSBEaXNwSUQgQ0VBIGRhdGEgYmxvY2sgcmV2aXNpb24gbWVhbnMu
-IFRoZSBzcGVjIGRvZXNuJ3QNCj4gc2F5LiBJIGd1ZXNzIHNvbWUgRGlzcElEIG11c3QgaGF2ZSBh
-IHZhbHVlIG9mID49IDMgaW4gdGhlcmUgb3IgZWxzZSB3ZSBnZW5lcmFsbHkNCj4gd291bGRuJ3Qg
-ZXZlbiBwYXJzZSB0aGUgQ0VBIGRhdGEgYmxvY2tzLiBPciBkb2VzIGFsbCB0aGlzIGNvZGUgYWN0
-dWFsbHkgbm90IGRvDQo+IGFueXRoaW5nPw0KDQpUaGlzIHNpZ25pZmllcyB0aGUgQ1RBIGV4dGVu
-c2lvbiByZXZpc2lvbiAoYnl0ZSAxIG9mIHRoZSBibG9jaykuIEFzIHBlciB0aGUgc3BlYywgc2Vl
-bXMgbGlrZQ0KVmVyc2lvbiAxIGlzIGxlZ2FjeSBhbmQgMiBpcyBkZXByZWNhdGVkLiBTbyB2ZXJz
-aW9uID49MyBpcyBjaGVja2VkIGhlcmUuDQpSZWZlciBzZWN0aW9uIDcuMyBvZiBDVEEtODYxLUcN
-Cg0KPiBDYzogQW5kcmVzIFJvZHJpZ3VleiA8YW5kcmVzeDdAZ21haWwuY29tPg0KPiBTaWduZWQt
-b2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9kcm1fZWRpZC5jIHwgNyArKysrKysrDQo+ICAxIGZp
-bGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2RybV9lZGlkLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2VkaWQuYyBpbmRleA0KPiAw
-MzY5YTU0ZTNkMzIuLmZkOWI3MjQwNjdhNyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2RybV9lZGlkLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9lZGlkLmMNCj4gQEAgLTM5
-NzcsNiArMzk3NywxMyBAQCBjZWFfZGJfdGFnKGNvbnN0IHU4ICpkYikgIHN0YXRpYyBpbnQgIGNl
-YV9yZXZpc2lvbihjb25zdA0KPiB1OCAqY2VhKSAgew0KPiArCS8qDQo+ICsJICogRklYTUUgaXMg
-dGhpcyBjb3JyZWN0IGZvciB0aGUgRGlzcElEIHZhcmlhbnQ/DQo+ICsJICogVGhlIERpc3BJRCBz
-cGVjIGRvZXNuJ3QgcmVhbGx5IHNwZWNpZnkgd2hldGhlcg0KPiArCSAqIHRoaXMgaXMgdGhlIHJl
-dmlzaW9uIG9mIHRoZSBDRUEgZXh0ZW5zaW9uIG9yDQo+ICsJICogdGhlIERpc3BJRCBDRUEgZGF0
-YSBibG9jay4gQW5kIHRoZSBvbmx5IHZhbHVlDQo+ICsJICogZ2l2ZW4gYXMgYW4gZXhhbXBsZSBp
-cyAwLg0KPiArCSAqLw0KPiAgCXJldHVybiBjZWFbMV07DQo+ICB9DQo+IA0KPiAtLQ0KPiAyLjI0
-LjENCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QNCj4gSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZw0KPiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+The current rc6 threshold is larger than the evaluation interval on
+Ivybridge; it never enters rc6. Remove the special casing so it behaves
+like the other gen6/gen7, and we see rc6 residencies before we manually
+park the system.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1114
+Testcase: igt/i915_pm_rc6_residency/rc6-idle #ivb
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_rc6.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 01a99fdbb3c4..682f598f7042 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -226,10 +226,7 @@ static void gen6_rc6_enable(struct intel_rc6 *rc6)
+ 
+ 	set(uncore, GEN6_RC_SLEEP, 0);
+ 	set(uncore, GEN6_RC1e_THRESHOLD, 1000);
+-	if (IS_IVYBRIDGE(i915))
+-		set(uncore, GEN6_RC6_THRESHOLD, 125000);
+-	else
+-		set(uncore, GEN6_RC6_THRESHOLD, 50000);
++	set(uncore, GEN6_RC6_THRESHOLD, 50000);
+ 	set(uncore, GEN6_RC6p_THRESHOLD, 150000);
+ 	set(uncore, GEN6_RC6pp_THRESHOLD, 64000); /* unused */
+ 
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
