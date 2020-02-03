@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE03150813
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 15:10:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F150715081D
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 15:11:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91F089A94;
-	Mon,  3 Feb 2020 14:10:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6F96EBFD;
+	Mon,  3 Feb 2020 14:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ED3B89A94
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 14:10:02 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098336EBFC
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 14:11:13 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 06:10:01 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 06:11:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="254070559"
+X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="429455525"
 Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
- by fmsmga004.fm.intel.com with ESMTP; 03 Feb 2020 06:09:59 -0800
+ by fmsmga005.fm.intel.com with ESMTP; 03 Feb 2020 06:11:11 -0800
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 16:06:25 +0200
-Message-Id: <20200203140636.22529-1-stanislav.lisovskiy@intel.com>
+Date: Mon,  3 Feb 2020 16:07:40 +0200
+Message-Id: <20200203140747.22771-1-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH v14 0/7] Refactor Gen11+ SAGV support
