@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7632150367
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:31:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1082F150366
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 10:31:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E2AD6EB73;
-	Mon,  3 Feb 2020 09:31:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 369276EB72;
+	Mon,  3 Feb 2020 09:31:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103EC6EB73
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:31:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32AF66E221
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 09:31:38 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096856-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20096857-1500050 
  for multiple; Mon, 03 Feb 2020 09:31:12 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 09:31:09 +0000
-Message-Id: <20200203093110.4138277-2-chris@chris-wilson.co.uk>
+Date: Mon,  3 Feb 2020 09:31:10 +0000
+Message-Id: <20200203093110.4138277-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200203093110.4138277-1-chris@chris-wilson.co.uk>
 References: <20200203093110.4138277-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/3] drm/i915/display: Fix NULL-crtc deref in
- calc_min_cdclk()
+Subject: [Intel-gfx] [PATCH 3/3] drm/i915/audio: Skip the cdclk modeset if
+ no pipes attached
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,65 +40,103 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-WyAgIDIzLjQxOTQ0Ml0gQlVHOiBLQVNBTjogbnVsbC1wdHItZGVyZWYgaW4gaW50ZWxfcGxhbmVf
-Y2FsY19taW5fY2RjbGsrMHg4Mi8weDQ0MCBbaTkxNV0KWyAgIDIzLjQxOTUyN10gUmVhZCBvZiBz
-aXplIDQgYXQgYWRkciAwMDAwMDAwMDAwMDAwMGY4IGJ5IHRhc2sgaW5zbW9kLzczNQpbICAgMjMu
-NDE5NTc4XQpbICAgMjMuNDE5NjQ0XSBDUFU6IDIgUElEOiA3MzUgQ29tbTogaW5zbW9kIE5vdCB0
-YWludGVkIDUuNS4wKyAjMTE0ClsgICAyMy40MTk3MTZdIEhhcmR3YXJlIG5hbWU6IO+/ve+/ve+/
-ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/
-ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/ve+/vSDvv73vv73vv73vv73vv73vv73vv73v
-v73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73vv73v
-v73vv73vv73vv73vv73vv73vv70v77+977+977+977+977+977+977+977+977+977+977+977+9
-77+977+977+977+977+977+977+977+977+977+977+977+977+977+977+977+977+977+977+9
-77+977+9LCBCSU9TIFJZQkRXaTM1Ljg2QS4wMjQ2LjIKWyAgIDIzLjQxOTc5M10gQ2FsbCBUcmFj
-ZToKWyAgIDIzLjQxOTg2NF0gIGR1bXBfc3RhY2srMHhlZi8weDE2ZQpbICAgMjMuNDE5OTI3XSAg
-X19rYXNhbl9yZXBvcnQuY29sZCsweDYwLzB4OTAKWyAgIDIzLjQyMDE1N10gID8gaW50ZWxfcGxh
-bmVfY2FsY19taW5fY2RjbGsrMHg4Mi8weDQ0MCBbaTkxNV0KWyAgIDIzLjQyMDM5N10gIGludGVs
-X3BsYW5lX2NhbGNfbWluX2NkY2xrKzB4ODIvMHg0NDAgW2k5MTVdClsgICAyMy40MjA2MzBdICBp
-bnRlbF9hdG9taWNfY2hlY2srMHg0NTVmLzB4NjVhMCBbaTkxNV0KWyAgIDIzLjQyMDcwOF0gID8g
-bWFya19oZWxkX2xvY2tzKzB4OTAvMHg5MApbICAgMjMuNDIwOTI5XSAgPyBpbnRlbF9jcnRjX2R1
-cGxpY2F0ZV9zdGF0ZSsweDJlLzB4MWIwIFtpOTE1XQpbICAgMjMuNDIxMTcyXSAgPyBpbnRlbF9w
-bGFuZV9kdXBsaWNhdGVfc3RhdGUrMHgyZC8weGMwIFtpOTE1XQpbICAgMjMuNDIxMjM5XSAgPyBf
-X2RybV9kYmcrMHhhNC8weDEyMApbICAgMjMuNDIxMzAzXSAgPyBfX2thc2FuX2ttYWxsb2MuY29u
-c3Rwcm9wLjArMHhjMi8weGQwClsgICAyMy40MjEzNTVdICA/IF9fa21hbGxvY190cmFja19jYWxs
-ZXIrMHgyM2EvMHgzMjAKWyAgIDIzLjQyMTYwMl0gID8gaW50ZWxfY2FsY19hY3RpdmVfcGlwZXMr
-MHgxYzAvMHgxYzAgW2k5MTVdClsgICAyMy40MjE4NTJdICBzYW5pdGl6ZV93YXRlcm1hcmtzKzB4
-MjIwLzB4NTEwIFtpOTE1XQpbICAgMjMuNDIyMDkyXSAgPyBpbnRlbF9hdG9taWNfY2hlY2srMHg2
-NWEwLzB4NjVhMCBbaTkxNV0KWyAgIDIzLjQyMjE2NF0gID8gZHJtX21vZGVzZXRfdW5sb2NrX2Fs
-bCsweDg4LzB4MTMwClsgICAyMy40MjI0MDJdICBpbnRlbF9tb2Rlc2V0X2luaXQrMHgxYjc2LzB4
-M2M5MCBbaTkxNV0KWyAgIDIzLjQyMjY0N10gID8gaW50ZWxfZmluaXNoX3Jlc2V0KzB4MmQwLzB4
-MmQwIFtpOTE1XQpbICAgMjMuNDIyODUxXSAgPyBpbnRlbF9pcnFfaW5zdGFsbCsweDEyYy8weDIx
-MCBbaTkxNV0KWyAgIDIzLjQyMzA3Nl0gIGk5MTVfZHJpdmVyX3Byb2JlKzB4MTNlNy8weDI5MzAg
-W2k5MTVdCgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5j
-by51az4KQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
-Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYyB8
-IDExICsrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCA1IGRlbGV0
-aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-YXRvbWljX3BsYW5lLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21p
-Y19wbGFuZS5jCmluZGV4IDkxYWI2ZTJhYjFmZC4uODM1MDViZDhhZDgwIDEwMDY0NAotLS0gYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jCisrKyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMKQEAgLTE2NSwx
-NCArMTY1LDE1IEBAIGludCBpbnRlbF9wbGFuZV9jYWxjX21pbl9jZGNsayhzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJaW50ZWxfYXRvbWljX2dldF9uZXdfcGxhbmVfc3RhdGUo
-c3RhdGUsIHBsYW5lKTsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMo
-cGxhbmVfc3RhdGUtPmh3LmNydGMpOwogCWNvbnN0IHN0cnVjdCBpbnRlbF9jZGNsa19zdGF0ZSAq
-Y2RjbGtfc3RhdGU7Ci0Jc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19jcnRjX3N0YXRlID0K
-LQkJaW50ZWxfYXRvbWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7Ci0JY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlID0KLQkJaW50ZWxfYXRvbWlj
-X2dldF9vbGRfY3J0Y19zdGF0ZShzdGF0ZSwgY3J0Yyk7CisJY29uc3Qgc3RydWN0IGludGVsX2Ny
-dGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlOworCXN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdf
-Y3J0Y19zdGF0ZTsKIAotCWlmICghcGxhbmVfc3RhdGUtPnVhcGkudmlzaWJsZSB8fCAhcGxhbmUt
-Pm1pbl9jZGNsaykKKwlpZiAoIWNydGMgfHwgIXBsYW5lX3N0YXRlLT51YXBpLnZpc2libGUgfHwg
-IXBsYW5lLT5taW5fY2RjbGspCiAJCXJldHVybiAwOwogCisJb2xkX2NydGNfc3RhdGUgPSBpbnRl
-bF9hdG9taWNfZ2V0X29sZF9jcnRjX3N0YXRlKHN0YXRlLCBjcnRjKTsKKwluZXdfY3J0Y19zdGF0
-ZSA9IGludGVsX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOworCiAJbmV3
-X2NydGNfc3RhdGUtPm1pbl9jZGNsa1twbGFuZS0+aWRdID0KIAkJcGxhbmUtPm1pbl9jZGNsayhu
-ZXdfY3J0Y19zdGF0ZSwgcGxhbmVfc3RhdGUpOwogCi0tIAoyLjI1LjAKCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+If the display is not driving any pipes, we cannot change the bclk and
+doing so risks chasing NULL pointers:
+
+<6> [278.907105] snd_hda_intel 0000:00:0e.0: DSP detected with PCI class/subclass/prog-if info 0x040100
+<6> [278.909936] snd_hda_intel 0000:00:0e.0: bound 0000:00:02.0 (ops i915_audio_component_bind_ops [i915])
+<7> [278.910078] i915 0000:00:02.0: [drm:intel_power_well_enable [i915]] enabling power well 2
+<1> [278.910228] BUG: kernel NULL pointer dereference, address: 0000000000000080
+<1> [278.910243] #PF: supervisor read access in kernel mode
+<1> [278.910251] #PF: error_code(0x0000) - not-present page
+<6> [278.910260] PGD 0 P4D 0
+<4> [278.910267] Oops: 0000 [#1] PREEMPT SMP PTI
+<4> [278.910276] CPU: 0 PID: 5 Comm: kworker/0:0 Tainted: G     U            5.5.0-CI-CI_DRM_7853+ #1
+<4> [278.910289] Hardware name: Intel Corp. Geminilake/GLK RVP2 LP4SD (07), BIOS GELKRVPA.X64.0062.B30.1708222146 08/22/2017
+<4> [278.910312] Workqueue: events azx_probe_work [snd_hda_intel]
+<4> [278.910327] RIP: 0010:__ww_mutex_lock.constprop.15+0x5e/0x1090
+<4> [278.910338] Code: 75 88 be a7 03 00 00 65 48 8b 04 25 28 00 00 00 48 89 45 c8 31 c0 4c 89 c3 e8 5e b3 6d ff 44 8b 3d 2f 24 37 02 45 85 ff 75 0a <4d> 3b 6d 58 0f 85 3f 07 00 00 48 85 db 74 22 49 8b 95 80 00 00 00
+<4> [278.910362] RSP: 0018:ffffc9000008bc10 EFLAGS: 00010246
+<4> [278.910371] RAX: 0000000000000246 RBX: ffffc9000008bd30 RCX: 0000000000000001
+<4> [278.910382] RDX: 0000000000000000 RSI: ffffffff82647c60 RDI: ffff88817b27d848
+<4> [278.910393] RBP: ffffc9000008bcc0 R08: 0000000000000000 R09: 0000000000000001
+<4> [278.910404] R10: ffffc9000008bce0 R11: 0000000000000000 R12: ffffffff8168f0fc
+<4> [278.910414] R13: 0000000000000028 R14: ffffc9000008bd60 R15: 0000000000000000
+<4> [278.910425] FS:  0000000000000000(0000) GS:ffff88817bc00000(0000) knlGS:0000000000000000
+<4> [278.910437] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4> [278.910446] CR2: 0000000000000080 CR3: 00000001650da000 CR4: 0000000000340ef0
+<4> [278.910456] Call Trace:
+<4> [278.910468]  ? mark_held_locks+0x49/0x70
+<4> [278.910479]  ? ww_mutex_lock+0x39/0x70
+<4> [278.910487]  ww_mutex_lock+0x39/0x70
+<4> [278.910497]  drm_modeset_lock+0x6c/0x120
+<4> [278.910575]  glk_force_audio_cdclk+0x7d/0x140 [i915]
+<4> [278.910656]  i915_audio_component_get_power+0xf2/0x110 [i915]
+<4> [278.910673]  snd_hdac_display_power+0x7d/0x120 [snd_hda_core]
+<4> [278.910686]  azx_probe_work+0x88/0x7e0 [snd_hda_intel]
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/display/intel_audio.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 13833a7a8f27..a8ed58e29442 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -810,16 +810,14 @@ void intel_init_audio_hooks(struct drm_i915_private *dev_priv)
+ 	}
+ }
+ 
+-static int glk_force_audio_cdclk_commit(struct intel_atomic_state *state,
++static int glk_force_audio_cdclk_commit(struct intel_crtc *crtc,
++					struct intel_atomic_state *state,
+ 					bool enable)
+ {
+-	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_cdclk_state *cdclk_state;
+-	struct intel_crtc *crtc;
+ 	int ret;
+ 
+ 	/* need to hold at least one crtc lock for the global state */
+-	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
+ 	ret = drm_modeset_lock(&crtc->base.mutex, state->base.acquire_ctx);
+ 	if (ret)
+ 		return ret;
+@@ -843,8 +841,13 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
+ {
+ 	struct drm_modeset_acquire_ctx ctx;
+ 	struct drm_atomic_state *state;
++	struct intel_crtc *crtc;
+ 	int ret;
+ 
++	crtc = intel_get_crtc_for_pipe(dev_priv, PIPE_A);
++	if (!crtc)
++		return;
++
+ 	drm_modeset_acquire_init(&ctx, 0);
+ 	state = drm_atomic_state_alloc(&dev_priv->drm);
+ 	if (drm_WARN_ON(&dev_priv->drm, !state))
+@@ -853,7 +856,9 @@ static void glk_force_audio_cdclk(struct drm_i915_private *dev_priv,
+ 	state->acquire_ctx = &ctx;
+ 
+ retry:
+-	ret = glk_force_audio_cdclk_commit(to_intel_atomic_state(state), enable);
++	ret = glk_force_audio_cdclk_commit(crtc,
++					   to_intel_atomic_state(state),
++					   enable);
+ 	if (ret == -EDEADLK) {
+ 		drm_atomic_state_clear(state);
+ 		drm_modeset_backoff(&ctx);
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
