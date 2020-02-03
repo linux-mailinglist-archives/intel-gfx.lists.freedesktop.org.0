@@ -1,35 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEABC151297
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 23:56:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4318E1512CA
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 00:16:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 448616E450;
-	Mon,  3 Feb 2020 22:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97D836E455;
+	Mon,  3 Feb 2020 23:16:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8083A6E450
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 22:55:58 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0472B6E03E;
+ Mon,  3 Feb 2020 23:16:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2020 14:55:58 -0800
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2020 15:16:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="224433205"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.13.31])
- by fmsmga007.fm.intel.com with ESMTP; 03 Feb 2020 14:55:57 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 14:55:49 -0800
-Message-Id: <20200203225549.152301-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.0
+X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="263625667"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Feb 2020 15:16:01 -0800
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 3 Feb 2020 23:15:59 +0000
+Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 3 Feb 2020 23:15:59 +0000
+Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
+ IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
+ Mon, 3 Feb 2020 23:15:59 +0000
+From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 08/18] drm/i915/dp: Add logging function for
+ DP VSC SDP
+Thread-Index: AQHV2IAYzjcTTlsADEabgA9NZnPkM6gGSV8AgAPVZwA=
+Date: Mon, 3 Feb 2020 23:15:59 +0000
+Message-ID: <5a7286907993210e752ffde47e1a5dafdcf08081.camel@intel.com>
+References: <20200131214701.1085737-1-gwan-gyeong.mun@intel.com>
+ <20200131214701.1085737-9-gwan-gyeong.mun@intel.com>
+ <87wo965vh1.fsf@intel.com>
+In-Reply-To: <87wo965vh1.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.66.150]
+Content-ID: <B1585EC8810471469A50D1B0421C6A79@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/display: Set TRANS_DDI_MODE_SELECT
- to default value when clearing DDI select
+Subject: Re: [Intel-gfx] [PATCH 08/18] drm/i915/dp: Add logging function for
+ DP VSC SDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,53 +64,271 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VEdMIGlzIHN1ZmZlcmluZyBvZiB0aW1lb3V0cyBhbmQgZmlmbyB1bmRlcnJ1bnMgd2hlbiBkaXNh
-YmxpbmcKdHJhbnNjb2RlciBpbiBNU1QgbW9kZSwgdGhpcyBpcyBmaXhlZCBieSBzZXQgVFJBTlNf
-RERJX01PREVfU0VMRUNUIHRvCjAoSERNSSBtb2RlKSB3aGVuIGNsZWFyaW5nIERESSBzZWxlY3Qu
-CgpBbHRob3VnaCBCU3BlYyBkaXNhYmxlIHNlcXVlbmNlIGRvbid0IHJlcXVpcmUgdGhpcyBzdGVw
-LCBpdCBpcyBhCmhhcm1sZXNzIGNoYW5nZSBhbmQgaXQgaXMgYWxzbyBkb25lIGJ5IFdpbmRvd3Mg
-ZHJpdmVyLgpBbnlob3cgSFcgdGVhbSB3YXMgbm90aWZpZWQgYWJvdXQgdGhhdCBidXQgaXQgY2Fu
-IHRha2Ugc29tZSB0aW1lIHRvCmRvY3VtZW50YXRpb24gdG8gYmUgdXBkYXRlZC4KCkEgY2FzZSB0
-aGF0IGFsd2F5cyBsZWFkIHRvIHRob3NlIGlzc3VlcyBpczoKLSBkbyBhIG1vZGVzZXQgZW5hYmxp
-bmcgcGlwZSBBIGFuZCBwaXBlIEIgaW4gdGhlIHNhbWUgTVNUIHN0cmVhbQpsZWF2aW5nIEEgYXMg
-bWFzdGVyCi0gZGlzYWJsZSBwaXBlIEEsIHByb21vdGUgQiBhcyBtYXN0ZXIgZG9pbmcgYSBmdWxs
-IG1vZGVzZXQgaW4gQQotIGVuYWJsZSBwaXBlIEEsIGNoYW5naW5nIHRoZSBtYXN0ZXIgdHJhbnNj
-b2RlciBiYWNrIHRvIEEoZG9pbmcgYQpmdWxsIG1vZGVzZXQgaW4gQikKLSBQb3c6IHVuZGVycnVu
-cyBhbmQgdGltZW91dHMKClRoZSB0cmFuc2NvZGVycyBpbnZvbHZlZCB3aWxsIG9ubHkgd29yayBh
-Z2FpbiB3aGVuIGNvbXBsZXRlIGRpc2FibGVkCmFuZCB0aGVpciBwb3dlciB3ZWxscyB0dXJuZWQg
-b2ZmIGNhdXNpbmcgYSByZXNldCBpbiB0aGVpciByZWdpc3RlcnMuCgp2MjogU2V0dGluZyBUUkFO
-U19ERElfTU9ERV9TRUxFQ1QgdG8gZGVmYXVsdCB3aGVuIGNsZWFyaW5nIERESSBzZWxlY3QKbm90
-IGFueW1vcmUgd2hlbiBkaXNhYmxpbmcgVFJBTlNfRERJLCBib3RoIHdvcmsgYnV0IHRoaXMgb25l
-IGxvb2tzCm1vcmUgc2FmZS4gKFZpbGxlIGNvbW1lbnQpCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0
-byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDcgKysrKystLQogMSBmaWxlIGNoYW5nZWQsIDUgaW5z
-ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kZGkuYwppbmRleCBhYTA2NmZiOWViMDAuLjQ1MDgyZTcxMjYyYyAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0xOTg4LDEwICsxOTg4LDEyIEBAIHZv
-aWQgaW50ZWxfZGRpX2Rpc2FibGVfdHJhbnNjb2Rlcl9mdW5jKGNvbnN0IHN0cnVjdCBpbnRlbF9j
-cnRjX3N0YXRlICpjcnRjX3N0YXRlCiAJdmFsICY9IH5UUkFOU19ERElfRlVOQ19FTkFCTEU7CiAK
-IAlpZiAoSU5URUxfR0VOKGRldl9wcml2KSA+PSAxMikgewotCQlpZiAoIWludGVsX2RwX21zdF9p
-c19tYXN0ZXJfdHJhbnMoY3J0Y19zdGF0ZSkpCisJCWlmICghaW50ZWxfZHBfbXN0X2lzX21hc3Rl
-cl90cmFucyhjcnRjX3N0YXRlKSkgewogCQkJdmFsICY9IH5UR0xfVFJBTlNfRERJX1BPUlRfTUFT
-SzsKKwkJCXZhbCAmPSB+VFJBTlNfRERJX01PREVfU0VMRUNUX01BU0s7CisJCX0KIAl9IGVsc2Ug
-ewotCQl2YWwgJj0gflRSQU5TX0RESV9QT1JUX01BU0s7CisJCXZhbCAmPSB+KFRSQU5TX0RESV9Q
-T1JUX01BU0sgfCBUUkFOU19ERElfTU9ERV9TRUxFQ1RfTUFTSyk7CiAJfQogCWludGVsX2RlX3dy
-aXRlKGRldl9wcml2LCBUUkFOU19ERElfRlVOQ19DVEwoY3B1X3RyYW5zY29kZXIpLCB2YWwpOwog
-CkBAIC0zNzI5LDYgKzM3MzEsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfcG9zdF9kaXNhYmxl
-X2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJdmFsID0gaW50ZWxfZGVfcmVh
-ZChkZXZfcHJpdiwKIAkJCQkJICAgIFRSQU5TX0RESV9GVU5DX0NUTChjcHVfdHJhbnNjb2Rlcikp
-OwogCQkJdmFsICY9IH5UR0xfVFJBTlNfRERJX1BPUlRfTUFTSzsKKwkJCXZhbCAmPSB+VFJBTlNf
-RERJX01PREVfU0VMRUNUX01BU0s7CiAJCQlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwKIAkJCQkg
-ICAgICAgVFJBTlNfRERJX0ZVTkNfQ1RMKGNwdV90cmFuc2NvZGVyKSwKIAkJCQkgICAgICAgdmFs
-KTsKLS0gCjIuMjUuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+On Sat, 2020-02-01 at 14:43 +0200, Jani Nikula wrote:
+> On Fri, 31 Jan 2020, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> wrote:
+> > When receiving video it is very useful to be able to log DP VSC
+> > SDP.
+> > This greatly simplifies debugging.
+> 
+> Seems like a lot of the functions should really be in drm core.
+> 
+> BR,
+> Jani.
+
+Hi,
+
+Okay, I'll move these logging functions to drm core.
+
+Br,
+G.G.
+
+> 
+> > Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 173
+> > ++++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/intel_dp.h |   4 +
+> >  2 files changed, 177 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index 6756030692c8..e33488222ac5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -5090,6 +5090,179 @@ void intel_read_dp_sdp(struct intel_encoder
+> > *encoder,
+> >  	}
+> >  }
+> >  
+> > +static const char *dp_colorspace_get_name(enum dp_colorspace
+> > colorspace)
+> > +{
+> > +	if (colorspace < 0 || colorspace > DP_COLORSPACE_RESERVED)
+> > +		return "Invalid";
+> > +
+> > +	switch (colorspace) {
+> > +	case DP_COLORSPACE_RGB:
+> > +		return "RGB";
+> > +	case DP_COLORSPACE_YUV444:
+> > +		return "YUV444";
+> > +	case DP_COLORSPACE_YUV422:
+> > +		return "YUV422";
+> > +	case DP_COLORSPACE_YUV420:
+> > +		return "YUV420";
+> > +	case DP_COLORSPACE_Y_ONLY:
+> > +		return "Y_ONLY";
+> > +	case DP_COLORSPACE_RAW:
+> > +		return "RAW";
+> > +	default:
+> > +		return "Reserved";
+> > +	}
+> > +}
+> > +
+> > +static const char *dp_colorimetry_get_name(enum dp_colorspace
+> > colorspace,
+> > +					   enum dp_colorimetry
+> > colorimetry)
+> > +{
+> > +	if (colorspace < 0 || colorspace > DP_COLORSPACE_RESERVED)
+> > +		return "Invalid";
+> > +
+> > +	switch (colorimetry) {
+> > +	case DP_COLORIMETRY_DEFAULT:
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "sRGB";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "BT.601";
+> > +		case DP_COLORSPACE_Y_ONLY:
+> > +			return "DICOM PS3.14";
+> > +		case DP_COLORSPACE_RAW:
+> > +			return "Custom Color Profile";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_RGB_WIDE_FIXED: /* and
+> > DP_COLORIMETRY_BT709_YCC */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "Wide Fixed";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "BT.709";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_RGB_WIDE_FLOAT: /* and
+> > DP_COLORIMETRY_XVYCC_601 */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "Wide Float";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "xvYCC 601";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_OPRGB: /* and DP_COLORIMETRY_XVYCC_709 */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "OpRGB";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "xvYCC 709";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_DCI_P3_RGB: /* and DP_COLORIMETRY_SYCC_601
+> > */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "DCI-P3";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "sYCC 601";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_RGB_CUSTOM: /* and DP_COLORIMETRY_OPYCC_601
+> > */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "Custom Profile";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "OpYCC 601";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_BT2020_RGB: /* and
+> > DP_COLORIMETRY_BT2020_CYCC */
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_RGB:
+> > +			return "BT.2020 RGB";
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "BT.2020 CYCC";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	case DP_COLORIMETRY_BT2020_YCC:
+> > +		switch (colorspace) {
+> > +		case DP_COLORSPACE_YUV444:
+> > +		case DP_COLORSPACE_YUV422:
+> > +		case DP_COLORSPACE_YUV420:
+> > +			return "BT.2020 YCC";
+> > +		default:
+> > +			return "Reserved";
+> > +		}
+> > +	default:
+> > +		return "Invalid";
+> > +	}
+> > +}
+> > +
+> > +static const char *dp_dynamic_range_get_name(enum dp_dynamic_range
+> > dynamic_range)
+> > +{
+> > +	switch (dynamic_range) {
+> > +	case DP_DYNAMIC_RANGE_VESA:
+> > +		return "VESA range";
+> > +	case DP_DYNAMIC_RANGE_CTA:
+> > +		return "CTA range";
+> > +	default:
+> > +		return "Invalid";
+> > +	}
+> > +}
+> > +
+> > +static const char *dp_content_type_get_name(enum dp_content_type
+> > content_type)
+> > +{
+> > +	switch (content_type) {
+> > +	case DP_CONTENT_TYPE_NOT_DEFINED:
+> > +		return "Not defined";
+> > +	case DP_CONTENT_TYPE_GRAPHICS:
+> > +		return "Graphics";
+> > +	case DP_CONTENT_TYPE_PHOTO:
+> > +		return "Photo";
+> > +	case DP_CONTENT_TYPE_VIDEO:
+> > +		return "Video";
+> > +	case DP_CONTENT_TYPE_GAME:
+> > +		return "Game";
+> > +	default:
+> > +		return "Reserved";
+> > +	}
+> > +}
+> > +
+> > +#define dp_sdp_log(fmt, ...) dev_printk(level, dev, fmt,
+> > ##__VA_ARGS__)
+> > +void intel_dp_vsc_sdp_log(const char *level, struct device *dev,
+> > +			  const struct intel_dp_vsc_sdp *vsc)
+> > +{
+> > +	dp_sdp_log("DP SDP: %s, revision %u, length %u\n", "VSC",
+> > +		   vsc->revision, vsc->length);
+> > +	dp_sdp_log("    colorspace: %s\n",
+> > +			dp_colorspace_get_name(vsc->colorspace));
+> > +	dp_sdp_log("    colorimetry: %s\n",
+> > +			dp_colorimetry_get_name(vsc->colorspace, vsc-
+> > >colorimetry));
+> > +	dp_sdp_log("    bpc: %u\n",vsc->bpc);
+> > +	dp_sdp_log("    dynamic range: %s\n",
+> > +			dp_dynamic_range_get_name(vsc->dynamic_range));
+> > +	dp_sdp_log("    content type: %s\n",
+> > +			dp_content_type_get_name(vsc->content_type));
+> > +}
+> > +#undef dp_sdp_log
+> > +
+> >  static void
+> >  intel_dp_setup_vsc_sdp(struct intel_dp *intel_dp,
+> >  		       const struct intel_crtc_state *crtc_state,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h
+> > b/drivers/gpu/drm/i915/display/intel_dp.h
+> > index e8f9ba962d09..03b300b58fd0 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> > @@ -7,6 +7,7 @@
+> >  #define __INTEL_DP_H__
+> >  
+> >  #include <linux/types.h>
+> > +#include <linux/device.h>
+> >  
+> >  #include <drm/i915_drm.h>
+> >  
+> > @@ -23,6 +24,7 @@ struct intel_crtc_state;
+> >  struct intel_digital_port;
+> >  struct intel_dp;
+> >  struct intel_encoder;
+> > +struct intel_dp_vsc_sdp;
+> >  
+> >  struct link_config_limits {
+> >  	int min_clock, max_clock;
+> > @@ -122,6 +124,8 @@ void intel_dp_set_infoframes(struct
+> > intel_encoder *encoder, bool enable,
+> >  void intel_read_dp_sdp(struct intel_encoder *encoder,
+> >  		       struct intel_crtc_state *crtc_state,
+> >  		       unsigned int type);
+> > +void intel_dp_vsc_sdp_log(const char *level, struct device *dev,
+> > +			  const struct intel_dp_vsc_sdp *vsc);
+> >  bool intel_digital_port_connected(struct intel_encoder *encoder);
+> >  
+> >  static inline unsigned int intel_dp_unused_lane_mask(int
+> > lane_count)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
