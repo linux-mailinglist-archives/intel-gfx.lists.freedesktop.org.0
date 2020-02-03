@@ -1,33 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10340150729
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 14:26:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 683DF15072E
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 14:28:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 614F36E9E0;
-	Mon,  3 Feb 2020 13:26:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AD176E9E1;
+	Mon,  3 Feb 2020 13:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 594A26E9E0
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 13:26:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA5AB6E9E1
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 13:28:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20100113-1500050 for multiple; Mon, 03 Feb 2020 13:26:04 +0000
+ 20100133-1500050 for multiple; Mon, 03 Feb 2020 13:28:03 +0000
 MIME-Version: 1.0
-To: Imre Deak <imre.deak@intel.com>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200203131723.GC24673@ideak-desk.fi.intel.com>
-References: <20200203093110.4138277-1-chris@chris-wilson.co.uk>
- <20200203131723.GC24673@ideak-desk.fi.intel.com>
-Message-ID: <158073636146.20090.9353332253775822958@skylake-alporthouse-com>
+In-Reply-To: <20200203132317.GZ13686@intel.com>
+References: <20200201094641.3572295-1-chris@chris-wilson.co.uk>
+ <20200203132317.GZ13686@intel.com>
+Message-ID: <158073648122.25329.1013159076797873545@skylake-alporthouse-com>
 User-Agent: alot/0.6
-Date: Mon, 03 Feb 2020 13:26:01 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/display: Defer application of
- initial chv_phy_control
+Date: Mon, 03 Feb 2020 13:28:01 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/audio: Skip the cdclk modeset if
+ no pipes attached
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,77 +40,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Imre Deak (2020-02-03 13:17:23)
-> On Mon, Feb 03, 2020 at 09:31:08AM +0000, Chris Wilson wrote:
-> > To write to the DISPLAY_PHY_CONTROL requires holding the powerwells,
-> > which during early resume we have not yet acquired until later in
-> > intel_display_power_init_hw(). So compute the initial chv_phy_control,
-> > but leave the HW unset until we first acquire the powerwell.
-> > 
-> > <7> [120.055984] i915 0000:00:02.0: [drm:intel_power_domains_init_hw [i915]] rawclk rate: 200000 kHz
-> > <4> [120.056381] ------------[ cut here ]------------
-> > <4> [120.056621] i915 0000:00:02.0: Unclaimed write to register 0x1e0100
-> > <4> [120.056924] WARNING: CPU: 1 PID: 164 at drivers/gpu/drm/i915/intel_uncore.c:1166 __unclaimed_reg_debug+0x69/0x80 [i915]
-> > <4> [120.056935] Modules linked in: vgem snd_hda_codec_hdmi snd_hda_codec_realtek snd_hda_codec_generic btusb btrtl btbcm btintel i915 bluetooth coretemp crct10dif_pclmul crc32_pclmul snd_hda_intel snd_intel_dspcfg snd_hda_codec ghash_clmulni_intel snd_hwdep ecdh_generic ecc snd_hda_core r8169 snd_pcm lpc_ich realtek pinctrl_cherryview i2c_designware_pci prime_numbers
-> > <4> [120.057027] CPU: 1 PID: 164 Comm: kworker/u4:3 Tainted: G     U            5.5.0-CI-CI_DRM_7854+ #1
-> > <4> [120.057038] Hardware name:  /NUC5CPYB, BIOS PYBSWCEL.86A.0055.2016.0812.1130 08/12/2016
-> > <4> [120.057058] Workqueue: events_unbound async_run_entry_fn
-> > <4> [120.057275] RIP: 0010:__unclaimed_reg_debug+0x69/0x80 [i915]
-> > <4> [120.057289] Code: 48 8b 78 18 48 8b 5f 50 48 85 db 74 2d e8 1f a0 3f e1 45 89 e8 48 89 e9 48 89 da 48 89 c6 48 c7 c7 00 8c 48 a0 e8 67 82 df e0 <0f> 0b 83 2d ce e2 2b 00 01 5b 5d 41 5c 41 5d c3 48 8b 1f eb ce 66
-> > <4> [120.057301] RSP: 0018:ffffc90000bcfd08 EFLAGS: 00010082
-> > <4> [120.057315] RAX: 0000000000000000 RBX: ffff888079919b60 RCX: 0000000000000003
-> > <4> [120.057326] RDX: 0000000080000003 RSI: 0000000000000000 RDI: 00000000ffffffff
-> > <4> [120.057336] RBP: ffffffffa04c9f4e R08: 0000000000000000 R09: 0000000000000001
-> > <4> [120.057348] R10: 0000000025c3d560 R11: 000000006815f798 R12: 0000000000000000
-> > <4> [120.057359] R13: 00000000001e0100 R14: 0000000000000286 R15: ffffffff8234a76b
-> > <4> [120.057371] FS:  0000000000000000(0000) GS:ffff888074b00000(0000) knlGS:0000000000000000
-> > <4> [120.057382] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > <4> [120.057393] CR2: 000055f4197df0d8 CR3: 000000006f326000 CR4: 00000000001006e0
-> > <4> [120.057404] Call Trace:
-> > <4> [120.057635]  fwtable_write32+0x114/0x1d0 [i915]
-> > <4> [120.057892]  intel_power_domains_init_hw+0x4ff/0x650 [i915]
-> > <4> [120.058150]  intel_power_domains_resume+0x3d/0x70 [i915]
-> > <4> [120.058363]  i915_drm_resume_early+0x97/0xd0 [i915]
-> > <4> [120.058575]  ? i915_resume_switcheroo+0x30/0x30 [i915]
-> > <4> [120.058594]  dpm_run_callback+0x64/0x280
-> > <4> [120.058626]  device_resume_early+0xa7/0xe0
-> > <4> [120.058652]  async_resume_early+0x14/0x40
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1089
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_power.c | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 64943179c05e..492668d5a193 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -5163,11 +5163,10 @@ static void chv_phy_control_init(struct drm_i915_private *dev_priv)
-> >               dev_priv->chv_phy_assert[DPIO_PHY1] = true;
-> >       }
-> >  
-> > -     intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
-> > -                    dev_priv->chv_phy_control);
-> > -
-> >       drm_dbg_kms(&dev_priv->drm, "Initial PHY_CONTROL=0x%08x\n",
-> >                   dev_priv->chv_phy_control);
-> > +
-> > +     /* Defer application of initial phy_control to enabling the powerwell */
-> 
-> Ok in case nothing was enabled, but if a cmn power well was enabled we
-> should still write it to enable power saving.
-
-Would that be a good candidate for sync_hw?
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDItMDMgMTM6MjM6MTcpCj4gT24gU2F0LCBG
+ZWIgMDEsIDIwMjAgYXQgMDk6NDY6NDFBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
+LXN0YXRpYyBpbnQgZ2xrX2ZvcmNlX2F1ZGlvX2NkY2xrX2NvbW1pdChzdHJ1Y3QgaW50ZWxfYXRv
+bWljX3N0YXRlICpzdGF0ZSwKPiA+ICtzdGF0aWMgaW50IGdsa19mb3JjZV9hdWRpb19jZGNsa19j
+b21taXQoc3RydWN0IGludGVsX2NydGMgKmNydGMsCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAo+ID4gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBib29sIGVuYWJsZSkKPiA+ICB7Cj4g
+PiAtICAgICBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KHN0YXRl
+LT5iYXNlLmRldik7Cj4gPiAgICAgICBzdHJ1Y3QgaW50ZWxfY2RjbGtfc3RhdGUgKmNkY2xrX3N0
+YXRlOwo+ID4gLSAgICAgc3RydWN0IGludGVsX2NydGMgKmNydGM7Cj4gPiAgICAgICBpbnQgcmV0
+Owo+ID4gIAo+ID4gICAgICAgLyogbmVlZCB0byBob2xkIGF0IGxlYXN0IG9uZSBjcnRjIGxvY2sg
+Zm9yIHRoZSBnbG9iYWwgc3RhdGUgKi8KPiA+IC0gICAgIGNydGMgPSBpbnRlbF9nZXRfY3J0Y19m
+b3JfcGlwZShkZXZfcHJpdiwgUElQRV9BKTsKPiAKPiBXYXMgdGhpbmtpbmcgYSBzaW1wbGUgJ3Jl
+dHVybiAwJyB3b3VsZCBkbyB0aGUgdHJpY2ssIGJ1dCBtYXliZSB3ZQo+IGRvbid0IHdhbnQgdG8g
+Y2FsbCB0aGlzIGF0IGFsbC4gT1RPSCBub3Qgc3VyZSB3aHkgd2Ugd291bGQgZXZlbgo+IHJlZ2lz
+dGVyIHRoZSBhdWRpbyBjb21wb25lbnQgaWYgdGhlcmUgYXJlIG5vIHBpcGVzLiBEb2VzIHRoZSBh
+dWRpbwo+IGRyaXZlciBnZXQgY29uZnVzZWQgaWYgd2UgZG9uJ3QgZG8gdGhhdD8KCkkgZXhwZWN0
+IHRoYXQgaXMgdGhlIG1vc3QgY29ycmVjdCBhbnN3ZXI6IGRvbid0IHJlZ2lzdGVyIGRpc3BsYXkg
+YXVkaW8KaWYgdGhlIGRpc3BsYXkgaW5zaXN0cyBvbiB0aGVyZSBiZWluZyBubyBwaXBlcy4gSSds
+bCBsZWF2ZSB0aGF0IHRvIHRoZQppbnRyZXBpZCBvYnNlcnZlcnMgdGhvdWdoIDopCi1DaHJpcwpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
