@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03593150ED3
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 18:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97EB5150F31
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2020 19:16:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92DD46E3F9;
-	Mon,  3 Feb 2020 17:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE7B089DBD;
+	Mon,  3 Feb 2020 18:16:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 201296E3F9
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 17:43:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9089189DBD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2020 18:16:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20103472-1500050 
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Feb 2020 17:43:24 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20103846-1500050 
+ for multiple; Mon, 03 Feb 2020 18:16:26 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  3 Feb 2020 17:43:23 +0000
-Message-Id: <20200203174323.456272-1-chris@chris-wilson.co.uk>
+Date: Mon,  3 Feb 2020 18:16:25 +0000
+Message-Id: <20200203181625.589118-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915/selftests: Add a simple rollover test for
- the kernel context
+Subject: [Intel-gfx] [PATCH] drm/i915/selftest: Ensure string fits within
+ name[]
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,237 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Exercise the seqno wrap paths on the kernel context to provide a small
-amount of sanity checking and ensure that they are visible to lockdep.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_timeline.c | 187 ++++++++++++++++++++
- 1 file changed, 187 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_timeline.c b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-index e2d78cc22fb4..e59bf7e31d83 100644
---- a/drivers/gpu/drm/i915/gt/selftest_timeline.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_timeline.c
-@@ -6,6 +6,8 @@
- 
- #include <linux/prime_numbers.h>
- 
-+#include "intel_context.h"
-+#include "intel_engine_heartbeat.h"
- #include "intel_engine_pm.h"
- #include "intel_gt.h"
- #include "intel_gt_requests.h"
-@@ -750,6 +752,189 @@ static int live_hwsp_wrap(void *arg)
- 	return err;
- }
- 
-+static void engine_heartbeat_disable(struct intel_engine_cs *engine,
-+				     unsigned long *saved)
-+{
-+	*saved = engine->props.heartbeat_interval_ms;
-+	engine->props.heartbeat_interval_ms = 0;
-+
-+	intel_engine_pm_get(engine);
-+	intel_engine_park_heartbeat(engine);
-+}
-+
-+static void engine_heartbeat_enable(struct intel_engine_cs *engine,
-+				    unsigned long saved)
-+{
-+	intel_engine_pm_put(engine);
-+
-+	engine->props.heartbeat_interval_ms = saved;
-+}
-+
-+static int live_hwsp_rollover_kernel(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * Run the host for long enough, and even the kernel context will
-+	 * see a seqno rollover.
-+	 */
-+
-+	for_each_engine(engine, gt, id) {
-+		struct intel_context *ce = engine->kernel_context;
-+		struct intel_timeline *tl = ce->timeline;
-+		struct i915_request *rq[3] = {};
-+		unsigned long heartbeat;
-+		int i;
-+
-+		engine_heartbeat_disable(engine, &heartbeat);
-+		if (intel_gt_wait_for_idle(gt, HZ / 2)) {
-+			err = -EIO;
-+			goto out;
-+		}
-+
-+		GEM_BUG_ON(i915_active_fence_isset(&tl->last_request));
-+		tl->seqno = 0;
-+		timeline_rollback(tl);
-+		timeline_rollback(tl);
-+		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
-+
-+		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-+			struct i915_request *this;
-+
-+			this = i915_request_create(ce);
-+			if (IS_ERR(this)) {
-+				err = PTR_ERR(this);
-+				goto out;
-+			}
-+
-+			pr_debug("%s: create fence.seqnp:%d\n",
-+				 engine->name,
-+				 lower_32_bits(this->fence.seqno));
-+
-+			GEM_BUG_ON(rcu_access_pointer(this->timeline) != tl);
-+
-+			rq[i] = i915_request_get(this);
-+			i915_request_add(this);
-+		}
-+
-+		/* We expected a wrap! */
-+		GEM_BUG_ON(rq[2]->fence.seqno > rq[0]->fence.seqno);
-+
-+		if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
-+			pr_err("Wait for timeline wrap timed out!\n");
-+			err = -EIO;
-+			goto out;
-+		}
-+
-+		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-+			if (!i915_request_completed(rq[i])) {
-+				pr_err("Pre-wrap request not completed!\n");
-+				err = -EINVAL;
-+				goto out;
-+			}
-+		}
-+
-+out:
-+		for (i = 0; i < ARRAY_SIZE(rq); i++)
-+			i915_request_put(rq[i]);
-+		engine_heartbeat_enable(engine, heartbeat);
-+		if (err)
-+			break;
-+	}
-+
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+
-+	return err;
-+}
-+
-+static int live_hwsp_rollover_user(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * Simulate a long running user context, and force the seqno wrap
-+	 * on the user's timeline.
-+	 */
-+
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq[3] = {};
-+		struct intel_timeline *tl;
-+		struct intel_context *ce;
-+		int i;
-+
-+		ce = intel_context_create(engine);
-+		if (IS_ERR(ce))
-+			return PTR_ERR(ce);
-+
-+		err = intel_context_alloc_state(ce);
-+		if (err)
-+			goto out;
-+
-+		tl = ce->timeline;
-+		if (!tl->has_initial_breadcrumb || !tl->hwsp_cacheline)
-+			goto out;
-+
-+		timeline_rollback(tl);
-+		timeline_rollback(tl);
-+		WRITE_ONCE(*(u32 *)tl->hwsp_seqno, tl->seqno);
-+
-+		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-+			struct i915_request *this;
-+
-+			this = intel_context_create_request(ce);
-+			if (IS_ERR(this)) {
-+				err = PTR_ERR(this);
-+				goto out;
-+			}
-+
-+			pr_debug("%s: create fence.seqnp:%d\n",
-+				 engine->name,
-+				 lower_32_bits(this->fence.seqno));
-+
-+			GEM_BUG_ON(rcu_access_pointer(this->timeline) != tl);
-+
-+			rq[i] = i915_request_get(this);
-+			i915_request_add(this);
-+		}
-+
-+		/* We expected a wrap! */
-+		GEM_BUG_ON(rq[2]->fence.seqno > rq[0]->fence.seqno);
-+
-+		if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
-+			pr_err("Wait for timeline wrap timed out!\n");
-+			err = -EIO;
-+			goto out;
-+		}
-+
-+		for (i = 0; i < ARRAY_SIZE(rq); i++) {
-+			if (!i915_request_completed(rq[i])) {
-+				pr_err("Pre-wrap request not completed!\n");
-+				err = -EINVAL;
-+				goto out;
-+			}
-+		}
-+
-+out:
-+		for (i = 0; i < ARRAY_SIZE(rq); i++)
-+			i915_request_put(rq[i]);
-+		intel_context_put(ce);
-+		if (err)
-+			break;
-+	}
-+
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+
-+	return err;
-+}
-+
- static int live_hwsp_recycle(void *arg)
- {
- 	struct intel_gt *gt = arg;
-@@ -827,6 +1012,8 @@ int intel_timeline_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_hwsp_engine),
- 		SUBTEST(live_hwsp_alternate),
- 		SUBTEST(live_hwsp_wrap),
-+		SUBTEST(live_hwsp_rollover_kernel),
-+		SUBTEST(live_hwsp_rollover_user),
- 	};
- 
- 	if (intel_gt_is_wedged(&i915->gt))
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U2hyaW5rIHRoZSBzdHJuY3B5IGJvdW5kcyB0byBlbnN1cmUgdGhlIE5VTC10ZXJtaW5hdG9yIGNh
+biBmaXQgd2l0aGluCnRoZSBlbWJlZGRlZCBhcnJheToKCkluIGZpbGUgaW5jbHVkZWQgZnJvbSBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jOjI0NzU6CmRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvbW9ja19jb250ZXh0LmM6IEluIGZ1bmN0aW9uIOKA
+mG1vY2tfY29udGV4dOKAmToKZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9tb2Nr
+X2NvbnRleHQuYzo0MDozOiBlcnJvcjog4oCYc3RybmNweeKAmSBzcGVjaWZpZWQgYm91bmQgMjQg
+ZXF1YWxzIGRlc3RpbmF0aW9uIHNpemUgWy1XZXJyb3I9c3RyaW5nb3AtdHJ1bmNhdGlvbl0KICAg
+NDAgfCAgIHN0cm5jcHkoY3R4LT5uYW1lLCBuYW1lLCBzaXplb2YoY3R4LT5uYW1lKSk7CgpTaWdu
+ZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vc2VsZnRlc3RzL21vY2tfY29udGV4dC5jIHwgMiArLQog
+MSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL3NlbGZ0ZXN0cy9tb2NrX2NvbnRleHQuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9zZWxmdGVzdHMvbW9ja19jb250ZXh0LmMKaW5kZXggN2Jh
+ZDhmZWQ0MjM4Li44MTc2NDI4OWNmMGQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2dlbS9zZWxmdGVzdHMvbW9ja19jb250ZXh0LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z2VtL3NlbGZ0ZXN0cy9tb2NrX2NvbnRleHQuYwpAQCAtMzcsNyArMzcsNyBAQCBtb2NrX2NvbnRl
+eHQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCiAJaWYgKG5hbWUpIHsKIAkJc3RydWN0
+IGk5MTVfcHBndHQgKnBwZ3R0OwogCi0JCXN0cm5jcHkoY3R4LT5uYW1lLCBuYW1lLCBzaXplb2Yo
+Y3R4LT5uYW1lKSk7CisJCXN0cm5jcHkoY3R4LT5uYW1lLCBuYW1lLCBzaXplb2YoY3R4LT5uYW1l
+KSAtIDEpOwogCiAJCXBwZ3R0ID0gbW9ja19wcGd0dChpOTE1LCBuYW1lKTsKIAkJaWYgKCFwcGd0
+dCkKLS0gCjIuMjUuMAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
