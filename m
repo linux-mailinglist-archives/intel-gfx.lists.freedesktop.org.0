@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3D0151BA0
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 14:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5989151BA8
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 14:52:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7F006EF27;
-	Tue,  4 Feb 2020 13:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94E66EC56;
+	Tue,  4 Feb 2020 13:52:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51D7C6EF27
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 13:47:51 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 071136EC56
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 13:52:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 05:47:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,401,1574150400"; d="scan'208";a="219753576"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 04 Feb 2020 05:47:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 15:47:41 +0200
-Date: Tue, 4 Feb 2020 15:47:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200204134741.GK13686@intel.com>
-References: <20200128235241.169694-1-jose.souza@intel.com>
- <20200128235241.169694-2-jose.souza@intel.com>
- <20200129114257.GR13686@intel.com>
- <3ab6b8071f4af31d0c6059748c6b5c54bfabd587.camel@intel.com>
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 05:52:22 -0800
+X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="431528114"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 05:52:20 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Feb 2020 15:52:17 +0200
+Message-Id: <20200204135217.21974-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3ab6b8071f4af31d0c6059748c6b5c54bfabd587.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/dgfx: Do not write in removed
- FBC fence registers
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915/psr: pass i915 to psr_global_enabled()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,98 +41,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Pandiyan,
- Dhinakaran" <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 04, 2020 at 02:06:23AM +0000, Souza, Jose wrote:
-> On Wed, 2020-01-29 at 13:42 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Jan 28, 2020 at 03:52:41PM -0800, Jos=E9 Roberto de Souza
-> > wrote:
-> > > From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> > > =
+Make future work slightly easier.
 
-> > > dgfx platforms do not support CPU fence and FBC host tracking so
-> > > lets avoid write to removed registers.
-> > > =
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> > > Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com
-> > > >
-> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_fbc.c | 7 ++++++-
-> > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > > =
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index db3d1561e9bf..e86e9dc1fe06 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -61,9 +61,9 @@
+  * must be correctly synchronized/cancelled when shutting down the pipe."
+  */
+ 
+-static bool psr_global_enabled(u32 debug)
++static bool psr_global_enabled(struct drm_i915_private *i915)
+ {
+-	switch (debug & I915_PSR_DEBUG_MODE_MASK) {
++	switch (i915->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
+ 	case I915_PSR_DEBUG_DEFAULT:
+ 		return i915_modparams.enable_psr;
+ 	case I915_PSR_DEBUG_DISABLE:
+@@ -930,7 +930,7 @@ void intel_psr_enable(struct intel_dp *intel_dp,
+ 
+ 	mutex_lock(&dev_priv->psr.lock);
+ 
+-	if (!psr_global_enabled(dev_priv->psr.debug)) {
++	if (!psr_global_enabled(dev_priv)) {
+ 		drm_dbg_kms(&dev_priv->drm, "PSR disabled by flag\n");
+ 		goto unlock;
+ 	}
+@@ -1085,7 +1085,7 @@ void intel_psr_update(struct intel_dp *intel_dp,
+ 
+ 	mutex_lock(&dev_priv->psr.lock);
+ 
+-	enable = crtc_state->has_psr && psr_global_enabled(psr->debug);
++	enable = crtc_state->has_psr && psr_global_enabled(dev_priv);
+ 	psr2_enable = intel_psr2_enabled(dev_priv, crtc_state);
+ 
+ 	if (enable == psr->enabled && psr2_enable == psr->psr2_enabled) {
+-- 
+2.20.1
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > index 1f0d24a1dec1..12900b8ce28e 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > @@ -314,7 +314,12 @@ static void gen7_fbc_activate(struct
-> > > drm_i915_private *dev_priv)
-> > >  		break;
-> > >  	}
-> > >  =
-
-> > > -	if (params->fence_id >=3D 0) {
-> > > +	if (IS_DGFX(dev_priv)) {
-> > > +		/*
-> > > +		 * dGFX GPUs don't have apperture or fences and only
-> > > rely on FBC
-> > > +		 * render nuke to track frontbuffer modifications
-> > > +		 */
-> > > +	} else if (params->fence_id >=3D 0) {
-> > >  		dpfc_ctl |=3D IVB_DPFC_CTL_FENCE_EN;
-> > >  		intel_de_write(dev_priv, SNB_DPFC_CTL_SA,
-> > >  			       SNB_CPU_FENCE_ENABLE | params-
-> > > >fence_id);
-> > =
-
-> > if (fence) {
-> > 	do stuff
-> > } else if (num_fences) {
-> > 	do other stuff
-> > }
-> =
-
-> Did not get what you want here.
-
-Don't add a silly looking empty if block.
-
-And don't make the assumption that dgfx is the only thing that
-has no fences, instead actually check if we have fences or not.
-
-> It is covering all cases:
-> - DGFX that don't have the registers
-> - Setting the registers when fence_id >=3D 0
-> - Clearing the register when fences_id =3D=3D -1
-> =
-
-> > =
-
-> > > -- =
-
-> > > 2.25.0
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
