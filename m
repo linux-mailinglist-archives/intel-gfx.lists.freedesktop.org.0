@@ -2,59 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48D06151C00
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:18:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24071151C2A
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:27:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 364AE6EF3D;
-	Tue,  4 Feb 2020 14:18:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E01B6EF43;
+	Tue,  4 Feb 2020 14:27:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5136EF3D
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:18:41 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id t23so3516565wmi.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 06:18:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=SZvtZEmEuBu9Lert2Y7308cs5ofq7lqleSOqJXTV/3I=;
- b=eQs/O/hfCevU7Ml98ikRT5G9UP81ZiTe8L6gQTAtmzx3GUxMB8pKrgyWdEjY41iW/p
- 7am5BXFWlCi5z4xAmrFK1m2z4rXFgg4GPtJ4/I6dKYpYP+Psc7CkqMjDTv8Hi4xxL/Pi
- 9vHAeH1P8xUOzCdRZ788a/vbUNK7JUBvcbu3M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=SZvtZEmEuBu9Lert2Y7308cs5ofq7lqleSOqJXTV/3I=;
- b=eEiCEbljs5FK2Myfg+ikJnbeizgZq+zNC/sT5ICkbwVfwUGxZ/flnBXteqfRzFmCvR
- h22flBNNN4XnS/FRrrucWRGD1t0HEC1ZsiuR7lkzH3GqSc2lQ+PyIpwHDkN3CR1vvvH+
- 4XW6ROX4lmW/KVpiMKd1PUPyaJa5damtX5/wd5qcF2Zm+ZcOD2boPLrSD0xqjuhdtDsw
- lDG5zShOxbSF5gSOMj6zmZ9IL5PvldsFZZNL/EPBBZxaoDy9I8YWt4lrp0wU7/iIJGiu
- UhORsxs8DFBWfZM1kJ/kw7a94uPnMqozIfsjSnTkBN4hcao2DD7sWhQksPGzPOq8tGUL
- 8kgw==
-X-Gm-Message-State: APjAAAUgDfWx7wef06exNjt01sSJ4VgaT9RrgSRwSiOtMmno48yt+TVQ
- C72W0wZu4e8SYY9cTbsJ556ohw==
-X-Google-Smtp-Source: APXvYqzw0bQRLgFFXpEaTJgMksbHk/nROFDaiUYzeWqUjVMPPeCYAbxi4ETiPER3yR+Qh3mrz+KuIw==
-X-Received: by 2002:a05:600c:1007:: with SMTP id
- c7mr5976608wmc.158.1580825919833; 
- Tue, 04 Feb 2020 06:18:39 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id c9sm4029858wme.41.2020.02.04.06.18.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Feb 2020 06:18:39 -0800 (PST)
-Date: Tue, 4 Feb 2020 15:18:37 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200204141837.GW43062@phenom.ffwll.local>
-References: <20200202171635.4039044-1-chris@chris-wilson.co.uk>
- <20200202171635.4039044-5-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F17F6EF43
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:27:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20113572-1500050 
+ for multiple; Tue, 04 Feb 2020 14:26:00 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Feb 2020 14:25:57 +0000
+Message-Id: <20200204142558.1082764-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200202171635.4039044-5-chris@chris-wilson.co.uk>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm: Remove exports for
- drm_pci_alloc/drm_pci_free
+Subject: [Intel-gfx] [RFC 1/2] trace: Export anonymous tracing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,203 +36,310 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: daniel.vetter@ffwll.ch
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 02, 2020 at 05:16:35PM +0000, Chris Wilson wrote:
-> The drm_pci_alloc routines have been a thin wrapper around the core dma
-> coherent routines. Remove the crutch of a wrapper and the exported
-> symbols, marking it for only internal legacy use.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+... Explain why we want this! ...
+... Explain why we make these changes ...
+---
+ include/linux/trace.h |   4 ++
+ kernel/trace/trace.c  | 142 ++++++++++++++++++++++++++++++------------
+ 2 files changed, 105 insertions(+), 41 deletions(-)
 
-Since Alex bothered to review the drm_bufs&r128 patches ...
-
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-
-I think all the other patches I've r-b stamped somewhere else already, but
-if they changed pls poke.
--Daniel
-
-
-> ---
->  drivers/gpu/drm/drm_bufs.c   |  5 +++--
->  drivers/gpu/drm/drm_legacy.h | 23 +++++++++++++++++++++++
->  drivers/gpu/drm/drm_pci.c    | 31 ++++++-------------------------
->  include/drm/drm_pci.h        | 18 ------------------
->  4 files changed, 32 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_bufs.c b/drivers/gpu/drm/drm_bufs.c
-> index 19297e58b232..a33df3744f76 100644
-> --- a/drivers/gpu/drm/drm_bufs.c
-> +++ b/drivers/gpu/drm/drm_bufs.c
-> @@ -675,7 +675,7 @@ static void drm_cleanup_buf_error(struct drm_device *dev,
->  	if (entry->seg_count) {
->  		for (i = 0; i < entry->seg_count; i++) {
->  			if (entry->seglist[i]) {
-> -				drm_pci_free(dev, entry->seglist[i]);
-> +				drm_legacy_pci_free(dev, entry->seglist[i]);
->  			}
->  		}
->  		kfree(entry->seglist);
-> @@ -975,7 +975,8 @@ int drm_legacy_addbufs_pci(struct drm_device *dev,
->  
->  	while (entry->buf_count < count) {
->  
-> -		dmah = drm_pci_alloc(dev, PAGE_SIZE << page_order, 0x1000);
-> +		dmah = drm_legacy_pci_alloc(dev,
-> +					    PAGE_SIZE << page_order, 0x1000);
->  
->  		if (!dmah) {
->  			/* Set count correctly so we free the proper amount. */
-> diff --git a/drivers/gpu/drm/drm_legacy.h b/drivers/gpu/drm/drm_legacy.h
-> index 1be3ea320474..3853b45341c7 100644
-> --- a/drivers/gpu/drm/drm_legacy.h
-> +++ b/drivers/gpu/drm/drm_legacy.h
-> @@ -36,6 +36,7 @@
->  
->  struct agp_memory;
->  struct drm_device;
-> +struct drm_dma_handle;
->  struct drm_file;
->  struct drm_buf_desc;
->  
-> @@ -211,4 +212,26 @@ void drm_master_legacy_init(struct drm_master *master);
->  static inline void drm_master_legacy_init(struct drm_master *master) {}
->  #endif
->  
-> +
-> +#if IS_ENABLED(CONFIG_DRM_LEGACY) && IS_ENABLED(CONFIG_PCI)
-> +
-> +struct drm_dma_handle *
-> +drm_legacy_pci_alloc(struct drm_device *dev, size_t size, size_t align);
-> +void drm_legacy_pci_free(struct drm_device *dev, struct drm_dma_handle * dmah);
-> +
-> +#else
-> +
-> +static inline struct drm_dma_handle *
-> +drm_legacy_pci_alloc(struct drm_device *dev, size_t size, size_t align)
-> +{
-> +	return NULL;
-> +}
-> +
-> +static inline void drm_legacy_pci_free(struct drm_device *dev,
-> +				       struct drm_dma_handle *dmah)
-> +{
-> +}
-> +
-> +#endif
-> +
->  #endif /* __DRM_LEGACY_H__ */
-> diff --git a/drivers/gpu/drm/drm_pci.c b/drivers/gpu/drm/drm_pci.c
-> index c6bb98729a26..12239498538c 100644
-> --- a/drivers/gpu/drm/drm_pci.c
-> +++ b/drivers/gpu/drm/drm_pci.c
-> @@ -36,19 +36,10 @@
->  #include "drm_internal.h"
->  #include "drm_legacy.h"
->  
-> -/**
-> - * drm_pci_alloc - Allocate a PCI consistent memory block, for DMA.
-> - * @dev: DRM device
-> - * @size: size of block to allocate
-> - * @align: alignment of block
-> - *
-> - * FIXME: This is a needless abstraction of the Linux dma-api and should be
-> - * removed.
-> - *
-> - * Return: A handle to the allocated memory block on success or NULL on
-> - * failure.
-> - */
-> -drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t align)
-> +#if IS_ENABLED(CONFIG_DRM_LEGACY) && IS_ENABLED(CONFIG_PCI)
-> +
-> +drm_dma_handle_t *
-> +drm_legacy_pci_alloc(struct drm_device * dev, size_t size, size_t align)
->  {
->  	drm_dma_handle_t *dmah;
->  
-> @@ -76,24 +67,14 @@ drm_dma_handle_t *drm_pci_alloc(struct drm_device * dev, size_t size, size_t ali
->  	return dmah;
->  }
->  
-> -EXPORT_SYMBOL(drm_pci_alloc);
-> -
-> -/**
-> - * drm_pci_free - Free a PCI consistent memory block
-> - * @dev: DRM device
-> - * @dmah: handle to memory block
-> - *
-> - * FIXME: This is a needless abstraction of the Linux dma-api and should be
-> - * removed.
-> - */
-> -void drm_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
-> +void drm_legacy_pci_free(struct drm_device * dev, drm_dma_handle_t * dmah)
->  {
->  	dma_free_coherent(&dev->pdev->dev, dmah->size, dmah->vaddr,
->  			  dmah->busaddr);
->  	kfree(dmah);
->  }
->  
-> -EXPORT_SYMBOL(drm_pci_free);
-> +#endif
->  
->  static int drm_get_pci_domain(struct drm_device *dev)
->  {
-> diff --git a/include/drm/drm_pci.h b/include/drm/drm_pci.h
-> index 9031e217b506..cade5b60b643 100644
-> --- a/include/drm/drm_pci.h
-> +++ b/include/drm/drm_pci.h
-> @@ -34,34 +34,16 @@
->  
->  #include <linux/pci.h>
->  
-> -struct drm_dma_handle;
-> -struct drm_device;
->  struct drm_driver;
-> -struct drm_master;
->  
->  #ifdef CONFIG_PCI
->  
-> -struct drm_dma_handle *drm_pci_alloc(struct drm_device *dev, size_t size,
-> -				     size_t align);
-> -void drm_pci_free(struct drm_device *dev, struct drm_dma_handle * dmah);
-> -
->  int drm_get_pci_dev(struct pci_dev *pdev,
->  		    const struct pci_device_id *ent,
->  		    struct drm_driver *driver);
->  
->  #else
->  
-> -static inline struct drm_dma_handle *drm_pci_alloc(struct drm_device *dev,
-> -						   size_t size, size_t align)
-> -{
-> -	return NULL;
-> -}
-> -
-> -static inline void drm_pci_free(struct drm_device *dev,
-> -				struct drm_dma_handle *dmah)
-> -{
-> -}
-> -
->  static inline int drm_get_pci_dev(struct pci_dev *pdev,
->  				  const struct pci_device_id *ent,
->  				  struct drm_driver *driver)
-> -- 
-> 2.25.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+diff --git a/include/linux/trace.h b/include/linux/trace.h
+index 7fd86d3c691f..337454e859f4 100644
+--- a/include/linux/trace.h
++++ b/include/linux/trace.h
+@@ -30,8 +30,12 @@ void trace_printk_init_buffers(void);
+ int trace_array_printk(struct trace_array *tr, unsigned long ip,
+ 		const char *fmt, ...);
+ void trace_array_put(struct trace_array *tr);
++struct trace_array *trace_array_create(void);
+ struct trace_array *trace_array_get_by_name(const char *name);
+ int trace_array_destroy(struct trace_array *tr);
++
++int anon_trace_getfd(const char *name, struct trace_array *tr);
++
+ #endif	/* CONFIG_TRACING */
+ 
+ #endif	/* _LINUX_TRACE_H */
+diff --git a/kernel/trace/trace.c b/kernel/trace/trace.c
+index 8f7fdc25f230..6c2286b81b4a 100644
+--- a/kernel/trace/trace.c
++++ b/kernel/trace/trace.c
+@@ -48,6 +48,7 @@
+ #include <linux/fsnotify.h>
+ #include <linux/irq_work.h>
+ #include <linux/workqueue.h>
++#include <linux/anon_inodes.h>
+ 
+ #include "trace.h"
+ #include "trace_output.h"
+@@ -4140,7 +4141,7 @@ static int s_show(struct seq_file *m, void *v)
+  */
+ static inline int tracing_get_cpu(struct inode *inode)
+ {
+-	if (inode->i_cdev) /* See trace_create_cpu_file() */
++	if (inode && inode->i_cdev) /* See trace_create_cpu_file() */
+ 		return (long)inode->i_cdev - 1;
+ 	return RING_BUFFER_ALL_CPUS;
+ }
+@@ -5938,32 +5939,22 @@ tracing_max_lat_write(struct file *filp, const char __user *ubuf,
+ 
+ #endif
+ 
+-static int tracing_open_pipe(struct inode *inode, struct file *filp)
++static struct trace_iterator *
++tracing_create_pipe_iter(struct trace_array *tr, struct inode *inode)
+ {
+-	struct trace_array *tr = inode->i_private;
+ 	struct trace_iterator *iter;
+-	int ret;
+-
+-	ret = tracing_check_open_get_tr(tr);
+-	if (ret)
+-		return ret;
+-
+-	mutex_lock(&trace_types_lock);
+ 
+ 	/* create a buffer to store the information to pass to userspace */
+ 	iter = kzalloc(sizeof(*iter), GFP_KERNEL);
+-	if (!iter) {
+-		ret = -ENOMEM;
+-		__trace_array_put(tr);
+-		goto out;
+-	}
++	if (!iter)
++		return ERR_PTR(-ENOMEM);
+ 
+ 	trace_seq_init(&iter->seq);
+ 	iter->trace = tr->current_trace;
+ 
+ 	if (!alloc_cpumask_var(&iter->started, GFP_KERNEL)) {
+-		ret = -ENOMEM;
+-		goto fail;
++		kfree(iter);
++		return ERR_PTR(-ENOMEM);
+ 	}
+ 
+ 	/* trace pipe does not show start of buffer */
+@@ -5980,6 +5971,29 @@ static int tracing_open_pipe(struct inode *inode, struct file *filp)
+ 	iter->trace_buffer = &tr->trace_buffer;
+ 	iter->cpu_file = tracing_get_cpu(inode);
+ 	mutex_init(&iter->mutex);
++
++	return iter;
++}
++
++static int tracing_open_pipe(struct inode *inode, struct file *filp)
++{
++	struct trace_array *tr = inode->i_private;
++	struct trace_iterator *iter;
++	int ret;
++
++	ret = tracing_check_open_get_tr(tr);
++	if (ret)
++		return ret;
++
++	mutex_lock(&trace_types_lock);
++
++	iter = tracing_create_pipe_iter(tr, inode);
++	if (IS_ERR(iter)) {
++		ret = PTR_ERR(iter);
++		__trace_array_put(tr);
++		goto out;
++	}
++
+ 	filp->private_data = iter;
+ 
+ 	if (iter->trace->pipe_open)
+@@ -5991,18 +6005,12 @@ static int tracing_open_pipe(struct inode *inode, struct file *filp)
+ out:
+ 	mutex_unlock(&trace_types_lock);
+ 	return ret;
+-
+-fail:
+-	kfree(iter);
+-	__trace_array_put(tr);
+-	mutex_unlock(&trace_types_lock);
+-	return ret;
+ }
+ 
+ static int tracing_release_pipe(struct inode *inode, struct file *file)
+ {
+ 	struct trace_iterator *iter = file->private_data;
+-	struct trace_array *tr = inode->i_private;
++	struct trace_array *tr = iter->tr;
+ 
+ 	mutex_lock(&trace_types_lock);
+ 
+@@ -7868,7 +7876,7 @@ static inline __init int register_snapshot_cmd(void) { return 0; }
+ 
+ static struct dentry *tracing_get_dentry(struct trace_array *tr)
+ {
+-	if (WARN_ON(!tr->dir))
++	if (!tr->dir)
+ 		return ERR_PTR(-ENODEV);
+ 
+ 	/* Top directory uses NULL as the parent */
+@@ -8461,7 +8469,7 @@ static void update_tracer_options(struct trace_array *tr)
+ 	mutex_unlock(&trace_types_lock);
+ }
+ 
+-static struct trace_array *trace_array_create(const char *name)
++static struct trace_array *__trace_array_create(const char *name)
+ {
+ 	struct trace_array *tr;
+ 	int ret;
+@@ -8471,9 +8479,11 @@ static struct trace_array *trace_array_create(const char *name)
+ 	if (!tr)
+ 		return ERR_PTR(ret);
+ 
+-	tr->name = kstrdup(name, GFP_KERNEL);
+-	if (!tr->name)
+-		goto out_free_tr;
++	if (name) {
++		tr->name = kstrdup(name, GFP_KERNEL);
++		if (!tr->name)
++			goto out_free_tr;
++	}
+ 
+ 	if (!alloc_cpumask_var(&tr->tracing_cpumask, GFP_KERNEL))
+ 		goto out_free_tr;
+@@ -8496,19 +8506,22 @@ static struct trace_array *trace_array_create(const char *name)
+ 	if (allocate_trace_buffers(tr, trace_buf_size) < 0)
+ 		goto out_free_tr;
+ 
+-	tr->dir = tracefs_create_dir(name, trace_instance_dir);
+-	if (!tr->dir)
+-		goto out_free_tr;
++	if (name) {
++		tr->dir = tracefs_create_dir(name, trace_instance_dir);
++		if (!tr->dir)
++			goto out_free_tr;
+ 
+-	ret = event_trace_add_tracer(tr->dir, tr);
+-	if (ret) {
+-		tracefs_remove_recursive(tr->dir);
+-		goto out_free_tr;
++		ret = event_trace_add_tracer(tr->dir, tr);
++		if (ret) {
++			tracefs_remove_recursive(tr->dir);
++			goto out_free_tr;
++		}
++
++		init_tracer_tracefs(tr, tr->dir);
+ 	}
+ 
+ 	ftrace_init_trace_array(tr);
+ 
+-	init_tracer_tracefs(tr, tr->dir);
+ 	init_trace_flags_index(tr);
+ 	__update_tracer_options(tr);
+ 
+@@ -8516,7 +8529,6 @@ static struct trace_array *trace_array_create(const char *name)
+ 
+ 	tr->ref++;
+ 
+-
+ 	return tr;
+ 
+  out_free_tr:
+@@ -8528,6 +8540,12 @@ static struct trace_array *trace_array_create(const char *name)
+ 	return ERR_PTR(ret);
+ }
+ 
++struct trace_array *trace_array_create(void)
++{
++	return __trace_array_create(NULL);
++}
++EXPORT_SYMBOL_GPL(trace_array_create);
++
+ static int instance_mkdir(const char *name)
+ {
+ 	struct trace_array *tr;
+@@ -8542,7 +8560,7 @@ static int instance_mkdir(const char *name)
+ 			goto out_unlock;
+ 	}
+ 
+-	tr = trace_array_create(name);
++	tr = __trace_array_create(name);
+ 
+ 	ret = PTR_ERR_OR_ZERO(tr);
+ 
+@@ -8576,7 +8594,7 @@ struct trace_array *trace_array_get_by_name(const char *name)
+ 			goto out_unlock;
+ 	}
+ 
+-	tr = trace_array_create(name);
++	tr = __trace_array_create(name);
+ 
+ 	if (IS_ERR(tr))
+ 		tr = NULL;
+@@ -8611,7 +8629,8 @@ static int __remove_instance(struct trace_array *tr)
+ 	event_trace_del_tracer(tr);
+ 	ftrace_clear_pids(tr);
+ 	ftrace_destroy_function_files(tr);
+-	tracefs_remove_recursive(tr->dir);
++	if (tr->dir)
++		tracefs_remove_recursive(tr->dir);
+ 	free_trace_buffers(tr);
+ 
+ 	for (i = 0; i < tr->nr_topts; i++) {
+@@ -9157,6 +9176,47 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
+ }
+ EXPORT_SYMBOL_GPL(ftrace_dump);
+ 
++int anon_trace_getfd(const char *name, struct trace_array *tr)
++{
++	struct trace_iterator *iter;
++	int ret;
++
++	if (!tr || trace_array_get(tr) < 0)
++		return -ENODEV;
++
++	mutex_lock(&trace_types_lock);
++
++	iter = tracing_create_pipe_iter(tr, NULL);
++	if (IS_ERR(iter)) {
++		ret = PTR_ERR(iter);
++		__trace_array_put(tr);
++		goto out;
++	}
++
++	ret = anon_inode_getfd(name, &tracing_pipe_fops, iter, O_CLOEXEC);
++	if (ret < 0)
++		goto fail;
++
++	if (iter->trace->pipe_open)
++		iter->trace->pipe_open(iter);
++
++	tr->current_trace->ref++;
++out:
++	mutex_unlock(&trace_types_lock);
++	return ret;
++
++fail:
++	mutex_unlock(&trace_types_lock);
++
++	free_cpumask_var(iter->started);
++	mutex_destroy(&iter->mutex);
++	kfree(iter);
++
++	trace_array_put(tr);
++	return ret;
++}
++EXPORT_SYMBOL_GPL(anon_trace_getfd);
++
+ int trace_run_command(const char *buf, int (*createfn)(int, char **))
+ {
+ 	char **argv;
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
