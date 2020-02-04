@@ -2,40 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE01151C3B
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:31:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C59E5151C4F
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:35:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 117B86E82E;
-	Tue,  4 Feb 2020 14:31:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA9E6E83E;
+	Tue,  4 Feb 2020 14:35:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A53526E82E
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:31:41 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BBF86E83E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:35:23 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 06:31:00 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 06:35:22 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="225518530"
+X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="279073829"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 04 Feb 2020 06:30:58 -0800
+ by FMSMGA003.fm.intel.com with SMTP; 04 Feb 2020 06:35:20 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 16:30:57 +0200
-Date: Tue, 4 Feb 2020 16:30:57 +0200
+ Tue, 04 Feb 2020 16:35:19 +0200
+Date: Tue, 4 Feb 2020 16:35:19 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200204143057.GO13686@intel.com>
+Message-ID: <20200204143519.GP13686@intel.com>
 References: <20200204112927.17391-1-anshuman.gupta@intel.com>
- <20200204112927.17391-6-anshuman.gupta@intel.com>
+ <20200204112927.17391-8-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200204112927.17391-6-anshuman.gupta@intel.com>
+In-Reply-To: <20200204112927.17391-8-anshuman.gupta@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Get right max plane stride
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915: Enable 3 display pipes support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,69 +53,109 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 04, 2020 at 04:59:25PM +0530, Anshuman Gupta wrote:
-> intel_plane_fb_max_stride should return the max stride of
-> primary plane for first available pipe in intel device info
-> pipe_mask.
+On Tue, Feb 04, 2020 at 04:59:27PM +0530, Anshuman Gupta wrote:
+> Allow 3-display pipes SKU system with any combination
+> in INTEL_INFO pipe mask.
+> B.Spec:50075
 > =
 
 > changes since RFC:
-> - Introduced a helper to get first intel_crtc intel_get_first_crtc. [Vill=
-e]
+> - using intel_pipe_mask_is_valid() function to check integrity of
+>   pipe_mask. [Ville]
 > =
 
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c       | 5 +++--
->  drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++++
->  2 files changed, 9 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/intel_device_info.c | 38 +++++++++++++++++-------
+>  1 file changed, 28 insertions(+), 10 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 7c51eb3faeb3..0dcf400f6954 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2706,9 +2706,10 @@ u32 intel_plane_fb_max_stride(struct drm_i915_priv=
-ate *dev_priv,
->  =
-
->  	/*
->  	 * We assume the primary plane for pipe A has
-> -	 * the highest stride limits of them all.
-> +	 * the highest stride limits of them all,
-> +	 * if in case pipe A is disabled, use the first pipe from pipe_mask.
->  	 */
-> -	crtc =3D intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-> +	crtc =3D intel_get_first_crtc(dev_priv);
->  	if (!crtc)
->  		return 0;
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 80a6460da852..1f295c89061a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1423,6 +1423,12 @@ vlv_pipe_to_channel(enum pipe pipe)
->  	}
+> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i=
+915/intel_device_info.c
+> index fcdacd6d4aa5..caf93a68a056 100644
+> --- a/drivers/gpu/drm/i915/intel_device_info.c
+> +++ b/drivers/gpu/drm/i915/intel_device_info.c
+> @@ -896,6 +896,30 @@ void intel_device_info_subplatform_init(struct drm_i=
+915_private *i915)
+>  	RUNTIME_INFO(i915)->platform_mask[pi] |=3D mask;
 >  }
 >  =
 
-> +static inline struct intel_crtc *
-> +intel_get_first_crtc(struct drm_i915_private *dev_priv)
+> +static bool
+> +intel_pipe_mask_is_valid(struct drm_i915_private *dev_priv, u8 pipe_mask)
 > +{
-> +	return to_intel_crtc(drm_crtc_from_index(&dev_priv->drm, 0));
+> +	/*
+> +	 * At least one pipe should be enabled.
+> +	 */
+> +	if (pipe_mask =3D=3D 0)
+> +		return false;
+
+Doesn't that just mean the entire display engine is fused off?
+
+> +	/*
+> +	 * if there are disabled pipes they should be the last ones,
+> +	 * with no holses in the mask for Dispaly Gen<=3D12.
+
+"holes"
+
+> +	 */
+> +	if (!is_power_of_2(pipe_mask + 1)) {
+> +		if (INTEL_GEN(dev_priv) <=3D 11)
+> +			return false;
+> +		else if (IS_TIGERLAKE(dev_priv))
+> +			return false;
+> +		else if (IS_GEN(dev_priv, 12))
+> +			return true;
+
+Why is tgl and rest of gen12 treated differently? I thought this
+flexible fusing thing was next-gen stuff.
+
+The structure of this function is a bit wonky. Simpler:
+
+intel_pipe_mask_is_valid()
+{
+	if (is_whatever_supports_holes)
+		return true;
+
+	return is_power_of_2();
+}
+
+
+> +	}
+> +
+> +	return true;
 > +}
 > +
->  static inline struct intel_crtc *
->  intel_get_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe pip=
-e)
->  {
+>  /**
+>   * intel_device_info_runtime_init - initialize runtime info
+>   * @dev_priv: the i915 device
+> @@ -995,17 +1019,11 @@ void intel_device_info_runtime_init(struct drm_i91=
+5_private *dev_priv)
+>  		    (dfsm & TGL_DFSM_PIPE_D_DISABLE))
+>  			enabled_mask &=3D ~BIT(PIPE_D);
+>  =
+
+> -		/*
+> -		 * At least one pipe should be enabled and if there are
+> -		 * disabled pipes, they should be the last ones, with no holes
+> -		 * in the mask.
+> -		 */
+> -		if (enabled_mask =3D=3D 0 || !is_power_of_2(enabled_mask + 1))
+> -			drm_err(&dev_priv->drm,
+> -				"invalid pipe fuse configuration: enabled_mask=3D0x%x\n",
+> -				enabled_mask);
+> -		else
+> +		if (intel_pipe_mask_is_valid(dev_priv, enabled_mask))
+>  			info->pipe_mask =3D enabled_mask;
+> +		else
+> +			drm_err(&dev_priv->drm, "invalid pipe fuse configuration: enabled_mas=
+k=3D0x%x\n",
+> +				enabled_mask);
+>  =
+
+>  		if (dfsm & SKL_DFSM_DISPLAY_HDCP_DISABLE)
+>  			info->display.has_hdcp =3D 0;
 > -- =
 
 > 2.24.0
