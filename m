@@ -2,36 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E5B7151768
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:11:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E6615179A
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:19:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E68E46EE02;
-	Tue,  4 Feb 2020 09:11:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE04D6EE04;
+	Tue,  4 Feb 2020 09:19:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 395F96EDFF;
- Tue,  4 Feb 2020 09:11:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 01:11:41 -0800
-X-IronPort-AV: E=Sophos;i="5.70,398,1574150400"; d="scan'208";a="224233261"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 01:11:39 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200128181603.27767-1-pankaj.laxminarayan.bharadiya@intel.com>
-Date: Tue, 04 Feb 2020 11:11:36 +0200
-Message-ID: <87r1za3eev.fsf@intel.com>
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com
+ [IPv6:2a00:1450:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FCD06EE04
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 09:19:09 +0000 (UTC)
+Received: by mail-wr1-x430.google.com with SMTP id m16so21949001wrx.11
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 01:19:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GO697o/dRC2e5bk66tkFT0/e70IXPket6OYeHoidlyE=;
+ b=fkQA7tqZrXJsHLAM3vY94OdbnrVyfKxfmAqx0rXGMmcWMkB11La7D3i0CwsZ2gFSZ7
+ q0OuM5/urpjAoFdpCnZW8NZH3T3FhoyTpBhSIrnicLHSJ1ixHGjforuFcKfmAGsGtMS7
+ jQDaSyWcBsNAuR2e/5PNVBMO/r0MYYUAFi454KKXm2LQpbDfoC1i2jRWqKOaSCYA3/XC
+ 5nw4jcLqeSwx8ToWIBjE/PAnfEU4CcbFV0Rcd+PUndua9GRcAMe6rk543P7VF2RYKvTe
+ 6R988iXd2lBN1Winn2IFRWoDXq4X9xcWdYQi5MEg2O678cr7Nl7tHAoS/s/giCBmq8hg
+ vkvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=GO697o/dRC2e5bk66tkFT0/e70IXPket6OYeHoidlyE=;
+ b=IxhaMHBW2ADfMqqoYexe1PYjgYBSuZrLt4ECreDKg4TjnIh1RKkjVToyKygbB0VdL0
+ AFoRS4BKKyhatpm7l2HVNwgv2GJGiGjsOogsDOBlgnafpsMc6SzO8VQkMYgoMcKeq8Vn
+ xP5fQbLCIYxumAWCLFyZzpgurm9MBaJvtPsYhwD2whVex7kYW/3gb8F/JjETw6XgYf+x
+ gUzOZWI9hcgAdHwjlDmVAdtYGYYvnRsIynRl9XuOYTzLlYkl4LmvXreO28G1AujVIFXl
+ mUjP5Loi724rY82W6m4CB8sE149/ivLz+CbVOkWHupbPjDldGBbPdyZnHWyznPfGjaQ3
+ HlFw==
+X-Gm-Message-State: APjAAAVmzoIM/wAJMKaTnyJ0vK6eyzpke+L97CSLzsFh+2EMjGyJY341
+ jiNooDnohDN9GJtEXQovO88=
+X-Google-Smtp-Source: APXvYqzisE4naSVj6KQZEe32UOLCEXPTMbdauGkb1ch6kqsnxql6SLWnC8o0ICqPD8cDF3kPP9JecQ==
+X-Received: by 2002:a5d:608f:: with SMTP id w15mr16135783wrt.20.1580807948154; 
+ Tue, 04 Feb 2020 01:19:08 -0800 (PST)
+Received: from wambui.zuku.co.ke ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id f189sm3094968wmf.16.2020.02.04.01.19.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 04 Feb 2020 01:19:07 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Tue,  4 Feb 2020 12:18:43 +0300
+Message-Id: <20200204091855.24259-1-wambui.karugax@gmail.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v5 00/21] drm: Introduce struct drm_device
- based WARN* and use them in i915
+Subject: [Intel-gfx] [PATCH 00/12] drm/i915: conversion to drm_device based
+ logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,151 +66,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 28 Jan 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
-> include device information in the backtrace, so we know what device
-> the warnings originate from.
->
-> Similar to this, add new struct drm_device based drm_WARN* macros. These
-> macros include device information in the backtrace, so we know
-> what device the warnings originate from. Knowing the device specific
-> information in the backtrace would be helpful in development all
-> around.
->
-> This patch series aims to convert calls of WARN(), WARN_ON(),
-> WARN_ONCE() and WARN_ON_ONCE() in i915 driver to use the drm
-> device-specific variants automatically wherever struct device pointer
-> is available.
->
-> To do this, this patch series -
->   - introduces new struct drm_device based WARN* macros
->   - automatically converts WARN* with device specific dev_WARN*
->     variants using coccinelle semantic patch scripts.
->
-> The goal is to convert all the calls of WARN* with drm_WARN* in i915,
-> but there are still cases where device pointer is not readily
-> available in some functions (or I missed them somehow) using WARN*
-> hence some manual churning is needed. Handle such remaining cases
-> separately later.
+This patchset continues the conversion of printk based logging macros to
+the struct drm_device based logging macros in drm/i915, this time
+focusing on the i915/display folder. The patches were
+achieved manually and using coccinelle.
 
-Thanks for the patches, pushed all that applied, please rebase the rest.
+Wambui Karuga (12):
+  drm/i915/dp: convert to struct drm_device based logging macros.
+  drm/i915/dp_link_training: convert to drm_device based logging macros.
+  drm/i915/atomic: conversion to drm_device based logging macros.
+  drm/i915/color: conversion to drm_device based logging macros.
+  drm/i915/crt: automatic conversion to drm_device based logging macros.
+  drm/i915/dp_aux_backlight: convert to drm_device based logging macros.
+  drm/i915/dpll_mgr: convert to drm_device based logging macros.
+  drm/i915/combo_phy: convert to struct drm_device logging macros.
+  drm/i915/dp_mst: convert to drm_device based logging macros.
+  drm/i915/dsi_vbt: convert to drm_device based logging macros.
+  drm/i915/hdmi: convert to struct drm_device based logging macros.
+  drm/i915/dpio_phy: convert to drm_device based logging macros.
 
-BR,
-Jani.
-
-
->
-> changes since v4:
->    - Address Jani's comment
->      - split major i915/display related conversions per file into
->        seperate patches so that non conflicting patches can be
->        merged.
->
-> changes since v3:
->   - rebase pending unmerged patches on drm-tip
-> 	(bc626bbb5b6e drm-tip: 2020y-01m-25d-14h-28m-41s UTC integration manifest)
->
-> changes since v2:
->   - rebase pending unmerged patches on drm-tip
->
-> changes since v1:
->   - Address Jani's review comments
->     - Fix typo in comment of patch 0001
->     - Get rid of helper functions
->     - Split patches by directory
->
-> Changes since RFC at [1]
->   - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
->   - Get rid of extra local variables
->
-> [1] https://patchwork.freedesktop.org/series/71668/
->
->
-> Pankaj Bharadiya (21):
->   drm/i915/display/icl_dsi: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/audio: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/cdclk: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/crt: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/ddi: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/display: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/power: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/dpll_mgr: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/fbc: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/fbdev: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/hdcp: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/hdmi: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/display/overlay: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/panel: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/psr: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/sdvo: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display/tc: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/display: Make WARN* drm specific where drm_device ptr is available
->   drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
->   drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
->
->  drivers/gpu/drm/i915/display/icl_dsi.c        |  14 +-
->  drivers/gpu/drm/i915/display/intel_atomic.c   |   6 +-
->  drivers/gpu/drm/i915/display/intel_audio.c    |  19 +-
->  drivers/gpu/drm/i915/display/intel_bios.c     |  10 +-
->  drivers/gpu/drm/i915/display/intel_bw.c       |   3 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |  81 ++++---
->  drivers/gpu/drm/i915/display/intel_color.c    |   3 +-
->  .../gpu/drm/i915/display/intel_combo_phy.c    |   2 +-
->  .../gpu/drm/i915/display/intel_connector.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_crt.c      |  10 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  92 +++----
->  drivers/gpu/drm/i915/display/intel_display.c  | 226 ++++++++++--------
->  .../drm/i915/display/intel_display_power.c    | 168 +++++++------
->  drivers/gpu/drm/i915/display/intel_dp.c       | 117 +++++----
->  drivers/gpu/drm/i915/display/intel_dp_mst.c   |  10 +-
->  drivers/gpu/drm/i915/display/intel_dpio_phy.c |   3 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  37 +--
->  drivers/gpu/drm/i915/display/intel_dsb.c      |   6 +-
->  .../i915/display/intel_dsi_dcs_backlight.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
->  drivers/gpu/drm/i915/display/intel_fbc.c      |  23 +-
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  13 +-
->  drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
->  drivers/gpu/drm/i915/display/intel_hdcp.c     |  21 +-
->  drivers/gpu/drm/i915/display/intel_hdmi.c     |  52 ++--
->  drivers/gpu/drm/i915/display/intel_hotplug.c  |   7 +-
->  .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
->  drivers/gpu/drm/i915/display/intel_lvds.c     |   7 +-
->  drivers/gpu/drm/i915/display/intel_opregion.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_overlay.c  |  12 +-
->  drivers/gpu/drm/i915/display/intel_panel.c    |  19 +-
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c |   7 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  32 +--
->  drivers/gpu/drm/i915/display/intel_sdvo.c     |  14 +-
->  drivers/gpu/drm/i915/display/intel_sprite.c   |   5 +-
->  drivers/gpu/drm/i915/display/intel_tc.c       |  18 +-
->  drivers/gpu/drm/i915/display/intel_vdsc.c     |   2 +-
->  drivers/gpu/drm/i915/display/vlv_dsi.c        |   2 +-
->  drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
->  drivers/gpu/drm/i915/gvt/cfg_space.c          |  23 +-
->  drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
->  drivers/gpu/drm/i915/gvt/display.c            |   6 +-
->  drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
->  drivers/gpu/drm/i915/gvt/edid.c               |  19 +-
->  drivers/gpu/drm/i915/gvt/gtt.c                |  21 +-
->  drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
->  drivers/gpu/drm/i915/gvt/handlers.c           |  22 +-
->  drivers/gpu/drm/i915/gvt/interrupt.c          |  16 +-
->  drivers/gpu/drm/i915/gvt/kvmgt.c              |  10 +-
->  drivers/gpu/drm/i915/gvt/mmio.c               |  30 ++-
->  drivers/gpu/drm/i915/gvt/mmio_context.c       |   8 +-
->  drivers/gpu/drm/i915/gvt/scheduler.c          |   6 +-
->  drivers/gpu/drm/i915/gvt/vgpu.c               |   6 +-
->  53 files changed, 716 insertions(+), 532 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic.c   |  23 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   3 +-
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  23 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  49 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c       | 320 +++++++++++-------
+ .../drm/i915/display/intel_dp_aux_backlight.c |  72 ++--
+ .../drm/i915/display/intel_dp_link_training.c |  75 ++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  30 +-
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  28 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 254 ++++++++------
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  | 162 +++++----
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 193 +++++++----
+ 12 files changed, 754 insertions(+), 478 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
