@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E51152053
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 19:19:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A93D15207D
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 19:41:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388106E8B3;
-	Tue,  4 Feb 2020 18:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 736206E8B7;
+	Tue,  4 Feb 2020 18:41:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D85B6E8B3
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 18:19:13 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 10:19:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="279136124"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 04 Feb 2020 10:19:11 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 20:19:10 +0200
-Date: Tue, 4 Feb 2020 20:19:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200204181910.GD13686@intel.com>
-References: <20200203225549.152301-1-jose.souza@intel.com>
- <20200204133505.GJ13686@intel.com>
- <0abaa6b7a8051e14e676f3c30343b14b3d315f65.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2D12F6E8A7;
+ Tue,  4 Feb 2020 18:41:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 257A1A011A;
+ Tue,  4 Feb 2020 18:41:32 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <0abaa6b7a8051e14e676f3c30343b14b3d315f65.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Set
- TRANS_DDI_MODE_SELECT to default value when clearing DDI select
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Igor Druzhinin" <igor.druzhinin@citrix.com>
+Date: Tue, 04 Feb 2020 18:41:32 -0000
+Message-ID: <158084169212.25090.16794149944063829898@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1580742421-25194-1-git-send-email-igor.druzhinin@citrix.com>
+In-Reply-To: <1580742421-25194-1-git-send-email-igor.druzhinin@citrix.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gvt=3A_more_locking_for_ppgtt_mm_LRU_list?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,146 +38,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 04, 2020 at 05:48:24PM +0000, Souza, Jose wrote:
-> On Tue, 2020-02-04 at 15:35 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Feb 03, 2020 at 02:55:49PM -0800, Jos=E9 Roberto de Souza
-> > wrote:
-> > > TGL is suffering of timeouts and fifo underruns when disabling
-> > > transcoder in MST mode, this is fixed by set TRANS_DDI_MODE_SELECT
-> > > to
-> > > 0(HDMI mode) when clearing DDI select.
-> > > =
+== Series Details ==
 
-> > > Although BSpec disable sequence don't require this step, it is a
-> > > harmless change and it is also done by Windows driver.
-> > > Anyhow HW team was notified about that but it can take some time to
-> > > documentation to be updated.
-> > > =
+Series: drm/i915/gvt: more locking for ppgtt mm LRU list
+URL   : https://patchwork.freedesktop.org/series/72927/
+State : success
 
-> > > A case that always lead to those issues is:
-> > > - do a modeset enabling pipe A and pipe B in the same MST stream
-> > > leaving A as master
-> > > - disable pipe A, promote B as master doing a full modeset in A
-> > > - enable pipe A, changing the master transcoder back to A(doing a
-> > > full modeset in B)
-> > > - Pow: underruns and timeouts
-> > > =
+== Summary ==
 
-> > > The transcoders involved will only work again when complete
-> > > disabled
-> > > and their power wells turned off causing a reset in their
-> > > registers.
-> > > =
+CI Bug Log - changes from CI_DRM_7864 -> Patchwork_16398
+====================================================
 
-> > > v2: Setting TRANS_DDI_MODE_SELECT to default when clearing DDI
-> > > select
-> > > not anymore when disabling TRANS_DDI, both work but this one looks
-> > > more safe. (Ville comment)
-> > =
+Summary
+-------
 
-> > I presume this still fixes the issue?
-> =
+  **SUCCESS**
 
-> It does.
-> =
+  No regressions found.
 
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/index.html
 
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 7 +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > =
+Known issues
+------------
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > index aa066fb9eb00..45082e71262c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1988,10 +1988,12 @@ void
-> > > intel_ddi_disable_transcoder_func(const struct intel_crtc_state
-> > > *crtc_state
-> > >  	val &=3D ~TRANS_DDI_FUNC_ENABLE;
-> > >  =
+  Here are the changes found in Patchwork_16398 that come from known issues:
 
-> > >  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> > > -		if (!intel_dp_mst_is_master_trans(crtc_state))
-> > > +		if (!intel_dp_mst_is_master_trans(crtc_state)) {
-> > >  			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
-> > > +			val &=3D ~TRANS_DDI_MODE_SELECT_MASK;
-> > =
+### IGT changes ###
 
-> > Two separate statements.
-> > =
+#### Issues hit ####
 
-> > > +		}
-> > >  	} else {
-> > > -		val &=3D ~TRANS_DDI_PORT_MASK;
-> > > +		val &=3D ~(TRANS_DDI_PORT_MASK |
-> > > TRANS_DDI_MODE_SELECT_MASK);
-> > =
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
 
-> > One statement.
-> =
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][3] -> [FAIL][4] ([i915#694])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-byt-n2820/igt@gem_exec_parallel@fds.html
 
-> Here was the only place that fitted in 80 cols.
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][5] -> [FAIL][6] ([CI#94])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-'\n' is a thing.
+  * igt@i915_getparams_basic@basic-eu-total:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
 
-val &=3D ~(A |
-         B);
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][9] -> [DMESG-FAIL][10] ([i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-ivb-3770/igt@i915_selftest@live_blt.html
 
-> =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [PASS][11] -> [DMESG-FAIL][12] ([i915#1052])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
 
-> > =
+  
+#### Possible fixes ####
 
-> > >  	}
-> > >  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder),
-> > > val);
-> > >  =
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-j1900:       [FAIL][13] ([i915#694]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-byt-j1900/igt@gem_exec_parallel@fds.html
 
-> > > @@ -3729,6 +3731,7 @@ static void intel_ddi_post_disable_dp(struct
-> > > intel_encoder *encoder,
-> > >  			val =3D intel_de_read(dev_priv,
-> > >  					    TRANS_DDI_FUNC_CTL(cpu_tran
-> > > scoder));
-> > >  			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
-> > > +			val &=3D ~TRANS_DDI_MODE_SELECT_MASK;
-> > =
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][15] ([i915#178]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
 
-> > Two again.
-> > =
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][17] ([i915#725]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-hsw-4770/igt@i915_selftest@live_blt.html
 
-> > A bit inconsistent, otherwise lgtm.
-> > =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [DMESG-FAIL][19] ([i915#1052]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
 
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+  * igt@i915_selftest@live_gtt:
+    - fi-skl-6600u:       [TIMEOUT][21] ([fdo#111732] / [fdo#112271]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-skl-6600u/igt@i915_selftest@live_gtt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-skl-6600u/igt@i915_selftest@live_gtt.html
 
-> Thanks
-> =
+  * igt@i915_selftest@live_perf:
+    - fi-apl-guc:         [INCOMPLETE][23] ([fdo#103927]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-apl-guc/igt@i915_selftest@live_perf.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-apl-guc/igt@i915_selftest@live_perf.html
 
-> > =
+  * igt@kms_addfb_basic@bad-pitch-0:
+    - fi-tgl-y:           [DMESG-WARN][25] ([CI#94] / [i915#402]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
 
-> > >  			intel_de_write(dev_priv,
-> > >  				       TRANS_DDI_FUNC_CTL(cpu_transcode
-> > > r),
-> > >  				       val);
-> > > -- =
+  
+#### Warnings ####
 
-> > > 2.25.0
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-j1900:       [TIMEOUT][27] ([fdo#112271] / [i915#1084]) -> [FAIL][28] ([i915#694])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7864/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
 
--- =
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#111732]: https://bugs.freedesktop.org/show_bug.cgi?id=111732
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
 
-Ville Syrj=E4l=E4
-Intel
+
+Participating hosts (50 -> 41)
+------------------------------
+
+  Additional (3): fi-skl-lmem fi-glk-dsi fi-snb-2520m 
+  Missing    (12): fi-ilk-m540 fi-bdw-samus fi-bsw-n3050 fi-hsw-4200u fi-byt-squawks fi-ilk-650 fi-ctg-p8600 fi-gdg-551 fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-skl-6700k2 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7864 -> Patchwork_16398
+
+  CI-20190529: 20190529
+  CI_DRM_7864: 5a140e2fc771e4c8b10d14e2db7bfb4996ee9d8a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5417: 33cc93c8ba5daa0b7498f297a4f626844d895d06 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16398: 5eeb11aab588bee0a5e0b6feed3df9986ee73a64 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5eeb11aab588 drm/i915/gvt: more locking for ppgtt mm LRU list
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16398/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
