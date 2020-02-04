@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7AB01517A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71AC61517A8
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:19:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4223A6EE15;
-	Tue,  4 Feb 2020 09:19:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D33D26EE19;
+	Tue,  4 Feb 2020 09:19:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6AA96EE15
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 09:19:45 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id s144so1750204wme.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 01:19:45 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D36DE6EE19
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 09:19:49 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id g1so2342613wmh.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 01:19:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=14Zg2SEbwV2p/W4DbPbN63Ssvra2nwF0BGcLyL21qLg=;
- b=pEvjWKB7ebQRBwy6bmjD4bOgMH4jXmr1akX7ly66+vCGSDKPZmumzKyY/jF7HYxa8j
- JEDDDCPsUGrjoQWgztWyzsQUCv6iylCEFEc0M0i/UBbN/gAO116o7BKI/EwyZT9F6Pth
- 6maj18FfyGH5X2dFmF4j7P7N+Mca981sHbaw/wlPnlXW6M1ZQQ9nYueafVqsNtx2r6m3
- gOWJ4iPWUYLdUofDCGyzH/acpxDUk5VZKDNES2z5wkEwqRwe6SXOzwLHvHFeeyaC0Xp2
- V/efeshGMH1iY70F1Y7RRO6MOT+z5ROi/i9EQ2SXBHlhoW37/BHeoA0DqPQLY5UCTWJg
- uAJA==
+ bh=RUyzC+c8vYroRHi3fnSKNMOgu+oThz6MUfasTxTX8hg=;
+ b=pcfo8K0Nbn9qoDSpXkZUHZeZJm7G8IvaSq8tRTp6BCXAYDLJC/pwYqase2+StJrrmm
+ LtmPP7D0AC+ANwnmTUE7/YOoUfbwH+smFXPs6mnpzZxkD2VnbDEwu/m8OlV2uwPpshGy
+ D0onDahfPVazvr6TE8bgGfxnMQM/7qsomE3W3bQgesAMj6HnCi4MYGiJSwDEhwxmvNpm
+ TWisuABdSQ4AP1GdvJhvHd9rU0X/HqcSu81teNhJ6Xgkebn74nKssdzgXGP6xBMEXQaR
+ pMlR9OFUYfdcNT4hqsOPHI7u1FUJ4rC8gni5nIG/K1H9pGPAou9KxcZJrfI+wzWbj6tW
+ TApw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=14Zg2SEbwV2p/W4DbPbN63Ssvra2nwF0BGcLyL21qLg=;
- b=GP30CIvfu0a4h1R1UmVuK35yRWbn8OGVY9IkZTY+HLOm+QEPvJW6YCfMNBRx7crcUz
- uZLgwmdDRMv6lRGZptZ5rSSItk8u+GFJ3xnuuHRHVsAtwUcR8N1rcFE9GNRNeiVVjDoI
- aedzhAoM+0XexqhLCIOoFbG2lklSqURRaXkeEAHsXGPQ5zNC1KI3JbEeDqqrztQ7vz9Q
- hTetMn//ciOLPvNGKXAL2uw7TGg8DedqsNkcRJL5dxpQL/zoh+TvAWII4P+CW2Lv6aDr
- zvmrCBDmipnREHgoWurVGFe8HUi2AbwnfP6z40degDGueSrVVjlGApq+jVYzFOyTzyFX
- 4vtw==
-X-Gm-Message-State: APjAAAXZsvx42SCZrkj6EhfSSzb6yGSMeUjZ+ZzMJAwp53ftyZ2a7o+C
- PGfasd0mx+aVBxNm+8sNfQc=
-X-Google-Smtp-Source: APXvYqywhPtVOUT/VGI6bmYteigoIKpdcWE5dHvHqIZwx3c16LBAYop65kQYj63W+xuH75U0TokMug==
-X-Received: by 2002:a1c:5441:: with SMTP id p1mr4926657wmi.161.1580807984028; 
- Tue, 04 Feb 2020 01:19:44 -0800 (PST)
+ bh=RUyzC+c8vYroRHi3fnSKNMOgu+oThz6MUfasTxTX8hg=;
+ b=NV66hY4xScZs3rWYdxV2nG0WnetXGIQzQw118ZWtyxOLRp5CciHusGi7sXuc++iBN6
+ Qns0knKXgRys4Bmc8Xrqmhvl/5CJ6Vz3AZ6vOdFFierYBiatulDvRWB/ImL4s2SHuXsw
+ eTQcbT+5l7yjAX7gIZVIy9mwEtcsidb9hNa6jjjbCx1vEm9ZMPjVhQyAFLnAjWy3wruh
+ 3enOG7UjErUNBiJoP9dVsCxXo9Y1fqW1SMImOIkryME7CEW92Wdz2gRPAB8tgwiEbafz
+ /ughFJutdADhfu0qV8BqEMRxmhypPxLAMI6NYq9eNiq+GccbcYVdI2MRzsMd8xuZ1ZpZ
+ QMlg==
+X-Gm-Message-State: APjAAAUygrS6tE6B4zBnTgVh+A0fY7pb6GQQrP4nRud/J3HXlud9YhgY
+ iIWGXGWcbjsQ2orfuKHgFv0=
+X-Google-Smtp-Source: APXvYqx3MfsLAta/t/DtC8nJWNAp/YGv0+UMBS7SwUAihfQDvWR5qil0Qbk9Oz7xtIiR68cnh4odCg==
+X-Received: by 2002:a1c:a515:: with SMTP id o21mr4737564wme.85.1580807988222; 
+ Tue, 04 Feb 2020 01:19:48 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id f189sm3094968wmf.16.2020.02.04.01.19.40
+ by smtp.googlemail.com with ESMTPSA id f189sm3094968wmf.16.2020.02.04.01.19.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Feb 2020 01:19:43 -0800 (PST)
+ Tue, 04 Feb 2020 01:19:47 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Tue,  4 Feb 2020 12:18:53 +0300
-Message-Id: <20200204091855.24259-11-wambui.karugax@gmail.com>
+Date: Tue,  4 Feb 2020 12:18:54 +0300
+Message-Id: <20200204091855.24259-12-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200204091855.24259-1-wambui.karugax@gmail.com>
 References: <20200204091855.24259-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/12] drm/i915/dsi_vbt: convert to drm_device
- based logging macros.
+Subject: [Intel-gfx] [PATCH 11/12] drm/i915/hdmi: convert to struct
+ drm_device based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,365 +74,582 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_dsi_vbt.c.
-This also involves extracting the drm_i915_private device from the
-intel_dsi type for use in the logging macros.
+Conversion of various instances of the printk based drm logging macros
+to the struct drm_device based logging macros in
+i915/display/intel_hdmi.c.
+This also involves extraction of the drm_i915_private device from
+various intel/drm types for use in the logging macros.
 
-This converts DRM_DEBUG/DRM_DEBUG_DRIVER to drm_dbg().
+Note that this converts DRM_DEBUG_DRIVER() to drm_dbg().
 
 References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 162 +++++++++++--------
- 1 file changed, 99 insertions(+), 63 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 193 ++++++++++++++--------
+ 1 file changed, 128 insertions(+), 65 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index 04f953ba8f00..f8704bfb4979 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -136,7 +136,7 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 	u16 len;
- 	enum port port;
- 
--	DRM_DEBUG_KMS("\n");
-+	drm_dbg_kms(&dev_priv->drm, "\n");
- 
- 	flags = *data++;
- 	type = *data++;
-@@ -158,7 +158,8 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 
- 	dsi_device = intel_dsi->dsi_hosts[port]->device;
- 	if (!dsi_device) {
--		DRM_DEBUG_KMS("no dsi device for port %c\n", port_name(port));
-+		drm_dbg_kms(&dev_priv->drm, "no dsi device for port %c\n",
-+			    port_name(port));
- 		goto out;
- 	}
- 
-@@ -182,7 +183,8 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 	case MIPI_DSI_GENERIC_READ_REQUEST_0_PARAM:
- 	case MIPI_DSI_GENERIC_READ_REQUEST_1_PARAM:
- 	case MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM:
--		DRM_DEBUG_DRIVER("Generic Read not yet implemented or used\n");
-+		drm_dbg(&dev_priv->drm,
-+			"Generic Read not yet implemented or used\n");
- 		break;
- 	case MIPI_DSI_GENERIC_LONG_WRITE:
- 		mipi_dsi_generic_write(dsi_device, data, len);
-@@ -194,7 +196,8 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 		mipi_dsi_dcs_write_buffer(dsi_device, data, 2);
- 		break;
- 	case MIPI_DSI_DCS_READ:
--		DRM_DEBUG_DRIVER("DCS Read not yet implemented or used\n");
-+		drm_dbg(&dev_priv->drm,
-+			"DCS Read not yet implemented or used\n");
- 		break;
- 	case MIPI_DSI_DCS_LONG_WRITE:
- 		mipi_dsi_dcs_write_buffer(dsi_device, data, len);
-@@ -212,9 +215,10 @@ static const u8 *mipi_exec_send_packet(struct intel_dsi *intel_dsi,
- 
- static const u8 *mipi_exec_delay(struct intel_dsi *intel_dsi, const u8 *data)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index ab13cf834cc4..90ceea5eaa9c 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -685,6 +685,7 @@ void intel_read_infoframe(struct intel_encoder *encoder,
+ 			  union hdmi_infoframe *frame)
  {
-+	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
- 	u32 delay = *((const u32 *) data);
+ 	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	u8 buffer[VIDEO_DIP_DATA_SIZE];
+ 	int ret;
  
--	DRM_DEBUG_KMS("\n");
-+	drm_dbg_kms(&i915->drm, "\n");
- 
- 	usleep_range(delay, delay + 10);
- 	data += 4;
-@@ -231,7 +235,8 @@ static void vlv_exec_gpio(struct drm_i915_private *dev_priv,
- 	u8 port;
- 
- 	if (gpio_index >= ARRAY_SIZE(vlv_gpio_table)) {
--		DRM_DEBUG_KMS("unknown gpio index %u\n", gpio_index);
-+		drm_dbg_kms(&dev_priv->drm, "unknown gpio index %u\n",
-+			    gpio_index);
+@@ -701,13 +702,15 @@ void intel_read_infoframe(struct intel_encoder *encoder,
+ 	/* see comment above for the reason for this offset */
+ 	ret = hdmi_infoframe_unpack(frame, buffer + 1, sizeof(buffer) - 1);
+ 	if (ret) {
+-		DRM_DEBUG_KMS("Failed to unpack infoframe type 0x%02x\n", type);
++		drm_dbg_kms(&i915->drm,
++			    "Failed to unpack infoframe type 0x%02x\n", type);
  		return;
  	}
  
-@@ -244,10 +249,11 @@ static void vlv_exec_gpio(struct drm_i915_private *dev_priv,
- 		if (gpio_source == 0) {
- 			port = IOSF_PORT_GPIO_NC;
- 		} else if (gpio_source == 1) {
--			DRM_DEBUG_KMS("SC gpio not supported\n");
-+			drm_dbg_kms(&dev_priv->drm, "SC gpio not supported\n");
- 			return;
- 		} else {
--			DRM_DEBUG_KMS("unknown gpio source %u\n", gpio_source);
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "unknown gpio source %u\n", gpio_source);
- 			return;
- 		}
+ 	if (frame->any.type != type)
+-		DRM_DEBUG_KMS("Found the wrong infoframe type 0x%x (expected 0x%02x)\n",
+-			      frame->any.type, type);
++		drm_dbg_kms(&i915->drm,
++			    "Found the wrong infoframe type 0x%x (expected 0x%02x)\n",
++			    frame->any.type, type);
+ }
+ 
+ static bool
+@@ -847,7 +850,8 @@ intel_hdmi_compute_drm_infoframe(struct intel_encoder *encoder,
+ 
+ 	ret = drm_hdmi_infoframe_set_hdr_metadata(frame, conn_state);
+ 	if (ret < 0) {
+-		DRM_DEBUG_KMS("couldn't set HDR metadata in infoframe\n");
++		drm_dbg_kms(&dev_priv->drm,
++			    "couldn't set HDR metadata in infoframe\n");
+ 		return false;
  	}
-@@ -291,13 +297,15 @@ static void chv_exec_gpio(struct drm_i915_private *dev_priv,
- 	} else {
- 		/* XXX: The spec is unclear about CHV GPIO on seq v2 */
- 		if (gpio_source != 0) {
--			DRM_DEBUG_KMS("unknown gpio source %u\n", gpio_source);
+ 
+@@ -887,8 +891,9 @@ static void g4x_set_infoframes(struct intel_encoder *encoder,
+ 		if (!(val & VIDEO_DIP_ENABLE))
+ 			return;
+ 		if (port != (val & VIDEO_DIP_PORT_MASK)) {
+-			DRM_DEBUG_KMS("video DIP still enabled on port %c\n",
+-				      (val & VIDEO_DIP_PORT_MASK) >> 29);
 +			drm_dbg_kms(&dev_priv->drm,
-+				    "unknown gpio source %u\n", gpio_source);
++				    "video DIP still enabled on port %c\n",
++				    (val & VIDEO_DIP_PORT_MASK) >> 29);
  			return;
  		}
+ 		val &= ~(VIDEO_DIP_ENABLE | VIDEO_DIP_ENABLE_AVI |
+@@ -900,8 +905,9 @@ static void g4x_set_infoframes(struct intel_encoder *encoder,
  
- 		if (gpio_index >= CHV_GPIO_IDX_START_E) {
--			DRM_DEBUG_KMS("invalid gpio index %u for GPIO N\n",
--				      gpio_index);
+ 	if (port != (val & VIDEO_DIP_PORT_MASK)) {
+ 		if (val & VIDEO_DIP_ENABLE) {
+-			DRM_DEBUG_KMS("video DIP already enabled on port %c\n",
+-				      (val & VIDEO_DIP_PORT_MASK) >> 29);
 +			drm_dbg_kms(&dev_priv->drm,
-+				    "invalid gpio index %u for GPIO N\n",
-+				    gpio_index);
++				    "video DIP already enabled on port %c\n",
++				    (val & VIDEO_DIP_PORT_MASK) >> 29);
  			return;
  		}
+ 		val &= ~VIDEO_DIP_PORT_MASK;
+@@ -1258,8 +1264,8 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
+ 	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
+ 		return;
  
-@@ -332,8 +340,9 @@ static void bxt_exec_gpio(struct drm_i915_private *dev_priv,
- 						 GPIOD_OUT_HIGH);
+-	DRM_DEBUG_KMS("%s DP dual mode adaptor TMDS output\n",
+-		      enable ? "Enabling" : "Disabling");
++	drm_dbg_kms(&dev_priv->drm, "%s DP dual mode adaptor TMDS output\n",
++		    enable ? "Enabling" : "Disabling");
  
- 		if (IS_ERR_OR_NULL(gpio_desc)) {
--			DRM_ERROR("GPIO index %u request failed (%ld)\n",
--				  gpio_index, PTR_ERR(gpio_desc));
-+			drm_err(&dev_priv->drm,
-+				"GPIO index %u request failed (%ld)\n",
-+				gpio_index, PTR_ERR(gpio_desc));
- 			return;
- 		}
+ 	drm_dp_dual_mode_set_tmds_output(hdmi->dp_dual_mode.type,
+ 					 adapter, enable);
+@@ -1343,13 +1349,15 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+ 	ret = intel_hdmi_hdcp_write(intel_dig_port, DRM_HDCP_DDC_AN, an,
+ 				    DRM_HDCP_AN_LEN);
+ 	if (ret) {
+-		DRM_DEBUG_KMS("Write An over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&dev_priv->drm, "Write An over DDC failed (%d)\n",
++			    ret);
+ 		return ret;
+ 	}
  
-@@ -346,7 +355,7 @@ static void bxt_exec_gpio(struct drm_i915_private *dev_priv,
- static void icl_exec_gpio(struct drm_i915_private *dev_priv,
- 			  u8 gpio_source, u8 gpio_index, bool value)
+ 	ret = intel_gmbus_output_aksv(adapter);
+ 	if (ret < 0) {
+-		DRM_DEBUG_KMS("Failed to output aksv (%d)\n", ret);
++		drm_dbg_kms(&dev_priv->drm, "Failed to output aksv (%d)\n",
++			    ret);
+ 		return ret;
+ 	}
+ 	return 0;
+@@ -1358,11 +1366,15 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+ static int intel_hdmi_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
+ 				     u8 *bksv)
  {
--	DRM_DEBUG_KMS("Skipping ICL GPIO element execution\n");
-+	drm_dbg_kms(&dev_priv->drm, "Skipping ICL GPIO element execution\n");
- }
- 
- static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
-@@ -356,7 +365,7 @@ static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
- 	u8 gpio_source, gpio_index = 0, gpio_number;
- 	bool value;
- 
--	DRM_DEBUG_KMS("\n");
-+	drm_dbg_kms(&dev_priv->drm, "\n");
- 
- 	if (dev_priv->vbt.dsi.seq_version >= 3)
- 		gpio_index = *data++;
-@@ -494,13 +503,16 @@ static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const u8 *data)
- 
- static const u8 *mipi_exec_spi(struct intel_dsi *intel_dsi, const u8 *data)
- {
--	DRM_DEBUG_KMS("Skipping SPI element execution\n");
-+	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
 +
-+	drm_dbg_kms(&i915->drm, "Skipping SPI element execution\n");
- 
- 	return data + *(data + 5) + 6;
- }
- 
- static const u8 *mipi_exec_pmic(struct intel_dsi *intel_dsi, const u8 *data)
- {
-+	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
- #ifdef CONFIG_PMIC_OPREGION
- 	u32 value, mask, reg_address;
- 	u16 i2c_address;
-@@ -516,9 +528,10 @@ static const u8 *mipi_exec_pmic(struct intel_dsi *intel_dsi, const u8 *data)
- 							reg_address,
- 							value, mask);
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BKSV, bksv,
+ 				   DRM_HDCP_KSV_LEN);
  	if (ret)
--		DRM_ERROR("%s failed, error: %d\n", __func__, ret);
-+		drm_err(&i915->drm, "%s failed, error: %d\n", __func__, ret);
- #else
--	DRM_ERROR("Your hardware requires CONFIG_PMIC_OPREGION and it is not set\n");
-+	drm_err(&i915->drm,
-+		"Your hardware requires CONFIG_PMIC_OPREGION and it is not set\n");
- #endif
- 
- 	return data + 15;
-@@ -579,8 +592,8 @@ static void intel_dsi_vbt_exec(struct intel_dsi *intel_dsi,
- 
- 	WARN_ON(*data != seq_id);
- 
--	DRM_DEBUG_KMS("Starting MIPI sequence %d - %s\n",
--		      seq_id, sequence_name(seq_id));
-+	drm_dbg_kms(&dev_priv->drm, "Starting MIPI sequence %d - %s\n",
-+		    seq_id, sequence_name(seq_id));
- 
- 	/* Skip Sequence Byte. */
- 	data++;
-@@ -612,18 +625,21 @@ static void intel_dsi_vbt_exec(struct intel_dsi *intel_dsi,
- 
- 			/* Consistency check if we have size. */
- 			if (operation_size && data != next) {
--				DRM_ERROR("Inconsistent operation size\n");
-+				drm_err(&dev_priv->drm,
-+					"Inconsistent operation size\n");
- 				return;
- 			}
- 		} else if (operation_size) {
- 			/* We have size, skip. */
--			DRM_DEBUG_KMS("Unsupported MIPI operation byte %u\n",
--				      operation_byte);
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Unsupported MIPI operation byte %u\n",
-+				    operation_byte);
- 			data += operation_size;
- 		} else {
- 			/* No size, can't skip without parsing. */
--			DRM_ERROR("Unsupported MIPI operation byte %u\n",
--				  operation_byte);
-+			drm_err(&dev_priv->drm,
-+				"Unsupported MIPI operation byte %u\n",
-+				operation_byte);
- 			return;
- 		}
- 	}
-@@ -658,40 +674,54 @@ void intel_dsi_msleep(struct intel_dsi *intel_dsi, int msec)
- 
- void intel_dsi_log_params(struct intel_dsi *intel_dsi)
- {
--	DRM_DEBUG_KMS("Pclk %d\n", intel_dsi->pclk);
--	DRM_DEBUG_KMS("Pixel overlap %d\n", intel_dsi->pixel_overlap);
--	DRM_DEBUG_KMS("Lane count %d\n", intel_dsi->lane_count);
--	DRM_DEBUG_KMS("DPHY param reg 0x%x\n", intel_dsi->dphy_reg);
--	DRM_DEBUG_KMS("Video mode format %s\n",
--		      intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE ?
--		      "non-burst with sync pulse" :
--		      intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_EVENTS ?
--		      "non-burst with sync events" :
--		      intel_dsi->video_mode_format == VIDEO_MODE_BURST ?
--		      "burst" : "<unknown>");
--	DRM_DEBUG_KMS("Burst mode ratio %d\n", intel_dsi->burst_mode_ratio);
--	DRM_DEBUG_KMS("Reset timer %d\n", intel_dsi->rst_timer_val);
--	DRM_DEBUG_KMS("Eot %s\n", enableddisabled(intel_dsi->eotp_pkt));
--	DRM_DEBUG_KMS("Clockstop %s\n", enableddisabled(!intel_dsi->clock_stop));
--	DRM_DEBUG_KMS("Mode %s\n", intel_dsi->operation_mode ? "command" : "video");
-+	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
-+
-+	drm_dbg_kms(&i915->drm, "Pclk %d\n", intel_dsi->pclk);
-+	drm_dbg_kms(&i915->drm, "Pixel overlap %d\n",
-+		    intel_dsi->pixel_overlap);
-+	drm_dbg_kms(&i915->drm, "Lane count %d\n", intel_dsi->lane_count);
-+	drm_dbg_kms(&i915->drm, "DPHY param reg 0x%x\n", intel_dsi->dphy_reg);
-+	drm_dbg_kms(&i915->drm, "Video mode format %s\n",
-+		    intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_PULSE ?
-+		    "non-burst with sync pulse" :
-+		    intel_dsi->video_mode_format == VIDEO_MODE_NON_BURST_WITH_SYNC_EVENTS ?
-+		    "non-burst with sync events" :
-+		    intel_dsi->video_mode_format == VIDEO_MODE_BURST ?
-+		    "burst" : "<unknown>");
-+	drm_dbg_kms(&i915->drm, "Burst mode ratio %d\n",
-+		    intel_dsi->burst_mode_ratio);
-+	drm_dbg_kms(&i915->drm, "Reset timer %d\n", intel_dsi->rst_timer_val);
-+	drm_dbg_kms(&i915->drm, "Eot %s\n",
-+		    enableddisabled(intel_dsi->eotp_pkt));
-+	drm_dbg_kms(&i915->drm, "Clockstop %s\n",
-+		    enableddisabled(!intel_dsi->clock_stop));
-+	drm_dbg_kms(&i915->drm, "Mode %s\n",
-+		    intel_dsi->operation_mode ? "command" : "video");
- 	if (intel_dsi->dual_link == DSI_DUAL_LINK_FRONT_BACK)
--		DRM_DEBUG_KMS("Dual link: DSI_DUAL_LINK_FRONT_BACK\n");
-+		drm_dbg_kms(&i915->drm,
-+			    "Dual link: DSI_DUAL_LINK_FRONT_BACK\n");
- 	else if (intel_dsi->dual_link == DSI_DUAL_LINK_PIXEL_ALT)
--		DRM_DEBUG_KMS("Dual link: DSI_DUAL_LINK_PIXEL_ALT\n");
-+		drm_dbg_kms(&i915->drm,
-+			    "Dual link: DSI_DUAL_LINK_PIXEL_ALT\n");
- 	else
--		DRM_DEBUG_KMS("Dual link: NONE\n");
--	DRM_DEBUG_KMS("Pixel Format %d\n", intel_dsi->pixel_format);
--	DRM_DEBUG_KMS("TLPX %d\n", intel_dsi->escape_clk_div);
--	DRM_DEBUG_KMS("LP RX Timeout 0x%x\n", intel_dsi->lp_rx_timeout);
--	DRM_DEBUG_KMS("Turnaround Timeout 0x%x\n", intel_dsi->turn_arnd_val);
--	DRM_DEBUG_KMS("Init Count 0x%x\n", intel_dsi->init_count);
--	DRM_DEBUG_KMS("HS to LP Count 0x%x\n", intel_dsi->hs_to_lp_count);
--	DRM_DEBUG_KMS("LP Byte Clock %d\n", intel_dsi->lp_byte_clk);
--	DRM_DEBUG_KMS("DBI BW Timer 0x%x\n", intel_dsi->bw_timer);
--	DRM_DEBUG_KMS("LP to HS Clock Count 0x%x\n", intel_dsi->clk_lp_to_hs_count);
--	DRM_DEBUG_KMS("HS to LP Clock Count 0x%x\n", intel_dsi->clk_hs_to_lp_count);
--	DRM_DEBUG_KMS("BTA %s\n",
--			enableddisabled(!(intel_dsi->video_frmt_cfg_bits & DISABLE_VIDEO_BTA)));
-+		drm_dbg_kms(&i915->drm, "Dual link: NONE\n");
-+	drm_dbg_kms(&i915->drm, "Pixel Format %d\n", intel_dsi->pixel_format);
-+	drm_dbg_kms(&i915->drm, "TLPX %d\n", intel_dsi->escape_clk_div);
-+	drm_dbg_kms(&i915->drm, "LP RX Timeout 0x%x\n",
-+		    intel_dsi->lp_rx_timeout);
-+	drm_dbg_kms(&i915->drm, "Turnaround Timeout 0x%x\n",
-+		    intel_dsi->turn_arnd_val);
-+	drm_dbg_kms(&i915->drm, "Init Count 0x%x\n", intel_dsi->init_count);
-+	drm_dbg_kms(&i915->drm, "HS to LP Count 0x%x\n",
-+		    intel_dsi->hs_to_lp_count);
-+	drm_dbg_kms(&i915->drm, "LP Byte Clock %d\n", intel_dsi->lp_byte_clk);
-+	drm_dbg_kms(&i915->drm, "DBI BW Timer 0x%x\n", intel_dsi->bw_timer);
-+	drm_dbg_kms(&i915->drm, "LP to HS Clock Count 0x%x\n",
-+		    intel_dsi->clk_lp_to_hs_count);
-+	drm_dbg_kms(&i915->drm, "HS to LP Clock Count 0x%x\n",
-+		    intel_dsi->clk_hs_to_lp_count);
-+	drm_dbg_kms(&i915->drm, "BTA %s\n",
-+		    enableddisabled(!(intel_dsi->video_frmt_cfg_bits & DISABLE_VIDEO_BTA)));
+-		DRM_DEBUG_KMS("Read Bksv over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm, "Read Bksv over DDC failed (%d)\n",
++			    ret);
+ 	return ret;
  }
  
- bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
-@@ -704,7 +734,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
- 	u16 burst_mode_ratio;
- 	enum port port;
+@@ -1370,11 +1382,15 @@ static
+ int intel_hdmi_hdcp_read_bstatus(struct intel_digital_port *intel_dig_port,
+ 				 u8 *bstatus)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
++
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BSTATUS,
+ 				   bstatus, DRM_HDCP_BSTATUS_LEN);
+ 	if (ret)
+-		DRM_DEBUG_KMS("Read bstatus over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm, "Read bstatus over DDC failed (%d)\n",
++			    ret);
+ 	return ret;
+ }
  
--	DRM_DEBUG_KMS("\n");
-+	drm_dbg_kms(&dev_priv->drm, "\n");
+@@ -1382,12 +1398,15 @@ static
+ int intel_hdmi_hdcp_repeater_present(struct intel_digital_port *intel_dig_port,
+ 				     bool *repeater_present)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
+ 	u8 val;
  
- 	intel_dsi->eotp_pkt = mipi_config->eot_pkt_disabled ? 0 : 1;
- 	intel_dsi->clock_stop = mipi_config->enable_clk_stop ? 1 : 0;
-@@ -763,7 +793,8 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
- 				mipi_config->target_burst_mode_freq = bitrate;
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
+ 	if (ret) {
+-		DRM_DEBUG_KMS("Read bcaps over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm, "Read bcaps over DDC failed (%d)\n",
++			    ret);
+ 		return ret;
+ 	}
+ 	*repeater_present = val & DRM_HDCP_DDC_BCAPS_REPEATER_PRESENT;
+@@ -1398,11 +1417,15 @@ static
+ int intel_hdmi_hdcp_read_ri_prime(struct intel_digital_port *intel_dig_port,
+ 				  u8 *ri_prime)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
++
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_RI_PRIME,
+ 				   ri_prime, DRM_HDCP_RI_LEN);
+ 	if (ret)
+-		DRM_DEBUG_KMS("Read Ri' over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm, "Read Ri' over DDC failed (%d)\n",
++			    ret);
+ 	return ret;
+ }
  
- 			if (mipi_config->target_burst_mode_freq < bitrate) {
--				DRM_ERROR("Burst mode freq is less than computed\n");
-+				drm_err(&dev_priv->drm,
-+					"Burst mode freq is less than computed\n");
- 				return false;
- 			}
+@@ -1410,12 +1433,15 @@ static
+ int intel_hdmi_hdcp_read_ksv_ready(struct intel_digital_port *intel_dig_port,
+ 				   bool *ksv_ready)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
+ 	u8 val;
  
-@@ -773,7 +804,8 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_BCAPS, &val, 1);
+ 	if (ret) {
+-		DRM_DEBUG_KMS("Read bcaps over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm, "Read bcaps over DDC failed (%d)\n",
++			    ret);
+ 		return ret;
+ 	}
+ 	*ksv_ready = val & DRM_HDCP_DDC_BCAPS_KSV_FIFO_READY;
+@@ -1426,11 +1452,15 @@ static
+ int intel_hdmi_hdcp_read_ksv_fifo(struct intel_digital_port *intel_dig_port,
+ 				  int num_downstream, u8 *ksv_fifo)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
++
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_KSV_FIFO,
+ 				   ksv_fifo, num_downstream * DRM_HDCP_KSV_LEN);
+ 	if (ret) {
+-		DRM_DEBUG_KMS("Read ksv fifo over DDC failed (%d)\n", ret);
++		drm_dbg_kms(&i915->drm,
++			    "Read ksv fifo over DDC failed (%d)\n", ret);
+ 		return ret;
+ 	}
+ 	return 0;
+@@ -1440,6 +1470,8 @@ static
+ int intel_hdmi_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
+ 				      int i, u32 *part)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	int ret;
  
- 			intel_dsi->pclk = DIV_ROUND_UP(intel_dsi->pclk * burst_mode_ratio, 100);
+ 	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
+@@ -1448,7 +1480,8 @@ int intel_hdmi_hdcp_read_v_prime_part(struct intel_digital_port *intel_dig_port,
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, DRM_HDCP_DDC_V_PRIME(i),
+ 				   part, DRM_HDCP_V_PRIME_PART_LEN);
+ 	if (ret)
+-		DRM_DEBUG_KMS("Read V'[%d] over DDC failed (%d)\n", i, ret);
++		drm_dbg_kms(&i915->drm, "Read V'[%d] over DDC failed (%d)\n",
++			    i, ret);
+ 	return ret;
+ }
+ 
+@@ -1471,12 +1504,14 @@ static int kbl_repositioning_enc_en_signal(struct intel_connector *connector)
+ 
+ 	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, false);
+ 	if (ret) {
+-		DRM_ERROR("Disable HDCP signalling failed (%d)\n", ret);
++		drm_err(&dev_priv->drm,
++			"Disable HDCP signalling failed (%d)\n", ret);
+ 		return ret;
+ 	}
+ 	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, true);
+ 	if (ret) {
+-		DRM_ERROR("Enable HDCP signalling failed (%d)\n", ret);
++		drm_err(&dev_priv->drm,
++			"Enable HDCP signalling failed (%d)\n", ret);
+ 		return ret;
+ 	}
+ 
+@@ -1497,8 +1532,8 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+ 
+ 	ret = intel_ddi_toggle_hdcp_signalling(&intel_dig_port->base, enable);
+ 	if (ret) {
+-		DRM_ERROR("%s HDCP signalling failed (%d)\n",
+-			  enable ? "Enable" : "Disable", ret);
++		drm_err(&dev_priv->drm, "%s HDCP signalling failed (%d)\n",
++			enable ? "Enable" : "Disable", ret);
+ 		return ret;
+ 	}
+ 
+@@ -1537,8 +1572,9 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+ 	/* Wait for Ri prime match */
+ 	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+ 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+-		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
+-			  intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
++		drm_err(&dev_priv->drm,
++			"Ri' mismatch detected, link check failed (%x)\n",
++			intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
+ 		return false;
+ 	}
+ 	return true;
+@@ -1591,12 +1627,15 @@ int hdcp2_detect_msg_availability(struct intel_digital_port *intel_digital_port,
+ 				  u8 msg_id, bool *msg_ready,
+ 				  ssize_t *msg_sz)
+ {
++	struct drm_i915_private *i915 =
++		intel_digital_port->base.base.dev->dev_private;
+ 	u8 rx_status[HDCP_2_2_HDMI_RXSTATUS_LEN];
+ 	int ret;
+ 
+ 	ret = intel_hdmi_hdcp2_read_rx_status(intel_digital_port, rx_status);
+ 	if (ret < 0) {
+-		DRM_DEBUG_KMS("rx_status read failed. Err %d\n", ret);
++		drm_dbg_kms(&i915->drm, "rx_status read failed. Err %d\n",
++			    ret);
+ 		return ret;
+ 	}
+ 
+@@ -1616,6 +1655,8 @@ static ssize_t
+ intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
+ 			      u8 msg_id, bool paired)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	bool msg_ready = false;
+ 	int timeout, ret;
+ 	ssize_t msg_sz = 0;
+@@ -1630,8 +1671,8 @@ intel_hdmi_hdcp2_wait_for_msg(struct intel_digital_port *intel_dig_port,
+ 			 !ret && msg_ready && msg_sz, timeout * 1000,
+ 			 1000, 5 * 1000);
+ 	if (ret)
+-		DRM_DEBUG_KMS("msg_id: %d, ret: %d, timeout: %d\n",
+-			      msg_id, ret, timeout);
++		drm_dbg_kms(&i915->drm, "msg_id: %d, ret: %d, timeout: %d\n",
++			    msg_id, ret, timeout);
+ 
+ 	return ret ? ret : msg_sz;
+ }
+@@ -1650,6 +1691,8 @@ static
+ int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
+ 			      u8 msg_id, void *buf, size_t size)
+ {
++	struct drm_i915_private *i915 =
++		intel_dig_port->base.base.dev->dev_private;
+ 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+ 	struct intel_hdcp *hdcp = &hdmi->attached_connector->hdcp;
+ 	unsigned int offset;
+@@ -1665,15 +1708,17 @@ int intel_hdmi_hdcp2_read_msg(struct intel_digital_port *intel_dig_port,
+ 	 * available buffer.
+ 	 */
+ 	if (ret > size) {
+-		DRM_DEBUG_KMS("msg_sz(%zd) is more than exp size(%zu)\n",
+-			      ret, size);
++		drm_dbg_kms(&i915->drm,
++			    "msg_sz(%zd) is more than exp size(%zu)\n",
++			    ret, size);
+ 		return -1;
+ 	}
+ 
+ 	offset = HDCP_2_2_HDMI_REG_RD_MSG_OFFSET;
+ 	ret = intel_hdmi_hdcp_read(intel_dig_port, offset, buf, ret);
+ 	if (ret)
+-		DRM_DEBUG_KMS("Failed to read msg_id: %d(%zd)\n", msg_id, ret);
++		drm_dbg_kms(&i915->drm, "Failed to read msg_id: %d(%zd)\n",
++			    msg_id, ret);
+ 
+ 	return ret;
+ }
+@@ -1869,11 +1914,12 @@ static void intel_enable_hdmi_audio(struct intel_encoder *encoder,
+ 				    const struct intel_crtc_state *pipe_config,
+ 				    const struct drm_connector_state *conn_state)
+ {
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+ 
+ 	drm_WARN_ON(encoder->base.dev, !pipe_config->has_hdmi_sink);
+-	DRM_DEBUG_DRIVER("Enabling HDMI audio on pipe %c\n",
+-			 pipe_name(crtc->pipe));
++	drm_dbg(&i915->drm, "Enabling HDMI audio on pipe %c\n",
++		pipe_name(crtc->pipe));
+ 	intel_audio_codec_enable(encoder, pipe_config, conn_state);
+ }
+ 
+@@ -2293,10 +2339,12 @@ static bool
+ intel_hdmi_ycbcr420_config(struct drm_connector *connector,
+ 			   struct intel_crtc_state *config)
+ {
++	struct drm_i915_private *i915 = to_i915(connector->dev);
+ 	struct intel_crtc *intel_crtc = to_intel_crtc(config->uapi.crtc);
+ 
+ 	if (!connector->ycbcr_420_allowed) {
+-		DRM_ERROR("Platform doesn't support YCBCR420 output\n");
++		drm_err(&i915->drm,
++			"Platform doesn't support YCBCR420 output\n");
+ 		return false;
+ 	}
+ 
+@@ -2304,7 +2352,8 @@ intel_hdmi_ycbcr420_config(struct drm_connector *connector,
+ 
+ 	/* YCBCR 420 output conversion needs a scaler */
+ 	if (skl_update_scaler_crtc(config)) {
+-		DRM_DEBUG_KMS("Scaler allocation for output failed\n");
++		drm_dbg_kms(&i915->drm,
++			    "Scaler allocation for output failed\n");
+ 		return false;
+ 	}
+ 
+@@ -2346,6 +2395,7 @@ static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_hdmi *intel_hdmi = enc_to_intel_hdmi(encoder);
++	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	int bpc, clock = adjusted_mode->crtc_clock;
+@@ -2369,13 +2419,15 @@ static int intel_hdmi_compute_clock(struct intel_encoder *encoder,
+ 	if (crtc_state->pipe_bpp > bpc * 3)
+ 		crtc_state->pipe_bpp = bpc * 3;
+ 
+-	DRM_DEBUG_KMS("picking %d bpc for HDMI output (pipe bpp: %d)\n",
+-		      bpc, crtc_state->pipe_bpp);
++	drm_dbg_kms(&i915->drm,
++		    "picking %d bpc for HDMI output (pipe bpp: %d)\n",
++		    bpc, crtc_state->pipe_bpp);
+ 
+ 	if (hdmi_port_clock_valid(intel_hdmi, crtc_state->port_clock,
+ 				  false, crtc_state->has_hdmi_sink) != MODE_OK) {
+-		DRM_DEBUG_KMS("unsupported HDMI clock (%d kHz), rejecting mode\n",
+-			      crtc_state->port_clock);
++		drm_dbg_kms(&i915->drm,
++			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
++			    crtc_state->port_clock);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -2438,7 +2490,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 
+ 	if (drm_mode_is_420_only(&connector->display_info, adjusted_mode)) {
+ 		if (!intel_hdmi_ycbcr420_config(connector, pipe_config)) {
+-			DRM_ERROR("Can't support YCBCR420 output\n");
++			drm_err(&dev_priv->drm,
++				"Can't support YCBCR420 output\n");
+ 			return -EINVAL;
+ 		}
+ 	}
+@@ -2481,22 +2534,22 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config, conn_state);
+ 
+ 	if (!intel_hdmi_compute_avi_infoframe(encoder, pipe_config, conn_state)) {
+-		DRM_DEBUG_KMS("bad AVI infoframe\n");
++		drm_dbg_kms(&dev_priv->drm, "bad AVI infoframe\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	if (!intel_hdmi_compute_spd_infoframe(encoder, pipe_config, conn_state)) {
+-		DRM_DEBUG_KMS("bad SPD infoframe\n");
++		drm_dbg_kms(&dev_priv->drm, "bad SPD infoframe\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	if (!intel_hdmi_compute_hdmi_infoframe(encoder, pipe_config, conn_state)) {
+-		DRM_DEBUG_KMS("bad HDMI infoframe\n");
++		drm_dbg_kms(&dev_priv->drm, "bad HDMI infoframe\n");
+ 		return -EINVAL;
+ 	}
+ 
+ 	if (!intel_hdmi_compute_drm_infoframe(encoder, pipe_config, conn_state)) {
+-		DRM_DEBUG_KMS("bad DRM infoframe\n");
++		drm_dbg_kms(&dev_priv->drm, "bad DRM infoframe\n");
+ 		return -EINVAL;
+ 	}
+ 
+@@ -2546,7 +2599,8 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
+ 		 */
+ 		if (has_edid && !connector->override_edid &&
+ 		    intel_bios_is_port_dp_dual_mode(dev_priv, port)) {
+-			DRM_DEBUG_KMS("Assuming DP dual mode adaptor presence based on VBT\n");
++			drm_dbg_kms(&dev_priv->drm,
++				    "Assuming DP dual mode adaptor presence based on VBT\n");
+ 			type = DRM_DP_DUAL_MODE_TYPE1_DVI;
  		} else {
--			DRM_ERROR("Burst mode target is not set\n");
-+			drm_err(&dev_priv->drm,
-+				"Burst mode target is not set\n");
- 			return false;
- 		}
- 	} else
-@@ -856,17 +888,20 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- 		ret = pinctrl_register_mappings(soc_pwm_pinctrl_map,
- 					     ARRAY_SIZE(soc_pwm_pinctrl_map));
+ 			type = DRM_DP_DUAL_MODE_NONE;
+@@ -2560,9 +2614,10 @@ intel_hdmi_dp_dual_mode_detect(struct drm_connector *connector, bool has_edid)
+ 	hdmi->dp_dual_mode.max_tmds_clock =
+ 		drm_dp_dual_mode_max_tmds_clock(type, adapter);
+ 
+-	DRM_DEBUG_KMS("DP dual mode adaptor (%s) detected (max TMDS clock: %d kHz)\n",
+-		      drm_dp_get_dual_mode_type_name(type),
+-		      hdmi->dp_dual_mode.max_tmds_clock);
++	drm_dbg_kms(&dev_priv->drm,
++		    "DP dual mode adaptor (%s) detected (max TMDS clock: %d kHz)\n",
++		    drm_dp_get_dual_mode_type_name(type),
++		    hdmi->dp_dual_mode.max_tmds_clock);
+ }
+ 
+ static bool
+@@ -2582,7 +2637,8 @@ intel_hdmi_set_edid(struct drm_connector *connector)
+ 	edid = drm_get_edid(connector, i2c);
+ 
+ 	if (!edid && !intel_gmbus_is_forced_bit(i2c)) {
+-		DRM_DEBUG_KMS("HDMI GMBUS EDID read failed, retry using GPIO bit-banging\n");
++		drm_dbg_kms(&dev_priv->drm,
++			    "HDMI GMBUS EDID read failed, retry using GPIO bit-banging\n");
+ 		intel_gmbus_force_bit(i2c, true);
+ 		edid = drm_get_edid(connector, i2c);
+ 		intel_gmbus_force_bit(i2c, false);
+@@ -2614,8 +2670,8 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
+ 	struct intel_encoder *encoder = &hdmi_to_dig_port(intel_hdmi)->base;
+ 	intel_wakeref_t wakeref;
+ 
+-	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
+-		      connector->base.id, connector->name);
++	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s]\n",
++		    connector->base.id, connector->name);
+ 
+ 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_GMBUS);
+ 
+@@ -2646,8 +2702,9 @@ intel_hdmi_detect(struct drm_connector *connector, bool force)
+ static void
+ intel_hdmi_force(struct drm_connector *connector)
+ {
+-	DRM_DEBUG_KMS("[CONNECTOR:%d:%s]\n",
+-		      connector->base.id, connector->name);
++	drm_dbg_kms(&to_i915(connector->dev)->drm,
++		    "[CONNECTOR:%d:%s]\n",
++		    connector->base.id, connector->name);
+ 
+ 	intel_hdmi_unset_edid(connector);
+ 
+@@ -2796,7 +2853,8 @@ static void intel_hdmi_create_i2c_symlink(struct drm_connector *connector)
+ 
+ 	ret = sysfs_create_link(connector_kobj, i2c_kobj, i2c_kobj->name);
+ 	if (ret)
+-		DRM_ERROR("Failed to create i2c symlink (%d)\n", ret);
++		drm_err(&to_i915(connector->dev)->drm,
++			"Failed to create i2c symlink (%d)\n", ret);
+ }
+ 
+ static void intel_hdmi_remove_i2c_symlink(struct drm_connector *connector)
+@@ -2925,9 +2983,10 @@ bool intel_hdmi_handle_sink_scrambling(struct intel_encoder *encoder,
+ 	if (!sink_scrambling->supported)
+ 		return true;
+ 
+-	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] scrambling=%s, TMDS bit clock ratio=1/%d\n",
+-		      connector->base.id, connector->name,
+-		      yesno(scrambling), high_tmds_clock_ratio ? 40 : 10);
++	drm_dbg_kms(&dev_priv->drm,
++		    "[CONNECTOR:%d:%s] scrambling=%s, TMDS bit clock ratio=1/%d\n",
++		    connector->base.id, connector->name,
++		    yesno(scrambling), high_tmds_clock_ratio ? 40 : 10);
+ 
+ 	/* Set TMDS bit clock ratio to 1/40 or 1/10, and enable/disable scrambling */
+ 	return drm_scdc_set_high_tmds_clock_ratio(adapter,
+@@ -3069,8 +3128,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+ 
+ 	ddc_pin = intel_bios_alternate_ddc_pin(encoder);
+ 	if (ddc_pin) {
+-		DRM_DEBUG_KMS("Using DDC pin 0x%x for port %c (VBT)\n",
+-			      ddc_pin, port_name(port));
++		drm_dbg_kms(&dev_priv->drm,
++			    "Using DDC pin 0x%x for port %c (VBT)\n",
++			    ddc_pin, port_name(port));
+ 		return ddc_pin;
+ 	}
+ 
+@@ -3087,8 +3147,9 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
+ 	else
+ 		ddc_pin = g4x_port_to_ddc_pin(dev_priv, port);
+ 
+-	DRM_DEBUG_KMS("Using DDC pin 0x%x for port %c (platform default)\n",
+-		      ddc_pin, port_name(port));
++	drm_dbg_kms(&dev_priv->drm,
++		    "Using DDC pin 0x%x for port %c (platform default)\n",
++		    ddc_pin, port_name(port));
+ 
+ 	return ddc_pin;
+ }
+@@ -3145,8 +3206,9 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
+ 	enum port port = intel_encoder->port;
+ 	struct cec_connector_info conn_info;
+ 
+-	DRM_DEBUG_KMS("Adding HDMI connector on [ENCODER:%d:%s]\n",
+-		      intel_encoder->base.base.id, intel_encoder->base.name);
++	drm_dbg_kms(&dev_priv->drm,
++		    "Adding HDMI connector on [ENCODER:%d:%s]\n",
++		    intel_encoder->base.base.id, intel_encoder->base.name);
+ 
+ 	if (INTEL_GEN(dev_priv) < 12 && WARN_ON(port == PORT_A))
+ 		return;
+@@ -3189,7 +3251,8 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
+ 		int ret = intel_hdcp_init(intel_connector,
+ 					  &intel_hdmi_hdcp_shim);
  		if (ret)
--			DRM_ERROR("Failed to register pwm0 pinmux mapping\n");
-+			drm_err(&dev_priv->drm,
-+				"Failed to register pwm0 pinmux mapping\n");
- 
- 		pinctrl = devm_pinctrl_get_select(dev->dev, "soc_pwm0");
- 		if (IS_ERR(pinctrl))
--			DRM_ERROR("Failed to set pinmux to PWM\n");
-+			drm_err(&dev_priv->drm,
-+				"Failed to set pinmux to PWM\n");
+-			DRM_DEBUG_KMS("HDCP init failed, skipping.\n");
++			drm_dbg_kms(&dev_priv->drm,
++				    "HDCP init failed, skipping.\n");
  	}
  
- 	if (want_panel_gpio) {
- 		intel_dsi->gpio_panel = gpiod_get(dev->dev, "panel", flags);
- 		if (IS_ERR(intel_dsi->gpio_panel)) {
--			DRM_ERROR("Failed to own gpio for panel control\n");
-+			drm_err(&dev_priv->drm,
-+				"Failed to own gpio for panel control\n");
- 			intel_dsi->gpio_panel = NULL;
- 		}
- 	}
-@@ -875,7 +910,8 @@ void intel_dsi_vbt_gpio_init(struct intel_dsi *intel_dsi, bool panel_is_on)
- 		intel_dsi->gpio_backlight =
- 			gpiod_get(dev->dev, "backlight", flags);
- 		if (IS_ERR(intel_dsi->gpio_backlight)) {
--			DRM_ERROR("Failed to own gpio for backlight control\n");
-+			drm_err(&dev_priv->drm,
-+				"Failed to own gpio for backlight control\n");
- 			intel_dsi->gpio_backlight = NULL;
- 		}
- 	}
+ 	/* For G4X desktop chip, PEG_BAND_GAP_DATA 3:0 must first be written
+@@ -3208,7 +3271,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
+ 		cec_notifier_conn_register(dev->dev, port_identifier(port),
+ 					   &conn_info);
+ 	if (!intel_hdmi->cec_notifier)
+-		DRM_DEBUG_KMS("CEC notifier get failed\n");
++		drm_dbg_kms(&dev_priv->drm, "CEC notifier get failed\n");
+ }
+ 
+ static enum intel_hotplug_state
 -- 
 2.25.0
 
