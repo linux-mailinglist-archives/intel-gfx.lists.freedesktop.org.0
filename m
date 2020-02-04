@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC0ED151C38
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE01151C3B
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:31:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3FE46E3EE;
-	Tue,  4 Feb 2020 14:30:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 117B86E82E;
+	Tue,  4 Feb 2020 14:31:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6A56E3EE
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:30:21 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A53526E82E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:31:41 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 06:30:20 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 06:31:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="219764011"
+X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="225518530"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 04 Feb 2020 06:30:17 -0800
+ by fmsmga008.fm.intel.com with SMTP; 04 Feb 2020 06:30:58 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 16:30:16 +0200
-Date: Tue, 4 Feb 2020 16:30:16 +0200
+ Tue, 04 Feb 2020 16:30:57 +0200
+Date: Tue, 4 Feb 2020 16:30:57 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200204143016.GN13686@intel.com>
+Message-ID: <20200204143057.GO13686@intel.com>
 References: <20200204112927.17391-1-anshuman.gupta@intel.com>
- <20200204112927.17391-5-anshuman.gupta@intel.com>
+ <20200204112927.17391-6-anshuman.gupta@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200204112927.17391-5-anshuman.gupta@intel.com>
+In-Reply-To: <20200204112927.17391-6-anshuman.gupta@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915: Fix wrongly populated plane
- possible_crtcs bit mask
+Subject: Re: [Intel-gfx] [PATCH 5/7] drm/i915: Get right max plane stride
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,84 +54,69 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 04, 2020 at 04:59:24PM +0530, Anshuman Gupta wrote:
-> As a disabled pipe in pipe_mask is not having a valid intel crtc,
-> driver wrongly populates the possible_crtcs mask while initializing
-> the plane for a CRTC. Fixing up the plane possible_crtc mask.
+On Tue, Feb 04, 2020 at 04:59:25PM +0530, Anshuman Gupta wrote:
+> intel_plane_fb_max_stride should return the max stride of
+> primary plane for first available pipe in intel device info
+> pipe_mask.
 > =
 
 > changes since RFC:
-> - Simplify the possible_crtcs initialization. [Ville]
+> - Introduced a helper to get first intel_crtc intel_get_first_crtc. [Vill=
+e]
 > =
 
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++++
->  drivers/gpu/drm/i915/display/intel_sprite.c  |  2 --
->  2 files changed, 12 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c       | 5 +++--
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++++
+>  2 files changed, 9 insertions(+), 2 deletions(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index cf36c3d0f8fc..7c51eb3faeb3 100644
+> index 7c51eb3faeb3..0dcf400f6954 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16407,6 +16407,17 @@ static void intel_crtc_free(struct intel_crtc *c=
-rtc)
->  	kfree(crtc);
+> @@ -2706,9 +2706,10 @@ u32 intel_plane_fb_max_stride(struct drm_i915_priv=
+ate *dev_priv,
+>  =
+
+>  	/*
+>  	 * We assume the primary plane for pipe A has
+> -	 * the highest stride limits of them all.
+> +	 * the highest stride limits of them all,
+> +	 * if in case pipe A is disabled, use the first pipe from pipe_mask.
+>  	 */
+> -	crtc =3D intel_get_crtc_for_pipe(dev_priv, PIPE_A);
+> +	crtc =3D intel_get_first_crtc(dev_priv);
+>  	if (!crtc)
+>  		return 0;
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 80a6460da852..1f295c89061a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1423,6 +1423,12 @@ vlv_pipe_to_channel(enum pipe pipe)
+>  	}
 >  }
 >  =
 
-> +static void intel_plane_possible_crtc_init(struct drm_i915_private *dev_=
-priv)
+> +static inline struct intel_crtc *
+> +intel_get_first_crtc(struct drm_i915_private *dev_priv)
 > +{
-> +	struct intel_crtc *crtc;
-
-Move this declaration into the loop body.
-
-With that
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> +	struct intel_plane *plane;
-> +
-> +	for_each_intel_plane(&dev_priv->drm, plane) {
-> +		crtc =3D intel_get_crtc_for_pipe(dev_priv, plane->pipe);
-> +		plane->base.possible_crtcs =3D drm_crtc_mask(&crtc->base);
-> +	}
+> +	return to_intel_crtc(drm_crtc_from_index(&dev_priv->drm, 0));
 > +}
 > +
->  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe =
-pipe)
+>  static inline struct intel_crtc *
+>  intel_get_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe pip=
+e)
 >  {
->  	struct intel_plane *primary, *cursor;
-> @@ -17546,6 +17557,7 @@ int intel_modeset_init(struct drm_i915_private *i=
-915)
->  		}
->  	}
->  =
-
-> +	intel_plane_possible_crtc_init(i915);
->  	intel_shared_dpll_init(dev);
->  	intel_update_fdi_pll_freq(i915);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index fca77ec1e0dd..4a5b192678bf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3023,8 +3023,6 @@ skl_universal_plane_create(struct drm_i915_private =
-*dev_priv,
->  	else
->  		plane_type =3D DRM_PLANE_TYPE_OVERLAY;
->  =
-
-> -	possible_crtcs =3D BIT(pipe);
-> -
->  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
->  				       possible_crtcs, plane_funcs,
->  				       formats, num_formats, modifiers,
 > -- =
 
 > 2.24.0
