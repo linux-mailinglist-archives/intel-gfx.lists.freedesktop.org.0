@@ -1,42 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63EF0151CA7
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:55:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1DB151CAC
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:57:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FCDF6F388;
-	Tue,  4 Feb 2020 14:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 366846E835;
+	Tue,  4 Feb 2020 14:57:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5642E6F388
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:55:07 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B65F6E835;
+ Tue,  4 Feb 2020 14:57:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 06:53:43 -0800
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 06:57:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="235185801"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 04 Feb 2020 06:53:41 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 16:53:41 +0200
-Date: Tue, 4 Feb 2020 16:53:41 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200204145341.GU13686@intel.com>
-References: <cover.1580823606.git.jani.nikula@intel.com>
- <2b2cba799bbab1b63f6fe342db3c5bdbacc1cebf.1580823606.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="235186978"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga006.jf.intel.com with ESMTP; 04 Feb 2020 06:57:28 -0800
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 4 Feb 2020 06:57:28 -0800
+Received: from bgsmsx106.gar.corp.intel.com (10.223.43.196) by
+ FMSMSX113.amr.corp.intel.com (10.18.116.7) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 4 Feb 2020 06:57:27 -0800
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.36]) by
+ BGSMSX106.gar.corp.intel.com ([169.254.1.198]) with mapi id 14.03.0439.000;
+ Tue, 4 Feb 2020 20:27:24 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID CEA
+ data block revision
+Thread-Index: AQHV0vFRvK3Rx8nvZ0q0EHz2sUQxxagJ9d2AgADHEACAAG/agA==
+Date: Tue, 4 Feb 2020 14:57:24 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823AAAA0@BGSMSX104.gar.corp.intel.com>
+References: <20200124200231.10517-1-ville.syrjala@linux.intel.com>
+ <20200124200231.10517-6-ville.syrjala@linux.intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F823AA020@BGSMSX104.gar.corp.intel.com>
+ <20200204133212.GI13686@intel.com>
+In-Reply-To: <20200204133212.GI13686@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZTFlYmUwNmUtNWNiZC00OTk0LThkNjAtOWMzOGM5MmEwMWJjIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoibG5iMUlpZzVtbW1HMW9zWWFheHR1dlAzczdVS0JhZThBeHp5ZnFJTm1saFRiS200bFlVNVpSeWtcL2VyckJpcm4ifQ==
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <2b2cba799bbab1b63f6fe342db3c5bdbacc1cebf.1580823606.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 5/9] drm/i915: split
- i915_driver_modeset_probe() to pre/post irq install
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID CEA
+ data block revision
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,153 +67,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Andres
+ Rodriguez <andresx7@gmail.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 04, 2020 at 03:42:24PM +0200, Jani Nikula wrote:
-> Pair the irq install and uninstall in the same layer. There are no
-> functional changes in the happy day scenario. The cleanup paths are
-> currently a mess though.
+
+
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Tuesday, February 4, 2020 7:02 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; And=
+res
+> Rodriguez <andresx7@gmail.com>
+> Subject: Re: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID C=
+EA data
+> block revision
 > =
 
-> Note that modeset probe pre-irq + post-irq install are matched by
-> modeset driver remove pre-irq + post-irq uninstall, together, but not
-> independently. They are not symmetric pairs.
+> On Mon, Feb 03, 2020 at 08:15:51PM +0000, Shankar, Uma wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+> > > Of Ville Syrjala
+> > > Sent: Saturday, January 25, 2020 1:32 AM
+> > > To: dri-devel@lists.freedesktop.org
+> > > Cc: intel-gfx@lists.freedesktop.org; Andres Rodriguez
+> > > <andresx7@gmail.com>
+> > > Subject: [Intel-gfx] [PATCH 6/8] drm/edid: Add a FIXME about DispID
+> > > CEA data block revision
+> > >
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >
+> > > I don't understand what the DispID CEA data block revision means.
+> > > The spec doesn't say. I guess some DispID must have a value of >=3D 3
+> > > in there or else we generally wouldn't even parse the CEA data
+> > > blocks. Or does all this code actually not do anything?
+> >
+> > This signifies the CTA extension revision (byte 1 of the block). As
+> > per the spec, seems like Version 1 is legacy and 2 is deprecated. So ve=
+rsion >=3D3 is
+> checked here.
+> > Refer section 7.3 of CTA-861-G
 > =
 
-> v2: don't add a new probe failure point here
+> The confusion is about the revision field in the DispID CTA block, not in=
+ the CTA
+> extension block.
+
+Oh ok, got the ambiguity here. Not sure if we actually get >3 here as value=
+ for the block revision,
+totally unclear from spec, default being 0. Good to have this comment till =
+we get some clarity on
+its significance. Thanks for the clarification.
+
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+
+> >
+> > > Cc: Andres Rodriguez <andresx7@gmail.com>
+> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_edid.c | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> > > index
+> > > 0369a54e3d32..fd9b724067a7 100644
+> > > --- a/drivers/gpu/drm/drm_edid.c
+> > > +++ b/drivers/gpu/drm/drm_edid.c
+> > > @@ -3977,6 +3977,13 @@ cea_db_tag(const u8 *db)  static int
+> > > cea_revision(const
+> > > u8 *cea)  {
+> > > +	/*
+> > > +	 * FIXME is this correct for the DispID variant?
+> > > +	 * The DispID spec doesn't really specify whether
+> > > +	 * this is the revision of the CEA extension or
+> > > +	 * the DispID CEA data block. And the only value
+> > > +	 * given as an example is 0.
+> > > +	 */
+> > >  	return cea[1];
+> > >  }
+> > >
+> > > --
+> > > 2.24.1
+> > >
+> > > _______________________________________________
+> > > Intel-gfx mailing list
+> > > Intel-gfx@lists.freedesktop.org
+> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 > =
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_drv.c | 40 ++++++++++++++++++++++-----------
->  1 file changed, 27 insertions(+), 13 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index 2ef4b8fc5f4c..1243638506bc 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -272,7 +272,8 @@ intel_teardown_mchbar(struct drm_i915_private *dev_pr=
-iv)
->  		release_resource(&dev_priv->mch_res);
->  }
->  =
-
-> -static int i915_driver_modeset_probe(struct drm_i915_private *i915)
-> +/* part #1: call before irq install */
-> +static int i915_driver_modeset_probe_noirq(struct drm_i915_private *i915)
->  {
->  	int ret;
->  =
-
-> @@ -296,15 +297,22 @@ static int i915_driver_modeset_probe(struct drm_i91=
-5_private *i915)
->  =
-
->  	intel_csr_ucode_init(i915);
->  =
-
-> -	ret =3D intel_irq_install(i915);
-> -	if (ret)
-> -		goto cleanup_csr;
-> +	return 0;
-> +
-> +out:
-> +	return ret;
-> +}
-> +
-> +/* part #2: call after irq install */
-> +static int i915_driver_modeset_probe(struct drm_i915_private *i915)
-> +{
-> +	int ret;
->  =
-
->  	/* Important: The output setup functions called by modeset_init need
->  	 * working irqs for e.g. gmbus and dp aux transfers. */
->  	ret =3D intel_modeset_init(i915);
->  	if (ret)
-> -		goto cleanup_irq;
-> +		goto out;
->  =
-
->  	ret =3D i915_gem_init(i915);
->  	if (ret)
-> @@ -331,16 +339,10 @@ static int i915_driver_modeset_probe(struct drm_i91=
-5_private *i915)
->  	i915_gem_driver_remove(i915);
->  	i915_gem_driver_release(i915);
->  cleanup_modeset:
-> +	/* FIXME */
->  	intel_modeset_driver_remove(i915);
->  	intel_irq_uninstall(i915);
->  	intel_modeset_driver_remove_noirq(i915);
-> -	goto cleanup_csr;
-> -cleanup_irq:
-> -	intel_irq_uninstall(i915);
-> -cleanup_csr:
-> -	intel_csr_ucode_fini(i915);
-> -	intel_power_domains_driver_remove(i915);
-> -	intel_vga_unregister(i915);
->  out:
->  	return ret;
->  }
-> @@ -1541,10 +1543,18 @@ int i915_driver_probe(struct pci_dev *pdev, const=
- struct pci_device_id *ent)
->  	if (ret < 0)
->  		goto out_cleanup_mmio;
->  =
-
-> -	ret =3D i915_driver_modeset_probe(i915);
-> +	ret =3D i915_driver_modeset_probe_noirq(i915);
->  	if (ret < 0)
->  		goto out_cleanup_hw;
->  =
-
-> +	ret =3D intel_irq_install(i915);
-> +	if (ret)
-> +		goto out_cleanup_modeset;
-> +
-> +	ret =3D i915_driver_modeset_probe(i915);
-> +	if (ret < 0)
-> +		goto out_cleanup_irq;
-> +
->  	i915_driver_register(i915);
->  =
-
->  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
-> @@ -1553,6 +1563,10 @@ int i915_driver_probe(struct pci_dev *pdev, const =
-struct pci_device_id *ent)
->  =
-
->  	return 0;
->  =
-
-> +out_cleanup_irq:
-> +	intel_irq_uninstall(i915);
-> +out_cleanup_modeset:
-> +	/* FIXME */
-
-Waiting for a mysterious cleanup_noirq() I guess.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  out_cleanup_hw:
->  	i915_driver_hw_remove(i915);
->  	intel_memory_regions_driver_release(i915);
-> -- =
-
-> 2.20.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
