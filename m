@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72D8715179C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09B9915179D
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 10:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB15D6EE08;
-	Tue,  4 Feb 2020 09:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 596696EE0A;
+	Tue,  4 Feb 2020 09:19:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E55A6EE08
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 09:19:16 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id z9so9756531wrs.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 01:19:16 -0800 (PST)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC0D96EE0A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 09:19:20 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id f129so2582248wmf.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 01:19:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Zx+DN1YnR63kKRGf+i4/7rJxFVE1UHdMKGvUOExQ05c=;
- b=GOWFL0kXSPKKktj3IW0t9PucUicja9BAG62etjMARMKYf4SXzeo1TOJ4JdoGJfgr5R
- l3z9BzqqENR2XnbzvNtw1Gm5aXTexX0GY9rAfE4vKIcjyPxNIS5pefRK+TaTETBHbf2X
- Zukk7oIA825gaEmUe4rpXsJ2FjXK5Ayu09kc8lrsc6A921KpUaR5YVDtSgTR12o5s3VZ
- KyrmX/0qwATsukXQFbkmCi0QhWoZ3IdNGyBJzdIfBjaqg5g3IcnWMHM4p2rcuKX+7uUr
- WVba7q467HZ1BMSfXv/sZQM2ln8Vxx1z024i/pUv6+SZU9H7haVVvzA3arHs+Mx4OPFo
- f0iw==
+ bh=/DJOccIGWwnkU4m3yMYNV6X7PZ+r6TTej7tNGOi6CaY=;
+ b=oD01+V7IyJj6oRSLouL2/fNoCbcnPM3y3E4HpKg+8kwDAu8hi1fZaQWPX2avWS0eCM
+ KIWV5QOxlh+8EcRDc4KtaNcdmQpzLDb7z7b+FP529XGaSAOCokPCXPRw3yVMDByObSqi
+ rTt9u2MamGoWLpJXbYplWN8cYw+pnRpiRhLV1YrGh/OGaR0PVIVCAuJJu+Bi91BpIY0q
+ Ldq1ScDw/F8H/1lRjmY6sEA7YBv+tjD581UiWRbmhZ8ms3GSKO2WHg8JwEIxsGmvgIAN
+ rP1MPkn/Wlh0Ge0XQgY8x0cLp8wNYGMhCmRfuXWTqEUPDBkL+owLM6yk5Qeag3h18ilb
+ bAOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Zx+DN1YnR63kKRGf+i4/7rJxFVE1UHdMKGvUOExQ05c=;
- b=JtzyrZxboV0u4JR0W6v2cLfTkl8jPvlZ1ThsmShdMU6Qld40+l+gE1W3Ee2CB1QbUW
- J3+mrkmEr9Ph9WNUmA2UqvUajRnhKYpGEScOZ12zSeZ6qcgJBP/RyCULMTzKnJ25ucKn
- cwaWMHmS7kVrEXAxCrvlL2z8Oy5T+9qPefvqo34enLhN0guOxa2PYwwNFnskqt005QmI
- AOL24EwJzchlCwSmOe6VHLpdnBNdfRos1knGd4XiXsTJcs00y6Ox9kdkpiYp2pxESgaV
- BIk7we1OFG4+8S0qG7nX8kSnM5Ch95nLZTmf7yEN+d/g2X8+8ufLZe7KIq5sbtjnRKYM
- gm8Q==
-X-Gm-Message-State: APjAAAVg4N0OCflovnib0YELP7bduoVKtoBJvww27PhBxVkojYapiwrA
- gkEeqTzr9bMfQyk3J3CNT14=
-X-Google-Smtp-Source: APXvYqwAs7xMgFdXISMU5tX2y1IY2ZP4uZbBGjhXaDkIVjaDiNgPafR0ko6dAvaGixHnSSHUEwKwHg==
-X-Received: by 2002:a5d:53c1:: with SMTP id a1mr20481954wrw.373.1580807955223; 
- Tue, 04 Feb 2020 01:19:15 -0800 (PST)
+ bh=/DJOccIGWwnkU4m3yMYNV6X7PZ+r6TTej7tNGOi6CaY=;
+ b=cqZn7KA27309TgG62S4ehfLxOTRrEgRKDJnNWAN2QQ9s0439RJT9heo7G8eCQ7BzHZ
+ NyHKSkBorw536117YQYwUwafwQIlY/Lki970lsXgLVBvKR9kaiX64ADXjN4CTHZ90B+G
+ YWXXSqn07vKjRl4e+s/wsTGStkzzAvOHDhIF9PDwY4rzx7XNsY6Zh5+AGlnJnrjBWP2a
+ fVBaKLknjPjJ11MxPhQS0CTBP4POKqEeOPA/yk40Y1AEP+MFYzQ822jMTHr8yIiSdivF
+ iNCC2c7RF1N3FCrichHzBMETK5L7yotOxTLeuhv6f5/1LzsYHlkbwWCdaGHWGyioc7ja
+ y+8Q==
+X-Gm-Message-State: APjAAAX0VmxL0ww8aFVjtFUapZlfzwYVO8Avi3TNp/IhUem8oxpAFNDC
+ kvh0SNQ6jZmlaXtoaMEQfYY=
+X-Google-Smtp-Source: APXvYqwHtziUQKPp5Xg+i/836GvSmT6Qoe+akjXRaD2FA6U3F3f7bmGHvesSRb3tXhfURWPeoLv5Mw==
+X-Received: by 2002:a7b:c652:: with SMTP id q18mr4535526wmk.123.1580807959444; 
+ Tue, 04 Feb 2020 01:19:19 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id f189sm3094968wmf.16.2020.02.04.01.19.12
+ by smtp.googlemail.com with ESMTPSA id f189sm3094968wmf.16.2020.02.04.01.19.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Feb 2020 01:19:14 -0800 (PST)
+ Tue, 04 Feb 2020 01:19:19 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Tue,  4 Feb 2020 12:18:45 +0300
-Message-Id: <20200204091855.24259-3-wambui.karugax@gmail.com>
+Date: Tue,  4 Feb 2020 12:18:46 +0300
+Message-Id: <20200204091855.24259-4-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200204091855.24259-1-wambui.karugax@gmail.com>
 References: <20200204091855.24259-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 02/12] drm/i915/dp_link_training: convert to
- drm_device based logging macros.
+Subject: [Intel-gfx] [PATCH 03/12] drm/i915/atomic: conversion to drm_device
+ based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,224 +74,157 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Converts various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in
-i915/display/intel_dp_link_training.c.
-This also involves extracting the drm_i915_private device pointer from
-the intel_dp type to use in the various macros.
+Conversion of the printk based drm logging macros to the struct
+drm_device based logging macros in i915/display/intel_atomic.c
+This change was achieved using the following coccinelle script that
+matches based on the existence of a drm_i915_private device pointer:
+@@
+identifier fn, T;
+@@
+
+fn(...,struct drm_i915_private *T,...) {
+<+...
+(
+-DRM_INFO(
++drm_info(&T->drm,
+...)
+|
+-DRM_ERROR(
++drm_err(&T->drm,
+...)
+|
+-DRM_WARN(
++drm_warn(&T->drm,
+...)
+|
+-DRM_DEBUG(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_DRIVER(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_KMS(
++drm_dbg_kms(&T->drm,
+...)
+|
+-DRM_DEBUG_ATOMIC(
++drm_dbg_atomic(&T->drm,
+...)
+)
+...+>
+}
+
+@@
+identifier fn, T;
+@@
+
+fn(...) {
+...
+struct drm_i915_private *T = ...;
+<+...
+(
+-DRM_INFO(
++drm_info(&T->drm,
+...)
+|
+-DRM_ERROR(
++drm_err(&T->drm,
+...)
+|
+-DRM_WARN(
++drm_warn(&T->drm,
+...)
+|
+-DRM_DEBUG(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_KMS(
++drm_dbg_kms(&T->drm,
+...)
+|
+-DRM_DEBUG_DRIVER(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_ATOMIC(
++drm_dbg_atomic(&T->drm,
+...)
+)
+...+>
+}
+
+Checkpatch warnings were fixed manually.
 
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- .../drm/i915/display/intel_dp_link_training.c | 75 ++++++++++++-------
- 1 file changed, 46 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic.c | 23 ++++++++++++---------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 2a1130dd1ad0..a7defb37ab00 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -130,6 +130,7 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp)
- static bool
- intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- {
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	u8 voltage;
- 	int voltage_tries, cr_tries, max_cr_tries;
- 	bool max_vswing_reached = false;
-@@ -143,9 +144,11 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 			      &link_bw, &rate_select);
- 
- 	if (link_bw)
--		DRM_DEBUG_KMS("Using LINK_BW_SET value %02x\n", link_bw);
-+		drm_dbg_kms(&i915->drm,
-+			    "Using LINK_BW_SET value %02x\n", link_bw);
- 	else
--		DRM_DEBUG_KMS("Using LINK_RATE_SET value %02x\n", rate_select);
-+		drm_dbg_kms(&i915->drm,
-+			    "Using LINK_RATE_SET value %02x\n", rate_select);
- 
- 	/* Write the link configuration data */
- 	link_config[0] = link_bw;
-@@ -169,7 +172,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 	if (!intel_dp_reset_link_train(intel_dp,
- 				       DP_TRAINING_PATTERN_1 |
- 				       DP_LINK_SCRAMBLING_DISABLE)) {
--		DRM_ERROR("failed to enable link training\n");
-+		drm_err(&i915->drm, "failed to enable link training\n");
- 		return false;
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+index 9c737aa4cf72..b97905f05cb7 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+@@ -66,8 +66,9 @@ int intel_digital_connector_atomic_get_property(struct drm_connector *connector,
+ 	else if (property == dev_priv->broadcast_rgb_property)
+ 		*val = intel_conn_state->broadcast_rgb;
+ 	else {
+-		DRM_DEBUG_ATOMIC("Unknown property [PROP:%d:%s]\n",
+-				 property->base.id, property->name);
++		drm_dbg_atomic(&dev_priv->drm,
++			       "Unknown property [PROP:%d:%s]\n",
++			       property->base.id, property->name);
+ 		return -EINVAL;
  	}
  
-@@ -193,22 +196,23 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 		drm_dp_link_train_clock_recovery_delay(intel_dp->dpcd);
- 
- 		if (!intel_dp_get_link_status(intel_dp, link_status)) {
--			DRM_ERROR("failed to get link status\n");
-+			drm_err(&i915->drm, "failed to get link status\n");
- 			return false;
- 		}
- 
- 		if (drm_dp_clock_recovery_ok(link_status, intel_dp->lane_count)) {
--			DRM_DEBUG_KMS("clock recovery OK\n");
-+			drm_dbg_kms(&i915->drm, "clock recovery OK\n");
- 			return true;
- 		}
- 
- 		if (voltage_tries == 5) {
--			DRM_DEBUG_KMS("Same voltage tried 5 times\n");
-+			drm_dbg_kms(&i915->drm,
-+				    "Same voltage tried 5 times\n");
- 			return false;
- 		}
- 
- 		if (max_vswing_reached) {
--			DRM_DEBUG_KMS("Max Voltage Swing reached\n");
-+			drm_dbg_kms(&i915->drm, "Max Voltage Swing reached\n");
- 			return false;
- 		}
- 
-@@ -217,7 +221,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 		/* Update training set as requested by target */
- 		intel_get_adjust_train(intel_dp, link_status);
- 		if (!intel_dp_update_link_train(intel_dp)) {
--			DRM_ERROR("failed to update link training\n");
-+			drm_err(&i915->drm,
-+				"failed to update link training\n");
- 			return false;
- 		}
- 
-@@ -231,7 +236,8 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 			max_vswing_reached = true;
- 
+@@ -103,8 +104,8 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
+ 		return 0;
  	}
--	DRM_ERROR("Failed clock recovery %d times, giving up!\n", max_cr_tries);
-+	drm_err(&i915->drm,
-+		"Failed clock recovery %d times, giving up!\n", max_cr_tries);
- 	return false;
+ 
+-	DRM_DEBUG_ATOMIC("Unknown property [PROP:%d:%s]\n",
+-			 property->base.id, property->name);
++	drm_dbg_atomic(&dev_priv->drm, "Unknown property [PROP:%d:%s]\n",
++		       property->base.id, property->name);
+ 	return -EINVAL;
  }
  
-@@ -256,9 +262,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp)
- 		return DP_TRAINING_PATTERN_4;
- 	} else if (intel_dp->link_rate == 810000) {
- 		if (!source_tps4)
--			DRM_DEBUG_KMS("8.1 Gbps link rate without source HBR3/TPS4 support\n");
-+			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+				    "8.1 Gbps link rate without source HBR3/TPS4 support\n");
- 		if (!sink_tps4)
--			DRM_DEBUG_KMS("8.1 Gbps link rate without sink TPS4 support\n");
-+			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+				    "8.1 Gbps link rate without sink TPS4 support\n");
- 	}
- 	/*
- 	 * Intel platforms that support HBR2 also support TPS3. TPS3 support is
-@@ -271,9 +279,11 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp)
- 		return  DP_TRAINING_PATTERN_3;
- 	} else if (intel_dp->link_rate >= 540000) {
- 		if (!source_tps3)
--			DRM_DEBUG_KMS(">=5.4/6.48 Gbps link rate without source HBR2/TPS3 support\n");
-+			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+				    ">=5.4/6.48 Gbps link rate without source HBR2/TPS3 support\n");
- 		if (!sink_tps3)
--			DRM_DEBUG_KMS(">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
-+			drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+				    ">=5.4/6.48 Gbps link rate without sink TPS3 support\n");
+@@ -361,8 +362,8 @@ static void intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_sta
+ 		mode = SKL_PS_SCALER_MODE_DYN;
  	}
  
- 	return DP_TRAINING_PATTERN_2;
-@@ -282,6 +292,7 @@ static u32 intel_dp_training_pattern(struct intel_dp *intel_dp)
- static bool
- intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- {
-+	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 	int tries;
- 	u32 training_pattern;
- 	u8 link_status[DP_LINK_STATUS_SIZE];
-@@ -295,7 +306,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 	/* channel equalization */
- 	if (!intel_dp_set_link_train(intel_dp,
- 				     training_pattern)) {
--		DRM_ERROR("failed to start channel equalization\n");
-+		drm_err(&i915->drm, "failed to start channel equalization\n");
- 		return false;
+-	DRM_DEBUG_KMS("Attached scaler id %u.%u to %s:%d\n",
+-		      intel_crtc->pipe, *scaler_id, name, idx);
++	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
++		    intel_crtc->pipe, *scaler_id, name, idx);
+ 	scaler_state->scalers[*scaler_id].mode = mode;
+ }
+ 
+@@ -413,8 +414,9 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+ 
+ 	/* fail if required scalers > available scalers */
+ 	if (num_scalers_need > intel_crtc->num_scalers){
+-		DRM_DEBUG_KMS("Too many scaling requests %d > %d\n",
+-			num_scalers_need, intel_crtc->num_scalers);
++		drm_dbg_kms(&dev_priv->drm,
++			    "Too many scaling requests %d > %d\n",
++			    num_scalers_need, intel_crtc->num_scalers);
+ 		return -EINVAL;
  	}
  
-@@ -303,7 +314,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 
- 		drm_dp_link_train_channel_eq_delay(intel_dp->dpcd);
- 		if (!intel_dp_get_link_status(intel_dp, link_status)) {
--			DRM_ERROR("failed to get link status\n");
-+			drm_err(&i915->drm,
-+				"failed to get link status\n");
- 			break;
- 		}
- 
-@@ -311,23 +323,25 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 		if (!drm_dp_clock_recovery_ok(link_status,
- 					      intel_dp->lane_count)) {
- 			intel_dp_dump_link_status(link_status);
--			DRM_DEBUG_KMS("Clock recovery check failed, cannot "
--				      "continue channel equalization\n");
-+			drm_dbg_kms(&i915->drm,
-+				    "Clock recovery check failed, cannot "
-+				    "continue channel equalization\n");
- 			break;
- 		}
- 
- 		if (drm_dp_channel_eq_ok(link_status,
- 					 intel_dp->lane_count)) {
- 			channel_eq = true;
--			DRM_DEBUG_KMS("Channel EQ done. DP Training "
--				      "successful\n");
-+			drm_dbg_kms(&i915->drm, "Channel EQ done. DP Training "
-+				    "successful\n");
- 			break;
- 		}
- 
- 		/* Update training set as requested by target */
- 		intel_get_adjust_train(intel_dp, link_status);
- 		if (!intel_dp_update_link_train(intel_dp)) {
--			DRM_ERROR("failed to update link training\n");
-+			drm_err(&i915->drm,
-+				"failed to update link training\n");
- 			break;
- 		}
- 	}
-@@ -335,7 +349,8 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 	/* Try 5 times, else fail and try at lower BW */
- 	if (tries == 5) {
- 		intel_dp_dump_link_status(link_status);
--		DRM_DEBUG_KMS("Channel equalization failed 5 times\n");
-+		drm_dbg_kms(&i915->drm,
-+			    "Channel equalization failed 5 times\n");
- 	}
- 
- 	intel_dp_set_idle_link_train(intel_dp);
-@@ -362,17 +377,19 @@ intel_dp_start_link_train(struct intel_dp *intel_dp)
- 	if (!intel_dp_link_training_channel_equalization(intel_dp))
- 		goto failure_handling;
- 
--	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] Link Training Passed at Link Rate = %d, Lane count = %d",
--		      intel_connector->base.base.id,
--		      intel_connector->base.name,
--		      intel_dp->link_rate, intel_dp->lane_count);
-+	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+		    "[CONNECTOR:%d:%s] Link Training Passed at Link Rate = %d, Lane count = %d",
-+		    intel_connector->base.base.id,
-+		    intel_connector->base.name,
-+		    intel_dp->link_rate, intel_dp->lane_count);
- 	return;
- 
-  failure_handling:
--	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] Link Training failed at link rate = %d, lane count = %d",
--		      intel_connector->base.base.id,
--		      intel_connector->base.name,
--		      intel_dp->link_rate, intel_dp->lane_count);
-+	drm_dbg_kms(&dp_to_i915(intel_dp)->drm,
-+		    "[CONNECTOR:%d:%s] Link Training failed at link rate = %d, lane count = %d",
-+		    intel_connector->base.base.id,
-+		    intel_connector->base.name,
-+		    intel_dp->link_rate, intel_dp->lane_count);
- 	if (!intel_dp_get_link_train_fallback_values(intel_dp,
- 						     intel_dp->link_rate,
- 						     intel_dp->lane_count))
+@@ -459,8 +461,9 @@ int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+ 				plane = drm_plane_from_index(&dev_priv->drm, i);
+ 				state = drm_atomic_get_plane_state(drm_state, plane);
+ 				if (IS_ERR(state)) {
+-					DRM_DEBUG_KMS("Failed to add [PLANE:%d] to drm_state\n",
+-						plane->base.id);
++					drm_dbg_kms(&dev_priv->drm,
++						    "Failed to add [PLANE:%d] to drm_state\n",
++						    plane->base.id);
+ 					return PTR_ERR(state);
+ 				}
+ 			}
 -- 
 2.25.0
 
