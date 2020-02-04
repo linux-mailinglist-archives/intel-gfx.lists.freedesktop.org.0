@@ -2,56 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57AA9151CE0
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 16:02:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC17C151CE9
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 16:05:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD4BE6F399;
-	Tue,  4 Feb 2020 15:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6D976E838;
+	Tue,  4 Feb 2020 15:05:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 066796F38A
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 15:01:59 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z9so11237904wrs.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 04 Feb 2020 07:01:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=fqIZZmpuF/Iqn88PNa0TK7uvBgm0UXW1Kn70C/na+ZI=;
- b=MVGtyuAbQGu01lsnAvnR3IItmIVFazzy2b1HOQ2Dx07Acr354u0w/gULmZQaKovZ0O
- UcdmbICZPD5UbD0ivWgSZkfNPAtdsR57FUpEo419SRFLTj7j4X1sXlr8TpYPPiSQWSwT
- E+c4okF05kEQTj/whCuXLrGtwZW+sNYnaxloc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=fqIZZmpuF/Iqn88PNa0TK7uvBgm0UXW1Kn70C/na+ZI=;
- b=p0Yw/bZxEtuk/xl5x4DmzQKnKd3CF+QZKJCTaTbo0Ytw1WDH2SpF1J6e3cbCWmhJJf
- SdOJaPsW5/59c7CHmLcni0n/6rovkse2QhhmAD4VEGX5d0XrskqZsGnaDXv0Qe/CzzBK
- olnC2KS+DzXErdxPE3ql+ZAS7CJFRkhN3We0ihb2npgXRjsfwN8mHeSjvT//SEgg7DTn
- oZ2zOJDUjZb42auJkJSzmeH7bli3W5Fpa0EG4ZLJaFn2EvO6ybY6N1Gz/O3ZD4mk9V9C
- qCx8Xyj6KQKyy646jqz8vn/9Q4ds6ehsZ0WjlUxYc3/7O3XMvniBVEjSO9KjUe+6cXMb
- bGaA==
-X-Gm-Message-State: APjAAAUD6EIUPkSf3s99WghNitpaJ2OBjLmGc9fnFkTQCFCmkomsp2qz
- +F7W9fuTOGhN14G7Masb0a625A==
-X-Google-Smtp-Source: APXvYqzW/yyRAk8d0wUFwdeunGdApKplLeFcdfKoaA3X5kajorWwRzjR5Af0kPgWJcJiNK98bTWlxA==
-X-Received: by 2002:a5d:61cf:: with SMTP id q15mr21825032wrv.74.1580828517700; 
- Tue, 04 Feb 2020 07:01:57 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id d9sm14428921wrx.94.2020.02.04.07.01.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Feb 2020 07:01:57 -0800 (PST)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Tue,  4 Feb 2020 16:01:46 +0100
-Message-Id: <20200204150146.2006481-6-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200204150146.2006481-1-daniel.vetter@ffwll.ch>
-References: <20200204150146.2006481-1-daniel.vetter@ffwll.ch>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1546E838
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 15:05:44 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 07:05:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,402,1574150400"; d="scan'208";a="279080374"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 04 Feb 2020 07:05:29 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 04 Feb 2020 17:05:28 +0200
+Date: Tue, 4 Feb 2020 17:05:28 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200204150528.GW13686@intel.com>
+References: <cover.1580823606.git.jani.nikula@intel.com>
+ <7fc880135aa33aa1eab703c881fd6ecb0480befc.1580823606.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm: Nerf drm_global_mutex BKL for good
- drivers
+Content-Disposition: inline
+In-Reply-To: <7fc880135aa33aa1eab703c881fd6ecb0480befc.1580823606.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 7/9] drm/i915: split intel_modeset_init()
+ pre/post gem init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,180 +48,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This catches the majority of drivers (unfortunately not if we take
-users into account, because all the big drivers have at least a
-lastclose hook).
+On Tue, Feb 04, 2020 at 03:42:26PM +0200, Jani Nikula wrote:
+> Turn current intel_modeset_init() to a pre-gem init function, and add a
+> new intel_modeset_init() function and move all post-gem modeset init
+> there, in the correct layer. Again, apart from possible failure paths,
+> no functional changes.
+> =
 
-With the prep patches out of the way all drm state is fully protected
-and either prevents or can deal with the races from dropping the BKL
-around open/close. The only thing left to audit are the various driver
-hooks - by keeping the BKL around if any of them are set we have a
-very simple cop-out!
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 26 ++++++++++++++++++--
+>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>  drivers/gpu/drm/i915/i915_drv.c              | 14 ++---------
+>  3 files changed, 27 insertions(+), 14 deletions(-)
+> =
 
-Note that one of the biggest prep pieces to get here was making
-dev->open_count atomic, which was done in
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 2cac6d61dba2..39c12a608103 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -17884,8 +17884,8 @@ int intel_modeset_init_noirq(struct drm_i915_priv=
+ate *i915)
+>  	return 0;
+>  }
+>  =
 
-commit 7e13ad896484a0165a68197a2e64091ea28c9602
-Author: Chris Wilson <chris@chris-wilson.co.uk>
-Date:   Fri Jan 24 13:01:07 2020 +0000
+> -/* part #2: call after irq install */
+> -int intel_modeset_init(struct drm_i915_private *i915)
+> +/* part #2: call after irq install, but before gem init */
+> +int intel_modeset_init_nogem(struct drm_i915_private *i915)
+>  {
+>  	struct drm_device *dev =3D &i915->drm;
+>  	enum pipe pipe;
+> @@ -17974,6 +17974,28 @@ int intel_modeset_init(struct drm_i915_private *=
+i915)
+>  	return 0;
+>  }
+>  =
 
-    drm: Avoid drm_global_mutex for simple inc/dec of dev->open_count
+> +/* part #3: call after gem init */
+> +int intel_modeset_init(struct drm_i915_private *i915)
+> +{
+> +	int ret;
+> +
+> +	intel_overlay_setup(i915);
+> +
+> +	if (!HAS_DISPLAY(i915) || !INTEL_DISPLAY_ENABLED(i915))
+> +		return 0;
+> +
+> +	ret =3D intel_fbdev_init(&i915->drm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Only enable hotplug handling once the fbdev is fully set up. */
+> +	intel_hpd_init(i915);
+> +
+> +	intel_init_ipc(i915);
 
-v2:
-- Rebase and fix locking in drm_open() (Chris)
-- Indentation fix in drm_release
-- Typo fix in the commit message (Sam)
+BTW that init_ipc() looks totally misplaced. Should probably be part of
+the regular wm init stuff. But that's not for this patch to fix.
 
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/drm_drv.c      |  6 +++--
- drivers/gpu/drm/drm_file.c     | 48 +++++++++++++++++++++++++++++-----
- drivers/gpu/drm/drm_internal.h |  1 +
- 3 files changed, 47 insertions(+), 8 deletions(-)
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 05bdf0b9d2b3..9fcd6ab3c154 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -946,7 +946,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
- 	struct drm_driver *driver = dev->driver;
- 	int ret;
- 
--	mutex_lock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_lock(&drm_global_mutex);
- 
- 	if (dev->driver->load) {
- 		if (!drm_core_check_feature(dev, DRIVER_LEGACY))
-@@ -992,7 +993,8 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
- 	drm_minor_unregister(dev, DRM_MINOR_PRIMARY);
- 	drm_minor_unregister(dev, DRM_MINOR_RENDER);
- out_unlock:
--	mutex_unlock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_unlock(&drm_global_mutex);
- 	return ret;
- }
- EXPORT_SYMBOL(drm_dev_register);
-diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-index 80d556402ab4..c4c704e01961 100644
---- a/drivers/gpu/drm/drm_file.c
-+++ b/drivers/gpu/drm/drm_file.c
-@@ -51,6 +51,37 @@
- /* from BKL pushdown */
- DEFINE_MUTEX(drm_global_mutex);
- 
-+bool drm_dev_needs_global_mutex(struct drm_device *dev)
-+{
-+	/*
-+	 * Legacy drivers rely on all kinds of BKL locking semantics, don't
-+	 * bother. They also still need BKL locking for their ioctls, so better
-+	 * safe than sorry.
-+	 */
-+	if (drm_core_check_feature(dev, DRIVER_LEGACY))
-+		return true;
-+
-+	/*
-+	 * The deprecated ->load callback must be called after the driver is
-+	 * already registered. This means such drivers rely on the BKL to make
-+	 * sure an open can't proceed until the driver is actually fully set up.
-+	 * Similar hilarity holds for the unload callback.
-+	 */
-+	if (dev->driver->load || dev->driver->unload)
-+		return true;
-+
-+	/*
-+	 * Drivers with the lastclose callback assume that it's synchronized
-+	 * against concurrent opens, which again needs the BKL. The proper fix
-+	 * is to use the drm_client infrastructure with proper locking for each
-+	 * client.
-+	 */
-+	if (dev->driver->lastclose)
-+		return true;
-+
-+	return false;
-+}
-+
- /**
-  * DOC: file operations
-  *
-@@ -378,9 +409,10 @@ int drm_open(struct inode *inode, struct file *filp)
- 	if (IS_ERR(minor))
- 		return PTR_ERR(minor);
- 
--	mutex_lock(&drm_global_mutex);
--
- 	dev = minor->dev;
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_lock(&drm_global_mutex);
-+
- 	if (!atomic_fetch_inc(&dev->open_count))
- 		need_setup = 1;
- 
-@@ -398,13 +430,15 @@ int drm_open(struct inode *inode, struct file *filp)
- 		}
- 	}
- 
--	mutex_unlock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_unlock(&drm_global_mutex);
- 
- 	return 0;
- 
- err_undo:
- 	atomic_dec(&dev->open_count);
--	mutex_unlock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_unlock(&drm_global_mutex);
- 	drm_minor_release(minor);
- 	return retcode;
- }
-@@ -444,7 +478,8 @@ int drm_release(struct inode *inode, struct file *filp)
- 	struct drm_minor *minor = file_priv->minor;
- 	struct drm_device *dev = minor->dev;
- 
--	mutex_lock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_lock(&drm_global_mutex);
- 
- 	DRM_DEBUG("open_count = %d\n", atomic_read(&dev->open_count));
- 
-@@ -453,7 +488,8 @@ int drm_release(struct inode *inode, struct file *filp)
- 	if (atomic_dec_and_test(&dev->open_count))
- 		drm_lastclose(dev);
- 
--	mutex_unlock(&drm_global_mutex);
-+	if (drm_dev_needs_global_mutex(dev))
-+		mutex_unlock(&drm_global_mutex);
- 
- 	drm_minor_release(minor);
- 
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 6937bf923f05..aeec2e68d772 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -41,6 +41,7 @@ struct drm_printer;
- 
- /* drm_file.c */
- extern struct mutex drm_global_mutex;
-+bool drm_dev_needs_global_mutex(struct drm_device *dev);
- struct drm_file *drm_file_alloc(struct drm_minor *minor);
- void drm_file_free(struct drm_file *file);
- void drm_lastclose(struct drm_device *dev);
--- 
-2.24.1
+> +
+> +	return 0;
+> +}
+> +
+>  void i830_enable_pipe(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  {
+>  	struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index 8f994244ccc7..62ee9b9d212c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -615,6 +615,7 @@ intel_format_info_is_yuv_semiplanar(const struct drm_=
+format_info *info,
+>  /* modesetting */
+>  void intel_modeset_init_hw(struct drm_i915_private *i915);
+>  int intel_modeset_init_noirq(struct drm_i915_private *i915);
+> +int intel_modeset_init_nogem(struct drm_i915_private *i915);
+>  int intel_modeset_init(struct drm_i915_private *i915);
+>  void intel_modeset_driver_remove(struct drm_i915_private *i915);
+>  void intel_modeset_driver_remove_noirq(struct drm_i915_private *i915);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 905277490024..21f07709dc9e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -316,7 +316,7 @@ static int i915_driver_modeset_probe(struct drm_i915_=
+private *i915)
+>  =
 
+>  	/* Important: The output setup functions called by modeset_init need
+>  	 * working irqs for e.g. gmbus and dp aux transfers. */
+> -	ret =3D intel_modeset_init(i915);
+> +	ret =3D intel_modeset_init_nogem(i915);
+>  	if (ret)
+>  		goto out;
+>  =
+
+> @@ -324,20 +324,10 @@ static int i915_driver_modeset_probe(struct drm_i91=
+5_private *i915)
+>  	if (ret)
+>  		goto cleanup_modeset;
+>  =
+
+> -	intel_overlay_setup(i915);
+> -
+> -	if (!HAS_DISPLAY(i915) || !INTEL_DISPLAY_ENABLED(i915))
+> -		return 0;
+> -
+> -	ret =3D intel_fbdev_init(&i915->drm);
+> +	ret =3D intel_modeset_init(i915);
+>  	if (ret)
+>  		goto cleanup_gem;
+>  =
+
+> -	/* Only enable hotplug handling once the fbdev is fully set up. */
+> -	intel_hpd_init(i915);
+> -
+> -	intel_init_ipc(i915);
+> -
+>  	return 0;
+>  =
+
+>  cleanup_gem:
+> -- =
+
+> 2.20.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
