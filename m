@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24071151C2A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:27:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D44151C2E
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 15:27:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E01B6EF43;
-	Tue,  4 Feb 2020 14:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D1256F376;
+	Tue,  4 Feb 2020 14:27:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F17F6EF43
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:27:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 701E46EF44
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 14:27:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20113572-1500050 
- for multiple; Tue, 04 Feb 2020 14:26:00 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20113573-1500050 
+ for multiple; Tue, 04 Feb 2020 14:26:01 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue,  4 Feb 2020 14:25:57 +0000
-Message-Id: <20200204142558.1082764-1-chris@chris-wilson.co.uk>
+Date: Tue,  4 Feb 2020 14:25:58 +0000
+Message-Id: <20200204142558.1082764-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200204142558.1082764-1-chris@chris-wilson.co.uk>
+References: <20200204142558.1082764-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 1/2] trace: Export anonymous tracing
+Subject: [Intel-gfx] [RFC 2/2] drm/i915: Export per-client debug tracing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,301 +44,285 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-... Explain why we want this! ...
-... Explain why we make these changes ...
----
- include/linux/trace.h |   4 ++
- kernel/trace/trace.c  | 142 ++++++++++++++++++++++++++++++------------
- 2 files changed, 105 insertions(+), 41 deletions(-)
+Rather than put sensitive user details into a global dmesg, report the
+error and debug messages directly back to the user via the kernel
+tracing mechanism.
 
-diff --git a/include/linux/trace.h b/include/linux/trace.h
-index 7fd86d3c691f..337454e859f4 100644
---- a/include/linux/trace.h
-+++ b/include/linux/trace.h
-@@ -30,8 +30,12 @@ void trace_printk_init_buffers(void);
- int trace_array_printk(struct trace_array *tr, unsigned long ip,
- 		const char *fmt, ...);
- void trace_array_put(struct trace_array *tr);
-+struct trace_array *trace_array_create(void);
- struct trace_array *trace_array_get_by_name(const char *name);
- int trace_array_destroy(struct trace_array *tr);
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 91 ++++++++++++++-------
+ drivers/gpu/drm/i915/i915_drv.h             |  4 +
+ drivers/gpu/drm/i915/i915_gem.c             |  5 +-
+ include/uapi/drm/i915_drm.h                 |  7 ++
+ 4 files changed, 77 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 52a749691a8d..bb68e6f847df 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -82,6 +82,8 @@
+ 
+ #define ALL_L3_SLICES(dev) (1 << NUM_L3_SLICES(dev)) - 1
+ 
++#define CTX_TRACE(ctx, ...) TRACE((ctx)->file_priv->trace, __VA_ARGS__)
 +
-+int anon_trace_getfd(const char *name, struct trace_array *tr);
-+
- #endif	/* CONFIG_TRACING */
+ static struct i915_global_gem_context {
+ 	struct i915_global base;
+ 	struct kmem_cache *slab_luts;
+@@ -722,8 +724,6 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
  
- #endif	/* _LINUX_TRACE_H */
-diff --git a/kernel/trace/trace.c b/kernel/trace/trace.c
-index 8f7fdc25f230..6c2286b81b4a 100644
---- a/kernel/trace/trace.c
-+++ b/kernel/trace/trace.c
-@@ -48,6 +48,7 @@
- #include <linux/fsnotify.h>
- #include <linux/irq_work.h>
- #include <linux/workqueue.h>
-+#include <linux/anon_inodes.h>
+ 		ppgtt = i915_ppgtt_create(&i915->gt);
+ 		if (IS_ERR(ppgtt)) {
+-			drm_dbg(&i915->drm, "PPGTT setup failed (%ld)\n",
+-				PTR_ERR(ppgtt));
+ 			context_close(ctx);
+ 			return ERR_CAST(ppgtt);
+ 		}
+@@ -1364,14 +1364,15 @@ set_engines__load_balance(struct i915_user_extension __user *base, void *data)
+ 		return -EFAULT;
  
- #include "trace.h"
- #include "trace_output.h"
-@@ -4140,7 +4141,7 @@ static int s_show(struct seq_file *m, void *v)
-  */
- static inline int tracing_get_cpu(struct inode *inode)
- {
--	if (inode->i_cdev) /* See trace_create_cpu_file() */
-+	if (inode && inode->i_cdev) /* See trace_create_cpu_file() */
- 		return (long)inode->i_cdev - 1;
- 	return RING_BUFFER_ALL_CPUS;
- }
-@@ -5938,32 +5939,22 @@ tracing_max_lat_write(struct file *filp, const char __user *ubuf,
- 
- #endif
- 
--static int tracing_open_pipe(struct inode *inode, struct file *filp)
-+static struct trace_iterator *
-+tracing_create_pipe_iter(struct trace_array *tr, struct inode *inode)
- {
--	struct trace_array *tr = inode->i_private;
- 	struct trace_iterator *iter;
--	int ret;
--
--	ret = tracing_check_open_get_tr(tr);
--	if (ret)
--		return ret;
--
--	mutex_lock(&trace_types_lock);
- 
- 	/* create a buffer to store the information to pass to userspace */
- 	iter = kzalloc(sizeof(*iter), GFP_KERNEL);
--	if (!iter) {
--		ret = -ENOMEM;
--		__trace_array_put(tr);
--		goto out;
--	}
-+	if (!iter)
-+		return ERR_PTR(-ENOMEM);
- 
- 	trace_seq_init(&iter->seq);
- 	iter->trace = tr->current_trace;
- 
- 	if (!alloc_cpumask_var(&iter->started, GFP_KERNEL)) {
--		ret = -ENOMEM;
--		goto fail;
-+		kfree(iter);
-+		return ERR_PTR(-ENOMEM);
+ 	if (idx >= set->engines->num_engines) {
+-		drm_dbg(&i915->drm, "Invalid placement value, %d >= %d\n",
+-			idx, set->engines->num_engines);
++		CTX_TRACE(set->ctx,
++			  "Invalid placement value, %d >= %d\n",
++			  idx, set->engines->num_engines);
+ 		return -EINVAL;
  	}
  
- 	/* trace pipe does not show start of buffer */
-@@ -5980,6 +5971,29 @@ static int tracing_open_pipe(struct inode *inode, struct file *filp)
- 	iter->trace_buffer = &tr->trace_buffer;
- 	iter->cpu_file = tracing_get_cpu(inode);
- 	mutex_init(&iter->mutex);
-+
-+	return iter;
-+}
-+
-+static int tracing_open_pipe(struct inode *inode, struct file *filp)
+ 	idx = array_index_nospec(idx, set->engines->num_engines);
+ 	if (set->engines->engines[idx]) {
+-		drm_dbg(&i915->drm,
++		CTX_TRACE(set->ctx,
+ 			"Invalid placement[%d], already occupied\n", idx);
+ 		return -EEXIST;
+ 	}
+@@ -1408,9 +1409,9 @@ set_engines__load_balance(struct i915_user_extension __user *base, void *data)
+ 						       ci.engine_class,
+ 						       ci.engine_instance);
+ 		if (!siblings[n]) {
+-			drm_dbg(&i915->drm,
+-				"Invalid sibling[%d]: { class:%d, inst:%d }\n",
+-				n, ci.engine_class, ci.engine_instance);
++			CTX_TRACE(set->ctx,
++				  "Invalid sibling[%d]: { class:%d, inst:%d }\n",
++				  n, ci.engine_class, ci.engine_instance);
+ 			err = -EINVAL;
+ 			goto out_siblings;
+ 		}
+@@ -1454,15 +1455,15 @@ set_engines__bond(struct i915_user_extension __user *base, void *data)
+ 		return -EFAULT;
+ 
+ 	if (idx >= set->engines->num_engines) {
+-		drm_dbg(&i915->drm,
+-			"Invalid index for virtual engine: %d >= %d\n",
+-			idx, set->engines->num_engines);
++		CTX_TRACE(set->ctx,
++			  "Invalid index for virtual engine: %d >= %d\n",
++			  idx, set->engines->num_engines);
+ 		return -EINVAL;
+ 	}
+ 
+ 	idx = array_index_nospec(idx, set->engines->num_engines);
+ 	if (!set->engines->engines[idx]) {
+-		drm_dbg(&i915->drm, "Invalid engine at %d\n", idx);
++		CTX_TRACE(set->ctx, "Invalid engine at %d\n", idx);
+ 		return -EINVAL;
+ 	}
+ 	virtual = set->engines->engines[idx]->engine;
+@@ -1483,9 +1484,9 @@ set_engines__bond(struct i915_user_extension __user *base, void *data)
+ 	master = intel_engine_lookup_user(i915,
+ 					  ci.engine_class, ci.engine_instance);
+ 	if (!master) {
+-		drm_dbg(&i915->drm,
+-			"Unrecognised master engine: { class:%u, instance:%u }\n",
+-			ci.engine_class, ci.engine_instance);
++		CTX_TRACE(set->ctx,
++			  "Unrecognised master engine: { class:%u, instance:%u }\n",
++			  ci.engine_class, ci.engine_instance);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1502,9 +1503,9 @@ set_engines__bond(struct i915_user_extension __user *base, void *data)
+ 						ci.engine_class,
+ 						ci.engine_instance);
+ 		if (!bond) {
+-			drm_dbg(&i915->drm,
+-				"Unrecognised engine[%d] for bonding: { class:%d, instance: %d }\n",
+-				n, ci.engine_class, ci.engine_instance);
++			CTX_TRACE(set->ctx,
++				  "Unrecognised engine[%d] for bonding: { class:%d, instance: %d }\n",
++				  n, ci.engine_class, ci.engine_instance);
+ 			return -EINVAL;
+ 		}
+ 
+@@ -1533,7 +1534,6 @@ static int
+ set_engines(struct i915_gem_context *ctx,
+ 	    const struct drm_i915_gem_context_param *args)
+ {
+-	struct drm_i915_private *i915 = ctx->i915;
+ 	struct i915_context_param_engines __user *user =
+ 		u64_to_user_ptr(args->value);
+ 	struct set_engines set = { .ctx = ctx };
+@@ -1555,8 +1555,9 @@ set_engines(struct i915_gem_context *ctx,
+ 	BUILD_BUG_ON(!IS_ALIGNED(sizeof(*user), sizeof(*user->engines)));
+ 	if (args->size < sizeof(*user) ||
+ 	    !IS_ALIGNED(args->size, sizeof(*user->engines))) {
+-		drm_dbg(&i915->drm, "Invalid size for engine array: %d\n",
+-			args->size);
++		CTX_TRACE(ctx,
++			  "Invalid size for engine array: %d\n",
++			  args->size);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -1592,9 +1593,9 @@ set_engines(struct i915_gem_context *ctx,
+ 						  ci.engine_class,
+ 						  ci.engine_instance);
+ 		if (!engine) {
+-			drm_dbg(&i915->drm,
+-				"Invalid engine[%d]: { class:%d, instance:%d }\n",
+-				n, ci.engine_class, ci.engine_instance);
++			CTX_TRACE(ctx,
++				  "Invalid engine[%d]: { class:%d, instance:%d }\n",
++				  n, ci.engine_class, ci.engine_instance);
+ 			__free_engines(set.engines, n);
+ 			return -ENOENT;
+ 		}
+@@ -1737,6 +1738,36 @@ get_engines(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
++static int
++get_trace(struct i915_gem_context *ctx,
++	  struct drm_i915_gem_context_param *args)
 +{
-+	struct trace_array *tr = inode->i_private;
-+	struct trace_iterator *iter;
-+	int ret;
++	int fd;
 +
-+	ret = tracing_check_open_get_tr(tr);
-+	if (ret)
-+		return ret;
++	if (args->ctx_id) /* single trace per-fd, let's not mix it up! */
++		return -EINVAL;
 +
-+	mutex_lock(&trace_types_lock);
++	if (!READ_ONCE(ctx->file_priv->trace)) {
++		struct trace_array *tr;
 +
-+	iter = tracing_create_pipe_iter(tr, inode);
-+	if (IS_ERR(iter)) {
-+		ret = PTR_ERR(iter);
-+		__trace_array_put(tr);
-+		goto out;
++		tr = trace_array_create();
++		if (IS_ERR(tr))
++			return PTR_ERR(tr);
++
++		if (cmpxchg(&ctx->file_priv->trace, NULL, tr))
++			trace_array_put(tr);
 +	}
 +
- 	filp->private_data = iter;
++	fd = anon_trace_getfd("i915-client", ctx->file_priv->trace);
++	if (fd < 0)
++		return fd;
++
++	args->size = 0;
++	args->value = fd;
++
++	return 0;
++}
++
+ static int
+ set_persistence(struct i915_gem_context *ctx,
+ 		const struct drm_i915_gem_context_param *args)
+@@ -2108,9 +2139,9 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
  
- 	if (iter->trace->pipe_open)
-@@ -5991,18 +6005,12 @@ static int tracing_open_pipe(struct inode *inode, struct file *filp)
- out:
- 	mutex_unlock(&trace_types_lock);
- 	return ret;
--
--fail:
--	kfree(iter);
--	__trace_array_put(tr);
--	mutex_unlock(&trace_types_lock);
--	return ret;
- }
+ 	ext_data.fpriv = file->driver_priv;
+ 	if (client_is_banned(ext_data.fpriv)) {
+-		drm_dbg(&i915->drm,
+-			"client %s[%d] banned from creating ctx\n",
+-			current->comm, task_pid_nr(current));
++		TRACE(file_priv->trace,
++		      "client %s[%d] banned from creating ctx\n",
++		      current->comm, task_pid_nr(current));
+ 		return -EIO;
+ 	}
  
- static int tracing_release_pipe(struct inode *inode, struct file *file)
- {
- 	struct trace_iterator *iter = file->private_data;
--	struct trace_array *tr = inode->i_private;
-+	struct trace_array *tr = iter->tr;
+@@ -2132,7 +2163,7 @@ int i915_gem_context_create_ioctl(struct drm_device *dev, void *data,
+ 		goto err_ctx;
  
- 	mutex_lock(&trace_types_lock);
+ 	args->ctx_id = id;
+-	drm_dbg(&i915->drm, "HW context %d created\n", args->ctx_id);
++	TRACE(file_priv->trace, "HW context %d created\n", args->ctx_id);
  
-@@ -7868,7 +7876,7 @@ static inline __init int register_snapshot_cmd(void) { return 0; }
+ 	return 0;
  
- static struct dentry *tracing_get_dentry(struct trace_array *tr)
- {
--	if (WARN_ON(!tr->dir))
-+	if (!tr->dir)
- 		return ERR_PTR(-ENODEV);
+@@ -2282,6 +2313,10 @@ int i915_gem_context_getparam_ioctl(struct drm_device *dev, void *data,
+ 		args->value = i915_gem_context_is_persistent(ctx);
+ 		break;
  
- 	/* Top directory uses NULL as the parent */
-@@ -8461,7 +8469,7 @@ static void update_tracer_options(struct trace_array *tr)
- 	mutex_unlock(&trace_types_lock);
- }
++	case I915_CONTEXT_PARAM_TRACE:
++		ret = get_trace(ctx, args);
++		break;
++
+ 	case I915_CONTEXT_PARAM_BAN_PERIOD:
+ 	default:
+ 		ret = -EINVAL;
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a71ff233cc55..41228d648ed4 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -46,6 +46,7 @@
+ #include <linux/dma-resv.h>
+ #include <linux/shmem_fs.h>
+ #include <linux/stackdepot.h>
++#include <linux/trace.h>
+ #include <linux/xarray.h>
  
--static struct trace_array *trace_array_create(const char *name)
-+static struct trace_array *__trace_array_create(const char *name)
- {
- 	struct trace_array *tr;
+ #include <drm/intel-gtt.h>
+@@ -223,7 +224,10 @@ struct drm_i915_file_private {
+ 	/** ban_score: Accumulated score of all ctx bans and fast hangs. */
+ 	atomic_t ban_score;
+ 	unsigned long hang_timestamp;
++
++	struct trace_array *trace;
+ };
++#define TRACE(tr, ...) trace_array_printk((tr), _THIS_IP_,  __VA_ARGS__)
+ 
+ /* Interface history:
+  *
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index a712e60b016a..56b9c1e0223f 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1290,6 +1290,9 @@ void i915_gem_release(struct drm_device *dev, struct drm_file *file)
+ 	struct drm_i915_file_private *file_priv = file->driver_priv;
+ 	struct i915_request *request;
+ 
++	if (file_priv->trace)
++		trace_array_destroy(file_priv->trace);
++
+ 	/* Clean up our request list when the client is going away, so that
+ 	 * later retire_requests won't dereference our soon-to-be-gone
+ 	 * file_priv.
+@@ -1305,8 +1308,6 @@ int i915_gem_open(struct drm_i915_private *i915, struct drm_file *file)
+ 	struct drm_i915_file_private *file_priv;
  	int ret;
-@@ -8471,9 +8479,11 @@ static struct trace_array *trace_array_create(const char *name)
- 	if (!tr)
- 		return ERR_PTR(ret);
  
--	tr->name = kstrdup(name, GFP_KERNEL);
--	if (!tr->name)
--		goto out_free_tr;
-+	if (name) {
-+		tr->name = kstrdup(name, GFP_KERNEL);
-+		if (!tr->name)
-+			goto out_free_tr;
-+	}
- 
- 	if (!alloc_cpumask_var(&tr->tracing_cpumask, GFP_KERNEL))
- 		goto out_free_tr;
-@@ -8496,19 +8506,22 @@ static struct trace_array *trace_array_create(const char *name)
- 	if (allocate_trace_buffers(tr, trace_buf_size) < 0)
- 		goto out_free_tr;
- 
--	tr->dir = tracefs_create_dir(name, trace_instance_dir);
--	if (!tr->dir)
--		goto out_free_tr;
-+	if (name) {
-+		tr->dir = tracefs_create_dir(name, trace_instance_dir);
-+		if (!tr->dir)
-+			goto out_free_tr;
- 
--	ret = event_trace_add_tracer(tr->dir, tr);
--	if (ret) {
--		tracefs_remove_recursive(tr->dir);
--		goto out_free_tr;
-+		ret = event_trace_add_tracer(tr->dir, tr);
-+		if (ret) {
-+			tracefs_remove_recursive(tr->dir);
-+			goto out_free_tr;
-+		}
-+
-+		init_tracer_tracefs(tr, tr->dir);
- 	}
- 
- 	ftrace_init_trace_array(tr);
- 
--	init_tracer_tracefs(tr, tr->dir);
- 	init_trace_flags_index(tr);
- 	__update_tracer_options(tr);
- 
-@@ -8516,7 +8529,6 @@ static struct trace_array *trace_array_create(const char *name)
- 
- 	tr->ref++;
- 
+-	DRM_DEBUG("\n");
 -
- 	return tr;
+ 	file_priv = kzalloc(sizeof(*file_priv), GFP_KERNEL);
+ 	if (!file_priv)
+ 		return -ENOMEM;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 829c0a48577f..c8b25b2d9ab3 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -1619,6 +1619,13 @@ struct drm_i915_gem_context_param {
+  * By default, new contexts allow persistence.
+  */
+ #define I915_CONTEXT_PARAM_PERSISTENCE	0xb
++
++#define I915_CONTEXT_PARAM_TRACE	0xc
++/*
++ * I915_CONTEXT_PARAM_TRACE:
++ *
++ * Return an fd representing a pipe of all trace output from this file.
++ */
+ /* Must be kept compact -- no holes and well documented */
  
-  out_free_tr:
-@@ -8528,6 +8540,12 @@ static struct trace_array *trace_array_create(const char *name)
- 	return ERR_PTR(ret);
- }
- 
-+struct trace_array *trace_array_create(void)
-+{
-+	return __trace_array_create(NULL);
-+}
-+EXPORT_SYMBOL_GPL(trace_array_create);
-+
- static int instance_mkdir(const char *name)
- {
- 	struct trace_array *tr;
-@@ -8542,7 +8560,7 @@ static int instance_mkdir(const char *name)
- 			goto out_unlock;
- 	}
- 
--	tr = trace_array_create(name);
-+	tr = __trace_array_create(name);
- 
- 	ret = PTR_ERR_OR_ZERO(tr);
- 
-@@ -8576,7 +8594,7 @@ struct trace_array *trace_array_get_by_name(const char *name)
- 			goto out_unlock;
- 	}
- 
--	tr = trace_array_create(name);
-+	tr = __trace_array_create(name);
- 
- 	if (IS_ERR(tr))
- 		tr = NULL;
-@@ -8611,7 +8629,8 @@ static int __remove_instance(struct trace_array *tr)
- 	event_trace_del_tracer(tr);
- 	ftrace_clear_pids(tr);
- 	ftrace_destroy_function_files(tr);
--	tracefs_remove_recursive(tr->dir);
-+	if (tr->dir)
-+		tracefs_remove_recursive(tr->dir);
- 	free_trace_buffers(tr);
- 
- 	for (i = 0; i < tr->nr_topts; i++) {
-@@ -9157,6 +9176,47 @@ void ftrace_dump(enum ftrace_dump_mode oops_dump_mode)
- }
- EXPORT_SYMBOL_GPL(ftrace_dump);
- 
-+int anon_trace_getfd(const char *name, struct trace_array *tr)
-+{
-+	struct trace_iterator *iter;
-+	int ret;
-+
-+	if (!tr || trace_array_get(tr) < 0)
-+		return -ENODEV;
-+
-+	mutex_lock(&trace_types_lock);
-+
-+	iter = tracing_create_pipe_iter(tr, NULL);
-+	if (IS_ERR(iter)) {
-+		ret = PTR_ERR(iter);
-+		__trace_array_put(tr);
-+		goto out;
-+	}
-+
-+	ret = anon_inode_getfd(name, &tracing_pipe_fops, iter, O_CLOEXEC);
-+	if (ret < 0)
-+		goto fail;
-+
-+	if (iter->trace->pipe_open)
-+		iter->trace->pipe_open(iter);
-+
-+	tr->current_trace->ref++;
-+out:
-+	mutex_unlock(&trace_types_lock);
-+	return ret;
-+
-+fail:
-+	mutex_unlock(&trace_types_lock);
-+
-+	free_cpumask_var(iter->started);
-+	mutex_destroy(&iter->mutex);
-+	kfree(iter);
-+
-+	trace_array_put(tr);
-+	return ret;
-+}
-+EXPORT_SYMBOL_GPL(anon_trace_getfd);
-+
- int trace_run_command(const char *buf, int (*createfn)(int, char **))
- {
- 	char **argv;
+ 	__u64 value;
 -- 
 2.25.0
 
