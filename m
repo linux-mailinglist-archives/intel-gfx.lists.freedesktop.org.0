@@ -2,52 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E7A2152107
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 20:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51997152141
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 20:39:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8AA76E8E4;
-	Tue,  4 Feb 2020 19:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B29F76F375;
+	Tue,  4 Feb 2020 19:39:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB166E8E4
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 19:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1580844534;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=V7Rzb3arItmNyBkuRXn0dlnmkb6n1rmp5wrZ7PgDBo4=;
- b=ZE7DeZHTr/q34XW3728UUOyw/ErBSpRxueC5qL4fiMCr+AtZ+x/tzT0VtX7kFynodgSIkt
- 8H40AjY9vTzsI90CqKOE2J6cBQuDN/5f/Phe453oehFBolnFHL50h5mALYiLBDPn2INmUn
- E+rRO002quIplMvitxqnS6Fcktu5cWY=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-52-X32TnFnfPjykn0MXoxg-5A-1; Tue, 04 Feb 2020 14:28:52 -0500
-X-MC-Unique: X32TnFnfPjykn0MXoxg-5A-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 4B4881005F7A;
- Tue,  4 Feb 2020 19:28:51 +0000 (UTC)
-Received: from malachite.bss.redhat.com (dhcp-10-20-1-90.bss.redhat.com
- [10.20.1.90])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4322081213;
- Tue,  4 Feb 2020 19:28:50 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Tue,  4 Feb 2020 14:28:12 -0500
-Message-Id: <20200204192823.111404-5-lyude@redhat.com>
-In-Reply-To: <20200204192823.111404-1-lyude@redhat.com>
-References: <20200204192823.111404-1-lyude@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D541A6E8D1;
+ Tue,  4 Feb 2020 19:39:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CD56DA00C7;
+ Tue,  4 Feb 2020 19:39:14 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915: Force DPCD backlight mode for
- some Precision 7750 panels
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 04 Feb 2020 19:39:14 -0000
+Message-ID: <158084515481.25089.16071114030661316471@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200203181625.589118-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200203181625.589118-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftest=3A_Ensure_string_fits_within_name=5B=5D?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +38,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@intel.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to Dell, trying to match their panels via OUI is not reliable
-enough and we've been told that we should check against the EDID
-instead. As well, Dell seems to have some panels that are actually
-intended to switch between using PWM for backlight controls and DPCD for
-backlight controls depending on whether or not the panel is in HDR or
-SDR mode. Yikes.
+== Series Details ==
 
-Regardless, we need to add quirks for these so that DPCD backlight
-controls get enabled by default, since without additional driver support
-that's the only form of brightness control that will work. Hopefully in
-the future we can remove these quirks once we have a better way of
-probing for this.
+Series: drm/i915/selftest: Ensure string fits within name[]
+URL   : https://patchwork.freedesktop.org/series/72936/
+State : failure
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_dp_helper.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index a39c3cdacb20..c24bbea3e2a2 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -1240,6 +1240,19 @@ static const struct edid_quirk edid_quirk_list[] = {
- 	 * only supports DPCD backlight controls
- 	 */
- 	{ MFG(0x4c, 0x83), PROD_ID(0x41, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	/*
-+	 * Some Dell Precision 7750 systems have panels support both AUX and
-+	 * PWM backlight control, and some only support AUX backlight control.
-+	 * All said panels start up in AUX mode by default, and we don't have
-+	 * any support for disabling HDR mode on these panels which would be
-+	 * required to switch to PWM backlight control mode (plus, I'm not
-+	 * even sure we want PWM backlight controls over DPCD backlight
-+	 * controls anyway...). Until we have a better way of detecting these,
-+	 * force DPCD backlight mode on all of them.
-+	 */
-+	{ MFG(0x06, 0xaf), PROD_ID(0x9b, 0x32), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	{ MFG(0x06, 0xaf), PROD_ID(0xeb, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	{ MFG(0x4d, 0x10), PROD_ID(0xc7, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
- };
- 
- #undef MFG
--- 
-2.24.1
+Applying: drm/i915/selftest: Ensure string fits within name[]
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/selftests/mock_context.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
 
 _______________________________________________
 Intel-gfx mailing list
