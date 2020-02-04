@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B137151EEF
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 18:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00877151EF7
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 18:10:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E4116E897;
-	Tue,  4 Feb 2020 17:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6547A6E881;
+	Tue,  4 Feb 2020 17:10:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A5BCF6E896;
- Tue,  4 Feb 2020 17:09:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E4FB46E880;
+ Tue,  4 Feb 2020 17:10:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9D664A0078;
- Tue,  4 Feb 2020 17:09:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1528A0094;
+ Tue,  4 Feb 2020 17:10:51 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 04 Feb 2020 17:09:43 -0000
-Message-ID: <158083618361.25089.8741195478459716826@emeril.freedesktop.org>
+Date: Tue, 04 Feb 2020 17:10:51 -0000
+Message-ID: <158083625192.25087.6537709780798515514@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200203133408.187493-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200203133408.187493-1-chris@chris-wilson.co.uk>
+References: <20200203133824.198872-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200203133824.198872-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/audio=3A_Skip_the_cdclk_modeset_if_no_pipes_attached_=28r?=
- =?utf-8?q?ev2=29?=
+ =?utf-8?q?/i915/display=3A_Fix_NULL-crtc_deref_in_calc=5Fmin=5Fcdclk=28?=
+ =?utf-8?b?KSAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,15 +48,15 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/audio: Skip the cdclk modeset if no pipes attached (rev2)
-URL   : https://patchwork.freedesktop.org/series/72863/
+Series: drm/i915/display: Fix NULL-crtc deref in calc_min_cdclk() (rev2)
+URL   : https://patchwork.freedesktop.org/series/72875/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/audio: Skip the cdclk modeset if no pipes attached
+Applying: drm/i915/display: Fix NULL-crtc deref in calc_min_cdclk()
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_audio.c
+M	drivers/gpu/drm/i915/display/intel_atomic_plane.c
 Falling back to patching base and 3-way merge...
 No changes -- Patch already applied.
 
