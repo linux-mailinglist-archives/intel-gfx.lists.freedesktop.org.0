@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E35A151B5B
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 14:35:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44852151B85
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2020 14:42:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706346EC92;
-	Tue,  4 Feb 2020 13:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A3A76EEB4;
+	Tue,  4 Feb 2020 13:42:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5875F6EC92
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 13:35:09 +0000 (UTC)
-X-Amp-Result: UNSCANNABLE
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BF8F6EEB4
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2020 13:42:33 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 05:35:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,401,1574150400"; d="scan'208";a="224295947"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 04 Feb 2020 05:35:06 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 04 Feb 2020 15:35:05 +0200
-Date: Tue, 4 Feb 2020 15:35:05 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200204133505.GJ13686@intel.com>
-References: <20200203225549.152301-1-jose.souza@intel.com>
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 05:42:32 -0800
+X-IronPort-AV: E=Sophos;i="5.70,401,1574150400"; d="scan'208";a="224297181"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 05:42:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  4 Feb 2020 15:42:19 +0200
+Message-Id: <cover.1580823606.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200203225549.152301-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/display: Set
- TRANS_DDI_MODE_SELECT to default value when clearing DDI select
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 0/9] drm/i915: modeset probe/remove cleanup,
+ again
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,106 +42,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 03, 2020 at 02:55:49PM -0800, Jos=E9 Roberto de Souza wrote:
-> TGL is suffering of timeouts and fifo underruns when disabling
-> transcoder in MST mode, this is fixed by set TRANS_DDI_MODE_SELECT to
-> 0(HDMI mode) when clearing DDI select.
-> =
-
-> Although BSpec disable sequence don't require this step, it is a
-> harmless change and it is also done by Windows driver.
-> Anyhow HW team was notified about that but it can take some time to
-> documentation to be updated.
-> =
-
-> A case that always lead to those issues is:
-> - do a modeset enabling pipe A and pipe B in the same MST stream
-> leaving A as master
-> - disable pipe A, promote B as master doing a full modeset in A
-> - enable pipe A, changing the master transcoder back to A(doing a
-> full modeset in B)
-> - Pow: underruns and timeouts
-> =
-
-> The transcoders involved will only work again when complete disabled
-> and their power wells turned off causing a reset in their registers.
-> =
-
-> v2: Setting TRANS_DDI_MODE_SELECT to default when clearing DDI select
-> not anymore when disabling TRANS_DDI, both work but this one looks
-> more safe. (Ville comment)
-
-I presume this still fixes the issue?
-
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index aa066fb9eb00..45082e71262c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -1988,10 +1988,12 @@ void intel_ddi_disable_transcoder_func(const stru=
-ct intel_crtc_state *crtc_state
->  	val &=3D ~TRANS_DDI_FUNC_ENABLE;
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> -		if (!intel_dp_mst_is_master_trans(crtc_state))
-> +		if (!intel_dp_mst_is_master_trans(crtc_state)) {
->  			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
-> +			val &=3D ~TRANS_DDI_MODE_SELECT_MASK;
-
-Two separate statements.
-
-> +		}
->  	} else {
-> -		val &=3D ~TRANS_DDI_PORT_MASK;
-> +		val &=3D ~(TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK);
-
-One statement.
-
->  	}
->  	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), val);
->  =
-
-> @@ -3729,6 +3731,7 @@ static void intel_ddi_post_disable_dp(struct intel_=
-encoder *encoder,
->  			val =3D intel_de_read(dev_priv,
->  					    TRANS_DDI_FUNC_CTL(cpu_transcoder));
->  			val &=3D ~TGL_TRANS_DDI_PORT_MASK;
-> +			val &=3D ~TRANS_DDI_MODE_SELECT_MASK;
-
-Two again.
-
-A bit inconsistent, otherwise lgtm.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  			intel_de_write(dev_priv,
->  				       TRANS_DDI_FUNC_CTL(cpu_transcoder),
->  				       val);
-> -- =
-
-> 2.25.0
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SSd2ZSBzZW50IGl0ZXJhdGlvbnMgb2YgdGhpcyBiZWZvcmUsIGhlcmUncyB0aGUgcmViYXNlZCBz
+ZXJpZXMuIEl0J3Mgbm90CnBlcmZlY3QsIGVzcGVjaWFsbHkgdGhlIGVycm9yIHBhdGhzLCBidXQg
+dGhlbiBuZWl0aGVyIGFyZSB0aGUgY3VycmVudCBlcnJvcgpwYXRocy4gSXQgdGFrZXMgYSBsb3Qg
+b2Ygc3RlcHMgdG93YXJkcyBzcGxpdHRpbmcgb3V0IG1vZGVzZXQgcHJvYmUvY2xlYW51cCBmcm9t
+CnRoZSByZXN0LgoKQlIsCkphbmkuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KCgpKYW5pIE5pa3VsYSAoOSk6CiAgZHJtL2k5MTU6IHJlZ2lzdGVy
+IHZnYSBzd2l0Y2hlcm9vIGxhdGVyLCB1bnJlZ2lzdGVyIGVhcmxpZXIKICBkcm0vaTkxNTogc3dp
+dGNoIGk5MTVfZHJpdmVyX3Byb2JlKCkgdG8gdXNlIGk5MTUgbG9jYWwgdmFyaWFibGUKICBkcm0v
+aTkxNTogc3BsaXQgaW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlKCkgdG8gcHJlL3Bvc3QgaXJx
+CiAgICB1bmluc3RhbGwKICBkcm0vaTkxNTogc3BsaXQgaTkxNV9kcml2ZXJfbW9kZXNldF9yZW1v
+dmUoKSB0byBwcmUvcG9zdCBpcnEgdW5pbnN0YWxsCiAgZHJtL2k5MTU6IHNwbGl0IGk5MTVfZHJp
+dmVyX21vZGVzZXRfcHJvYmUoKSB0byBwcmUvcG9zdCBpcnEgaW5zdGFsbAogIGRybS9pOTE1OiBz
+cGxpdCBpbnRlbF9tb2Rlc2V0X2luaXQoKSB0byBwcmUvcG9zdCBpcnEgaW5zdGFsbAogIGRybS9p
+OTE1OiBzcGxpdCBpbnRlbF9tb2Rlc2V0X2luaXQoKSBwcmUvcG9zdCBnZW0gaW5pdAogIGRybS9p
+OTE1OiBtb3ZlIG1vcmUgZGlzcGxheSByZWxhdGVkIHByb2JlL3JlbW92ZSBzdHVmZiB0byBkaXNw
+bGF5CiAgZHJtL2k5MTU6IHJlbW92ZSB0aGUgbm93IHJlZHVuZGFudCBpOTE1X2RyaXZlcl9tb2Rl
+c2V0XyogY2FsbCBsYXllcgoKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
+cGxheS5jIHwgIDgyICsrKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXkuaCB8ICAgMyArCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAg
+ICAgICAgICB8IDE4OCArKysrKysrLS0tLS0tLS0tLS0tCiAzIGZpbGVzIGNoYW5nZWQsIDE0MSBp
+bnNlcnRpb25zKCspLCAxMzIgZGVsZXRpb25zKC0pCgotLSAKMi4yMC4xCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
