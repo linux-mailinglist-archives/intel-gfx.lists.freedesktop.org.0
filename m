@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2976152582
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 05:09:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0971525C8
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 06:16:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA5FC6F474;
-	Wed,  5 Feb 2020 04:09:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DC336E175;
+	Wed,  5 Feb 2020 05:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D12136F473;
- Wed,  5 Feb 2020 04:09:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C16C0A00C7;
- Wed,  5 Feb 2020 04:09:04 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F6906E175
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 05:16:02 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2020 21:16:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,404,1574150400"; d="scan'208";a="249590617"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga002.jf.intel.com with ESMTP; 04 Feb 2020 21:15:59 -0800
+Date: Wed, 5 Feb 2020 10:37:14 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200205050713.GH24118@intel.com>
+References: <20200128135425.14596-1-anshuman.gupta@intel.com>
+ <20200128135425.14596-2-anshuman.gupta@intel.com>
+ <87d0b3d5os.fsf@intel.com> <20200128154444.GE24118@intel.com>
+ <20200128161545.GF24118@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Wed, 05 Feb 2020 04:09:04 -0000
-Message-ID: <158087574476.17318.5431451332245750654@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200204154803.25403-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200204154803.25403-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_the_docs_for_intel=5Fset=5Fcdclk=5Fpost=5Fplane=5F?=
- =?utf-8?q?update=28=29?=
+Content-Disposition: inline
+In-Reply-To: <20200128161545.GF24118@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/hdcp: Update CP as per the
+ kernel internal state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,97 +47,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Fix the docs for intel_set_cdclk_post_plane_update()
-URL   : https://patchwork.freedesktop.org/series/72981/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7867 -> Patchwork_16420
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16420 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7867/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7867/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][5] -> [INCOMPLETE][6] ([i915#424])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7867/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7867/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Additional (6): fi-hsw-peppy fi-kbl-7500u fi-gdg-551 fi-snb-2600 fi-skl-6600u fi-kbl-r 
-  Missing    (9): fi-hsw-4200u fi-skl-6770hq fi-glk-dsi fi-byt-squawks fi-ilk-650 fi-ctg-p8600 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7867 -> Patchwork_16420
-
-  CI-20190529: 20190529
-  CI_DRM_7867: a4c409e48c6281538b1e375545dfb5989fa02063 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5418: 4028bd390b41925f6e26f6f11b31e05054652527 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16420: c55e250c7ef14c34953e421bc01ca519808857a9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c55e250c7ef1 drm/i915: Fix the docs for intel_set_cdclk_post_plane_update()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16420/index.html
+On 2020-01-28 at 21:45:45 +0530, Anshuman Gupta wrote:
+Hi Jani ,
+As per my understanding intel_hdcp_atomic_check() is not sufficient to
+fix the broken hdcp uapi state, as the state fixup required in case
+of modeset.
+If you do not have any concern, can we continue with the patch.
+Thanks,
+Anshuman Gupta.
+> On 2020-01-28 at 21:14:44 +0530, Anshuman Gupta wrote:
+> > On 2020-01-28 at 16:19:31 +0200, Jani Nikula wrote:
+> > > On Tue, 28 Jan 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > > > Content Protection property should be updated as per the kernel
+> > > > internal state. Let's say if Content protection is disabled
+> > > > by userspace, CP property should be set to UNDESIRED so that
+> > > > reauthentication will not happen until userspace request it again,
+> > > > but when kernel disables the HDCP due to any DDI disabling sequences
+> > > > like modeset/DPMS operation, kernel should set the property to
+> > > > DESIRED, so that when opportunity arises, kernel will start the
+> > > > HDCP authentication on its own.
+> > > >
+> > > > Somewhere in the line, state machine to set content protection to
+> > > > DESIRED from kernel was broken and IGT coverage was missing for it.
+> > > > This patch fixes it.
+> > > > IGT patch to catch further regression on this features is being
+> > > > worked upon.
+> > > >
+> > > > CC: Ramalingam C <ramalingam.c@intel.com>
+> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c |  4 +++
+> > > >  drivers/gpu/drm/i915/display/intel_hdcp.c    | 26 ++++++++++++++++++++
+> > > >  drivers/gpu/drm/i915/display/intel_hdcp.h    |  2 ++
+> > > >  3 files changed, 32 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > index da5266e76738..934cdf1f1858 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -14595,6 +14595,10 @@ static int intel_atomic_check(struct drm_device *dev,
+> > > >  		goto fail;
+> > > >  
+> > > >  	if (any_ms) {
+> > > > +		/*
+> > > > +		 * When there is modeset fix the hdcp uapi CP state.
+> > > > +		 */
+> > > > +		intel_hdcp_post_need_modeset_check(state);
+> > > >  		ret = intel_modeset_checks(state);
+> > > >  		if (ret)
+> > > >  			goto fail;
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > index 0fdbd39f6641..be083136eee2 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > > @@ -2074,6 +2074,32 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+> > > >  	crtc_state->mode_changed = true;
+> > > >  }
+> > > >  
+> > > > +/**
+> > > > + * intel_hdcp_post_need_modeset_check.
+> > > > + * @state: intel atomic state.
+> > > > + *
+> > > > + * This function fix the HDCP uapi state when hdcp disabling initiated from
+> > > > + * modeset DDI disabling sequence. It updates uapi CP state from ENABLED to
+> > > > + * DESIRED so that HDCP uapi state can be restored as per HDCP Auth state.
+> > > > + * This function should be called only in case of in case of modeset.
+> > > > + * FIXME: As per HDCP content protection property uapi doc, an uevent()
+> > > > + * need to be sent if there is transition from ENABLED->DESIRED.
+> > > > + */
+> > > > +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state)
+> > > > +{
+> > > > +	struct drm_connector *connector;
+> > > > +	struct drm_connector_state *old_state;
+> > > > +	struct drm_connector_state *new_state;
+> > > > +	int i;
+> > > > +
+> > > > +	for_each_oldnew_connector_in_state(&state->base, connector, old_state,
+> > > > +					   new_state, i) {
+> > > > +		if (old_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
+> > > > +		    new_state->content_protection != DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
+> > > > +			new_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > 
+> > > Why does this feel like duplication of what you already have in
+> > > intel_hdcp_atomic_check()?
+> > intel_hdcp_atomic_check() have checks that for disconnected connector and it doesn't look for 
+> typo here, "intel_hdcp_atomic_check() checks that for disconnected connector and it doesn't check for new state shouldn't be UNDESIRED" 
+> > old state, that is not sufficient to fix the hdcp CP uapi state, it need to be fix only in case of
+> > modeset, Later on a fastset check can disable the modeset and we would endup calling intel_hdcp_enable
+> > while hdcp is already enabled. That is the reason i think we would require a new API to
+> > fix the uapi state.
+> > Thanks ,
+> > Anshuman Gupta.
+> > > 
+> > > BR,
+> > > Jani.
+> > > 
+> > > 
+> > > >  /* Handles the CP_IRQ raised from the DP HDCP sink */
+> > > >  void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
+> > > >  {
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > > index f3c3272e712a..7bf46bc3c348 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+> > > > @@ -13,6 +13,7 @@
+> > > >  struct drm_connector;
+> > > >  struct drm_connector_state;
+> > > >  struct drm_i915_private;
+> > > > +struct intel_atomic_state;
+> > > >  struct intel_connector;
+> > > >  struct intel_hdcp_shim;
+> > > >  enum port;
+> > > > @@ -21,6 +22,7 @@ enum transcoder;
+> > > >  void intel_hdcp_atomic_check(struct drm_connector *connector,
+> > > >  			     struct drm_connector_state *old_state,
+> > > >  			     struct drm_connector_state *new_state);
+> > > > +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state);
+> > > >  int intel_hdcp_init(struct intel_connector *connector,
+> > > >  		    const struct intel_hdcp_shim *hdcp_shim);
+> > > >  int intel_hdcp_enable(struct intel_connector *connector,
+> > > 
+> > > -- 
+> > > Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
