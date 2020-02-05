@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A83DC1539CA
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 21:57:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F7AE1539F5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 22:08:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1367489BAC;
-	Wed,  5 Feb 2020 20:57:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B38556F958;
+	Wed,  5 Feb 2020 21:08:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5BA0789BAC;
- Wed,  5 Feb 2020 20:57:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 57BB9A0003;
- Wed,  5 Feb 2020 20:57:00 +0000 (UTC)
+X-Greylist: delayed 7802 seconds by postgrey-1.36 at gabe;
+ Wed, 05 Feb 2020 21:08:20 UTC
+Received: from 4.mo173.mail-out.ovh.net (4.mo173.mail-out.ovh.net
+ [46.105.34.219])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21B346F958
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 21:08:20 +0000 (UTC)
+Received: from player737.ha.ovh.net (unknown [10.110.103.168])
+ by mo173.mail-out.ovh.net (Postfix) with ESMTP id 8724812EBBD
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 19:41:00 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player737.ha.ovh.net (Postfix) with ESMTPSA id A1C4A5983CC3;
+ Wed,  5 Feb 2020 18:40:56 +0000 (UTC)
+Date: Wed, 5 Feb 2020 20:40:55 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Message-ID: <20200205184055.GA3088@jack.zhora.eu>
+References: <20200205105749.1769982-1-chris@chris-wilson.co.uk>
+ <87v9ol9kcl.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexey Budankov" <alexey.budankov@linux.intel.com>
-Date: Wed, 05 Feb 2020 20:57:00 -0000
-Message-ID: <158093622035.17320.14809158438759388559@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <576a6141-36d4-14c0-b395-8d195892b916@linux.intel.com>
-In-Reply-To: <576a6141-36d4-14c0-b395-8d195892b916@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_CAP=5FPERFMON_to_secure_system_performance_monito?=
- =?utf-8?q?ring_and_observability_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <87v9ol9kcl.fsf@gaia.fi.intel.com>
+X-Ovh-Tracer-Id: 881579628275810836
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrhedugdduudduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdekuddrudejhedrvddvfedruddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejfeejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: add basic selftests for
+ rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,48 +49,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Mika,
 
-Series: Introduce CAP_PERFMON to secure system performance monitoring and observability (rev3)
-URL   : https://patchwork.freedesktop.org/series/72273/
-State : warning
+> > +static bool test_rc6(struct intel_rc6 *rc6, bool enabled)
+> > +{
+> > +	struct intel_uncore *uncore = rc6_to_uncore(rc6);
+> > +	intel_wakeref_t wakeref;
+> > +	u32 ec1, ec2;
+> > +	u32 interval;
+> > +
+> > +	wakeref = intel_runtime_pm_get(uncore->rpm);
+> > +
+> > +	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
+> > +
+> > +	/*
+> > +	 * the interval is stored in steps of 1.28us
+> > +	 */
+> > +	interval = div_u64(mul_u32_u32(interval, 128),
+> > +			   100 * 1000); /* => miliseconds */
+> > +
+> 
+> s/miliseconds/milliseconds.
 
-== Summary ==
+thanks!
 
-$ dim checkpatch origin/drm-tip
-afa7aa8e74c6 capabilities: introduce CAP_PERFMON to kernel and user space
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
+> I have a faint memory that the interval was not always 1.28us
+> but gen dependant.
 
-total: 0 errors, 1 warnings, 0 checks, 36 lines checked
-c97b60885c20 perf/core: open access to the core for CAP_PERFMON privileged process
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-CAP_PERFMON capability singly, without the rest of CAP_SYS_ADMIN credentials,
+1.28 is the incremental step and I haven't seen any different
+value in the docs. Have you?
 
-total: 0 errors, 1 warnings, 0 checks, 32 lines checked
-7aa9d11056aa perf/core: open access to probes for CAP_PERFMON privileged process
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39 principle
+> > +	pr_info("interval:%x [%dms], threshold:%x, rc6:%x, enabled?:%s\n",
+> > +		intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL),
+> > +		interval,
+> > +		intel_uncore_read(uncore, GEN6_RC6_THRESHOLD),
+> > +	       	ec2 - ec1,
+> > +	       	yesno(enabled));
+> > +
+> > +	intel_runtime_pm_put(uncore->rpm, wakeref);
+> > +
+> > +	return enabled != (ec1 >= ec2);
+> 
+> Wrap?
 
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-ded14abe26f6 perf tool: extend Perf tool with CAP_PERFMON capability support
-633358b87a0b drm/i915/perf: open access for CAP_PERFMON privileged process
-1c9f2c014756 trace/bpf_trace: open access for CAP_PERFMON privileged process
-2040d2804af8 powerpc/perf: open access for CAP_PERFMON privileged process
-cbc0778c54e6 parisc/perf: open access for CAP_PERFMON privileged process
-2206ed8dc834 drivers/perf: open access for CAP_PERFMON privileged process
-8b8a811f8a61 drivers/oprofile: open access for CAP_PERFMON privileged process
+actually here I forgot a couple of things that went forgotten in
+my git repo.
 
+Anyway, do you mean with "wrap" to add parenthesis?
+
+> > +	intel_rc6_unpark(rc6);
+> > +
+> > +	/* interval < threshold */
+> > +	if (!test_rc6(rc6, false)) {
+> 
+> consider removing the assertion of 'activeness' in parameter
+> and just if (!rc6_active(rc6)). Or am I missing something in here?
+
+yes, you are right, it's misleading. I will make it more clear.
+
+The basic idea is:
+
+ 1. disable rc6
+ 2. check whether it's disabled test_rc6(rc6, false)
+
+or
+
+ 1. enable rc6
+ 2. check if it's enabled test_rc6(rc6, true)
+
+Chris was skeptical about the naming as well.
+
+Thanks!
+
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
