@@ -1,30 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B81A153042
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 12:59:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2B8A1529F5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 12:33:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845B06F55D;
-	Wed,  5 Feb 2020 11:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 047536F552;
+	Wed,  5 Feb 2020 11:33:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 603956F55B;
- Wed,  5 Feb 2020 11:59:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20123538-1500050 
- for multiple; Wed, 05 Feb 2020 11:59:16 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: igt-dev@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 11:59:15 +0000
-Message-Id: <20200205115915.1823074-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1939E6F552
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 11:33:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 03:33:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="231689149"
+Received: from linuxpresi1-desktop.iind.intel.com ([10.223.74.152])
+ by orsmga003.jf.intel.com with ESMTP; 05 Feb 2020 03:33:54 -0800
+From: Uma Shankar <uma.shankar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Feb 2020 17:29:31 +0530
+Message-Id: <20200205115932.7538-1-uma.shankar@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_exec: Update the list of
- engines on the actual context
+Subject: [Intel-gfx] [PATCH 0/1] Adding YUV444 packed format support for skl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,58 +40,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to iterate the set of physical engines on this context, so
-update the iterators to act on a particular context.
+Adding YUV444 packed format support for skl+
 
-This tunnel keeps on getting longer.
+Test-with: 20200127192859.20029-1-bob.j.paauwe@intel.com
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- lib/i915/gem_engine_topology.h | 7 +++++--
- tests/i915/gem_ctx_exec.c      | 2 +-
- 2 files changed, 6 insertions(+), 3 deletions(-)
+Stanislav Lisovskiy (1):
+  drm/i915: Adding YUV444 packed format support for skl+ (V13)
 
-diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
-index e40d7ec83..027d86be2 100644
---- a/lib/i915/gem_engine_topology.h
-+++ b/lib/i915/gem_engine_topology.h
-@@ -67,9 +67,12 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags);
- 	     intel_next_engine(&i__))
- 
- /* needs to replace "for_each_physical_engine" when conflicts are fixed */
--#define __for_each_physical_engine(fd__, e__) \
--	for (struct intel_engine_data i__ = intel_init_engine_list(fd__, 0); \
-+#define ____for_each_physical_engine(fd__, ctx__, e__) \
-+	for (struct intel_engine_data i__ = intel_init_engine_list(fd__, ctx__); \
- 	     ((e__) = intel_get_current_physical_engine(&i__)); \
- 	     intel_next_engine(&i__))
- 
-+#define __for_each_physical_engine(fd__, e__) \
-+	____for_each_physical_engine(fd__, 0, e__)
-+
- #endif /* GEM_ENGINE_TOPOLOGY_H */
-diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
-index aeb8d2976..5b4e4b3db 100644
---- a/tests/i915/gem_ctx_exec.c
-+++ b/tests/i915/gem_ctx_exec.c
-@@ -226,7 +226,7 @@ static void nohangcheck_hostile(int i915)
- 
- 	igt_require(__enable_hangcheck(dir, false));
- 
--	__for_each_physical_engine(i915, e) {
-+	____for_each_physical_engine(i915, ctx, e) {
- 		igt_spin_t *spin;
- 
- 		spin = igt_spin_new(i915, ctx,
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 5 +++++
+ drivers/gpu/drm/i915/i915_reg.h              | 2 +-
+ 3 files changed, 11 insertions(+), 1 deletion(-)
+
 -- 
-2.25.0
+2.22.0
 
 _______________________________________________
 Intel-gfx mailing list
