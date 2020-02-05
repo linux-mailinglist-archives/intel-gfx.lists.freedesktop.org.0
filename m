@@ -1,59 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9FF3153623
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 18:16:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C5415362A
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 18:17:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588276F8D6;
-	Wed,  5 Feb 2020 17:15:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7585E6F8DA;
+	Wed,  5 Feb 2020 17:17:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E492C6F8BB;
- Wed,  5 Feb 2020 17:15:57 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 09:15:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="264293099"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by fmsmga002.fm.intel.com with ESMTP; 05 Feb 2020 09:15:57 -0800
-Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 09:15:57 -0800
-Received: from bgsmsx152.gar.corp.intel.com (10.224.48.50) by
- fmsmsx123.amr.corp.intel.com (10.18.125.38) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 09:15:56 -0800
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.97]) by
- BGSMSX152.gar.corp.intel.com ([169.254.6.38]) with mapi id 14.03.0439.000;
- Wed, 5 Feb 2020 22:45:10 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v3 17/17] drm/i915/psr: Use new DP VSC SDP
- compute routine on PSR
-Thread-Index: AQHV2uigqCrIMs0v5EavxKZv/ekMVagM2XLw
-Date: Wed, 5 Feb 2020 17:15:09 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823DD190@BGSMSX104.gar.corp.intel.com>
-References: <20200203232014.906651-1-gwan-gyeong.mun@intel.com>
- <20200203232014.906651-18-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200203232014.906651-18-gwan-gyeong.mun@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMjliY2NlYTctYzI0MC00M2E4LThhYTgtNjNkNWI2MmRmNTUwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRXp0TDN6MmprNEZUZllyRmJvV2hPblNFMkJtY1VKazF3TEZrSTBia1wvdEo1WThEbXNISUp3c3lnRXFCN2s2UG0ifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 500446F8DC;
+ Wed,  5 Feb 2020 17:17:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 48D92A0094;
+ Wed,  5 Feb 2020 17:17:34 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 17/17] drm/i915/psr: Use new DP VSC SDP
- compute routine on PSR
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 05 Feb 2020 17:17:34 -0000
+Message-ID: <158092305429.17320.1220165782053355650@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Don=27t_leak_non-persistent_requests_on_changing_e?=
+ =?utf-8?q?ngines_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,236 +39,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/gem: Don't leak non-persistent requests on changing engines (rev2)
+URL   : https://patchwork.freedesktop.org/series/73023/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7869 -> Patchwork_16434
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16434 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4] ([fdo#108569])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [PASS][5] -> [INCOMPLETE][6] ([i915#504])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bdw-5557u:       [PASS][7] -> [TIMEOUT][8] ([fdo#112271])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([CI#94] / [i915#402]) +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-icl-u3:          [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-icl-u3/igt@gem_exec_parallel@fds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-icl-u3/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][13] ([CI#94]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [DMESG-WARN][17] ([i915#92]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-skl-6770hq/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][19] ([i915#725]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [FAIL][21] ([fdo#109635] / [i915#217]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][23] ([fdo#111096] / [i915#323]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [SKIP][25] ([fdo#109271]) -> [PASS][26] +4 similar issues
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-skl-6770hq:      [DMESG-WARN][27] ([i915#106] / [i915#188]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [DMESG-WARN][29] ([i915#92]) -> [FAIL][30] ([i915#178])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][31] ([i915#553]) -> [DMESG-FAIL][32] ([i915#553] / [i915#725])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#188]: https://gitlab.freedesktop.org/drm/intel/issues/188
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#504]: https://gitlab.freedesktop.org/drm/intel/issues/504
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
 
 
-> -----Original Message-----
-> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Gwan-
-> gyeong Mun
-> Sent: Tuesday, February 4, 2020 4:50 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: linux-fbdev@vger.kernel.org; dri-devel@lists.freedesktop.org
-> Subject: [Intel-gfx] [PATCH v3 17/17] drm/i915/psr: Use new DP VSC SDP compute
-> routine on PSR
-> 
-> In order to use a common VSC SDP Colorimetry calculating code on PSR, it uses a
-> new psr vsc sdp compute routine.
-> Because PSR routine has its own scenario and timings of writing a VSC SDP, the
-> current PSR routine needs to have its own drm_dp_vsc_sdp structure member
-> variable on struct i915_psr.
-> 
-> In order to calculate colorimetry information, intel_psr_update() function and
-> intel_psr_enable() function extend a drm_connector_state argument.
-> 
-> There are no changes to PSR mechanism.
-> 
-> v3: Replace a structure name to drm_dp_vsc_sdp from intel_dp_vsc_sdp
+Participating hosts (49 -> 39)
+------------------------------
 
-Looks good.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+  Additional (2): fi-kbl-7560u fi-gdg-551 
+  Missing    (12): fi-kbl-soraka fi-hsw-4200u fi-bdw-gvtdvm fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-bdw-samus fi-byt-n2820 fi-byt-clapper fi-bsw-nick fi-skl-6600u fi-snb-2600 
 
-Note: Please rebase, fix the comments and resend to trigger a full CI run.
 
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c |  4 +-
-> drivers/gpu/drm/i915/display/intel_psr.c | 54 +++++++-----------------
-> drivers/gpu/drm/i915/display/intel_psr.h |  6 ++-
->  drivers/gpu/drm/i915/i915_drv.h          |  1 +
->  4 files changed, 22 insertions(+), 43 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 8509cd33569e..00b46c45f6a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3901,7 +3901,7 @@ static void intel_enable_ddi_dp(struct intel_encoder
-> *encoder,
->  		intel_dp_stop_link_train(intel_dp);
-> 
->  	intel_edp_backlight_on(crtc_state, conn_state);
-> -	intel_psr_enable(intel_dp, crtc_state);
-> +	intel_psr_enable(intel_dp, crtc_state, conn_state);
->  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
->  	intel_edp_drrs_enable(intel_dp, crtc_state);
-> 
-> @@ -4063,7 +4063,7 @@ static void intel_ddi_update_pipe_dp(struct intel_encoder
-> *encoder,
-> 
->  	intel_ddi_set_dp_msa(crtc_state, conn_state);
-> 
-> -	intel_psr_update(intel_dp, crtc_state);
-> +	intel_psr_update(intel_dp, crtc_state, conn_state);
->  	intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
->  	intel_edp_drrs_enable(intel_dp, crtc_state);
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
-> b/drivers/gpu/drm/i915/display/intel_psr.c
-> index e41ed962aa80..a4564607b6c5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -330,39 +330,6 @@ void intel_psr_init_dpcd(struct intel_dp *intel_dp)
->  	}
->  }
-> 
-> -static void intel_psr_setup_vsc(struct intel_dp *intel_dp,
-> -				const struct intel_crtc_state *crtc_state)
-> -{
-> -	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> -	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> -	struct dp_sdp psr_vsc;
-> -
-> -	if (dev_priv->psr.psr2_enabled) {
-> -		/* Prepare VSC Header for SU as per EDP 1.4 spec, Table 6.11 */
-> -		memset(&psr_vsc, 0, sizeof(psr_vsc));
-> -		psr_vsc.sdp_header.HB0 = 0;
-> -		psr_vsc.sdp_header.HB1 = 0x7;
-> -		if (dev_priv->psr.colorimetry_support) {
-> -			psr_vsc.sdp_header.HB2 = 0x5;
-> -			psr_vsc.sdp_header.HB3 = 0x13;
-> -		} else {
-> -			psr_vsc.sdp_header.HB2 = 0x4;
-> -			psr_vsc.sdp_header.HB3 = 0xe;
-> -		}
-> -	} else {
-> -		/* Prepare VSC packet as per EDP 1.3 spec, Table 3.10 */
-> -		memset(&psr_vsc, 0, sizeof(psr_vsc));
-> -		psr_vsc.sdp_header.HB0 = 0;
-> -		psr_vsc.sdp_header.HB1 = 0x7;
-> -		psr_vsc.sdp_header.HB2 = 0x2;
-> -		psr_vsc.sdp_header.HB3 = 0x8;
-> -	}
-> -
-> -	intel_dig_port->write_infoframe(&intel_dig_port->base,
-> -					crtc_state,
-> -					DP_SDP_VSC, &psr_vsc, sizeof(psr_vsc));
-> -}
-> -
->  static void hsw_psr_setup_aux(struct intel_dp *intel_dp)  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp); @@ -841,9
-> +808,12 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,  }
-> 
->  static void intel_psr_enable_locked(struct drm_i915_private *dev_priv,
-> -				    const struct intel_crtc_state *crtc_state)
-> +				    const struct intel_crtc_state *crtc_state,
-> +				    const struct drm_connector_state *conn_state)
->  {
->  	struct intel_dp *intel_dp = dev_priv->psr.dp;
-> +	struct intel_digital_port *intel_dig_port = dp_to_dig_port(intel_dp);
-> +	struct intel_encoder *encoder = &intel_dig_port->base;
->  	u32 val;
-> 
->  	WARN_ON(dev_priv->psr.enabled);
-> @@ -881,7 +851,9 @@ static void intel_psr_enable_locked(struct drm_i915_private
-> *dev_priv,
-> 
->  	DRM_DEBUG_KMS("Enabling PSR%s\n",
->  		      dev_priv->psr.psr2_enabled ? "2" : "1");
-> -	intel_psr_setup_vsc(intel_dp, crtc_state);
-> +	intel_dp_compute_psr_vsc_sdp(intel_dp, crtc_state, conn_state,
-> +				     &dev_priv->psr.vsc);
-> +	intel_write_dp_vsc_sdp(encoder, crtc_state, &dev_priv->psr.vsc);
->  	intel_psr_enable_sink(intel_dp);
->  	intel_psr_enable_source(intel_dp, crtc_state);
->  	dev_priv->psr.enabled = true;
-> @@ -893,11 +865,13 @@ static void intel_psr_enable_locked(struct
-> drm_i915_private *dev_priv,
->   * intel_psr_enable - Enable PSR
->   * @intel_dp: Intel DP
->   * @crtc_state: new CRTC state
-> + * @conn_state: new CONNECTOR state
->   *
->   * This function can only be called after the pipe is fully trained and enabled.
->   */
->  void intel_psr_enable(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state)
-> +		      const struct intel_crtc_state *crtc_state,
-> +		      const struct drm_connector_state *conn_state)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
-> 
-> @@ -916,7 +890,7 @@ void intel_psr_enable(struct intel_dp *intel_dp,
->  		goto unlock;
->  	}
-> 
-> -	intel_psr_enable_locked(dev_priv, crtc_state);
-> +	intel_psr_enable_locked(dev_priv, crtc_state, conn_state);
-> 
->  unlock:
->  	mutex_unlock(&dev_priv->psr.lock);
-> @@ -1049,13 +1023,15 @@ static void psr_force_hw_tracking_exit(struct
-> drm_i915_private *dev_priv)
->   * intel_psr_update - Update PSR state
->   * @intel_dp: Intel DP
->   * @crtc_state: new CRTC state
-> + * @conn_state: new CONNECTOR state
->   *
->   * This functions will update PSR states, disabling, enabling or switching PSR
->   * version when executing fastsets. For full modeset, intel_psr_disable() and
->   * intel_psr_enable() should be called instead.
->   */
->  void intel_psr_update(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state)
-> +		      const struct intel_crtc_state *crtc_state,
-> +		      const struct drm_connector_state *conn_state)
->  {
->  	struct drm_i915_private *dev_priv = dp_to_i915(intel_dp);
->  	struct i915_psr *psr = &dev_priv->psr; @@ -1090,7 +1066,7 @@ void
-> intel_psr_update(struct intel_dp *intel_dp,
->  		intel_psr_disable_locked(intel_dp);
-> 
->  	if (enable)
-> -		intel_psr_enable_locked(dev_priv, crtc_state);
-> +		intel_psr_enable_locked(dev_priv, crtc_state, conn_state);
-> 
->  unlock:
->  	mutex_unlock(&dev_priv->psr.lock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h
-> b/drivers/gpu/drm/i915/display/intel_psr.h
-> index c58a1d438808..a003fb18105a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
-> @@ -17,11 +17,13 @@ struct intel_dp;
->  #define CAN_PSR(dev_priv) (HAS_PSR(dev_priv) && dev_priv->psr.sink_support)
-> void intel_psr_init_dpcd(struct intel_dp *intel_dp);  void intel_psr_enable(struct
-> intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state);
-> +		      const struct intel_crtc_state *crtc_state,
-> +		      const struct drm_connector_state *conn_state);
->  void intel_psr_disable(struct intel_dp *intel_dp,
->  		       const struct intel_crtc_state *old_crtc_state);  void
-> intel_psr_update(struct intel_dp *intel_dp,
-> -		      const struct intel_crtc_state *crtc_state);
-> +		      const struct intel_crtc_state *crtc_state,
-> +		      const struct drm_connector_state *conn_state);
->  int intel_psr_debug_set(struct drm_i915_private *dev_priv, u64 value);  void
-> intel_psr_invalidate(struct drm_i915_private *dev_priv,
->  			  unsigned frontbuffer_bits,
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index a8a08c63278e..fa2f1a18ffe0 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -504,6 +504,7 @@ struct i915_psr {
->  	u32 dc3co_exit_delay;
->  	struct delayed_work idle_work;
->  	bool initially_probed;
-> +	struct drm_dp_vsc_sdp vsc;
->  };
-> 
->  #define QUIRK_LVDS_SSC_DISABLE (1<<1)
-> --
-> 2.24.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7869 -> Patchwork_16434
+
+  CI-20190529: 20190529
+  CI_DRM_7869: db0579be255412f38a450c3c577f8d10f1195034 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5419: 44913a91e77434b03001bb9ea53216cd03c476e6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16434: ff4baf44b0269a86adf6319dafac50877260ce2f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ff4baf44b026 drm/i915/gem: Don't leak non-persistent requests on changing engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16434/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
