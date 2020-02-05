@@ -1,59 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59290153572
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 17:42:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A61153578
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 17:44:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6A26F8A0;
-	Wed,  5 Feb 2020 16:42:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6649E6F8A6;
+	Wed,  5 Feb 2020 16:44:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40C8D6F8A0;
- Wed,  5 Feb 2020 16:42:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 08:42:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="343747753"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by fmsmga001.fm.intel.com with ESMTP; 05 Feb 2020 08:42:43 -0800
-Received: from fmsmsx161.amr.corp.intel.com (10.18.125.9) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 08:42:43 -0800
-Received: from bgsmsx154.gar.corp.intel.com (10.224.48.47) by
- FMSMSX161.amr.corp.intel.com (10.18.125.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 08:42:43 -0800
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.97]) by
- BGSMSX154.gar.corp.intel.com ([169.254.7.238]) with mapi id 14.03.0439.000;
- Wed, 5 Feb 2020 22:12:42 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 08/17] drm/i915: Include HDMI DRM infoframe in the
- crtc state dump
-Thread-Index: AQHV2uieMiQMQtuwZkG9mMgFRxW4ZKgM0I2w
-Date: Wed, 5 Feb 2020 16:42:41 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823DD04E@BGSMSX104.gar.corp.intel.com>
-References: <20200203232014.906651-1-gwan-gyeong.mun@intel.com>
- <20200203232014.906651-9-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200203232014.906651-9-gwan-gyeong.mun@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmZhNjZjYjItMmFiOC00OGJlLWI4ZGYtOTM5MzU3YTQ5ZWRiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoib1hJa0VwdWJVYUdRN29TbUFUdmFaUmdiUXV2VldPQVJ5WDUzc2xBQTJaWVBcL2duQ0VRaFlpeUZUbmF2d2RLVlQifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 356A06F8A6;
+ Wed,  5 Feb 2020 16:44:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2DAAFA0003;
+ Wed,  5 Feb 2020 16:44:03 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 08/17] drm/i915: Include HDMI DRM
- infoframe in the crtc state dump
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ramalingam C" <ramalingam.c@intel.com>
+Date: Wed, 05 Feb 2020 16:44:03 -0000
+Message-ID: <158092104318.17318.11348112279801882042@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200205114019.10900-1-ramalingam.c@intel.com>
+In-Reply-To: <20200205114019.10900-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_align_dumb_buffer_stride_to_page=5Fsz_of_the_region?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,58 +38,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915: align dumb buffer stride to page_sz of the region
+URL   : https://patchwork.freedesktop.org/series/73021/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7869 -> Patchwork_16433
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16433 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#563])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-hsw-peppy:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_addfb_basic@bad-pitch-128:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-128.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-128.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [INCOMPLETE][9] ([i915#45]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-icl-u3:          [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-icl-u3/igt@gem_exec_parallel@fds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-icl-u3/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-cml-s:           [INCOMPLETE][13] ([i915#1078] / [i915#283]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-cml-s/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_module_load@reload:
+    - fi-skl-6770hq:      [DMESG-WARN][17] ([i915#92]) -> [PASS][18] +1 similar issue
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@i915_module_load@reload.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-skl-6770hq/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-nick:        [INCOMPLETE][19] ([i915#392]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-bsw-nick/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-bsw-nick/igt@i915_selftest@live_blt.html
+    - fi-ivb-3770:        [DMESG-FAIL][21] ([i915#725]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-kbl-7500u:       [FAIL][23] ([fdo#109635] / [i915#217]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][25] ([fdo#111096] / [i915#323]) -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [SKIP][27] ([fdo#109271]) -> [PASS][28] +4 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-skl-6770hq:      [DMESG-WARN][29] ([i915#106] / [i915#188]) -> [PASS][30]
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [DMESG-WARN][31] ([i915#92]) -> [FAIL][32] ([i915#178])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770:        [DMESG-FAIL][33] ([i915#553]) -> [DMESG-FAIL][34] ([i915#770])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#1078]: https://gitlab.freedesktop.org/drm/intel/issues/1078
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#188]: https://gitlab.freedesktop.org/drm/intel/issues/188
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#563]: https://gitlab.freedesktop.org/drm/intel/issues/563
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
 
 
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Gwan-
-> gyeong Mun
-> Sent: Tuesday, February 4, 2020 4:50 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: linux-fbdev@vger.kernel.org; dri-devel@lists.freedesktop.org
-> Subject: [PATCH v3 08/17] drm/i915: Include HDMI DRM infoframe in the crtc state
-> dump
-> 
-> Dump out the HDMI Dynamic Range and Mastering (DRM) infoframe in the normal
-> crtc state dump.
+Participating hosts (49 -> 44)
+------------------------------
 
-Looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+  Additional (2): fi-gdg-551 fi-snb-2520m 
+  Missing    (7): fi-kbl-soraka fi-bdw-5557u fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index c0e5002ce64c..239861bcedba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13030,6 +13030,9 @@ static void intel_dump_pipe_config(const struct
-> intel_crtc_state *pipe_config,
->  	if (pipe_config->infoframes.enable &
->  	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_VENDOR))
->  		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.hdmi);
-> +	if (pipe_config->infoframes.enable &
-> +	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_DRM))
-> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
-> 
->  	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
->  	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
-> --
-> 2.24.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7869 -> Patchwork_16433
+
+  CI-20190529: 20190529
+  CI_DRM_7869: db0579be255412f38a450c3c577f8d10f1195034 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5419: 44913a91e77434b03001bb9ea53216cd03c476e6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16433: fe70b2c46fe7991d0a91d63bcc544ac5cfb0af80 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fe70b2c46fe7 drm/i915: align dumb buffer stride to page_sz of the region
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16433/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
