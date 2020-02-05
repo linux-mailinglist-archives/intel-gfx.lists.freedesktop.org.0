@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF01152461
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 02:09:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DAC152477
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 02:35:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C875F6F428;
-	Wed,  5 Feb 2020 01:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBB616F42A;
+	Wed,  5 Feb 2020 01:35:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DFC866E939;
- Wed,  5 Feb 2020 01:09:17 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 36CBD6E939;
+ Wed,  5 Feb 2020 01:35:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DC415A0003;
- Wed,  5 Feb 2020 01:09:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 26547A0078;
+ Wed,  5 Feb 2020 01:35:16 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 05 Feb 2020 01:09:17 -0000
-Message-ID: <158086495789.17320.6923605707769481661@emeril.freedesktop.org>
+Date: Wed, 05 Feb 2020 01:35:16 -0000
+Message-ID: <158086651612.17320.11195683374527110378@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200204094102.876636-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200204094102.876636-1-chris@chris-wilson.co.uk>
+References: <20200202153934.3899472-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200202153934.3899472-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Add_a_simple_rollover_test_for_the_kernel_co?=
- =?utf-8?q?ntext_=28rev2=29?=
+ =?utf-8?q?/i915=3A_Wean_off_drm=5Fpci=5Falloc/drm=5Fpci=5Ffree_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,15 +47,18 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/selftests: Add a simple rollover test for the kernel context (rev2)
-URL   : https://patchwork.freedesktop.org/series/72935/
+Series: drm/i915: Wean off drm_pci_alloc/drm_pci_free (rev2)
+URL   : https://patchwork.freedesktop.org/series/72878/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915/selftests: Add a simple rollover test for the kernel context
+Applying: drm/i915: Wean off drm_pci_alloc/drm_pci_free
 Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gt/selftest_timeline.c
+M	drivers/gpu/drm/i915/display/intel_display.c
+M	drivers/gpu/drm/i915/gem/i915_gem_object_types.h
+M	drivers/gpu/drm/i915/gem/i915_gem_phys.c
+M	drivers/gpu/drm/i915/i915_gem.c
 Falling back to patching base and 3-way merge...
 No changes -- Patch already applied.
 
