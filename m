@@ -1,29 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB5DA1536B9
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 18:35:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCBE91536C2
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 18:36:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 619416E21F;
-	Wed,  5 Feb 2020 17:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28DF46F8F5;
+	Wed,  5 Feb 2020 17:36:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11D476E21F
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 17:35:55 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35BC56F8F5
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 17:36:39 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 09:35:54 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 09:36:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="404218446"
+X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="220171665"
 Received: from linux.intel.com ([10.54.29.200])
- by orsmga005.jf.intel.com with ESMTP; 05 Feb 2020 09:35:54 -0800
+ by orsmga007.jf.intel.com with ESMTP; 05 Feb 2020 09:36:38 -0800
 Received: from [10.252.5.149] (abudanko-mobl.ccr.corp.intel.com [10.252.5.149])
- by linux.intel.com (Postfix) with ESMTP id 919B05802BC;
- Wed,  5 Feb 2020 09:35:46 -0800 (PST)
+ by linux.intel.com (Postfix) with ESMTP id F2F875803E3;
+ Wed,  5 Feb 2020 09:36:30 -0800 (PST)
 From: Alexey Budankov <alexey.budankov@linux.intel.com>
 To: James Morris <jmorris@namei.org>, Serge Hallyn <serge@hallyn.com>,
  Stephen Smalley <sds@tycho.nsa.gov>, Peter Zijlstra <peterz@infradead.org>,
@@ -33,14 +33,14 @@ To: James Morris <jmorris@namei.org>, Serge Hallyn <serge@hallyn.com>,
  Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>
 References: <576a6141-36d4-14c0-b395-8d195892b916@linux.intel.com>
 Organization: Intel Corp.
-Message-ID: <15e3133b-3090-f7e4-f12d-f47c60f8c93d@linux.intel.com>
-Date: Wed, 5 Feb 2020 20:35:45 +0300
+Message-ID: <4fa7407f-0da8-fffa-dd79-2da0429055f6@linux.intel.com>
+Date: Wed, 5 Feb 2020 20:36:29 +0300
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.2
 MIME-Version: 1.0
 In-Reply-To: <576a6141-36d4-14c0-b395-8d195892b916@linux.intel.com>
 Content-Language: en-US
-Subject: [Intel-gfx] [PATCH v6 08/10] parisc/perf: open access for
+Subject: [Intel-gfx] [PATCH v6 09/10] drivers/perf: open access for
  CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,22 +91,31 @@ capability.
 
 Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
 ---
- arch/parisc/kernel/perf.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/perf/arm_spe_pmu.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/parisc/kernel/perf.c b/arch/parisc/kernel/perf.c
-index 676683641d00..c4208d027794 100644
---- a/arch/parisc/kernel/perf.c
-+++ b/arch/parisc/kernel/perf.c
-@@ -300,7 +300,7 @@ static ssize_t perf_write(struct file *file, const char __user *buf,
- 	else
- 		return -EFAULT;
+diff --git a/drivers/perf/arm_spe_pmu.c b/drivers/perf/arm_spe_pmu.c
+index 4e4984a55cd1..5dff81bc3324 100644
+--- a/drivers/perf/arm_spe_pmu.c
++++ b/drivers/perf/arm_spe_pmu.c
+@@ -274,7 +274,7 @@ static u64 arm_spe_event_to_pmscr(struct perf_event *event)
+ 	if (!attr->exclude_kernel)
+ 		reg |= BIT(SYS_PMSCR_EL1_E1SPE_SHIFT);
  
--	if (!capable(CAP_SYS_ADMIN))
-+	if (!perfmon_capable())
- 		return -EACCES;
+-	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && capable(CAP_SYS_ADMIN))
++	if (IS_ENABLED(CONFIG_PID_IN_CONTEXTIDR) && perfmon_capable())
+ 		reg |= BIT(SYS_PMSCR_EL1_CX_SHIFT);
  
- 	if (count != sizeof(uint32_t))
+ 	return reg;
+@@ -700,7 +700,7 @@ static int arm_spe_pmu_event_init(struct perf_event *event)
+ 		return -EOPNOTSUPP;
+ 
+ 	reg = arm_spe_event_to_pmscr(event);
+-	if (!capable(CAP_SYS_ADMIN) &&
++	if (!perfmon_capable() &&
+ 	    (reg & (BIT(SYS_PMSCR_EL1_PA_SHIFT) |
+ 		    BIT(SYS_PMSCR_EL1_CX_SHIFT) |
+ 		    BIT(SYS_PMSCR_EL1_PCT_SHIFT))))
 -- 
 2.20.1
 
