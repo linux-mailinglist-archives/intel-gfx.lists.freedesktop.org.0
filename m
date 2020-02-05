@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E7CD153B75
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 23:52:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C760B153B07
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 23:37:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 977826F96C;
-	Wed,  5 Feb 2020 22:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18DBD6F968;
+	Wed,  5 Feb 2020 22:37:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 14650 seconds by postgrey-1.36 at gabe;
- Wed, 05 Feb 2020 22:52:29 UTC
-Received: from 2.mo4.mail-out.ovh.net (2.mo4.mail-out.ovh.net [46.105.72.36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95F646F96C
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 22:52:29 +0000 (UTC)
-Received: from player778.ha.ovh.net (unknown [10.110.115.164])
- by mo4.mail-out.ovh.net (Postfix) with ESMTP id 16011222E74
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 23:36:41 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player778.ha.ovh.net (Postfix) with ESMTPSA id E363FF108CBB;
- Wed,  5 Feb 2020 22:36:36 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Thu,  6 Feb 2020 00:36:27 +0200
-Message-Id: <20200205223627.5680-1-andi@etezian.org>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 68F356F967;
+ Wed,  5 Feb 2020 22:37:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60C86A0088;
+ Wed,  5 Feb 2020 22:37:15 +0000 (UTC)
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 4861917273965314653
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrhedvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdekuddrudejhedrvddvfedruddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjeekrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: [Intel-gfx] [PATCH v4] drm/i915/selftests: add basic selftests for
- rc6
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 05 Feb 2020 22:37:15 -0000
+Message-ID: <158094223539.17321.2629397668639860895@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Don=27t_leak_non-persistent_requests_on_changing_e?=
+ =?utf-8?q?ngines_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,294 +39,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+== Series Details ==
 
-Add three basic tests for rc6 power status:
+Series: drm/i915/gem: Don't leak non-persistent requests on changing engines (rev4)
+URL   : https://patchwork.freedesktop.org/series/73023/
+State : failure
 
-1. live_rc6_basic - simply checks if rc6 works when it's enabled
-   or stops when it's disabled.
+== Summary ==
 
-2. live_rc6_threshold - rc6 should not work when the evaluation
-   interval is less than the threshold and should work otherwise.
+CI Bug Log - changes from CI_DRM_7871 -> Patchwork_16442
+====================================================
 
-3. live_rc6_busy - keeps the gpu busy and then goes in idle;
-   checks that we don't fall in rc6 when busy and that we do fall
-   in rc6 when idling.
+Summary
+-------
 
-The three tests are added as sutest of the bigger live_late_gt_pm
-selftest.
+  **FAILURE**
 
-The basic rc6 functionality is tested by checking the reference
-counter within the evaluation interval.
+  Serious unknown changes coming with Patchwork_16442 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16442, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
-Hi,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/index.html
 
-just resending this patch that was going in decomposition. It's
-rebased on top of drm-tip.
+Possible new issues
+-------------------
 
-Andi
+  Here are the unknown changes that may have been introduced in Patchwork_16442:
 
-Changelog:
-* v3 -> v4:
-	- just a small refactoring where test_rc6 becomes a
-	  measure function while another test_rc6 checks the
-	  return value from the measure.
-* v2 -> v3:
-        - rebased on top of the latest drm-tip
-        - fixed exiting order in rc6_basic to avoid exiting
-          without releasing the pm reference
-* v1 -> v2:
-        - some changes from Chris (thank you!).
+### IGT changes ###
 
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +
- drivers/gpu/drm/i915/gt/selftest_rc6.c   | 190 +++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_rc6.h   |   3 +
- 3 files changed, 196 insertions(+)
+#### Possible regressions ####
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 09ff8e4f88af..84d1a58cfa28 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -51,6 +51,9 @@ static int live_gt_resume(void *arg)
- int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-+		SUBTEST(live_rc6_basic),
-+		SUBTEST(live_rc6_threshold),
-+		SUBTEST(live_rc6_busy),
- 		SUBTEST(live_rc6_manual),
- 		SUBTEST(live_gt_resume),
- 	};
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 5f7e2dcf5686..bd0e75421a4a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -11,6 +11,7 @@
- #include "selftest_rc6.h"
- 
- #include "selftests/i915_random.h"
-+#include "selftests/igt_spinner.h"
- 
- int live_rc6_manual(void *arg)
- {
-@@ -202,3 +203,192 @@ int live_rc6_ctx_wa(void *arg)
- 	kfree(engines);
- 	return err;
- }
-+
-+static bool test_rc6(struct intel_rc6 *rc6, bool enabled)
-+{
-+	struct intel_uncore *uncore = rc6_to_uncore(rc6);
-+	intel_wakeref_t wakeref;
-+	u32 ec1, ec2;
-+	u32 interval;
-+
-+	wakeref = intel_runtime_pm_get(uncore->rpm);
-+
-+	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
-+
-+	/*
-+	 * the interval is stored in steps of 1.28us
-+	 */
-+	interval = div_u64(mul_u32_u32(interval, 128),
-+			   100 * 1000); /* => miliseconds */
-+
-+	ec1 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
-+
-+	/*
-+	 * It's not important to precisely wait the interval time.
-+	 * I'll wait at least twice the time in order to be sure
-+	 * that the counting happens in the reference counter.
-+	 */
-+	msleep(2 * interval);
-+
-+	ec2 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
-+
-+	intel_runtime_pm_put(uncore->rpm, wakeref);
-+
-+	return enabled != (ec1 >= ec2);
-+}
-+
-+int live_rc6_basic(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	intel_wakeref_t wakeref;
-+	int i, err = 0;
-+
-+	if (!rc6->supported)
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
-+	/*
-+	 * the two loops test rc6 both in case it's enabled
-+	 * and in the case it's disabled. It restores the prvious
-+	 * status
-+	 */
-+	for (i = 0; i < 2; i++) {
-+		if (!test_rc6(rc6, rc6->enabled)) {
-+			err = -EINVAL;
-+
-+			/* restore before leaving */
-+			if (!i)
-+				goto exit;
-+		}
-+
-+		if (rc6->enabled)
-+			intel_rc6_disable(&gt->rc6);
-+		else
-+			intel_rc6_enable(&gt->rc6);
-+	}
-+
-+exit:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+	return err;
-+}
-+
-+int live_rc6_threshold(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_uncore *uncore = gt->uncore;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	intel_wakeref_t wakeref;
-+	u32 threshold, interval;
-+	u32 t_orig, i_orig;
-+	int err = 0;
-+
-+	if (!rc6->supported)
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(uncore->rpm);
-+
-+	t_orig = intel_uncore_read(uncore, GEN6_RC6_THRESHOLD);
-+	i_orig = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
-+
-+	/*
-+	 * set the threshold to 50ms
-+	 *
-+	 * 50ms * 1000 = 50000us
-+	 * 50000 / (1.28 * 100) / 100 (we don't have floating point)
-+	 */
-+	threshold = 50 * 1000 / 128 * 100;
-+	intel_uncore_write(uncore, GEN6_RC6_THRESHOLD, threshold);
-+
-+	/* set interval indicatively to half the threshold */
-+	interval = threshold / 2;
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, interval);
-+
-+	/* interval < threshold */
-+	if (!test_rc6(rc6, true)) {
-+		pr_err("i915 mismatch: rc6 with interval < threshold\n");
-+		err = -EINVAL;
-+	}
-+
-+	/* set interval indicatively to twice the threshold */
-+	interval = threshold * 2;
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, interval);
-+
-+	/* interval > threshold */
-+	if (!test_rc6(rc6, false)) {
-+		pr_err("i915 mismatch: not in rc6 with interval > threshold\n");
-+		err = -EINVAL;
-+	}
-+
-+	intel_uncore_write(uncore, GEN6_RC6_THRESHOLD, t_orig);
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, i_orig);
-+	intel_runtime_pm_put(uncore->rpm, wakeref);
-+
-+	return err;
-+}
-+
-+int live_rc6_busy(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	struct intel_engine_cs *engine;
-+	struct igt_spinner spin;
-+	intel_wakeref_t wakeref;
-+	enum intel_engine_id id;
-+	int err;
-+
-+	if (!rc6->supported)
-+		return 0;
-+
-+	err = igt_spinner_init(&spin, gt);
-+	if (err)
-+		return err;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+
-+		rq = igt_spinner_create_request(&spin,
-+						engine->kernel_context,
-+						MI_NOOP);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		igt_wait_for_spinner(&spin, rq); /* it's enough waiting */
-+
-+		/* gpu is busy, we shouldn't be in rc6 */
-+		if (!test_rc6(rc6, false)) {
-+			pr_err("%s: never busy enough for having a nap\n",
-+			       engine->name);
-+			err = -EINVAL;
-+		}
-+
-+		igt_spinner_end(&spin);
-+		if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(rq);
-+		if (err)
-+			break;
-+
-+		intel_gt_wait_for_idle(gt, HZ / 5);
-+		intel_gt_pm_wait_for_idle(gt);
-+
-+		/* gpu is busy, we should be in rc6 */
-+		if (!test_rc6(rc6, true)) {
-+			pr_err("%s is idle but doesn't go in rc6\n",
-+			       engine->name);
-+			err = -EINVAL;
-+			break;
-+		}
-+	}
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.h b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-index 762fd442d7b2..b924d2e5cb43 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-@@ -7,6 +7,9 @@
- #ifndef SELFTEST_RC6_H
- #define SELFTEST_RC6_H
- 
-+int live_rc6_basic(void *arg);
-+int live_rc6_threshold(void *arg);
-+int live_rc6_busy(void *arg);
- int live_rc6_ctx_wa(void *arg);
- int live_rc6_manual(void *arg);
- 
--- 
-2.25.0
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
 
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16442 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][7] -> [DMESG-FAIL][8] ([fdo#108569])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          [PASS][9] -> [FAIL][10] ([i915#217])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@prime_self_import@basic-llseek-size:
+    - fi-tgl-y:           [PASS][11] -> [DMESG-WARN][12] ([CI#94] / [i915#402]) +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-guc:         [TIMEOUT][13] ([fdo#112271]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-icl-guc/igt@i915_selftest@live_gtt.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-icl-guc/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_addfb_basic@bad-pitch-128:
+    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7871/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-128.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-128.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-hsw-peppy fi-bwr-2160 fi-ilk-650 fi-kbl-7500u 
+  Missing    (8): fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7871 -> Patchwork_16442
+
+  CI-20190529: 20190529
+  CI_DRM_7871: c9b0237ee7ffb1bbb62f864f0b2d7b290ee1313d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5419: 44913a91e77434b03001bb9ea53216cd03c476e6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16442: 66727965053c0e896d166743999590651bf4ca80 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+66727965053c drm/i915/gem: Don't leak non-persistent requests on changing engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16442/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
