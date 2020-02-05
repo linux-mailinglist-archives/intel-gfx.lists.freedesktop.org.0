@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D3B15398C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 21:32:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BF9D15398D
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 21:32:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC6E6E9F3;
-	Wed,  5 Feb 2020 20:32:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 968A76F93F;
+	Wed,  5 Feb 2020 20:32:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 667136E9F3;
- Wed,  5 Feb 2020 20:32:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5DBF4A0096;
- Wed,  5 Feb 2020 20:32:19 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 469C06F93F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 20:32:40 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20129305-1500050 
+ for multiple; Wed, 05 Feb 2020 20:32:21 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Feb 2020 20:32:20 +0000
+Message-Id: <20200205203220.2052043-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200205193922.1976540-1-chris@chris-wilson.co.uk>
+References: <20200205193922.1976540-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Wed, 05 Feb 2020 20:32:19 -0000
-Message-ID: <158093473935.17320.14059535669738305320@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200205154137.1202389-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200205154137.1202389-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_In_order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP?=
- =?utf-8?q?_SDPs_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't leak non-persistent
+ requests on changing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,52 +39,305 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+If we have a set of active engines marked as being non-persistent, we
+lose track of those if the user replaces those engines with
+I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
+non-persistent requests are terminated if they are no longer being
+tracked by the user's context (in order to prevent a lost request
+causing an untracked and so unstoppable GPU hang), we need to apply the
+same context cancellation upon changing engines.
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev4)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : warning
+v2: Track stale engines[] so we only reap at context closure.
 
-== Summary ==
+Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
+Testcase: igt/gem_ctx_peristence/replace
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 118 ++++++++++++++++--
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  11 +-
+ drivers/gpu/drm/i915/i915_sw_fence.c          |  15 ++-
+ drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
+ 4 files changed, 133 insertions(+), 13 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-337be6e4a25e drm: add DP 1.4 VSC SDP Payload related enums and a structure
-8e6cf3c5fe7f drm/i915/dp: Add compute routine for DP VSC SDP
-e34ff27be612 drm/i915/dp: Add compute routine for DP HDR Metadata Infoframe SDP
-e92dd2d13e47 drm/i915/dp: Add writing of DP SDPs (Secondary Data Packet)
-d587ae502b80 video/hdmi: Add Unpack only function for DRM infoframe
-7fc4c0069309 drm/i915/dp: Read out DP SDPs (Secondary Data Packet)
-c754babdda67 drm: Add logging function for DP VSC SDP
-60f01133b46c drm/i915: Include HDMI DRM infoframe in the crtc state dump
-983f664b850e drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
-5716f680b4a0 drm/i915: Include DP VSC SDP in the crtc state dump
-5070b80edd7a drm/i915: Program DP SDPs with computed configs
-f5aeba2edcb3 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
-12492e08c39d drm/i915: Add state readout for DP VSC SDP
--:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
-#81: FILE: drivers/gpu/drm/i915/display/intel_display.c:13895:
-+#define PIPE_CONF_CHECK_DP_VSC_SDP(name) do { \
-+	if (!intel_compare_dp_vsc_sdp(&current_config->infoframes.name, \
-+				      &pipe_config->infoframes.name)) { \
-+		pipe_config_dp_vsc_sdp_mismatch(dev_priv, fastset, __stringify(name), \
-+						&current_config->infoframes.name, \
-+						&pipe_config->infoframes.name); \
-+		ret = false; \
-+	} \
-+} while (0)
-
-total: 0 errors, 0 warnings, 1 checks, 74 lines checked
-a483a4881789 drm/i915: Program DP SDPs on pipe updates
-279ec55c845f drm/i915: Stop sending DP SDPs on intel_ddi_post_disable_dp()
-64b807768c4c drm/i915/dp: Add compute routine for DP PSR VSC SDP
-f4f8b0f85ef9 drm/i915/psr: Use new DP VSC SDP compute routine on PSR
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 52a749691a8d..21ce84cc1f68 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -270,7 +270,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	init_rcu_head(&e->rcu);
++	e->ctx = ctx;
++
+ 	for_each_engine(engine, gt, id) {
+ 		struct intel_context *ce;
+ 
+@@ -450,7 +451,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	return engine;
+ }
+ 
+-static void kill_context(struct i915_gem_context *ctx)
++static void kill_engines(struct i915_gem_engines *engines)
+ {
+ 	struct i915_gem_engines_iter it;
+ 	struct intel_context *ce;
+@@ -462,7 +463,7 @@ static void kill_context(struct i915_gem_context *ctx)
+ 	 * However, we only care about pending requests, so only include
+ 	 * engines on which there are incomplete requests.
+ 	 */
+-	for_each_gem_engine(ce, __context_engines_static(ctx), it) {
++	for_each_gem_engine(ce, engines, it) {
+ 		struct intel_engine_cs *engine;
+ 
+ 		if (intel_context_set_banned(ce))
+@@ -484,10 +485,41 @@ static void kill_context(struct i915_gem_context *ctx)
+ 			 * the context from the GPU, we have to resort to a full
+ 			 * reset. We hope the collateral damage is worth it.
+ 			 */
+-			__reset_context(ctx, engine);
++			__reset_context(engines->ctx, engine);
++	}
++}
++
++static void kill_stale_engines(struct i915_gem_context *ctx)
++{
++	if (!list_empty(&ctx->stale_list)) {
++		struct i915_gem_engines *pos, *next;
++		unsigned long flags;
++
++		spin_lock_irqsave(&ctx->stale_lock, flags);
++		list_for_each_entry_safe(pos, next, &ctx->stale_list, link) {
++			if (!i915_sw_fence_await(&pos->fence))
++				continue;
++
++			spin_unlock_irqrestore(&ctx->stale_lock, flags);
++
++			kill_engines(pos);
++
++			spin_lock_irqsave(&ctx->stale_lock, flags);
++			list_safe_reset_next(pos, next, link);
++			list_del_init(&pos->link);
++
++			i915_sw_fence_complete(&pos->fence);
++		}
++		spin_unlock_irqrestore(&ctx->stale_lock, flags);
+ 	}
+ }
+ 
++static void kill_context(struct i915_gem_context *ctx)
++{
++	kill_stale_engines(ctx);
++	kill_engines(__context_engines_static(ctx));
++}
++
+ static void set_closed_name(struct i915_gem_context *ctx)
+ {
+ 	char *s;
+@@ -602,6 +634,9 @@ __create_context(struct drm_i915_private *i915)
+ 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
+ 	mutex_init(&ctx->mutex);
+ 
++	INIT_LIST_HEAD(&ctx->stale_list);
++	spin_lock_init(&ctx->stale_lock);
++
+ 	mutex_init(&ctx->engines_mutex);
+ 	e = default_engines(ctx);
+ 	if (IS_ERR(e)) {
+@@ -1529,6 +1564,71 @@ static const i915_user_extension_fn set_engines__extensions[] = {
+ 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+ };
+ 
++static int engines_notify(struct i915_sw_fence *fence,
++			  enum i915_sw_fence_notify state)
++{
++	struct i915_gem_engines *engines =
++		container_of(fence, typeof(*engines), fence);
++
++	switch (state) {
++	case FENCE_COMPLETE:
++		if (!list_empty(&engines->link)) {
++			struct i915_gem_context *ctx = engines->ctx;
++			unsigned long flags;
++
++			spin_lock_irqsave(&ctx->stale_lock, flags);
++			list_del(&engines->link);
++			spin_unlock_irqrestore(&ctx->stale_lock, flags);
++		}
++		break;
++
++	case FENCE_FREE:
++		init_rcu_head(&engines->rcu);
++		call_rcu(&engines->rcu, free_engines_rcu);
++		break;
++	}
++
++	return NOTIFY_DONE;
++}
++
++static void engines_idle_release(struct i915_gem_engines *engines)
++{
++	struct i915_gem_engines_iter it;
++	struct intel_context *ce;
++	unsigned long flags;
++
++	GEM_BUG_ON(!engines);
++	i915_sw_fence_init(&engines->fence, engines_notify);
++
++	spin_lock_irqsave(&engines->ctx->stale_lock, flags);
++	list_add(&engines->link, &engines->ctx->stale_list);
++	spin_unlock_irqrestore(&engines->ctx->stale_lock, flags);
++
++	for_each_gem_engine(ce, engines, it) {
++		struct dma_fence *fence;
++		int err;
++
++		if (!ce->timeline)
++			continue;
++
++		fence = i915_active_fence_get(&ce->timeline->last_request);
++		if (!fence)
++			continue;
++
++		err = i915_sw_fence_await_dma_fence(&engines->fence,
++						    fence, 0,
++						    GFP_KERNEL);
++
++		dma_fence_put(fence);
++		if (err < 0) {
++			kill_engines(engines);
++			break;
++		}
++	}
++
++	i915_sw_fence_commit(&engines->fence);
++}
++
+ static int
+ set_engines(struct i915_gem_context *ctx,
+ 	    const struct drm_i915_gem_context_param *args)
+@@ -1571,7 +1671,8 @@ set_engines(struct i915_gem_context *ctx,
+ 	if (!set.engines)
+ 		return -ENOMEM;
+ 
+-	init_rcu_head(&set.engines->rcu);
++	set.engines->ctx = ctx;
++
+ 	for (n = 0; n < num_engines; n++) {
+ 		struct i915_engine_class_instance ci;
+ 		struct intel_engine_cs *engine;
+@@ -1631,7 +1732,8 @@ set_engines(struct i915_gem_context *ctx,
+ 	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
+ 	mutex_unlock(&ctx->engines_mutex);
+ 
+-	call_rcu(&set.engines->rcu, free_engines_rcu);
++	/* Keep track of old engine sets for kill_context() */
++	engines_idle_release(set.engines);
+ 
+ 	return 0;
+ }
+@@ -1646,7 +1748,6 @@ __copy_engines(struct i915_gem_engines *e)
+ 	if (!copy)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	init_rcu_head(&copy->rcu);
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		if (e->engines[n])
+ 			copy->engines[n] = intel_context_get(e->engines[n]);
+@@ -1890,7 +1991,8 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	if (!clone)
+ 		goto err_unlock;
+ 
+-	init_rcu_head(&clone->rcu);
++	clone->ctx = dst;
++
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		struct intel_engine_cs *engine;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 017ca803ab47..39c2f6189684 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -20,6 +20,7 @@
+ #include "gt/intel_context_types.h"
+ 
+ #include "i915_scheduler.h"
++#include "i915_sw_fence.h"
+ 
+ struct pid;
+ 
+@@ -30,7 +31,12 @@ struct intel_timeline;
+ struct intel_ring;
+ 
+ struct i915_gem_engines {
+-	struct rcu_head rcu;
++	union {
++		struct rcu_head rcu;
++		struct list_head link;
++	};
++	struct i915_sw_fence fence;
++	struct i915_gem_context *ctx;
+ 	unsigned int num_engines;
+ 	struct intel_context *engines[];
+ };
+@@ -173,6 +179,9 @@ struct i915_gem_context {
+ 	 * context in messages.
+ 	 */
+ 	char name[TASK_COMM_LEN + 8];
++
++	struct spinlock stale_lock;
++	struct list_head stale_list;
+ };
+ 
+ #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index 51ba97daf2a0..9a20b7246f91 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -211,10 +211,19 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
+ 	__i915_sw_fence_complete(fence, NULL);
+ }
+ 
+-void i915_sw_fence_await(struct i915_sw_fence *fence)
++bool i915_sw_fence_await(struct i915_sw_fence *fence)
+ {
+-	debug_fence_assert(fence);
+-	WARN_ON(atomic_inc_return(&fence->pending) <= 1);
++	int old, new;
++
++	new = atomic_read(&fence->pending);
++	do {
++		if (new < 1)
++			return false;
++
++		old = new++;
++	} while ((new = atomic_cmpxchg(&fence->pending, old, new)) != old);
++
++	return true;
+ }
+ 
+ void __i915_sw_fence_init(struct i915_sw_fence *fence,
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
+index 19e806ce43bc..30a863353ee6 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.h
++++ b/drivers/gpu/drm/i915/i915_sw_fence.h
+@@ -91,7 +91,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
+ 				    unsigned long timeout,
+ 				    gfp_t gfp);
+ 
+-void i915_sw_fence_await(struct i915_sw_fence *fence);
++bool i915_sw_fence_await(struct i915_sw_fence *fence);
+ void i915_sw_fence_complete(struct i915_sw_fence *fence);
+ 
+ static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
