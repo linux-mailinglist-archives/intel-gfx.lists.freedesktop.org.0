@@ -1,32 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91661533A0
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 16:06:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E89D61533A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 16:11:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB6D6F5FD;
-	Wed,  5 Feb 2020 15:06:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12696F5FC;
+	Wed,  5 Feb 2020 15:11:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 016C76F5FD;
- Wed,  5 Feb 2020 15:06:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EE4DCA0087;
- Wed,  5 Feb 2020 15:06:41 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52CE46F5FC;
+ Wed,  5 Feb 2020 15:11:10 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 07:10:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="343669299"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by fmsmga001.fm.intel.com with ESMTP; 05 Feb 2020 07:10:05 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 5 Feb 2020 07:10:04 -0800
+Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 5 Feb 2020 07:08:21 -0800
+Received: from bgsmsx154.gar.corp.intel.com (10.224.48.47) by
+ fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 5 Feb 2020 07:08:20 -0800
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.97]) by
+ BGSMSX154.gar.corp.intel.com ([169.254.7.238]) with mapi id 14.03.0439.000;
+ Wed, 5 Feb 2020 20:36:56 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v3 03/17] drm/i915/dp: Add compute routine for DP HDR
+ Metadata Infoframe SDP
+Thread-Index: AQHV2uiMDE8we7SfPkCKcmmWhS6BNKgMtS+A
+Date: Wed, 5 Feb 2020 15:06:55 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823DCE62@BGSMSX104.gar.corp.intel.com>
+References: <20200203232014.906651-1-gwan-gyeong.mun@intel.com>
+ <20200203232014.906651-4-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200203232014.906651-4-gwan-gyeong.mun@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmMyNDZlOWMtNDE5Mi00ZjQxLWE4NDgtNTAyNzA4ZGY4MGQyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiRndDTXgxMVwvd3V0dDNQbUR3bmJ6M3ArNlFseGxaZWcwbXpxbzhqelFZaTJQbFUxUXB3NlJnaDlcL2NUQmpRdk5tIn0=
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@intel.com>
-Date: Wed, 05 Feb 2020 15:06:41 -0000
-Message-ID: <158091520194.17318.7963260971297606585@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200205105749.1769982-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200205105749.1769982-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_add_basic_selftests_for_rc6_=28rev5?=
- =?utf-8?q?=29?=
+Subject: Re: [Intel-gfx] [PATCH v3 03/17] drm/i915/dp: Add compute routine
+ for DP HDR Metadata Infoframe SDP
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +71,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/selftests: add basic selftests for rc6 (rev5)
-URL   : https://patchwork.freedesktop.org/series/69825/
-State : warning
 
-== Summary ==
+> -----Original Message-----
+> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Gwan-
+> gyeong Mun
+> Sent: Tuesday, February 4, 2020 4:50 AM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: linux-fbdev@vger.kernel.org; dri-devel@lists.freedesktop.org
+> Subject: [PATCH v3 03/17] drm/i915/dp: Add compute routine for DP HDR Metadata
+> Infoframe SDP
+> 
+> It stores computed dp hdr metadata infoframe sdp to infoframes.drm of crtc state.
+> It referenced intel_hdmi_compute_drm_infoframe().
+> 
+> While computing, we'll also fill out the inforames.enable bitmask appropriately.
 
-$ dim checkpatch origin/drm-tip
-342c89d084c1 drm/i915/selftests: add basic selftests for rc6
--:89: ERROR:CODE_INDENT: code indent should use tabs where possible
-#89: FILE: drivers/gpu/drm/i915/gt/selftest_rc6.c:239:
-+^I       ^Iec2 - ec1,$
+Typo in infoframes
 
--:89: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#89: FILE: drivers/gpu/drm/i915/gt/selftest_rc6.c:239:
-+^I       ^Iec2 - ec1,$
+With the above fixed, this is
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
--:90: ERROR:CODE_INDENT: code indent should use tabs where possible
-#90: FILE: drivers/gpu/drm/i915/gt/selftest_rc6.c:240:
-+^I       ^Iyesno(enabled));$
-
--:90: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#90: FILE: drivers/gpu/drm/i915/gt/selftest_rc6.c:240:
-+^I       ^Iyesno(enabled));$
-
--:107: WARNING:TYPO_SPELLING: 'interferring' may be misspelled - perhaps 'interfering'?
-#107: FILE: drivers/gpu/drm/i915/gt/selftest_rc6.c:257:
-+	if (!rc6->manual) /* No interferring PCU! */
-
-total: 2 errors, 3 warnings, 0 checks, 199 lines checked
-
+> 
+> v2: Wrap a long line.
+> 
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 2bdc43c80e03..b265b5c599f2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2463,6 +2463,27 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp
+> *intel_dp,
+>  					 &crtc_state->infoframes.vsc);
+>  }
+> 
+> +static void
+> +intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_crtc_state
+> *crtc_state,
+> +					    const struct drm_connector_state
+> *conn_state) {
+> +	int ret;
+> +	struct hdmi_drm_infoframe *drm_infoframe =
+> +&crtc_state->infoframes.drm.drm;
+> +
+> +	if (!conn_state->hdr_output_metadata)
+> +		return;
+> +
+> +	ret = drm_hdmi_infoframe_set_hdr_metadata(drm_infoframe, conn_state);
+> +
+> +	if (ret) {
+> +		DRM_DEBUG_KMS("couldn't set HDR metadata in infoframe\n");
+> +		return;
+> +	}
+> +
+> +	crtc_state->infoframes.enable |=
+> +
+> 	intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
+> +}
+> +
+>  int
+>  intel_dp_compute_config(struct intel_encoder *encoder,
+>  			struct intel_crtc_state *pipe_config, @@ -2569,6 +2590,7
+> @@ intel_dp_compute_config(struct intel_encoder *encoder,
+> 
+>  	intel_psr_compute_config(intel_dp, pipe_config);
+>  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
+> +	intel_dp_compute_hdr_metadata_infoframe_sdp(pipe_config, conn_state);
+> 
+>  	return 0;
+>  }
+> --
+> 2.24.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
