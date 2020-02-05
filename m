@@ -2,28 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872AE15306E
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 13:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4945815306F
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 13:13:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7457E6F563;
-	Wed,  5 Feb 2020 12:12:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAFD76F561;
+	Wed,  5 Feb 2020 12:13:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5466F56D
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 12:12:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93D906F55F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 12:13:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20123727-1500050 
- for multiple; Wed, 05 Feb 2020 12:11:48 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20123746-1500050 
+ for multiple; Wed, 05 Feb 2020 12:13:14 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 12:11:47 +0000
-Message-Id: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+Date: Wed,  5 Feb 2020 12:13:13 +0000
+Message-Id: <20200205121313.1834548-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+References: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Don't leak non-persistent
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gem: Don't leak non-persistent
  requests on changing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -55,25 +57,32 @@ Testcase: XXX
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 52a749691a8d..5d4093266103 100644
+index 52a749691a8d..20f1d3e0221f 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1623,6 +1623,11 @@ set_engines(struct i915_gem_context *ctx,
- 	}
+@@ -1624,11 +1624,18 @@ set_engines(struct i915_gem_context *ctx,
  
  replace:
+ 	mutex_lock(&ctx->engines_mutex);
++
 +	/* Flush stale requests off the old engines if required */
 +	if (!i915_gem_context_is_persistent(ctx) ||
 +	    !i915_modparams.enable_hangcheck)
 +		kill_context(ctx);
 +
- 	mutex_lock(&ctx->engines_mutex);
  	if (args->size)
  		i915_gem_context_set_user_engines(ctx);
+ 	else
+ 		i915_gem_context_clear_user_engines(ctx);
+ 	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
++
+ 	mutex_unlock(&ctx->engines_mutex);
+ 
+ 	call_rcu(&set.engines->rcu, free_engines_rcu);
 -- 
 2.25.0
 
