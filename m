@@ -1,40 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A3415274E
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 08:58:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E208152765
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 09:11:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA3F6F4A6;
-	Wed,  5 Feb 2020 07:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F76B6F4B9;
+	Wed,  5 Feb 2020 08:11:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B10816F4A6
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 07:58:23 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04D166F4C4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 08:11:50 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 23:58:22 -0800
-X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="224571249"
-Received: from flurie-mobl.ger.corp.intel.com (HELO localhost) ([10.252.52.50])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2020 23:58:21 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <op.0fg226jqxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200203232838.14822-1-daniele.ceraolospurio@intel.com>
- <20200203232838.14822-2-daniele.ceraolospurio@intel.com>
- <op.0fg226jqxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Date: Wed, 05 Feb 2020 09:58:25 +0200
-Message-ID: <87d0atwjmm.fsf@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 00:11:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="264138056"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga002.fm.intel.com with ESMTP; 05 Feb 2020 00:11:40 -0800
+Date: Wed, 5 Feb 2020 13:32:54 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200205080254.GJ24118@intel.com>
+References: <20200204112927.17391-1-anshuman.gupta@intel.com>
+ <20200204112927.17391-3-anshuman.gupta@intel.com>
+ <20200204143617.GQ13686@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 01/10] drm/i915/debugfs: Pass guc_log
- struct to i915_guc_log_info
+Content-Disposition: inline
+In-Reply-To: <20200204143617.GQ13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Remove (pipe == crtc->index)
+ assumption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,89 +46,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Cc : Jani Nikula" <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Feb 2020, "Michal Wajdeczko" <michal.wajdeczko@intel.com> wrote:
-> On Tue, 04 Feb 2020 00:28:29 +0100, Daniele Ceraolo Spurio  
-> <daniele.ceraolospurio@intel.com> wrote:
->
->> The log struct is the only thing the function needs (apart from
->> the seq_file), so we can pass just that instead of the whole dev_priv.
->>
->> v2: Split this change to its own patch (Michal)
->>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>  drivers/gpu/drm/i915/i915_debugfs.c | 6 ++----
->>  1 file changed, 2 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c  
->> b/drivers/gpu/drm/i915/i915_debugfs.c
->> index e75e8212f03b..7264c0ff766c 100644
->> --- a/drivers/gpu/drm/i915/i915_debugfs.c
->> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
->> @@ -1753,10 +1753,8 @@ stringify_guc_log_type(enum guc_log_buffer_type  
->> type)
->>  	return "";
->>  }
->> -static void i915_guc_log_info(struct seq_file *m,
->> -			      struct drm_i915_private *dev_priv)
->> +static void i915_guc_log_info(struct seq_file *m, struct intel_guc_log  
->> *log)
->
-> maybe to avoid polluting i915_debugfs.c we should move this function to
-> gt/uc/intel_guc_log.c as universal printer:
-
-On that note, I'm going to split display bits from i915_debugfs.c to a
-file of its own under display/ [1]. I think there's enough guc/huc stuff
-to warrant moving them to a separate file maybe under gt/uc/.
-
-
-BR,
-Jani.
-
-[1] http://patchwork.freedesktop.org/patch/msgid/20200204151810.8189-1-jani.nikula@intel.com
-
-
->
-> void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
->
->>  {
->> -	struct intel_guc_log *log = &dev_priv->gt.uc.guc.log;
->>  	enum guc_log_buffer_type type;
->> 	if (!intel_guc_log_relay_created(log)) {
->> @@ -1784,7 +1782,7 @@ static int i915_guc_info(struct seq_file *m, void  
->> *data)
->>  	if (!USES_GUC(dev_priv))
->>  		return -ENODEV;
->> -	i915_guc_log_info(m, dev_priv);
->> +	i915_guc_log_info(m, &dev_priv->gt.uc.guc.log);
->
-> too many dots ... this is "guc" info function, maybe we should have:
->
-> 	struct intel_guc *guc = &dev_priv->gt.uc.guc;
-> or
-> 	struct intel_gt *gt = &dev_priv->gt;
-> 	struct intel_uc *uc = &gt->uc;
-> 	struct intel_guc *guc = &uc->guc;
->
-> as that "guc" is likely to be reused in "more" below
->
->> 	/* Add more as required ... */
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0wNCBhdCAxNjozNjoxNyArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+IE9uIFR1ZSwgRmViIDA0LCAyMDIwIGF0IDA0OjU5OjIyUE0gKzA1MzAsIEFuc2h1bWFuIEd1cHRh
+IHdyb3RlOgo+ID4gd2UgY2FuJ3QgaGF2ZSAocGlwZSA9PSBjcnRjLT5pbmRleCkgYXNzdW1wdGlv
+biBpbgo+ID4gZHJpdmVyIGluIG9yZGVyIHRvIHN1cHBvcnQgMyBub24tY29udGlndW91cwo+ID4g
+ZGlzcGxheSBwaXBlIHN5c3RlbS4KPiA+IAo+ID4gRklYTUU6IFJlbW92ZSB0aGUgV0FSTl9PTihk
+cm1fY3J0Y19pbmRleCgmY3J0Yy0+YmFzZSkgIT0gY3J0Yy0+cGlwZSkKPiA+IHRpbGwgd2Ugd29u
+J3QgZml4IGFsbCBzdWNoIGFzc3VtcHRpb24uCj4gPiAKPiA+IGNoYW5nZXMgc2luY2UgUkZDOgo+
+ID4gLSBBZGRlZCBhZ2FpbiByZW1vdmVkIChwaXBlID09IGNydGMtPmluZGV4KSBXQVJOX09OLgo+
+ID4gLSBQYXNzIGRybV9jcnRjX2luZGV4IGluc3RlYWQgb2YgaW50ZWwgcGlwZSBpbiBvcmRlciB0
+bwo+ID4gICBjYWxsIGRybV9oYW5kbGVfdmJsYW5rKCkgZnJvbSBnZW44X2RlX2lycV9oYW5kbGVy
+KCksCj4gPiAgIG90aGVyIGxlZ2FjeSBpcnEgaGFuZGxlcnMgYWxzbyBjYWxscyBkcm1faGFuZGxl
+X3ZibGFuaygpCj4gPiAgIHdpdGggaW50ZWwgcGlwZSBidXQgdGhvc2UgZG9lc24ndCByZXF1aXJl
+IHRoaXMgY2hhbmdlLgo+ID4gCj4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGlu
+dGVsLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1cHRhIDxhbnNodW1hbi5ndXB0
+YUBpbnRlbC5jb20+Cj4gPiAtLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXkuYyAgICAgICB8IDggKysrKy0tLS0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCB8IDQgKysrLQo+ID4gIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfaXJxLmMgICAgICAgICAgICAgICAgICAgIHwgOCArKysrKystLQo+ID4g
+IDMgZmlsZXMgY2hhbmdlZCwgMTMgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKPiA+IAo+
+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxh
+eS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+IGlu
+ZGV4IDg3OGQzMzFiOWU4Yy4uNTcwOWU2NzIxNTFhIDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gPiBAQCAtMTQwNzAsMTEgKzE0MDcw
+LDExIEBAIHZlcmlmeV9zaW5nbGVfZHBsbF9zdGF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYsCj4gPiAgCWlmIChuZXdfY3J0Y19zdGF0ZS0+aHcuYWN0aXZlKQo+ID4gIAkJSTkx
+NV9TVEFURV9XQVJOKCEocGxsLT5hY3RpdmVfbWFzayAmIGNydGNfbWFzayksCj4gPiAgCQkJCSJw
+bGwgYWN0aXZlIG1pc21hdGNoIChleHBlY3RlZCBwaXBlICVjIGluIGFjdGl2ZSBtYXNrIDB4JTAy
+eClcbiIsCj4gPiAtCQkJCXBpcGVfbmFtZShkcm1fY3J0Y19pbmRleCgmY3J0Yy0+YmFzZSkpLCBw
+bGwtPmFjdGl2ZV9tYXNrKTsKPiA+ICsJCQkJcGlwZV9uYW1lKGNydGMtPnBpcGUpLCBwbGwtPmFj
+dGl2ZV9tYXNrKTsKPiA+ICAJZWxzZQo+ID4gIAkJSTkxNV9TVEFURV9XQVJOKHBsbC0+YWN0aXZl
+X21hc2sgJiBjcnRjX21hc2ssCj4gPiAgCQkJCSJwbGwgYWN0aXZlIG1pc21hdGNoIChkaWRuJ3Qg
+ZXhwZWN0IHBpcGUgJWMgaW4gYWN0aXZlIG1hc2sgMHglMDJ4KVxuIiwKPiA+IC0JCQkJcGlwZV9u
+YW1lKGRybV9jcnRjX2luZGV4KCZjcnRjLT5iYXNlKSksIHBsbC0+YWN0aXZlX21hc2spOwo+ID4g
+KwkJCQlwaXBlX25hbWUoY3J0Yy0+cGlwZSksIHBsbC0+YWN0aXZlX21hc2spOwo+ID4gIAo+ID4g
+IAlJOTE1X1NUQVRFX1dBUk4oIShwbGwtPnN0YXRlLmNydGNfbWFzayAmIGNydGNfbWFzayksCj4g
+PiAgCQkJInBsbCBlbmFibGVkIGNydGNzIG1pc21hdGNoIChleHBlY3RlZCAweCV4IGluIDB4JTAy
+eClcbiIsCj4gPiBAQCAtMTQxMDMsMTAgKzE0MTAzLDEwIEBAIHZlcmlmeV9zaGFyZWRfZHBsbF9z
+dGF0ZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKPiA+ICAKPiA+ICAJCUk5MTVfU1RBVEVfV0FS
+TihwbGwtPmFjdGl2ZV9tYXNrICYgY3J0Y19tYXNrLAo+ID4gIAkJCQkicGxsIGFjdGl2ZSBtaXNt
+YXRjaCAoZGlkbid0IGV4cGVjdCBwaXBlICVjIGluIGFjdGl2ZSBtYXNrKVxuIiwKPiA+IC0JCQkJ
+cGlwZV9uYW1lKGRybV9jcnRjX2luZGV4KCZjcnRjLT5iYXNlKSkpOwo+ID4gKwkJCQlwaXBlX25h
+bWUoY3J0Yy0+cGlwZSkpOwo+ID4gIAkJSTkxNV9TVEFURV9XQVJOKHBsbC0+c3RhdGUuY3J0Y19t
+YXNrICYgY3J0Y19tYXNrLAo+ID4gIAkJCQkicGxsIGVuYWJsZWQgY3J0Y3MgbWlzbWF0Y2ggKGZv
+dW5kICV4IGluIGVuYWJsZWQgbWFzaylcbiIsCj4gPiAtCQkJCXBpcGVfbmFtZShkcm1fY3J0Y19p
+bmRleCgmY3J0Yy0+YmFzZSkpKTsKPiA+ICsJCQkJcGlwZV9uYW1lKGNydGMtPnBpcGUpKTsKPiA+
+ICAJfQo+ID4gIH0KPiA+ICAKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4gPiBpbmRleCAzM2JhOTM4NjM0ODguLjgwYTY0NjBk
+YTg1MiAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheV90eXBlcy5oCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfdHlwZXMuaAo+ID4gQEAgLTE2MTgsNyArMTYxOCw5IEBAIGludGVsX2NydGNf
+aGFzX2RwX2VuY29kZXIoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUp
+Cj4gPiAgc3RhdGljIGlubGluZSB2b2lkCj4gPiAgaW50ZWxfd2FpdF9mb3JfdmJsYW5rKHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgZW51bSBwaXBlIHBpcGUpCj4gPiAgewo+ID4g
+LQlkcm1fd2FpdF9vbmVfdmJsYW5rKCZkZXZfcHJpdi0+ZHJtLCBwaXBlKTsKPiA+ICsJY29uc3Qg
+c3RydWN0IGludGVsX2NydGMgKmNydGMgPSBpbnRlbF9nZXRfY3J0Y19mb3JfcGlwZShkZXZfcHJp
+diwgcGlwZSk7Cj4gPiArCj4gPiArCWRybV93YWl0X29uZV92YmxhbmsoJmRldl9wcml2LT5kcm0s
+IGRybV9jcnRjX2luZGV4KCZjcnRjLT5iYXNlKSk7Cj4gPiAgfQo+ID4gIHN0YXRpYyBpbmxpbmUg
+dm9pZAo+ID4gIGludGVsX3dhaXRfZm9yX3ZibGFua19pZl9hY3RpdmUoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBpcGUgcGlwZSkKPiA+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9p
+cnEuYwo+ID4gaW5kZXggMjJlY2Q1YmM0MDdlLi45ZjhiMjU2NjE2NmEgMTAwNjQ0Cj4gPiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X2lycS5jCj4gPiBAQCAtMjMxMSw2ICsyMzExLDggQEAgZ2VuOF9kZV9pcnFf
+aGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBtYXN0ZXJfY3Rs
+KQo+ID4gIAo+ID4gIAlmb3JfZWFjaF9waXBlKGRldl9wcml2LCBwaXBlKSB7Cj4gPiAgCQl1MzIg
+ZmF1bHRfZXJyb3JzOwo+ID4gKwkJc3RydWN0IGludGVsX2NydGMgKmNydGMgPQo+ID4gKwkJCWlu
+dGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9wcml2LCBwaXBlKTsKPiA+ICAKPiA+ICAJCWlmICgh
+KG1hc3Rlcl9jdGwgJiBHRU44X0RFX1BJUEVfSVJRKHBpcGUpKSkKPiA+ICAJCQljb250aW51ZTsK
+PiA+IEBAIC0yMzI0LDggKzIzMjYsMTAgQEAgZ2VuOF9kZV9pcnFfaGFuZGxlcihzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBtYXN0ZXJfY3RsKQo+ID4gIAkJcmV0ID0gSVJR
+X0hBTkRMRUQ7Cj4gPiAgCQlJOTE1X1dSSVRFKEdFTjhfREVfUElQRV9JSVIocGlwZSksIGlpcik7
+Cj4gPiAgCj4gPiAtCQlpZiAoaWlyICYgR0VOOF9QSVBFX1ZCTEFOSykKPiA+IC0JCQlkcm1faGFu
+ZGxlX3ZibGFuaygmZGV2X3ByaXYtPmRybSwgcGlwZSk7Cj4gPiArCQlpZiAoaWlyICYgR0VOOF9Q
+SVBFX1ZCTEFOSykgewo+ID4gKwkJCWRybV9oYW5kbGVfdmJsYW5rKCZkZXZfcHJpdi0+ZHJtLAo+
+ID4gKwkJCQkJICBkcm1fY3J0Y19pbmRleCgmY3J0Yy0+YmFzZSkpOwo+IAo+IE1pc3NlZCBhbGwg
+dGhlIG90aGVyIHBsYWNlcy4KQWxsIG90aGVyIHBsYWNlcyB3ZXJlIGxlZ2NheSBoYW5kbGVycyBz
+byBpIHRob3VnaHQgd2UgZG9uJ3QgcmVxdWlyZSB0aGlzIGNoYW5nZSwKaXMgaXQgcmVxdWlyZSBk
+byB0aGlzIGNoYW5nZSBhbGwgcGxhY2VzIHRvIGtlZXAgc2FtZSBwYXR0ZXJuLgpQbGVhc2UgY29y
+cmVjdCBtZSBpZiBpIGFtIHdyb25nIGhlcmUuCj4gCj4gUGxlYXNlIGp1c3QgYWRkIGludGVsX2hh
+bmRsZV92YmxhbmsoKSB3aGljaCB3cmFwcyB0aGUKPiBpbnRlbF9nZXRfY3J0Y19mb3JfcGlwZSgp
+K2RybV9oYW5kbGVfdmJsYW5rKCkuCmphbmkgaGFzIHN1Z2dlc3RlZCB0byB1c2UgZHJtX2NydGNf
+aGFuZGxlX3ZibGFuaygpLCBpIHRoaW5rIAp0aGF0IHdvdWxkIGJlIHNpbXBsZXIgdG8gcmVwbGFj
+ZSBpdCBhdCBhbGwgcGxhY2VzIGluc3RlYWQgb2YKaW50ZWxfaGFuZGxlX3ZibGFuaygpLCB3aGF0
+IGlzIHlvdXIgb3BpbmlvbiBvbiB0aGF0ID8KVGhhbmtzLApBbnNodW1hbiBHdXB0YS4KPiAKPiA+
+ICsJCX0KPiA+ICAKPiA+ICAJCWlmIChpaXIgJiBHRU44X1BJUEVfQ0RDTEtfQ1JDX0RPTkUpCj4g
+PiAgCQkJaHN3X3BpcGVfY3JjX2lycV9oYW5kbGVyKGRldl9wcml2LCBwaXBlKTsKPiA+IC0tIAo+
+ID4gMi4yNC4wCj4gCj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
