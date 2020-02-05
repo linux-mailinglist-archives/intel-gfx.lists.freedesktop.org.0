@@ -2,32 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA63E152A1E
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 12:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39897152A32
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 12:48:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65AD089A9B;
-	Wed,  5 Feb 2020 11:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E01466F55A;
+	Wed,  5 Feb 2020 11:48:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95D3D89A9B
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 11:43:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20123316-1500050 for multiple; Wed, 05 Feb 2020 11:43:37 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95E856F55A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 11:48:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 03:48:45 -0800
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="224629079"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
+ ([10.252.21.249])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 05 Feb 2020 03:48:44 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200204152456.1137083-1-chris@chris-wilson.co.uk>
+ <20200204161916.1299225-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <07ecf53d-447b-cbf9-bbca-36ad02047f1d@linux.intel.com>
+Date: Wed, 5 Feb 2020 11:48:42 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-To: Ramalingam C <ramalingam.c@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200205114019.10900-1-ramalingam.c@intel.com>
-References: <20200205114019.10900-1-ramalingam.c@intel.com>
-Message-ID: <158090301517.3271.5811178288757995505@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 05 Feb 2020 11:43:35 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: align dumb buffer stride to
- page_sz of the region
+In-Reply-To: <20200204161916.1299225-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t v2] i915/gem_ctx_exec: Cover all
+ engines for nohangcheck
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +48,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedsktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Ramalingam C (2020-02-05 11:40:19)
-> If stride of the dumb buffer requested is greater than the primary
-> plane's max stride, then we align the stride to the page size. But the
-> page size was hard coded for 4096.
-> 
-> With the lmem addition, lets align the stride to the page size of the
-> memory region that will be used for dumb buffer.
-> 
-> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-> cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/i915_gem.c | 20 +++++++++-----------
->  1 file changed, 9 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> index a712e60b016a..0f01396ca24e 100644
-> --- a/drivers/gpu/drm/i915/i915_gem.c
-> +++ b/drivers/gpu/drm/i915/i915_gem.c
-> @@ -239,8 +239,9 @@ i915_gem_dumb_create(struct drm_file *file,
->                      struct drm_device *dev,
->                      struct drm_mode_create_dumb *args)
->  {
-> -       enum intel_memory_type mem_type;
->         int cpp = DIV_ROUND_UP(args->bpp, 8);
-> +       enum intel_memory_type mem_type;
-> +       struct intel_memory_region *mr;
->         u32 format;
->  
->         switch (cpp) {
-> @@ -260,24 +261,21 @@ i915_gem_dumb_create(struct drm_file *file,
->         /* have to work out size/pitch and return them */
->         args->pitch = ALIGN(args->width * cpp, 64);
->  
-> +       mem_type = INTEL_MEMORY_SYSTEM;
-> +       if (HAS_LMEM(to_i915(dev)))
-> +               mem_type = INTEL_MEMORY_LOCAL;
-> +       mr = intel_memory_region_by_type(to_i915(dev), mem_type);
-> +
->         /* align stride to page size so that we can remap */
->         if (args->pitch > intel_plane_fb_max_stride(to_i915(dev), format,
->                                                     DRM_FORMAT_MOD_LINEAR))
-> -               args->pitch = ALIGN(args->pitch, 4096);
-> +               args->pitch = ALIGN(args->pitch, mr->min_page_size);
 
-That should be ggtt-page size, different semantics, right?
--Chris
+On 04/02/2020 16:19, Chris Wilson wrote:
+> No engine can be missed when verifying that a rogue user cannot cause a
+> denial-of-service with nohangcheck.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+> __for_each_physical_engine, keep the leaks
+> ---
+>   tests/i915/gem_ctx_exec.c | 38 ++++++++++++++++++++++++++++++++------
+>   1 file changed, 32 insertions(+), 6 deletions(-)
+> 
+> diff --git a/tests/i915/gem_ctx_exec.c b/tests/i915/gem_ctx_exec.c
+> index b1ae65774..aeb8d2976 100644
+> --- a/tests/i915/gem_ctx_exec.c
+> +++ b/tests/i915/gem_ctx_exec.c
+> @@ -42,6 +42,7 @@
+>   
+>   #include "igt_dummyload.h"
+>   #include "igt_sysfs.h"
+> +#include "sw_sync.h"
+>   
+>   IGT_TEST_DESCRIPTION("Test context batch buffer execution.");
+>   
+> @@ -203,9 +204,9 @@ static bool __enable_hangcheck(int dir, bool state)
+>   
+>   static void nohangcheck_hostile(int i915)
+>   {
+> -	int64_t timeout = NSEC_PER_SEC / 2;
+> -	igt_spin_t *spin;
+> +	const struct intel_execution_engine2 *e;
+>   	igt_hang_t hang;
+> +	int fence = -1;
+>   	uint32_t ctx;
+>   	int err = 0;
+>   	int dir;
+> @@ -215,6 +216,8 @@ static void nohangcheck_hostile(int i915)
+>   	 * we forcibly terminate that context.
+>   	 */
+>   
+> +	i915 = gem_reopen_driver(i915);
+> +
+>   	dir = igt_sysfs_open_parameters(i915);
+>   	igt_require(dir != -1);
+>   
+> @@ -223,16 +226,35 @@ static void nohangcheck_hostile(int i915)
+>   
+>   	igt_require(__enable_hangcheck(dir, false));
+>   
+> -	spin = igt_spin_new(i915, ctx, .flags = IGT_SPIN_NO_PREEMPTION);
+> +	__for_each_physical_engine(i915, e) {
+> +		igt_spin_t *spin;
+> +
+> +		spin = igt_spin_new(i915, ctx,
+> +				    .engine = e->flags,
+
+Ouch, I missed a mismatch between ctx and e->flags here. Thanks to 
+Sreedhar for reporting it.
+
+We either need gem_context_set_all_engines back or to rethink a cleaner 
+strategy.
+
+Regards,
+
+Tvrtko
+
+> +				    .flags = (IGT_SPIN_NO_PREEMPTION |
+> +					      IGT_SPIN_FENCE_OUT));
+> +
+> +		igt_assert(spin->out_fence != -1);
+> +		if (fence < 0) {
+> +			fence = spin->out_fence;
+> +			spin->out_fence = -1;
+> +		} else {
+> +			int new;
+> +
+> +			new = sync_fence_merge(fence, spin->out_fence);
+> +			close(fence);
+> +
+> +			fence = new;
+> +		}
+> +	}
+>   	gem_context_destroy(i915, ctx);
+> +	igt_assert(fence != -1);
+>   
+> -	if (gem_wait(i915, spin->handle, &timeout)) {
+> +	if (sync_fence_wait(fence, MSEC_PER_SEC / 2)) {
+>   		igt_debugfs_dump(i915, "i915_engine_info");
+>   		err = -ETIME;
+>   	}
+>   
+> -	igt_spin_free(i915, spin);
+> -
+>   	__enable_hangcheck(dir, true);
+>   	gem_quiescent_gpu(i915);
+>   	igt_disallow_hang(i915, hang);
+> @@ -240,7 +262,11 @@ static void nohangcheck_hostile(int i915)
+>   	igt_assert_f(err == 0,
+>   		     "Hostile unpreemptable context was not cancelled immediately upon closure\n");
+>   
+> +	igt_assert_eq(sync_fence_status(fence), -EIO);
+> +	close(fence);
+> +
+>   	close(dir);
+> +	close(i915);
+>   }
+>   
+>   igt_main
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
