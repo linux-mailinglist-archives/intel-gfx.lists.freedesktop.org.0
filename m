@@ -2,31 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D93152875
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 10:36:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1B3B152884
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 10:38:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1EAE6F4F3;
-	Wed,  5 Feb 2020 09:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C287F6F4F8;
+	Wed,  5 Feb 2020 09:38:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6357B6F4F3
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 09:36:34 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20121450-1500050 
- for multiple; Wed, 05 Feb 2020 09:35:42 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 09:35:40 +0000
-Message-Id: <20200205093540.1718688-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200204211853.1323966-1-chris@chris-wilson.co.uk>
-References: <20200204211853.1323966-1-chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB41E6F4F8
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 09:38:15 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 01:38:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="264161468"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+ by fmsmga002.fm.intel.com with ESMTP; 05 Feb 2020 01:38:14 -0800
+Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
+ IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 5 Feb 2020 09:38:13 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 5 Feb 2020 09:38:13 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Wed, 5 Feb 2020 09:38:13 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Nikula, Jani" <jani.nikula@intel.com>
+Thread-Topic: [PATCH] drm/i915/mst: fix pipe and vblank enable
+Thread-Index: AQHV2/50Y7tL1mcXdE2Pjql3ch2ptagMVwiA
+Date: Wed, 5 Feb 2020 09:38:13 +0000
+Message-ID: <d508d51472343614c50338b2b28fc0dfd10993a0.camel@intel.com>
+References: <20200205082959.31317-1-jani.nikula@intel.com>
+In-Reply-To: <20200205082959.31317-1-jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <52B8F8AB04CEF54A9CB4F1474D79AB65@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Disable use of hwsp_cacheline for
- kernel_context
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: fix pipe and vblank enable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,146 +65,47 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently on execlists, we use a local hwsp for the kernel_context,
-rather than the engine's HWSP, as this is the default for execlists.
-However, seqno rollover requires allocating a new HWSP cachline, and may
-require pinning a new HWSP page in the GTT. This operation requiring
-pinning in the GGTT is not allowed within the kernel_context timeline,
-as doing so may require re-entering the kernel_context in order to evict
-from the GGTT. As we want to avoid requiring a new HWSP for the
-kernel_context, we can use the permanently pinned engine's HWSP instead.
-However to do so we must prevent the use of semaphores reading the
-kernel_context's HWSP, as the use of semaphores do not support rollover
-onto the same cacheline. Fortunately, the kernel_context is mostly
-isolated, so unlikely to give benefit to semaphores.
+On Wed, 2020-02-05 at 10:29 +0200, Jani Nikula wrote:
+> Commit 21fd23ac222f ("drm/i915: move pipe, pch and vblank enable to
+> encoders on DDI platforms") pushed pipe and vblank enable to encoders
+> on
+> DDI platforms, however it missed the DP MST encoder. Fix it.
+> 
+> Fixes: 21fd23ac222f ("drm/i915: move pipe, pch and vblank enable to
+> encoders on DDI platforms")
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Reported-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c    | 10 ++++++++--
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 12 +++++++++---
- drivers/gpu/drm/i915/i915_request.c    | 25 ++++++++++++++++++++-----
- 3 files changed, 37 insertions(+), 10 deletions(-)
+Checked, seems to fix my displays, so
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c196fb90c59f..bc47afcc801f 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2970,7 +2970,8 @@ static int gen8_emit_init_breadcrumb(struct i915_request *rq)
- {
- 	u32 *cs;
- 
--	GEM_BUG_ON(!i915_request_timeline(rq)->has_initial_breadcrumb);
-+	if (!i915_request_timeline(rq)->has_initial_breadcrumb)
-+		return 0;
- 
- 	cs = intel_ring_begin(rq, 6);
- 	if (IS_ERR(cs))
-@@ -4622,8 +4623,13 @@ static int __execlists_context_alloc(struct intel_context *ce,
- 
- 	if (!ce->timeline) {
- 		struct intel_timeline *tl;
-+		struct i915_vma *hwsp;
-+
-+		hwsp = NULL;
-+		if (unlikely(test_bit(CONTEXT_BARRIER_BIT, &ce->flags)))
-+			hwsp = engine->status_page.vma;
- 
--		tl = intel_timeline_create(engine->gt, NULL);
-+		tl = intel_timeline_create(engine->gt, hwsp);
- 		if (IS_ERR(tl)) {
- 			ret = PTR_ERR(tl);
- 			goto error_deref_obj;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 79b9f7d092e4..f38738978e57 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -3409,15 +3409,21 @@ static int bond_virtual_engine(struct intel_gt *gt,
- 	rq[0] = ERR_PTR(-ENOMEM);
- 	for_each_engine(master, gt, id) {
- 		struct i915_sw_fence fence = {};
-+		struct intel_context *ce;
- 
- 		if (master->class == class)
- 			continue;
- 
-+		ce = intel_context_create(master);
-+		if (IS_ERR(ce)) {
-+			err = PTR_ERR(ce);
-+			goto out;
-+		}
-+
- 		memset_p((void *)rq, ERR_PTR(-EINVAL), ARRAY_SIZE(rq));
- 
--		rq[0] = igt_spinner_create_request(&spin,
--						   master->kernel_context,
--						   MI_NOOP);
-+		rq[0] = igt_spinner_create_request(&spin, ce, MI_NOOP);
-+		intel_context_put(ce);
- 		if (IS_ERR(rq[0])) {
- 			err = PTR_ERR(rq[0]);
- 			goto out;
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index f56b046a32de..370100cf56a4 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -881,11 +881,28 @@ __emit_semaphore_wait(struct i915_request *to,
- 	return 0;
- }
- 
-+static bool can_use_semaphore(const struct i915_request *rq)
-+{
-+	bool ok;
-+
-+	rcu_read_lock();
-+	ok = rcu_dereference(rq->timeline)->hwsp_cacheline;
-+	rcu_read_unlock();
-+
-+	return ok;
-+}
-+
- static int
- emit_semaphore_wait(struct i915_request *to,
- 		    struct i915_request *from,
- 		    gfp_t gfp)
- {
-+	if (!intel_context_use_semaphores(to->context))
-+		goto await_fence;
-+
-+	if (!can_use_semaphore(from))
-+		goto await_fence;
-+
- 	/* Just emit the first semaphore we see as request space is limited. */
- 	if (already_busywaiting(to) & from->engine->mask)
- 		goto await_fence;
-@@ -931,12 +948,8 @@ i915_request_await_request(struct i915_request *to, struct i915_request *from)
- 		ret = i915_sw_fence_await_sw_fence_gfp(&to->submit,
- 						       &from->submit,
- 						       I915_FENCE_GFP);
--	else if (intel_context_use_semaphores(to->context))
--		ret = emit_semaphore_wait(to, from, I915_FENCE_GFP);
- 	else
--		ret = i915_sw_fence_await_dma_fence(&to->submit,
--						    &from->fence, 0,
--						    I915_FENCE_GFP);
-+		ret = emit_semaphore_wait(to, from, I915_FENCE_GFP);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -1035,6 +1048,8 @@ __i915_request_await_execution(struct i915_request *to,
- {
- 	int err;
- 
-+	GEM_BUG_ON(test_bit(CONTEXT_BARRIER_BIT, &from->context->flags));
-+
- 	/* Submit both requests at the same time */
- 	err = __await_execution(to, from, hook, I915_FENCE_GFP);
- 	if (err)
--- 
-2.25.0
+Reviewed-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index b8aee506d595..9cd59141953d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -491,6 +491,12 @@ static void intel_mst_enable_dp(struct
+> intel_encoder *encoder,
+>  	struct intel_dp *intel_dp = &intel_dig_port->dp;
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+> +	drm_WARN_ON(&dev_priv->drm, pipe_config->has_pch_encoder);
+> +
+> +	intel_enable_pipe(pipe_config);
+> +
+> +	intel_crtc_vblank_on(pipe_config);
+> +
+>  	DRM_DEBUG_KMS("active links %d\n", intel_dp->active_mst_links);
+>  
+>  	if (intel_de_wait_for_set(dev_priv, intel_dp-
+> >regs.dp_tp_status,
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
