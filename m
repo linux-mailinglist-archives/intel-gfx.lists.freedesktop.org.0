@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C70BF1528B8
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 10:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ABE6152869
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 10:35:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138726F511;
-	Wed,  5 Feb 2020 09:55:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D106F4F1;
+	Wed,  5 Feb 2020 09:35:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58B876F511
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 09:55:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20121696-1500050 
- for multiple; Wed, 05 Feb 2020 09:54:42 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E61FE6F4F1
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 09:35:06 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 01:35:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="264160569"
+Received: from shawnle1-build-machine.itwn.intel.com ([10.5.253.9])
+ by fmsmga002.fm.intel.com with ESMTP; 05 Feb 2020 01:35:03 -0800
+From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 09:54:41 +0000
-Message-Id: <20200205095441.1769599-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200205095441.1769599-1-chris@chris-wilson.co.uk>
-References: <20200205095441.1769599-1-chris@chris-wilson.co.uk>
+Date: Thu,  6 Feb 2020 01:33:16 +0800
+Message-Id: <20200205173316.21739-1-shawn.c.lee@intel.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Yield the timeslice if caught
- waiting on a user semaphore
+Subject: [Intel-gfx] [PATCH] drm/i915/lspcon: Make sure link rate did not
+ exceed downstream and lspcon limitation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,223 +41,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Cooper Chiou <cooper.chiou@intel.com>, Sam McNally <sammc@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice, if we have
-another context to yield to!
-
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is, we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
-the interrupt and apply it to the next timeslice regardless of whether it
-was active at the time.
-
-v2: We use semaphores in preempt-to-busy, within the timeslicing
-implementation itself! Ergo, when we do insert a preemption due to an
-expired timeslice, the new context may start with the missed semaphore
-flagged by the retired context and be yielded, ad infinitum. To avoid
-this, read the context id at the time of the semaphore interrupt and
-only yield if that context is still active.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 +++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 +++++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 13 ++++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 40 +++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h              |  1 +
- 5 files changed, 61 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index b1c7b1ed6149..ef2f4ce1a86d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1297,6 +1297,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 
- 	if (engine->id == RENDER_CLASS && IS_GEN_RANGE(dev_priv, 4, 7))
- 		drm_printf(m, "\tCCID: 0x%08x\n", ENGINE_READ(engine, CCID));
-+	if (HAS_EXECLISTS(dev_priv)) {
-+		drm_printf(m, "\tEL_STAT_HI: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_HI));
-+		drm_printf(m, "\tEL_STAT_LO: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_LO));
-+	}
- 	drm_printf(m, "\tRING_START: 0x%08x\n",
- 		   ENGINE_READ(engine, RING_START));
- 	drm_printf(m, "\tRING_HEAD:  0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 45e36d963ea7..8eb7365b4230 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -157,6 +157,15 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_priolist default_priolist;
- 
-+	/**
-+	 * @yield: CCID at the time of the last semaphore-wait interrupt.
-+	 *
-+	 * Instead of leaving a semaphore busy-spinning on an engine, we would
-+	 * like to switch to another ready context, i.e. yielding the semaphore
-+	 * timeslice.
-+	 */
-+	u32 yield;
-+
- 	/**
- 	 * @error_interrupt: CS Master EIR
- 	 *
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f0e7fd95165a..875bd0392ffc 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -39,6 +39,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- 		}
- 	}
- 
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		WRITE_ONCE(engine->execlists.yield,
-+			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
-+	}
-+
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
- 
-@@ -228,7 +235,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -366,7 +374,8 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	const u32 gt_interrupts[] = {
- 		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
- 		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c196fb90c59f..dd21066d6987 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1671,7 +1671,8 @@ static void defer_active(struct intel_engine_cs *engine)
- }
- 
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1687,6 +1688,31 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_yield(const struct intel_engine_execlists *el,
-+		const struct i915_request *rq)
-+{
-+	/*
-+	 * Once bitten, forever smitten!
-+	 *
-+	 * If the active context ever busy-waited on a semaphore,
-+	 * it will be treated as a hog until the end of its timeslice.
-+	 * The HW only sends an interrupt on the first miss, and we
-+	 * do know if that semaphore has been signaled, or even if it
-+	 * is now stuck on another semaphore. Play safe, yield if it
-+	 * might be stuck -- it will be given a fresh timeslice in
-+	 * the near future.
-+	 */
-+	return upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield);
-+}
-+
-+static bool
-+timeslice_expired(const struct intel_engine_execlists *el,
-+		  const struct i915_request *rq)
-+{
-+	return timer_expired(&el->timer) || timeslice_yield(el, rq);
-+}
-+
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1702,8 +1728,7 @@ timeslice(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.timeslice_duration_ms);
- }
- 
--static unsigned long
--active_timeslice(const struct intel_engine_cs *engine)
-+static unsigned long active_timeslice(const struct intel_engine_cs *engine)
- {
- 	const struct i915_request *rq = *engine->execlists.active;
- 
-@@ -1854,13 +1879,14 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(execlists, last)) {
- 			ENGINE_TRACE(engine,
--				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
-+				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
- 				     last->fence.seqno,
- 				     last->sched.attr.priority,
--				     execlists->queue_priority_hint);
-+				     execlists->queue_priority_hint,
-+				     yesno(timeslice_yield(execlists, last)));
- 
- 			ring_set_paused(engine, 1);
- 			defer_active(engine);
-@@ -2120,6 +2146,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		}
- 		clear_ports(port + 1, last_port - port);
- 
-+		WRITE_ONCE(execlists->yield, -1);
- 		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine);
- 	} else {
-@@ -4342,6 +4369,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
- 	engine->irq_keep_mask |= GT_CS_MASTER_ERROR_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0bd431f6a011..900f34675e39 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3090,6 +3090,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2hpbGUgbW9kZSBzZXR0aW5nLCBkcml2ZXIgd291bGQgY2FsY3VsYXRlIG1vZGUgcmF0ZSBiYXNl
+ZCBvbgpyZXNvbHV0aW9uIGFuZCBicHAuIEFuZCBjaG9vc2UgdGhlIGJlc3QgYnBwIHRoYXQgZGlk
+IG5vdCBleGNlZWQKRFAgYmFuZHdpZHRkLgoKQnV0IExTUENPTiBoYWQgbW9yZSByZXN0cmljdGlv
+biBkdWUgdG8gaXQgY29udmVydCBEUCB0byBIRE1JLgpEcml2ZXIgc2hvdWxkIHJlc3BlY3QgSERN
+SSdzIGJhbmR3aWR0aCBsaW1pdGF0aW9uIGlmIExTUENPTgp3YXMgYWN0aXZlLiBUaGlzIGNoYW5n
+ZSB3b3VsZCBpZ25vcmUgdGhlIGJwcCB3aGVuIGl0cyByZXF1aXJlZApvdXRwdXQgYmFuZHdpZHRo
+IGFscmVhZHkgb3ZlciBIRE1JIDIuMCBvciAxLjQgc3BlYy4KCkNjOiBJbXJlIERlYWsgPGltcmUu
+ZGVha0BpbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
+aW50ZWwuY29tPgpDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4
+LmludGVsLmNvbT4KQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+
+CkNjOiBDb29wZXIgQ2hpb3UgPGNvb3Blci5jaGlvdUBpbnRlbC5jb20+CkNjOiBTYW0gTWNOYWxs
+eSA8c2FtbWNAZ29vZ2xlLmNvbT4KU2lnbmVkLW9mZi1ieTogTGVlIFNoYXduIEMgPHNoYXduLmMu
+bGVlQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
+LmMgICAgIHwgMTggKysrKysrKysrKysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2xzcGNvbi5jIHwgMTAgKysrKysrKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9sc3Bjb24uaCB8ICAxICsKIDMgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0
+aW9ucygrKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwppbmRleCAyMDU3
+ZjYzZTMyZjAuLjY0OTY5YWUxYzI4NSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9kcC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZHAuYwpAQCAtMTk5Miw2ICsxOTkyLDkgQEAgaW50ZWxfZHBfY29tcHV0ZV9saW5rX2NvbmZp
+Z193aWRlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiAJCQkJICBjb25zdCBzdHJ1Y3QgbGlu
+a19jb25maWdfbGltaXRzICpsaW1pdHMpCiB7CiAJc3RydWN0IGRybV9kaXNwbGF5X21vZGUgKmFk
+anVzdGVkX21vZGUgPSAmcGlwZV9jb25maWctPmh3LmFkanVzdGVkX21vZGU7CisJc3RydWN0IGlu
+dGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yID0gaW50ZWxfZHAtPmF0dGFjaGVkX2Nvbm5lY3RvcjsK
+Kwljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfaW5mbyAqaW5mbyA9ICZjb25uZWN0b3ItPmJhc2Uu
+ZGlzcGxheV9pbmZvOworCXN0cnVjdCBpbnRlbF9sc3Bjb24gKmxzcGNvbiA9IGRwX3RvX2xzcGNv
+bihpbnRlbF9kcCk7CiAJaW50IGJwcCwgY2xvY2ssIGxhbmVfY291bnQ7CiAJaW50IG1vZGVfcmF0
+ZSwgbGlua19jbG9jaywgbGlua19hdmFpbDsKIApAQCAtMjAwMSw2ICsyMDA0LDIxIEBAIGludGVs
+X2RwX2NvbXB1dGVfbGlua19jb25maWdfd2lkZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAog
+CQltb2RlX3JhdGUgPSBpbnRlbF9kcF9saW5rX3JlcXVpcmVkKGFkanVzdGVkX21vZGUtPmNydGNf
+Y2xvY2ssCiAJCQkJCQkgICBvdXRwdXRfYnBwKTsKIAorCQkvKgorCQkgKiBCeXBhc3MgdGhpcyBt
+b2RlIGlmIHJlcXVpcmUgYmFuZHdpZHRoIG92ZXIgZG93bnN0cmVhbQorCQkgKiBsaW1pdGF0aW9u
+IG9yIEhETUkgc3BlYyB3aGVuIExTUENPTiBhY3RpdmUuCisJCSAqLworCQlpZiAobHNwY29uLT5h
+Y3RpdmUpIHsKKwkJCWludCBtYXhfY2xvY2tfcmF0ZSA9IGxzcGNvbl9tYXhfcmF0ZShsc3Bjb24p
+OworCisJCQlpZiAoaW5mby0+bWF4X3RtZHNfY2xvY2spCisJCQkJbWF4X2Nsb2NrX3JhdGUgPSBt
+aW4obWF4X2Nsb2NrX3JhdGUsCisJCQkJCQkgICAgIGluZm8tPm1heF90bWRzX2Nsb2NrKTsKKwor
+CQkJaWYgKG1vZGVfcmF0ZSA+IG1heF9jbG9ja19yYXRlKQorCQkJCWNvbnRpbnVlOworCQl9CisK
+IAkJZm9yIChjbG9jayA9IGxpbWl0cy0+bWluX2Nsb2NrOyBjbG9jayA8PSBsaW1pdHMtPm1heF9j
+bG9jazsgY2xvY2srKykgewogCQkJZm9yIChsYW5lX2NvdW50ID0gbGltaXRzLT5taW5fbGFuZV9j
+b3VudDsKIAkJCSAgICAgbGFuZV9jb3VudCA8PSBsaW1pdHMtPm1heF9sYW5lX2NvdW50OwpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9sc3Bjb24uYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmMKaW5kZXggZDgwN2M1NjQ4
+Yzg3Li4zYjA0MzgzNTZhODggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfbHNwY29uLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9sc3Bjb24uYwpAQCAtNTE4LDYgKzUxOCwxNiBAQCB2b2lkIGxzcGNvbl9zZXRfaW5mb2ZyYW1l
+cyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCQkgIGJ1ZiwgcmV0KTsKIH0KIAor
+aW50IGxzcGNvbl9tYXhfcmF0ZShzdHJ1Y3QgaW50ZWxfbHNwY29uICpsc3Bjb24pCit7CisJZW51
+bSBkcm1fbHNwY29uX21vZGUgY3VycmVudF9tb2RlID0gbHNwY29uX2dldF9jdXJyZW50X21vZGUo
+bHNwY29uKTsKKworCWlmIChjdXJyZW50X21vZGUgPT0gRFJNX0xTUENPTl9NT0RFX0xTKQorCQly
+ZXR1cm4gRElWX1JPVU5EX1VQKDM0MDAwMCAqIDI0LCA4KTsKKworCXJldHVybiBESVZfUk9VTkRf
+VVAoNjAwMDAwICogMjQsIDgpOworfQorCiB1MzIgbHNwY29uX2luZm9mcmFtZXNfZW5hYmxlZChz
+dHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCSAgICAgIGNvbnN0IHN0cnVjdCBpbnRl
+bF9jcnRjX3N0YXRlICpwaXBlX2NvbmZpZykKIHsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2xzcGNvbi5oCmluZGV4IDM3Y2ZkZGY4YTljNS4uYjU4NGMwMmFiMzNiIDEwMDY0
+NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2xzcGNvbi5oCisrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfbHNwY29uLmgKQEAgLTE4LDYgKzE4
+LDcgQEAgc3RydWN0IGludGVsX2xzcGNvbjsKIGJvb2wgbHNwY29uX2luaXQoc3RydWN0IGludGVs
+X2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQpOwogdm9pZCBsc3Bjb25fcmVzdW1lKHN0cnVj
+dCBpbnRlbF9sc3Bjb24gKmxzcGNvbik7CiB2b2lkIGxzcGNvbl93YWl0X3Bjb25fbW9kZShzdHJ1
+Y3QgaW50ZWxfbHNwY29uICpsc3Bjb24pOworaW50IGxzcGNvbl9tYXhfcmF0ZShzdHJ1Y3QgaW50
+ZWxfbHNwY29uICpsc3Bjb24pOwogdm9pZCBsc3Bjb25fd3JpdGVfaW5mb2ZyYW1lKHN0cnVjdCBp
+bnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlICpjcnRjX3N0YXRlLAogCQkJICAgIHVuc2lnbmVkIGludCB0eXBlLAotLSAKMi4xNy4xCgpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZngg
+bWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0
+cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
