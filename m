@@ -1,36 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00E01529F8
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 12:34:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEFA915304C
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 13:02:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE786F554;
-	Wed,  5 Feb 2020 11:34:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47F8F893DB;
+	Wed,  5 Feb 2020 12:02:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2040B6F554
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 11:33:59 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAF62893DB
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 12:02:42 +0000 (UTC)
+X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 03:33:58 -0800
+ 05 Feb 2020 04:02:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="231689159"
-Received: from linuxpresi1-desktop.iind.intel.com ([10.223.74.152])
- by orsmga003.jf.intel.com with ESMTP; 05 Feb 2020 03:33:56 -0800
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 17:29:32 +0530
-Message-Id: <20200205115932.7538-2-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200205115932.7538-1-uma.shankar@intel.com>
-References: <20200205115932.7538-1-uma.shankar@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="279358336"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by FMSMGA003.fm.intel.com with ESMTP; 05 Feb 2020 04:02:40 -0800
+Date: Wed, 5 Feb 2020 17:32:50 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200205120220.GA8775@intel.com>
+References: <20200205114019.10900-1-ramalingam.c@intel.com>
+ <158090301517.3271.5811178288757995505@skylake-alporthouse-com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Adding YUV444 packed format
- support for skl+ (V13)
+Content-Disposition: inline
+In-Reply-To: <158090301517.3271.5811178288757995505@skylake-alporthouse-com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: align dumb buffer stride to
+ page_sz of the region
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,93 +45,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogU3RhbmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+
-CgpQTEFORV9DVExfRk9STUFUX0FZVVYgaXMgYWxyZWFkeSBzdXBwb3J0ZWQsIGFjY29yZGluZyB0
-byBoYXJkd2FyZQpzcGVjaWZpY2F0aW9uLgoKdjI6IEVkaXRlZCBjb21taXQgbWVzc2FnZSwgcmVt
-b3ZlZCByZWR1bmRhbnQgd2hpdGVzcGFjZXMuCgp2MzogRml4ZWQgZmFsbHRocm91Z2ggbG9naWMg
-Zm9yIHRoZSBmb3JtYXQgc3dpdGNoIGNhc2VzLgoKdjQ6IFlldCBhZ2FpbiBmaXhlZCBmYWxsdGhy
-b3VnaCBsb2dpYywgdG8gcmV1c2UgY29kZSBmcm9tIG90aGVyIGNhc2UKICAgIGxhYmVscy4KCnY1
-OiBTdGFydGVkIHRvIHVzZSBYWVVWIGluc3RlYWQgb2YgQVlVViwgYXMgd2UgZG9uJ3QgdXNlIGFs
-cGhhLgoKdjY6IFJlbW92ZWQgdW5uZWVkZWQgaW5pdGlhbGl6ZXIgZm9yIG5ldyBYWVVWIGZvcm1h
-dC4KCnY3OiBBZGRlZCBzY2FsaW5nIHN1cHBvcnQgZm9yIERSTV9GT1JNQVRfWFlVVgoKdjg6IEVk
-aXRlZCBjb21taXQgbWVzc2FnZSB0byBiZSBtb3JlIGNsZWFyIGFib3V0IHNrbCssIHJlbmFtZWQK
-ICAgIFBMQU5FX0NUTF9GT1JNQVRfQVlVViB0byBQTEFORV9DVExfRk9STUFUX1hZVVYgYXMgdGhp
-cyBmb3JtYXQKICAgIGRvZXNuJ3Qgc3VwcG9ydCBwZXItcGl4ZWwgYWxwaGEuIEZpeGVkIG1pbm9y
-IGNvZGUgaXNzdWVzLgoKdjk6IE1vdmVkIERSTSBmb3JtYXQgY2hlY2sgdG8gcHJvcGVyIHBsYWNl
-IGluIGludGVsX2ZyYW1lYnVmZmVyX2luaXQuCgp2MTA6IEFkZGVkIG1pc3NpbmcgWFlVViBmb3Jt
-YXQgdG8gc3ByaXRlIHBsYW5lcyBmb3Igc2tsKy4KCnYxMTogQ2hhbmdlZCBEUk1fRk9STUFUX1hZ
-VVYgdG8gYmUgRFJNX0ZPUk1BVF9YWVVWODg4OC4KCnYxMjogRml4ZWQgcmViYXNlIGNvbmZsaWN0
-cwoKVjEzOiBSZWJhc2VkLgogICAgIEFkZGVkIGZvcm1hdCB0byBJQ0wgZm9ybWF0IGxpc3RzLgoK
-djE0OiBSZWJhc2UuCgpSZXZpZXdlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxh
-QGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3Bl
-ckBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xh
-di5saXNvdnNraXlAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBCb2IgUGFhdXdlIDxib2Iuai5w
-YWF1d2VAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIHwgNSArKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9z
-cHJpdGUuYyAgfCA1ICsrKysrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAg
-ICAgICAgICB8IDIgKy0KIDMgZmlsZXMgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
-dGlvbigtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMK
-aW5kZXggMzY4ZTQ4MWQ0NWVlLi5jYjdkNWRiZmMzYWQgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0zMzMxLDYgKzMzMzEsOCBAQCBpbnQgc2ts
-X2Zvcm1hdF90b19mb3VyY2MoaW50IGZvcm1hdCwgYm9vbCByZ2Jfb3JkZXIsIGJvb2wgYWxwaGEp
-CiAJCXJldHVybiBEUk1fRk9STUFUX1JHQjU2NTsKIAljYXNlIFBMQU5FX0NUTF9GT1JNQVRfTlYx
-MjoKIAkJcmV0dXJuIERSTV9GT1JNQVRfTlYxMjsKKwljYXNlIFBMQU5FX0NUTF9GT1JNQVRfWFlV
-VjoKKwkJcmV0dXJuIERSTV9GT1JNQVRfWFlVVjg4ODg7CiAJY2FzZSBQTEFORV9DVExfRk9STUFU
-X1AwMTA6CiAJCXJldHVybiBEUk1fRk9STUFUX1AwMTA7CiAJY2FzZSBQTEFORV9DVExfRk9STUFU
-X1AwMTI6CkBAIC00NTcwLDYgKzQ1NzIsOCBAQCBzdGF0aWMgdTMyIHNrbF9wbGFuZV9jdGxfZm9y
-bWF0KHUzMiBwaXhlbF9mb3JtYXQpCiAJY2FzZSBEUk1fRk9STUFUX1hSR0IxNjE2MTYxNkY6CiAJ
-Y2FzZSBEUk1fRk9STUFUX0FSR0IxNjE2MTYxNkY6CiAJCXJldHVybiBQTEFORV9DVExfRk9STUFU
-X1hSR0JfMTYxNjE2MTZGOworCWNhc2UgRFJNX0ZPUk1BVF9YWVVWODg4ODoKKwkJcmV0dXJuIFBM
-QU5FX0NUTF9GT1JNQVRfWFlVVjsKIAljYXNlIERSTV9GT1JNQVRfWVVZVjoKIAkJcmV0dXJuIFBM
-QU5FX0NUTF9GT1JNQVRfWVVWNDIyIHwgUExBTkVfQ1RMX1lVVjQyMl9ZVVlWOwogCWNhc2UgRFJN
-X0ZPUk1BVF9ZVllVOgpAQCAtNjE4Niw2ICs2MTkwLDcgQEAgc3RhdGljIGludCBza2xfdXBkYXRl
-X3NjYWxlcl9wbGFuZShzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAljYXNl
-IERSTV9GT1JNQVRfVVlWWToKIAljYXNlIERSTV9GT1JNQVRfVllVWToKIAljYXNlIERSTV9GT1JN
-QVRfTlYxMjoKKwljYXNlIERSTV9GT1JNQVRfWFlVVjg4ODg6CiAJY2FzZSBEUk1fRk9STUFUX1Aw
-MTA6CiAJY2FzZSBEUk1fRk9STUFUX1AwMTI6CiAJY2FzZSBEUk1fRk9STUFUX1AwMTY6CmRpZmYg
-LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwppbmRleCA3YWJlZWZlOGRj
-ZTUuLjE1NDBlYWI3YmE3OSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9zcHJpdGUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Nwcml0ZS5jCkBAIC0yNDgzLDYgKzI0ODMsNyBAQCBzdGF0aWMgY29uc3QgdTMyIHNrbF9wbGFu
-ZV9mb3JtYXRzW10gPSB7CiAJRFJNX0ZPUk1BVF9ZVllVLAogCURSTV9GT1JNQVRfVVlWWSwKIAlE
-Uk1fRk9STUFUX1ZZVVksCisJRFJNX0ZPUk1BVF9YWVVWODg4OCwKIH07CiAKIHN0YXRpYyBjb25z
-dCB1MzIgc2tsX3BsYW5hcl9mb3JtYXRzW10gPSB7CkBAIC0yNTAxLDYgKzI1MDIsNyBAQCBzdGF0
-aWMgY29uc3QgdTMyIHNrbF9wbGFuYXJfZm9ybWF0c1tdID0gewogCURSTV9GT1JNQVRfVVlWWSwK
-IAlEUk1fRk9STUFUX1ZZVVksCiAJRFJNX0ZPUk1BVF9OVjEyLAorCURSTV9GT1JNQVRfWFlVVjg4
-ODgsCiB9OwogCiBzdGF0aWMgY29uc3QgdTMyIGdsa19wbGFuYXJfZm9ybWF0c1tdID0gewpAQCAt
-MjU3Miw2ICsyNTc0LDcgQEAgc3RhdGljIGNvbnN0IHUzMiBpY2xfc2RyX3V2X3BsYW5lX2Zvcm1h
-dHNbXSA9IHsKIAlEUk1fRk9STUFUX1hWWVUyMTAxMDEwLAogCURSTV9GT1JNQVRfWFZZVTEyXzE2
-MTYxNjE2LAogCURSTV9GT1JNQVRfWFZZVTE2MTYxNjE2LAorCURSTV9GT1JNQVRfWFlVVjg4ODgs
-CiB9OwogCiBzdGF0aWMgY29uc3QgdTMyIGljbF9oZHJfcGxhbmVfZm9ybWF0c1tdID0gewpAQCAt
-MjYwMyw2ICsyNjA2LDcgQEAgc3RhdGljIGNvbnN0IHUzMiBpY2xfaGRyX3BsYW5lX2Zvcm1hdHNb
-XSA9IHsKIAlEUk1fRk9STUFUX1hWWVUyMTAxMDEwLAogCURSTV9GT1JNQVRfWFZZVTEyXzE2MTYx
-NjE2LAogCURSTV9GT1JNQVRfWFZZVTE2MTYxNjE2LAorCURSTV9GT1JNQVRfWFlVVjg4ODgsCiB9
-OwogCiBzdGF0aWMgY29uc3QgdTY0IHNrbF9wbGFuZV9mb3JtYXRfbW9kaWZpZXJzX25vY2NzW10g
-PSB7CkBAIC0yNzcwLDYgKzI3NzQsNyBAQCBzdGF0aWMgYm9vbCBza2xfcGxhbmVfZm9ybWF0X21v
-ZF9zdXBwb3J0ZWQoc3RydWN0IGRybV9wbGFuZSAqX3BsYW5lLAogCWNhc2UgRFJNX0ZPUk1BVF9V
-WVZZOgogCWNhc2UgRFJNX0ZPUk1BVF9WWVVZOgogCWNhc2UgRFJNX0ZPUk1BVF9OVjEyOgorCWNh
-c2UgRFJNX0ZPUk1BVF9YWVVWODg4ODoKIAljYXNlIERSTV9GT1JNQVRfUDAxMDoKIAljYXNlIERS
-TV9GT1JNQVRfUDAxMjoKIAljYXNlIERSTV9GT1JNQVRfUDAxNjoKZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
-Zy5oCmluZGV4IDBiZDQzMWY2YTAxMS4uYTYyMDRlOWJjMzZlIDEwMDY0NAotLS0gYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cmVnLmgKQEAgLTY3NjksNyArNjc2OSw3IEBAIGVudW0gewogI2RlZmluZSAgIFBMQU5FX0NUTF9G
-T1JNQVRfUDAxMgkJCSg1IDw8IDI0KQogI2RlZmluZSAgIFBMQU5FX0NUTF9GT1JNQVRfWFJHQl8x
-NjE2MTYxNkYJKDYgPDwgMjQpCiAjZGVmaW5lICAgUExBTkVfQ1RMX0ZPUk1BVF9QMDE2CQkJKDcg
-PDwgMjQpCi0jZGVmaW5lICAgUExBTkVfQ1RMX0ZPUk1BVF9BWVVWCQkJKDggPDwgMjQpCisjZGVm
-aW5lICAgUExBTkVfQ1RMX0ZPUk1BVF9YWVVWCQkJKDggPDwgMjQpCiAjZGVmaW5lICAgUExBTkVf
-Q1RMX0ZPUk1BVF9JTkRFWEVECQkoMTIgPDwgMjQpCiAjZGVmaW5lICAgUExBTkVfQ1RMX0ZPUk1B
-VF9SR0JfNTY1CQkoMTQgPDwgMjQpCiAjZGVmaW5lICAgSUNMX1BMQU5FX0NUTF9GT1JNQVRfTUFT
-SwkJKDB4MWYgPDwgMjMpCi0tIAoyLjIyLjAKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+On 2020-02-05 at 11:43:35 +0000, Chris Wilson wrote:
+> Quoting Ramalingam C (2020-02-05 11:40:19)
+> > If stride of the dumb buffer requested is greater than the primary
+> > plane's max stride, then we align the stride to the page size. But the
+> > page size was hard coded for 4096.
+> > 
+> > With the lmem addition, lets align the stride to the page size of the
+> > memory region that will be used for dumb buffer.
+> > 
+> > Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> > cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > ---
+> >  drivers/gpu/drm/i915/i915_gem.c | 20 +++++++++-----------
+> >  1 file changed, 9 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+> > index a712e60b016a..0f01396ca24e 100644
+> > --- a/drivers/gpu/drm/i915/i915_gem.c
+> > +++ b/drivers/gpu/drm/i915/i915_gem.c
+> > @@ -239,8 +239,9 @@ i915_gem_dumb_create(struct drm_file *file,
+> >                      struct drm_device *dev,
+> >                      struct drm_mode_create_dumb *args)
+> >  {
+> > -       enum intel_memory_type mem_type;
+> >         int cpp = DIV_ROUND_UP(args->bpp, 8);
+> > +       enum intel_memory_type mem_type;
+> > +       struct intel_memory_region *mr;
+> >         u32 format;
+> >  
+> >         switch (cpp) {
+> > @@ -260,24 +261,21 @@ i915_gem_dumb_create(struct drm_file *file,
+> >         /* have to work out size/pitch and return them */
+> >         args->pitch = ALIGN(args->width * cpp, 64);
+> >  
+> > +       mem_type = INTEL_MEMORY_SYSTEM;
+> > +       if (HAS_LMEM(to_i915(dev)))
+> > +               mem_type = INTEL_MEMORY_LOCAL;
+> > +       mr = intel_memory_region_by_type(to_i915(dev), mem_type);
+> > +
+> >         /* align stride to page size so that we can remap */
+> >         if (args->pitch > intel_plane_fb_max_stride(to_i915(dev), format,
+> >                                                     DRM_FORMAT_MOD_LINEAR))
+> > -               args->pitch = ALIGN(args->pitch, 4096);
+> > +               args->pitch = ALIGN(args->pitch, mr->min_page_size);
+> 
+> That should be ggtt-page size, different semantics, right?
+Chris,
+
+Sicne the purpose(remapping stride) is not clear, couldn't understand
+which page size this is. I assumed this is of hw page size.
+
+Btw, there is no issues found with 4096 on lmem too. May be this is
+unwanted change, unless they meant hw page size here and luckily we are
+not hitting the issue. I am not sure though.
+
+-Ram
+> -Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
