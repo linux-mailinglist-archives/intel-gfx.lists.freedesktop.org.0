@@ -1,37 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D83D15384F
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 19:40:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A73E153851
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 19:40:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27F0E6E9DF;
-	Wed,  5 Feb 2020 18:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A2F6F930;
+	Wed,  5 Feb 2020 18:40:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74C466E9DF
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 18:40:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20128437-1500050 for multiple; Wed, 05 Feb 2020 18:39:56 +0000
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A8656F931
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 18:40:11 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 10:40:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="249799237"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 05 Feb 2020 10:40:06 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 05 Feb 2020 20:40:06 +0200
+Date: Wed, 5 Feb 2020 20:40:06 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200205184005.GM13686@intel.com>
+References: <20200202230630.8975-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
- <20200205121313.1834548-1-chris@chris-wilson.co.uk>
- <637ae604-f50d-7436-eb0b-e69d555e401f@linux.intel.com>
- <158092108409.5585.7308401904801560850@skylake-alporthouse-com>
- <0eb12f13-eb2c-2c44-2a04-aa65deef2df8@linux.intel.com>
-In-Reply-To: <0eb12f13-eb2c-2c44-2a04-aa65deef2df8@linux.intel.com>
-Message-ID: <158092799510.3271.4849859675660393144@skylake-alporthouse-com>
-Date: Wed, 05 Feb 2020 18:39:55 +0000
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gem: Don't leak non-persistent
- requests on changing engines
+Content-Disposition: inline
+In-Reply-To: <20200202230630.8975-1-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v17 0/6] Enable second DBuf slice for ICL
+ and TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,76 +48,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-05 18:33:57)
-> 
-> On 05/02/2020 16:44, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-02-05 16:22:34)
-> >> On 05/02/2020 12:13, Chris Wilson wrote:
-> >>> If we have a set of active engines marked as being non-persistent, we
-> >>> lose track of those if the user replaces those engines with
-> >>> I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
-> >>> non-persistent requests are terminated if they are no longer being
-> >>> tracked by the user's context (in order to prevent a lost request
-> >>> causing an untracked and so unstoppable GPU hang), we need to apply the
-> >>> same context cancellation upon changing engines.
-> >>>
-> >>> Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
-> >>> Testcase: XXX
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++++++
-> >>>    1 file changed, 7 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> index 52a749691a8d..20f1d3e0221f 100644
-> >>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> >>> @@ -1624,11 +1624,18 @@ set_engines(struct i915_gem_context *ctx,
-> >>>    
-> >>>    replace:
-> >>>        mutex_lock(&ctx->engines_mutex);
-> >>> +
-> >>> +     /* Flush stale requests off the old engines if required */
-> >>> +     if (!i915_gem_context_is_persistent(ctx) ||
-> >>> +         !i915_modparams.enable_hangcheck)
-> >>> +             kill_context(ctx);
-> >>
-> >> Is the negative effect of this is legit contexts can't keep submitting
-> >> and changing the map? Only if PREEMPT_TIMEOUT is disabled I think but
-> >> still. Might break legitimate userspace. Not that I offer solutions.. :(
-> >> Banning changing engines once context went non-persistent? That too can
-> >> break someone.
-> > 
-> > It closes the hole we have. To do otherwise, we need to keep track of
-> > the old engines. Not an impossible task, certainly inconvenient.
-> > 
-> > struct old_engines {
-> >       struct i915_active active;
-> >       struct list_head link;
-> >       struct i915_gem_context *ctx;
-> >       void *engines;
-> >       int num_engines;
-> > };
-> > 
-> > With a list+spinlock in the ctx that we can work in kill_context.
-> > 
-> > The biggest catch there is actually worrying about attaching the active
-> > to already executing request, and making sure the coupling doesn't bug
-> > on a concurrent completion. Hmm, it's just a completion callback, but
-> > more convenient to use a ready made one.
-> 
-> What would you do with old engines? We don't have a mechanism to mark 
-> intel_context closed. Hm, right, it would get unreachable by definition. 
-> But how to terminate it if it doesn't play nicely?
+On Mon, Feb 03, 2020 at 01:06:24AM +0200, Stanislav Lisovskiy wrote:
+> Those patch series, do some initial preparation DBuf manipulating code
+> cleanups, i.e remove redundant structures/code, switch to mask
+> based DBuf manupulation, get into use DBuf assignment according to
+> BSpec rules.
+> =
 
-Wait 30 minutes (if it passes the tests) and you'll find out :)
--Chris
+> Stanislav Lisovskiy (6):
+>   drm/i915: Remove skl_ddl_allocation struct
+>   drm/i915: Move dbuf slice update to proper place
+>   drm/i915: Update dbuf slices only with full modeset
+>   drm/i915: Introduce parameterized DBUF_CTL
+>   drm/i915: Manipulate DBuf slices properly
+>   drm/i915: Correctly map DBUF slices to pipes
+
+Pushed the lot to dinq. Thanks for the patches and reviews.
+
+> =
+
+>  drivers/gpu/drm/i915/display/intel_display.c  |  54 ++-
+>  .../drm/i915/display/intel_display_power.c    | 100 ++--
+>  .../drm/i915/display/intel_display_power.h    |   5 +
+>  .../drm/i915/display/intel_display_types.h    |   4 +-
+>  drivers/gpu/drm/i915/gvt/handlers.c           |   2 +-
+>  drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+>  drivers/gpu/drm/i915/i915_pci.c               |   5 +-
+>  drivers/gpu/drm/i915/i915_reg.h               |   6 +-
+>  drivers/gpu/drm/i915/intel_device_info.h      |   1 +
+>  drivers/gpu/drm/i915/intel_pm.c               | 449 +++++++++++++++---
+>  drivers/gpu/drm/i915/intel_pm.h               |   5 +-
+>  11 files changed, 479 insertions(+), 163 deletions(-)
+> =
+
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
