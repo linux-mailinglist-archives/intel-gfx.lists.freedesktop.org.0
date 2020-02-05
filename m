@@ -1,64 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B747315357B
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 17:44:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D387A15357F
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 17:44:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08AB86F8A9;
-	Wed,  5 Feb 2020 16:44:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402326F8AA;
+	Wed,  5 Feb 2020 16:44:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC2F6F8A9;
- Wed,  5 Feb 2020 16:44:31 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 08:44:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,406,1574150400"; d="scan'208";a="311421483"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by orsmga001.jf.intel.com with ESMTP; 05 Feb 2020 08:44:30 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 08:44:30 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 5 Feb 2020 08:44:29 -0800
-Received: from bgsmsx155.gar.corp.intel.com (10.224.48.102) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 5 Feb 2020 08:44:28 -0800
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.97]) by
- BGSMSX155.gar.corp.intel.com ([169.254.12.108]) with mapi id 14.03.0439.000;
- Wed, 5 Feb 2020 22:14:26 +0530
-From: "Shankar, Uma" <uma.shankar@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v3 09/17] drm/i915: Include DP HDR Metadata Infoframe
- SDP in the crtc state dump
-Thread-Index: AQHV2uiXBmNkPWLEKEqzigU+QA6776gM0Qdg
-Date: Wed, 5 Feb 2020 16:44:26 +0000
-Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823DD072@BGSMSX104.gar.corp.intel.com>
-References: <20200203232014.906651-1-gwan-gyeong.mun@intel.com>
- <20200203232014.906651-10-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200203232014.906651-10-gwan-gyeong.mun@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2IyYTI4OTktZjM5OC00NmFiLTkzYWQtM2M1NmEzMWY5NDRmIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiTFRraHF1WmtuakxMZzcyK0xLRVN2T1JwQmt5ZHJ2ZEZjdHI4OTFEV1d5K0ZYenErNjI2RUc2MFNKcGtOWGpuUyJ9
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3055F6F8AA
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 16:44:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20126965-1500050 for multiple; Wed, 05 Feb 2020 16:44:46 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 09/17] drm/i915: Include DP HDR Metadata
- Infoframe SDP in the crtc state dump
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200205121147.1834445-1-chris@chris-wilson.co.uk>
+ <20200205121313.1834548-1-chris@chris-wilson.co.uk>
+ <637ae604-f50d-7436-eb0b-e69d555e401f@linux.intel.com>
+In-Reply-To: <637ae604-f50d-7436-eb0b-e69d555e401f@linux.intel.com>
+Message-ID: <158092108409.5585.7308401904801560850@skylake-alporthouse-com>
+Date: Wed, 05 Feb 2020 16:44:44 +0000
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gem: Don't leak non-persistent
+ requests on changing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,60 +42,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Quoting Tvrtko Ursulin (2020-02-05 16:22:34)
+> 
+> 
+> On 05/02/2020 12:13, Chris Wilson wrote:
+> > If we have a set of active engines marked as being non-persistent, we
+> > lose track of those if the user replaces those engines with
+> > I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
+> > non-persistent requests are terminated if they are no longer being
+> > tracked by the user's context (in order to prevent a lost request
+> > causing an untracked and so unstoppable GPU hang), we need to apply the
+> > same context cancellation upon changing engines.
+> > 
+> > Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
+> > Testcase: XXX
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 7 +++++++
+> >   1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > index 52a749691a8d..20f1d3e0221f 100644
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> > @@ -1624,11 +1624,18 @@ set_engines(struct i915_gem_context *ctx,
+> >   
+> >   replace:
+> >       mutex_lock(&ctx->engines_mutex);
+> > +
+> > +     /* Flush stale requests off the old engines if required */
+> > +     if (!i915_gem_context_is_persistent(ctx) ||
+> > +         !i915_modparams.enable_hangcheck)
+> > +             kill_context(ctx);
+> 
+> Is the negative effect of this is legit contexts can't keep submitting 
+> and changing the map? Only if PREEMPT_TIMEOUT is disabled I think but 
+> still. Might break legitimate userspace. Not that I offer solutions.. :( 
+> Banning changing engines once context went non-persistent? That too can 
+> break someone.
 
+It closes the hole we have. To do otherwise, we need to keep track of
+the old engines. Not an impossible task, certainly inconvenient.
 
-> -----Original Message-----
-> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Gwan-
-> gyeong Mun
-> Sent: Tuesday, February 4, 2020 4:50 AM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: linux-fbdev@vger.kernel.org; dri-devel@lists.freedesktop.org
-> Subject: [PATCH v3 09/17] drm/i915: Include DP HDR Metadata Infoframe SDP in the
-> crtc state dump
-> 
-> Dump out the DP HDR Metadata Infoframe SDP in the normal crtc state dump.
-> 
-> HDMI Dynamic Range and Mastering (DRM) infoframe and DP HDR Metadata
-> Infoframe SDP use the same member variable in infoframes of crtc state.
+struct old_engines {
+	struct i915_active active;
+	struct list_head link;
+	struct i915_gem_context *ctx;
+	void *engines;
+	int num_engines;
+};
 
-Looks good to me.
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+With a list+spinlock in the ctx that we can work in kill_context.
 
-> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> b/drivers/gpu/drm/i915/display/intel_display.c
-> index 239861bcedba..593c63f51210 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -13033,6 +13033,9 @@ static void intel_dump_pipe_config(const struct
-> intel_crtc_state *pipe_config,
->  	if (pipe_config->infoframes.enable &
->  	    intel_hdmi_infoframe_enable(HDMI_INFOFRAME_TYPE_DRM))
->  		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
-> +	if (pipe_config->infoframes.enable &
-> +	    intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA))
-> +		intel_dump_infoframe(dev_priv, &pipe_config->infoframes.drm);
-> 
->  	drm_dbg_kms(&dev_priv->drm, "requested mode:\n");
->  	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
-> --
-> 2.24.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+The biggest catch there is actually worrying about attaching the active
+to already executing request, and making sure the coupling doesn't bug
+on a concurrent completion. Hmm, it's just a completion callback, but
+more convenient to use a ready made one.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
