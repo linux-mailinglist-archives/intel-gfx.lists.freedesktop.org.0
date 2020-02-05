@@ -2,38 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E30315334C
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 15:45:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A465153362
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2020 15:51:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 789726F5D7;
-	Wed,  5 Feb 2020 14:45:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880F96F5E7;
+	Wed,  5 Feb 2020 14:51:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE8B6F5D7;
- Wed,  5 Feb 2020 14:45:18 +0000 (UTC)
-Received: from localhost (unknown [137.135.114.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 7084D222C2;
- Wed,  5 Feb 2020 14:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1580913918;
- bh=ztiXU/qrRqrIBmSEuYtgGn+N5ZJQerFe60JUEI3uqn8=;
- h=Date:From:To:To:To:Cc:Cc:Subject:In-Reply-To:References:From;
- b=tDpH/6eD//x5iba0qIdaXUdt/MX2so5Wb11SVUfzH52gn1t0ov8vHbSqkQL5er5BR
- ID1/yXegxDemzRr5VBfW9ss9InJGi4VQg8j2G/XhoWLEb57Wp2Vk4QWF4wcPHJ4AOf
- xevJ8MqaGky8J3YjBKdn0/MZO9JA2Xte0CdgakFg=
-Date: Wed, 05 Feb 2020 14:45:17 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-To: dri-devel@lists.freedesktop.org
-In-Reply-To: <20200202171635.4039044-4-chris@chris-wilson.co.uk>
-References: <20200202171635.4039044-4-chris@chris-wilson.co.uk>
-Message-Id: <20200205144518.7084D222C2@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 4/5] drm/i915: Wean off
- drm_pci_alloc/drm_pci_free
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 164EB6F5E7
+ for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 14:51:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 06:51:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,405,1574150400"; d="scan'208";a="378754966"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 05 Feb 2020 06:51:52 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id E824C5C0D46; Wed,  5 Feb 2020 16:50:58 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200205093540.1718688-1-chris@chris-wilson.co.uk>
+References: <20200204211853.1323966-1-chris@chris-wilson.co.uk>
+ <20200205093540.1718688-1-chris@chris-wilson.co.uk>
+Date: Wed, 05 Feb 2020 16:50:58 +0200
+Message-ID: <87o8ud9jfx.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Disable use of hwsp_cacheline for
+ kernel_context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,69 +45,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , intel-gfx@lists.freedesktop.org, stable@vger.kernel.org
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-[This is an automated email]
+> Currently on execlists, we use a local hwsp for the kernel_context,
+> rather than the engine's HWSP, as this is the default for execlists.
+> However, seqno rollover requires allocating a new HWSP cachline, and may
 
-This commit has been processed because it contains a "Fixes:" tag,
-fixing commit: de09d31dd38a ("page-flags: define PG_reserved behavior on compound pages").
+s/cachline/cacheline
 
-The bot has tested the following trees: v5.5.1, v5.4.17, v4.19.101, v4.14.169, v4.9.212.
-
-v5.5.1: Build OK!
-v5.4.17: Build OK!
-v4.19.101: Failed to apply! Possible dependencies:
-    4a3d3f6785be ("drm/i915: Match code to comment and enforce ppgtt for execlists")
-    4bdafb9ddfa4 ("drm/i915: Remove i915.enable_ppgtt override")
-    5771caf885ae ("drm/i915/skl+: Decode memory bandwidth and parameters")
-    6323113b7af6 ("drm/i915: Move SKL IPC WA to HAS_IPC()")
-    79556df293b2 ("drm/i915/gtt: Enable full-ppgtt by default everywhere")
-    86b592876cb6 ("drm/i915: Implement 16GB dimm wa for latency level-0")
-    8a6c5447635c ("drm/i915/kbl+: Enable IPC only for symmetric memory configurations")
-    900ccf30f9e1 ("drm/i915: Only force GGTT coherency w/a on required chipsets")
-    cbfa59d4b331 ("drm/i915/bxt: Decode memory bandwidth and parameters")
-    d53db442db36 ("drm/i915: Move display device info capabilities to its own struct")
-    f361912aa9bf ("drm/i915/skl+: don't trust IPC value set by BIOS")
-    fd847b8e60e0 ("drm/i915: Do not modifiy reserved bit in gens that do not have IPC")
-
-v4.14.169: Failed to apply! Possible dependencies:
-    0d6fc92a73e0 ("drm/i915: Separate RPS and RC6 handling for VLV")
-    37d933fc1728 ("drm/i915: Introduce separate status variable for RC6 and LLC ring frequency setup")
-    3e8ddd9e5071 ("drm/i915: Nuke some bogus tabs from the pcode defines")
-    562d9bae08a1 ("drm/i915: Name structure in dev_priv that contains RPS/RC6 state as "gt_pm"")
-    61843f0e6212 ("drm/i915: Name the IPS_PCODE_CONTROL bit")
-    771decb0b4d7 ("drm/i915: Rename intel_enable_rc6 to intel_rc6_enabled")
-    960e54652cee ("drm/i915: Separate RPS and RC6 handling for gen6+")
-    9f817501bd7f ("drm/i915: Move rps.hw_lock to dev_priv and s/hw_lock/pcu_lock")
-    c56b89f16dd0 ("drm/i915: Use INTEL_GEN everywhere")
-    d46b00dc38c8 ("drm/i915: Separate RPS and RC6 handling for CHV")
-    d53db442db36 ("drm/i915: Move display device info capabilities to its own struct")
-    fb6db0f5bf1d ("drm/i915: Remove unsafe i915.enable_rc6")
-
-v4.9.212: Failed to apply! Possible dependencies:
-    0031fb96859c ("drm/i915: Assorted dev_priv cleanups")
-    03cdc1d4f795 ("drm/i915: Store port enum in intel_encoder")
-    4f8036a28112 ("drm/i915: Make HAS_DDI and HAS_PCH_LPT_LP only take dev_priv")
-    50a0bc905416 ("drm/i915: Make INTEL_DEVID only take dev_priv")
-    6e266956a57f ("drm/i915: Make INTEL_PCH_TYPE & co only take dev_priv")
-    8652744b647e ("drm/i915: Make IS_BROADWELL only take dev_priv")
-    d53db442db36 ("drm/i915: Move display device info capabilities to its own struct")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
--- 
-Thanks,
-Sasha
+-Mika
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
