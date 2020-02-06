@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F0A154393
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 12:55:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E12E1543DF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 13:16:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 746D26EA4B;
-	Thu,  6 Feb 2020 11:55:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 822B66EA56;
+	Thu,  6 Feb 2020 12:16:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0EA8A89FA7;
- Thu,  6 Feb 2020 11:55:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1210A0134;
- Thu,  6 Feb 2020 11:55:04 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18B936EA56
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 12:16:40 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 04:16:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="344800288"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 06 Feb 2020 04:16:39 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 25C345C0D66; Thu,  6 Feb 2020 14:15:45 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Andi Shyti <andi@etezian.org>
+In-Reply-To: <20200205184055.GA3088@jack.zhora.eu>
+References: <20200205105749.1769982-1-chris@chris-wilson.co.uk>
+ <87v9ol9kcl.fsf@gaia.fi.intel.com> <20200205184055.GA3088@jack.zhora.eu>
+Date: Thu, 06 Feb 2020 14:15:45 +0200
+Message-ID: <87lfpfap3i.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 06 Feb 2020 11:55:04 -0000
-Message-ID: <158099010498.15033.4030632513194892173@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <158096002290.14483.7984505581902713018@emeril.freedesktop.org>
-In-Reply-To: <158096002290.14483.7984505581902713018@emeril.freedesktop.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Trim_blitter_block_size_=28rev3=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: add basic selftests for
+ rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,33 +45,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Andi Shyti <andi@etezian.org> writes:
 
-Series: drm/i915/selftests: Trim blitter block size (rev3)
-URL   : https://patchwork.freedesktop.org/series/73066/
-State : warning
+> Hi Mika,
+>
+>> > +static bool test_rc6(struct intel_rc6 *rc6, bool enabled)
+>> > +{
+>> > +	struct intel_uncore *uncore = rc6_to_uncore(rc6);
+>> > +	intel_wakeref_t wakeref;
+>> > +	u32 ec1, ec2;
+>> > +	u32 interval;
+>> > +
+>> > +	wakeref = intel_runtime_pm_get(uncore->rpm);
+>> > +
+>> > +	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
+>> > +
+>> > +	/*
+>> > +	 * the interval is stored in steps of 1.28us
+>> > +	 */
+>> > +	interval = div_u64(mul_u32_u32(interval, 128),
+>> > +			   100 * 1000); /* => miliseconds */
+>> > +
+>> 
+>> s/miliseconds/milliseconds.
+>
+> thanks!
+>
+>> I have a faint memory that the interval was not always 1.28us
+>> but gen dependant.
+>
+> 1.28 is the incremental step and I haven't seen any different
+> value in the docs. Have you?
 
-== Summary ==
+I must have been mixing this with freq bins. Sorry.
+And in this level as Chris said, we dont need to care.
 
-$ dim checkpatch origin/drm-tip
-e67f881c2575 drm/i915/selftests: Trim blitter block size
--:69: WARNING:MEMORY_BARRIER: memory barrier without comment
-#69: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c:286:
-+				mb();
+>
+>> > +	pr_info("interval:%x [%dms], threshold:%x, rc6:%x, enabled?:%s\n",
+>> > +		intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL),
+>> > +		interval,
+>> > +		intel_uncore_read(uncore, GEN6_RC6_THRESHOLD),
+>> > +	       	ec2 - ec1,
+>> > +	       	yesno(enabled));
+>> > +
+>> > +	intel_runtime_pm_put(uncore->rpm, wakeref);
+>> > +
+>> > +	return enabled != (ec1 >= ec2);
+>> 
+>> Wrap?
+>
+> actually here I forgot a couple of things that went forgotten in
+> my git repo.
+>
+> Anyway, do you mean with "wrap" to add parenthesis?
+>
 
--:134: WARNING:MEMORY_BARRIER: memory barrier without comment
-#134: FILE: drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c:412:
-+				mb();
+I meant that if you take samples between wrap
+period.
+-Mika
 
-total: 0 errors, 2 warnings, 0 checks, 123 lines checked
-
+>> > +	intel_rc6_unpark(rc6);
+>> > +
+>> > +	/* interval < threshold */
+>> > +	if (!test_rc6(rc6, false)) {
+>> 
+>> consider removing the assertion of 'activeness' in parameter
+>> and just if (!rc6_active(rc6)). Or am I missing something in here?
+>
+> yes, you are right, it's misleading. I will make it more clear.
+>
+> The basic idea is:
+>
+>  1. disable rc6
+>  2. check whether it's disabled test_rc6(rc6, false)
+>
+> or
+>
+>  1. enable rc6
+>  2. check if it's enabled test_rc6(rc6, true)
+>
+> Chris was skeptical about the naming as well.
+>
+> Thanks!
+>
+> Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
