@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84165154D87
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 21:49:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A02B3154D97
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 21:57:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7F576FB4B;
-	Thu,  6 Feb 2020 20:49:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF33E6FB53;
+	Thu,  6 Feb 2020 20:57:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E29DE6E3D8
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 20:49:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCA96FB53
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 20:57:09 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20141833-1500050 
- for multiple; Thu, 06 Feb 2020 20:49:16 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20141869-1500050 
+ for multiple; Thu, 06 Feb 2020 20:57:01 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 20:49:15 +0000
-Message-Id: <20200206204915.2636606-4-chris@chris-wilson.co.uk>
+Date: Thu,  6 Feb 2020 20:56:59 +0000
+Message-Id: <20200206205700.2654161-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
-References: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gem: Don't leak non-persistent
- requests on changing engines
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/selftests: drop
+ igt_ppgtt_exhaust_huge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,303 +37,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we have a set of active engines marked as being non-persistent, we
-lose track of those if the user replaces those engines with
-I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
-non-persistent requests are terminated if they are no longer being
-tracked by the user's context (in order to prevent a lost request
-causing an untracked and so unstoppable GPU hang), we need to apply the
-same context cancellation upon changing engines.
+From: Matthew Auld <matthew.auld@intel.com>
 
-v2: Track stale engines[] so we only reap at context closure.
+We already have tests that exhaustively exercise the most interesting
+page-size combinations, along with tests that offer randomisation, and
+so we should already be testing objects(local, system) with a varying
+mix of page-sizes, which leaves igt_ppgtt_exhaust_huge providing not
+much in terms of extra coverage.
 
-Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
-Testcase: igt/gem_ctx_peristence/replace
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c   | 118 ++++++++++++++++--
- .../gpu/drm/i915/gem/i915_gem_context_types.h |  11 +-
- drivers/gpu/drm/i915/i915_sw_fence.c          |  15 ++-
- drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
- 4 files changed, 133 insertions(+), 13 deletions(-)
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   | 102 ------------------
+ 1 file changed, 102 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 52a749691a8d..26ff9f6b0d5b 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -270,7 +270,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
- 	if (!e)
- 		return ERR_PTR(-ENOMEM);
- 
--	init_rcu_head(&e->rcu);
-+	e->ctx = ctx;
-+
- 	for_each_engine(engine, gt, id) {
- 		struct intel_context *ce;
- 
-@@ -450,7 +451,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 9311250d7d6f..2d0fd50c5312 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1208,107 +1208,6 @@ static int igt_write_huge(struct i915_gem_context *ctx,
+ 	return err;
  }
  
--static void kill_context(struct i915_gem_context *ctx)
-+static void kill_engines(struct i915_gem_engines *engines)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -462,7 +463,7 @@ static void kill_context(struct i915_gem_context *ctx)
- 	 * However, we only care about pending requests, so only include
- 	 * engines on which there are incomplete requests.
- 	 */
--	for_each_gem_engine(ce, __context_engines_static(ctx), it) {
-+	for_each_gem_engine(ce, engines, it) {
- 		struct intel_engine_cs *engine;
+-static int igt_ppgtt_exhaust_huge(void *arg)
+-{
+-	struct i915_gem_context *ctx = arg;
+-	struct drm_i915_private *i915 = ctx->i915;
+-	unsigned long supported = INTEL_INFO(i915)->page_sizes;
+-	static unsigned int pages[ARRAY_SIZE(page_sizes)];
+-	struct drm_i915_gem_object *obj;
+-	unsigned int size_mask;
+-	unsigned int page_mask;
+-	int n, i;
+-	int err = -ENODEV;
+-
+-	if (supported == I915_GTT_PAGE_SIZE_4K)
+-		return 0;
+-
+-	/*
+-	 * Sanity check creating objects with a varying mix of page sizes --
+-	 * ensuring that our writes lands in the right place.
+-	 */
+-
+-	n = 0;
+-	for_each_set_bit(i, &supported, ilog2(I915_GTT_MAX_PAGE_SIZE) + 1)
+-		pages[n++] = BIT(i);
+-
+-	for (size_mask = 2; size_mask < BIT(n); size_mask++) {
+-		unsigned int size = 0;
+-
+-		for (i = 0; i < n; i++) {
+-			if (size_mask & BIT(i))
+-				size |= pages[i];
+-		}
+-
+-		/*
+-		 * For our page mask we want to enumerate all the page-size
+-		 * combinations which will fit into our chosen object size.
+-		 */
+-		for (page_mask = 2; page_mask <= size_mask; page_mask++) {
+-			unsigned int page_sizes = 0;
+-
+-			for (i = 0; i < n; i++) {
+-				if (page_mask & BIT(i))
+-					page_sizes |= pages[i];
+-			}
+-
+-			/*
+-			 * Ensure that we can actually fill the given object
+-			 * with our chosen page mask.
+-			 */
+-			if (!IS_ALIGNED(size, BIT(__ffs(page_sizes))))
+-				continue;
+-
+-			obj = huge_pages_object(i915, size, page_sizes);
+-			if (IS_ERR(obj)) {
+-				err = PTR_ERR(obj);
+-				goto out_device;
+-			}
+-
+-			err = i915_gem_object_pin_pages(obj);
+-			if (err) {
+-				i915_gem_object_put(obj);
+-
+-				if (err == -ENOMEM) {
+-					pr_info("unable to get pages, size=%u, pages=%u\n",
+-						size, page_sizes);
+-					err = 0;
+-					break;
+-				}
+-
+-				pr_err("pin_pages failed, size=%u, pages=%u\n",
+-				       size_mask, page_mask);
+-
+-				goto out_device;
+-			}
+-
+-			/* Force the page-size for the gtt insertion */
+-			obj->mm.page_sizes.sg = page_sizes;
+-
+-			err = igt_write_huge(ctx, obj);
+-			if (err) {
+-				pr_err("exhaust write-huge failed with size=%u\n",
+-				       size);
+-				goto out_unpin;
+-			}
+-
+-			i915_gem_object_unpin_pages(obj);
+-			__i915_gem_object_put_pages(obj);
+-			i915_gem_object_put(obj);
+-		}
+-	}
+-
+-	goto out_device;
+-
+-out_unpin:
+-	i915_gem_object_unpin_pages(obj);
+-	i915_gem_object_put(obj);
+-out_device:
+-	mkwrite_device_info(i915)->page_sizes = supported;
+-
+-	return err;
+-}
+-
+ typedef struct drm_i915_gem_object *
+ (*igt_create_fn)(struct drm_i915_private *i915, u32 size, u32 flags);
  
- 		if (intel_context_set_banned(ce))
-@@ -484,10 +485,41 @@ static void kill_context(struct i915_gem_context *ctx)
- 			 * the context from the GPU, we have to resort to a full
- 			 * reset. We hope the collateral damage is worth it.
- 			 */
--			__reset_context(ctx, engine);
-+			__reset_context(engines->ctx, engine);
- 	}
- }
- 
-+static void kill_stale_engines(struct i915_gem_context *ctx)
-+{
-+	struct i915_gem_engines *pos, *next;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ctx->stale_lock, flags);
-+	list_for_each_entry_safe(pos, next, &ctx->stale_list, link) {
-+		if (!i915_sw_fence_await(&pos->fence))
-+			continue;
-+
-+		spin_unlock_irqrestore(&ctx->stale_lock, flags);
-+
-+		kill_engines(pos);
-+
-+		spin_lock_irqsave(&ctx->stale_lock, flags);
-+		list_safe_reset_next(pos, next, link);
-+		list_del_init(&pos->link);
-+
-+		i915_sw_fence_complete(&pos->fence);
-+	}
-+	spin_unlock_irqrestore(&ctx->stale_lock, flags);
-+}
-+
-+static void kill_context(struct i915_gem_context *ctx)
-+{
-+	if (!list_empty(&ctx->stale_list))
-+		kill_stale_engines(ctx);
-+
-+	kill_engines(__context_engines_static(ctx));
-+}
-+
- static void set_closed_name(struct i915_gem_context *ctx)
- {
- 	char *s;
-@@ -602,6 +634,9 @@ __create_context(struct drm_i915_private *i915)
- 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
- 	mutex_init(&ctx->mutex);
- 
-+	INIT_LIST_HEAD(&ctx->stale_list);
-+	spin_lock_init(&ctx->stale_lock);
-+
- 	mutex_init(&ctx->engines_mutex);
- 	e = default_engines(ctx);
- 	if (IS_ERR(e)) {
-@@ -1529,6 +1564,71 @@ static const i915_user_extension_fn set_engines__extensions[] = {
- 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
- };
- 
-+static int engines_notify(struct i915_sw_fence *fence,
-+			  enum i915_sw_fence_notify state)
-+{
-+	struct i915_gem_engines *engines =
-+		container_of(fence, typeof(*engines), fence);
-+
-+	switch (state) {
-+	case FENCE_COMPLETE:
-+		if (!list_empty(&engines->link)) {
-+			struct i915_gem_context *ctx = engines->ctx;
-+			unsigned long flags;
-+
-+			spin_lock_irqsave(&ctx->stale_lock, flags);
-+			list_del(&engines->link);
-+			spin_unlock_irqrestore(&ctx->stale_lock, flags);
-+		}
-+		break;
-+
-+	case FENCE_FREE:
-+		init_rcu_head(&engines->rcu);
-+		call_rcu(&engines->rcu, free_engines_rcu);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void engines_idle_release(struct i915_gem_engines *engines)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	unsigned long flags;
-+
-+	GEM_BUG_ON(!engines);
-+	i915_sw_fence_init(&engines->fence, engines_notify);
-+
-+	spin_lock_irqsave(&engines->ctx->stale_lock, flags);
-+	list_add(&engines->link, &engines->ctx->stale_list);
-+	spin_unlock_irqrestore(&engines->ctx->stale_lock, flags);
-+
-+	for_each_gem_engine(ce, engines, it) {
-+		struct dma_fence *fence;
-+		int err;
-+
-+		if (!ce->timeline)
-+			continue;
-+
-+		fence = i915_active_fence_get(&ce->timeline->last_request);
-+		if (!fence)
-+			continue;
-+
-+		err = i915_sw_fence_await_dma_fence(&engines->fence,
-+						    fence, 0,
-+						    GFP_KERNEL);
-+
-+		dma_fence_put(fence);
-+		if (err < 0) {
-+			kill_engines(engines);
-+			break;
-+		}
-+	}
-+
-+	i915_sw_fence_commit(&engines->fence);
-+}
-+
- static int
- set_engines(struct i915_gem_context *ctx,
- 	    const struct drm_i915_gem_context_param *args)
-@@ -1571,7 +1671,8 @@ set_engines(struct i915_gem_context *ctx,
- 	if (!set.engines)
- 		return -ENOMEM;
- 
--	init_rcu_head(&set.engines->rcu);
-+	set.engines->ctx = ctx;
-+
- 	for (n = 0; n < num_engines; n++) {
- 		struct i915_engine_class_instance ci;
- 		struct intel_engine_cs *engine;
-@@ -1631,7 +1732,8 @@ set_engines(struct i915_gem_context *ctx,
- 	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
- 	mutex_unlock(&ctx->engines_mutex);
- 
--	call_rcu(&set.engines->rcu, free_engines_rcu);
-+	/* Keep track of old engine sets for kill_context() */
-+	engines_idle_release(set.engines);
- 
- 	return 0;
- }
-@@ -1646,7 +1748,6 @@ __copy_engines(struct i915_gem_engines *e)
- 	if (!copy)
- 		return ERR_PTR(-ENOMEM);
- 
--	init_rcu_head(&copy->rcu);
- 	for (n = 0; n < e->num_engines; n++) {
- 		if (e->engines[n])
- 			copy->engines[n] = intel_context_get(e->engines[n]);
-@@ -1890,7 +1991,8 @@ static int clone_engines(struct i915_gem_context *dst,
- 	if (!clone)
- 		goto err_unlock;
- 
--	init_rcu_head(&clone->rcu);
-+	clone->ctx = dst;
-+
- 	for (n = 0; n < e->num_engines; n++) {
- 		struct intel_engine_cs *engine;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index 017ca803ab47..39c2f6189684 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -20,6 +20,7 @@
- #include "gt/intel_context_types.h"
- 
- #include "i915_scheduler.h"
-+#include "i915_sw_fence.h"
- 
- struct pid;
- 
-@@ -30,7 +31,12 @@ struct intel_timeline;
- struct intel_ring;
- 
- struct i915_gem_engines {
--	struct rcu_head rcu;
-+	union {
-+		struct rcu_head rcu;
-+		struct list_head link;
-+	};
-+	struct i915_sw_fence fence;
-+	struct i915_gem_context *ctx;
- 	unsigned int num_engines;
- 	struct intel_context *engines[];
- };
-@@ -173,6 +179,9 @@ struct i915_gem_context {
- 	 * context in messages.
- 	 */
- 	char name[TASK_COMM_LEN + 8];
-+
-+	struct spinlock stale_lock;
-+	struct list_head stale_list;
- };
- 
- #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 51ba97daf2a0..9a20b7246f91 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -211,10 +211,19 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
- 	__i915_sw_fence_complete(fence, NULL);
- }
- 
--void i915_sw_fence_await(struct i915_sw_fence *fence)
-+bool i915_sw_fence_await(struct i915_sw_fence *fence)
- {
--	debug_fence_assert(fence);
--	WARN_ON(atomic_inc_return(&fence->pending) <= 1);
-+	int old, new;
-+
-+	new = atomic_read(&fence->pending);
-+	do {
-+		if (new < 1)
-+			return false;
-+
-+		old = new++;
-+	} while ((new = atomic_cmpxchg(&fence->pending, old, new)) != old);
-+
-+	return true;
- }
- 
- void __i915_sw_fence_init(struct i915_sw_fence *fence,
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
-index 19e806ce43bc..30a863353ee6 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.h
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.h
-@@ -91,7 +91,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- 				    unsigned long timeout,
- 				    gfp_t gfp);
- 
--void i915_sw_fence_await(struct i915_sw_fence *fence);
-+bool i915_sw_fence_await(struct i915_sw_fence *fence);
- void i915_sw_fence_complete(struct i915_sw_fence *fence);
- 
- static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
+@@ -1900,7 +1799,6 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_shrink_thp),
+ 		SUBTEST(igt_ppgtt_pin_update),
+ 		SUBTEST(igt_tmpfs_fallback),
+-		SUBTEST(igt_ppgtt_exhaust_huge),
+ 		SUBTEST(igt_ppgtt_smoke_huge),
+ 		SUBTEST(igt_ppgtt_sanity_check),
+ 	};
 -- 
 2.25.0
 
