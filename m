@@ -2,38 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B15F154A10
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EB7154A32
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:27:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6666FAC1;
-	Thu,  6 Feb 2020 17:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DA766FACE;
+	Thu,  6 Feb 2020 17:27:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADAD26FAC1
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:13:32 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 09:13:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="379126898"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga004.jf.intel.com with ESMTP; 06 Feb 2020 09:13:30 -0800
-Date: Thu, 6 Feb 2020 22:43:40 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200206171340.GB26821@intel.com>
-References: <20200206150442.32353-1-anshuman.gupta@intel.com>
- <20200206150442.32353-3-anshuman.gupta@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A03DE6FACE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:27:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20139493-1500050 for multiple; Thu, 06 Feb 2020 17:27:18 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200206150442.32353-3-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915/hdcp: Fix 1B-10 HDCP 2.2 Comp
- test
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200206170340.102613-1-matthew.auld@intel.com>
+In-Reply-To: <20200206170340.102613-1-matthew.auld@intel.com>
+Message-ID: <158101003645.7306.6714324743393389797@skylake-alporthouse-com>
+Date: Thu, 06 Feb 2020 17:27:16 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: drop
+ igt_ppgtt_exhaust_huge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,123 +39,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-06 at 20:34:42 +0530, Anshuman Gupta wrote:
-> 1B-10 HDCP Comp test verifies that source DUT reattempts
-> Content Stream Management following a failure of Content
-> Stream Management, 1B-10 test fail if source DUT tries
-> reauthentication following a Content Stream Management
-> failure.
-> Fixing this broken test.
-We could explain what we do in brief?
+Quoting Matthew Auld (2020-02-06 17:03:40)
+> We already have tests that exhaustively exercise the most interesting
+> page-size combinations, along with tests that offer randomisation, and
+> so we should already be testing objects(local, system) with a varying
+> mix of page-sizes, which leaves igt_ppgtt_exhaust_huge providing not
+> much in terms of extra coverage.
 > 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  .../drm/i915/display/intel_display_types.h    |  3 ++
->  drivers/gpu/drm/i915/display/intel_hdcp.c     | 32 ++++++++++++++++---
->  2 files changed, 31 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2ae540e986ba..9232c4e0e42e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -363,6 +363,9 @@ struct intel_hdcp {
->  	/* Flag indicate if it is a first ReceiverID_List msg after AKE_Init */
->  	bool first_recvid_msg;
->  
-> +	/* Flag indicate whether reauth retries req */
-> +	bool reauth_req;
-Personally I would try to avoid extra flags here. See if you could.
-> +
->  	/*
->  	 * Content Stream Type defined by content owner. TYPE0(0x0) content can
->  	 * flow in the link protected by HDCP2.2 or HDCP1.4, where as TYPE1(0x1)
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 3e24a6df503a..ed523de20eac 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1507,13 +1507,35 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  
->  static int hdcp2_authenticate_repeater(struct intel_connector *connector)
->  {
-> -	int ret;
-> +	int ret, i, tries = 3;
-> +	struct intel_hdcp *hdcp = &connector->hdcp;
-> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-Preferred to sort the lengthiest line first.
->  
->  	ret = hdcp2_authenticate_repeater_topology(connector);
->  	if (ret < 0)
->  		return ret;
->  
-> -	return hdcp2_propagate_stream_management_info(connector);
-> +	/*
-> +	 * HDCP 2.2 HDCP Spec Stream Managemnt pass/fail transition
-> +	 * to HDCP authticate state i.e. A9->A5.
-> +	 * if it fails, retry for stream managemnt again and skip the reauth.
-> +	 */
-> +	for (i = 0; i < tries; i++) {
-> +		ret = hdcp2_propagate_stream_management_info(connector);
-> +		if (!ret) {
-> +			hdcp->reauth_req  = true;
-this is not required. hence {}.
-> +			break;
-> +		}
-> +
-> +		hdcp->seq_num_m++;
-> +		drm_dbg_kms(&dev_priv->drm, "HDCP2.2 stream management %d of %d Failed.(%d)\n",
-This can be wrapped to 80char without any loss of readability.
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 
--Ram
-> +			    i + 1, tries, ret);
-> +	}
-> +
-> +	if (ret)
-> +		hdcp->reauth_req  = false;
-> +
-> +	return ret;
->  }
->  
->  static int hdcp2_authenticate_sink(struct intel_connector *connector)
-> @@ -1642,10 +1664,11 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
->  static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
->  {
->  	int ret, i, tries = 3;
-> +	struct intel_hdcp *hdcp = &connector->hdcp;
->  
->  	for (i = 0; i < tries; i++) {
->  		ret = hdcp2_authenticate_sink(connector);
-> -		if (!ret)
-> +		if (!ret || !hdcp->reauth_req)
->  			break;
->  
->  		/* Clearing the mei hdcp session */
-> @@ -1655,7 +1678,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
->  			DRM_DEBUG_KMS("Port deauth failed.\n");
->  	}
->  
-> -	if (i != tries) {
-> +	if (!ret) {
->  		/*
->  		 * Ensuring the required 200mSec min time interval between
->  		 * Session Key Exchange and encryption.
-> @@ -1681,6 +1704,7 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
->  		      connector->base.name, connector->base.base.id,
->  		      hdcp->content_type);
->  
-> +	hdcp->reauth_req  = true;
->  	ret = hdcp2_authenticate_and_encrypt(connector);
->  	if (ret) {
->  		DRM_DEBUG_KMS("HDCP2 Type%d  Enabling Failed. (%d)\n",
-> -- 
-> 2.24.0
-> 
+Ok. Didn't spot anything that looked to be unique.
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
