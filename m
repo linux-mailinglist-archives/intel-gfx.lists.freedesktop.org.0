@@ -1,37 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095D81547E9
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:24:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5BE15476E
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:15:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4889E6FA85;
-	Thu,  6 Feb 2020 15:24:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D0D989E52;
+	Thu,  6 Feb 2020 15:15:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 4790 seconds by postgrey-1.36 at gabe;
- Thu, 06 Feb 2020 15:24:10 UTC
-Received: from 9.mo6.mail-out.ovh.net (9.mo6.mail-out.ovh.net [87.98.171.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8480F6FA85
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:24:10 +0000 (UTC)
-Received: from player688.ha.ovh.net (unknown [10.110.208.83])
- by mo6.mail-out.ovh.net (Postfix) with ESMTP id 0F3B11FB105
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:04:17 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player688.ha.ovh.net (Postfix) with ESMTPSA id 65491EFDAF33;
- Thu,  6 Feb 2020 14:04:12 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Thu,  6 Feb 2020 16:03:59 +0200
-Message-Id: <20200206140402.11790-1-andi@etezian.org>
-X-Mailer: git-send-email 2.25.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAA9489E52
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:14:59 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 07:14:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="226175993"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga008.fm.intel.com with ESMTP; 06 Feb 2020 07:14:58 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 20:34:40 +0530
+Message-Id: <20200206150442.32353-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 2080663031133356637
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrheefgdehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrieekkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: [Intel-gfx] [PATCH v6 0/3] Add basic selftests for rc6
+Subject: [Intel-gfx] [PATCH 0/2] HDCP 2.2 Comp fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,55 +45,19 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+There are few minor fixes required to pass the HDCP 2.2
+Compliance.
 
-Hi,
+Anshuman Gupta (2):
+  drm/i915/hdcp: Fix 1B-06 HDCP2.2 Comp test
+  drm/i915/hdcp: Fix 1B-10 HDCP 2.2 Comp test
 
-unfortunately rc6 is still a mysterious system and not all tests
-provide the expected results.
-
-I split the three tests in three different patches in order to
-have more flexibility in picking them.
-
-Thanks Chris and Mika for the reviews,
-Andi
-
-Changelog:
-* v5 -> v6:
-	- the tests are split in three different patches, nothing
-	  else.
-* v4 -> v5:
-        - added changes in v4 which I forgot to include
-        - a small renaming and refactoring suggested by Mika to
-          make clear the purpose of the test function. Now it's
-          called "is_rc6_active" in a question format (and I
-          believe Chris won't like my creativity) and it returns
-          true if rc6 is active and false otherwise. Thanks, Mika!
-        - fixed a couple of typos.
-	- dropped the live_rc6_basic test.
-* v3 -> v4:
-        - just a small refactoring where test_rc6 becomes a
-          measure function while another test_rc6 checks the
-          return value from the measure.
-* v2 -> v3:
-        - rebased on top of the latest drm-tip
-        - fixed exiting order in rc6_basic to avoid exiting
-          without releasing the pm reference
-* v1 -> v2:
-        - some changes from Chris.
-
-Andi Shyti (3):
-  drm/i915/selftests: add busy selftests for rc6
-  drm/i915/selftests: add threshold selftests for rc6
-  drm/i915/selftests: add basic on/off selftests for rc6
-
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   3 +
- drivers/gpu/drm/i915/gt/selftest_rc6.c   | 216 +++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_rc6.h   |   3 +
- 3 files changed, 222 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  6 +++
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 45 +++++++++++++++++--
+ 2 files changed, 47 insertions(+), 4 deletions(-)
 
 -- 
-2.25.0
+2.24.0
 
 _______________________________________________
 Intel-gfx mailing list
