@@ -2,125 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 226D4154B00
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BA44154B0A
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:26:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E7CA6FAF7;
-	Thu,  6 Feb 2020 18:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6DDF6FAFC;
+	Thu,  6 Feb 2020 18:26:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from UPDC19PA20.eemsg.mail.mil (UPDC19PA20.eemsg.mail.mil
- [214.24.27.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576AE6FAF7
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:22:32 +0000 (UTC)
-X-EEMSG-check-017: 55793014|UPDC19PA20_ESA_OUT02.csd.disa.mil
-X-IronPort-AV: E=Sophos;i="5.70,410,1574121600"; d="scan'208";a="55793014"
-Received: from emsm-gh1-uea11.ncsc.mil ([214.29.60.3])
- by UPDC19PA20.eemsg.mail.mil with ESMTP/TLS/DHE-RSA-AES256-SHA256;
- 06 Feb 2020 18:22:27 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=tycho.nsa.gov; i=@tycho.nsa.gov; q=dns/txt;
- s=tycho.nsa.gov; t=1581013349; x=1612549349;
- h=subject:to:cc:references:from:message-id:date:
- mime-version:in-reply-to:content-transfer-encoding;
- bh=DztAPQ93eRcJAbhp841pIFS9gTvcTatSHOWa1u0UGrs=;
- b=CxF9L7Gx3VQOIFZx4PrCtxkmXlg0Gvg/xIMATGJTVXtAZx4etFbzmcgs
- saOc9bkplmunzJkfZGy91tC+xMEPpdoKOSNxNTcCOxXD9xjiMPwnzf+n+
- 6yBZDHaJnHiUIET1QHOyAT8srSbZH4hR5ZeV8wLgbSKfCib0SD2c/DS0i
- pw5puvQ7BglolfLY+kvZv7zKmlwG0ckD8fAqKHRBUQpBqWb0ogGRfynZI
- ipYBgb7RLjqhRgIIxugTUlTXfDpeN80mlE6+XbRbOecQNkC1UWQpAdUJR
- DBCPMW/Lq7H6RKoDOyIabVQsOVoaBRGI61T4snMbFkeLo57YyGAjuZWrw w==;
-X-IronPort-AV: E=Sophos;i="5.70,410,1574121600"; d="scan'208";a="38772825"
-IronPort-PHdr: =?us-ascii?q?9a23=3A5QlaRBQOpU7ljCg2Jv4l02NbAdpsv+yvbD5Q0Y?=
- =?us-ascii?q?Iujvd0So/mwa64YxWAt8tkgFKBZ4jH8fUM07OQ7/m8HzFbqs/Y6DhCKMUKC0?=
- =?us-ascii?q?Zez51O3kQJO42sMQXDNvnkbig3ToxpdWRO2DWFC3VTA9v0fFbIo3e/vnY4Ex?=
- =?us-ascii?q?T7MhdpdKyuQtaBx8u42Pqv9JLNfg5GmCSyYa9oLBWxsA7dqtQajZFtJ6osxR?=
- =?us-ascii?q?bFuHtFdupZyW91OF6fgwv36sOs8JJ+6ShdtO8t+sBaXanmY6g0SKFTASg7PW?=
- =?us-ascii?q?wy+MDlrwTIQxGV5nsbXGUWkx5IDBbA4RrnQJr/sTb0u/Rk1iWCMsL4Ub47WT?=
- =?us-ascii?q?K576d2UxDokzsINyQ48G7MlMN9ir9QrQ+7qBx+x47UZ5yVNOZ7c6jAc94WWX?=
- =?us-ascii?q?ZNU8BMXCFaHIiyc5UAAPYAPeZAronyuV0OrQelBQKxAO/j0yJEimPq0aE/1e?=
- =?us-ascii?q?kuHxvG3Ag9FNwQtnraosj+OKMLXeyryKTEyDPOZO5U1zjg8ojFag0vr++CXb?=
- =?us-ascii?q?xwcsTfx0cgGAzHgVqMpoLoJC+V2+YXvmSH8+ZtW+Cihmg6oA9xuDivwcIsh5?=
- =?us-ascii?q?HUiIIJ1F/E7SV5z5gzJdalVUB7ZMSrEJ9Uty6EN4p9X8QvQ3p1tyYh0bAGpZ?=
- =?us-ascii?q?66czQKyJQg3RLfbeeHfJKS7hLsU+aRPy51iXR4c7yxgBay9FKvyuz6VsSs01?=
- =?us-ascii?q?ZFsDBFkt/SuXAJzRDT7dKHSvRl8kekwzmP0QLe5vtDIUAumqrWLYMqzL0olp?=
- =?us-ascii?q?cLrEjOESD7lF/2gaOLbEko5Oel5/r9brn7oJKXKpV6hRvkMqs0n8yyGeE4Mg?=
- =?us-ascii?q?8TUGeF4em8z7jj/VHhQLVNk/02jrHVsJDEKsQfoa60GxNV3Zw56xa+Ejemy8?=
- =?us-ascii?q?4UnXgBLFJLfxKHlJbmNE3ULPDkDfawn1SskDBxy/DAIrLhGYnCImLGkLfgeb?=
- =?us-ascii?q?Zx809cyAwtwtBD/59YF74MLf3pVkLxqdDUFAE1PgOqz+r9FdlxzoYeVniOAq?=
- =?us-ascii?q?+dPqPSq1iI5uc3LumXeYAVoy3wK+Ql5vHyjX85nkURfa+y3ZQNcny4EfNmI1?=
- =?us-ascii?q?uBbXr2ntgBCXsKvhY5TOHyklKCVSBcZnmsUKM8/D00E5+mAprZSYCrg7yB2z?=
- =?us-ascii?q?m7E4ZSZmBHDFCMDHjpe5+FW/cKdCKdPMthniYYWrimTo8rzQuuuxPiy7p7Mu?=
- =?us-ascii?q?rU/TUVtZDm1Nhy/e3TjxAy9SdvAsSbyW6NSn97nmISSz8xxqB/rlR3yk2f3q?=
- =?us-ascii?q?hgn/xYCdtT6utSUggkL57cwPJ1BsvyWg3beteJTFanQtO8DT4tSdIxxscEY1?=
- =?us-ascii?q?xhFNW6khDDwy2qDqcNl7OVGJw77Ljc3nnqKsZ8zXbG2rMhgEM7TcRRL2Kpm7?=
- =?us-ascii?q?Rz9w/JB47Gi0+ZjbqldbwA3C7R82eO1XCBs11dUAFuSqjFXm4QZlHQrdvn4k?=
- =?us-ascii?q?POVbiuCa4oMgFZ086NNrNKasH1jVVBXPrjPdXeY2S+m2e3HhuI3K2DY5fqe2?=
- =?us-ascii?q?oHwCXRElQLkwcW/XyeLwgxGj+ho37CDDxpDV/vYUTs8e54qHyhVU841QWKYF?=
- =?us-ascii?q?dh17qp+x4Vg+KTS/UI07IAuSchrSh0HVmn09LXDdqAuxRufKFGbdwh51dH0H?=
- =?us-ascii?q?rTtxZhMZy4M6BimlkefhxtsEP1yxV6EYZAntYwrHMs0gVyLbiU0FRbdzOXxZ?=
- =?us-ascii?q?rwIKHYKnHu/BCzbK7bwl/f0NeS+qcL8/k4qEvsvBuvFkU893Vryd5V02GT5p?=
- =?us-ascii?q?/SFgodTYrxUlor9xh9v7zaejMy557Q1X1xKqm5qSTC1MgsBOQ+0BmsZdBfML?=
- =?us-ascii?q?mLFAXqCc0VG9CuKPA2m1iudh8EOfhS+7AvMsy4c/uG3LCkPPxlnD28i2RL+o?=
- =?us-ascii?q?F93V+W+yVmV+7Cx4wFzO2A3gubSzf8i0+svdr0mY1fYTESH2y/yTXrBYJLZ6?=
- =?us-ascii?q?1ye5oLBnmqI8Gt2tp+gJvtUWZC9FG/H1MGxNOpeR2KYlzh0g1Q0UsWrGejmS?=
- =?us-ascii?q?u5yTx0ji0prrCY3CzIwuTjewALNXNVS2N6l1fjPZC0j8wGXEivdwUmigGl6l?=
- =?us-ascii?q?z8x6havqt/KXLeQUhPfyjxIGFiVrW/uqCebM5I7ZMiqT9XX/ikYVCGVr79pA?=
- =?us-ascii?q?MX0yLnH2tD3z80bSqqupXnkBFhkm2dL2x8rH/DdsFx3xvQ+NvcRftJ1DocWC?=
- =?us-ascii?q?Z4kSXXBkS7P9Sx/9WUkJPDsvukWG+6TJ1cbzTkzYOauyun/2FlHRq/n/WrkN?=
- =?us-ascii?q?39DQc6yTP718VtVSjQqBb8Y4/r17m1MO5+fUlnGkX868xkFYF6iYYwmp4Q1m?=
- =?us-ascii?q?YAhpmP/noIj33zMdNF1qL6dnYNQiQLw9HN6gj/xEJjNm6Jx57+VniFw8thYc?=
- =?us-ascii?q?W6bX0S2i4k4MBKBqiV4adAnSt0uVq4sRnRbeJznjcH1/Qh9mMVjP8SuAou0i?=
- =?us-ascii?q?WdBagSEVNfPSz2mBSC98q+o7lPZGazbbiw01JzndSgDLGEvwFdV2/1eow8Ei?=
- =?us-ascii?q?Bs88V/KlPM0GHz6439fdnQas8ctgCQkxjelOVVNp0xmeQQhSZ9OmLyo2cly+?=
- =?us-ascii?q?glghxqx526u5KHK2p19qKjHhFYLiH1Z98U+jz1lqZRgMKW34GpHpV8FTQGR4?=
- =?us-ascii?q?XoTf22HzIIr/jnNBiBECc6qniFHbrTBwif6F1pr3jXCZCkK2mXJGUFzdVlXB?=
- =?us-ascii?q?SdIE1fgAYJXDQ1h5I2DBqqxMn4fEd6+D8R/Fj4pQVIyu9zMxn/U3zfpBuzaj?=
- =?us-ascii?q?suSZifKhRW7htY6EjIL8OR9P98Eztf/p27owyHMnabaBhQDWEVRkyEAEjuPr?=
- =?us-ascii?q?2v5dnG7uiZCfK+L+PSbrmXtONRSemIyImr0otn5DaMKt6PMmNlD/w63kpMR2?=
- =?us-ascii?q?t2G9/DlzUIUSwXmDrHb9SHqxek5i13sse//ezvWALu44uPFrRTPcx3+x+sm6?=
- =?us-ascii?q?eDNvWQizpiJDZG2ZMD22XIxKIc3FEMkSFucSeiEbAauS7KVqLQlbddDwQHZC?=
- =?us-ascii?q?NrKMtI86U80xFKOc7DkNP10bB4jv8xC1hbTFDhnsCpZdcWI2ymMFPHBV2LNK?=
- =?us-ascii?q?idJTHR2MH3b7mwSbtOg+VI5FWMvmOyF0LzMyXLvSTlXhasNv8E2CifMQxTqc?=
- =?us-ascii?q?e3bxpkD2vkUvriaxumIJl2iyE7xfs/gXaccSY+OD1xaAtoqaeK7DgQ1vd6HH?=
- =?us-ascii?q?Zb72FNK+CBliff6PPXfNJeivZxDSk8t+te5GU8g+9O4TtLSdR1kS/Wv9goqF?=
- =?us-ascii?q?ajxK3H8jd7XQAGmDdJgJmXp0wqbb3U6pRaS17F+hwX5GmdAhhMoMFqXJmnkr?=
- =?us-ascii?q?pWw9zDk+rYIS1c+tbU+oMQCoDxJcaAeC4oOh/kMD3ZFg0ISXisL26JwwR8lv?=
- =?us-ascii?q?6VvliSqp4zsNC4nZsIRbhzTlE5FvoGTE9iGYpGaN11WTQimKXdiMcI+Xu4oR?=
- =?us-ascii?q?/5QMRco4CBV/SODPGpIzGcx/EQZRwPx7rja4AaNpH63UFkQl17mpnaXUvWQd?=
- =?us-ascii?q?1J5CZma1lw6GxJ/WhzTyUIx0v/bR2q4WMUC7bglwUqoghze+Ig8HHr+VhhYh?=
- =?us-ascii?q?L1pS802GU8kN7ih3jFbz/1KI+zUJtQBi6ysFI+ZNezew9oaUWXlEdnOS3eTq?=
- =?us-ascii?q?kZ26NpaGR2kyfHsJ5FELhbV6ISJFc1xPqXbvgsmXlYrii9wEZBrb/AEZZKmQ?=
- =?us-ascii?q?8ufISppnQG2g4lZcNjdoLKI68c9URdnqKDuGeT0+k1xAIPbxIW/Hi6ZD8DuE?=
- =?us-ascii?q?tOMKIvYSWv4Lo/ukS5hzJfdT1UBLIRqfVw+xZ4Yr7Rwg=3D=3D?=
-X-IPAS-Result: =?us-ascii?q?A2DbAgDbWDxe/wHyM5BmHAEBAQEBBwEBEQEEBAEBgXuBf?=
- =?us-ascii?q?YEYVCESKoQViQOGZQEBAQaBEiWJcJFLCQEBAQEBAQEBAS0KAQGBTIIvRQKCY?=
- =?us-ascii?q?TgTAhABAQEEAQEBAQEFAwEBbIU3DII7KQGDAgEFIxUtFBALGAICJgICVwYBD?=
- =?us-ascii?q?AYCAQGCYz8BglYlD60kgTKESUFAg1SBPoEOKolagmN5gQeBOAwDgl0+gmQBA?=
- =?us-ascii?q?gEChHGCXgSQHIciRpdngkSCToR8jnYGG4JIeIcYkDMtjjWBS4chlEgigVgrC?=
- =?us-ascii?q?AIYCCEPgycJFjEYDY4pFxWIT4UIAVQjAzACBQaOPQEB?=
-Received: from tarius.tycho.ncsc.mil (HELO tarius.infosec.tycho.ncsc.mil)
- ([144.51.242.1])
- by emsm-gh1-uea11.NCSC.MIL with ESMTP; 06 Feb 2020 18:22:26 +0000
-Received: from moss-pluto.infosec.tycho.ncsc.mil (moss-pluto [192.168.25.131])
- by tarius.infosec.tycho.ncsc.mil (8.14.7/8.14.4) with ESMTP id
- 016ILOKQ195174; Thu, 6 Feb 2020 13:21:24 -0500
-To: Alexey Budankov <alexey.budankov@linux.intel.com>,
- James Morris <jmorris@namei.org>, Serge Hallyn <serge@hallyn.com>,
- Peter Zijlstra <peterz@infradead.org>,
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A08C76FAFC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:26:33 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 10:26:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="345053139"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmsmga001.fm.intel.com with ESMTP; 06 Feb 2020 10:26:32 -0800
+Received: from [10.251.88.4] (abudanko-mobl.ccr.corp.intel.com [10.251.88.4])
+ by linux.intel.com (Postfix) with ESMTP id CA6F05803E3;
+ Thu,  6 Feb 2020 10:26:25 -0800 (PST)
+To: Stephen Smalley <sds@tycho.nsa.gov>, James Morris <jmorris@namei.org>,
+ Serge Hallyn <serge@hallyn.com>, Peter Zijlstra <peterz@infradead.org>,
  Arnaldo Carvalho de Melo <acme@kernel.org>, Ingo Molnar <mingo@redhat.com>,
  "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
  Alexei Starovoitov <ast@kernel.org>, Will Deacon <will@kernel.org>,
  Paul Mackerras <paulus@samba.org>, Michael Ellerman <mpe@ellerman.id.au>
 References: <576a6141-36d4-14c0-b395-8d195892b916@linux.intel.com>
  <a4c5da70-b6d1-b133-9b64-34e164834b03@linux.intel.com>
-From: Stephen Smalley <sds@tycho.nsa.gov>
-Message-ID: <5be0f67c-17e2-7861-37f3-a0f8a82be8f0@tycho.nsa.gov>
-Date: Thu, 6 Feb 2020 13:23:12 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ <5be0f67c-17e2-7861-37f3-a0f8a82be8f0@tycho.nsa.gov>
+From: Alexey Budankov <alexey.budankov@linux.intel.com>
+Organization: Intel Corp.
+Message-ID: <1bcb4cb1-98c4-cc1a-b8e3-fd8a0e1e606f@linux.intel.com>
+Date: Thu, 6 Feb 2020 21:26:24 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-In-Reply-To: <a4c5da70-b6d1-b133-9b64-34e164834b03@linux.intel.com>
+In-Reply-To: <5be0f67c-17e2-7861-37f3-a0f8a82be8f0@tycho.nsa.gov>
 Content-Language: en-US
 Subject: Re: [Intel-gfx] [PATCH v6 01/10] capabilities: introduce
  CAP_PERFMON to kernel and user space
@@ -148,125 +68,114 @@ Cc: Andi Kleen <ak@linux.intel.com>,
  <linux-security-module@vger.kernel.org>, oprofile-list@lists.sf.net,
  Thomas Gleixner <tglx@linutronix.de>, Jiri Olsa <jolsa@redhat.com>,
  linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2/5/20 12:30 PM, Alexey Budankov wrote:
-> 
-> Introduce CAP_PERFMON capability designed to secure system performance
-> monitoring and observability operations so that CAP_PERFMON would assist
-> CAP_SYS_ADMIN capability in its governing role for performance monitoring
-> and observability subsystems.
-> 
-> CAP_PERFMON hardens system security and integrity during performance
-> monitoring and observability operations by decreasing attack surface that
-> is available to a CAP_SYS_ADMIN privileged process [2]. Providing the access
-> to system performance monitoring and observability operations under CAP_PERFMON
-> capability singly, without the rest of CAP_SYS_ADMIN credentials, excludes
-> chances to misuse the credentials and makes the operation more secure.
-> Thus, CAP_PERFMON implements the principal of least privilege for performance
-> monitoring and observability operations (POSIX IEEE 1003.1e: 2.2.2.39 principle
-> of least privilege: A security design principle that states that a process
-> or program be granted only those privileges (e.g., capabilities) necessary
-> to accomplish its legitimate function, and only for the time that such
-> privileges are actually required)
-> 
-> CAP_PERFMON meets the demand to secure system performance monitoring and
-> observability operations for adoption in security sensitive, restricted,
-> multiuser production environments (e.g. HPC clusters, cloud and virtual compute
-> environments), where root or CAP_SYS_ADMIN credentials are not available to
-> mass users of a system, and securely unblocks accessibility of system performance monitoring and observability operations beyond root and CAP_SYS_ADMIN use cases.
-> 
-> CAP_PERFMON takes over CAP_SYS_ADMIN credentials related to system performance
-> monitoring and observability operations and balances amount of CAP_SYS_ADMIN
-> credentials following the recommendations in the capabilities man page [1]
-> for CAP_SYS_ADMIN: "Note: this capability is overloaded; see Notes to kernel
-> developers, below." For backward compatibility reasons access to system
-> performance monitoring and observability subsystems of the kernel remains
-> open for CAP_SYS_ADMIN privileged processes but CAP_SYS_ADMIN capability
-> usage for secure system performance monitoring and observability operations
-> is discouraged with respect to the designed CAP_PERFMON capability.
-> 
-> Although the software running under CAP_PERFMON can not ensure avoidance
-> of related hardware issues, the software can still mitigate these issues
-> following the official hardware issues mitigation procedure [2]. The bugs
-> in the software itself can be fixed following the standard kernel development
-> process [3] to maintain and harden security of system performance monitoring
-> and observability operations.
-> 
-> [1] http://man7.org/linux/man-pages/man7/capabilities.7.html
-> [2] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
-> [3] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
-> 
-> Signed-off-by: Alexey Budankov <alexey.budankov@linux.intel.com>
-
-This will require a small update to the selinux-testsuite to correctly 
-reflect the new capability requirements, but that's easy enough.
-
-Acked-by: Stephen Smalley <sds@tycho.nsa.gov>
-
-> ---
->   include/linux/capability.h          | 4 ++++
->   include/uapi/linux/capability.h     | 8 +++++++-
->   security/selinux/include/classmap.h | 4 ++--
->   3 files changed, 13 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/linux/capability.h b/include/linux/capability.h
-> index ecce0f43c73a..027d7e4a853b 100644
-> --- a/include/linux/capability.h
-> +++ b/include/linux/capability.h
-> @@ -251,6 +251,10 @@ extern bool privileged_wrt_inode_uidgid(struct user_namespace *ns, const struct
->   extern bool capable_wrt_inode_uidgid(const struct inode *inode, int cap);
->   extern bool file_ns_capable(const struct file *file, struct user_namespace *ns, int cap);
->   extern bool ptracer_capable(struct task_struct *tsk, struct user_namespace *ns);
-> +static inline bool perfmon_capable(void)
-> +{
-> +	return capable(CAP_PERFMON) || capable(CAP_SYS_ADMIN);
-> +}
->   
->   /* audit system wants to get cap info from files as well */
->   extern int get_vfs_caps_from_disk(const struct dentry *dentry, struct cpu_vfs_cap_data *cpu_caps);
-> diff --git a/include/uapi/linux/capability.h b/include/uapi/linux/capability.h
-> index 240fdb9a60f6..8b416e5f3afa 100644
-> --- a/include/uapi/linux/capability.h
-> +++ b/include/uapi/linux/capability.h
-> @@ -366,8 +366,14 @@ struct vfs_ns_cap_data {
->   
->   #define CAP_AUDIT_READ		37
->   
-> +/*
-> + * Allow system performance and observability privileged operations
-> + * using perf_events, i915_perf and other kernel subsystems
-> + */
-> +
-> +#define CAP_PERFMON		38
->   
-> -#define CAP_LAST_CAP         CAP_AUDIT_READ
-> +#define CAP_LAST_CAP         CAP_PERFMON
->   
->   #define cap_valid(x) ((x) >= 0 && (x) <= CAP_LAST_CAP)
->   
-> diff --git a/security/selinux/include/classmap.h b/security/selinux/include/classmap.h
-> index 7db24855e12d..c599b0c2b0e7 100644
-> --- a/security/selinux/include/classmap.h
-> +++ b/security/selinux/include/classmap.h
-> @@ -27,9 +27,9 @@
->   	    "audit_control", "setfcap"
->   
->   #define COMMON_CAP2_PERMS  "mac_override", "mac_admin", "syslog", \
-> -		"wake_alarm", "block_suspend", "audit_read"
-> +		"wake_alarm", "block_suspend", "audit_read", "perfmon"
->   
-> -#if CAP_LAST_CAP > CAP_AUDIT_READ
-> +#if CAP_LAST_CAP > CAP_PERFMON
->   #error New capability defined, please update COMMON_CAP2_PERMS.
->   #endif
->   
-> 
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDA2LjAyLjIwMjAgMjE6MjMsIFN0ZXBoZW4gU21hbGxleSB3cm90ZToKPiBPbiAyLzUvMjAg
+MTI6MzAgUE0sIEFsZXhleSBCdWRhbmtvdiB3cm90ZToKPj4KPj4gSW50cm9kdWNlIENBUF9QRVJG
+TU9OIGNhcGFiaWxpdHkgZGVzaWduZWQgdG8gc2VjdXJlIHN5c3RlbSBwZXJmb3JtYW5jZQo+PiBt
+b25pdG9yaW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMgc28gdGhhdCBDQVBfUEVSRk1P
+TiB3b3VsZCBhc3Npc3QKPj4gQ0FQX1NZU19BRE1JTiBjYXBhYmlsaXR5IGluIGl0cyBnb3Zlcm5p
+bmcgcm9sZSBmb3IgcGVyZm9ybWFuY2UgbW9uaXRvcmluZwo+PiBhbmQgb2JzZXJ2YWJpbGl0eSBz
+dWJzeXN0ZW1zLgo+Pgo+PiBDQVBfUEVSRk1PTiBoYXJkZW5zIHN5c3RlbSBzZWN1cml0eSBhbmQg
+aW50ZWdyaXR5IGR1cmluZyBwZXJmb3JtYW5jZQo+PiBtb25pdG9yaW5nIGFuZCBvYnNlcnZhYmls
+aXR5IG9wZXJhdGlvbnMgYnkgZGVjcmVhc2luZyBhdHRhY2sgc3VyZmFjZSB0aGF0Cj4+IGlzIGF2
+YWlsYWJsZSB0byBhIENBUF9TWVNfQURNSU4gcHJpdmlsZWdlZCBwcm9jZXNzIFsyXS4gUHJvdmlk
+aW5nIHRoZSBhY2Nlc3MKPj4gdG8gc3lzdGVtIHBlcmZvcm1hbmNlIG1vbml0b3JpbmcgYW5kIG9i
+c2VydmFiaWxpdHkgb3BlcmF0aW9ucyB1bmRlciBDQVBfUEVSRk1PTgo+PiBjYXBhYmlsaXR5IHNp
+bmdseSwgd2l0aG91dCB0aGUgcmVzdCBvZiBDQVBfU1lTX0FETUlOIGNyZWRlbnRpYWxzLCBleGNs
+dWRlcwo+PiBjaGFuY2VzIHRvIG1pc3VzZSB0aGUgY3JlZGVudGlhbHMgYW5kIG1ha2VzIHRoZSBv
+cGVyYXRpb24gbW9yZSBzZWN1cmUuCj4+IFRodXMsIENBUF9QRVJGTU9OIGltcGxlbWVudHMgdGhl
+IHByaW5jaXBhbCBvZiBsZWFzdCBwcml2aWxlZ2UgZm9yIHBlcmZvcm1hbmNlCj4+IG1vbml0b3Jp
+bmcgYW5kIG9ic2VydmFiaWxpdHkgb3BlcmF0aW9ucyAoUE9TSVggSUVFRSAxMDAzLjFlOiAyLjIu
+Mi4zOSBwcmluY2lwbGUKPj4gb2YgbGVhc3QgcHJpdmlsZWdlOiBBIHNlY3VyaXR5IGRlc2lnbiBw
+cmluY2lwbGUgdGhhdCBzdGF0ZXMgdGhhdCBhIHByb2Nlc3MKPj4gb3IgcHJvZ3JhbSBiZSBncmFu
+dGVkIG9ubHkgdGhvc2UgcHJpdmlsZWdlcyAoZS5nLiwgY2FwYWJpbGl0aWVzKSBuZWNlc3NhcnkK
+Pj4gdG8gYWNjb21wbGlzaCBpdHMgbGVnaXRpbWF0ZSBmdW5jdGlvbiwgYW5kIG9ubHkgZm9yIHRo
+ZSB0aW1lIHRoYXQgc3VjaAo+PiBwcml2aWxlZ2VzIGFyZSBhY3R1YWxseSByZXF1aXJlZCkKPj4K
+Pj4gQ0FQX1BFUkZNT04gbWVldHMgdGhlIGRlbWFuZCB0byBzZWN1cmUgc3lzdGVtIHBlcmZvcm1h
+bmNlIG1vbml0b3JpbmcgYW5kCj4+IG9ic2VydmFiaWxpdHkgb3BlcmF0aW9ucyBmb3IgYWRvcHRp
+b24gaW4gc2VjdXJpdHkgc2Vuc2l0aXZlLCByZXN0cmljdGVkLAo+PiBtdWx0aXVzZXIgcHJvZHVj
+dGlvbiBlbnZpcm9ubWVudHMgKGUuZy4gSFBDIGNsdXN0ZXJzLCBjbG91ZCBhbmQgdmlydHVhbCBj
+b21wdXRlCj4+IGVudmlyb25tZW50cyksIHdoZXJlIHJvb3Qgb3IgQ0FQX1NZU19BRE1JTiBjcmVk
+ZW50aWFscyBhcmUgbm90IGF2YWlsYWJsZSB0bwo+PiBtYXNzIHVzZXJzIG9mIGEgc3lzdGVtLCBh
+bmQgc2VjdXJlbHkgdW5ibG9ja3MgYWNjZXNzaWJpbGl0eSBvZiBzeXN0ZW0gcGVyZm9ybWFuY2Ug
+bW9uaXRvcmluZyBhbmQgb2JzZXJ2YWJpbGl0eSBvcGVyYXRpb25zIGJleW9uZCByb290IGFuZCBD
+QVBfU1lTX0FETUlOIHVzZSBjYXNlcy4KPj4KPj4gQ0FQX1BFUkZNT04gdGFrZXMgb3ZlciBDQVBf
+U1lTX0FETUlOIGNyZWRlbnRpYWxzIHJlbGF0ZWQgdG8gc3lzdGVtIHBlcmZvcm1hbmNlCj4+IG1v
+bml0b3JpbmcgYW5kIG9ic2VydmFiaWxpdHkgb3BlcmF0aW9ucyBhbmQgYmFsYW5jZXMgYW1vdW50
+IG9mIENBUF9TWVNfQURNSU4KPj4gY3JlZGVudGlhbHMgZm9sbG93aW5nIHRoZSByZWNvbW1lbmRh
+dGlvbnMgaW4gdGhlIGNhcGFiaWxpdGllcyBtYW4gcGFnZSBbMV0KPj4gZm9yIENBUF9TWVNfQURN
+SU46ICJOb3RlOiB0aGlzIGNhcGFiaWxpdHkgaXMgb3ZlcmxvYWRlZDsgc2VlIE5vdGVzIHRvIGtl
+cm5lbAo+PiBkZXZlbG9wZXJzLCBiZWxvdy4iIEZvciBiYWNrd2FyZCBjb21wYXRpYmlsaXR5IHJl
+YXNvbnMgYWNjZXNzIHRvIHN5c3RlbQo+PiBwZXJmb3JtYW5jZSBtb25pdG9yaW5nIGFuZCBvYnNl
+cnZhYmlsaXR5IHN1YnN5c3RlbXMgb2YgdGhlIGtlcm5lbCByZW1haW5zCj4+IG9wZW4gZm9yIENB
+UF9TWVNfQURNSU4gcHJpdmlsZWdlZCBwcm9jZXNzZXMgYnV0IENBUF9TWVNfQURNSU4gY2FwYWJp
+bGl0eQo+PiB1c2FnZSBmb3Igc2VjdXJlIHN5c3RlbSBwZXJmb3JtYW5jZSBtb25pdG9yaW5nIGFu
+ZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMKPj4gaXMgZGlzY291cmFnZWQgd2l0aCByZXNwZWN0
+IHRvIHRoZSBkZXNpZ25lZCBDQVBfUEVSRk1PTiBjYXBhYmlsaXR5Lgo+Pgo+PiBBbHRob3VnaCB0
+aGUgc29mdHdhcmUgcnVubmluZyB1bmRlciBDQVBfUEVSRk1PTiBjYW4gbm90IGVuc3VyZSBhdm9p
+ZGFuY2UKPj4gb2YgcmVsYXRlZCBoYXJkd2FyZSBpc3N1ZXMsIHRoZSBzb2Z0d2FyZSBjYW4gc3Rp
+bGwgbWl0aWdhdGUgdGhlc2UgaXNzdWVzCj4+IGZvbGxvd2luZyB0aGUgb2ZmaWNpYWwgaGFyZHdh
+cmUgaXNzdWVzIG1pdGlnYXRpb24gcHJvY2VkdXJlIFsyXS4gVGhlIGJ1Z3MKPj4gaW4gdGhlIHNv
+ZnR3YXJlIGl0c2VsZiBjYW4gYmUgZml4ZWQgZm9sbG93aW5nIHRoZSBzdGFuZGFyZCBrZXJuZWwg
+ZGV2ZWxvcG1lbnQKPj4gcHJvY2VzcyBbM10gdG8gbWFpbnRhaW4gYW5kIGhhcmRlbiBzZWN1cml0
+eSBvZiBzeXN0ZW0gcGVyZm9ybWFuY2UgbW9uaXRvcmluZwo+PiBhbmQgb2JzZXJ2YWJpbGl0eSBv
+cGVyYXRpb25zLgo+Pgo+PiBbMV0gaHR0cDovL21hbjcub3JnL2xpbnV4L21hbi1wYWdlcy9tYW43
+L2NhcGFiaWxpdGllcy43Lmh0bWwKPj4gWzJdIGh0dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9jL2h0
+bWwvbGF0ZXN0L3Byb2Nlc3MvZW1iYXJnb2VkLWhhcmR3YXJlLWlzc3Vlcy5odG1sCj4+IFszXSBo
+dHRwczovL3d3dy5rZXJuZWwub3JnL2RvYy9odG1sL2xhdGVzdC9hZG1pbi1ndWlkZS9zZWN1cml0
+eS1idWdzLmh0bWwKPj4KPj4gU2lnbmVkLW9mZi1ieTogQWxleGV5IEJ1ZGFua292IDxhbGV4ZXku
+YnVkYW5rb3ZAbGludXguaW50ZWwuY29tPgo+IAo+IFRoaXMgd2lsbCByZXF1aXJlIGEgc21hbGwg
+dXBkYXRlIHRvIHRoZSBzZWxpbnV4LXRlc3RzdWl0ZSB0byBjb3JyZWN0bHkgcmVmbGVjdCB0aGUg
+bmV3IGNhcGFiaWxpdHkgcmVxdWlyZW1lbnRzLCBidXQgdGhhdCdzIGVhc3kgZW5vdWdoLgoKSXMg
+dGhlIHN1aXRlIGEgcGFydCBvZiB0aGUga2VybmVsIHNvdXJjZXMgb3Igc29tZXRoaW5nIGVsc2U/
+Cgp+QWxleGV5Cgo+IAo+IEFja2VkLWJ5OiBTdGVwaGVuIFNtYWxsZXkgPHNkc0B0eWNoby5uc2Eu
+Z292Pgo+IAo+PiAtLS0KPj4gwqAgaW5jbHVkZS9saW51eC9jYXBhYmlsaXR5LmjCoMKgwqDCoMKg
+wqDCoMKgwqAgfCA0ICsrKysKPj4gwqAgaW5jbHVkZS91YXBpL2xpbnV4L2NhcGFiaWxpdHkuaMKg
+wqDCoMKgIHwgOCArKysrKysrLQo+PiDCoCBzZWN1cml0eS9zZWxpbnV4L2luY2x1ZGUvY2xhc3Nt
+YXAuaCB8IDQgKystLQo+PiDCoCAzIGZpbGVzIGNoYW5nZWQsIDEzIGluc2VydGlvbnMoKyksIDMg
+ZGVsZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2NhcGFiaWxpdHku
+aCBiL2luY2x1ZGUvbGludXgvY2FwYWJpbGl0eS5oCj4+IGluZGV4IGVjY2UwZjQzYzczYS4uMDI3
+ZDdlNGE4NTNiIDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL2xpbnV4L2NhcGFiaWxpdHkuaAo+PiAr
+KysgYi9pbmNsdWRlL2xpbnV4L2NhcGFiaWxpdHkuaAo+PiBAQCAtMjUxLDYgKzI1MSwxMCBAQCBl
+eHRlcm4gYm9vbCBwcml2aWxlZ2VkX3dydF9pbm9kZV91aWRnaWQoc3RydWN0IHVzZXJfbmFtZXNw
+YWNlICpucywgY29uc3Qgc3RydWN0Cj4+IMKgIGV4dGVybiBib29sIGNhcGFibGVfd3J0X2lub2Rl
+X3VpZGdpZChjb25zdCBzdHJ1Y3QgaW5vZGUgKmlub2RlLCBpbnQgY2FwKTsKPj4gwqAgZXh0ZXJu
+IGJvb2wgZmlsZV9uc19jYXBhYmxlKGNvbnN0IHN0cnVjdCBmaWxlICpmaWxlLCBzdHJ1Y3QgdXNl
+cl9uYW1lc3BhY2UgKm5zLCBpbnQgY2FwKTsKPj4gwqAgZXh0ZXJuIGJvb2wgcHRyYWNlcl9jYXBh
+YmxlKHN0cnVjdCB0YXNrX3N0cnVjdCAqdHNrLCBzdHJ1Y3QgdXNlcl9uYW1lc3BhY2UgKm5zKTsK
+Pj4gK3N0YXRpYyBpbmxpbmUgYm9vbCBwZXJmbW9uX2NhcGFibGUodm9pZCkKPj4gK3sKPj4gK8Kg
+wqDCoCByZXR1cm4gY2FwYWJsZShDQVBfUEVSRk1PTikgfHwgY2FwYWJsZShDQVBfU1lTX0FETUlO
+KTsKPj4gK30KPj4gwqAgwqAgLyogYXVkaXQgc3lzdGVtIHdhbnRzIHRvIGdldCBjYXAgaW5mbyBm
+cm9tIGZpbGVzIGFzIHdlbGwgKi8KPj4gwqAgZXh0ZXJuIGludCBnZXRfdmZzX2NhcHNfZnJvbV9k
+aXNrKGNvbnN0IHN0cnVjdCBkZW50cnkgKmRlbnRyeSwgc3RydWN0IGNwdV92ZnNfY2FwX2RhdGEg
+KmNwdV9jYXBzKTsKPj4gZGlmZiAtLWdpdCBhL2luY2x1ZGUvdWFwaS9saW51eC9jYXBhYmlsaXR5
+LmggYi9pbmNsdWRlL3VhcGkvbGludXgvY2FwYWJpbGl0eS5oCj4+IGluZGV4IDI0MGZkYjlhNjBm
+Ni4uOGI0MTZlNWYzYWZhIDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL3VhcGkvbGludXgvY2FwYWJp
+bGl0eS5oCj4+ICsrKyBiL2luY2x1ZGUvdWFwaS9saW51eC9jYXBhYmlsaXR5LmgKPj4gQEAgLTM2
+Niw4ICszNjYsMTQgQEAgc3RydWN0IHZmc19uc19jYXBfZGF0YSB7Cj4+IMKgIMKgICNkZWZpbmUg
+Q0FQX0FVRElUX1JFQUTCoMKgwqDCoMKgwqDCoCAzNwo+PiDCoCArLyoKPj4gKyAqIEFsbG93IHN5
+c3RlbSBwZXJmb3JtYW5jZSBhbmQgb2JzZXJ2YWJpbGl0eSBwcml2aWxlZ2VkIG9wZXJhdGlvbnMK
+Pj4gKyAqIHVzaW5nIHBlcmZfZXZlbnRzLCBpOTE1X3BlcmYgYW5kIG90aGVyIGtlcm5lbCBzdWJz
+eXN0ZW1zCj4+ICsgKi8KPj4gKwo+PiArI2RlZmluZSBDQVBfUEVSRk1PTsKgwqDCoMKgwqDCoMKg
+IDM4Cj4+IMKgIC0jZGVmaW5lIENBUF9MQVNUX0NBUMKgwqDCoMKgwqDCoMKgwqAgQ0FQX0FVRElU
+X1JFQUQKPj4gKyNkZWZpbmUgQ0FQX0xBU1RfQ0FQwqDCoMKgwqDCoMKgwqDCoCBDQVBfUEVSRk1P
+Tgo+PiDCoCDCoCAjZGVmaW5lIGNhcF92YWxpZCh4KSAoKHgpID49IDAgJiYgKHgpIDw9IENBUF9M
+QVNUX0NBUCkKPj4gwqAgZGlmZiAtLWdpdCBhL3NlY3VyaXR5L3NlbGludXgvaW5jbHVkZS9jbGFz
+c21hcC5oIGIvc2VjdXJpdHkvc2VsaW51eC9pbmNsdWRlL2NsYXNzbWFwLmgKPj4gaW5kZXggN2Ri
+MjQ4NTVlMTJkLi5jNTk5YjBjMmIwZTcgMTAwNjQ0Cj4+IC0tLSBhL3NlY3VyaXR5L3NlbGludXgv
+aW5jbHVkZS9jbGFzc21hcC5oCj4+ICsrKyBiL3NlY3VyaXR5L3NlbGludXgvaW5jbHVkZS9jbGFz
+c21hcC5oCj4+IEBAIC0yNyw5ICsyNyw5IEBACj4+IMKgwqDCoMKgwqDCoMKgwqDCoCAiYXVkaXRf
+Y29udHJvbCIsICJzZXRmY2FwIgo+PiDCoCDCoCAjZGVmaW5lIENPTU1PTl9DQVAyX1BFUk1TwqAg
+Im1hY19vdmVycmlkZSIsICJtYWNfYWRtaW4iLCAic3lzbG9nIiwgXAo+PiAtwqDCoMKgwqDCoMKg
+wqAgIndha2VfYWxhcm0iLCAiYmxvY2tfc3VzcGVuZCIsICJhdWRpdF9yZWFkIgo+PiArwqDCoMKg
+wqDCoMKgwqAgIndha2VfYWxhcm0iLCAiYmxvY2tfc3VzcGVuZCIsICJhdWRpdF9yZWFkIiwgInBl
+cmZtb24iCj4+IMKgIC0jaWYgQ0FQX0xBU1RfQ0FQID4gQ0FQX0FVRElUX1JFQUQKPj4gKyNpZiBD
+QVBfTEFTVF9DQVAgPiBDQVBfUEVSRk1PTgo+PiDCoCAjZXJyb3IgTmV3IGNhcGFiaWxpdHkgZGVm
+aW5lZCwgcGxlYXNlIHVwZGF0ZSBDT01NT05fQ0FQMl9QRVJNUy4KPj4gwqAgI2VuZGlmCj4+IMKg
+Cj4gCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVs
+LWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
