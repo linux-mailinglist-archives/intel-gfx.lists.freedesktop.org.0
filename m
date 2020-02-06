@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9324F1549E9
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:03:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AAF3154A07
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:08:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1426FAB9;
-	Thu,  6 Feb 2020 17:03:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2ACB6FABE;
+	Thu,  6 Feb 2020 17:08:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 842226FAB9
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:03:43 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 09:03:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="232103564"
-Received: from ksoltys-mobl1.ger.corp.intel.com (HELO
- mwahaha-bdw.ger.corp.intel.com) ([10.252.12.227])
- by orsmga003.jf.intel.com with ESMTP; 06 Feb 2020 09:03:41 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 17:03:40 +0000
-Message-Id: <20200206170340.102613-1-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C2BC76FABD;
+ Thu,  6 Feb 2020 17:08:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BBB42A0119;
+ Thu,  6 Feb 2020 17:08:48 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: drop igt_ppgtt_exhaust_huge
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 06 Feb 2020 17:08:48 -0000
+Message-ID: <158100892874.15033.10964971557300919351@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Prevent_queuing_retire_workers_on_the_virtual_engin?=
+ =?utf-8?q?e_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,145 +39,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We already have tests that exhaustively exercise the most interesting
-page-size combinations, along with tests that offer randomisation, and
-so we should already be testing objects(local, system) with a varying
-mix of page-sizes, which leaves igt_ppgtt_exhaust_huge providing not
-much in terms of extra coverage.
+== Series Details ==
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
----
- .../gpu/drm/i915/gem/selftests/huge_pages.c   | 102 ------------------
- 1 file changed, 102 deletions(-)
+Series: drm/i915/gt: Prevent queuing retire workers on the virtual engine (rev4)
+URL   : https://patchwork.freedesktop.org/series/73102/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 9311250d7d6f..2d0fd50c5312 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1208,107 +1208,6 @@ static int igt_write_huge(struct i915_gem_context *ctx,
- 	return err;
- }
- 
--static int igt_ppgtt_exhaust_huge(void *arg)
--{
--	struct i915_gem_context *ctx = arg;
--	struct drm_i915_private *i915 = ctx->i915;
--	unsigned long supported = INTEL_INFO(i915)->page_sizes;
--	static unsigned int pages[ARRAY_SIZE(page_sizes)];
--	struct drm_i915_gem_object *obj;
--	unsigned int size_mask;
--	unsigned int page_mask;
--	int n, i;
--	int err = -ENODEV;
--
--	if (supported == I915_GTT_PAGE_SIZE_4K)
--		return 0;
--
--	/*
--	 * Sanity check creating objects with a varying mix of page sizes --
--	 * ensuring that our writes lands in the right place.
--	 */
--
--	n = 0;
--	for_each_set_bit(i, &supported, ilog2(I915_GTT_MAX_PAGE_SIZE) + 1)
--		pages[n++] = BIT(i);
--
--	for (size_mask = 2; size_mask < BIT(n); size_mask++) {
--		unsigned int size = 0;
--
--		for (i = 0; i < n; i++) {
--			if (size_mask & BIT(i))
--				size |= pages[i];
--		}
--
--		/*
--		 * For our page mask we want to enumerate all the page-size
--		 * combinations which will fit into our chosen object size.
--		 */
--		for (page_mask = 2; page_mask <= size_mask; page_mask++) {
--			unsigned int page_sizes = 0;
--
--			for (i = 0; i < n; i++) {
--				if (page_mask & BIT(i))
--					page_sizes |= pages[i];
--			}
--
--			/*
--			 * Ensure that we can actually fill the given object
--			 * with our chosen page mask.
--			 */
--			if (!IS_ALIGNED(size, BIT(__ffs(page_sizes))))
--				continue;
--
--			obj = huge_pages_object(i915, size, page_sizes);
--			if (IS_ERR(obj)) {
--				err = PTR_ERR(obj);
--				goto out_device;
--			}
--
--			err = i915_gem_object_pin_pages(obj);
--			if (err) {
--				i915_gem_object_put(obj);
--
--				if (err == -ENOMEM) {
--					pr_info("unable to get pages, size=%u, pages=%u\n",
--						size, page_sizes);
--					err = 0;
--					break;
--				}
--
--				pr_err("pin_pages failed, size=%u, pages=%u\n",
--				       size_mask, page_mask);
--
--				goto out_device;
--			}
--
--			/* Force the page-size for the gtt insertion */
--			obj->mm.page_sizes.sg = page_sizes;
--
--			err = igt_write_huge(ctx, obj);
--			if (err) {
--				pr_err("exhaust write-huge failed with size=%u\n",
--				       size);
--				goto out_unpin;
--			}
--
--			i915_gem_object_unpin_pages(obj);
--			__i915_gem_object_put_pages(obj);
--			i915_gem_object_put(obj);
--		}
--	}
--
--	goto out_device;
--
--out_unpin:
--	i915_gem_object_unpin_pages(obj);
--	i915_gem_object_put(obj);
--out_device:
--	mkwrite_device_info(i915)->page_sizes = supported;
--
--	return err;
--}
--
- typedef struct drm_i915_gem_object *
- (*igt_create_fn)(struct drm_i915_private *i915, u32 size, u32 flags);
- 
-@@ -1900,7 +1799,6 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_shrink_thp),
- 		SUBTEST(igt_ppgtt_pin_update),
- 		SUBTEST(igt_tmpfs_fallback),
--		SUBTEST(igt_ppgtt_exhaust_huge),
- 		SUBTEST(igt_ppgtt_smoke_huge),
- 		SUBTEST(igt_ppgtt_sanity_check),
- 	};
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7876 -> Patchwork_16462
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16462 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#553] / [i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-icl-dsi:         [PASS][7] -> [INCOMPLETE][8] ([i915#140])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-icl-dsi/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-icl-dsi/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][9] ([i915#694]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-nick:        [INCOMPLETE][11] ([i915#392]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-bsw-nick/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/fi-bsw-nick/igt@i915_selftest@live_blt.html
+
+  
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Additional (6): fi-snb-2520m fi-ivb-3770 fi-skl-lmem fi-blb-e6850 fi-skl-6700k2 fi-snb-2600 
+  Missing    (8): fi-bdw-5557u fi-hsw-peppy fi-skl-6770hq fi-byt-squawks fi-bwr-2160 fi-cfl-8109u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7876 -> Patchwork_16462
+
+  CI-20190529: 20190529
+  CI_DRM_7876: 6ac39d9964f464065511d439afcf4da065ff96db @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5421: 40946e61f9c47e23fdf1fff8090fadee8a4d7d3b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16462: 1e826279b1745739828d1aef4fc2332843cee508 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1e826279b174 drm/i915/gt: Prevent queuing retire workers on the virtual engine
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16462/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
