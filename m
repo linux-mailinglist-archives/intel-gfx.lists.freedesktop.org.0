@@ -2,34 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEEEC153C4C
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 01:30:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47543153C4E
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 01:33:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A38EB6E283;
-	Thu,  6 Feb 2020 00:30:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4CB46F98F;
+	Thu,  6 Feb 2020 00:33:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FAE46E283
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 00:30:52 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 16:30:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,407,1574150400"; d="scan'208";a="225116124"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.12.242])
- by fmsmga007.fm.intel.com with ESMTP; 05 Feb 2020 16:30:51 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 045426F98F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 00:33:44 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20130475-1500050 
+ for multiple; Thu, 06 Feb 2020 00:33:37 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  5 Feb 2020 16:30:46 -0800
-Message-Id: <20200206003046.171642-1-jose.souza@intel.com>
+Date: Thu,  6 Feb 2020 00:33:37 +0000
+Message-Id: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix redefinition of
- sanitize_watermarks_add_affected
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Trim blitter block size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,41 +36,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29tbWl0IDQ0YTY3NzE5NDk3YiAoImRybS9pOTE1OiBGaXggbW9kZXNldCBsb2NrcyBpbiBzYW5p
-dGl6ZV93YXRlcm1hcmtzKCkiKQp0aGF0IGFkZGVkIHRoaXMgZnVuY3Rpb24gaXMgY29ycmVjdGx5
-LCB0aGlzIGlzc3VlIHdhcyBpbnRyb2R1Y2VkIHdoZW4KcmVzb2x2aW5nIHRoZSBtZXJnZSBjb25m
-bGljdC4KCkZpeGVzOiA5YzY1NGU0MjM1MDcgKCJNZXJnZSByZW1vdGUtdHJhY2tpbmcgYnJhbmNo
-ICdkcm0taW50ZWwvZHJtLWludGVsLW5leHQtcXVldWVkJyBpbnRvIGRybS10aXAiKQpDYzogSmFu
-aSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KQ2M6IFJvZHJpZ28gVml2aSA8cm9kcmln
-by52aXZpQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8
-am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5LmMgfCAyNCAtLS0tLS0tLS0tLS0tLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQs
-IDI0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-aXNwbGF5LmMKaW5kZXggY2RlMTBiNTM2YTkxLi44MGVlYmRjNGM2NzAgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC0xNzY4OCwzMCArMTc2ODgs
-NiBAQCBzdGF0aWMgaW50IHNhbml0aXplX3dhdGVybWFya3NfYWRkX2FmZmVjdGVkKHN0cnVjdCBk
-cm1fYXRvbWljX3N0YXRlICpzdGF0ZSkKIAlyZXR1cm4gMDsKIH0KIAotc3RhdGljIGludCBzYW5p
-dGl6ZV93YXRlcm1hcmtzX2FkZF9hZmZlY3RlZChzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3Rh
-dGUpCi17Ci0Jc3RydWN0IGRybV9wbGFuZSAqcGxhbmU7Ci0Jc3RydWN0IGRybV9jcnRjICpjcnRj
-OwotCi0JZHJtX2Zvcl9lYWNoX2NydGMoY3J0Yywgc3RhdGUtPmRldikgewotCQlzdHJ1Y3QgZHJt
-X2NydGNfc3RhdGUgKmNydGNfc3RhdGU7Ci0KLQkJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0
-X2NydGNfc3RhdGUoc3RhdGUsIGNydGMpOwotCQlpZiAoSVNfRVJSKGNydGNfc3RhdGUpKQotCQkJ
-cmV0dXJuIFBUUl9FUlIoY3J0Y19zdGF0ZSk7Ci0JfQotCi0JZHJtX2Zvcl9lYWNoX3BsYW5lKHBs
-YW5lLCBzdGF0ZS0+ZGV2KSB7Ci0JCXN0cnVjdCBkcm1fcGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRl
-OwotCi0JCXBsYW5lX3N0YXRlID0gZHJtX2F0b21pY19nZXRfcGxhbmVfc3RhdGUoc3RhdGUsIHBs
-YW5lKTsKLQkJaWYgKElTX0VSUihwbGFuZV9zdGF0ZSkpCi0JCQlyZXR1cm4gUFRSX0VSUihwbGFu
-ZV9zdGF0ZSk7Ci0JfQotCi0JcmV0dXJuIDA7Ci19Ci0KIC8qCiAgKiBDYWxjdWxhdGUgd2hhdCB3
-ZSB0aGluayB0aGUgd2F0ZXJtYXJrcyBzaG91bGQgYmUgZm9yIHRoZSBzdGF0ZSB3ZSd2ZSByZWFk
-CiAgKiBvdXQgb2YgdGhlIGhhcmR3YXJlIGFuZCB0aGVuIGltbWVkaWF0ZWx5IHByb2dyYW0gdGhv
-c2Ugd2F0ZXJtYXJrcyBzbyB0aGF0Ci0tIAoyLjI1LjAKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Reduce the amount of work we do to verify client blt correctness as
+currently our 0.5s subtests takes about 15s on slower devices!
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../i915/gem/selftests/i915_gem_object_blt.c  | 24 ++++++++++++-------
+ 1 file changed, 15 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+index 62077fe46715..cebbe3c3ca86 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+@@ -226,7 +226,7 @@ static int igt_fill_blt_thread(void *arg)
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
+ 	do {
+-		const u32 max_block_size = S16_MAX * PAGE_SIZE;
++		const u32 max_block_size = SZ_64M; /* max S16_MAX * PAGE_SIZE */
+ 		u32 val = prandom_u32_state(prng);
+ 		u64 total = ce->vm->total;
+ 		u32 phys_sz;
+@@ -276,13 +276,16 @@ static int igt_fill_blt_thread(void *arg)
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		i915_gem_object_lock(obj);
+-		err = i915_gem_object_set_to_cpu_domain(obj, false);
+-		i915_gem_object_unlock(obj);
++		err = i915_gem_object_wait(obj, I915_WAIT_ALL, HZ / 2);
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); ++i) {
++		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); i += 17) {
++			if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
++				clflush(&vaddr[i]);
++				mb();
++			}
++
+ 			if (vaddr[i] != val) {
+ 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
+ 				       vaddr[i], val);
+@@ -335,7 +338,7 @@ static int igt_copy_blt_thread(void *arg)
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
+ 	do {
+-		const u32 max_block_size = S16_MAX * PAGE_SIZE;
++		const u32 max_block_size = SZ_64M; /* max S16_MAX * PAGE_SIZE */
+ 		u32 val = prandom_u32_state(prng);
+ 		u64 total = ce->vm->total;
+ 		u32 phys_sz;
+@@ -397,13 +400,16 @@ static int igt_copy_blt_thread(void *arg)
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		i915_gem_object_lock(dst);
+-		err = i915_gem_object_set_to_cpu_domain(dst, false);
+-		i915_gem_object_unlock(dst);
++		err = i915_gem_object_wait(dst, I915_WAIT_ALL, HZ / 2);
+ 		if (err)
+ 			goto err_unpin;
+ 
+ 		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); ++i) {
++			if (!(dst->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
++				clflush(&vaddr[i]);
++				mb();
++			}
++
+ 			if (vaddr[i] != val) {
+ 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
+ 				       vaddr[i], val);
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
