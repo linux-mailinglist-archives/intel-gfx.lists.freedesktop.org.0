@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47543153C4E
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 01:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD50B153C50
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 01:35:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4CB46F98F;
-	Thu,  6 Feb 2020 00:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9666F986;
+	Thu,  6 Feb 2020 00:35:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 045426F98F
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 00:33:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9ACA6F986
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 00:35:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20130475-1500050 
- for multiple; Thu, 06 Feb 2020 00:33:37 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20130482-1500050 
+ for multiple; Thu, 06 Feb 2020 00:35:18 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 00:33:37 +0000
-Message-Id: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
+Date: Thu,  6 Feb 2020 00:35:17 +0000
+Message-Id: <20200206003517.2125357-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Trim blitter block size
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Tweak gen7 xcs flushing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,77 +41,58 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce the amount of work we do to verify client blt correctness as
-currently our 0.5s subtests takes about 15s on slower devices!
+Don't immediately write the seqno into the breadcrumb slot, but wait
+until we've attempted to flush the writes; that is we need to ensure the
+memory is coherent prior to updating the breadcrumb so that any
+observers who see the new seqno can proceed.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../i915/gem/selftests/i915_gem_object_blt.c  | 24 ++++++++++++-------
- 1 file changed, 15 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-index 62077fe46715..cebbe3c3ca86 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-@@ -226,7 +226,7 @@ static int igt_fill_blt_thread(void *arg)
- 	GEM_BUG_ON(IS_ERR(ce));
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index b5a4b3d4ba6a..4a4792149ad6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -446,7 +446,7 @@ static u32 *gen6_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ 	return cs;
+ }
  
- 	do {
--		const u32 max_block_size = S16_MAX * PAGE_SIZE;
-+		const u32 max_block_size = SZ_64M; /* max S16_MAX * PAGE_SIZE */
- 		u32 val = prandom_u32_state(prng);
- 		u64 total = ce->vm->total;
- 		u32 phys_sz;
-@@ -276,13 +276,16 @@ static int igt_fill_blt_thread(void *arg)
- 		if (err)
- 			goto err_unpin;
+-#define GEN7_XCS_WA 32
++#define GEN7_XCS_WA 8
+ static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ {
+ 	int i;
+@@ -454,6 +454,11 @@ static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ 	GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
+ 	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
  
--		i915_gem_object_lock(obj);
--		err = i915_gem_object_set_to_cpu_domain(obj, false);
--		i915_gem_object_unlock(obj);
-+		err = i915_gem_object_wait(obj, I915_WAIT_ALL, HZ / 2);
- 		if (err)
- 			goto err_unpin;
- 
--		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); ++i) {
-+		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); i += 17) {
-+			if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
-+				clflush(&vaddr[i]);
-+				mb();
-+			}
++	*cs++ = MI_FLUSH_DW | MI_INVALIDATE_TLB |
++		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
++	*cs++ = (I915_GEM_HWS_SEQNO_ADDR + 4) | MI_FLUSH_DW_USE_GTT;
++	*cs++ = rq->fence.seqno;
 +
- 			if (vaddr[i] != val) {
- 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
- 				       vaddr[i], val);
-@@ -335,7 +338,7 @@ static int igt_copy_blt_thread(void *arg)
- 	GEM_BUG_ON(IS_ERR(ce));
+ 	*cs++ = MI_FLUSH_DW | MI_INVALIDATE_TLB |
+ 		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
+ 	*cs++ = I915_GEM_HWS_SEQNO_ADDR | MI_FLUSH_DW_USE_GTT;
+@@ -461,7 +466,7 @@ static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
  
- 	do {
--		const u32 max_block_size = S16_MAX * PAGE_SIZE;
-+		const u32 max_block_size = SZ_64M; /* max S16_MAX * PAGE_SIZE */
- 		u32 val = prandom_u32_state(prng);
- 		u64 total = ce->vm->total;
- 		u32 phys_sz;
-@@ -397,13 +400,16 @@ static int igt_copy_blt_thread(void *arg)
- 		if (err)
- 			goto err_unpin;
+ 	for (i = 0; i < GEN7_XCS_WA; i++) {
+ 		*cs++ = MI_STORE_DWORD_INDEX;
+-		*cs++ = I915_GEM_HWS_SEQNO_ADDR;
++		*cs++ = I915_GEM_HWS_SEQNO_ADDR + 4;
+ 		*cs++ = rq->fence.seqno;
+ 	}
  
--		i915_gem_object_lock(dst);
--		err = i915_gem_object_set_to_cpu_domain(dst, false);
--		i915_gem_object_unlock(dst);
-+		err = i915_gem_object_wait(dst, I915_WAIT_ALL, HZ / 2);
- 		if (err)
- 			goto err_unpin;
+@@ -470,7 +475,6 @@ static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ 	*cs++ = 0;
  
- 		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); ++i) {
-+			if (!(dst->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
-+				clflush(&vaddr[i]);
-+				mb();
-+			}
-+
- 			if (vaddr[i] != val) {
- 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
- 				       vaddr[i], val);
+ 	*cs++ = MI_USER_INTERRUPT;
+-	*cs++ = MI_NOOP;
+ 
+ 	rq->tail = intel_ring_offset(rq, cs);
+ 	assert_ring_tail_valid(rq->ring, rq->tail);
 -- 
 2.25.0
 
