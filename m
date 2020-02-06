@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D2E154A3A
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E9CE154A55
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:36:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A4E06FACC;
-	Thu,  6 Feb 2020 17:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E2056FAD5;
+	Thu,  6 Feb 2020 17:36:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F03E26FACC;
- Thu,  6 Feb 2020 17:31:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8788A010F;
- Thu,  6 Feb 2020 17:31:33 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBD806FAD5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:36:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 09:36:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="236045980"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga006.jf.intel.com with ESMTP; 06 Feb 2020 09:36:46 -0800
+Date: Thu, 6 Feb 2020 23:06:57 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200206173657.GD26821@intel.com>
+References: <20200206150442.32353-1-anshuman.gupta@intel.com>
+ <20200206150442.32353-2-anshuman.gupta@intel.com>
+ <20200206170026.GA26821@intel.com>
+ <20200206170928.GM24118@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 06 Feb 2020 17:31:33 -0000
-Message-ID: <158101029392.15031.17801568176727410206@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200206170340.102613-1-matthew.auld@intel.com>
-In-Reply-To: <20200206170340.102613-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_drop_igt=5Fppgtt=5Fexhaust=5Fhuge?=
+Content-Disposition: inline
+In-Reply-To: <20200206170928.GM24118@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Fix 1B-06 HDCP2.2 Comp
+ test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,106 +48,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-02-06 at 22:39:28 +0530, Anshuman Gupta wrote:
+> On 2020-02-06 at 22:30:27 +0530, Ramalingam C wrote:
+> > On 2020-02-06 at 20:34:41 +0530, Anshuman Gupta wrote:
+> > > HDCP Repeater initializes seq_num_V to 0 at the beginning of
+> > > hdcp Session i.e. after AKE_init received.
+> > > 
+> > > HDCP 2.2 Comp specs 1B-06 test verifies that whether DUT
+> > > considers failures of authentication if the repeater provides a
+> > > non-zero value in seq_num_V in the first,
+> > > RepeaterAuth_Send_ReceiverID_List message after first AKE_Init.
+> > > Fixing this broken test.
+> > Instead of "Fixing the broken test" could we say, we mandate the first
+> > seq_num_v to be zero? in fact i would keep this as commit subject also. 
+> > > 
+> > > Cc: Ramalingam C <ramalingam.c@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +++
+> > >  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 +++++++++++++
+> > >  2 files changed, 16 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > index 7ae0bc8b80d1..2ae540e986ba 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > @@ -360,6 +360,9 @@ struct intel_hdcp {
+> > >  	/* HDCP2.2 Encryption status */
+> > >  	bool hdcp2_encrypted;
+> > >  
+> > > +	/* Flag indicate if it is a first ReceiverID_List msg after AKE_Init */
+> > > +	bool first_recvid_msg;
+> > This extra flag is not needed, see below comment
+> > > +
+> > >  	/*
+> > >  	 * Content Stream Type defined by content owner. TYPE0(0x0) content can
+> > >  	 * flow in the link protected by HDCP2.2 or HDCP1.4, where as TYPE1(0x1)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > index 4d1a33d13105..3e24a6df503a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > > @@ -1251,6 +1251,8 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
+> > >  	size_t size;
+> > >  	int ret;
+> > >  
+> > > +	hdcp->first_recvid_msg = true;
+> > > +
+> > >  	/* Init for seq_num */
+> > >  	hdcp->seq_num_v = 0;
+> > >  	hdcp->seq_num_m = 0;
+> > > @@ -1462,6 +1464,16 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+> > >  	seq_num_v =
+> > >  		drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
+> > >  
+> > > +	/*
+> > > +	 * HDCP 2.2 Spec HDMI PAGE 19, DP PAGE 20
+> > > +	 * HDCP 2.2 Comp 1B-06 test requires to disable encryption if there is
+> > > +	 * non zero seq_num_V from recevier.
+> > IMHO In commit message this kind of reasoning make sense, but here this is
+> > not needed. As every line in the file will be as per the spec so we dont
+> > need to call them out.
+> > > +	 */
+> > > +	if (hdcp->first_recvid_msg && seq_num_v) {
+> > if (!hdcp->seq_num_v && seq_num_v) {
+> > 
+> > IMO This is all we need it.
+> I had tried this as my first solution, eventually this fill the link integrity check, see below.
+> > 
+> > -Ram
+> > > +		drm_dbg_kms(&dev_priv->drm, "Non zero Seq_num_v at beginning of HDCP Session\n");
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > >  	if (seq_num_v < hdcp->seq_num_v) {
+> > >  		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
+> > >  		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
+> > > @@ -1484,6 +1496,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+> > >  		return ret;
+> > >  
+> > >  	hdcp->seq_num_v = seq_num_v;
+> 	seq_num_v will be zero for first session, which left hdcp->seq_num_v to zero and that will
+> 	fail the link intergrity check as at during link intergrity check seq_num_v will be non-zero,
+>         this happens during 1B-09, when repeater topolgy changes due to Roll over of seq_num_v.
 
-Series: drm/i915/selftests: drop igt_ppgtt_exhaust_huge
-URL   : https://patchwork.freedesktop.org/series/73105/
-State : success
+topology update should increment the seq_num_v which will make it > than
+hdcp->seq_num_v. How roll over happens? And at every AKE start we init
+hdcp->seq_num_v to 0.
 
-== Summary ==
+So please elaborate the failure scenario.
 
-CI Bug Log - changes from CI_DRM_7876 -> Patchwork_16463
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16463 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-n2820:       [PASS][5] -> [DMESG-FAIL][6] ([i915#1052])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_gtt:
-    - fi-skl-6770hq:      [PASS][7] -> [TIMEOUT][8] ([fdo#111732] / [fdo#112271])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-skl-6770hq/igt@i915_selftest@live_gtt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/fi-skl-6770hq/igt@i915_selftest@live_gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [DMESG-WARN][9] ([i915#44]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [fdo#111732]: https://bugs.freedesktop.org/show_bug.cgi?id=111732
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Additional (7): fi-snb-2520m fi-ivb-3770 fi-skl-6700k2 fi-skl-lmem fi-kbl-7560u fi-skl-6600u fi-snb-2600 
-  Missing    (9): fi-kbl-soraka fi-bdw-gvtdvm fi-glk-dsi fi-byt-squawks fi-kbl-7500u fi-elk-e7500 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7876 -> Patchwork_16463
-
-  CI-20190529: 20190529
-  CI_DRM_7876: 6ac39d9964f464065511d439afcf4da065ff96db @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5421: 40946e61f9c47e23fdf1fff8090fadee8a4d7d3b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16463: 2b0beeed2d8520ca9e4d9e703663e31c5887833a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2b0beeed2d85 drm/i915/selftests: drop igt_ppgtt_exhaust_huge
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16463/index.html
+Ram.
+> Thanks ,
+> Anshuman Gupta.
+> 
+> > > +	hdcp->first_recvid_msg = false;
+> > >  	ret = shim->write_2_2_msg(intel_dig_port, &msgs.rep_ack,
+> > >  				  sizeof(msgs.rep_ack));
+> > >  	if (ret < 0)
+> > > -- 
+> > > 2.24.0
+> > > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
