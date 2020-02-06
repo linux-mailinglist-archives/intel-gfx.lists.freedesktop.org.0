@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51D4154AD2
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:11:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A373B154AEE
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:20:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D05E6FAEB;
-	Thu,  6 Feb 2020 18:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAFB76E183;
+	Thu,  6 Feb 2020 18:20:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88EE16FAEB
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:11:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C11E6E183
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:20:31 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20140353-1500050 
- for multiple; Thu, 06 Feb 2020 18:11:22 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20140454-1500050 
+ for multiple; Thu, 06 Feb 2020 18:20:09 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 18:11:21 +0000
-Message-Id: <20200206181121.2596083-1-chris@chris-wilson.co.uk>
+Date: Thu,  6 Feb 2020 18:20:07 +0000
+Message-Id: <20200206182007.2607370-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200206181121.2596083-1-chris@chris-wilson.co.uk>
+References: <20200206181121.2596083-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/gt: Protect defer_request() from new
  waiters
@@ -73,20 +75,32 @@ Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c   | 2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 7 ++++++-
  drivers/gpu/drm/i915/i915_scheduler.c | 5 +++--
- 2 files changed, 4 insertions(+), 3 deletions(-)
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c196fb90c59f..4f16ed4d7411 100644
+index c196fb90c59f..b350e01d86d2 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1632,7 +1632,7 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+@@ -1615,6 +1615,11 @@ last_active(const struct intel_engine_execlists *execlists)
+ 	return *last;
+ }
+ 
++#define for_each_waiter(p__, rq__) \
++	list_for_each_entry_lockless(p__, \
++				     &(rq__)->sched.waiters_list, \
++				     wait_link)
++
+ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+ {
+ 	LIST_HEAD(list);
+@@ -1632,7 +1637,7 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
  		GEM_BUG_ON(i915_request_is_active(rq));
  		list_move_tail(&rq->sched.link, pl);
  
 -		list_for_each_entry(p, &rq->sched.waiters_list, wait_link) {
-+		list_for_each_entry_lockless(p, &rq->sched.waiters_list, wait_link) {
++		for_each_waiter(p, rq) {
  			struct i915_request *w =
  				container_of(p->waiter, typeof(*w), sched);
  
