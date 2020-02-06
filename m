@@ -2,50 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25580153CAB
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 02:36:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0476B153CBF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 02:44:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01CC56E28E;
-	Thu,  6 Feb 2020 01:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CE05897FD;
+	Thu,  6 Feb 2020 01:44:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14F636E28E
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 01:36:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2020 17:36:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,407,1574150400"; d="scan'208";a="279542071"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by FMSMGA003.fm.intel.com with ESMTP; 05 Feb 2020 17:36:43 -0800
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 5 Feb 2020 17:36:43 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.3]) by
- fmsmsx116.amr.corp.intel.com ([169.254.2.207]) with mapi id 14.03.0439.000;
- Wed, 5 Feb 2020 17:36:43 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "zwisler@google.com" <zwisler@google.com>
-Thread-Topic: [v3] drm/i915/display: Force the state compute phase once to
- enable PSR
-Thread-Index: AQHV3HgqjFJnPQdYe0m2T6oT8eJjnqgN6O+A
-Date: Thu, 6 Feb 2020 01:36:42 +0000
-Message-ID: <617e83f393794778d5a4a0549b4369942e4814a7.camel@intel.com>
-References: <20200106152128.195171-1-jose.souza@intel.com>
- <20200205230101.GA152052@google.com>
-In-Reply-To: <20200205230101.GA152052@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.12.242]
-Content-ID: <7EB0BF31EC3D8E4BAE22D18DEC51BAB1@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFF5F897FD
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 01:44:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20130651-1500050 
+ for multiple; Thu, 06 Feb 2020 01:44:45 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 01:44:37 +0000
+Message-Id: <20200206014439.2137800-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [v3] drm/i915/display: Force the state compute
- phase once to enable PSR
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915/gt: Tweak gen7 xcs flushing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,139 +36,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "s.zharkoff@gmail.com" <s.zharkoff@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgUm9zcw0KDQpJJ20gdW5hYmxlIHRvIHJlcHJvZHVjZSB0aGlzIGlzc3VlLCBjb3VsZCB5b3Ug
-c2hhcmUgdGhlIGNvbXBsZXRlIGRtZXNnPw0KDQpPbiBXZWQsIDIwMjAtMDItMDUgYXQgMTY6MDEg
-LTA3MDAsIFJvc3MgWndpc2xlciB3cm90ZToNCj4gT24gTW9uLCBKYW4gMDYsIDIwMjAgYXQgMDc6
-MjE6MjhBTSAtMDgwMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YQ0KPiB3cm90ZToNCj4gPiBSZWNl
-bnQgaW1wcm92ZW1lbnRzIGluIHRoZSBzdGF0ZSB0cmFja2luZyBpbiBpOTE1IGNhdXNlZCBQU1Ig
-dG8gbm90DQo+ID4gYmUNCj4gPiBlbmFibGVkIHdoZW4gcmV1c2luZyBmaXJtd2FyZS9CSU9TIG1v
-ZGVzZXQsIHRoaXMgaXMgZHVlIHRvIGFsbA0KPiA+IGluaXRpYWwNCj4gPiBjb21taXRzIHJldHVy
-bmluZyBlYWxpZXIgaW4gaW50ZWxfYXRvbWljX2NoZWNrKCkgYXMgbmVlZHNfbW9kZXNldCgpDQo+
-ID4gaXMgYWx3YXlzIGZhbHNlLg0KPiA+IA0KPiA+IFRvIGZpeCB0aGF0IGhlcmUgZm9yY2luZyB0
-aGUgc3RhdGUgY29tcHV0ZSBwaGFzZSBpbiBDUlRDIHRoYXQgaXMNCj4gPiBkcml2aW5nIHRoZSBl
-RFAgdGhhdCBzdXBwb3J0cyBQU1Igb25jZS4gRW5hYmxlIG9yIGRpc2FibGUgUFNSIGRvDQo+ID4g
-bm90DQo+ID4gcmVxdWlyZSBhIGZ1bGxtb2Rlc2V0LCBzbyB1c2VyIHdpbGwgc3RpbGwgZXhwZXJp
-ZW5jZSBnbGl0Y2ggZnJlZQ0KPiA+IGJvb3QNCj4gPiBwcm9jZXNzIHBsdXMgdGhlIHBvd2VyIHNh
-dmluZ3MgdGhhdCBQU1IgYnJpbmdzLg0KPiA+IA0KPiA+IEl0IHdhcyB0cmllZCB0byBzZXQgbW9k
-ZV9jaGFuZ2VkIGluIGludGVsX2luaXRpYWxfY29tbWl0KCkgYnV0IGF0DQo+ID4gdGhpcyBwb2lu
-dCB0aGUgY29ubmVjdG9ycyBhcmUgbm90IHJlZ2lzdGVyZWQgY2F1c2luZyBhIGNyYXNoIHdoZW4N
-Cj4gPiBjb21wdXRpbmcgZW5jb2RlciBzdGF0ZS4NCj4gPiANCj4gPiB2MjoNCj4gPiAtIHJlbW92
-ZWQgZnVuY3Rpb24gcmV0dXJuDQo+ID4gLSBjaGFuZ2UgYXJndW1lbnRzIHRvIG1hdGNoIGludGVs
-X2hkY3BfYXRvbWljX2NoZWNrDQo+ID4gDQo+ID4gdjM6DQo+ID4gLSByZXBsYWNlZCBkcm0gaW5j
-bHVkZXMgaW4gaW50ZWxfcHNyLmggYnkgZm9yd2FyZCBkZWNsYXJhdGlvbihKYW5pKQ0KPiA+IA0K
-PiA+IEJ1Z3ppbGxhOiBodHRwczovL2J1Z3MuZnJlZWRlc2t0b3Aub3JnL3Nob3dfYnVnLmNnaT9p
-ZD0xMTIyNTMNCj4gPiBSZXBvcnRlZC1ieTogPHMuemhhcmtvZmZAZ21haWwuY29tPg0KPiA+IENj
-OiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+DQo+ID4gQ2M6IEph
-bmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogSm9z
-w6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+ID4gUmV2aWV3ZWQt
-Ynk6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4NCj4gPiAtLS0N
-Cj4gDQo+IFdpdGggdGhlIGN1cnJlbnQgbGludXgvbWFzdGVyOg0KPiANCj4gNjk5MmNhMGRkMDE3
-ZSBNZXJnZSBicmFuY2ggJ3BhcmlzYy01LjYtMScgb2YNCj4gZ2l0Oi8vZ2l0Lmtlcm5lbC5vcmcv
-cHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2RlbGxlci9wYXJpc2MtbGludXgNCj4gDQo+IG15IHN5
-c3RlbSBmYWlscyB0byBib290LCBhbmQgSSBiaXNlY3RlZCB0aGUgZmFpbHVyZSB0byB0aGlzDQo+
-IGNvbW1pdC4gICBIZXJlIGFyZQ0KPiB0aGUgcmVsZXZhbnQgbWVzc2FnZXMgZnJvbSBkbWVzZywg
-cGFzc2VkIHRocm91Z2gga2FzYW5fc3ltYm9saXplLnB5Og0KPiANCj4gaTkxNSAwMDAwOjAwOjAy
-LjA6IHZnYWFyYjogZGVhY3RpdmF0ZSB2Z2EgY29uc29sZQ0KPiBbZHJtXSBTdXBwb3J0cyB2Ymxh
-bmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIgKDIxLjEwLjIwMTMpLg0KPiBbZHJtXSBEcml2ZXIg
-c3VwcG9ydHMgcHJlY2lzZSB2YmxhbmsgdGltZXN0YW1wIHF1ZXJ5Lg0KPiByZXNvdXJjZSBzYW5p
-dHkgY2hlY2s6IHJlcXVlc3RpbmcgW21lbSAweDAwMGMwMDAwLTB4MDAwZGZmZmZdLCB3aGljaA0K
-PiBzcGFucyBtb3JlIHRoYW4gUENJIEJ1cyAwMDAwOjAwIFttZW0gMHgwMDBjMDAwMC0weDAwMGMz
-ZmZmDQo+IHdpbmRvd10NCj4gY2FsbGVyIHBjaV9tYXBfcm9tKzB4NmEvMHgxN2QgbWFwcGluZyBt
-dWx0aXBsZSBCQVJzDQo+IGk5MTUgMDAwMDowMDowMi4wOiBJbnZhbGlkIFBDSSBST00gZGF0YSBz
-aWduYXR1cmU6IGV4cGVjdGluZw0KPiAweDUyNDk0MzUwLCBnb3QgMHhlOTM3YWE1NQ0KPiBbZHJt
-XSBGYWlsZWQgdG8gZmluZCBWQklPUyB0YWJsZXMgKFZCVCkNCj4gaTkxNSAwMDAwOjAwOjAyLjA6
-IHZnYWFyYjogY2hhbmdlZCBWR0EgZGVjb2RlczoNCj4gb2xkZGVjb2Rlcz1pbyttZW0sZGVjb2Rl
-cz1pbyttZW06b3ducz1pbyttZW0NCj4gLS0tLS0tLS0tLS0tWyBjdXQgaGVyZSBdLS0tLS0tLS0t
-LS0tDQo+IFdBUk5JTkc6IENQVTogMCBQSUQ6IDEgYXQNCj4gZHJpdmVycy9ncHUvZHJtL2RybV9h
-dG9taWMuYzoyOTZbPCAgICAgICAgbm9uZSAgICAgICAgPl0NCj4gZHJtX2F0b21pY19nZXRfY3J0
-Y19zdGF0ZSsweGY4LzB4MTEwIGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmM6MzA0DQo+IE1v
-ZHVsZXMgbGlua2VkIGluOg0KPiBDUFU6IDAgUElEOiAxIENvbW06IHN3YXBwZXIvMCBOb3QgdGFp
-bnRlZCA1LjUuMC1yYzEtMDA1NzMtDQo+IGc2MGM2YTE0YjQ4OWJhICMzMQ0KPiBIYXJkd2FyZSBu
-YW1lOiBHT09HTEUgU2FtdXMsIEJJT1MgIDA1LzE0LzIwMTkNCj4gUklQOiAwMDEwOmRybV9hdG9t
-aWNfZ2V0X2NydGNfc3RhdGUrMHhmOC8weDExMA0KPiBDb2RlOiA4OSAyYyAxMSA0OCA4OSA5OCBm
-MCAwMSAwMCAwMCA0OCA4YiA0ZCAyMCA4YiA1NSA2MCBlOCA1YyBhYSAwMA0KPiAwMCA0OCA4YiAw
-NCAyNCA0OCA4MyBjNCAwOCA1YiA1ZCA0MSA1YyBjMyA0OCA5OCBlOSA0ZSBmZiBmZg0KPiAgZmYg
-PDBmPiAwYiBlOSAyOCBmZiBmZiBmZiA0OCBjNyBjMCBmNCBmZiBmZiBmZiBlOSAzYiBmZiBmZiBm
-ZiAwZiAxZg0KPiA0NA0KPiBSU1A6IDAwMDA6ZmZmZmFiNGI4MDAxNzk3MCBFRkxBR1M6IDAwMDEw
-MjQ2DQo+IFJBWDogMDAwMDAwMDAwMDAwMDAwMCBSQlg6IGZmZmY5M2MxYTY5Y2EwMDAgUkNYOiBm
-ZmZmOTNjMWFiNjliOGMwDQo+IFJEWDogMDAwMDAwMDAwMDAwMDAyZCBSU0k6IDAwMDAwMDAwMDAw
-MDAwMDAgUkRJOiBmZmZmOTNjMWE2OWNhMDAwDQo+IFJCUDogZmZmZjkzYzFhNjk0NDAwMCBSMDg6
-IDAwMDAwMDAwMDAwMDAwNzkgUjA5OiAwMDAwMDAwMDAwMDAwMDc5DQo+IFIxMDogMDAwMDAwMDAw
-MDAwMDAyZCBSMTE6IDAwMDAwMDAwMDAwMDAwMDUgUjEyOiAwMDAwMDAwMDAwMDAwMDAwDQo+IFIx
-MzogZmZmZjkzYzFhNjk0NDAwMCBSMTQ6IDAwMDAwMDAwMDAwMDAwMDUgUjE1OiBmZmZmOTNjMWE2
-OTc5YzAwDQo+IEZTOiAgMDAwMDAwMDAwMDAwMDAwMCgwMDAwKSBHUzpmZmZmOTNjMWFlYzAwMDAw
-KDAwMDApDQo+IGtubEdTOjAwMDAwMDAwMDAwMDAwMDANCj4gQ1M6ICAwMDEwIERTOiAwMDAwIEVT
-OiAwMDAwIENSMDogMDAwMDAwMDA4MDA1MDAzMw0KPiBDUjI6IGZmZmY5M2MwZjUyMDEwMDAgQ1Iz
-OiAwMDAwMDAwM2IzZTBjMDAxIENSNDogMDAwMDAwMDAwMDM2MDZmMA0KPiBDYWxsIFRyYWNlOg0K
-PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0NCj4gZHJtX2F0b21pY19hZGRfYWZmZWN0ZWRfY29u
-bmVjdG9ycysweDJlLzB4MTEwDQo+IGRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmM6MTA0Ng0K
-PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gZHJtX2F0b21pY19oZWxwZXJfY2hlY2tfbW9kZXNl
-dCsweDRhMS8weGE3MA0KPiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pY19oZWxwZXIuYzo3MDMN
-Cj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGludGVsX2F0b21pY19jaGVjaysweDk2LzB4MjUx
-MA0KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYzoxNDYwMw0K
-PiAgP1s8ICAgICBpbmxpbmUgICAgID5dIGttZW1kdXAgLi9pbmNsdWRlL2xpbnV4L3N0cmluZy5o
-OjQ1Mw0KPiAgP1s8ICAgICAgICBub25lICAgICAgICA+XQ0KPiBpbnRlbF9kaWdpdGFsX2Nvbm5l
-Y3Rvcl9kdXBsaWNhdGVfc3RhdGUrMHgyMS8weDQwDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfYXRvbWljLmM6MTcxDQo+ICA/WzwgICAgIGlubGluZSAgICAgPl0gc3Bpbl91
-bmxvY2tfaXJxcmVzdG9yZQ0KPiAuL2luY2x1ZGUvbGludXgvc3BpbmxvY2suaDozOTMNCj4gID9b
-PCAgICAgICAgbm9uZSAgICAgICAgPl0gZHJtX2Nvbm5lY3Rvcl9saXN0X2l0ZXJfbmV4dCsweDg4
-LzB4YjANCj4gZHJpdmVycy9ncHUvZHJtL2RybV9jb25uZWN0b3IuYzo2ODkNCj4gWzwgICAgIGlu
-bGluZSAgICAgPl0gc2FuaXRpemVfd2F0ZXJtYXJrcw0KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYzoxNzM1OQ0KPiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0g
-aW50ZWxfbW9kZXNldF9pbml0KzB4MTBhOC8weDFkNTANCj4gZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmM6MTc2MDINCj4gWzwgICAgIGlubGluZSAgICAgPl0gaTkx
-NV9kcml2ZXJfbW9kZXNldF9wcm9iZQ0KPiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5j
-OjMxMQ0KPiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gaTkxNV9kcml2ZXJfcHJvYmUrMHhhNGUv
-MHgxNDEwDQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmM6MTUyOA0KPiAgP1s8ICAg
-ICAgICBub25lICAgICAgICA+XSBfX2tlcm5mc19uZXdfbm9kZSsweDE1OS8weDFjMA0KPiBmcy9r
-ZXJuZnMvZGlyLmM6NjY2DQo+IFs8ICAgICAgICBub25lICAgICAgICA+XSBpOTE1X3BjaV9wcm9i
-ZSsweDU0LzB4MTM4DQo+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmM6OTk0DQo+IFs8
-ICAgICAgICBub25lICAgICAgICA+XSBsb2NhbF9wY2lfcHJvYmUrMHg0Mi8weDgwIGRyaXZlcnMv
-cGNpL3BjaS0NCj4gZHJpdmVyLmM6MzA2DQo+IFs8ICAgICBpbmxpbmUgICAgID5dIHBjaV9jYWxs
-X3Byb2JlIGRyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYzozNjENCj4gWzwgICAgIGlubGluZSAgICAg
-Pl0gX19wY2lfZGV2aWNlX3Byb2JlIGRyaXZlcnMvcGNpL3BjaS1kcml2ZXIuYzozODYNCj4gWzwg
-ICAgICAgIG5vbmUgICAgICAgID5dIHBjaV9kZXZpY2VfcHJvYmUrMHgxMDcvMHgxYTANCj4gZHJp
-dmVycy9wY2kvcGNpLWRyaXZlci5jOjQyOQ0KPiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gcmVh
-bGx5X3Byb2JlKzB4MTQ3LzB4M2MwDQo+IGRyaXZlcnMvYmFzZS9kZC5jOjU0OA0KPiBbPCAgICAg
-ICAgbm9uZSAgICAgICAgPl0gZHJpdmVyX3Byb2JlX2RldmljZSsweGI2LzB4MTAwDQo+IGRyaXZl
-cnMvYmFzZS9kZC5jOjcyMQ0KPiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gZGV2aWNlX2RyaXZl
-cl9hdHRhY2grMHg1My8weDYwDQo+IGRyaXZlcnMvYmFzZS9kZC5jOjk5NQ0KPiBbPCAgICAgICAg
-bm9uZSAgICAgICAgPl0gX19kcml2ZXJfYXR0YWNoKzB4OGEvMHgxNTANCj4gZHJpdmVycy9iYXNl
-L2RkLmM6MTA3Mg0KPiAgP1s8ICAgICAgICBub25lICAgICAgICA+XSBkZXZpY2VfZHJpdmVyX2F0
-dGFjaCsweDYwLzB4NjANCj4gZHJpdmVycy9iYXNlL2RkLmM6OTk1DQo+ICA/WzwgICAgICAgIG5v
-bmUgICAgICAgID5dIGRldmljZV9kcml2ZXJfYXR0YWNoKzB4NjAvMHg2MA0KPiBkcml2ZXJzL2Jh
-c2UvZGQuYzo5OTUNCj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGJ1c19mb3JfZWFjaF9kZXYr
-MHg3OC8weGMwDQo+IGRyaXZlcnMvYmFzZS9idXMuYzozMDQNCj4gWzwgICAgICAgIG5vbmUgICAg
-ICAgID5dIGJ1c19hZGRfZHJpdmVyKzB4MTRkLzB4MWYwDQo+IGRyaXZlcnMvYmFzZS9idXMuYzo2
-MjENCj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGRyaXZlcl9yZWdpc3RlcisweDZjLzB4YzAN
-Cj4gZHJpdmVycy9iYXNlL2RyaXZlci5jOjE3MA0KPiAgP1s8ICAgICAgICBub25lICAgICAgICA+
-XSBtaXBpX2RzaV9idXNfaW5pdCsweDExLzB4MTENCj4gZHJpdmVycy9ncHUvZHJtL2RybV9taXBp
-X2RzaS5jOjEyMDgNCj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGk5MTVfaW5pdCsweDU4LzB4
-NmINCj4gZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYzoxMDU3DQo+IFs8ICAgICAgICBu
-b25lICAgICAgICA+XSBkb19vbmVfaW5pdGNhbGwrMHg0Ni8weDFmNCBpbml0L21haW4uYzo5MzgN
-Cj4gWzwgICAgIGlubGluZSAgICAgPl0gZG9faW5pdGNhbGxfbGV2ZWwgaW5pdC9tYWluLmM6MTAw
-Ng0KPiBbPCAgICAgaW5saW5lICAgICA+XSBkb19pbml0Y2FsbHMgaW5pdC9tYWluLmM6MTAxNA0K
-PiBbPCAgICAgaW5saW5lICAgICA+XSBkb19iYXNpY19zZXR1cCBpbml0L21haW4uYzoxMDMxDQo+
-IFs8ICAgICAgICBub25lICAgICAgICA+XSBrZXJuZWxfaW5pdF9mcmVlYWJsZSsweDFhNy8weDI0
-ZQ0KPiBpbml0L21haW4uYzoxMTkxDQo+ICA/WzwgICAgICAgIG5vbmUgICAgICAgID5dIHJlc3Rf
-aW5pdCsweGFhLzB4YWEgaW5pdC9tYWluLmM6NDUxDQo+IFs8ICAgICAgICBub25lICAgICAgICA+
-XSBrZXJuZWxfaW5pdCsweGEvMHgxMDYgaW5pdC9tYWluLmM6MTEwOQ0KPiBbPCAgICAgICAgbm9u
-ZSAgICAgICAgPl0gcmV0X2Zyb21fZm9yaysweDM1LzB4NDANCj4gYXJjaC94ODYvZW50cnkvZW50
-cnlfNjQuUzozNTINCj4gLS0tWyBlbmQgdHJhY2UgMjYxZDI4NGQ5MTMyMDk4OSBdLS0tDQo+IHRz
-YzogUmVmaW5lZCBUU0MgY2xvY2tzb3VyY2UgY2FsaWJyYXRpb246IDIzOTQuNDU5IE1Ieg0KPiBj
-bG9ja3NvdXJjZTogdHNjOiBtYXNrOiAweGZmZmZmZmZmZmZmZmZmZmYgbWF4X2N5Y2xlczogMHgy
-MjgzYzUxZjgzNiwNCj4gbWF4X2lkbGVfbnM6IDQ0MDc5NTIxODY4MyBucw0KPiBjbG9ja3NvdXJj
-ZTogU3dpdGNoZWQgdG8gY2xvY2tzb3VyY2UgdHNjDQo+IA0KPiBBZnRlciB0aGlzIHRoZSBzeXN0
-ZW0gYXBwZWFycyB0byBzdG9wIGJvb3RpbmcsIGFuZCBJIGdldCBubyBtb3JlDQo+IHNlcmlhbCBv
-dXRwdXQNCj4gbm9yIGFueSBkaXNwbGF5Lg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
-dGluZm8vaW50ZWwtZ2Z4Cg==
+Don't immediately write the seqno into the breadcrumb slot, but wait
+until we've attempted to flush the writes; that is we need to ensure the
+memory is coherent prior to updating the breadcrumb so that any
+observers who see the new seqno can proceed.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 24 ++++++++++++-------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 9537d4912225..42168d7cf5b5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -446,31 +446,39 @@ static u32 *gen6_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
+ 	return cs;
+ }
+ 
+-#define GEN7_XCS_WA 32
+-static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
++#define GEN7_XCS_WA 8
++static u32 *
++__gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 addr, u32 *cs)
+ {
+ 	int i;
+ 
+-	GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
+-	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
+-
+ 	*cs++ = MI_FLUSH_DW | MI_INVALIDATE_TLB |
+ 		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_DW_STORE_INDEX;
+-	*cs++ = I915_GEM_HWS_SEQNO_ADDR | MI_FLUSH_DW_USE_GTT;
++	*cs++ = addr | MI_FLUSH_DW_USE_GTT;
+ 	*cs++ = rq->fence.seqno;
+ 
+ 	for (i = 0; i < GEN7_XCS_WA; i++) {
+ 		*cs++ = MI_STORE_DWORD_INDEX;
+-		*cs++ = I915_GEM_HWS_SEQNO_ADDR;
++		*cs++ = addr;
+ 		*cs++ = rq->fence.seqno;
+ 	}
+ 
++	return cs;
++}
++
++static u32 *gen7_xcs_emit_breadcrumb(struct i915_request *rq, u32 *cs)
++{
++	GEM_BUG_ON(i915_request_active_timeline(rq)->hwsp_ggtt != rq->engine->status_page.vma);
++	GEM_BUG_ON(offset_in_page(i915_request_active_timeline(rq)->hwsp_offset) != I915_GEM_HWS_SEQNO_ADDR);
++
++	cs = __gen7_xcs_emit_breadcrumb(rq,  I915_GEM_HWS_SEQNO_ADDR + 4, cs);
++	cs = __gen7_xcs_emit_breadcrumb(rq,  I915_GEM_HWS_SEQNO_ADDR, cs);
++
+ 	*cs++ = MI_FLUSH_DW;
+ 	*cs++ = 0;
+ 	*cs++ = 0;
+ 
+ 	*cs++ = MI_USER_INTERRUPT;
+-	*cs++ = MI_NOOP;
+ 
+ 	rq->tail = intel_ring_offset(rq, cs);
+ 	assert_ring_tail_valid(rq->ring, rq->tail);
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
