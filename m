@@ -1,51 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AAFA154AB7
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:03:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0536D154AC6
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:06:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F866FAED;
-	Thu,  6 Feb 2020 18:03:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5FC6FAEF;
+	Thu,  6 Feb 2020 18:05:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D906FAED
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:03:43 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 10:03:43 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="236053402"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga006.jf.intel.com with ESMTP; 06 Feb 2020 10:03:42 -0800
-Received: from [10.251.88.4] (abudanko-mobl.ccr.corp.intel.com [10.251.88.4])
- by linux.intel.com (Postfix) with ESMTP id 1AA19580698;
- Thu,  6 Feb 2020 10:03:32 -0800 (PST)
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-To: Stephen Smalley <sds@tycho.nsa.gov>, Serge Hallyn <serge@hallyn.com>,
- James Morris <jmorris@namei.org>
-References: <0548c832-7f4b-dc4c-8883-3f2b6d351a08@linux.intel.com>
- <9b77124b-675d-5ac7-3741-edec575bd425@linux.intel.com>
- <64cab472-806e-38c4-fb26-0ffbee485367@tycho.nsa.gov>
- <05297eff-8e14-ccdf-55a4-870c64516de8@linux.intel.com>
- <CAADnVQK-JzK-GUk4KOozn4c1xr=7TiCpB9Fi0QDC9nE6iVn8iQ@mail.gmail.com>
- <537bdb28-c9e4-f44f-d665-25250065a6bb@linux.intel.com>
- <63d9700f-231d-7973-5307-3e56a48c54cb@linux.intel.com>
- <d7213569-9578-7201-6106-f5ebc95bd6be@tycho.nsa.gov>
- <ac0dbab7-de47-ee34-bb88-4c43d3538b7d@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <2b608e26-354b-3df9-aea9-58e56dc0c5e5@linux.intel.com>
-Date: Thu, 6 Feb 2020 21:03:31 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4A36FAEF
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:05:54 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id a5so1018434wmb.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 06 Feb 2020 10:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=HuJJoTh37iJ/kXhNuFH6NXAQ8gVsPiqQogD42MSKrAE=;
+ b=Scr7hdX04CkCAT5MX7s20t9T+z8o9ndq2qk6jtBvxXowPtQKd4+RLbUGiTFHmeZ9PV
+ xccds89NVMJxgDGofaEU5+9sbvu/c1+l3ScaIdWqDz52txmTxOhQeoroGqPDpcjeCOFi
+ uJhW9sryKRCfdrtaBVmRcJXSX9hZTkhzC/wiA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=HuJJoTh37iJ/kXhNuFH6NXAQ8gVsPiqQogD42MSKrAE=;
+ b=HhDM1iQBU/kbx1lXVMS7sEX3AiMFaHxhwbmh8dy/C1/i2WvTfZ8mWM8s7KF3ZVzEy9
+ QBSvTKKZG6kkOiKdRNYaHPo03Yuh3FbWJUFyLeJFgyxL+b6ZebSZ6O1tAZGL1iwQHAzK
+ nv3ecezVO5UX28KsPa0+fF6IqtqtjaSzZNxo985TcaNpeCiVi1n//Yyf3Mwvz7gDqihQ
+ I9HbsWTfiJfYhMT58/zK+tS7RQTJ55Rp7j2qePsyV97v3qy+idd9UevfLeJJ4OkFZgyT
+ ahu2D4F7+DiIP3ICKl9GO7We6dFCKjwH3nipzQg4NWmi5djC2xHwTH29Ldd3ijDBujpw
+ j0qA==
+X-Gm-Message-State: APjAAAWJtrEO4AoxpOeVmAXJ0MkzCa1IveEOVJzdZ3jPGawooyaeKlX8
+ j/zWRCRqO65l73kU+uAf/jv8zg==
+X-Google-Smtp-Source: APXvYqyLV8Hne5DNPS5Wy9lMelW7rz4HZBm9zybm7SztMHQnJq+uFZ0o+jftUefkbEG0J7Lea49G+g==
+X-Received: by 2002:a1c:6755:: with SMTP id b82mr5612468wmc.127.1581012352540; 
+ Thu, 06 Feb 2020 10:05:52 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id x11sm290224wmg.46.2020.02.06.10.05.51
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 06 Feb 2020 10:05:51 -0800 (PST)
+Date: Thu, 6 Feb 2020 19:05:49 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200206180549.GX43062@phenom.ffwll.local>
+References: <20200202132133.1891846-1-daniel.vetter@ffwll.ch>
+ <158066505178.17828.178213696291677257@skylake-alporthouse-com>
 MIME-Version: 1.0
-In-Reply-To: <ac0dbab7-de47-ee34-bb88-4c43d3538b7d@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
- CAP_PERFMON to kernel and user space
+Content-Disposition: inline
+In-Reply-To: <158066505178.17828.178213696291677257@skylake-alporthouse-com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH] drm/vgem: Close use-after-free race in
+ vgem_gem_create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,104 +66,154 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Peter Zijlstra <peterz@infradead.org>,
- "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Paul Mackerras <paulus@samba.org>, Jiri Olsa <jolsa@redhat.com>,
- Alexei Starovoitov <alexei.starovoitov@gmail.com>,
- Andi Kleen <ak@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Igor Lubashev <ilubashe@akamai.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Robert Richter <rric@kernel.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Stephane Eranian <eranian@google.com>,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Andy Lutomirski <luto@amacapital.net>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Rob Clark <robdclark@chromium.org>, Hillf Danton <hdanton@sina.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable@vger.kernel.org, Eric Anholt <eric@anholt.net>,
+ Sean Paul <seanpaul@chromium.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Dan Carpenter <dan.carpenter@oracle.com>,
+ Emil Velikov <emil.velikov@collabora.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDIyLjAxLjIwMjAgMTc6MjUsIEFsZXhleSBCdWRhbmtvdiB3cm90ZToKPiAKPiBPbiAyMi4w
-MS4yMDIwIDE3OjA3LCBTdGVwaGVuIFNtYWxsZXkgd3JvdGU6Cj4+IE9uIDEvMjIvMjAgNTo0NSBB
-TSwgQWxleGV5IEJ1ZGFua292IHdyb3RlOgo+Pj4KPj4+IE9uIDIxLjAxLjIwMjAgMjE6MjcsIEFs
-ZXhleSBCdWRhbmtvdiB3cm90ZToKPj4+Pgo+Pj4+IE9uIDIxLjAxLjIwMjAgMjA6NTUsIEFsZXhl
-aSBTdGFyb3ZvaXRvdiB3cm90ZToKPj4+Pj4gT24gVHVlLCBKYW4gMjEsIDIwMjAgYXQgOTozMSBB
-TSBBbGV4ZXkgQnVkYW5rb3YKPj4+Pj4gPGFsZXhleS5idWRhbmtvdkBsaW51eC5pbnRlbC5jb20+
-IHdyb3RlOgo+Pj4+Pj4KPj4+Pj4+Cj4+Pj4+PiBPbiAyMS4wMS4yMDIwIDE3OjQzLCBTdGVwaGVu
-IFNtYWxsZXkgd3JvdGU6Cj4+Pj4+Pj4gT24gMS8yMC8yMCA2OjIzIEFNLCBBbGV4ZXkgQnVkYW5r
-b3Ygd3JvdGU6Cj4+Pj4+Pj4+Cj4+Pj4+Pj4+IEludHJvZHVjZSBDQVBfUEVSRk1PTiBjYXBhYmls
-aXR5IGRlc2lnbmVkIHRvIHNlY3VyZSBzeXN0ZW0gcGVyZm9ybWFuY2UKPj4+Pj4+Pj4gbW9uaXRv
-cmluZyBhbmQgb2JzZXJ2YWJpbGl0eSBvcGVyYXRpb25zIHNvIHRoYXQgQ0FQX1BFUkZNT04gd291
-bGQgYXNzaXN0Cj4+Pj4+Pj4+IENBUF9TWVNfQURNSU4gY2FwYWJpbGl0eSBpbiBpdHMgZ292ZXJu
-aW5nIHJvbGUgZm9yIHBlcmZfZXZlbnRzLCBpOTE1X3BlcmYKPj4+Pj4+Pj4gYW5kIG90aGVyIHBl
-cmZvcm1hbmNlIG1vbml0b3JpbmcgYW5kIG9ic2VydmFiaWxpdHkgc3Vic3lzdGVtcy4KPj4+Pj4+
-Pj4KPj4+Pj4+Pj4gQ0FQX1BFUkZNT04gaW50ZW5kcyB0byBoYXJkZW4gc3lzdGVtIHNlY3VyaXR5
-IGFuZCBpbnRlZ3JpdHkgZHVyaW5nIHN5c3RlbQo+Pj4+Pj4+PiBwZXJmb3JtYW5jZSBtb25pdG9y
-aW5nIGFuZCBvYnNlcnZhYmlsaXR5IG9wZXJhdGlvbnMgYnkgZGVjcmVhc2luZyBhdHRhY2sKPj4+
-Pj4+Pj4gc3VyZmFjZSB0aGF0IGlzIGF2YWlsYWJsZSB0byBhIENBUF9TWVNfQURNSU4gcHJpdmls
-ZWdlZCBwcm9jZXNzIFsxXS4KPj4+Pj4+Pj4gUHJvdmlkaW5nIGFjY2VzcyB0byBzeXN0ZW0gcGVy
-Zm9ybWFuY2UgbW9uaXRvcmluZyBhbmQgb2JzZXJ2YWJpbGl0eQo+Pj4+Pj4+PiBvcGVyYXRpb25z
-IHVuZGVyIENBUF9QRVJGTU9OIGNhcGFiaWxpdHkgc2luZ2x5LCB3aXRob3V0IHRoZSByZXN0IG9m
-Cj4+Pj4+Pj4+IENBUF9TWVNfQURNSU4gY3JlZGVudGlhbHMsIGV4Y2x1ZGVzIGNoYW5jZXMgdG8g
-bWlzdXNlIHRoZSBjcmVkZW50aWFscyBhbmQKPj4+Pj4+Pj4gbWFrZXMgb3BlcmF0aW9uIG1vcmUg
-c2VjdXJlLgo+Pj4+Pj4+Pgo+Pj4+Pj4+PiBDQVBfUEVSRk1PTiBpbnRlbmRzIHRvIHRha2Ugb3Zl
-ciBDQVBfU1lTX0FETUlOIGNyZWRlbnRpYWxzIHJlbGF0ZWQgdG8KPj4+Pj4+Pj4gc3lzdGVtIHBl
-cmZvcm1hbmNlIG1vbml0b3JpbmcgYW5kIG9ic2VydmFiaWxpdHkgb3BlcmF0aW9ucyBhbmQgYmFs
-YW5jZQo+Pj4+Pj4+PiBhbW91bnQgb2YgQ0FQX1NZU19BRE1JTiBjcmVkZW50aWFscyBmb2xsb3dp
-bmcgdGhlIHJlY29tbWVuZGF0aW9ucyBpbiB0aGUKPj4+Pj4+Pj4gY2FwYWJpbGl0aWVzIG1hbiBw
-YWdlIFsxXSBmb3IgQ0FQX1NZU19BRE1JTjogIk5vdGU6IHRoaXMgY2FwYWJpbGl0eSBpcwo+Pj4+
-Pj4+PiBvdmVybG9hZGVkOyBzZWUgTm90ZXMgdG8ga2VybmVsIGRldmVsb3BlcnMsIGJlbG93LiIK
-Pj4+Pj4+Pj4KPj4+Pj4+Pj4gQWx0aG91Z2ggdGhlIHNvZnR3YXJlIHJ1bm5pbmcgdW5kZXIgQ0FQ
-X1BFUkZNT04gY2FuIG5vdCBlbnN1cmUgYXZvaWRhbmNlCj4+Pj4+Pj4+IG9mIHJlbGF0ZWQgaGFy
-ZHdhcmUgaXNzdWVzLCB0aGUgc29mdHdhcmUgY2FuIHN0aWxsIG1pdGlnYXRlIHRoZXNlIGlzc3Vl
-cwo+Pj4+Pj4+PiBmb2xsb3dpbmcgdGhlIG9mZmljaWFsIGVtYmFyZ29lZCBoYXJkd2FyZSBpc3N1
-ZXMgbWl0aWdhdGlvbiBwcm9jZWR1cmUgWzJdLgo+Pj4+Pj4+PiBUaGUgYnVncyBpbiB0aGUgc29m
-dHdhcmUgaXRzZWxmIGNvdWxkIGJlIGZpeGVkIGZvbGxvd2luZyB0aGUgc3RhbmRhcmQKPj4+Pj4+
-Pj4ga2VybmVsIGRldmVsb3BtZW50IHByb2Nlc3MgWzNdIHRvIG1haW50YWluIGFuZCBoYXJkZW4g
-c2VjdXJpdHkgb2Ygc3lzdGVtCj4+Pj4+Pj4+IHBlcmZvcm1hbmNlIG1vbml0b3JpbmcgYW5kIG9i
-c2VydmFiaWxpdHkgb3BlcmF0aW9ucy4KPj4+Pj4+Pj4KPj4+Pj4+Pj4gWzFdIGh0dHA6Ly9tYW43
-Lm9yZy9saW51eC9tYW4tcGFnZXMvbWFuNy9jYXBhYmlsaXRpZXMuNy5odG1sCj4+Pj4+Pj4+IFsy
-XSBodHRwczovL3d3dy5rZXJuZWwub3JnL2RvYy9odG1sL2xhdGVzdC9wcm9jZXNzL2VtYmFyZ29l
-ZC1oYXJkd2FyZS1pc3N1ZXMuaHRtbAo+Pj4+Pj4+PiBbM10gaHR0cHM6Ly93d3cua2VybmVsLm9y
-Zy9kb2MvaHRtbC9sYXRlc3QvYWRtaW4tZ3VpZGUvc2VjdXJpdHktYnVncy5odG1sCjxTTklQPgo+
-Pj4+Pj4+Pgo+Pj4+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBBbGV4ZXkgQnVkYW5rb3YgPGFsZXhleS5i
-dWRhbmtvdkBsaW51eC5pbnRlbC5jb20+Cj4+Pj4+Pj4KPj4+Pj4+PiBXaHkgX25vYXVkaXQoKT/C
-oCBOb3JtYWxseSBvbmx5IHVzZWQgd2hlbiBhIHBlcm1pc3Npb24gZmFpbHVyZSBpcyBub24tZmF0
-YWwgdG8gdGhlIG9wZXJhdGlvbi7CoCBPdGhlcndpc2UsIHdlIHdhbnQgdGhlIGF1ZGl0IG1lc3Nh
-Z2UuCj4+Pgo+Pj4gU28gZmFyIHNvIGdvb2QsIEkgc3VnZ2VzdCB1c2luZyB0aGUgc2ltcGxlc3Qg
-dmVyc2lvbiBmb3IgdjY6Cj4+Pgo+Pj4gc3RhdGljIGlubGluZSBib29sIHBlcmZtb25fY2FwYWJs
-ZSh2b2lkKQo+Pj4gewo+Pj4gwqDCoMKgwqByZXR1cm4gY2FwYWJsZShDQVBfUEVSRk1PTikgfHwg
-Y2FwYWJsZShDQVBfU1lTX0FETUlOKTsKPj4+IH0KPj4+Cj4+PiBJdCBrZWVwcyB0aGUgaW1wbGVt
-ZW50YXRpb24gc2ltcGxlIGFuZCByZWFkYWJsZS4gVGhlIGltcGxlbWVudGF0aW9uIGlzIG1vcmUK
-Pj4+IHBlcmZvcm1hbnQgaW4gdGhlIHNlbnNlIG9mIGNhbGxpbmcgdGhlIEFQSSAtIG9uZSBjYXBh
-YmxlKCkgY2FsbCBmb3IgQ0FQX1BFUkZNT04KPj4+IHByaXZpbGVnZWQgcHJvY2Vzcy4KPj4+Cj4+
-PiBZZXMsIGl0IGJsb2F0cyBhdWRpdCBsb2cgZm9yIENBUF9TWVNfQURNSU4gcHJpdmlsZWdlZCBh
-bmQgdW5wcml2aWxlZ2VkIHByb2Nlc3NlcywKPj4+IGJ1dCB0aGlzIGJsb2F0aW5nIGFsc28gYWR2
-ZXJ0aXNlcyBhbmQgbGV2ZXJhZ2VzIHVzaW5nIG1vcmUgc2VjdXJlIENBUF9QRVJGTU9OCj4+PiBi
-YXNlZCBhcHByb2FjaCB0byB1c2UgcGVyZl9ldmVudF9vcGVuIHN5c3RlbSBjYWxsLgo+Pgo+PiBJ
-IGNhbiBsaXZlIHdpdGggdGhhdC7CoCBXZSBqdXN0IG5lZWQgdG8gZG9jdW1lbnQgdGhhdCB3aGVu
-IHlvdSBzZWUgYm90aCBhIENBUF9QRVJGTU9OIGFuZCBhIENBUF9TWVNfQURNSU4gYXVkaXQgbWVz
-c2FnZSBmb3IgYSBwcm9jZXNzLCB0cnkgb25seSBhbGxvd2luZyBDQVBfUEVSRk1PTiBmaXJzdCBh
-bmQgc2VlIGlmIHRoYXQgcmVzb2x2ZXMgdGhlIGlzc3VlLsKgIFdlIGhhdmUgYSBzaW1pbGFyIGlz
-c3VlIHdpdGggQ0FQX0RBQ19SRUFEX1NFQVJDSCB2ZXJzdXMgQ0FQX0RBQ19PVkVSUklERS4KPiAK
-PiBwZXJmIHNlY3VyaXR5IFsxXSBkb2N1bWVudCBjYW4gYmUgdXBkYXRlZCwgYXQgbGVhc3QsIHRv
-IGFsaWduIGFuZCBkb2N1bWVudCAKPiB0aGlzIGF1ZGl0IGxvZ2dpbmcgc3BlY2lmaWNzLgoKQW5k
-IEkgcGxhbiB0byB1cGRhdGUgdGhlIGRvY3VtZW50IHJpZ2h0IGFmdGVyIHRoaXMgcGF0Y2ggc2V0
-IGlzIGFjY2VwdGVkLgpGZWVsIGZyZWUgdG8gbGV0IG1lIGtub3cgb2YgdGhlIHBsYWNlcyBpbiB0
-aGUga2VybmVsIGRvY3MgdGhhdCBhbHNvCnJlcXVpcmUgdXBkYXRlIHcuci50IENBUF9QRVJGTU9O
-IGV4dGVuc2lvbi4KCn5BbGV4ZXkKCj4gCj4gfkFsZXhleQo+IAo+IFsxXSBodHRwczovL3d3dy5r
-ZXJuZWwub3JnL2RvYy9odG1sL2xhdGVzdC9hZG1pbi1ndWlkZS9wZXJmLXNlY3VyaXR5Lmh0bWwK
-PiAKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Sun, Feb 02, 2020 at 05:37:31PM +0000, Chris Wilson wrote:
+> Quoting Daniel Vetter (2020-02-02 13:21:33)
+> > There's two references floating around here (for the object reference,
+> > not the handle_count reference, that's a different thing):
+> > 
+> > - The temporary reference held by vgem_gem_create, acquired by
+> >   creating the object and released by calling
+> >   drm_gem_object_put_unlocked.
+> > 
+> > - The reference held by the object handle, created by
+> >   drm_gem_handle_create. This one generally outlives the function,
+> >   except if a 2nd thread races with a GEM_CLOSE ioctl call.
+> > 
+> > So usually everything is correct, except in that race case, where the
+> > access to gem_object->size could be looking at freed data already.
+> > Which again isn't a real problem (userspace shot its feet off already
+> > with the race, we could return garbage), but maybe someone can exploit
+> > this as an information leak.
+> > 
+> > Cc: Dan Carpenter <dan.carpenter@oracle.com>
+> > Cc: Hillf Danton <hdanton@sina.com>
+> > Cc: Reported-by: syzbot+0dc4444774d419e916c8@syzkaller.appspotmail.com
+> > Cc: stable@vger.kernel.org
+> > Cc: Emil Velikov <emil.velikov@collabora.com>
+> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+> > Cc: Sean Paul <seanpaul@chromium.org>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Eric Anholt <eric@anholt.net>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Rob Clark <robdclark@chromium.org>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  drivers/gpu/drm/vgem/vgem_drv.c | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
+> > index 5bd60ded3d81..909eba43664a 100644
+> > --- a/drivers/gpu/drm/vgem/vgem_drv.c
+> > +++ b/drivers/gpu/drm/vgem/vgem_drv.c
+> > @@ -196,9 +196,10 @@ static struct drm_gem_object *vgem_gem_create(struct drm_device *dev,
+> >                 return ERR_CAST(obj);
+> >  
+> >         ret = drm_gem_handle_create(file, &obj->base, handle);
+> > -       drm_gem_object_put_unlocked(&obj->base);
+> > -       if (ret)
+> > +       if (ret) {
+> > +               drm_gem_object_put_unlocked(&obj->base);
+> >                 return ERR_PTR(ret);
+> > +       }
+> >  
+> >         return &obj->base;
+> >  }
+> > @@ -221,7 +222,9 @@ static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+> >         args->size = gem_object->size;
+> >         args->pitch = pitch;
+> >  
+> > -       DRM_DEBUG("Created object of size %lld\n", size);
+> > +       drm_gem_object_put_unlocked(gem_object);
+> > +
+> > +       DRM_DEBUG("Created object of size %llu\n", args->size);
+> 
+> I was thinking we either should return size from vgem_gem_create (the
+> strategy we took in i915) or simply remove the vgem_gem_create() as that
+> doesn't improve readability.
+> 
+> -static struct drm_gem_object *vgem_gem_create(struct drm_device *dev,
+> -                                             struct drm_file *file,
+> -                                             unsigned int *handle,
+> -                                             unsigned long size)
+> +static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+> +                               struct drm_mode_create_dumb *args)
+>  {
+>         struct drm_vgem_gem_object *obj;
+> -       int ret;
+> +       u64 pitch, size;
+> +       u32 handle;
+> +
+> +       pitch = args->width * DIV_ROUND_UP(args->bpp, 8);
+> +       size = mul_u32_u32(args->height, pitch);
+> +       if (size == 0 || pitch < args->width)
+> +               return -EINVAL;
+> 
+>         obj = __vgem_gem_create(dev, size);
+>         if (IS_ERR(obj))
+> -               return ERR_CAST(obj);
+> +               return PTR_ERR(obj);
+> +
+> +       size = obj->base.size;
+> 
+> -       ret = drm_gem_handle_create(file, &obj->base, handle);
+> +       ret = drm_gem_handle_create(file, &obj->base, &handle);
+>         drm_gem_object_put_unlocked(&obj->base);
+>         if (ret)
+>                 return ERR_PTR(ret);
+> 
+> -       return &obj->base;
+> -}
+> -
+> -static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
+> -                               struct drm_mode_create_dumb *args)
+> -{
+> -       struct drm_gem_object *gem_object;
+> -       u64 pitch, size;
+> -
+> -       pitch = args->width * DIV_ROUND_UP(args->bpp, 8);
+> -       size = args->height * pitch;
+> -       if (size == 0)
+> -               return -EINVAL;
+> -
+> -       gem_object = vgem_gem_create(dev, file, &args->handle, size);
+> -       if (IS_ERR(gem_object))
+> -               return PTR_ERR(gem_object);
+> -
+> -       args->size = gem_object->size;
+> +       args->size = size;
+>         args->pitch = pitch;
+> +       args->handle = handle;
+> 
+> 
+> At the end of the day, it makes no difference,
+
+Yeah there's room for more polish, but didn't want to do that in the cc:
+stable patch.
+
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+
+Thanks for your review, finally applied to drm-misc-next-fixes now that CI
+has blessed me with its attention for a bit!
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
