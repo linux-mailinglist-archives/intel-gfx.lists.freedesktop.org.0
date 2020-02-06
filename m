@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE1C15476F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CBC1546FD
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:04:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D900F89F2E;
-	Thu,  6 Feb 2020 15:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F36D6FA77;
+	Thu,  6 Feb 2020 15:04:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E01C89F2E
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:15:02 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 07:15:02 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="226176032"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by fmsmga008.fm.intel.com with ESMTP; 06 Feb 2020 07:15:01 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 20:34:42 +0530
-Message-Id: <20200206150442.32353-3-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200206150442.32353-1-anshuman.gupta@intel.com>
-References: <20200206150442.32353-1-anshuman.gupta@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D1C2B6E03B;
+ Thu,  6 Feb 2020 15:04:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5A31A0071;
+ Thu,  6 Feb 2020 15:04:55 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/hdcp: Fix 1B-10 HDCP 2.2 Comp test
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 06 Feb 2020 15:04:55 -0000
+Message-ID: <158100149578.15032.4544240498769598285@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200206140725.10973-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200206140725.10973-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/debugfs=3A_Remove_i915=5Fenergy=5FuJ?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,114 +38,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-1B-10 HDCP Comp test verifies that source DUT reattempts
-Content Stream Management following a failure of Content
-Stream Management, 1B-10 test fail if source DUT tries
-reauthentication following a Content Stream Management
-failure.
-Fixing this broken test.
+== Series Details ==
 
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |  3 ++
- drivers/gpu/drm/i915/display/intel_hdcp.c     | 32 ++++++++++++++++---
- 2 files changed, 31 insertions(+), 4 deletions(-)
+Series: drm/i915/debugfs: Remove i915_energy_uJ
+URL   : https://patchwork.freedesktop.org/series/73096/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 2ae540e986ba..9232c4e0e42e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -363,6 +363,9 @@ struct intel_hdcp {
- 	/* Flag indicate if it is a first ReceiverID_List msg after AKE_Init */
- 	bool first_recvid_msg;
- 
-+	/* Flag indicate whether reauth retries req */
-+	bool reauth_req;
-+
- 	/*
- 	 * Content Stream Type defined by content owner. TYPE0(0x0) content can
- 	 * flow in the link protected by HDCP2.2 or HDCP1.4, where as TYPE1(0x1)
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 3e24a6df503a..ed523de20eac 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1507,13 +1507,35 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 
- static int hdcp2_authenticate_repeater(struct intel_connector *connector)
- {
--	int ret;
-+	int ret, i, tries = 3;
-+	struct intel_hdcp *hdcp = &connector->hdcp;
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 
- 	ret = hdcp2_authenticate_repeater_topology(connector);
- 	if (ret < 0)
- 		return ret;
- 
--	return hdcp2_propagate_stream_management_info(connector);
-+	/*
-+	 * HDCP 2.2 HDCP Spec Stream Managemnt pass/fail transition
-+	 * to HDCP authticate state i.e. A9->A5.
-+	 * if it fails, retry for stream managemnt again and skip the reauth.
-+	 */
-+	for (i = 0; i < tries; i++) {
-+		ret = hdcp2_propagate_stream_management_info(connector);
-+		if (!ret) {
-+			hdcp->reauth_req  = true;
-+			break;
-+		}
-+
-+		hdcp->seq_num_m++;
-+		drm_dbg_kms(&dev_priv->drm, "HDCP2.2 stream management %d of %d Failed.(%d)\n",
-+			    i + 1, tries, ret);
-+	}
-+
-+	if (ret)
-+		hdcp->reauth_req  = false;
-+
-+	return ret;
- }
- 
- static int hdcp2_authenticate_sink(struct intel_connector *connector)
-@@ -1642,10 +1664,11 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
- static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- {
- 	int ret, i, tries = 3;
-+	struct intel_hdcp *hdcp = &connector->hdcp;
- 
- 	for (i = 0; i < tries; i++) {
- 		ret = hdcp2_authenticate_sink(connector);
--		if (!ret)
-+		if (!ret || !hdcp->reauth_req)
- 			break;
- 
- 		/* Clearing the mei hdcp session */
-@@ -1655,7 +1678,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 			DRM_DEBUG_KMS("Port deauth failed.\n");
- 	}
- 
--	if (i != tries) {
-+	if (!ret) {
- 		/*
- 		 * Ensuring the required 200mSec min time interval between
- 		 * Session Key Exchange and encryption.
-@@ -1681,6 +1704,7 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
- 		      connector->base.name, connector->base.base.id,
- 		      hdcp->content_type);
- 
-+	hdcp->reauth_req  = true;
- 	ret = hdcp2_authenticate_and_encrypt(connector);
- 	if (ret) {
- 		DRM_DEBUG_KMS("HDCP2 Type%d  Enabling Failed. (%d)\n",
--- 
-2.24.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7876 -> Patchwork_16457
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16457 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-j1900:       [PASS][3] -> [FAIL][4] ([i915#694])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_active:
+    - fi-icl-y:           [PASS][5] -> [DMESG-FAIL][6] ([i915#765])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-icl-y/igt@i915_selftest@live_active.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-icl-y/igt@i915_selftest@live_active.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][7] -> [DMESG-FAIL][8] ([i915#770])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+    - fi-hsw-4770:        [PASS][9] -> [DMESG-FAIL][10] ([i915#553] / [i915#725])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770/igt@i915_selftest@live_blt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-hsw-4770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][11] -> [DMESG-FAIL][12] ([fdo#108569])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][13] -> [DMESG-FAIL][14] ([i915#1052])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [PASS][15] -> [DMESG-FAIL][16] ([i915#1052])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][17] -> [FAIL][18] ([fdo#111096] / [i915#323])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-nick:        [INCOMPLETE][19] ([i915#392]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-bsw-nick/igt@i915_selftest@live_blt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-bsw-nick/igt@i915_selftest@live_blt.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [DMESG-WARN][21] ([i915#44]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][23] ([i915#694]) -> [TIMEOUT][24] ([fdo#112271] / [i915#1084])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
+  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (41 -> 46)
+------------------------------
+
+  Additional (8): fi-kbl-7560u fi-snb-2520m fi-gdg-551 fi-ivb-3770 fi-skl-6700k2 fi-blb-e6850 fi-skl-6600u fi-snb-2600 
+  Missing    (3): fi-byt-squawks fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7876 -> Patchwork_16457
+
+  CI-20190529: 20190529
+  CI_DRM_7876: 6ac39d9964f464065511d439afcf4da065ff96db @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5421: 40946e61f9c47e23fdf1fff8090fadee8a4d7d3b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16457: d5db31b1e1d2ae65a54d7c1f292b801889f0cc2c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d5db31b1e1d2 drm/i915/debugfs: Remove i915_energy_uJ
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16457/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
