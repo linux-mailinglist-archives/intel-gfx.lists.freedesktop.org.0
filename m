@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9476154448
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 13:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29405154541
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 14:46:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6DE6EA61;
-	Thu,  6 Feb 2020 12:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 880D46FA41;
+	Thu,  6 Feb 2020 13:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD38E6EA61
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 12:53:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20135995-1500050 
- for multiple; Thu, 06 Feb 2020 12:52:55 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 12:52:54 +0000
-Message-Id: <20200206125254.2491083-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
-References: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E65696FA41
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 13:46:16 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 05:46:16 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="220445656"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 06 Feb 2020 05:46:13 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 06 Feb 2020 15:46:13 +0200
+Date: Thu, 6 Feb 2020 15:46:13 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200206134613.GR13686@intel.com>
+References: <20200206020851.337897-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Trim blitter block size
+Content-Disposition: inline
+In-Reply-To: <20200206020851.337897-1-jose.souza@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915/display/fbc: Make fences a
+ nice-to-have for GEN11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,160 +48,214 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reduce the amount of work we do to verify client blt correctness as
-currently our 0.5s subtests takes about 15s on slower devices!
+On Wed, Feb 05, 2020 at 06:08:49PM -0800, Jos=E9 Roberto de Souza wrote:
+> dGFX have local memory so it do not have aperture and do not support
+> CPU fences but even for iGFX it have a small number of fences.
+> =
 
-v2: Grow the maximum block size until we run out of time
+> As replacement for fences to track frontbuffer modifications by CPU
+> we have a software tracking that is already in used by FBC and PSR.
+> PSR don't support fences so it shows that this tracking is reliable.
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../i915/gem/selftests/i915_gem_object_blt.c  | 54 +++++++++++--------
- 1 file changed, 32 insertions(+), 22 deletions(-)
+> So lets make fences a nice-to-have to activate FBC for GEN11+, this
+> will allow us to enable FBC for dGFXs and iGFXs even when there is no
+> available fence.
+> =
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-index 62077fe46715..b98705821b84 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
-@@ -210,6 +210,7 @@ static int igt_fill_blt_thread(void *arg)
- 	struct intel_context *ce;
- 	unsigned int prio;
- 	IGT_TIMEOUT(end);
-+	u64 total;
- 	int err;
- 
- 	ctx = thread->ctx;
-@@ -225,10 +226,11 @@ static int igt_fill_blt_thread(void *arg)
- 	ce = i915_gem_context_get_engine(ctx, BCS0);
- 	GEM_BUG_ON(IS_ERR(ce));
- 
-+	total = PAGE_SIZE;
- 	do {
--		const u32 max_block_size = S16_MAX * PAGE_SIZE;
-+		/* Aim to keep the runtime under reasonable bounds! */
-+		const u32 max_phys_size = SZ_64K;
- 		u32 val = prandom_u32_state(prng);
--		u64 total = ce->vm->total;
- 		u32 phys_sz;
- 		u32 sz;
- 		u32 *vaddr;
-@@ -238,11 +240,9 @@ static int igt_fill_blt_thread(void *arg)
- 		 * If we have a tiny shared address space, like for the GGTT
- 		 * then we can't be too greedy.
- 		 */
--		if (i915_is_ggtt(ce->vm))
--			total = div64_u64(total, thread->n_cpus);
--
--		sz = min_t(u64, total >> 4, prandom_u32_state(prng));
--		phys_sz = sz % (max_block_size + 1);
-+		total = min(total, ce->vm->total / 2);
-+		sz = i915_prandom_u32_max_state(total, prng) + 1;
-+		phys_sz = sz % max_phys_size;
- 
- 		sz = round_up(sz, PAGE_SIZE);
- 		phys_sz = round_up(phys_sz, PAGE_SIZE);
-@@ -276,13 +276,16 @@ static int igt_fill_blt_thread(void *arg)
- 		if (err)
- 			goto err_unpin;
- 
--		i915_gem_object_lock(obj);
--		err = i915_gem_object_set_to_cpu_domain(obj, false);
--		i915_gem_object_unlock(obj);
-+		err = i915_gem_object_wait(obj, 0, MAX_SCHEDULE_TIMEOUT);
- 		if (err)
- 			goto err_unpin;
- 
--		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); ++i) {
-+		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); i += 17) {
-+			if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
-+				clflush(&vaddr[i]);
-+				mb();
-+			}
-+
- 			if (vaddr[i] != val) {
- 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
- 				       vaddr[i], val);
-@@ -293,6 +296,8 @@ static int igt_fill_blt_thread(void *arg)
- 
- 		i915_gem_object_unpin_map(obj);
- 		i915_gem_object_put(obj);
-+
-+		total <<= 1;
- 	} while (!time_after(jiffies, end));
- 
- 	goto err_flush;
-@@ -319,6 +324,7 @@ static int igt_copy_blt_thread(void *arg)
- 	struct intel_context *ce;
- 	unsigned int prio;
- 	IGT_TIMEOUT(end);
-+	u64 total;
- 	int err;
- 
- 	ctx = thread->ctx;
-@@ -334,20 +340,19 @@ static int igt_copy_blt_thread(void *arg)
- 	ce = i915_gem_context_get_engine(ctx, BCS0);
- 	GEM_BUG_ON(IS_ERR(ce));
- 
-+	total = PAGE_SIZE;
- 	do {
--		const u32 max_block_size = S16_MAX * PAGE_SIZE;
-+		/* Aim to keep the runtime under reasonable bounds! */
-+		const u32 max_phys_size = SZ_64K;
- 		u32 val = prandom_u32_state(prng);
--		u64 total = ce->vm->total;
- 		u32 phys_sz;
- 		u32 sz;
- 		u32 *vaddr;
- 		u32 i;
- 
--		if (i915_is_ggtt(ce->vm))
--			total = div64_u64(total, thread->n_cpus);
--
--		sz = min_t(u64, total >> 4, prandom_u32_state(prng));
--		phys_sz = sz % (max_block_size + 1);
-+		total = min(total, ce->vm->total / 2);
-+		sz = i915_prandom_u32_max_state(total, prng) + 1;
-+		phys_sz = sz % max_phys_size;
- 
- 		sz = round_up(sz, PAGE_SIZE);
- 		phys_sz = round_up(phys_sz, PAGE_SIZE);
-@@ -397,13 +402,16 @@ static int igt_copy_blt_thread(void *arg)
- 		if (err)
- 			goto err_unpin;
- 
--		i915_gem_object_lock(dst);
--		err = i915_gem_object_set_to_cpu_domain(dst, false);
--		i915_gem_object_unlock(dst);
-+		err = i915_gem_object_wait(dst, 0, MAX_SCHEDULE_TIMEOUT);
- 		if (err)
- 			goto err_unpin;
- 
--		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); ++i) {
-+		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); i += 17) {
-+			if (!(dst->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
-+				clflush(&vaddr[i]);
-+				mb();
-+			}
-+
- 			if (vaddr[i] != val) {
- 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
- 				       vaddr[i], val);
-@@ -416,6 +424,8 @@ static int igt_copy_blt_thread(void *arg)
- 
- 		i915_gem_object_put(src);
- 		i915_gem_object_put(dst);
-+
-+		total <<= 1;
- 	} while (!time_after(jiffies, end));
- 
- 	goto err_flush;
--- 
-2.25.0
+> We do not set fences to rotated planes but FBC only have restrictions
+> against 16bpp, so adding it here.
+> =
 
+> Also adding a new check for the tiling format, fences are only set
+> to X and Y tiled planes but again FBC don't have any restrictions
+> against tiling so adding linear as supported as well, other formats
+> should be added after tested but IGT only supports drawing in thse
+> 3 formats.
+> =
+
+> intel_fbc_hw_tracking_covers_screen() maybe can also have the same
+> treatment as fences but BSpec is not clear if the size limitation is
+> for hardware tracking or general use of FBC and I don't have a 5K
+> display to test it, so keeping as is for safety.
+> =
+
+> v2:
+> - Added tiling and pixel format rotation checks
+> - Changed the GEN version not requiring fences to 11 from 9, DDX
+> needs some changes but it don't have support for GEN11+
+
+It's already borked, so shouldn't actually make any difference.
+So IMO just make it gen9+.
+
+> =
+
+> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 42 ++++++++++++++++++++----
+>  drivers/gpu/drm/i915/i915_drv.h          |  1 +
+>  2 files changed, 36 insertions(+), 7 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
+915/display/intel_fbc.c
+> index ddf8d3bb7a7d..3a9e41e93ebf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> @@ -585,7 +585,7 @@ static bool stride_is_valid(struct drm_i915_private *=
+dev_priv,
+>  }
+>  =
+
+>  static bool pixel_format_is_valid(struct drm_i915_private *dev_priv,
+> -				  u32 pixel_format)
+> +				  u32 pixel_format, unsigned int rotation)
+>  {
+>  	switch (pixel_format) {
+>  	case DRM_FORMAT_XRGB8888:
+> @@ -599,6 +599,9 @@ static bool pixel_format_is_valid(struct drm_i915_pri=
+vate *dev_priv,
+>  		/* WaFbcOnly1to1Ratio:ctg */
+>  		if (IS_G4X(dev_priv))
+>  			return false;
+> +		if ((rotation & (DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270)) &&
+
+There is a function for that. Also wrong place for the check.
+
+> +		    INTEL_GEN(dev_priv) >=3D 9)
+
+Pointless gen check. Older hw doesn't do 90/270 degree rotation anyway.
+
+I *think* it should actually be possible to use FBC with 90/270 degree
+rotation. The only complication was the host tracking but if we don't
+think we need it anwyay then rotation also should work. But that is
+material for a followup.
+
+> +			return false;
+>  		return true;
+>  	default:
+>  		return false;
+> @@ -639,6 +642,18 @@ static bool intel_fbc_hw_tracking_covers_screen(stru=
+ct intel_crtc *crtc)
+>  	return effective_w <=3D max_w && effective_h <=3D max_h;
+>  }
+>  =
+
+> +static bool tiling_is_valid(uint64_t modifier)
+> +{
+> +	switch (modifier) {
+> +	case DRM_FORMAT_MOD_LINEAR:
+> +	case I915_FORMAT_MOD_X_TILED:
+> +	case I915_FORMAT_MOD_Y_TILED:
+> +		return true;
+
+There should be a gen check here.
+
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static void intel_fbc_update_state_cache(struct intel_crtc *crtc,
+>  					 const struct intel_crtc_state *crtc_state,
+>  					 const struct intel_plane_state *plane_state)
+> @@ -672,6 +687,7 @@ static void intel_fbc_update_state_cache(struct intel=
+_crtc *crtc,
+>  =
+
+>  	cache->fb.format =3D fb->format;
+>  	cache->fb.stride =3D fb->pitches[0];
+> +	cache->fb.modifier =3D fb->modifier;
+>  =
+
+>  	drm_WARN_ON(&dev_priv->drm, plane_state->flags & PLANE_HAS_FENCE &&
+>  		    !plane_state->vma->fence);
+> @@ -720,23 +736,34 @@ static bool intel_fbc_can_activate(struct intel_crt=
+c *crtc)
+>  		return false;
+>  	}
+>  =
+
+> -	/* The use of a CPU fence is mandatory in order to detect writes
+> -	 * by the CPU to the scanout and trigger updates to the FBC.
+> +	/* The use of a CPU fence is one of two ways to detect writes by the
+> +	 * CPU to the scanout and trigger updates to the FBC.
+> +	 *
+> +	 * The other method is by software tracking(see
+> +	 * intel_fbc_invalidate/flush()), it will manually notify FBC and nuke
+> +	 * the current compressed buffer and recompress it.
+>  	 *
+>  	 * Note that is possible for a tiled surface to be unmappable (and
+> -	 * so have no fence associated with it) due to aperture constaints
+> +	 * so have no fence associated with it) due to aperture constraints
+>  	 * at the time of pinning.
+>  	 *
+>  	 * FIXME with 90/270 degree rotation we should use the fence on
+>  	 * the normal GTT view (the rotated view doesn't even have a
+>  	 * fence). Would need changes to the FBC fence Y offset as well.
+> -	 * For now this will effecively disable FBC with 90/270 degree
+> +	 * For now this will effectively disable FBC with 90/270 degree
+>  	 * rotation.
+>  	 */
+> -	if (cache->fence_id < 0) {
+> +	if (INTEL_GEN(dev_priv) < 11 && cache->fence_id < 0) {
+>  		fbc->no_fbc_reason =3D "framebuffer not tiled or fenced";
+>  		return false;
+>  	}
+> +
+> +	/* Only check tiling for platforms that fence is not mandatory */
+> +	if (INTEL_GEN(dev_priv) >=3D 11 && !tiling_is_valid(cache->fb.modifier)=
+) {
+> +		fbc->no_fbc_reason =3D "tiling unsupported";
+> +		return false;
+> +	}
+> +
+>  	if (INTEL_GEN(dev_priv) <=3D 4 && !IS_G4X(dev_priv) &&
+>  	    cache->plane.rotation !=3D DRM_MODE_ROTATE_0) {
+>  		fbc->no_fbc_reason =3D "rotation unsupported";
+> @@ -748,7 +775,8 @@ static bool intel_fbc_can_activate(struct intel_crtc =
+*crtc)
+>  		return false;
+>  	}
+>  =
+
+> -	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format)) {
+> +	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format,
+> +				   cache->plane.rotation)) {
+>  		fbc->no_fbc_reason =3D "pixel format is invalid";
+>  		return false;
+>  	}
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index 3452926d7b77..a481a0454e69 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -413,6 +413,7 @@ struct intel_fbc {
+>  		struct {
+>  			const struct drm_format_info *format;
+>  			unsigned int stride;
+> +			uint64_t modifier;
+>  		} fb;
+>  		u16 gen9_wa_cfb_stride;
+>  		s8 fence_id;
+> -- =
+
+> 2.25.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
