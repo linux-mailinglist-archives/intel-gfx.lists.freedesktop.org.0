@@ -1,59 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0536D154AC6
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:06:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B51D4154AD2
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 19:11:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5FC6FAEF;
-	Thu,  6 Feb 2020 18:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D05E6FAEB;
+	Thu,  6 Feb 2020 18:11:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4A36FAEF
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:05:54 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id a5so1018434wmb.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 06 Feb 2020 10:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=HuJJoTh37iJ/kXhNuFH6NXAQ8gVsPiqQogD42MSKrAE=;
- b=Scr7hdX04CkCAT5MX7s20t9T+z8o9ndq2qk6jtBvxXowPtQKd4+RLbUGiTFHmeZ9PV
- xccds89NVMJxgDGofaEU5+9sbvu/c1+l3ScaIdWqDz52txmTxOhQeoroGqPDpcjeCOFi
- uJhW9sryKRCfdrtaBVmRcJXSX9hZTkhzC/wiA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=HuJJoTh37iJ/kXhNuFH6NXAQ8gVsPiqQogD42MSKrAE=;
- b=HhDM1iQBU/kbx1lXVMS7sEX3AiMFaHxhwbmh8dy/C1/i2WvTfZ8mWM8s7KF3ZVzEy9
- QBSvTKKZG6kkOiKdRNYaHPo03Yuh3FbWJUFyLeJFgyxL+b6ZebSZ6O1tAZGL1iwQHAzK
- nv3ecezVO5UX28KsPa0+fF6IqtqtjaSzZNxo985TcaNpeCiVi1n//Yyf3Mwvz7gDqihQ
- I9HbsWTfiJfYhMT58/zK+tS7RQTJ55Rp7j2qePsyV97v3qy+idd9UevfLeJJ4OkFZgyT
- ahu2D4F7+DiIP3ICKl9GO7We6dFCKjwH3nipzQg4NWmi5djC2xHwTH29Ldd3ijDBujpw
- j0qA==
-X-Gm-Message-State: APjAAAWJtrEO4AoxpOeVmAXJ0MkzCa1IveEOVJzdZ3jPGawooyaeKlX8
- j/zWRCRqO65l73kU+uAf/jv8zg==
-X-Google-Smtp-Source: APXvYqyLV8Hne5DNPS5Wy9lMelW7rz4HZBm9zybm7SztMHQnJq+uFZ0o+jftUefkbEG0J7Lea49G+g==
-X-Received: by 2002:a1c:6755:: with SMTP id b82mr5612468wmc.127.1581012352540; 
- Thu, 06 Feb 2020 10:05:52 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id x11sm290224wmg.46.2020.02.06.10.05.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Feb 2020 10:05:51 -0800 (PST)
-Date: Thu, 6 Feb 2020 19:05:49 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200206180549.GX43062@phenom.ffwll.local>
-References: <20200202132133.1891846-1-daniel.vetter@ffwll.ch>
- <158066505178.17828.178213696291677257@skylake-alporthouse-com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88EE16FAEB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 18:11:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20140353-1500050 
+ for multiple; Thu, 06 Feb 2020 18:11:22 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 18:11:21 +0000
+Message-Id: <20200206181121.2596083-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158066505178.17828.178213696291677257@skylake-alporthouse-com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/vgem: Close use-after-free race in
- vgem_gem_create
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Protect defer_request() from new
+ waiters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,153 +37,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>, Hillf Danton <hdanton@sina.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable@vger.kernel.org, Eric Anholt <eric@anholt.net>,
- Sean Paul <seanpaul@chromium.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
- Dan Carpenter <dan.carpenter@oracle.com>,
- Emil Velikov <emil.velikov@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Feb 02, 2020 at 05:37:31PM +0000, Chris Wilson wrote:
-> Quoting Daniel Vetter (2020-02-02 13:21:33)
-> > There's two references floating around here (for the object reference,
-> > not the handle_count reference, that's a different thing):
-> > 
-> > - The temporary reference held by vgem_gem_create, acquired by
-> >   creating the object and released by calling
-> >   drm_gem_object_put_unlocked.
-> > 
-> > - The reference held by the object handle, created by
-> >   drm_gem_handle_create. This one generally outlives the function,
-> >   except if a 2nd thread races with a GEM_CLOSE ioctl call.
-> > 
-> > So usually everything is correct, except in that race case, where the
-> > access to gem_object->size could be looking at freed data already.
-> > Which again isn't a real problem (userspace shot its feet off already
-> > with the race, we could return garbage), but maybe someone can exploit
-> > this as an information leak.
-> > 
-> > Cc: Dan Carpenter <dan.carpenter@oracle.com>
-> > Cc: Hillf Danton <hdanton@sina.com>
-> > Cc: Reported-by: syzbot+0dc4444774d419e916c8@syzkaller.appspotmail.com
-> > Cc: stable@vger.kernel.org
-> > Cc: Emil Velikov <emil.velikov@collabora.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Sean Paul <seanpaul@chromium.org>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Eric Anholt <eric@anholt.net>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Rob Clark <robdclark@chromium.org>
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/vgem/vgem_drv.c | 9 ++++++---
-> >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
-> > index 5bd60ded3d81..909eba43664a 100644
-> > --- a/drivers/gpu/drm/vgem/vgem_drv.c
-> > +++ b/drivers/gpu/drm/vgem/vgem_drv.c
-> > @@ -196,9 +196,10 @@ static struct drm_gem_object *vgem_gem_create(struct drm_device *dev,
-> >                 return ERR_CAST(obj);
-> >  
-> >         ret = drm_gem_handle_create(file, &obj->base, handle);
-> > -       drm_gem_object_put_unlocked(&obj->base);
-> > -       if (ret)
-> > +       if (ret) {
-> > +               drm_gem_object_put_unlocked(&obj->base);
-> >                 return ERR_PTR(ret);
-> > +       }
-> >  
-> >         return &obj->base;
-> >  }
-> > @@ -221,7 +222,9 @@ static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-> >         args->size = gem_object->size;
-> >         args->pitch = pitch;
-> >  
-> > -       DRM_DEBUG("Created object of size %lld\n", size);
-> > +       drm_gem_object_put_unlocked(gem_object);
-> > +
-> > +       DRM_DEBUG("Created object of size %llu\n", args->size);
-> 
-> I was thinking we either should return size from vgem_gem_create (the
-> strategy we took in i915) or simply remove the vgem_gem_create() as that
-> doesn't improve readability.
-> 
-> -static struct drm_gem_object *vgem_gem_create(struct drm_device *dev,
-> -                                             struct drm_file *file,
-> -                                             unsigned int *handle,
-> -                                             unsigned long size)
-> +static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-> +                               struct drm_mode_create_dumb *args)
->  {
->         struct drm_vgem_gem_object *obj;
-> -       int ret;
-> +       u64 pitch, size;
-> +       u32 handle;
-> +
-> +       pitch = args->width * DIV_ROUND_UP(args->bpp, 8);
-> +       size = mul_u32_u32(args->height, pitch);
-> +       if (size == 0 || pitch < args->width)
-> +               return -EINVAL;
-> 
->         obj = __vgem_gem_create(dev, size);
->         if (IS_ERR(obj))
-> -               return ERR_CAST(obj);
-> +               return PTR_ERR(obj);
-> +
-> +       size = obj->base.size;
-> 
-> -       ret = drm_gem_handle_create(file, &obj->base, handle);
-> +       ret = drm_gem_handle_create(file, &obj->base, &handle);
->         drm_gem_object_put_unlocked(&obj->base);
->         if (ret)
->                 return ERR_PTR(ret);
-> 
-> -       return &obj->base;
-> -}
-> -
-> -static int vgem_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
-> -                               struct drm_mode_create_dumb *args)
-> -{
-> -       struct drm_gem_object *gem_object;
-> -       u64 pitch, size;
-> -
-> -       pitch = args->width * DIV_ROUND_UP(args->bpp, 8);
-> -       size = args->height * pitch;
-> -       if (size == 0)
-> -               return -EINVAL;
-> -
-> -       gem_object = vgem_gem_create(dev, file, &args->handle, size);
-> -       if (IS_ERR(gem_object))
-> -               return PTR_ERR(gem_object);
-> -
-> -       args->size = gem_object->size;
-> +       args->size = size;
->         args->pitch = pitch;
-> +       args->handle = handle;
-> 
-> 
-> At the end of the day, it makes no difference,
+Mika spotted
 
-Yeah there's room for more polish, but didn't want to do that in the cc:
-stable patch.
+<4>[17436.705441] general protection fault: 0000 [#1] PREEMPT SMP PTI
+<4>[17436.705447] CPU: 2 PID: 0 Comm: swapper/2 Not tainted 5.5.0+ #1
+<4>[17436.705449] Hardware name: System manufacturer System Product Name/Z170M-PLUS, BIOS 3805 05/16/2018
+<4>[17436.705512] RIP: 0010:__execlists_submission_tasklet+0xc4d/0x16e0 [i915]
+<4>[17436.705516] Code: c5 4c 8d 60 e0 75 17 e9 8c 07 00 00 49 8b 44 24 20 49 39 c5 4c 8d 60 e0 0f 84 7a 07 00 00 49 8b 5c 24 08 49 8b 87 80 00 00 00 <48> 39 83 d8 fe ff ff 75 d9 48 8b 83 88 fe ff ff a8 01 0f 84 b6 05
+<4>[17436.705518] RSP: 0018:ffffc9000012ce80 EFLAGS: 00010083
+<4>[17436.705521] RAX: ffff88822ae42000 RBX: 5a5a5a5a5a5a5a5a RCX: dead000000000122
+<4>[17436.705523] RDX: ffff88822ae42588 RSI: ffff8881e32a7908 RDI: ffff8881c429fd48
+<4>[17436.705525] RBP: ffffc9000012cf00 R08: ffff88822ae42588 R09: 00000000fffffffe
+<4>[17436.705527] R10: ffff8881c429fb80 R11: 00000000a677cf08 R12: ffff8881c42a0aa8
+<4>[17436.705529] R13: ffff8881c429fd38 R14: ffff88822ae42588 R15: ffff8881c429fb80
+<4>[17436.705532] FS:  0000000000000000(0000) GS:ffff88822ed00000(0000) knlGS:0000000000000000
+<4>[17436.705534] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+<4>[17436.705536] CR2: 00007f858c76d000 CR3: 0000000005610003 CR4: 00000000003606e0
+<4>[17436.705538] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+<4>[17436.705540] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+<4>[17436.705542] Call Trace:
+<4>[17436.705545]  <IRQ>
+<4>[17436.705603]  execlists_submission_tasklet+0xc0/0x130 [i915]
 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+which is us consuming a partially initialised new waiter in
+defer_requests(). We can prevent this by initialising the i915_dependency
+prior to making it visible, and since we are using a concurrent
+list_add/iterator mark them up to the compiler.
 
-Thanks for your review, finally applied to drm-misc-next-fixes now that CI
-has blessed me with its attention for a bit!
--Daniel
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c   | 2 +-
+ drivers/gpu/drm/i915/i915_scheduler.c | 5 +++--
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index c196fb90c59f..4f16ed4d7411 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1632,7 +1632,7 @@ static void defer_request(struct i915_request *rq, struct list_head * const pl)
+ 		GEM_BUG_ON(i915_request_is_active(rq));
+ 		list_move_tail(&rq->sched.link, pl);
+ 
+-		list_for_each_entry(p, &rq->sched.waiters_list, wait_link) {
++		list_for_each_entry_lockless(p, &rq->sched.waiters_list, wait_link) {
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 5d96cfba40f8..9cbd31443eb0 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -423,8 +423,6 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 
+ 	if (!node_signaled(signal)) {
+ 		INIT_LIST_HEAD(&dep->dfs_link);
+-		list_add(&dep->wait_link, &signal->waiters_list);
+-		list_add(&dep->signal_link, &node->signalers_list);
+ 		dep->signaler = signal;
+ 		dep->waiter = node;
+ 		dep->flags = flags;
+@@ -434,6 +432,9 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
+ 		    !node_started(signal))
+ 			node->flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
+ 
++		list_add(&dep->signal_link, &node->signalers_list);
++		list_add_rcu(&dep->wait_link, &signal->waiters_list);
++
+ 		/*
+ 		 * As we do not allow WAIT to preempt inflight requests,
+ 		 * once we have executed a request, along with triggering
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
