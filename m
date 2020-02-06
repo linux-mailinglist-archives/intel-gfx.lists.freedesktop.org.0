@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAC41548BE
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 17:03:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A1EB1548DE
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 17:12:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 702E26FA99;
-	Thu,  6 Feb 2020 16:03:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 127986E512;
+	Thu,  6 Feb 2020 16:12:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F34026FA99
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 16:03:39 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 08:03:39 -0800
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="225056801"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 08:03:37 -0800
-Date: Thu, 6 Feb 2020 18:03:19 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200206160319.GD24639@ideak-desk.fi.intel.com>
-References: <20200205214945.131012-1-jose.souza@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28EDA6E512
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 16:12:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20138529-1500050 
+ for multiple; Thu, 06 Feb 2020 16:12:34 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 16:12:32 +0000
+Message-Id: <20200206161232.2553300-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
+References: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200205214945.131012-1-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dc3co: Add description of how it
- works
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: Prevent queuing retire workers
+ on the virtual engine
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,177 +39,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 05, 2020 at 01:49:45PM -0800, Jos=E9 Roberto de Souza wrote:
-> Add a basic description about how DC3CO works to help people not
-> familiar with it.
-> =
+Virtual engines are fleeting. They carry a reference count and may be freed
+when their last request is retired. This makes them unsuitable for the
+task of housing engine->retire.work so assert that it is not used.
 
-> While at it, I also improved the delayed work handle and function
-> names and removed a debug message that is ambiguous and not much
-> useful, no changes in behavior here.
-> =
+Tvrtko tracked down an instance where we did indeed violate this rule.
+In virtual_submit_request, we flush a completed request directly with
+__i915_request_submit and this causes us to queue that request on the
+veng's breadcrumb list and signal it. Leading us down a path where we
+should not attach the retire.
 
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Cc: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 31 +++++++++++++++++-------
->  drivers/gpu/drm/i915/i915_drv.h          |  2 +-
->  2 files changed, 23 insertions(+), 10 deletions(-)
-> =
+v2: Always select a physical engine before submitting, and so avoid
+using the veng as a signaler.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
-915/display/intel_psr.c
-> index db3d1561e9bf..273c4896eb57 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -59,6 +59,20 @@
->   * get called by the frontbuffer tracking code. Note that because of loc=
-king
->   * issues the self-refresh re-enable code is done from a work queue, whi=
-ch
->   * must be correctly synchronized/cancelled when shutting down the pipe."
-> + *
-> + * DC3CO (DC3 clock off)
-> + *
-> + * On top of PSR2, GEN12 adds a intermediate power savings state that tu=
-rns
-> + * clock off automatically during PSR2 idle state.
+Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine.h      |  1 +
+ drivers/gpu/drm/i915/gt/intel_gt_requests.c |  3 +++
+ drivers/gpu/drm/i915/gt/intel_lrc.c         | 17 ++++++++++++++---
+ drivers/gpu/drm/i915/i915_request.c         |  2 ++
+ 4 files changed, 20 insertions(+), 3 deletions(-)
 
-Thanks, makes sense, please add something like the following to
-explaining why/when DC3co is useful:
-
-The smaller overhead of DC3co entry/exit vs. the overhead of PSR2 deep
-sleep entry/exit allows the HW to enter a low-power state even when page
-flipping periodically (for instance a 30fps video playback scenario).
-
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> + *
-> + * Every time a flips occurs PSR2 will get out of deep sleep state(if it=
- was),
-> + * so DC3CO is enabled and tgl_dc3co_disable_work is schedule to run aft=
-er 6
-> + * frames, if no other flip occurs and the function above is executed, D=
-C3CO is
-> + * disabled and PSR2 is configured to enter deep sleep, resetting again =
-in case
-> + * of another flip.
-> + * Front buffer modifications do not trigger DC3CO activation on purpose=
- as it
-> + * would bring a lot of complexity and most of the moderns systems will =
-only
-> + * use page flips.
->   */
->  =
-
->  static bool psr_global_enabled(u32 debug)
-> @@ -583,17 +597,16 @@ static void tgl_psr2_disable_dc3co(struct drm_i915_=
-private *dev_priv)
->  	psr2_program_idle_frames(dev_priv, psr_compute_idle_frames(intel_dp));
->  }
->  =
-
-> -static void tgl_dc5_idle_thread(struct work_struct *work)
-> +static void tgl_dc3co_disable_work(struct work_struct *work)
->  {
->  	struct drm_i915_private *dev_priv =3D
-> -		container_of(work, typeof(*dev_priv), psr.idle_work.work);
-> +		container_of(work, typeof(*dev_priv), psr.dc3co_work.work);
->  =
-
->  	mutex_lock(&dev_priv->psr.lock);
->  	/* If delayed work is pending, it is not idle */
-> -	if (delayed_work_pending(&dev_priv->psr.idle_work))
-> +	if (delayed_work_pending(&dev_priv->psr.dc3co_work))
->  		goto unlock;
->  =
-
-> -	drm_dbg_kms(&dev_priv->drm, "DC5/6 idle thread\n");
->  	tgl_psr2_disable_dc3co(dev_priv);
->  unlock:
->  	mutex_unlock(&dev_priv->psr.lock);
-> @@ -604,7 +617,7 @@ static void tgl_disallow_dc3co_on_psr2_exit(struct dr=
-m_i915_private *dev_priv)
->  	if (!dev_priv->psr.dc3co_enabled)
->  		return;
->  =
-
-> -	cancel_delayed_work(&dev_priv->psr.idle_work);
-> +	cancel_delayed_work(&dev_priv->psr.dc3co_work);
->  	/* Before PSR2 exit disallow dc3co*/
->  	tgl_psr2_disable_dc3co(dev_priv);
->  }
-> @@ -1040,7 +1053,7 @@ void intel_psr_disable(struct intel_dp *intel_dp,
->  =
-
->  	mutex_unlock(&dev_priv->psr.lock);
->  	cancel_work_sync(&dev_priv->psr.work);
-> -	cancel_delayed_work_sync(&dev_priv->psr.idle_work);
-> +	cancel_delayed_work_sync(&dev_priv->psr.dc3co_work);
->  }
->  =
-
->  static void psr_force_hw_tracking_exit(struct drm_i915_private *dev_priv)
-> @@ -1350,7 +1363,7 @@ void intel_psr_invalidate(struct drm_i915_private *=
-dev_priv,
->   * When we will be completely rely on PSR2 S/W tracking in future,
->   * intel_psr_flush() will invalidate and flush the PSR for ORIGIN_FLIP
->   * event also therefore tgl_dc3co_flush() require to be changed
-> - * accrodingly in future.
-> + * accordingly in future.
->   */
->  static void
->  tgl_dc3co_flush(struct drm_i915_private *dev_priv,
-> @@ -1373,7 +1386,7 @@ tgl_dc3co_flush(struct drm_i915_private *dev_priv,
->  		goto unlock;
->  =
-
->  	tgl_psr2_enable_dc3co(dev_priv);
-> -	mod_delayed_work(system_wq, &dev_priv->psr.idle_work,
-> +	mod_delayed_work(system_wq, &dev_priv->psr.dc3co_work,
->  			 dev_priv->psr.dc3co_exit_delay);
->  =
-
->  unlock:
-> @@ -1458,7 +1471,7 @@ void intel_psr_init(struct drm_i915_private *dev_pr=
-iv)
->  		dev_priv->psr.link_standby =3D dev_priv->vbt.psr.full_link;
->  =
-
->  	INIT_WORK(&dev_priv->psr.work, intel_psr_work);
-> -	INIT_DELAYED_WORK(&dev_priv->psr.idle_work, tgl_dc5_idle_thread);
-> +	INIT_DELAYED_WORK(&dev_priv->psr.dc3co_work, tgl_dc3co_disable_work);
->  	mutex_init(&dev_priv->psr.lock);
->  }
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 3452926d7b77..da509d9b8895 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -504,7 +504,7 @@ struct i915_psr {
->  	u16 su_x_granularity;
->  	bool dc3co_enabled;
->  	u32 dc3co_exit_delay;
-> -	struct delayed_work idle_work;
-> +	struct delayed_work dc3co_work;
->  	bool initially_probed;
->  };
->  =
-
-> -- =
-
-> 2.25.0
-> =
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index b36ec1fddc3d..5b21ca5478c2 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -217,6 +217,7 @@ void intel_engine_disarm_breadcrumbs(struct intel_engine_cs *engine);
+ static inline void
+ intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
+ {
++	GEM_BUG_ON(!engine->breadcrumbs.irq_work.func);
+ 	irq_work_queue(&engine->breadcrumbs.irq_work);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+index 7ef1d37970f6..8a5054f21bf8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+@@ -99,6 +99,9 @@ static bool add_retire(struct intel_engine_cs *engine,
+ void intel_engine_add_retire(struct intel_engine_cs *engine,
+ 			     struct intel_timeline *tl)
+ {
++	/* We don't deal well with the engine disappearing beneath us */
++	GEM_BUG_ON(intel_engine_is_virtual(engine));
++
+ 	if (add_retire(engine, tl))
+ 		schedule_work(&engine->retire_work);
+ }
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index c196fb90c59f..e2bd1c357afc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4883,6 +4883,18 @@ static void virtual_submission_tasklet(unsigned long data)
+ 	local_irq_enable();
+ }
+ 
++static void __ve_request_submit(const struct virtual_engine *ve,
++				struct i915_request *rq)
++{
++	/*
++	 * Select a real engine to act as our permanent storage
++	 * and signaler for the stale request, and prevent
++	 * this virtual engine from leaking into the execution state.
++	 */
++	rq->engine = ve->siblings[0]; /* chosen at random! */
++	__i915_request_submit(rq);
++}
++
+ static void virtual_submit_request(struct i915_request *rq)
+ {
+ 	struct virtual_engine *ve = to_virtual_engine(rq->engine);
+@@ -4900,12 +4912,12 @@ static void virtual_submit_request(struct i915_request *rq)
+ 	old = ve->request;
+ 	if (old) { /* background completion event from preempt-to-busy */
+ 		GEM_BUG_ON(!i915_request_completed(old));
+-		__i915_request_submit(old);
++		__ve_request_submit(ve, old);
+ 		i915_request_put(old);
+ 	}
+ 
+ 	if (i915_request_completed(rq)) {
+-		__i915_request_submit(rq);
++		__ve_request_submit(ve, rq);
+ 
+ 		ve->base.execlists.queue_priority_hint = INT_MIN;
+ 		ve->request = NULL;
+@@ -5004,7 +5016,6 @@ intel_execlists_create_virtual(struct intel_engine_cs **siblings,
+ 	snprintf(ve->base.name, sizeof(ve->base.name), "virtual");
+ 
+ 	intel_engine_init_active(&ve->base, ENGINE_VIRTUAL);
+-	intel_engine_init_breadcrumbs(&ve->base);
+ 	intel_engine_init_execlists(&ve->base);
+ 
+ 	ve->base.cops = &virtual_context_ops;
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 0ecc2cf64216..2c45d4b93e2c 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -358,6 +358,8 @@ bool __i915_request_submit(struct i915_request *request)
+ 	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->active.lock);
+ 
++	GEM_BUG_ON(intel_engine_is_virtual(engine));
++
+ 	/*
+ 	 * With the advent of preempt-to-busy, we frequently encounter
+ 	 * requests that we have unsubmitted from HW, but left running
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
