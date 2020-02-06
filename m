@@ -2,40 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F93153CF4
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 03:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3205C153CE3
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 03:09:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A98246F99C;
-	Thu,  6 Feb 2020 02:28:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465546E29E;
+	Thu,  6 Feb 2020 02:08:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 12000 seconds by postgrey-1.36 at gabe;
- Thu, 06 Feb 2020 02:28:35 UTC
-Received: from 11.mo1.mail-out.ovh.net (11.mo1.mail-out.ovh.net
- [188.165.48.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06DA56F99C
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 02:28:35 +0000 (UTC)
-Received: from player729.ha.ovh.net (unknown [10.110.171.136])
- by mo1.mail-out.ovh.net (Postfix) with ESMTP id F19AE1ACABB
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2020 23:50:28 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player729.ha.ovh.net (Postfix) with ESMTPSA id 4BAA9F314A5C;
- Wed,  5 Feb 2020 22:50:24 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Thu,  6 Feb 2020 00:49:49 +0200
-Message-Id: <20200205224949.5942-1-andi@etezian.org>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD3C6E296
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 02:08:56 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2020 18:08:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,408,1574150400"; d="scan'208";a="235806458"
+Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
+ ([10.24.12.242])
+ by orsmga006.jf.intel.com with ESMTP; 05 Feb 2020 18:08:54 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  5 Feb 2020 18:08:49 -0800
+Message-Id: <20200206020851.337897-1-jose.souza@intel.com>
 X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200205223627.5680-1-andi@etezian.org>
-References: <20200205223627.5680-1-andi@etezian.org>
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 5094697080492573277
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrhedvgddtfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedvledrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: [Intel-gfx] [PATCH v5] drm/i915/selftests: add basic selftests for
- rc6
+Subject: [Intel-gfx] [PATCH v2 1/3] drm/i915/display/fbc: Make fences a
+ nice-to-have for GEN11+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,288 +42,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
-
-Add three basic tests for rc6 power status:
-
-1. live_rc6_basic - simply checks if rc6 works when it's enabled
-   or stops when it's disabled.
-
-2. live_rc6_threshold - rc6 should not work when the evaluation
-   interval is less than the threshold and should work otherwise.
-
-3. live_rc6_busy - keeps the gpu busy and then goes in idle;
-   checks that we don't fall in rc6 when busy and that we do fall
-   in rc6 when idling.
-
-The three tests are added as sutest of the bigger live_late_gt_pm
-selftest.
-
-The basic rc6 functionality is tested by checking the reference
-counter within the evaluation interval.
-
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
----
-I sent the wrong patch, sorry, this is the right one.
-
-Andi
-
-Changelog:
-* v4 -> v5:
-	- added changes in v4 which I forgot to include
-	- a small renaming and refactoring suggested by Mika to
-	  make clear the purpose of the test function. Now it's
-	  called "is_rc6_active" in a question format (and I
-	  believe Chris won't like my creativity) and it returns
-	  true if rc6 is active and false otherwise. Thanks, Mika!
-	- fixed a couple of typos.
-* v3 -> v4:
-        - just a small refactoring where test_rc6 becomes a
-          measure function while another test_rc6 checks the
-          return value from the measure.
-* v2 -> v3:
-        - rebased on top of the latest drm-tip
-        - fixed exiting order in rc6_basic to avoid exiting
-          without releasing the pm reference
-* v1 -> v2:
-        - some changes from Chris (thank you!).
-
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   2 +
- drivers/gpu/drm/i915/gt/selftest_rc6.c   | 179 +++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_rc6.h   |   2 +
- 3 files changed, 183 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index 09ff8e4f88af..5c7b92301a14 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -52,6 +52,8 @@ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_rc6_manual),
-+		SUBTEST(live_rc6_threshold),
-+		SUBTEST(live_rc6_busy),
- 		SUBTEST(live_gt_resume),
- 	};
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 5f7e2dcf5686..7b5d476a8ad1 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -11,6 +11,7 @@
- #include "selftest_rc6.h"
- 
- #include "selftests/i915_random.h"
-+#include "selftests/igt_spinner.h"
- 
- int live_rc6_manual(void *arg)
- {
-@@ -202,3 +203,181 @@ int live_rc6_ctx_wa(void *arg)
- 	kfree(engines);
- 	return err;
- }
-+
-+static u32 measure_rc6(struct intel_uncore *uncore, u32 interval)
-+{
-+	u32 ec1, ec2;
-+
-+	ec1 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
-+
-+	/*
-+	 * It's not important to precisely wait the interval time.
-+	 * I'll wait at least twice the time in order to be sure
-+	 * that the counting happens in the reference counter.
-+	 */
-+	msleep(interval);
-+
-+	ec2 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
-+
-+	pr_info("interval:%x [%dms], threshold:%x, rc6:%x\n",
-+		intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL),
-+		interval,
-+		intel_uncore_read(uncore, GEN6_RC6_THRESHOLD),
-+		ec2 - ec1);
-+
-+	/* paranoia? ec2 is always supposed to be bigger */
-+	return (ec2 >= ec1) ? ec2 - ec1 : 0;
-+}
-+
-+static bool is_rc6_active(struct intel_rc6 *rc6)
-+{
-+	struct intel_uncore *uncore = rc6_to_uncore(rc6);
-+	intel_wakeref_t wakeref;
-+	u32 interval;
-+
-+	wakeref = intel_runtime_pm_get(uncore->rpm);
-+
-+	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
-+
-+	/*
-+	 * the interval is stored in steps of 1.28us
-+	 */
-+	interval = div_u64(mul_u32_u32(interval, 128),
-+			   100 * 1000); /* => milliseconds */
-+
-+	intel_runtime_pm_put(uncore->rpm, wakeref);
-+
-+	return !!measure_rc6(uncore, 2 * interval);
-+}
-+
-+int live_rc6_threshold(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_uncore *uncore = gt->uncore;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	intel_wakeref_t wakeref;
-+	u32 threshold, interval;
-+	u32 t_orig, i_orig;
-+	int err = 0;
-+
-+	if (!rc6->manual) /* No interfering PCU! */
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(uncore->rpm);
-+
-+	__intel_rc6_disable(rc6); /* stop before adjusting thresholds */
-+
-+	t_orig = intel_uncore_read(uncore, GEN6_RC6_THRESHOLD);
-+	i_orig = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
-+
-+	/*
-+	 * set the threshold to 50ms
-+	 *
-+	 * 50ms * 1000 = 50000us
-+	 * 50000 / (1.28 * 100) / 100 (we don't have floating point)
-+	 */
-+	threshold = 50 * 1000 / 128 * 100;
-+	intel_uncore_write(uncore, GEN6_RC6_THRESHOLD, threshold);
-+
-+	/* set interval indicatively to half the threshold */
-+	interval = threshold / 2;
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, interval);
-+
-+	intel_rc6_unpark(rc6);
-+
-+	/* interval < threshold */
-+	if (is_rc6_active(rc6)) {
-+		pr_err("i915 mismatch: rc6 with interval < threshold\n");
-+		err = -EINVAL;
-+	}
-+
-+	__intel_rc6_disable(rc6);
-+
-+	/* set interval indicatively to twice the threshold */
-+	interval = threshold * 2;
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, interval);
-+
-+	intel_rc6_unpark(rc6);
-+
-+	/* interval > threshold */
-+	if (!is_rc6_active(rc6)) {
-+		pr_err("i915 mismatch: not in rc6 with interval > threshold\n");
-+		err = -EINVAL;
-+	}
-+
-+	__intel_rc6_disable(rc6);
-+
-+	intel_uncore_write(uncore, GEN6_RC6_THRESHOLD, t_orig);
-+	intel_uncore_write(uncore, GEN6_RC_EVALUATION_INTERVAL, i_orig);
-+
-+	intel_rc6_park(rc6);
-+
-+	intel_runtime_pm_put(uncore->rpm, wakeref);
-+
-+	return err;
-+}
-+
-+int live_rc6_busy(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	struct intel_engine_cs *engine;
-+	struct igt_spinner spin;
-+	intel_wakeref_t wakeref;
-+	enum intel_engine_id id;
-+	int err;
-+
-+	if (!rc6->supported)
-+		return 0;
-+
-+	err = igt_spinner_init(&spin, gt);
-+	if (err)
-+		return err;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+	for_each_engine(engine, gt, id) {
-+		struct i915_request *rq;
-+
-+		rq = igt_spinner_create_request(&spin,
-+						engine->kernel_context,
-+						MI_NOOP);
-+		if (IS_ERR(rq)) {
-+			err = PTR_ERR(rq);
-+			break;
-+		}
-+
-+		i915_request_get(rq);
-+		i915_request_add(rq);
-+
-+		igt_wait_for_spinner(&spin, rq); /* it's enough waiting */
-+
-+		/* gpu is busy, we shouldn't be in rc6 */
-+		if (is_rc6_active(rc6)) {
-+			pr_err("%s: never busy enough for having a nap\n",
-+			       engine->name);
-+			err = -EINVAL;
-+		}
-+
-+		igt_spinner_end(&spin);
-+		if (i915_request_wait(rq, 0, HZ / 5) < 0)
-+			err = -ETIME;
-+		i915_request_put(rq);
-+		if (err)
-+			break;
-+
-+		intel_gt_wait_for_idle(gt, HZ / 5);
-+		intel_gt_pm_wait_for_idle(gt);
-+
-+		/* gpu is idle, we should be in rc6 */
-+		if (!is_rc6_active(rc6)) {
-+			pr_err("%s is idle but doesn't go in rc6\n",
-+			       engine->name);
-+			err = -EINVAL;
-+			break;
-+		}
-+	}
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+
-+	igt_spinner_fini(&spin);
-+	return err;
-+}
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.h b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-index 762fd442d7b2..312894423dc2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-@@ -7,7 +7,9 @@
- #ifndef SELFTEST_RC6_H
- #define SELFTEST_RC6_H
- 
-+int live_rc6_busy(void *arg);
- int live_rc6_ctx_wa(void *arg);
- int live_rc6_manual(void *arg);
-+int live_rc6_threshold(void *arg);
- 
- #endif /* SELFTEST_RC6_H */
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+ZEdGWCBoYXZlIGxvY2FsIG1lbW9yeSBzbyBpdCBkbyBub3QgaGF2ZSBhcGVydHVyZSBhbmQgZG8g
+bm90IHN1cHBvcnQKQ1BVIGZlbmNlcyBidXQgZXZlbiBmb3IgaUdGWCBpdCBoYXZlIGEgc21hbGwg
+bnVtYmVyIG9mIGZlbmNlcy4KCkFzIHJlcGxhY2VtZW50IGZvciBmZW5jZXMgdG8gdHJhY2sgZnJv
+bnRidWZmZXIgbW9kaWZpY2F0aW9ucyBieSBDUFUKd2UgaGF2ZSBhIHNvZnR3YXJlIHRyYWNraW5n
+IHRoYXQgaXMgYWxyZWFkeSBpbiB1c2VkIGJ5IEZCQyBhbmQgUFNSLgpQU1IgZG9uJ3Qgc3VwcG9y
+dCBmZW5jZXMgc28gaXQgc2hvd3MgdGhhdCB0aGlzIHRyYWNraW5nIGlzIHJlbGlhYmxlLgoKU28g
+bGV0cyBtYWtlIGZlbmNlcyBhIG5pY2UtdG8taGF2ZSB0byBhY3RpdmF0ZSBGQkMgZm9yIEdFTjEx
+KywgdGhpcwp3aWxsIGFsbG93IHVzIHRvIGVuYWJsZSBGQkMgZm9yIGRHRlhzIGFuZCBpR0ZYcyBl
+dmVuIHdoZW4gdGhlcmUgaXMgbm8KYXZhaWxhYmxlIGZlbmNlLgoKV2UgZG8gbm90IHNldCBmZW5j
+ZXMgdG8gcm90YXRlZCBwbGFuZXMgYnV0IEZCQyBvbmx5IGhhdmUgcmVzdHJpY3Rpb25zCmFnYWlu
+c3QgMTZicHAsIHNvIGFkZGluZyBpdCBoZXJlLgoKQWxzbyBhZGRpbmcgYSBuZXcgY2hlY2sgZm9y
+IHRoZSB0aWxpbmcgZm9ybWF0LCBmZW5jZXMgYXJlIG9ubHkgc2V0CnRvIFggYW5kIFkgdGlsZWQg
+cGxhbmVzIGJ1dCBhZ2FpbiBGQkMgZG9uJ3QgaGF2ZSBhbnkgcmVzdHJpY3Rpb25zCmFnYWluc3Qg
+dGlsaW5nIHNvIGFkZGluZyBsaW5lYXIgYXMgc3VwcG9ydGVkIGFzIHdlbGwsIG90aGVyIGZvcm1h
+dHMKc2hvdWxkIGJlIGFkZGVkIGFmdGVyIHRlc3RlZCBidXQgSUdUIG9ubHkgc3VwcG9ydHMgZHJh
+d2luZyBpbiB0aHNlCjMgZm9ybWF0cy4KCmludGVsX2ZiY19od190cmFja2luZ19jb3ZlcnNfc2Ny
+ZWVuKCkgbWF5YmUgY2FuIGFsc28gaGF2ZSB0aGUgc2FtZQp0cmVhdG1lbnQgYXMgZmVuY2VzIGJ1
+dCBCU3BlYyBpcyBub3QgY2xlYXIgaWYgdGhlIHNpemUgbGltaXRhdGlvbiBpcwpmb3IgaGFyZHdh
+cmUgdHJhY2tpbmcgb3IgZ2VuZXJhbCB1c2Ugb2YgRkJDIGFuZCBJIGRvbid0IGhhdmUgYSA1Swpk
+aXNwbGF5IHRvIHRlc3QgaXQsIHNvIGtlZXBpbmcgYXMgaXMgZm9yIHNhZmV0eS4KCnYyOgotIEFk
+ZGVkIHRpbGluZyBhbmQgcGl4ZWwgZm9ybWF0IHJvdGF0aW9uIGNoZWNrcwotIENoYW5nZWQgdGhl
+IEdFTiB2ZXJzaW9uIG5vdCByZXF1aXJpbmcgZmVuY2VzIHRvIDExIGZyb20gOSwgRERYCm5lZWRz
+IHNvbWUgY2hhbmdlcyBidXQgaXQgZG9uJ3QgaGF2ZSBzdXBwb3J0IGZvciBHRU4xMSsKCkNjOiBE
+YW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IERoaW5ha2FyYW4gUGFu
+ZGl5YW4gPGRoaW5ha2FyYW4ucGFuZGl5YW5AaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOk
+IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9i
+ZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYyB8IDQyICsrKysrKysrKysrKysrKysrKysrLS0tLQog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICB8ICAxICsKIDIgZmlsZXMg
+Y2hhbmdlZCwgMzYgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwppbmRleCBkZGY4ZDNiYjdhN2QuLjNhOWU0MWU5M2Vi
+ZiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jCkBAIC01ODUsNyAr
+NTg1LDcgQEAgc3RhdGljIGJvb2wgc3RyaWRlX2lzX3ZhbGlkKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdiwKIH0KIAogc3RhdGljIGJvb2wgcGl4ZWxfZm9ybWF0X2lzX3ZhbGlkKHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKLQkJCQkgIHUzMiBwaXhlbF9mb3JtYXQp
+CisJCQkJICB1MzIgcGl4ZWxfZm9ybWF0LCB1bnNpZ25lZCBpbnQgcm90YXRpb24pCiB7CiAJc3dp
+dGNoIChwaXhlbF9mb3JtYXQpIHsKIAljYXNlIERSTV9GT1JNQVRfWFJHQjg4ODg6CkBAIC01OTks
+NiArNTk5LDkgQEAgc3RhdGljIGJvb2wgcGl4ZWxfZm9ybWF0X2lzX3ZhbGlkKHN0cnVjdCBkcm1f
+aTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJLyogV2FGYmNPbmx5MXRvMVJhdGlvOmN0ZyAqLwog
+CQlpZiAoSVNfRzRYKGRldl9wcml2KSkKIAkJCXJldHVybiBmYWxzZTsKKwkJaWYgKChyb3RhdGlv
+biAmIChEUk1fTU9ERV9ST1RBVEVfOTAgfCBEUk1fTU9ERV9ST1RBVEVfMjcwKSkgJiYKKwkJICAg
+IElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkKKwkJCXJldHVybiBmYWxzZTsKIAkJcmV0dXJuIHRy
+dWU7CiAJZGVmYXVsdDoKIAkJcmV0dXJuIGZhbHNlOwpAQCAtNjM5LDYgKzY0MiwxOCBAQCBzdGF0
+aWMgYm9vbCBpbnRlbF9mYmNfaHdfdHJhY2tpbmdfY292ZXJzX3NjcmVlbihzdHJ1Y3QgaW50ZWxf
+Y3J0YyAqY3J0YykKIAlyZXR1cm4gZWZmZWN0aXZlX3cgPD0gbWF4X3cgJiYgZWZmZWN0aXZlX2gg
+PD0gbWF4X2g7CiB9CiAKK3N0YXRpYyBib29sIHRpbGluZ19pc192YWxpZCh1aW50NjRfdCBtb2Rp
+ZmllcikKK3sKKwlzd2l0Y2ggKG1vZGlmaWVyKSB7CisJY2FzZSBEUk1fRk9STUFUX01PRF9MSU5F
+QVI6CisJY2FzZSBJOTE1X0ZPUk1BVF9NT0RfWF9USUxFRDoKKwljYXNlIEk5MTVfRk9STUFUX01P
+RF9ZX1RJTEVEOgorCQlyZXR1cm4gdHJ1ZTsKKwlkZWZhdWx0OgorCQlyZXR1cm4gZmFsc2U7CisJ
+fQorfQorCiBzdGF0aWMgdm9pZCBpbnRlbF9mYmNfdXBkYXRlX3N0YXRlX2NhY2hlKHN0cnVjdCBp
+bnRlbF9jcnRjICpjcnRjLAogCQkJCQkgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
+dGNfc3RhdGUsCiAJCQkJCSBjb25zdCBzdHJ1Y3QgaW50ZWxfcGxhbmVfc3RhdGUgKnBsYW5lX3N0
+YXRlKQpAQCAtNjcyLDYgKzY4Nyw3IEBAIHN0YXRpYyB2b2lkIGludGVsX2ZiY191cGRhdGVfc3Rh
+dGVfY2FjaGUoc3RydWN0IGludGVsX2NydGMgKmNydGMsCiAKIAljYWNoZS0+ZmIuZm9ybWF0ID0g
+ZmItPmZvcm1hdDsKIAljYWNoZS0+ZmIuc3RyaWRlID0gZmItPnBpdGNoZXNbMF07CisJY2FjaGUt
+PmZiLm1vZGlmaWVyID0gZmItPm1vZGlmaWVyOwogCiAJZHJtX1dBUk5fT04oJmRldl9wcml2LT5k
+cm0sIHBsYW5lX3N0YXRlLT5mbGFncyAmIFBMQU5FX0hBU19GRU5DRSAmJgogCQkgICAgIXBsYW5l
+X3N0YXRlLT52bWEtPmZlbmNlKTsKQEAgLTcyMCwyMyArNzM2LDM0IEBAIHN0YXRpYyBib29sIGlu
+dGVsX2ZiY19jYW5fYWN0aXZhdGUoc3RydWN0IGludGVsX2NydGMgKmNydGMpCiAJCXJldHVybiBm
+YWxzZTsKIAl9CiAKLQkvKiBUaGUgdXNlIG9mIGEgQ1BVIGZlbmNlIGlzIG1hbmRhdG9yeSBpbiBv
+cmRlciB0byBkZXRlY3Qgd3JpdGVzCi0JICogYnkgdGhlIENQVSB0byB0aGUgc2Nhbm91dCBhbmQg
+dHJpZ2dlciB1cGRhdGVzIHRvIHRoZSBGQkMuCisJLyogVGhlIHVzZSBvZiBhIENQVSBmZW5jZSBp
+cyBvbmUgb2YgdHdvIHdheXMgdG8gZGV0ZWN0IHdyaXRlcyBieSB0aGUKKwkgKiBDUFUgdG8gdGhl
+IHNjYW5vdXQgYW5kIHRyaWdnZXIgdXBkYXRlcyB0byB0aGUgRkJDLgorCSAqCisJICogVGhlIG90
+aGVyIG1ldGhvZCBpcyBieSBzb2Z0d2FyZSB0cmFja2luZyhzZWUKKwkgKiBpbnRlbF9mYmNfaW52
+YWxpZGF0ZS9mbHVzaCgpKSwgaXQgd2lsbCBtYW51YWxseSBub3RpZnkgRkJDIGFuZCBudWtlCisJ
+ICogdGhlIGN1cnJlbnQgY29tcHJlc3NlZCBidWZmZXIgYW5kIHJlY29tcHJlc3MgaXQuCiAJICoK
+IAkgKiBOb3RlIHRoYXQgaXMgcG9zc2libGUgZm9yIGEgdGlsZWQgc3VyZmFjZSB0byBiZSB1bm1h
+cHBhYmxlIChhbmQKLQkgKiBzbyBoYXZlIG5vIGZlbmNlIGFzc29jaWF0ZWQgd2l0aCBpdCkgZHVl
+IHRvIGFwZXJ0dXJlIGNvbnN0YWludHMKKwkgKiBzbyBoYXZlIG5vIGZlbmNlIGFzc29jaWF0ZWQg
+d2l0aCBpdCkgZHVlIHRvIGFwZXJ0dXJlIGNvbnN0cmFpbnRzCiAJICogYXQgdGhlIHRpbWUgb2Yg
+cGlubmluZy4KIAkgKgogCSAqIEZJWE1FIHdpdGggOTAvMjcwIGRlZ3JlZSByb3RhdGlvbiB3ZSBz
+aG91bGQgdXNlIHRoZSBmZW5jZSBvbgogCSAqIHRoZSBub3JtYWwgR1RUIHZpZXcgKHRoZSByb3Rh
+dGVkIHZpZXcgZG9lc24ndCBldmVuIGhhdmUgYQogCSAqIGZlbmNlKS4gV291bGQgbmVlZCBjaGFu
+Z2VzIHRvIHRoZSBGQkMgZmVuY2UgWSBvZmZzZXQgYXMgd2VsbC4KLQkgKiBGb3Igbm93IHRoaXMg
+d2lsbCBlZmZlY2l2ZWx5IGRpc2FibGUgRkJDIHdpdGggOTAvMjcwIGRlZ3JlZQorCSAqIEZvciBu
+b3cgdGhpcyB3aWxsIGVmZmVjdGl2ZWx5IGRpc2FibGUgRkJDIHdpdGggOTAvMjcwIGRlZ3JlZQog
+CSAqIHJvdGF0aW9uLgogCSAqLwotCWlmIChjYWNoZS0+ZmVuY2VfaWQgPCAwKSB7CisJaWYgKElO
+VEVMX0dFTihkZXZfcHJpdikgPCAxMSAmJiBjYWNoZS0+ZmVuY2VfaWQgPCAwKSB7CiAJCWZiYy0+
+bm9fZmJjX3JlYXNvbiA9ICJmcmFtZWJ1ZmZlciBub3QgdGlsZWQgb3IgZmVuY2VkIjsKIAkJcmV0
+dXJuIGZhbHNlOwogCX0KKworCS8qIE9ubHkgY2hlY2sgdGlsaW5nIGZvciBwbGF0Zm9ybXMgdGhh
+dCBmZW5jZSBpcyBub3QgbWFuZGF0b3J5ICovCisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0g
+MTEgJiYgIXRpbGluZ19pc192YWxpZChjYWNoZS0+ZmIubW9kaWZpZXIpKSB7CisJCWZiYy0+bm9f
+ZmJjX3JlYXNvbiA9ICJ0aWxpbmcgdW5zdXBwb3J0ZWQiOworCQlyZXR1cm4gZmFsc2U7CisJfQor
+CiAJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPD0gNCAmJiAhSVNfRzRYKGRldl9wcml2KSAmJgog
+CSAgICBjYWNoZS0+cGxhbmUucm90YXRpb24gIT0gRFJNX01PREVfUk9UQVRFXzApIHsKIAkJZmJj
+LT5ub19mYmNfcmVhc29uID0gInJvdGF0aW9uIHVuc3VwcG9ydGVkIjsKQEAgLTc0OCw3ICs3NzUs
+OCBAQCBzdGF0aWMgYm9vbCBpbnRlbF9mYmNfY2FuX2FjdGl2YXRlKHN0cnVjdCBpbnRlbF9jcnRj
+ICpjcnRjKQogCQlyZXR1cm4gZmFsc2U7CiAJfQogCi0JaWYgKCFwaXhlbF9mb3JtYXRfaXNfdmFs
+aWQoZGV2X3ByaXYsIGNhY2hlLT5mYi5mb3JtYXQtPmZvcm1hdCkpIHsKKwlpZiAoIXBpeGVsX2Zv
+cm1hdF9pc192YWxpZChkZXZfcHJpdiwgY2FjaGUtPmZiLmZvcm1hdC0+Zm9ybWF0LAorCQkJCSAg
+IGNhY2hlLT5wbGFuZS5yb3RhdGlvbikpIHsKIAkJZmJjLT5ub19mYmNfcmVhc29uID0gInBpeGVs
+IGZvcm1hdCBpcyBpbnZhbGlkIjsKIAkJcmV0dXJuIGZhbHNlOwogCX0KZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oCmluZGV4IDM0NTI5MjZkN2I3Ny4uYTQ4MWEwNDU0ZTY5IDEwMDY0NAotLS0gYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
+MTVfZHJ2LmgKQEAgLTQxMyw2ICs0MTMsNyBAQCBzdHJ1Y3QgaW50ZWxfZmJjIHsKIAkJc3RydWN0
+IHsKIAkJCWNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKmZvcm1hdDsKIAkJCXVuc2lnbmVk
+IGludCBzdHJpZGU7CisJCQl1aW50NjRfdCBtb2RpZmllcjsKIAkJfSBmYjsKIAkJdTE2IGdlbjlf
+d2FfY2ZiX3N0cmlkZTsKIAkJczggZmVuY2VfaWQ7Ci0tIAoyLjI1LjAKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
