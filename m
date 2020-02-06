@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 641AA154568
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 14:49:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18BA21545AF
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 15:04:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E19F6FA52;
-	Thu,  6 Feb 2020 13:49:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 197F26FA5B;
+	Thu,  6 Feb 2020 14:04:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1AE6FA52
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 13:49:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 05:49:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="226153447"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 06 Feb 2020 05:49:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Feb 2020 15:49:36 +0200
-Date: Thu, 6 Feb 2020 15:49:36 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200206134936.GS13686@intel.com>
-References: <20200206020851.337897-1-jose.souza@intel.com>
- <20200206020851.337897-2-jose.souza@intel.com>
+X-Greylist: delayed 136590 seconds by postgrey-1.36 at gabe;
+ Thu, 06 Feb 2020 14:04:24 UTC
+Received: from 7.mo173.mail-out.ovh.net (7.mo173.mail-out.ovh.net
+ [46.105.44.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38026FA5B
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 14:04:24 +0000 (UTC)
+Received: from player771.ha.ovh.net (unknown [10.110.208.203])
+ by mo173.mail-out.ovh.net (Postfix) with ESMTP id 13DB112CB55
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:04:22 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player771.ha.ovh.net (Postfix) with ESMTPSA id 60022F28748D;
+ Thu,  6 Feb 2020 14:04:17 +0000 (UTC)
+From: Andi Shyti <andi@etezian.org>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Thu,  6 Feb 2020 16:04:00 +0200
+Message-Id: <20200206140402.11790-2-andi@etezian.org>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200206140402.11790-1-andi@etezian.org>
+References: <20200206140402.11790-1-andi@etezian.org>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200206020851.337897-2-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/display: Do not write in
- removed FBC fence registers
+X-Ovh-Tracer-Id: 2082351880966947421
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrheefgdehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: [Intel-gfx] [PATCH v6 1/3] drm/i915/selftests: add busy selftests
+ for rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,62 +48,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 05, 2020 at 06:08:50PM -0800, Jos=E9 Roberto de Souza wrote:
-> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> =
+From: Andi Shyti <andi.shyti@intel.com>
 
-> Platforms without fences don't have FBC host tracking and those
-> registers are marked as reserved in those platforms.
-> =
+live_rc6_busy keeps the gpu busy and then goes in idle;
+checks that we don't fall in rc6 when busy and that we do fall
+in rc6 when idling.
 
-> v2: checking num_fences to write to FBC fence registers (Ville)
-> =
+The test is added as subtest of the bigger live_late_gt_pm
+selftest.
 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+The basic rc6 functionality is tested by checking the reference
+counter within the evaluation interval.
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   1 +
+ drivers/gpu/drm/i915/gt/selftest_rc6.c   | 112 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/selftest_rc6.h   |   1 +
+ 3 files changed, 114 insertions(+)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
+diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+index 09ff8e4f88af..40562f5208ea 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+@@ -51,6 +51,7 @@ static int live_gt_resume(void *arg)
+ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
++		SUBTEST(live_rc6_busy),
+ 		SUBTEST(live_rc6_manual),
+ 		SUBTEST(live_gt_resume),
+ 	};
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 5f7e2dcf5686..270e8d24036d 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -11,6 +11,7 @@
+ #include "selftest_rc6.h"
+ 
+ #include "selftests/i915_random.h"
++#include "selftests/igt_spinner.h"
+ 
+ int live_rc6_manual(void *arg)
+ {
+@@ -202,3 +203,114 @@ int live_rc6_ctx_wa(void *arg)
+ 	kfree(engines);
+ 	return err;
+ }
++
++static u32 measure_rc6(struct intel_uncore *uncore, u32 interval)
++{
++	u32 ec1, ec2;
++
++	ec1 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
++
++	/*
++	 * It's not important to precisely wait the interval time.
++	 * I'll wait at least twice the time in order to be sure
++	 * that the counting happens in the reference counter.
++	 */
++	msleep(interval);
++
++	ec2 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
++
++	pr_info("interval:%x [%dms], threshold:%x, rc6:%x\n",
++		intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL),
++		interval,
++		intel_uncore_read(uncore, GEN6_RC6_THRESHOLD),
++		ec2 - ec1);
++
++	/* paranoia? ec2 is always supposed to be bigger */
++	return (ec2 >= ec1) ? ec2 - ec1 : 0;
++}
++
++static bool is_rc6_active(struct intel_rc6 *rc6)
++{
++	struct intel_uncore *uncore = rc6_to_uncore(rc6);
++	intel_wakeref_t wakeref;
++	u32 interval;
++
++	wakeref = intel_runtime_pm_get(uncore->rpm);
++
++	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
++
++	/*
++	 * the interval is stored in steps of 1.28us
++	 */
++	interval = div_u64(mul_u32_u32(interval, 128),
++			   100 * 1000); /* => milliseconds */
++
++	intel_runtime_pm_put(uncore->rpm, wakeref);
++
++	return !!measure_rc6(uncore, 2 * interval);
++}
++
++int live_rc6_busy(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_rc6 *rc6 = &gt->rc6;
++	struct intel_engine_cs *engine;
++	struct igt_spinner spin;
++	intel_wakeref_t wakeref;
++	enum intel_engine_id id;
++	int err;
++
++	if (!rc6->supported)
++		return 0;
++
++	err = igt_spinner_init(&spin, gt);
++	if (err)
++		return err;
++
++	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
++	for_each_engine(engine, gt, id) {
++		struct i915_request *rq;
++
++		rq = igt_spinner_create_request(&spin,
++						engine->kernel_context,
++						MI_NOOP);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			break;
++		}
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		igt_wait_for_spinner(&spin, rq); /* it's enough waiting */
++
++		/* gpu is busy, we shouldn't be in rc6 */
++		if (is_rc6_active(rc6)) {
++			pr_err("%s: never busy enough for having a nap\n",
++			       engine->name);
++			err = -EINVAL;
++		}
++
++		igt_spinner_end(&spin);
++		if (i915_request_wait(rq, 0, HZ / 5) < 0)
++			err = -ETIME;
++		i915_request_put(rq);
++		if (err)
++			break;
++
++		intel_gt_wait_for_idle(gt, HZ / 5);
++		intel_gt_pm_wait_for_idle(gt);
++
++		/* gpu is idle, we should be in rc6 */
++		if (!is_rc6_active(rc6)) {
++			pr_err("%s is idle but doesn't go in rc6\n",
++			       engine->name);
++			err = -EINVAL;
++			break;
++		}
++	}
++	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
++
++	igt_spinner_fini(&spin);
++	return err;
++}
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.h b/drivers/gpu/drm/i915/gt/selftest_rc6.h
+index 762fd442d7b2..75e05a8a1fda 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.h
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.h
+@@ -7,6 +7,7 @@
+ #ifndef SELFTEST_RC6_H
+ #define SELFTEST_RC6_H
+ 
++int live_rc6_busy(void *arg);
+ int live_rc6_ctx_wa(void *arg);
+ int live_rc6_manual(void *arg);
+ 
+-- 
+2.25.0
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 3a9e41e93ebf..fa8fca1a6b7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -320,7 +320,7 @@ static void gen7_fbc_activate(struct drm_i915_private=
- *dev_priv)
->  			       SNB_CPU_FENCE_ENABLE | params->fence_id);
->  		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET,
->  			       params->crtc.fence_y_offset);
-> -	} else {
-> +	} else if (dev_priv->ggtt.num_fences) {
->  		intel_de_write(dev_priv, SNB_DPFC_CTL_SA, 0);
->  		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET, 0);
->  	}
-> -- =
-
-> 2.25.0
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
