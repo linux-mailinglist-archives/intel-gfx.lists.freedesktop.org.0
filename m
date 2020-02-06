@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E55154434
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 13:43:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9476154448
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 13:53:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 948C66EA51;
-	Thu,  6 Feb 2020 12:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6DE6EA61;
+	Thu,  6 Feb 2020 12:53:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7132B6EA51;
- Thu,  6 Feb 2020 12:42:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 69BD9A00C7;
- Thu,  6 Feb 2020 12:42:59 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD38E6EA61
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 12:53:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20135995-1500050 
+ for multiple; Thu, 06 Feb 2020 12:52:55 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 12:52:54 +0000
+Message-Id: <20200206125254.2491083-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
+References: <20200206003337.2125297-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Thu, 06 Feb 2020 12:42:59 -0000
-Message-ID: <158099297940.15031.14574116485644292816@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200206105231.24813-1-ramalingam.c@intel.com>
-In-Reply-To: <20200206105231.24813-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/hdcp=3A_optimizing_the_srm_handling_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Trim blitter block size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,126 +38,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Reduce the amount of work we do to verify client blt correctness as
+currently our 0.5s subtests takes about 15s on slower devices!
 
-Series: drm/hdcp: optimizing the srm handling (rev3)
-URL   : https://patchwork.freedesktop.org/series/72312/
-State : success
+v2: Grow the maximum block size until we run out of time
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../i915/gem/selftests/i915_gem_object_blt.c  | 54 +++++++++++--------
+ 1 file changed, 32 insertions(+), 22 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7876 -> Patchwork_16456
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+index 62077fe46715..b98705821b84 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_object_blt.c
+@@ -210,6 +210,7 @@ static int igt_fill_blt_thread(void *arg)
+ 	struct intel_context *ce;
+ 	unsigned int prio;
+ 	IGT_TIMEOUT(end);
++	u64 total;
+ 	int err;
+ 
+ 	ctx = thread->ctx;
+@@ -225,10 +226,11 @@ static int igt_fill_blt_thread(void *arg)
+ 	ce = i915_gem_context_get_engine(ctx, BCS0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
++	total = PAGE_SIZE;
+ 	do {
+-		const u32 max_block_size = S16_MAX * PAGE_SIZE;
++		/* Aim to keep the runtime under reasonable bounds! */
++		const u32 max_phys_size = SZ_64K;
+ 		u32 val = prandom_u32_state(prng);
+-		u64 total = ce->vm->total;
+ 		u32 phys_sz;
+ 		u32 sz;
+ 		u32 *vaddr;
+@@ -238,11 +240,9 @@ static int igt_fill_blt_thread(void *arg)
+ 		 * If we have a tiny shared address space, like for the GGTT
+ 		 * then we can't be too greedy.
+ 		 */
+-		if (i915_is_ggtt(ce->vm))
+-			total = div64_u64(total, thread->n_cpus);
+-
+-		sz = min_t(u64, total >> 4, prandom_u32_state(prng));
+-		phys_sz = sz % (max_block_size + 1);
++		total = min(total, ce->vm->total / 2);
++		sz = i915_prandom_u32_max_state(total, prng) + 1;
++		phys_sz = sz % max_phys_size;
+ 
+ 		sz = round_up(sz, PAGE_SIZE);
+ 		phys_sz = round_up(phys_sz, PAGE_SIZE);
+@@ -276,13 +276,16 @@ static int igt_fill_blt_thread(void *arg)
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		i915_gem_object_lock(obj);
+-		err = i915_gem_object_set_to_cpu_domain(obj, false);
+-		i915_gem_object_unlock(obj);
++		err = i915_gem_object_wait(obj, 0, MAX_SCHEDULE_TIMEOUT);
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); ++i) {
++		for (i = 0; i < huge_gem_object_phys_size(obj) / sizeof(u32); i += 17) {
++			if (!(obj->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
++				clflush(&vaddr[i]);
++				mb();
++			}
++
+ 			if (vaddr[i] != val) {
+ 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
+ 				       vaddr[i], val);
+@@ -293,6 +296,8 @@ static int igt_fill_blt_thread(void *arg)
+ 
+ 		i915_gem_object_unpin_map(obj);
+ 		i915_gem_object_put(obj);
++
++		total <<= 1;
+ 	} while (!time_after(jiffies, end));
+ 
+ 	goto err_flush;
+@@ -319,6 +324,7 @@ static int igt_copy_blt_thread(void *arg)
+ 	struct intel_context *ce;
+ 	unsigned int prio;
+ 	IGT_TIMEOUT(end);
++	u64 total;
+ 	int err;
+ 
+ 	ctx = thread->ctx;
+@@ -334,20 +340,19 @@ static int igt_copy_blt_thread(void *arg)
+ 	ce = i915_gem_context_get_engine(ctx, BCS0);
+ 	GEM_BUG_ON(IS_ERR(ce));
+ 
++	total = PAGE_SIZE;
+ 	do {
+-		const u32 max_block_size = S16_MAX * PAGE_SIZE;
++		/* Aim to keep the runtime under reasonable bounds! */
++		const u32 max_phys_size = SZ_64K;
+ 		u32 val = prandom_u32_state(prng);
+-		u64 total = ce->vm->total;
+ 		u32 phys_sz;
+ 		u32 sz;
+ 		u32 *vaddr;
+ 		u32 i;
+ 
+-		if (i915_is_ggtt(ce->vm))
+-			total = div64_u64(total, thread->n_cpus);
+-
+-		sz = min_t(u64, total >> 4, prandom_u32_state(prng));
+-		phys_sz = sz % (max_block_size + 1);
++		total = min(total, ce->vm->total / 2);
++		sz = i915_prandom_u32_max_state(total, prng) + 1;
++		phys_sz = sz % max_phys_size;
+ 
+ 		sz = round_up(sz, PAGE_SIZE);
+ 		phys_sz = round_up(phys_sz, PAGE_SIZE);
+@@ -397,13 +402,16 @@ static int igt_copy_blt_thread(void *arg)
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		i915_gem_object_lock(dst);
+-		err = i915_gem_object_set_to_cpu_domain(dst, false);
+-		i915_gem_object_unlock(dst);
++		err = i915_gem_object_wait(dst, 0, MAX_SCHEDULE_TIMEOUT);
+ 		if (err)
+ 			goto err_unpin;
+ 
+-		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); ++i) {
++		for (i = 0; i < huge_gem_object_phys_size(dst) / sizeof(u32); i += 17) {
++			if (!(dst->cache_coherent & I915_BO_CACHE_COHERENT_FOR_READ)) {
++				clflush(&vaddr[i]);
++				mb();
++			}
++
+ 			if (vaddr[i] != val) {
+ 				pr_err("vaddr[%u]=%x, expected=%x\n", i,
+ 				       vaddr[i], val);
+@@ -416,6 +424,8 @@ static int igt_copy_blt_thread(void *arg)
+ 
+ 		i915_gem_object_put(src);
+ 		i915_gem_object_put(dst);
++
++		total <<= 1;
+ 	} while (!time_after(jiffies, end));
+ 
+ 	goto err_flush;
+-- 
+2.25.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16456 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_close_race@basic-process:
-    - fi-byt-j1900:       [PASS][1] -> [FAIL][2] ([i915#694])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_close_race@basic-process.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-byt-j1900/igt@gem_close_race@basic-process.html
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [PASS][3] -> [INCOMPLETE][4] ([i915#45])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-byt-n2820:       [PASS][7] -> [DMESG-FAIL][8] ([i915#1052])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([fdo#111407])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-bsw-nick:        [INCOMPLETE][11] ([i915#392]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-bsw-nick/igt@i915_selftest@live_blt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-bsw-nick/igt@i915_selftest@live_blt.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [DMESG-WARN][13] ([i915#44]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [FAIL][15] ([i915#694]) -> [TIMEOUT][16] ([fdo#112271] / [i915#1084])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7876/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (41 -> 42)
-------------------------------
-
-  Additional (5): fi-snb-2520m fi-gdg-551 fi-skl-6600u fi-skl-6700k2 fi-snb-2600 
-  Missing    (4): fi-byt-squawks fi-byt-clapper fi-bdw-samus fi-elk-e7500 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7876 -> Patchwork_16456
-
-  CI-20190529: 20190529
-  CI_DRM_7876: 6ac39d9964f464065511d439afcf4da065ff96db @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5421: 40946e61f9c47e23fdf1fff8090fadee8a4d7d3b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16456: 80a289275f3f25d097e4e44bec8bbdcfc13682ad @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-80a289275f3f drm/hdcp: optimizing the srm handling
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16456/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
