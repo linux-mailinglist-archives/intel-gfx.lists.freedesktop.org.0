@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E70154F1F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 23:54:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 955D7154F57
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 00:27:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9476F413;
-	Thu,  6 Feb 2020 22:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91A2B6FB74;
+	Thu,  6 Feb 2020 23:27:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B3F56E43B;
- Thu,  6 Feb 2020 22:54:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0F9956E48F;
+ Thu,  6 Feb 2020 23:27:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 443CDA0093;
- Thu,  6 Feb 2020 22:54:05 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A698DA0096;
+ Thu,  6 Feb 2020 23:27:02 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 06 Feb 2020 22:54:05 -0000
-Message-ID: <158102964524.15034.9655790053760946976@emeril.freedesktop.org>
+To: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
+Date: Thu, 06 Feb 2020 23:27:02 -0000
+Message-ID: <158103162265.15034.18374879473506990703@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/gt=3A_Prevent_queuing_reti?=
- =?utf-8?q?re_workers_on_the_virtual_engine?=
+References: <20200205152248.32419-1-Jerry.Zuo@amd.com>
+In-Reply-To: <20200205152248.32419-1-Jerry.Zuo@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?=3A_Add_support_for_DP_1=2E4_Compliance_edid_corruption_test_?=
+ =?utf-8?b?KHJldjUp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915/gt: Prevent queuing retire workers on the virtual engine
-URL   : https://patchwork.freedesktop.org/series/73116/
+Series: drm: Add support for DP 1.4 Compliance edid corruption test (rev5)
+URL   : https://patchwork.freedesktop.org/series/70530/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7880 -> Patchwork_16470
+CI Bug Log - changes from CI_DRM_7880 -> Patchwork_16471
 ====================================================
 
 Summary
@@ -64,96 +64,117 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/index.html
 
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_16470 that come from known issues:
+  Here are the changes found in Patchwork_16471 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-    - fi-byt-n2820:       [PASS][3] -> [INCOMPLETE][4] ([i915#45])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [FAIL][2] ([i915#694])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][3] -> [FAIL][4] ([i915#178])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
 
   * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#770])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-hsw-4770/igt@i915_selftest@live_blt.html
+    - fi-bsw-n3050:       [PASS][5] -> [INCOMPLETE][6] ([i915#392])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-bsw-n3050/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-bsw-n3050/igt@i915_selftest@live_blt.html
 
   * igt@i915_selftest@live_execlists:
     - fi-icl-y:           [PASS][7] -> [DMESG-FAIL][8] ([fdo#108569])
    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-icl-y/igt@i915_selftest@live_execlists.html
 
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][9] -> [FAIL][10] ([i915#217] / [i915#976])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-j1900:       [PASS][9] -> [DMESG-FAIL][10] ([i915#722])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-byt-j1900/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [PASS][11] -> [DMESG-FAIL][12] ([i915#1052])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-guc:         [PASS][13] -> [INCOMPLETE][14] ([CI#80] / [fdo#106070] / [i915#424])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-icl-u2:          [PASS][15] -> [FAIL][16] ([fdo#109635] / [i915#217])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
 
   
 #### Possible fixes ####
 
-  * igt@i915_selftest@live_active:
-    - fi-whl-u:           [DMESG-FAIL][11] ([i915#666]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-whl-u/igt@i915_selftest@live_active.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-whl-u/igt@i915_selftest@live_active.html
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][17] ([i915#694]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
 
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [DMESG-FAIL][13] ([i915#553] / [i915#725]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-    - fi-ivb-3770:        [DMESG-FAIL][15] ([i915#725]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/fi-ivb-3770/igt@i915_selftest@live_blt.html
+  * igt@i915_selftest@live_active:
+    - fi-whl-u:           [DMESG-FAIL][19] ([i915#666]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-whl-u/igt@i915_selftest@live_active.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-whl-u/igt@i915_selftest@live_active.html
 
   
+#### Warnings ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-j1900:       [FAIL][21] ([i915#694]) -> [TIMEOUT][22] ([fdo#112271] / [i915#1084])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7880/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/fi-byt-j1900/igt@gem_exec_parallel@fds.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
   [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
   [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
   [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#770]: https://gitlab.freedesktop.org/drm/intel/issues/770
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
 
 
 Participating hosts (44 -> 45)
 ------------------------------
 
-  Additional (8): fi-bdw-5557u fi-hsw-peppy fi-ilk-650 fi-kbl-7500u fi-gdg-551 fi-skl-lmem fi-blb-e6850 fi-kbl-r 
-  Missing    (7): fi-ehl-1 fi-tgl-dsi fi-byt-squawks fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+  Additional (7): fi-bdw-5557u fi-hsw-peppy fi-ilk-650 fi-kbl-7500u fi-skl-lmem fi-blb-e6850 fi-kbl-r 
+  Missing    (6): fi-tgl-dsi fi-byt-squawks fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7880 -> Patchwork_16470
+  * Linux: CI_DRM_7880 -> Patchwork_16471
 
   CI-20190529: 20190529
   CI_DRM_7880: 9f35354710b3db58d16acf74d9ef7bb43b31ac7a @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5423: 02ef996e76b3bae1c62d6a1298462aba0b7ac51a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16470: f8a0d318c6d8ea2a0e0d3fdbaa3591f76712f8b3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_16471: 3f2c5add650b09219d03df0e69477470c5cbb368 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-f8a0d318c6d8 drm/i915/gem: Don't leak non-persistent requests on changing engines
-9cbb3d697335 drm/i915/gt: Protect execlists_hold/unhold from new waiters
-2824c4d40d2b drm/i915/gt: Protect defer_request() from new waiters
-26ef32e64fba drm/i915/gt: Prevent queuing retire workers on the virtual engine
+3f2c5add650b drm: Add support for DP 1.4 Compliance edid corruption test
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16470/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16471/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
