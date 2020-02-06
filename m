@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA431549DD
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:00:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9324F1549E9
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:03:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50A276FAB5;
-	Thu,  6 Feb 2020 17:00:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1426FAB9;
+	Thu,  6 Feb 2020 17:03:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E54B66FAB5
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:00:18 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 842226FAB9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:03:43 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 09:00:18 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 09:03:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="236035065"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga006.jf.intel.com with ESMTP; 06 Feb 2020 09:00:16 -0800
-Date: Thu, 6 Feb 2020 22:30:27 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200206170026.GA26821@intel.com>
-References: <20200206150442.32353-1-anshuman.gupta@intel.com>
- <20200206150442.32353-2-anshuman.gupta@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="232103564"
+Received: from ksoltys-mobl1.ger.corp.intel.com (HELO
+ mwahaha-bdw.ger.corp.intel.com) ([10.252.12.227])
+ by orsmga003.jf.intel.com with ESMTP; 06 Feb 2020 09:03:41 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 17:03:40 +0000
+Message-Id: <20200206170340.102613-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200206150442.32353-2-anshuman.gupta@intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Fix 1B-06 HDCP2.2 Comp
- test
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: drop igt_ppgtt_exhaust_huge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,95 +41,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-06 at 20:34:41 +0530, Anshuman Gupta wrote:
-> HDCP Repeater initializes seq_num_V to 0 at the beginning of
-> hdcp Session i.e. after AKE_init received.
-> 
-> HDCP 2.2 Comp specs 1B-06 test verifies that whether DUT
-> considers failures of authentication if the repeater provides a
-> non-zero value in seq_num_V in the first,
-> RepeaterAuth_Send_ReceiverID_List message after first AKE_Init.
-> Fixing this broken test.
-Instead of "Fixing the broken test" could we say, we mandate the first
-seq_num_v to be zero? in fact i would keep this as commit subject also. 
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +++
->  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 +++++++++++++
->  2 files changed, 16 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 7ae0bc8b80d1..2ae540e986ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -360,6 +360,9 @@ struct intel_hdcp {
->  	/* HDCP2.2 Encryption status */
->  	bool hdcp2_encrypted;
->  
-> +	/* Flag indicate if it is a first ReceiverID_List msg after AKE_Init */
-> +	bool first_recvid_msg;
-This extra flag is not needed, see below comment
-> +
->  	/*
->  	 * Content Stream Type defined by content owner. TYPE0(0x0) content can
->  	 * flow in the link protected by HDCP2.2 or HDCP1.4, where as TYPE1(0x1)
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 4d1a33d13105..3e24a6df503a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1251,6 +1251,8 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
->  	size_t size;
->  	int ret;
->  
-> +	hdcp->first_recvid_msg = true;
-> +
->  	/* Init for seq_num */
->  	hdcp->seq_num_v = 0;
->  	hdcp->seq_num_m = 0;
-> @@ -1462,6 +1464,16 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  	seq_num_v =
->  		drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
->  
-> +	/*
-> +	 * HDCP 2.2 Spec HDMI PAGE 19, DP PAGE 20
-> +	 * HDCP 2.2 Comp 1B-06 test requires to disable encryption if there is
-> +	 * non zero seq_num_V from recevier.
-IMHO In commit message this kind of reasoning make sense, but here this is
-not needed. As every line in the file will be as per the spec so we dont
-need to call them out.
-> +	 */
-> +	if (hdcp->first_recvid_msg && seq_num_v) {
-if (!hdcp->seq_num_v && seq_num_v) {
+We already have tests that exhaustively exercise the most interesting
+page-size combinations, along with tests that offer randomisation, and
+so we should already be testing objects(local, system) with a varying
+mix of page-sizes, which leaves igt_ppgtt_exhaust_huge providing not
+much in terms of extra coverage.
 
-IMO This is all we need it.
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ .../gpu/drm/i915/gem/selftests/huge_pages.c   | 102 ------------------
+ 1 file changed, 102 deletions(-)
 
--Ram
-> +		drm_dbg_kms(&dev_priv->drm, "Non zero Seq_num_v at beginning of HDCP Session\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	if (seq_num_v < hdcp->seq_num_v) {
->  		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
->  		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
-> @@ -1484,6 +1496,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  		return ret;
->  
->  	hdcp->seq_num_v = seq_num_v;
-> +	hdcp->first_recvid_msg = false;
->  	ret = shim->write_2_2_msg(intel_dig_port, &msgs.rep_ack,
->  				  sizeof(msgs.rep_ack));
->  	if (ret < 0)
-> -- 
-> 2.24.0
-> 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 9311250d7d6f..2d0fd50c5312 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1208,107 +1208,6 @@ static int igt_write_huge(struct i915_gem_context *ctx,
+ 	return err;
+ }
+ 
+-static int igt_ppgtt_exhaust_huge(void *arg)
+-{
+-	struct i915_gem_context *ctx = arg;
+-	struct drm_i915_private *i915 = ctx->i915;
+-	unsigned long supported = INTEL_INFO(i915)->page_sizes;
+-	static unsigned int pages[ARRAY_SIZE(page_sizes)];
+-	struct drm_i915_gem_object *obj;
+-	unsigned int size_mask;
+-	unsigned int page_mask;
+-	int n, i;
+-	int err = -ENODEV;
+-
+-	if (supported == I915_GTT_PAGE_SIZE_4K)
+-		return 0;
+-
+-	/*
+-	 * Sanity check creating objects with a varying mix of page sizes --
+-	 * ensuring that our writes lands in the right place.
+-	 */
+-
+-	n = 0;
+-	for_each_set_bit(i, &supported, ilog2(I915_GTT_MAX_PAGE_SIZE) + 1)
+-		pages[n++] = BIT(i);
+-
+-	for (size_mask = 2; size_mask < BIT(n); size_mask++) {
+-		unsigned int size = 0;
+-
+-		for (i = 0; i < n; i++) {
+-			if (size_mask & BIT(i))
+-				size |= pages[i];
+-		}
+-
+-		/*
+-		 * For our page mask we want to enumerate all the page-size
+-		 * combinations which will fit into our chosen object size.
+-		 */
+-		for (page_mask = 2; page_mask <= size_mask; page_mask++) {
+-			unsigned int page_sizes = 0;
+-
+-			for (i = 0; i < n; i++) {
+-				if (page_mask & BIT(i))
+-					page_sizes |= pages[i];
+-			}
+-
+-			/*
+-			 * Ensure that we can actually fill the given object
+-			 * with our chosen page mask.
+-			 */
+-			if (!IS_ALIGNED(size, BIT(__ffs(page_sizes))))
+-				continue;
+-
+-			obj = huge_pages_object(i915, size, page_sizes);
+-			if (IS_ERR(obj)) {
+-				err = PTR_ERR(obj);
+-				goto out_device;
+-			}
+-
+-			err = i915_gem_object_pin_pages(obj);
+-			if (err) {
+-				i915_gem_object_put(obj);
+-
+-				if (err == -ENOMEM) {
+-					pr_info("unable to get pages, size=%u, pages=%u\n",
+-						size, page_sizes);
+-					err = 0;
+-					break;
+-				}
+-
+-				pr_err("pin_pages failed, size=%u, pages=%u\n",
+-				       size_mask, page_mask);
+-
+-				goto out_device;
+-			}
+-
+-			/* Force the page-size for the gtt insertion */
+-			obj->mm.page_sizes.sg = page_sizes;
+-
+-			err = igt_write_huge(ctx, obj);
+-			if (err) {
+-				pr_err("exhaust write-huge failed with size=%u\n",
+-				       size);
+-				goto out_unpin;
+-			}
+-
+-			i915_gem_object_unpin_pages(obj);
+-			__i915_gem_object_put_pages(obj);
+-			i915_gem_object_put(obj);
+-		}
+-	}
+-
+-	goto out_device;
+-
+-out_unpin:
+-	i915_gem_object_unpin_pages(obj);
+-	i915_gem_object_put(obj);
+-out_device:
+-	mkwrite_device_info(i915)->page_sizes = supported;
+-
+-	return err;
+-}
+-
+ typedef struct drm_i915_gem_object *
+ (*igt_create_fn)(struct drm_i915_private *i915, u32 size, u32 flags);
+ 
+@@ -1900,7 +1799,6 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_shrink_thp),
+ 		SUBTEST(igt_ppgtt_pin_update),
+ 		SUBTEST(igt_tmpfs_fallback),
+-		SUBTEST(igt_ppgtt_exhaust_huge),
+ 		SUBTEST(igt_ppgtt_smoke_huge),
+ 		SUBTEST(igt_ppgtt_sanity_check),
+ 	};
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
