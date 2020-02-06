@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15893154260
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 11:52:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62C45154269
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 11:55:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B966E4B6;
-	Thu,  6 Feb 2020 10:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DA666EA2B;
+	Thu,  6 Feb 2020 10:55:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A19E86E4B6;
- Thu,  6 Feb 2020 10:52:25 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD82A6EA1E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 10:55:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 02:52:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="220408552"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by orsmga007.jf.intel.com with ESMTP; 06 Feb 2020 02:52:22 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: dri-devel <dri-devel@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Thu,  6 Feb 2020 16:22:31 +0530
-Message-Id: <20200206105231.24813-1-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 02:55:33 -0800
+X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="224970413"
+Received: from aklett-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.199])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 02:55:30 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Souza\, Jose" <jose.souza@intel.com>,
+ "zwisler\@google.com" <zwisler@google.com>
+In-Reply-To: <617e83f393794778d5a4a0549b4369942e4814a7.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200106152128.195171-1-jose.souza@intel.com>
+ <20200205230101.GA152052@google.com>
+ <617e83f393794778d5a4a0549b4369942e4814a7.camel@intel.com>
+Date: Thu, 06 Feb 2020 12:55:37 +0200
+Message-ID: <87pnesnfx2.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/hdcp: optimizing the srm handling
+Subject: Re: [Intel-gfx] [v3] drm/i915/display: Force the state compute
+ phase once to enable PSR
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,351 +47,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Paul <seanpaul@chromium.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "s.zharkoff@gmail.com" <s.zharkoff@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we are not using the sysfs infrastructure anymore, link to it is
-removed. And global srm data and mutex to protect it are removed,
-with required handling at revocation check function.
-
-v2:
-  srm_data is dropped and few more comments are addressed.
-v3:
-  ptr passing around is fixed with functional testing.
-
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Suggested-by: Sean Paul <seanpaul@chromium.org>
----
- drivers/gpu/drm/drm_hdcp.c     | 158 ++++++++++++---------------------
- drivers/gpu/drm/drm_internal.h |   4 -
- drivers/gpu/drm/drm_sysfs.c    |   2 -
- include/drm/drm_hdcp.h         |   4 +-
- 4 files changed, 61 insertions(+), 107 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
-index 9191633a3c43..10b735aafa64 100644
---- a/drivers/gpu/drm/drm_hdcp.c
-+++ b/drivers/gpu/drm/drm_hdcp.c
-@@ -23,14 +23,6 @@
- 
- #include "drm_internal.h"
- 
--static struct hdcp_srm {
--	u32 revoked_ksv_cnt;
--	u8 *revoked_ksv_list;
--
--	/* Mutex to protect above struct member */
--	struct mutex mutex;
--} *srm_data;
--
- static inline void drm_hdcp_print_ksv(const u8 *ksv)
- {
- 	DRM_DEBUG("\t%#02x, %#02x, %#02x, %#02x, %#02x\n",
-@@ -60,11 +52,11 @@ static u32 drm_hdcp_get_revoked_ksv_count(const u8 *buf, u32 vrls_length)
- 	return ksv_count;
- }
- 
--static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 *revoked_ksv_list,
-+static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 **revoked_ksv_list,
- 				     u32 vrls_length)
- {
--	u32 parsed_bytes = 0, ksv_count = 0;
- 	u32 vrl_ksv_cnt, vrl_ksv_sz, vrl_idx = 0;
-+	u32 parsed_bytes = 0, ksv_count = 0;
- 
- 	do {
- 		vrl_ksv_cnt = *buf;
-@@ -74,10 +66,10 @@ static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 *revoked_ksv_list,
- 
- 		DRM_DEBUG("vrl: %d, Revoked KSVs: %d\n", vrl_idx++,
- 			  vrl_ksv_cnt);
--		memcpy(revoked_ksv_list, buf, vrl_ksv_sz);
-+		memcpy((*revoked_ksv_list) + (ksv_count * DRM_HDCP_KSV_LEN),
-+		       buf, vrl_ksv_sz);
- 
- 		ksv_count += vrl_ksv_cnt;
--		revoked_ksv_list += vrl_ksv_sz;
- 		buf += vrl_ksv_sz;
- 
- 		parsed_bytes += (vrl_ksv_sz + 1);
-@@ -91,7 +83,8 @@ static inline u32 get_vrl_length(const u8 *buf)
- 	return drm_hdcp_be24_to_cpu(buf);
- }
- 
--static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
-+static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count,
-+				    u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
- {
- 	struct hdcp_srm_header *header;
- 	u32 vrl_length, ksv_count;
-@@ -131,29 +124,28 @@ static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
- 	ksv_count = drm_hdcp_get_revoked_ksv_count(buf, vrl_length);
- 	if (!ksv_count) {
- 		DRM_DEBUG("Revoked KSV count is 0\n");
--		return count;
-+		return 0;
- 	}
- 
--	kfree(srm_data->revoked_ksv_list);
--	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
--					     GFP_KERNEL);
--	if (!srm_data->revoked_ksv_list) {
-+	*revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
-+	if (!*revoked_ksv_list) {
- 		DRM_ERROR("Out of Memory\n");
- 		return -ENOMEM;
- 	}
- 
--	if (drm_hdcp_get_revoked_ksvs(buf, srm_data->revoked_ksv_list,
-+	if (drm_hdcp_get_revoked_ksvs(buf, revoked_ksv_list,
- 				      vrl_length) != ksv_count) {
--		srm_data->revoked_ksv_cnt = 0;
--		kfree(srm_data->revoked_ksv_list);
-+		*revoked_ksv_cnt = 0;
-+		kfree(*revoked_ksv_list);
- 		return -EINVAL;
- 	}
- 
--	srm_data->revoked_ksv_cnt = ksv_count;
--	return count;
-+	*revoked_ksv_cnt = ksv_count;
-+	return 0;
- }
- 
--static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
-+static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count,
-+				    u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
- {
- 	struct hdcp_srm_header *header;
- 	u32 vrl_length, ksv_count, ksv_sz;
-@@ -195,13 +187,11 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
- 	ksv_count = (*buf << 2) | DRM_HDCP_2_KSV_COUNT_2_LSBITS(*(buf + 1));
- 	if (!ksv_count) {
- 		DRM_DEBUG("Revoked KSV count is 0\n");
--		return count;
-+		return 0;
- 	}
- 
--	kfree(srm_data->revoked_ksv_list);
--	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
--					     GFP_KERNEL);
--	if (!srm_data->revoked_ksv_list) {
-+	*revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
-+	if (!*revoked_ksv_list) {
- 		DRM_ERROR("Out of Memory\n");
- 		return -ENOMEM;
- 	}
-@@ -210,10 +200,10 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
- 	buf += DRM_HDCP_2_NO_OF_DEV_PLUS_RESERVED_SZ;
- 
- 	DRM_DEBUG("Revoked KSVs: %d\n", ksv_count);
--	memcpy(srm_data->revoked_ksv_list, buf, ksv_sz);
-+	memcpy(*revoked_ksv_list, buf, ksv_sz);
- 
--	srm_data->revoked_ksv_cnt = ksv_count;
--	return count;
-+	*revoked_ksv_cnt = ksv_count;
-+	return 0;
- }
- 
- static inline bool is_srm_version_hdcp1(const u8 *buf)
-@@ -226,22 +216,27 @@ static inline bool is_srm_version_hdcp2(const u8 *buf)
- 	return *buf == (u8)(DRM_HDCP_2_SRM_ID << 4 | DRM_HDCP_2_INDICATOR);
- }
- 
--static void drm_hdcp_srm_update(const u8 *buf, size_t count)
-+static int drm_hdcp_srm_update(const u8 *buf, size_t count,
-+			       u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
- {
- 	if (count < sizeof(struct hdcp_srm_header))
--		return;
-+		return -EINVAL;
- 
- 	if (is_srm_version_hdcp1(buf))
--		drm_hdcp_parse_hdcp1_srm(buf, count);
-+		return drm_hdcp_parse_hdcp1_srm(buf, count, revoked_ksv_list,
-+						revoked_ksv_cnt);
- 	else if (is_srm_version_hdcp2(buf))
--		drm_hdcp_parse_hdcp2_srm(buf, count);
-+		return drm_hdcp_parse_hdcp2_srm(buf, count, revoked_ksv_list,
-+						revoked_ksv_cnt);
-+	else
-+		return -EINVAL;
- }
- 
--static void drm_hdcp_request_srm(struct drm_device *drm_dev)
-+static int drm_hdcp_request_srm(struct drm_device *drm_dev,
-+				u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
- {
- 	char fw_name[36] = "display_hdcp_srm.bin";
- 	const struct firmware *fw;
--
- 	int ret;
- 
- 	ret = request_firmware_direct(&fw, (const char *)fw_name,
-@@ -250,10 +245,12 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
- 		goto exit;
- 
- 	if (fw->size && fw->data)
--		drm_hdcp_srm_update(fw->data, fw->size);
-+		ret = drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
-+					  revoked_ksv_cnt);
- 
- exit:
- 	release_firmware(fw);
-+	return ret;
- }
- 
- /**
-@@ -279,71 +276,34 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
-  * https://www.digital-cp.com/sites/default/files/specifications/HDCP%20on%20HDMI%20Specification%20Rev2_2_Final1.pdf
-  *
-  * Returns:
-- * TRUE on any of the KSV is revoked, else FALSE.
-+ * Count of the revoked KSVs or -ve error number incase of the failure.
-  */
--bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
--				 u32 ksv_count)
-+int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs_in,
-+				u32 ksv_count)
- {
--	u32 rev_ksv_cnt, cnt, i, j;
--	u8 *rev_ksv_list;
--
--	if (!srm_data)
--		return false;
--
--	mutex_lock(&srm_data->mutex);
--	drm_hdcp_request_srm(drm_dev);
--
--	rev_ksv_cnt = srm_data->revoked_ksv_cnt;
--	rev_ksv_list = srm_data->revoked_ksv_list;
--
--	/* If the Revoked ksv list is empty */
--	if (!rev_ksv_cnt || !rev_ksv_list) {
--		mutex_unlock(&srm_data->mutex);
--		return false;
--	}
--
--	for  (cnt = 0; cnt < ksv_count; cnt++) {
--		rev_ksv_list = srm_data->revoked_ksv_list;
--		for (i = 0; i < rev_ksv_cnt; i++) {
--			for (j = 0; j < DRM_HDCP_KSV_LEN; j++)
--				if (ksvs[j] != rev_ksv_list[j]) {
--					break;
--				} else if (j == (DRM_HDCP_KSV_LEN - 1)) {
--					DRM_DEBUG("Revoked KSV is ");
--					drm_hdcp_print_ksv(ksvs);
--					mutex_unlock(&srm_data->mutex);
--					return true;
--				}
--			/* Move the offset to next KSV in the revoked list */
--			rev_ksv_list += DRM_HDCP_KSV_LEN;
--		}
--
--		/* Iterate to next ksv_offset */
--		ksvs += DRM_HDCP_KSV_LEN;
--	}
--	mutex_unlock(&srm_data->mutex);
--	return false;
-+	u32 revoked_ksv_cnt = 0, i, j;
-+	u8 *revoked_ksv_list = NULL;
-+	int ret = 0;
-+
-+	ret = drm_hdcp_request_srm(drm_dev, &revoked_ksv_list,
-+				   &revoked_ksv_cnt);
-+
-+	/* revoked_ksv_cnt will be zero when above function failed */
-+	for (i = 0; i < revoked_ksv_cnt; i++)
-+		for  (j = 0; j < ksv_count; j++)
-+			if (!memcmp(&ksvs_in[j * DRM_HDCP_KSV_LEN],
-+			    &revoked_ksv_list[i * DRM_HDCP_KSV_LEN],
-+			    DRM_HDCP_KSV_LEN)) {
-+				DRM_DEBUG("Revoked KSV is ");
-+				drm_hdcp_print_ksv(&ksvs_in[j * DRM_HDCP_KSV_LEN]);
-+				ret++;
-+			}
-+
-+	kfree(revoked_ksv_list);
-+	return ret;
- }
- EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
- 
--int drm_setup_hdcp_srm(struct class *drm_class)
--{
--	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
--	if (!srm_data)
--		return -ENOMEM;
--	mutex_init(&srm_data->mutex);
--
--	return 0;
--}
--
--void drm_teardown_hdcp_srm(struct class *drm_class)
--{
--	if (srm_data) {
--		kfree(srm_data->revoked_ksv_list);
--		kfree(srm_data);
--	}
--}
--
- static struct drm_prop_enum_list drm_cp_enum_list[] = {
- 	{ DRM_MODE_CONTENT_PROTECTION_UNDESIRED, "Undesired" },
- 	{ DRM_MODE_CONTENT_PROTECTION_DESIRED, "Desired" },
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 6937bf923f05..a34c7f8373fa 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -235,7 +235,3 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
- void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
- 				const struct drm_framebuffer *fb);
- int drm_framebuffer_debugfs_init(struct drm_minor *minor);
--
--/* drm_hdcp.c */
--int drm_setup_hdcp_srm(struct class *drm_class);
--void drm_teardown_hdcp_srm(struct class *drm_class);
-diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-index dd2bc85f43cc..2e83c3d72af9 100644
---- a/drivers/gpu/drm/drm_sysfs.c
-+++ b/drivers/gpu/drm/drm_sysfs.c
-@@ -85,7 +85,6 @@ int drm_sysfs_init(void)
- 	}
- 
- 	drm_class->devnode = drm_devnode;
--	drm_setup_hdcp_srm(drm_class);
- 	return 0;
- }
- 
-@@ -98,7 +97,6 @@ void drm_sysfs_destroy(void)
- {
- 	if (IS_ERR_OR_NULL(drm_class))
- 		return;
--	drm_teardown_hdcp_srm(drm_class);
- 	class_remove_file(drm_class, &class_attr_version.attr);
- 	class_destroy(drm_class);
- 	drm_class = NULL;
-diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-index 06a11202a097..d512089b873f 100644
---- a/include/drm/drm_hdcp.h
-+++ b/include/drm/drm_hdcp.h
-@@ -288,8 +288,8 @@ struct hdcp_srm_header {
- struct drm_device;
- struct drm_connector;
- 
--bool drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
--				 u8 *ksvs, u32 ksv_count);
-+int drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
-+				u8 *ksvs, u32 ksv_count);
- int drm_connector_attach_content_protection_property(
- 		struct drm_connector *connector, bool hdcp_content_type);
- void drm_hdcp_update_content_protection(struct drm_connector *connector,
--- 
-2.20.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAwNiBGZWIgMjAyMCwgIlNvdXphLCBKb3NlIiA8am9zZS5zb3V6YUBpbnRlbC5jb20+
+IHdyb3RlOgo+IEhpIFJvc3MKPgo+IEknbSB1bmFibGUgdG8gcmVwcm9kdWNlIHRoaXMgaXNzdWUs
+IGNvdWxkIHlvdSBzaGFyZSB0aGUgY29tcGxldGUgZG1lc2c/CgpQbGVhc2UgZmlsZSBhIGJ1ZyBh
+dCBbMV0gYW5kIGF0dGFjaCB0aGUgZG1lc2cgdGhlcmUuCgpCUiwKSmFuaS4KCgpbMV0gaHR0cHM6
+Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvbmV3CgoKPgo+IE9uIFdl
+ZCwgMjAyMC0wMi0wNSBhdCAxNjowMSAtMDcwMCwgUm9zcyBad2lzbGVyIHdyb3RlOgo+PiBPbiBN
+b24sIEphbiAwNiwgMjAyMCBhdCAwNzoyMToyOEFNIC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNv
+dXphCj4+IHdyb3RlOgo+PiA+IFJlY2VudCBpbXByb3ZlbWVudHMgaW4gdGhlIHN0YXRlIHRyYWNr
+aW5nIGluIGk5MTUgY2F1c2VkIFBTUiB0byBub3QKPj4gPiBiZQo+PiA+IGVuYWJsZWQgd2hlbiBy
+ZXVzaW5nIGZpcm13YXJlL0JJT1MgbW9kZXNldCwgdGhpcyBpcyBkdWUgdG8gYWxsCj4+ID4gaW5p
+dGlhbAo+PiA+IGNvbW1pdHMgcmV0dXJuaW5nIGVhbGllciBpbiBpbnRlbF9hdG9taWNfY2hlY2so
+KSBhcyBuZWVkc19tb2Rlc2V0KCkKPj4gPiBpcyBhbHdheXMgZmFsc2UuCj4+ID4gCj4+ID4gVG8g
+Zml4IHRoYXQgaGVyZSBmb3JjaW5nIHRoZSBzdGF0ZSBjb21wdXRlIHBoYXNlIGluIENSVEMgdGhh
+dCBpcwo+PiA+IGRyaXZpbmcgdGhlIGVEUCB0aGF0IHN1cHBvcnRzIFBTUiBvbmNlLiBFbmFibGUg
+b3IgZGlzYWJsZSBQU1IgZG8KPj4gPiBub3QKPj4gPiByZXF1aXJlIGEgZnVsbG1vZGVzZXQsIHNv
+IHVzZXIgd2lsbCBzdGlsbCBleHBlcmllbmNlIGdsaXRjaCBmcmVlCj4+ID4gYm9vdAo+PiA+IHBy
+b2Nlc3MgcGx1cyB0aGUgcG93ZXIgc2F2aW5ncyB0aGF0IFBTUiBicmluZ3MuCj4+ID4gCj4+ID4g
+SXQgd2FzIHRyaWVkIHRvIHNldCBtb2RlX2NoYW5nZWQgaW4gaW50ZWxfaW5pdGlhbF9jb21taXQo
+KSBidXQgYXQKPj4gPiB0aGlzIHBvaW50IHRoZSBjb25uZWN0b3JzIGFyZSBub3QgcmVnaXN0ZXJl
+ZCBjYXVzaW5nIGEgY3Jhc2ggd2hlbgo+PiA+IGNvbXB1dGluZyBlbmNvZGVyIHN0YXRlLgo+PiA+
+IAo+PiA+IHYyOgo+PiA+IC0gcmVtb3ZlZCBmdW5jdGlvbiByZXR1cm4KPj4gPiAtIGNoYW5nZSBh
+cmd1bWVudHMgdG8gbWF0Y2ggaW50ZWxfaGRjcF9hdG9taWNfY2hlY2sKPj4gPiAKPj4gPiB2MzoK
+Pj4gPiAtIHJlcGxhY2VkIGRybSBpbmNsdWRlcyBpbiBpbnRlbF9wc3IuaCBieSBmb3J3YXJkIGRl
+Y2xhcmF0aW9uKEphbmkpCj4+ID4gCj4+ID4gQnVnemlsbGE6IGh0dHBzOi8vYnVncy5mcmVlZGVz
+a3RvcC5vcmcvc2hvd19idWcuY2dpP2lkPTExMjI1Mwo+PiA+IFJlcG9ydGVkLWJ5OiA8cy56aGFy
+a29mZkBnbWFpbC5jb20+Cj4+ID4gQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVu
+QGludGVsLmNvbT4KPj4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4K
+Pj4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
+dGVsLmNvbT4KPj4gPiBSZXZpZXdlZC1ieTogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5t
+dW5AaW50ZWwuY29tPgo+PiA+IC0tLQo+PiAKPj4gV2l0aCB0aGUgY3VycmVudCBsaW51eC9tYXN0
+ZXI6Cj4+IAo+PiA2OTkyY2EwZGQwMTdlIE1lcmdlIGJyYW5jaCAncGFyaXNjLTUuNi0xJyBvZgo+
+PiBnaXQ6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvZGVsbGVyL3Bh
+cmlzYy1saW51eAo+PiAKPj4gbXkgc3lzdGVtIGZhaWxzIHRvIGJvb3QsIGFuZCBJIGJpc2VjdGVk
+IHRoZSBmYWlsdXJlIHRvIHRoaXMKPj4gY29tbWl0LiAgIEhlcmUgYXJlCj4+IHRoZSByZWxldmFu
+dCBtZXNzYWdlcyBmcm9tIGRtZXNnLCBwYXNzZWQgdGhyb3VnaCBrYXNhbl9zeW1ib2xpemUucHk6
+Cj4+IAo+PiBpOTE1IDAwMDA6MDA6MDIuMDogdmdhYXJiOiBkZWFjdGl2YXRlIHZnYSBjb25zb2xl
+Cj4+IFtkcm1dIFN1cHBvcnRzIHZibGFuayB0aW1lc3RhbXAgY2FjaGluZyBSZXYgMiAoMjEuMTAu
+MjAxMykuCj4+IFtkcm1dIERyaXZlciBzdXBwb3J0cyBwcmVjaXNlIHZibGFuayB0aW1lc3RhbXAg
+cXVlcnkuCj4+IHJlc291cmNlIHNhbml0eSBjaGVjazogcmVxdWVzdGluZyBbbWVtIDB4MDAwYzAw
+MDAtMHgwMDBkZmZmZl0sIHdoaWNoCj4+IHNwYW5zIG1vcmUgdGhhbiBQQ0kgQnVzIDAwMDA6MDAg
+W21lbSAweDAwMGMwMDAwLTB4MDAwYzNmZmYKPj4gd2luZG93XQo+PiBjYWxsZXIgcGNpX21hcF9y
+b20rMHg2YS8weDE3ZCBtYXBwaW5nIG11bHRpcGxlIEJBUnMKPj4gaTkxNSAwMDAwOjAwOjAyLjA6
+IEludmFsaWQgUENJIFJPTSBkYXRhIHNpZ25hdHVyZTogZXhwZWN0aW5nCj4+IDB4NTI0OTQzNTAs
+IGdvdCAweGU5MzdhYTU1Cj4+IFtkcm1dIEZhaWxlZCB0byBmaW5kIFZCSU9TIHRhYmxlcyAoVkJU
+KQo+PiBpOTE1IDAwMDA6MDA6MDIuMDogdmdhYXJiOiBjaGFuZ2VkIFZHQSBkZWNvZGVzOgo+PiBv
+bGRkZWNvZGVzPWlvK21lbSxkZWNvZGVzPWlvK21lbTpvd25zPWlvK21lbQo+PiAtLS0tLS0tLS0t
+LS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KPj4gV0FSTklORzogQ1BVOiAwIFBJRDogMSBhdAo+
+PiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jOjI5Nls8ICAgICAgICBub25lICAgICAgICA+
+XQo+PiBkcm1fYXRvbWljX2dldF9jcnRjX3N0YXRlKzB4ZjgvMHgxMTAgZHJpdmVycy9ncHUvZHJt
+L2RybV9hdG9taWMuYzozMDQKPj4gTW9kdWxlcyBsaW5rZWQgaW46Cj4+IENQVTogMCBQSUQ6IDEg
+Q29tbTogc3dhcHBlci8wIE5vdCB0YWludGVkIDUuNS4wLXJjMS0wMDU3My0KPj4gZzYwYzZhMTRi
+NDg5YmEgIzMxCj4+IEhhcmR3YXJlIG5hbWU6IEdPT0dMRSBTYW11cywgQklPUyAgMDUvMTQvMjAx
+OQo+PiBSSVA6IDAwMTA6ZHJtX2F0b21pY19nZXRfY3J0Y19zdGF0ZSsweGY4LzB4MTEwCj4+IENv
+ZGU6IDg5IDJjIDExIDQ4IDg5IDk4IGYwIDAxIDAwIDAwIDQ4IDhiIDRkIDIwIDhiIDU1IDYwIGU4
+IDVjIGFhIDAwCj4+IDAwIDQ4IDhiIDA0IDI0IDQ4IDgzIGM0IDA4IDViIDVkIDQxIDVjIGMzIDQ4
+IDk4IGU5IDRlIGZmIGZmCj4+ICBmZiA8MGY+IDBiIGU5IDI4IGZmIGZmIGZmIDQ4IGM3IGMwIGY0
+IGZmIGZmIGZmIGU5IDNiIGZmIGZmIGZmIDBmIDFmCj4+IDQ0Cj4+IFJTUDogMDAwMDpmZmZmYWI0
+YjgwMDE3OTcwIEVGTEFHUzogMDAwMTAyNDYKPj4gUkFYOiAwMDAwMDAwMDAwMDAwMDAwIFJCWDog
+ZmZmZjkzYzFhNjljYTAwMCBSQ1g6IGZmZmY5M2MxYWI2OWI4YzAKPj4gUkRYOiAwMDAwMDAwMDAw
+MDAwMDJkIFJTSTogMDAwMDAwMDAwMDAwMDAwMCBSREk6IGZmZmY5M2MxYTY5Y2EwMDAKPj4gUkJQ
+OiBmZmZmOTNjMWE2OTQ0MDAwIFIwODogMDAwMDAwMDAwMDAwMDA3OSBSMDk6IDAwMDAwMDAwMDAw
+MDAwNzkKPj4gUjEwOiAwMDAwMDAwMDAwMDAwMDJkIFIxMTogMDAwMDAwMDAwMDAwMDAwNSBSMTI6
+IDAwMDAwMDAwMDAwMDAwMDAKPj4gUjEzOiBmZmZmOTNjMWE2OTQ0MDAwIFIxNDogMDAwMDAwMDAw
+MDAwMDAwNSBSMTU6IGZmZmY5M2MxYTY5NzljMDAKPj4gRlM6ICAwMDAwMDAwMDAwMDAwMDAwKDAw
+MDApIEdTOmZmZmY5M2MxYWVjMDAwMDAoMDAwMCkKPj4ga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+
+PiBDUzogIDAwMTAgRFM6IDAwMDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCj4+IENS
+MjogZmZmZjkzYzBmNTIwMTAwMCBDUjM6IDAwMDAwMDAzYjNlMGMwMDEgQ1I0OiAwMDAwMDAwMDAw
+MzYwNmYwCj4+IENhbGwgVHJhY2U6Cj4+IFs8ICAgICAgICBub25lICAgICAgICA+XQo+PiBkcm1f
+YXRvbWljX2FkZF9hZmZlY3RlZF9jb25uZWN0b3JzKzB4MmUvMHgxMTAKPj4gZHJpdmVycy9ncHUv
+ZHJtL2RybV9hdG9taWMuYzoxMDQ2Cj4+IFs8ICAgICAgICBub25lICAgICAgICA+XSBkcm1fYXRv
+bWljX2hlbHBlcl9jaGVja19tb2Rlc2V0KzB4NGExLzB4YTcwCj4+IGRyaXZlcnMvZ3B1L2RybS9k
+cm1fYXRvbWljX2hlbHBlci5jOjcwMwo+PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gaW50ZWxf
+YXRvbWljX2NoZWNrKzB4OTYvMHgyNTEwCj4+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5jOjE0NjAzCj4+ICA/WzwgICAgIGlubGluZSAgICAgPl0ga21lbWR1cCAu
+L2luY2x1ZGUvbGludXgvc3RyaW5nLmg6NDUzCj4+ICA/WzwgICAgICAgIG5vbmUgICAgICAgID5d
+Cj4+IGludGVsX2RpZ2l0YWxfY29ubmVjdG9yX2R1cGxpY2F0ZV9zdGF0ZSsweDIxLzB4NDAKPj4g
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWMuYzoxNzEKPj4gID9bPCAg
+ICAgaW5saW5lICAgICA+XSBzcGluX3VubG9ja19pcnFyZXN0b3JlCj4+IC4vaW5jbHVkZS9saW51
+eC9zcGlubG9jay5oOjM5Mwo+PiAgP1s8ICAgICAgICBub25lICAgICAgICA+XSBkcm1fY29ubmVj
+dG9yX2xpc3RfaXRlcl9uZXh0KzB4ODgvMHhiMAo+PiBkcml2ZXJzL2dwdS9kcm0vZHJtX2Nvbm5l
+Y3Rvci5jOjY4OQo+PiBbPCAgICAgaW5saW5lICAgICA+XSBzYW5pdGl6ZV93YXRlcm1hcmtzCj4+
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jOjE3MzU5Cj4+IFs8
+ICAgICAgICBub25lICAgICAgICA+XSBpbnRlbF9tb2Rlc2V0X2luaXQrMHgxMGE4LzB4MWQ1MAo+
+PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYzoxNzYwMgo+PiBb
+PCAgICAgaW5saW5lICAgICA+XSBpOTE1X2RyaXZlcl9tb2Rlc2V0X3Byb2JlCj4+IGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmM6MzExCj4+IFs8ICAgICAgICBub25lICAgICAgICA+XSBp
+OTE1X2RyaXZlcl9wcm9iZSsweGE0ZS8weDE0MTAKPj4gZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9kcnYuYzoxNTI4Cj4+ICA/WzwgICAgICAgIG5vbmUgICAgICAgID5dIF9fa2VybmZzX25ld19u
+b2RlKzB4MTU5LzB4MWMwCj4+IGZzL2tlcm5mcy9kaXIuYzo2NjYKPj4gWzwgICAgICAgIG5vbmUg
+ICAgICAgID5dIGk5MTVfcGNpX3Byb2JlKzB4NTQvMHgxMzgKPj4gZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9wY2kuYzo5OTQKPj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGxvY2FsX3BjaV9w
+cm9iZSsweDQyLzB4ODAgZHJpdmVycy9wY2kvcGNpLQo+PiBkcml2ZXIuYzozMDYKPj4gWzwgICAg
+IGlubGluZSAgICAgPl0gcGNpX2NhbGxfcHJvYmUgZHJpdmVycy9wY2kvcGNpLWRyaXZlci5jOjM2
+MQo+PiBbPCAgICAgaW5saW5lICAgICA+XSBfX3BjaV9kZXZpY2VfcHJvYmUgZHJpdmVycy9wY2kv
+cGNpLWRyaXZlci5jOjM4Ngo+PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gcGNpX2RldmljZV9w
+cm9iZSsweDEwNy8weDFhMAo+PiBkcml2ZXJzL3BjaS9wY2ktZHJpdmVyLmM6NDI5Cj4+IFs8ICAg
+ICAgICBub25lICAgICAgICA+XSByZWFsbHlfcHJvYmUrMHgxNDcvMHgzYzAKPj4gZHJpdmVycy9i
+YXNlL2RkLmM6NTQ4Cj4+IFs8ICAgICAgICBub25lICAgICAgICA+XSBkcml2ZXJfcHJvYmVfZGV2
+aWNlKzB4YjYvMHgxMDAKPj4gZHJpdmVycy9iYXNlL2RkLmM6NzIxCj4+IFs8ICAgICAgICBub25l
+ICAgICAgICA+XSBkZXZpY2VfZHJpdmVyX2F0dGFjaCsweDUzLzB4NjAKPj4gZHJpdmVycy9iYXNl
+L2RkLmM6OTk1Cj4+IFs8ICAgICAgICBub25lICAgICAgICA+XSBfX2RyaXZlcl9hdHRhY2grMHg4
+YS8weDE1MAo+PiBkcml2ZXJzL2Jhc2UvZGQuYzoxMDcyCj4+ICA/WzwgICAgICAgIG5vbmUgICAg
+ICAgID5dIGRldmljZV9kcml2ZXJfYXR0YWNoKzB4NjAvMHg2MAo+PiBkcml2ZXJzL2Jhc2UvZGQu
+Yzo5OTUKPj4gID9bPCAgICAgICAgbm9uZSAgICAgICAgPl0gZGV2aWNlX2RyaXZlcl9hdHRhY2gr
+MHg2MC8weDYwCj4+IGRyaXZlcnMvYmFzZS9kZC5jOjk5NQo+PiBbPCAgICAgICAgbm9uZSAgICAg
+ICAgPl0gYnVzX2Zvcl9lYWNoX2RldisweDc4LzB4YzAKPj4gZHJpdmVycy9iYXNlL2J1cy5jOjMw
+NAo+PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gYnVzX2FkZF9kcml2ZXIrMHgxNGQvMHgxZjAK
+Pj4gZHJpdmVycy9iYXNlL2J1cy5jOjYyMQo+PiBbPCAgICAgICAgbm9uZSAgICAgICAgPl0gZHJp
+dmVyX3JlZ2lzdGVyKzB4NmMvMHhjMAo+PiBkcml2ZXJzL2Jhc2UvZHJpdmVyLmM6MTcwCj4+ICA/
+WzwgICAgICAgIG5vbmUgICAgICAgID5dIG1pcGlfZHNpX2J1c19pbml0KzB4MTEvMHgxMQo+PiBk
+cml2ZXJzL2dwdS9kcm0vZHJtX21pcGlfZHNpLmM6MTIwOAo+PiBbPCAgICAgICAgbm9uZSAgICAg
+ICAgPl0gaTkxNV9pbml0KzB4NTgvMHg2Ygo+PiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Bj
+aS5jOjEwNTcKPj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGRvX29uZV9pbml0Y2FsbCsweDQ2
+LzB4MWY0IGluaXQvbWFpbi5jOjkzOAo+PiBbPCAgICAgaW5saW5lICAgICA+XSBkb19pbml0Y2Fs
+bF9sZXZlbCBpbml0L21haW4uYzoxMDA2Cj4+IFs8ICAgICBpbmxpbmUgICAgID5dIGRvX2luaXRj
+YWxscyBpbml0L21haW4uYzoxMDE0Cj4+IFs8ICAgICBpbmxpbmUgICAgID5dIGRvX2Jhc2ljX3Nl
+dHVwIGluaXQvbWFpbi5jOjEwMzEKPj4gWzwgICAgICAgIG5vbmUgICAgICAgID5dIGtlcm5lbF9p
+bml0X2ZyZWVhYmxlKzB4MWE3LzB4MjRlCj4+IGluaXQvbWFpbi5jOjExOTEKPj4gID9bPCAgICAg
+ICAgbm9uZSAgICAgICAgPl0gcmVzdF9pbml0KzB4YWEvMHhhYSBpbml0L21haW4uYzo0NTEKPj4g
+WzwgICAgICAgIG5vbmUgICAgICAgID5dIGtlcm5lbF9pbml0KzB4YS8weDEwNiBpbml0L21haW4u
+YzoxMTA5Cj4+IFs8ICAgICAgICBub25lICAgICAgICA+XSByZXRfZnJvbV9mb3JrKzB4MzUvMHg0
+MAo+PiBhcmNoL3g4Ni9lbnRyeS9lbnRyeV82NC5TOjM1Mgo+PiAtLS1bIGVuZCB0cmFjZSAyNjFk
+Mjg0ZDkxMzIwOTg5IF0tLS0KPj4gdHNjOiBSZWZpbmVkIFRTQyBjbG9ja3NvdXJjZSBjYWxpYnJh
+dGlvbjogMjM5NC40NTkgTUh6Cj4+IGNsb2Nrc291cmNlOiB0c2M6IG1hc2s6IDB4ZmZmZmZmZmZm
+ZmZmZmZmZiBtYXhfY3ljbGVzOiAweDIyODNjNTFmODM2LAo+PiBtYXhfaWRsZV9uczogNDQwNzk1
+MjE4NjgzIG5zCj4+IGNsb2Nrc291cmNlOiBTd2l0Y2hlZCB0byBjbG9ja3NvdXJjZSB0c2MKPj4g
+Cj4+IEFmdGVyIHRoaXMgdGhlIHN5c3RlbSBhcHBlYXJzIHRvIHN0b3AgYm9vdGluZywgYW5kIEkg
+Z2V0IG5vIG1vcmUKPj4gc2VyaWFsIG91dHB1dAo+PiBub3IgYW55IGRpc3BsYXkuCgotLSAKSmFu
+aSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
