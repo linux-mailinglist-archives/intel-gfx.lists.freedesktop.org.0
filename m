@@ -1,35 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2587F15499F
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 17:48:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA431549DD
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 18:00:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7EEF6E107;
-	Thu,  6 Feb 2020 16:48:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50A276FAB5;
+	Thu,  6 Feb 2020 17:00:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 053836E107
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 16:48:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20138998-1500050 for multiple; Thu, 06 Feb 2020 16:48:22 +0000
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E54B66FAB5
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 17:00:18 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 09:00:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="236035065"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by orsmga006.jf.intel.com with ESMTP; 06 Feb 2020 09:00:16 -0800
+Date: Thu, 6 Feb 2020 22:30:27 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200206170026.GA26821@intel.com>
+References: <20200206150442.32353-1-anshuman.gupta@intel.com>
+ <20200206150442.32353-2-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <158100623556.7306.572507111354238028@skylake-alporthouse-com>
- <20200206163243.2559830-1-chris@chris-wilson.co.uk>
- <b86a8022-7a6a-43f7-5d4f-3d2766848ae1@linux.intel.com>
-In-Reply-To: <b86a8022-7a6a-43f7-5d4f-3d2766848ae1@linux.intel.com>
-Message-ID: <158100770111.7306.10346359513533895871@skylake-alporthouse-com>
-Date: Thu, 06 Feb 2020 16:48:21 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Prevent queuing retire workers
- on the virtual engine
+Content-Disposition: inline
+In-Reply-To: <20200206150442.32353-2-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/hdcp: Fix 1B-06 HDCP2.2 Comp
+ test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,95 +46,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-06 16:44:34)
+On 2020-02-06 at 20:34:41 +0530, Anshuman Gupta wrote:
+> HDCP Repeater initializes seq_num_V to 0 at the beginning of
+> hdcp Session i.e. after AKE_init received.
 > 
-> On 06/02/2020 16:32, Chris Wilson wrote:
-> > Virtual engines are fleeting. They carry a reference count and may be freed
-> > when their last request is retired. This makes them unsuitable for the
-> > task of housing engine->retire.work so assert that it is not used.
-> > 
-> > Tvrtko tracked down an instance where we did indeed violate this rule.
-> > In virtual_submit_request, we flush a completed request directly with
-> > __i915_request_submit and this causes us to queue that request on the
-> > veng's breadcrumb list and signal it. Leading us down a path where we
-> > should not attach the retire.
-> > 
-> > v2: Always select a physical engine before submitting, and so avoid
-> > using the veng as a signaler.
-> > 
-> > Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_engine.h      |  1 +
-> >   drivers/gpu/drm/i915/gt/intel_gt_requests.c |  3 +++
-> >   drivers/gpu/drm/i915/gt/intel_lrc.c         | 21 ++++++++++++++++++---
-> >   drivers/gpu/drm/i915/i915_request.c         |  2 ++
-> >   4 files changed, 24 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > index b36ec1fddc3d..5b21ca5478c2 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> > @@ -217,6 +217,7 @@ void intel_engine_disarm_breadcrumbs(struct intel_engine_cs *engine);
-> >   static inline void
-> >   intel_engine_signal_breadcrumbs(struct intel_engine_cs *engine)
-> >   {
-> > +     GEM_BUG_ON(!engine->breadcrumbs.irq_work.func);
-> >       irq_work_queue(&engine->breadcrumbs.irq_work);
-> >   }
-> >   
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> > index 7ef1d37970f6..8a5054f21bf8 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> > @@ -99,6 +99,9 @@ static bool add_retire(struct intel_engine_cs *engine,
-> >   void intel_engine_add_retire(struct intel_engine_cs *engine,
-> >                            struct intel_timeline *tl)
-> >   {
-> > +     /* We don't deal well with the engine disappearing beneath us */
-> > +     GEM_BUG_ON(intel_engine_is_virtual(engine));
-> > +
-> >       if (add_retire(engine, tl))
-> >               schedule_work(&engine->retire_work);
-> >   }
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index c196fb90c59f..639b5be56026 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -4883,6 +4883,22 @@ static void virtual_submission_tasklet(unsigned long data)
-> >       local_irq_enable();
-> >   }
-> >   
-> > +static void __ve_request_submit(const struct virtual_engine *ve,
-> > +                             struct i915_request *rq)
-> > +{
-> > +     struct intel_engine_cs *engine = ve->siblings[0]; /* totally random! */
+> HDCP 2.2 Comp specs 1B-06 test verifies that whether DUT
+> considers failures of authentication if the repeater provides a
+> non-zero value in seq_num_V in the first,
+> RepeaterAuth_Send_ReceiverID_List message after first AKE_Init.
+> Fixing this broken test.
+Instead of "Fixing the broken test" could we say, we mandate the first
+seq_num_v to be zero? in fact i would keep this as commit subject also. 
 > 
-> We don't preserve the execution engine in ce->inflight? No.. Will random 
-> engine have any effect? Will proper waiters get signaled?
-
-Ok, it's not totally random ;) it's the engine on which we last executed
-on, so it's a match wrt to the previous breadcrumbs/waiters. It's a good
-choice :)
-
-> > +     /*
-> > +      * Select a real engine to act as our permanent storage
-> > +      * and signaler for the stale request, and prevent
-> > +      * this virtual engine from leaking into the execution state.
-> > +      */
-> > +     spin_lock(&engine->active.lock);
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  3 +++
+>  drivers/gpu/drm/i915/display/intel_hdcp.c          | 13 +++++++++++++
+>  2 files changed, 16 insertions(+)
 > 
-> Nesting phys lock under veng lock will be okay?
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 7ae0bc8b80d1..2ae540e986ba 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -360,6 +360,9 @@ struct intel_hdcp {
+>  	/* HDCP2.2 Encryption status */
+>  	bool hdcp2_encrypted;
+>  
+> +	/* Flag indicate if it is a first ReceiverID_List msg after AKE_Init */
+> +	bool first_recvid_msg;
+This extra flag is not needed, see below comment
+> +
+>  	/*
+>  	 * Content Stream Type defined by content owner. TYPE0(0x0) content can
+>  	 * flow in the link protected by HDCP2.2 or HDCP1.4, where as TYPE1(0x1)
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 4d1a33d13105..3e24a6df503a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1251,6 +1251,8 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
+>  	size_t size;
+>  	int ret;
+>  
+> +	hdcp->first_recvid_msg = true;
+> +
+>  	/* Init for seq_num */
+>  	hdcp->seq_num_v = 0;
+>  	hdcp->seq_num_m = 0;
+> @@ -1462,6 +1464,16 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  	seq_num_v =
+>  		drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
+>  
+> +	/*
+> +	 * HDCP 2.2 Spec HDMI PAGE 19, DP PAGE 20
+> +	 * HDCP 2.2 Comp 1B-06 test requires to disable encryption if there is
+> +	 * non zero seq_num_V from recevier.
+IMHO In commit message this kind of reasoning make sense, but here this is
+not needed. As every line in the file will be as per the spec so we dont
+need to call them out.
+> +	 */
+> +	if (hdcp->first_recvid_msg && seq_num_v) {
+if (!hdcp->seq_num_v && seq_num_v) {
 
-No. Far from it.
--Chris
+IMO This is all we need it.
+
+-Ram
+> +		drm_dbg_kms(&dev_priv->drm, "Non zero Seq_num_v at beginning of HDCP Session\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	if (seq_num_v < hdcp->seq_num_v) {
+>  		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
+>  		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
+> @@ -1484,6 +1496,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  		return ret;
+>  
+>  	hdcp->seq_num_v = seq_num_v;
+> +	hdcp->first_recvid_msg = false;
+>  	ret = shim->write_2_2_msg(intel_dig_port, &msgs.rep_ack,
+>  				  sizeof(msgs.rep_ack));
+>  	if (ret < 0)
+> -- 
+> 2.24.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
