@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A02B3154D97
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 21:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2082B154D99
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 21:57:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF33E6FB53;
-	Thu,  6 Feb 2020 20:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71AC86FB54;
+	Thu,  6 Feb 2020 20:57:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCA96FB53
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 20:57:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78DB16FB54
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 20:57:18 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20141869-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20141870-1500050 
  for multiple; Thu, 06 Feb 2020 20:57:01 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu,  6 Feb 2020 20:56:59 +0000
-Message-Id: <20200206205700.2654161-1-chris@chris-wilson.co.uk>
+Date: Thu,  6 Feb 2020 20:57:00 +0000
+Message-Id: <20200206205700.2654161-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200206205700.2654161-1-chris@chris-wilson.co.uk>
+References: <20200206205700.2654161-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/2] drm/i915/selftests: drop
- igt_ppgtt_exhaust_huge
+Subject: [Intel-gfx] [PATCH 2/2] drm/i915/selftests: add busy selftests for
+ rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,146 +39,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matthew Auld <matthew.auld@intel.com>
+From: Andi Shyti <andi.shyti@intel.com>
 
-We already have tests that exhaustively exercise the most interesting
-page-size combinations, along with tests that offer randomisation, and
-so we should already be testing objects(local, system) with a varying
-mix of page-sizes, which leaves igt_ppgtt_exhaust_huge providing not
-much in terms of extra coverage.
+live_rc6_busy keeps the gpu busy and then goes in idle;
+checks that we don't fall in rc6 when busy and that we do fall
+in rc6 when idling.
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+The test is added as subtest of the bigger live_late_gt_pm
+selftest.
+
+The basic rc6 functionality is tested by checking the reference
+counter within the evaluation interval.
+
+Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- .../gpu/drm/i915/gem/selftests/huge_pages.c   | 102 ------------------
- 1 file changed, 102 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_gt_pm.c |   1 +
+ drivers/gpu/drm/i915/gt/selftest_rc6.c   | 114 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/selftest_rc6.h   |   1 +
+ 3 files changed, 116 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-index 9311250d7d6f..2d0fd50c5312 100644
---- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
-@@ -1208,107 +1208,6 @@ static int igt_write_huge(struct i915_gem_context *ctx,
+diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+index 09ff8e4f88af..40562f5208ea 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
+@@ -51,6 +51,7 @@ static int live_gt_resume(void *arg)
+ int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
++		SUBTEST(live_rc6_busy),
+ 		SUBTEST(live_rc6_manual),
+ 		SUBTEST(live_gt_resume),
+ 	};
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 5f7e2dcf5686..d06d7b2c8386 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -11,6 +11,7 @@
+ #include "selftest_rc6.h"
+ 
+ #include "selftests/i915_random.h"
++#include "selftests/igt_spinner.h"
+ 
+ int live_rc6_manual(void *arg)
+ {
+@@ -202,3 +203,116 @@ int live_rc6_ctx_wa(void *arg)
+ 	kfree(engines);
  	return err;
  }
++
++static s32 measure_rc6(struct intel_uncore *uncore, u32 interval)
++{
++	u32 ec1, ec2;
++
++	ec1 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
++
++	/*
++	 * It's not important to precisely wait the interval time.
++	 * I'll wait at least twice the time in order to be sure
++	 * that the counting happens in the reference counter.
++	 */
++	msleep(interval);
++
++	ec2 = intel_uncore_read(uncore, GEN6_GT_GFX_RC6);
++
++	pr_info("interval:%x [%dms], threshold:%x, rc6:%x\n",
++		intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL),
++		interval,
++		intel_uncore_read(uncore, GEN6_RC6_THRESHOLD),
++		ec2 - ec1);
++
++	return ec2 - ec1;
++}
++
++static bool is_rc6_active(struct intel_rc6 *rc6)
++{
++	struct intel_uncore *uncore = rc6_to_uncore(rc6);
++	intel_wakeref_t wakeref;
++	u32 interval;
++	bool result;
++
++	wakeref = intel_runtime_pm_get(uncore->rpm);
++
++	interval = intel_uncore_read(uncore, GEN6_RC_EVALUATION_INTERVAL);
++
++	/*
++	 * the interval is stored in steps of 1.28us
++	 */
++	interval = div_u64(mul_u32_u32(interval, 128),
++			   100 * 1000); /* => milliseconds */
++
++	result = measure_rc6(uncore, 2 * interval) > 0;
++
++	intel_runtime_pm_put(uncore->rpm, wakeref);
++
++	return result;
++}
++
++int live_rc6_busy(void *arg)
++{
++	struct intel_gt *gt = arg;
++	struct intel_rc6 *rc6 = &gt->rc6;
++	struct intel_engine_cs *engine;
++	struct igt_spinner spin;
++	intel_wakeref_t wakeref;
++	enum intel_engine_id id;
++	int err;
++
++	if (!rc6->enabled)
++		return 0;
++
++	err = igt_spinner_init(&spin, gt);
++	if (err)
++		return err;
++
++	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
++	for_each_engine(engine, gt, id) {
++		struct i915_request *rq;
++
++		rq = igt_spinner_create_request(&spin,
++						engine->kernel_context,
++						MI_NOOP);
++		if (IS_ERR(rq)) {
++			err = PTR_ERR(rq);
++			break;
++		}
++
++		i915_request_get(rq);
++		i915_request_add(rq);
++
++		igt_wait_for_spinner(&spin, rq); /* that's enough waiting! */
++
++		/* gpu is busy, we shouldn't be in rc6 */
++		if (is_rc6_active(rc6)) {
++			pr_err("%s: never busy enough for having a nap\n",
++			       engine->name);
++			err = -EINVAL;
++		}
++
++		igt_spinner_end(&spin);
++		if (i915_request_wait(rq, 0, HZ / 5) < 0)
++			err = -ETIME;
++		i915_request_put(rq);
++		if (err)
++			break;
++
++		intel_gt_wait_for_idle(gt, HZ / 5);
++		intel_gt_pm_wait_for_idle(gt);
++
++		/* gpu is idle, we should be in rc6 */
++		if (!is_rc6_active(rc6)) {
++			pr_err("%s is idle but doesn't go in rc6\n",
++			       engine->name);
++			err = -EINVAL;
++			break;
++		}
++	}
++	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
++
++	igt_spinner_fini(&spin);
++	return err;
++}
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.h b/drivers/gpu/drm/i915/gt/selftest_rc6.h
+index 762fd442d7b2..75e05a8a1fda 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.h
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.h
+@@ -7,6 +7,7 @@
+ #ifndef SELFTEST_RC6_H
+ #define SELFTEST_RC6_H
  
--static int igt_ppgtt_exhaust_huge(void *arg)
--{
--	struct i915_gem_context *ctx = arg;
--	struct drm_i915_private *i915 = ctx->i915;
--	unsigned long supported = INTEL_INFO(i915)->page_sizes;
--	static unsigned int pages[ARRAY_SIZE(page_sizes)];
--	struct drm_i915_gem_object *obj;
--	unsigned int size_mask;
--	unsigned int page_mask;
--	int n, i;
--	int err = -ENODEV;
--
--	if (supported == I915_GTT_PAGE_SIZE_4K)
--		return 0;
--
--	/*
--	 * Sanity check creating objects with a varying mix of page sizes --
--	 * ensuring that our writes lands in the right place.
--	 */
--
--	n = 0;
--	for_each_set_bit(i, &supported, ilog2(I915_GTT_MAX_PAGE_SIZE) + 1)
--		pages[n++] = BIT(i);
--
--	for (size_mask = 2; size_mask < BIT(n); size_mask++) {
--		unsigned int size = 0;
--
--		for (i = 0; i < n; i++) {
--			if (size_mask & BIT(i))
--				size |= pages[i];
--		}
--
--		/*
--		 * For our page mask we want to enumerate all the page-size
--		 * combinations which will fit into our chosen object size.
--		 */
--		for (page_mask = 2; page_mask <= size_mask; page_mask++) {
--			unsigned int page_sizes = 0;
--
--			for (i = 0; i < n; i++) {
--				if (page_mask & BIT(i))
--					page_sizes |= pages[i];
--			}
--
--			/*
--			 * Ensure that we can actually fill the given object
--			 * with our chosen page mask.
--			 */
--			if (!IS_ALIGNED(size, BIT(__ffs(page_sizes))))
--				continue;
--
--			obj = huge_pages_object(i915, size, page_sizes);
--			if (IS_ERR(obj)) {
--				err = PTR_ERR(obj);
--				goto out_device;
--			}
--
--			err = i915_gem_object_pin_pages(obj);
--			if (err) {
--				i915_gem_object_put(obj);
--
--				if (err == -ENOMEM) {
--					pr_info("unable to get pages, size=%u, pages=%u\n",
--						size, page_sizes);
--					err = 0;
--					break;
--				}
--
--				pr_err("pin_pages failed, size=%u, pages=%u\n",
--				       size_mask, page_mask);
--
--				goto out_device;
--			}
--
--			/* Force the page-size for the gtt insertion */
--			obj->mm.page_sizes.sg = page_sizes;
--
--			err = igt_write_huge(ctx, obj);
--			if (err) {
--				pr_err("exhaust write-huge failed with size=%u\n",
--				       size);
--				goto out_unpin;
--			}
--
--			i915_gem_object_unpin_pages(obj);
--			__i915_gem_object_put_pages(obj);
--			i915_gem_object_put(obj);
--		}
--	}
--
--	goto out_device;
--
--out_unpin:
--	i915_gem_object_unpin_pages(obj);
--	i915_gem_object_put(obj);
--out_device:
--	mkwrite_device_info(i915)->page_sizes = supported;
--
--	return err;
--}
--
- typedef struct drm_i915_gem_object *
- (*igt_create_fn)(struct drm_i915_private *i915, u32 size, u32 flags);
++int live_rc6_busy(void *arg);
+ int live_rc6_ctx_wa(void *arg);
+ int live_rc6_manual(void *arg);
  
-@@ -1900,7 +1799,6 @@ int i915_gem_huge_page_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(igt_shrink_thp),
- 		SUBTEST(igt_ppgtt_pin_update),
- 		SUBTEST(igt_tmpfs_fallback),
--		SUBTEST(igt_ppgtt_exhaust_huge),
- 		SUBTEST(igt_ppgtt_smoke_huge),
- 		SUBTEST(igt_ppgtt_sanity_check),
- 	};
 -- 
 2.25.0
 
