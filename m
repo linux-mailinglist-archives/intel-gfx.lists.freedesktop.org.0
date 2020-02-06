@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E2521545F8
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 15:22:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330C71545BD
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 15:07:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6081E6FA69;
-	Thu,  6 Feb 2020 14:22:13 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 481 seconds by postgrey-1.36 at gabe;
- Thu, 06 Feb 2020 14:22:12 UTC
-Received: from 10.mo69.mail-out.ovh.net (10.mo69.mail-out.ovh.net
- [46.105.73.241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68CC16FA6B
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 14:22:12 +0000 (UTC)
-Received: from player718.ha.ovh.net (unknown [10.108.35.74])
- by mo69.mail-out.ovh.net (Postfix) with ESMTP id 49C5382ED9
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:04:33 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player718.ha.ovh.net (Postfix) with ESMTPSA id 9DAAFEFC8B10;
- Thu,  6 Feb 2020 14:04:27 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Thu,  6 Feb 2020 16:04:02 +0200
-Message-Id: <20200206140402.11790-4-andi@etezian.org>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200206140402.11790-1-andi@etezian.org>
-References: <20200206140402.11790-1-andi@etezian.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1253D89EF7;
+	Thu,  6 Feb 2020 14:07:49 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 827D96EA8D
+ for <Intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 14:07:44 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 06:07:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="404492933"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.21.249])
+ by orsmga005.jf.intel.com with ESMTP; 06 Feb 2020 06:07:42 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Thu,  6 Feb 2020 14:07:25 +0000
+Message-Id: <20200206140725.10973-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 2085448102970704477
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrheefgdehkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedukedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: [Intel-gfx] [PATCH v6 3/3] drm/i915/selftests: add basic on/off
- selftests for rc6
+Subject: [Intel-gfx] [PATCH] drm/i915/debugfs: Remove i915_energy_uJ
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,96 +46,74 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-live_rc6_basic simply checks if rc6 works when it's enabled
-or stops when it's disabled.
+Last IGT user (intel_gpu_overlay) stopped using it in October 2019 so we
+are good to remove the file.
 
-The test is added as subtest of the bigger live_late_gt_pm
-selftest.
-
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_gt_pm.c |  1 +
- drivers/gpu/drm/i915/gt/selftest_rc6.c   | 37 ++++++++++++++++++++++++
- drivers/gpu/drm/i915/gt/selftest_rc6.h   |  1 +
- 3 files changed, 39 insertions(+)
+ drivers/gpu/drm/i915/i915_debugfs.c | 24 ------------------------
+ drivers/gpu/drm/i915/i915_reg.h     |  2 --
+ 2 files changed, 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-index d39a21a047de..2bbdc9235b45 100644
---- a/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_gt_pm.c
-@@ -51,6 +51,7 @@ static int live_gt_resume(void *arg)
- int intel_gt_pm_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-+		SUBTEST(live_rc6_basic),
- 		SUBTEST(live_rc6_busy),
- 		SUBTEST(live_rc6_manual),
- 		SUBTEST(live_rc6_threshold),
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 7b5d476a8ad1..9e84b860b70a 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -250,6 +250,43 @@ static bool is_rc6_active(struct intel_rc6 *rc6)
- 	return !!measure_rc6(uncore, 2 * interval);
- }
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index c313c90405cb..3cae18d1d20c 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -2188,29 +2188,6 @@ DEFINE_SIMPLE_ATTRIBUTE(i915_edp_psr_debug_fops,
+ 			i915_edp_psr_debug_get, i915_edp_psr_debug_set,
+ 			"%llu\n");
  
-+int live_rc6_basic(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_rc6 *rc6 = &gt->rc6;
-+	intel_wakeref_t wakeref;
-+	int i, err = 0;
-+
-+	if (!rc6->supported)
-+		return 0;
-+
-+	wakeref = intel_runtime_pm_get(gt->uncore->rpm);
-+
-+	/*
-+	 * the two loops test rc6 both in case it's enabled
-+	 * and in the case it's disabled. It restores the prvious
-+	 * status
-+	 */
-+	for (i = 0; i < 2; i++) {
-+		if (rc6->enabled ^ is_rc6_active(rc6)) {
-+			err = -EINVAL;
-+
-+			/* restore before leaving */
-+			if (!i)
-+				goto exit;
-+		}
-+
-+		if (rc6->enabled)
-+			intel_rc6_disable(&gt->rc6);
-+		else
-+			intel_rc6_enable(&gt->rc6);
-+	}
-+
-+exit:
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
-+	return err;
-+}
-+
- int live_rc6_threshold(void *arg)
+-static int i915_energy_uJ(struct seq_file *m, void *data)
+-{
+-	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+-	unsigned long long power;
+-	intel_wakeref_t wakeref;
+-	u32 units;
+-
+-	if (INTEL_GEN(dev_priv) < 6)
+-		return -ENODEV;
+-
+-	if (rdmsrl_safe(MSR_RAPL_POWER_UNIT, &power))
+-		return -ENODEV;
+-
+-	units = (power & 0x1f00) >> 8;
+-	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
+-		power = I915_READ(MCH_SECP_NRG_STTS);
+-
+-	power = (1000000 * power) >> units; /* convert to uJ */
+-	seq_printf(m, "%llu", power);
+-
+-	return 0;
+-}
+-
+ static int i915_runtime_pm_status(struct seq_file *m, void *unused)
  {
- 	struct intel_gt *gt = arg;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.h b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-index 312894423dc2..38183f3558f3 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.h
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.h
-@@ -7,6 +7,7 @@
- #ifndef SELFTEST_RC6_H
- #define SELFTEST_RC6_H
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+@@ -4258,7 +4235,6 @@ static const struct drm_info_list i915_debugfs_list[] = {
+ 	{"i915_swizzle_info", i915_swizzle_info, 0},
+ 	{"i915_llc", i915_llc, 0},
+ 	{"i915_edp_psr_status", i915_edp_psr_status, 0},
+-	{"i915_energy_uJ", i915_energy_uJ, 0},
+ 	{"i915_runtime_pm_status", i915_runtime_pm_status, 0},
+ 	{"i915_power_domain_info", i915_power_domain_info, 0},
+ 	{"i915_dmc_info", i915_dmc_info, 0},
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index dc206723f25e..c1f5c21b56e1 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3748,8 +3748,6 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+ #define   MCH_SSKPD_WM0_MASK		0x3f
+ #define   MCH_SSKPD_WM0_VAL		0xc
  
-+int live_rc6_basic(void *arg);
- int live_rc6_busy(void *arg);
- int live_rc6_ctx_wa(void *arg);
- int live_rc6_manual(void *arg);
+-#define MCH_SECP_NRG_STTS		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x592c)
+-
+ /* Clocking configuration register */
+ #define CLKCFG			_MMIO(MCHBAR_MIRROR_BASE + 0xc00)
+ #define CLKCFG_FSB_400					(5 << 0)	/* hrawclk 100 */
 -- 
-2.25.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
