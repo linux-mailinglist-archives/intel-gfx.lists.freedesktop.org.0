@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29405154541
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 14:46:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 641AA154568
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 14:49:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 880D46FA41;
-	Thu,  6 Feb 2020 13:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E19F6FA52;
+	Thu,  6 Feb 2020 13:49:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E65696FA41
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 13:46:16 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B1AE6FA52
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 13:49:40 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2020 05:46:16 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 05:49:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="220445656"
+X-IronPort-AV: E=Sophos;i="5.70,409,1574150400"; d="scan'208";a="226153447"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 06 Feb 2020 05:46:13 -0800
+ by fmsmga008.fm.intel.com with SMTP; 06 Feb 2020 05:49:36 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Feb 2020 15:46:13 +0200
-Date: Thu, 6 Feb 2020 15:46:13 +0200
+ Thu, 06 Feb 2020 15:49:36 +0200
+Date: Thu, 6 Feb 2020 15:49:36 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200206134613.GR13686@intel.com>
+Message-ID: <20200206134936.GS13686@intel.com>
 References: <20200206020851.337897-1-jose.souza@intel.com>
+ <20200206020851.337897-2-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200206020851.337897-1-jose.souza@intel.com>
+In-Reply-To: <20200206020851.337897-2-jose.souza@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/3] drm/i915/display/fbc: Make fences a
- nice-to-have for GEN11+
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915/display: Do not write in
+ removed FBC fence registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,206 +49,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
  Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 05, 2020 at 06:08:49PM -0800, Jos=E9 Roberto de Souza wrote:
-> dGFX have local memory so it do not have aperture and do not support
-> CPU fences but even for iGFX it have a small number of fences.
+On Wed, Feb 05, 2020 at 06:08:50PM -0800, Jos=E9 Roberto de Souza wrote:
+> From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 > =
 
-> As replacement for fences to track frontbuffer modifications by CPU
-> we have a software tracking that is already in used by FBC and PSR.
-> PSR don't support fences so it shows that this tracking is reliable.
+> Platforms without fences don't have FBC host tracking and those
+> registers are marked as reserved in those platforms.
 > =
 
-> So lets make fences a nice-to-have to activate FBC for GEN11+, this
-> will allow us to enable FBC for dGFXs and iGFXs even when there is no
-> available fence.
+> v2: checking num_fences to write to FBC fence registers (Ville)
 > =
 
-> We do not set fences to rotated planes but FBC only have restrictions
-> against 16bpp, so adding it here.
-> =
-
-> Also adding a new check for the tiling format, fences are only set
-> to X and Y tiled planes but again FBC don't have any restrictions
-> against tiling so adding linear as supported as well, other formats
-> should be added after tested but IGT only supports drawing in thse
-> 3 formats.
-> =
-
-> intel_fbc_hw_tracking_covers_screen() maybe can also have the same
-> treatment as fences but BSpec is not clear if the size limitation is
-> for hardware tracking or general use of FBC and I don't have a 5K
-> display to test it, so keeping as is for safety.
-> =
-
-> v2:
-> - Added tiling and pixel format rotation checks
-> - Changed the GEN version not requiring fences to 11 from 9, DDX
-> needs some changes but it don't have support for GEN11+
-
-It's already borked, so shouldn't actually make any difference.
-So IMO just make it gen9+.
-
-> =
-
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
 > Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
 > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 42 ++++++++++++++++++++----
->  drivers/gpu/drm/i915/i915_drv.h          |  1 +
->  2 files changed, 36 insertions(+), 7 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
 915/display/intel_fbc.c
-> index ddf8d3bb7a7d..3a9e41e93ebf 100644
+> index 3a9e41e93ebf..fa8fca1a6b7c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -585,7 +585,7 @@ static bool stride_is_valid(struct drm_i915_private *=
-dev_priv,
->  }
->  =
-
->  static bool pixel_format_is_valid(struct drm_i915_private *dev_priv,
-> -				  u32 pixel_format)
-> +				  u32 pixel_format, unsigned int rotation)
->  {
->  	switch (pixel_format) {
->  	case DRM_FORMAT_XRGB8888:
-> @@ -599,6 +599,9 @@ static bool pixel_format_is_valid(struct drm_i915_pri=
-vate *dev_priv,
->  		/* WaFbcOnly1to1Ratio:ctg */
->  		if (IS_G4X(dev_priv))
->  			return false;
-> +		if ((rotation & (DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270)) &&
-
-There is a function for that. Also wrong place for the check.
-
-> +		    INTEL_GEN(dev_priv) >=3D 9)
-
-Pointless gen check. Older hw doesn't do 90/270 degree rotation anyway.
-
-I *think* it should actually be possible to use FBC with 90/270 degree
-rotation. The only complication was the host tracking but if we don't
-think we need it anwyay then rotation also should work. But that is
-material for a followup.
-
-> +			return false;
->  		return true;
->  	default:
->  		return false;
-> @@ -639,6 +642,18 @@ static bool intel_fbc_hw_tracking_covers_screen(stru=
-ct intel_crtc *crtc)
->  	return effective_w <=3D max_w && effective_h <=3D max_h;
->  }
->  =
-
-> +static bool tiling_is_valid(uint64_t modifier)
-> +{
-> +	switch (modifier) {
-> +	case DRM_FORMAT_MOD_LINEAR:
-> +	case I915_FORMAT_MOD_X_TILED:
-> +	case I915_FORMAT_MOD_Y_TILED:
-> +		return true;
-
-There should be a gen check here.
-
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  static void intel_fbc_update_state_cache(struct intel_crtc *crtc,
->  					 const struct intel_crtc_state *crtc_state,
->  					 const struct intel_plane_state *plane_state)
-> @@ -672,6 +687,7 @@ static void intel_fbc_update_state_cache(struct intel=
-_crtc *crtc,
->  =
-
->  	cache->fb.format =3D fb->format;
->  	cache->fb.stride =3D fb->pitches[0];
-> +	cache->fb.modifier =3D fb->modifier;
->  =
-
->  	drm_WARN_ON(&dev_priv->drm, plane_state->flags & PLANE_HAS_FENCE &&
->  		    !plane_state->vma->fence);
-> @@ -720,23 +736,34 @@ static bool intel_fbc_can_activate(struct intel_crt=
-c *crtc)
->  		return false;
+> @@ -320,7 +320,7 @@ static void gen7_fbc_activate(struct drm_i915_private=
+ *dev_priv)
+>  			       SNB_CPU_FENCE_ENABLE | params->fence_id);
+>  		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET,
+>  			       params->crtc.fence_y_offset);
+> -	} else {
+> +	} else if (dev_priv->ggtt.num_fences) {
+>  		intel_de_write(dev_priv, SNB_DPFC_CTL_SA, 0);
+>  		intel_de_write(dev_priv, DPFC_CPU_FENCE_OFFSET, 0);
 >  	}
->  =
-
-> -	/* The use of a CPU fence is mandatory in order to detect writes
-> -	 * by the CPU to the scanout and trigger updates to the FBC.
-> +	/* The use of a CPU fence is one of two ways to detect writes by the
-> +	 * CPU to the scanout and trigger updates to the FBC.
-> +	 *
-> +	 * The other method is by software tracking(see
-> +	 * intel_fbc_invalidate/flush()), it will manually notify FBC and nuke
-> +	 * the current compressed buffer and recompress it.
->  	 *
->  	 * Note that is possible for a tiled surface to be unmappable (and
-> -	 * so have no fence associated with it) due to aperture constaints
-> +	 * so have no fence associated with it) due to aperture constraints
->  	 * at the time of pinning.
->  	 *
->  	 * FIXME with 90/270 degree rotation we should use the fence on
->  	 * the normal GTT view (the rotated view doesn't even have a
->  	 * fence). Would need changes to the FBC fence Y offset as well.
-> -	 * For now this will effecively disable FBC with 90/270 degree
-> +	 * For now this will effectively disable FBC with 90/270 degree
->  	 * rotation.
->  	 */
-> -	if (cache->fence_id < 0) {
-> +	if (INTEL_GEN(dev_priv) < 11 && cache->fence_id < 0) {
->  		fbc->no_fbc_reason =3D "framebuffer not tiled or fenced";
->  		return false;
->  	}
-> +
-> +	/* Only check tiling for platforms that fence is not mandatory */
-> +	if (INTEL_GEN(dev_priv) >=3D 11 && !tiling_is_valid(cache->fb.modifier)=
-) {
-> +		fbc->no_fbc_reason =3D "tiling unsupported";
-> +		return false;
-> +	}
-> +
->  	if (INTEL_GEN(dev_priv) <=3D 4 && !IS_G4X(dev_priv) &&
->  	    cache->plane.rotation !=3D DRM_MODE_ROTATE_0) {
->  		fbc->no_fbc_reason =3D "rotation unsupported";
-> @@ -748,7 +775,8 @@ static bool intel_fbc_can_activate(struct intel_crtc =
-*crtc)
->  		return false;
->  	}
->  =
-
-> -	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format)) {
-> +	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format,
-> +				   cache->plane.rotation)) {
->  		fbc->no_fbc_reason =3D "pixel format is invalid";
->  		return false;
->  	}
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 3452926d7b77..a481a0454e69 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -413,6 +413,7 @@ struct intel_fbc {
->  		struct {
->  			const struct drm_format_info *format;
->  			unsigned int stride;
-> +			uint64_t modifier;
->  		} fb;
->  		u16 gen9_wa_cfb_stride;
->  		s8 fence_id;
 > -- =
 
 > 2.25.0
