@@ -1,32 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF89E154811
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:29:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B707154826
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 16:33:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BACC6FA87;
-	Thu,  6 Feb 2020 15:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66C406FA89;
+	Thu,  6 Feb 2020 15:33:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC5056FA87
- for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:29:34 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20137971-1500050 for multiple; Thu, 06 Feb 2020 15:29:24 +0000
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFD4A6FA97
+ for <intel-gfx@lists.freedesktop.org>; Thu,  6 Feb 2020 15:33:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2020 07:33:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,410,1574150400"; d="scan'208";a="379093986"
+Received: from irvmail001.ir.intel.com ([163.33.26.43])
+ by orsmga004.jf.intel.com with ESMTP; 06 Feb 2020 07:33:07 -0800
+Received: from mwajdecz-mobl1.ger.corp.intel.com
+ (mwajdecz-mobl1.ger.corp.intel.com [172.28.174.138])
+ by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
+ 016FX6m0026808; Thu, 6 Feb 2020 15:33:06 GMT
+To: intel-gfx@lists.freedesktop.org, "Daniele Ceraolo Spurio"
+ <daniele.ceraolospurio@intel.com>
+References: <20200203232838.14822-1-daniele.ceraolospurio@intel.com>
+ <20200203232838.14822-9-daniele.ceraolospurio@intel.com>
+ <op.0fg6blxwxaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+ <12e52c15-e698-7e7f-2aad-3064004e8463@intel.com>
+Date: Thu, 06 Feb 2020 16:33:06 +0100
 MIME-Version: 1.0
-To: intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
-References: <20200206152325.2521787-1-chris@chris-wilson.co.uk>
-Message-ID: <158100296311.7306.6375353895241979260@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 06 Feb 2020 15:29:23 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Prevent queuing retire workers
- on the virtual engine
+From: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Message-ID: <op.0fkn5gc5xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
+In-Reply-To: <12e52c15-e698-7e7f-2aad-3064004e8463@intel.com>
+User-Agent: Opera Mail/1.0 (Win32)
+Subject: Re: [Intel-gfx] [PATCH v2 08/10] drm/i915/uc: Abort early on
+ uc_init failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,34 +51,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"; DelSp="yes"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Chris Wilson (2020-02-06 15:23:25)
-> Virtual engines are fleeting. They carry a reference count and may be freed
-> when their last request is retired. This makes them unsuitable for the
-> task of housing engine->retire.work so assert that it is not used.
-> 
-> Tvrtko tracked down an instance where we did indeed violate this rule.
-> In virtal_submit_request, we flush a completed request directly with
-> __i915_request_submit and this causes us to queue that request on the
-> veng's breadcrumb list and signal it. Leading us down a path where we
-> should not attach the retire.
-> 
-> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>  with redundant (?) fw cleanups clarified,
+>>  Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>
+> The re-org of the fw_cleanups is done separately in the next patch,  
+> since it isn't as straightforward as just dropping the call. Is that  
+> enough for the r-b on this patch or do you want something more?
 
-Alternatively we could fixup the rq->engine before
-__i915_request_submit. That would stop the spread of
-intel_virtual_engine_get_sibling().
-
-This is likely to be the cleaner fix, so I think I would prefer this and
-then remove the get_sibling().
--Chris
+somehow I missed this "next patch", above r-b stands
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
