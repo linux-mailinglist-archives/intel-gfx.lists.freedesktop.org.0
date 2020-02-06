@@ -1,61 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE41B153FAE
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 09:01:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 975B015406E
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2020 09:38:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 268366F9E2;
-	Thu,  6 Feb 2020 08:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 101916E488;
+	Thu,  6 Feb 2020 08:38:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86BBA6F9E6;
- Thu,  6 Feb 2020 08:01:09 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id t23so5189581wmi.1;
- Thu, 06 Feb 2020 00:01:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=aR7AJa4TpxraXiV/vmD4e1Fv5ZwdaSLdZFP6F1Ug89g=;
- b=vPfw710jv11v5xCBzLTK3/ZPylZloymIH9VHeqyxiIbDNbmW93S1n3BQDGgS7Rqsl+
- VaYhQwLEwZHVANdZHvqePwMY3O8DANqSL8RzWtTjNaHNYFq1LmMflEhvADPdAT9HfR9W
- Iy7H1ca4oeX7HkUDv8Sd/MwQpjXGgtg9Zr3CY3LM/x4IRTmfFLqIYmsenQ87R3/nJGOH
- lgflhnZ6ny51W9l/Xk3cH5qMBDw+4GxL/rAKEaIm55z6LWovA/Get1qEIFBSGExqK4wy
- GE3ubPZptwqgzjdUw809UmVlL3dckbdFJhTVj2MeHPbZxEBbY+X+ff89Hf2mlhBri0Mt
- 74oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=aR7AJa4TpxraXiV/vmD4e1Fv5ZwdaSLdZFP6F1Ug89g=;
- b=PF4t6EzJvDetFL1AYNP72nAd41NwwzoLryRQ0ruQJAcfIG5QI/dwB4uESw/WNmGCtb
- Nd/HLs9qwU1uEgeiLVu2yA9uY/Q0Olm1drkWi/Fb/r62TqR7/wiAr0e1qJ6YuGLJJuP5
- MejXnow/Mwlw41f2WYekMavx85cDy6aXhtoxuuOhGwMaR1skZCST6CsmVLEz9NhcGVgm
- PpFN9ddD8g4hr8iEB/gslpmrFVSnhLGLyN3yL6MqojmZFoB4rim3rm0C35UCuDhEtHoB
- wtzFcROPVkwG+dduonHe4jZSO47uiJ1PzjBf/UpMhn719G39hUHcqt5FxCFgRFUDrOPM
- 2B6g==
-X-Gm-Message-State: APjAAAVVexX5qGsBn6cMZuT4sFR5WmZsyqrimXvM05HpPscbj9ZNBIQW
- CrOCnDw8L5dcXQ3Q/sYrU1w=
-X-Google-Smtp-Source: APXvYqzjHdlXVZEtCdmvAFtMHRBo1SCTuZ1dS2ZWXy5re36dVbPejP27ZkwxyQGeJ+AOdw7yQvqdOA==
-X-Received: by 2002:a7b:c3d1:: with SMTP id t17mr2880770wmj.27.1580976068165; 
- Thu, 06 Feb 2020 00:01:08 -0800 (PST)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id u8sm2635132wmm.15.2020.02.06.00.01.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Feb 2020 00:01:07 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Thu,  6 Feb 2020 11:00:13 +0300
-Message-Id: <20200206080014.13759-13-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200206080014.13759-1-wambui.karugax@gmail.com>
-References: <20200206080014.13759-1-wambui.karugax@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3E8F6E488;
+ Thu,  6 Feb 2020 08:38:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CC9F8A0119;
+ Thu,  6 Feb 2020 08:38:41 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 12/12] drm/i915/dpio_phy: convert to
- drm_device based logging macros.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wambui Karuga" <wambui.karugax@gmail.com>
+Date: Thu, 06 Feb 2020 08:38:41 -0000
+Message-ID: <158097832181.14484.13127530500225248515@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200206080014.13759-1-wambui.karugax@gmail.com>
+In-Reply-To: <20200206080014.13759-1-wambui.karugax@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/display=3A_convert_to_drm=5Fdevice_based_logging_m?=
+ =?utf-8?q?acros=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,188 +39,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Conversion of the printk based logging macros to the struct drm_device
-based logging macros in i915/display/intel_dpio_phy.c.
-This was achieved using the following coccinelle semantic patch that
-matches based on the existence of a drm_i915_private device:
-@@
-identifier fn, T;
-@@
+== Series Details ==
 
-fn(...,struct drm_i915_private *T,...) {
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
+Series: drm/i915/display: convert to drm_device based logging macros.
+URL   : https://patchwork.freedesktop.org/series/73076/
+State : warning
 
-@@
-identifier fn, T;
-@@
+== Summary ==
 
-fn(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-Note that this converts both DRM_DEBUG/DRM_DEBUG_DRIVER to drm_dbg().
-Checkpatch warnings were fixed manually.
-
+$ dim checkpatch origin/drm-tip
+084fb714840f drm/i915/dp: convert to struct drm_device based logging macros.
+00134e74d58c drm/i915/dp_link_training: convert to drm_device based logging macros.
+a15192ef82c4 drm/i915/atomic: conversion to drm_device based logging macros.
+bf10d2305813 drm/i915/color: conversion to drm_device based logging macros.
+ed844d1a4fe8 drm/i915/crt: automatic conversion to drm_device based logging macros.
+25d25fc63ed0 drm/i915/dp_aux_backlight: convert to drm_device based logging macros.
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#14: 
 References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_dpio_phy.c | 28 +++++++++++--------
- 1 file changed, 16 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index 85d6471ac357..399a7edb4568 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -294,7 +294,8 @@ void bxt_ddi_phy_set_signal_level(struct drm_i915_private *dev_priv,
- 		val |= SCALE_DCOMP_METHOD;
- 
- 	if ((val & UNIQUE_TRANGE_EN_METHOD) && !(val & SCALE_DCOMP_METHOD))
--		DRM_ERROR("Disabled scaling while ouniqetrangenmethod was set");
-+		drm_err(&dev_priv->drm,
-+			"Disabled scaling while ouniqetrangenmethod was set");
- 
- 	intel_de_write(dev_priv, BXT_PORT_TX_DW3_GRP(phy, ch), val);
- 
-@@ -320,15 +321,15 @@ bool bxt_ddi_phy_is_enabled(struct drm_i915_private *dev_priv,
- 
- 	if ((intel_de_read(dev_priv, BXT_PORT_CL1CM_DW0(phy)) &
- 	     (PHY_POWER_GOOD | PHY_RESERVED)) != PHY_POWER_GOOD) {
--		DRM_DEBUG_DRIVER("DDI PHY %d powered, but power hasn't settled\n",
--				 phy);
-+		drm_dbg(&dev_priv->drm,
-+			"DDI PHY %d powered, but power hasn't settled\n", phy);
- 
- 		return false;
- 	}
- 
- 	if (!(intel_de_read(dev_priv, BXT_PHY_CTL_FAMILY(phy)) & COMMON_RESET_DIS)) {
--		DRM_DEBUG_DRIVER("DDI PHY %d powered, but still in reset\n",
--				 phy);
-+		drm_dbg(&dev_priv->drm,
-+			"DDI PHY %d powered, but still in reset\n", phy);
- 
- 		return false;
- 	}
-@@ -348,7 +349,8 @@ static void bxt_phy_wait_grc_done(struct drm_i915_private *dev_priv,
- {
- 	if (intel_de_wait_for_set(dev_priv, BXT_PORT_REF_DW3(phy),
- 				  GRC_DONE, 10))
--		DRM_ERROR("timeout waiting for PHY%d GRC\n", phy);
-+		drm_err(&dev_priv->drm, "timeout waiting for PHY%d GRC\n",
-+			phy);
- }
- 
- static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
-@@ -365,13 +367,14 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
- 			dev_priv->bxt_phy_grc = bxt_get_grc(dev_priv, phy);
- 
- 		if (bxt_ddi_phy_verify_state(dev_priv, phy)) {
--			DRM_DEBUG_DRIVER("DDI PHY %d already enabled, "
--					 "won't reprogram it\n", phy);
-+			drm_dbg(&dev_priv->drm, "DDI PHY %d already enabled, "
-+				"won't reprogram it\n", phy);
- 			return;
- 		}
- 
--		DRM_DEBUG_DRIVER("DDI PHY %d enabled with invalid state, "
--				 "force reprogramming it\n", phy);
-+		drm_dbg(&dev_priv->drm,
-+			"DDI PHY %d enabled with invalid state, "
-+			"force reprogramming it\n", phy);
- 	}
- 
- 	val = intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON);
-@@ -391,7 +394,8 @@ static void _bxt_ddi_phy_init(struct drm_i915_private *dev_priv,
- 				       PHY_RESERVED | PHY_POWER_GOOD,
- 				       PHY_POWER_GOOD,
- 				       1))
--		DRM_ERROR("timeout during PHY%d power on\n", phy);
-+		drm_err(&dev_priv->drm, "timeout during PHY%d power on\n",
-+			phy);
- 
- 	/* Program PLL Rcomp code offset */
- 	val = intel_de_read(dev_priv, BXT_PORT_CL1CM_DW9(phy));
-@@ -505,7 +509,7 @@ __phy_reg_verify_state(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 	vaf.fmt = reg_fmt;
- 	vaf.va = &args;
- 
--	DRM_DEBUG_DRIVER("DDI PHY %d reg %pV [%08x] state mismatch: "
-+	drm_dbg(&dev_priv->drm, "DDI PHY %d reg %pV [%08x] state mismatch: "
- 			 "current %08x, expected %08x (mask %08x)\n",
- 			 phy, &vaf, reg.reg, val, (val & ~mask) | expected,
- 			 mask);
--- 
-2.25.0
+total: 0 errors, 1 warnings, 0 checks, 192 lines checked
+d008d40f8b87 drm/i915/dpll_mgr: convert to drm_device based logging macros.
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#14: 
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+
+total: 0 errors, 1 warnings, 0 checks, 566 lines checked
+beaf3a241dec drm/i915/combo_phy: convert to struct drm_device logging macros.
+-:93: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#93: 
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+af180d98a062 drm/i915/dp_mst: convert to drm_device based logging macros.
+0964b01e0885 drm/i915/dsi_vbt: convert to drm_device based logging macros.
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#13: 
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+
+total: 0 errors, 1 warnings, 0 checks, 321 lines checked
+5c740db3c96b drm/i915/hdmi: convert to struct drm_device based logging macros.
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#15: 
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+
+total: 0 errors, 1 warnings, 0 checks, 516 lines checked
+a8d8be1ba250 drm/i915/dpio_phy: convert to drm_device based logging macros.
+-:92: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#92: 
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+
+total: 0 errors, 1 warnings, 0 checks, 72 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
