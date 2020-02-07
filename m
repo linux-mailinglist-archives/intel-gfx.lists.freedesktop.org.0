@@ -1,29 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C151558C6
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 14:51:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FAEA1558E2
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:00:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEDDF6E059;
-	Fri,  7 Feb 2020 13:51:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 513006FCA9;
+	Fri,  7 Feb 2020 13:59:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5F36E059
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 13:51:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20148631-1500050 
- for multiple; Fri, 07 Feb 2020 13:50:49 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Feb 2020 13:50:48 +0000
-Message-Id: <20200207135048.2788199-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92CFB6FCA7;
+ Fri,  7 Feb 2020 13:59:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 05:59:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="312036456"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 07 Feb 2020 05:59:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 07 Feb 2020 15:59:50 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Fri,  7 Feb 2020 15:59:44 +0200
+Message-Id: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix force-probe failure message
+Subject: [Intel-gfx] [PATCH v2 0/6] drm: Try to fix encoder
+ possible_clones/crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,41 +43,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Do not try and deference the i915 private before it has been allocated
-and attached to the drvdata!
-
-Fixes: 7daac72e9a3f ("drm/i915/pci: conversion to drm_device based logging macros.")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Wambui Karuga <wambui.karugax@gmail.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index da337aee632e..24b1f0ce8743 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -963,7 +963,7 @@ static int i915_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	if (intel_info->require_force_probe &&
- 	    !force_probe(pdev->device, i915_modparams.force_probe)) {
--		drm_info(&pdev_to_i915(pdev)->drm,
-+		dev_info(&pdev->dev,
- 			 "Your graphics device %04x is not properly supported by the driver in this\n"
- 			 "kernel version. To force driver probe anyway, use i915.force_probe=%04x\n"
- 			 "module parameter or CONFIG_DRM_I915_FORCE_PROBE=%04x configuration option,\n"
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClJl
+bWFpbmRlciBvZiBteSBwb3NzaWJsZV9jbG9uZXMvY3J0Y3MgY2xlYW51cC4gQWxsIHRoZSBpOTE1
+IGJpdHMgYW5kIGEKZmV3IG90aGVyIGRyaXZlciBiaXRzIGdvdCBtZXJnZWQgYWxyZWFkeS4KClZp
+bGxlIFN5cmrDpGzDpCAoNik6CiAgZHJtOiBJbmNsdWRlIHRoZSBlbmNvZGVyIGl0c2VsZiBpbiBw
+b3NzaWJsZV9jbG9uZXMKICBkcm0vZ21hNTAwOiBTYW5pdGl6ZSBwb3NzaWJsZV9jbG9uZXMKICBk
+cm0vZXh5bm9zOiBVc2UgZHJtX2VuY29kZXJfbWFzaygpCiAgZHJtL2lteDogUmVtb3ZlIHRoZSBi
+b2d1cyBwb3NzaWJsZV9jbG9uZXMgc2V0dXAKICBkcm06IFZhbGlkYXRlIGVuY29kZXItPnBvc3Np
+YmxlX2Nsb25lcwogIGRybTogVmFsaWRhdGUgZW5jb2Rlci0+cG9zc2libGVfY3J0Y3MKCiBkcml2
+ZXJzL2dwdS9kcm0vZHJtX2VuY29kZXIuYyAgICAgICAgICAgfCA2MyArKysrKysrKysrKysrKysr
+KysrKysrKysrCiBkcml2ZXJzL2dwdS9kcm0vZXh5bm9zL2V4eW5vc19kcm1fZHJ2LmMgfCAgNSAr
+LQogZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9mcmFtZWJ1ZmZlci5jICAgIHwgMTYgKysrLS0tLQog
+ZHJpdmVycy9ncHUvZHJtL2dtYTUwMC9tZGZsZF9kc2lfZHBpLmMgIHwgIDQgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9pbXgvaW14LWRybS1jb3JlLmMgICAgICB8ICAyICstCiA1IGZpbGVzIGNoYW5nZWQs
+IDc2IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQoKLS0gCjIuMjQuMQoKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
