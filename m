@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B275155514
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 10:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D03AC155529
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 10:59:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9F4A6FC03;
-	Fri,  7 Feb 2020 09:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA0C6FC0F;
+	Fri,  7 Feb 2020 09:59:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B226E6FC03
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 09:52:31 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 01:52:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,412,1574150400"; d="scan'208";a="236301576"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga006.jf.intel.com with ESMTP; 07 Feb 2020 01:52:29 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D71185C0D64; Fri,  7 Feb 2020 11:51:34 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200207085708.2711257-1-chris@chris-wilson.co.uk>
-References: <20200206204915.2636606-3-chris@chris-wilson.co.uk>
- <20200207085708.2711257-1-chris@chris-wilson.co.uk>
-Date: Fri, 07 Feb 2020 11:51:34 +0200
-Message-ID: <87tv42913t.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A144B6FC0E;
+ Fri,  7 Feb 2020 09:59:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9A39EA00C7;
+ Fri,  7 Feb 2020 09:59:33 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Protect
- execlists_hold/unhold from new waiters
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Feb 2020 09:59:33 -0000
+Message-ID: <158106957362.8752.1795851972858515544@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915/gt=3A_Prevent_queuing_reti?=
+ =?utf-8?q?re_workers_on_the_virtual_engine_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,89 +39,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> As we may add new waiters to a request as it is being run, we need to
-> mark the list iteration as being safe for concurrent addition.
->
-> v2: Mika spotted that we used the same trick for signalers_list, so warn
-> the compiler about the lockless walk there as well.
->
-> Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Series: series starting with [1/4] drm/i915/gt: Prevent queuing retire workers on the virtual engine (rev2)
+URL   : https://patchwork.freedesktop.org/series/73116/
+State : success
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c   | 11 ++++++++---
->  drivers/gpu/drm/i915/i915_scheduler.c |  2 +-
->  2 files changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index b350e01d86d2..ed1e4d883d47 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1620,6 +1620,11 @@ last_active(const struct intel_engine_execlists *execlists)
->  				     &(rq__)->sched.waiters_list, \
->  				     wait_link)
->  
-> +#define for_each_signaler(p__, rq__) \
-> +	list_for_each_entry_lockless(p__, \
-> +				     &(rq__)->sched.signalers_list, \
-> +				     signal_link)
-> +
->  static void defer_request(struct i915_request *rq, struct list_head * const pl)
->  {
->  	LIST_HEAD(list);
-> @@ -2378,7 +2383,7 @@ static void __execlists_hold(struct i915_request *rq)
->  		list_move_tail(&rq->sched.link, &rq->engine->active.hold);
->  		i915_request_set_hold(rq);
->  
-> -		list_for_each_entry(p, &rq->sched.waiters_list, wait_link) {
-> +		for_each_waiter(p, rq) {
->  			struct i915_request *w =
->  				container_of(p->waiter, typeof(*w), sched);
->  
-> @@ -2464,7 +2469,7 @@ static bool hold_request(const struct i915_request *rq)
->  	 * If one of our ancestors is on hold, we must also be on hold,
->  	 * otherwise we will bypass it and execute before it.
->  	 */
-> -	list_for_each_entry(p, &rq->sched.signalers_list, signal_link) {
-> +	for_each_signaler(p, rq) {
->  		const struct i915_request *s =
->  			container_of(p->signaler, typeof(*s), sched);
->  
-> @@ -2496,7 +2501,7 @@ static void __execlists_unhold(struct i915_request *rq)
->  		RQ_TRACE(rq, "hold release\n");
->  
->  		/* Also release any children on this engine that are ready */
-> -		list_for_each_entry(p, &rq->sched.waiters_list, wait_link) {
-> +		for_each_waiter(p, rq) {
->  			struct i915_request *w =
->  				container_of(p->waiter, typeof(*w), sched);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index 9cbd31443eb0..a9666df1d842 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -432,7 +432,7 @@ bool __i915_sched_node_add_dependency(struct i915_sched_node *node,
->  		    !node_started(signal))
->  			node->flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
->  
-> -		list_add(&dep->signal_link, &node->signalers_list);
-> +		list_add_rcu(&dep->signal_link, &node->signalers_list);
->  		list_add_rcu(&dep->wait_link, &signal->waiters_list);
->  
->  		/*
-> -- 
-> 2.25.0
+CI Bug Log - changes from CI_DRM_7882 -> Patchwork_16476
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16476 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-4770r:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7882/fi-hsw-4770r/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/fi-hsw-4770r/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][3] -> [DMESG-FAIL][4] ([i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7882/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111096] / [i915#323])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7882/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7882/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - {fi-tgl-dsi}:       [INCOMPLETE][9] ([i915#460] / [i915#472]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7882/fi-tgl-dsi/igt@gem_exec_suspend@basic-s4-devices.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/fi-tgl-dsi/igt@gem_exec_suspend@basic-s4-devices.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (50 -> 45)
+------------------------------
+
+  Additional (5): fi-bxt-dsi fi-bsw-n3050 fi-gdg-551 fi-bsw-nick fi-snb-2600 
+  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-bdw-gvtdvm fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7882 -> Patchwork_16476
+
+  CI-20190529: 20190529
+  CI_DRM_7882: bc62c7b88481f1c427fed468264ef0674fc1e8ba @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5423: 02ef996e76b3bae1c62d6a1298462aba0b7ac51a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16476: 6bf204cf34f4511b142ce83437df1342010486c9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6bf204cf34f4 drm/i915/gem: Don't leak non-persistent requests on changing engines
+35d0f7ddbc6f drm/i915/gt: Protect execlists_hold/unhold from new waiters
+e0b56b21df77 drm/i915/gt: Protect defer_request() from new waiters
+5060a4cb7d77 drm/i915/gt: Prevent queuing retire workers on the virtual engine
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16476/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
