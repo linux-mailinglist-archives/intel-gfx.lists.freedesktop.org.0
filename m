@@ -2,33 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6844E155C39
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:55:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A93CE155C68
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 18:02:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFAC86EAD1;
-	Fri,  7 Feb 2020 16:55:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9146EB03;
+	Fri,  7 Feb 2020 17:01:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B3DC6EAD1
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:55:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20151311-1500050 for multiple; Fri, 07 Feb 2020 16:55:37 +0000
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com
+ [IPv6:2607:f8b0:4864:20::62e])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42EB46E0B9
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:31:47 +0000 (UTC)
+Received: by mail-pl1-x62e.google.com with SMTP id e8so1204359plt.9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 07 Feb 2020 08:31:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=8RBGd2dIWhbB8EhuP5qBS7TaMKY8LXFw643AAtnOMBE=;
+ b=pLZznSTUXGY1Q9bzpkGxIkRye0PPAUertLYItsVrIJcdo6Q0CX1wOcj1XZPypjqqpV
+ +NCXeEBXj4XTnvw1sWKnaVaCLeqtN4+wEsYGRv2Ouvx3WwdjJihjhzPMq2MNgosD66UZ
+ B2uA7FgL5oK1FdzmCvVO1++UZdjI5I8VDk+nGLUro+wdAJ6w6ZFaH5I7/W5O0/cnNHSV
+ SGud/0TdNb+mgkiiduHtKh+rsUtZuzIO/+T1hn/+s/jh7fz/cBfPNRhnDYeSw2mL8qKu
+ rGAEUAKxXWzffLtxFQ1PGxE9yJgyprV7h4vk+hO4EBkGHeFZh9L+ToIIx1GO09bYDVrj
+ lQjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=8RBGd2dIWhbB8EhuP5qBS7TaMKY8LXFw643AAtnOMBE=;
+ b=IuGRUSxIkSLBhZHiYia6zraDugFLwqI1/d/enfKsp39/Q2zNLPOxB0PwStDnTW2bq7
+ 7xxaOTossT72QF2ke3N72Rp1+rPNGLxG/qPKfT5MJyjamO0sFe60kZI3Z2sICD1KQAso
+ axS6KyHTlpXrtnR6ATPGPQRdU8R+HVdAOsmOJiy2K7DPZ4uMZh1pbxEgkCXyFu2BeJM6
+ ZLBxAaByFQHXzR5FBw1UoVQMYlgy4kkgNymcjXX74to0ShaGrH3kdEUyeSY4Mg6iF7a1
+ iKU8mno8kTOJUFWOKmWJHYXCMsI0SUHGJAplqO65xEC+8JOdXkX/ea4QIhJsBVtQ7r6j
+ tWCw==
+X-Gm-Message-State: APjAAAUDO9xQPj6wLIJ6osxdruanJH9zFpSCqnUMui1k6oX9CHs7CWBN
+ 6BRwXyU/g+Djc1FTnFpzHmdCZlRoceRIeg1W
+X-Google-Smtp-Source: APXvYqz4GG3pFTxTr+B7IAvsDHwABp/Zzq3dvtl3DNIkHqHYisDd5uih2axoZ53STqwbSwcAEvBOuw==
+X-Received: by 2002:a17:90a:c388:: with SMTP id
+ h8mr4624308pjt.83.1581093106772; 
+ Fri, 07 Feb 2020 08:31:46 -0800 (PST)
+Received: from localhost.localdomain ([2408:821a:3c17:470:a5ab:4c98:9f50:3cb0])
+ by smtp.gmail.com with ESMTPSA id d3sm3365459pfn.113.2020.02.07.08.31.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 07 Feb 2020 08:31:46 -0800 (PST)
+From: youling257 <youling257@gmail.com>
+To: chris@chris-wilson.co.uk
+Date: Sat,  8 Feb 2020 00:31:25 +0800
+Message-Id: <20200207163125.15903-1-youling257@gmail.com>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20191219124353.8607-2-chris@chris-wilson.co.uk>
+References: <20191219124353.8607-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <aa563e99-fc8a-8f1c-12b7-2f867a3eb49a@linux.intel.com>
-References: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
- <aa563e99-fc8a-8f1c-12b7-2f867a3eb49a@linux.intel.com>
-Message-ID: <158109453546.16098.11614856083663256712@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 07 Feb 2020 16:55:35 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Don't leak non-persistent
- requests on changing engines
+X-Mailman-Approved-At: Fri, 07 Feb 2020 17:01:43 +0000
+Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/gt: Track engine round-trip times
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,131 +68,14 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com
+Cc: intel-gfx@lists.freedesktop.org, youling257 <youling257@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-07 16:46:55)
-> 
-> If you want quick&dirty feedback read below, if you want something 
-> smarter wait some more. :)
-> 
-> On 07/02/2020 11:11, Chris Wilson wrote:
-> > +static void kill_stale_engines(struct i915_gem_context *ctx)
-> > +{
-> > +     struct i915_gem_engines *pos, *next;
-> > +     unsigned long flags;
-> > +
-> > +     spin_lock_irqsave(&ctx->stale.lock, flags);
-> > +     list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
-> > +             if (!i915_sw_fence_await(&pos->fence))
-> > +                     continue;
-> 
-> When is this path hit?
-
-Race with the interrupt callback.
-
-> > +
-> > +             spin_unlock_irqrestore(&ctx->stale.lock, flags);
-> > +
-> > +             kill_engines(pos);
-> > +
-> > +             spin_lock_irqsave(&ctx->stale.lock, flags);
-> > +             list_safe_reset_next(pos, next, link);
-> > +             list_del_init(&pos->link);
-> > +
-> > +             i915_sw_fence_complete(&pos->fence);
-> 
-> This will trigger FENCE_FREE below?
-
-Yes, the final completion sends both notifications.
-
-> > +static int engines_notify(struct i915_sw_fence *fence,
-> > +                       enum i915_sw_fence_notify state)
-> > +{
-> > +     struct i915_gem_engines *engines =
-> > +             container_of(fence, typeof(*engines), fence);
-> > +
-> > +     switch (state) {
-> > +     case FENCE_COMPLETE:
-> > +             if (!list_empty(&engines->link)) {
-> 
-> Why it is safe to look at the state of engines->link outside the lock? 
-> We can have a race between context close and completion event on a stale 
-> engine, right?
-
-There is no race :)
-
-It's just coordination with kill_stale_engines().
-
-> > +static void engines_idle_release(struct i915_gem_engines *engines)
-> > +{
-> > +     struct i915_gem_engines_iter it;
-> > +     struct intel_context *ce;
-> > +     unsigned long flags;
-> > +
-> > +     GEM_BUG_ON(!engines);
-> > +     i915_sw_fence_init(&engines->fence, engines_notify);
-> > +
-> > +     spin_lock_irqsave(&engines->ctx->stale.lock, flags);
-> > +     list_add(&engines->link, &engines->ctx->stale.engines);
-> > +     spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
-> > +
-> > +     for_each_gem_engine(ce, engines, it) {
-> > +             struct dma_fence *fence;
-> > +             int err;
-> > +
-> > +             if (!ce->timeline)
-> > +                     continue;
-> 
-> When does this happen?
-
-Replacing the default engines before use. Or any engine set prior to
-use.
-
-> > +
-> > +             fence = i915_active_fence_get(&ce->timeline->last_request);
-> > +             if (!fence)
-> > +                     continue;
-> > +
-> > +             err = i915_sw_fence_await_dma_fence(&engines->fence,
-> > +                                                 fence, 0,
-> > +                                                 GFP_KERNEL);
-> > +
-> > +             dma_fence_put(fence);
-> > +             if (err < 0) {
-> > +                     kill_engines(engines);
-> > +                     break;
-> 
-> Okay to leave already setup awaits active in this case?
-
-Yes. They will be signaled. It may seem a bit harsh, but we fell into an
-unlikely error path and have to do so something.
-
-> > -void i915_sw_fence_await(struct i915_sw_fence *fence)
-> > +bool i915_sw_fence_await(struct i915_sw_fence *fence)
-> >   {
-> > -     debug_fence_assert(fence);
-> > -     WARN_ON(atomic_inc_return(&fence->pending) <= 1);
-> > +     int old, new;
-> > +
-> > +     new = atomic_read(&fence->pending);
-> > +     do {
-> > +             if (new < 1)
-> > +                     return false;
-> > +
-> > +             old = new++;
-> > +     } while ((new = atomic_cmpxchg(&fence->pending, old, new)) != old);
-> > +
-> > +     return true;
-> 
-> No idea what's happening here. Why was the existing code inadequate and 
-> what are you changing?
-
-I needed an await_if_busy to handle the race with the interrupts.
--Chris
+This patch cause GPU hang on my Bay trail z3735f.
+https://gitlab.freedesktop.org/drm/intel/issues/1144
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
