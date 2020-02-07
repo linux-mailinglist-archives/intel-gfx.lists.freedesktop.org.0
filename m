@@ -1,59 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B95155B76
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:12:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D31D2155B7D
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:13:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D2856E85E;
-	Fri,  7 Feb 2020 16:12:30 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70BD06E85E
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:12:29 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id p17so3412316wma.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Feb 2020 08:12:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=/Cwahwd+/NyD1b/KMJUox7oAT3xT241ixKeekkZVJWM=;
- b=OOe06hG1X6C4O+HoqhD4E0w17KyjjFFF9rWdGw6VDCZgiRmB+hmP5QyR+qcP7N4tx0
- cBXgEOj79MxU2BqlFKLTvjtwAaNNblzl5BOnREzeOgLPWuVs1xHRT1bk3/JHx6SkuNqI
- X3OtqTn4chJWhmqBgYoT6iccZPUeyUgdqQEtY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=/Cwahwd+/NyD1b/KMJUox7oAT3xT241ixKeekkZVJWM=;
- b=d46/NWL+4g+L/ihomyUKoHmU0kgdy9DyRVh8fxGmcJA6+Zd30XCXxbpMd5awVh7U07
- WpJC0fPt+Rw4resVkSWQjBuOfqekDJm+6IabfD3xhuKk04QfuhbCJyH5DcmAJRs1chXo
- NIkflody9X9lIHEK8G+UuFIJRLwzcNn3h4Hi5UvhhaMtqH5m8G7OXhPA7cAxtJsn7Bh/
- qjRTy/co/GN9EtCQRibXJ3XsbD4WJi40+ygOSw0QQ1TcUdruAAy+B7t/57kSdd4rS7aU
- pnx3VRi/ofPllc2XjnmNmjqvuei7GtyMhfiwdd8FwNr/HiH4v20jWPP1h02hFSQj4pP8
- uxqQ==
-X-Gm-Message-State: APjAAAWghfy8gcInTDrLACIphlOA2QuXI8CoVWTGyhGOhjrEvpJdoBgS
- VWqnQjZLgOqxbvl8WCI0J5i+zg==
-X-Google-Smtp-Source: APXvYqwLMYZKHXKHDdXY4Pj0Y/uxenmJ/Z8h6wDU3ffnHdRC/a4P/fAT8+yOg88GpMKgwKNh8dQ5Sg==
-X-Received: by 2002:a1c:b789:: with SMTP id h131mr5092109wmf.148.1581091947965; 
- Fri, 07 Feb 2020 08:12:27 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id n1sm3873523wrw.52.2020.02.07.08.12.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Feb 2020 08:12:27 -0800 (PST)
-Date: Fri, 7 Feb 2020 17:12:25 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200207161225.GG43062@phenom.ffwll.local>
-References: <20200129195452.1278481-1-chris@chris-wilson.co.uk>
- <20200207161040.GF43062@phenom.ffwll.local>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37056EACE;
+	Fri,  7 Feb 2020 16:13:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 639466E902
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:13:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 08:13:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="226515284"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.21.249])
+ by fmsmga008.fm.intel.com with ESMTP; 07 Feb 2020 08:13:33 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Fri,  7 Feb 2020 16:13:25 +0000
+Message-Id: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207161040.GF43062@phenom.ffwll.local>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Use the async worker to avoid
- reclaim tainting the ggtt->mutex
+Subject: [Intel-gfx] [RFC 0/8] Per client engine busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,270 +41,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 05:10:40PM +0100, Daniel Vetter wrote:
-> On Wed, Jan 29, 2020 at 07:54:52PM +0000, Chris Wilson wrote:
-> > On Braswell and Broxton (also known as Valleyview and Apollolake), we
-> > need to serialise updates of the GGTT using the big stop_machine()
-> > hammer. This has the side effect of appearing to lockdep as a possible
-> > reclaim (since it uses the cpuhp mutex and that is tainted by per-cpu
-> > allocations). However, we want to use vm->mutex (including ggtt->mutex)
-> > from wthin the shrinker and so must avoid such possible taints. For this
-> > purpose, we introduced the asynchronous vma binding and we can apply it
-> > to the PIN_GLOBAL so long as take care to add the necessary waits for
-> > the worker afterwards.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/211
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> Hm, isn't that just the usual "lockdep cant see past a wait on another
-> thread" trick that doesn't actually fix anything? The locking context for
-> the pte writes and the wait seem exactly the same, at first glance at
-> least.
-> 
-> I dont' really have a different idea though :-/
-
-2nd one I just realized: dma_fence can't be blocked on anything that might
-go into reclaim, so doing this with a dma_fence also doesn't really work.
--Daniel
-
-> >  drivers/gpu/drm/i915/gt/intel_engine_cs.c |  7 +++---
-> >  drivers/gpu/drm/i915/gt/intel_ggtt.c      |  1 +
-> >  drivers/gpu/drm/i915/gt/intel_gt.c        |  2 +-
-> >  drivers/gpu/drm/i915/gt/intel_lrc.c       |  2 +-
-> >  drivers/gpu/drm/i915/gt/intel_ring.c      |  6 ++---
-> >  drivers/gpu/drm/i915/gt/intel_timeline.c  |  4 ++--
-> >  drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  4 ++--
-> >  drivers/gpu/drm/i915/i915_gem.c           |  6 +++++
-> >  drivers/gpu/drm/i915/i915_vma.c           | 27 ++++++++++++++++++++++-
-> >  drivers/gpu/drm/i915/i915_vma.h           |  2 ++
-> >  10 files changed, 46 insertions(+), 15 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > index 39fe9a5b4820..2504f4d05edf 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> > @@ -527,7 +527,6 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
-> >  {
-> >  	unsigned int flags;
-> >  
-> > -	flags = PIN_GLOBAL;
-> >  	if (!HAS_LLC(engine->i915) && i915_ggtt_has_aperture(engine->gt->ggtt))
-> >  		/*
-> >  		 * On g33, we cannot place HWS above 256MiB, so
-> > @@ -540,11 +539,11 @@ static int pin_ggtt_status_page(struct intel_engine_cs *engine,
-> >  		 * above the mappable region (even though we never
-> >  		 * actually map it).
-> >  		 */
-> > -		flags |= PIN_MAPPABLE;
-> > +		flags = PIN_MAPPABLE;
-> >  	else
-> > -		flags |= PIN_HIGH;
-> > +		flags = PIN_HIGH;
-> >  
-> > -	return i915_vma_pin(vma, 0, 0, flags);
-> > +	return i915_ggtt_pin(vma, 0, flags);
-> >  }
-> >  
-> >  static int init_status_page(struct intel_engine_cs *engine)
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > index 79096722ce16..6af50d62d712 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> > @@ -881,6 +881,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
-> >  		ggtt->vm.insert_page    = bxt_vtd_ggtt_insert_page__BKL;
-> >  		if (ggtt->vm.clear_range != nop_clear_range)
-> >  			ggtt->vm.clear_range = bxt_vtd_ggtt_clear_range__BKL;
-> > +		ggtt->vm.bind_async_flags = I915_VMA_GLOBAL_BIND;
-> >  	}
-> >  
-> >  	ggtt->invalidate = gen8_ggtt_invalidate;
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > index 143268083135..bf6c0f949e35 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> > @@ -345,7 +345,7 @@ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
-> >  		goto err_unref;
-> >  	}
-> >  
-> > -	ret = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-> > +	ret = i915_ggtt_pin(vma, 0, PIN_HIGH);
-> >  	if (ret)
-> >  		goto err_unref;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index 8f15ab7d8d88..e63ae4a17110 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -3259,7 +3259,7 @@ static int lrc_setup_wa_ctx(struct intel_engine_cs *engine)
-> >  		goto err;
-> >  	}
-> >  
-> > -	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-> > +	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
-> >  	if (err)
-> >  		goto err;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-> > index 374b28f13ca0..366013367526 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_ring.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-> > @@ -31,17 +31,15 @@ int intel_ring_pin(struct intel_ring *ring)
-> >  	if (atomic_fetch_inc(&ring->pin_count))
-> >  		return 0;
-> >  
-> > -	flags = PIN_GLOBAL;
-> > -
-> >  	/* Ring wraparound at offset 0 sometimes hangs. No idea why. */
-> > -	flags |= PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-> > +	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-> >  
-> >  	if (vma->obj->stolen)
-> >  		flags |= PIN_MAPPABLE;
-> >  	else
-> >  		flags |= PIN_HIGH;
-> >  
-> > -	ret = i915_vma_pin(vma, 0, 0, flags);
-> > +	ret = i915_ggtt_pin(vma, 0, flags);
-> >  	if (unlikely(ret))
-> >  		goto err_unpin;
-> >  
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_timeline.c b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > index 87716529cd2f..465f87b65901 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_timeline.c
-> > @@ -308,7 +308,7 @@ int intel_timeline_pin(struct intel_timeline *tl)
-> >  	if (atomic_add_unless(&tl->pin_count, 1, 0))
-> >  		return 0;
-> >  
-> > -	err = i915_vma_pin(tl->hwsp_ggtt, 0, 0, PIN_GLOBAL | PIN_HIGH);
-> > +	err = i915_ggtt_pin(tl->hwsp_ggtt, 0, PIN_HIGH);
-> >  	if (err)
-> >  		return err;
-> >  
-> > @@ -431,7 +431,7 @@ __intel_timeline_get_seqno(struct intel_timeline *tl,
-> >  		goto err_rollback;
-> >  	}
-> >  
-> > -	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-> > +	err = i915_ggtt_pin(vma, 0, PIN_HIGH);
-> >  	if (err) {
-> >  		__idle_hwsp_free(vma->private, cacheline);
-> >  		goto err_rollback;
-> > diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > index 5d00a3b2d914..c4c1523da7a6 100644
-> > --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> > @@ -678,8 +678,8 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size)
-> >  	if (IS_ERR(vma))
-> >  		goto err;
-> >  
-> > -	flags = PIN_GLOBAL | PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-> > -	ret = i915_vma_pin(vma, 0, 0, flags);
-> > +	flags = PIN_OFFSET_BIAS | i915_ggtt_pin_bias(vma);
-> > +	ret = i915_ggtt_pin(vma, 0, flags);
-> >  	if (ret) {
-> >  		vma = ERR_PTR(ret);
-> >  		goto err;
-> > diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-> > index ff79da5657f8..dda1a0365f39 100644
-> > --- a/drivers/gpu/drm/i915/i915_gem.c
-> > +++ b/drivers/gpu/drm/i915/i915_gem.c
-> > @@ -1009,6 +1009,12 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
-> >  	if (ret)
-> >  		return ERR_PTR(ret);
-> >  
-> > +	ret = i915_vma_wait_for_bind(vma);
-> > +	if (ret) {
-> > +		i915_vma_unpin(vma);
-> > +		return ERR_PTR(ret);
-> > +	}
-> > +
-> >  	return vma;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> > index 84e03da0d5f9..f11abd9553e8 100644
-> > --- a/drivers/gpu/drm/i915/i915_vma.c
-> > +++ b/drivers/gpu/drm/i915/i915_vma.c
-> > @@ -339,6 +339,25 @@ struct i915_vma_work *i915_vma_work(void)
-> >  	return vw;
-> >  }
-> >  
-> > +int i915_vma_wait_for_bind(struct i915_vma *vma)
-> > +{
-> > +	int err = 0;
-> > +
-> > +	if (!rcu_access_pointer(vma->active.excl.fence)) {
-> > +		struct dma_fence *fence;
-> > +
-> > +		rcu_read_lock();
-> > +		fence = dma_fence_get_rcu_safe(&vma->active.excl.fence);
-> > +		rcu_read_unlock();
-> > +		if (fence) {
-> > +			err = dma_fence_wait(fence, MAX_SCHEDULE_TIMEOUT);
-> > +			dma_fence_put(fence);
-> > +		}
-> > +	}
-> > +
-> > +	return err;
-> > +}
-> > +
-> >  /**
-> >   * i915_vma_bind - Sets up PTEs for an VMA in it's corresponding address space.
-> >   * @vma: VMA to map
-> > @@ -977,8 +996,14 @@ int i915_ggtt_pin(struct i915_vma *vma, u32 align, unsigned int flags)
-> >  
-> >  	do {
-> >  		err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
-> > -		if (err != -ENOSPC)
-> > +		if (err != -ENOSPC) {
-> > +			if (!err) {
-> > +				err = i915_vma_wait_for_bind(vma);
-> > +				if (err)
-> > +					i915_vma_unpin(vma);
-> > +			}
-> >  			return err;
-> > +		}
-> >  
-> >  		/* Unlike i915_vma_pin, we don't take no for an answer! */
-> >  		flush_idle_contexts(vm->gt);
-> > diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-> > index 02b31a62951e..e1ced1df13e1 100644
-> > --- a/drivers/gpu/drm/i915/i915_vma.h
-> > +++ b/drivers/gpu/drm/i915/i915_vma.h
-> > @@ -375,6 +375,8 @@ struct i915_vma *i915_vma_make_unshrinkable(struct i915_vma *vma);
-> >  void i915_vma_make_shrinkable(struct i915_vma *vma);
-> >  void i915_vma_make_purgeable(struct i915_vma *vma);
-> >  
-> > +int i915_vma_wait_for_bind(struct i915_vma *vma);
-> > +
-> >  static inline int i915_vma_sync(struct i915_vma *vma)
-> >  {
-> >  	/* Wait for the asynchronous bindings and pending GPU reads */
-> > -- 
-> > 2.25.0
-> > 
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkFub3RoZXIg
+cmUtc3BpbiBvZiB0aGUgcGVyLWNsaWVudCBlbmdpbmUgYnVzeW5lc3Mgc2VyaWVzLiBIaWdobGln
+aHRzIGZyb20gdGhpcwp2ZXJzaW9uOgoKICogUmVmYWN0b3Igb2YgdGhlIGk5MTVfZHJtX2NsaWVu
+dCBjb25jZXB0IGJhc2VkIG9uIGZlZWRiYWNrIGZyb20gQ2hyaXMuCiAqIFRyYWNraW5nIGNvbnRl
+eHRzIGJlbG9uZ2luZyB0byBhIGNsaWVudCBoYWQgYSBmbGF3IHdoZXJlIHJlYXBlZCBjb250ZXh0
+cwogICB3b3VsZCBzdG9wIGNvbnRyaWJ1dGluZyB0byB0aGUgYnVzeW5lc3MgbWFraW5nIHRoZSBj
+b3VudGVycyBnbyBiYWNrd2FyZHMuCiAgIEkgd2FzIHNpbXBseSBicm9rZW4uIEluIHRoaXMgdmVy
+c2lvbiBJIGhhZCB0byB0cmFjayBwZXItY2xpZW50IHN0YXRzIGF0IHRoZQogICBzYW1lIGNhbGwt
+c2l0ZXMgd2hlcmUgcGVyLWNvbnRleHQgaXMgdHJhY2tlZC4gSXQncyBhIGxpdHRsZSBiaXQgbW9y
+ZSBydW50aW1lCiAgIGNvc3QgYnV0IG5vdCB0b28gYmFkLgogKiBHdUMgc3VwcG9ydCBpcyBvdXQg
+LSBuZWVkcyBtb3JlIHRpbWUgdGhhbiBJIGhhdmUgYXQgdGhlIG1vbWVudCB0byBwcm9wZXJseQog
+ICB3aXJlIGl0IHVwIHdpdGggdGhlIGxhdGVzdCBjaGFuZ2VzLiBQbHVzIHRoZXJlIGlzIGEgbW9u
+b3RvbmljaXR5IGlzc3VlIHdpdGgKICAgZWl0aGVyIHRoZSB2YWx1ZSBzdG9yZWQgaW4gcHBod3Nw
+IGJ5IHRoZSBHUFUgb3IgYSBidWcgaW4gbXkgcGF0Y2ggd2hpY2ggYWxzbwogICBuZWVkcyB0byBi
+ZSBkZWJ1Z2dlZC4KCkludGVybmFsbHkgd2UgdHJhY2sgdGltZSBzcGVudCBvbiBlbmdpbmVzIGZv
+ciBlYWNoIHN0cnVjdCBpbnRlbF9jb250ZXh0LiBUaGlzCmNhbiBzZXJ2ZSBhcyBhIGJ1aWxkaW5n
+IGJsb2NrIGZvciBzZXZlcmFsIGZlYXR1cmVzIGZyb20gdGhlIHdhbnQgbGlzdDoKc21hcnRlciBz
+Y2hlZHVsZXIgZGVjaXNpb25zLCBnZXRydXNhZ2UoMiktbGlrZSBwZXItR0VNLWNvbnRleHQgZnVu
+Y3Rpb25hbGl0eQp3YW50ZWQgYnkgc29tZSBjdXN0b21lcnMsIGNncm91cHMgY29udHJvbGxlciwg
+ZHluYW1pYyBTU0VVIHR1bmluZywuLi4KCkV4dGVybmFsbHksIGluIHN5c2ZzLCB3ZSBleHBvc2Ug
+dGltZSBzcGVudCBvbiBHUFUgcGVyIGNsaWVudCBhbmQgcGVyIGVuZ2luZQpjbGFzcy4KClN5c2Zz
+IGludGVyZmFjZSBlbmFibGVzIHVzIHRvIGltcGxlbWVudCBhICJ0b3AtbGlrZSIgdG9vbCBmb3Ig
+R1BVIHRhc2tzLiBPciB3aXRoCmEgInNjcmVlbnNob3QiOgp+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fgppbnRlbC1ncHUtdG9wIC0gIDkwNi8gOTU1IE1IejsgICAgMCUgUkM2OyAgNS4zMCBXYXR0czsg
+ICAgICA5MzMgaXJxcy9zCgogICAgICBJTUMgcmVhZHM6ICAgICA0NDE0IE1pQi9zCiAgICAgSU1D
+IHdyaXRlczogICAgIDM4MDUgTWlCL3MKCiAgICAgICAgICBFTkdJTkUgICAgICBCVVNZICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNSV9TRU1BIE1JX1dBSVQKICAgICBSZW5k
+ZXIvM0QvMCAgIDkzLjQ2JSB84paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI
+4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI4paI
+4paLICB8ICAgICAgMCUgICAgICAwJQogICAgICAgQmxpdHRlci8wICAgIDAuMDAlIHwgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAgICAwJSAgICAgIDAlCiAgICAgICAgIFZp
+ZGVvLzAgICAgMC4wMCUgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAg
+IDAlICAgICAgMCUKICBWaWRlb0VuaGFuY2UvMCAgICAwLjAwJSB8ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB8ICAgICAgMCUgICAgICAwJQoKICBQSUQgICAgICAgICAgICBOQU1F
+ICBSZW5kZXIvM0QgICAgICBCbGl0dGVyICAgICAgICBWaWRlbyAgICAgIFZpZGVvRW5oYW5jZQog
+MjczMyAgICAgICBuZXZlcmJhbGwgfOKWiOKWiOKWiOKWiOKWiOKWiOKWjCAgICAgfHwgICAgICAg
+ICAgICB8fCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfAogMjA0NyAgICAgICAgICAgIFhvcmcg
+fOKWiOKWiOKWiOKWiiAgICAgICAgfHwgICAgICAgICAgICB8fCAgICAgICAgICAgIHx8ICAgICAg
+ICAgICAgfAogMjczNyAgICAgICAgZ2x4Z2VhcnMgfOKWiOKWjSAgICAgICAgICB8fCAgICAgICAg
+ICAgIHx8ICAgICAgICAgICAgfHwgICAgICAgICAgICB8CiAyMTI4ICAgICAgICAgICB4ZndtNCB8
+ICAgICAgICAgICAgfHwgICAgICAgICAgICB8fCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfAog
+MjA0NyAgICAgICAgICAgIFhvcmcgfCAgICAgICAgICAgIHx8ICAgICAgICAgICAgfHwgICAgICAg
+ICAgICB8fCAgICAgICAgICAgIHwKfn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn5+fn4KCkltcGxlbWVudGF0
+aW9uIHdpc2Ugd2UgYWRkIGEgYSBidW5jaCBvZiBmaWxlcyBpbiBzeXNmcyBsaWtlOgoKCSMgY2Qg
+L3N5cy9jbGFzcy9kcm0vY2FyZDAvY2xpZW50cy8KCSMgdHJlZQoJLgoJ4pSc4pSA4pSAIDcKCeKU
+giAgIOKUnOKUgOKUgCBidXN5CgnilIIgICDilIIgICDilJzilIDilIAgMAoJ4pSCICAg4pSCICAg
+4pSc4pSA4pSAIDEKCeKUgiAgIOKUgiAgIOKUnOKUgOKUgCAyCgnilIIgICDilIIgICDilJTilIDi
+lIAgMwoJ4pSCICAg4pSc4pSA4pSAIG5hbWUKCeKUgiAgIOKUlOKUgOKUgCBwaWQKCeKUnOKUgOKU
+gCA4CgnilIIgICDilJzilIDilIAgYnVzeQoJ4pSCICAg4pSCICAg4pSc4pSA4pSAIDAKCeKUgiAg
+IOKUgiAgIOKUnOKUgOKUgCAxCgnilIIgICDilIIgICDilJzilIDilIAgMgoJ4pSCICAg4pSCICAg
+4pSU4pSA4pSAIDMKCeKUgiAgIOKUnOKUgOKUgCBuYW1lCgnilIIgICDilJTilIDilIAgcGlkCgni
+lJTilIDilIAgOQoJICAgIOKUnOKUgOKUgCBidXN5CgkgICAg4pSCICAg4pSc4pSA4pSAIDAKCSAg
+ICDilIIgICDilJzilIDilIAgMQoJICAgIOKUgiAgIOKUnOKUgOKUgCAyCgkgICAg4pSCICAg4pSU
+4pSA4pSAIDMKCSAgICDilJzilIDilIAgbmFtZQoJICAgIOKUlOKUgOKUgCBwaWQKCgpGaWxlcyBp
+biAnYnVzeScgZGlyZWN0b3JpZXMgYXJlIG51bWJlcmVkIHVzaW5nIHRoZSBlbmdpbmUgY2xhc3Mg
+QUJJIHZhbHVlcyBhbmQKdGhleSBjb250YWluIGFjY3VtdWxhdGVkIG5hbm9zZWNvbmRzIGVhY2gg
+Y2xpZW50IHNwZW50IG9uIGVuZ2luZXMgb2YgYQpyZXNwZWN0aXZlIGNsYXNzLgoKSXQgaXMgc3Rp
+bCBhIFJGQyBzaW5jZSBpdCBtaXNzZXMgZGVkaWNhdGVkIHRlc3QgY2FzZXMgdG8gZW5zdXJlIHRo
+aW5ncyByZWFsbHkKd29yayBhcyBhZHZlcnRpc2VkLgoKVHZydGtvIFVyc3VsaW4gKDYpOgogIGRy
+bS9pOTE1OiBFeHBvc2UgbGlzdCBvZiBjbGllbnRzIGluIHN5c2ZzCiAgZHJtL2k5MTU6IFVwZGF0
+ZSBjbGllbnQgbmFtZSBvbiBjb250ZXh0IGNyZWF0ZQogIGRybS9pOTE1OiBNYWtlIEdFTSBjb250
+ZXh0cyB0cmFjayBEUk0gY2xpZW50cwogIGRybS9pOTE1OiBUcmFjayBwZXItY29udGV4dCBlbmdp
+bmUgYnVzeW5lc3MKICBkcm0vaTkxNTogVHJhY2sgcGVyIGRybSBjbGllbnQgZW5naW5lIGNsYXNz
+IGJ1c3luZXNzCiAgZHJtL2k5MTU6IEV4cG9zZSBwZXItZW5naW5lIGNsaWVudCBidXN5bmVzcwoK
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAgICAgICB8ICAgMyArLQog
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuYyAgIHwgIDMxICstCiAu
+Li4vZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0X3R5cGVzLmggfCAgMTMgKy0KIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHQuYyAgICAgICB8ICAyMCArCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0LmggICAgICAgfCAgMzUgKysKIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX2NvbnRleHRfdHlwZXMuaCB8ICAgOSArCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9lbmdpbmVfY3MuYyAgICAgfCAgMTYgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2d0L2ludGVsX2xyYy5jICAgICAgICAgICB8ICA2NSArKystCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X2RlYnVnZnMuYyAgICAgICAgICAgfCAgMzEgKy0KIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jICAgICAgICB8IDM1MCArKysrKysrKysrKysr
+KysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5oICAgICAgICB8ICA4
+OCArKysrKwogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAgIHwg
+ICA1ICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZ2VtLmMgICAgICAgICAgICAgICB8ICAz
+NSArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9ncHVfZXJyb3IuYyAgICAgICAgIHwgIDIx
+ICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3N5c2ZzLmMgICAgICAgICAgICAgfCAgIDgg
+KwogMTUgZmlsZXMgY2hhbmdlZCwgNjczIGluc2VydGlvbnMoKyksIDU3IGRlbGV0aW9ucygtKQog
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5j
+CiBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50
+LmgKCi0tIAoyLjIwLjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
