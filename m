@@ -2,30 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F343156018
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 21:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB32B15601C
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 21:46:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52BF26E0A6;
-	Fri,  7 Feb 2020 20:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EC4A6FDA1;
+	Fri,  7 Feb 2020 20:46:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 99FA06E062;
- Fri,  7 Feb 2020 20:44:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 907B1A0096;
- Fri,  7 Feb 2020 20:44:50 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2041.outbound.protection.outlook.com [40.107.220.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A95B16FDA1;
+ Fri,  7 Feb 2020 20:46:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mvMcA6nXqle40ahVgKvHfVwiFepNR7ynv//6/2uwJ6ZTtFlTJqNZnfJF7aEcQFqBkZoPU1M9keqZlmqjfcXtPYuyZhZu2swlYWZdpMZV65dw1XPrz2kW5Uwvm8sj3wLyp/5dBglCttzzXR3pzyq7Yb2bpmQrd3H2EllXvg3c3T4L8QZnZFD5H8h0GW2BUtxs64ISBDtk4/vNpkZ3Hmf75xPzIWIRuzopCU/KEq0pAX0uJ6EPZY2/cmQopxseRc4q45PerM1e8cbqPzbOPnrxrQFrZWvm9TLyfxEdQzR5ozlftl3P/FQ5eiuXksz0a8lMxW+uOzd/+s5R8uKiTk9FFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4BGzbYw7xxUSOicL2K4IdWLQiSVJBN+6zzjVNTM5wYw=;
+ b=Ynlo95IJyS0V4H0y5yy7tL0+wgXF10UQKfH9zTFvuYJv3prdfZxgEbKOhcssnDgLrOR173J7FngP3JwZD33bdevUlEk7WTwAfv3MbMtN5YcNIswFzMq5CSQRmUp5kvFQp7BAZXo43zzDhbNr6LPPfNObyoIxJmHi6/qYdlNp6gzEYb6fVCAtpB9XUwT0gdHksrSqaiJQYhUgTNx4txT+sNR38Ql9Y7htxlOKb0ExqxR+zRLjNXaiFnZPASczUhEiYqklp62688n3MxftDMI5Kwtw7XK1F4fQbcIhB87EIsSfA/cEK4Yg5w/PigybiJgMGy8TVRUfqiU4ZvRtrtrDUg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4BGzbYw7xxUSOicL2K4IdWLQiSVJBN+6zzjVNTM5wYw=;
+ b=Vooi92H31JD0qIdaqRdl1G2KesgoSp+wXvePqcRZZE6aArbRAQqw2230V6Qx0BVOtHLUK/vXMqpxWXqONJWzNx36sZS+INtE0lDiJhTEmNs7FxKCnY+W2TMqy/SHqd7/7QD2q2EWYVzZEloOnaHzYMPKNnYj7cMtnaEcIiawKZo=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Rodrigo.Siqueira@amd.com; 
+Received: from DM5PR12MB2519.namprd12.prod.outlook.com (52.132.141.150) by
+ DM5PR12MB1755.namprd12.prod.outlook.com (10.175.85.137) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2707.21; Fri, 7 Feb 2020 20:46:05 +0000
+Received: from DM5PR12MB2519.namprd12.prod.outlook.com
+ ([fe80::3506:db14:d616:9f43]) by DM5PR12MB2519.namprd12.prod.outlook.com
+ ([fe80::3506:db14:d616:9f43%6]) with mapi id 15.20.2707.024; Fri, 7 Feb 2020
+ 20:46:05 +0000
+Date: Fri, 7 Feb 2020 15:46:00 -0500
+From: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+To: "Jerry (Fangzhi) Zuo" <Jerry.Zuo@amd.com>
+Message-ID: <20200207204600.a75x5vz2pz5suz2y@outlook.office365.com>
+References: <20200205152248.32419-1-Jerry.Zuo@amd.com>
+In-Reply-To: <20200205152248.32419-1-Jerry.Zuo@amd.com>
+X-ClientProxiedBy: YTOPR0101CA0064.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b00:14::41) To DM5PR12MB2519.namprd12.prod.outlook.com
+ (2603:10b6:4:b5::22)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Fri, 07 Feb 2020 20:44:50 -0000
-Message-ID: <158110829056.8755.6116049681992119302@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUGVy?=
- =?utf-8?q?_client_engine_busyness_=28rev4=29?=
+Received: from outlook.office365.com (165.204.55.250) by
+ YTOPR0101CA0064.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b00:14::41) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2707.21 via Frontend
+ Transport; Fri, 7 Feb 2020 20:46:05 +0000
+X-Originating-IP: [165.204.55.250]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: f12a9591-477d-43d1-52b3-08d7ac0ec068
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1755:|DM5PR12MB1755:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB17554DC25D7FFC30C89244B6981C0@DM5PR12MB1755.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1360;
+X-Forefront-PRVS: 0306EE2ED4
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10001)(10009020)(4636009)(376002)(136003)(366004)(346002)(39860400002)(396003)(199004)(189003)(8936002)(6862004)(21480400003)(44144004)(66946007)(66476007)(316002)(52116002)(54906003)(7696005)(66556008)(6506007)(5660300002)(26005)(2906002)(956004)(478600001)(966005)(9686003)(55016002)(1076003)(81166006)(81156014)(8676002)(16526019)(186003)(6666004)(6636002)(4326008)(86362001)(2700100001);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1755;
+ H:DM5PR12MB2519.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mrdbvt+aBQfnvA6Dru6TVnNPi9sy8lRLCZ2qqpPpot0Smj45o5Jr6TNsaiLxiJVs4rOPMPmZwrDg+AbmyTqgadjmAJo978+NF0WUP3zk6DA9T5A0jLDxIJNn0eYYOykJ6h78qkSFSZdnMGgJG9NQAyOYxFEK3Szeewd7+mkLf1MsRfM8dDS+tN5/nxY3kqS7ZugDhPzobN1ctH70SvOlNppDkfclBaWdYMX5DiDB8bbXTi1uJttkmKwhRugAWC0pgFBrZT2jBcz7Z9ChEFVppkwXqAkJzYxxZgJBWWVYACzQm//Ew96ef3M9BmCrFmXJqrWu/4/LMgXUn280yyT32f0EEHz10ADy85XqgxaEEHgsF4RoOOuY6wUl2l89z8+t4KjXNUKTi+KDXFiAPUM9CjNEN64lAhaD5HS+GUb10rcejnDjKmKrTG5y8y8kML1F9u47XU6S77YKSpfhIOXzRxT6vKat9v6o9swSnOD7u05h5Q+3pm/cxjEzCRLUZFW4Eq0Z3MSwsQKY4d9jHUX0A31W5TWKO9XIC8Y1EAFtwt1HRyhXT7BVSO2TgAHKWarnpzL1eza3mFy1et+Sj7jHvgidcXA/sqQSG4wSGRFUIwASLp5kw1jAWUb8Qtavg9dfsVLhgj3xAKs+qj51/byd9Q==
+X-MS-Exchange-AntiSpam-MessageData: sXKylaG6TdQlFnWjyVraYxMp+qsS72RkY5ZNysdS1zOT2K/Vkds7QCl5uhjlRzeGz6yB9egzXWa20K6SOMsX+4uQSc18RJsBYM3Yiwg4bepWkxj3G4pgaoOGSscmcIP7Eu0ADvKxxyqjcqQW4xXyWQ==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f12a9591-477d-43d1-52b3-08d7ac0ec068
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Feb 2020 20:46:05.5075 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LZAanvu9y7cNhjQ1NEZFOzcy34Sxi2/RpZuYxC/jaSDSIP3TCC7VkjFFWdOA+iUyIwAvHbuIX49kEQPJjshsPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1755
+Subject: Re: [Intel-gfx] [PATCH V6] drm: Add support for DP 1.4 Compliance
+ edid corruption test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,156 +95,260 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, Alexander.Deucher@amd.com,
+ harry.wentland@amd.com, nicholas.kazlauskas@amd.com
+Content-Type: multipart/mixed; boundary="===============1532097769=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1532097769==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jpfjaor5bziqin3a"
+Content-Disposition: inline
 
-Series: Per client engine busyness (rev4)
-URL   : https://patchwork.freedesktop.org/series/70977/
-State : success
+--jpfjaor5bziqin3a
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On 02/05, Jerry (Fangzhi) Zuo wrote:
+> Unlike DP 1.2 edid corruption test, DP 1.4 requires to calculate
+> real CRC value of the last edid data block, and write it back.
+> Current edid CRC calculates routine adds the last CRC byte,
+> and check if non-zero.
+>=20
+> This behavior is not accurate; actually, we need to return
+> the actual CRC value when corruption is detected.
+> This commit changes this issue by returning the calculated CRC,
+> and initiate the required sequence.
+>=20
+> Change since v6
+> - Add return check
+>=20
+> Change since v5
+> - Obtain real CRC value before dumping bad edid
+>=20
+> Change since v4
+> - Fix for CI.CHECKPATCH
+>=20
+> Change since v3
+> - Fix a minor typo.
+>=20
+> Change since v2
+> - Rewrite checksum computation routine to avoid duplicated code.
+> - Rename to avoid confusion.
+>=20
+> Change since v1
+> - Have separate routine for returning real CRC.
+>=20
+> Signed-off-by: Jerry (Fangzhi) Zuo <Jerry.Zuo@amd.com>
+> ---
+>  drivers/gpu/drm/drm_dp_helper.c | 51 +++++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/drm_edid.c      | 23 ++++++++++++---
+>  include/drm/drm_connector.h     |  6 ++++
+>  include/drm/drm_dp_helper.h     |  3 ++
+>  4 files changed, 79 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_hel=
+per.c
+> index f629fc5494a4..1efd609df402 100644
+> --- a/drivers/gpu/drm/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/drm_dp_helper.c
+> @@ -351,6 +351,57 @@ int drm_dp_dpcd_read_link_status(struct drm_dp_aux *=
+aux,
+>  }
+>  EXPORT_SYMBOL(drm_dp_dpcd_read_link_status);
+> =20
+> +/**
+> + * drm_dp_send_real_edid_checksum() - send back real edid checksum value
+> + * @aux: DisplayPort AUX channel
+> + * @real_edid_checksum: real edid checksum for the last block
+> + *
+> + * Returns:
+> + * True on success
+> + */
+> +bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+> +				    u8 real_edid_checksum)
+> +{
+> +	u8 link_edid_read =3D 0, auto_test_req =3D 0, test_resp =3D 0;
+> +
+> +	if (drm_dp_dpcd_read(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req,=
+ 1) < 1) {
+> +		DRM_ERROR("DPCD failed read at register 0x%x\n", DP_DEVICE_SERVICE_IRQ=
+_VECTOR);
+> +		return false;
+> +	}
+> +	auto_test_req &=3D DP_AUTOMATED_TEST_REQUEST;
+> +
+> +	if (drm_dp_dpcd_read(aux, DP_TEST_REQUEST, &link_edid_read, 1) < 1) {
+> +		DRM_ERROR("DPCD failed read at register 0x%x\n", DP_TEST_REQUEST);
+> +		return false;
+> +	}
+> +	link_edid_read &=3D DP_TEST_LINK_EDID_READ;
+> +
+> +	if (!auto_test_req || !link_edid_read) {
+> +		DRM_DEBUG_KMS("Source DUT does not support TEST_EDID_READ\n");
+> +		return false;
+> +	}
+> +
+> +	if (drm_dp_dpcd_write(aux, DP_DEVICE_SERVICE_IRQ_VECTOR, &auto_test_req=
+, 1) < 1) {
+> +		DRM_ERROR("DPCD failed write at register 0x%x\n", DP_DEVICE_SERVICE_IR=
+Q_VECTOR);
+> +		return false;
+> +	}
+> +
+> +	/* send back checksum for the last edid extension block data */
+> +	if (drm_dp_dpcd_write(aux, DP_TEST_EDID_CHECKSUM, &real_edid_checksum, =
+1) < 1) {
+> +		DRM_ERROR("DPCD failed write at register 0x%x\n", DP_TEST_EDID_CHECKSU=
+M);
+> +		return false;
+> +	}
+> +
+> +	test_resp |=3D DP_TEST_EDID_CHECKSUM_WRITE;
+> +	if (drm_dp_dpcd_write(aux, DP_TEST_RESPONSE, &test_resp, 1) < 1) {
+> +		DRM_ERROR("DPCD failed write at register 0x%x\n", DP_TEST_RESPONSE);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +EXPORT_SYMBOL(drm_dp_send_real_edid_checksum);
+> +
+>  /**
+>   * drm_dp_downstream_max_clock() - extract branch device max
+>   *                                 pixel rate for legacy VGA
+> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> index 99769d6c9f84..f064e75fb4c5 100644
+> --- a/drivers/gpu/drm/drm_edid.c
+> +++ b/drivers/gpu/drm/drm_edid.c
+> @@ -1590,11 +1590,22 @@ static int validate_displayid(u8 *displayid, int =
+length, int idx);
+>  static int drm_edid_block_checksum(const u8 *raw_edid)
+>  {
+>  	int i;
+> -	u8 csum =3D 0;
+> -	for (i =3D 0; i < EDID_LENGTH; i++)
+> +	u8 csum =3D 0, crc =3D 0;
+> +
+> +	for (i =3D 0; i < EDID_LENGTH - 1; i++)
+>  		csum +=3D raw_edid[i];
+> =20
+> -	return csum;
+> +	crc =3D 0x100 - csum;
+> +
+> +	return crc;
+> +}
+> +
+> +static bool drm_edid_block_checksum_diff(const u8 *raw_edid, u8 real_che=
+cksum)
+> +{
+> +	if (raw_edid[EDID_LENGTH - 1] !=3D real_checksum)
+> +		return true;
+> +	else
+> +		return false;
+>  }
+> =20
+>  static bool drm_edid_is_zero(const u8 *in_edid, int length)
+> @@ -1652,7 +1663,7 @@ bool drm_edid_block_valid(u8 *raw_edid, int block, =
+bool print_bad_edid,
+>  	}
+> =20
+>  	csum =3D drm_edid_block_checksum(raw_edid);
+> -	if (csum) {
+> +	if (drm_edid_block_checksum_diff(raw_edid, csum)) {
+>  		if (edid_corrupt)
+>  			*edid_corrupt =3D true;
+> =20
+> @@ -1793,6 +1804,10 @@ static void connector_bad_edid(struct drm_connecto=
+r *connector,
+>  			       u8 *edid, int num_blocks)
+>  {
+>  	int i;
+> +	u8 num_of_ext =3D edid[0x7e];
+> +
+> +	/* Calculate real checksum for the last edid extension block data */
+> +	connector->real_edid_checksum =3D drm_edid_block_checksum(edid + num_of=
+_ext * EDID_LENGTH);
+> =20
+>  	if (connector->bad_edid_counter++ && !drm_debug_enabled(DRM_UT_KMS))
+>  		return;
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 2113500b4075..b3815371c271 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1357,6 +1357,12 @@ struct drm_connector {
+>  	 * rev1.1 4.2.2.6
+>  	 */
+>  	bool edid_corrupt;
+> +	/**
+> +	 * @real_edid_checksum: real edid checksum for corrupted edid block.
+> +	 * Required in Displayport 1.4 compliance testing
+> +	 * rev1.1 4.2.2.6
+> +	 */
+> +	u8 real_edid_checksum;
+> =20
+>  	/** @debugfs_entry: debugfs directory for this connector */
+>  	struct dentry *debugfs_entry;
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+> index 127d6e1d3338..957a3d00ee05 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1459,6 +1459,9 @@ static inline ssize_t drm_dp_dpcd_writeb(struct drm=
+_dp_aux *aux,
+>  int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
+>  				 u8 status[DP_LINK_STATUS_SIZE]);
+> =20
+> +bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+> +				    u8 real_edid_checksum);
+> +
+>  int drm_dp_downstream_max_clock(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+>  				const u8 port_cap[4]);
+>  int drm_dp_downstream_max_bpc(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+> --=20
+> 2.17.1
+>
 
-CI Bug Log - changes from CI_DRM_7887 -> Patchwork_16487
-====================================================
+Reviewed-by: Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>=20
 
-Summary
--------
+--=20
+Rodrigo Siqueira
+Software Engineer, Advanced Micro Devices (AMD)
+https://siqueira.tech
 
-  **SUCCESS**
+--jpfjaor5bziqin3a
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  No regressions found.
+-----BEGIN PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/index.html
+iQIzBAEBCgAdFiEE4tZ+ii1mjMCMQbfkWJzP/comvP8FAl49zIgACgkQWJzP/com
+vP80fw//RqZvI8mst9dbUHreo+QMToPLsC9kfZZeuaQdeGZYnsaj3GtuxBkWoNPc
+DaDARSuNQTtaqdoQPqZIaPsgR112XDzVx/VBWMfTB0hkvbtUQEPcDR0eDfVeSp1v
+IRM6ffsY9GrIqpqUfpH8If2QqlHY0Q4HfwKrkUldp6f80WwaghFdI0hcK0ldGn/i
+oxgEzIgdQ49gD0XM98bXsAUCa9FvFSAV2r+nMtj5EVPDPHXKQ+84CcheLteX6kRA
+bDnTWErFQnhZVSfZccxsi0AbcJwYQfZ315VF3gOhqhQesD4+woYlcYAMOKI0L1Qs
+poTMNNAN/e7UdWlZhZUeLQJ+6P5tckF9ovnT+cHjy5XRMhxJg6XymVv6SZjoQur/
+0k5M1JPfKtYTErl101NbVYZjq1AeAUZ9HLDNmt5L/p/UydfdWHHcZb1Z2hULMLyj
+AYbvC+BxPswnhVXbjZDyie8NCclkm5/0EdC9QC/lEd4cgVe6onEivPZz/sLdduKa
+UV9TrJkvEdvej01XcIUKWZJI9iXW9w0vHX/vNmml5pGefSwUZxWCKtH4HVt4e38U
+di5NNMeeY1icj3K3K4P8bb3aJcehDBHCBRa4Iax001jl8uS6/7icngQT/d81MS+a
+jSZlA8H5VGwWe6M9ZldStbI295OMY9WubXw5DglUfdSB/5Bk/UY=
+=Cnyw
+-----END PGP SIGNATURE-----
 
-Known issues
-------------
+--jpfjaor5bziqin3a--
 
-  Here are the changes found in Patchwork_16487 that come from known issues:
+--===============1532097769==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-dsi:         [PASS][1] -> [DMESG-FAIL][2] ([fdo#108569])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-icl-dsi/igt@i915_selftest@live_execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-icl-dsi/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [PASS][3] -> [INCOMPLETE][4] ([fdo#106070] / [i915#424])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#109635] / [i915#217])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][7] -> [DMESG-WARN][8] ([i915#44])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [DMESG-FAIL][9] ([i915#725]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [DMESG-FAIL][11] ([i915#623]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-    - fi-byt-n2820:       [DMESG-FAIL][13] ([i915#1052]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_gtt:
-    - fi-icl-guc:         [TIMEOUT][15] ([fdo#112271]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-icl-guc/igt@i915_selftest@live_gtt.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-icl-guc/igt@i915_selftest@live_gtt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][17] ([fdo#111096] / [i915#323]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-skl-6770hq:      [INCOMPLETE][19] ([i915#69]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [TIMEOUT][21] ([fdo#112271]) -> [TIMEOUT][22] ([fdo#112271] / [i915#1084])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [FAIL][23] ([i915#694]) -> [TIMEOUT][24] ([fdo#112271] / [i915#1084])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-
-
-Participating hosts (48 -> 45)
-------------------------------
-
-  Additional (4): fi-skl-lmem fi-blb-e6850 fi-bdw-5557u fi-skl-6600u 
-  Missing    (7): fi-hsw-4200u fi-bsw-n3050 fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7887 -> Patchwork_16487
-
-  CI-20190529: 20190529
-  CI_DRM_7887: b147ed9753265260d6380604de01c3d646a323cd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5425: ad4542ef1adbaa1227bc9ba9e24bb0e0f6dd408d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16487: 209d107b652fc1c8f58892f9284b5cb572e1d018 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-209d107b652f drm/i915: Expose per-engine client busyness
-c1b02b71e21c drm/i915: Track per drm client engine class busyness
-02d2f600b3e6 drm/i915: Track per-context engine busyness
-3b55d5589621 drm/i915: Make GEM contexts track DRM clients
-45b83964a478 drm/i915: Update client name on context create
-f50257412ea0 drm/i915: Expose list of clients in sysfs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16487/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1532097769==--
