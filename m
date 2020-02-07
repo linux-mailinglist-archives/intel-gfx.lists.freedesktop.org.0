@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855851558EE
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:00:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 048171558F7
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:03:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 136F96FCB8;
-	Fri,  7 Feb 2020 14:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5215F6FCB6;
+	Fri,  7 Feb 2020 14:03:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C251B6FCB3;
- Fri,  7 Feb 2020 14:00:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7578A6FCB6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 14:03:39 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 06:00:14 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 06:03:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="279987495"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 07 Feb 2020 06:00:12 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Feb 2020 16:00:11 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Date: Fri,  7 Feb 2020 15:59:50 +0200
-Message-Id: <20200207135950.6655-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
-References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="226486937"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga008.fm.intel.com with ESMTP; 07 Feb 2020 06:03:36 -0800
+Date: Fri, 7 Feb 2020 19:33:48 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200207140348.GD11460@intel.com>
+References: <20200128135425.14596-3-anshuman.gupta@intel.com>
+ <20200129132619.4727-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 6/6] drm: Validate encoder->possible_crtcs
+Content-Disposition: inline
+In-Reply-To: <20200129132619.4727-1-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 2/4] drm/i915: HDCP support on above
+ PORT_E
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,42 +46,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldB
-Uk4gaWYgdGhlIGVuY29kZXIgcG9zc2libGVfY3J0Y3MgaXMgZWZmZWN0aXZlbHkgZW1wdHkgb3Ig
-Y29udGFpbnMKYml0cyBmb3Igbm9uLWV4aXN0aW5nIGNydGNzLgoKVE9ETzogT3Igc2hvdWxkIHdl
-IHBlcmhhcHN0IGp1c3QgZmlsdGVyIG91dCBhbnkgYml0IGZvciBhCm5vbi1leGlzaXRpbmcgY3J0
-Yz8KCkNjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6IERhbmll
-bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOk
-IDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vZHJt
-X2VuY29kZXIuYyB8IDE4ICsrKysrKysrKysrKysrKysrKwogMSBmaWxlIGNoYW5nZWQsIDE4IGlu
-c2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2VuY29kZXIuYyBi
-L2RyaXZlcnMvZ3B1L2RybS9kcm1fZW5jb2Rlci5jCmluZGV4IGJjMjI0NmYyN2UwZC4uZjE2YjJh
-MjUxOGQ3IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2VuY29kZXIuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vZHJtX2VuY29kZXIuYwpAQCAtMTA3LDYgKzEwNywyMyBAQCBzdGF0aWMg
-dm9pZCB2YWxpZGF0ZV9wb3NzaWJsZV9jbG9uZXMoc3RydWN0IGRybV9lbmNvZGVyICplbmNvZGVy
-KQogCSAgICAgZW5jb2Rlci0+cG9zc2libGVfY2xvbmVzLCBlbmNvZGVyX21hc2spOwogfQogCitz
-dGF0aWMgdm9pZCB2YWxpZGF0ZV9wb3NzaWJsZV9jcnRjcyhzdHJ1Y3QgZHJtX2VuY29kZXIgKmVu
-Y29kZXIpCit7CisJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9IGVuY29kZXItPmRldjsKKwlzdHJ1
-Y3QgZHJtX2NydGMgKmNydGM7CisJdTMyIGNydGNfbWFzayA9IDA7CisKKwlkcm1fZm9yX2VhY2hf
-Y3J0YyhjcnRjLCBkZXYpCisJCWNydGNfbWFzayB8PSBkcm1fY3J0Y19tYXNrKGNydGMpOworCisJ
-V0FSTigoZW5jb2Rlci0+cG9zc2libGVfY3J0Y3MgJiBjcnRjX21hc2spID09IDAgfHwKKwkgICAg
-IChlbmNvZGVyLT5wb3NzaWJsZV9jcnRjcyAmIH5jcnRjX21hc2spICE9IDAsCisJICAgICAiQm9n
-dXMgcG9zc2libGVfY3J0Y3M6ICIKKwkgICAgICJbRU5DT0RFUjolZDolc10gcG9zc2libGVfY3J0
-Y3M9MHgleCAoZnVsbCBjcnRjIG1hc2s9MHgleClcbiIsCisJICAgICBlbmNvZGVyLT5iYXNlLmlk
-LCBlbmNvZGVyLT5uYW1lLAorCSAgICAgZW5jb2Rlci0+cG9zc2libGVfY3J0Y3MsIGNydGNfbWFz
-ayk7Cit9CisKIGludCBkcm1fZW5jb2Rlcl9yZWdpc3Rlcl9hbGwoc3RydWN0IGRybV9kZXZpY2Ug
-KmRldikKIHsKIAlzdHJ1Y3QgZHJtX2VuY29kZXIgKmVuY29kZXI7CkBAIC0xMTUsNiArMTMyLDcg
-QEAgaW50IGRybV9lbmNvZGVyX3JlZ2lzdGVyX2FsbChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQog
-CWZpeHVwX3Bvc3NpYmxlX2Nsb25lcyhkZXYpOwogCiAJZHJtX2Zvcl9lYWNoX2VuY29kZXIoZW5j
-b2RlciwgZGV2KSB7CisJCXZhbGlkYXRlX3Bvc3NpYmxlX2NydGNzKGVuY29kZXIpOwogCQl2YWxp
-ZGF0ZV9wb3NzaWJsZV9jbG9uZXMoZW5jb2Rlcik7CiAKIAkJaWYgKGVuY29kZXItPmZ1bmNzLT5s
-YXRlX3JlZ2lzdGVyKQotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+On 2020-01-29 at 18:56:19 +0530, Anshuman Gupta wrote:
+> As Gen12 onwards there are HDCP instances for each transcoder
+> instead of port, remove the (port < PORT_E) hdcp support
+> limitation for platform >= Gen12.
+> 
+> v2:
+>  - Nuke the comment and cosmetic changes. [Jani]
+> 
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ramalingam C <ramalingam.c@intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index be083136eee2..231b9c12c0b6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -921,8 +921,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+>  
+>  bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
+>  {
+> -	/* PORT E doesn't have HDCP, and PORT F is disabled */
+> -	return INTEL_INFO(dev_priv)->display.has_hdcp && port < PORT_E;
+> +	return INTEL_INFO(dev_priv)->display.has_hdcp &&
+> +			(INTEL_GEN(dev_priv) >= 12 || port < PORT_E);
+As we discussed offline, this <PORT_E check for even <gen12 doesn't make
+sense as per Bspec. I would suggest we test HDCP1.4 and 2.2 on existing
+setup of <gen12 too.
+
+Or as we could remove this limitation and address the failure cases(not
+expected any as per HW spec).
+
+For >=gen12 transcoder based hdcp instances, this check dont make any sense.
+
+Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+>  }
+>  
+>  static int
+> -- 
+> 2.24.0
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
