@@ -1,36 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E003155B81
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:13:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E166F155B83
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:13:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6886EAE8;
-	Fri,  7 Feb 2020 16:13:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354556FD1F;
+	Fri,  7 Feb 2020 16:13:45 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9AD66EAD9
- for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:13:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 032616EAE5
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:13:40 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 08:13:39 -0800
+ 07 Feb 2020 08:13:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="226515324"
+X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="226515331"
 Received: from aabader-mobl1.ccr.corp.intel.com (HELO localhost.localdomain)
  ([10.252.21.249])
- by fmsmga008.fm.intel.com with ESMTP; 07 Feb 2020 08:13:38 -0800
+ by fmsmga008.fm.intel.com with ESMTP; 07 Feb 2020 08:13:39 -0800
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Feb 2020 16:13:29 +0000
-Message-Id: <20200207161331.23447-5-tvrtko.ursulin@linux.intel.com>
+Date: Fri,  7 Feb 2020 16:13:30 +0000
+Message-Id: <20200207161331.23447-6-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
 References: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/6] drm/i915: Track per-context engine busyness
+Subject: [Intel-gfx] [PATCH 5/6] drm/i915: Track per drm client engine class
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,241 +51,227 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Some customers want to know how much of the GPU time are their clients
-using in order to make dynamic load balancing decisions.
+Add per client, per engine class tracking of on GPU runtime on top of the
+previously added per context tracking.
 
-With the hooks already in place which track the overall engine busyness,
-we can extend that slightly to split that time between contexts.
+This data will then be exported via sysfs in a following patch in order to
+implement per DRM client view of GPU utilization.
 
-v2: Fix accounting for tail updates.
-v3: Rebase.
-v4: Mark currently running contexts as active on stats enable.
-v5: Include some headers to fix the build.
-v6: Added fine grained lock.
-v7: Convert to seqlock. (Chris Wilson)
-v8: Rebase and tidy with helpers.
-v9: Refactor.
-v10: Move recording start to promotion. (Chris)
-v11: Consolidate duplicated code. (Chris)
-v12: execlists->active cannot be NULL. (Chris)
+To implement this we add a stats structure to each drm client, which is
+per engine class, used to track the total time spent on engines of a
+certain class before the last activity transition, count of currently
+active contexts and a timestamp of the last activity transition (any
+increase or decrease). This allow accumulating activity segments and
+reporting in-progress activity.
+
+There is a small locked section (seqlock) from which time accounting
+updates are made as contexts are entering and exiting from the GPU. Lock
+is per class so contention is limited to same client activity on the same
+engine class. Other scenarios add no new lock contention.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c       | 20 ++++++++
- drivers/gpu/drm/i915/gt/intel_context.h       | 13 ++++++
- drivers/gpu/drm/i915/gt/intel_context_types.h |  9 ++++
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     | 15 +++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 46 ++++++++++++++++---
- 5 files changed, 95 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.h   | 32 ++++++++++++++++++----
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c |  1 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c       | 33 ++++++++++++++++++-----
+ drivers/gpu/drm/i915/i915_drm_client.c    |  4 ++-
+ drivers/gpu/drm/i915/i915_drm_client.h    | 10 +++++++
+ 5 files changed, 67 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 57e8a051ddc2..c8669036c303 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -286,6 +286,7 @@ intel_context_init(struct intel_context *ce,
- 	INIT_LIST_HEAD(&ce->signals);
- 
- 	mutex_init(&ce->pin_mutex);
-+	seqlock_init(&ce->stats.lock);
- 
- 	i915_active_init(&ce->active,
- 			 __intel_context_active, __intel_context_retire);
-@@ -380,6 +381,25 @@ struct i915_request *intel_context_create_request(struct intel_context *ce)
- 	return rq;
- }
- 
-+ktime_t intel_context_get_busy_time(struct intel_context *ce)
-+{
-+	unsigned int seq;
-+	ktime_t total;
-+
-+	do {
-+		seq = read_seqbegin(&ce->stats.lock);
-+
-+		total = ce->stats.total;
-+
-+		if (ce->stats.active)
-+			total = ktime_add(total,
-+					  ktime_sub(ktime_get(),
-+						    ce->stats.start));
-+	} while (read_seqretry(&ce->stats.lock, seq));
-+
-+	return total;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftest_context.c"
- #endif
 diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index 604d5cfc46ba..871196aa7d5a 100644
+index 871196aa7d5a..a0a77a590566 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context.h
 +++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -227,4 +227,17 @@ intel_context_clear_nopreempt(struct intel_context *ce)
- 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
+@@ -12,6 +12,7 @@
+ #include <linux/types.h>
+ 
+ #include "i915_active.h"
++#include "i915_drm_client.h"
+ #include "intel_context_types.h"
+ #include "intel_engine_types.h"
+ #include "intel_ring_types.h"
+@@ -228,14 +229,35 @@ intel_context_clear_nopreempt(struct intel_context *ce)
  }
  
-+static inline void
-+__intel_context_stats_start(struct intel_context *ce, ktime_t now)
-+{
-+	struct intel_context_stats *stats = &ce->stats;
+ static inline void
+-__intel_context_stats_start(struct intel_context *ce, ktime_t now)
++__intel_context_stats_start(struct intel_context *ce,
++			    struct intel_engine_cs *engine,
++			    ktime_t now)
+ {
+ 	struct intel_context_stats *stats = &ce->stats;
+-
+-	if (!stats->active) {
+-		stats->start = now;
+-		stats->active = true;
++	struct i915_gem_context *ctx;
 +
-+	if (!stats->active) {
-+		stats->start = now;
-+		stats->active = true;
-+	}
-+}
++	if (stats->active)
++		return;
 +
-+ktime_t intel_context_get_busy_time(struct intel_context *ce);
++	stats->start = now;
++	stats->active = true;
 +
- #endif /* __INTEL_CONTEXT_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ca1420fb8b53..963d33dc5289 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -11,6 +11,7 @@
- #include <linux/list.h>
- #include <linux/mutex.h>
- #include <linux/types.h>
-+#include <linux/seqlock.h>
++	rcu_read_lock();
++	ctx = rcu_dereference(ce->gem_context);
++	if (ctx && ctx->client) {
++		struct i915_drm_client_stats *cstats =
++			&ctx->client->stats[engine->uabi_class];
++		ktime_t now = ktime_get();
++		unsigned long flags;
++
++		write_seqlock_irqsave(&cstats->lock, flags);
++		cstats->busy += ktime_to_ns(ktime_sub(now, cstats->start)) *
++				cstats->active++;
++		GEM_WARN_ON(cstats->active == 0);
++		cstats->start = now;
++		write_sequnlock_irqrestore(&cstats->lock, flags);
+ 	}
++	rcu_read_unlock();
+ }
  
- #include "i915_active_types.h"
- #include "i915_utils.h"
-@@ -83,6 +84,14 @@ struct intel_context {
- 
- 	/** sseu: Control eu/slice partitioning */
- 	struct intel_sseu sseu;
-+
-+	/** stats: Context GPU engine busyness tracking. */
-+	struct intel_context_stats {
-+		seqlock_t lock;
-+		bool active;
-+		ktime_t start;
-+		ktime_t total;
-+	} stats;
- };
- 
- #endif /* __INTEL_CONTEXT_TYPES__ */
+ ktime_t intel_context_get_busy_time(struct intel_context *ce);
 diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index b1c7b1ed6149..a5344d2c7c10 100644
+index a5344d2c7c10..a9f8c5af8f81 100644
 --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
 +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1599,8 +1599,19 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
+@@ -1609,6 +1609,7 @@ int intel_enable_engine_stats(struct intel_engine_cs *engine)
+ 		rq = *port;
+ 		if (rq)
+ 			__intel_context_stats_start(rq->context,
++						    engine,
+ 						    engine->stats.enabled_at);
  
- 		engine->stats.enabled_at = ktime_get();
- 
--		/* XXX submission method oblivious? */
--		for (port = execlists->active; (rq = *port); port++)
-+		/*
-+		 * Mark currently running context as active.
-+		 * XXX submission method oblivious?
-+		 */
-+
-+		rq = NULL;
-+		port = execlists->active;
-+		rq = *port;
-+		if (rq)
-+			__intel_context_stats_start(rq->context,
-+						    engine->stats.enabled_at);
-+
-+		for (; (rq = *port); port++)
- 			engine->stats.active++;
- 
- 		for (port = execlists->pending; (rq = *port); port++) {
+ 		for (; (rq = *port); port++)
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index b350e01d86d2..1cd38b6eb189 100644
+index 1cd38b6eb189..7eefa7fe160b 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1197,6 +1197,32 @@ static void reset_active(struct i915_request *rq,
+@@ -1197,19 +1197,23 @@ static void reset_active(struct i915_request *rq,
  	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
  }
  
-+static void intel_context_stats_start(struct intel_context *ce)
-+{
-+	struct intel_context_stats *stats = &ce->stats;
-+	unsigned long flags;
-+
-+	write_seqlock_irqsave(&stats->lock, flags);
-+	__intel_context_stats_start(ce, ktime_get());
-+	write_sequnlock_irqrestore(&stats->lock, flags);
-+}
-+
-+static void intel_context_stats_stop(struct intel_context *ce)
-+{
-+	struct intel_context_stats *stats = &ce->stats;
-+	unsigned long flags;
-+
-+	if (!READ_ONCE(stats->active))
-+		return;
-+
-+	write_seqlock_irqsave(&stats->lock, flags);
-+	GEM_BUG_ON(!READ_ONCE(stats->active));
-+	stats->total = ktime_add(stats->total,
-+				 ktime_sub(ktime_get(), stats->start));
-+	stats->active = false;
-+	write_sequnlock_irqrestore(&stats->lock, flags);
-+}
-+
- static inline struct intel_engine_cs *
- __execlists_schedule_in(struct i915_request *rq)
+-static void intel_context_stats_start(struct intel_context *ce)
++static void intel_context_stats_start(struct intel_context *ce,
++				      struct intel_engine_cs *engine)
  {
-@@ -1264,7 +1290,7 @@ static inline void
- __execlists_schedule_out(struct i915_request *rq,
- 			 struct intel_engine_cs * const engine)
- {
--	struct intel_context * const ce = rq->context;
-+	struct intel_context *ce = rq->context;
+ 	struct intel_context_stats *stats = &ce->stats;
+ 	unsigned long flags;
  
- 	/*
- 	 * NB process_csb() is not under the engine->active.lock and hence
-@@ -1281,6 +1307,7 @@ __execlists_schedule_out(struct i915_request *rq,
+ 	write_seqlock_irqsave(&stats->lock, flags);
+-	__intel_context_stats_start(ce, ktime_get());
++	__intel_context_stats_start(ce, engine, ktime_get());
+ 	write_sequnlock_irqrestore(&stats->lock, flags);
+ }
+ 
+-static void intel_context_stats_stop(struct intel_context *ce)
++static void intel_context_stats_stop(struct intel_context *ce,
++				     struct intel_engine_cs *engine)
+ {
+ 	struct intel_context_stats *stats = &ce->stats;
++	struct i915_gem_context *ctx;
++	ktime_t now, runtime;
+ 	unsigned long flags;
+ 
+ 	if (!READ_ONCE(stats->active))
+@@ -1217,10 +1221,25 @@ static void intel_context_stats_stop(struct intel_context *ce)
+ 
+ 	write_seqlock_irqsave(&stats->lock, flags);
+ 	GEM_BUG_ON(!READ_ONCE(stats->active));
+-	stats->total = ktime_add(stats->total,
+-				 ktime_sub(ktime_get(), stats->start));
++	now = ktime_get();
++	runtime = ktime_sub(now, stats->start);
++	stats->total = ktime_add(stats->total, runtime);
+ 	stats->active = false;
+ 	write_sequnlock_irqrestore(&stats->lock, flags);
++
++	rcu_read_lock();
++	ctx = rcu_dereference(ce->gem_context);
++	if (ctx && ctx->client) {
++		struct i915_drm_client_stats *cstats =
++			&ctx->client->stats[engine->uabi_class];
++
++		write_seqlock_irqsave(&cstats->lock, flags);
++		GEM_WARN_ON(cstats->active == 0);
++		cstats->busy += ktime_to_ns(runtime) * cstats->active--;
++		cstats->start = now;
++		write_sequnlock_irqrestore(&cstats->lock, flags);
++	}
++	rcu_read_unlock();
+ }
+ 
+ static inline struct intel_engine_cs *
+@@ -1307,7 +1326,7 @@ __execlists_schedule_out(struct i915_request *rq,
  		intel_engine_add_retire(engine, ce->timeline);
  
  	intel_engine_context_out(engine);
-+	intel_context_stats_stop(ce);
+-	intel_context_stats_stop(ce);
++	intel_context_stats_stop(ce, engine);
  	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
  	intel_gt_pm_put_async(engine->gt);
  
-@@ -2262,6 +2289,7 @@ static void process_csb(struct intel_engine_cs *engine)
- 	rmb();
+@@ -2367,7 +2386,7 @@ static void process_csb(struct intel_engine_cs *engine)
  
- 	do {
-+		struct i915_request *rq;
- 		bool promote;
- 
- 		if (++head == num_entries)
-@@ -2316,7 +2344,11 @@ static void process_csb(struct intel_engine_cs *engine)
- 
- 			WRITE_ONCE(execlists->pending[0], NULL);
- 		} else {
--			GEM_BUG_ON(!*execlists->active);
-+			rq = *execlists->active++;
-+			GEM_BUG_ON(!rq);
-+
-+			GEM_BUG_ON(execlists->active - execlists->inflight >
-+				   execlists_num_ports(execlists));
- 
- 			/* port0 completed, advanced to port1 */
- 			trace_ports(execlists, "completed", execlists->active);
-@@ -2327,13 +2359,15 @@ static void process_csb(struct intel_engine_cs *engine)
- 			 * coherent (visible from the CPU) before the
- 			 * user interrupt and CSB is processed.
- 			 */
--			GEM_BUG_ON(!i915_request_completed(*execlists->active) &&
-+			GEM_BUG_ON(!i915_request_completed(rq) &&
- 				   !reset_in_progress(execlists));
--			execlists_schedule_out(*execlists->active++);
- 
--			GEM_BUG_ON(execlists->active - execlists->inflight >
--				   execlists_num_ports(execlists));
-+			execlists_schedule_out(rq);
- 		}
-+
-+		rq = *execlists->active;
-+		if (rq)
-+			intel_context_stats_start(rq->context);
+ 		rq = *execlists->active;
+ 		if (rq)
+-			intel_context_stats_start(rq->context);
++			intel_context_stats_start(rq->context, engine);
  	} while (head != tail);
  
  	execlists->csb_head = head;
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index 770094ef2e67..d26583d5825f 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -121,7 +121,7 @@ i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+ {
+ 	struct i915_drm_client *client;
+ 	u32 next = 0;
+-	int ret;
++	int i, ret;
+ 
+ 	client = kzalloc(sizeof(*client), GFP_KERNEL);
+ 	if (!client)
+@@ -129,6 +129,8 @@ i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+ 
+ 	kref_init(&client->kref);
+ 	mutex_init(&client->update_lock);
++	for (i = 0; i < ARRAY_SIZE(client->stats); i++)
++		seqlock_init(&client->stats[i].lock);
+ 	client->clients = clients;
+ 
+ 	ret = xa_alloc_cyclic(&clients->xarray, &client->id, client,
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index a9d4d7396e43..6361976a9f05 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -14,8 +14,11 @@
+ #include <linux/pid.h>
+ #include <linux/rcupdate.h>
+ #include <linux/sched.h>
++#include <linux/seqlock.h>
+ #include <linux/xarray.h>
+ 
++#include "gt/intel_engine_types.h"
++
+ struct i915_drm_clients {
+ 	struct xarray xarray;
+ 	struct kobject *root;
+@@ -33,6 +36,13 @@ struct i915_drm_client {
+ 	char __rcu *name;
+ 	bool closed;
+ 
++	struct i915_drm_client_stats {
++		seqlock_t lock;
++		unsigned int active;
++		ktime_t start;
++		u64 busy;
++	} stats[MAX_ENGINE_CLASS + 1];
++
+ 	struct i915_drm_clients *clients;
+ 
+ 	struct kobject *root;
 -- 
 2.20.1
 
