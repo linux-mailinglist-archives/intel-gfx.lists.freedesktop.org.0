@@ -1,39 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 149AD1554E5
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 10:41:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 018171554F6
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 10:43:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 620BC6FBE8;
-	Fri,  7 Feb 2020 09:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE6586FBFA;
+	Fri,  7 Feb 2020 09:43:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64F56FBE8
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 09:41:25 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49E16FBF7;
+ Fri,  7 Feb 2020 09:43:28 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 01:41:25 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 01:43:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,412,1574150400"; d="scan'208";a="225324637"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 07 Feb 2020 01:41:24 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 2F4805C0D64; Fri,  7 Feb 2020 11:40:29 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158106754158.7306.3828961672199232273@skylake-alporthouse-com>
-References: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
- <877e0yahfx.fsf@gaia.fi.intel.com>
- <158106754158.7306.3828961672199232273@skylake-alporthouse-com>
-Date: Fri, 07 Feb 2020 11:40:29 +0200
-Message-ID: <87zhdu91ma.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,412,1574150400"; d="scan'208";a="430790942"
+Received: from sgillich-mobl.ger.corp.intel.com (HELO [10.249.38.221])
+ ([10.249.38.221])
+ by fmsmga005.fm.intel.com with ESMTP; 07 Feb 2020 01:43:26 -0800
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <551b6183-a581-9d12-10a9-24cd929de425@linux.intel.com>
+Date: Fri, 7 Feb 2020 10:43:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Prevent queuing retire
- workers on the virtual engine
+Content-Language: en-US
+Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,52 +43,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+drm-misc-next-fixes-2020-02-07:
+drm-misc-next fixes for v5.6:
+- Fix build error in drm/edid.
+- Plug close-after-free race in vgem_gem_create.
+- Handle CONFIG_DMA_API_DEBUG_SG better in drm/msm.
+The following changes since commit d7ca2d19c751b6715e9cb899a6b94f47b3499d02:
 
-> Quoting Mika Kuoppala (2020-02-07 09:13:22)
->> Chris Wilson <chris@chris-wilson.co.uk> writes:
->> 
->> > Virtual engines are fleeting. They carry a reference count and may be freed
->> > when their last request is retired. This makes them unsuitable for the
->> > task of housing engine->retire.work so assert that it is not used.
->> 
->> There is chicken and egg problem here that I fail to grasp.
->
-> In the general case, an engine may be providing a workqueue for requests
-> for other engines. That's the conundrum I had in mind when writing that;
-> if and only if, we have the latest request from that engine on that
-> retire worker, then it will be protected by the last request (and our
-> careful ordering of dereferences). That is not guaranteed to be the case
-> (even for only virtual requests on a virtual engine, as we may not have
-> the last request queued for retirement, and so it may be retired ahead
-> of time.)
->
-> So as I write that, it becomes much clearer that there is a lifetime
-> issue with the concept of retirement queues on the virtual engine.
->
->> If the retire work is the mechanism which triggers the request
->> freeing, then the order should be fine. As the engine is still
->> there for last request.
->
-> It's not the only mechanism, so concurrent retirements are expected.
+  Merge tag 'drm-msm-next-2020-01-14' of https://gitlab.freedesktop.org/drm/msm into drm-next (2020-01-20 14:09:43 +1000)
 
-Well, it is somewhat embarrassing for me that this is described by the
-lower half of the commit message...
+are available in the Git repository at:
 
->> Or is the problem that it happens inside the worker which is inside
->> the engine?
->
-> The immediate problem is that we didn't even set up the virtual engine to
-> have retirement queues :)
+  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2020-02-07
 
-Indeed, there is none.
+for you to fetch changes up to e1cf35b94c5fd122a8780587559fc6da9fc2dd12:
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+  drm/edid: fix building error (2020-02-06 22:01:40 +0200)
+
+----------------------------------------------------------------
+drm-misc-next fixes for v5.6:
+- Fix build error in drm/edid.
+- Plug close-after-free race in vgem_gem_create.
+- Handle CONFIG_DMA_API_DEBUG_SG better in drm/msm.
+
+----------------------------------------------------------------
+Daniel Vetter (1):
+      drm/vgem: Close use-after-free race in vgem_gem_create
+
+Mauro Rossi (1):
+      drm/edid: fix building error
+
+Sean Paul (1):
+      drm/msm: Set dma maximum segment size for mdss
+
+ drivers/gpu/drm/drm_edid.c      | 2 +-
+ drivers/gpu/drm/msm/msm_drv.c   | 8 ++++++++
+ drivers/gpu/drm/vgem/vgem_drv.c | 9 ++++++---
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
