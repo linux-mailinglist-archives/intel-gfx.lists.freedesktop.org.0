@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B1F155A0A
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:50:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 643E5155A60
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 16:09:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AF26FCE0;
-	Fri,  7 Feb 2020 14:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A02376E082;
+	Fri,  7 Feb 2020 15:09:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37B466FCE0;
- Fri,  7 Feb 2020 14:50:05 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 06:50:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="220816121"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 07 Feb 2020 06:50:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Feb 2020 16:50:01 +0200
-Date: Fri, 7 Feb 2020 16:50:01 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200207145001.GI13686@intel.com>
-References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
- <20200207135950.6655-2-ville.syrjala@linux.intel.com>
- <d58f13cf-6c9e-9a1c-5cbd-e51e1ad04e80@suse.de>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 85A796E081;
+ Fri,  7 Feb 2020 15:09:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7E98BA0071;
+ Fri,  7 Feb 2020 15:09:34 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <d58f13cf-6c9e-9a1c-5cbd-e51e1ad04e80@suse.de>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm: Include the encoder itself in
- possible_clones
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Feb 2020 15:09:34 -0000
+Message-ID: <158108817449.8754.2367478482242155261@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/gem=3A_Don=27t_leak?=
+ =?utf-8?q?_non-persistent_requests_on_changing_engines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,113 +39,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 03:28:35PM +0100, Thomas Zimmermann wrote:
-> Hi
-> =
+== Series Details ==
 
-> Am 07.02.20 um 14:59 schrieb Ville Syrjala:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+Series: series starting with [1/3] drm/i915/gem: Don't leak non-persistent requests on changing engines
+URL   : https://patchwork.freedesktop.org/series/73134/
+State : warning
 
-> > The docs say possible_clones should always include the encoder itself.
-> > Since most drivers don't want to deal with the complexities of cloning
-> > let's allow them to set possible_clones=3D0 and instead we'll fix that
-> > up in the core.
-> > =
+== Summary ==
 
-> > We can't put this special case into drm_encoder_init() because drivers
-> > will have to fill up possible_clones after adding all the relevant
-> > encoders. Otherwise they wouldn't know the proper encoder indexes to
-> > use. So we'll just do it just before registering the encoders.
-> > =
+$ dim checkpatch origin/drm-tip
+9e3619244308 drm/i915/gem: Don't leak non-persistent requests on changing engines
+-:249: WARNING:USE_SPINLOCK_T: struct spinlock should be spinlock_t
+#249: FILE: drivers/gpu/drm/i915/gem/i915_gem_context_types.h:184:
++		struct spinlock lock;
 
-> > TODO: Should we do something similar for possible_crtcs=3D=3D0?
-> > =
+total: 0 errors, 1 warnings, 0 checks, 242 lines checked
+faff3bde98f8 drm/i915: Disable use of hwsp_cacheline for kernel_context
+8532f680f37f drm/i915/selftests: Relax timeout for error-interrupt reset processing
 
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> May this fixup function should warn iff possible_clones was set to non-0
-> by the driver, but the encoder itself is missing.
-
-Yeah, I guess we could do that.
-
-> In any case
-> =
-
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-> =
-
-> > ---
-> >  drivers/gpu/drm/drm_encoder.c | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_encoder.c b/drivers/gpu/drm/drm_encode=
-r.c
-> > index e555281f43d4..f761d9306028 100644
-> > --- a/drivers/gpu/drm/drm_encoder.c
-> > +++ b/drivers/gpu/drm/drm_encoder.c
-> > @@ -66,11 +66,26 @@ static const struct drm_prop_enum_list drm_encoder_=
-enum_list[] =3D {
-> >  	{ DRM_MODE_ENCODER_DPI, "DPI" },
-> >  };
-> >  =
-
-> > +/*
-> > + * For some reason we want the encoder itself included in
-> > + * possible_clones. Make life easy for drivers by allowing them
-> > + * to leave possible_clones unset if no cloning is possible.
-> > + */
-> > +static void fixup_possible_clones(struct drm_device *dev)
-> > +{
-> > +	struct drm_encoder *encoder;
-> > +
-> > +	drm_for_each_encoder(encoder, dev)
-> > +		encoder->possible_clones |=3D drm_encoder_mask(encoder);
-> > +}
-> > +
-> >  int drm_encoder_register_all(struct drm_device *dev)
-> >  {
-> >  	struct drm_encoder *encoder;
-> >  	int ret =3D 0;
-> >  =
-
-> > +	fixup_possible_clones(dev);
-> > +
-> >  	drm_for_each_encoder(encoder, dev) {
-> >  		if (encoder->funcs->late_register)
-> >  			ret =3D encoder->funcs->late_register(encoder);
-> > =
-
-> =
-
-> -- =
-
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
-> (HRB 36809, AG N=FCrnberg)
-> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
-> =
-
-
-
-
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
