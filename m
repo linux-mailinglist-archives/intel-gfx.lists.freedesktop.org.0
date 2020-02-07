@@ -2,32 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23751155A0E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:50:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B1F155A0A
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 15:50:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 685696E073;
-	Fri,  7 Feb 2020 14:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38AF26FCE0;
+	Fri,  7 Feb 2020 14:50:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E87B76E073
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 14:50:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37B466FCE0;
+ Fri,  7 Feb 2020 14:50:05 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 06:50:22 -0800
+ 07 Feb 2020 06:50:04 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="236374454"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by orsmga006.jf.intel.com with ESMTP; 07 Feb 2020 06:50:20 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Feb 2020 20:11:16 +0530
-Message-Id: <20200207144116.20172-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.24.0
+X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="220816121"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 07 Feb 2020 06:50:02 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 07 Feb 2020 16:50:01 +0200
+Date: Fri, 7 Feb 2020 16:50:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200207145001.GI13686@intel.com>
+References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
+ <20200207135950.6655-2-ville.syrjala@linux.intel.com>
+ <d58f13cf-6c9e-9a1c-5cbd-e51e1ad04e80@suse.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: HDCP support on above PORT_E
+Content-Disposition: inline
+In-Reply-To: <d58f13cf-6c9e-9a1c-5cbd-e51e1ad04e80@suse.de>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm: Include the encoder itself in
+ possible_clones
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,45 +50,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As Gen12 onwards there are HDCP instances for each transcoder
-instead of port, remove the (port < PORT_E) hdcp support
-limitation for platform >= Gen12.
+On Fri, Feb 07, 2020 at 03:28:35PM +0100, Thomas Zimmermann wrote:
+> Hi
+> =
 
-v2:
- - Nuke the comment and cosmetic changes. [Jani]
+> Am 07.02.20 um 14:59 schrieb Ville Syrjala:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> > The docs say possible_clones should always include the encoder itself.
+> > Since most drivers don't want to deal with the complexities of cloning
+> > let's allow them to set possible_clones=3D0 and instead we'll fix that
+> > up in the core.
+> > =
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 4d1a33d13105..30e0a3aa9d57 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -941,8 +941,8 @@ static void intel_hdcp_prop_work(struct work_struct *work)
- 
- bool is_hdcp_supported(struct drm_i915_private *dev_priv, enum port port)
- {
--	/* PORT E doesn't have HDCP, and PORT F is disabled */
--	return INTEL_INFO(dev_priv)->display.has_hdcp && port < PORT_E;
-+	return INTEL_INFO(dev_priv)->display.has_hdcp &&
-+			(INTEL_GEN(dev_priv) >= 12 || port < PORT_E);
- }
- 
- static int
--- 
-2.24.0
+> > We can't put this special case into drm_encoder_init() because drivers
+> > will have to fill up possible_clones after adding all the relevant
+> > encoders. Otherwise they wouldn't know the proper encoder indexes to
+> > use. So we'll just do it just before registering the encoders.
+> > =
 
+> > TODO: Should we do something similar for possible_crtcs=3D=3D0?
+> > =
+
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> May this fixup function should warn iff possible_clones was set to non-0
+> by the driver, but the encoder itself is missing.
+
+Yeah, I guess we could do that.
+
+> In any case
+> =
+
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+> =
+
+> > ---
+> >  drivers/gpu/drm/drm_encoder.c | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > =
+
+> > diff --git a/drivers/gpu/drm/drm_encoder.c b/drivers/gpu/drm/drm_encode=
+r.c
+> > index e555281f43d4..f761d9306028 100644
+> > --- a/drivers/gpu/drm/drm_encoder.c
+> > +++ b/drivers/gpu/drm/drm_encoder.c
+> > @@ -66,11 +66,26 @@ static const struct drm_prop_enum_list drm_encoder_=
+enum_list[] =3D {
+> >  	{ DRM_MODE_ENCODER_DPI, "DPI" },
+> >  };
+> >  =
+
+> > +/*
+> > + * For some reason we want the encoder itself included in
+> > + * possible_clones. Make life easy for drivers by allowing them
+> > + * to leave possible_clones unset if no cloning is possible.
+> > + */
+> > +static void fixup_possible_clones(struct drm_device *dev)
+> > +{
+> > +	struct drm_encoder *encoder;
+> > +
+> > +	drm_for_each_encoder(encoder, dev)
+> > +		encoder->possible_clones |=3D drm_encoder_mask(encoder);
+> > +}
+> > +
+> >  int drm_encoder_register_all(struct drm_device *dev)
+> >  {
+> >  	struct drm_encoder *encoder;
+> >  	int ret =3D 0;
+> >  =
+
+> > +	fixup_possible_clones(dev);
+> > +
+> >  	drm_for_each_encoder(encoder, dev) {
+> >  		if (encoder->funcs->late_register)
+> >  			ret =3D encoder->funcs->late_register(encoder);
+> > =
+
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
