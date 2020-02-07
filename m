@@ -2,63 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00B95155BFC
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B7F155C0B
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:47:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B4B06EACD;
-	Fri,  7 Feb 2020 16:40:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14C796EAD0;
+	Fri,  7 Feb 2020 16:47:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C2B6E0DC
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:40:45 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z7so3403281wrl.13
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Feb 2020 08:40:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=RMiR/TOQE5lC5iLlhM8qP8jgnJsFfB+LRSeJJe7mo0M=;
- b=MP3qmtXPLXhMSfGIuN3LXlDYnXwyLP9/ZzmC6hmUwSsohnbRFjzFLe6cydo+2DjiZz
- O9QuRBieXizr4yx3OF2bCYcvBommETNkxUp12BE2EWOCOBfTNyrR5wHolyrHrshMligF
- a5JhQCpYH9lKy4P6/yldpXQUvkZR4hkzQ+AnI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=RMiR/TOQE5lC5iLlhM8qP8jgnJsFfB+LRSeJJe7mo0M=;
- b=dFHFJ0ovbFiR0JgUO14gn23GyQkfEZewrEODO4vgI9/Dq8hnrL9m4K7Yx+uBU7vxU5
- u3fPQzryOKtmhHWfvHeGDlkmS0QXT1mPCVhxJDydLixytXgWI/WIhbml/gMP0Ed/deqt
- 6TgJbxx4KCr5u8R/yw9JGKLEMu1GUjssWOG0MHk/Htgyhq6Q+guUQXjZnChsSivCkce6
- vIQ8MGFm89PqDaQA7bf9hxDtO49rbg2JqmYZWQ+VHuUooCB+eJBxd6s6MwQIIFBi5LQZ
- F/mUJzwrg1LqSPTgPmWlIrVlzViwYwxNQbjpqRSuwYLX+Z0DVdeG+25ovGWZ9I80mNBR
- sblw==
-X-Gm-Message-State: APjAAAUiLJ18gTbM7BvIvTDwJJ5msnvmPS5ehpeTNTY9uzyXSggvKE/W
- ODKtFmWHw3ogQGncISFZ+kqP4BdXkkfUaQ==
-X-Google-Smtp-Source: APXvYqwxFkequdp64zvNb6hMXD4Z/vGeNgUX3L6RUFEGGqSVEVJgAT5QaFMw+1E1gqPSu4lDhEkoxA==
-X-Received: by 2002:a5d:4a48:: with SMTP id v8mr5580186wrs.42.1581093643848;
- Fri, 07 Feb 2020 08:40:43 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id t1sm4122661wma.43.2020.02.07.08.40.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Feb 2020 08:40:43 -0800 (PST)
-Date: Fri, 7 Feb 2020 17:40:41 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200207164041.GO43062@phenom.ffwll.local>
-References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
- <20200207135950.6655-2-ville.syrjala@linux.intel.com>
- <d58f13cf-6c9e-9a1c-5cbd-e51e1ad04e80@suse.de>
- <20200207145001.GI13686@intel.com>
- <20200207162751.GJ43062@phenom.ffwll.local>
- <20200207163447.GN13686@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E53D96EAD0
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:47:00 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 08:47:00 -0800
+X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="225428730"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
+ ([10.252.21.249])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 07 Feb 2020 08:46:59 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <aa563e99-fc8a-8f1c-12b7-2f867a3eb49a@linux.intel.com>
+Date: Fri, 7 Feb 2020 16:46:55 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207163447.GN13686@intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm: Include the encoder itself in
- possible_clones
+In-Reply-To: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/gem: Don't leak non-persistent
+ requests on changing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,84 +47,337 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: matthew.auld@intel.com
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 06:34:47PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Feb 07, 2020 at 05:27:51PM +0100, Daniel Vetter wrote:
-> > On Fri, Feb 07, 2020 at 04:50:01PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Fri, Feb 07, 2020 at 03:28:35PM +0100, Thomas Zimmermann wrote:
-> > > > Hi
-> > > > =
 
-> > > > Am 07.02.20 um 14:59 schrieb Ville Syrjala:
-> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > > =
+If you want quick&dirty feedback read below, if you want something 
+smarter wait some more. :)
 
-> > > > > The docs say possible_clones should always include the encoder it=
-self.
-> > > > > Since most drivers don't want to deal with the complexities of cl=
-oning
-> > > > > let's allow them to set possible_clones=3D0 and instead we'll fix=
- that
-> > > > > up in the core.
-> > > > > =
+On 07/02/2020 11:11, Chris Wilson wrote:
+> If we have a set of active engines marked as being non-persistent, we
+> lose track of those if the user replaces those engines with
+> I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
+> non-persistent requests are terminated if they are no longer being
+> tracked by the user's context (in order to prevent a lost request
+> causing an untracked and so unstoppable GPU hang), we need to apply the
+> same context cancellation upon changing engines.
+> 
+> v2: Track stale engines[] so we only reap at context closure.
+> 
+> Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
+> Testcase: igt/gem_ctx_peristence/replace
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c   | 118 ++++++++++++++++--
+>   .../gpu/drm/i915/gem/i915_gem_context_types.h |  13 +-
+>   drivers/gpu/drm/i915/i915_sw_fence.c          |  15 ++-
+>   drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
+>   4 files changed, 135 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 52a749691a8d..579215161c21 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -270,7 +270,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+>   	if (!e)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	init_rcu_head(&e->rcu);
+> +	e->ctx = ctx;
+> +
+>   	for_each_engine(engine, gt, id) {
+>   		struct intel_context *ce;
+>   
+> @@ -450,7 +451,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+>   	return engine;
+>   }
+>   
+> -static void kill_context(struct i915_gem_context *ctx)
+> +static void kill_engines(struct i915_gem_engines *engines)
+>   {
+>   	struct i915_gem_engines_iter it;
+>   	struct intel_context *ce;
+> @@ -462,7 +463,7 @@ static void kill_context(struct i915_gem_context *ctx)
+>   	 * However, we only care about pending requests, so only include
+>   	 * engines on which there are incomplete requests.
+>   	 */
+> -	for_each_gem_engine(ce, __context_engines_static(ctx), it) {
+> +	for_each_gem_engine(ce, engines, it) {
+>   		struct intel_engine_cs *engine;
+>   
+>   		if (intel_context_set_banned(ce))
+> @@ -484,10 +485,41 @@ static void kill_context(struct i915_gem_context *ctx)
+>   			 * the context from the GPU, we have to resort to a full
+>   			 * reset. We hope the collateral damage is worth it.
+>   			 */
+> -			__reset_context(ctx, engine);
+> +			__reset_context(engines->ctx, engine);
+>   	}
+>   }
+>   
+> +static void kill_stale_engines(struct i915_gem_context *ctx)
+> +{
+> +	struct i915_gem_engines *pos, *next;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&ctx->stale.lock, flags);
+> +	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
+> +		if (!i915_sw_fence_await(&pos->fence))
+> +			continue;
 
-> > > > > We can't put this special case into drm_encoder_init() because dr=
-ivers
-> > > > > will have to fill up possible_clones after adding all the relevant
-> > > > > encoders. Otherwise they wouldn't know the proper encoder indexes=
- to
-> > > > > use. So we'll just do it just before registering the encoders.
-> > > > > =
+When is this path hit?
 
-> > > > > TODO: Should we do something similar for possible_crtcs=3D=3D0?
-> > > > > =
+> +
+> +		spin_unlock_irqrestore(&ctx->stale.lock, flags);
+> +
+> +		kill_engines(pos);
+> +
+> +		spin_lock_irqsave(&ctx->stale.lock, flags);
+> +		list_safe_reset_next(pos, next, link);
+> +		list_del_init(&pos->link);
+> +
+> +		i915_sw_fence_complete(&pos->fence);
 
-> > > > > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > > > > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > =
+This will trigger FENCE_FREE below?
 
-> > > > May this fixup function should warn iff possible_clones was set to =
-non-0
-> > > > by the driver, but the encoder itself is missing.
-> > > =
+> +	}
+> +	spin_unlock_irqrestore(&ctx->stale.lock, flags);
+> +}
+> +
+> +static void kill_context(struct i915_gem_context *ctx)
+> +{
+> +	if (!list_empty(&ctx->stale.engines))
+> +		kill_stale_engines(ctx);
+> +
+> +	kill_engines(__context_engines_static(ctx));
+> +}
+> +
+>   static void set_closed_name(struct i915_gem_context *ctx)
+>   {
+>   	char *s;
+> @@ -602,6 +634,9 @@ __create_context(struct drm_i915_private *i915)
+>   	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
+>   	mutex_init(&ctx->mutex);
+>   
+> +	spin_lock_init(&ctx->stale.lock);
+> +	INIT_LIST_HEAD(&ctx->stale.engines);
+> +
+>   	mutex_init(&ctx->engines_mutex);
+>   	e = default_engines(ctx);
+>   	if (IS_ERR(e)) {
+> @@ -1529,6 +1564,71 @@ static const i915_user_extension_fn set_engines__extensions[] = {
+>   	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+>   };
+>   
+> +static int engines_notify(struct i915_sw_fence *fence,
+> +			  enum i915_sw_fence_notify state)
+> +{
+> +	struct i915_gem_engines *engines =
+> +		container_of(fence, typeof(*engines), fence);
+> +
+> +	switch (state) {
+> +	case FENCE_COMPLETE:
+> +		if (!list_empty(&engines->link)) {
 
-> > > Yeah, I guess we could do that.
-> > =
+Why it is safe to look at the state of engines->link outside the lock? 
+We can have a race between context close and completion event on a stale 
+engine, right?
 
-> > +1 on that, should catch some bugs at least.
-> > =
+> +			struct i915_gem_context *ctx = engines->ctx;
+> +			unsigned long flags;
+> +
+> +			spin_lock_irqsave(&ctx->stale.lock, flags);
+> +			list_del(&engines->link);
+> +			spin_unlock_irqrestore(&ctx->stale.lock, flags);
+> +		}
+> +		break;
+> +
+> +	case FENCE_FREE:
+> +		init_rcu_head(&engines->rcu);
+> +		call_rcu(&engines->rcu, free_engines_rcu);
+> +		break;
+> +	}
+> +
+> +	return NOTIFY_DONE;
+> +}
+> +
+> +static void engines_idle_release(struct i915_gem_engines *engines)
+> +{
+> +	struct i915_gem_engines_iter it;
+> +	struct intel_context *ce;
+> +	unsigned long flags;
+> +
+> +	GEM_BUG_ON(!engines);
+> +	i915_sw_fence_init(&engines->fence, engines_notify);
+> +
+> +	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
+> +	list_add(&engines->link, &engines->ctx->stale.engines);
+> +	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
+> +
+> +	for_each_gem_engine(ce, engines, it) {
+> +		struct dma_fence *fence;
+> +		int err;
+> +
+> +		if (!ce->timeline)
+> +			continue;
 
-> > Also can you pls fix up the kerneldoc for drm_encoder.possible_clones,
-> > defacto this now means that 0 is a totally fine setting.
-> =
+When does this happen?
 
-> Sure.
-> =
+> +
+> +		fence = i915_active_fence_get(&ce->timeline->last_request);
+> +		if (!fence)
+> +			continue;
+> +
+> +		err = i915_sw_fence_await_dma_fence(&engines->fence,
+> +						    fence, 0,
+> +						    GFP_KERNEL);
+> +
+> +		dma_fence_put(fence);
+> +		if (err < 0) {
+> +			kill_engines(engines);
+> +			break;
 
-> And for possible_crtcs I was thinking similar concept:
-> =
+Okay to leave already setup awaits active in this case?
 
-> for_each_encoder()
-> 	if (possible_crtc =3D=3D 0)
-> 		possible_crtcs =3D all_crtc_mask;
+> +		}
+> +	}
+> +
+> +	i915_sw_fence_commit(&engines->fence);
+> +}
+> +
+>   static int
+>   set_engines(struct i915_gem_context *ctx,
+>   	    const struct drm_i915_gem_context_param *args)
+> @@ -1571,7 +1671,8 @@ set_engines(struct i915_gem_context *ctx,
+>   	if (!set.engines)
+>   		return -ENOMEM;
+>   
+> -	init_rcu_head(&set.engines->rcu);
+> +	set.engines->ctx = ctx;
+> +
+>   	for (n = 0; n < num_engines; n++) {
+>   		struct i915_engine_class_instance ci;
+>   		struct intel_engine_cs *engine;
+> @@ -1631,7 +1732,8 @@ set_engines(struct i915_gem_context *ctx,
+>   	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
+>   	mutex_unlock(&ctx->engines_mutex);
+>   
+> -	call_rcu(&set.engines->rcu, free_engines_rcu);
+> +	/* Keep track of old engine sets for kill_context() */
+> +	engines_idle_release(set.engines);
+>   
+>   	return 0;
+>   }
+> @@ -1646,7 +1748,6 @@ __copy_engines(struct i915_gem_engines *e)
+>   	if (!copy)
+>   		return ERR_PTR(-ENOMEM);
+>   
+> -	init_rcu_head(&copy->rcu);
+>   	for (n = 0; n < e->num_engines; n++) {
+>   		if (e->engines[n])
+>   			copy->engines[n] = intel_context_get(e->engines[n]);
+> @@ -1890,7 +1991,8 @@ static int clone_engines(struct i915_gem_context *dst,
+>   	if (!clone)
+>   		goto err_unlock;
+>   
+> -	init_rcu_head(&clone->rcu);
+> +	clone->ctx = dst;
+> +
+>   	for (n = 0; n < e->num_engines; n++) {
+>   		struct intel_engine_cs *engine;
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> index 017ca803ab47..8d996dde8046 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+> @@ -20,6 +20,7 @@
+>   #include "gt/intel_context_types.h"
+>   
+>   #include "i915_scheduler.h"
+> +#include "i915_sw_fence.h"
+>   
+>   struct pid;
+>   
+> @@ -30,7 +31,12 @@ struct intel_timeline;
+>   struct intel_ring;
+>   
+>   struct i915_gem_engines {
+> -	struct rcu_head rcu;
+> +	union {
+> +		struct rcu_head rcu;
+> +		struct list_head link;
+> +	};
+> +	struct i915_sw_fence fence;
+> +	struct i915_gem_context *ctx;
+>   	unsigned int num_engines;
+>   	struct intel_context *engines[];
+>   };
+> @@ -173,6 +179,11 @@ struct i915_gem_context {
+>   	 * context in messages.
+>   	 */
+>   	char name[TASK_COMM_LEN + 8];
+> +
+> +	struct {
+> +		struct spinlock lock;
+> +		struct list_head engines;
+> +	} stale;
+>   };
+>   
+>   #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+> index 51ba97daf2a0..9a20b7246f91 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence.c
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+> @@ -211,10 +211,19 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
+>   	__i915_sw_fence_complete(fence, NULL);
+>   }
+>   
+> -void i915_sw_fence_await(struct i915_sw_fence *fence)
+> +bool i915_sw_fence_await(struct i915_sw_fence *fence)
+>   {
+> -	debug_fence_assert(fence);
+> -	WARN_ON(atomic_inc_return(&fence->pending) <= 1);
+> +	int old, new;
+> +
+> +	new = atomic_read(&fence->pending);
+> +	do {
+> +		if (new < 1)
+> +			return false;
+> +
+> +		old = new++;
+> +	} while ((new = atomic_cmpxchg(&fence->pending, old, new)) != old);
+> +
+> +	return true;
 
-A quick grep shows that I think we can risk enforcing this. If that turns
-out to be a misconception we can always go back to the fixup approach if
-possible_crtcs is 0. But unlike possible_clones I think for possible_crtcs
-the fixup-less approach looks possible at least.
--Daniel
--- =
+No idea what's happening here. Why was the existing code inadequate and 
+what are you changing?
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+Regards,
+
+Tvrtko
+
+>   }
+>   
+>   void __i915_sw_fence_init(struct i915_sw_fence *fence,
+> diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
+> index 19e806ce43bc..30a863353ee6 100644
+> --- a/drivers/gpu/drm/i915/i915_sw_fence.h
+> +++ b/drivers/gpu/drm/i915/i915_sw_fence.h
+> @@ -91,7 +91,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
+>   				    unsigned long timeout,
+>   				    gfp_t gfp);
+>   
+> -void i915_sw_fence_await(struct i915_sw_fence *fence);
+> +bool i915_sw_fence_await(struct i915_sw_fence *fence);
+>   void i915_sw_fence_complete(struct i915_sw_fence *fence);
+>   
+>   static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
