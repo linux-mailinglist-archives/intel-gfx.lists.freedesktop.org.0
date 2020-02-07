@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CFA6155C1D
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1226C155C1E
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:49:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C104A6EAD4;
-	Fri,  7 Feb 2020 16:49:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7956EAD2;
- Fri,  7 Feb 2020 16:49:07 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA396EAD3;
+	Fri,  7 Feb 2020 16:49:21 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0A716EAD3
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:49:20 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 08:49:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="225595113"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 07 Feb 2020 08:49:04 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Feb 2020 18:49:03 +0200
-Date: Fri, 7 Feb 2020 18:49:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200207164903.GO13686@intel.com>
-References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
- <20200207135950.6655-7-ville.syrjala@linux.intel.com>
- <20200207163926.GN43062@phenom.ffwll.local>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 08:49:20 -0800
+X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="225429423"
+Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
+ ([10.252.21.249])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 07 Feb 2020 08:49:19 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
+ <20200207161331.23447-6-tvrtko.ursulin@linux.intel.com>
+ <158109321467.16098.12817907526709789256@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <b23f6987-86e2-c649-bd48-4fdae5a7947c@linux.intel.com>
+Date: Fri, 7 Feb 2020 16:49:17 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207163926.GN43062@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm: Validate encoder->possible_crtcs
+In-Reply-To: <158109321467.16098.12817907526709789256@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Track per drm client engine
+ class busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,113 +49,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 05:39:26PM +0100, Daniel Vetter wrote:
-> On Fri, Feb 07, 2020 at 03:59:50PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
 
-> > WARN if the encoder possible_crtcs is effectively empty or contains
-> > bits for non-existing crtcs.
-> > =
+On 07/02/2020 16:33, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-02-07 16:13:30)
+>>   static inline void
+>> -__intel_context_stats_start(struct intel_context *ce, ktime_t now)
+>> +__intel_context_stats_start(struct intel_context *ce,
+>> +                           struct intel_engine_cs *engine,
+>> +                           ktime_t now)
+>>   {
+>>          struct intel_context_stats *stats = &ce->stats;
+>> -
+>> -       if (!stats->active) {
+>> -               stats->start = now;
+>> -               stats->active = true;
+>> +       struct i915_gem_context *ctx;
+>> +
+>> +       if (stats->active)
+>> +               return;
+>> +
+>> +       stats->start = now;
+>> +       stats->active = true;
+>> +
+>> +       rcu_read_lock();
+>> +       ctx = rcu_dereference(ce->gem_context);
+>> +       if (ctx && ctx->client) {
+> 
+> I'd rather avoid having to dig into the GEM context down here next to
+> the HW.
+> 
+> First thought would be to keep the stats local on the intel_context and
+> for the client to chase collate them when the user reads the fd.
+> 
+> Hmm, didn't you structure it like so earlier? What made you change your
+> mind?
 
-> > TODO: Or should we perhapst just filter out any bit for a
-> > non-exisiting crtc?
-> > =
+Yes, it's in the cover letter - we must not have disappearing 
+contributions - client can submit from one context for a bit, close it, 
+and oops usage history lost.
 
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+ce->drm_client? :)
 
-> >From a quick grep it looks like at least most drivers seem to get this
-> right. Worth a shot to find the hold-outs.
-> =
 
-> Two things:
-> - Imo also best to move into the drm_mode_config_validate I suggested.
-> - Please update the kerneldoc for drm_encoder.possible_crtcs to mention
->   that this will WARN if you get it wrong (and maybe remove the line that
->   most drivers screw this up).
+Regards,
 
-ack
-
-> =
-
-> Check itself lgtm.
-> -Daniel
-> =
-
-> > ---
-> >  drivers/gpu/drm/drm_encoder.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_encoder.c b/drivers/gpu/drm/drm_encode=
-r.c
-> > index bc2246f27e0d..f16b2a2518d7 100644
-> > --- a/drivers/gpu/drm/drm_encoder.c
-> > +++ b/drivers/gpu/drm/drm_encoder.c
-> > @@ -107,6 +107,23 @@ static void validate_possible_clones(struct drm_en=
-coder *encoder)
-> >  	     encoder->possible_clones, encoder_mask);
-> >  }
-> >  =
-
-> > +static void validate_possible_crtcs(struct drm_encoder *encoder)
-> > +{
-> > +	struct drm_device *dev =3D encoder->dev;
-> > +	struct drm_crtc *crtc;
-> > +	u32 crtc_mask =3D 0;
-> > +
-> > +	drm_for_each_crtc(crtc, dev)
-> > +		crtc_mask |=3D drm_crtc_mask(crtc);
-> > +
-> > +	WARN((encoder->possible_crtcs & crtc_mask) =3D=3D 0 ||
-> > +	     (encoder->possible_crtcs & ~crtc_mask) !=3D 0,
-> > +	     "Bogus possible_crtcs: "
-> > +	     "[ENCODER:%d:%s] possible_crtcs=3D0x%x (full crtc mask=3D0x%x)\n=
-",
-> > +	     encoder->base.id, encoder->name,
-> > +	     encoder->possible_crtcs, crtc_mask);
-> > +}
-> > +
-> >  int drm_encoder_register_all(struct drm_device *dev)
-> >  {
-> >  	struct drm_encoder *encoder;
-> > @@ -115,6 +132,7 @@ int drm_encoder_register_all(struct drm_device *dev)
-> >  	fixup_possible_clones(dev);
-> >  =
-
-> >  	drm_for_each_encoder(encoder, dev) {
-> > +		validate_possible_crtcs(encoder);
-> >  		validate_possible_clones(encoder);
-> >  =
-
-> >  		if (encoder->funcs->late_register)
-> > -- =
-
-> > 2.24.1
-> > =
-
-> =
-
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
