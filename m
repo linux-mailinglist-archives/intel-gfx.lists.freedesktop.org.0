@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E742D15609E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 22:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F881560BF
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 22:38:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26BCC6E11B;
-	Fri,  7 Feb 2020 21:15:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A592E6FDB6;
+	Fri,  7 Feb 2020 21:38:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998816E11B
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 21:15:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20153593-1500050 
- for multiple; Fri, 07 Feb 2020 21:14:53 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri,  7 Feb 2020 21:14:52 +0000
-Message-Id: <20200207211452.2860634-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200207205010.2857970-1-chris@chris-wilson.co.uk>
-References: <20200207205010.2857970-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1928D6FDB5;
+ Fri,  7 Feb 2020 21:38:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12201A0078;
+ Fri,  7 Feb 2020 21:38:41 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Always force a context
- reload when rewinding RING_TAIL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Feb 2020 21:38:41 -0000
+Message-ID: <158111152104.8755.16980118272750537209@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200207205010.2857970-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200207205010.2857970-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/execlists=3A_Always_force_a_context_reload_when_rewinding?=
+ =?utf-8?q?_RING=5FTAIL?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,150 +39,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we rewind the RING_TAIL on a context, due to a preemption event, we
-must force the context restore for the RING_TAIL update to be properly
-handled. Rather than note which preemption events may cause us to rewind
-the tail, compare the new request's tail with the previously submitted
-RING_TAIL, as it turns out that timeslicing was causing unexpected
-rewinds.
+== Series Details ==
 
-   <idle>-0       0d.s2 1280851190us : __execlists_submission_tasklet: 0000:00:02.0 rcs0: expired last=130:4698, prio=3, hint=3
-   <idle>-0       0d.s2 1280851192us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence 66:119966, current 119964
-   <idle>-0       0d.s2 1280851195us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence 130:4698, current 4695
-   <idle>-0       0d.s2 1280851198us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence 130:4696, current 4695
-^----  Note we unwind 2 requests from the same context
+Series: drm/i915/execlists: Always force a context reload when rewinding RING_TAIL
+URL   : https://patchwork.freedesktop.org/series/73175/
+State : success
 
-   <idle>-0       0d.s2 1280851208us : __i915_request_submit: 0000:00:02.0 rcs0: fence 130:4696, current 4695
-   <idle>-0       0d.s2 1280851213us : __i915_request_submit: 0000:00:02.0 rcs0: fence 134:1508, current 1506
-^---- But to apply the new timeslice, we have to replay the first request
-      before the new client can start
+== Summary ==
 
-   <idle>-0       0d.s2 1280851219us : trace_ports: 0000:00:02.0 rcs0: submit { 130:4696*, 134:1508 }
- synmark2-5425    2..s. 1280851239us : process_csb: 0000:00:02.0 rcs0: cs-irq head=5, tail=0
- synmark2-5425    2..s. 1280851240us : process_csb: 0000:00:02.0 rcs0: csb[0]: status=0x00008002:0x00000000
-^---- Preemption event for the ELSP update; note the lite-restore
+CI Bug Log - changes from CI_DRM_7887 -> Patchwork_16489
+====================================================
 
- synmark2-5425    2..s. 1280851243us : trace_ports: 0000:00:02.0 rcs0: preempted { 130:4698, 66:119966 }
- synmark2-5425    2..s. 1280851246us : trace_ports: 0000:00:02.0 rcs0: promote { 130:4696*, 134:1508 }
- synmark2-5425    2.... 1280851462us : __i915_request_commit: 0000:00:02.0 rcs0: fence 130:4700, current 4695
- synmark2-5425    2.... 1280852111us : __i915_request_commit: 0000:00:02.0 rcs0: fence 130:4702, current 4695
- synmark2-5425    2.Ns1 1280852296us : process_csb: 0000:00:02.0 rcs0: cs-irq head=0, tail=2
- synmark2-5425    2.Ns1 1280852297us : process_csb: 0000:00:02.0 rcs0: csb[1]: status=0x00000814:0x00000000
- synmark2-5425    2.Ns1 1280852299us : trace_ports: 0000:00:02.0 rcs0: completed { 130:4696!, 134:1508 }
- synmark2-5425    2.Ns1 1280852301us : process_csb: 0000:00:02.0 rcs0: csb[2]: status=0x00000818:0x00000040
- synmark2-5425    2.Ns1 1280852302us : trace_ports: 0000:00:02.0 rcs0: completed { 134:1508, 0:0 }
- synmark2-5425    2.Ns1 1280852313us : process_csb: process_csb:2336 GEM_BUG_ON(!i915_request_completed(*execlists->active) && !reset_in_progress(execlists))
+Summary
+-------
 
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-Referenecs: 82c69bf58650 ("drm/i915/gt: Detect if we miss WaIdleLiteRestore")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.4+
----
- drivers/gpu/drm/i915/gt/intel_lrc.c        | 18 ++++++++----------
- drivers/gpu/drm/i915/gt/intel_ring.c       |  1 +
- drivers/gpu/drm/i915/gt/intel_ring.h       |  8 ++++++++
- drivers/gpu/drm/i915/gt/intel_ring_types.h |  1 +
- 4 files changed, 18 insertions(+), 10 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index ed1e4d883d47..b5baaea2c535 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1321,7 +1321,7 @@ static u64 execlists_update_context(struct i915_request *rq)
- {
- 	struct intel_context *ce = rq->context;
- 	u64 desc = ce->lrc_desc;
--	u32 tail;
-+	u32 tail, prev;
- 
- 	/*
- 	 * WaIdleLiteRestore:bdw,skl
-@@ -1334,9 +1334,15 @@ static u64 execlists_update_context(struct i915_request *rq)
- 	 * subsequent resubmissions (for lite restore). Should that fail us,
- 	 * and we try and submit the same tail again, force the context
- 	 * reload.
-+	 *
-+	 * If we need to return to a preempted context, we need to skip the
-+	 * lite-restore and force it to reload the RING_TAIL. Otherwise, the
-+	 * HW has a tendency to ignore us rewinding the TAIL to the end of
-+	 * an earlier request.
- 	 */
- 	tail = intel_ring_set_tail(rq->ring, rq->tail);
--	if (unlikely(ce->lrc_reg_state[CTX_RING_TAIL] == tail))
-+	prev = ce->lrc_reg_state[CTX_RING_TAIL];
-+	if (unlikely(intel_ring_direction(rq->ring, tail, prev) <= 0))
- 		desc |= CTX_DESC_FORCE_RESTORE;
- 	ce->lrc_reg_state[CTX_RING_TAIL] = tail;
- 	rq->tail = rq->wa_tail;
-@@ -1854,14 +1860,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 			 */
- 			__unwind_incomplete_requests(engine);
- 
--			/*
--			 * If we need to return to the preempted context, we
--			 * need to skip the lite-restore and force it to
--			 * reload the RING_TAIL. Otherwise, the HW has a
--			 * tendency to ignore us rewinding the TAIL to the
--			 * end of an earlier request.
--			 */
--			last->context->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
- 			   timer_expired(&engine->execlists.timer)) {
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
-index 366013367526..8cda1b7e17ba 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.c
-@@ -143,6 +143,7 @@ intel_engine_create_ring(struct intel_engine_cs *engine, int size)
- 
- 	kref_init(&ring->ref);
- 	ring->size = size;
-+	ring->wrap = BITS_PER_TYPE(ring->size) - ilog2(size);
- 
- 	/*
- 	 * Workaround an erratum on the i830 which causes a hang if
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring.h b/drivers/gpu/drm/i915/gt/intel_ring.h
-index ea2839d9e044..5bdce24994aa 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring.h
-+++ b/drivers/gpu/drm/i915/gt/intel_ring.h
-@@ -56,6 +56,14 @@ static inline u32 intel_ring_wrap(const struct intel_ring *ring, u32 pos)
- 	return pos & (ring->size - 1);
- }
- 
-+static inline int intel_ring_direction(const struct intel_ring *ring,
-+				       u32 next, u32 prev)
-+{
-+	typecheck(typeof(ring->size), next);
-+	typecheck(typeof(ring->size), prev);
-+	return (next - prev) << ring->wrap;
-+}
-+
- static inline bool
- intel_ring_offset_valid(const struct intel_ring *ring,
- 			unsigned int pos)
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_types.h b/drivers/gpu/drm/i915/gt/intel_ring_types.h
-index d9f17f38e0cc..3cd7fec7fd8d 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_types.h
-@@ -45,6 +45,7 @@ struct intel_ring {
- 
- 	u32 space;
- 	u32 size;
-+	u32 wrap;
- 	u32 effective_size;
- };
- 
--- 
-2.25.0
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16489 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][1] ([i915#45]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][3] ([i915#725]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][5] ([i915#1052]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-guc:         [TIMEOUT][7] ([fdo#112271]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-icl-guc/igt@i915_selftest@live_gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-icl-guc/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-skl-6770hq:      [INCOMPLETE][11] ([i915#69]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [TIMEOUT][13] ([fdo#112271]) -> [TIMEOUT][14] ([fdo#112271] / [i915#1084])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][15] ([i915#694]) -> [TIMEOUT][16] ([fdo#112271] / [i915#1084])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7887/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+
+
+Participating hosts (48 -> 46)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-gdg-551 fi-skl-lmem fi-blb-e6850 fi-skl-6600u 
+  Missing    (7): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7887 -> Patchwork_16489
+
+  CI-20190529: 20190529
+  CI_DRM_7887: b147ed9753265260d6380604de01c3d646a323cd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5425: ad4542ef1adbaa1227bc9ba9e24bb0e0f6dd408d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16489: 6e0bc47b73d99c5400c0952d318a008fb2988a9e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6e0bc47b73d9 drm/i915/execlists: Always force a context reload when rewinding RING_TAIL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16489/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
