@@ -1,40 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A6671556B2
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 12:29:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E35D1155749
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 13:03:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2EF96FC45;
-	Fri,  7 Feb 2020 11:29:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155EC6EAA6;
+	Fri,  7 Feb 2020 12:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DC6F6FC45
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 11:29:04 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 03:29:03 -0800
-X-IronPort-AV: E=Sophos;i="5.70,413,1574150400"; d="scan'208";a="225348617"
-Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
- ([10.252.21.249])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 07 Feb 2020 03:29:02 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <046189e5-23ce-9b91-981a-e30673d8d0ae@linux.intel.com>
-Date: Fri, 7 Feb 2020 11:29:00 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+X-Greylist: delayed 1485 seconds by postgrey-1.36 at gabe;
+ Fri, 07 Feb 2020 12:03:33 UTC
+Received: from Galois.linutronix.de (Galois.linutronix.de
+ [IPv6:2a0a:51c0:0:12e:550::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E0B66EAA6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 12:03:33 +0000 (UTC)
+Received: from p5b06da22.dip0.t-ipconnect.de ([91.6.218.34]
+ helo=nanos.tec.linutronix.de)
+ by Galois.linutronix.de with esmtpsa (TLS1.2:DHE_RSA_AES_256_CBC_SHA256:256)
+ (Exim 4.80) (envelope-from <tglx@linutronix.de>)
+ id 1j01xc-000288-1g; Fri, 07 Feb 2020 12:38:12 +0100
+Received: by nanos.tec.linutronix.de (Postfix, from userid 1000)
+ id 7CCA5100375; Fri,  7 Feb 2020 11:38:11 +0000 (GMT)
+From: Thomas Gleixner <tglx@linutronix.de>
+To: Alexey Budankov <alexey.budankov@linux.intel.com>,
+ Stephen Smalley <sds@tycho.nsa.gov>, Serge Hallyn <serge@hallyn.com>,
+ James Morris <jmorris@namei.org>
+In-Reply-To: <2b608e26-354b-3df9-aea9-58e56dc0c5e5@linux.intel.com>
+Date: Fri, 07 Feb 2020 11:38:11 +0000
+Message-ID: <875zgizkyk.fsf@nanos.tec.linutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20200206204915.2636606-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Prevent queuing retire
- workers on the virtual engine
+X-Linutronix-Spam-Score: -1.0
+X-Linutronix-Spam-Level: -
+X-Linutronix-Spam-Status: No , -1.0 points, 5.0 required, ALL_TRUSTED=-1,
+ SHORTCIRCUIT=-0.0001
+Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
+ CAP_PERFMON to kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,68 +48,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
+ Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
+ Paul Mackerras <paulus@samba.org>, Jiri Olsa <jolsa@redhat.com>,
+ Alexei Starovoitov <alexei.starovoitov@gmail.com>,
+ Andi Kleen <ak@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Igor Lubashev <ilubashe@akamai.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Robert Richter <rric@kernel.org>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Stephane Eranian <eranian@google.com>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ Andy Lutomirski <luto@amacapital.net>,
+ "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 06/02/2020 20:49, Chris Wilson wrote:
-> Virtual engines are fleeting. They carry a reference count and may be freed
-> when their last request is retired. This makes them unsuitable for the
-> task of housing engine->retire.work so assert that it is not used.
-> 
-> Tvrtko tracked down an instance where we did indeed violate this rule.
-> In virtual_submit_request, we flush a completed request directly with
-> __i915_request_submit and this causes us to queue that request on the
-> veng's breadcrumb list and signal it. Leading us down a path where we
-> should not attach the retire.
-> 
-> Reported-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Fixes: dc93c9b69315 ("drm/i915/gt: Schedule request retirement when signaler idles")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c | 3 +++
->   drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
->   2 files changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index 0ba524a414c6..cbad7fe722ce 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -136,6 +136,9 @@ static void add_retire(struct intel_breadcrumbs *b, struct intel_timeline *tl)
->   	struct intel_engine_cs *engine =
->   		container_of(b, struct intel_engine_cs, breadcrumbs);
->   
-> +	if (unlikely(intel_engine_is_virtual(engine)))
-> +		engine = intel_virtual_engine_get_sibling(engine, 0);
-> +
->   	intel_engine_add_retire(engine, tl);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> index 7ef1d37970f6..8a5054f21bf8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-> @@ -99,6 +99,9 @@ static bool add_retire(struct intel_engine_cs *engine,
->   void intel_engine_add_retire(struct intel_engine_cs *engine,
->   			     struct intel_timeline *tl)
->   {
-> +	/* We don't deal well with the engine disappearing beneath us */
-> +	GEM_BUG_ON(intel_engine_is_virtual(engine));
-> +
->   	if (add_retire(engine, tl))
->   		schedule_work(&engine->retire_work);
->   }
-> 
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QWxleGV5IEJ1ZGFua292IDxhbGV4ZXkuYnVkYW5rb3ZAbGludXguaW50ZWwuY29tPiB3cml0ZXM6
+Cj4gT24gMjIuMDEuMjAyMCAxNzoyNSwgQWxleGV5IEJ1ZGFua292IHdyb3RlOgo+PiBPbiAyMi4w
+MS4yMDIwIDE3OjA3LCBTdGVwaGVuIFNtYWxsZXkgd3JvdGU6Cj4+Pj4gSXQga2VlcHMgdGhlIGlt
+cGxlbWVudGF0aW9uIHNpbXBsZSBhbmQgcmVhZGFibGUuIFRoZSBpbXBsZW1lbnRhdGlvbiBpcyBt
+b3JlCj4+Pj4gcGVyZm9ybWFudCBpbiB0aGUgc2Vuc2Ugb2YgY2FsbGluZyB0aGUgQVBJIC0gb25l
+IGNhcGFibGUoKSBjYWxsIGZvciBDQVBfUEVSRk1PTgo+Pj4+IHByaXZpbGVnZWQgcHJvY2Vzcy4K
+Pj4+Pgo+Pj4+IFllcywgaXQgYmxvYXRzIGF1ZGl0IGxvZyBmb3IgQ0FQX1NZU19BRE1JTiBwcml2
+aWxlZ2VkIGFuZCB1bnByaXZpbGVnZWQgcHJvY2Vzc2VzLAo+Pj4+IGJ1dCB0aGlzIGJsb2F0aW5n
+IGFsc28gYWR2ZXJ0aXNlcyBhbmQgbGV2ZXJhZ2VzIHVzaW5nIG1vcmUgc2VjdXJlIENBUF9QRVJG
+TU9OCj4+Pj4gYmFzZWQgYXBwcm9hY2ggdG8gdXNlIHBlcmZfZXZlbnRfb3BlbiBzeXN0ZW0gY2Fs
+bC4KPj4+Cj4+PiBJIGNhbiBsaXZlIHdpdGggdGhhdC7CoCBXZSBqdXN0IG5lZWQgdG8gZG9jdW1l
+bnQgdGhhdCB3aGVuIHlvdSBzZWUKPj4+IGJvdGggYSBDQVBfUEVSRk1PTiBhbmQgYSBDQVBfU1lT
+X0FETUlOIGF1ZGl0IG1lc3NhZ2UgZm9yIGEgcHJvY2VzcywKPj4+IHRyeSBvbmx5IGFsbG93aW5n
+IENBUF9QRVJGTU9OIGZpcnN0IGFuZCBzZWUgaWYgdGhhdCByZXNvbHZlcyB0aGUKPj4+IGlzc3Vl
+LsKgIFdlIGhhdmUgYSBzaW1pbGFyIGlzc3VlIHdpdGggQ0FQX0RBQ19SRUFEX1NFQVJDSCB2ZXJz
+dXMKPj4+IENBUF9EQUNfT1ZFUlJJREUuCj4+IAo+PiBwZXJmIHNlY3VyaXR5IFsxXSBkb2N1bWVu
+dCBjYW4gYmUgdXBkYXRlZCwgYXQgbGVhc3QsIHRvIGFsaWduIGFuZCBkb2N1bWVudCAKPj4gdGhp
+cyBhdWRpdCBsb2dnaW5nIHNwZWNpZmljcy4KPgo+IEFuZCBJIHBsYW4gdG8gdXBkYXRlIHRoZSBk
+b2N1bWVudCByaWdodCBhZnRlciB0aGlzIHBhdGNoIHNldCBpcyBhY2NlcHRlZC4KPiBGZWVsIGZy
+ZWUgdG8gbGV0IG1lIGtub3cgb2YgdGhlIHBsYWNlcyBpbiB0aGUga2VybmVsIGRvY3MgdGhhdCBh
+bHNvCj4gcmVxdWlyZSB1cGRhdGUgdy5yLnQgQ0FQX1BFUkZNT04gZXh0ZW5zaW9uLgoKVGhlIGRv
+Y3VtZW50YXRpb24gdXBkYXRlIHdhbnRzIGJlIHBhcnQgb2YgdGhlIHBhdGNoIHNldCBhbmQgbm90
+IHBsYW5uZWQKdG8gYmUgZG9uZSBfYWZ0ZXJfIHRoZSBwYXRjaCBzZXQgaXMgbWVyZ2VkLgoKVGhh
+bmtzLAoKICAgICAgICB0Z2x4Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
+dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
+dGVsLWdmeAo=
