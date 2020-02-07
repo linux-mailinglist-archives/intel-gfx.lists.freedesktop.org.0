@@ -2,58 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B39C155BC5
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:30:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C123155BD0
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:31:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D450E6EAFB;
-	Fri,  7 Feb 2020 16:30:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF9DB6EAFD;
+	Fri,  7 Feb 2020 16:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5CA6E07D
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:30:31 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id a9so3450047wmj.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Feb 2020 08:30:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=jasN3K/BS5GdXYFNlm0vTJMNtwQ4dm/SRKkXDuR1x/0=;
- b=Te34lkrEeV3WlUdGqFu3/rDcx4qIs+MsfRd30E+R9ooZJxc7ph8nP/pMho093+zmBn
- lsg+8WHDmoeT6qew3VV8NtSjAPC4mt1nVbvf3UqpnZC3Zd6H7ag11KYMfFheFBL2Uibj
- XlfgxLMLsDsI27glkHL1BlTv318+x97+Ybe2w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=jasN3K/BS5GdXYFNlm0vTJMNtwQ4dm/SRKkXDuR1x/0=;
- b=E5Az0vhOmxZtad4zEsSxjKC4ZreKR32ZeKESQdrpgzARFGavQKc9zZxyTkDxeAosqc
- xpWcz+ahDQfOf+EqfxlMJ4jQ3A/JKBiq4FAVRSIBTmE7wiXdYiX30L5EIerbMwluq2VD
- oQxOFaumY/L2eTdGwzLBWQg5TCRD1xhAGANG6YG9VHJjfEML3e4mzbzrYpl8i4UHiM0S
- +ou1/mFMqCFiTnIO4i/uMUc4T7Tv2qsnl6hf1K5m8Ey8dtHaX65L4xN6qsh1kv6uki75
- 2T4TdswqsN5za0X6ChS9Qoz4aKxs/SJqGcZ5QyWVCQhOoBjCyiQNSlVERXG5nGVJ0aAf
- ADSw==
-X-Gm-Message-State: APjAAAVR9uceUDSX5yxNX2+yPNgIriZ10OYVnRrKzMhFtkA/dX08sl7k
- 3fFdbbUNfkb3pwMzli0tgk/4aQ==
-X-Google-Smtp-Source: APXvYqyIrAOqPdQYd/MPYzOSABElbOeZdZ6QTl7wAqvHWX/8Q3JgUtBAoVuapcTZq7odjIHb8LiZOA==
-X-Received: by 2002:a1c:4d18:: with SMTP id o24mr5105119wmh.35.1581093030193; 
- Fri, 07 Feb 2020 08:30:30 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z3sm3904689wrs.32.2020.02.07.08.30.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Feb 2020 08:30:29 -0800 (PST)
-Date: Fri, 7 Feb 2020 17:30:27 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200207163027.GK43062@phenom.ffwll.local>
-References: <20200207135950.6655-1-ville.syrjala@linux.intel.com>
- <20200207135950.6655-3-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C3146E0B9;
+ Fri,  7 Feb 2020 16:31:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 04A5BA0071;
+ Fri,  7 Feb 2020 16:31:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207135950.6655-3-ville.syrjala@linux.intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH v2 2/6] drm/gma500: Sanitize possible_clones
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Feb 2020 16:31:53 -0000
+Message-ID: <158109311301.8755.17816246721197429957@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200207131938.2787828-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200207131938.2787828-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/guc=3A_Make_sure_to_sanitize_CT_status?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,126 +38,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2020 at 03:59:46PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> I doubt the DP+DP and SDVO+SDVO cloning works for this driver.
-> i915 at least doesn't do those. Truthfully there could be some very
-> specific circumstances where some of them would do doable, but
-> genereally it's too much pain to deal with so we've chose not to
-> bother. Let's use the same approach for gma500.
-> =
+Series: drm/i915/guc: Make sure to sanitize CT status
+URL   : https://patchwork.freedesktop.org/series/73146/
+State : success
 
-> Also the LVDS+LVDS and DSI+DSI cases probably don't really exist as
-> there is one of each at most.
-> =
+== Summary ==
 
-> This does mean we'll now leave possible_clones at 0 for these encoder
-> types whereas previosuly we included the encoder itself in the bitmask.
-> But that's fine as the core now treaks 0 as a special case and adds
-> the encoder itself into the final bitmask reported to userspace.
-> =
+CI Bug Log - changes from CI_DRM_7886 -> Patchwork_16480
+====================================================
 
-> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Summary
+-------
 
-Looks reasonable.
+  **SUCCESS**
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> ---
->  drivers/gpu/drm/gma500/framebuffer.c   | 16 ++++++++--------
->  drivers/gpu/drm/gma500/mdfld_dsi_dpi.c |  4 ++--
->  2 files changed, 10 insertions(+), 10 deletions(-)
-> =
+  No regressions found.
 
-> diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma50=
-0/framebuffer.c
-> index 1459076d1980..6ca4e6ded96c 100644
-> --- a/drivers/gpu/drm/gma500/framebuffer.c
-> +++ b/drivers/gpu/drm/gma500/framebuffer.c
-> @@ -581,31 +581,31 @@ static void psb_setup_outputs(struct drm_device *de=
-v)
->  			break;
->  		case INTEL_OUTPUT_SDVO:
->  			crtc_mask =3D dev_priv->ops->sdvo_mask;
-> -			clone_mask =3D (1 << INTEL_OUTPUT_SDVO);
-> +			clone_mask =3D 0;
->  			break;
->  		case INTEL_OUTPUT_LVDS:
-> -		        crtc_mask =3D dev_priv->ops->lvds_mask;
-> -			clone_mask =3D (1 << INTEL_OUTPUT_LVDS);
-> +			crtc_mask =3D dev_priv->ops->lvds_mask;
-> +			clone_mask =3D 0;
->  			break;
->  		case INTEL_OUTPUT_MIPI:
->  			crtc_mask =3D (1 << 0);
-> -			clone_mask =3D (1 << INTEL_OUTPUT_MIPI);
-> +			clone_mask =3D 0;
->  			break;
->  		case INTEL_OUTPUT_MIPI2:
->  			crtc_mask =3D (1 << 2);
-> -			clone_mask =3D (1 << INTEL_OUTPUT_MIPI2);
-> +			clone_mask =3D 0;
->  			break;
->  		case INTEL_OUTPUT_HDMI:
-> -		        crtc_mask =3D dev_priv->ops->hdmi_mask;
-> +			crtc_mask =3D dev_priv->ops->hdmi_mask;
->  			clone_mask =3D (1 << INTEL_OUTPUT_HDMI);
->  			break;
->  		case INTEL_OUTPUT_DISPLAYPORT:
->  			crtc_mask =3D (1 << 0) | (1 << 1);
-> -			clone_mask =3D (1 << INTEL_OUTPUT_DISPLAYPORT);
-> +			clone_mask =3D 0;
->  			break;
->  		case INTEL_OUTPUT_EDP:
->  			crtc_mask =3D (1 << 1);
-> -			clone_mask =3D (1 << INTEL_OUTPUT_EDP);
-> +			clone_mask =3D 0;
->  		}
->  		encoder->possible_crtcs =3D crtc_mask;
->  		encoder->possible_clones =3D
-> diff --git a/drivers/gpu/drm/gma500/mdfld_dsi_dpi.c b/drivers/gpu/drm/gma=
-500/mdfld_dsi_dpi.c
-> index d4c65f268922..187817e0c004 100644
-> --- a/drivers/gpu/drm/gma500/mdfld_dsi_dpi.c
-> +++ b/drivers/gpu/drm/gma500/mdfld_dsi_dpi.c
-> @@ -1006,10 +1006,10 @@ struct mdfld_dsi_encoder *mdfld_dsi_dpi_init(stru=
-ct drm_device *dev,
->  	/*set possible crtcs and clones*/
->  	if (dsi_connector->pipe) {
->  		encoder->possible_crtcs =3D (1 << 2);
-> -		encoder->possible_clones =3D (1 << 1);
-> +		encoder->possible_clones =3D 0;
->  	} else {
->  		encoder->possible_crtcs =3D (1 << 0);
-> -		encoder->possible_clones =3D (1 << 0);
-> +		encoder->possible_clones =3D 0;
->  	}
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/index.html
 
->  	dsi_connector->base.encoder =3D &dpi_output->base.base;
-> -- =
+Known issues
+------------
 
-> 2.24.1
-> =
+  Here are the changes found in Patchwork_16480 that come from known issues:
 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+### IGT changes ###
 
--- =
+#### Issues hit ####
 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-j1900:       [PASS][3] -> [INCOMPLETE][4] ([i915#45])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][5] -> [FAIL][6] ([i915#178])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([i915#217])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([i915#217])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-kbl-7500u/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][11] ([fdo#108569]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [DMESG-FAIL][13] ([i915#943]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [DMESG-FAIL][15] ([i915#1052]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gt_pm:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][17] -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-tgl-dsi/igt@i915_selftest@live_gt_pm.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-tgl-dsi/igt@i915_selftest@live_gt_pm.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bxt-dsi:         [TIMEOUT][19] ([fdo#112271]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][21] ([i915#694]) -> [TIMEOUT][22] ([fdo#112271])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][23] ([i915#694]) -> [TIMEOUT][24] ([fdo#112271] / [i915#1084])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#943]: https://gitlab.freedesktop.org/drm/intel/issues/943
+
+
+Participating hosts (54 -> 43)
+------------------------------
+
+  Missing    (11): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-bsw-kefka fi-byt-clapper fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7886 -> Patchwork_16480
+
+  CI-20190529: 20190529
+  CI_DRM_7886: c76da740823aa950e340a8e53758511680da79ca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5425: ad4542ef1adbaa1227bc9ba9e24bb0e0f6dd408d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16480: c8511f548220622486e3cd41249b0a639bf637d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c8511f548220 drm/i915/guc: Make sure to sanitize CT status
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16480/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
