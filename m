@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643E5155A60
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 16:09:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8125F155A7F
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 16:17:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A02376E082;
-	Fri,  7 Feb 2020 15:09:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1AB6E8BC;
+	Fri,  7 Feb 2020 15:17:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 85A796E081;
- Fri,  7 Feb 2020 15:09:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7E98BA0071;
- Fri,  7 Feb 2020 15:09:34 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0056E8BC;
+ Fri,  7 Feb 2020 15:17:55 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20150106-1500050 
+ for multiple; Fri, 07 Feb 2020 15:17:21 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  7 Feb 2020 15:17:20 +0000
+Message-Id: <20200207151720.2812125-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 07 Feb 2020 15:09:34 -0000
-Message-ID: <158108817449.8754.2367478482242155261@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200207111124.2762388-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915/gem=3A_Don=27t_leak?=
- =?utf-8?q?_non-persistent_requests_on_changing_engines?=
+Subject: [Intel-gfx] [PATCH] drm/mm: Break long searches in fragmented
+ address spaces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,32 +37,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/3] drm/i915/gem: Don't leak non-persistent requests on changing engines
-URL   : https://patchwork.freedesktop.org/series/73134/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-9e3619244308 drm/i915/gem: Don't leak non-persistent requests on changing engines
--:249: WARNING:USE_SPINLOCK_T: struct spinlock should be spinlock_t
-#249: FILE: drivers/gpu/drm/i915/gem/i915_gem_context_types.h:184:
-+		struct spinlock lock;
-
-total: 0 errors, 1 warnings, 0 checks, 242 lines checked
-faff3bde98f8 drm/i915: Disable use of hwsp_cacheline for kernel_context
-8532f680f37f drm/i915/selftests: Relax timeout for error-interrupt reset processing
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgdHJ5IGhhcmQgdG8gc2VsZWN0IGEgc3VpdGFibGUgaG9sZSBpbiB0aGUgZHJtX21tIGZpcnN0
+IHRpbWUuIEJ1dCBpZgp0aGF0IGlzIHVuc3VjY2Vzc2Z1bCwgd2UgdGhlbiBoYXZlIHRvIGxvb2sg
+YXQgbmVpZ2hib3VyaW5nIG5vZGVzLCBhbmQKdGhpcyByZXF1aXJlcyB0cmF2ZXJzaW5nIHRoZSBy
+YnRyZWUuIFdhbGtpbmcgdGhlIHJidHJlZSBjYW4gYmUgc2xvdwoobXVjaCBzbG93ZXIgdGhhbiBh
+IGxpbmVhciBsaXN0IGZvciBkZWVwIHRyZWVzKSwgYW5kIGlmIHRoZSBkcm1fbW0gaGFzCmJlZW4g
+cHVycG9zZWZ1bGx5IGZyYWdtZW50ZWQgb3VyIHNlYXJjaCBjYW4gYmUgdHJhcHBlZCBmb3IgYSBs
+b25nLCBsb25nCnRpbWUuIEZvciBub24tcHJlZW1wdGlibGUga2VybmVscywgd2UgbmVlZCB0byBi
+cmVhayB1cCBsb25nIENQVSBib3VuZApzZWN0aW9ucyBieSBtYW51YWxseSBjaGVja2luZyBmb3Ig
+Y29uZF9yZXNjaGVkKCk7IHNpbWlsYXJseSB3ZSBzaG91bGQKYWxzbyBiYWlsIG91dCBpZiB3ZSBo
+YXZlIGJlZW4gdG9sZCB0byB0ZXJtaW5hdGUuIChJbiBhbiBpZGVhbCB3b3JsZCwgd2UKd291bGQg
+YnJlYWsgZm9yIGFueSBzaWduYWwsIGJ1dCB3ZSBuZWVkIHRvIHRyYWRlIG9mZiBoYXZpbmcgdG8g
+cGVyZm9ybQp0aGUgc2VhcmNoIGFnYWluIGFmdGVyIEVSRVNUQVJUU1lTLCB3aGljaCBhZ2FpbiBt
+YXkgZm9ybSBhIHRyYXAgb2YKbWFraW5nIG5vIGZvcndhcmQgcHJvZ3Jlc3MuKQoKUmVwb3J0ZWQt
+Ynk6IFpiaWduaWV3IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29t
+PgpTaWduZWQtb2ZmLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
+Q2M6IFpiaWduaWV3IEtlbXBjennFhHNraSA8emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29t
+PgpDYzogSm9vbmFzIExhaHRpbmVuIDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYyB8IDggKysrKysrKy0KIDEgZmlsZSBjaGFuZ2Vk
+LCA3IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vZHJtX21tLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX21tLmMKaW5kZXggMmE2ZTM0NjYz
+MTQ2Li40N2Q1ZGU5Y2EwYTggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fbW0uYwor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX21tLmMKQEAgLTQ1LDYgKzQ1LDcgQEAKICNpbmNsdWRl
+IDxsaW51eC9leHBvcnQuaD4KICNpbmNsdWRlIDxsaW51eC9pbnRlcnZhbF90cmVlX2dlbmVyaWMu
+aD4KICNpbmNsdWRlIDxsaW51eC9zZXFfZmlsZS5oPgorI2luY2x1ZGUgPGxpbnV4L3NjaGVkL3Np
+Z25hbC5oPgogI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4KICNpbmNsdWRlIDxsaW51eC9zdGFja3Ry
+YWNlLmg+CiAKQEAgLTM2Niw2ICszNjcsMTEgQEAgbmV4dF9ob2xlKHN0cnVjdCBkcm1fbW0gKm1t
+LAogCSAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlLAogCSAgZW51bSBkcm1fbW1faW5zZXJ0X21v
+ZGUgbW9kZSkKIHsKKwkvKiBTZWFyY2hpbmcgaXMgc2xvdzsgY2hlY2sgaWYgd2UgcmFuIG91dCBv
+ZiB0aW1lL3BhdGllbmNlICovCisJY29uZF9yZXNjaGVkKCk7CisJaWYgKGZhdGFsX3NpZ25hbF9w
+ZW5kaW5nKGN1cnJlbnQpKQorCQlyZXR1cm4gTlVMTDsKKwogCXN3aXRjaCAobW9kZSkgewogCWRl
+ZmF1bHQ6CiAJY2FzZSBEUk1fTU1fSU5TRVJUX0JFU1Q6CkBAIC01NTcsNyArNTYzLDcgQEAgaW50
+IGRybV9tbV9pbnNlcnRfbm9kZV9pbl9yYW5nZShzdHJ1Y3QgZHJtX21tICogY29uc3QgbW0sCiAJ
+CXJldHVybiAwOwogCX0KIAotCXJldHVybiAtRU5PU1BDOworCXJldHVybiBzaWduYWxfcGVuZGlu
+ZyhjdXJyZW50KSA/IC1FUkVTVEFSVFNZUyA6IC1FTk9TUEM7CiB9CiBFWFBPUlRfU1lNQk9MKGRy
+bV9tbV9pbnNlcnRfbm9kZV9pbl9yYW5nZSk7CiAKLS0gCjIuMjUuMAoKX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
+bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
