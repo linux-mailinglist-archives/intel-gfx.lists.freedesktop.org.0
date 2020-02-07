@@ -1,60 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C6B155C63
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 18:02:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33EDE155C7A
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 18:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 861606EAF3;
-	Fri,  7 Feb 2020 17:01:45 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com
- [IPv6:2607:f8b0:4864:20::d32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 788C16EAD2
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:48:45 +0000 (UTC)
-Received: by mail-io1-xd32.google.com with SMTP id h8so248203iob.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 07 Feb 2020 08:48:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:in-reply-to:references:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=cZMzCbqGzULWl6vky4N67eZZ9ELT87zkkPMYEmeqkCg=;
- b=aeiH5jPia3FtvBs9WJY6yoY98kGgpzE6SsfGjkepWS9ixOBv9lZKDDKGaa/1FrmvSD
- LXdy8buzonHncvFKI3HRr2ONL6nGzTKPfks/DRX0TixXvgLCoyTMOOWVP5rouc/sAKqk
- zngDjZfjBSw8PVs6Q3JLyvgNZBJ7MER6NTdgAUD7TuAB0mt4bJi/5Dr632vcEsdsVoZ4
- cDtMKvl2RpReJd7frnqhSB0n+th/NnC6lqgCBt7roj377sOBVzWZQruL7wi+akYohHb0
- bAreRR1mNDbCxOLhC6wmGuyv3M5/OR6PS4jqduPvpw0pELy2xM4YRQU/9u6f1+RQnR54
- zAfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:in-reply-to:references:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=cZMzCbqGzULWl6vky4N67eZZ9ELT87zkkPMYEmeqkCg=;
- b=LKmgWPCFKYg4u0BcW+rg/rwAm+1iFeT8R+JE8E22mJcsNQS1bSfVnKRyTdVO2GMdNT
- OCpA3hpUtSoPfJkbS42iTYUe5SYLad97MBOhYyXvuekDnPQgVIbOcKbvDL8R6nreT9E6
- YFEsEftZ6lrFzx13+Le5qRAUt+BG5pycI1ssmqlZEravyOxL+RoPaMUt6KU4cznbxxFl
- ylH2lD6AS+WQ75hI1g2iQ3bzqzdvZjFlK7d+cUx0aJYSpCXO2iWZ3xrPK25bUGFVXUKZ
- aDnpI3rK2VXX5kUKLcWxP/KzuIg1E5m8BQpMR//Y89TNFbPnh9KKxySl/ADx8iCpPNbZ
- a6Fw==
-X-Gm-Message-State: APjAAAUqBj8gPJrW1lAcnME5533dkFYAbvhQT9Cq6fJ3/uakbEokPSde
- J223+EqFtUbXczPx3DGaM22/6GNppQbHPDA05GO+mycM069CVA==
-X-Google-Smtp-Source: APXvYqxXZASy+zqs4lA8yrYLrrzruqR7HkWYnRw5VPKsLNAP5h1vBAILTwVq6n1iHIeT1MboKhDOjfn7gDKQzKU3xH4=
-X-Received: by 2002:a05:6638:a4a:: with SMTP id
- 10mr4014229jap.44.1581094124852; 
- Fri, 07 Feb 2020 08:48:44 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8589F6E0CF;
+	Fri,  7 Feb 2020 17:03:08 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B84726E0CF
+ for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 17:03:07 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20151470-1500050 for multiple; Fri, 07 Feb 2020 17:03:02 +0000
 MIME-Version: 1.0
-Received: by 2002:ad5:5442:0:0:0:0:0 with HTTP;
- Fri, 7 Feb 2020 08:48:44 -0800 (PST)
-In-Reply-To: <158109328469.16098.11014223815188039767@skylake-alporthouse-com>
-References: <20191219124353.8607-2-chris@chris-wilson.co.uk>
- <20200207163125.15903-1-youling257@gmail.com>
- <158109328469.16098.11014223815188039767@skylake-alporthouse-com>
-From: youling 257 <youling257@gmail.com>
-Date: Sat, 8 Feb 2020 00:48:44 +0800
-Message-ID: <CAOzgRdbL0L84quO0yxoNg0+NtPvqWhSWxntgEOjK4B-zPOeyEw@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-X-Mailman-Approved-At: Fri, 07 Feb 2020 17:01:43 +0000
-Subject: Re: [Intel-gfx] [CI 2/2] drm/i915/gt: Track engine round-trip times
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+References: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
+ <20200207161331.23447-6-tvrtko.ursulin@linux.intel.com>
+ <158109321467.16098.12817907526709789256@skylake-alporthouse-com>
+ <b23f6987-86e2-c649-bd48-4fdae5a7947c@linux.intel.com>
+In-Reply-To: <b23f6987-86e2-c649-bd48-4fdae5a7947c@linux.intel.com>
+Message-ID: <158109497989.16098.9696998695932097283@skylake-alporthouse-com>
+Date: Fri, 07 Feb 2020 17:02:59 +0000
+Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Track per drm client engine
+ class busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,20 +43,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-MjAyMC0wMi0wOCAwOjM0IEdNVCswODowMCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxz
-b24uY28udWs+Ogo+IFF1b3RpbmcgeW91bGluZzI1NyAoMjAyMC0wMi0wNyAxNjozMToyNSkKPj4g
-VGhpcyBwYXRjaCBjYXVzZSBHUFUgaGFuZyBvbiBteSBCYXkgdHJhaWwgejM3MzVmLgo+PiBodHRw
-czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy8xMTQ0Cj4KPiBObyBp
-dCBkaWRuJ3QuIFRoZSBjYXVzZSBmb3IgdGhhdCBpcyB1bmZvcnR1bmF0ZWx5IHdlbGwga25vd24u
-Cj4gLUNocmlzCj4K4oCcZHJtL2k5MTUvZ3Q6IFRyYWNrIGVuZ2luZSByb3VuZC10cmlwIHRpbWVz
-4oCdIE1ha2UgdGhlIGdwdSBoYW5nIHByb2JsZW0Kd29yc2UsIGNhbid0IGJvb3QgZW50ZXIgdXNl
-cnNwYWNlIGF0IGFsbC4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+Quoting Tvrtko Ursulin (2020-02-07 16:49:17)
+> 
+> On 07/02/2020 16:33, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2020-02-07 16:13:30)
+> >>   static inline void
+> >> -__intel_context_stats_start(struct intel_context *ce, ktime_t now)
+> >> +__intel_context_stats_start(struct intel_context *ce,
+> >> +                           struct intel_engine_cs *engine,
+> >> +                           ktime_t now)
+> >>   {
+> >>          struct intel_context_stats *stats = &ce->stats;
+> >> -
+> >> -       if (!stats->active) {
+> >> -               stats->start = now;
+> >> -               stats->active = true;
+> >> +       struct i915_gem_context *ctx;
+> >> +
+> >> +       if (stats->active)
+> >> +               return;
+> >> +
+> >> +       stats->start = now;
+> >> +       stats->active = true;
+> >> +
+> >> +       rcu_read_lock();
+> >> +       ctx = rcu_dereference(ce->gem_context);
+> >> +       if (ctx && ctx->client) {
+> > 
+> > I'd rather avoid having to dig into the GEM context down here next to
+> > the HW.
+> > 
+> > First thought would be to keep the stats local on the intel_context and
+> > for the client to chase collate them when the user reads the fd.
+> > 
+> > Hmm, didn't you structure it like so earlier? What made you change your
+> > mind?
+> 
+> Yes, it's in the cover letter - we must not have disappearing 
+> contributions - client can submit from one context for a bit, close it, 
+> and oops usage history lost.
+
+If only we had a mechanism for accumulating contributions from stale
+engines and then from stale contests?
+ 
+> ce->drm_client? :)
+
+Yeah that is equally icky for swimming upstream.
+
+Ok, I have an idea for capturing the contributions at close rather than
+having to do global accumulations at runtime.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
