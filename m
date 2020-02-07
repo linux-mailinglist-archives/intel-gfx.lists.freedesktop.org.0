@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1226C155C1E
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:49:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7BBD155C37
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2020 17:55:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA396EAD3;
-	Fri,  7 Feb 2020 16:49:21 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A716EAD3
- for <Intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2020 16:49:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2020 08:49:20 -0800
-X-IronPort-AV: E=Sophos;i="5.70,414,1574150400"; d="scan'208";a="225429423"
-Received: from aabader-mobl1.ccr.corp.intel.com (HELO [10.252.21.249])
- ([10.252.21.249])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 07 Feb 2020 08:49:19 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20200207161331.23447-1-tvrtko.ursulin@linux.intel.com>
- <20200207161331.23447-6-tvrtko.ursulin@linux.intel.com>
- <158109321467.16098.12817907526709789256@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <b23f6987-86e2-c649-bd48-4fdae5a7947c@linux.intel.com>
-Date: Fri, 7 Feb 2020 16:49:17 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C62916EAD5;
+	Fri,  7 Feb 2020 16:55:28 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E2D456EAD1;
+ Fri,  7 Feb 2020 16:55:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D3333A0118;
+ Fri,  7 Feb 2020 16:55:27 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <158109321467.16098.12817907526709789256@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 5/6] drm/i915: Track per drm client engine
- class busyness
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 07 Feb 2020 16:55:27 -0000
+Message-ID: <158109452783.8754.1885029263179474721@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200207135048.2788199-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200207135048.2788199-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_force-probe_failure_message?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,56 +38,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 07/02/2020 16:33, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-02-07 16:13:30)
->>   static inline void
->> -__intel_context_stats_start(struct intel_context *ce, ktime_t now)
->> +__intel_context_stats_start(struct intel_context *ce,
->> +                           struct intel_engine_cs *engine,
->> +                           ktime_t now)
->>   {
->>          struct intel_context_stats *stats = &ce->stats;
->> -
->> -       if (!stats->active) {
->> -               stats->start = now;
->> -               stats->active = true;
->> +       struct i915_gem_context *ctx;
->> +
->> +       if (stats->active)
->> +               return;
->> +
->> +       stats->start = now;
->> +       stats->active = true;
->> +
->> +       rcu_read_lock();
->> +       ctx = rcu_dereference(ce->gem_context);
->> +       if (ctx && ctx->client) {
-> 
-> I'd rather avoid having to dig into the GEM context down here next to
-> the HW.
-> 
-> First thought would be to keep the stats local on the intel_context and
-> for the client to chase collate them when the user reads the fd.
-> 
-> Hmm, didn't you structure it like so earlier? What made you change your
-> mind?
+Series: drm/i915: Fix force-probe failure message
+URL   : https://patchwork.freedesktop.org/series/73149/
+State : success
 
-Yes, it's in the cover letter - we must not have disappearing 
-contributions - client can submit from one context for a bit, close it, 
-and oops usage history lost.
+== Summary ==
 
-ce->drm_client? :)
+CI Bug Log - changes from CI_DRM_7886 -> Patchwork_16481
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16481 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#92]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [PASS][5] -> [DMESG-FAIL][6] ([i915#725])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-skl-lmem:        [PASS][7] -> [INCOMPLETE][8] ([i915#424])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-skl-lmem/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-hsw-4770r:       [PASS][9] -> [TIMEOUT][10] ([fdo#112271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-hsw-4770r/igt@i915_selftest@live_gtt.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-hsw-4770r/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][11] -> [DMESG-WARN][12] ([i915#44])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
+    - fi-skl-6770hq:      [PASS][13] -> [SKIP][14] ([fdo#109271]) +4 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
+    - fi-skl-6770hq:      [PASS][15] -> [DMESG-WARN][16] ([i915#106] / [i915#188])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][17] ([i915#694]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][19] ([fdo#108569]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-kbl-x1275:       [DMESG-FAIL][21] ([i915#943]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [DMESG-FAIL][23] ([i915#1052]) -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gt_pm:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][25] -> [PASS][26]
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-tgl-dsi/igt@i915_selftest@live_gt_pm.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-tgl-dsi/igt@i915_selftest@live_gt_pm.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bxt-dsi:         [TIMEOUT][27] ([fdo#112271]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7886/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
+  [i915#188]: https://gitlab.freedesktop.org/drm/intel/issues/188
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [i915#943]: https://gitlab.freedesktop.org/drm/intel/issues/943
 
 
-Regards,
+Participating hosts (54 -> 48)
+------------------------------
 
-Tvrtko
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7886 -> Patchwork_16481
+
+  CI-20190529: 20190529
+  CI_DRM_7886: c76da740823aa950e340a8e53758511680da79ca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5425: ad4542ef1adbaa1227bc9ba9e24bb0e0f6dd408d @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16481: 870ff0886fb98f3fb360bc0adc9a08cb87fa9df1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+870ff0886fb9 drm/i915: Fix force-probe failure message
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16481/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
