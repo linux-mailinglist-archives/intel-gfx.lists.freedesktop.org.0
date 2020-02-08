@@ -1,31 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C406F1562D0
-	for <lists+intel-gfx@lfdr.de>; Sat,  8 Feb 2020 04:50:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AABF1562D1
+	for <lists+intel-gfx@lfdr.de>; Sat,  8 Feb 2020 04:51:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A6A6E171;
-	Sat,  8 Feb 2020 03:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8DA6E167;
+	Sat,  8 Feb 2020 03:51:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E9A476E167;
- Sat,  8 Feb 2020 03:50:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2014A0071;
- Sat,  8 Feb 2020 03:50:33 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 567296E167;
+ Sat,  8 Feb 2020 03:51:23 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2020 19:51:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,415,1574150400"; d="scan'208";a="265252888"
+Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
+ by fmsmga002.fm.intel.com with ESMTP; 07 Feb 2020 19:51:20 -0800
+From: Ramalingam C <ramalingam.c@intel.com>
+To: dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Sat,  8 Feb 2020 09:21:32 +0530
+Message-Id: <20200208035132.12587-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 08 Feb 2020 03:50:33 -0000
-Message-ID: <158113383389.30228.13981745443201473843@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200205123757.1834947-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200205123757.1834947-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Mark_i915=2Ereset_as_unsigned?=
+Subject: [Intel-gfx] [PATCH v4] drm/hdcp: optimizing the srm handling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,283 +41,352 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we are not using the sysfs infrastructure anymore, link to it is
+removed. And global srm data and mutex to protect it are removed,
+with required handling at revocation check function.
 
-Series: drm/i915: Mark i915.reset as unsigned
-URL   : https://patchwork.freedesktop.org/series/73024/
-State : success
+v2:
+  srm_data is dropped and few more comments are addressed.
+v3:
+  ptr passing around is fixed with functional testing.
+v4:
+  fix htmldoc [lkp]
 
-== Summary ==
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+Suggested-by: Sean Paul <seanpaul@chromium.org>
+---
+ drivers/gpu/drm/drm_hdcp.c     | 158 ++++++++++++---------------------
+ drivers/gpu/drm/drm_internal.h |   4 -
+ drivers/gpu/drm/drm_sysfs.c    |   2 -
+ include/drm/drm_hdcp.h         |   4 +-
+ 4 files changed, 61 insertions(+), 107 deletions(-)
 
-CI Bug Log - changes from CI_DRM_7869_full -> Patchwork_16435_full
-====================================================
+diff --git a/drivers/gpu/drm/drm_hdcp.c b/drivers/gpu/drm/drm_hdcp.c
+index 9191633a3c43..7f386adcf872 100644
+--- a/drivers/gpu/drm/drm_hdcp.c
++++ b/drivers/gpu/drm/drm_hdcp.c
+@@ -23,14 +23,6 @@
+ 
+ #include "drm_internal.h"
+ 
+-static struct hdcp_srm {
+-	u32 revoked_ksv_cnt;
+-	u8 *revoked_ksv_list;
+-
+-	/* Mutex to protect above struct member */
+-	struct mutex mutex;
+-} *srm_data;
+-
+ static inline void drm_hdcp_print_ksv(const u8 *ksv)
+ {
+ 	DRM_DEBUG("\t%#02x, %#02x, %#02x, %#02x, %#02x\n",
+@@ -60,11 +52,11 @@ static u32 drm_hdcp_get_revoked_ksv_count(const u8 *buf, u32 vrls_length)
+ 	return ksv_count;
+ }
+ 
+-static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 *revoked_ksv_list,
++static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 **revoked_ksv_list,
+ 				     u32 vrls_length)
+ {
+-	u32 parsed_bytes = 0, ksv_count = 0;
+ 	u32 vrl_ksv_cnt, vrl_ksv_sz, vrl_idx = 0;
++	u32 parsed_bytes = 0, ksv_count = 0;
+ 
+ 	do {
+ 		vrl_ksv_cnt = *buf;
+@@ -74,10 +66,10 @@ static u32 drm_hdcp_get_revoked_ksvs(const u8 *buf, u8 *revoked_ksv_list,
+ 
+ 		DRM_DEBUG("vrl: %d, Revoked KSVs: %d\n", vrl_idx++,
+ 			  vrl_ksv_cnt);
+-		memcpy(revoked_ksv_list, buf, vrl_ksv_sz);
++		memcpy((*revoked_ksv_list) + (ksv_count * DRM_HDCP_KSV_LEN),
++		       buf, vrl_ksv_sz);
+ 
+ 		ksv_count += vrl_ksv_cnt;
+-		revoked_ksv_list += vrl_ksv_sz;
+ 		buf += vrl_ksv_sz;
+ 
+ 		parsed_bytes += (vrl_ksv_sz + 1);
+@@ -91,7 +83,8 @@ static inline u32 get_vrl_length(const u8 *buf)
+ 	return drm_hdcp_be24_to_cpu(buf);
+ }
+ 
+-static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
++static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count,
++				    u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	struct hdcp_srm_header *header;
+ 	u32 vrl_length, ksv_count;
+@@ -131,29 +124,28 @@ static int drm_hdcp_parse_hdcp1_srm(const u8 *buf, size_t count)
+ 	ksv_count = drm_hdcp_get_revoked_ksv_count(buf, vrl_length);
+ 	if (!ksv_count) {
+ 		DRM_DEBUG("Revoked KSV count is 0\n");
+-		return count;
++		return 0;
+ 	}
+ 
+-	kfree(srm_data->revoked_ksv_list);
+-	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
+-					     GFP_KERNEL);
+-	if (!srm_data->revoked_ksv_list) {
++	*revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
++	if (!*revoked_ksv_list) {
+ 		DRM_ERROR("Out of Memory\n");
+ 		return -ENOMEM;
+ 	}
+ 
+-	if (drm_hdcp_get_revoked_ksvs(buf, srm_data->revoked_ksv_list,
++	if (drm_hdcp_get_revoked_ksvs(buf, revoked_ksv_list,
+ 				      vrl_length) != ksv_count) {
+-		srm_data->revoked_ksv_cnt = 0;
+-		kfree(srm_data->revoked_ksv_list);
++		*revoked_ksv_cnt = 0;
++		kfree(*revoked_ksv_list);
+ 		return -EINVAL;
+ 	}
+ 
+-	srm_data->revoked_ksv_cnt = ksv_count;
+-	return count;
++	*revoked_ksv_cnt = ksv_count;
++	return 0;
+ }
+ 
+-static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
++static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count,
++				    u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	struct hdcp_srm_header *header;
+ 	u32 vrl_length, ksv_count, ksv_sz;
+@@ -195,13 +187,11 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
+ 	ksv_count = (*buf << 2) | DRM_HDCP_2_KSV_COUNT_2_LSBITS(*(buf + 1));
+ 	if (!ksv_count) {
+ 		DRM_DEBUG("Revoked KSV count is 0\n");
+-		return count;
++		return 0;
+ 	}
+ 
+-	kfree(srm_data->revoked_ksv_list);
+-	srm_data->revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN,
+-					     GFP_KERNEL);
+-	if (!srm_data->revoked_ksv_list) {
++	*revoked_ksv_list = kcalloc(ksv_count, DRM_HDCP_KSV_LEN, GFP_KERNEL);
++	if (!*revoked_ksv_list) {
+ 		DRM_ERROR("Out of Memory\n");
+ 		return -ENOMEM;
+ 	}
+@@ -210,10 +200,10 @@ static int drm_hdcp_parse_hdcp2_srm(const u8 *buf, size_t count)
+ 	buf += DRM_HDCP_2_NO_OF_DEV_PLUS_RESERVED_SZ;
+ 
+ 	DRM_DEBUG("Revoked KSVs: %d\n", ksv_count);
+-	memcpy(srm_data->revoked_ksv_list, buf, ksv_sz);
++	memcpy(*revoked_ksv_list, buf, ksv_sz);
+ 
+-	srm_data->revoked_ksv_cnt = ksv_count;
+-	return count;
++	*revoked_ksv_cnt = ksv_count;
++	return 0;
+ }
+ 
+ static inline bool is_srm_version_hdcp1(const u8 *buf)
+@@ -226,22 +216,27 @@ static inline bool is_srm_version_hdcp2(const u8 *buf)
+ 	return *buf == (u8)(DRM_HDCP_2_SRM_ID << 4 | DRM_HDCP_2_INDICATOR);
+ }
+ 
+-static void drm_hdcp_srm_update(const u8 *buf, size_t count)
++static int drm_hdcp_srm_update(const u8 *buf, size_t count,
++			       u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	if (count < sizeof(struct hdcp_srm_header))
+-		return;
++		return -EINVAL;
+ 
+ 	if (is_srm_version_hdcp1(buf))
+-		drm_hdcp_parse_hdcp1_srm(buf, count);
++		return drm_hdcp_parse_hdcp1_srm(buf, count, revoked_ksv_list,
++						revoked_ksv_cnt);
+ 	else if (is_srm_version_hdcp2(buf))
+-		drm_hdcp_parse_hdcp2_srm(buf, count);
++		return drm_hdcp_parse_hdcp2_srm(buf, count, revoked_ksv_list,
++						revoked_ksv_cnt);
++	else
++		return -EINVAL;
+ }
+ 
+-static void drm_hdcp_request_srm(struct drm_device *drm_dev)
++static int drm_hdcp_request_srm(struct drm_device *drm_dev,
++				u8 **revoked_ksv_list, u32 *revoked_ksv_cnt)
+ {
+ 	char fw_name[36] = "display_hdcp_srm.bin";
+ 	const struct firmware *fw;
+-
+ 	int ret;
+ 
+ 	ret = request_firmware_direct(&fw, (const char *)fw_name,
+@@ -250,10 +245,12 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
+ 		goto exit;
+ 
+ 	if (fw->size && fw->data)
+-		drm_hdcp_srm_update(fw->data, fw->size);
++		ret = drm_hdcp_srm_update(fw->data, fw->size, revoked_ksv_list,
++					  revoked_ksv_cnt);
+ 
+ exit:
+ 	release_firmware(fw);
++	return ret;
+ }
+ 
+ /**
+@@ -279,71 +276,34 @@ static void drm_hdcp_request_srm(struct drm_device *drm_dev)
+  * https://www.digital-cp.com/sites/default/files/specifications/HDCP%20on%20HDMI%20Specification%20Rev2_2_Final1.pdf
+  *
+  * Returns:
+- * TRUE on any of the KSV is revoked, else FALSE.
++ * Count of the revoked KSVs or -ve error number incase of the failure.
+  */
+-bool drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
+-				 u32 ksv_count)
++int drm_hdcp_check_ksvs_revoked(struct drm_device *drm_dev, u8 *ksvs,
++				u32 ksv_count)
+ {
+-	u32 rev_ksv_cnt, cnt, i, j;
+-	u8 *rev_ksv_list;
+-
+-	if (!srm_data)
+-		return false;
+-
+-	mutex_lock(&srm_data->mutex);
+-	drm_hdcp_request_srm(drm_dev);
+-
+-	rev_ksv_cnt = srm_data->revoked_ksv_cnt;
+-	rev_ksv_list = srm_data->revoked_ksv_list;
+-
+-	/* If the Revoked ksv list is empty */
+-	if (!rev_ksv_cnt || !rev_ksv_list) {
+-		mutex_unlock(&srm_data->mutex);
+-		return false;
+-	}
+-
+-	for  (cnt = 0; cnt < ksv_count; cnt++) {
+-		rev_ksv_list = srm_data->revoked_ksv_list;
+-		for (i = 0; i < rev_ksv_cnt; i++) {
+-			for (j = 0; j < DRM_HDCP_KSV_LEN; j++)
+-				if (ksvs[j] != rev_ksv_list[j]) {
+-					break;
+-				} else if (j == (DRM_HDCP_KSV_LEN - 1)) {
+-					DRM_DEBUG("Revoked KSV is ");
+-					drm_hdcp_print_ksv(ksvs);
+-					mutex_unlock(&srm_data->mutex);
+-					return true;
+-				}
+-			/* Move the offset to next KSV in the revoked list */
+-			rev_ksv_list += DRM_HDCP_KSV_LEN;
+-		}
+-
+-		/* Iterate to next ksv_offset */
+-		ksvs += DRM_HDCP_KSV_LEN;
+-	}
+-	mutex_unlock(&srm_data->mutex);
+-	return false;
++	u32 revoked_ksv_cnt = 0, i, j;
++	u8 *revoked_ksv_list = NULL;
++	int ret = 0;
++
++	ret = drm_hdcp_request_srm(drm_dev, &revoked_ksv_list,
++				   &revoked_ksv_cnt);
++
++	/* revoked_ksv_cnt will be zero when above function failed */
++	for (i = 0; i < revoked_ksv_cnt; i++)
++		for  (j = 0; j < ksv_count; j++)
++			if (!memcmp(&ksvs[j * DRM_HDCP_KSV_LEN],
++				    &revoked_ksv_list[i * DRM_HDCP_KSV_LEN],
++				    DRM_HDCP_KSV_LEN)) {
++				DRM_DEBUG("Revoked KSV is ");
++				drm_hdcp_print_ksv(&ksvs[j * DRM_HDCP_KSV_LEN]);
++				ret++;
++			}
++
++	kfree(revoked_ksv_list);
++	return ret;
+ }
+ EXPORT_SYMBOL_GPL(drm_hdcp_check_ksvs_revoked);
+ 
+-int drm_setup_hdcp_srm(struct class *drm_class)
+-{
+-	srm_data = kzalloc(sizeof(*srm_data), GFP_KERNEL);
+-	if (!srm_data)
+-		return -ENOMEM;
+-	mutex_init(&srm_data->mutex);
+-
+-	return 0;
+-}
+-
+-void drm_teardown_hdcp_srm(struct class *drm_class)
+-{
+-	if (srm_data) {
+-		kfree(srm_data->revoked_ksv_list);
+-		kfree(srm_data);
+-	}
+-}
+-
+ static struct drm_prop_enum_list drm_cp_enum_list[] = {
+ 	{ DRM_MODE_CONTENT_PROTECTION_UNDESIRED, "Undesired" },
+ 	{ DRM_MODE_CONTENT_PROTECTION_DESIRED, "Desired" },
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index 6937bf923f05..a34c7f8373fa 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -235,7 +235,3 @@ int drm_syncobj_query_ioctl(struct drm_device *dev, void *data,
+ void drm_framebuffer_print_info(struct drm_printer *p, unsigned int indent,
+ 				const struct drm_framebuffer *fb);
+ int drm_framebuffer_debugfs_init(struct drm_minor *minor);
+-
+-/* drm_hdcp.c */
+-int drm_setup_hdcp_srm(struct class *drm_class);
+-void drm_teardown_hdcp_srm(struct class *drm_class);
+diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
+index dd2bc85f43cc..2e83c3d72af9 100644
+--- a/drivers/gpu/drm/drm_sysfs.c
++++ b/drivers/gpu/drm/drm_sysfs.c
+@@ -85,7 +85,6 @@ int drm_sysfs_init(void)
+ 	}
+ 
+ 	drm_class->devnode = drm_devnode;
+-	drm_setup_hdcp_srm(drm_class);
+ 	return 0;
+ }
+ 
+@@ -98,7 +97,6 @@ void drm_sysfs_destroy(void)
+ {
+ 	if (IS_ERR_OR_NULL(drm_class))
+ 		return;
+-	drm_teardown_hdcp_srm(drm_class);
+ 	class_remove_file(drm_class, &class_attr_version.attr);
+ 	class_destroy(drm_class);
+ 	drm_class = NULL;
+diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
+index 06a11202a097..d512089b873f 100644
+--- a/include/drm/drm_hdcp.h
++++ b/include/drm/drm_hdcp.h
+@@ -288,8 +288,8 @@ struct hdcp_srm_header {
+ struct drm_device;
+ struct drm_connector;
+ 
+-bool drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
+-				 u8 *ksvs, u32 ksv_count);
++int drm_hdcp_check_ksvs_revoked(struct drm_device *dev,
++				u8 *ksvs, u32 ksv_count);
+ int drm_connector_attach_content_protection_property(
+ 		struct drm_connector *connector, bool hdcp_content_type);
+ void drm_hdcp_update_content_protection(struct drm_connector *connector,
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16435_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2] ([i915#472])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-tglb1/igt@gem_ctx_exec@basic-nohangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-tglb2/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_ctx_isolation@rcs0-s3:
-    - shard-kbl:          [PASS][3] -> [DMESG-WARN][4] ([i915#180]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-kbl2/igt@gem_ctx_isolation@rcs0-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-kbl7/igt@gem_ctx_isolation@rcs0-s3.html
-
-  * igt@gem_ctx_shared@exec-single-timeline-bsd:
-    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#110841])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb3/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb2/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-
-  * igt@gem_exec_balancer@smoke:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#110854])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb4/igt@gem_exec_balancer@smoke.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb5/igt@gem_exec_balancer@smoke.html
-
-  * igt@gem_exec_schedule@fifo-bsd1:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109276]) +15 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb2/igt@gem_exec_schedule@fifo-bsd1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb7/igt@gem_exec_schedule@fifo-bsd1.html
-
-  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
-    - shard-iclb:         [PASS][11] -> [SKIP][12] ([i915#677])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb6/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb1/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-
-  * igt@gem_exec_schedule@preempt-other-chain-bsd:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#112146]) +4 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb6/igt@gem_exec_schedule@preempt-other-chain-bsd.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb1/igt@gem_exec_schedule@preempt-other-chain-bsd.html
-
-  * igt@gem_ppgtt@flink-and-close-vma-leak:
-    - shard-apl:          [PASS][15] -> [FAIL][16] ([i915#644])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl2/igt@gem_ppgtt@flink-and-close-vma-leak.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl2/igt@gem_ppgtt@flink-and-close-vma-leak.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-apl:          [PASS][17] -> [DMESG-WARN][18] ([i915#180]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-blt:
-    - shard-skl:          [PASS][19] -> [FAIL][20] ([i915#49])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-blt.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl10/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-shrfb-draw-blt.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [PASS][21] -> [FAIL][22] ([fdo#108145]) +1 similar issue
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl4/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-
-  * igt@kms_plane_multiple@atomic-pipe-c-tiling-yf:
-    - shard-skl:          [PASS][23] -> [DMESG-WARN][24] ([IGT#6])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl9/igt@kms_plane_multiple@atomic-pipe-c-tiling-yf.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl8/igt@kms_plane_multiple@atomic-pipe-c-tiling-yf.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][25] -> [SKIP][26] ([fdo#109441]) +2 similar issues
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb7/igt@kms_psr@psr2_cursor_render.html
-
-  * igt@perf_pmu@init-busy-vcs1:
-    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#112080]) +17 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb2/igt@perf_pmu@init-busy-vcs1.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb7/igt@perf_pmu@init-busy-vcs1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_busy@busy-vcs1:
-    - shard-iclb:         [SKIP][29] ([fdo#112080]) -> [PASS][30] +9 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb6/igt@gem_busy@busy-vcs1.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb1/igt@gem_busy@busy-vcs1.html
-
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-iclb:         [INCOMPLETE][31] -> [PASS][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb2/igt@gem_ctx_exec@basic-nohangcheck.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb6/igt@gem_ctx_exec@basic-nohangcheck.html
-    - shard-apl:          [INCOMPLETE][33] ([fdo#103927]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl6/igt@gem_ctx_exec@basic-nohangcheck.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl2/igt@gem_ctx_exec@basic-nohangcheck.html
-
-  * igt@gem_ctx_persistence@clone:
-    - shard-kbl:          [SKIP][35] ([fdo#109271] / [i915#1099]) -> [PASS][36] +6 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-kbl2/igt@gem_ctx_persistence@clone.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-kbl2/igt@gem_ctx_persistence@clone.html
-
-  * igt@gem_ctx_persistence@file:
-    - shard-tglb:         [SKIP][37] ([fdo#112179] / [i915#1099]) -> [PASS][38] +4 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-tglb5/igt@gem_ctx_persistence@file.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-tglb5/igt@gem_ctx_persistence@file.html
-    - shard-skl:          [SKIP][39] ([fdo#109271] / [i915#1099]) -> [PASS][40] +4 similar issues
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl10/igt@gem_ctx_persistence@file.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl1/igt@gem_ctx_persistence@file.html
-
-  * {igt@gem_ctx_persistence@hang}:
-    - shard-tglb:         [SKIP][41] ([i915#1099]) -> [PASS][42] +1 similar issue
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-tglb8/igt@gem_ctx_persistence@hang.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-tglb7/igt@gem_ctx_persistence@hang.html
-
-  * {igt@gem_ctx_persistence@hostile}:
-    - shard-apl:          [SKIP][43] ([fdo#109271] / [i915#1099]) -> [PASS][44] +5 similar issues
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl7/igt@gem_ctx_persistence@hostile.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl8/igt@gem_ctx_persistence@hostile.html
-    - shard-iclb:         [SKIP][45] ([i915#1099]) -> [PASS][46] +1 similar issue
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb6/igt@gem_ctx_persistence@hostile.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb1/igt@gem_ctx_persistence@hostile.html
-
-  * igt@gem_ctx_persistence@process:
-    - shard-iclb:         [SKIP][47] ([fdo#112179] / [i915#1099]) -> [PASS][48] +4 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb5/igt@gem_ctx_persistence@process.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb2/igt@gem_ctx_persistence@process.html
-
-  * igt@gem_ctx_persistence@processes:
-    - shard-glk:          [SKIP][49] ([fdo#109271] / [i915#1099]) -> [PASS][50] +6 similar issues
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-glk4/igt@gem_ctx_persistence@processes.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-glk9/igt@gem_ctx_persistence@processes.html
-
-  * igt@gem_exec_schedule@pi-userfault-bsd:
-    - shard-iclb:         [SKIP][51] ([i915#677]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb2/igt@gem_exec_schedule@pi-userfault-bsd.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb7/igt@gem_exec_schedule@pi-userfault-bsd.html
-
-  * igt@gem_exec_schedule@reorder-wide-bsd:
-    - shard-iclb:         [SKIP][53] ([fdo#112146]) -> [PASS][54] +11 similar issues
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb1/igt@gem_exec_schedule@reorder-wide-bsd.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb6/igt@gem_exec_schedule@reorder-wide-bsd.html
-
-  * igt@gem_partial_pwrite_pread@write:
-    - shard-hsw:          [FAIL][55] ([i915#694]) -> [PASS][56] +1 similar issue
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-hsw7/igt@gem_partial_pwrite_pread@write.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-hsw5/igt@gem_partial_pwrite_pread@write.html
-
-  * igt@gem_ppgtt@flink-and-close-vma-leak:
-    - shard-glk:          [FAIL][57] ([i915#644]) -> [PASS][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-glk1/igt@gem_ppgtt@flink-and-close-vma-leak.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-glk8/igt@gem_ppgtt@flink-and-close-vma-leak.html
-
-  * igt@i915_pm_rps@reset:
-    - shard-apl:          [FAIL][59] ([i915#39]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl1/igt@i915_pm_rps@reset.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl8/igt@i915_pm_rps@reset.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [FAIL][61] ([i915#79]) -> [PASS][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl4/igt@kms_flip@flip-vs-expired-vblank.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl3/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-glk:          [FAIL][63] ([i915#79]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-glk1/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-glk7/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-apl:          [DMESG-WARN][65] ([i915#180]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl8/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl3/igt@kms_flip@flip-vs-suspend-interruptible.html
-
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [DMESG-WARN][67] ([i915#180]) -> [PASS][68] +5 similar issues
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-kbl2/igt@kms_frontbuffer_tracking@fbc-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][69] ([fdo#108145] / [i915#265]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][71] ([i915#31]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-apl2/igt@kms_setmode@basic.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-apl6/igt@kms_setmode@basic.html
-
-  * igt@prime_vgem@fence-wait-bsd2:
-    - shard-iclb:         [SKIP][73] ([fdo#109276]) -> [PASS][74] +26 similar issues
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-iclb5/igt@prime_vgem@fence-wait-bsd2.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-iclb2/igt@prime_vgem@fence-wait-bsd2.html
-
-  
-#### Warnings ####
-
-  * igt@gem_ctx_persistence@processes:
-    - shard-skl:          [SKIP][75] ([fdo#109271] / [i915#1099]) -> [FAIL][76] ([i915#570] / [i915#679])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7869/shard-skl4/igt@gem_ctx_persistence@processes.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/shard-skl3/igt@gem_ctx_persistence@processes.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
-  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [fdo#112179]: https://bugs.freedesktop.org/show_bug.cgi?id=112179
-  [i915#1099]: https://gitlab.freedesktop.org/drm/intel/issues/1099
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#39]: https://gitlab.freedesktop.org/drm/intel/issues/39
-  [i915#472]: https://gitlab.freedesktop.org/drm/intel/issues/472
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#570]: https://gitlab.freedesktop.org/drm/intel/issues/570
-  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7869 -> Patchwork_16435
-
-  CI-20190529: 20190529
-  CI_DRM_7869: db0579be255412f38a450c3c577f8d10f1195034 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5419: 44913a91e77434b03001bb9ea53216cd03c476e6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16435: 9972271d163d523d084f1000a380a5c5dd6a74ca @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16435/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
