@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A773C156D03
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 00:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD7E5156D01
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 00:08:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3376E88F;
-	Sun,  9 Feb 2020 23:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93AE16E88E;
+	Sun,  9 Feb 2020 23:08:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 434B56E88D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A7536E88E
  for <intel-gfx@lists.freedesktop.org>; Sun,  9 Feb 2020 23:08:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20168058-1500050 
- for multiple; Sun, 09 Feb 2020 23:08:40 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20168059-1500050 
+ for multiple; Sun, 09 Feb 2020 23:08:41 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun,  9 Feb 2020 23:08:35 +0000
-Message-Id: <20200209230838.361154-1-chris@chris-wilson.co.uk>
+Date: Sun,  9 Feb 2020 23:08:36 +0000
+Message-Id: <20200209230838.361154-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200209230838.361154-1-chris@chris-wilson.co.uk>
+References: <20200209230838.361154-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Disable capturing
- forced error states
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/selftests: Drop live_preempt_hang
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,26 +43,229 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we are forcing the error for a selftest, we don't need to capture
-the GPU state (typically).
+live_preempt_hang's use of hang injection has been superseded by
+live_preempt_reset's use of an non-preemptable spinner. The latter does
+not require intrusive hacks into the code.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/selftests/mock_context.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/gt/intel_engine.h       |  20 ---
+ drivers/gpu/drm/i915/gt/intel_engine_types.h |   1 -
+ drivers/gpu/drm/i915/gt/intel_lrc.c          |   8 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c       | 122 -------------------
+ 4 files changed, 4 insertions(+), 147 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/mock_context.c b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-index 81764289cf0d..b12ea1daa29d 100644
---- a/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/mock_context.c
-@@ -107,6 +107,7 @@ kernel_context(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index b36ec1fddc3d..29c8c03c5caa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -305,26 +305,6 @@ intel_engine_find_active_request(struct intel_engine_cs *engine);
  
- 	i915_gem_context_clear_bannable(ctx);
- 	i915_gem_context_set_persistence(ctx);
-+	i915_gem_context_set_no_error_capture(ctx);
+ u32 intel_engine_context_size(struct intel_gt *gt, u8 class);
  
- 	return ctx;
+-#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+-
+-static inline bool inject_preempt_hang(struct intel_engine_execlists *execlists)
+-{
+-	if (!execlists->preempt_hang.inject_hang)
+-		return false;
+-
+-	complete(&execlists->preempt_hang.completion);
+-	return true;
+-}
+-
+-#else
+-
+-static inline bool inject_preempt_hang(struct intel_engine_execlists *execlists)
+-{
+-	return false;
+-}
+-
+-#endif
+-
+ void intel_engine_init_active(struct intel_engine_cs *engine,
+ 			      unsigned int subclass);
+ #define ENGINE_PHYSICAL	0
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index 45e36d963ea7..b23366a81048 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -127,7 +127,6 @@ DECLARE_EWMA(_engine_latency, 6, 4)
+ struct st_preempt_hang {
+ 	struct completion completion;
+ 	unsigned int count;
+-	bool inject_hang;
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 230470c58ec9..929be03bbe7e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2296,19 +2296,19 @@ static void process_csb(struct intel_engine_cs *engine)
+ 		if (promote) {
+ 			struct i915_request * const *old = execlists->active;
+ 
++			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
++
++			ring_set_paused(engine, 0);
++
+ 			/* Point active to the new ELSP; prevent overwriting */
+ 			WRITE_ONCE(execlists->active, execlists->pending);
+ 
+-			if (!inject_preempt_hang(execlists))
+-				ring_set_paused(engine, 0);
+-
+ 			/* cancel old inflight, prepare for switch */
+ 			trace_ports(execlists, "preempted", old);
+ 			while (*old)
+ 				execlists_schedule_out(*old++);
+ 
+ 			/* switch pending to inflight */
+-			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
+ 			WRITE_ONCE(execlists->active,
+ 				   memcpy(execlists->inflight,
+ 					  execlists->pending,
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 79b9f7d092e4..7ef68500b2bd 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -2431,127 +2431,6 @@ static int live_preempt_gang(void *arg)
+ 	return 0;
  }
+ 
+-static int live_preempt_hang(void *arg)
+-{
+-	struct intel_gt *gt = arg;
+-	struct i915_gem_context *ctx_hi, *ctx_lo;
+-	struct igt_spinner spin_hi, spin_lo;
+-	struct intel_engine_cs *engine;
+-	enum intel_engine_id id;
+-	int err = -ENOMEM;
+-
+-	if (!HAS_LOGICAL_RING_PREEMPTION(gt->i915))
+-		return 0;
+-
+-	if (!intel_has_reset_engine(gt))
+-		return 0;
+-
+-	if (igt_spinner_init(&spin_hi, gt))
+-		return -ENOMEM;
+-
+-	if (igt_spinner_init(&spin_lo, gt))
+-		goto err_spin_hi;
+-
+-	ctx_hi = kernel_context(gt->i915);
+-	if (!ctx_hi)
+-		goto err_spin_lo;
+-	ctx_hi->sched.priority =
+-		I915_USER_PRIORITY(I915_CONTEXT_MAX_USER_PRIORITY);
+-
+-	ctx_lo = kernel_context(gt->i915);
+-	if (!ctx_lo)
+-		goto err_ctx_hi;
+-	ctx_lo->sched.priority =
+-		I915_USER_PRIORITY(I915_CONTEXT_MIN_USER_PRIORITY);
+-
+-	for_each_engine(engine, gt, id) {
+-		unsigned long heartbeat;
+-		struct i915_request *rq;
+-
+-		if (!intel_engine_has_preemption(engine))
+-			continue;
+-
+-		engine_heartbeat_disable(engine, &heartbeat);
+-
+-		rq = spinner_create_request(&spin_lo, ctx_lo, engine,
+-					    MI_ARB_CHECK);
+-		if (IS_ERR(rq)) {
+-			err = PTR_ERR(rq);
+-			engine_heartbeat_enable(engine, heartbeat);
+-			goto err_ctx_lo;
+-		}
+-
+-		i915_request_add(rq);
+-		if (!igt_wait_for_spinner(&spin_lo, rq)) {
+-			GEM_TRACE("lo spinner failed to start\n");
+-			GEM_TRACE_DUMP();
+-			intel_gt_set_wedged(gt);
+-			err = -EIO;
+-			engine_heartbeat_enable(engine, heartbeat);
+-			goto err_ctx_lo;
+-		}
+-
+-		rq = spinner_create_request(&spin_hi, ctx_hi, engine,
+-					    MI_ARB_CHECK);
+-		if (IS_ERR(rq)) {
+-			igt_spinner_end(&spin_lo);
+-			engine_heartbeat_enable(engine, heartbeat);
+-			err = PTR_ERR(rq);
+-			goto err_ctx_lo;
+-		}
+-
+-		init_completion(&engine->execlists.preempt_hang.completion);
+-		engine->execlists.preempt_hang.inject_hang = true;
+-
+-		i915_request_add(rq);
+-
+-		if (!wait_for_completion_timeout(&engine->execlists.preempt_hang.completion,
+-						 HZ / 10)) {
+-			pr_err("Preemption did not occur within timeout!");
+-			GEM_TRACE_DUMP();
+-			intel_gt_set_wedged(gt);
+-			engine_heartbeat_enable(engine, heartbeat);
+-			err = -EIO;
+-			goto err_ctx_lo;
+-		}
+-
+-		set_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+-		intel_engine_reset(engine, NULL);
+-		clear_bit(I915_RESET_ENGINE + id, &gt->reset.flags);
+-
+-		engine->execlists.preempt_hang.inject_hang = false;
+-
+-		if (!igt_wait_for_spinner(&spin_hi, rq)) {
+-			GEM_TRACE("hi spinner failed to start\n");
+-			GEM_TRACE_DUMP();
+-			intel_gt_set_wedged(gt);
+-			engine_heartbeat_enable(engine, heartbeat);
+-			err = -EIO;
+-			goto err_ctx_lo;
+-		}
+-
+-		igt_spinner_end(&spin_hi);
+-		igt_spinner_end(&spin_lo);
+-		engine_heartbeat_enable(engine, heartbeat);
+-
+-		if (igt_flush_test(gt->i915)) {
+-			err = -EIO;
+-			goto err_ctx_lo;
+-		}
+-	}
+-
+-	err = 0;
+-err_ctx_lo:
+-	kernel_context_close(ctx_lo);
+-err_ctx_hi:
+-	kernel_context_close(ctx_hi);
+-err_spin_lo:
+-	igt_spinner_fini(&spin_lo);
+-err_spin_hi:
+-	igt_spinner_fini(&spin_hi);
+-	return err;
+-}
+-
+ static int live_preempt_timeout(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -3750,7 +3629,6 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(live_suppress_wait_preempt),
+ 		SUBTEST(live_chain_preempt),
+ 		SUBTEST(live_preempt_gang),
+-		SUBTEST(live_preempt_hang),
+ 		SUBTEST(live_preempt_timeout),
+ 		SUBTEST(live_preempt_smoke),
+ 		SUBTEST(live_virtual_engine),
 -- 
 2.25.0
 
