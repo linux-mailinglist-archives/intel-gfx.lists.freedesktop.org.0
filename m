@@ -2,37 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9071315775F
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 13:59:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E75C1157C87
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 14:40:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E52B76E979;
-	Mon, 10 Feb 2020 12:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D36F76EC38;
+	Mon, 10 Feb 2020 13:40:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64DF6E979
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2020 12:59:53 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C2E6E215
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2020 13:40:42 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 04:59:53 -0800
-X-IronPort-AV: E=Sophos;i="5.70,425,1574150400"; d="scan'208";a="226140727"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 04:59:51 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <87r1z2aera.fsf@gaia.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200204135217.21974-1-jani.nikula@intel.com>
- <87r1z2aera.fsf@gaia.fi.intel.com>
-Date: Mon, 10 Feb 2020 14:59:47 +0200
-Message-ID: <87d0am1tto.fsf@intel.com>
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2020 05:40:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,425,1574150400"; d="scan'208";a="280637577"
+Received: from aquilante.fi.intel.com (HELO teofilatto.example.org)
+ ([10.237.72.158])
+ by FMSMGA003.fm.intel.com with ESMTP; 10 Feb 2020 05:40:40 -0800
+From: Andi Shyti <andi.shyti@intel.com>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Mon, 10 Feb 2020 15:40:39 +0200
+Message-Id: <20200210134039.2607-1-andi.shyti@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/psr: pass i915 to
- psr_global_enabled()
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: change prefix to debugfs functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,69 +46,164 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 10 Feb 2020, Mika Kuoppala <mika.kuoppala@linux.intel.com> wrote:
-> Jani Nikula <jani.nikula@intel.com> writes:
->
->> Make future work slightly easier.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+"We don't own the debugfs 'namespace' prefix." (Jani Nikula [*])
 
-Pushed to dinq, thanks for the review.
+I agree, change the functions name from "debugfs_*" to
+"intel_gt_*" prefix.
 
-BR,
-Jani.
+[*] https://patchwork.freedesktop.org/patch/352553/#comment_651183
 
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++----
->>  1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
->> index db3d1561e9bf..e86e9dc1fe06 100644
->> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -61,9 +61,9 @@
->>   * must be correctly synchronized/cancelled when shutting down the pipe."
->>   */
->>  
->> -static bool psr_global_enabled(u32 debug)
->> +static bool psr_global_enabled(struct drm_i915_private *i915)
->>  {
->> -	switch (debug & I915_PSR_DEBUG_MODE_MASK) {
->> +	switch (i915->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
->>  	case I915_PSR_DEBUG_DEFAULT:
->>  		return i915_modparams.enable_psr;
->>  	case I915_PSR_DEBUG_DISABLE:
->> @@ -930,7 +930,7 @@ void intel_psr_enable(struct intel_dp *intel_dp,
->>  
->>  	mutex_lock(&dev_priv->psr.lock);
->>  
->> -	if (!psr_global_enabled(dev_priv->psr.debug)) {
->> +	if (!psr_global_enabled(dev_priv)) {
->>  		drm_dbg_kms(&dev_priv->drm, "PSR disabled by flag\n");
->>  		goto unlock;
->>  	}
->> @@ -1085,7 +1085,7 @@ void intel_psr_update(struct intel_dp *intel_dp,
->>  
->>  	mutex_lock(&dev_priv->psr.lock);
->>  
->> -	enable = crtc_state->has_psr && psr_global_enabled(psr->debug);
->> +	enable = crtc_state->has_psr && psr_global_enabled(dev_priv);
->>  	psr2_enable = intel_psr2_enabled(dev_priv, crtc_state);
->>  
->>  	if (enable == psr->enabled && psr2_enable == psr->psr2_enabled) {
->> -- 
->> 2.20.1
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/debugfs_engines.c |  4 ++--
+ drivers/gpu/drm/i915/gt/debugfs_engines.h |  2 +-
+ drivers/gpu/drm/i915/gt/debugfs_gt.c      | 14 +++++++-------
+ drivers/gpu/drm/i915/gt/debugfs_gt.h      | 10 +++++-----
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c   |  4 ++--
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.h   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c        |  2 +-
+ 7 files changed, 19 insertions(+), 19 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_engines.c b/drivers/gpu/drm/i915/gt/debugfs_engines.c
+index 6a5e9ab20b94..2d4ab974ab67 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_engines.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_engines.c
+@@ -26,11 +26,11 @@ static int engines_show(struct seq_file *m, void *data)
+ }
+ DEFINE_GT_DEBUGFS_ATTRIBUTE(engines);
+ 
+-void debugfs_engines_register(struct intel_gt *gt, struct dentry *root)
++void engines_register_debugfs(struct intel_gt *gt, struct dentry *root)
+ {
+ 	static const struct debugfs_gt_file files[] = {
+ 		{ "engines", &engines_fops },
+ 	};
+ 
+-	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
++	intel_gt_debugfs_register_files(gt, root, files, ARRAY_SIZE(files));
+ }
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_engines.h b/drivers/gpu/drm/i915/gt/debugfs_engines.h
+index f69257eaa1cc..942876f6e837 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_engines.h
++++ b/drivers/gpu/drm/i915/gt/debugfs_engines.h
+@@ -9,6 +9,6 @@
+ struct intel_gt;
+ struct dentry;
+ 
+-void debugfs_engines_register(struct intel_gt *gt, struct dentry *root);
++void engines_register_debugfs(struct intel_gt *gt, struct dentry *root);
+ 
+ #endif /* DEBUGFS_ENGINES_H */
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+index 75255aaacaed..e7f2f1bf9f62 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+@@ -11,7 +11,7 @@
+ #include "debugfs_gt_pm.h"
+ #include "i915_drv.h"
+ 
+-void debugfs_gt_register(struct intel_gt *gt)
++void intel_gt_debugfs_register(struct intel_gt *gt)
+ {
+ 	struct dentry *root;
+ 
+@@ -22,14 +22,14 @@ void debugfs_gt_register(struct intel_gt *gt)
+ 	if (IS_ERR(root))
+ 		return;
+ 
+-	debugfs_engines_register(gt, root);
+-	debugfs_gt_pm_register(gt, root);
++	engines_register_debugfs(gt, root);
++	intel_gt_pm_register_debugfs(gt, root);
+ }
+ 
+-void debugfs_gt_register_files(struct intel_gt *gt,
+-			       struct dentry *root,
+-			       const struct debugfs_gt_file *files,
+-			       unsigned long count)
++void intel_gt_debugfs_register_files(struct intel_gt *gt,
++				     struct dentry *root,
++				     const struct debugfs_gt_file *files,
++				     unsigned long count)
+ {
+ 	while (count--) {
+ 		if (!files->eval || files->eval(gt))
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.h b/drivers/gpu/drm/i915/gt/debugfs_gt.h
+index 4ea0f06cda8f..d2aab5701c59 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt.h
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt.h
+@@ -23,7 +23,7 @@ static const struct file_operations __name ## _fops = {			\
+ 	.release = single_release,					\
+ }
+ 
+-void debugfs_gt_register(struct intel_gt *gt);
++void intel_gt_debugfs_register(struct intel_gt *gt);
+ 
+ struct debugfs_gt_file {
+ 	const char *name;
+@@ -31,9 +31,9 @@ struct debugfs_gt_file {
+ 	bool (*eval)(const struct intel_gt *gt);
+ };
+ 
+-void debugfs_gt_register_files(struct intel_gt *gt,
+-			       struct dentry *root,
+-			       const struct debugfs_gt_file *files,
+-			       unsigned long count);
++void intel_gt_debugfs_register_files(struct intel_gt *gt,
++				     struct dentry *root,
++				     const struct debugfs_gt_file *files,
++				     unsigned long count);
+ 
+ #endif /* DEBUGFS_GT_H */
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+index 059c9e5c002e..03b4d06daaee 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+@@ -587,7 +587,7 @@ static bool rps_eval(const struct intel_gt *gt)
+ 
+ DEFINE_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+ 
+-void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
++void intel_gt_pm_register_debugfs(struct intel_gt *gt, struct dentry *root)
+ {
+ 	static const struct debugfs_gt_file files[] = {
+ 		{ "drpc", &drpc_fops, NULL },
+@@ -597,5 +597,5 @@ void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
+ 		{ "rps_boost", &rps_boost_fops, rps_eval },
+ 	};
+ 
+-	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
++	intel_gt_debugfs_register_files(gt, root, files, ARRAY_SIZE(files));
+ }
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
+index 4cf5f5c9da7d..45827f451e83 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.h
+@@ -9,6 +9,6 @@
+ struct intel_gt;
+ struct dentry;
+ 
+-void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root);
++void intel_gt_pm_register_debugfs(struct intel_gt *gt, struct dentry *root);
+ 
+ #endif /* DEBUGFS_GT_PM_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+index f1f1b306e0af..f84874f6e72b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.c
++++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+@@ -320,7 +320,7 @@ void intel_gt_driver_register(struct intel_gt *gt)
+ {
+ 	intel_rps_driver_register(&gt->rps);
+ 
+-	debugfs_gt_register(gt);
++	intel_gt_debugfs_register(gt);
+ }
+ 
+ static int intel_gt_init_scratch(struct intel_gt *gt, unsigned int size)
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
