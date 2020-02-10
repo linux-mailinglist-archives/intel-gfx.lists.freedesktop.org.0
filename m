@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D550715845D
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 21:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51D0E158471
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 21:55:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAAB76E235;
-	Mon, 10 Feb 2020 20:47:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3966E239;
+	Mon, 10 Feb 2020 20:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01D226E235
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2020 20:47:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 12:47:42 -0800
-X-IronPort-AV: E=Sophos;i="5.70,426,1574150400"; d="scan'208";a="226274620"
-Received: from nheyde-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.37.150])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 12:47:40 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200210184057.296698-1-jose.souza@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200210184057.296698-1-jose.souza@intel.com>
-Date: Mon, 10 Feb 2020 22:47:58 +0200
-Message-ID: <871rr2w4n5.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 576576E239;
+ Mon, 10 Feb 2020 20:55:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4FA6EA0096;
+ Mon, 10 Feb 2020 20:55:42 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: Set intel_dp_set_m_n() for
- MST slaves
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Mon, 10 Feb 2020 20:55:42 -0000
+Message-ID: <158136814229.3098.14942046544300931690@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200210184057.296698-1-jose.souza@intel.com>
+In-Reply-To: <20200210184057.296698-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/mst=3A_Set_intel=5Fdp=5Fset=5Fm=5Fn=28=29_for_MST_slaves?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,39 +38,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAxMCBGZWIgMjAyMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+IHdyb3RlOgo+IENvbW1pdCAxYzlkMmViMjQxNTMgKCJkcm0vaTkxNTogbW92ZSBp
-bnRlbF9kcF9zZXRfbV9uKCkgdG8gZW5jb2RlciBmb3IKPiBEREkgcGxhdGZvcm1zIikgbW92ZWQg
-dGhlIGludGVsX2RwX3NldF9tX24oKSBmcm9tIGhzd19jcnRjX2VuYWJsZSgpCj4gdG8gaW50ZWxf
-ZGRpX3ByZV9lbmFibGVfZHAoKSBidXQgaXQgbWlzc2VkIGFkZCBpdCB0bwo+IGludGVsX21zdF9w
-cmVfZW5hYmxlX2RwKCkgY2F1c2luZyBNU1Qgc2xhdmVzIHRvIG5vdCB3b3JrLgo+Cj4gRml4ZXM6
-IDFjOWQyZWIyNDE1MyAoImRybS9pOTE1OiBtb3ZlIGludGVsX2RwX3NldF9tX24oKSB0byBlbmNv
-ZGVyIGZvciBEREkgcGxhdGZvcm1zIikKPiBDYzogVmFuZGl0YSBLdWxrYXJuaSA8dmFuZGl0YS5r
-dWxrYXJuaUBpbnRlbC5jb20+Cj4gQ2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5j
-b20+Cj4gU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
-bnRlbC5jb20+CgpEYW1uIGl0LCB0aGlzIGlzIHRoZSBzZWNvbmQgRFAgTVNUIHRoaW5nIEkgbWlz
-c2VkIGluIHRoZSBzYW1lCnNlcmllcy4gKmZhY2VwYWxtKi4gVGhlIGZpcnN0IGdvb2YtdXAgd2Fz
-IGZpeGVkIGluIGNvbW1pdCAyNzQ5NTk2MjIwMTcKKCJkcm0vaTkxNS9tc3Q6IGZpeCBwaXBlIGFu
-ZCB2YmxhbmsgZW5hYmxlIikuIFdlIHJlYWxseSBuZWVkIG1vcmUgTVNUIGluCkNJLgoKUmV2aWV3
-ZWQtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Cgo+IC0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgMiArKwo+ICAxIGZpbGUg
-Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZHBfbXN0LmMKPiBpbmRleCA5Y2Q1OTE0MTk1M2QuLmQ3YmZhN2MzNTBlOSAxMDA2
-NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwo+IEBAIC00
-ODAsNiArNDgwLDggQEAgc3RhdGljIHZvaWQgaW50ZWxfbXN0X3ByZV9lbmFibGVfZHAoc3RydWN0
-IGludGVsX2VuY29kZXIgKmVuY29kZXIsCj4gIAkJaW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2Nr
-KHBpcGVfY29uZmlnKTsKPiAgCj4gIAlpbnRlbF9kZGlfc2V0X2RwX21zYShwaXBlX2NvbmZpZywg
-Y29ubl9zdGF0ZSk7Cj4gKwo+ICsJaW50ZWxfZHBfc2V0X21fbihwaXBlX2NvbmZpZywgTTFfTjEp
-Owo+ICB9Cj4gIAo+ICBzdGF0aWMgdm9pZCBpbnRlbF9tc3RfZW5hYmxlX2RwKHN0cnVjdCBpbnRl
-bF9lbmNvZGVyICplbmNvZGVyLAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
-cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/mst: Set intel_dp_set_m_n() for MST slaves
+URL   : https://patchwork.freedesktop.org/series/73252/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7903 -> Patchwork_16507
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16507 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16507, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16507:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gt_mocs:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bwr-2160/igt@i915_selftest@live_gt_mocs.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-bwr-2160/igt@i915_selftest@live_gt_mocs.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16507 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-hsw-4770r:       [PASS][3] -> [INCOMPLETE][4] ([i915#694])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-hsw-4770r/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-hsw-4770r/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][5] -> [DMESG-FAIL][6] ([fdo#108569])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][9] ([i915#694]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-bsw-n3050:       [INCOMPLETE][11] ([i915#392]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bsw-n3050/igt@i915_selftest@live_blt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-bsw-n3050/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [DMESG-FAIL][13] ([i915#623]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+    - fi-byt-n2820:       [DMESG-FAIL][15] ([i915#1052]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-guc:         [INCOMPLETE][17] ([CI#80] / [fdo#106070] / [i915#424]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bdw-5557u:       [TIMEOUT][19] ([fdo#112271]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][21] ([i915#45]) -> [TIMEOUT][22] ([fdo#112271] / [i915#1084] / [i915#816])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Additional (2): fi-skl-lmem fi-snb-2600 
+  Missing    (7): fi-ilk-m540 fi-tgl-dsi fi-hsw-4200u fi-byt-squawks fi-ivb-3770 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7903 -> Patchwork_16507
+
+  CI-20190529: 20190529
+  CI_DRM_7903: 47b768c475f4a11a48bc43e6228660f8b26a542b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16507: 28b1ef037676f760ea5ab65df8cf5ad2b8af7983 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+28b1ef037676 drm/i915/mst: Set intel_dp_set_m_n() for MST slaves
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16507/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
