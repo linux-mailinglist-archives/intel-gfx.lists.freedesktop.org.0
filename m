@@ -1,31 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69402157FF2
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 17:39:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BD5157FFD
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 17:43:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D5F6ECC1;
-	Mon, 10 Feb 2020 16:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED649890B6;
+	Mon, 10 Feb 2020 16:43:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F62E6ECC0;
- Mon, 10 Feb 2020 16:39:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 87798A00FD;
- Mon, 10 Feb 2020 16:39:55 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CED9890B6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2020 16:43:10 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20177756-1500050 
+ for multiple; Mon, 10 Feb 2020 16:42:17 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Feb 2020 16:42:15 +0000
+Message-Id: <20200210164215.528610-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@intel.com>
-Date: Mon, 10 Feb 2020 16:39:55 -0000
-Message-ID: <158135279555.3100.16370615916721789204@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200210134039.2607-1-andi.shyti@intel.com>
-In-Reply-To: <20200210134039.2607-1-andi.shyti@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_change_prefix_to_debugfs_functions?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Avoid resetting ring->head outside
+ of its timeline mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,138 +37,164 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We manipulate ring->head while active in i915_request_retire underneath
+the timeline manipulation. We cannot rely on a stable ring->head outside
+of the timeline->mutex, in particular while setting up the context for
+resume and reset.
 
-Series: drm/i915/gt: change prefix to debugfs functions
-URL   : https://patchwork.freedesktop.org/series/73239/
-State : success
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1126
+References: f3c0efc9fe7a ("drm/i915/execlists: Leave resetting ring to intel_ring")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c    | 36 ++++++++++++--------------
+ drivers/gpu/drm/i915/gt/selftest_lrc.c |  2 +-
+ 2 files changed, 18 insertions(+), 20 deletions(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 230470c58ec9..3f75861a53c6 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -235,7 +235,8 @@ static void execlists_init_reg_state(u32 *reg_state,
+ 				     bool close);
+ static void
+ __execlists_update_reg_state(const struct intel_context *ce,
+-			     const struct intel_engine_cs *engine);
++			     const struct intel_engine_cs *engine,
++			     u32 head);
+ 
+ static void mark_eio(struct i915_request *rq)
+ {
+@@ -1184,12 +1185,11 @@ static void reset_active(struct i915_request *rq,
+ 		head = rq->tail;
+ 	else
+ 		head = active_request(ce->timeline, rq)->head;
+-	ce->ring->head = intel_ring_wrap(ce->ring, head);
+-	intel_ring_update_space(ce->ring);
++	head = intel_ring_wrap(ce->ring, head);
+ 
+ 	/* Scrub the context image to prevent replaying the previous batch */
+ 	restore_default_state(ce, engine);
+-	__execlists_update_reg_state(ce, engine);
++	__execlists_update_reg_state(ce, engine, head);
+ 
+ 	/* We've switched away, so this should be a no-op, but intent matters */
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+@@ -2878,16 +2878,17 @@ static void execlists_context_unpin(struct intel_context *ce)
+ 
+ static void
+ __execlists_update_reg_state(const struct intel_context *ce,
+-			     const struct intel_engine_cs *engine)
++			     const struct intel_engine_cs *engine,
++			     u32 head)
+ {
+ 	struct intel_ring *ring = ce->ring;
+ 	u32 *regs = ce->lrc_reg_state;
+ 
+-	GEM_BUG_ON(!intel_ring_offset_valid(ring, ring->head));
++	GEM_BUG_ON(!intel_ring_offset_valid(ring, head));
+ 	GEM_BUG_ON(!intel_ring_offset_valid(ring, ring->tail));
+ 
+ 	regs[CTX_RING_START] = i915_ggtt_offset(ring->vma);
+-	regs[CTX_RING_HEAD] = ring->head;
++	regs[CTX_RING_HEAD] = head;
+ 	regs[CTX_RING_TAIL] = ring->tail;
+ 
+ 	/* RPCS */
+@@ -2916,7 +2917,7 @@ __execlists_context_pin(struct intel_context *ce,
+ 
+ 	ce->lrc_desc = lrc_descriptor(ce, engine) | CTX_DESC_FORCE_RESTORE;
+ 	ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
+-	__execlists_update_reg_state(ce, engine);
++	__execlists_update_reg_state(ce, engine, ce->ring->tail);
+ 
+ 	return 0;
+ }
+@@ -2941,7 +2942,7 @@ static void execlists_context_reset(struct intel_context *ce)
+ 	/* Scrub away the garbage */
+ 	execlists_init_reg_state(ce->lrc_reg_state,
+ 				 ce, ce->engine, ce->ring, true);
+-	__execlists_update_reg_state(ce, ce->engine);
++	__execlists_update_reg_state(ce, ce->engine, ce->ring->tail);
+ 
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
+ }
+@@ -3538,6 +3539,7 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+ 	struct intel_context *ce;
+ 	struct i915_request *rq;
++	u32 head;
+ 
+ 	mb(); /* paranoia: read the CSB pointers from after the reset */
+ 	clflush(execlists->csb_write);
+@@ -3565,15 +3567,15 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 
+ 	if (i915_request_completed(rq)) {
+ 		/* Idle context; tidy up the ring so we can restart afresh */
+-		ce->ring->head = intel_ring_wrap(ce->ring, rq->tail);
++		head = intel_ring_wrap(ce->ring, rq->tail);
+ 		goto out_replay;
+ 	}
+ 
+ 	/* Context has requests still in-flight; it should not be idle! */
+ 	GEM_BUG_ON(i915_active_is_idle(&ce->active));
+ 	rq = active_request(ce->timeline, rq);
+-	ce->ring->head = intel_ring_wrap(ce->ring, rq->head);
+-	GEM_BUG_ON(ce->ring->head == ce->ring->tail);
++	head = intel_ring_wrap(ce->ring, rq->head);
++	GEM_BUG_ON(head == ce->ring->tail);
+ 
+ 	/*
+ 	 * If this request hasn't started yet, e.g. it is waiting on a
+@@ -3618,10 +3620,9 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
+ 
+ out_replay:
+ 	ENGINE_TRACE(engine, "replay {head:%04x, tail:%04x}\n",
+-		     ce->ring->head, ce->ring->tail);
+-	intel_ring_update_space(ce->ring);
++		     head, ce->ring->tail);
+ 	__execlists_reset_reg_state(ce, engine);
+-	__execlists_update_reg_state(ce, engine);
++	__execlists_update_reg_state(ce, engine, head);
+ 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE; /* paranoid: GPU was reset! */
+ 
+ unwind:
+@@ -5265,10 +5266,7 @@ void intel_lr_context_reset(struct intel_engine_cs *engine,
+ 		restore_default_state(ce, engine);
+ 
+ 	/* Rerun the request; its payload has been neutered (if guilty). */
+-	ce->ring->head = head;
+-	intel_ring_update_space(ce->ring);
+-
+-	__execlists_update_reg_state(ce, engine);
++	__execlists_update_reg_state(ce, engine, head);
+ }
+ 
+ bool
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 79b9f7d092e4..6f0295f18b38 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -201,7 +201,7 @@ static int live_unlite_restore(struct intel_gt *gt, int prio)
+ 		}
+ 		GEM_BUG_ON(!ce[1]->ring->size);
+ 		intel_ring_reset(ce[1]->ring, ce[1]->ring->size / 2);
+-		__execlists_update_reg_state(ce[1], engine);
++		__execlists_update_reg_state(ce[1], engine, ce[1]->ring->head);
+ 
+ 		rq[0] = igt_spinner_create_request(&spin, ce[0], MI_ARB_CHECK);
+ 		if (IS_ERR(rq[0])) {
+-- 
+2.25.0
 
-CI Bug Log - changes from CI_DRM_7900 -> Patchwork_16503
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16503 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-ivb-3770:        [PASS][1] -> [DMESG-FAIL][2] ([i915#725])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-ivb-3770/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-ivb-3770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217] / [i915#976])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [DMESG-FAIL][7] ([fdo#108569]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-icl-y/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][9] ([i915#877]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_gtt:
-    - fi-skl-6770hq:      [TIMEOUT][11] ([fdo#111732] / [fdo#112271]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-skl-6770hq/igt@i915_selftest@live_gtt.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-skl-6770hq/igt@i915_selftest@live_gtt.html
-    - fi-skl-6600u:       [TIMEOUT][13] ([fdo#111732] / [fdo#112271]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-skl-6600u/igt@i915_selftest@live_gtt.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-skl-6600u/igt@i915_selftest@live_gtt.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([fdo#109635] / [i915#217]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-kbl-7500u/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][17] ([fdo#111407]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Warnings ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-hsw-peppy:       [INCOMPLETE][19] ([i915#694] / [i915#816]) -> [TIMEOUT][20] ([fdo#112271] / [i915#1084])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7900/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-
-  
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#111732]: https://bugs.freedesktop.org/show_bug.cgi?id=111732
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (51 -> 47)
-------------------------------
-
-  Additional (3): fi-kbl-7560u fi-byt-n2820 fi-bwr-2160 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-whl-u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7900 -> Patchwork_16503
-
-  CI-20190529: 20190529
-  CI_DRM_7900: f4ab479a4e3c9e0bc9120f6618b9876bfdece9cc @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5432: 6677811be6e9be9000b3217e8862353b3945a4f3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16503: d4b756a98fa10f3d561cbc2ed25080d9883bb59a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d4b756a98fa1 drm/i915/gt: change prefix to debugfs functions
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16503/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
