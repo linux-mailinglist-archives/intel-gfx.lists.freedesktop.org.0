@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 942691573A1
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 12:45:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B9E1573A6
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 12:46:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAA9289A67;
-	Mon, 10 Feb 2020 11:44:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6EA589AEA;
+	Mon, 10 Feb 2020 11:46:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5157189A61;
- Mon, 10 Feb 2020 11:44:56 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 03:44:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,424,1574150400"; d="scan'208";a="233076121"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by orsmga003.jf.intel.com with ESMTP; 10 Feb 2020 03:44:54 -0800
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1j17Uj-0006gf-6K; Mon, 10 Feb 2020 13:44:53 +0200
-Date: Mon, 10 Feb 2020 13:44:53 +0200
-From: Petri Latvala <petri.latvala@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200210114453.GH25209@platvala-desk.ger.corp.intel.com>
-References: <20200210101135.420500-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC0E689A72;
+ Mon, 10 Feb 2020 11:46:38 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20173038-1500050 for multiple; Mon, 10 Feb 2020 11:46:35 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200210101135.420500-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
+To: Petri Latvala <petri.latvala@intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200210114453.GH25209@platvala-desk.ger.corp.intel.com>
+References: <20200210101135.420500-1-chris@chris-wilson.co.uk>
+ <20200210114453.GH25209@platvala-desk.ger.corp.intel.com>
+Message-ID: <158133519310.5235.15764688102014088674@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Mon, 10 Feb 2020 11:46:33 +0000
 Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] intel-ci: Enable
  gem_exec_whisper
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -55,14 +46,14 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 10, 2020 at 10:11:35AM +0000, Chris Wilson wrote:
-> In hindsignt,
+Quoting Petri Latvala (2020-02-10 11:44:53)
+> On Mon, Feb 10, 2020 at 10:11:35AM +0000, Chris Wilson wrote:
+> > In hindsignt,
+> 
+> Your h is damaged.
 
-Your h is damaged.
-
-
--- 
-Petri Latvala
+And soul.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
