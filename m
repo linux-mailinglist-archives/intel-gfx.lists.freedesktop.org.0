@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D216B1584B0
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 22:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F4C1584B1
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2020 22:25:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B609C6E23D;
-	Mon, 10 Feb 2020 21:24:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 262636E9F7;
+	Mon, 10 Feb 2020 21:25:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0A9F76E23D;
- Mon, 10 Feb 2020 21:24:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EFFC9A0003;
- Mon, 10 Feb 2020 21:24:01 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF10D6E9F7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2020 21:25:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2020 13:25:48 -0800
+X-IronPort-AV: E=Sophos;i="5.70,426,1574150400"; d="scan'208";a="431740081"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2020 13:25:48 -0800
+Date: Mon, 10 Feb 2020 13:27:14 -0800
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200210212714.GA258873@intel.com>
+References: <20200208220106.3311791-1-chris@chris-wilson.co.uk>
+ <20200208220106.3311791-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Mon, 10 Feb 2020 21:24:01 -0000
-Message-ID: <158136984195.3097.8416065628197608063@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200210202853.1546453-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200210202853.1546453-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Add_Wa=5F22010178259=3Atgl?=
+Content-Disposition: inline
+In-Reply-To: <20200208220106.3311791-3-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915/gtt: Downgrade gen7 (ivb, byt,
+ hsw) back to aliasing-ppgtt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,110 +46,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Sat, Feb 08, 2020 at 10:01:06PM +0000, Chris Wilson wrote:
+> Full-ppgtt on gen7 is proving to be highly unstable and not robust.
+> 
+> Fixes: 3cd6e8860ecd ("drm/i915/gen7: Re-enable full-ppgtt for ivb & hsw")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> ---
 
-Series: drm/i915/tgl: Add Wa_22010178259:tgl
-URL   : https://patchwork.freedesktop.org/series/73255/
-State : success
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7903 -> Patchwork_16508
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16508 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#392])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bsw-nick/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-bsw-nick/igt@i915_selftest@live_blt.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111096] / [i915#323])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770:        [DMESG-FAIL][5] ([i915#553] / [i915#725]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-hsw-4770/igt@i915_selftest@live_blt.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-hsw-4770/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [DMESG-FAIL][7] ([i915#623]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-    - fi-cfl-guc:         [INCOMPLETE][9] ([CI#80] / [fdo#106070] / [i915#424]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-    - fi-cml-s:           [DMESG-FAIL][11] ([i915#877]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-
-  
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
-  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
-  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (47 -> 39)
-------------------------------
-
-  Additional (4): fi-hsw-peppy fi-skl-lmem fi-gdg-551 fi-snb-2600 
-  Missing    (12): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-ilk-650 fi-cfl-8109u fi-icl-u3 fi-bdw-samus fi-byt-n2820 fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7903 -> Patchwork_16508
-
-  CI-20190529: 20190529
-  CI_DRM_7903: 47b768c475f4a11a48bc43e6228660f8b26a542b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16508: 70b7d6e6151834638f8d1158e993023e1daa5091 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-70b7d6e61518 drm/i915/tgl: Add Wa_22010178259:tgl
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16508/index.html
+>  drivers/gpu/drm/i915/i915_pci.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+> index 24b1f0ce8743..1d678aa7d420 100644
+> --- a/drivers/gpu/drm/i915/i915_pci.c
+> +++ b/drivers/gpu/drm/i915/i915_pci.c
+> @@ -437,7 +437,7 @@ static const struct intel_device_info snb_m_gt2_info = {
+>  	.has_rc6 = 1, \
+>  	.has_rc6p = 1, \
+>  	.has_rps = true, \
+> -	.ppgtt_type = INTEL_PPGTT_FULL, \
+> +	.ppgtt_type = INTEL_PPGTT_ALIASING, \
+>  	.ppgtt_size = 31, \
+>  	IVB_PIPE_OFFSETS, \
+>  	IVB_CURSOR_OFFSETS, \
+> @@ -494,7 +494,7 @@ static const struct intel_device_info vlv_info = {
+>  	.has_rps = true,
+>  	.display.has_gmch = 1,
+>  	.display.has_hotplug = 1,
+> -	.ppgtt_type = INTEL_PPGTT_FULL,
+> +	.ppgtt_type = INTEL_PPGTT_ALIASING,
+>  	.ppgtt_size = 31,
+>  	.has_snoop = true,
+>  	.has_coherent_ggtt = false,
+> -- 
+> 2.25.0
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
