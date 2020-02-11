@@ -2,58 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D231591E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:27:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B661591F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:31:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118846EE69;
-	Tue, 11 Feb 2020 14:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC44B6E046;
+	Tue, 11 Feb 2020 14:31:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 094A96EE69
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:27:29 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2C236E046;
+ Tue, 11 Feb 2020 14:31:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 06:27:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="256484180"
-Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
- by fmsmga004.fm.intel.com with ESMTP; 11 Feb 2020 06:27:27 -0800
-Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
- irsmsx110.ger.corp.intel.com (163.33.3.25) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 11 Feb 2020 14:27:26 +0000
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 11 Feb 2020 14:27:26 +0000
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Tue, 11 Feb 2020 14:27:26 +0000
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Thread-Topic: [PATCH v1] drm/i915: Call intel_edp_init_connector only for eDP.
-Thread-Index: AQHV4NCr6ZnEndN/Hkex5zsAYfOKi6gV9ckAgAAHaQCAAAcWgIAAAUoAgAADaoCAAAM9gA==
-Date: Tue, 11 Feb 2020 14:27:26 +0000
-Message-ID: <24eea19d0aee5fed1610c27c11e6b5246d923b4a.camel@intel.com>
-References: <20200211114038.21035-1-stanislav.lisovskiy@intel.com>
- <87zhdpz35z.fsf@intel.com>
- <713d424e3ab55716b9f475ee0453dc3e4848e226.camel@intel.com>
- <87r1z1z0ri.fsf@intel.com>
- <7137346ae4f624b263d85ce79ea62fea70de5037.camel@intel.com>
- <87d0alyzzg.fsf@intel.com>
-In-Reply-To: <87d0alyzzg.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.66.163]
-Content-ID: <C54122EE91A1524E94BD501E73BC017F@intel.com>
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 06:31:19 -0800
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="313078928"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 06:31:17 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 15:30:48 +0100
+Message-Id: <20200211143048.12260-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Call intel_edp_init_connector
- only for eDP.
+Subject: [Intel-gfx] [RFC PATCH i-g-t v2] tests/gem_userptr_blits: Enhance
+ invalid mapping exercise
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,57 +41,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-02-11 at 16:12 +0200, Jani Nikula wrote:
-> On Tue, 11 Feb 2020, "Lisovskiy, Stanislav" <
-> stanislav.lisovskiy@intel.com> wrote:
-> > Well, you can just take all those checks and put them into separate
-> > function. Something like:
-> > 
-> > bool intel_dp_supports_mst(intel_dp) {
-> > 	if (HAS_DP_MST(i915) && !intel_dp_is_edp(intel_dp)) &&
-> >              !(INTEL_GEN(i915) < 12 && port == PORT_A) &&
-> >              !(INTEL_GEN(i915) <	11 && port == PORT_E))
-> > 			return true;
-> > 	return false;
-> > }
-> > 
-> > so, then you would have it nicely looking and understandable:
-> > 
-> > if (intel_dp_supports_mst(intel_dp))
-> > 	intel_dp_mst_encoder_init(intel_dig_port,
-> >                                   intel_connector->base.base.id);
-> > 
-> > Anyway, I'm _not_ stating that this is _always_ the best way, but 
-> > I don't see at least any reasons currently why it couldn't be done
-> > so.
-> 
-> It's fine, until you realize you need to call a function with the
-> condition from more than one place, and you need to remember to have
-> the
-> same conditions in all the places. So the condition is no longer in
-> one
-> isolated place. It's not like we haven't thought about this before.
-> ;)
+Working with a userptr GEM object backed by any type of mapping to
+another GEM object, not only GTT mapping currently examined bu the
+test, may cause a currently unavoidable lockdep splat inside the i915
+driver.  Then, for as long as that issue is not resolved in the driver,
+such operations are expected to fail in advance to prevent from that
+badness to happen.
 
-Well, that is why I didn't say that this is always a best approach. :)
+Extend the scope of the test by adding subtests which exercise other,
+non-GTT mapping types.  Moreover, don't fail but skip should the driver
+refuse to create a userptr object on top of the invalid mapping.  If it
+succeeds however, warn about possible lockdep loop risk.
 
-Sure, if I had to do lots of calls of this function(even though this
-should be reviewed then, why we have to do it in a multiple places),
-I would then just put this check and init together into some helper
-function.
+v2: For as long as the lockdep loop issue is not fixed, don't succeed
+    if a preventive failure occurs but skip (Chris),
+  - otherwise, warn about possible risk,
+  - put a FIXME placeholder until we learn how to anger lockdep.
 
-Stan
+Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/i915/gem_userptr_blits.c | 66 ++++++++++++++++++++++++----------
+ 1 file changed, 48 insertions(+), 18 deletions(-)
 
-> 
-> BR,
-> Jani.
-> 
-> 
+diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
+index a8d3783fb..93bac9766 100644
+--- a/tests/i915/gem_userptr_blits.c
++++ b/tests/i915/gem_userptr_blits.c
+@@ -60,6 +60,7 @@
+ 
+ #include "drm.h"
+ #include "i915_drm.h"
++#include "i915/gem_mman.h"
+ 
+ #include "intel_bufmgr.h"
+ 
+@@ -577,11 +578,11 @@ static int test_invalid_null_pointer(int fd)
+ 	return 0;
+ }
+ 
+-static int test_invalid_gtt_mapping(int fd)
++static int test_invalid_mapping(int fd, uint64_t flags)
+ {
+-	struct drm_i915_gem_mmap_gtt arg;
++	struct drm_i915_gem_mmap_offset arg;
+ 	uint32_t handle;
+-	char *gtt, *map;
++	char *ptr, *map;
+ 
+ 	/* Anonymous mapping to find a hole */
+ 	map = mmap(NULL, sizeof(linear) + 2 * PAGE_SIZE,
+@@ -602,37 +603,43 @@ static int test_invalid_gtt_mapping(int fd)
+ 	igt_assert_eq(copy(fd, handle, handle), 0);
+ 	gem_close(fd, handle);
+ 
+-	/* GTT mapping */
++	/* mmap-offset mapping */
+ 	memset(&arg, 0, sizeof(arg));
+ 	arg.handle = create_bo(fd, 0);
+-	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_GTT, &arg);
+-	gtt = mmap(map + PAGE_SIZE, sizeof(linear),
+-		   PROT_READ | PROT_WRITE,
+-		   MAP_SHARED | MAP_FIXED,
+-		   fd, arg.offset);
+-	igt_assert(gtt == map + PAGE_SIZE);
++	arg.flags = flags;
++	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg);
++	ptr = mmap(map + PAGE_SIZE, sizeof(linear), PROT_READ | PROT_WRITE,
++		   MAP_SHARED | MAP_FIXED, fd, arg.offset);
++	igt_assert(ptr == map + PAGE_SIZE);
+ 	gem_close(fd, arg.handle);
+-	igt_assert(((unsigned long)gtt & (PAGE_SIZE - 1)) == 0);
++	igt_assert(((unsigned long)ptr & (PAGE_SIZE - 1)) == 0);
+ 	igt_assert((sizeof(linear) & (PAGE_SIZE - 1)) == 0);
+ 
+-	gem_userptr(fd, gtt, sizeof(linear), 0, userptr_flags, &handle);
++	/* FIXME: revisit as soon as lockdep loop issue is resolved */
++	igt_require_f(!__gem_userptr(fd, ptr, sizeof(linear), 0, userptr_flags,
++				     &handle),
++		      "lockdep loop preventive failure possibly occurred");
++	igt_warn("userptr(mmap_offset) succeeded, risk of lockdep loop exists");
++	/* FIXME: we should try harder to anger lockdep */
+ 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
+ 	gem_close(fd, handle);
+ 
+-	gem_userptr(fd, gtt, PAGE_SIZE, 0, userptr_flags, &handle);
++	gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
+ 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
+ 	gem_close(fd, handle);
+ 
+-	gem_userptr(fd, gtt + sizeof(linear) - PAGE_SIZE, PAGE_SIZE, 0, userptr_flags, &handle);
++	gem_userptr(fd, ptr + sizeof(linear) - PAGE_SIZE, PAGE_SIZE, 0,
++		    userptr_flags, &handle);
+ 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
+ 	gem_close(fd, handle);
+ 
+ 	/* boundaries */
+-	gem_userptr(fd, map, 2*PAGE_SIZE, 0, userptr_flags, &handle);
++	gem_userptr(fd, map, 2 * PAGE_SIZE, 0, userptr_flags, &handle);
+ 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
+ 	gem_close(fd, handle);
+ 
+-	gem_userptr(fd, map + sizeof(linear), 2*PAGE_SIZE, 0, userptr_flags, &handle);
++	gem_userptr(fd, map + sizeof(linear), 2 * PAGE_SIZE, 0, userptr_flags,
++		    &handle);
+ 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
+ 	gem_close(fd, handle);
+ 
+@@ -2009,8 +2016,31 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 		igt_subtest("invalid-null-pointer")
+ 			test_invalid_null_pointer(fd);
+ 
+-		igt_subtest("invalid-gtt-mapping")
+-			test_invalid_gtt_mapping(fd);
++		igt_describe("Verify userptr on top of GTT mapping to GEM object will fail");
++		igt_subtest("invalid-gtt-mapping") {
++			gem_require_mappable_ggtt(fd);
++			test_invalid_mapping(fd, I915_MMAP_OFFSET_GTT);
++		}
++		igt_subtest_group {
++			igt_fixture
++				igt_require(gem_has_mmap_offset(fd));
++
++			igt_describe("Verify userptr on top of CPU mapping to GEM object will fail");
++			igt_subtest("invalid-wb-mapping")
++				test_invalid_mapping(fd, I915_MMAP_OFFSET_WB);
++
++			igt_subtest_group {
++				igt_fixture
++					igt_require(gem_mmap_offset__has_wc(fd));
++
++				igt_describe("Verify userptr on top of coherent mapping to GEM object will fail");
++				igt_subtest("invalid-wc-mapping")
++					test_invalid_mapping(fd, I915_MMAP_OFFSET_WC);
++				igt_describe("Verify userptr on top of uncached mapping to GEM object will fail");
++				igt_subtest("invalid-uc-mapping")
++					test_invalid_mapping(fd, I915_MMAP_OFFSET_UC);
++			}
++		}
+ 
+ 		igt_subtest("forked-access")
+ 			test_forked_access(fd);
+-- 
+2.21.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
