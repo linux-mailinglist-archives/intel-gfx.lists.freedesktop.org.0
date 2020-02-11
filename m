@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEF01595FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 18:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3600B159644
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 18:36:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F95D6EF2A;
-	Tue, 11 Feb 2020 17:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 634136F38A;
+	Tue, 11 Feb 2020 17:36:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13AFD6E523;
- Tue, 11 Feb 2020 17:14:55 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A516F38A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 17:36:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 09:14:54 -0800
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 09:36:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="347315034"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 11 Feb 2020 09:14:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Feb 2020 19:14:51 +0200
-Date: Tue, 11 Feb 2020 19:14:51 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200211171450.GZ13686@intel.com>
-References: <20200211162208.16224-1-ville.syrjala@linux.intel.com>
- <20200211162208.16224-8-ville.syrjala@linux.intel.com>
- <20200211170545.GN2363188@phenom.ffwll.local>
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="380503774"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga004.jf.intel.com with ESMTP; 11 Feb 2020 09:36:06 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 22:55:25 +0530
+Message-Id: <20200211172532.14287-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200211170545.GN2363188@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 7/7] drm: Allow drivers to leave
- encoder->possible_crtcs==0
+Subject: [Intel-gfx] [PATCH v2 0/7] 3 display pipes combination system
+ support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,125 +41,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 11, 2020 at 06:05:45PM +0100, Daniel Vetter wrote:
-> On Tue, Feb 11, 2020 at 06:22:08PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+Updated version after fixing some review comment provided by
+ville on v2 version, which unfortunately didn't reach to mailing
+list due to typo in "to address".
 
-> > Let's simplify life of driver by allowing them to leave
-> > encoder->possible_crtcs unset if they have no restrictions
-> > in crtc<->encoder linkage. We'll just populate possible_crtcs
-> > with the full crtc mask when registering the encoder so that
-> > userspace doesn't have to deal with drivers not populating
-> > this correctly.
-> > =
+Anshuman Gupta (7):
+  drm/i915: Iterate over pipe and skip the disabled one
+  drm/i915: Remove (pipe == crtc->index) assumption
+  drm/i915: Fix broken transcoder err state
+  drm/i915: Fix wrongly populated plane possible_crtcs bit mask
+  drm/i915: Get first crtc instead of PIPE_A crtc
+  drm/i915: Add WARN_ON in intel_get_crtc_for_pipe()
+  drm/i915: Fix broken num_entries in skl_ddb_allocation_overlaps
 
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > ---
-> > We might not actually need/want this, but included it here for
-> > future reference if that assumption turns out to be wrong.
-> =
+ drivers/gpu/drm/i915/display/intel_audio.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 35 ++++++++++++------
+ drivers/gpu/drm/i915/display/intel_display.h  |  5 +--
+ .../drm/i915/display/intel_display_types.h    | 36 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  5 +--
+ drivers/gpu/drm/i915/i915_drv.h               |  2 ++
+ drivers/gpu/drm/i915/i915_irq.c               | 20 ++++++-----
+ 7 files changed, 77 insertions(+), 28 deletions(-)
 
-> I think this one is most definitely needed. _Lots_ of drivers get this
-> toally wrong and just leave the value blank. It's encoded as official
-> fallback in most userspace compositors.
+-- 
+2.24.0
 
-OK. It's been a while since I dug around so can't really remmber how
-this was being handled. I'll reorder before pushing.
-
-> =
-
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> =
-
-> > ---
-> >  drivers/gpu/drm/drm_mode_config.c | 15 ++++++++++++++-
-> >  include/drm/drm_encoder.h         |  4 ++++
-> >  2 files changed, 18 insertions(+), 1 deletion(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mo=
-de_config.c
-> > index 4c1b350ddb95..ce18c3dd0bde 100644
-> > --- a/drivers/gpu/drm/drm_mode_config.c
-> > +++ b/drivers/gpu/drm/drm_mode_config.c
-> > @@ -592,6 +592,17 @@ static u32 full_crtc_mask(struct drm_device *dev)
-> >  	return crtc_mask;
-> >  }
-> >  =
-
-> > +/*
-> > + * Make life easy for drivers by allowing them to leave
-> > + * possible_crtcs unset if there are not crtc<->encoder
-> > + * restrictions.
-> > + */
-> > +static void fixup_encoder_possible_crtcs(struct drm_encoder *encoder)
-> > +{
-> > +	if (encoder->possible_crtcs =3D=3D 0)
-> > +		encoder->possible_crtcs =3D full_crtc_mask(encoder->dev);
-> > +}
-> > +
-> >  static void validate_encoder_possible_crtcs(struct drm_encoder *encode=
-r)
-> >  {
-> >  	u32 crtc_mask =3D full_crtc_mask(encoder->dev);
-> > @@ -608,8 +619,10 @@ void drm_mode_config_validate(struct drm_device *d=
-ev)
-> >  {
-> >  	struct drm_encoder *encoder;
-> >  =
-
-> > -	drm_for_each_encoder(encoder, dev)
-> > +	drm_for_each_encoder(encoder, dev) {
-> >  		fixup_encoder_possible_clones(encoder);
-> > +		fixup_encoder_possible_crtcs(encoder);
-> > +	}
-> >  =
-
-> >  	drm_for_each_encoder(encoder, dev) {
-> >  		validate_encoder_possible_clones(encoder);
-> > diff --git a/include/drm/drm_encoder.h b/include/drm/drm_encoder.h
-> > index b236269f41ac..bd033c5618bf 100644
-> > --- a/include/drm/drm_encoder.h
-> > +++ b/include/drm/drm_encoder.h
-> > @@ -142,6 +142,10 @@ struct drm_encoder {
-> >  	 * the bits for all &drm_crtc objects this encoder can be connected to
-> >  	 * before calling drm_dev_register().
-> >  	 *
-> > +	 * As an exception to the above rule if any crtc can be connected to
-> > +	 * the encoder the driver can leave @possible_crtcs set to 0. The core
-> > +	 * will automagically fix this up by setting the bit for every crtc.
-> > +	 *
-> >  	 * You will get a WARN if you get this wrong in the driver.
-> >  	 *
-> >  	 * Note that since CRTC objects can't be hotplugged the assigned indi=
-ces
-> > -- =
-
-> > 2.24.1
-> > =
-
-> =
-
-> -- =
-
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
