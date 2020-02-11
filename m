@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB6B159C76
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 23:46:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1485159CB3
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 23:57:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B31D6F441;
-	Tue, 11 Feb 2020 22:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A79E6E421;
+	Tue, 11 Feb 2020 22:56:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 5995 seconds by postgrey-1.36 at gabe;
- Tue, 11 Feb 2020 22:46:31 UTC
-Received: from 1.mo179.mail-out.ovh.net (1.mo179.mail-out.ovh.net
- [178.33.111.220])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 187AB6F441
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:46:31 +0000 (UTC)
-Received: from player772.ha.ovh.net (unknown [10.108.57.14])
- by mo179.mail-out.ovh.net (Postfix) with ESMTP id 706FC156738
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:06:33 +0100 (CET)
+X-Greylist: delayed 5127 seconds by postgrey-1.36 at gabe;
+ Tue, 11 Feb 2020 22:56:56 UTC
+Received: from 17.mo5.mail-out.ovh.net (17.mo5.mail-out.ovh.net
+ [46.105.56.132])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F18FF6E421
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:56:56 +0000 (UTC)
+Received: from player795.ha.ovh.net (unknown [10.108.42.192])
+ by mo5.mail-out.ovh.net (Postfix) with ESMTP id DA41026B778
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:56:54 +0100 (CET)
 Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
  (Authenticated sender: andi@etezian.org)
- by player772.ha.ovh.net (Postfix) with ESMTPSA id 6ED01F50F1CE;
- Tue, 11 Feb 2020 21:06:26 +0000 (UTC)
-Date: Tue, 11 Feb 2020 23:06:25 +0200
+ by player795.ha.ovh.net (Postfix) with ESMTPSA id 32C08F22ABCA;
+ Tue, 11 Feb 2020 22:56:45 +0000 (UTC)
+Date: Wed, 12 Feb 2020 00:56:44 +0200
 From: Andi Shyti <andi@etezian.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20200211210625.GA6386@jack.zhora.eu>
-References: <20200211181027.5329-1-andi@etezian.org>
- <2defb42c-9fcc-17f8-0593-8e02f75f9ba4@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200211225644.GA6319@jack.zhora.eu>
+References: <20200207151720.2812125-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <2defb42c-9fcc-17f8-0593-8e02f75f9ba4@linux.intel.com>
-X-Ovh-Tracer-Id: 1682375935827952369
+In-Reply-To: <20200207151720.2812125-1-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 3546021756733538825
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieefgddufeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdekuddrudejhedrvddvfedruddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedvrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: make a gt sysfs group and
- move power management files
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieefgdduieduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH] drm/mm: Break long searches in fragmented
+ address spaces
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,95 +48,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
-
-> > +void intel_gt_sysfs_register(struct intel_gt *gt)
-> > +{
-> > +	struct kobject *parent = kobject_get(&gt->i915->drm.primary->kdev->kobj);
-> 
-> Does this needs a kobject_put to balance out somewhere?
-
-Yes, I forgot the two kobject_put that are needed.
-
-> > +	int ret;
-> > +
-> > +	gt->kobj = kobject_create_and_add("gt", parent);
-> > +	if (!gt->kobj) {
-> > +		pr_err("failed to initialize sysfs file\n");
-> > +		return;
-> > +	}
-> > +
-> > +	dev_set_drvdata(kobj_to_dev(gt->kobj), gt);
-> > +
-> > +	ret = sysfs_create_files(gt->kobj, gt_attrs);
-> > +	if (ret)
-> > +		pr_err("failed to create sysfs gt info files\n");
-> 
-> I can't remember which log helper takes in the device and prefixes that
-> string but I think it could be useful here, since the error is otherwise
-> eaten.
-
-pr_* is used a lot in gt/. Playing with the dev pointer I
-can use "dev_err(dev,...)"
-
-> > +void intel_gt_sysfs_unregister(struct intel_gt *gt)
-> > +{
-> > +	if (!gt->kobj)
-> > +		return;
-> > +
-> > +	intel_gt_sysfs_pm_remove(gt, gt->kobj);
-> > +	sysfs_remove_files(gt->kobj, gt_attrs);
-> 
-> Why is this asymmetrical to creation?
-
-Because in V1 gt_attrs and whatever was created in sysfs_gt_pm
-was in the same group, but it desn't matter.
-
-> I mean you call intel_gt_sysfs_pm_init
-> two times with different roots, so why not intel_gt_sysfs_pm_remove also
-> twice with different roots?
-
-Because I forgot them in the cleanups :)
-
-> > +	/*
-> > +	 * We are interested at knowing from where the interface
-> > +	 * has been called, whether it's called from gt/* or from
-> > +	 * the parent directory.
-> > +	 * From the interface position it depends also the value of
-> > +	 * the private data.
-> > +	 * If the interface is called from gt/ then private data is
-> > +	 * of the "struct intel_gt *" type, otherwise it's * a
-> > +	 * "struct drm_i915_private *" type.
-> > +	 */
-> > +	if (strcmp(kobj->name, "gt")) {
-> > +		pr_warn("the interface is obsolete, use gt/\n");
-> 
-> I think the message will need to be a bit more verbose since it is intended
-> for users. I don't have any suggestions straight away apart from googling to
-> find similar examples from the past and other subsystems.
-
-Yes, I couldn't come up with a better message in 80 characters,
-and I can use dev_warn instead of pr_warn.
-
-> > +static ssize_t rc6_enable_show(struct device *dev,
-> > +			       struct device_attribute *attr,
-> > +			       char *buff)
-> > +{
-> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev);
-> 
-> The rest of code is unchanged apart from this same line in all show/store
-> vfuncs?
-
-yes, more or less.
-
-Andi
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGkgQ2hyaXMsCgpPbiBGcmksIEZlYiAwNywgMjAyMCBhdCAwMzoxNzoyMFBNICswMDAwLCBDaHJp
+cyBXaWxzb24gd3JvdGU6Cj4gV2UgdHJ5IGhhcmQgdG8gc2VsZWN0IGEgc3VpdGFibGUgaG9sZSBp
+biB0aGUgZHJtX21tIGZpcnN0IHRpbWUuIEJ1dCBpZgo+IHRoYXQgaXMgdW5zdWNjZXNzZnVsLCB3
+ZSB0aGVuIGhhdmUgdG8gbG9vayBhdCBuZWlnaGJvdXJpbmcgbm9kZXMsIGFuZAo+IHRoaXMgcmVx
+dWlyZXMgdHJhdmVyc2luZyB0aGUgcmJ0cmVlLiBXYWxraW5nIHRoZSByYnRyZWUgY2FuIGJlIHNs
+b3cKPiAobXVjaCBzbG93ZXIgdGhhbiBhIGxpbmVhciBsaXN0IGZvciBkZWVwIHRyZWVzKSwgYW5k
+IGlmIHRoZSBkcm1fbW0gaGFzCj4gYmVlbiBwdXJwb3NlZnVsbHkgZnJhZ21lbnRlZCBvdXIgc2Vh
+cmNoIGNhbiBiZSB0cmFwcGVkIGZvciBhIGxvbmcsIGxvbmcKPiB0aW1lLiBGb3Igbm9uLXByZWVt
+cHRpYmxlIGtlcm5lbHMsIHdlIG5lZWQgdG8gYnJlYWsgdXAgbG9uZyBDUFUgYm91bmQKPiBzZWN0
+aW9ucyBieSBtYW51YWxseSBjaGVja2luZyBmb3IgY29uZF9yZXNjaGVkKCk7IHNpbWlsYXJseSB3
+ZSBzaG91bGQKCmNoZWNraW5nIGZvciAiZmF0YWwgc2lnbmFscyIgeW91IG1lYW4/Cgo+IGFsc28g
+YmFpbCBvdXQgaWYgd2UgaGF2ZSBiZWVuIHRvbGQgdG8gdGVybWluYXRlLiAoSW4gYW4gaWRlYWwg
+d29ybGQsIHdlCj4gd291bGQgYnJlYWsgZm9yIGFueSBzaWduYWwsIGJ1dCB3ZSBuZWVkIHRvIHRy
+YWRlIG9mZiBoYXZpbmcgdG8gcGVyZm9ybQo+IHRoZSBzZWFyY2ggYWdhaW4gYWZ0ZXIgRVJFU1RB
+UlRTWVMsIHdoaWNoIGFnYWluIG1heSBmb3JtIGEgdHJhcCBvZgo+IG1ha2luZyBubyBmb3J3YXJk
+IHByb2dyZXNzLikKPiAKPiBSZXBvcnRlZC1ieTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymln
+bmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29u
+IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFpiaWduaWV3IEtlbXBjennFhHNraSA8
+emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgo+IENjOiBKb29uYXMgTGFodGluZW4gPGpv
+b25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CgpuaWNlIQoKUmV2aWV3ZWQtYnk6IEFuZGkg
+U2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgoKVGhhbmtzLApBbmRpCgo+IC0tLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vZHJtX21tLmMgfCA4ICsrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCA3IGlu
+c2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
+ZHJtL2RybV9tbS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5jCj4gaW5kZXggMmE2ZTM0NjYz
+MTQ2Li40N2Q1ZGU5Y2EwYTggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5jCj4gQEAgLTQ1LDYgKzQ1LDcgQEAKPiAg
+I2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5oPgo+ICAjaW5jbHVkZSA8bGludXgvaW50ZXJ2YWxfdHJl
+ZV9nZW5lcmljLmg+Cj4gICNpbmNsdWRlIDxsaW51eC9zZXFfZmlsZS5oPgo+ICsjaW5jbHVkZSA8
+bGludXgvc2NoZWQvc2lnbmFsLmg+Cj4gICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gICNpbmNs
+dWRlIDxsaW51eC9zdGFja3RyYWNlLmg+Cj4gIAo+IEBAIC0zNjYsNiArMzY3LDExIEBAIG5leHRf
+aG9sZShzdHJ1Y3QgZHJtX21tICptbSwKPiAgCSAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlLAo+
+ICAJICBlbnVtIGRybV9tbV9pbnNlcnRfbW9kZSBtb2RlKQo+ICB7Cj4gKwkvKiBTZWFyY2hpbmcg
+aXMgc2xvdzsgY2hlY2sgaWYgd2UgcmFuIG91dCBvZiB0aW1lL3BhdGllbmNlICovCj4gKwljb25k
+X3Jlc2NoZWQoKTsKPiArCWlmIChmYXRhbF9zaWduYWxfcGVuZGluZyhjdXJyZW50KSkKPiArCQly
+ZXR1cm4gTlVMTDsKPiArCj4gIAlzd2l0Y2ggKG1vZGUpIHsKPiAgCWRlZmF1bHQ6Cj4gIAljYXNl
+IERSTV9NTV9JTlNFUlRfQkVTVDoKPiBAQCAtNTU3LDcgKzU2Myw3IEBAIGludCBkcm1fbW1faW5z
+ZXJ0X25vZGVfaW5fcmFuZ2Uoc3RydWN0IGRybV9tbSAqIGNvbnN0IG1tLAo+ICAJCXJldHVybiAw
+Owo+ICAJfQo+ICAKPiAtCXJldHVybiAtRU5PU1BDOwo+ICsJcmV0dXJuIHNpZ25hbF9wZW5kaW5n
+KGN1cnJlbnQpID8gLUVSRVNUQVJUU1lTIDogLUVOT1NQQzsKPiAgfQo+ICBFWFBPUlRfU1lNQk9M
+KGRybV9tbV9pbnNlcnRfbm9kZV9pbl9yYW5nZSk7Cj4gIAo+IC0tIAo+IDIuMjUuMAo+IAo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
+L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
+ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
+ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
