@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33F31587F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 02:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24085158817
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 03:05:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BD6A6E286;
-	Tue, 11 Feb 2020 01:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 884F789A9B;
+	Tue, 11 Feb 2020 02:04:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3846E286
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 01:28:15 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 17:28:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,427,1574150400"; d="scan'208";a="251388595"
-Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
- ([10.24.12.101])
- by orsmga002.jf.intel.com with ESMTP; 10 Feb 2020 17:28:14 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Feb 2020 17:28:05 -0800
-Message-Id: <20200211012805.456373-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3325289A9B;
+ Tue, 11 Feb 2020 02:04:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2A38AA0093;
+ Tue, 11 Feb 2020 02:04:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display/tgl: Enable hotplug detection
- in TC5 and TC6
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Tue, 11 Feb 2020 02:04:58 -0000
+Message-ID: <158138669814.23971.18214693587177376368@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200211012805.456373-1-jose.souza@intel.com>
+In-Reply-To: <20200211012805.456373-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display/tgl=3A_Enable_hotplug_detection_in_TC5_and_TC6?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,35 +38,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhlIGhvdHBsdWcgaW50ZXJydXB0aW9uIGRldGVjdGlvbiB3YXMgbm90IGJlaW5nIGVuYWJsZWQg
-Zm9yIFRDNSBhbmQKVEM2IGluIHRoZSBub3J0aCBkZXRlY3Rpb24gc2lkZS4KCkNjOiBNYXR0IFJv
-cGVyIDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2Jl
-cnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2lycS5jIHwgNiArKysrKysKIDEgZmlsZSBjaGFuZ2VkLCA2IGluc2VydGlvbnMo
-KykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwppbmRleCAzZDBjZDA5NjBiZDIuLmFiZDk3OWVmNzVl
-YyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCkBAIC0zMDUxLDYgKzMwNTEsOSBAQCBzdGF0aWMg
-dm9pZCBnZW4xMV9ocGRfZGV0ZWN0aW9uX3NldHVwKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
-ZXZfcHJpdikKIAkJICAgR0VOMTFfSE9UUExVR19DVExfRU5BQkxFKFBPUlRfVEMyKSB8CiAJCSAg
-IEdFTjExX0hPVFBMVUdfQ1RMX0VOQUJMRShQT1JUX1RDMykgfAogCQkgICBHRU4xMV9IT1RQTFVH
-X0NUTF9FTkFCTEUoUE9SVF9UQzQpOworCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQor
-CQlob3RwbHVnIHw9IEdFTjExX0hPVFBMVUdfQ1RMX0VOQUJMRShQT1JUX1RDNSkgfAorCQkJICAg
-R0VOMTFfSE9UUExVR19DVExfRU5BQkxFKFBPUlRfVEM2KTsKIAlJOTE1X1dSSVRFKEdFTjExX1RD
-X0hPVFBMVUdfQ1RMLCBob3RwbHVnKTsKIAogCWhvdHBsdWcgPSBJOTE1X1JFQUQoR0VOMTFfVEJU
-X0hPVFBMVUdfQ1RMKTsKQEAgLTMwNTgsNiArMzA2MSw5IEBAIHN0YXRpYyB2b2lkIGdlbjExX2hw
-ZF9kZXRlY3Rpb25fc2V0dXAoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCQkg
-ICBHRU4xMV9IT1RQTFVHX0NUTF9FTkFCTEUoUE9SVF9UQzIpIHwKIAkJICAgR0VOMTFfSE9UUExV
-R19DVExfRU5BQkxFKFBPUlRfVEMzKSB8CiAJCSAgIEdFTjExX0hPVFBMVUdfQ1RMX0VOQUJMRShQ
-T1JUX1RDNCk7CisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpCisJCWhvdHBsdWcgfD0g
-R0VOMTFfSE9UUExVR19DVExfRU5BQkxFKFBPUlRfVEM1KSB8CisJCQkgICBHRU4xMV9IT1RQTFVH
-X0NUTF9FTkFCTEUoUE9SVF9UQzYpOwogCUk5MTVfV1JJVEUoR0VOMTFfVEJUX0hPVFBMVUdfQ1RM
-LCBob3RwbHVnKTsKIH0KIAotLSAKMi4yNS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
-cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
-aXN0aW5mby9pbnRlbC1nZngK
+== Series Details ==
+
+Series: drm/i915/display/tgl: Enable hotplug detection in TC5 and TC6
+URL   : https://patchwork.freedesktop.org/series/73267/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7904 -> Patchwork_16513
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16513 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271] / [i915#1084])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7904/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4] ([fdo#108569])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7904/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cml-s:           [PASS][5] -> [DMESG-FAIL][6] ([i915#877])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7904/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][7] ([i915#45]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7904/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7904/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (46 -> 39)
+------------------------------
+
+  Additional (5): fi-kbl-soraka fi-hsw-peppy fi-kbl-7500u fi-hsw-4770 fi-gdg-551 
+  Missing    (12): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-cfl-8109u fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7904 -> Patchwork_16513
+
+  CI-20190529: 20190529
+  CI_DRM_7904: 5de757f49fb13a3c0e42626e7c4b47c2d82b14a1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16513: 81bec0c3bfd641ddef37583c43242ab63e7a573a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+81bec0c3bfd6 drm/i915/display/tgl: Enable hotplug detection in TC5 and TC6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16513/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
