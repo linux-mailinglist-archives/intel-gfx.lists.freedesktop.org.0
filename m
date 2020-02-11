@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BE28159791
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:01:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B841597A5
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:04:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CF06F408;
-	Tue, 11 Feb 2020 18:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED3A76EE8C;
+	Tue, 11 Feb 2020 18:04:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FABC6F408
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:01:53 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id c9so13593066wrw.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 10:01:52 -0800 (PST)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 105A96EE8C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:04:31 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id p17so4766690wma.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 10:04:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:date:to:cc:subject:in-reply-to:message-id:references
  :user-agent:mime-version;
- bh=ZbY9e71SO5qF4EnjaAWR6x5o409Ay+fOuj1uKDzW/MM=;
- b=Jkh0XKI1+jXDPTaR5QAES8JNUQZcbKqylIHazMTd33Re/ZEx1An8eDqXtmZ7Msi1uI
- 7bBrthoQwPWv7wq04LoE7bCwuO3/usDCJpvVpBHJPOX/XvVQqo6CZixC+/71Yuy/IvmX
- HOuSsn5NjHdtuS+zDvSb+53gmk6yb+U0sZ4G4iidJtiu1JUx3QcWh1greE7OoFyy8Hbp
- Dz/D+vUO7VFkojM4tUMpRlzzfOa/cfqCo4uR4oJzIS9gCj9CUsjjC1VGQPzG6vBo8SLP
- lzSyTtKrjyg6PEH7UOscoELl6AGjRKrfE0jxwhkkgpqs3iZ5JT6RRUcj/Ovtaqq9NHrh
- 4aNw==
+ bh=fGwTIEh2Majj0QbNmBAjH8COPE7ch5+j2Lkh8unFTxk=;
+ b=TSqwOPtsDnthpWsax9SF30yAXMp/fYkIzajm4bIt3dcuQYNTKeFpvShOCB33ZvRM/p
+ AI2olMgBBiWDgM9haBPTuPTO7BkT6t4+LzRoiWZ7o5lN4HNW5C+mu0+d1BAReZUBXxdi
+ 0Z/EAmHY+dvPbB0AJfTrEop9NLtCpUb5Ru3APLReY/ODAAzy5Wvqznyk7HEx9Z431v+2
+ 5PPr1RJsLrISJATWDTloxP+5UMrMW8JLILbNWtYDOvSb96WWPUKp/m3pf/fL190GkV1k
+ CEgVCWJJZCWAGIP2JdsoY+zvQpcpeMJMAgjMguTQEW7/saqcF+yNMos1/Nm/UCFShzDy
+ 3bpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
  :references:user-agent:mime-version;
- bh=ZbY9e71SO5qF4EnjaAWR6x5o409Ay+fOuj1uKDzW/MM=;
- b=F3zYwtDJ5UFnr0+9b+cy7qdSuZRmK/1U9OsxKHotHsIPZEQ545ZYretsKdBmRnn4w6
- xZtqnWR9fNoA8NwsiSjb09ZrKKYwRDzYJyZ0srv2mGYCcmE44GGueUIaecII0FUMqzRI
- WXWTaUB8qgdXwQnQBXjjQNQltFCb3AVqDlwJTpCe4x9VCQS3iPvRZiImaofLypEA5Tsv
- G7OxGdsBmEnjUBNs6n5YD6XNGnIvTMV8K4K1ES5G+/Jv4D3ztO2x66Y+N1mSdCW59nqJ
- hk4ONwxyEQ6ePtzz+X9ETHYfofb5KhywdCs/Ecokf32M6bpO/+dFvw3Efl/bcCjLCWuD
- ieng==
-X-Gm-Message-State: APjAAAWopMxoBeuLELSCxhDnafcptwhfGknBZJQWnr9CgyCXlI/AKsF7
- THFm0WCf9tM9Z4GBXK1A/Bk=
-X-Google-Smtp-Source: APXvYqxewzJGqP2ojK498SEi3EyglRJYxqtzCOI/0nCxEDJexPD89m/xde8vfMJU5ZHEzAFXcfxFCQ==
-X-Received: by 2002:adf:dd52:: with SMTP id u18mr9549900wrm.131.1581444111030; 
- Tue, 11 Feb 2020 10:01:51 -0800 (PST)
+ bh=fGwTIEh2Majj0QbNmBAjH8COPE7ch5+j2Lkh8unFTxk=;
+ b=dSqcR5yodsMVs5W9Md6e4HM8gQLw1Su2PG8RG/yLiokr2RxJ28HXW+Zh+n+QwJg7Sa
+ uXYT3oigr/CFEtsSdgRHvz29UAJG/mCC9TdKLSOKafKFlPtSKztXzOeB02pw+K9B+G9q
+ j9+pVvKTVJeBi2eE6QocuAckkEh6GYaSUZjzVTy24U3pWFK2Y4bJbl1pv8aaO/HSziPT
+ E8KlCpLoWNtMIYO1Gqhrch3LkHO6uJIuAnjVMkdlRPQSO+ufI+13m6IF6HmEGqCXmCT+
+ zCHXGEJ6Ijj8NdAQbXKFwR5rsi1D8kLoWxGaRGV3saPyh/yCgkCfO2We1B369pjc/TJm
+ OxDw==
+X-Gm-Message-State: APjAAAWntwQ6Cn9AKcoV2be3AFw1wEuneEgMmtYrn1z7x/KoMcCQe5LW
+ 0vSDIFBbqwERofOCUKmRY5s=
+X-Google-Smtp-Source: APXvYqwzne4m/wt9NOmKFI4uG/JrUKnucF8ANWo+0owtq+Ag4VywfmDMygY7GeAq6D0ZnTnhsHDQ3Q==
+X-Received: by 2002:a05:600c:228f:: with SMTP id
+ 15mr7264508wmf.56.1581444269676; 
+ Tue, 11 Feb 2020 10:04:29 -0800 (PST)
 Received: from wambui.local ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id z10sm4404491wmk.31.2020.02.11.10.01.49
+ by smtp.googlemail.com with ESMTPSA id y185sm5001667wmg.2.2020.02.11.10.04.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 11 Feb 2020 10:01:50 -0800 (PST)
+ Tue, 11 Feb 2020 10:04:29 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 X-Google-Original-From: Wambui Karuga <wambui@wambui>
-Date: Tue, 11 Feb 2020 21:01:26 +0300 (EAT)
-To: Jani Nikula <jani.nikula@intel.com>
-In-Reply-To: <20200211134427.31605-1-jani.nikula@intel.com>
-Message-ID: <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
-References: <20200211134427.31605-1-jani.nikula@intel.com>
+Date: Tue, 11 Feb 2020 21:04:16 +0300 (EAT)
+To: Jani Nikula <jani.nikula@linux.intel.com>
+In-Reply-To: <87tv3xz156.fsf@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2002112102100.21042@wambui>
+References: <20200206080014.13759-1-wambui.karugax@gmail.com>
+ <20200206080014.13759-12-wambui.karugax@gmail.com> <87tv3xz156.fsf@intel.com>
 User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdmi: prefer to_i915() over
- drm->dev_private to get at i915
+Subject: Re: [Intel-gfx] [PATCH v2 11/12] drm/i915/hdmi: convert to struct
+ drm_device based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,7 +70,8 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: airlied@linux.ie, intel-gfx@lists.freedesktop.org,
+ Wambui Karuga <wambui.karugax@gmail.com>
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
@@ -78,96 +81,34 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 11 Feb 2020, Jani Nikula wrote:
 
-> drm->dev_private is to be avoided. Use to_i915() on the struct
-> drm_device pointer instead. Rename the affected local dev_priv variables
-> to i915 while at it.
+> On Thu, 06 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+>> @@ -1364,11 +1372,15 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+>>  static int intel_hdmi_hdcp_read_bksv(struct intel_digital_port *intel_dig_port,
+>>  				     u8 *bksv)
+>>  {
+>> +	struct drm_i915_private *i915 =
+>> +		intel_dig_port->base.base.dev->dev_private;
+>
+> The preferred way to get from intel_digital_port to i915 throughout is
+>
+> 	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>
+> I realize there are some bad examples in the file; I've posted [1] to
+> fix them.
 >
 
-Applies cleanly, and compiles.
-Changes also look good to me.
+Okay - I'll change that and resend.
 
-Reviewed by: Wambui Karuga <wambui.karugax@gmail.com>
+-wambui
 
-> Cc: Wambui Karuga <wambui.karugax@gmail.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
-> drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++--------------
-> 1 file changed, 10 insertions(+), 15 deletions(-)
+> BR,
+> Jani.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index e68bafb76cb1..bee9c9b1a770 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1274,10 +1274,9 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
-> static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
-> 				unsigned int offset, void *buffer, size_t size)
-> {
-> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> -	struct drm_i915_private *dev_priv =
-> -		intel_dig_port->base.base.dev->dev_private;
-> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
-> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
-> 							      hdmi->ddc_bus);
-> 	int ret;
-> 	u8 start = offset & 0xff;
-> @@ -1304,10 +1303,9 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
-> static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
-> 				 unsigned int offset, void *buffer, size_t size)
-> {
-> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> -	struct drm_i915_private *dev_priv =
-> -		intel_dig_port->base.base.dev->dev_private;
-> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
-> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
-> 							      hdmi->ddc_bus);
-> 	int ret;
-> 	u8 *write_buf;
-> @@ -1339,10 +1337,9 @@ static
-> int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
-> 				  u8 *an)
-> {
-> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
-> -	struct drm_i915_private *dev_priv =
-> -		intel_dig_port->base.base.dev->dev_private;
-> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
-> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
-> 							      hdmi->ddc_bus);
-> 	int ret;
 >
-> @@ -1521,8 +1518,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
-> static
-> bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> {
-> -	struct drm_i915_private *dev_priv =
-> -		intel_dig_port->base.base.dev->dev_private;
-> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
-> 	struct intel_connector *connector =
-> 		intel_dig_port->hdmi.attached_connector;
-> 	enum port port = intel_dig_port->base.port;
-> @@ -1537,14 +1533,13 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> 	if (ret)
-> 		return false;
+> [1] http://patchwork.freedesktop.org/patch/msgid/20200211134427.31605-1-jani.nikula@intel.com
 >
-> -	intel_de_write(dev_priv, HDCP_RPRIME(dev_priv, cpu_transcoder, port),
-> -		       ri.reg);
-> +	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
->
-> 	/* Wait for Ri prime match */
-> -	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
-> +	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
-> 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
-> 		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
-> -			  intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
-> +			  intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)));
-> 		return false;
-> 	}
-> 	return true;
 > -- 
-> 2.20.1
->
+> Jani Nikula, Intel Open Source Graphics Center
 >
 _______________________________________________
 Intel-gfx mailing list
