@@ -1,34 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B38E1598A5
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:31:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DF661598BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:34:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E84A6F412;
-	Tue, 11 Feb 2020 18:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98AFE6E152;
+	Tue, 11 Feb 2020 18:34:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 557D16F412
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:31:13 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 10:31:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="251634870"
-Received: from diana2.ra.intel.com ([10.23.184.122])
- by orsmga002.jf.intel.com with ESMTP; 11 Feb 2020 10:31:12 -0800
-From: Caz Yokoyama <caz.yokoyama@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 10:11:42 -0800
-Message-Id: <3e1780946bd06f42b9d9e2a2fd1169923dd52e9f.1581444370.git.caz.yokoyama@intel.com>
-X-Mailer: git-send-email 2.21.0.5.gaeb582a983
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2171F6E12C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:34:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1581446052;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=L6sDU4tMPoI49wPdSUl0EfKYp+lvyu+SM87E9CYvdLk=;
+ b=KAOf+aRjK2/RtvseHuavuKJMza1OCpXq92INB2K2SQyq3FYGPEcKYB1zNNTnJYtVff9WXl
+ rTMebKRxLHo2FOF691w53271h2zwnz4m1/uYrUElO8UQiMz/VnGBtR9lVC8KukT90pnhMw
+ fUEVQcBLAC5gPtRkmKpSvlcH7i52kKk=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-76-S4JzFpgiPB2I_lM_BsLbXw-1; Tue, 11 Feb 2020 13:34:09 -0500
+X-MC-Unique: S4JzFpgiPB2I_lM_BsLbXw-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
+ [10.5.11.15])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 6CBCE1922962;
+ Tue, 11 Feb 2020 18:34:06 +0000 (UTC)
+Received: from Ruby.bss.redhat.com (dhcp-10-20-1-196.bss.redhat.com
+ [10.20.1.196])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id C8D5E5C11E;
+ Tue, 11 Feb 2020 18:34:03 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 13:33:45 -0500
+Message-Id: <20200211183358.157448-1-lyude@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: MCHBAR memory info registers are
- moved since GEN 12.
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+Subject: [Intel-gfx] [PATCH v2 0/3] drm/dp,
+ i915: eDP DPCD backlight control detection fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,79 +57,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@linux.ie>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
+ Maxime Ripard <mripard@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogIllva295YW1hLCBDYXoiIDxjYXoueW9rb3lhbWFAaW50ZWwuY29tPgoKTUFEX0lOVEVS
-X0NIQU5ORUxfMF8wXzBfTUNIQkFSOgpjb2RlIG5hbWUgICAgICAgICAgICBvZmZzZXQgICAgICAg
-ICAgICAgICAgICAgRFJBTV9ERFJfVFlQRQpTS0wgICAgICAgICAgICAgICAgICAweDUwMDAgICAg
-ICAgICAgICAgICAgICAgMTowIEREUjQvRERSMy9MUEREUjMKVEdMICAgICAgICAgICAgICAgICAg
-MHg2MDQ4LzB4NjI0OC8weGQ4MDAgICAgIDI6MCBERFI0L0REUjMvTFBERFIzL0xQRERSNApJQ0wg
-ICAgICAgICAgICAgICAgICAweDUwMDAvMHg2MDQ4LzB4NDggICAgICAgMjowIEREUjQvRERSMy9M
-UEREUjMvTFBERFI0CkVITCAgICAgICAgICAgICAgICAgIDB4NTAwMC8weDYwNDggICAgICAgICAg
-ICAyOjAgRERSNC9ERFIzL0xQRERSMy9MUEREUjQKQ05MICAgICAgICAgICAgICAgICAgMHg1MDAw
-ICAgICAgICAgICAgICAgICAgIDI6MCBERFI0L0REUjMvTFBERFIzL0xQRERSNAoKTUFEX0RJTU1f
-Q0gwLzFfMF8wXzBfTUNIQkFSOgpjb2RlIG5hbWUgICAgICAgICAgICAgIG9mZnNldCBDSDAvMQpT
-S0wgICAgICAgICAgICAgICAgICAgIDB4NTAwYy8weDUwMTAKVEdMICAgICAgICAgICAgICAgICAg
-ICAweDYwNTQvMHg2MDU4CkVITCAgICAgICAgICAgICAgICAgICAgMHg1MDBjLzB4NTAxMApJQ0wg
-ICAgICAgICAgICAgICAgICAgIDB4NTAwYy8weDUwMTAKVGhlIGJpdCBkZWZpbml0aW9uIG9mIE1B
-RF9ESU1NX0NIMC8xXzBfMF8wX01DSEJBUiBpcyBzYW1lIGJldHdlZW4KQ05MIGFuZCBUR0wuCgpQ
-X0NSX01DX0JJT1NfUkVRXzBfMF8wIGlzIHNhbWUgb24gQlhUIGFuZCBHTEsgaW4gdGVybXMgb2Yg
-aXRzIGFkZHJlc3MgYW5kCmJpdCBkZWZpbml0aW9uLgpCWFRfRF9DUl9EUlAwX0RVTklUIGFjY2Vz
-c2VzIG9mZnNldCAweDEwMDAsIDB4MTIwMCwgMHgxNDAwLCAweDE2MDAuCkl0cyByZWdpc3RlciBu
-YW1lIGlzIFJBTV9BQ0NFU1NfREFUQTEuIFRoZXJlIGlzIG5vIGRpZmZlcmVuY2UgYmV0d2VlbgpC
-WFQgYW5kIEdMSyBpbiB0ZXJtcyBvZiBpdHMgYWRkcmVzcyBhbmQgYml0IGRlZmluaXRpb24uCgpD
-YzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IE1h
-dHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFlva295
-YW1hLCBDYXogPGNhei55b2tveWFtYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9kcnYuYyB8IDE1ICsrKysrKysrKysrKy0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9yZWcuaCB8ICA2ICsrKysrKwogMiBmaWxlcyBjaGFuZ2VkLCAxOCBpbnNlcnRpb25zKCsp
-LCAzIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-ZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDUxNjUzNjIzNGU5
-Ny4uYjk0MTg1ODNlNTAzIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTgwNiwxMiArODA2
-LDE4IEBAIHNrbF9kcmFtX2dldF9jaGFubmVsc19pbmZvKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
-ICpkZXZfcHJpdikKIAl1MzIgdmFsOwogCWludCByZXQ7CiAKLQl2YWwgPSBJOTE1X1JFQUQoU0tM
-X01BRF9ESU1NX0NIMF8wXzBfMF9NQ0hCQVJfTUNNQUlOKTsKKwlpZiAoSU5URUxfR0VOKGRldl9w
-cml2KSA+PSAxMikKKwkJdmFsID0gSTkxNV9SRUFEKFRHTF9NQURfRElNTV9DSDBfMF8wXzBfTUNI
-QkFSKTsKKwllbHNlCisJCXZhbCA9IEk5MTVfUkVBRChTS0xfTUFEX0RJTU1fQ0gwXzBfMF8wX01D
-SEJBUl9NQ01BSU4pOwogCXJldCA9IHNrbF9kcmFtX2dldF9jaGFubmVsX2luZm8oZGV2X3ByaXYs
-ICZjaDAsIDAsIHZhbCk7CiAJaWYgKHJldCA9PSAwKQogCQlkcmFtX2luZm8tPm51bV9jaGFubmVs
-cysrOwogCi0JdmFsID0gSTkxNV9SRUFEKFNLTF9NQURfRElNTV9DSDFfMF8wXzBfTUNIQkFSX01D
-TUFJTik7CisJaWYgKElOVEVMX0dFTihkZXZfcHJpdikgPj0gMTIpCisJCXZhbCA9IEk5MTVfUkVB
-RChUR0xfTUFEX0RJTU1fQ0gxXzBfMF8wX01DSEJBUik7CisJZWxzZQorCQl2YWwgPSBJOTE1X1JF
-QUQoU0tMX01BRF9ESU1NX0NIMV8wXzBfMF9NQ0hCQVJfTUNNQUlOKTsKIAlyZXQgPSBza2xfZHJh
-bV9nZXRfY2hhbm5lbF9pbmZvKGRldl9wcml2LCAmY2gxLCAxLCB2YWwpOwogCWlmIChyZXQgPT0g
-MCkKIAkJZHJhbV9pbmZvLT5udW1fY2hhbm5lbHMrKzsKQEAgLTg1Miw3ICs4NTgsMTAgQEAgc2ts
-X2dldF9kcmFtX3R5cGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogewogCXUz
-MiB2YWw7CiAKLQl2YWwgPSBJOTE1X1JFQUQoU0tMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01D
-SEJBUl9NQ01BSU4pOworCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYpID49IDEyKQorCQl2YWwgPSBJ
-OTE1X1JFQUQoVEdMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUik7CisJZWxzZQorCQl2
-YWwgPSBJOTE1X1JFQUQoU0tMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUl9NQ01BSU4p
-OwogCiAJc3dpdGNoICh2YWwgJiBTS0xfRFJBTV9ERFJfVFlQRV9NQVNLKSB7CiAJY2FzZSBTS0xf
-RFJBTV9ERFJfVFlQRV9ERFIzOgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKaW5kZXggYjA5YzFkNmRj
-MGFhLi45ZjZlYzQ0ZGFkNmUgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
-cmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaApAQCAtMTA1MDgsNiAr
-MTA1MDgsOSBAQCBlbnVtIHNrbF9wb3dlcl9nYXRlIHsKICNkZWZpbmUgIFNLTF9EUkFNX0REUl9U
-WVBFX0xQRERSMwkJKDIgPDwgMCkKICNkZWZpbmUgIFNLTF9EUkFNX0REUl9UWVBFX0xQRERSNAkJ
-KDMgPDwgMCkKIAorI2RlZmluZSAgVEdMX01BRF9JTlRFUl9DSEFOTkVMXzBfMF8wX01DSEJBUiBf
-TU1JTyhNQ0hCQVJfTUlSUk9SX0JBU0VfU05CICsgMHg2MDQ4KQorI2RlZmluZSAgVEdMX0RSQU1f
-RERSX1RZUEVfV0lPMgkJCSg0IDw8IDApCisKICNkZWZpbmUgU0tMX01BRF9ESU1NX0NIMF8wXzBf
-MF9NQ0hCQVJfTUNNQUlOCV9NTUlPKE1DSEJBUl9NSVJST1JfQkFTRV9TTkIgKyAweDUwMEMpCiAj
-ZGVmaW5lIFNLTF9NQURfRElNTV9DSDFfMF8wXzBfTUNIQkFSX01DTUFJTglfTU1JTyhNQ0hCQVJf
-TUlSUk9SX0JBU0VfU05CICsgMHg1MDEwKQogI2RlZmluZSAgU0tMX0RSQU1fU19TSElGVAkJCTE2
-CkBAIC0xMDUzNSw2ICsxMDUzOCw5IEBAIGVudW0gc2tsX3Bvd2VyX2dhdGUgewogI2RlZmluZSAg
-Q05MX0RSQU1fUkFOS18zCQkJKDB4MiA8PCA5KQogI2RlZmluZSAgQ05MX0RSQU1fUkFOS180CQkJ
-KDB4MyA8PCA5KQogCisjZGVmaW5lIFRHTF9NQURfRElNTV9DSDBfMF8wXzBfTUNIQkFSCQlfTU1J
-TyhNQ0hCQVJfTUlSUk9SX0JBU0VfU05CICsgMHg2MDU0KQorI2RlZmluZSBUR0xfTUFEX0RJTU1f
-Q0gxXzBfMF8wX01DSEJBUgkJX01NSU8oTUNIQkFSX01JUlJPUl9CQVNFX1NOQiArIDB4NjA1OCkK
-KwogLyogUGxlYXNlIHNlZSBoc3dfcmVhZF9kY29tcCgpIGFuZCBoc3dfd3JpdGVfZGNvbXAoKSBi
-ZWZvcmUgdXNpbmcgdGhpcyByZWdpc3RlciwKICAqIHNpbmNlIG9uIEhTVyB3ZSBjYW4ndCB3cml0
-ZSB0byBpdCB1c2luZyBJOTE1X1dSSVRFLiAqLwogI2RlZmluZSBEX0NPTVBfSFNXCQkJX01NSU8o
-TUNIQkFSX01JUlJPUl9CQVNFX1NOQiArIDB4NUYwQykKLS0gCjIuMjEuMC41LmdhZWI1ODJhOTgz
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1n
-ZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9s
-aXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Unfortunately, it turned out that the DPCD is also not a reliable way of
+probing for DPCD backlight support as some panels will lie and say they
+have DPCD backlight controls when they don't actually.
+
+So, revert back to the old behavior and add a bunch of EDID-based DP
+quirks for the panels that we know need this. As you might have already
+guessed, OUI quirks didn't seem to be a very safe bet for these panels
+due to them not having their device IDs filled out.
+
+Lyude Paul (3):
+  drm/dp: Introduce EDID-based quirks
+  drm/i915: Force DPCD backlight mode on X1 Extreme 2nd Gen 4K AMOLED
+    panel
+  drm/i915: Force DPCD backlight mode for some Dell CML 2020 panels
+
+ drivers/gpu/drm/drm_dp_helper.c               | 79 +++++++++++++++++++
+ drivers/gpu/drm/drm_dp_mst_topology.c         |  3 +-
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 11 ++-
+ .../drm/i915/display/intel_dp_aux_backlight.c | 25 +++++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
+ include/drm/drm_dp_helper.h                   | 21 ++++-
+ 8 files changed, 130 insertions(+), 14 deletions(-)
+
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
