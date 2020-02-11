@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AB92159D9B
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 00:45:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 269CE159DBA
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 00:56:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2499D6E43B;
-	Tue, 11 Feb 2020 23:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6C06E486;
+	Tue, 11 Feb 2020 23:56:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
- Tue, 11 Feb 2020 23:45:30 UTC
-Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
- [79.96.170.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 185CC6E43B
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:45:29 +0000 (UTC)
-Received: from 79.184.254.199.ipv4.supernova.orange.pl (79.184.254.199) (HELO
- kreacher.localnet)
- by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.341)
- id 534515a4e8c04bea; Wed, 12 Feb 2020 00:38:47 +0100
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-To: Linux PM <linux-pm@vger.kernel.org>
-Date: Wed, 12 Feb 2020 00:12:10 +0100
-Message-ID: <1759702.XAW9B0MHEz@kreacher>
-In-Reply-To: <1654227.8mz0SueHsU@kreacher>
-References: <1654227.8mz0SueHsU@kreacher>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66D6E6E486
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:56:37 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 15:56:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="433857666"
+Received: from anusha.jf.intel.com ([10.165.21.155])
+ by fmsmga006.fm.intel.com with ESMTP; 11 Feb 2020 15:56:35 -0800
+From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 15:44:04 -0800
+Message-Id: <20200211234404.1728-1-anusha.srivatsa@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/28] drm: i915: Call cpu_latency_qos_*()
- instead of pm_qos_*()
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,130 +40,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- Amit Kucheria <amit.kucheria@linaro.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+Disable Early Read and Src Swap (bit 14) by setting the chicken
+register.
 
-Call cpu_latency_qos_add/update/remove_request() instead of
-pm_qos_add/update/remove_request(), respectively, because the
-latter are going to be dropped.
+BSpec: 46045,52890
 
-No intentional functional impact.
+v2: Follow the Bspec implementation for the WA.
+v3: Have 2 separate defines for bit 14 and 15.
+- Rename register definitions with TGL_ prefix
+v4: Bspec changed. Again. Add WA to rcs_ WA list.
 
-Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c |  4 ++--
- drivers/gpu/drm/i915/i915_drv.c         | 12 +++++-------
- drivers/gpu/drm/i915/intel_sideband.c   |  5 +++--
- 3 files changed, 10 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
+ drivers/gpu/drm/i915/i915_reg.h             | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c7424e2a04a3..208457005a11 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1360,7 +1360,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 	 * lowest possible wakeup latency and so prevent the cpu from going into
- 	 * deep sleep states.
- 	 */
--	pm_qos_update_request(&i915->pm_qos, 0);
-+	cpu_latency_qos_update_request(&i915->pm_qos, 0);
- 
- 	intel_dp_check_edp(intel_dp);
- 
-@@ -1488,7 +1488,7 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
- 
- 	ret = recv_bytes;
- out:
--	pm_qos_update_request(&i915->pm_qos, PM_QOS_DEFAULT_VALUE);
-+	cpu_latency_qos_update_request(&i915->pm_qos, PM_QOS_DEFAULT_VALUE);
- 
- 	if (vdd)
- 		edp_panel_vdd_off(intel_dp, false);
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index f7385abdd74b..74481a189cfc 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -502,8 +502,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 	mutex_init(&dev_priv->backlight_lock);
- 
- 	mutex_init(&dev_priv->sb_lock);
--	pm_qos_add_request(&dev_priv->sb_qos,
--			   PM_QOS_CPU_DMA_LATENCY, PM_QOS_DEFAULT_VALUE);
-+	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
- 
- 	mutex_init(&dev_priv->av_mutex);
- 	mutex_init(&dev_priv->wm.wm_mutex);
-@@ -568,7 +567,7 @@ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
- 	vlv_free_s0ix_state(dev_priv);
- 	i915_workqueues_cleanup(dev_priv);
- 
--	pm_qos_remove_request(&dev_priv->sb_qos);
-+	cpu_latency_qos_remove_request(&dev_priv->sb_qos);
- 	mutex_destroy(&dev_priv->sb_lock);
- }
- 
-@@ -1226,8 +1225,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- 		}
- 	}
- 
--	pm_qos_add_request(&dev_priv->pm_qos, PM_QOS_CPU_DMA_LATENCY,
--			   PM_QOS_DEFAULT_VALUE);
-+	cpu_latency_qos_add_request(&dev_priv->pm_qos, PM_QOS_DEFAULT_VALUE);
- 
- 	intel_gt_init_workarounds(dev_priv);
- 
-@@ -1273,7 +1271,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
- err_msi:
- 	if (pdev->msi_enabled)
- 		pci_disable_msi(pdev);
--	pm_qos_remove_request(&dev_priv->pm_qos);
-+	cpu_latency_qos_remove_request(&dev_priv->pm_qos);
- err_mem_regions:
- 	intel_memory_regions_driver_release(dev_priv);
- err_ggtt:
-@@ -1296,7 +1294,7 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
- 	if (pdev->msi_enabled)
- 		pci_disable_msi(pdev);
- 
--	pm_qos_remove_request(&dev_priv->pm_qos);
-+	cpu_latency_qos_remove_request(&dev_priv->pm_qos);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915/intel_sideband.c
-index cbfb7171d62d..0648eda309e4 100644
---- a/drivers/gpu/drm/i915/intel_sideband.c
-+++ b/drivers/gpu/drm/i915/intel_sideband.c
-@@ -60,7 +60,7 @@ static void __vlv_punit_get(struct drm_i915_private *i915)
- 	 * to the Valleyview P-unit and not all sideband communications.
- 	 */
- 	if (IS_VALLEYVIEW(i915)) {
--		pm_qos_update_request(&i915->sb_qos, 0);
-+		cpu_latency_qos_update_request(&i915->sb_qos, 0);
- 		on_each_cpu(ping, NULL, 1);
- 	}
- }
-@@ -68,7 +68,8 @@ static void __vlv_punit_get(struct drm_i915_private *i915)
- static void __vlv_punit_put(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 61106129287f..310f8e1beaab 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -1326,6 +1326,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
  {
- 	if (IS_VALLEYVIEW(i915))
--		pm_qos_update_request(&i915->sb_qos, PM_QOS_DEFAULT_VALUE);
-+		cpu_latency_qos_update_request(&i915->sb_qos,
-+					       PM_QOS_DEFAULT_VALUE);
+ 	struct drm_i915_private *i915 = engine->i915;
  
- 	iosf_mbi_punit_release();
- }
++	if (IS_TGL_REVID(i915, TGL_REVID_A0, REVID_FOREVER)) {
++		/* Wa_1606931601:tgl */
++		wa_write_or(wal,
++			    GEN7_ROW_CHICKEN2,
++			    GEN12_EARLY_READ_SRC0_DISABLE);
++	}
+ 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
+ 		/* Wa_1606700617:tgl */
+ 		wa_masked_en(wal,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 0bd431f6a011..c46bec8ebd17 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9151,6 +9151,7 @@ enum {
+ #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
+ #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
+ #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
++#define   GEN12_EARLY_READ_SRC0_DISABLE		(1 << 14)
+ 
+ #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
+ #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
 -- 
-2.16.4
-
-
-
-
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
