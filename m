@@ -2,56 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70513158CF4
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 11:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 922AF158D72
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 12:20:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAD866EE1C;
-	Tue, 11 Feb 2020 10:53:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDA26E4C1;
+	Tue, 11 Feb 2020 11:20:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3F66EA23;
- Tue, 11 Feb 2020 10:53:12 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 02:53:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="380399238"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
- by orsmga004.jf.intel.com with ESMTP; 11 Feb 2020 02:53:11 -0800
-Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
- IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 11 Feb 2020 10:53:10 +0000
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 11 Feb 2020 10:53:09 +0000
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Tue, 11 Feb 2020 10:53:09 +0000
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Souza,
- Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH 3/4] drm/i915/display: Remove useless call
- intel_dp_mst_encoder_cleanup()
-Thread-Index: AQHVzNmxQIxBP7XEvk6NmYUeEofHSqgV+EgA
-Date: Tue, 11 Feb 2020 10:53:09 +0000
-Message-ID: <a09f01c2c73f05ccd41a27a3a76137e8c1f5c830.camel@intel.com>
-References: <20200117015837.402239-1-jose.souza@intel.com>
- <20200117015837.402239-3-jose.souza@intel.com>
-In-Reply-To: <20200117015837.402239-3-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.66.163]
-Content-ID: <5CD430914CD0274BA18834CE13EF6BEF@intel.com>
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE566EA1E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 11:20:36 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id u6so11893006wrt.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 03:20:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=oKA580eN4gimhHoVSc3Rn2l6V9j6epembRn90vRGC20=;
+ b=JBUTnHNcMNs6ENlEPnyRfOjTSgoU7xd5T4/IhP12c+4bgPYWbGtAih5YxAy2qhGomu
+ RWTkhl2QUphSxtLuR2pbHNLlxpdfSKN5JEIXGv2XyXrkc6WRhPUIT0vRZS3TfTJC4grj
+ 2b12zBcbydzrHkyj7S1CvTXpI8GpDMfRTSSBQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=oKA580eN4gimhHoVSc3Rn2l6V9j6epembRn90vRGC20=;
+ b=fF4lYOPk9TSgGS2iOxQ+x9hbH/TT9QkXkuWyK0jeQXDaPfnHZ0mHosyRvOcz7HtTJ2
+ /zt24OlqS4BllXLxhb7qRzovGRW5WaBVJi0CGUU7n6VIPYnbQ5i+7ZkZyILDFzA1jBV4
+ axSTB6vYWDV9OKnrGlfQQbDoW2eeAUbJUU4jGHH9WSZQ531sagUTPxm+M4mtxyoUmuZU
+ CWE5eaeAgHYjwVTrJrh+mt2D2yqrTPTNPhIlexLhPqTh4rd+tTBvDBjd4DCEB+K641hi
+ 4ECzD5HCaE352mokHvgHuYXvJYJlunrJJzYK+UAGWPAwpR+J0l0+tTwLAmKIUHMqterX
+ qgqA==
+X-Gm-Message-State: APjAAAU4qg217Ag1l0qi76CFs+K9iMkyrMv2/OziKgcNC2Gyj4Z3liA5
+ 4MqZG3BxLNkQhgwZ2oyfg+WaZA==
+X-Google-Smtp-Source: APXvYqzDbi9Nn/nF4xz/aZrpTNukXfQPHTI5FerkQMw65PC9zYc7DT5BD7kwZH9XBVnRZiUXyO17Vw==
+X-Received: by 2002:a5d:4f8b:: with SMTP id d11mr7762537wru.87.1581420035116; 
+ Tue, 11 Feb 2020 03:20:35 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id f1sm4817887wro.85.2020.02.11.03.20.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Feb 2020 03:20:34 -0800 (PST)
+Date: Tue, 11 Feb 2020 12:20:00 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200211112000.GA2363188@phenom.ffwll.local>
+References: <20200204150146.2006481-1-daniel.vetter@ffwll.ch>
+ <61d3ec83-862d-fe88-d618-f7728806ea9a@suse.de>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display: Remove useless call
- intel_dp_mst_encoder_cleanup()
+Content-Disposition: inline
+In-Reply-To: <61d3ec83-862d-fe88-d618-f7728806ea9a@suse.de>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 0/5] disable drm_global_mutex for most
+ drivers, take 2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +67,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTAxLTE2IGF0IDE3OjU4IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBUaGlzIGlzIGEgZURQIGZ1bmN0aW9uIGFuZCBpdCB3aWxsIGFsd2F5cyByZXR1
-cm5zIHRydWUgZm9yIG5vbi1lRFANCj4gcG9ydHMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAxIC0NCj4gIDEgZmlsZSBjaGFu
-Z2VkLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcC5jDQo+IGluZGV4IDQwNzRkODNiMWE1Zi4uYTUwYjViNmRkMDA5IDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC03NTM3LDcgKzc1Mzcs
-NiBAQCBpbnRlbF9kcF9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QNCj4gaW50ZWxfZGlnaXRhbF9wb3J0
-ICppbnRlbF9kaWdfcG9ydCwNCj4gIA0KPiAgCWlmICghaW50ZWxfZWRwX2luaXRfY29ubmVjdG9y
-KGludGVsX2RwLCBpbnRlbF9jb25uZWN0b3IpKSB7DQo+ICAJCWludGVsX2RwX2F1eF9maW5pKGlu
-dGVsX2RwKTsNCj4gLQkJaW50ZWxfZHBfbXN0X2VuY29kZXJfY2xlYW51cChpbnRlbF9kaWdfcG9y
-dCk7DQo+ICAJCWdvdG8gZmFpbDsNCj4gIAl9DQo+ICANCg0KDQpDaGFuZ2UgbG9va3MgZmluZSBm
-b3IgbWUoYW55d2F5IGJldHRlciB0aGFuIG5vdykuIA0KDQpCdXQ6DQoNClRoaXMgd2hvbGUgdGhp
-bmcgbG9va3Mga2luZCBvZiBjb25mdXNpbmcgdG8gbWUuIFdoeSB3ZSBhcmUgZXZlbiBjYWxsaW5n
-DQppbnRlbF9lZHBfaW5pdF9jb25uZWN0b3IgZm9yDQpub24tZURQIHBvcnRzLCBqdXN0IHRvIGlt
-bWVkaWF0ZWx5IGdldCB0cnVlIHJldHVybmVkPyBTbyByZXR1cm5pbmcNCnN1Y2Nlc3MgbWVhbnMg
-ZWl0aGVyIHN1Y2Nlc3Mgb3IgdGhhdCB0aGlzIGlzIG5vbi1lRFAuLg0KDQpUaGlzIGNvbmZ1c2Vz
-IHRoZSBjYWxsZXIsIHRoYXQgd2UgaGF2ZSBhY3R1YWxseSBzdWNjZXNzZnVsbHkNCmluaXRpYWxp
-emVkIGVEUCwgd2hpbGUgYWN0dWFsbHkgdGhpcyBhbHNvIG1lYW5zIGhlcmUgdGhhdCBpdCBpcyBu
-b3QNCmVEUC4NCg0KV2h5IHdlIGNhbid0IGp1c3QgZG8gaXQgbGlrZToNCg0KaWYgKGludGVsX2Rw
-X2lzX2VkcChpbnRlbF9kcCkpIHsNCglpZiAoIWludGVsX2VkcF9pbml0X2Nvbm5lY3RvcihpbnRl
-bF9kcCwgaW50ZWxfY29ubmVjdG9yKSkgew0KCQlpbnRlbF9kcF9hdXhfZmluaShpbnRlbF9kcCk7
-DQogIAkJZ290byBmYWlsOw0KCX0NCn0NCg0KaXQgbG9va3MgbXVjaCBtb3JlIHVuZGVyc3RhbmRh
-YmxlIGFuZCBsZXNzIGNvbmZ1c2luZywgaS5lIGVEUCBmdW5jdGlvbnMNCmFyZSBvbmx5IGNhbGxl
-ZCBmb3IgZURQIGFuZCBubyByZXR1cm4gdmFsdWUgaGFja3MgYXJlIG5lZWRlZC4NCg0KUmV2aWV3
-ZWQtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29t
-Pg0KDQpTdGFuDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
-ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
-eAo=
+On Mon, Feb 10, 2020 at 10:47:36AM +0100, Thomas Zimmermann wrote:
+> Hi,
+> =
+
+> I smoke-tested the patchset by running X11, Weston and fbdev emulation
+> on ast and udl. No apparent problems found, so
+> =
+
+> Tested-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Merged patches 2-5 (first one needs to wait for amdgpu/radeon patches),
+thanks everyone for review&testing.
+-Daniel
+
+> =
+
+> Best regards
+> Thomas
+> =
+
+> Am 04.02.20 um 16:01 schrieb Daniel Vetter:
+> > CI didn't like my test-with tag :-/
+> > =
+
+> > Test-with: 20200128112549.172135-1-daniel.vetter@ffwll.ch
+> > =
+
+> > Daniel Vetter (5):
+> >   drm: Complain if drivers still use the ->load callback
+> >   drm/fbdev-helper: don't force restores
+> >   drm/client: Rename _force to _locked
+> >   drm: Push drm_global_mutex locking in drm_open
+> >   drm: Nerf drm_global_mutex BKL for good drivers
+> > =
+
+> >  drivers/gpu/drm/drm_client_modeset.c | 12 +++++---
+> >  drivers/gpu/drm/drm_drv.c            | 26 +++++++++-------
+> >  drivers/gpu/drm/drm_fb_helper.c      | 16 ++--------
+> >  drivers/gpu/drm/drm_file.c           | 46 ++++++++++++++++++++++++++--
+> >  drivers/gpu/drm/drm_internal.h       |  1 +
+> >  include/drm/drm_client.h             |  7 ++++-
+> >  include/drm/drm_drv.h                |  3 ++
+> >  7 files changed, 79 insertions(+), 32 deletions(-)
+> > =
+
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
