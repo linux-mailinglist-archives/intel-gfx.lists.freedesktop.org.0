@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C05158A24
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 07:58:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E602158A97
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 08:47:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B406E2C0;
-	Tue, 11 Feb 2020 06:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D32689C3F;
+	Tue, 11 Feb 2020 07:47:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BC0756E2CF;
- Tue, 11 Feb 2020 06:58:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3C19A0071;
- Tue, 11 Feb 2020 06:58:39 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 589DC89C3F;
+ Tue, 11 Feb 2020 07:47:01 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2020 23:47:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="312993641"
+Received: from helsinki.fi.intel.com ([10.237.66.159])
+ by orsmga001.jf.intel.com with ESMTP; 10 Feb 2020 23:46:59 -0800
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 09:46:39 +0200
+Message-Id: <20200211074657.231405-1-gwan-gyeong.mun@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nathan Chancellor" <natechancellor@gmail.com>
-Date: Tue, 11 Feb 2020 06:58:39 -0000
-Message-ID: <158140431970.23972.11229520611550927797@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200211050808.29463-1-natechancellor@gmail.com>
-In-Reply-To: <20200211050808.29463-1-natechancellor@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Disable_-Wtautological-constant-out-of-range-compare_?=
- =?utf-8?b?KHJldjIp?=
+Subject: [Intel-gfx] [PATCH v7 00/18] In order to readout DP SDPs,
+ refactors the handling of DP SDPs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,109 +41,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In order to readout DP SDPs (Secondary Data Packet: DP HDR Metadata
+Infoframe SDP, DP VSC SDP), it refactors handling DP SDPs codes.
+It adds new compute routines for DP HDR Metadata Infoframe SDP
+and DP VSC SDP. 
+And new writing routines of DP SDPs (Secondary Data Packet) that uses
+computed configs.
+New reading routines of DP SDPs are added for readout.
+It adds a logging function for DP VSC SDP.
+When receiving video it is very useful to be able to log DP VSC SDP.
+This greatly simplifies debugging.
+In order to use a common VSC SDP Colorimetry calculating code on PSR,
+it uses a new psr vsc sdp compute routine.
 
-Series: drm/i915: Disable -Wtautological-constant-out-of-range-compare (rev2)
-URL   : https://patchwork.freedesktop.org/series/73271/
-State : failure
+v2: Minor style fix
+v3: 
+  - Add a new drm data structure for DP VSC SDP
+  - Replace a structure name to drm_dp_vsc_sdp from intel_dp_vsc_sdp
+  - Move logging functions to drm core [Jani N]
+    And use drm core's DP VSC SDP logging function
+  - Explicitly disable unused DIPs (AVI, GCP, VS, SPD, DRM. They will be
+    used for HDMI), when intel_dp_set_infoframes() function will be called.
+v4:
+  - Use struct drm_device logging macros
+  - Rebased
+v5:
+  - Use intel_de_*() functions for register access
+  - Add warning where a bpc is 6 and a pixel format is RGB.
+  - Addressed review comments from Uma
+    Add kernel docs for added data structures
+    Rename enum dp_colorspace to dp_pixelformat
+    Polish commit message and comments
+    Combine the if checks of sdp.HB2 and sdp.HB3
+    Add 6bpc to packining and unpacking of VSC SDP
+v6: Fix enabled infoframe states of lspcon
+v7: Fix the wrong check of combination bpc 6 and RGB pixelformat
 
-== Summary ==
+Gwan-gyeong Mun (18):
+  drm: Add DP1.4 VSC SDP Payload related Data Structures
+  drm/i915/dp: Add compute routine for DP VSC SDP
+  drm/i915/dp: Add compute routine for DP HDR Metadata Infoframe SDP
+  drm/i915/dp: Add writing of DP SDPs
+  video/hdmi: Add Unpack only function for DRM infoframe
+  drm/i915/dp: Read out DP SDPs
+  drm: Add logging function for DP VSC SDP
+  drm/i915: Include HDMI DRM infoframe in the crtc state dump
+  drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+  drm/i915: Include DP VSC SDP in the crtc state dump
+  drm/i915: Program DP SDPs with computed configs
+  drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+  drm/i915: Add state readout for DP VSC SDP
+  drm/i915: Fix enabled infoframe states of lspcon
+  drm/i915: Program DP SDPs on pipe updates
+  drm/i915: Stop sending DP SDPs on ddi disable
+  drm/i915/dp: Add compute routine for DP PSR VSC SDP
+  drm/i915/psr: Use new DP VSC SDP compute routine on PSR
 
-CI Bug Log - changes from CI_DRM_7905 -> Patchwork_16515
-====================================================
+ drivers/gpu/drm/drm_dp_helper.c               | 174 +++++
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  19 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  62 ++
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 638 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp.h       |  18 +-
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  54 +-
+ drivers/gpu/drm/i915/display/intel_psr.h      |   6 +-
+ drivers/gpu/drm/i915/i915_drv.h               |   1 +
+ drivers/video/hdmi.c                          |  58 +-
+ include/drm/drm_dp_helper.h                   | 133 ++++
+ include/linux/hdmi.h                          |   2 +
+ 13 files changed, 950 insertions(+), 218 deletions(-)
 
-Summary
--------
+-- 
+2.25.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16515 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16515, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16515:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live_blt:
-    - fi-hsw-4770r:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-
-  * igt@i915_selftest@live_objects:
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-bwr-2160/igt@i915_selftest@live_objects.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-bwr-2160/igt@i915_selftest@live_objects.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16515 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-hsw-peppy:       [INCOMPLETE][5] ([i915#694] / [i915#816]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [INCOMPLETE][7] ([i915#424]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-
-
-Participating hosts (46 -> 40)
-------------------------------
-
-  Additional (4): fi-skl-lmem fi-glk-dsi fi-snb-2520m fi-kbl-r 
-  Missing    (10): fi-ilk-m540 fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-blb-e6850 fi-byt-clapper fi-bsw-nick 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7905 -> Patchwork_16515
-
-  CI-20190529: 20190529
-  CI_DRM_7905: db98da3dd757a19dbaaeaef8640276fe7be2fc4e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16515: 2b06b9a9a6d6785235ca559832db83a0e69928ff @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2b06b9a9a6d6 drm/i915: Disable -Wtautological-constant-out-of-range-compare
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
