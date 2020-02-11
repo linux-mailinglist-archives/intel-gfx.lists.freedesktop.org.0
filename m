@@ -2,34 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917171592B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 16:16:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 469B3159315
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 16:24:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E21086E504;
-	Tue, 11 Feb 2020 15:16:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF146EA94;
+	Tue, 11 Feb 2020 15:24:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FFE86E504
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 15:16:14 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20188678-1500050 for multiple; Tue, 11 Feb 2020 15:16:09 +0000
-MIME-Version: 1.0
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <87d0al9o0v.fsf@gaia.fi.intel.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3789D6EA94
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 15:24:25 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 07:24:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="280959101"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by FMSMGA003.fm.intel.com with ESMTP; 11 Feb 2020 07:24:23 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 249445C0D8C; Tue, 11 Feb 2020 17:23:24 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200210205722.794180-3-chris@chris-wilson.co.uk>
 References: <20200210205722.794180-1-chris@chris-wilson.co.uk>
- <20200210205722.794180-2-chris@chris-wilson.co.uk>
- <87d0al9o0v.fsf@gaia.fi.intel.com>
-Message-ID: <158143416748.3635.10597980220131710976@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 11 Feb 2020 15:16:07 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/selftests: Exercise timeslice
- rewinding
+ <20200210205722.794180-3-chris@chris-wilson.co.uk>
+Date: Tue, 11 Feb 2020 17:23:24 +0200
+Message-ID: <87a75p9mhf.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 3/7] drm/i915/selftests: Relax timeout for
+ error-interrupt reset processing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +50,64 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-02-11 14:50:08)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> > +             /* Release the hounds! */
-> > +             slot[0] = 1;
-> > +             wmb();
-> > +
-> > +             for (i = 1; i <= 3; i++) {
-> > +                     unsigned long timeout = jiffies + HZ / 2;
-> > +
-> > +                     while (!READ_ONCE(slot[i]) &&
-> > +                            time_before(jiffies, timeout))
-> 
-> you pushed with wmb so you could expect with rmb() and cpu_relax();
-> I guess it works fine without :O.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-The wmb() "pairs" with GPU; just paranoia.
+> We can not require that the system process a tasklet in reasonable time
+> (thanks be to ksoftirqd), but we can insist that having waited
+> sufficiently for the error interrupt to have been raised and having
+> kicked the tasklet, the reset has begun and the request will be marked
+> as in error (if not already completed).
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 8b7383f6d9b3..ccd4cd2c202d 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -503,14 +503,21 @@ static int live_error_interrupt(void *arg)
+>  			}
+>  
+>  			for (i = 0; i < ARRAY_SIZE(client); i++) {
+> -				if (i915_request_wait(client[i], 0, HZ / 5) < 0) {
+> -					pr_err("%s: %s request still executing!\n",
+> -					       engine->name,
+> -					       error_repr(p->error[i]));
+> +				if (i915_request_wait(client[i], 0, HZ / 5) < 0)
+> +					pr_debug("%s: %s request incomplete!\n",
+> +						 engine->name,
+> +						 error_repr(p->error[i]));
+> +
+> +				if (!i915_request_started(client[i])) {
+> +					pr_debug("%s: %s request not stated!\n",
+> +						 engine->name,
+> +						 error_repr(p->error[i]));
+>  					err = -ETIME;
+>  					goto out;
+>  				}
+>  
+> +				/* Kick the tasklet to process the error */
+> +				intel_engine_flush_submission(engine);
 
-> > +                             ;
-> > +
-> > +                     if (!time_before(jiffies, timeout)) {
-> > +                             pr_err("%s: rq[%d] timed out\n",
-> > +                                    engine->name, i - 1);
-> > +                             err = -ETIME;
-> > +                             goto err;
-> > +                     }
-> > +
-> > +                     pr_debug("%s: slot[%d]:%x\n", engine->name, i, slot[i]);
-> > +             }
-> > +
-> > +             /* XZY: XZ < XY */
-> > +             if (slot[3] - slot[1] >= slot[2] - slot[1]) {
-> > +                     pr_err("%s: timeslicing did not run context B [%u] before A [%u]!\n",
-> > +                            engine->name,
-> > +                            slot[3] - slot[1],
-> > +                            slot[2] - slot[1]);
-> > +                     err = -EINVAL;
-> > +             }
-> > +
-> > +err:
-> > +             memset(slot, 0xff, 4 * sizeof(u32));
-> 
-> was expecting slot[0] = 
-memset32(&slot[0], -1, 4); /* weirdo */
--Chris
+This pattern of usage in selftests makes me want to add mb(); to
+intel_engine_flush_submission(), as it does not seem to do it
+implicitly.
+
+We want to flush submission and observe the effects, thus
+it seems like a good place.
+
+Not in a scope of this patch tho,
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+-Mika
+
+>  				if (client[i]->fence.error != p->error[i]) {
+>  					pr_err("%s: %s request completed with wrong error code: %d\n",
+>  					       engine->name,
+> -- 
+> 2.25.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
