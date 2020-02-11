@@ -1,53 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 247D31598C2
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:34:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79DC9159922
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:50:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 484A66F417;
-	Tue, 11 Feb 2020 18:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4DB26F42A;
+	Tue, 11 Feb 2020 18:50:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E298E6F417
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:34:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1581446067;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DSTAco2nQH8bLhCMiH/CLRNHDKaImhPirhNd4/I1epk=;
- b=TsCWKRldoJ39o13un+hI5v4XGuXFXjvkcf9uHY7Owcc06Z5tGoYyUCvOEyMD51JMdKhDHJ
- Z6Z7cvv+LiOOk1yw3mF3AYGPrU3yyHOhhyI8duch6Rg60yqWbXp93OZz064/h8AkgsDl4M
- KbAMrPjPhWGxW30QDeYmmdfaSr/6qAY=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-392-pcvFksYKPkyhM3E5kpkvpQ-1; Tue, 11 Feb 2020 13:34:24 -0500
-X-MC-Unique: pcvFksYKPkyhM3E5kpkvpQ-1
-Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com
- [10.5.11.15])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 3BA3D1137845;
- Tue, 11 Feb 2020 18:34:21 +0000 (UTC)
-Received: from Ruby.bss.redhat.com (dhcp-10-20-1-196.bss.redhat.com
- [10.20.1.196])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 2FC275C109;
- Tue, 11 Feb 2020 18:34:20 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 13:33:48 -0500
-Message-Id: <20200211183358.157448-4-lyude@redhat.com>
-In-Reply-To: <20200211183358.157448-1-lyude@redhat.com>
-References: <20200211183358.157448-1-lyude@redhat.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69DC66F42B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:50:11 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 10:50:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="313155508"
+Received: from josouza-mobl.jf.intel.com (HELO josouza-MOBL.intel.com)
+ ([10.24.12.229])
+ by orsmga001.jf.intel.com with ESMTP; 11 Feb 2020 10:50:10 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 10:50:07 -0800
+Message-Id: <20200211185008.30806-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915: Force DPCD backlight mode for
- some Dell CML 2020 panels
+Subject: [Intel-gfx] [PATCH v2 1/2] drm/i915/mst: Set intel_dp_set_m_n() for
+ MST slaves
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,67 +42,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@intel.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to Dell, trying to match their panels via OUI is not reliable
-enough and we've been told that we should check against the EDID
-instead. As well, Dell seems to have some panels that are actually
-intended to switch between using PWM for backlight controls and DPCD for
-backlight controls depending on whether or not the panel is in HDR or
-SDR mode. Yikes.
-
-Regardless, we need to add quirks for these so that DPCD backlight
-controls get enabled by default, since without additional driver support
-that's the only form of brightness control that will work. Hopefully in
-the future we can remove these quirks once we have a better way of
-probing for this.
-
-Changes since v1:
-* Add one more EDID per Dell's request
-* Remove model number (which is possibly wrong) and replace with Dell
-  CML 2020 systems
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_dp_helper.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index a39c3cdacb20..620d78ff2706 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -1240,6 +1240,20 @@ static const struct edid_quirk edid_quirk_list[] = {
- 	 * only supports DPCD backlight controls
- 	 */
- 	{ MFG(0x4c, 0x83), PROD_ID(0x41, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	/*
-+	 * Some Dell CML 2020 systems have panels support both AUX and PWM
-+	 * backlight control, and some only support AUX backlight control. All
-+	 * said panels start up in AUX mode by default, and we don't have any
-+	 * support for disabling HDR mode on these panels which would be
-+	 * required to switch to PWM backlight control mode (plus, I'm not
-+	 * even sure we want PWM backlight controls over DPCD backlight
-+	 * controls anyway...). Until we have a better way of detecting these,
-+	 * force DPCD backlight mode on all of them.
-+	 */
-+	{ MFG(0x06, 0xaf), PROD_ID(0x9b, 0x32), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	{ MFG(0x06, 0xaf), PROD_ID(0xeb, 0x41), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	{ MFG(0x4d, 0x10), PROD_ID(0xc7, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
-+	{ MFG(0x4d, 0x10), PROD_ID(0xe6, 0x14), BIT(DP_QUIRK_FORCE_DPCD_BACKLIGHT) },
- };
- 
- #undef MFG
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q29tbWl0IDFjOWQyZWIyNDE1MyAoImRybS9pOTE1OiBtb3ZlIGludGVsX2RwX3NldF9tX24oKSB0
+byBlbmNvZGVyIGZvcgpEREkgcGxhdGZvcm1zIikgbW92ZWQgdGhlIGludGVsX2RwX3NldF9tX24o
+KSBmcm9tIGhzd19jcnRjX2VuYWJsZSgpCnRvIGludGVsX2RkaV9wcmVfZW5hYmxlX2RwKCkgYnV0
+IGl0IG1pc3NlZCBhZGQgaXQgdG8KaW50ZWxfbXN0X3ByZV9lbmFibGVfZHAoKSBjYXVzaW5nIE1T
+VCBzbGF2ZXMgdG8gbm90IHdvcmsuCgp2MjogTm90IHNldHRpbmcgaW50ZWxfZGRpX3NldF9kcF9t
+c2EoKSB0d2ljZSBmb3IgTVNUIG1hc3RlcgoKRml4ZXM6IDFjOWQyZWIyNDE1MyAoImRybS9pOTE1
+OiBtb3ZlIGludGVsX2RwX3NldF9tX24oKSB0byBlbmNvZGVyIGZvciBEREkgcGxhdGZvcm1zIikK
+Q2M6IFZhbmRpdGEgS3Vsa2FybmkgPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29tPgpDYzogSmFu
+aSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9i
+ZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyAgICB8IDUgKysrLS0KIGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMgfCAyICsrCiAyIGZpbGVzIGNoYW5nZWQsIDUgaW5z
+ZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kZGkuYwppbmRleCA1NDRlMTU2MDNlZjkuLmExZmQ4ZmQ2N2M4NSAxMDA2NDQKLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0zNjE1LDEwICszNjE1LDExIEBAIHN0
+YXRpYyB2b2lkIGludGVsX2RkaV9wcmVfZW5hYmxlX2RwKHN0cnVjdCBpbnRlbF9lbmNvZGVyICpl
+bmNvZGVyLAogCS8qIE1TVCB3aWxsIGNhbGwgYSBzZXR0aW5nIG9mIE1TQSBhZnRlciBhbiBhbGxv
+Y2F0aW5nIG9mIFZpcnR1YWwgQ2hhbm5lbAogCSAqIGZyb20gTVNUIGVuY29kZXIgcHJlX2VuYWJs
+ZSBjYWxsYmFjay4KIAkgKi8KLQlpZiAoIWludGVsX2NydGNfaGFzX3R5cGUoY3J0Y19zdGF0ZSwg
+SU5URUxfT1VUUFVUX0RQX01TVCkpCisJaWYgKCFpbnRlbF9jcnRjX2hhc190eXBlKGNydGNfc3Rh
+dGUsIElOVEVMX09VVFBVVF9EUF9NU1QpKSB7CiAJCWludGVsX2RkaV9zZXRfZHBfbXNhKGNydGNf
+c3RhdGUsIGNvbm5fc3RhdGUpOwogCi0JaW50ZWxfZHBfc2V0X21fbihjcnRjX3N0YXRlLCBNMV9O
+MSk7CisJCWludGVsX2RwX3NldF9tX24oY3J0Y19zdGF0ZSwgTTFfTjEpOworCX0KIH0KIAogc3Rh
+dGljIHZvaWQgaW50ZWxfZGRpX3ByZV9lbmFibGVfaGRtaShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+ZW5jb2RlciwKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZHBfbXN0LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCmlu
+ZGV4IDljZDU5MTQxOTUzZC4uZDdiZmE3YzM1MGU5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZHBfbXN0LmMKQEAgLTQ4MCw2ICs0ODAsOCBAQCBzdGF0aWMgdm9pZCBp
+bnRlbF9tc3RfcHJlX2VuYWJsZV9kcChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJ
+aW50ZWxfZGRpX2VuYWJsZV9waXBlX2Nsb2NrKHBpcGVfY29uZmlnKTsKIAogCWludGVsX2RkaV9z
+ZXRfZHBfbXNhKHBpcGVfY29uZmlnLCBjb25uX3N0YXRlKTsKKworCWludGVsX2RwX3NldF9tX24o
+cGlwZV9jb25maWcsIE0xX04xKTsKIH0KIAogc3RhdGljIHZvaWQgaW50ZWxfbXN0X2VuYWJsZV9k
+cChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKLS0gCjIuMjUuMAoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
