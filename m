@@ -1,35 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24AB7158DAB
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 12:44:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF588158DBE
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 12:49:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 032386EA3E;
-	Tue, 11 Feb 2020 11:43:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EDF289875;
+	Tue, 11 Feb 2020 11:49:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C1CE6EA3E
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 11:43:56 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42D3D8944A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 11:49:51 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 03:43:55 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 03:49:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="227478388"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com
- ([10.237.66.163])
- by fmsmga008.fm.intel.com with ESMTP; 11 Feb 2020 03:43:53 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 13:40:38 +0200
-Message-Id: <20200211114038.21035-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="221907986"
+Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
+ by orsmga007.jf.intel.com with ESMTP; 11 Feb 2020 03:49:48 -0800
+Date: Tue, 11 Feb 2020 13:49:47 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200211114947.GA1908@intel.intel>
+References: <20200210205722.794180-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1] drm/i915: Call intel_edp_init_connector only
- for eDP.
+Content-Disposition: inline
+In-Reply-To: <20200210205722.794180-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 1/7] drm/i915/gt: Avoid resetting ring->head
+ outside of its timeline mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,57 +44,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I guess it would still be nice to make the code less confusing
-and do not call eDP specific function, for non-eDP connectors
-just to immediately return true(success) value as a hack.
+Hi Chris,
 
-So simply extracted that check out from this function,
-that we simply don't call it for non-eDP connectors. Bingo.
+> We manipulate ring->head while active in i915_request_retire underneath
+> the timeline manipulation. We cannot rely on a stable ring->head outside
+> of the timeline->mutex, in particular while setting up the context for
+> resume and reset.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1126
+> Fixes: 0881954965e3 ("drm/i915: Introduce intel_context.pin_mutex for pin management")
+> Fixes: e5dadff4b093 ("drm/i915: Protect request retirement with timeline->mutex")
+> References: f3c0efc9fe7a ("drm/i915/execlists: Leave resetting ring to intel_ring")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+looks OK to me:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f4dede6253f8..9bd36197a43d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7370,9 +7370,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	intel_wakeref_t wakeref;
- 	struct edid *edid;
- 
--	if (!intel_dp_is_edp(intel_dp))
--		return true;
--
- 	INIT_DELAYED_WORK(&intel_dp->panel_vdd_work, edp_panel_vdd_work);
- 
- 	/*
-@@ -7590,10 +7587,12 @@ intel_dp_init_connector(struct intel_digital_port *intel_dig_port,
- 	intel_dp_mst_encoder_init(intel_dig_port,
- 				  intel_connector->base.base.id);
- 
--	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
--		intel_dp_aux_fini(intel_dp);
--		intel_dp_mst_encoder_cleanup(intel_dig_port);
--		goto fail;
-+	if (intel_dp_is_edp(intel_dp)) {
-+		if (!intel_edp_init_connector(intel_dp, intel_connector)) {
-+			intel_dp_aux_fini(intel_dp);
-+			intel_dp_mst_encoder_cleanup(intel_dig_port);
-+			goto fail;
-+		}
- 	}
- 
- 	intel_dp_add_properties(intel_dp, connector);
--- 
-2.24.1.485.gad05a3d8e5
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
