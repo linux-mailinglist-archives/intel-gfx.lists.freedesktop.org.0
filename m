@@ -1,37 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2571586DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 01:47:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB601586E0
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 01:48:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24A296ED92;
-	Tue, 11 Feb 2020 00:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48B756ED9B;
+	Tue, 11 Feb 2020 00:48:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F34776ED91;
- Tue, 11 Feb 2020 00:47:25 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60AB6ED91;
+ Tue, 11 Feb 2020 00:47:58 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2020 16:47:25 -0800
-X-IronPort-AV: E=Sophos;i="5.70,427,1574150400"; d="scan'208";a="347165681"
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2020 16:47:55 -0800
+X-IronPort-AV: E=Sophos;i="5.70,427,1574150400"; d="scan'208";a="347165815"
 Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Feb 2020 16:47:25 -0800
+ 10 Feb 2020 16:47:54 -0800
 From: Dale B Stimson <dale.b.stimson@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Feb 2020 16:46:11 -0800
-Message-Id: <2f2d74a2aa0bb1ab0050bdeb5a272ae9d7f61c69.1581381780.git.dale.b.stimson@intel.com>
+Date: Mon, 10 Feb 2020 16:46:12 -0800
+Message-Id: <f0cabbe9cbe9873967b000dd64fb10394c3fc9bd.1581381780.git.dale.b.stimson@intel.com>
 X-Mailer: git-send-email 2.25.0
-In-Reply-To: <cover.1581381780.git.dale.b.stimson@intel.com>
+In-Reply-To: <2f2d74a2aa0bb1ab0050bdeb5a272ae9d7f61c69.1581381780.git.dale.b.stimson@intel.com>
 References: <cover.1581381780.git.dale.b.stimson@intel.com>
+ <2f2d74a2aa0bb1ab0050bdeb5a272ae9d7f61c69.1581381780.git.dale.b.stimson@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/3] i915/gem_mmio_base.c - get mmio_base
- from debugfs (if possible)
+Subject: [Intel-gfx] [PATCH i-g-t 2/3] i915/gem_ctx_isolation: Check engine
+ relative registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,430 +50,406 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
----
- lib/Makefile.sources     |   2 +
- lib/i915/gem_mmio_base.c | 346 +++++++++++++++++++++++++++++++++++++++
- lib/i915/gem_mmio_base.h |  19 +++
- lib/igt.h                |   1 +
- lib/meson.build          |   1 +
- 5 files changed, 369 insertions(+)
- create mode 100644 lib/i915/gem_mmio_base.c
- create mode 100644 lib/i915/gem_mmio_base.h
+From: Chris Wilson <chris@chris-wilson.co.uk>
 
-diff --git a/lib/Makefile.sources b/lib/Makefile.sources
-index 3e573f267..4c5d50d5d 100644
---- a/lib/Makefile.sources
-+++ b/lib/Makefile.sources
-@@ -7,6 +7,8 @@ lib_source_list =	 	\
- 	i915/gem_context.h	\
- 	i915/gem_engine_topology.c	\
- 	i915/gem_engine_topology.h	\
-+	i915/gem_mmio_base.c	\
-+	i915/gem_mmio_base.h	\
- 	i915/gem_scheduler.c	\
- 	i915/gem_scheduler.h	\
- 	i915/gem_submission.c	\
-diff --git a/lib/i915/gem_mmio_base.c b/lib/i915/gem_mmio_base.c
-new file mode 100644
-index 000000000..8718c092f
---- /dev/null
-+++ b/lib/i915/gem_mmio_base.c
-@@ -0,0 +1,346 @@
-+//  Copyright (C) 2020 Intel Corporation
-+//
-+//  SPDX-License-Identifier: MIT
-+
-+#include <ctype.h>
-+
-+#include <fcntl.h>
-+
-+#include "igt.h"
-+
-+struct eng_mmio_base_s {
-+	char       name[8];
-+	uint32_t   mmio_base;
-+};
-+
-+struct eng_mmio_base_table_s {
-+	unsigned int           mb_cnt;
-+	struct eng_mmio_base_s mb_tab[GEM_MAX_ENGINES];
-+};
-+
-+
-+static struct eng_mmio_base_table_s *_gem_engine_mmio_info_dup(
-+	const struct eng_mmio_base_table_s *mbpi)
-+{
-+	struct eng_mmio_base_table_s *mbpo;
-+	size_t nbytes;
-+
-+	nbytes = offsetof(typeof(struct eng_mmio_base_table_s), mb_tab[mbpi->mb_cnt]);
-+	mbpo = malloc(nbytes);
-+	igt_assert(mbpo);
-+	memcpy(mbpo, mbpi, nbytes);
-+
-+	return mbpo;
-+}
-+
-+void gem_engine_mmio_base_info_free(struct eng_mmio_base_table_s *mbp)
-+{
-+	free(mbp);
-+}
-+
-+static void _gem_engine_mmio_info_legacy_add(struct eng_mmio_base_table_s *mbp,
-+	const char *eng_name, uint32_t mmio_base)
-+{
-+	if (mmio_base) {
-+		strncpy(mbp->mb_tab[mbp->mb_cnt].name, eng_name,
-+			sizeof(mbp->mb_tab[0].name));
-+		mbp->mb_tab[mbp->mb_cnt].mmio_base = mmio_base;
-+		mbp->mb_cnt++;
-+	}
-+}
-+
-+/**
-+ * _gem_engine_mmio_base_info_get_legacy:
-+ * @fd_dev: file descriptor upon which device is open or -1 to use defaults.
-+ *
-+ * Provides per-engine mmio_base information from legacy built-in values
-+ * for the case when the information is not otherwise available.
-+ *
-+ * Returns:
-+ * Pointer to dynamically allocated struct eng_mmio_base_table_s describing
-+ * engine config or NULL.
-+ * The allocated size does not include unused engine entries.
-+ * If non-NULL, it is caller's responsibility to free.
-+ */
-+static struct eng_mmio_base_table_s *_gem_engine_mmio_base_info_get_legacy(int fd_dev)
-+{
-+	int gen;
-+	uint32_t mmio_base;
-+	struct eng_mmio_base_table_s mbt;
-+	struct eng_mmio_base_table_s *mbp;
-+
-+	memset(&mbt, 0, sizeof(mbt));
-+
-+	gen = intel_gen(intel_get_drm_devid(fd_dev));
-+
-+	/* The mmio_base values for engine instances 1 and higher cannot
-+	 * be reliability determinated a priori. */
-+
-+	_gem_engine_mmio_info_legacy_add(&mbt, "rcs0", 0x2000);
-+	_gem_engine_mmio_info_legacy_add(&mbt, "bcs0", 0x22000);
-+
-+	if (gen < 6)
-+		mmio_base = 0x4000;
-+	else if (gen < 11)
-+		mmio_base = 0x12000;
-+	else
-+		mmio_base = 0x1c0000;
-+	_gem_engine_mmio_info_legacy_add(&mbt, "vcs0", mmio_base);
-+
-+	if (gen < 11)
-+		mmio_base = 0x1a000;
-+	else
-+		mmio_base = 0x1c8000;
-+	_gem_engine_mmio_info_legacy_add(&mbt, "vecs0", mmio_base);
-+
-+	if (mbt.mb_cnt <= 0)
-+		return NULL;
-+
-+	mbp = _gem_engine_mmio_info_dup(&mbt);
-+
-+	return mbp;
-+}
-+
-+
-+/**
-+ * _gem_engine_mmio_base_info_get_debugfs:
-+ * @fd_dev: file descriptor upon which device is open or -1 to use defaults.
-+ *
-+ * Obtains per-engine mmio_base information from debugfs.
-+ *
-+ * Returns:
-+ * Pointer to dynamically allocated struct eng_mmio_base_table_s describing
-+ * engine config or NULL.
-+ * The allocated size does not include unused engine entries.
-+ * If non-NULL, it is caller's responsibility to free.
-+ *
-+ * Looking in debugfs for per-engine instances of:
-+ *	<engine_name>
-+ *              ...
-+ *		MMIO base: <u32_hex_number>
-+ *
-+ * Example of relevant lines from debugfs:
-+ *	vcs0
-+ *		MMIO base:  0x001c0000
-+ *	vcs1
-+ *		MMIO base:  0x001d0000
-+ *
-+ * In order to qualify as the introduction of a new per-engine section, an
-+ * input line must consist solely of an engine name.  An engine name must
-+ * be 7 or fewer characters in length and must consist of an engine class
-+ * name of 3 or more lower case characters followed by an instance number.
-+ */
-+static struct eng_mmio_base_table_s *_gem_engine_mmio_base_info_get_debugfs(int fd_dev)
-+{
-+	static const char pth_ei[] = "i915_engine_info";
-+	static const char str_mmio_base[] = "MMIO base:";
-+	const size_t len_mmio_base = sizeof(str_mmio_base) - 1;
-+	FILE *fpi;
-+	char line_buf[128];
-+	char *plne;
-+	char *p_name;
-+	char *pbeg;
-+	size_t line_len;
-+	struct eng_mmio_base_table_s mbt;
-+	struct eng_mmio_base_table_s *mbp;
-+	const size_t name_max = sizeof(mbt.mb_tab[0].name);
-+	int ec;
-+	int eng_found;
-+	int nc;
-+	int fd_ei;
-+	int eof_seen;
-+
-+	fd_ei = igt_debugfs_open(fd_dev, pth_ei, O_RDONLY);
-+	if (fd_ei < 0)
-+		return NULL;
-+
-+	fpi = fdopen(fd_ei, "r");
-+	if (!fpi) {
-+		if (errno != ENOENT) {
-+			igt_warn("open failed: %s: %s\n", pth_ei,
-+				strerror(errno));
-+		}
-+		return NULL;
-+	}
-+
-+	memset(&mbt, 0, sizeof(mbt));
-+
-+	ec = 0;
-+	eng_found = 0;
-+	eof_seen = 0;
-+	while (!eof_seen) {
-+		plne = fgets(line_buf, sizeof(line_buf), fpi);
-+		if (!plne) {
-+			eof_seen = 1;
-+			plne = line_buf;
-+			plne[0] = '\0';
-+		}
-+
-+		if (plne[0]) {
-+			/* Ignore lines that exceed allowed length. */
-+			line_len = strlen(plne);
-+			if (plne[line_len-1] != '\n') {
-+				for (;;) {
-+					plne = fgets(line_buf,
-+						sizeof(line_buf), fpi);
-+					if (!plne)
-+						break;
-+					line_len = strlen(plne);
-+					if (plne[line_len-1] == '\n')
-+						break;
-+				}
-+				continue;
-+			}
-+			plne[line_len-1] = '\0';
-+
-+			p_name = NULL;
-+			nc = 0;
-+			do {
-+				for (; nc < name_max; nc++) {
-+					if (!islower(plne[nc]))
-+						break;
-+				}
-+				if (nc < 3)
-+					break;
-+				if (!isdigit(plne[nc]))
-+					break;
-+				for (; nc < name_max; nc++) {
-+					if (!isdigit(plne[nc]))
-+						break;
-+				}
-+				if ((nc >= name_max) || plne[nc])
-+					break;
-+				p_name = plne;
-+			} while (0);
-+		}
-+
-+		if (eof_seen || p_name) {
-+			if (eng_found) {
-+				eng_found = 0;
-+				if ((ec + 1) >= GEM_MAX_ENGINES)
-+					continue;
-+				ec++;
-+			}
-+		}
-+
-+		if (p_name) {
-+			strncpy(mbt.mb_tab[ec].name, p_name, nc);
-+			eng_found = 1;
-+			continue;
-+		}
-+
-+		if (eng_found) {
-+			pbeg = plne;
-+			while (isspace(pbeg[0]))
-+				pbeg++;
-+			if (strncmp(pbeg, str_mmio_base, len_mmio_base) == 0) {
-+				unsigned long int ulv;
-+				uint32_t uiv;
-+				char *ep;
-+
-+				pbeg += len_mmio_base;
-+				ulv = strtoul(pbeg, &ep, 16);
-+
-+				uiv = (uint32_t) ulv;
-+				igt_assert_f(((pbeg != ep) && (ulv == uiv)),
-+					"invalid number: %s\n", plne);
-+
-+				while (isspace(*ep))
-+					ep++;
-+				igt_assert_f((!*ep),
-+					"junk follows number: \"%s\"\n", plne);
-+
-+				mbt.mb_tab[ec].mmio_base = uiv;
-+			}
-+		}
-+	}
-+
-+	if (fpi)
-+		fclose(fpi);
-+
-+	mbt.mb_cnt = ec;
-+
-+	if (mbt.mb_cnt <= 0)
-+		return NULL;
-+
-+	mbp = _gem_engine_mmio_info_dup(&mbt);
-+
-+	return mbp;
-+}
-+
-+/**
-+ * gem_engine_mmio_base_info_get:
-+ * @fd_dev: file descriptor upon which device is open or -1 to use defaults.
-+ *
-+ * Obtains per-engine mmio_base information.  Multiple sub-functions will
-+ * be tried in order of preference.
-+ *
-+ * Returns:
-+ * Pointer to dynamically allocated struct eng_mmio_base_table_s describing
-+ * engine config or NULL.
-+ * The allocated size does not include unused engine entries.
-+ * If non-NULL, it is caller's responsibility to free.
-+ */
-+struct eng_mmio_base_table_s *gem_engine_mmio_base_info_get(int fd_dev)
-+{
-+	struct eng_mmio_base_table_s *mbp = NULL;
-+
-+	/* If and when better ways are provided to find the mmio_base
-+	 * information, they may be added them here in order of preference.
-+	 */
-+
-+#if 0
-+	if (!mbp)
-+		mbp = _mmio_base_info_get_via_sysfs(fd_dev);
-+#endif
-+
-+	if (!mbp)
-+		mbp = _gem_engine_mmio_base_info_get_debugfs(fd_dev);
-+
-+	if (!mbp)
-+		mbp = _gem_engine_mmio_base_info_get_legacy(fd_dev);
-+
-+	if (!mbp)
-+		igt_warn("Per-engine mmio_base data is not present\n");
-+
-+	return mbp;
-+}
-+
-+/**
-+ * gem_engine_mmio_base_info_dump:
-+ *
-+ * Dumps engine mmio_base data.
-+ *
-+ * Returns: void
-+ */
-+void gem_engine_mmio_base_info_dump(const struct eng_mmio_base_table_s *mbp)
-+{
-+	int ix;
-+	const struct eng_mmio_base_s *e_mb;
-+
-+	fprintf(stdout, "engine names and mmio_base addresses:\n");
-+
-+	for (ix = 0; ix < mbp->mb_cnt; ix++) {
-+		e_mb = mbp->mb_tab + ix;
-+		if (e_mb->mmio_base) {
-+			fprintf(stdout, "%-8s 0x%8.8x\n",
-+				e_mb->name, e_mb->mmio_base);
-+		}
-+	}
-+}
-+
-+uint32_t gem_engine_mmio_base(const struct eng_mmio_base_table_s *mbp,
-+	const char *eng_name)
-+{
-+	int ix;
-+	const struct eng_mmio_base_s *e_mb;
-+
-+	for (ix = 0; ix < mbp->mb_cnt; ix++) {
-+		e_mb = mbp->mb_tab + ix;
-+		if (e_mb->mmio_base && !strcmp(eng_name, e_mb->name)) {
-+			return e_mb->mmio_base;
-+		}
-+	}
-+
-+	return 0;
-+}
-diff --git a/lib/i915/gem_mmio_base.h b/lib/i915/gem_mmio_base.h
-new file mode 100644
-index 000000000..1e138690f
---- /dev/null
-+++ b/lib/i915/gem_mmio_base.h
-@@ -0,0 +1,19 @@
-+//  Copyright (C) 2020 Intel Corporation
-+//
-+//  SPDX-License-Identifier: MIT
-+
-+#ifndef GEM_MMIO_BASE_H
-+#define GEM_MMIO_BASE_H
-+
-+struct eng_mmio_base_table_s;
-+
-+struct eng_mmio_base_table_s *gem_engine_mmio_base_info_get(int fd_dev);
-+
-+void gem_engine_mmio_base_info_free(struct eng_mmio_base_table_s *mbp);
-+
-+void gem_engine_mmio_base_info_dump(const struct eng_mmio_base_table_s *mbp);
-+
-+uint32_t gem_engine_mmio_base(const struct eng_mmio_base_table_s *mbp,
-+	const char *eng_name);
-+
-+#endif /* GEM_MMIO_BASE_H */
-diff --git a/lib/igt.h b/lib/igt.h
-index a6c4e44d2..8e70dcb02 100644
---- a/lib/igt.h
-+++ b/lib/igt.h
-@@ -55,5 +55,6 @@
- #include "rendercopy.h"
- #include "i915/gem_mman.h"
- #include "i915/gem_engine_topology.h"
-+#include "i915/gem_mmio_base.h"
+Some of the non-privileged registers are at the same offset on each
+engine. We can improve our coverage for unknown HW layout by using the
+reported engine->mmio_base for relative offsets.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_ctx_isolation.c | 164 ++++++++++++++++++++-------------
+ 1 file changed, 100 insertions(+), 64 deletions(-)
+
+diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+index 1b66fec11..eff4b1df2 100644
+--- a/tests/i915/gem_ctx_isolation.c
++++ b/tests/i915/gem_ctx_isolation.c
+@@ -70,6 +70,7 @@ static const struct named_register {
+ 	uint32_t ignore_bits;
+ 	uint32_t write_mask; /* some registers bits do not exist */
+ 	bool masked;
++	bool relative;
+ } nonpriv_registers[] = {
+ 	{ "NOPID", NOCTX, RCS0, 0x2094 },
+ 	{ "MI_PREDICATE_RESULT_2", NOCTX, RCS0, 0x23bc },
+@@ -109,7 +110,6 @@ static const struct named_register {
+ 	{ "PS_DEPTH_COUNT_1", GEN8, RCS0, 0x22f8, 2 },
+ 	{ "BB_OFFSET", GEN8, RCS0, 0x2158, .ignore_bits = 0x7 },
+ 	{ "MI_PREDICATE_RESULT_1", GEN8, RCS0, 0x241c },
+-	{ "CS_GPR", GEN8, RCS0, 0x2600, 32 },
+ 	{ "OA_CTX_CONTROL", GEN8, RCS0, 0x2360 },
+ 	{ "OACTXID", GEN8, RCS0, 0x2364 },
+ 	{ "PS_INVOCATION_COUNT_2", GEN8, RCS0, 0x2448, 2, .write_mask = ~0x3 },
+@@ -138,79 +138,56 @@ static const struct named_register {
  
- #endif /* IGT_H */
-diff --git a/lib/meson.build b/lib/meson.build
-index e87e58036..def72c2bd 100644
---- a/lib/meson.build
-+++ b/lib/meson.build
-@@ -2,6 +2,7 @@ lib_sources = [
- 	'drmtest.c',
- 	'i915/gem_context.c',
- 	'i915/gem_engine_topology.c',
-+	'i915/gem_mmio_base.c',
- 	'i915/gem_scheduler.c',
- 	'i915/gem_submission.c',
- 	'i915/gem_ring.c',
+ 	{ "CTX_PREEMPT", NOCTX /* GEN10 */, RCS0, 0x2248 },
+ 	{ "CS_CHICKEN1", GEN11, RCS0, 0x2580, .masked = true },
+-	{ "HDC_CHICKEN1", GEN_RANGE(10, 10), RCS0, 0x7304, .masked = true },
+ 
+ 	/* Privileged (enabled by w/a + FORCE_TO_NONPRIV) */
+ 	{ "CTX_PREEMPT", NOCTX /* GEN9 */, RCS0, 0x2248 },
+ 	{ "CS_CHICKEN1", GEN_RANGE(9, 10), RCS0, 0x2580, .masked = true },
+ 	{ "COMMON_SLICE_CHICKEN2", GEN_RANGE(9, 9), RCS0, 0x7014, .masked = true },
+-	{ "HDC_CHICKEN1", GEN_RANGE(9, 9), RCS0, 0x7304, .masked = true },
++	{ "HDC_CHICKEN1", GEN_RANGE(9, 10), RCS0, 0x7304, .masked = true },
+ 	{ "SLICE_COMMON_ECO_CHICKEN1", GEN_RANGE(11, 11) /* + glk */, RCS0,  0x731c, .masked = true },
+ 	{ "L3SQREG4", NOCTX /* GEN9:skl,kbl */, RCS0, 0xb118, .write_mask = ~0x1ffff0 },
+ 	{ "HALF_SLICE_CHICKEN7", GEN_RANGE(11, 11), RCS0, 0xe194, .masked = true },
+ 	{ "SAMPLER_MODE", GEN_RANGE(11, 11), RCS0, 0xe18c, .masked = true },
+ 
+-	{ "BCS_GPR", GEN9, BCS0, 0x22600, 32 },
+ 	{ "BCS_SWCTRL", GEN8, BCS0, 0x22200, .write_mask = 0x3, .masked = true },
+ 
+ 	{ "MFC_VDBOX1", NOCTX, VCS0, 0x12800, 64 },
+ 	{ "MFC_VDBOX2", NOCTX, VCS1, 0x1c800, 64 },
+ 
+-	{ "VCS0_GPR", GEN_RANGE(9, 10), VCS0, 0x12600, 32 },
+-	{ "VCS1_GPR", GEN_RANGE(9, 10), VCS1, 0x1c600, 32 },
+-	{ "VECS_GPR", GEN_RANGE(9, 10), VECS0, 0x1a600, 32 },
+-
+-	{ "VCS0_GPR", GEN11, VCS0, 0x1c0600, 32 },
+-	{ "VCS1_GPR", GEN11, VCS1, 0x1c4600, 32 },
+-	{ "VCS2_GPR", GEN11, VCS2, 0x1d0600, 32 },
+-	{ "VCS3_GPR", GEN11, VCS3, 0x1d4600, 32 },
+-	{ "VECS_GPR", GEN11, VECS0, 0x1c8600, 32 },
++	{ "xCS_GPR", GEN9, ALL, 0x600, 32, .relative = true },
+ 
+ 	{}
+ }, ignore_registers[] = {
+ 	{ "RCS timestamp", GEN6, ~0u, 0x2358 },
+ 	{ "BCS timestamp", GEN7, ~0u, 0x22358 },
+ 
+-	{ "VCS0 timestamp", GEN_RANGE(7, 10), ~0u, 0x12358 },
+-	{ "VCS1 timestamp", GEN_RANGE(7, 10), ~0u, 0x1c358 },
+-	{ "VECS timestamp", GEN_RANGE(8, 10), ~0u, 0x1a358 },
+-
+-	{ "VCS0 timestamp", GEN11, ~0u, 0x1c0358 },
+-	{ "VCS1 timestamp", GEN11, ~0u, 0x1c4358 },
+-	{ "VCS2 timestamp", GEN11, ~0u, 0x1d0358 },
+-	{ "VCS3 timestamp", GEN11, ~0u, 0x1d4358 },
+-	{ "VECS timestamp", GEN11, ~0u, 0x1c8358 },
++	{ "xCS timestamp", GEN8, ALL, 0x358, .relative = true },
+ 
+ 	/* huc read only */
+-	{ "BSD0 0x2000", GEN11, ~0u, 0x1c0000 + 0x2000 },
+-	{ "BSD0 0x2000", GEN11, ~0u, 0x1c0000 + 0x2014 },
+-	{ "BSD0 0x2000", GEN11, ~0u, 0x1c0000 + 0x23b0 },
+-
+-	{ "BSD1 0x2000", GEN11, ~0u, 0x1c4000 + 0x2000 },
+-	{ "BSD1 0x2000", GEN11, ~0u, 0x1c4000 + 0x2014 },
+-	{ "BSD1 0x2000", GEN11, ~0u, 0x1c4000 + 0x23b0 },
+-
+-	{ "BSD2 0x2000", GEN11, ~0u, 0x1d0000 + 0x2000 },
+-	{ "BSD2 0x2000", GEN11, ~0u, 0x1d0000 + 0x2014 },
+-	{ "BSD2 0x2000", GEN11, ~0u, 0x1d0000 + 0x23b0 },
+-
+-	{ "BSD3 0x2000", GEN11, ~0u, 0x1d4000 + 0x2000 },
+-	{ "BSD3 0x2000", GEN11, ~0u, 0x1d4000 + 0x2014 },
+-	{ "BSD3 0x2000", GEN11, ~0u, 0x1d4000 + 0x23b0 },
++	{ "BSD 0x2000", GEN11, ALL, 0x2000, .relative = true },
++	{ "BSD 0x2014", GEN11, ALL, 0x2014, .relative = true },
++	{ "BSD 0x23b0", GEN11, ALL, 0x23b0, .relative = true },
+ 
+ 	{}
+ };
+ 
+-static const char *register_name(uint32_t offset, char *buf, size_t len)
++static const char *
++register_name(uint32_t offset, uint32_t mmio_base, char *buf, size_t len)
+ {
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
+ 		unsigned int width = r->count ? 4*r->count : 4;
+-		if (offset >= r->offset && offset < r->offset + width) {
++		uint32_t base;
++
++		base = r->offset;
++		if (r->relative)
++			base += mmio_base;
++
++		if (offset >= base && offset < base + width) {
+ 			if (r->count <= 1)
+ 				return r->name;
+ 
+ 			snprintf(buf, len, "%s[%d]",
+-				 r->name, (offset - r->offset)/4);
++				 r->name, (offset - base) / 4);
+ 			return buf;
+ 		}
+ 	}
+@@ -218,22 +195,35 @@ static const char *register_name(uint32_t offset, char *buf, size_t len)
+ 	return "unknown";
+ }
+ 
+-static const struct named_register *lookup_register(uint32_t offset)
++static const struct named_register *
++lookup_register(uint32_t offset, uint32_t mmio_base)
+ {
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
+ 		unsigned int width = r->count ? 4*r->count : 4;
+-		if (offset >= r->offset && offset < r->offset + width)
++		uint32_t base;
++
++		base = r->offset;
++		if (r->relative)
++			base += mmio_base;
++
++		if (offset >= base && offset < base + width)
+ 			return r;
+ 	}
+ 
+ 	return NULL;
+ }
+ 
+-static bool ignore_register(uint32_t offset)
++static bool ignore_register(uint32_t offset, uint32_t mmio_base)
+ {
+ 	for (const struct named_register *r = ignore_registers; r->name; r++) {
+ 		unsigned int width = r->count ? 4*r->count : 4;
+-		if (offset >= r->offset && offset < r->offset + width)
++		uint32_t base;
++
++		base = r->offset;
++		if (r->relative)
++			base += mmio_base;
++
++		if (offset >= base && offset < base + width)
+ 			return true;
+ 	}
+ 
+@@ -248,6 +238,7 @@ static void tmpl_regs(int fd,
+ {
+ 	const unsigned int gen_bit = 1 << intel_gen(intel_get_drm_devid(fd));
+ 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	unsigned int regs_size;
+ 	uint32_t *regs;
+ 
+@@ -259,12 +250,20 @@ static void tmpl_regs(int fd,
+ 		       I915_GEM_DOMAIN_CPU, I915_GEM_DOMAIN_CPU);
+ 
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
++		uint32_t offset;
++
+ 		if (!(r->engine_mask & engine_bit))
+ 			continue;
+ 		if (!(r->gen_mask & gen_bit))
+ 			continue;
+-		for (unsigned count = r->count ?: 1, offset = r->offset;
+-		     count--; offset += 4) {
++		if (r->relative && !mmio_base)
++			continue;
++
++		offset = r->offset;
++		if (r->relative)
++			offset += mmio_base;
++
++		for (unsigned count = r->count ?: 1; count--; offset += 4) {
+ 			uint32_t x = value;
+ 			if (r->write_mask)
+ 				x &= r->write_mask;
+@@ -284,6 +283,7 @@ static uint32_t read_regs(int fd,
+ 	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+ 	const unsigned int gen_bit = 1 << gen;
+ 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	const bool r64b = gen >= 8;
+ 	struct drm_i915_gem_exec_object2 obj[2];
+ 	struct drm_i915_gem_relocation_entry *reloc;
+@@ -311,13 +311,20 @@ static uint32_t read_regs(int fd,
+ 
+ 	n = 0;
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
++		uint32_t offset;
++
+ 		if (!(r->engine_mask & engine_bit))
+ 			continue;
+ 		if (!(r->gen_mask & gen_bit))
+ 			continue;
++		if (r->relative && !mmio_base)
++			continue;
++
++		offset = r->offset;
++		if (r->relative)
++			offset += mmio_base;
+ 
+-		for (unsigned count = r->count ?: 1, offset = r->offset;
+-		     count--; offset += 4) {
++		for (unsigned count = r->count ?: 1; count--; offset += 4) {
+ 			*b++ = 0x24 << 23 | (1 + r64b); /* SRM */
+ 			*b++ = offset;
+ 			reloc[n].target_handle = obj[0].handle;
+@@ -357,6 +364,7 @@ static void write_regs(int fd,
+ {
+ 	const unsigned int gen_bit = 1 << intel_gen(intel_get_drm_devid(fd));
+ 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	struct drm_i915_gem_exec_object2 obj;
+ 	struct drm_i915_gem_execbuffer2 execbuf;
+ 	unsigned int batch_size;
+@@ -372,12 +380,20 @@ static void write_regs(int fd,
+ 	gem_set_domain(fd, obj.handle,
+ 		       I915_GEM_DOMAIN_CPU, I915_GEM_DOMAIN_CPU);
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
++		uint32_t offset;
++
+ 		if (!(r->engine_mask & engine_bit))
+ 			continue;
+ 		if (!(r->gen_mask & gen_bit))
+ 			continue;
+-		for (unsigned count = r->count ?: 1, offset = r->offset;
+-		     count--; offset += 4) {
++		if (r->relative && !mmio_base)
++			continue;
++
++		offset = r->offset;
++		if (r->relative)
++			offset += mmio_base;
++
++		for (unsigned count = r->count ?: 1; count--; offset += 4) {
+ 			uint32_t x = value;
+ 			if (r->write_mask)
+ 				x &= r->write_mask;
+@@ -410,6 +426,7 @@ static void restore_regs(int fd,
+ 	const unsigned int gen = intel_gen(intel_get_drm_devid(fd));
+ 	const unsigned int gen_bit = 1 << gen;
+ 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	const bool r64b = gen >= 8;
+ 	struct drm_i915_gem_exec_object2 obj[2];
+ 	struct drm_i915_gem_execbuffer2 execbuf;
+@@ -437,13 +454,20 @@ static void restore_regs(int fd,
+ 
+ 	n = 0;
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
++		uint32_t offset;
++
+ 		if (!(r->engine_mask & engine_bit))
+ 			continue;
+ 		if (!(r->gen_mask & gen_bit))
+ 			continue;
++		if (r->relative && !mmio_base)
++			continue;
++
++		offset = r->offset;
++		if (r->relative)
++			offset += mmio_base;
+ 
+-		for (unsigned count = r->count ?: 1, offset = r->offset;
+-		     count--; offset += 4) {
++		for (unsigned count = r->count ?: 1; count--; offset += 4) {
+ 			*b++ = 0x29 << 23 | (1 + r64b); /* LRM */
+ 			*b++ = offset;
+ 			reloc[n].target_handle = obj[0].handle;
+@@ -479,6 +503,7 @@ static void dump_regs(int fd,
+ 	const int gen = intel_gen(intel_get_drm_devid(fd));
+ 	const unsigned int gen_bit = 1 << gen;
+ 	const unsigned int engine_bit = ENGINE(e->class, e->instance);
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	unsigned int regs_size;
+ 	uint32_t *out;
+ 
+@@ -489,26 +514,36 @@ static void dump_regs(int fd,
+ 	gem_set_domain(fd, regs, I915_GEM_DOMAIN_CPU, 0);
+ 
+ 	for (const struct named_register *r = nonpriv_registers; r->name; r++) {
++		uint32_t offset;
++
+ 		if (!(r->engine_mask & engine_bit))
+ 			continue;
+ 		if (!(r->gen_mask & gen_bit))
+ 			continue;
++		if (r->relative && !mmio_base)
++			continue;
++
++		offset = r->offset;
++		if (r->relative)
++			offset += mmio_base;
+ 
+ 		if (r->count <= 1) {
+ 			igt_debug("0x%04x (%s): 0x%08x\n",
+-				  r->offset, r->name, out[r->offset/4]);
++				  offset, r->name, out[offset / 4]);
+ 		} else {
+ 			for (unsigned x = 0; x < r->count; x++)
+ 				igt_debug("0x%04x (%s[%d]): 0x%08x\n",
+-					  r->offset+4*x, r->name, x,
+-					  out[r->offset/4 + x]);
++					  offset + 4 * x, r->name, x,
++					  out[offset / 4 + x]);
+ 		}
+ 	}
+ 	munmap(out, regs_size);
+ }
+ 
+-static void compare_regs(int fd, uint32_t A, uint32_t B, const char *who)
++static void compare_regs(int fd, const struct intel_execution_engine2 *e,
++			 uint32_t A, uint32_t B, const char *who)
+ {
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, e->name);
+ 	unsigned int num_errors;
+ 	unsigned int regs_size;
+ 	uint32_t *a, *b;
+@@ -532,11 +567,11 @@ static void compare_regs(int fd, uint32_t A, uint32_t B, const char *who)
+ 		if (a[n] == b[n])
+ 			continue;
+ 
+-		if (ignore_register(offset))
++		if (ignore_register(offset, mmio_base))
+ 			continue;
+ 
+ 		mask = ~0u;
+-		r = lookup_register(offset);
++		r = lookup_register(offset, mmio_base);
+ 		if (r && r->masked)
+ 			mask >>= 16;
+ 		if (r && r->ignore_bits)
+@@ -547,7 +582,7 @@ static void compare_regs(int fd, uint32_t A, uint32_t B, const char *who)
+ 
+ 		igt_warn("Register 0x%04x (%s): A=%08x B=%08x\n",
+ 			 offset,
+-			 register_name(offset, buf, sizeof(buf)),
++			 register_name(offset, mmio_base, buf, sizeof(buf)),
+ 			 a[n] & mask, b[n] & mask);
+ 		num_errors++;
+ 	}
+@@ -638,7 +673,7 @@ static void nonpriv(int fd,
+ 
+ 		igt_spin_free(fd, spin);
+ 
+-		compare_regs(fd, tmpl, regs[1], "nonpriv read/writes");
++		compare_regs(fd, e, tmpl, regs[1], "nonpriv read/writes");
+ 
+ 		for (int n = 0; n < ARRAY_SIZE(regs); n++)
+ 			gem_close(fd, regs[n]);
+@@ -707,8 +742,9 @@ static void isolation(int fd,
+ 		igt_spin_free(fd, spin);
+ 
+ 		if (!(flags & DIRTY1))
+-			compare_regs(fd, regs[0], tmp, "two reads of the same ctx");
+-		compare_regs(fd, regs[0], regs[1], "two virgin contexts");
++			compare_regs(fd, e, regs[0], tmp,
++				     "two reads of the same ctx");
++		compare_regs(fd, e, regs[0], regs[1], "two virgin contexts");
+ 
+ 		for (int n = 0; n < ARRAY_SIZE(ctx); n++) {
+ 			gem_close(fd, regs[n]);
+@@ -827,13 +863,13 @@ static void preservation(int fd,
+ 		char buf[80];
+ 
+ 		snprintf(buf, sizeof(buf), "dirty %x context\n", values[v]);
+-		compare_regs(fd, regs[v][0], regs[v][1], buf);
++		compare_regs(fd, e, regs[v][0], regs[v][1], buf);
+ 
+ 		gem_close(fd, regs[v][0]);
+ 		gem_close(fd, regs[v][1]);
+ 		gem_context_destroy(fd, ctx[v]);
+ 	}
+-	compare_regs(fd, regs[num_values][0], regs[num_values][1], "clean");
++	compare_regs(fd, e, regs[num_values][0], regs[num_values][1], "clean");
+ 	gem_context_destroy(fd, ctx[num_values]);
+ }
+ 
 -- 
 2.25.0
 
