@@ -2,33 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90B661591F8
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:31:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EB1D159236
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:48:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC44B6E046;
-	Tue, 11 Feb 2020 14:31:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B469E6EA90;
+	Tue, 11 Feb 2020 14:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2C236E046;
- Tue, 11 Feb 2020 14:31:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 06:31:19 -0800
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="313078928"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 06:31:17 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 15:30:48 +0100
-Message-Id: <20200211143048.12260-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C796EA90
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:48:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20188267-1500050 
+ for multiple; Tue, 11 Feb 2020 14:48:32 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 14:48:31 +0000
+Message-Id: <20200211144831.1011498-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t v2] tests/gem_userptr_blits: Enhance
- invalid mapping exercise
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gem: Don't leak non-persistent
+ requests on changing engines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,155 +37,313 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Working with a userptr GEM object backed by any type of mapping to
-another GEM object, not only GTT mapping currently examined bu the
-test, may cause a currently unavoidable lockdep splat inside the i915
-driver.  Then, for as long as that issue is not resolved in the driver,
-such operations are expected to fail in advance to prevent from that
-badness to happen.
+If we have a set of active engines marked as being non-persistent, we
+lose track of those if the user replaces those engines with
+I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
+non-persistent requests are terminated if they are no longer being
+tracked by the user's context (in order to prevent a lost request
+causing an untracked and so unstoppable GPU hang), we need to apply the
+same context cancellation upon changing engines.
 
-Extend the scope of the test by adding subtests which exercise other,
-non-GTT mapping types.  Moreover, don't fail but skip should the driver
-refuse to create a userptr object on top of the invalid mapping.  If it
-succeeds however, warn about possible lockdep loop risk.
+v2: Track stale engines[] so we only reap at context closure.
+v3: Tvrtko spotted races with closing contexts and set-engines, so add a
+veneer of kill-everything paranoia to clean up after losing a race.
 
-v2: For as long as the lockdep loop issue is not fixed, don't succeed
-    if a preventive failure occurs but skip (Chris),
-  - otherwise, warn about possible risk,
-  - put a FIXME placeholder until we learn how to anger lockdep.
-
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
+Testcase: igt/gem_ctx_peristence/replace
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- tests/i915/gem_userptr_blits.c | 66 ++++++++++++++++++++++++----------
- 1 file changed, 48 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 122 ++++++++++++++++--
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  13 +-
+ drivers/gpu/drm/i915/i915_sw_fence.c          |  17 ++-
+ drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
+ 4 files changed, 141 insertions(+), 13 deletions(-)
 
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index a8d3783fb..93bac9766 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -60,6 +60,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index cfaf5bbdbcab..3e82739bdbc0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -270,7 +270,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
  
- #include "drm.h"
- #include "i915_drm.h"
-+#include "i915/gem_mman.h"
+-	init_rcu_head(&e->rcu);
++	e->ctx = ctx;
++
+ 	for_each_engine(engine, gt, id) {
+ 		struct intel_context *ce;
  
- #include "intel_bufmgr.h"
- 
-@@ -577,11 +578,11 @@ static int test_invalid_null_pointer(int fd)
- 	return 0;
+@@ -450,7 +451,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
+ 	return engine;
  }
  
--static int test_invalid_gtt_mapping(int fd)
-+static int test_invalid_mapping(int fd, uint64_t flags)
+-static void kill_context(struct i915_gem_context *ctx)
++static void kill_engines(struct i915_gem_engines *engines)
  {
--	struct drm_i915_gem_mmap_gtt arg;
-+	struct drm_i915_gem_mmap_offset arg;
- 	uint32_t handle;
--	char *gtt, *map;
-+	char *ptr, *map;
+ 	struct i915_gem_engines_iter it;
+ 	struct intel_context *ce;
+@@ -462,7 +463,7 @@ static void kill_context(struct i915_gem_context *ctx)
+ 	 * However, we only care about pending requests, so only include
+ 	 * engines on which there are incomplete requests.
+ 	 */
+-	for_each_gem_engine(ce, __context_engines_static(ctx), it) {
++	for_each_gem_engine(ce, engines, it) {
+ 		struct intel_engine_cs *engine;
  
- 	/* Anonymous mapping to find a hole */
- 	map = mmap(NULL, sizeof(linear) + 2 * PAGE_SIZE,
-@@ -602,37 +603,43 @@ static int test_invalid_gtt_mapping(int fd)
- 	igt_assert_eq(copy(fd, handle, handle), 0);
- 	gem_close(fd, handle);
+ 		if (intel_context_set_banned(ce))
+@@ -484,8 +485,37 @@ static void kill_context(struct i915_gem_context *ctx)
+ 			 * the context from the GPU, we have to resort to a full
+ 			 * reset. We hope the collateral damage is worth it.
+ 			 */
+-			__reset_context(ctx, engine);
++			__reset_context(engines->ctx, engine);
++	}
++}
++
++static void kill_stale_engines(struct i915_gem_context *ctx)
++{
++	struct i915_gem_engines *pos, *next;
++	unsigned long flags;
++
++	spin_lock_irqsave(&ctx->stale.lock, flags);
++	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
++		if (!i915_sw_fence_await(&pos->fence))
++			continue;
++
++		spin_unlock_irqrestore(&ctx->stale.lock, flags);
++
++		kill_engines(pos);
++
++		spin_lock_irqsave(&ctx->stale.lock, flags);
++		list_safe_reset_next(pos, next, link);
++		list_del_init(&pos->link); /* decouple from FENCE_COMPLETE */
++
++		i915_sw_fence_complete(&pos->fence);
+ 	}
++	spin_unlock_irqrestore(&ctx->stale.lock, flags);
++}
++
++static void kill_context(struct i915_gem_context *ctx)
++{
++	kill_stale_engines(ctx);
++	kill_engines(__context_engines_static(ctx));
+ }
  
--	/* GTT mapping */
-+	/* mmap-offset mapping */
- 	memset(&arg, 0, sizeof(arg));
- 	arg.handle = create_bo(fd, 0);
--	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_GTT, &arg);
--	gtt = mmap(map + PAGE_SIZE, sizeof(linear),
--		   PROT_READ | PROT_WRITE,
--		   MAP_SHARED | MAP_FIXED,
--		   fd, arg.offset);
--	igt_assert(gtt == map + PAGE_SIZE);
-+	arg.flags = flags;
-+	do_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg);
-+	ptr = mmap(map + PAGE_SIZE, sizeof(linear), PROT_READ | PROT_WRITE,
-+		   MAP_SHARED | MAP_FIXED, fd, arg.offset);
-+	igt_assert(ptr == map + PAGE_SIZE);
- 	gem_close(fd, arg.handle);
--	igt_assert(((unsigned long)gtt & (PAGE_SIZE - 1)) == 0);
-+	igt_assert(((unsigned long)ptr & (PAGE_SIZE - 1)) == 0);
- 	igt_assert((sizeof(linear) & (PAGE_SIZE - 1)) == 0);
+ static void set_closed_name(struct i915_gem_context *ctx)
+@@ -602,6 +632,9 @@ __create_context(struct drm_i915_private *i915)
+ 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
+ 	mutex_init(&ctx->mutex);
  
--	gem_userptr(fd, gtt, sizeof(linear), 0, userptr_flags, &handle);
-+	/* FIXME: revisit as soon as lockdep loop issue is resolved */
-+	igt_require_f(!__gem_userptr(fd, ptr, sizeof(linear), 0, userptr_flags,
-+				     &handle),
-+		      "lockdep loop preventive failure possibly occurred");
-+	igt_warn("userptr(mmap_offset) succeeded, risk of lockdep loop exists");
-+	/* FIXME: we should try harder to anger lockdep */
- 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
- 	gem_close(fd, handle);
++	spin_lock_init(&ctx->stale.lock);
++	INIT_LIST_HEAD(&ctx->stale.engines);
++
+ 	mutex_init(&ctx->engines_mutex);
+ 	e = default_engines(ctx);
+ 	if (IS_ERR(e)) {
+@@ -1529,6 +1562,77 @@ static const i915_user_extension_fn set_engines__extensions[] = {
+ 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+ };
  
--	gem_userptr(fd, gtt, PAGE_SIZE, 0, userptr_flags, &handle);
-+	gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
- 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
- 	gem_close(fd, handle);
- 
--	gem_userptr(fd, gtt + sizeof(linear) - PAGE_SIZE, PAGE_SIZE, 0, userptr_flags, &handle);
-+	gem_userptr(fd, ptr + sizeof(linear) - PAGE_SIZE, PAGE_SIZE, 0,
-+		    userptr_flags, &handle);
- 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
- 	gem_close(fd, handle);
- 
- 	/* boundaries */
--	gem_userptr(fd, map, 2*PAGE_SIZE, 0, userptr_flags, &handle);
-+	gem_userptr(fd, map, 2 * PAGE_SIZE, 0, userptr_flags, &handle);
- 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
- 	gem_close(fd, handle);
- 
--	gem_userptr(fd, map + sizeof(linear), 2*PAGE_SIZE, 0, userptr_flags, &handle);
-+	gem_userptr(fd, map + sizeof(linear), 2 * PAGE_SIZE, 0, userptr_flags,
-+		    &handle);
- 	igt_assert_eq(copy(fd, handle, handle), -EFAULT);
- 	gem_close(fd, handle);
- 
-@@ -2009,8 +2016,31 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 		igt_subtest("invalid-null-pointer")
- 			test_invalid_null_pointer(fd);
- 
--		igt_subtest("invalid-gtt-mapping")
--			test_invalid_gtt_mapping(fd);
-+		igt_describe("Verify userptr on top of GTT mapping to GEM object will fail");
-+		igt_subtest("invalid-gtt-mapping") {
-+			gem_require_mappable_ggtt(fd);
-+			test_invalid_mapping(fd, I915_MMAP_OFFSET_GTT);
++static int engines_notify(struct i915_sw_fence *fence,
++			  enum i915_sw_fence_notify state)
++{
++	struct i915_gem_engines *engines =
++		container_of(fence, typeof(*engines), fence);
++
++	switch (state) {
++	case FENCE_COMPLETE:
++		if (!list_empty(&engines->link)) {
++			struct i915_gem_context *ctx = engines->ctx;
++			unsigned long flags;
++
++			spin_lock_irqsave(&ctx->stale.lock, flags);
++			list_del(&engines->link);
++			spin_unlock_irqrestore(&ctx->stale.lock, flags);
 +		}
-+		igt_subtest_group {
-+			igt_fixture
-+				igt_require(gem_has_mmap_offset(fd));
++		break;
 +
-+			igt_describe("Verify userptr on top of CPU mapping to GEM object will fail");
-+			igt_subtest("invalid-wb-mapping")
-+				test_invalid_mapping(fd, I915_MMAP_OFFSET_WB);
++	case FENCE_FREE:
++		init_rcu_head(&engines->rcu);
++		call_rcu(&engines->rcu, free_engines_rcu);
++		break;
++	}
 +
-+			igt_subtest_group {
-+				igt_fixture
-+					igt_require(gem_mmap_offset__has_wc(fd));
++	return NOTIFY_DONE;
++}
 +
-+				igt_describe("Verify userptr on top of coherent mapping to GEM object will fail");
-+				igt_subtest("invalid-wc-mapping")
-+					test_invalid_mapping(fd, I915_MMAP_OFFSET_WC);
-+				igt_describe("Verify userptr on top of uncached mapping to GEM object will fail");
-+				igt_subtest("invalid-uc-mapping")
-+					test_invalid_mapping(fd, I915_MMAP_OFFSET_UC);
-+			}
-+		}
++static void engines_idle_release(struct i915_gem_engines *engines)
++{
++	struct i915_gem_engines_iter it;
++	struct intel_context *ce;
++	unsigned long flags;
++
++	GEM_BUG_ON(!engines);
++	i915_sw_fence_init(&engines->fence, engines_notify);
++
++	INIT_LIST_HEAD(&engines->link);
++	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
++	if (!i915_gem_context_is_closed(engines->ctx))
++		list_add(&engines->link, &engines->ctx->stale.engines);
++	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
++	if (list_empty(&engines->link)) /* raced, already closed */
++		goto kill;
++
++	for_each_gem_engine(ce, engines, it) {
++		struct dma_fence *fence;
++		int err;
++
++		if (!ce->timeline)
++			continue;
++
++		fence = i915_active_fence_get(&ce->timeline->last_request);
++		if (!fence)
++			continue;
++
++		err = i915_sw_fence_await_dma_fence(&engines->fence,
++						    fence, 0,
++						    GFP_KERNEL);
++
++		dma_fence_put(fence);
++		if (err < 0)
++			goto kill;
++	}
++	goto out;
++
++kill:
++	kill_engines(engines);
++out:
++	i915_sw_fence_commit(&engines->fence);
++}
++
+ static int
+ set_engines(struct i915_gem_context *ctx,
+ 	    const struct drm_i915_gem_context_param *args)
+@@ -1571,7 +1675,8 @@ set_engines(struct i915_gem_context *ctx,
+ 	if (!set.engines)
+ 		return -ENOMEM;
  
- 		igt_subtest("forked-access")
- 			test_forked_access(fd);
+-	init_rcu_head(&set.engines->rcu);
++	set.engines->ctx = ctx;
++
+ 	for (n = 0; n < num_engines; n++) {
+ 		struct i915_engine_class_instance ci;
+ 		struct intel_engine_cs *engine;
+@@ -1631,7 +1736,8 @@ set_engines(struct i915_gem_context *ctx,
+ 	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
+ 	mutex_unlock(&ctx->engines_mutex);
+ 
+-	call_rcu(&set.engines->rcu, free_engines_rcu);
++	/* Keep track of old engine sets for kill_context() */
++	engines_idle_release(set.engines);
+ 
+ 	return 0;
+ }
+@@ -1646,7 +1752,6 @@ __copy_engines(struct i915_gem_engines *e)
+ 	if (!copy)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	init_rcu_head(&copy->rcu);
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		if (e->engines[n])
+ 			copy->engines[n] = intel_context_get(e->engines[n]);
+@@ -1890,7 +1995,8 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	if (!clone)
+ 		goto err_unlock;
+ 
+-	init_rcu_head(&clone->rcu);
++	clone->ctx = dst;
++
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		struct intel_engine_cs *engine;
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 017ca803ab47..8d996dde8046 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -20,6 +20,7 @@
+ #include "gt/intel_context_types.h"
+ 
+ #include "i915_scheduler.h"
++#include "i915_sw_fence.h"
+ 
+ struct pid;
+ 
+@@ -30,7 +31,12 @@ struct intel_timeline;
+ struct intel_ring;
+ 
+ struct i915_gem_engines {
+-	struct rcu_head rcu;
++	union {
++		struct rcu_head rcu;
++		struct list_head link;
++	};
++	struct i915_sw_fence fence;
++	struct i915_gem_context *ctx;
+ 	unsigned int num_engines;
+ 	struct intel_context *engines[];
+ };
+@@ -173,6 +179,11 @@ struct i915_gem_context {
+ 	 * context in messages.
+ 	 */
+ 	char name[TASK_COMM_LEN + 8];
++
++	struct {
++		struct spinlock lock;
++		struct list_head engines;
++	} stale;
+ };
+ 
+ #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index 51ba97daf2a0..a3d38e089b6e 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -211,10 +211,21 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
+ 	__i915_sw_fence_complete(fence, NULL);
+ }
+ 
+-void i915_sw_fence_await(struct i915_sw_fence *fence)
++bool i915_sw_fence_await(struct i915_sw_fence *fence)
+ {
+-	debug_fence_assert(fence);
+-	WARN_ON(atomic_inc_return(&fence->pending) <= 1);
++	int pending;
++
++	/*
++	 * It is only safe to add a new await to the fence while it has
++	 * not yet been signaled (i.e. there are still existing signalers).
++	 */
++	pending = atomic_read(&fence->pending);
++	do {
++		if (pending < 1)
++			return false;
++	} while (!atomic_try_cmpxchg(&fence->pending, &pending, pending + 1));
++
++	return true;
+ }
+ 
+ void __i915_sw_fence_init(struct i915_sw_fence *fence,
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
+index 19e806ce43bc..30a863353ee6 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.h
++++ b/drivers/gpu/drm/i915/i915_sw_fence.h
+@@ -91,7 +91,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
+ 				    unsigned long timeout,
+ 				    gfp_t gfp);
+ 
+-void i915_sw_fence_await(struct i915_sw_fence *fence);
++bool i915_sw_fence_await(struct i915_sw_fence *fence);
+ void i915_sw_fence_complete(struct i915_sw_fence *fence);
+ 
+ static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
 -- 
-2.21.0
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
