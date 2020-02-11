@@ -1,39 +1,62 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 657E01588D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 04:31:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3A4158957
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 06:08:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319FB6E7D0;
-	Tue, 11 Feb 2020 03:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42F9C6E2B2;
+	Tue, 11 Feb 2020 05:08:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97CB96E7D0
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 03:31:48 +0000 (UTC)
-Received: from localhost (unknown [137.135.114.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id 38C1A20838;
- Tue, 11 Feb 2020 03:31:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1581391908;
- bh=yCBBKcGHrzJyqTk3nldWaVYdcvQox0zU/zsZqfq6uMo=;
- h=Date:From:To:To:To:Cc:Cc:Cc:Subject:In-Reply-To:References:From;
- b=fhH+cEDsOJy81wX78b00zYPIoixEsimNF1bSKn4hTb+N7W/JoynaQZradug5DoSZm
- t7ubRb8ScxD7J/mz7saLMW08regKfJfsrcrj8MO8N8ddAKZJqNI8JSXKZl+Y2VQ9Km
- TCowu6bFvUq95GHyfid85c7LmR7mVdrSsB4bVS6E=
-Date: Tue, 11 Feb 2020 03:31:47 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200207211452.2860634-1-chris@chris-wilson.co.uk>
-References: <20200207211452.2860634-1-chris@chris-wilson.co.uk>
-Message-Id: <20200211033148.38C1A20838@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Always force a context
- reload when rewinding RING_TAIL
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com
+ [IPv6:2607:f8b0:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1556E2B2;
+ Tue, 11 Feb 2020 05:08:35 +0000 (UTC)
+Received: by mail-ot1-x342.google.com with SMTP id b18so8909306otp.0;
+ Mon, 10 Feb 2020 21:08:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=PzVeAyFZDO+woAn09FRMNrkoa0zSne0dLCKhCXRtKF4=;
+ b=q19RtMc0tzaSrg/nVN9T+kDTIgE8GoGHNomGjMNGenUlgmowB17Sqh3zey54f8gwwm
+ BR4NEdvdNkRA2Bt8im+h0tZV4M0sHqG14O8zHW8GXGcY92EGJPUwcoRKNQT+o8GOviIq
+ vSQXanqPppwaTlPZXXu5SEGn0NtNXBd8lw6KA9PnfTiDeQbt/jgLtEfkoQJjF8NWBhUi
+ qhW6ZBmXY3R4d2N2H+odyUXA49/16Rp7mZZVYqyMLKBYZaORunQcif9aVgEHiihUbOYV
+ co150RBv41MIHzSY/ynkVRopA+Dxyr5mWI/fMf+GbykRcpD+ZWO2oE5EIWQKAq927rNS
+ fWiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=PzVeAyFZDO+woAn09FRMNrkoa0zSne0dLCKhCXRtKF4=;
+ b=fam5O6P0aX0Z5afjqHnkleEUkGSAc7nV79mwhp6L5Xn3gqXzcNFZIX+5jjeLhm0Ms5
+ vLFNdZcY5/kjbPlVfCMYc4Psfb5GrG2ZjDxUifplQQfyoOKJMGrfk+hhnxbCMKmMBx1N
+ MnFATIPfoijTnKYyIZ8etlXiLfkPHRUqel6Qp3bCwN9saM/8obbmtUF7x6M2xfWn5+lg
+ TOMnWNdIfHVha+D2TLJFpIAklF8I7uxJ5RFDMuUnQmY2OmeHccdiaQnzmWlfJcw7OTK4
+ qW6UKgP7/f6Dcf3qXokkZsxpj5cApeoSJQiw029X+6mkGJRVFliO6qc4acDf09QMhbUJ
+ HecA==
+X-Gm-Message-State: APjAAAXnwertwLHvyyGKbdGcUZmLBxeeeLntmmsiJlfu7I4PazPYaM5n
+ h39s1vF/eARzatvKrMXBJVA=
+X-Google-Smtp-Source: APXvYqxlNclpViNWlqwt0+vIhDKhok/SwQafMKa1noHdmqFLH9wDIUn22rZ/pJ6WKGHUhsnqLaXwGg==
+X-Received: by 2002:a05:6830:1e37:: with SMTP id
+ t23mr3936686otr.16.1581397714034; 
+ Mon, 10 Feb 2020 21:08:34 -0800 (PST)
+Received: from localhost.localdomain ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id d11sm862015otl.31.2020.02.10.21.08.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 10 Feb 2020 21:08:33 -0800 (PST)
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Mon, 10 Feb 2020 22:08:08 -0700
+Message-Id: <20200211050808.29463-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.25.0
+MIME-Version: 1.0
+X-Patchwork-Bot: notify
+Subject: [Intel-gfx] [PATCH] drm/i915: Disable
+ -Wtautological-constant-out-of-range-compare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,57 +69,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , stable@vger.kernel.org
-MIME-Version: 1.0
+Cc: Nathan Chancellor <natechancellor@gmail.com>,
+ clang-built-linux@googlegroups.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+A recent commit in clang added -Wtautological-compare to -Wall, which is
+enabled for i915 so we see the following warning:
 
-[This is an automated email]
+../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warning:
+result of comparison of constant 576460752303423487 with expression of
+type 'unsigned int' is always false
+[-Wtautological-constant-out-of-range-compare]
+        if (unlikely(remain > N_RELOC(ULONG_MAX)))
+            ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
 
-This commit has been processed because it contains a "Fixes:" tag,
-fixing commit: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing").
+This warning only happens on x86_64 but that check is relevant for
+32-bit x86 so we cannot remove it. -Wtautological-compare on a whole has
+good warnings but this one is not really relevant for the kernel because
+of all of the different configurations that are used to build the
+kernel. When -Wtautological-compare is enabled for the kernel, this
+option will remain disabled so do that for i915 now.
 
-The bot has tested the following trees: v5.5.2, v5.4.18.
+Link: https://github.com/ClangBuiltLinux/linux/issues/778
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+ drivers/gpu/drm/i915/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-v5.5.2: Failed to apply! Possible dependencies:
-    05975cd9eb84 ("drm/i915: Remove vestigal i915_gem_context locals from cmdparser")
-    32d94048b988 ("drm/i915/gem: Prepare gen7 cmdparser for async execution")
-    3cd6e8860ecd ("drm/i915/gen7: Re-enable full-ppgtt for ivb & hsw")
-    51696691aba3 ("drm/i915/gem: Tidy up error handling for eb_parse()")
-    755bf8a8c985 ("drm/i915: Remove redundant parameters from intel_engine_cmd_parser")
-    9f3ccd40acf4 ("drm/i915: Drop GEM context as a direct link from i915_request")
-    b291ce0a168b ("drm/i915/gem: Purge the sudden reappearance of i915_gem_object_pin()")
-    cd30a5031704 ("drm/i915/gem: Excise the per-batch whitelist from the context")
-    f70de8d2ca6b ("drm/i915/gt: Track the context validity explicitly")
-    f997056d5b17 ("drm/i915/gt: Push the flush_pd before the set-context")
-    fc4f125d958f ("drm/i915/gem: Embed context/timeline name inside the GEM context")
-
-v5.4.18: Failed to apply! Possible dependencies:
-    08fff7aeddc9 ("drm/i915/tgl: Wa_1607138340")
-    0b718ba1e884 ("drm/i915/gtt: Downgrade Cherryview back to aliasing-ppgtt")
-    253a774bb08b ("drm/i915/execlists: Don't merely skip submission if maybe timeslicing")
-    3c00660db183 ("drm/i915/execlists: Assert tasklet is locked for process_csb()")
-    42014f69bb23 ("drm/i915: Hook up GT power management")
-    5bf05dc58d65 ("drm/i915/tgl: Register state context definition for Gen12")
-    5d904e3c5d40 ("drm/i915: Pass in intel_gt at some for_each_engine sites")
-    7dc56af5260e ("drm/i915/selftests: Verify the LRC register layout between init and HW")
-    82c69bf58650 ("drm/i915/gt: Detect if we miss WaIdleLiteRestore")
-    c113236718e8 ("drm/i915: Extract GT render sleep (rc6) management")
-    cdb736fa8b8b ("drm/i915: Use engine relative LRIs on context setup")
-    eaef5b3c4113 ("drm/i915: Refactor instdone loops on new subslice functions")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 38df01c23176..55dbcca179c7 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -21,6 +21,7 @@ subdir-ccflags-y += $(call cc-disable-warning, unused-but-set-variable)
+ subdir-ccflags-y += $(call cc-disable-warning, sign-compare)
+ subdir-ccflags-y += $(call cc-disable-warning, sometimes-uninitialized)
+ subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
++subdir-ccflags-y += $(call cc-disable-warning, tautological-constant-out-of-range-compare)
+ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
+ 
+ # Fine grained warnings disable
 -- 
-Thanks,
-Sasha
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
