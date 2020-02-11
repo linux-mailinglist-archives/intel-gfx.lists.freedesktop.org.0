@@ -1,64 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B68971589EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 07:15:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41C05158A24
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 07:58:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93D7689CF9;
-	Tue, 11 Feb 2020 06:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99B406E2C0;
+	Tue, 11 Feb 2020 06:58:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
- [IPv6:2607:f8b0:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E7089CF9;
- Tue, 11 Feb 2020 06:15:04 +0000 (UTC)
-Received: by mail-ot1-x344.google.com with SMTP id i6so8972469otr.7;
- Mon, 10 Feb 2020 22:15:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ovFJATVDu6V+ADjunhZvdZKdFIc/4GBOO/Os9uePfYE=;
- b=PbyDuRd+bCjjDsWIYXPfjGpOMhwlwj1boUYk7oUx4sd8wMvaphOrmwfdxQF+t2SrPS
- qZ1WtNsYHmLo0wpgRifBvJ4YNgGVS2WlYzS2dBNY9YfInjY1GoiJQwuakKh6CsbGARaW
- FzyM1oyOo8xjSuNRRJ6QVZXLxIE+dfAXYwatcaN0L5frjxHxlZmPB0tg4OjpvIqFS3WH
- 46I5Ynu3GB7c2B1op2PivbxJRXVA2nzfnMBKBLZEKn4agAEKx9NvaQiBqmA5CXUvMYNN
- tewRS4Za5sOIXp9YOWFcIlkM/Yhgjs492lT3pDRPyOVUySM0lQqyNsyPbeiC6M2Bq0ml
- wzTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ovFJATVDu6V+ADjunhZvdZKdFIc/4GBOO/Os9uePfYE=;
- b=X/PxbGUwE+jV0UJfZCyYVq7M8t1q1d5qHM2fCHz1snoZft2pu4J9paixYarahsOaMq
- XKcp1u+2nUAnR/hgfDepSvHDmiJ1nSJk3ktbhl53ZQodMUfffz6NYGBHQhNxzLeBdAYe
- z0p7d+0P/ekCOrQZxrkazWcXnHhCeHczM+3gAETbSd0fpi6wlt+HkcN5aui8sGOCv3WL
- Xi3Okw2KjI/54CG647HkXHJrFiMDtRyUsNnYvS0oq/oDv05R+lPFG0/G01zxKlhu36eh
- SEddUfq3EhK9st7DaotO9BW3CxpJffAPZeb4lQIvRzaWR7OAojWBdGbal3XEv0jmYjED
- e2TQ==
-X-Gm-Message-State: APjAAAUC2gwMRNbV9HUEnwBVZ5rTO0+gdu4nOuA51AaelAqVf/BRTO3w
- 24z9PJGnzp9QsZ1Q2VyqoYw=
-X-Google-Smtp-Source: APXvYqw6tIh0QT0u93GUbrmFqsmB/GO9LEZw1RYgpBEfmSVnsb6DSCeHR24r8sic5wRHHarUPoTgFQ==
-X-Received: by 2002:a05:6830:1042:: with SMTP id
- b2mr4001160otp.306.1581401703244; 
- Mon, 10 Feb 2020 22:15:03 -0800 (PST)
-Received: from localhost.localdomain ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id v23sm898122otj.61.2020.02.10.22.15.02
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 10 Feb 2020 22:15:02 -0800 (PST)
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Mon, 10 Feb 2020 23:13:39 -0700
-Message-Id: <20200211061338.23666-1-natechancellor@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200211050808.29463-1-natechancellor@gmail.com>
-References: <20200211050808.29463-1-natechancellor@gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BC0756E2CF;
+ Tue, 11 Feb 2020 06:58:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3C19A0071;
+ Tue, 11 Feb 2020 06:58:39 +0000 (UTC)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Disable
- -Wtautological-constant-out-of-range-compare
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nathan Chancellor" <natechancellor@gmail.com>
+Date: Tue, 11 Feb 2020 06:58:39 -0000
+Message-ID: <158140431970.23972.11229520611550927797@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200211050808.29463-1-natechancellor@gmail.com>
+In-Reply-To: <20200211050808.29463-1-natechancellor@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Disable_-Wtautological-constant-out-of-range-compare_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,59 +39,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Nathan Chancellor <natechancellor@gmail.com>,
- clang-built-linux@googlegroups.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A recent commit in clang added -Wtautological-compare to -Wall, which is
-enabled for i915 so we see the following warning:
+== Series Details ==
 
-../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warning:
-result of comparison of constant 576460752303423487 with expression of
-type 'unsigned int' is always false
-[-Wtautological-constant-out-of-range-compare]
-        if (unlikely(remain > N_RELOC(ULONG_MAX)))
-            ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+Series: drm/i915: Disable -Wtautological-constant-out-of-range-compare (rev2)
+URL   : https://patchwork.freedesktop.org/series/73271/
+State : failure
 
-This warning only happens on x86_64 but that check is relevant for
-32-bit x86 so we cannot remove it. -Wtautological-compare on a whole has
-good warnings but this one is not really relevant for the kernel because
-of all of the different configurations that are used to build the
-kernel. When -Wtautological-compare is enabled for the kernel, this
-option will remain disabled so do that for i915 now.
+== Summary ==
 
-Link: https://github.com/ClangBuiltLinux/linux/issues/778
-Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
----
+CI Bug Log - changes from CI_DRM_7905 -> Patchwork_16515
+====================================================
 
-v1 -> v2: https://lore.kernel.org/lkml/20200211050808.29463-1-natechancellor@gmail.com/
+Summary
+-------
 
-* Fix patch application due to basing on a local tree that had
-  -Wuninitialized turned on. Can confirm that patch applies on
-  latest -next now.
+  **FAILURE**
 
- drivers/gpu/drm/i915/Makefile | 1 +
- 1 file changed, 1 insertion(+)
+  Serious unknown changes coming with Patchwork_16515 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16515, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index b8c5f8934dbd..159355eb43a9 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -22,6 +22,7 @@ subdir-ccflags-y += $(call cc-disable-warning, sign-compare)
- subdir-ccflags-y += $(call cc-disable-warning, sometimes-uninitialized)
- subdir-ccflags-y += $(call cc-disable-warning, initializer-overrides)
- subdir-ccflags-y += $(call cc-disable-warning, uninitialized)
-+subdir-ccflags-y += $(call cc-disable-warning, tautological-constant-out-of-range-compare)
- subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- 
- # Fine grained warnings disable
--- 
-2.25.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/index.html
 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16515:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_objects:
+    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-bwr-2160/igt@i915_selftest@live_objects.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-bwr-2160/igt@i915_selftest@live_objects.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16515 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][5] ([i915#694] / [i915#816]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][7] ([i915#424]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7905/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (46 -> 40)
+------------------------------
+
+  Additional (4): fi-skl-lmem fi-glk-dsi fi-snb-2520m fi-kbl-r 
+  Missing    (10): fi-ilk-m540 fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-blb-e6850 fi-byt-clapper fi-bsw-nick 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7905 -> Patchwork_16515
+
+  CI-20190529: 20190529
+  CI_DRM_7905: db98da3dd757a19dbaaeaef8640276fe7be2fc4e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16515: 2b06b9a9a6d6785235ca559832db83a0e69928ff @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2b06b9a9a6d6 drm/i915: Disable -Wtautological-constant-out-of-range-compare
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16515/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
