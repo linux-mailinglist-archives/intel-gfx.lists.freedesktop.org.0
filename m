@@ -1,37 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 271751594EB
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 17:28:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FCD81594F3
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 17:29:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823C36EEBB;
-	Tue, 11 Feb 2020 16:28:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBAEC6EEBF;
+	Tue, 11 Feb 2020 16:29:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 173EB6EEBB
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 16:28:15 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D176EEBF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 16:29:07 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 08:28:14 -0800
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="221982312"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 08:28:12 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 18:28:02 +0200
-Message-Id: <20200211162802.16180-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200211162802.16180-1-jani.nikula@intel.com>
-References: <20200211162802.16180-1-jani.nikula@intel.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 08:29:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="237442395"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 11 Feb 2020 08:29:04 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 11 Feb 2020 18:29:03 +0200
+Date: Tue, 11 Feb 2020 18:29:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200211162903.GW13686@intel.com>
+References: <20200211161451.6867-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [CI 2/2] drm/i915: switch i915_driver_probe() to use
- i915 local variable
+Content-Disposition: inline
+In-Reply-To: <20200211161451.6867-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: move intel_csr.[ch] under
+ display/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,82 +48,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHJlZmVyIGk5MTUgb3ZlciBkZXZfcHJpdiB3aGVyZSBwb3NzaWJsZS4gTm8gZnVuY3Rpb25hbCBj
-aGFuZ2VzLgoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+ClJldmlld2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4K
-U2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIHwgNTQgKysrKysrKysrKysrKysrKy0tLS0t
-LS0tLS0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjcgaW5zZXJ0aW9ucygrKSwgMjcgZGVsZXRp
-b25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKaW5kZXggNGM3NTQzN2YzM2FmLi42YWIyZGU4
-MmI1ZjcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKKysrIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwpAQCAtMTQ4NSwxNiArMTQ4NSwxNiBAQCBp
-bnQgaTkxNV9kcml2ZXJfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0IHN0cnVjdCBw
-Y2lfZGV2aWNlX2lkICplbnQpCiB7CiAJY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvICpt
-YXRjaF9pbmZvID0KIAkJKHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyAqKWVudC0+ZHJpdmVyX2Rh
-dGE7Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2OworCXN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1OwogCWludCByZXQ7CiAKLQlkZXZfcHJpdiA9IGk5MTVfZHJpdmVyX2Ny
-ZWF0ZShwZGV2LCBlbnQpOwotCWlmIChJU19FUlIoZGV2X3ByaXYpKQotCQlyZXR1cm4gUFRSX0VS
-UihkZXZfcHJpdik7CisJaTkxNSA9IGk5MTVfZHJpdmVyX2NyZWF0ZShwZGV2LCBlbnQpOworCWlm
-IChJU19FUlIoaTkxNSkpCisJCXJldHVybiBQVFJfRVJSKGk5MTUpOwogCiAJLyogRGlzYWJsZSBu
-dWNsZWFyIHBhZ2VmbGlwIGJ5IGRlZmF1bHQgb24gcHJlLUlMSyAqLwogCWlmICghaTkxNV9tb2Rw
-YXJhbXMubnVjbGVhcl9wYWdlZmxpcCAmJiBtYXRjaF9pbmZvLT5nZW4gPCA1KQotCQlkZXZfcHJp
-di0+ZHJtLmRyaXZlcl9mZWF0dXJlcyAmPSB+RFJJVkVSX0FUT01JQzsKKwkJaTkxNS0+ZHJtLmRy
-aXZlcl9mZWF0dXJlcyAmPSB+RFJJVkVSX0FUT01JQzsKIAogCS8qCiAJICogQ2hlY2sgaWYgd2Ug
-c3VwcG9ydCBmYWtlIExNRU0gLS0gZm9yIG5vdyB3ZSBvbmx5IHVubGVhc2ggdGhpcyBmb3IKQEAg
-LTE1MDIsMTMgKzE1MDIsMTMgQEAgaW50IGk5MTVfZHJpdmVyX3Byb2JlKHN0cnVjdCBwY2lfZGV2
-ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQogCSAqLwogI2lmIElTX0VO
-QUJMRUQoQ09ORklHX0RSTV9JOTE1X1NFTEZURVNUKQogCWlmIChJU19FTkFCTEVEKENPTkZJR19E
-Uk1fSTkxNV9VTlNUQUJMRV9GQUtFX0xNRU0pKSB7Ci0JCWlmIChJTlRFTF9HRU4oZGV2X3ByaXYp
-ID49IDkgJiYgaTkxNV9zZWxmdGVzdC5saXZlIDwgMCAmJgorCQlpZiAoSU5URUxfR0VOKGk5MTUp
-ID49IDkgJiYgaTkxNV9zZWxmdGVzdC5saXZlIDwgMCAmJgogCQkgICAgaTkxNV9tb2RwYXJhbXMu
-ZmFrZV9sbWVtX3N0YXJ0KSB7Ci0JCQlta3dyaXRlX2RldmljZV9pbmZvKGRldl9wcml2KS0+bWVt
-b3J5X3JlZ2lvbnMgPQorCQkJbWt3cml0ZV9kZXZpY2VfaW5mbyhpOTE1KS0+bWVtb3J5X3JlZ2lv
-bnMgPQogCQkJCVJFR0lPTl9TTUVNIHwgUkVHSU9OX0xNRU0gfCBSRUdJT05fU1RPTEVOOwotCQkJ
-bWt3cml0ZV9kZXZpY2VfaW5mbyhkZXZfcHJpdiktPmlzX2RnZnggPSB0cnVlOwotCQkJR0VNX0JV
-R19PTighSEFTX0xNRU0oZGV2X3ByaXYpKTsKLQkJCUdFTV9CVUdfT04oIUlTX0RHRlgoZGV2X3By
-aXYpKTsKKwkJCW1rd3JpdGVfZGV2aWNlX2luZm8oaTkxNSktPmlzX2RnZnggPSB0cnVlOworCQkJ
-R0VNX0JVR19PTighSEFTX0xNRU0oaTkxNSkpOworCQkJR0VNX0JVR19PTighSVNfREdGWChpOTE1
-KSk7CiAJCX0KIAl9CiAjZW5kaWYKQEAgLTE1MTcsNDggKzE1MTcsNDggQEAgaW50IGk5MTVfZHJp
-dmVyX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9p
-ZCAqZW50KQogCWlmIChyZXQpCiAJCWdvdG8gb3V0X2Zpbmk7CiAKLQlyZXQgPSBpOTE1X2RyaXZl
-cl9lYXJseV9wcm9iZShkZXZfcHJpdik7CisJcmV0ID0gaTkxNV9kcml2ZXJfZWFybHlfcHJvYmUo
-aTkxNSk7CiAJaWYgKHJldCA8IDApCiAJCWdvdG8gb3V0X3BjaV9kaXNhYmxlOwogCi0JZGlzYWJs
-ZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZkZXZfcHJpdi0+cnVudGltZV9wbSk7CisJZGlzYWJsZV9y
-cG1fd2FrZXJlZl9hc3NlcnRzKCZpOTE1LT5ydW50aW1lX3BtKTsKIAotCWk5MTVfZGV0ZWN0X3Zn
-cHUoZGV2X3ByaXYpOworCWk5MTVfZGV0ZWN0X3ZncHUoaTkxNSk7CiAKLQlyZXQgPSBpOTE1X2Ry
-aXZlcl9tbWlvX3Byb2JlKGRldl9wcml2KTsKKwlyZXQgPSBpOTE1X2RyaXZlcl9tbWlvX3Byb2Jl
-KGk5MTUpOwogCWlmIChyZXQgPCAwKQogCQlnb3RvIG91dF9ydW50aW1lX3BtX3B1dDsKIAotCXJl
-dCA9IGk5MTVfZHJpdmVyX2h3X3Byb2JlKGRldl9wcml2KTsKKwlyZXQgPSBpOTE1X2RyaXZlcl9o
-d19wcm9iZShpOTE1KTsKIAlpZiAocmV0IDwgMCkKIAkJZ290byBvdXRfY2xlYW51cF9tbWlvOwog
-Ci0JcmV0ID0gaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZShkZXZfcHJpdik7CisJcmV0ID0gaTkx
-NV9kcml2ZXJfbW9kZXNldF9wcm9iZShpOTE1KTsKIAlpZiAocmV0IDwgMCkKIAkJZ290byBvdXRf
-Y2xlYW51cF9odzsKIAotCWk5MTVfZHJpdmVyX3JlZ2lzdGVyKGRldl9wcml2KTsKKwlpOTE1X2Ry
-aXZlcl9yZWdpc3RlcihpOTE1KTsKIAotCWVuYWJsZV9ycG1fd2FrZXJlZl9hc3NlcnRzKCZkZXZf
-cHJpdi0+cnVudGltZV9wbSk7CisJZW5hYmxlX3JwbV93YWtlcmVmX2Fzc2VydHMoJmk5MTUtPnJ1
-bnRpbWVfcG0pOwogCi0JaTkxNV93ZWxjb21lX21lc3NhZ2VzKGRldl9wcml2KTsKKwlpOTE1X3dl
-bGNvbWVfbWVzc2FnZXMoaTkxNSk7CiAKIAlyZXR1cm4gMDsKIAogb3V0X2NsZWFudXBfaHc6Ci0J
-aTkxNV9kcml2ZXJfaHdfcmVtb3ZlKGRldl9wcml2KTsKLQlpbnRlbF9tZW1vcnlfcmVnaW9uc19k
-cml2ZXJfcmVsZWFzZShkZXZfcHJpdik7Ci0JaTkxNV9nZ3R0X2RyaXZlcl9yZWxlYXNlKGRldl9w
-cml2KTsKKwlpOTE1X2RyaXZlcl9od19yZW1vdmUoaTkxNSk7CisJaW50ZWxfbWVtb3J5X3JlZ2lv
-bnNfZHJpdmVyX3JlbGVhc2UoaTkxNSk7CisJaTkxNV9nZ3R0X2RyaXZlcl9yZWxlYXNlKGk5MTUp
-Owogb3V0X2NsZWFudXBfbW1pbzoKLQlpOTE1X2RyaXZlcl9tbWlvX3JlbGVhc2UoZGV2X3ByaXYp
-OworCWk5MTVfZHJpdmVyX21taW9fcmVsZWFzZShpOTE1KTsKIG91dF9ydW50aW1lX3BtX3B1dDoK
-LQllbmFibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygmZGV2X3ByaXYtPnJ1bnRpbWVfcG0pOwotCWk5
-MTVfZHJpdmVyX2xhdGVfcmVsZWFzZShkZXZfcHJpdik7CisJZW5hYmxlX3JwbV93YWtlcmVmX2Fz
-c2VydHMoJmk5MTUtPnJ1bnRpbWVfcG0pOworCWk5MTVfZHJpdmVyX2xhdGVfcmVsZWFzZShpOTE1
-KTsKIG91dF9wY2lfZGlzYWJsZToKIAlwY2lfZGlzYWJsZV9kZXZpY2UocGRldik7CiBvdXRfZmlu
-aToKLQlpOTE1X3Byb2JlX2Vycm9yKGRldl9wcml2LCAiRGV2aWNlIGluaXRpYWxpemF0aW9uIGZh
-aWxlZCAoJWQpXG4iLCByZXQpOwotCWk5MTVfZHJpdmVyX2Rlc3Ryb3koZGV2X3ByaXYpOworCWk5
-MTVfcHJvYmVfZXJyb3IoaTkxNSwgIkRldmljZSBpbml0aWFsaXphdGlvbiBmYWlsZWQgKCVkKVxu
-IiwgcmV0KTsKKwlpOTE1X2RyaXZlcl9kZXN0cm95KGk5MTUpOwogCXJldHVybiByZXQ7CiB9CiAK
-LS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
-Cg==
+On Tue, Feb 11, 2020 at 06:14:50PM +0200, Jani Nikula wrote:
+> The DMC firmware is about display. Move the handling under display. No
+> functional changes.
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+I'm also thinking s/csr/dmc/ migth be a good idea. I don't even
+remember what "csr" means...
+
+> ---
+>  drivers/gpu/drm/i915/Makefile                  | 2 +-
+>  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c | 0
+>  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h | 0
+>  drivers/gpu/drm/i915/i915_debugfs.c            | 2 +-
+>  drivers/gpu/drm/i915/i915_drv.c                | 2 +-
+>  drivers/gpu/drm/i915/i915_gpu_error.c          | 2 +-
+>  6 files changed, 4 insertions(+), 4 deletions(-)
+>  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c (100%)
+>  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h (100%)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 49eed50ef0a4..a2fab3c43563 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -46,7 +46,6 @@ i915-y +=3D i915_drv.o \
+>  	  i915_switcheroo.o \
+>  	  i915_sysfs.o \
+>  	  i915_utils.o \
+> -	  intel_csr.o \
+>  	  intel_device_info.o \
+>  	  intel_memory_region.o \
+>  	  intel_pch.o \
+> @@ -183,6 +182,7 @@ i915-y +=3D \
+>  	display/intel_color.o \
+>  	display/intel_combo_phy.o \
+>  	display/intel_connector.o \
+> +	display/intel_csr.o \
+>  	display/intel_display.o \
+>  	display/intel_display_power.o \
+>  	display/intel_dpio_phy.o \
+> diff --git a/drivers/gpu/drm/i915/intel_csr.c b/drivers/gpu/drm/i915/disp=
+lay/intel_csr.c
+> similarity index 100%
+> rename from drivers/gpu/drm/i915/intel_csr.c
+> rename to drivers/gpu/drm/i915/display/intel_csr.c
+> diff --git a/drivers/gpu/drm/i915/intel_csr.h b/drivers/gpu/drm/i915/disp=
+lay/intel_csr.h
+> similarity index 100%
+> rename from drivers/gpu/drm/i915/intel_csr.h
+> rename to drivers/gpu/drm/i915/display/intel_csr.h
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i=
+915_debugfs.c
+> index 3cae18d1d20c..83dae4d8ac0c 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -32,6 +32,7 @@
+>  #include <drm/drm_debugfs.h>
+>  #include <drm/drm_fourcc.h>
+>  =
+
+> +#include "display/intel_csr.h"
+>  #include "display/intel_display_types.h"
+>  #include "display/intel_dp.h"
+>  #include "display/intel_fbc.h"
+> @@ -51,7 +52,6 @@
+>  #include "i915_debugfs_params.h"
+>  #include "i915_irq.h"
+>  #include "i915_trace.h"
+> -#include "intel_csr.h"
+>  #include "intel_pm.h"
+>  #include "intel_sideband.h"
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 516536234e97..4e43a671f2c0 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -50,6 +50,7 @@
+>  #include "display/intel_audio.h"
+>  #include "display/intel_bw.h"
+>  #include "display/intel_cdclk.h"
+> +#include "display/intel_csr.h"
+>  #include "display/intel_display_types.h"
+>  #include "display/intel_dp.h"
+>  #include "display/intel_fbdev.h"
+> @@ -77,7 +78,6 @@
+>  #include "i915_sysfs.h"
+>  #include "i915_trace.h"
+>  #include "i915_vgpu.h"
+> -#include "intel_csr.h"
+>  #include "intel_memory_region.h"
+>  #include "intel_pm.h"
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915=
+/i915_gpu_error.c
+> index 5a1517d0bf3b..b2ed977ed971 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -37,6 +37,7 @@
+>  #include <drm/drm_print.h>
+>  =
+
+>  #include "display/intel_atomic.h"
+> +#include "display/intel_csr.h"
+>  #include "display/intel_overlay.h"
+>  =
+
+>  #include "gem/i915_gem_context.h"
+> @@ -47,7 +48,6 @@
+>  #include "i915_gpu_error.h"
+>  #include "i915_memcpy.h"
+>  #include "i915_scatterlist.h"
+> -#include "intel_csr.h"
+>  =
+
+>  #define ALLOW_FAIL (GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN)
+>  #define ATOMIC_MAYFAIL (GFP_ATOMIC | __GFP_NOWARN)
+> -- =
+
+> 2.20.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
