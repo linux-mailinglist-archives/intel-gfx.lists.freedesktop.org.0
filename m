@@ -1,64 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1E5159A9E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 21:39:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28645159AC9
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 21:56:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9CC26E2B8;
-	Tue, 11 Feb 2020 20:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 984C26E26C;
+	Tue, 11 Feb 2020 20:56:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
- [IPv6:2607:f8b0:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC2A26E2B8;
- Tue, 11 Feb 2020 20:39:38 +0000 (UTC)
-Received: by mail-ot1-x344.google.com with SMTP id d3so11549696otp.4;
- Tue, 11 Feb 2020 12:39:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent; bh=FkiL+nwntyVL1Depk52x54ARrFLNbJ/q2cGreWUpoIY=;
- b=guvCAd2UOUpE5ajI+DyZuXuN5tRzCg1lxnzXs01Bvu2MlthWaB0XogL0T0x015uMCv
- 0Nvd5+Ig7erzbpig7CWn1Kiws8zHYl44P3bOkicvZaw2f51Qe4Ml6z6VRCQrCpJq24EY
- DR4ynLgVuwECElLR2xmeFY2msAViOtRDcH1POsBv6CnnIHmPgLjAvG1MkNVIFWcMD8Te
- UQDPiEB+WG1wY2ilnvK8g2oK/a8t9J2lFGd1pqTUbTOmoXak/wg6m63A9+dH4OIwsiJJ
- RpARQc1c+3yEtHkG8gD7JGSh/lnpYuRTLockpE32Egd1RdTirJy3ErA0i2yfaNgW3aBD
- rM4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=FkiL+nwntyVL1Depk52x54ARrFLNbJ/q2cGreWUpoIY=;
- b=VuIYVujWbq3LknC3lveMJ4IsbrXN1Wun0BT7r8ckIshwk3YE+6Ud36nSPnbckcs7VU
- zG3EaJD7yZwdowk3yubiSCJW18fIZ7T6Z3S+GlHMfpWZWTcpA1Pvq3dEzjHAaRmX65S8
- Hh0brO5WQLhB6oqytqEx/Chbkgd/7QCuCxL5lSbei36QwZNecZndxwgxpbNV5euX31JK
- PLx3SXBUjzuel6eoIWfeHmPO0RUPizXYn0uQTf93vuj+axwYqmQNeAf+umbRRIruj+fF
- E843XsOxoP3ue5fUiFhOc6HRFGSGl2oitNB2Nr8Jzufu4DE7NcWPOD2F2dhZXqhiGcFV
- XGIw==
-X-Gm-Message-State: APjAAAVTv8ugubrkAj6NHBF92yOFyvJPCMdG4D7Txkr+a7vHm5f+b8Gw
- VLu7IA9AE/HlXu0G8Duj8Jo=
-X-Google-Smtp-Source: APXvYqyRcLhd1pYN0o8cVbwvTHy9UM43N0APlTdoi5+8CTIzfL2EpJ/miK1zSlKVRAdQyxB4Sxva+g==
-X-Received: by 2002:a9d:64ca:: with SMTP id n10mr6692357otl.325.1581453577909; 
- Tue, 11 Feb 2020 12:39:37 -0800 (PST)
-Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id w8sm1537795ote.80.2020.02.11.12.39.37
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Tue, 11 Feb 2020 12:39:37 -0800 (PST)
-Date: Tue, 11 Feb 2020 13:39:35 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
-Message-ID: <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
-References: <20200211050808.29463-1-natechancellor@gmail.com>
- <20200211061338.23666-1-natechancellor@gmail.com>
- <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 658A26E26C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 20:56:20 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20192201-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 20:56:15 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 20:56:14 +0000
+Message-Id: <20200211205615.1190127-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
- -Wtautological-constant-out-of-range-compare
+Subject: [Intel-gfx] [CI 1/2] drm/i915: Poison rings after use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +36,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- clang-built-linux@googlegroups.com, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 11, 2020 at 10:41:48AM +0100, Michel D=E4nzer wrote:
-> On 2020-02-11 7:13 a.m., Nathan Chancellor wrote:
-> > A recent commit in clang added -Wtautological-compare to -Wall, which is
-> > enabled for i915 so we see the following warning:
-> > =
+On retiring the request, we should not re-use these elements in the ring
+(at least not until we fill the ringbuffer and knowingly reuse the space).
+Leave behind some poison to (hopefully) trap ourselves if we make a
+mistake.
 
-> > ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warning:
-> > result of comparison of constant 576460752303423487 with expression of
-> > type 'unsigned int' is always false
-> > [-Wtautological-constant-out-of-range-compare]
-> >         if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> >             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-> > =
+Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 26 +++++++++++++++++---------
+ 1 file changed, 17 insertions(+), 9 deletions(-)
 
-> > This warning only happens on x86_64 but that check is relevant for
-> > 32-bit x86 so we cannot remove it.
-> =
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 1adb8cf35f75..6daf18dbb3d4 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -203,6 +203,19 @@ static void free_capture_list(struct i915_request *request)
+ 	}
+ }
+ 
++static void __i915_request_fill(struct i915_request *rq, u8 val)
++{
++	void *vaddr = rq->ring->vaddr;
++	u32 head;
++
++	head = rq->infix;
++	if (rq->postfix < head) {
++		memset(vaddr + head, val, rq->ring->size - head);
++		head = 0;
++	}
++	memset(vaddr + head, val, rq->postfix - head);
++}
++
+ static void remove_from_engine(struct i915_request *rq)
+ {
+ 	struct intel_engine_cs *engine, *locked;
+@@ -247,6 +260,9 @@ bool i915_request_retire(struct i915_request *rq)
+ 	 */
+ 	GEM_BUG_ON(!list_is_first(&rq->link,
+ 				  &i915_request_timeline(rq)->requests));
++	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
++		/* Poison before we release our space in the ring */
++		__i915_request_fill(rq, POISON_FREE);
+ 	rq->ring->head = rq->postfix;
+ 
+ 	/*
+@@ -1179,9 +1195,6 @@ i915_request_await_object(struct i915_request *to,
+ 
+ void i915_request_skip(struct i915_request *rq, int error)
+ {
+-	void *vaddr = rq->ring->vaddr;
+-	u32 head;
+-
+ 	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
+ 	dma_fence_set_error(&rq->fence, error);
+ 
+@@ -1193,12 +1206,7 @@ void i915_request_skip(struct i915_request *rq, int error)
+ 	 * context, clear out all the user operations leaving the
+ 	 * breadcrumb at the end (so we get the fence notifications).
+ 	 */
+-	head = rq->infix;
+-	if (rq->postfix < head) {
+-		memset(vaddr + head, 0, rq->ring->size - head);
+-		head = 0;
+-	}
+-	memset(vaddr + head, 0, rq->postfix - head);
++	__i915_request_fill(rq, 0);
+ 	rq->infix = rq->postfix;
+ }
+ 
+-- 
+2.25.0
 
-> That's suprising. AFAICT N_RELOC(ULONG_MAX) works out to the same value
-> in both cases, and remain is a 32-bit value in both cases. How can it be
-> larger than N_RELOC(ULONG_MAX) on 32-bit (but not on 64-bit)?
-> =
-
-
-Hi Michel,
-
-Can't this condition be true when UINT_MAX =3D=3D ULONG_MAX? clang does not
-warn on a 32-bit x86 build from what I remember. Honestly, my
-understanding of overflow is pretty shoddy, this is mostly based on what
-I have heard from others.
-
-I sent a patch trying to remove that check but had it rejected:
-
-https://lore.kernel.org/lkml/20191123195321.41305-1-natechancellor@gmail.co=
-m/
-
-Cheers,
-Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
