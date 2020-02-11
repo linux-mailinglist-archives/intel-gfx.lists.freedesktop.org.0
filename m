@@ -2,47 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD50E15978C
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:01:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE28159791
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 19:01:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B107B6F406;
-	Tue, 11 Feb 2020 18:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62CF06F408;
+	Tue, 11 Feb 2020 18:01:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B5D26F406
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:01:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 10:01:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="222010708"
-Received: from rmfosha-dev-1.fm.intel.com (HELO [10.19.83.123])
- ([10.19.83.123])
- by orsmga007.jf.intel.com with ESMTP; 11 Feb 2020 10:01:19 -0800
-To: "Ye, Tony" <tony.ye@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
- <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
- <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
- <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
- <157979471850.19995.901739010740499969@skylake-alporthouse-com>
- <op.0e0gqwtixaggs7@mwajdecz-mobl1.ger.corp.intel.com>
- <ab0ca807-0e3b-172a-dbd6-6777f5881be1@intel.com>
-From: "Fosha, Robert M" <robert.m.fosha@intel.com>
-Message-ID: <3d4f28e6-c87b-0278-ba3a-64d95d550efd@intel.com>
-Date: Tue, 11 Feb 2020 09:53:05 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FABC6F408
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 18:01:53 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id c9so13593066wrw.8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 10:01:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:date:to:cc:subject:in-reply-to:message-id:references
+ :user-agent:mime-version;
+ bh=ZbY9e71SO5qF4EnjaAWR6x5o409Ay+fOuj1uKDzW/MM=;
+ b=Jkh0XKI1+jXDPTaR5QAES8JNUQZcbKqylIHazMTd33Re/ZEx1An8eDqXtmZ7Msi1uI
+ 7bBrthoQwPWv7wq04LoE7bCwuO3/usDCJpvVpBHJPOX/XvVQqo6CZixC+/71Yuy/IvmX
+ HOuSsn5NjHdtuS+zDvSb+53gmk6yb+U0sZ4G4iidJtiu1JUx3QcWh1greE7OoFyy8Hbp
+ Dz/D+vUO7VFkojM4tUMpRlzzfOa/cfqCo4uR4oJzIS9gCj9CUsjjC1VGQPzG6vBo8SLP
+ lzSyTtKrjyg6PEH7UOscoELl6AGjRKrfE0jxwhkkgpqs3iZ5JT6RRUcj/Ovtaqq9NHrh
+ 4aNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:date:to:cc:subject:in-reply-to:message-id
+ :references:user-agent:mime-version;
+ bh=ZbY9e71SO5qF4EnjaAWR6x5o409Ay+fOuj1uKDzW/MM=;
+ b=F3zYwtDJ5UFnr0+9b+cy7qdSuZRmK/1U9OsxKHotHsIPZEQ545ZYretsKdBmRnn4w6
+ xZtqnWR9fNoA8NwsiSjb09ZrKKYwRDzYJyZ0srv2mGYCcmE44GGueUIaecII0FUMqzRI
+ WXWTaUB8qgdXwQnQBXjjQNQltFCb3AVqDlwJTpCe4x9VCQS3iPvRZiImaofLypEA5Tsv
+ G7OxGdsBmEnjUBNs6n5YD6XNGnIvTMV8K4K1ES5G+/Jv4D3ztO2x66Y+N1mSdCW59nqJ
+ hk4ONwxyEQ6ePtzz+X9ETHYfofb5KhywdCs/Ecokf32M6bpO/+dFvw3Efl/bcCjLCWuD
+ ieng==
+X-Gm-Message-State: APjAAAWopMxoBeuLELSCxhDnafcptwhfGknBZJQWnr9CgyCXlI/AKsF7
+ THFm0WCf9tM9Z4GBXK1A/Bk=
+X-Google-Smtp-Source: APXvYqxewzJGqP2ojK498SEi3EyglRJYxqtzCOI/0nCxEDJexPD89m/xde8vfMJU5ZHEzAFXcfxFCQ==
+X-Received: by 2002:adf:dd52:: with SMTP id u18mr9549900wrm.131.1581444111030; 
+ Tue, 11 Feb 2020 10:01:51 -0800 (PST)
+Received: from wambui.local ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id z10sm4404491wmk.31.2020.02.11.10.01.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 11 Feb 2020 10:01:50 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+X-Google-Original-From: Wambui Karuga <wambui@wambui>
+Date: Tue, 11 Feb 2020 21:01:26 +0300 (EAT)
+To: Jani Nikula <jani.nikula@intel.com>
+In-Reply-To: <20200211134427.31605-1-jani.nikula@intel.com>
+Message-ID: <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
+References: <20200211134427.31605-1-jani.nikula@intel.com>
+User-Agent: Alpine 2.21.99999 (LNX 375 2019-10-29)
 MIME-Version: 1.0
-In-Reply-To: <ab0ca807-0e3b-172a-dbd6-6777f5881be1@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdmi: prefer to_i915() over
+ drm->dev_private to get at i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,180 +68,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-15"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-On 2/4/20 4:43 PM, Ye, Tony wrote:
->
->
-> On 1/27/2020 1:41 AM, Michal Wajdeczko wrote:
->> On Thu, 23 Jan 2020 16:51:58 +0100, Chris Wilson =
+On Tue, 11 Feb 2020, Jani Nikula wrote:
 
->> <chris@chris-wilson.co.uk> wrote:
->>
->>> Quoting Michal Wajdeczko (2020-01-23 15:38:52)
->>>> On Thu, 23 Jan 2020 16:02:17 +0100, Chris Wilson
->>>> <chris@chris-wilson.co.uk> wrote:
->>>>
->>>> > Quoting Daniele Ceraolo Spurio (2020-01-22 23:52:33)
->>>> >>
->>>> >>
->>>> >> On 1/22/20 11:48 AM, Michal Wajdeczko wrote:
->>>> >> >=A0 From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over =
-
->>>> i915
->>>> >> > in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
->>>> >> > to indicate lack of HuC hardware and we started to use this error
->>>> >> > also for all other cases when HuC was not in use or supported.
->>>> >> >
->>>> >> > Fix that by relying again on HAS_GT_UC macro, since currently
->>>> >> > used function intel_huc_is_supported() is based on HuC firmware
->>>> >> > support which could be unsupported also due to force disabled
->>>> >> > GuC firmware.
->>>> >> >
->>>> >> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> >> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>>> >> > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>>> >> > Cc: Tony Ye <tony.ye@intel.com>
->>>> >>
->>>> >> Reviewed-by: Daniele Ceraolo Spurio =
-
->>>> <daniele.ceraolospurio@intel.com>
->>>> >
->>>> > Once upon a time did you (Michal) not argue we should indicate =
-
->>>> the lack
->>>> > of firmware in the error code? Something like
->>>> >
->>>> > if (!HAS_GT_UC(gt->i915))
->>>> >=A0=A0=A0=A0=A0=A0 return -ENODEV;
->>>> >
->>>> > if (!intel_huc_is_supported(huc))
->>>> >=A0=A0=A0=A0=A0=A0 return -ENOEXEC;
->>>>
->>>> Yes, we discussed this here [1] together with [2] but we didn't
->>>> conclude our discussion due to different opinions on how represent
->>>> some states, in particular "manually disabled" state.
->>>>
->>>> In this patch I just wanted to restore old notation.
->>>>
->>>> But we can start new discussion, here is summary:
->>>>
->>>> ------------------+----------+----------+----------
->>>> =A0 HuC state=A0=A0=A0=A0=A0=A0=A0 | today*=A0=A0 | option A | option B
->>>> ------------------+----------+----------+----------
->>>> no HuC hardware=A0=A0 | -ENODEV=A0 | -ENODEV=A0 | -ENODEV
->>>> GuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=
-=A0 | -EOPNOTSUPP
->>>> HuC fw disabled=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 0=A0=A0=
-=A0 | -EOPNOTSUPP
->>>> HuC fw missing=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOPKG=A0 | -ENOEX=
-EC
->>>> HuC fw error=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -ENOEXEC | -ENO=
-EXEC
->>>> HuC fw fail=A0=A0=A0=A0=A0=A0 |=A0=A0 0=A0=A0=A0=A0=A0 | -EACCES=A0 |=
-=A0=A0=A0 0
->>>> HuC authenticated |=A0=A0 1=A0=A0=A0=A0=A0 |=A0=A0=A0=A0 1=A0=A0=A0 |=
-=A0=A0=A0 1
->>>> ------------------+----------+----------+----------
->>>
->>> By fw fail, you mean we loaded the firmware (to our knowledge)
->>> correctly, but HUC_STATUS is not reported as valid?
->>>
->>> If so, I support option B. I like the idea of saying
->>> "no HuC" (machine too old)
->>> "no firmware" (user action, or lack thereof)
->>> 0 (fw unhappy)
->>> 1 (fw reports success)
->>>
->>> In between states for failures in fw loading? Not so sure. But I can =
-
->>> see
->>> the nicety in distinguishing between lack of firmware and some random
->>> failure in loading the firmware (the former being user action required
->>> to rectify, command line parameter whatever and the latter being the
->>> firmware file is either invalid or a stray neutrino prevented loading).
->>>
->>> Imo the error messages should be about why we cannot probe/trust the
->>> HUC_STATUS register. If everything is setup correctly then the returned
->>> value should be from reading the register. I dislike only returning =
-
->>> 1 if
->>> supported, and converting a valid read of 0 into another error.
->>>
->>> So Option B :)
->>
->> But I'm not sure that option B is consistent in error reporting, as
->> "fw unhappy" is definitely an serious error but is represented as plain
->> non-error "0" status, while "fw disabled" (user action) is treated as =
-
->> error
->>
->> ------------------+----------
->> =A0=A0 HuC state=A0=A0=A0=A0=A0=A0 | option B
->> ------------------+----------
->> no HuC hardware=A0=A0 | -ENODEV
->> GuC fw disabled=A0=A0 | -EOPNOTSUPP -> user decision, why error?
->> HuC fw disabled=A0=A0 | -EOPNOTSUPP -> user decision, why error?
->> HuC fw missing=A0=A0=A0 | -ENOEXEC
->> HuC fw error=A0=A0=A0=A0=A0 | -ENOEXEC
->> HuC fw fail=A0=A0=A0=A0=A0=A0 |=A0=A0=A0 0=A0=A0=A0=A0=A0=A0=A0 -> unlik=
-ely, but still fw/hw error
->> HuC authenticated |=A0=A0=A0 1
->> ------------------+----------
->>
->> On other hand, option A treats all error conditions as errors, leaving
->> status codes only for normal operations: disabled(0)/authenticated(1):
->>
->> ------------------+----------
->> =A0=A0 HuC state=A0=A0=A0=A0=A0=A0 | option A
->> ------------------+----------
->> no HuC hardware=A0=A0 | -ENODEV=A0 -> you shouldn't ask
->> GuC fw disabled=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 -> user decision, not an =
-error
->> HuC fw disabled=A0=A0 |=A0=A0=A0=A0 0=A0=A0=A0 -> user decision, not an =
-error
->> HuC fw missing=A0=A0=A0 | -ENOPKG=A0 -> fw not installed correctly
->> HuC fw error=A0=A0=A0=A0=A0 | -ENOEXEC -> bad/wrong fw
->> HuC fw fail=A0=A0=A0=A0=A0=A0 | -EACCES=A0 -> fw/hw error
->> HuC authenticated |=A0=A0=A0=A0 1
->> ------------------+----------
->
-> Vote for Option A.
->
-> Regards,
-> Tony
+> drm->dev_private is to be avoided. Use to_i915() on the struct
+> drm_device pointer instead. Rename the affected local dev_priv variables
+> to i915 while at it.
 >
 
-Are we ok to move forward on this? Michal, are you working on updating =
+Applies cleanly, and compiles.
+Changes also look good to me.
 
-the patch?
+Reviewed by: Wambui Karuga <wambui.karugax@gmail.com>
 
--Rob
-
->>
->> But since I'm not an active HuC user, will leave final decision to =
-
->> others.
->>
->> /Michal
->>
->>
->>>
->>>> Note that all above should be compatible with media driver,
->>>> which explicitly looks for no error and value 1
->>>
->>> Cool.
->>> -Chris
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
+> Cc: Wambui Karuga <wambui.karugax@gmail.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+> drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++--------------
+> 1 file changed, 10 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index e68bafb76cb1..bee9c9b1a770 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1274,10 +1274,9 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
+> static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
+> 				unsigned int offset, void *buffer, size_t size)
+> {
+> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+> -	struct drm_i915_private *dev_priv =
+> -		intel_dig_port->base.base.dev->dev_private;
+> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+> 							      hdmi->ddc_bus);
+> 	int ret;
+> 	u8 start = offset & 0xff;
+> @@ -1304,10 +1303,9 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
+> static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
+> 				 unsigned int offset, void *buffer, size_t size)
+> {
+> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+> -	struct drm_i915_private *dev_priv =
+> -		intel_dig_port->base.base.dev->dev_private;
+> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+> 							      hdmi->ddc_bus);
+> 	int ret;
+> 	u8 *write_buf;
+> @@ -1339,10 +1337,9 @@ static
+> int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+> 				  u8 *an)
+> {
+> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+> -	struct drm_i915_private *dev_priv =
+> -		intel_dig_port->base.base.dev->dev_private;
+> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+> 							      hdmi->ddc_bus);
+> 	int ret;
+>
+> @@ -1521,8 +1518,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+> static
+> bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+> {
+> -	struct drm_i915_private *dev_priv =
+> -		intel_dig_port->base.base.dev->dev_private;
+> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+> 	struct intel_connector *connector =
+> 		intel_dig_port->hdmi.attached_connector;
+> 	enum port port = intel_dig_port->base.port;
+> @@ -1537,14 +1533,13 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+> 	if (ret)
+> 		return false;
+>
+> -	intel_de_write(dev_priv, HDCP_RPRIME(dev_priv, cpu_transcoder, port),
+> -		       ri.reg);
+> +	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
+>
+> 	/* Wait for Ri prime match */
+> -	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+> +	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
+> 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+> 		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
+> -			  intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
+> +			  intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)));
+> 		return false;
+> 	}
+> 	return true;
+> -- 
+> 2.20.1
+>
+>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
