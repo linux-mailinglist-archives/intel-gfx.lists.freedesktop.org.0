@@ -2,34 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F7D1591AA
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:16:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 756D21591BF
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:22:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFA626EE62;
-	Tue, 11 Feb 2020 14:16:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C026EA7B;
+	Tue, 11 Feb 2020 14:22:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC8A6EE60
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:16:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20187887-1500050 for multiple; Tue, 11 Feb 2020 14:15:59 +0000
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D22E6EA7B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:22:13 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 06:22:13 -0800
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="226516748"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 06:22:11 -0800
+Date: Tue, 11 Feb 2020 16:21:48 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200211142148.GA29904@ideak-desk.fi.intel.com>
+References: <20200211114038.21035-1-stanislav.lisovskiy@intel.com>
+ <87zhdpz35z.fsf@intel.com>
+ <713d424e3ab55716b9f475ee0453dc3e4848e226.camel@intel.com>
+ <87r1z1z0ri.fsf@intel.com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200210205722.794180-1-chris@chris-wilson.co.uk>
- <20200210205722.794180-4-chris@chris-wilson.co.uk>
- <5e404774-1e4b-1c8a-f5ca-45826d7bda86@linux.intel.com>
-In-Reply-To: <5e404774-1e4b-1c8a-f5ca-45826d7bda86@linux.intel.com>
-Message-ID: <158143055793.2303.1572726675050076513@skylake-alporthouse-com>
-Date: Tue, 11 Feb 2020 14:15:57 +0000
-Subject: Re: [Intel-gfx] [PATCH 4/7] drm/i915/gem: Don't leak non-persistent
- requests on changing engines
+Content-Disposition: inline
+In-Reply-To: <87r1z1z0ri.fsf@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Call intel_edp_init_connector
+ only for eDP.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,84 +48,141 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-11 13:41:22)
+On Tue, Feb 11, 2020 at 03:55:45PM +0200, Jani Nikula wrote:
+> On Tue, 11 Feb 2020, "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com> wrote:
+> > On Tue, 2020-02-11 at 15:03 +0200, Jani Nikula wrote:
+> >> On Tue, 11 Feb 2020, Stanislav Lisovskiy <
+> >> stanislav.lisovskiy@intel.com> wrote:
+> >> > I guess it would still be nice to make the code less confusing
+> >> > and do not call eDP specific function, for non-eDP connectors
+> >> > just to immediately return true(success) value as a hack.
+> >> > 
+> >> > So simply extracted that check out from this function,
+> >> > that we simply don't call it for non-eDP connectors. Bingo.
+> >> 
+> >> Fair enough, I guess...
+> >> 
+> >> Though I could be persuaded to take a patch for the reverse, because
+> >> generally we prefer localized knowledge in the callee than in a
+> >> potentially irrelevant place in the caller.
+> >> 
+> >> Consider the intel_dp_mst_encoder_init() call in the context of this
+> >> patch. We call it, and the function itself decides whether MST init
+> >> is
+> >> relevant or not. But I presume you wouldn't suggest pulling in all
+> >> the
+> >> conditions from there one level higher?
+> >> 
+> >> Would your opinion on intel_edp_init_connector() be different if the
+> >> conditions were more than just the single intel_dp_is_edp()? Or if we
+> >> moved all of eDP support to a separate file?
+> >
+> > Well, to me at least intel_edp_init_connector means that we are going
+> > to init an eDP connector, which already assumes that, we already should
+> > know that this is an eDP connector :) 
+> > Otherwise it should have somewhat different name, not saying that this
+> > is the best philosophy, but generally I would prefer the functions to
+> > be solely responsible for a single thing so that that init function is
+> > supposed to do only init, but not also some detection/checking or any 
+> > other side effects.
+> >
+> > So that there is a clear visibility what we are doing, if it's an init
+> > then we really do only init or if we supposed to detect something
+> > first, let it be a separate thing..
+> >
+> > Also this uses a return value in confusing way, i.e returning "Success"
+> > status for non-eDP from intel_edp_init_connector seems kind of
+> > confusing.
 > 
-> On 10/02/2020 20:57, Chris Wilson wrote:
-> > +static void kill_context(struct i915_gem_context *ctx)
-> > +{
-> > +     if (!list_empty(&ctx->stale.engines))
-> > +             kill_stale_engines(ctx);
+> Again, how is this different from intel_dp_mst_encoder_init()?
 > 
-> Lets see.. set_engines can freely race with context_close. The former is 
-> adding entries to the list under the lock, the latter is here inspecting 
-> list state unlocked. But then proceeds to lock it and all is good if 
-> false negative are not an issue. But looks like it could happen and then 
-> it fails to clean up. All that is needed is for this thread to not see 
-> the addition to the list. And since this is not a hot path how about you 
-> just always call kill_state_engines?
-
-Hmm. I didn't consider the race between close context and set-engines.
-
-We would also need to reject the late addition of engines to a closed
-context under the spinlock.
-
-Ta.
-
-> >   #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
-> > diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-> > index 51ba97daf2a0..bc6d4f8b78f0 100644
-> > --- a/drivers/gpu/drm/i915/i915_sw_fence.c
-> > +++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-> > @@ -211,10 +211,23 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
-> >       __i915_sw_fence_complete(fence, NULL);
-> >   }
-> >   
-> > -void i915_sw_fence_await(struct i915_sw_fence *fence)
-> > +bool i915_sw_fence_await(struct i915_sw_fence *fence)
-> >   {
-> > -     debug_fence_assert(fence);
-> > -     WARN_ON(atomic_inc_return(&fence->pending) <= 1);
-> > +     int old, new;
-> > +
-> > +     /*
-> > +      * It is only safe to add a new await to the fence while it has
-> > +      * not yet been signaled.
-> > +      */
-> > +     new = atomic_read(&fence->pending);
-> > +     do {
-> > +             if (new < 1)
-> > +                     return false;
-> > +
-> > +             old = new++;
-> > +     } while ((new = atomic_cmpxchg(&fence->pending, old, new)) != old);
+> With the *exactly* same rationale you'd end up with this:
 > 
-> Simplify with atomic_try_cmpxchg?
-
-I was under the mistaken impression we didn't have atomic_try_cmpxchg.
-
-> I need a refresher on sw_fence->pending. (See your new comments and 
-> raise you lack of old! ;)
+>         if (HAS_DP_MST(i915) && !intel_dp_is_edp(intel_dp)) &&
+>             !(INTEL_GEN(i915) < 12 && port == PORT_A) &&
+>             !(INTEL_GEN(i915) <	11 && port == PORT_E))
+>                 intel_dp_mst_encoder_init(intel_dig_port,
+>                                           intel_connector->base.base.id);
 > 
-> -1 = completed
-> 0 = ??
+> Surely the information is better localized in a SPOT in the MST code?
 
--1 = completed (all listeners awoken)
-0 = signaled
-1+ = pending waits (and yes we always start with 1 pending wait on behalf
-of the caller)
+I find it also clearer to bring the intel_dp_is_edp() check out from
+intel_edp_init_connector(): we init the connector to be either an eDP or
+DP connector. Atm it's not clear after intel_edp_init_connector() returns
+success if the connector is eDP or DP type at that point. Stan's change
+would improve that.
 
-> 1 = new, not waited upon
-> 2 = waited upon
-
-Maybe we don't really need -1? That was originally to avoid passing
-FENCE_COMPLETE, FENCE_FREE but since we have the state, we don't need to
-encode it? That would lead to a few small simplifications.
--Chris
+> 
+> 
+> BR,
+> Jani.
+> 
+> >
+> > Stan
+> >
+> >> 
+> >> BR,
+> >> Jani.
+> >> 
+> >> 
+> >> > 
+> >> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/display/intel_dp.c | 13 ++++++-------
+> >> >  1 file changed, 6 insertions(+), 7 deletions(-)
+> >> > 
+> >> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > index f4dede6253f8..9bd36197a43d 100644
+> >> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> >> > @@ -7370,9 +7370,6 @@ static bool intel_edp_init_connector(struct
+> >> > intel_dp *intel_dp,
+> >> >  	intel_wakeref_t wakeref;
+> >> >  	struct edid *edid;
+> >> >  
+> >> > -	if (!intel_dp_is_edp(intel_dp))
+> >> > -		return true;
+> >> > -
+> >> >  	INIT_DELAYED_WORK(&intel_dp->panel_vdd_work,
+> >> > edp_panel_vdd_work);
+> >> >  
+> >> >  	/*
+> >> > @@ -7590,10 +7587,12 @@ intel_dp_init_connector(struct
+> >> > intel_digital_port *intel_dig_port,
+> >> >  	intel_dp_mst_encoder_init(intel_dig_port,
+> >> >  				  intel_connector->base.base.id);
+> >> >  
+> >> > -	if (!intel_edp_init_connector(intel_dp, intel_connector)) {
+> >> > -		intel_dp_aux_fini(intel_dp);
+> >> > -		intel_dp_mst_encoder_cleanup(intel_dig_port);
+> >> > -		goto fail;
+> >> > +	if (intel_dp_is_edp(intel_dp)) {
+> >> > +		if (!intel_edp_init_connector(intel_dp,
+> >> > intel_connector)) {
+> >> > +			intel_dp_aux_fini(intel_dp);
+> >> > +			intel_dp_mst_encoder_cleanup(intel_dig_port);
+> >> > +			goto fail;
+> >> > +		}
+> >> >  	}
+> >> >  
+> >> >  	intel_dp_add_properties(intel_dp, connector);
+> >> 
+> >> 
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
