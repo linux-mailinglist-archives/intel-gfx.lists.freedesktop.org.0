@@ -2,49 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A0D159BE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 23:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BB6B159C76
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 23:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6E76E3DB;
-	Tue, 11 Feb 2020 22:02:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B31D6F441;
+	Tue, 11 Feb 2020 22:46:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE9D6E3DB
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:02:34 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 14:02:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="222080478"
-Received: from rmfosha-dev-1.fm.intel.com (HELO [10.19.83.123])
- ([10.19.83.123])
- by orsmga007.jf.intel.com with ESMTP; 11 Feb 2020 14:02:33 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- "Ye, Tony" <tony.ye@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
-References: <20200122194825.101240-1-michal.wajdeczko@intel.com>
- <67edac14-e319-a1b2-76a1-1404ca5836e2@intel.com>
- <157979173710.19995.3438477214193047615@skylake-alporthouse-com>
- <op.0euq22k9xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
- <157979471850.19995.901739010740499969@skylake-alporthouse-com>
- <op.0e0gqwtixaggs7@mwajdecz-mobl1.ger.corp.intel.com>
- <ab0ca807-0e3b-172a-dbd6-6777f5881be1@intel.com>
- <3d4f28e6-c87b-0278-ba3a-64d95d550efd@intel.com>
- <op.0ft9pzk8xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-From: "Fosha, Robert M" <robert.m.fosha@intel.com>
-Message-ID: <ab1774c0-69b7-5a9b-c538-f1bf68cfb68e@intel.com>
-Date: Tue, 11 Feb 2020 13:54:19 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+X-Greylist: delayed 5995 seconds by postgrey-1.36 at gabe;
+ Tue, 11 Feb 2020 22:46:31 UTC
+Received: from 1.mo179.mail-out.ovh.net (1.mo179.mail-out.ovh.net
+ [178.33.111.220])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 187AB6F441
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:46:31 +0000 (UTC)
+Received: from player772.ha.ovh.net (unknown [10.108.57.14])
+ by mo179.mail-out.ovh.net (Postfix) with ESMTP id 706FC156738
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:06:33 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player772.ha.ovh.net (Postfix) with ESMTPSA id 6ED01F50F1CE;
+ Tue, 11 Feb 2020 21:06:26 +0000 (UTC)
+Date: Tue, 11 Feb 2020 23:06:25 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200211210625.GA6386@jack.zhora.eu>
+References: <20200211181027.5329-1-andi@etezian.org>
+ <2defb42c-9fcc-17f8-0593-8e02f75f9ba4@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <op.0ft9pzk8xaggs7@mwajdecz-mobl1.ger.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+Content-Disposition: inline
+In-Reply-To: <2defb42c-9fcc-17f8-0593-8e02f75f9ba4@linux.intel.com>
+X-Ovh-Tracer-Id: 1682375935827952369
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieefgddufeelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdekuddrudejhedrvddvfedruddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedvrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: make a gt sysfs group and
+ move power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,126 +49,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAyLzExLzIwIDExOjU3IEFNLCBNaWNoYWwgV2FqZGVjemtvIHdyb3RlOgo+IE9uIFR1ZSwg
-MTEgRmViIDIwMjAgMTg6NTM6MDUgKzAxMDAsIEZvc2hhLCBSb2JlcnQgTSAKPiA8cm9iZXJ0Lm0u
-Zm9zaGFAaW50ZWwuY29tPiB3cm90ZToKPgo+Pgo+Pgo+PiBPbiAyLzQvMjAgNDo0MyBQTSwgWWUs
-IFRvbnkgd3JvdGU6Cj4+Pgo+Pj4KPj4+IE9uIDEvMjcvMjAyMCAxOjQxIEFNLCBNaWNoYWwgV2Fq
-ZGVjemtvIHdyb3RlOgo+Pj4+IE9uIFRodSwgMjMgSmFuIDIwMjAgMTY6NTE6NTggKzAxMDAsIENo
-cmlzIFdpbHNvbiAKPj4+PiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPiB3cm90ZToKPj4+Pgo+
-Pj4+PiBRdW90aW5nIE1pY2hhbCBXYWpkZWN6a28gKDIwMjAtMDEtMjMgMTU6Mzg6NTIpCj4+Pj4+
-PiBPbiBUaHUsIDIzIEphbiAyMDIwIDE2OjAyOjE3ICswMTAwLCBDaHJpcyBXaWxzb24KPj4+Pj4+
-IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+IHdyb3RlOgo+Pj4+Pj4KPj4+Pj4+ID4gUXVvdGlu
-ZyBEYW5pZWxlIENlcmFvbG8gU3B1cmlvICgyMDIwLTAxLTIyIDIzOjUyOjMzKQo+Pj4+Pj4gPj4K
-Pj4+Pj4+ID4+Cj4+Pj4+PiA+PiBPbiAxLzIyLzIwIDExOjQ4IEFNLCBNaWNoYWwgV2FqZGVjemtv
-IHdyb3RlOgo+Pj4+Pj4gPj4gPsKgIEZyb20gY29tbWl0IDg0YjFjYTJmMGU2OCAoImRybS9pOTE1
-L3VjOiBwcmVmZXIgaW50ZWxfZ3QgCj4+Pj4+PiBvdmVyIGk5MTUKPj4+Pj4+ID4+ID4gaW4gR3VD
-L0h1QyBwYXRocyIpIHdlIHN0b3BwZWQgdXNpbmcgSFVDX1NUQVRVUyBlcnJvciAtRU5PREVWIAo+
-Pj4+Pj4gb25seQo+Pj4+Pj4gPj4gPiB0byBpbmRpY2F0ZSBsYWNrIG9mIEh1QyBoYXJkd2FyZSBh
-bmQgd2Ugc3RhcnRlZCB0byB1c2UgdGhpcyAKPj4+Pj4+IGVycm9yCj4+Pj4+PiA+PiA+IGFsc28g
-Zm9yIGFsbCBvdGhlciBjYXNlcyB3aGVuIEh1QyB3YXMgbm90IGluIHVzZSBvciBzdXBwb3J0ZWQu
-Cj4+Pj4+PiA+PiA+Cj4+Pj4+PiA+PiA+IEZpeCB0aGF0IGJ5IHJlbHlpbmcgYWdhaW4gb24gSEFT
-X0dUX1VDIG1hY3JvLCBzaW5jZSBjdXJyZW50bHkKPj4+Pj4+ID4+ID4gdXNlZCBmdW5jdGlvbiBp
-bnRlbF9odWNfaXNfc3VwcG9ydGVkKCkgaXMgYmFzZWQgb24gSHVDIGZpcm13YXJlCj4+Pj4+PiA+
-PiA+IHN1cHBvcnQgd2hpY2ggY291bGQgYmUgdW5zdXBwb3J0ZWQgYWxzbyBkdWUgdG8gZm9yY2Ug
-ZGlzYWJsZWQKPj4+Pj4+ID4+ID4gR3VDIGZpcm13YXJlLgo+Pj4+Pj4gPj4gPgo+Pj4+Pj4gPj4g
-PiBTaWduZWQtb2ZmLWJ5OiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVs
-LmNvbT4KPj4+Pj4+ID4+ID4gQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2Vy
-YW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4+Pj4+PiA+PiA+IENjOiBNaWNoYWwgV2FqZGVjemtvIDxt
-aWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPj4+Pj4+ID4+ID4gQ2M6IFRvbnkgWWUgPHRvbnku
-eWVAaW50ZWwuY29tPgo+Pj4+Pj4gPj4KPj4+Pj4+ID4+IFJldmlld2VkLWJ5OiBEYW5pZWxlIENl
-cmFvbG8gU3B1cmlvIAo+Pj4+Pj4gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+Cj4+
-Pj4+PiA+Cj4+Pj4+PiA+IE9uY2UgdXBvbiBhIHRpbWUgZGlkIHlvdSAoTWljaGFsKSBub3QgYXJn
-dWUgd2Ugc2hvdWxkIGluZGljYXRlIAo+Pj4+Pj4gdGhlIGxhY2sKPj4+Pj4+ID4gb2YgZmlybXdh
-cmUgaW4gdGhlIGVycm9yIGNvZGU/IFNvbWV0aGluZyBsaWtlCj4+Pj4+PiA+Cj4+Pj4+PiA+IGlm
-ICghSEFTX0dUX1VDKGd0LT5pOTE1KSkKPj4+Pj4+ID7CoMKgwqDCoMKgwqAgcmV0dXJuIC1FTk9E
-RVY7Cj4+Pj4+PiA+Cj4+Pj4+PiA+IGlmICghaW50ZWxfaHVjX2lzX3N1cHBvcnRlZChodWMpKQo+
-Pj4+Pj4gPsKgwqDCoMKgwqDCoCByZXR1cm4gLUVOT0VYRUM7Cj4+Pj4+Pgo+Pj4+Pj4gWWVzLCB3
-ZSBkaXNjdXNzZWQgdGhpcyBoZXJlIFsxXSB0b2dldGhlciB3aXRoIFsyXSBidXQgd2UgZGlkbid0
-Cj4+Pj4+PiBjb25jbHVkZSBvdXIgZGlzY3Vzc2lvbiBkdWUgdG8gZGlmZmVyZW50IG9waW5pb25z
-IG9uIGhvdyByZXByZXNlbnQKPj4+Pj4+IHNvbWUgc3RhdGVzLCBpbiBwYXJ0aWN1bGFyICJtYW51
-YWxseSBkaXNhYmxlZCIgc3RhdGUuCj4+Pj4+Pgo+Pj4+Pj4gSW4gdGhpcyBwYXRjaCBJIGp1c3Qg
-d2FudGVkIHRvIHJlc3RvcmUgb2xkIG5vdGF0aW9uLgo+Pj4+Pj4KPj4+Pj4+IEJ1dCB3ZSBjYW4g
-c3RhcnQgbmV3IGRpc2N1c3Npb24sIGhlcmUgaXMgc3VtbWFyeToKPj4+Pj4+Cj4+Pj4+PiAtLS0t
-LS0tLS0tLS0tLS0tLS0rLS0tLS0tLS0tLSstLS0tLS0tLS0tKy0tLS0tLS0tLS0KPj4+Pj4+IMKg
-IEh1QyBzdGF0ZcKgwqDCoMKgwqDCoMKgIHwgdG9kYXkqwqDCoCB8IG9wdGlvbiBBIHwgb3B0aW9u
-IEIKPj4+Pj4+IC0tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tKy0tLS0tLS0tLS0rLS0tLS0t
-LS0tLQo+Pj4+Pj4gbm8gSHVDIGhhcmR3YXJlwqDCoCB8IC1FTk9ERVbCoCB8IC1FTk9ERVbCoCB8
-IC1FTk9ERVYKPj4+Pj4+IEd1QyBmdyBkaXNhYmxlZMKgwqAgfMKgwqAgMMKgwqDCoMKgwqAgfMKg
-wqDCoMKgIDDCoMKgwqAgfCAtRU9QTk9UU1VQUAo+Pj4+Pj4gSHVDIGZ3IGRpc2FibGVkwqDCoCB8
-wqDCoCAwwqDCoMKgwqDCoCB8wqDCoMKgwqAgMMKgwqDCoCB8IC1FT1BOT1RTVVBQCj4+Pj4+PiBI
-dUMgZncgbWlzc2luZ8KgwqDCoCB8wqDCoCAwwqDCoMKgwqDCoCB8IC1FTk9QS0fCoCB8IC1FTk9F
-WEVDCj4+Pj4+PiBIdUMgZncgZXJyb3LCoMKgwqDCoMKgIHzCoMKgIDDCoMKgwqDCoMKgIHwgLUVO
-T0VYRUMgfCAtRU5PRVhFQwo+Pj4+Pj4gSHVDIGZ3IGZhaWzCoMKgwqDCoMKgwqAgfMKgwqAgMMKg
-wqDCoMKgwqAgfCAtRUFDQ0VTwqAgfMKgwqDCoCAwCj4+Pj4+PiBIdUMgYXV0aGVudGljYXRlZCB8
-wqDCoCAxwqDCoMKgwqDCoCB8wqDCoMKgwqAgMcKgwqDCoCB8wqDCoMKgIDEKPj4+Pj4+IC0tLS0t
-LS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tKy0tLS0tLS0tLS0rLS0tLS0tLS0tLQo+Pj4+Pgo+Pj4+
-PiBCeSBmdyBmYWlsLCB5b3UgbWVhbiB3ZSBsb2FkZWQgdGhlIGZpcm13YXJlICh0byBvdXIga25v
-d2xlZGdlKQo+Pj4+PiBjb3JyZWN0bHksIGJ1dCBIVUNfU1RBVFVTIGlzIG5vdCByZXBvcnRlZCBh
-cyB2YWxpZD8KPj4+Pj4KPj4+Pj4gSWYgc28sIEkgc3VwcG9ydCBvcHRpb24gQi4gSSBsaWtlIHRo
-ZSBpZGVhIG9mIHNheWluZwo+Pj4+PiAibm8gSHVDIiAobWFjaGluZSB0b28gb2xkKQo+Pj4+PiAi
-bm8gZmlybXdhcmUiICh1c2VyIGFjdGlvbiwgb3IgbGFjayB0aGVyZW9mKQo+Pj4+PiAwIChmdyB1
-bmhhcHB5KQo+Pj4+PiAxIChmdyByZXBvcnRzIHN1Y2Nlc3MpCj4+Pj4+Cj4+Pj4+IEluIGJldHdl
-ZW4gc3RhdGVzIGZvciBmYWlsdXJlcyBpbiBmdyBsb2FkaW5nPyBOb3Qgc28gc3VyZS4gQnV0IEkg
-Cj4+Pj4+IGNhbiBzZWUKPj4+Pj4gdGhlIG5pY2V0eSBpbiBkaXN0aW5ndWlzaGluZyBiZXR3ZWVu
-IGxhY2sgb2YgZmlybXdhcmUgYW5kIHNvbWUgcmFuZG9tCj4+Pj4+IGZhaWx1cmUgaW4gbG9hZGlu
-ZyB0aGUgZmlybXdhcmUgKHRoZSBmb3JtZXIgYmVpbmcgdXNlciBhY3Rpb24gCj4+Pj4+IHJlcXVp
-cmVkCj4+Pj4+IHRvIHJlY3RpZnksIGNvbW1hbmQgbGluZSBwYXJhbWV0ZXIgd2hhdGV2ZXIgYW5k
-IHRoZSBsYXR0ZXIgYmVpbmcgdGhlCj4+Pj4+IGZpcm13YXJlIGZpbGUgaXMgZWl0aGVyIGludmFs
-aWQgb3IgYSBzdHJheSBuZXV0cmlubyBwcmV2ZW50ZWQgCj4+Pj4+IGxvYWRpbmcpLgo+Pj4+Pgo+
-Pj4+PiBJbW8gdGhlIGVycm9yIG1lc3NhZ2VzIHNob3VsZCBiZSBhYm91dCB3aHkgd2UgY2Fubm90
-IHByb2JlL3RydXN0IHRoZQo+Pj4+PiBIVUNfU1RBVFVTIHJlZ2lzdGVyLiBJZiBldmVyeXRoaW5n
-IGlzIHNldHVwIGNvcnJlY3RseSB0aGVuIHRoZSAKPj4+Pj4gcmV0dXJuZWQKPj4+Pj4gdmFsdWUg
-c2hvdWxkIGJlIGZyb20gcmVhZGluZyB0aGUgcmVnaXN0ZXIuIEkgZGlzbGlrZSBvbmx5IAo+Pj4+
-PiByZXR1cm5pbmcgMSBpZgo+Pj4+PiBzdXBwb3J0ZWQsIGFuZCBjb252ZXJ0aW5nIGEgdmFsaWQg
-cmVhZCBvZiAwIGludG8gYW5vdGhlciBlcnJvci4KPj4+Pj4KPj4+Pj4gU28gT3B0aW9uIEIgOikK
-Pj4+Pgo+Pj4+IEJ1dCBJJ20gbm90IHN1cmUgdGhhdCBvcHRpb24gQiBpcyBjb25zaXN0ZW50IGlu
-IGVycm9yIHJlcG9ydGluZywgYXMKPj4+PiAiZncgdW5oYXBweSIgaXMgZGVmaW5pdGVseSBhbiBz
-ZXJpb3VzIGVycm9yIGJ1dCBpcyByZXByZXNlbnRlZCBhcyAKPj4+PiBwbGFpbgo+Pj4+IG5vbi1l
-cnJvciAiMCIgc3RhdHVzLCB3aGlsZSAiZncgZGlzYWJsZWQiICh1c2VyIGFjdGlvbikgaXMgdHJl
-YXRlZCAKPj4+PiBhcyBlcnJvcgo+Pj4+Cj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0t
-LS0KPj4+PiDCoMKgIEh1QyBzdGF0ZcKgwqDCoMKgwqDCoCB8IG9wdGlvbiBCCj4+Pj4gLS0tLS0t
-LS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0KPj4+PiBubyBIdUMgaGFyZHdhcmXCoMKgIHwgLUVOT0RF
-Vgo+Pj4+IEd1QyBmdyBkaXNhYmxlZMKgwqAgfCAtRU9QTk9UU1VQUCAtPiB1c2VyIGRlY2lzaW9u
-LCB3aHkgZXJyb3I/Cj4+Pj4gSHVDIGZ3IGRpc2FibGVkwqDCoCB8IC1FT1BOT1RTVVBQIC0+IHVz
-ZXIgZGVjaXNpb24sIHdoeSBlcnJvcj8KPj4+PiBIdUMgZncgbWlzc2luZ8KgwqDCoCB8IC1FTk9F
-WEVDCj4+Pj4gSHVDIGZ3IGVycm9ywqDCoMKgwqDCoCB8IC1FTk9FWEVDCj4+Pj4gSHVDIGZ3IGZh
-aWzCoMKgwqDCoMKgwqAgfMKgwqDCoCAwwqDCoMKgwqDCoMKgwqAgLT4gdW5saWtlbHksIGJ1dCBz
-dGlsbCBmdy9odyBlcnJvcgo+Pj4+IEh1QyBhdXRoZW50aWNhdGVkIHzCoMKgwqAgMQo+Pj4+IC0t
-LS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tCj4+Pj4KPj4+PiBPbiBvdGhlciBoYW5kLCBvcHRp
-b24gQSB0cmVhdHMgYWxsIGVycm9yIGNvbmRpdGlvbnMgYXMgZXJyb3JzLCBsZWF2aW5nCj4+Pj4g
-c3RhdHVzIGNvZGVzIG9ubHkgZm9yIG5vcm1hbCBvcGVyYXRpb25zOiBkaXNhYmxlZCgwKS9hdXRo
-ZW50aWNhdGVkKDEpOgo+Pj4+Cj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0KPj4+
-PiDCoMKgIEh1QyBzdGF0ZcKgwqDCoMKgwqDCoCB8IG9wdGlvbiBBCj4+Pj4gLS0tLS0tLS0tLS0t
-LS0tLS0tKy0tLS0tLS0tLS0KPj4+PiBubyBIdUMgaGFyZHdhcmXCoMKgIHwgLUVOT0RFVsKgIC0+
-IHlvdSBzaG91bGRuJ3QgYXNrCj4+Pj4gR3VDIGZ3IGRpc2FibGVkwqDCoCB8wqDCoMKgwqAgMMKg
-wqDCoCAtPiB1c2VyIGRlY2lzaW9uLCBub3QgYW4gZXJyb3IKPj4+PiBIdUMgZncgZGlzYWJsZWTC
-oMKgIHzCoMKgwqDCoCAwwqDCoMKgIC0+IHVzZXIgZGVjaXNpb24sIG5vdCBhbiBlcnJvcgo+Pj4+
-IEh1QyBmdyBtaXNzaW5nwqDCoMKgIHwgLUVOT1BLR8KgIC0+IGZ3IG5vdCBpbnN0YWxsZWQgY29y
-cmVjdGx5Cj4+Pj4gSHVDIGZ3IGVycm9ywqDCoMKgwqDCoCB8IC1FTk9FWEVDIC0+IGJhZC93cm9u
-ZyBmdwo+Pj4+IEh1QyBmdyBmYWlswqDCoMKgwqDCoMKgIHwgLUVBQ0NFU8KgIC0+IGZ3L2h3IGVy
-cm9yCj4+Pj4gSHVDIGF1dGhlbnRpY2F0ZWQgfMKgwqDCoMKgIDEKPj4+PiAtLS0tLS0tLS0tLS0t
-LS0tLS0rLS0tLS0tLS0tLQo+Pj4KPj4+IFZvdGUgZm9yIE9wdGlvbiBBLgo+Pj4KPj4+IFJlZ2Fy
-ZHMsCj4+PiBUb255Cj4+Pgo+Pgo+PiBBcmUgd2Ugb2sgdG8gbW92ZSBmb3J3YXJkIG9uIHRoaXM/
-IE1pY2hhbCwgYXJlIHlvdSB3b3JraW5nIG9uIAo+PiB1cGRhdGluZyB0aGUgcGF0Y2g/Cj4KPiBJ
-IGNhbiB1cGRhdGUgdGhlIHBhdGNoLCBidXQgSSBkb24ndCBrbm93IHdoaWNoIG9wdGlvbiB0byBp
-bXBsZW1lbnQ6Cj4gVG9ueSB2b3RlcyBmb3IgT3B0aW9uIEEsIENocmlzIGZvciBPcHRpb24gQiwg
-d2hhdCdzIHlvdXIgY2hvaWNlPwo+Cj4gTWljaGFsCj4KCkkgZG9uJ3QgaGF2ZSBhIHByZWZlcmVu
-Y2UgYW5kIHdvdWxkIHRydXN0IGJvdGggVG9ueSBhbmQgQ2hyaXMgb3ZlciAKbXlzZWxmLiBIb3dl
-dmVyLCBpZiBUb255IGlzIHVzaW5nIEh1QyBtb3JlIEkgd291bGQgdm90ZSBmb3IgaGlzIHByZWZl
-cmVkIApvcHRpb24uCgotUm9iCgo+Pgo+PiAtUm9iCj4+Cj4+Pj4KPj4+PiBCdXQgc2luY2UgSSdt
-IG5vdCBhbiBhY3RpdmUgSHVDIHVzZXIsIHdpbGwgbGVhdmUgZmluYWwgZGVjaXNpb24gdG8gCj4+
-Pj4gb3RoZXJzLgo+Pj4+Cj4+Pj4gL01pY2hhbAo+Pj4+Cj4+Pj4KPj4+Pj4KPj4+Pj4+IE5vdGUg
-dGhhdCBhbGwgYWJvdmUgc2hvdWxkIGJlIGNvbXBhdGlibGUgd2l0aCBtZWRpYSBkcml2ZXIsCj4+
-Pj4+PiB3aGljaCBleHBsaWNpdGx5IGxvb2tzIGZvciBubyBlcnJvciBhbmQgdmFsdWUgMQo+Pj4+
-Pgo+Pj4+PiBDb29sLgo+Pj4+PiAtQ2hyaXMKPj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fCj4+PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4+PiBJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4+PiBodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Hi Tvrtko,
+
+> > +void intel_gt_sysfs_register(struct intel_gt *gt)
+> > +{
+> > +	struct kobject *parent = kobject_get(&gt->i915->drm.primary->kdev->kobj);
+> 
+> Does this needs a kobject_put to balance out somewhere?
+
+Yes, I forgot the two kobject_put that are needed.
+
+> > +	int ret;
+> > +
+> > +	gt->kobj = kobject_create_and_add("gt", parent);
+> > +	if (!gt->kobj) {
+> > +		pr_err("failed to initialize sysfs file\n");
+> > +		return;
+> > +	}
+> > +
+> > +	dev_set_drvdata(kobj_to_dev(gt->kobj), gt);
+> > +
+> > +	ret = sysfs_create_files(gt->kobj, gt_attrs);
+> > +	if (ret)
+> > +		pr_err("failed to create sysfs gt info files\n");
+> 
+> I can't remember which log helper takes in the device and prefixes that
+> string but I think it could be useful here, since the error is otherwise
+> eaten.
+
+pr_* is used a lot in gt/. Playing with the dev pointer I
+can use "dev_err(dev,...)"
+
+> > +void intel_gt_sysfs_unregister(struct intel_gt *gt)
+> > +{
+> > +	if (!gt->kobj)
+> > +		return;
+> > +
+> > +	intel_gt_sysfs_pm_remove(gt, gt->kobj);
+> > +	sysfs_remove_files(gt->kobj, gt_attrs);
+> 
+> Why is this asymmetrical to creation?
+
+Because in V1 gt_attrs and whatever was created in sysfs_gt_pm
+was in the same group, but it desn't matter.
+
+> I mean you call intel_gt_sysfs_pm_init
+> two times with different roots, so why not intel_gt_sysfs_pm_remove also
+> twice with different roots?
+
+Because I forgot them in the cleanups :)
+
+> > +	/*
+> > +	 * We are interested at knowing from where the interface
+> > +	 * has been called, whether it's called from gt/* or from
+> > +	 * the parent directory.
+> > +	 * From the interface position it depends also the value of
+> > +	 * the private data.
+> > +	 * If the interface is called from gt/ then private data is
+> > +	 * of the "struct intel_gt *" type, otherwise it's * a
+> > +	 * "struct drm_i915_private *" type.
+> > +	 */
+> > +	if (strcmp(kobj->name, "gt")) {
+> > +		pr_warn("the interface is obsolete, use gt/\n");
+> 
+> I think the message will need to be a bit more verbose since it is intended
+> for users. I don't have any suggestions straight away apart from googling to
+> find similar examples from the past and other subsystems.
+
+Yes, I couldn't come up with a better message in 80 characters,
+and I can use dev_warn instead of pr_warn.
+
+> > +static ssize_t rc6_enable_show(struct device *dev,
+> > +			       struct device_attribute *attr,
+> > +			       char *buff)
+> > +{
+> > +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev);
+> 
+> The rest of code is unchanged apart from this same line in all show/store
+> vfuncs?
+
+yes, more or less.
+
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
