@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1485159CB3
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 23:57:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB1D159CE7
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 00:09:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A79E6E421;
-	Tue, 11 Feb 2020 22:56:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF3D6E03F;
+	Tue, 11 Feb 2020 23:09:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 5127 seconds by postgrey-1.36 at gabe;
- Tue, 11 Feb 2020 22:56:56 UTC
-Received: from 17.mo5.mail-out.ovh.net (17.mo5.mail-out.ovh.net
- [46.105.56.132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18FF6E421
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 22:56:56 +0000 (UTC)
-Received: from player795.ha.ovh.net (unknown [10.108.42.192])
- by mo5.mail-out.ovh.net (Postfix) with ESMTP id DA41026B778
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:56:54 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player795.ha.ovh.net (Postfix) with ESMTPSA id 32C08F22ABCA;
- Tue, 11 Feb 2020 22:56:45 +0000 (UTC)
-Date: Wed, 12 Feb 2020 00:56:44 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200211225644.GA6319@jack.zhora.eu>
-References: <20200207151720.2812125-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34D7E6E03F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:09:53 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20193106-1500050 
+ for multiple; Tue, 11 Feb 2020 23:09:45 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 11 Feb 2020 23:09:44 +0000
+Message-Id: <20200211230944.1203098-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200207151720.2812125-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 3546021756733538825
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieefgdduieduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH] drm/mm: Break long searches in fragmented
- address spaces
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Expand bad CS completion event
+ debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,55 +37,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgQ2hyaXMsCgpPbiBGcmksIEZlYiAwNywgMjAyMCBhdCAwMzoxNzoyMFBNICswMDAwLCBDaHJp
-cyBXaWxzb24gd3JvdGU6Cj4gV2UgdHJ5IGhhcmQgdG8gc2VsZWN0IGEgc3VpdGFibGUgaG9sZSBp
-biB0aGUgZHJtX21tIGZpcnN0IHRpbWUuIEJ1dCBpZgo+IHRoYXQgaXMgdW5zdWNjZXNzZnVsLCB3
-ZSB0aGVuIGhhdmUgdG8gbG9vayBhdCBuZWlnaGJvdXJpbmcgbm9kZXMsIGFuZAo+IHRoaXMgcmVx
-dWlyZXMgdHJhdmVyc2luZyB0aGUgcmJ0cmVlLiBXYWxraW5nIHRoZSByYnRyZWUgY2FuIGJlIHNs
-b3cKPiAobXVjaCBzbG93ZXIgdGhhbiBhIGxpbmVhciBsaXN0IGZvciBkZWVwIHRyZWVzKSwgYW5k
-IGlmIHRoZSBkcm1fbW0gaGFzCj4gYmVlbiBwdXJwb3NlZnVsbHkgZnJhZ21lbnRlZCBvdXIgc2Vh
-cmNoIGNhbiBiZSB0cmFwcGVkIGZvciBhIGxvbmcsIGxvbmcKPiB0aW1lLiBGb3Igbm9uLXByZWVt
-cHRpYmxlIGtlcm5lbHMsIHdlIG5lZWQgdG8gYnJlYWsgdXAgbG9uZyBDUFUgYm91bmQKPiBzZWN0
-aW9ucyBieSBtYW51YWxseSBjaGVja2luZyBmb3IgY29uZF9yZXNjaGVkKCk7IHNpbWlsYXJseSB3
-ZSBzaG91bGQKCmNoZWNraW5nIGZvciAiZmF0YWwgc2lnbmFscyIgeW91IG1lYW4/Cgo+IGFsc28g
-YmFpbCBvdXQgaWYgd2UgaGF2ZSBiZWVuIHRvbGQgdG8gdGVybWluYXRlLiAoSW4gYW4gaWRlYWwg
-d29ybGQsIHdlCj4gd291bGQgYnJlYWsgZm9yIGFueSBzaWduYWwsIGJ1dCB3ZSBuZWVkIHRvIHRy
-YWRlIG9mZiBoYXZpbmcgdG8gcGVyZm9ybQo+IHRoZSBzZWFyY2ggYWdhaW4gYWZ0ZXIgRVJFU1RB
-UlRTWVMsIHdoaWNoIGFnYWluIG1heSBmb3JtIGEgdHJhcCBvZgo+IG1ha2luZyBubyBmb3J3YXJk
-IHByb2dyZXNzLikKPiAKPiBSZXBvcnRlZC1ieTogWmJpZ25pZXcgS2VtcGN6ecWEc2tpIDx6Ymln
-bmlldy5rZW1wY3p5bnNraUBpbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29u
-IDxjaHJpc0BjaHJpcy13aWxzb24uY28udWs+Cj4gQ2M6IFpiaWduaWV3IEtlbXBjennFhHNraSA8
-emJpZ25pZXcua2VtcGN6eW5za2lAaW50ZWwuY29tPgo+IENjOiBKb29uYXMgTGFodGluZW4gPGpv
-b25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CgpuaWNlIQoKUmV2aWV3ZWQtYnk6IEFuZGkg
-U2h5dGkgPGFuZGkuc2h5dGlAaW50ZWwuY29tPgoKVGhhbmtzLApBbmRpCgo+IC0tLQo+ICBkcml2
-ZXJzL2dwdS9kcm0vZHJtX21tLmMgfCA4ICsrKysrKystCj4gIDEgZmlsZSBjaGFuZ2VkLCA3IGlu
-c2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2RybV9tbS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5jCj4gaW5kZXggMmE2ZTM0NjYz
-MTQ2Li40N2Q1ZGU5Y2EwYTggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2RybV9tbS5jCj4gQEAgLTQ1LDYgKzQ1LDcgQEAKPiAg
-I2luY2x1ZGUgPGxpbnV4L2V4cG9ydC5oPgo+ICAjaW5jbHVkZSA8bGludXgvaW50ZXJ2YWxfdHJl
-ZV9nZW5lcmljLmg+Cj4gICNpbmNsdWRlIDxsaW51eC9zZXFfZmlsZS5oPgo+ICsjaW5jbHVkZSA8
-bGludXgvc2NoZWQvc2lnbmFsLmg+Cj4gICNpbmNsdWRlIDxsaW51eC9zbGFiLmg+Cj4gICNpbmNs
-dWRlIDxsaW51eC9zdGFja3RyYWNlLmg+Cj4gIAo+IEBAIC0zNjYsNiArMzY3LDExIEBAIG5leHRf
-aG9sZShzdHJ1Y3QgZHJtX21tICptbSwKPiAgCSAgc3RydWN0IGRybV9tbV9ub2RlICpub2RlLAo+
-ICAJICBlbnVtIGRybV9tbV9pbnNlcnRfbW9kZSBtb2RlKQo+ICB7Cj4gKwkvKiBTZWFyY2hpbmcg
-aXMgc2xvdzsgY2hlY2sgaWYgd2UgcmFuIG91dCBvZiB0aW1lL3BhdGllbmNlICovCj4gKwljb25k
-X3Jlc2NoZWQoKTsKPiArCWlmIChmYXRhbF9zaWduYWxfcGVuZGluZyhjdXJyZW50KSkKPiArCQly
-ZXR1cm4gTlVMTDsKPiArCj4gIAlzd2l0Y2ggKG1vZGUpIHsKPiAgCWRlZmF1bHQ6Cj4gIAljYXNl
-IERSTV9NTV9JTlNFUlRfQkVTVDoKPiBAQCAtNTU3LDcgKzU2Myw3IEBAIGludCBkcm1fbW1faW5z
-ZXJ0X25vZGVfaW5fcmFuZ2Uoc3RydWN0IGRybV9tbSAqIGNvbnN0IG1tLAo+ICAJCXJldHVybiAw
-Owo+ICAJfQo+ICAKPiAtCXJldHVybiAtRU5PU1BDOwo+ICsJcmV0dXJuIHNpZ25hbF9wZW5kaW5n
-KGN1cnJlbnQpID8gLUVSRVNUQVJUU1lTIDogLUVOT1NQQzsKPiAgfQo+ICBFWFBPUlRfU1lNQk9M
-KGRybV9tbV9pbnNlcnRfbm9kZV9pbl9yYW5nZSk7Cj4gIAo+IC0tIAo+IDIuMjUuMAo+IAo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCj4gSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdAo+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKPiBodHRwczov
-L2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeApfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Show the ring/request/context state if we see what we believe is an
+early CS completion.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c |  3 ++-
+ drivers/gpu/drm/i915/gt/intel_lrc.c     | 31 +++++++++++++++++++++++--
+ 2 files changed, 31 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 57e8a051ddc2..e4f89341d17c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -116,7 +116,8 @@ int __intel_context_do_pin(struct intel_context *ce)
+ 		if (unlikely(err))
+ 			goto err_active;
+ 
+-		CE_TRACE(ce, "pin ring:{head:%04x, tail:%04x}\n",
++		CE_TRACE(ce, "pin ring:{start:%08x, head:%04x, tail:%04x}\n",
++			 i915_ggtt_offset(ce->ring->vma),
+ 			 ce->ring->head, ce->ring->tail);
+ 
+ 		smp_mb__before_atomic(); /* flush pin before it is visible */
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 902d440ef07d..1e3db37dea2b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2328,8 +2328,35 @@ static void process_csb(struct intel_engine_cs *engine)
+ 			 * coherent (visible from the CPU) before the
+ 			 * user interrupt and CSB is processed.
+ 			 */
+-			GEM_BUG_ON(!i915_request_completed(*execlists->active) &&
+-				   !reset_in_progress(execlists));
++			if (GEM_SHOW_DEBUG() &&
++			    !i915_request_completed(*execlists->active) &&
++			    !reset_in_progress(execlists)) {
++				struct i915_request *rq = *execlists->active;
++				const u32 *regs = rq->context->lrc_reg_state;
++
++				ENGINE_TRACE(engine,
++					     "ring:{start:0x%08x, head:%04x, tail:%04x, ctl:%08x, mode:%08x}\n",
++					     ENGINE_READ(engine, RING_START),
++					     ENGINE_READ(engine, RING_HEAD) & HEAD_ADDR,
++					     ENGINE_READ(engine, RING_TAIL) & TAIL_ADDR,
++					     ENGINE_READ(engine, RING_CTL),
++					     ENGINE_READ(engine, RING_MI_MODE));
++				ENGINE_TRACE(engine,
++					     "rq:{start:%08x, head:%04x, tail:%04x, seqno:%llx:%d, hwsp:%d}, ",
++					     i915_ggtt_offset(rq->ring->vma),
++					     rq->head, rq->tail,
++					     rq->fence.context,
++					     lower_32_bits(rq->fence.seqno),
++					     hwsp_seqno(rq));
++				ENGINE_TRACE(engine,
++					     "ctx:{start:%08x, head:%04x, tail:%04x}, ",
++					     regs[CTX_RING_START],
++					     regs[CTX_RING_HEAD],
++					     regs[CTX_RING_TAIL]);
++
++				GEM_BUG_ON("context completed before request");
++			}
++
+ 			execlists_schedule_out(*execlists->active++);
+ 
+ 			GEM_BUG_ON(execlists->active - execlists->inflight >
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
