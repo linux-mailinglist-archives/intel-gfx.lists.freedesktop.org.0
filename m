@@ -2,31 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDD4159A58
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 21:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1E5159A9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 21:39:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD0696E1BB;
-	Tue, 11 Feb 2020 20:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9CC26E2B8;
+	Tue, 11 Feb 2020 20:39:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F11846E1BB
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 20:14:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20191975-1500050 
- for multiple; Tue, 11 Feb 2020 20:13:38 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 20:13:37 +0000
-Message-Id: <20200211201337.1121177-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200211192253.1120964-1-chris@chris-wilson.co.uk>
-References: <20200211192253.1120964-1-chris@chris-wilson.co.uk>
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
+ [IPv6:2607:f8b0:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC2A26E2B8;
+ Tue, 11 Feb 2020 20:39:38 +0000 (UTC)
+Received: by mail-ot1-x344.google.com with SMTP id d3so11549696otp.4;
+ Tue, 11 Feb 2020 12:39:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=FkiL+nwntyVL1Depk52x54ARrFLNbJ/q2cGreWUpoIY=;
+ b=guvCAd2UOUpE5ajI+DyZuXuN5tRzCg1lxnzXs01Bvu2MlthWaB0XogL0T0x015uMCv
+ 0Nvd5+Ig7erzbpig7CWn1Kiws8zHYl44P3bOkicvZaw2f51Qe4Ml6z6VRCQrCpJq24EY
+ DR4ynLgVuwECElLR2xmeFY2msAViOtRDcH1POsBv6CnnIHmPgLjAvG1MkNVIFWcMD8Te
+ UQDPiEB+WG1wY2ilnvK8g2oK/a8t9J2lFGd1pqTUbTOmoXak/wg6m63A9+dH4OIwsiJJ
+ RpARQc1c+3yEtHkG8gD7JGSh/lnpYuRTLockpE32Egd1RdTirJy3ErA0i2yfaNgW3aBD
+ rM4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=FkiL+nwntyVL1Depk52x54ARrFLNbJ/q2cGreWUpoIY=;
+ b=VuIYVujWbq3LknC3lveMJ4IsbrXN1Wun0BT7r8ckIshwk3YE+6Ud36nSPnbckcs7VU
+ zG3EaJD7yZwdowk3yubiSCJW18fIZ7T6Z3S+GlHMfpWZWTcpA1Pvq3dEzjHAaRmX65S8
+ Hh0brO5WQLhB6oqytqEx/Chbkgd/7QCuCxL5lSbei36QwZNecZndxwgxpbNV5euX31JK
+ PLx3SXBUjzuel6eoIWfeHmPO0RUPizXYn0uQTf93vuj+axwYqmQNeAf+umbRRIruj+fF
+ E843XsOxoP3ue5fUiFhOc6HRFGSGl2oitNB2Nr8Jzufu4DE7NcWPOD2F2dhZXqhiGcFV
+ XGIw==
+X-Gm-Message-State: APjAAAVTv8ugubrkAj6NHBF92yOFyvJPCMdG4D7Txkr+a7vHm5f+b8Gw
+ VLu7IA9AE/HlXu0G8Duj8Jo=
+X-Google-Smtp-Source: APXvYqyRcLhd1pYN0o8cVbwvTHy9UM43N0APlTdoi5+8CTIzfL2EpJ/miK1zSlKVRAdQyxB4Sxva+g==
+X-Received: by 2002:a9d:64ca:: with SMTP id n10mr6692357otl.325.1581453577909; 
+ Tue, 11 Feb 2020 12:39:37 -0800 (PST)
+Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id w8sm1537795ote.80.2020.02.11.12.39.37
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Tue, 11 Feb 2020 12:39:37 -0800 (PST)
+Date: Tue, 11 Feb 2020 13:39:35 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
+Message-ID: <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
+References: <20200211050808.29463-1-natechancellor@gmail.com>
+ <20200211061338.23666-1-natechancellor@gmail.com>
+ <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2] i915/gem_ctx_persistence: Race context
- closure with replace-engines
+Content-Disposition: inline
+In-Reply-To: <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
+ -Wtautological-constant-out-of-range-compare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,135 +71,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ clang-built-linux@googlegroups.com, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tvrtko spotted a race condition between replacing a set of hanging
-engines and closing the context. So exercise it.
+On Tue, Feb 11, 2020 at 10:41:48AM +0100, Michel D=E4nzer wrote:
+> On 2020-02-11 7:13 a.m., Nathan Chancellor wrote:
+> > A recent commit in clang added -Wtautological-compare to -Wall, which is
+> > enabled for i915 so we see the following warning:
+> > =
 
-5s is not much time to hit the small window, but a little bit of testing
-several times a day is better than nothing.
+> > ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warning:
+> > result of comparison of constant 576460752303423487 with expression of
+> > type 'unsigned int' is always false
+> > [-Wtautological-constant-out-of-range-compare]
+> >         if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> >             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+> > =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- tests/i915/gem_ctx_persistence.c | 84 ++++++++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+> > This warning only happens on x86_64 but that check is relevant for
+> > 32-bit x86 so we cannot remove it.
+> =
 
-diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
-index 22f29d25e..389b300f0 100644
---- a/tests/i915/gem_ctx_persistence.c
-+++ b/tests/i915/gem_ctx_persistence.c
-@@ -33,6 +33,7 @@
- #include "i915/gem_engine_topology.h"
- #include "i915/gem_ring.h"
- #include "i915/gem_submission.h"
-+#include "igt_aux.h"
- #include "igt_debugfs.h"
- #include "igt_dummyload.h"
- #include "igt_gt.h"
-@@ -803,6 +804,86 @@ static void replace_engines(int i915, const struct intel_execution_engine2 *e)
- 	gem_quiescent_gpu(i915);
- }
- 
-+static void race_set_engines(int i915, int fd)
-+{
-+	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
-+		.engines = {}
-+	};
-+	struct drm_i915_gem_context_param param = {
-+		.param = I915_CONTEXT_PARAM_ENGINES,
-+		.value = to_user_pointer(&engines),
-+		.size = sizeof(engines),
-+	};
-+
-+	while (read(fd, &param.ctx_id, sizeof(param.ctx_id)) > 0) {
-+		if (!param.ctx_id)
-+			break;
-+		__gem_context_set_param(i915, &param);
-+	}
-+}
-+
-+static void close_replace_race(int i915)
-+{
-+	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
-+	int fence = -1;
-+	int fd[2];
-+
-+	/*
-+	 * Tvrtko being the evil genius noticed that if we could successfully
-+	 * replace a set of engines after the context had been closed, those
-+	 * engines could escape oversight.
-+	 */
-+
-+	igt_assert(pipe(fd) == 0);
-+	igt_fork(child, ncpus) {
-+		close(fd[1]);
-+		race_set_engines(i915, fd[0]);
-+	}
-+	for (int i = 0; i < ncpus; i++)
-+		close(fd[0]);
-+
-+	igt_until_timeout(5) {
-+		igt_spin_t *spin;
-+		uint32_t ctx;
-+
-+		ctx = gem_context_clone_with_engines(i915, 0);
-+		gem_context_set_persistence(i915, ctx, false);
-+
-+		spin = igt_spin_new(i915, ctx, .flags = IGT_SPIN_FENCE_OUT);
-+		for (int i = 0; i < ncpus; i++)
-+			write(fd[1], &ctx, sizeof(ctx));
-+
-+		if (fence < 0) {
-+			fence = spin->out_fence;
-+		} else {
-+			int tmp;
-+
-+			tmp = sync_fence_merge(fence, spin->out_fence);
-+			close(fence);
-+			close(spin->out_fence);
-+
-+			fence = tmp;
-+		}
-+		spin->out_fence = -1;
-+
-+		gem_context_destroy(i915, ctx);
-+	}
-+
-+	for (int i = 0; i < ncpus; i++) {
-+		uint32_t end = 0;
-+
-+		write(fd[1], &end, sizeof(end));
-+	}
-+	close(fd[1]);
-+
-+	igt_debugfs_dump(i915, "i915_engine_info");
-+	igt_assert(sync_fence_wait(fence, MSEC_PER_SEC / 2) == 0);
-+	close(fence);
-+
-+	igt_waitchildren();
-+	gem_quiescent_gpu(i915);
-+}
-+
- static void replace_engines_hostile(int i915,
- 				    const struct intel_execution_engine2 *e)
- {
-@@ -961,6 +1042,9 @@ igt_main
- 					replace_engines_hostile(i915, e);
- 			}
- 		}
-+
-+		igt_subtest("close-replace-race")
-+			close_replace_race(i915);
- 	}
- 
- 	igt_fixture {
--- 
-2.25.0
+> That's suprising. AFAICT N_RELOC(ULONG_MAX) works out to the same value
+> in both cases, and remain is a 32-bit value in both cases. How can it be
+> larger than N_RELOC(ULONG_MAX) on 32-bit (but not on 64-bit)?
+> =
 
+
+Hi Michel,
+
+Can't this condition be true when UINT_MAX =3D=3D ULONG_MAX? clang does not
+warn on a 32-bit x86 build from what I remember. Honestly, my
+understanding of overflow is pretty shoddy, this is mostly based on what
+I have heard from others.
+
+I sent a patch trying to remove that check but had it rejected:
+
+https://lore.kernel.org/lkml/20191123195321.41305-1-natechancellor@gmail.co=
+m/
+
+Cheers,
+Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
