@@ -1,30 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EB1D159236
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:48:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6743B159244
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 15:51:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B469E6EA90;
-	Tue, 11 Feb 2020 14:48:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C186EA89;
+	Tue, 11 Feb 2020 14:51:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9C796EA90
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:48:53 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20188267-1500050 
- for multiple; Tue, 11 Feb 2020 14:48:32 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 14:48:31 +0000
-Message-Id: <20200211144831.1011498-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 310556EA89
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 14:51:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 06:51:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="347292094"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 11 Feb 2020 06:51:07 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 2D65F5C0D8C; Tue, 11 Feb 2020 16:50:08 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200210205722.794180-2-chris@chris-wilson.co.uk>
+References: <20200210205722.794180-1-chris@chris-wilson.co.uk>
+ <20200210205722.794180-2-chris@chris-wilson.co.uk>
+Date: Tue, 11 Feb 2020 16:50:08 +0200
+Message-ID: <87d0al9o0v.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915/gem: Don't leak non-persistent
- requests on changing engines
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915/selftests: Exercise timeslice
+ rewinding
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,309 +50,289 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we have a set of active engines marked as being non-persistent, we
-lose track of those if the user replaces those engines with
-I915_CONTEXT_PARAM_ENGINES. As part of our uABI contract is that
-non-persistent requests are terminated if they are no longer being
-tracked by the user's context (in order to prevent a lost request
-causing an untracked and so unstoppable GPU hang), we need to apply the
-same context cancellation upon changing engines.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-v2: Track stale engines[] so we only reap at context closure.
-v3: Tvrtko spotted races with closing contexts and set-engines, so add a
-veneer of kill-everything paranoia to clean up after losing a race.
+> Originally, I did not expect having to rewind a context upon
+> timeslicing: the point was to replace the executing context with an idle
 
-Fixes: a0e047156cde ("drm/i915/gem: Make context persistence optional")
-Testcase: igt/gem_ctx_peristence/replace
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c   | 122 ++++++++++++++++--
- .../gpu/drm/i915/gem/i915_gem_context_types.h |  13 +-
- drivers/gpu/drm/i915/i915_sw_fence.c          |  17 ++-
- drivers/gpu/drm/i915/i915_sw_fence.h          |   2 +-
- 4 files changed, 141 insertions(+), 13 deletions(-)
+I think you said 'non executing' and it would fit better.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index cfaf5bbdbcab..3e82739bdbc0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -270,7 +270,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
- 	if (!e)
- 		return ERR_PTR(-ENOMEM);
- 
--	init_rcu_head(&e->rcu);
-+	e->ctx = ctx;
-+
- 	for_each_engine(engine, gt, id) {
- 		struct intel_context *ce;
- 
-@@ -450,7 +451,7 @@ static struct intel_engine_cs *active_engine(struct intel_context *ce)
- 	return engine;
- }
- 
--static void kill_context(struct i915_gem_context *ctx)
-+static void kill_engines(struct i915_gem_engines *engines)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -462,7 +463,7 @@ static void kill_context(struct i915_gem_context *ctx)
- 	 * However, we only care about pending requests, so only include
- 	 * engines on which there are incomplete requests.
- 	 */
--	for_each_gem_engine(ce, __context_engines_static(ctx), it) {
-+	for_each_gem_engine(ce, engines, it) {
- 		struct intel_engine_cs *engine;
- 
- 		if (intel_context_set_banned(ce))
-@@ -484,8 +485,37 @@ static void kill_context(struct i915_gem_context *ctx)
- 			 * the context from the GPU, we have to resort to a full
- 			 * reset. We hope the collateral damage is worth it.
- 			 */
--			__reset_context(ctx, engine);
-+			__reset_context(engines->ctx, engine);
-+	}
-+}
-+
-+static void kill_stale_engines(struct i915_gem_context *ctx)
-+{
-+	struct i915_gem_engines *pos, *next;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&ctx->stale.lock, flags);
-+	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
-+		if (!i915_sw_fence_await(&pos->fence))
-+			continue;
-+
-+		spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+
-+		kill_engines(pos);
-+
-+		spin_lock_irqsave(&ctx->stale.lock, flags);
-+		list_safe_reset_next(pos, next, link);
-+		list_del_init(&pos->link); /* decouple from FENCE_COMPLETE */
-+
-+		i915_sw_fence_complete(&pos->fence);
- 	}
-+	spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+}
-+
-+static void kill_context(struct i915_gem_context *ctx)
-+{
-+	kill_stale_engines(ctx);
-+	kill_engines(__context_engines_static(ctx));
- }
- 
- static void set_closed_name(struct i915_gem_context *ctx)
-@@ -602,6 +632,9 @@ __create_context(struct drm_i915_private *i915)
- 	ctx->sched.priority = I915_USER_PRIORITY(I915_PRIORITY_NORMAL);
- 	mutex_init(&ctx->mutex);
- 
-+	spin_lock_init(&ctx->stale.lock);
-+	INIT_LIST_HEAD(&ctx->stale.engines);
-+
- 	mutex_init(&ctx->engines_mutex);
- 	e = default_engines(ctx);
- 	if (IS_ERR(e)) {
-@@ -1529,6 +1562,77 @@ static const i915_user_extension_fn set_engines__extensions[] = {
- 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
- };
- 
-+static int engines_notify(struct i915_sw_fence *fence,
-+			  enum i915_sw_fence_notify state)
-+{
-+	struct i915_gem_engines *engines =
-+		container_of(fence, typeof(*engines), fence);
-+
-+	switch (state) {
-+	case FENCE_COMPLETE:
-+		if (!list_empty(&engines->link)) {
-+			struct i915_gem_context *ctx = engines->ctx;
-+			unsigned long flags;
-+
-+			spin_lock_irqsave(&ctx->stale.lock, flags);
-+			list_del(&engines->link);
-+			spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+		}
-+		break;
-+
-+	case FENCE_FREE:
-+		init_rcu_head(&engines->rcu);
-+		call_rcu(&engines->rcu, free_engines_rcu);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void engines_idle_release(struct i915_gem_engines *engines)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	unsigned long flags;
-+
-+	GEM_BUG_ON(!engines);
-+	i915_sw_fence_init(&engines->fence, engines_notify);
-+
-+	INIT_LIST_HEAD(&engines->link);
-+	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
-+	if (!i915_gem_context_is_closed(engines->ctx))
-+		list_add(&engines->link, &engines->ctx->stale.engines);
-+	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
-+	if (list_empty(&engines->link)) /* raced, already closed */
-+		goto kill;
-+
-+	for_each_gem_engine(ce, engines, it) {
-+		struct dma_fence *fence;
-+		int err;
-+
-+		if (!ce->timeline)
-+			continue;
-+
-+		fence = i915_active_fence_get(&ce->timeline->last_request);
-+		if (!fence)
-+			continue;
-+
-+		err = i915_sw_fence_await_dma_fence(&engines->fence,
-+						    fence, 0,
-+						    GFP_KERNEL);
-+
-+		dma_fence_put(fence);
-+		if (err < 0)
-+			goto kill;
-+	}
-+	goto out;
-+
-+kill:
-+	kill_engines(engines);
-+out:
-+	i915_sw_fence_commit(&engines->fence);
-+}
-+
- static int
- set_engines(struct i915_gem_context *ctx,
- 	    const struct drm_i915_gem_context_param *args)
-@@ -1571,7 +1675,8 @@ set_engines(struct i915_gem_context *ctx,
- 	if (!set.engines)
- 		return -ENOMEM;
- 
--	init_rcu_head(&set.engines->rcu);
-+	set.engines->ctx = ctx;
-+
- 	for (n = 0; n < num_engines; n++) {
- 		struct i915_engine_class_instance ci;
- 		struct intel_engine_cs *engine;
-@@ -1631,7 +1736,8 @@ set_engines(struct i915_gem_context *ctx,
- 	set.engines = rcu_replace_pointer(ctx->engines, set.engines, 1);
- 	mutex_unlock(&ctx->engines_mutex);
- 
--	call_rcu(&set.engines->rcu, free_engines_rcu);
-+	/* Keep track of old engine sets for kill_context() */
-+	engines_idle_release(set.engines);
- 
- 	return 0;
- }
-@@ -1646,7 +1752,6 @@ __copy_engines(struct i915_gem_engines *e)
- 	if (!copy)
- 		return ERR_PTR(-ENOMEM);
- 
--	init_rcu_head(&copy->rcu);
- 	for (n = 0; n < e->num_engines; n++) {
- 		if (e->engines[n])
- 			copy->engines[n] = intel_context_get(e->engines[n]);
-@@ -1890,7 +1995,8 @@ static int clone_engines(struct i915_gem_context *dst,
- 	if (!clone)
- 		goto err_unlock;
- 
--	init_rcu_head(&clone->rcu);
-+	clone->ctx = dst;
-+
- 	for (n = 0; n < e->num_engines; n++) {
- 		struct intel_engine_cs *engine;
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index 017ca803ab47..8d996dde8046 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -20,6 +20,7 @@
- #include "gt/intel_context_types.h"
- 
- #include "i915_scheduler.h"
-+#include "i915_sw_fence.h"
- 
- struct pid;
- 
-@@ -30,7 +31,12 @@ struct intel_timeline;
- struct intel_ring;
- 
- struct i915_gem_engines {
--	struct rcu_head rcu;
-+	union {
-+		struct rcu_head rcu;
-+		struct list_head link;
-+	};
-+	struct i915_sw_fence fence;
-+	struct i915_gem_context *ctx;
- 	unsigned int num_engines;
- 	struct intel_context *engines[];
- };
-@@ -173,6 +179,11 @@ struct i915_gem_context {
- 	 * context in messages.
- 	 */
- 	char name[TASK_COMM_LEN + 8];
-+
-+	struct {
-+		struct spinlock lock;
-+		struct list_head engines;
-+	} stale;
- };
- 
- #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 51ba97daf2a0..a3d38e089b6e 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -211,10 +211,21 @@ void i915_sw_fence_complete(struct i915_sw_fence *fence)
- 	__i915_sw_fence_complete(fence, NULL);
- }
- 
--void i915_sw_fence_await(struct i915_sw_fence *fence)
-+bool i915_sw_fence_await(struct i915_sw_fence *fence)
- {
--	debug_fence_assert(fence);
--	WARN_ON(atomic_inc_return(&fence->pending) <= 1);
-+	int pending;
-+
-+	/*
-+	 * It is only safe to add a new await to the fence while it has
-+	 * not yet been signaled (i.e. there are still existing signalers).
-+	 */
-+	pending = atomic_read(&fence->pending);
-+	do {
-+		if (pending < 1)
-+			return false;
-+	} while (!atomic_try_cmpxchg(&fence->pending, &pending, pending + 1));
-+
-+	return true;
- }
- 
- void __i915_sw_fence_init(struct i915_sw_fence *fence,
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
-index 19e806ce43bc..30a863353ee6 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.h
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.h
-@@ -91,7 +91,7 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- 				    unsigned long timeout,
- 				    gfp_t gfp);
- 
--void i915_sw_fence_await(struct i915_sw_fence *fence);
-+bool i915_sw_fence_await(struct i915_sw_fence *fence);
- void i915_sw_fence_complete(struct i915_sw_fence *fence);
- 
- static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
--- 
-2.25.0
+> one! However, given a second context that depends on requests from the
+> first, we may have to split the requests along the first context to
+> execute the second, causing us to replay the first context and have to
+> rewind the RING_TAIL.
+>
+> References: 5ba32c7be81e ("drm/i915/execlists: Always force a context reload when rewinding RING_TAIL")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 202 ++++++++++++++++++++++++-
+>  1 file changed, 201 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index 82fa0712808e..8b7383f6d9b3 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -76,8 +76,11 @@ static int wait_for_submit(struct intel_engine_cs *engine,
+>  	do {
+>  		cond_resched();
+>  		intel_engine_flush_submission(engine);
+> -		if (i915_request_is_active(rq))
+> +		if (i915_request_is_active(rq) &&
+> +		    !READ_ONCE(engine->execlists.pending[0])) {
+> +			tasklet_unlock_wait(&engine->execlists.tasklet);
+>  			return 0;
+> +		}
+>  	} while (time_before(jiffies, timeout));
+>  
+>  	return -ETIME;
+> @@ -772,6 +775,202 @@ static int live_timeslice_preempt(void *arg)
+>  	return err;
+>  }
+>  
+> +static struct i915_request *
+> +create_rewinder(struct intel_context *ce,
+> +		struct i915_request *wait,
+> +		int slot)
+> +{
+> +	struct i915_request *rq;
+> +	u32 offset = i915_ggtt_offset(ce->engine->status_page.vma) + 4000;
+> +	u32 *cs;
+> +	int err;
+> +
+> +	rq = intel_context_create_request(ce);
+> +	if (IS_ERR(rq))
+> +		return rq;
+> +
+> +	if (wait) {
+> +		err = i915_request_await_dma_fence(rq, &wait->fence);
+> +		if (err)
+> +			goto err;
+> +	}
+> +
+> +	cs = intel_ring_begin(rq, 10);
+> +	if (IS_ERR(cs)) {
+> +		err = PTR_ERR(cs);
+> +		goto err;
+> +	}
+> +
+> +	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> +	*cs++ = MI_NOOP;
+> +
+> +	*cs++ = MI_SEMAPHORE_WAIT |
+> +		MI_SEMAPHORE_GLOBAL_GTT |
+> +		MI_SEMAPHORE_POLL |
+> +		MI_SEMAPHORE_SAD_NEQ_SDD;
+> +	*cs++ = 0;
+> +	*cs++ = offset;
+> +	*cs++ = 0;
+> +
+> +	*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
+> +	*cs++ = i915_mmio_reg_offset(RING_TIMESTAMP(rq->engine->mmio_base));
+> +	*cs++ = offset + slot * sizeof(u32);
+> +	*cs++ = 0;
+> +
+> +	intel_ring_advance(rq, cs);
+> +
+> +	rq->sched.attr.priority = I915_PRIORITY_MASK;
+> +	err = 0;
+> +err:
+> +	i915_request_get(rq);
+> +	i915_request_add(rq);
+> +	if (err) {
+> +		i915_request_put(rq);
+> +		return ERR_PTR(err);
+> +	}
+> +
+> +	return rq;
+> +}
+> +
+> +static int live_timeslice_rewind(void *arg)
+> +{
+> +	struct intel_gt *gt = arg;
+> +	struct intel_engine_cs *engine;
+> +	enum intel_engine_id id;
+> +
+> +	/*
+> +	 * The usual presumption on timeslice expiration is that we replace
+> +	 * the active context with another. However, given a chain of
+> +	 * dependencies we may end up with replacing the context with itself,
+> +	 * but only a few of those requests, forcing us to rewind the
+> +	 * RING_TAIL of the original request.
+> +	 */
+> +	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+> +		return 0;
 
+Looks like you could remove this check...
+> +
+> +	for_each_engine(engine, gt, id) {
+> +		struct i915_request *rq[3] = {};
+> +		struct intel_context *ce;
+> +		unsigned long heartbeat;
+> +		unsigned long timeslice;
+> +		int i, err = 0;
+> +		u32 *slot;
+> +
+> +		if (!intel_engine_has_timeslices(engine))
+> +			continue;
+
+and let this handle everything...shrug.
+
+> +
+> +		/*
+> +		 * A:rq1 -- semaphore wait, timestamp X
+> +		 * A:rq2 -- write timestamp Y
+> +		 *
+> +		 * B:rq1 [await A:rq1] -- write timestamp Z
+> +		 *
+> +		 * Force timeslice, release sempahore.
+
+s/sempahore/semaphore.
+
+
+The comment is very very helpful to dissect the test.
+I would have liked the to have two context, named A and B
+for even increased readability but on the other hand,
+it makes then the error handling messier :P
+
+> +		 *
+> +		 * Expect evaluation order XZY
+> +		 */
+
+
+> +
+> +		engine_heartbeat_disable(engine, &heartbeat);
+> +		timeslice = xchg(&engine->props.timeslice_duration_ms, 1);
+> +
+> +		slot = memset(engine->status_page.addr + 1000,
+> +			      0, 4 * sizeof(u32));
+> +
+
+The offset to hwsp could be defined but not insisting.
+
+> +		ce = intel_context_create(engine);
+> +		if (IS_ERR(ce)) {
+> +			err = PTR_ERR(ce);
+> +			goto err;
+> +		}
+> +
+> +		rq[0] = create_rewinder(ce, NULL, 1);
+> +		if (IS_ERR(rq[0])) {
+> +			intel_context_put(ce);
+> +			goto err;
+> +		}
+> +
+> +		rq[1] = create_rewinder(ce, NULL, 2);
+> +		intel_context_put(ce);
+> +		if (IS_ERR(rq[1]))
+> +			goto err;
+> +
+> +		err = wait_for_submit(engine, rq[1], HZ / 2);
+> +		if (err) {
+> +			pr_err("%s: failed to submit first context\n",
+> +			       engine->name);
+> +			goto err;
+> +		}
+> +
+> +		ce = intel_context_create(engine);
+> +		if (IS_ERR(ce)) {
+> +			err = PTR_ERR(ce);
+> +			goto err;
+> +		}
+> +
+> +		rq[2] = create_rewinder(ce, rq[0], 3);
+> +		intel_context_put(ce);
+> +		if (IS_ERR(rq[2]))
+> +			goto err;
+> +
+> +		err = wait_for_submit(engine, rq[2], HZ / 2);
+> +		if (err) {
+> +			pr_err("%s: failed to submit second context\n",
+> +			       engine->name);
+> +			goto err;
+> +		}
+> +		GEM_BUG_ON(!timer_pending(&engine->execlists.timer));
+> +
+> +		/* Wait for the timeslice to kick in */
+> +		del_timer(&engine->execlists.timer);
+> +		tasklet_hi_schedule(&engine->execlists.tasklet);
+> +		intel_engine_flush_submission(engine);
+> +
+> +		/* Release the hounds! */
+> +		slot[0] = 1;
+> +		wmb();
+> +
+> +		for (i = 1; i <= 3; i++) {
+> +			unsigned long timeout = jiffies + HZ / 2;
+> +
+> +			while (!READ_ONCE(slot[i]) &&
+> +			       time_before(jiffies, timeout))
+
+you pushed with wmb so you could expect with rmb() and cpu_relax();
+I guess it works fine without :O.
+
+> +				;
+> +
+> +			if (!time_before(jiffies, timeout)) {
+> +				pr_err("%s: rq[%d] timed out\n",
+> +				       engine->name, i - 1);
+> +				err = -ETIME;
+> +				goto err;
+> +			}
+> +
+> +			pr_debug("%s: slot[%d]:%x\n", engine->name, i, slot[i]);
+> +		}
+> +
+> +		/* XZY: XZ < XY */
+> +		if (slot[3] - slot[1] >= slot[2] - slot[1]) {
+> +			pr_err("%s: timeslicing did not run context B [%u] before A [%u]!\n",
+> +			       engine->name,
+> +			       slot[3] - slot[1],
+> +			       slot[2] - slot[1]);
+> +			err = -EINVAL;
+> +		}
+> +
+> +err:
+> +		memset(slot, 0xff, 4 * sizeof(u32));
+
+was expecting slot[0] = 
+
+Only minor nitpicks/suggestions/typo.
+
+In general the commenting pattern was enjoyable and helped.
+First one describes what we try to achieve, then how and
+then the 3 one liners points to the key switches/stages on it.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> +		wmb();
+> +
+> +		engine->props.timeslice_duration_ms = timeslice;
+> +		engine_heartbeat_enable(engine, heartbeat);
+> +		for (i = 0; i < 3; i++)
+> +			i915_request_put(rq[i]);
+> +		if (igt_flush_test(gt->i915))
+> +			err = -EIO;
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static struct i915_request *nop_request(struct intel_engine_cs *engine)
+>  {
+>  	struct i915_request *rq;
+> @@ -3619,6 +3818,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+>  		SUBTEST(live_hold_reset),
+>  		SUBTEST(live_error_interrupt),
+>  		SUBTEST(live_timeslice_preempt),
+> +		SUBTEST(live_timeslice_rewind),
+>  		SUBTEST(live_timeslice_queue),
+>  		SUBTEST(live_busywait_preempt),
+>  		SUBTEST(live_preempt),
+> -- 
+> 2.25.0
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
