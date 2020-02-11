@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFA7158D7E
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 12:23:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 167D2158DA1
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 12:40:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DDE86EE2C;
-	Tue, 11 Feb 2020 11:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6469E8991E;
+	Tue, 11 Feb 2020 11:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 060636EE27;
- Tue, 11 Feb 2020 11:23:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 03:23:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="226477309"
-Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
- by orsmga008.jf.intel.com with ESMTP; 11 Feb 2020 03:23:19 -0800
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- IRSMSX153.ger.corp.intel.com (163.33.192.75) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 11 Feb 2020 11:23:18 +0000
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 11 Feb 2020 11:23:18 +0000
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Tue, 11 Feb 2020 11:23:18 +0000
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Souza,
- Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH 4/4] drm/i915/display: Set TRANS_DDI_MODE_SELECT to
- default value when disabling TRANS_DDI
-Thread-Index: AQHVzNmssi9Yyhiy30ih9iyG6MZfu6gWALWA
-Date: Tue, 11 Feb 2020 11:23:18 +0000
-Message-ID: <bb5c6aee30df288ecf9f48de3382c62584c4493f.camel@intel.com>
-References: <20200117015837.402239-1-jose.souza@intel.com>
- <20200117015837.402239-4-jose.souza@intel.com>
-In-Reply-To: <20200117015837.402239-4-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.66.163]
-Content-ID: <C0B956D69F892A40AB74ABA1A6B8439E@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F34978991C;
+ Tue, 11 Feb 2020 11:39:54 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20185768-1500050 for multiple; Tue, 11 Feb 2020 11:39:38 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 4/4] drm/i915/display: Set
- TRANS_DDI_MODE_SELECT to default value when disabling TRANS_DDI
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ igt-dev@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200204114113.22436-1-janusz.krzysztofik@linux.intel.com>
+References: <20200204114113.22436-1-janusz.krzysztofik@linux.intel.com>
+Message-ID: <158142117623.2359.3844752172351507163@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Tue, 11 Feb 2020 11:39:36 +0000
+Subject: Re: [Intel-gfx] [PATCH i-g-t v3] tests/prime_vgem: Examine blitter
+ access path
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +40,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTAxLTE2IGF0IDE3OjU4IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBUR0wgdGltZW91dHMgd2hlbiBkaXNhYmxpbmcgTVNUIHRyYW5zY29kZXIgYW5k
-IGZpZm8gdW5kZXJydW5zIG92ZXINCj4gTVNUDQo+IHRyYW5zY29kZXJzIGFyZSBmaXhlZCB3aGVu
-IHNldHRpbmcgVFJBTlNfRERJX01PREVfU0VMRUNUIHRvIDAoSERNSQ0KPiBtb2RlKSBkdXJpbmcg
-dGhlIGRpc2FibGUgc2VxdWVuY2UuDQo+IA0KPiBBbHRob3VnaCBCU3BlYyBkaXNhYmxlIHNlcXVl
-bmNlIGRvbid0IHJlcXVpcmUgdGhpcyBzdGVwIGl0IGlzIGENCj4gaGFybWxlc3MgY2hhbmdlIGFu
-ZCBpdCBpcyBhbHNvIGRvbmUgYnkgV2luZG93cyBkcml2ZXIuDQo+IEFueWhvdyBIVyB0ZWFtIHdh
-cyBub3RpZmllZCBhYm91dCB0aGF0IGJ1dCBpdCBjYW4gdGFrZSBzb21lIHRpbWUgdG8NCj4gZG9j
-dW1lbnRhdGlvbiB0byBiZSB1cGRhdGVkLg0KPiANCj4gQSBjYXNlIHRoYXQgYWx3YXlzIGxlYWQg
-dG8gdGhvc2UgaXNzdWVzIGlzOg0KPiAtIGRvIGEgbW9kZXNldCBlbmFibGluZyBwaXBlIEEgYW5k
-IHBpcGUgQiBpbiB0aGUgc2FtZSBNU1Qgc3RyZWFtDQo+IGxlYXZpbmcgQSBhcyBtYXN0ZXINCj4g
-LSBkaXNhYmxlIHBpcGUgQSwgcHJvbW90ZSBCIGFzIG1hc3RlciBkb2luZyBhIGZ1bGwgbW9kZXNl
-dCBpbiBBDQo+IC0gZW5hYmxlIHBpcGUgQSwgY2hhbmdpbmcgdGhlIG1hc3RlciB0cmFuc2NvZGVy
-IGJhY2sgdG8gQShkb2luZyBhDQo+IGZ1bGwgbW9kZXNldCBpbiBCKQ0KPiAtIFBvdzogdW5kZXJy
-dW5zIGFuZCB0aW1lb3V0cw0KPiANCj4gVGhlIHRyYW5zY29kZXJzIGludm9sdmVkIHdpbGwgb25s
-eSB3b3JrIGFnYWluIHdoZW4gY29tcGxldGUgZGlzYWJsZWQNCj4gYW5kIHRoZWlyIHBvd2VyIHdl
-bGxzIHR1cm5lZCBvZmYgY2F1c2luZyBhIHJlc2V0IGluIHRoZWlyIHJlZ2lzdGVycy4NCj4gDQo+
-IENjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiBD
-YzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1i
-eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IC0tLQ0K
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDEgKw0KPiAgMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQoNCkJBVC9JR1QgYXJlIGZpbmUsIHNvIGlmIHRo
-aXMgaW1wcm92ZXMgc29tZSBNU1QgYmVoYXZpb3JzIGRvbid0IHNlZQ0KYW55IHBvaW50IGluIGhv
-bGRpbmcgdGhpcyBwYXRjaCBmcm9tIGJlaW5nIG1lcmdlZC4gDQpGb3IgTVNULCB3ZSBhcmUgYW55
-d2F5IGZhY2luZyBNU1QgcmVncmVzc2lvbnMgYWxtb3N0IG9uIHdlZWtseSBiYXNpcy4NClVudGls
-IHdlIGhhdmUgc29tZSBtZWFuaW5nZnVsIHRlc3RzIGluIENJIGZvciBNU1QsIGl0IGFueXdheQ0K
-d291bGQgYmUgY29uc3RhbnRseSBpbiAiYmFkIiBzaGFwZS4NCg0KUmV2aWV3ZWQtYnk6IFN0YW5p
-c2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPg0KDQo+IA0KPiBk
-aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiBi
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gaW5kZXggMzJlYTNj
-N2U4YjYyLi44MmU5MGYyNzE5NzQgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kZGkuYw0KPiBAQCAtMTk5Nyw2ICsxOTk3LDcgQEAgdm9pZCBpbnRlbF9kZGlfZGlz
-YWJsZV90cmFuc2NvZGVyX2Z1bmMoY29uc3QNCj4gc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNy
-dGNfc3RhdGUNCj4gIA0KPiAgCXZhbCA9IEk5MTVfUkVBRChUUkFOU19ERElfRlVOQ19DVEwoY3B1
-X3RyYW5zY29kZXIpKTsNCj4gIAl2YWwgJj0gflRSQU5TX0RESV9GVU5DX0VOQUJMRTsNCj4gKwl2
-YWwgJj0gflRSQU5TX0RESV9NT0RFX1NFTEVDVF9NQVNLOw0KPiAgDQo+ICAJaWYgKElOVEVMX0dF
-TihkZXZfcHJpdikgPj0gMTIpIHsNCj4gIAkJaWYgKCFpbnRlbF9kcF9tc3RfaXNfbWFzdGVyX3Ry
-YW5zKGNydGNfc3RhdGUpKQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+Quoting Janusz Krzysztofik (2020-02-04 11:41:13)
+> On future hardware with missing GGTT BAR we won't be able to exercise
+> dma-buf access via that path.  An alternative to basic-gtt subtest for
+> testing dma-buf access is required, as well as basic-fence-mmap and
+> coherency-gtt subtest alternatives for testing WC coherency.
+> 
+> Access to the dma sg list feature exposed by dma-buf can be tested
+> through blitter.  Unfortunately we don't have any equivalently simple
+> tests that use blitter.  Provide them.
+> 
+> XY_SRC_COPY_BLT method implemented by igt_blitter_src_copy() IGT
+> library helper has been chosen.
+> 
+> v2: As fast copy is not supported on platforms older than Gen 9,
+>     use XY_SRC_COPY instead (Chris),
+>   - add subtest descriptions.
+> v3: Don't calculate the pitch, use scratch.pitch returned by
+>     vgem_create() (Chris),
+>   - replace constants with values from respective fields of scratch
+>     (Chris),
+>   - use _u32 variant of igt_assert_eq() for better readability of
+>     possible error messages (Chris),
+>   - sleep a bit to emphasize that the only thing stopping the blitter
+>     is the fence (Chris),
+>   - use prime_sync_start/end() as the recommended practice for
+>     inter-device sync, not gem_sync() (Chris),
+>   - update the name of used XY_SRC_COPY_BLT helper to match the name of
+>     its library version just merged.
+> 
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+> Hi Chris,
+> 
+> I hope I've understood and addressed your comments correctly so your
+> R-b still applies.
+
+Sure, just spotted one slight slip in uapi usage,
+
+> +static void test_blt_interleaved(int vgem, int i915)
+> +{
+> +       struct vgem_bo scratch;
+> +       uint32_t prime, native;
+> +       uint32_t *foreign, *local;
+> +       int dmabuf, i;
+> +
+> +       scratch.width = 1024;
+> +       scratch.height = 1024;
+> +       scratch.bpp = 32;
+> +       vgem_create(vgem, &scratch);
+> +
+> +       dmabuf = prime_handle_to_fd(vgem, scratch.handle);
+> +       prime = prime_fd_to_handle(i915, dmabuf);
+> +
+> +       native = gem_create(i915, scratch.size);
+> +
+> +       foreign = vgem_mmap(vgem, &scratch, PROT_WRITE);
+> +       local = gem_mmap__wc(i915, native, 0, scratch.size, PROT_WRITE);
+> +
+> +       for (i = 0; i < scratch.height; i++) {
+> +               local[scratch.pitch * i / sizeof(*local)] = i;
+> +               igt_blitter_src_copy(i915, native, 0, scratch.pitch,
+> +                                    I915_TILING_NONE, 0, i, scratch.width, 1,
+> +                                    scratch.bpp, prime, 0, scratch.pitch,
+> +                                    I915_TILING_NONE, 0, i);
+> +               prime_sync_start(dmabuf, true);
+> +               prime_sync_end(dmabuf, true);
+> +               igt_assert_eq_u32(foreign[scratch.pitch * i / sizeof(*foreign)],
+> +                                 i);
+
+sync_start()
+igt_assert...
+sync_end()
+
+> +
+> +               foreign[scratch.pitch * i / sizeof(*foreign)] = ~i;
+> +               igt_blitter_src_copy(i915, prime, 0, scratch.pitch,
+> +                                    I915_TILING_NONE, 0, i, scratch.width, 1,
+> +                                    scratch.bpp, native, 0, scratch.pitch,
+> +                                    I915_TILING_NONE, 0, i);
+> +               gem_sync(i915, native);
+> +               igt_assert_eq_u32(local[scratch.pitch * i / sizeof(*local)],
+> +                                 ~i);
+> +       }
+
+Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
