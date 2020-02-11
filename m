@@ -2,32 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39217158CD0
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 11:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70513158CF4
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 11:53:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E60E589CB3;
-	Tue, 11 Feb 2020 10:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAD866EE1C;
+	Tue, 11 Feb 2020 10:53:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC26989CB3;
- Tue, 11 Feb 2020 10:38:05 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20184889-1500050 for multiple; Tue, 11 Feb 2020 10:38:01 +0000
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D3F66EA23;
+ Tue, 11 Feb 2020 10:53:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 02:53:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="380399238"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by orsmga004.jf.intel.com with ESMTP; 11 Feb 2020 02:53:11 -0800
+Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
+ IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 11 Feb 2020 10:53:10 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 11 Feb 2020 10:53:09 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Tue, 11 Feb 2020 10:53:09 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Souza,
+ Jose" <jose.souza@intel.com>
+Thread-Topic: [PATCH 3/4] drm/i915/display: Remove useless call
+ intel_dp_mst_encoder_cleanup()
+Thread-Index: AQHVzNmxQIxBP7XEvk6NmYUeEofHSqgV+EgA
+Date: Tue, 11 Feb 2020 10:53:09 +0000
+Message-ID: <a09f01c2c73f05ccd41a27a3a76137e8c1f5c830.camel@intel.com>
+References: <20200117015837.402239-1-jose.souza@intel.com>
+ <20200117015837.402239-3-jose.souza@intel.com>
+In-Reply-To: <20200117015837.402239-3-jose.souza@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.66.163]
+Content-ID: <5CD430914CD0274BA18834CE13EF6BEF@intel.com>
 MIME-Version: 1.0
-To: Andi Shyti <andi@etezian.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200211004255.GA2535@jack.zhora.eu>
-References: <20200211003742.863630-1-chris@chris-wilson.co.uk>
- <20200211004255.GA2535@jack.zhora.eu>
-Message-ID: <158141747934.5235.15646593670790864278@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 11 Feb 2020 10:37:59 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_nop: Keep a copy of the
- names
+Subject: Re: [Intel-gfx] [PATCH 3/4] drm/i915/display: Remove useless call
+ intel_dp_mst_encoder_cleanup()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +64,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-02-11 00:42:55)
-> Hi Chris,
-> 
-> On Tue, Feb 11, 2020 at 12:37:42AM +0000, Chris Wilson wrote:
-> > The engine names are now stored inside the iterator and not as static
-> > strings. If we wish to use them later, we need to make a copy.
-> 
-> But we are not using them later. Your patch just copies and frees
-> an array.
-
-They are used inside an igt_info() in the child processes. Output at the
-moment is quite strange.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTAxLTE2IGF0IDE3OjU4IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IHdyb3RlOg0KPiBUaGlzIGlzIGEgZURQIGZ1bmN0aW9uIGFuZCBpdCB3aWxsIGFsd2F5cyByZXR1
+cm5zIHRydWUgZm9yIG5vbi1lRFANCj4gcG9ydHMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBKb3PD
+qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgfCAxIC0NCj4gIDEgZmlsZSBjaGFu
+Z2VkLCAxIGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kcC5jDQo+IGluZGV4IDQwNzRkODNiMWE1Zi4uYTUwYjViNmRkMDA5IDEwMDY0NA0KPiAt
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jDQo+IEBAIC03NTM3LDcgKzc1Mzcs
+NiBAQCBpbnRlbF9kcF9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QNCj4gaW50ZWxfZGlnaXRhbF9wb3J0
+ICppbnRlbF9kaWdfcG9ydCwNCj4gIA0KPiAgCWlmICghaW50ZWxfZWRwX2luaXRfY29ubmVjdG9y
+KGludGVsX2RwLCBpbnRlbF9jb25uZWN0b3IpKSB7DQo+ICAJCWludGVsX2RwX2F1eF9maW5pKGlu
+dGVsX2RwKTsNCj4gLQkJaW50ZWxfZHBfbXN0X2VuY29kZXJfY2xlYW51cChpbnRlbF9kaWdfcG9y
+dCk7DQo+ICAJCWdvdG8gZmFpbDsNCj4gIAl9DQo+ICANCg0KDQpDaGFuZ2UgbG9va3MgZmluZSBm
+b3IgbWUoYW55d2F5IGJldHRlciB0aGFuIG5vdykuIA0KDQpCdXQ6DQoNClRoaXMgd2hvbGUgdGhp
+bmcgbG9va3Mga2luZCBvZiBjb25mdXNpbmcgdG8gbWUuIFdoeSB3ZSBhcmUgZXZlbiBjYWxsaW5n
+DQppbnRlbF9lZHBfaW5pdF9jb25uZWN0b3IgZm9yDQpub24tZURQIHBvcnRzLCBqdXN0IHRvIGlt
+bWVkaWF0ZWx5IGdldCB0cnVlIHJldHVybmVkPyBTbyByZXR1cm5pbmcNCnN1Y2Nlc3MgbWVhbnMg
+ZWl0aGVyIHN1Y2Nlc3Mgb3IgdGhhdCB0aGlzIGlzIG5vbi1lRFAuLg0KDQpUaGlzIGNvbmZ1c2Vz
+IHRoZSBjYWxsZXIsIHRoYXQgd2UgaGF2ZSBhY3R1YWxseSBzdWNjZXNzZnVsbHkNCmluaXRpYWxp
+emVkIGVEUCwgd2hpbGUgYWN0dWFsbHkgdGhpcyBhbHNvIG1lYW5zIGhlcmUgdGhhdCBpdCBpcyBu
+b3QNCmVEUC4NCg0KV2h5IHdlIGNhbid0IGp1c3QgZG8gaXQgbGlrZToNCg0KaWYgKGludGVsX2Rw
+X2lzX2VkcChpbnRlbF9kcCkpIHsNCglpZiAoIWludGVsX2VkcF9pbml0X2Nvbm5lY3RvcihpbnRl
+bF9kcCwgaW50ZWxfY29ubmVjdG9yKSkgew0KCQlpbnRlbF9kcF9hdXhfZmluaShpbnRlbF9kcCk7
+DQogIAkJZ290byBmYWlsOw0KCX0NCn0NCg0KaXQgbG9va3MgbXVjaCBtb3JlIHVuZGVyc3RhbmRh
+YmxlIGFuZCBsZXNzIGNvbmZ1c2luZywgaS5lIGVEUCBmdW5jdGlvbnMNCmFyZSBvbmx5IGNhbGxl
+ZCBmb3IgZURQIGFuZCBubyByZXR1cm4gdmFsdWUgaGFja3MgYXJlIG5lZWRlZC4NCg0KUmV2aWV3
+ZWQtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29t
+Pg0KDQpTdGFuDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9y
+ZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdm
+eAo=
