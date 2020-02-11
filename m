@@ -2,28 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E192158F59
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 13:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70321158F5C
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 14:00:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94996EA54;
-	Tue, 11 Feb 2020 12:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E8D6EA5A;
+	Tue, 11 Feb 2020 13:00:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 677886EA54
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 12:59:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20186895-1500050 
- for multiple; Tue, 11 Feb 2020 12:58:57 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 12:58:56 +0000
-Message-Id: <20200211125856.978559-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D64F46EA5A;
+ Tue, 11 Feb 2020 13:00:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 05:00:24 -0800
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="226496534"
+Received: from ayashfe-mobl1.ger.corp.intel.com (HELO [10.251.86.31])
+ ([10.251.86.31])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
+ 11 Feb 2020 05:00:22 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, Andi Shyti <andi@etezian.org>
+References: <20200211003742.863630-1-chris@chris-wilson.co.uk>
+ <20200211004255.GA2535@jack.zhora.eu>
+ <158141747934.5235.15646593670790864278@skylake-alporthouse-com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <52e2f277-e709-05b2-d66a-833fe8b234f1@linux.intel.com>
+Date: Tue, 11 Feb 2020 13:00:19 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Poison rings after use
+In-Reply-To: <158141747934.5235.15646593670790864278@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_nop: Keep a
+ copy of the names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,83 +49,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On retiring the request, we should not re-use these elements in the ring
-(at least not until we fill the ringbuffer and knowingly reuse the space).
-Leave behind some poison to (hopefully) trap ourselves if we make a
-mistake.
 
-Suggested-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_request.c | 26 +++++++++++++++++---------
- 1 file changed, 17 insertions(+), 9 deletions(-)
+On 11/02/2020 10:37, Chris Wilson wrote:
+> Quoting Andi Shyti (2020-02-11 00:42:55)
+>> Hi Chris,
+>>
+>> On Tue, Feb 11, 2020 at 12:37:42AM +0000, Chris Wilson wrote:
+>>> The engine names are now stored inside the iterator and not as static
+>>> strings. If we wish to use them later, we need to make a copy.
+>>
+>> But we are not using them later. Your patch just copies and frees
+>> an array.
+> 
+> They are used inside an igt_info() in the child processes. Output at the
+> moment is quite strange.
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 0ecc2cf64216..9ee7bf0200b0 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -203,6 +203,19 @@ static void free_capture_list(struct i915_request *request)
- 	}
- }
- 
-+static void __i915_request_fill(struct i915_request *rq, u8 val)
-+{
-+	void *vaddr = rq->ring->vaddr;
-+	u32 head;
-+
-+	head = rq->infix;
-+	if (rq->postfix < head) {
-+		memset(vaddr + head, val, rq->ring->size - head);
-+		head = 0;
-+	}
-+	memset(vaddr + head, val, rq->postfix - head);
-+}
-+
- static void remove_from_engine(struct i915_request *rq)
- {
- 	struct intel_engine_cs *engine, *locked;
-@@ -247,6 +260,9 @@ bool i915_request_retire(struct i915_request *rq)
- 	 */
- 	GEM_BUG_ON(!list_is_first(&rq->link,
- 				  &i915_request_timeline(rq)->requests));
-+	if (IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM))
-+		/* Poison before we release our space in the ring */
-+		__i915_request_fill(rq, POISON_FREE);
- 	rq->ring->head = rq->postfix;
- 
- 	/*
-@@ -1175,9 +1191,6 @@ i915_request_await_object(struct i915_request *to,
- 
- void i915_request_skip(struct i915_request *rq, int error)
- {
--	void *vaddr = rq->ring->vaddr;
--	u32 head;
--
- 	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
- 	dma_fence_set_error(&rq->fence, error);
- 
-@@ -1189,12 +1202,7 @@ void i915_request_skip(struct i915_request *rq, int error)
- 	 * context, clear out all the user operations leaving the
- 	 * breadcrumb at the end (so we get the fence notifications).
- 	 */
--	head = rq->infix;
--	if (rq->postfix < head) {
--		memset(vaddr + head, 0, rq->ring->size - head);
--		head = 0;
--	}
--	memset(vaddr + head, 0, rq->postfix - head);
-+	__i915_request_fill(rq, 0);
- 	rq->infix = rq->postfix;
- }
- 
--- 
-2.25.0
+I also don't get this - child has a copy of everything how can it not work?
+
+Regards,
+
+Tvrtko
+
 
 _______________________________________________
 Intel-gfx mailing list
