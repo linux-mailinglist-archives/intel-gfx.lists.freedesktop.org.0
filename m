@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FCD81594F3
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 17:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC971594FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2020 17:32:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBAEC6EEBF;
-	Tue, 11 Feb 2020 16:29:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89FDD6EF20;
+	Tue, 11 Feb 2020 16:32:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4D176EEBF
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 16:29:07 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C6F6EF20
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 16:32:33 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 08:29:06 -0800
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 08:32:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="237442395"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 11 Feb 2020 08:29:04 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Feb 2020 18:29:03 +0200
-Date: Tue, 11 Feb 2020 18:29:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200211162903.GW13686@intel.com>
-References: <20200211161451.6867-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="432009617"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga005.fm.intel.com with ESMTP; 11 Feb 2020 08:32:30 -0800
+Date: Tue, 11 Feb 2020 21:53:55 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <20200211162355.GC3527@intel.com>
+References: <20200211093002.23894-1-ramalingam.c@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200211161451.6867-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: move intel_csr.[ch] under
- display/
+In-Reply-To: <20200211093002.23894-1-ramalingam.c@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: terminate reauth at stream
+ management failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,144 +45,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 11, 2020 at 06:14:50PM +0200, Jani Nikula wrote:
-> The DMC firmware is about display. Move the handling under display. No
-> functional changes.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Acked-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-I'm also thinking s/csr/dmc/ migth be a good idea. I don't even
-remember what "csr" means...
-
+On 2020-02-11 at 15:00:01 +0530, Ramalingam C wrote:
+> As per the HDCP2.2 compliance test 1B-10 expectation, when stream
+> management for a repeater fails, we retry thrice and when it fails
+> in all retries, HDCP2.2 reauthentication aborted at kernel.
+> 
+> v2:
+>   seq_num_m++ is extended for steam management failures too.[Anshuman]
+> 
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 > ---
->  drivers/gpu/drm/i915/Makefile                  | 2 +-
->  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c | 0
->  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h | 0
->  drivers/gpu/drm/i915/i915_debugfs.c            | 2 +-
->  drivers/gpu/drm/i915/i915_drv.c                | 2 +-
->  drivers/gpu/drm/i915/i915_gpu_error.c          | 2 +-
->  6 files changed, 4 insertions(+), 4 deletions(-)
->  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c (100%)
->  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h (100%)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 49eed50ef0a4..a2fab3c43563 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -46,7 +46,6 @@ i915-y +=3D i915_drv.o \
->  	  i915_switcheroo.o \
->  	  i915_sysfs.o \
->  	  i915_utils.o \
-> -	  intel_csr.o \
->  	  intel_device_info.o \
->  	  intel_memory_region.o \
->  	  intel_pch.o \
-> @@ -183,6 +182,7 @@ i915-y +=3D \
->  	display/intel_color.o \
->  	display/intel_combo_phy.o \
->  	display/intel_connector.o \
-> +	display/intel_csr.o \
->  	display/intel_display.o \
->  	display/intel_display_power.o \
->  	display/intel_dpio_phy.o \
-> diff --git a/drivers/gpu/drm/i915/intel_csr.c b/drivers/gpu/drm/i915/disp=
-lay/intel_csr.c
-> similarity index 100%
-> rename from drivers/gpu/drm/i915/intel_csr.c
-> rename to drivers/gpu/drm/i915/display/intel_csr.c
-> diff --git a/drivers/gpu/drm/i915/intel_csr.h b/drivers/gpu/drm/i915/disp=
-lay/intel_csr.h
-> similarity index 100%
-> rename from drivers/gpu/drm/i915/intel_csr.h
-> rename to drivers/gpu/drm/i915/display/intel_csr.h
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i=
-915_debugfs.c
-> index 3cae18d1d20c..83dae4d8ac0c 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -32,6 +32,7 @@
->  #include <drm/drm_debugfs.h>
->  #include <drm/drm_fourcc.h>
->  =
-
-> +#include "display/intel_csr.h"
->  #include "display/intel_display_types.h"
->  #include "display/intel_dp.h"
->  #include "display/intel_fbc.h"
-> @@ -51,7 +52,6 @@
->  #include "i915_debugfs_params.h"
->  #include "i915_irq.h"
->  #include "i915_trace.h"
-> -#include "intel_csr.h"
->  #include "intel_pm.h"
->  #include "intel_sideband.h"
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index 516536234e97..4e43a671f2c0 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -50,6 +50,7 @@
->  #include "display/intel_audio.h"
->  #include "display/intel_bw.h"
->  #include "display/intel_cdclk.h"
-> +#include "display/intel_csr.h"
->  #include "display/intel_display_types.h"
->  #include "display/intel_dp.h"
->  #include "display/intel_fbdev.h"
-> @@ -77,7 +78,6 @@
->  #include "i915_sysfs.h"
->  #include "i915_trace.h"
->  #include "i915_vgpu.h"
-> -#include "intel_csr.h"
->  #include "intel_memory_region.h"
->  #include "intel_pm.h"
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915=
-/i915_gpu_error.c
-> index 5a1517d0bf3b..b2ed977ed971 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -37,6 +37,7 @@
->  #include <drm/drm_print.h>
->  =
-
->  #include "display/intel_atomic.h"
-> +#include "display/intel_csr.h"
->  #include "display/intel_overlay.h"
->  =
-
->  #include "gem/i915_gem_context.h"
-> @@ -47,7 +48,6 @@
->  #include "i915_gpu_error.h"
->  #include "i915_memcpy.h"
->  #include "i915_scatterlist.h"
-> -#include "intel_csr.h"
->  =
-
->  #define ALLOW_FAIL (GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN)
->  #define ATOMIC_MAYFAIL (GFP_ATOMIC | __GFP_NOWARN)
-> -- =
-
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 71 ++++++++++++++---------
+>  1 file changed, 42 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 4d1a33d13105..fad220d5d105 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1380,7 +1380,7 @@ static int hdcp2_session_key_exchange(struct intel_connector *connector)
+>  }
+>  
+>  static
+> -int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> +int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+> @@ -1406,28 +1406,25 @@ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+>  	ret = shim->write_2_2_msg(intel_dig_port, &msgs.stream_manage,
+>  				  sizeof(msgs.stream_manage));
+>  	if (ret < 0)
+> -		return ret;
+> +		goto err_exit;
+>  
+>  	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_REP_STREAM_READY,
+>  				 &msgs.stream_ready, sizeof(msgs.stream_ready));
+>  	if (ret < 0)
+> -		return ret;
+> +		goto err_exit;
+>  
+>  	hdcp->port_data.seq_num_m = hdcp->seq_num_m;
+>  	hdcp->port_data.streams[0].stream_type = hdcp->content_type;
+> -
+>  	ret = hdcp2_verify_mprime(connector, &msgs.stream_ready);
+> -	if (ret < 0)
+> -		return ret;
+>  
+> +err_exit:
+>  	hdcp->seq_num_m++;
+> -
+>  	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
+>  		DRM_DEBUG_KMS("seq_num_m roll over.\n");
+> -		return -1;
+> +		ret = -1;
+>  	}
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static
+> @@ -1492,17 +1489,6 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  	return 0;
+>  }
+>  
+> -static int hdcp2_authenticate_repeater(struct intel_connector *connector)
+> -{
+> -	int ret;
+> -
+> -	ret = hdcp2_authenticate_repeater_topology(connector);
+> -	if (ret < 0)
+> -		return ret;
+> -
+> -	return hdcp2_propagate_stream_management_info(connector);
+> -}
+> -
+>  static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
+> @@ -1537,18 +1523,13 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  	}
+>  
+>  	if (hdcp->is_repeater) {
+> -		ret = hdcp2_authenticate_repeater(connector);
+> +		ret = hdcp2_authenticate_repeater_topology(connector);
+>  		if (ret < 0) {
+>  			DRM_DEBUG_KMS("Repeater Auth Failed. Err: %d\n", ret);
+>  			return ret;
+>  		}
+>  	}
+>  
+> -	hdcp->port_data.streams[0].stream_type = hdcp->content_type;
+> -	ret = hdcp2_authenticate_port(connector);
+> -	if (ret < 0)
+> -		return ret;
+> -
+>  	return ret;
+>  }
+>  
+> @@ -1626,14 +1607,46 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
+>  	return ret;
+>  }
+>  
+> +static int
+> +hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> +{
+> +	int i, tries = 3, ret;
+> +
+> +	if (!connector->hdcp.is_repeater)
+> +		return 0;
+> +
+> +	for (i = 0; i < tries; i++) {
+> +		ret = _hdcp2_propagate_stream_management_info(connector);
+> +		if (!ret)
+> +			break;
+> +
+> +		DRM_DEBUG_KMS("HDCP2 stream management %d of %d Failed.(%d)\n",
+> +			      i + 1, tries, ret);
+intel_hdcp.c has already replced all DRM_DEBUG_KMD to drm_db_kms() so any new 
+logging need to use drm_dbg_kms().
+Thanks ,
+Anshuman Gupta.
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  {
+> +	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	int ret, i, tries = 3;
+>  
+>  	for (i = 0; i < tries; i++) {
+>  		ret = hdcp2_authenticate_sink(connector);
+> -		if (!ret)
+> -			break;
+> +		if (!ret) {
+> +			ret = hdcp2_propagate_stream_management_info(connector);
+> +			if (!ret) {
+> +				hdcp->port_data.streams[0].stream_type =
+> +							hdcp->content_type;
+> +				ret = hdcp2_authenticate_port(connector);
+> +				if (!ret)
+> +					break;
+> +			} else {
+> +				DRM_DEBUG_KMS("HDCP2 stream management failed\n");
+> +				break;
+> +			}
+> +		}
+>  
+>  		/* Clearing the mei hdcp session */
+>  		DRM_DEBUG_KMS("HDCP2.2 Auth %d of %d Failed.(%d)\n",
+> @@ -1642,7 +1655,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  			DRM_DEBUG_KMS("Port deauth failed.\n");
+>  	}
+>  
+> -	if (i != tries) {
+> +	if (!ret) {
+>  		/*
+>  		 * Ensuring the required 200mSec min time interval between
+>  		 * Session Key Exchange and encryption.
+> -- 
 > 2.20.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
