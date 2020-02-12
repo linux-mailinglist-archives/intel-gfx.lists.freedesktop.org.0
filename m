@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D8515A555
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 10:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D703915A584
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 11:00:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47CD989B68;
-	Wed, 12 Feb 2020 09:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23EA36F462;
+	Wed, 12 Feb 2020 10:00:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C89F689A91;
- Wed, 12 Feb 2020 09:53:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20196479-1500050 for multiple; Wed, 12 Feb 2020 09:53:00 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875036EA57;
+ Wed, 12 Feb 2020 10:00:49 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2020 02:00:48 -0800
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="226814890"
+Received: from pbaltus-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.40.24])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2020 02:00:45 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20200212093515.11700-6-ramalingam.c@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200212093515.11700-1-ramalingam.c@intel.com>
+ <20200212093515.11700-6-ramalingam.c@intel.com>
+Date: Wed, 12 Feb 2020 12:01:08 +0200
+Message-ID: <87o8u4untn.fsf@intel.com>
 MIME-Version: 1.0
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <5173421.1tdKuYG5iQ@jkrzyszt-desk.ger.corp.intel.com>
-References: <20200204114113.22436-1-janusz.krzysztofik@linux.intel.com>
- <158142117623.2359.3844752172351507163@skylake-alporthouse-com>
- <5173421.1tdKuYG5iQ@jkrzyszt-desk.ger.corp.intel.com>
-Message-ID: <158150117837.5188.6278268173165868386@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Wed, 12 Feb 2020 09:52:58 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t v3] tests/prime_vgem: Examine blitter
- access path
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/i915/hdcp: conversion to struct
+ drm_device based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,135 +47,396 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Janusz Krzysztofik (2020-02-12 09:08:53)
-> Hi Chris,
-> 
-> On Tuesday, February 11, 2020 12:39:36 PM CET Chris Wilson wrote:
-> > Quoting Janusz Krzysztofik (2020-02-04 11:41:13)
-> > > On future hardware with missing GGTT BAR we won't be able to exercise
-> > > dma-buf access via that path.  An alternative to basic-gtt subtest for
-> > > testing dma-buf access is required, as well as basic-fence-mmap and
-> > > coherency-gtt subtest alternatives for testing WC coherency.
-> > > 
-> > > Access to the dma sg list feature exposed by dma-buf can be tested
-> > > through blitter.  Unfortunately we don't have any equivalently simple
-> > > tests that use blitter.  Provide them.
-> > > 
-> > > XY_SRC_COPY_BLT method implemented by igt_blitter_src_copy() IGT
-> > > library helper has been chosen.
-> > > 
-> > > v2: As fast copy is not supported on platforms older than Gen 9,
-> > >     use XY_SRC_COPY instead (Chris),
-> > >   - add subtest descriptions.
-> > > v3: Don't calculate the pitch, use scratch.pitch returned by
-> > >     vgem_create() (Chris),
-> > >   - replace constants with values from respective fields of scratch
-> > >     (Chris),
-> > >   - use _u32 variant of igt_assert_eq() for better readability of
-> > >     possible error messages (Chris),
-> > >   - sleep a bit to emphasize that the only thing stopping the blitter
-> > >     is the fence (Chris),
-> > >   - use prime_sync_start/end() as the recommended practice for
-> > >     inter-device sync, not gem_sync() (Chris),
-> > >   - update the name of used XY_SRC_COPY_BLT helper to match the name of
-> > >     its library version just merged.
-> > > 
-> > > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > ---
-> > > Hi Chris,
-> > > 
-> > > I hope I've understood and addressed your comments correctly so your
-> > > R-b still applies.
-> > 
-> > Sure, just spotted one slight slip in uapi usage,
-> > 
-> > > +static void test_blt_interleaved(int vgem, int i915)
-> > > +{
-> > > +       struct vgem_bo scratch;
-> > > +       uint32_t prime, native;
-> > > +       uint32_t *foreign, *local;
-> > > +       int dmabuf, i;
-> > > +
-> > > +       scratch.width = 1024;
-> > > +       scratch.height = 1024;
-> > > +       scratch.bpp = 32;
-> > > +       vgem_create(vgem, &scratch);
-> > > +
-> > > +       dmabuf = prime_handle_to_fd(vgem, scratch.handle);
-> > > +       prime = prime_fd_to_handle(i915, dmabuf);
-> > > +
-> > > +       native = gem_create(i915, scratch.size);
-> > > +
-> > > +       foreign = vgem_mmap(vgem, &scratch, PROT_WRITE);
-> > > +       local = gem_mmap__wc(i915, native, 0, scratch.size, PROT_WRITE);
-> > > +
-> > > +       for (i = 0; i < scratch.height; i++) {
-> > > +               local[scratch.pitch * i / sizeof(*local)] = i;
-> > > +               igt_blitter_src_copy(i915, native, 0, scratch.pitch,
-> > > +                                    I915_TILING_NONE, 0, i, scratch.width, 1,
-> > > +                                    scratch.bpp, prime, 0, scratch.pitch,
-> > > +                                    I915_TILING_NONE, 0, i);
-> > > +               prime_sync_start(dmabuf, true);
-> > > +               prime_sync_end(dmabuf, true);
-> > > +               igt_assert_eq_u32(foreign[scratch.pitch * i / sizeof(*foreign)],
-> > > +                                 i);
-> > 
-> > sync_start()
-> > igt_assert...
-> > sync_end()
-> 
-> While your modification seems harmless to me, could you please explain why? 
-> 'foreign' is not a map to dma-buf, it's a map to a vgem object.  Why 
-> should we surround access to an mmapped vgem object with prime_sync_start/
-> end()?  I think vgem driver should take care of synchronization/serialization 
-> as needed.
+On Wed, 12 Feb 2020, Ramalingam C <ramalingam.c@intel.com> wrote:
+> Converts remaining instances of the printk based logging macros in
+> i915/display/intel_hdcp.c with the struct drm_device based macros
+> manually.
+>
+> This is continuation of commit 65833c463886 ("drm/i915/hdcp: conversion
+> to struct drm_device based logging macros.")
+>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+> cc: Jani Nikula <jani.nikula@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 107 ++++++++++++----------
+>  1 file changed, 60 insertions(+), 47 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 11f204668a5c..3361796b59ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -43,6 +43,7 @@ static
+>  int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
+>  			       const struct intel_hdcp_shim *shim, u8 *bksv)
+>  {
+> +	struct drm_device *drm = intel_dig_port->base.base.dev;
 
-As I understood the flow of mmaps, dmabuf is pointing to vgem and so we
-are using the dmabuf synchronisation to relegate access to the vgem
-mmap.
+Please prefer adding struct drm_i915_private *i915 local variable
+instead of struct drm_device, and use it as &i915->drm.
 
-Your intention is that this sequence was:
+I know you're only adding this to get the pointer for logging, but in
+any given place we're much more likely to need i915 in the future than
+drm_device pointer.
 
-i915: do stuff
+In some places you do add dev_priv and use it like that; please name the
+variable i915.
 
-dmabuf: sync
-
-vgem: assume coherent.
-
-Whereas I was looking at from the perspective of having to use dmabuf as
-the access controls for vgem, since it has none of its own.
- 
-> My intention was to use an empty prime_sync_start/end() instead of 
-> gem_sync(prime) for the sole purpose of making sure blitter copy was completed 
-> before we examine results from the vgem side.
-
-I see. We have a triangle, with sync only on the dmabuf vertex.
-The way I was looking at it is that our api should be focusing on /only/
-having the dmabuf as the conduit:
-
-         dmabuf
-vgem |<---------->| i915
+BR,
+Jani.
 
 
-What that means for api, when we add in more nodes and have the same
-buffer shared between multiple devices? Ugh.
+>  	int ret, i, tries = 2;
+>  
+>  	/* HDCP spec states that we must retry the bksv if it is invalid */
+> @@ -54,7 +55,7 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
+>  			break;
+>  	}
+>  	if (i == tries) {
+> -		DRM_DEBUG_KMS("Bksv is invalid\n");
+> +		drm_dbg_kms(drm, "Bksv is invalid\n");
+>  		return -ENODEV;
+>  	}
+>  
+> @@ -485,8 +486,8 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+>  			return ret;
+>  		sha_idx += sizeof(sha_text);
+>  	} else {
+> -		DRM_DEBUG_KMS("Invalid number of leftovers %d\n",
+> -			      sha_leftovers);
+> +		drm_dbg_kms(&dev_priv->drm, "Invalid number of leftovers %d\n",
+> +			    sha_leftovers);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -514,11 +515,11 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+>  		       rep_ctl | HDCP_SHA1_COMPLETE_HASH);
+>  	if (intel_de_wait_for_set(dev_priv, HDCP_REP_CTL,
+>  				  HDCP_SHA1_COMPLETE, 1)) {
+> -		DRM_ERROR("Timed out waiting for SHA1 complete\n");
+> +		drm_err(&dev_priv->drm, "Timed out waiting for SHA1 complete\n");
+>  		return -ETIMEDOUT;
+>  	}
+>  	if (!(intel_de_read(dev_priv, HDCP_REP_CTL) & HDCP_SHA1_V_MATCH)) {
+> -		DRM_DEBUG_KMS("SHA-1 mismatch, HDCP failed\n");
+> +		drm_dbg_kms(&dev_priv->drm, "SHA-1 mismatch, HDCP failed\n");
+>  		return -ENXIO;
+>  	}
+>  
+> @@ -537,7 +538,8 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  
+>  	ret = intel_hdcp_poll_ksv_fifo(intel_dig_port, shim);
+>  	if (ret) {
+> -		DRM_DEBUG_KMS("KSV list failed to become ready (%d)\n", ret);
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "KSV list failed to become ready (%d)\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -547,7 +549,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  
+>  	if (DRM_HDCP_MAX_DEVICE_EXCEEDED(bstatus[0]) ||
+>  	    DRM_HDCP_MAX_CASCADE_EXCEEDED(bstatus[1])) {
+> -		DRM_DEBUG_KMS("Max Topology Limit Exceeded\n");
+> +		drm_dbg_kms(&dev_priv->drm, "Max Topology Limit Exceeded\n");
+>  		return -EPERM;
+>  	}
+>  
+> @@ -560,13 +562,14 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  	 */
+>  	num_downstream = DRM_HDCP_NUM_DOWNSTREAM(bstatus[0]);
+>  	if (num_downstream == 0) {
+> -		DRM_DEBUG_KMS("Repeater with zero downstream devices\n");
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Repeater with zero downstream devices\n");
+>  		return -EINVAL;
+>  	}
+>  
+>  	ksv_fifo = kcalloc(DRM_HDCP_KSV_LEN, num_downstream, GFP_KERNEL);
+>  	if (!ksv_fifo) {
+> -		DRM_DEBUG_KMS("Out of mem: ksv_fifo\n");
+> +		drm_dbg_kms(&dev_priv->drm, "Out of mem: ksv_fifo\n");
+>  		return -ENOMEM;
+>  	}
+>  
+> @@ -576,7 +579,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  
+>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
+>  					num_downstream)) {
+> -		DRM_ERROR("Revoked Ksv(s) in ksv_fifo\n");
+> +		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
+>  		ret = -EPERM;
+>  		goto err;
+>  	}
+> @@ -594,12 +597,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
+>  	}
+>  
+>  	if (i == tries) {
+> -		DRM_DEBUG_KMS("V Prime validation failed.(%d)\n", ret);
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "V Prime validation failed.(%d)\n", ret);
+>  		goto err;
+>  	}
+>  
+> -	DRM_DEBUG_KMS("HDCP is enabled (%d downstream devices)\n",
+> -		      num_downstream);
+> +	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
+> +		    num_downstream);
+>  	ret = 0;
+>  err:
+>  	kfree(ksv_fifo);
+> @@ -642,7 +646,8 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  		if (ret)
+>  			return ret;
+>  		if (!hdcp_capable) {
+> -			DRM_DEBUG_KMS("Panel is not HDCP capable\n");
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "Panel is not HDCP capable\n");
+>  			return -EINVAL;
+>  		}
+>  	}
+> @@ -659,7 +664,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  	if (intel_de_wait_for_set(dev_priv,
+>  				  HDCP_STATUS(dev_priv, cpu_transcoder, port),
+>  				  HDCP_STATUS_AN_READY, 1)) {
+> -		DRM_ERROR("Timed out waiting for An\n");
+> +		drm_err(&dev_priv->drm, "Timed out waiting for An\n");
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -680,7 +685,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  		return ret;
+>  
+>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, bksv.shim, 1)) {
+> -		DRM_ERROR("BKSV is revoked\n");
+> +		drm_err(&dev_priv->drm, "BKSV is revoked\n");
+>  		return -EPERM;
+>  	}
+>  
+> @@ -706,7 +711,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  	/* Wait for R0 ready */
+>  	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+>  		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
+> -		DRM_ERROR("Timed out waiting for R0 ready\n");
+> +		drm_err(&dev_priv->drm, "Timed out waiting for R0 ready\n");
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -743,8 +748,10 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  	}
+>  
+>  	if (i == tries) {
+> -		DRM_DEBUG_KMS("Timed out waiting for Ri prime match (%x)\n",
+> -			      intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Timed out waiting for Ri prime match (%x)\n",
+> +			    intel_de_read(dev_priv, HDCP_STATUS(dev_priv,
+> +					  cpu_transcoder, port)));
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -753,7 +760,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  				  HDCP_STATUS(dev_priv, cpu_transcoder, port),
+>  				  HDCP_STATUS_ENC,
+>  				  ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
+> -		DRM_ERROR("Timed out waiting for encryption\n");
+> +		drm_err(&dev_priv->drm, "Timed out waiting for encryption\n");
+>  		return -ETIMEDOUT;
+>  	}
+>  
+> @@ -765,7 +772,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+>  	if (repeater_present)
+>  		return intel_hdcp_auth_downstream(connector);
+>  
+> -	DRM_DEBUG_KMS("HDCP is enabled (no repeater present)\n");
+> +	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (no repeater present)\n");
+>  	return 0;
+>  }
+>  
+> @@ -1270,7 +1277,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
+>  		return ret;
+>  
+>  	if (msgs.send_cert.rx_caps[0] != HDCP_2_2_RX_CAPS_VERSION_VAL) {
+> -		DRM_DEBUG_KMS("cert.rx_caps dont claim HDCP2.2\n");
+> +		drm_dbg_kms(&dev_priv->drm, "cert.rx_caps dont claim HDCP2.2\n");
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -1279,7 +1286,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
+>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm,
+>  					msgs.send_cert.cert_rx.receiver_id,
+>  					1)) {
+> -		DRM_ERROR("Receiver ID is revoked\n");
+> +		drm_err(&dev_priv->drm, "Receiver ID is revoked\n");
+>  		return -EPERM;
+>  	}
+>  
+> @@ -1446,7 +1453,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  
+>  	if (HDCP_2_2_MAX_CASCADE_EXCEEDED(rx_info[1]) ||
+>  	    HDCP_2_2_MAX_DEVS_EXCEEDED(rx_info[1])) {
+> -		DRM_DEBUG_KMS("Topology Max Size Exceeded\n");
+> +		drm_dbg_kms(&dev_priv->drm, "Topology Max Size Exceeded\n");
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -1456,7 +1463,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  
+>  	if (seq_num_v < hdcp->seq_num_v) {
+>  		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
+> -		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
+> +		drm_dbg_kms(&dev_priv->drm, "Seq_num_v roll over.\n");
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -1465,7 +1472,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm,
+>  					msgs.recvid_list.receiver_ids,
+>  					device_cnt)) {
+> -		DRM_ERROR("Revoked receiver ID(s) is in list\n");
+> +		drm_err(&dev_priv->drm, "Revoked receiver ID(s) is in list\n");
+>  		return -EPERM;
+>  	}
+>  
+> @@ -1487,25 +1494,27 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
+> +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	const struct intel_hdcp_shim *shim = hdcp->shim;
+>  	int ret;
+>  
+>  	ret = hdcp2_authentication_key_exchange(connector);
+>  	if (ret < 0) {
+> -		DRM_DEBUG_KMS("AKE Failed. Err : %d\n", ret);
+> +		drm_dbg_kms(&dev_priv->drm, "AKE Failed. Err : %d\n", ret);
+>  		return ret;
+>  	}
+>  
+>  	ret = hdcp2_locality_check(connector);
+>  	if (ret < 0) {
+> -		DRM_DEBUG_KMS("Locality Check failed. Err : %d\n", ret);
+> +		drm_dbg_kms(&dev_priv->drm,
+> +			    "Locality Check failed. Err : %d\n", ret);
+>  		return ret;
+>  	}
+>  
+>  	ret = hdcp2_session_key_exchange(connector);
+>  	if (ret < 0) {
+> -		DRM_DEBUG_KMS("SKE Failed. Err : %d\n", ret);
+> +		drm_dbg_kms(&dev_priv->drm, "SKE Failed. Err : %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -1520,7 +1529,8 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  	if (hdcp->is_repeater) {
+>  		ret = hdcp2_authenticate_repeater_topology(connector);
+>  		if (ret < 0) {
+> -			DRM_DEBUG_KMS("Repeater Auth Failed. Err: %d\n", ret);
+> +			drm_dbg_kms(&dev_priv->drm,
+> +				    "Repeater Auth Failed. Err: %d\n", ret);
+>  			return ret;
+>  		}
+>  	}
+> @@ -1651,10 +1661,10 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  		}
+>  
+>  		/* Clearing the mei hdcp session */
+> -		DRM_DEBUG_KMS("HDCP2.2 Auth %d of %d Failed.(%d)\n",
+> -			      i + 1, tries, ret);
+> +		drm_dbg_kms(drm, "HDCP2.2 Auth %d of %d Failed.(%d)\n",
+> +			    i + 1, tries, ret);
+>  		if (hdcp2_deauthenticate_port(connector) < 0)
+> -			DRM_DEBUG_KMS("Port deauth failed.\n");
+> +			drm_dbg_kms(drm, "Port deauth failed.\n");
+>  	}
+>  
+>  	if (!ret) {
+> @@ -1665,9 +1675,9 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  		msleep(HDCP_2_2_DELAY_BEFORE_ENCRYPTION_EN);
+>  		ret = hdcp2_enable_encryption(connector);
+>  		if (ret < 0) {
+> -			DRM_DEBUG_KMS("Encryption Enable Failed.(%d)\n", ret);
+> +			drm_dbg_kms(drm, "Encryption Enable Failed.(%d)\n", ret);
+>  			if (hdcp2_deauthenticate_port(connector) < 0)
+> -				DRM_DEBUG_KMS("Port deauth failed.\n");
+> +				drm_dbg_kms(drm, "Port deauth failed.\n");
+>  		}
+>  	}
+>  
+> @@ -1677,22 +1687,23 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  static int _intel_hdcp2_enable(struct intel_connector *connector)
+>  {
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+> +	struct drm_device *drm = connector->base.dev;
+>  	int ret;
+>  
+> -	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is being enabled. Type: %d\n",
+> -		      connector->base.name, connector->base.base.id,
+> -		      hdcp->content_type);
+> +	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is being enabled. Type: %d\n",
+> +		    connector->base.name, connector->base.base.id,
+> +		    hdcp->content_type);
+>  
+>  	ret = hdcp2_authenticate_and_encrypt(connector);
+>  	if (ret) {
+> -		DRM_DEBUG_KMS("HDCP2 Type%d  Enabling Failed. (%d)\n",
+> -			      hdcp->content_type, ret);
+> +		drm_dbg_kms(drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
+> +			    hdcp->content_type, ret);
+>  		return ret;
+>  	}
+>  
+> -	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is enabled. Type %d\n",
+> -		      connector->base.name, connector->base.base.id,
+> -		      hdcp->content_type);
+> +	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is enabled. Type %d\n",
+> +		    connector->base.name, connector->base.base.id,
+> +		    hdcp->content_type);
+>  
+>  	hdcp->hdcp2_encrypted = true;
+>  	return 0;
+> @@ -1700,15 +1711,16 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
+>  
+>  static int _intel_hdcp2_disable(struct intel_connector *connector)
+>  {
+> +	struct drm_device *drm = connector->base.dev;
+>  	int ret;
+>  
+> -	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is being Disabled\n",
+> -		      connector->base.name, connector->base.base.id);
+> +	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is being Disabled\n",
+> +		    connector->base.name, connector->base.base.id);
+>  
+>  	ret = hdcp2_disable_encryption(connector);
+>  
+>  	if (hdcp2_deauthenticate_port(connector) < 0)
+> -		DRM_DEBUG_KMS("Port deauth failed.\n");
+> +		drm_dbg_kms(drm, "Port deauth failed.\n");
+>  
+>  	connector->hdcp.hdcp2_encrypted = false;
+>  
+> @@ -1951,11 +1963,12 @@ static void intel_hdcp2_init(struct intel_connector *connector,
+>  			     const struct intel_hdcp_shim *shim)
+>  {
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+> +	struct drm_device *drm = connector->base.dev;
+>  	int ret;
+>  
+>  	ret = initialize_hdcp_port_data(connector, shim);
+>  	if (ret) {
+> -		DRM_DEBUG_KMS("Mei hdcp data init failed\n");
+> +		drm_dbg_kms(drm, "Mei hdcp data init failed\n");
+>  		return;
+>  	}
 
-And you can point that since dmabuf has its own mmap and accessors, it
-isn't a plain conduit, and more of its own node.
-
-The first one to figure it out wins the prize of writing the dmabuf
-ioctls and documentation.
--Chris
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
