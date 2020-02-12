@@ -2,32 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 269CE159DBA
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 00:56:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8CC159DF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 01:31:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6C06E486;
-	Tue, 11 Feb 2020 23:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46DD56F465;
+	Wed, 12 Feb 2020 00:31:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66D6E6E486
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2020 23:56:37 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C3376F463
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 00:31:43 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 15:56:36 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2020 16:31:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="433857666"
-Received: from anusha.jf.intel.com ([10.165.21.155])
- by fmsmga006.fm.intel.com with ESMTP; 11 Feb 2020 15:56:35 -0800
-From: Anusha Srivatsa <anusha.srivatsa@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="251736212"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by orsmga002.jf.intel.com with ESMTP; 11 Feb 2020 16:31:42 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 15:44:04 -0800
-Message-Id: <20200211234404.1728-1-anusha.srivatsa@intel.com>
-X-Mailer: git-send-email 2.25.0
+Date: Tue, 11 Feb 2020 16:31:14 -0800
+Message-Id: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Implement Wa_1606931601
+Subject: [Intel-gfx] [PATCH v3 00/10] Commit early to GuC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,56 +45,51 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable Early Read and Src Swap (bit 14) by setting the chicken
-register.
+Addressed review comments on v2.
 
-BSpec: 46045,52890
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 
-v2: Follow the Bspec implementation for the WA.
-v3: Have 2 separate defines for bit 14 and 15.
-- Rename register definitions with TGL_ prefix
-v4: Bspec changed. Again. Add WA to rcs_ WA list.
+Daniele Ceraolo Spurio (10):
+  drm/i915/debugfs: Pass guc_log struct to i915_guc_log_info
+  drm/i915/guc: Kill USES_GUC macro
+  drm/i915/guc: Kill USES_GUC_SUBMISSION macro
+  drm/i915/uc: Update the FW status on injected fetch error
+  drm/i915/uc: autogenerate uC checker functions
+  drm/i915/uc: Improve tracking of uC init status
+  drm/i915/guc: Apply new uC status tracking to GuC submission as well
+  drm/i915/uc: Abort early on uc_init failure
+  drm/i915/uc: consolidate firmware cleanup
+  HAX: drm/i915: default to enable_guc=2
 
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
- drivers/gpu/drm/i915/i915_reg.h             | 1 +
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  2 +-
+ drivers/gpu/drm/i915/gt/intel_gt.c            |  4 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  2 +-
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        | 12 ++--
+ drivers/gpu/drm/i915/gt/selftest_reset.c      |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 26 ++++----
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        | 15 ++---
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 +--
+ .../gpu/drm/i915/gt/uc/intel_guc_submission.h | 19 +++++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c        |  7 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h        |  8 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c     |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 59 +++++++++++-------
+ drivers/gpu/drm/i915/gt/uc/intel_uc.h         | 62 +++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c      |  9 ++-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h      | 18 +++++-
+ drivers/gpu/drm/i915/gvt/scheduler.c          |  3 +-
+ drivers/gpu/drm/i915/i915_debugfs.c           | 25 ++++----
+ drivers/gpu/drm/i915/i915_drv.h               | 10 ---
+ drivers/gpu/drm/i915/i915_params.h            |  2 +-
+ drivers/gpu/drm/i915/intel_gvt.c              |  2 +-
+ 22 files changed, 176 insertions(+), 124 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 61106129287f..310f8e1beaab 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1326,6 +1326,12 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- {
- 	struct drm_i915_private *i915 = engine->i915;
- 
-+	if (IS_TGL_REVID(i915, TGL_REVID_A0, REVID_FOREVER)) {
-+		/* Wa_1606931601:tgl */
-+		wa_write_or(wal,
-+			    GEN7_ROW_CHICKEN2,
-+			    GEN12_EARLY_READ_SRC0_DISABLE);
-+	}
- 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
- 		/* Wa_1606700617:tgl */
- 		wa_masked_en(wal,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 0bd431f6a011..c46bec8ebd17 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9151,6 +9151,7 @@ enum {
- #define   DOP_CLOCK_GATING_DISABLE	(1 << 0)
- #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
- #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
-+#define   GEN12_EARLY_READ_SRC0_DISABLE		(1 << 14)
- 
- #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
- #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
 -- 
-2.25.0
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
