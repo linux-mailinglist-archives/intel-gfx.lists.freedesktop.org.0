@@ -1,36 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE5CD15A3FD
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 09:53:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1F515A3F9
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 09:52:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55A8689F3B;
-	Wed, 12 Feb 2020 08:53:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB29C89BFB;
+	Wed, 12 Feb 2020 08:52:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09C1D89EB8
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 08:53:08 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2020 00:52:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="256757630"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by fmsmga004.fm.intel.com with ESMTP; 12 Feb 2020 00:52:19 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Feb 2020 14:11:43 +0530
-Message-Id: <20200212084143.13852-2-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200212084143.13852-1-anshuman.gupta@intel.com>
-References: <20200212084143.13852-1-anshuman.gupta@intel.com>
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 230748800B;
+ Wed, 12 Feb 2020 08:52:54 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id 4B3042A604B;
+ Wed, 12 Feb 2020 09:52:53 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id TBwHZvsU78He; Wed, 12 Feb 2020 09:52:53 +0100 (CET)
+Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
+ [83.76.80.252])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id F28972A6046;
+ Wed, 12 Feb 2020 09:52:52 +0100 (CET)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
+ (envelope-from <michel@daenzer.net>)
+ id 1j1nlM-000lgh-8D; Wed, 12 Feb 2020 09:52:52 +0100
+To: Nathan Chancellor <natechancellor@gmail.com>
+References: <20200211050808.29463-1-natechancellor@gmail.com>
+ <20200211061338.23666-1-natechancellor@gmail.com>
+ <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
+ <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Message-ID: <f3a6346b-2abf-0b6a-3d84-66e12f700b2b@daenzer.net>
+Date: Wed, 12 Feb 2020 09:52:52 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 1/1] drm/i915/hdcp: Mandate zero seq_num_V at
- first RecvId msg
+In-Reply-To: <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
+Content-Language: en-CA
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
+ -Wtautological-constant-out-of-range-compare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,55 +53,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: clang-built-linux@googlegroups.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-HDCP Repeater initializes seq_num_V to 0 at the beginning of
-hdcp Session i.e. after AKE_init received, refer
-HDCP 2.2 Spec HDMI PAGE 19, DP PAGE 20.
-
-HDCP 2.2 Comp specs 1B-06 test verifies that whether DUT
-considers failure of authentication if the repeater provides a
-non-zero value in seq_num_V in the first,
-RepeaterAuth_Send_ReceiverID_List message.
-
-Make sure that HDCP repeater initializes seq_num_V to zero at
-beginning of session i.e. after AKE_Init, fail the Auth if
-there is non zero seq_num_V.
-
-v2:
-- Used existing hdcp2_encrypted flag instead of
-  declaring new flag. [Ram]
-
-Cc: Ramalingam C <ramalingam.c@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 30e0a3aa9d57..75f60ca282fc 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1462,6 +1462,12 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 	seq_num_v =
- 		drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
- 
-+	if (!hdcp->hdcp2_encrypted && seq_num_v) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Non zero Seq_num_v at first RecvId_List msg\n");
-+		return -EINVAL;
-+	}
-+
- 	if (seq_num_v < hdcp->seq_num_v) {
- 		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
- 		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
--- 
-2.24.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0xMSA5OjM5IHAubS4sIE5hdGhhbiBDaGFuY2VsbG9yIHdyb3RlOgo+IE9uIFR1
+ZSwgRmViIDExLCAyMDIwIGF0IDEwOjQxOjQ4QU0gKzAxMDAsIE1pY2hlbCBEw6RuemVyIHdyb3Rl
+Ogo+PiBPbiAyMDIwLTAyLTExIDc6MTMgYS5tLiwgTmF0aGFuIENoYW5jZWxsb3Igd3JvdGU6Cj4+
+PiBBIHJlY2VudCBjb21taXQgaW4gY2xhbmcgYWRkZWQgLVd0YXV0b2xvZ2ljYWwtY29tcGFyZSB0
+byAtV2FsbCwgd2hpY2ggaXMKPj4+IGVuYWJsZWQgZm9yIGk5MTUgc28gd2Ugc2VlIHRoZSBmb2xs
+b3dpbmcgd2FybmluZzoKPj4+Cj4+PiAuLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9n
+ZW1fZXhlY2J1ZmZlci5jOjE0ODU6MjI6IHdhcm5pbmc6Cj4+PiByZXN1bHQgb2YgY29tcGFyaXNv
+biBvZiBjb25zdGFudCA1NzY0NjA3NTIzMDM0MjM0ODcgd2l0aCBleHByZXNzaW9uIG9mCj4+PiB0
+eXBlICd1bnNpZ25lZCBpbnQnIGlzIGFsd2F5cyBmYWxzZQo+Pj4gWy1XdGF1dG9sb2dpY2FsLWNv
+bnN0YW50LW91dC1vZi1yYW5nZS1jb21wYXJlXQo+Pj4gICAgICAgICBpZiAodW5saWtlbHkocmVt
+YWluID4gTl9SRUxPQyhVTE9OR19NQVgpKSkKPj4+ICAgICAgICAgICAgIH5+fn5+fn5+fn5+fn5+
+fn5efn5+fn5+fn5+fn5+fn5+fn5+fn4KPj4+Cj4+PiBUaGlzIHdhcm5pbmcgb25seSBoYXBwZW5z
+IG9uIHg4Nl82NCBidXQgdGhhdCBjaGVjayBpcyByZWxldmFudCBmb3IKPj4+IDMyLWJpdCB4ODYg
+c28gd2UgY2Fubm90IHJlbW92ZSBpdC4KPj4KPj4gVGhhdCdzIHN1cHJpc2luZy4gQUZBSUNUIE5f
+UkVMT0MoVUxPTkdfTUFYKSB3b3JrcyBvdXQgdG8gdGhlIHNhbWUgdmFsdWUKPj4gaW4gYm90aCBj
+YXNlcywgYW5kIHJlbWFpbiBpcyBhIDMyLWJpdCB2YWx1ZSBpbiBib3RoIGNhc2VzLiBIb3cgY2Fu
+IGl0IGJlCj4+IGxhcmdlciB0aGFuIE5fUkVMT0MoVUxPTkdfTUFYKSBvbiAzMi1iaXQgKGJ1dCBu
+b3Qgb24gNjQtYml0KT8KPj4KPiAKPiBIaSBNaWNoZWwsCj4gCj4gQ2FuJ3QgdGhpcyBjb25kaXRp
+b24gYmUgdHJ1ZSB3aGVuIFVJTlRfTUFYID09IFVMT05HX01BWD8KCk9oLCByaWdodCwgSSB0aGlu
+ayBJIHdhcyB3cm9uZ2x5IHRoaW5raW5nIGxvbmcgaGFkIDY0IGJpdHMgZXZlbiBvbiAzMi1iaXQu
+CgoKQW55d2F5LCB0aGlzIHN1Z2dlc3RzIGEgcG9zc2libGUgYmV0dGVyIHNvbHV0aW9uOgoKI2lm
+IFVJTlRfTUFYID09IFVMT05HX01BWAoJaWYgKHVubGlrZWx5KHJlbWFpbiA+IE5fUkVMT0MoVUxP
+TkdfTUFYKSkpCgkJcmV0dXJuIC1FSU5WQUw7CiNlbmRpZgoKCk9yIGlmIHRoYXQgY2FuJ3QgYmUg
+dXNlZCBmb3Igc29tZSByZWFzb24sIHNvbWV0aGluZyBsaWtlCgoJaWYgKHVubGlrZWx5KCh1bnNp
+Z25lZCBsb25nKXJlbWFpbiA+IE5fUkVMT0MoVUxPTkdfTUFYKSkpCgkJcmV0dXJuIC1FSU5WQUw7
+CgpzaG91bGQgc2lsZW5jZSB0aGUgd2FybmluZy4KCgpFaXRoZXIgb2YgdGhlc2Ugc2hvdWxkIGJl
+IGJldHRlciB0aGFuIGNvbXBsZXRlbHkgZGlzYWJsaW5nIHRoZSB3YXJuaW5nCmZvciB0aGUgd2hv
+bGUgZmlsZS4KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAgICAgfCAg
+ICAgICAgICAgICAgIGh0dHBzOi8vcmVkaGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRodXNpYXN0
+ICAgICAgICAgICAgIHwgICAgICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
