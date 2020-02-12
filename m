@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E46159EED
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 03:06:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D220159F38
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 03:54:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E1E96E51C;
-	Wed, 12 Feb 2020 02:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0386F478;
+	Wed, 12 Feb 2020 02:54:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1167 seconds by postgrey-1.36 at gabe;
- Wed, 12 Feb 2020 02:06:37 UTC
-Received: from 9.mo179.mail-out.ovh.net (9.mo179.mail-out.ovh.net
- [46.105.76.148])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23DB36E51C
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 02:06:37 +0000 (UTC)
-Received: from player786.ha.ovh.net (unknown [10.110.208.44])
- by mo179.mail-out.ovh.net (Postfix) with ESMTP id DD9DE158C05
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 02:47:08 +0100 (CET)
+X-Greylist: delayed 4589 seconds by postgrey-1.36 at gabe;
+ Wed, 12 Feb 2020 02:54:39 UTC
+Received: from 1.mo68.mail-out.ovh.net (1.mo68.mail-out.ovh.net
+ [46.105.41.146])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03E946F478
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 02:54:39 +0000 (UTC)
+Received: from player718.ha.ovh.net (unknown [10.108.42.215])
+ by mo68.mail-out.ovh.net (Postfix) with ESMTP id D1812159C1C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 02:38:06 +0100 (CET)
 Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
  (Authenticated sender: andi@etezian.org)
- by player786.ha.ovh.net (Postfix) with ESMTPSA id 7074AF6C1C6F;
- Wed, 12 Feb 2020 01:47:07 +0000 (UTC)
-Date: Wed, 12 Feb 2020 03:47:03 +0200
+ by player718.ha.ovh.net (Postfix) with ESMTPSA id 2E9A8F2C72DB;
+ Wed, 12 Feb 2020 01:38:04 +0000 (UTC)
+Date: Wed, 12 Feb 2020 03:38:02 +0200
 From: Andi Shyti <andi@etezian.org>
 To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <20200212014703.GE8175@jack.zhora.eu>
+Message-ID: <20200212013802.GD8175@jack.zhora.eu>
 References: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
- <20200212003124.33844-9-daniele.ceraolospurio@intel.com>
+ <20200212003124.33844-6-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200212003124.33844-9-daniele.ceraolospurio@intel.com>
-X-Ovh-Tracer-Id: 6421007170051162736
+In-Reply-To: <20200212003124.33844-6-daniele.ceraolospurio@intel.com>
+X-Ovh-Tracer-Id: 6268166259412157040
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieeggdefvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeekiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH v3 08/10] drm/i915/uc: Abort early on
- uc_init failure
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrieeggdeftdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedukedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH v3 05/10] drm/i915/uc: autogenerate uC
+ checker functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,14 +57,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Daniele,
 
-> +	if (intel_uc_uses_huc(uc)) {
-> +		ret = intel_huc_init(huc);
+On Tue, Feb 11, 2020 at 04:31:19PM -0800, Daniele Ceraolo Spurio wrote:
+> We want to map uC-level checks to GuC/HuC-level ones. The mapping from
+> the uC state to the GuC/HuC one follows the same pattern for all the
+> functions:
+> 
+>  uc_xxx_guc() -> guc_is_yyy()
+> 
+> So we can easily use a macro to autogenerate the functions via macros by
+> passing in the 2 mapped states.
+> 
+> v2: Split this change to its own patch (Michal)
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
-are we ever going to call intel_huc_init() if
-!intel_uc_uses_huc()? if not, why don't check intel_uc_uses_huc()
-inside intel_huc_init()? just to avoid always the double "if".
-
-Not a big deal though:
+interesting, however it can be hard to follow.
+I haven't spotted anything wrong (also in the patches that
+follow), and I hope you tested it properly :)
 
 Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
