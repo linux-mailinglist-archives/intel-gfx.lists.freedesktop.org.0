@@ -2,25 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 448B615AA79
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 14:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CBC015AB05
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 15:33:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97D046EABA;
-	Wed, 12 Feb 2020 13:54:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECC816EABF;
+	Wed, 12 Feb 2020 14:32:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCC8C6EABA
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 13:54:47 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Feb 2020 14:54:45 +0100
-Message-Id: <20200212135445.1469133-1-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.25.0.24.g3f081b084b0
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0506EABF;
+ Wed, 12 Feb 2020 14:32:55 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2020 06:32:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,433,1574150400"; d="scan'208";a="347524860"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga001.fm.intel.com with ESMTP; 12 Feb 2020 06:32:53 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.92)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1j1t4O-0003fc-9q; Wed, 12 Feb 2020 16:32:52 +0200
+Date: Wed, 12 Feb 2020 16:32:52 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200212143252.GR25209@platvala-desk.ger.corp.intel.com>
+References: <20200127121818.2492460-1-chris@chris-wilson.co.uk>
+ <20200127121818.2492460-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Move cec_notifier to
- intel_hdmi_connector_unregister, v2.
+Content-Disposition: inline
+In-Reply-To: <20200127121818.2492460-3-chris@chris-wilson.co.uk>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 3/5] i915: Exercise
+ preemption timeout controls in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,148 +50,184 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This fixes the following KASAN splash on module reload:
-[  145.136327] ==================================================================
-[  145.136502] BUG: KASAN: use-after-free in intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136514] Read of size 8 at addr ffff888216641830 by task kworker/1:1/134
+On Mon, Jan 27, 2020 at 12:18:16PM +0000, Chris Wilson wrote:
+> We [will] expose various per-engine scheduling controls. One of which,
+> 'preempt_timeout_ms', defines how we wait for a preemption request to be
+> honoured by the currently executing context. If it fails to relieve the
+> GPU within the required timeout, the engine is reset and the miscreant
+> forcibly evicted.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  lib/i915/gem_context.c             |  41 ++++
+>  lib/i915/gem_context.h             |   2 +
+>  lib/i915/gem_engine_topology.c     |  48 +++++
+>  lib/i915/gem_engine_topology.h     |   3 +
+>  tests/Makefile.sources             |   3 +
+>  tests/i915/sysfs_preempt_timeout.c | 309 +++++++++++++++++++++++++++++
+>  tests/meson.build                  |   1 +
+>  7 files changed, 407 insertions(+)
+>  create mode 100644 tests/i915/sysfs_preempt_timeout.c
+> 
+> diff --git a/lib/i915/gem_context.c b/lib/i915/gem_context.c
+> index 0b6a554df..fc874a187 100644
+> --- a/lib/i915/gem_context.c
+> +++ b/lib/i915/gem_context.c
+> @@ -462,3 +462,44 @@ bool gem_context_has_engine(int fd, uint32_t ctx, uint64_t engine)
+>  
+>  	return __gem_execbuf(fd, &execbuf) == -ENOENT;
+>  }
+> +
+> +static int create_ext_ioctl(int i915,
+> +			    struct drm_i915_gem_context_create_ext *arg)
+> +{
+> +	int err;
+> +
+> +	err = 0;
+> +	if (igt_ioctl(i915, DRM_IOCTL_I915_GEM_CONTEXT_CREATE_EXT, arg)) {
+> +		err = -errno;
+> +		igt_assume(err);
+> +	}
+> +
+> +	errno = 0;
+> +	return err;
+> +}
+> +
+> +uint32_t gem_context_create_for_engine(int i915, unsigned int class, unsigned int inst)
+> +{
+> +	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
+> +		.engines = { { .engine_class = class, .engine_instance = inst } }
+> +	};
+> +	struct drm_i915_gem_context_create_ext_setparam p_engines = {
+> +		.base = {
+> +			.name = I915_CONTEXT_CREATE_EXT_SETPARAM,
+> +			.next_extension = 0, /* end of chain */
+> +		},
+> +		.param = {
+> +			.param = I915_CONTEXT_PARAM_ENGINES,
+> +			.value = to_user_pointer(&engines),
+> +			.size = sizeof(engines),
+> +		},
+> +	};
+> +	struct drm_i915_gem_context_create_ext create = {
+> +		.flags = I915_CONTEXT_CREATE_FLAGS_USE_EXTENSIONS,
+> +		.extensions = to_user_pointer(&p_engines),
+> +	};
+> +
+> +	igt_assert_eq(create_ext_ioctl(i915, &create), 0);
+> +	igt_assert_neq(create.ctx_id, 0);
+> +	return create.ctx_id;
+> +}
+> diff --git a/lib/i915/gem_context.h b/lib/i915/gem_context.h
+> index cf2ba33fe..ded75bb9c 100644
+> --- a/lib/i915/gem_context.h
+> +++ b/lib/i915/gem_context.h
+> @@ -34,6 +34,8 @@ int __gem_context_create(int fd, uint32_t *ctx_id);
+>  void gem_context_destroy(int fd, uint32_t ctx_id);
+>  int __gem_context_destroy(int fd, uint32_t ctx_id);
+>  
+> +uint32_t gem_context_create_for_engine(int fd, unsigned int class, unsigned int inst);
+> +
+>  int __gem_context_clone(int i915,
+>  			uint32_t src, unsigned int share,
+>  			unsigned int flags,
+> diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+> index 058983123..81faf3c15 100644
+> --- a/lib/i915/gem_engine_topology.c
+> +++ b/lib/i915/gem_engine_topology.c
+> @@ -22,6 +22,8 @@
+>   */
+>  
+>  #include <fcntl.h>
+> +#include <sys/stat.h>
+> +#include <sys/syscall.h>
+>  #include <unistd.h>
+>  
+>  #include "drmtest.h"
+> @@ -415,3 +417,49 @@ uint32_t gem_engine_mmio_base(int i915, const char *engine)
+>  
+>  	return mmio;
+>  }
+> +
+> +void dyn_sysfs_engines(int i915, int engines, const char *file,
+> +		       void (*test)(int, int))
+> +{
+> +	char buf[512];
+> +	int len;
+> +
+> +	lseek(engines, 0, SEEK_SET);
+> +	while ((len = syscall(SYS_getdents64, engines, buf, sizeof(buf))) > 0) {
+> +		void *ptr = buf;
+> +
+> +		while (len) {
+> +			struct linux_dirent64 {
+> +				ino64_t        d_ino;
+> +				off64_t        d_off;
+> +				unsigned short d_reclen;
+> +				unsigned char  d_type;
+> +				char           d_name[];
+> +			} *de = ptr;
+> +			char *name;
+> +			int engine;
+> +
+> +			ptr += de->d_reclen;
+> +			len -= de->d_reclen;
+> +
+> +			engine = openat(engines, de->d_name, O_RDONLY);
+> +			name = igt_sysfs_get(engine, "name");
+> +			if (!name) {
+> +				close(engine);
+> +				continue;
+> +			}
+> +
+> +			igt_dynamic(name) {
+> +				if (file) {
+> +					struct stat st;
+> +
+> +					igt_require(fstatat(engine, file, &st, 0) == 0);
+> +				}
+> +
+> +				test(i915, engine);
+> +			}
+> +
+> +			close(engine);
+> +		}
+> +	}
+> +}
+> diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
+> index 7a2e21f66..456c806f5 100644
+> --- a/lib/i915/gem_engine_topology.h
+> +++ b/lib/i915/gem_engine_topology.h
+> @@ -77,4 +77,7 @@ int gem_engine_property_scanf(int i915, const char *engine, const char *attr,
+>  			      const char *fmt, ...);
+>  uint32_t gem_engine_mmio_base(int i915, const char *engine);
+>  
+> +void dyn_sysfs_engines(int i915, int engines, const char *file,
+> +		       void (*test)(int i915, int engine));
+> +
+>  #endif /* GEM_ENGINE_TOPOLOGY_H */
+> diff --git a/tests/Makefile.sources b/tests/Makefile.sources
+> index 7c5693457..fc9e04e97 100644
+> --- a/tests/Makefile.sources
+> +++ b/tests/Makefile.sources
+> @@ -102,6 +102,9 @@ TESTS_progs = \
+>  	vgem_slow \
+>  	$(NULL)
+>  
+> +TESTS_progs += sysfs_preempt_timeout
+> +sysfs_preempt_timeout_SOURCES = i915/sysfs_preempt_timeout
 
-[  145.136535] CPU: 1 PID: 134 Comm: kworker/1:1 Tainted: G     U          T 5.5.0-rc7-valkyria+ #5783
-[  145.136539] Hardware name: GIGABYTE GB-BKi3A-7100/MFLP3AP-00, BIOS F1 07/27/2016
-[  145.136546] Workqueue: events drm_connector_free_work_fn
-[  145.136551] Call Trace:
-[  145.136560]  dump_stack+0xa1/0xe0
-[  145.136571]  print_address_description.constprop.0+0x1e/0x210
-[  145.136639]  ? intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136703]  ? intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136710]  __kasan_report.cold+0x1b/0x37
-[  145.136790]  ? intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136863]  ? intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136870]  kasan_report+0x27/0x30
-[  145.136881]  __asan_report_load8_noabort+0x1c/0x20
-[  145.136946]  intel_hdmi_destroy+0x74/0x80 [i915]
-[  145.136954]  drm_connector_free_work_fn+0xd1/0x100
-[  145.136967]  process_one_work+0x86e/0x1610
-[  145.136987]  ? pwq_dec_nr_in_flight+0x2f0/0x2f0
-[  145.137004]  ? move_linked_works+0x128/0x2c0
-[  145.137021]  worker_thread+0x63e/0xc90
-[  145.137048]  kthread+0x2f6/0x3f0
-[  145.137054]  ? calculate_sigpending+0x81/0xa0
-[  145.137059]  ? process_one_work+0x1610/0x1610
-[  145.137064]  ? kthread_bind+0x40/0x40
-[  145.137075]  ret_from_fork+0x24/0x30
+Your .c dropped off.
 
-[  145.137111] Allocated by task 0:
-[  145.137119] (stack is not available)
 
-[  145.137137] Freed by task 5053:
-[  145.137147]  save_stack+0x28/0x90
-[  145.137152]  __kasan_slab_free+0x136/0x180
-[  145.137157]  kasan_slab_free+0x26/0x30
-[  145.137161]  kfree+0xe6/0x350
-[  145.137242]  intel_ddi_encoder_destroy+0x60/0x80 [i915]
-[  145.137252]  drm_mode_config_cleanup+0x11d/0x8f0
-[  145.137329]  intel_modeset_driver_remove+0x1f5/0x350 [i915]
-[  145.137403]  i915_driver_remove+0xc4/0x130 [i915]
-[  145.137482]  i915_pci_remove+0x3e/0x90 [i915]
-[  145.137489]  pci_device_remove+0x108/0x2d0
-[  145.137494]  device_release_driver_internal+0x1e6/0x4a0
-[  145.137499]  driver_detach+0xcb/0x198
-[  145.137503]  bus_remove_driver+0xde/0x204
-[  145.137508]  driver_unregister+0x6d/0xa0
-[  145.137513]  pci_unregister_driver+0x2e/0x230
-[  145.137576]  i915_exit+0x1f/0x26 [i915]
-[  145.137157]  kasan_slab_free+0x26/0x30
-[  145.137161]  kfree+0xe6/0x350
-[  145.137242]  intel_ddi_encoder_destroy+0x60/0x80 [i915]
-[  145.137252]  drm_mode_config_cleanup+0x11d/0x8f0
-[  145.137329]  intel_modeset_driver_remove+0x1f5/0x350 [i915]
-[  145.137403]  i915_driver_remove+0xc4/0x130 [i915]
-[  145.137482]  i915_pci_remove+0x3e/0x90 [i915]
-[  145.137489]  pci_device_remove+0x108/0x2d0
-[  145.137494]  device_release_driver_internal+0x1e6/0x4a0
-[  145.137499]  driver_detach+0xcb/0x198
-[  145.137503]  bus_remove_driver+0xde/0x204
-[  145.137508]  driver_unregister+0x6d/0xa0
-[  145.137513]  pci_unregister_driver+0x2e/0x230
-[  145.137576]  i915_exit+0x1f/0x26 [i915]
-[  145.137581]  __x64_sys_delete_module+0x35b/0x470
-[  145.137586]  do_syscall_64+0x99/0x4e0
-[  145.137591]  entry_SYSCALL_64_after_hwframe+0x49/0xbe
-
-[  145.137606] The buggy address belongs to the object at ffff888216640000
-                which belongs to the cache kmalloc-8k of size 8192
-[  145.137618] The buggy address is located 6192 bytes inside of
-                8192-byte region [ffff888216640000, ffff888216642000)
-[  145.137630] The buggy address belongs to the page:
-[  145.137640] page:ffffea0008599000 refcount:1 mapcount:0 mapping:ffff888107c02a80 index:0xffff888216644000 compound_mapcount: 0
-[  145.137647] raw: 0200000000010200 0000000000000000 0000000100000001 ffff888107c02a80
-[  145.137652] raw: ffff888216644000 0000000080020001 00000001ffffffff 0000000000000000
-[  145.137656] page dumped because: kasan: bad access detected
-
-[  145.137668] Memory state around the buggy address:
-[  145.137678]  ffff888216641700: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  145.137687]  ffff888216641780: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  145.137697] >ffff888216641800: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  145.137706]                                      ^
-[  145.137715]  ffff888216641880: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  145.137724]  ffff888216641900: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
-[  145.137733] ==================================================================
-[  145.137742] Disabling lock debugging due to kernel taint
-
-Changes since v1:
-- Add fixes tags.
-- Use early unregister.
-
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: 9c229127aee2 ("drm/i915: hdmi: add CEC notifier to intel_hdmi")
-Cc: <stable@vger.kernel.org> # v4.19+
----
- drivers/gpu/drm/i915/display/intel_hdmi.c | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index e68bafb76cb1..34ee75fdaaf9 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2830,19 +2830,13 @@ intel_hdmi_connector_register(struct drm_connector *connector)
- 	return ret;
- }
- 
--static void intel_hdmi_destroy(struct drm_connector *connector)
-+static void intel_hdmi_connector_unregister(struct drm_connector *connector)
- {
- 	struct cec_notifier *n = intel_attached_hdmi(to_intel_connector(connector))->cec_notifier;
- 
- 	cec_notifier_conn_unregister(n);
- 
--	intel_connector_destroy(connector);
--}
--
--static void intel_hdmi_connector_unregister(struct drm_connector *connector)
--{
- 	intel_hdmi_remove_i2c_symlink(connector);
--
- 	intel_connector_unregister(connector);
- }
- 
-@@ -2854,7 +2848,7 @@ static const struct drm_connector_funcs intel_hdmi_connector_funcs = {
- 	.atomic_set_property = intel_digital_connector_atomic_set_property,
- 	.late_register = intel_hdmi_connector_register,
- 	.early_unregister = intel_hdmi_connector_unregister,
--	.destroy = intel_hdmi_destroy,
-+	.destroy = intel_connector_destroy,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
- };
 -- 
-2.25.0.24.g3f081b084b0
-
+Petri Latvala
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
