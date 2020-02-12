@@ -2,41 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB54A15B38E
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 23:24:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 687F215B3DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 23:35:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC7686E11B;
-	Wed, 12 Feb 2020 22:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35BFA6E11F;
+	Wed, 12 Feb 2020 22:35:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAF446E11E
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 22:24:40 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0EE6E11E;
+ Wed, 12 Feb 2020 22:35:50 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2020 14:24:40 -0800
-X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; d="scan'208";a="227016772"
-Received: from ayashfe-mobl1.ger.corp.intel.com (HELO [10.251.86.31])
- ([10.251.86.31])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 12 Feb 2020 14:24:38 -0800
-To: Andi Shyti <andi@etezian.org>
-References: <20200211181027.5329-1-andi@etezian.org>
- <2defb42c-9fcc-17f8-0593-8e02f75f9ba4@linux.intel.com>
- <20200211210625.GA6386@jack.zhora.eu>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <22f92d89-242d-19f1-9a94-6b0bedec517c@linux.intel.com>
-Date: Wed, 12 Feb 2020 22:24:36 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2020 14:35:49 -0800
+X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; d="scan'208";a="237852277"
+Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 12 Feb 2020 14:35:49 -0800
+From: Dale B Stimson <dale.b.stimson@intel.com>
+To: igt-dev@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Wed, 12 Feb 2020 14:34:28 -0800
+Message-Id: <20200212223431.11060-1-dale.b.stimson@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-In-Reply-To: <20200211210625.GA6386@jack.zhora.eu>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: make a gt sysfs group and
- move power management files
+Subject: [Intel-gfx] [PATCH i-g-t 0/3] mmio_base via debugfs infrastructure
+ + gem_ctx_isolation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,107 +42,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This patch series provides infrastructure to allow determination of i915
+per-engine mmio_base (which is otherwise sometimes hard to get).  The provided
+method uses debugfs mmio_base information if present.  Otherwise, a default
+determination is provided when possible.  Also, gem_ctx_isolation is modified
+to use the new infrastructure.
 
-On 11/02/2020 21:06, Andi Shyti wrote:
-> Hi Tvrtko,
-> 
->>> +void intel_gt_sysfs_register(struct intel_gt *gt)
->>> +{
->>> +	struct kobject *parent = kobject_get(&gt->i915->drm.primary->kdev->kobj);
->>
->> Does this needs a kobject_put to balance out somewhere?
-> 
-> Yes, I forgot the two kobject_put that are needed.
-> 
->>> +	int ret;
->>> +
->>> +	gt->kobj = kobject_create_and_add("gt", parent);
->>> +	if (!gt->kobj) {
->>> +		pr_err("failed to initialize sysfs file\n");
->>> +		return;
->>> +	}
->>> +
->>> +	dev_set_drvdata(kobj_to_dev(gt->kobj), gt);
->>> +
->>> +	ret = sysfs_create_files(gt->kobj, gt_attrs);
->>> +	if (ret)
->>> +		pr_err("failed to create sysfs gt info files\n");
->>
->> I can't remember which log helper takes in the device and prefixes that
->> string but I think it could be useful here, since the error is otherwise
->> eaten.
-> 
-> pr_* is used a lot in gt/. Playing with the dev pointer I
-> can use "dev_err(dev,...)"
-> 
->>> +void intel_gt_sysfs_unregister(struct intel_gt *gt)
->>> +{
->>> +	if (!gt->kobj)
->>> +		return;
->>> +
->>> +	intel_gt_sysfs_pm_remove(gt, gt->kobj);
->>> +	sysfs_remove_files(gt->kobj, gt_attrs);
->>
->> Why is this asymmetrical to creation?
-> 
-> Because in V1 gt_attrs and whatever was created in sysfs_gt_pm
-> was in the same group, but it desn't matter.
-> 
->> I mean you call intel_gt_sysfs_pm_init
->> two times with different roots, so why not intel_gt_sysfs_pm_remove also
->> twice with different roots?
-> 
-> Because I forgot them in the cleanups :)
+For example, on TGL, gem_ctx_isolation (without these or similar changes)
+will fail for subtests that use engine vcs1.
 
-Next version incoming soon? :)
+The patches in this series are as they are intended to be submitted (subject
+to comments), except I would like to squash the two gem_ctx_isolation
+"relative registers" patches into one (as discussed below).  Also, function
+gem_engine_mmio_base_info_dump() could be removed.
 
->>> +	/*
->>> +	 * We are interested at knowing from where the interface
->>> +	 * has been called, whether it's called from gt/* or from
->>> +	 * the parent directory.
->>> +	 * From the interface position it depends also the value of
->>> +	 * the private data.
->>> +	 * If the interface is called from gt/ then private data is
->>> +	 * of the "struct intel_gt *" type, otherwise it's * a
->>> +	 * "struct drm_i915_private *" type.
->>> +	 */
->>> +	if (strcmp(kobj->name, "gt")) {
->>> +		pr_warn("the interface is obsolete, use gt/\n");
->>
->> I think the message will need to be a bit more verbose since it is intended
->> for users. I don't have any suggestions straight away apart from googling to
->> find similar examples from the past and other subsystems.
-> 
-> Yes, I couldn't come up with a better message in 80 characters,
-> and I can use dev_warn instead of pr_warn.
+On 2020-01-27, Chris wilson sent to the ML:
+  [igt-dev] [PATCH i-g-t 1/5] i915: Start putting the mmio_base to wider use
+  [igt-dev] [PATCH i-g-t 2/5] i915/gem_ctx_isolation: Check engine relative registers
+plus the following, which are not addressed here:
+  [igt-dev] [PATCH i-g-t 3/5] i915: Exercise preemption timeout controls in sysfs
+  [igt-dev] [PATCH i-g-t 4/5] i915: Exercise sysfs heartbeat controls
+  [igt-dev] [PATCH i-g-t 5/5] i915: Exercise timeslice sysfs property
 
-Maybe we even need to log this once. Well we may need to log the 
-offending process name/pid. Not sure if we can manage once on top of 
-that.. sounds too hard. So maybe just name/pid.
+This patch list is:
+  i915/gem_mmio_base.c - get mmio_base from debugfs (if possible)
+  i915/gem_ctx_isolation: Check engine relative registers
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
 
-> 
->>> +static ssize_t rc6_enable_show(struct device *dev,
->>> +			       struct device_attribute *attr,
->>> +			       char *buff)
->>> +{
->>> +	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(dev);
->>
->> The rest of code is unchanged apart from this same line in all show/store
->> vfuncs?
-> 
-> yes, more or less.
+The first 2020-01-27 patch obtains mmio_base information via sysfs, and depends
+on a proposed kernel change that would provide the mmio_base information
+via sysfs.  It is unclear when or whether that kernel change will progress.
 
-Cool, just so I know what I don't have to cross-reference too much.
+The mmio_base information used by this patch series is available through
+debugfs now (as of kernel 5.4).  If the per-engine mmio_base information is
+ever added to sysfs, it would be easy to plug that into the infrastructure
+proposed here as an additional higher-priority source of that information.
 
-Regards,
+This submission replaces the first patch (switching from sysfs to debugfs),
+retains the second 2020-01-27 patch
+  i915/gem_ctx_isolation: Check engine relative registers
+and has a third patch that modifies the original second patch to support the
+altered API:
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
 
-Tvrtko
+I propose squashing the two gem_ctx_isolation "relative registers" patches
+into one patch with author == "Chris Wilson" if Chris agrees.
+
+Some differences from the 2020-01-27 patches:
+
+The mmio_base information is fetched once into local data structures, and
+is obtained from them thereafter instead of being fetched from the kernel
+everytime it is wanted.
+
+The function that obtains the mmio_base information is called by a particular
+test that wants it, and returns a handle through which the mmio_base can be
+requested for any particular engine.
+
+These patches introduce new source files lib/i915/gem_mmio_base.c
+and lib/i915/gem_mmio_base.h.  Should the code instead be placed into
+lib/i915/gem_engine_topology.c?
+
+Function gem_engine_mmio_base_info_dump presently exists to dump the
+mmio_base information to stdout for debugging or informational purposes.
+This function is not currently called.  I presume this function should
+be removed.  Is there any desire to keep it around for future use?
+
+The 2020-01-27 patches define function gem_engine_mmio_base() with its first
+parameter as "fd".  The new patches replace the first parameter with the
+mmio_base object handle.
+
+Chris Wilson (1):
+  i915/gem_ctx_isolation: Check engine relative registers
+
+Dale B Stimson (2):
+  i915/gem_mmio_base.c - get mmio_base from debugfs (if possible)
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
+
+ lib/Makefile.sources           |   2 +
+ lib/i915/gem_mmio_base.c       | 346 +++++++++++++++++++++++++++++++++
+ lib/i915/gem_mmio_base.h       |  19 ++
+ lib/igt.h                      |   1 +
+ lib/meson.build                |   1 +
+ tests/i915/gem_ctx_isolation.c | 229 +++++++++++++---------
+ 6 files changed, 506 insertions(+), 92 deletions(-)
+ create mode 100644 lib/i915/gem_mmio_base.c
+ create mode 100644 lib/i915/gem_mmio_base.h
+
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
