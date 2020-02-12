@@ -2,36 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48FAC15A4EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 10:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64A1B15A550
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 10:51:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E627D6F418;
-	Wed, 12 Feb 2020 09:35:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E096EA27;
+	Wed, 12 Feb 2020 09:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFDFB6F418;
- Wed, 12 Feb 2020 09:35:14 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2020 01:35:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="406240261"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by orsmga005.jf.intel.com with ESMTP; 12 Feb 2020 01:35:08 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Wed, 12 Feb 2020 15:05:15 +0530
-Message-Id: <20200212093515.11700-6-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200212093515.11700-1-ramalingam.c@intel.com>
-References: <20200212093515.11700-1-ramalingam.c@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49FBA6E8D7;
+ Wed, 12 Feb 2020 09:51:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 42788A73C8;
+ Wed, 12 Feb 2020 09:51:04 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 5/5] drm/i915/hdcp: conversion to struct
- drm_device based logging macros.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Wed, 12 Feb 2020 09:51:04 -0000
+Message-ID: <158150106424.24265.9586816353641665509@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200210184057.296698-1-jose.souza@intel.com>
+In-Reply-To: <20200210184057.296698-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/mst=3A_Set_intel=5Fdp=5Fset=5Fm=5Fn=28=29_for_MST_slaves_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,381 +39,290 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Converts remaining instances of the printk based logging macros in
-i915/display/intel_hdcp.c with the struct drm_device based macros
-manually.
+== Series Details ==
 
-This is continuation of commit 65833c463886 ("drm/i915/hdcp: conversion
-to struct drm_device based logging macros.")
+Series: drm/i915/mst: Set intel_dp_set_m_n() for MST slaves (rev2)
+URL   : https://patchwork.freedesktop.org/series/73252/
+State : success
 
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-cc: Jani Nikula <jani.nikula@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 107 ++++++++++++----------
- 1 file changed, 60 insertions(+), 47 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 11f204668a5c..3361796b59ca 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -43,6 +43,7 @@ static
- int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
- 			       const struct intel_hdcp_shim *shim, u8 *bksv)
- {
-+	struct drm_device *drm = intel_dig_port->base.base.dev;
- 	int ret, i, tries = 2;
- 
- 	/* HDCP spec states that we must retry the bksv if it is invalid */
-@@ -54,7 +55,7 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *intel_dig_port,
- 			break;
- 	}
- 	if (i == tries) {
--		DRM_DEBUG_KMS("Bksv is invalid\n");
-+		drm_dbg_kms(drm, "Bksv is invalid\n");
- 		return -ENODEV;
- 	}
- 
-@@ -485,8 +486,8 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
- 			return ret;
- 		sha_idx += sizeof(sha_text);
- 	} else {
--		DRM_DEBUG_KMS("Invalid number of leftovers %d\n",
--			      sha_leftovers);
-+		drm_dbg_kms(&dev_priv->drm, "Invalid number of leftovers %d\n",
-+			    sha_leftovers);
- 		return -EINVAL;
- 	}
- 
-@@ -514,11 +515,11 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
- 		       rep_ctl | HDCP_SHA1_COMPLETE_HASH);
- 	if (intel_de_wait_for_set(dev_priv, HDCP_REP_CTL,
- 				  HDCP_SHA1_COMPLETE, 1)) {
--		DRM_ERROR("Timed out waiting for SHA1 complete\n");
-+		drm_err(&dev_priv->drm, "Timed out waiting for SHA1 complete\n");
- 		return -ETIMEDOUT;
- 	}
- 	if (!(intel_de_read(dev_priv, HDCP_REP_CTL) & HDCP_SHA1_V_MATCH)) {
--		DRM_DEBUG_KMS("SHA-1 mismatch, HDCP failed\n");
-+		drm_dbg_kms(&dev_priv->drm, "SHA-1 mismatch, HDCP failed\n");
- 		return -ENXIO;
- 	}
- 
-@@ -537,7 +538,8 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 
- 	ret = intel_hdcp_poll_ksv_fifo(intel_dig_port, shim);
- 	if (ret) {
--		DRM_DEBUG_KMS("KSV list failed to become ready (%d)\n", ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "KSV list failed to become ready (%d)\n", ret);
- 		return ret;
- 	}
- 
-@@ -547,7 +549,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 
- 	if (DRM_HDCP_MAX_DEVICE_EXCEEDED(bstatus[0]) ||
- 	    DRM_HDCP_MAX_CASCADE_EXCEEDED(bstatus[1])) {
--		DRM_DEBUG_KMS("Max Topology Limit Exceeded\n");
-+		drm_dbg_kms(&dev_priv->drm, "Max Topology Limit Exceeded\n");
- 		return -EPERM;
- 	}
- 
-@@ -560,13 +562,14 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 	 */
- 	num_downstream = DRM_HDCP_NUM_DOWNSTREAM(bstatus[0]);
- 	if (num_downstream == 0) {
--		DRM_DEBUG_KMS("Repeater with zero downstream devices\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Repeater with zero downstream devices\n");
- 		return -EINVAL;
- 	}
- 
- 	ksv_fifo = kcalloc(DRM_HDCP_KSV_LEN, num_downstream, GFP_KERNEL);
- 	if (!ksv_fifo) {
--		DRM_DEBUG_KMS("Out of mem: ksv_fifo\n");
-+		drm_dbg_kms(&dev_priv->drm, "Out of mem: ksv_fifo\n");
- 		return -ENOMEM;
- 	}
- 
-@@ -576,7 +579,7 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 
- 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, ksv_fifo,
- 					num_downstream)) {
--		DRM_ERROR("Revoked Ksv(s) in ksv_fifo\n");
-+		drm_err(&dev_priv->drm, "Revoked Ksv(s) in ksv_fifo\n");
- 		ret = -EPERM;
- 		goto err;
- 	}
-@@ -594,12 +597,13 @@ int intel_hdcp_auth_downstream(struct intel_connector *connector)
- 	}
- 
- 	if (i == tries) {
--		DRM_DEBUG_KMS("V Prime validation failed.(%d)\n", ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "V Prime validation failed.(%d)\n", ret);
- 		goto err;
- 	}
- 
--	DRM_DEBUG_KMS("HDCP is enabled (%d downstream devices)\n",
--		      num_downstream);
-+	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (%d downstream devices)\n",
-+		    num_downstream);
- 	ret = 0;
- err:
- 	kfree(ksv_fifo);
-@@ -642,7 +646,8 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 		if (ret)
- 			return ret;
- 		if (!hdcp_capable) {
--			DRM_DEBUG_KMS("Panel is not HDCP capable\n");
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Panel is not HDCP capable\n");
- 			return -EINVAL;
- 		}
- 	}
-@@ -659,7 +664,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 	if (intel_de_wait_for_set(dev_priv,
- 				  HDCP_STATUS(dev_priv, cpu_transcoder, port),
- 				  HDCP_STATUS_AN_READY, 1)) {
--		DRM_ERROR("Timed out waiting for An\n");
-+		drm_err(&dev_priv->drm, "Timed out waiting for An\n");
- 		return -ETIMEDOUT;
- 	}
- 
-@@ -680,7 +685,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 		return ret;
- 
- 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm, bksv.shim, 1)) {
--		DRM_ERROR("BKSV is revoked\n");
-+		drm_err(&dev_priv->drm, "BKSV is revoked\n");
- 		return -EPERM;
- 	}
- 
-@@ -706,7 +711,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 	/* Wait for R0 ready */
- 	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
- 		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
--		DRM_ERROR("Timed out waiting for R0 ready\n");
-+		drm_err(&dev_priv->drm, "Timed out waiting for R0 ready\n");
- 		return -ETIMEDOUT;
- 	}
- 
-@@ -743,8 +748,10 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 	}
- 
- 	if (i == tries) {
--		DRM_DEBUG_KMS("Timed out waiting for Ri prime match (%x)\n",
--			      intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Timed out waiting for Ri prime match (%x)\n",
-+			    intel_de_read(dev_priv, HDCP_STATUS(dev_priv,
-+					  cpu_transcoder, port)));
- 		return -ETIMEDOUT;
- 	}
- 
-@@ -753,7 +760,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 				  HDCP_STATUS(dev_priv, cpu_transcoder, port),
- 				  HDCP_STATUS_ENC,
- 				  ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
--		DRM_ERROR("Timed out waiting for encryption\n");
-+		drm_err(&dev_priv->drm, "Timed out waiting for encryption\n");
- 		return -ETIMEDOUT;
- 	}
- 
-@@ -765,7 +772,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
- 	if (repeater_present)
- 		return intel_hdcp_auth_downstream(connector);
- 
--	DRM_DEBUG_KMS("HDCP is enabled (no repeater present)\n");
-+	drm_dbg_kms(&dev_priv->drm, "HDCP is enabled (no repeater present)\n");
- 	return 0;
- }
- 
-@@ -1270,7 +1277,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
- 		return ret;
- 
- 	if (msgs.send_cert.rx_caps[0] != HDCP_2_2_RX_CAPS_VERSION_VAL) {
--		DRM_DEBUG_KMS("cert.rx_caps dont claim HDCP2.2\n");
-+		drm_dbg_kms(&dev_priv->drm, "cert.rx_caps dont claim HDCP2.2\n");
- 		return -EINVAL;
- 	}
- 
-@@ -1279,7 +1286,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
- 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm,
- 					msgs.send_cert.cert_rx.receiver_id,
- 					1)) {
--		DRM_ERROR("Receiver ID is revoked\n");
-+		drm_err(&dev_priv->drm, "Receiver ID is revoked\n");
- 		return -EPERM;
- 	}
- 
-@@ -1446,7 +1453,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 
- 	if (HDCP_2_2_MAX_CASCADE_EXCEEDED(rx_info[1]) ||
- 	    HDCP_2_2_MAX_DEVS_EXCEEDED(rx_info[1])) {
--		DRM_DEBUG_KMS("Topology Max Size Exceeded\n");
-+		drm_dbg_kms(&dev_priv->drm, "Topology Max Size Exceeded\n");
- 		return -EINVAL;
- 	}
- 
-@@ -1456,7 +1463,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 
- 	if (seq_num_v < hdcp->seq_num_v) {
- 		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
--		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
-+		drm_dbg_kms(&dev_priv->drm, "Seq_num_v roll over.\n");
- 		return -EINVAL;
- 	}
- 
-@@ -1465,7 +1472,7 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- 	if (drm_hdcp_check_ksvs_revoked(&dev_priv->drm,
- 					msgs.recvid_list.receiver_ids,
- 					device_cnt)) {
--		DRM_ERROR("Revoked receiver ID(s) is in list\n");
-+		drm_err(&dev_priv->drm, "Revoked receiver ID(s) is in list\n");
- 		return -EPERM;
- 	}
- 
-@@ -1487,25 +1494,27 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
- static int hdcp2_authenticate_sink(struct intel_connector *connector)
- {
- 	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
-+	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	const struct intel_hdcp_shim *shim = hdcp->shim;
- 	int ret;
- 
- 	ret = hdcp2_authentication_key_exchange(connector);
- 	if (ret < 0) {
--		DRM_DEBUG_KMS("AKE Failed. Err : %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "AKE Failed. Err : %d\n", ret);
- 		return ret;
- 	}
- 
- 	ret = hdcp2_locality_check(connector);
- 	if (ret < 0) {
--		DRM_DEBUG_KMS("Locality Check failed. Err : %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Locality Check failed. Err : %d\n", ret);
- 		return ret;
- 	}
- 
- 	ret = hdcp2_session_key_exchange(connector);
- 	if (ret < 0) {
--		DRM_DEBUG_KMS("SKE Failed. Err : %d\n", ret);
-+		drm_dbg_kms(&dev_priv->drm, "SKE Failed. Err : %d\n", ret);
- 		return ret;
- 	}
- 
-@@ -1520,7 +1529,8 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
- 	if (hdcp->is_repeater) {
- 		ret = hdcp2_authenticate_repeater_topology(connector);
- 		if (ret < 0) {
--			DRM_DEBUG_KMS("Repeater Auth Failed. Err: %d\n", ret);
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Repeater Auth Failed. Err: %d\n", ret);
- 			return ret;
- 		}
- 	}
-@@ -1651,10 +1661,10 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 		}
- 
- 		/* Clearing the mei hdcp session */
--		DRM_DEBUG_KMS("HDCP2.2 Auth %d of %d Failed.(%d)\n",
--			      i + 1, tries, ret);
-+		drm_dbg_kms(drm, "HDCP2.2 Auth %d of %d Failed.(%d)\n",
-+			    i + 1, tries, ret);
- 		if (hdcp2_deauthenticate_port(connector) < 0)
--			DRM_DEBUG_KMS("Port deauth failed.\n");
-+			drm_dbg_kms(drm, "Port deauth failed.\n");
- 	}
- 
- 	if (!ret) {
-@@ -1665,9 +1675,9 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- 		msleep(HDCP_2_2_DELAY_BEFORE_ENCRYPTION_EN);
- 		ret = hdcp2_enable_encryption(connector);
- 		if (ret < 0) {
--			DRM_DEBUG_KMS("Encryption Enable Failed.(%d)\n", ret);
-+			drm_dbg_kms(drm, "Encryption Enable Failed.(%d)\n", ret);
- 			if (hdcp2_deauthenticate_port(connector) < 0)
--				DRM_DEBUG_KMS("Port deauth failed.\n");
-+				drm_dbg_kms(drm, "Port deauth failed.\n");
- 		}
- 	}
- 
-@@ -1677,22 +1687,23 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
- static int _intel_hdcp2_enable(struct intel_connector *connector)
- {
- 	struct intel_hdcp *hdcp = &connector->hdcp;
-+	struct drm_device *drm = connector->base.dev;
- 	int ret;
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is being enabled. Type: %d\n",
--		      connector->base.name, connector->base.base.id,
--		      hdcp->content_type);
-+	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is being enabled. Type: %d\n",
-+		    connector->base.name, connector->base.base.id,
-+		    hdcp->content_type);
- 
- 	ret = hdcp2_authenticate_and_encrypt(connector);
- 	if (ret) {
--		DRM_DEBUG_KMS("HDCP2 Type%d  Enabling Failed. (%d)\n",
--			      hdcp->content_type, ret);
-+		drm_dbg_kms(drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
-+			    hdcp->content_type, ret);
- 		return ret;
- 	}
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is enabled. Type %d\n",
--		      connector->base.name, connector->base.base.id,
--		      hdcp->content_type);
-+	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is enabled. Type %d\n",
-+		    connector->base.name, connector->base.base.id,
-+		    hdcp->content_type);
- 
- 	hdcp->hdcp2_encrypted = true;
- 	return 0;
-@@ -1700,15 +1711,16 @@ static int _intel_hdcp2_enable(struct intel_connector *connector)
- 
- static int _intel_hdcp2_disable(struct intel_connector *connector)
- {
-+	struct drm_device *drm = connector->base.dev;
- 	int ret;
- 
--	DRM_DEBUG_KMS("[%s:%d] HDCP2.2 is being Disabled\n",
--		      connector->base.name, connector->base.base.id);
-+	drm_dbg_kms(drm, "[%s:%d] HDCP2.2 is being Disabled\n",
-+		    connector->base.name, connector->base.base.id);
- 
- 	ret = hdcp2_disable_encryption(connector);
- 
- 	if (hdcp2_deauthenticate_port(connector) < 0)
--		DRM_DEBUG_KMS("Port deauth failed.\n");
-+		drm_dbg_kms(drm, "Port deauth failed.\n");
- 
- 	connector->hdcp.hdcp2_encrypted = false;
- 
-@@ -1951,11 +1963,12 @@ static void intel_hdcp2_init(struct intel_connector *connector,
- 			     const struct intel_hdcp_shim *shim)
- {
- 	struct intel_hdcp *hdcp = &connector->hdcp;
-+	struct drm_device *drm = connector->base.dev;
- 	int ret;
- 
- 	ret = initialize_hdcp_port_data(connector, shim);
- 	if (ret) {
--		DRM_DEBUG_KMS("Mei hdcp data init failed\n");
-+		drm_dbg_kms(drm, "Mei hdcp data init failed\n");
- 		return;
- 	}
- 
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_7903_full -> Patchwork_16511_full
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16511_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_ctx_isolation@rcs0-s3:
+    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180]) +8 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-kbl6/igt@gem_ctx_isolation@rcs0-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-kbl7/igt@gem_ctx_isolation@rcs0-s3.html
+
+  * igt@gem_exec_parallel@vcs1:
+    - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#112080]) +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb2/igt@gem_exec_parallel@vcs1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb7/igt@gem_exec_parallel@vcs1.html
+
+  * igt@gem_exec_schedule@pi-common-bsd:
+    - shard-iclb:         [PASS][5] -> [SKIP][6] ([i915#677]) +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb3/igt@gem_exec_schedule@pi-common-bsd.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb2/igt@gem_exec_schedule@pi-common-bsd.html
+
+  * igt@gem_exec_schedule@preempt-queue-bsd1:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276]) +6 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb1/igt@gem_exec_schedule@preempt-queue-bsd1.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb6/igt@gem_exec_schedule@preempt-queue-bsd1.html
+
+  * igt@gem_exec_schedule@wide-bsd:
+    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#112146]) +2 similar issues
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb5/igt@gem_exec_schedule@wide-bsd.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb4/igt@gem_exec_schedule@wide-bsd.html
+
+  * igt@gem_partial_pwrite_pread@writes-after-reads-display:
+    - shard-hsw:          [PASS][11] -> [FAIL][12] ([i915#694]) +3 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-hsw7/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-hsw7/igt@gem_partial_pwrite_pread@writes-after-reads-display.html
+
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-glk:          [PASS][13] -> [FAIL][14] ([i915#644])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-glk3/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-glk1/igt@gem_ppgtt@flink-and-close-vma-leak.html
+
+  * igt@gem_tiled_blits@normal:
+    - shard-hsw:          [PASS][15] -> [FAIL][16] ([i915#818])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-hsw6/igt@gem_tiled_blits@normal.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-hsw1/igt@gem_tiled_blits@normal.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-kbl:          [PASS][17] -> [DMESG-WARN][18] ([i915#716])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-kbl7/igt@gen9_exec_parse@allowed-all.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-kbl1/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-128x42-random:
+    - shard-skl:          [PASS][19] -> [FAIL][20] ([i915#54])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@kms_cursor_crc@pipe-a-cursor-128x42-random.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl2/igt@kms_cursor_crc@pipe-a-cursor-128x42-random.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
+    - shard-skl:          [PASS][21] -> [INCOMPLETE][22] ([i915#69])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
+    - shard-skl:          [PASS][23] -> [FAIL][24] ([fdo#108145]) +1 similar issue
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl2/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-x:
+    - shard-glk:          [PASS][25] -> [FAIL][26] ([i915#899])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-glk4/igt@kms_plane_lowres@pipe-a-tiling-x.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-glk1/igt@kms_plane_lowres@pipe-a-tiling-x.html
+
+  * igt@kms_psr2_su@frontbuffer:
+    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#109642] / [fdo#111068])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb2/igt@kms_psr2_su@frontbuffer.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb7/igt@kms_psr2_su@frontbuffer.html
+
+  * igt@kms_psr@psr2_sprite_mmap_cpu:
+    - shard-iclb:         [PASS][29] -> [SKIP][30] ([fdo#109441])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_cpu.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb1/igt@kms_psr@psr2_sprite_mmap_cpu.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [PASS][31] -> [FAIL][32] ([i915#31])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-apl1/igt@kms_setmode@basic.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-apl8/igt@kms_setmode@basic.html
+
+  * igt@prime_mmap_coherency@ioctl-errors:
+    - shard-hsw:          [PASS][33] -> [FAIL][34] ([i915#831])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-hsw8/igt@prime_mmap_coherency@ioctl-errors.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-hsw2/igt@prime_mmap_coherency@ioctl-errors.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_isolation@rcs0-s3:
+    - shard-apl:          [DMESG-WARN][35] ([i915#180]) -> [PASS][36] +1 similar issue
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-apl1/igt@gem_ctx_isolation@rcs0-s3.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-apl8/igt@gem_ctx_isolation@rcs0-s3.html
+
+  * igt@gem_ctx_isolation@vcs0-s3:
+    - shard-skl:          [INCOMPLETE][37] ([i915#69]) -> [PASS][38] +1 similar issue
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@gem_ctx_isolation@vcs0-s3.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl8/igt@gem_ctx_isolation@vcs0-s3.html
+
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [SKIP][39] ([fdo#110854]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb8/igt@gem_exec_balancer@smoke.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb1/igt@gem_exec_balancer@smoke.html
+
+  * igt@gem_exec_schedule@preemptive-hang-bsd:
+    - shard-iclb:         [SKIP][41] ([fdo#112146]) -> [PASS][42] +5 similar issues
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb1/igt@gem_exec_schedule@preemptive-hang-bsd.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb6/igt@gem_exec_schedule@preemptive-hang-bsd.html
+
+  * igt@gem_partial_pwrite_pread@writes-after-reads-uncached:
+    - shard-hsw:          [FAIL][43] ([i915#694]) -> [PASS][44] +2 similar issues
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-hsw2/igt@gem_partial_pwrite_pread@writes-after-reads-uncached.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-hsw1/igt@gem_partial_pwrite_pread@writes-after-reads-uncached.html
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-glk:          [DMESG-WARN][45] ([i915#716]) -> [PASS][46]
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-glk7/igt@gen9_exec_parse@allowed-all.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-glk6/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-iclb:         [FAIL][47] ([i915#454]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb8/igt@i915_pm_dc@dc6-psr.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb5/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@kms_busy@basic-flip-pipe-a:
+    - shard-snb:          [SKIP][49] ([fdo#109271]) -> [PASS][50] +3 similar issues
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-snb4/igt@kms_busy@basic-flip-pipe-a.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-snb2/igt@kms_busy@basic-flip-pipe-a.html
+
+  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
+    - shard-skl:          [INCOMPLETE][51] ([i915#300]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl9/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-dpms:
+    - shard-skl:          [FAIL][53] ([i915#54]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-dpms.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl2/igt@kms_cursor_crc@pipe-c-cursor-dpms.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
+    - shard-glk:          [FAIL][55] ([i915#79]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-glk6/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-glk9/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+    - shard-skl:          [FAIL][57] ([i915#79]) -> [PASS][58]
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl8/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl4/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+
+  * {igt@kms_hdr@bpc-switch}:
+    - shard-skl:          [FAIL][59] ([i915#1188]) -> [PASS][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl5/igt@kms_hdr@bpc-switch.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl4/igt@kms_hdr@bpc-switch.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [FAIL][61] ([fdo#108145] / [i915#265]) -> [PASS][62]
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_plane_multiple@atomic-pipe-b-tiling-yf:
+    - shard-skl:          [DMESG-WARN][63] ([IGT#6]) -> [PASS][64]
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-skl3/igt@kms_plane_multiple@atomic-pipe-b-tiling-yf.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-skl8/igt@kms_plane_multiple@atomic-pipe-b-tiling-yf.html
+
+  * igt@kms_psr@psr2_primary_mmap_cpu:
+    - shard-iclb:         [SKIP][65] ([fdo#109441]) -> [PASS][66] +2 similar issues
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb4/igt@kms_psr@psr2_primary_mmap_cpu.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
+
+  * igt@perf_pmu@busy-no-semaphores-vcs1:
+    - shard-iclb:         [SKIP][67] ([fdo#112080]) -> [PASS][68] +7 similar issues
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb3/igt@perf_pmu@busy-no-semaphores-vcs1.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb2/igt@perf_pmu@busy-no-semaphores-vcs1.html
+
+  * igt@prime_vgem@fence-wait-bsd2:
+    - shard-iclb:         [SKIP][69] ([fdo#109276]) -> [PASS][70] +9 similar issues
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-iclb5/igt@prime_vgem@fence-wait-bsd2.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-iclb4/igt@prime_vgem@fence-wait-bsd2.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc6-psr:
+    - shard-tglb:         [FAIL][71] ([i915#454]) -> [SKIP][72] ([i915#468])
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-tglb7/igt@i915_pm_dc@dc6-psr.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
+
+  * igt@i915_pm_rpm@gem-idle:
+    - shard-snb:          [INCOMPLETE][73] ([i915#82]) -> [SKIP][74] ([fdo#109271])
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/shard-snb5/igt@i915_pm_rpm@gem-idle.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/shard-snb6/igt@i915_pm_rpm@gem-idle.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#6]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/6
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
+  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
+  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1197]: https://gitlab.freedesktop.org/drm/intel/issues/1197
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#300]: https://gitlab.freedesktop.org/drm/intel/issues/300
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#818]: https://gitlab.freedesktop.org/drm/intel/issues/818
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#831]: https://gitlab.freedesktop.org/drm/intel/issues/831
+  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7903 -> Patchwork_16511
+
+  CI-20190529: 20190529
+  CI_DRM_7903: 47b768c475f4a11a48bc43e6228660f8b26a542b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16511: 9d61ed99d6a150d1718d2f830438b92ba1ab4d87 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16511/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
