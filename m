@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BD315B1E3
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 21:31:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A22E15B29F
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 22:16:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34586E10B;
-	Wed, 12 Feb 2020 20:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8F66EAF4;
+	Wed, 12 Feb 2020 21:16:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E22196E10B;
- Wed, 12 Feb 2020 20:31:43 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C62FB6EAF3;
+ Wed, 12 Feb 2020 21:16:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D89F1A00CC;
- Wed, 12 Feb 2020 20:31:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BE4A7A0099;
+ Wed, 12 Feb 2020 21:16:53 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Wed, 12 Feb 2020 20:31:43 -0000
-Message-ID: <158153950386.24266.11862563506784829827@emeril.freedesktop.org>
+Date: Wed, 12 Feb 2020 21:16:53 -0000
+Message-ID: <158154221375.24263.915164104559722166@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200211172532.14287-1-anshuman.gupta@intel.com>
 In-Reply-To: <20200211172532.14287-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_3_display_pipes_combination_system_support_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgMyBk?=
+ =?utf-8?q?isplay_pipes_combination_system_support_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,35 +40,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogMyBkaXNwbGF5IHBpcGVzIGNvbWJpbmF0aW9u
-IHN5c3RlbSBzdXBwb3J0IChyZXYzKQpVUkwgICA6IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNr
-dG9wLm9yZy9zZXJpZXMvNzI0NjgvClN0YXRlIDogd2FybmluZwoKPT0gU3VtbWFyeSA9PQoKJCBk
-aW0gY2hlY2twYXRjaCBvcmlnaW4vZHJtLXRpcAo4MTg0MmU5ODVhN2QgZHJtL2k5MTU6IEl0ZXJh
-dGUgb3ZlciBwaXBlIGFuZCBza2lwIHRoZSBkaXNhYmxlZCBvbmUKLToxNzogV0FSTklORzpDT01N
-SVRfTE9HX0xPTkdfTElORTogUG9zc2libGUgdW53cmFwcGVkIGNvbW1pdCBkZXNjcmlwdGlvbiAo
-cHJlZmVyIGEgbWF4aW11bSA3NSBjaGFycyBwZXIgbGluZSkKIzE3OiAKInN1Z2dlc3QgZXhwbGlj
-aXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhlbHNl4oCZIFstV2Vycm9yPWRhbmdsaW5n
-LWVsc2VdIgoKdG90YWw6IDAgZXJyb3JzLCAxIHdhcm5pbmdzLCAwIGNoZWNrcywgMzkgbGluZXMg
-Y2hlY2tlZApmMmExN2FiM2QwZjcgZHJtL2k5MTU6IFJlbW92ZSAocGlwZSA9PSBjcnRjLT5pbmRl
-eCkgYXNzdW1wdGlvbgpjYzU2OTkwMjg0ZWIgZHJtL2k5MTU6IEZpeCBicm9rZW4gdHJhbnNjb2Rl
-ciBlcnIgc3RhdGUKLTo2NDogV0FSTklORzpMT05HX0xJTkU6IGxpbmUgb3ZlciAxMDAgY2hhcmFj
-dGVycwojNjQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2Lmg6MTY3NzoKKyNk
-ZWZpbmUgSEFTX1RSQU5TQ09ERVJfRFNJMChkZXZfcHJpdikJIChJTlRFTF9JTkZPKGRldl9wcml2
-KS0+dHJhbnNfb2Zmc2V0c1tUUkFOU0NPREVSX0RTSV8wXSAhPSAwKQoKLTo2NTogV0FSTklORzpM
-T05HX0xJTkU6IGxpbmUgb3ZlciAxMDAgY2hhcmFjdGVycwojNjU6IEZJTEU6IGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2Lmg6MTY3ODoKKyNkZWZpbmUgSEFTX1RSQU5TQ09ERVJfRFNJMShk
-ZXZfcHJpdikJIChJTlRFTF9JTkZPKGRldl9wcml2KS0+dHJhbnNfb2Zmc2V0c1tUUkFOU0NPREVS
-X0RTSV8xXSAhPSAwKQoKdG90YWw6IDAgZXJyb3JzLCAyIHdhcm5pbmdzLCAwIGNoZWNrcywgMzQg
-bGluZXMgY2hlY2tlZAoyOTdmZmFhY2FlZjEgZHJtL2k5MTU6IEZpeCB3cm9uZ2x5IHBvcHVsYXRl
-ZCBwbGFuZSBwb3NzaWJsZV9jcnRjcyBiaXQgbWFzawphMGMwYTM2NWUyNDAgZHJtL2k5MTU6IEdl
-dCBmaXJzdCBjcnRjIGluc3RlYWQgb2YgUElQRV9BIGNydGMKMDU4Yjc4M2VkYmE4IGRybS9pOTE1
-OiBBZGQgV0FSTl9PTiBpbiBpbnRlbF9nZXRfY3J0Y19mb3JfcGlwZSgpCjBjYmU5ZmI3OTZhZSBk
-cm0vaTkxNTogRml4IGJyb2tlbiBudW1fZW50cmllcyBpbiBza2xfZGRiX2FsbG9jYXRpb25fb3Zl
-cmxhcHMKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: 3 display pipes combination system support (rev3)
+URL   : https://patchwork.freedesktop.org/series/72468/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7924 -> Patchwork_16534
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16534/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16534 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7924/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16534/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6770hq:      [FAIL][3] ([i915#178]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7924/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16534/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-u2:          [TIMEOUT][5] ([fdo#112271]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7924/fi-icl-u2/igt@i915_selftest@live_gtt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16534/fi-icl-u2/igt@i915_selftest@live_gtt.html
+
+  
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Additional (8): fi-hsw-4770 fi-kbl-x1275 fi-cfl-8109u fi-bsw-kefka fi-skl-lmem fi-blb-e6850 fi-skl-6700k2 fi-kbl-r 
+  Missing    (9): fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7924 -> Patchwork_16534
+
+  CI-20190529: 20190529
+  CI_DRM_7924: d4ea682de87f4e4378f34f0a196e8fa8983bd306 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5436: 00a64098aaae2ac3154841d76c7b034165380282 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16534: 0cbe9fb796ae7161887a23c9f906c0ff2224aefc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0cbe9fb796ae drm/i915: Fix broken num_entries in skl_ddb_allocation_overlaps
+058b783edba8 drm/i915: Add WARN_ON in intel_get_crtc_for_pipe()
+a0c0a365e240 drm/i915: Get first crtc instead of PIPE_A crtc
+297ffaacaef1 drm/i915: Fix wrongly populated plane possible_crtcs bit mask
+cc56990284eb drm/i915: Fix broken transcoder err state
+f2a17ab3d0f7 drm/i915: Remove (pipe == crtc->index) assumption
+81842e985a7d drm/i915: Iterate over pipe and skip the disabled one
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16534/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
