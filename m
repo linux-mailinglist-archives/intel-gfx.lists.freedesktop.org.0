@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08D03159E00
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 01:31:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C415159E02
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2020 01:32:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA326F46E;
-	Wed, 12 Feb 2020 00:31:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53F6A6F46F;
+	Wed, 12 Feb 2020 00:32:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05E786F46B
- for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 00:31:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B228E6F46F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 12 Feb 2020 00:31:57 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2020 16:31:54 -0800
+ 11 Feb 2020 16:31:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="251736350"
+X-IronPort-AV: E=Sophos;i="5.70,428,1574150400"; d="scan'208";a="251736365"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga002.jf.intel.com with ESMTP; 11 Feb 2020 16:31:54 -0800
+ by orsmga002.jf.intel.com with ESMTP; 11 Feb 2020 16:31:57 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2020 16:31:22 -0800
-Message-Id: <20200212003124.33844-9-daniele.ceraolospurio@intel.com>
+Date: Tue, 11 Feb 2020 16:31:23 -0800
+Message-Id: <20200212003124.33844-10-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
 References: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 08/10] drm/i915/uc: Abort early on uc_init
- failure
+Subject: [Intel-gfx] [PATCH v3 09/10] drm/i915/uc: consolidate firmware
+ cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,146 +48,215 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we can differentiate wants vs uses GuC/HuC, intel_uc_init is
-restricted to running only if we have successfully fetched the required
-blob(s) and are committed to using the microcontroller(s).
-The only remaining thing that can go wrong in uc_init is the allocation
-of GuC/HuC related objects; if we get such a failure better to bail out
-immediately instead of wedging later, like we do for e.g.
-intel_engines_init, since without objects we can't use the HW, including
-not being able to attempt the firmware load.
+We are quite trigger happy in cleaning up the firmware blobs, as we do
+so from several error/fini paths in GuC/HuC/uC code. We do have the
+__uc_cleanup_firmwares cleanup function, which unwinds
+__uc_fetch_firmwares and is already called both from the error path of
+gem_init and from gem_driver_release, so let's stop cleaning up from
+all the other paths.
 
-While at it, remove the unneeded fw_cleanup call (this is handled
-outside of gt_init) and add a probe failure injection point for testing.
-Also, update the logs for <g/h>uc_init failures to probe_failure() since
-they will cause the driver load to fail.
+The fact that we're not cleaning the firmware immediately means that
+we can't consider firmware availability as an indication of
+initialization success. A "READY_TO_LOAD" status has been added to
+indicate that the initialization was successful, to be used to
+selectively load HuC only if HuC init has completed (HuC init failure
+is not considered a fatal error).
+
+v2: s/ready_to_load/loadable (Michal), only run guc/huc_fini if the
+    fw is in loadable state
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Fernando Pacheco <fernando.pacheco@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com> #v1
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c     |  4 +++-
- drivers/gpu/drm/i915/gt/uc/intel_guc.c |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc.c |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc.c  | 24 +++++++++++++++++-------
- drivers/gpu/drm/i915/gt/uc/intel_uc.h  |  4 ++--
- 5 files changed, 24 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c   | 12 +++++-------
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c   |  5 +++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c |  7 +++++--
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h | 18 +++++++++++++++---
+ 5 files changed, 29 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index f1f1b306e0af..cd64f81a3e60 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -592,7 +592,9 @@ int intel_gt_init(struct intel_gt *gt)
- 	if (err)
- 		goto err_engines;
- 
--	intel_uc_init(&gt->uc);
-+	err = intel_uc_init(&gt->uc);
-+	if (err)
-+		goto err_engines;
- 
- 	err = intel_gt_resume(gt);
- 	if (err)
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index f96d1bdf4bf2..97b9c71a6fd4 100644
+index 97b9c71a6fd4..819f09ef51fc 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -376,7 +376,7 @@ int intel_guc_init(struct intel_guc *guc)
+@@ -333,7 +333,7 @@ int intel_guc_init(struct intel_guc *guc)
+ 
+ 	ret = intel_uc_fw_init(&guc->fw);
+ 	if (ret)
+-		goto err_fetch;
++		goto out;
+ 
+ 	ret = intel_guc_log_create(&guc->log);
+ 	if (ret)
+@@ -364,6 +364,8 @@ int intel_guc_init(struct intel_guc *guc)
+ 	/* We need to notify the guc whenever we change the GGTT */
+ 	i915_ggtt_enable_guc(gt->ggtt);
+ 
++	intel_uc_fw_change_status(&guc->fw, INTEL_UC_FIRMWARE_LOADABLE);
++
+ 	return 0;
+ 
+ err_ct:
+@@ -374,8 +376,7 @@ int intel_guc_init(struct intel_guc *guc)
+ 	intel_guc_log_destroy(&guc->log);
+ err_fw:
  	intel_uc_fw_fini(&guc->fw);
- err_fetch:
- 	intel_uc_fw_cleanup_fetch(&guc->fw);
--	DRM_DEV_DEBUG_DRIVER(gt->i915->drm.dev, "failed with %d\n", ret);
-+	i915_probe_error(gt->i915, "failed with %d\n", ret);
+-err_fetch:
+-	intel_uc_fw_cleanup_fetch(&guc->fw);
++out:
+ 	i915_probe_error(gt->i915, "failed with %d\n", ret);
  	return ret;
  }
+@@ -384,7 +385,7 @@ void intel_guc_fini(struct intel_guc *guc)
+ {
+ 	struct intel_gt *gt = guc_to_gt(guc);
  
+-	if (!intel_uc_fw_is_available(&guc->fw))
++	if (!intel_uc_fw_is_loadable(&guc->fw))
+ 		return;
+ 
+ 	i915_ggtt_disable_guc(gt->ggtt);
+@@ -397,9 +398,6 @@ void intel_guc_fini(struct intel_guc *guc)
+ 	intel_guc_ads_destroy(guc);
+ 	intel_guc_log_destroy(&guc->log);
+ 	intel_uc_fw_fini(&guc->fw);
+-	intel_uc_fw_cleanup_fetch(&guc->fw);
+-
+-	intel_uc_fw_change_status(&guc->fw, INTEL_UC_FIRMWARE_DISABLED);
+ }
+ 
+ /*
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index 32a069841c14..5f448d0e360b 100644
+index 5f448d0e360b..a74b65694512 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -127,7 +127,7 @@ int intel_huc_init(struct intel_huc *huc)
+@@ -121,19 +121,20 @@ int intel_huc_init(struct intel_huc *huc)
+ 	if (err)
+ 		goto out_fini;
+ 
++	intel_uc_fw_change_status(&huc->fw, INTEL_UC_FIRMWARE_LOADABLE);
++
+ 	return 0;
+ 
+ out_fini:
  	intel_uc_fw_fini(&huc->fw);
  out:
- 	intel_uc_fw_cleanup_fetch(&huc->fw);
--	DRM_DEV_DEBUG_DRIVER(i915->drm.dev, "failed with %d\n", err);
-+	i915_probe_error(i915, "failed with %d\n", err);
+-	intel_uc_fw_cleanup_fetch(&huc->fw);
+ 	i915_probe_error(i915, "failed with %d\n", err);
  	return err;
  }
  
+ void intel_huc_fini(struct intel_huc *huc)
+ {
+-	if (!intel_uc_fw_is_available(&huc->fw))
++	if (!intel_uc_fw_is_loadable(&huc->fw))
+ 		return;
+ 
+ 	intel_huc_rsa_data_destroy(huc);
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index f81b4d40bc90..1c74518c2459 100644
+index 1c74518c2459..a4cbe06e06bd 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -273,7 +273,7 @@ static void __uc_cleanup_firmwares(struct intel_uc *uc)
- 	intel_uc_fw_cleanup_fetch(&uc->guc.fw);
- }
- 
--static void __uc_init(struct intel_uc *uc)
-+static int __uc_init(struct intel_uc *uc)
- {
- 	struct intel_guc *guc = &uc->guc;
- 	struct intel_huc *huc = &uc->huc;
-@@ -282,19 +282,29 @@ static void __uc_init(struct intel_uc *uc)
+@@ -417,7 +417,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+ 	GEM_BUG_ON(!intel_uc_supports_guc(uc));
  	GEM_BUG_ON(!intel_uc_wants_guc(uc));
  
- 	if (!intel_uc_uses_guc(uc))
--		return;
-+		return 0;
-+
-+	if (i915_inject_probe_failure(uc_to_gt(uc)->i915))
-+		return -ENOMEM;
+-	if (!intel_uc_fw_is_available(&guc->fw)) {
++	if (!intel_uc_fw_is_loadable(&guc->fw)) {
+ 		ret = __uc_check_hw(uc) ||
+ 		      intel_uc_fw_is_overridden(&guc->fw) ||
+ 		      intel_uc_wants_guc_submission(uc) ?
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index c9c094a73399..5434c07aefa1 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -501,7 +501,7 @@ int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 dst_offset, u32 dma_flags)
+ 	if (err)
+ 		return err;
  
- 	/* XXX: GuC submission is unavailable for now */
- 	GEM_BUG_ON(intel_uc_uses_guc_submission(uc));
+-	if (!intel_uc_fw_is_available(uc_fw))
++	if (!intel_uc_fw_is_loadable(uc_fw))
+ 		return -ENOEXEC;
  
- 	ret = intel_guc_init(guc);
--	if (ret) {
--		intel_uc_fw_cleanup_fetch(&huc->fw);
--		return;
-+	if (ret)
-+		return ret;
-+
-+	if (intel_uc_uses_huc(uc)) {
-+		ret = intel_huc_init(huc);
-+		if (ret)
-+			goto out_guc;
- 	}
+ 	/* Call custom loader */
+@@ -544,7 +544,10 @@ int intel_uc_fw_init(struct intel_uc_fw *uc_fw)
  
--	if (intel_uc_uses_huc(uc))
--		intel_huc_init(huc);
-+	return 0;
+ void intel_uc_fw_fini(struct intel_uc_fw *uc_fw)
+ {
+-	intel_uc_fw_cleanup_fetch(uc_fw);
++	if (i915_gem_object_has_pinned_pages(uc_fw->obj))
++		i915_gem_object_unpin_pages(uc_fw->obj);
 +
-+out_guc:
-+	intel_guc_fini(guc);
-+	return ret;
++	intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_AVAILABLE);
  }
  
- static void __uc_fini(struct intel_uc *uc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-index c1f39bdc115a..5ae7b50b7dc1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-@@ -17,7 +17,7 @@ struct intel_uc_ops {
- 	int (*sanitize)(struct intel_uc *uc);
- 	void (*init_fw)(struct intel_uc *uc);
- 	void (*fini_fw)(struct intel_uc *uc);
--	void (*init)(struct intel_uc *uc);
-+	int (*init)(struct intel_uc *uc);
- 	void (*fini)(struct intel_uc *uc);
- 	int (*init_hw)(struct intel_uc *uc);
- 	void (*fini_hw)(struct intel_uc *uc);
-@@ -90,7 +90,7 @@ static inline _TYPE intel_uc_##_NAME(struct intel_uc *uc) \
- intel_uc_ops_function(sanitize, sanitize, int, 0);
- intel_uc_ops_function(fetch_firmwares, init_fw, void, );
- intel_uc_ops_function(cleanup_firmwares, fini_fw, void, );
--intel_uc_ops_function(init, init, void, );
-+intel_uc_ops_function(init, init, int, 0);
- intel_uc_ops_function(fini, fini, void, );
- intel_uc_ops_function(init_hw, init_hw, int, 0);
- intel_uc_ops_function(fini_hw, fini_hw, void, );
+ /**
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+index 1f30543d0d2d..888ff0de0244 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
+@@ -29,8 +29,11 @@ struct intel_gt;
+  * |            |                 SELECTED                          |
+  * +------------+-               /   |   \                         -+
+  * |            |    MISSING <--/    |    \--> ERROR                |
+- * |   fetch    |                    |                              |
+- * |            |        /------> AVAILABLE <---<-----------\       |
++ * |   fetch    |                    V                              |
++ * |            |                 AVAILABLE                         |
++ * +------------+-                   |                             -+
++ * |   init     |                    V                              |
++ * |            |        /------> LOADABLE <----<-----------\       |
+  * +------------+-       \         /    \        \           \     -+
+  * |            |         FAIL <--<      \--> TRANSFERRED     \     |
+  * |   upload   |                  \           /   \          /     |
+@@ -46,6 +49,7 @@ enum intel_uc_fw_status {
+ 	INTEL_UC_FIRMWARE_MISSING, /* blob not found on the system */
+ 	INTEL_UC_FIRMWARE_ERROR, /* invalid format or version */
+ 	INTEL_UC_FIRMWARE_AVAILABLE, /* blob found and copied in mem */
++	INTEL_UC_FIRMWARE_LOADABLE, /* all fw-required objects are ready */
+ 	INTEL_UC_FIRMWARE_FAIL, /* failed to xfer or init/auth the fw */
+ 	INTEL_UC_FIRMWARE_TRANSFERRED, /* dma xfer done */
+ 	INTEL_UC_FIRMWARE_RUNNING /* init/auth done */
+@@ -115,6 +119,8 @@ const char *intel_uc_fw_status_repr(enum intel_uc_fw_status status)
+ 		return "ERROR";
+ 	case INTEL_UC_FIRMWARE_AVAILABLE:
+ 		return "AVAILABLE";
++	case INTEL_UC_FIRMWARE_LOADABLE:
++		return "LOADABLE";
+ 	case INTEL_UC_FIRMWARE_FAIL:
+ 		return "FAIL";
+ 	case INTEL_UC_FIRMWARE_TRANSFERRED:
+@@ -143,6 +149,7 @@ static inline int intel_uc_fw_status_to_error(enum intel_uc_fw_status status)
+ 	case INTEL_UC_FIRMWARE_SELECTED:
+ 		return -ESTALE;
+ 	case INTEL_UC_FIRMWARE_AVAILABLE:
++	case INTEL_UC_FIRMWARE_LOADABLE:
+ 	case INTEL_UC_FIRMWARE_TRANSFERRED:
+ 	case INTEL_UC_FIRMWARE_RUNNING:
+ 		return 0;
+@@ -184,6 +191,11 @@ static inline bool intel_uc_fw_is_available(struct intel_uc_fw *uc_fw)
+ 	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_AVAILABLE;
+ }
+ 
++static inline bool intel_uc_fw_is_loadable(struct intel_uc_fw *uc_fw)
++{
++	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_LOADABLE;
++}
++
+ static inline bool intel_uc_fw_is_loaded(struct intel_uc_fw *uc_fw)
+ {
+ 	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_TRANSFERRED;
+@@ -202,7 +214,7 @@ static inline bool intel_uc_fw_is_overridden(const struct intel_uc_fw *uc_fw)
+ static inline void intel_uc_fw_sanitize(struct intel_uc_fw *uc_fw)
+ {
+ 	if (intel_uc_fw_is_loaded(uc_fw))
+-		intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_AVAILABLE);
++		intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOADABLE);
+ }
+ 
+ static inline u32 __intel_uc_fw_get_upload_size(struct intel_uc_fw *uc_fw)
 -- 
 2.24.1
 
