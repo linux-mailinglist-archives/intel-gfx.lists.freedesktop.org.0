@@ -1,40 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C9A15CB29
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 20:29:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 549E815CB4D
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 20:42:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F07B96F639;
-	Thu, 13 Feb 2020 19:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 535C86F63E;
+	Thu, 13 Feb 2020 19:42:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D16316E3EC;
- Thu, 13 Feb 2020 19:29:50 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9606B6F63E;
+ Thu, 13 Feb 2020 19:42:43 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 11:29:49 -0800
-X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="347790112"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 11:42:42 -0800
+X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="227350688"
 Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 11:29:49 -0800
-Date: Thu, 13 Feb 2020 11:29:48 -0800
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 13 Feb 2020 11:42:42 -0800
 From: Dale B Stimson <dale.b.stimson@intel.com>
-To: Petri Latvala <petri.latvala@intel.com>
-Message-ID: <20200213192947.GA9346@dbstims-dev.fm.intel.com>
-References: <20200213012840.31472-1-dale.b.stimson@intel.com>
- <20200213012840.31472-6-dale.b.stimson@intel.com>
- <20200213082955.GT25209@platvala-desk.ger.corp.intel.com>
+To: igt-dev@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Feb 2020 11:41:49 -0800
+Message-Id: <20200213194152.63495-1-dale.b.stimson@intel.com>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200213082955.GT25209@platvala-desk.ger.corp.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2 5/5]
- i915/gem_ctx_isolation.c - If initialization fails, exit
+Subject: [Intel-gfx] [PATCH i-g-t v3 0/3] mmio_base via debugfs
+ infrastructure + gem_ctx_isolation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,94 +42,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-13 10:29:55, Petri Latvala wrote:
-> On Wed, Feb 12, 2020 at 05:28:40PM -0800, Dale B Stimson wrote:
-> > At the start of igt_main, failure of the initial tests for successful
-> > initialization transfer control to the end of an igt_fixture block.
-> > From there, execution of the main per-engine loop is attempted.
-> > Instead, the test should be caused to exit.
-> > 
-> > If initialization fails, exit.
-> > 
-> > Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
-> > ---
-> >  tests/i915/gem_ctx_isolation.c | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> > 
-> > diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-> > index 07ffbb84a..b11158dab 100644
-> > --- a/tests/i915/gem_ctx_isolation.c
-> > +++ b/tests/i915/gem_ctx_isolation.c
-> > @@ -898,10 +898,13 @@ igt_main
-> >  	int fd = -1;
-> >  	struct eng_mmio_base_table_s *mbp = NULL;
-> >  	uint32_t mmio_base = 0;
-> > +	/* igt_fixture block is skipped if --list-subtests, so start with true. */
-> > +	bool init_successful = true;
-> >  
-> >  	igt_fixture {
-> >  		int gen;
-> >  
-> > +		init_successful = false;
-> >  		fd = drm_open_driver(DRIVER_INTEL);
-> >  		igt_require_gem(fd);
-> >  		igt_require(gem_has_contexts(fd));
-> > @@ -916,8 +919,20 @@ igt_main
-> >  		igt_skip_on(gen > LAST_KNOWN_GEN);
-> >  
-> >  		mbp = gem_engine_mmio_base_info_get(fd);
-> > +		init_successful = true;
-> >  	}
-> >  
-> > +	if (!init_successful) {
-> > +		igt_exit_early();
-> > +	}
-> > +
-> 
-> NAK. All this dancing around the infrastructure just makes changing
-> the infrastructure later be awkward and produce weird errors.
-> 
-> If something in the fixture failed, with this code you never enter the
-> subtest, making the test result 'notrun' instead of the correct 'skip'
-> or 'fail'.
-> 
-> What is the problem this is trying to solve? Incorrect engine list
-> used? If you have a subtest per static engine, all CI does is execute
-> per static engine. Converting this test to use dynamic subtests for
-> engines is the way forward.
-> 
-> 
-> -- 
-> Petri Latvala
+v3:
+- Remove v2 early-exit patches (previous 4/5 and 5/5).  The underlying
+  issue was addressed via a separately-submitted patch.
 
-NAK understood and accepted.
+v2:
+- Introduce and use igt_exit_early() so that a failed initialization
+  (in igt_fixture) will not attempt to invoke the per-engine loop.
+- Initialize mmio_base db inside initial igt_fixture instead of after.
+- Some additional functions handle NULL input mmio_base db pointer.
+- Variables mbp and mmio_base initialized to NULL/0 so their values will
+  not be uninitialized for --list-subtests.
+- Failure to obtain an mmio_base db is now igt_debug instead of
+  igt_warn.
 
-I will address this in a different way, targeting the underlying issues
-instead of the symptom.  Please see my patch (just sent to ML):
-  lib/i915/gem_engine_topology.c - intel_get_current_engine invalid result
+This patch series provides infrastructure to allow determination of i915
+per-engine mmio_base (which is otherwise sometimes hard to get).  The provided
+method uses debugfs mmio_base information if present.  Otherwise, a default
+determination is provided when possible.  Also, gem_ctx_isolation is modified
+to use the new infrastructure.
 
-To answer to your question about what this was trying to solve:
+For example, on TGL, gem_ctx_isolation (without these or similar changes)
+will fail for subtests that use engine vcs1.
 
-Briefly, and specifically addressing gem_ctx_isolation:
+The patches in this series are as they are intended to be submitted (subject
+to comments), except I would like to squash the two gem_ctx_isolation
+"relative registers" patches into one (as discussed below).  Also, function
+gem_engine_mmio_base_info_dump() could be removed.
 
-As-is observed behavior when open (or debugfs open) fails: per-engine loop
-executes forever:
-    Subtest vecs0-nonpriv: FAIL
-    Subtest vecs0-nonpriv-switch: FAIL
-    Subtest vecs0-clean: FAIL
-    Subtest vecs0-dirty-create: FAIL
-    Subtest vecs0-dirty-switch: FAIL
-    Subtest vecs0-none: FAIL
-    Subtest vecs0-S3: FAIL
-    Subtest vecs0-S4: FAIL
-    Subtest vecs0-reset: FAIL
-    And repeat, ad infinitum for vecs0
+On 2020-01-27, Chris wilson sent to the ML:
+  [igt-dev] [PATCH i-g-t 1/5] i915: Start putting the mmio_base to wider use
+  [igt-dev] [PATCH i-g-t 2/5] i915/gem_ctx_isolation: Check engine relative registers
+plus the following, which are not addressed here:
+  [igt-dev] [PATCH i-g-t 3/5] i915: Exercise preemption timeout controls in sysfs
+  [igt-dev] [PATCH i-g-t 4/5] i915: Exercise sysfs heartbeat controls
+  [igt-dev] [PATCH i-g-t 5/5] i915: Exercise timeslice sysfs property
+
+This patch list is:
+  i915/gem_mmio_base.c - get mmio_base from debugfs (if possible)
+  i915/gem_ctx_isolation: Check engine relative registers
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
+
+The first 2020-01-27 patch obtains mmio_base information via sysfs, and depends
+on a proposed kernel change that would provide the mmio_base information
+via sysfs.  It is unclear when or whether that kernel change will progress.
+
+The mmio_base information used by this patch series is available through
+debugfs now (as of kernel 5.4).  If the per-engine mmio_base information is
+ever added to sysfs, it would be easy to plug that into the infrastructure
+proposed here as an additional higher-priority source of that information.
+
+This submission replaces the first patch (switching from sysfs to debugfs),
+retains the second 2020-01-27 patch
+  i915/gem_ctx_isolation: Check engine relative registers
+and has a third patch that modifies the original second patch to support the
+altered API:
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
+
+I propose squashing the two gem_ctx_isolation "relative registers" patches
+into one patch with author == "Chris Wilson" if Chris agrees.
+
+Some differences from the 2020-01-27 patches:
+
+The mmio_base information is fetched once into local data structures, and
+is obtained from them thereafter instead of being fetched from the kernel
+everytime it is wanted.
+
+The function that obtains the mmio_base information is called by a particular
+test that wants it, and returns a handle through which the mmio_base can be
+requested for any particular engine.
+
+These patches introduce new source files lib/i915/gem_mmio_base.c
+and lib/i915/gem_mmio_base.h.  Should the code instead be placed into
+lib/i915/gem_engine_topology.c?
+
+Function gem_engine_mmio_base_info_dump presently exists to dump the
+mmio_base information to stdout for debugging or informational purposes.
+This function is not currently called.  I presume this function should
+be removed.  Is there any desire to keep it around for future use?
+
+The 2020-01-27 patches define function gem_engine_mmio_base() with its first
+parameter as "fd".  The new patches replace the first parameter with the
+mmio_base object handle.
+
+Chris Wilson (1):
+  i915/gem_ctx_isolation: Check engine relative registers
+
+Dale B Stimson (2):
+  i915/gem_mmio_base.c - get mmio_base from debugfs (if possible)
+  i915/gem_ctx_isolation: Check engine relative registers - Part 2
+
+ lib/Makefile.sources           |   2 +
+ lib/i915/gem_mmio_base.c       | 353 +++++++++++++++++++++++++++++++++
+ lib/i915/gem_mmio_base.h       |  19 ++
+ lib/igt.h                      |   1 +
+ lib/meson.build                |   1 +
+ tests/i915/gem_ctx_isolation.c | 229 ++++++++++++---------
+ 6 files changed, 513 insertions(+), 92 deletions(-)
+ create mode 100644 lib/i915/gem_mmio_base.c
+ create mode 100644 lib/i915/gem_mmio_base.h
+
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
