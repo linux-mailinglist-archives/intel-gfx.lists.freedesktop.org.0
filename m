@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D1F15B8CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 06:10:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C5A915B948
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 07:06:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37DCF6EB2F;
-	Thu, 13 Feb 2020 05:10:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 354B16F550;
+	Thu, 13 Feb 2020 06:06:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2AF786EB2F;
- Thu, 13 Feb 2020 05:10:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B9736EB32;
+ Thu, 13 Feb 2020 06:06:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 23855A0078;
- Thu, 13 Feb 2020 05:10:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 035A9A0003;
+ Thu, 13 Feb 2020 06:06:02 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 13 Feb 2020 05:10:16 -0000
-Message-ID: <158157061611.17960.12745537689432868539@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 13 Feb 2020 06:06:01 -0000
+Message-ID: <158157396198.17961.6130232029789281383@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200212160434.6437-1-jani.nikula@intel.com>
-In-Reply-To: <20200212160434.6437-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_MAINTAINERS=3A_Update_drm/i915_bug_?=
- =?utf-8?q?filing_URL?=
+References: <20200212161738.28141-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200212161738.28141-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_pfit/scaler_rework_prep_stuff_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] MAINTAINERS: Update drm/i915 bug filing URL
-URL   : https://patchwork.freedesktop.org/series/73371/
+Series: drm/i915: pfit/scaler rework prep stuff (rev2)
+URL   : https://patchwork.freedesktop.org/series/68409/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7926 -> Patchwork_16546
+CI Bug Log - changes from CI_DRM_7926 -> Patchwork_16547
 ====================================================
 
 Summary
@@ -64,75 +63,94 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16546/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/index.html
 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16547:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_module_load@reload:
+    - {fi-ehl-1}:         NOTRUN -> [WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/fi-ehl-1/igt@i915_module_load@reload.html
+
+  
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_16546 that come from known issues:
+  Here are the changes found in Patchwork_16547 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@i915_selftest@live_gtt:
-    - fi-kbl-7500u:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-kbl-7500u/igt@i915_selftest@live_gtt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16546/fi-kbl-7500u/igt@i915_selftest@live_gtt.html
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][2] -> [INCOMPLETE][3] ([i915#45])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/fi-byt-n2820/igt@gem_close_race@basic-threads.html
 
   * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111096] / [i915#323])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16546/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+    - fi-kbl-7500u:       [PASS][4] -> [FAIL][5] ([fdo#111407])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
   
-#### Warnings ####
+#### Possible fixes ####
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][5] ([fdo#109271]) -> [FAIL][6] ([i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16546/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+  * igt@gem_exec_suspend@basic-s0:
+    - {fi-ehl-1}:         [INCOMPLETE][6] ([i915#937]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-ehl-1/igt@gem_exec_suspend@basic-s0.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/fi-ehl-1/igt@gem_exec_suspend@basic-s0.html
 
   
   {name}: This element is suppressed. This means it is ignored when computing
           the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112126]: https://bugs.freedesktop.org/show_bug.cgi?id=112126
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
   [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-Participating hosts (45 -> 46)
+Participating hosts (45 -> 38)
 ------------------------------
 
-  Additional (7): fi-hsw-peppy fi-skl-6770hq fi-bdw-gvtdvm fi-glk-dsi fi-gdg-551 fi-bsw-kefka fi-kbl-r 
-  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+  Additional (6): fi-skl-6770hq fi-bdw-gvtdvm fi-glk-dsi fi-gdg-551 fi-bsw-kefka fi-kbl-r 
+  Missing    (13): fi-ilk-m540 fi-bdw-samus fi-bdw-5557u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-skl-6700k2 fi-blb-e6850 fi-byt-clapper fi-skl-6600u 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7926 -> Patchwork_16546
+  * Linux: CI_DRM_7926 -> Patchwork_16547
 
   CI-20190529: 20190529
   CI_DRM_7926: 6b2fe829d300abf285e9db8b252ffacd216df3ed @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5437: ae42fedfd0c536c560e8e17b06d9c7b94a4e8f0c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16546: 63e6a1c6ccf1cf204f06b5e61c0a3b702d0bb004 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_16547: 833bab58ec2fa453deb38303f5534118c328c5a5 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-63e6a1c6ccf1 drm/i915: Update drm/i915 bug filing URL
-f7eef1bd93b5 MAINTAINERS: Update drm/i915 bug filing URL
+833bab58ec2f drm/i915: Have pfit calculations return an error code
+6ea293f66e4d drm/i915: Pass connector state to pfit calculations
+489d614c2d81 drm/i915: s/pipe_config/crtc_state/ in pfit functions
+31b06d809c65 drm/i915: Use drm_rect to store the pfit window pos/size
+29d781ef706b drm/i915: Flatten a bunch of the pfit functions
+e78250ae53d0 drm/i915: Fix skl+ non-scaled pfit modes
+0c04ecca2fc1 drm/i915: Use intel_de_write_fw() for skl+ scaler registers
+0027eb6cbbdb drm/i915: Parametrize PFIT_PIPE
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16546/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16547/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
