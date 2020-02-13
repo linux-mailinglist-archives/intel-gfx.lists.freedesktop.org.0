@@ -2,30 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E22215CC91
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 21:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD5115CCA7
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 21:56:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E933B6E3FC;
-	Thu, 13 Feb 2020 20:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80B856E3F7;
+	Thu, 13 Feb 2020 20:56:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40B616E3F7;
- Thu, 13 Feb 2020 20:47:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3934FA0078;
- Thu, 13 Feb 2020 20:47:59 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D7126E3F7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 20:56:51 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 12:56:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="381226713"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga004.jf.intel.com with SMTP; 13 Feb 2020 12:56:50 -0800
+Date: Thu, 13 Feb 2020 12:56:50 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200213205650.GJ2014153@mdroper-desk1.amr.corp.intel.com>
+References: <20200213140412.32697-1-stanislav.lisovskiy@intel.com>
+ <20200213140412.32697-3-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Thu, 13 Feb 2020 20:47:59 -0000
-Message-ID: <158162687923.17961.5362755425486204035@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Proper_dbuf_global_state?=
+Content-Disposition: inline
+In-Reply-To: <20200213140412.32697-3-stanislav.lisovskiy@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v1 2/3] drm/i915/dsc: force full modeset
+ whenever DSC is enabled at probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,52 +46,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Feb 13, 2020 at 04:04:11PM +0200, Stanislav Lisovskiy wrote:
+> From: Jani Nikula <jani.nikula@intel.com>
+> 
+> We lack full state readout of DSC config, which may lead to DSC enable
+> using a config that's all zeros, failing spectacularly. Force full
+> modeset and thus compute config at probe to get a sane state, until we
+> implement DSC state readout. Any fastset that did appear to work with
+> DSC at probe, worked by coincidence. [1] is an example of a change that
+> triggered the issue on TGL DSI DSC.
+> 
+> [1] http://patchwork.freedesktop.org/patch/msgid/20200212150102.7600-1-ville.syrjala@linux.intel.com
+> 
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: drm/i915: Proper dbuf global state
-URL   : https://patchwork.freedesktop.org/series/73421/
-State : warning
+Should this be
 
-== Summary ==
+Fixes: fbacb15ea814 ("drm/i915/dsc: add basic hardware state readout support")
 
-$ dim checkpatch origin/drm-tip
-105574d3d6d9 drm/i915: Introduce proper dbuf state
--:179: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
-#179: FILE: drivers/gpu/drm/i915/display/intel_display.c:18491:
-+	dev_priv->active_pipes = cdclk_state->active_pipes =
+since that's where we added the basic readout with a FIXME to add more
+later?
 
--:610: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
-#610: FILE: drivers/gpu/drm/i915/intel_pm.h:77:
-+#define intel_atomic_get_old_dbuf_state(state) \
-+	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
+I don't know the specifics of DSC and what state we need, but the
+approach here seems reasonable.
 
--:611: WARNING:LONG_LINE: line over 100 characters
-#611: FILE: drivers/gpu/drm/i915/intel_pm.h:78:
-+	to_intel_dbuf_state(intel_atomic_get_old_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
 
--:612: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'state' - possible side-effects?
-#612: FILE: drivers/gpu/drm/i915/intel_pm.h:79:
-+#define intel_atomic_get_new_dbuf_state(state) \
-+	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 61ba1f2256a0..1e3f2cc27db8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -17828,6 +17828,24 @@ static int intel_initial_commit(struct drm_device *dev)
+>  			 * have readout for pipe gamma enable.
+>  			 */
+>  			crtc_state->uapi.color_mgmt_changed = true;
+> +
+> +			/*
+> +			 * FIXME hack to force full modeset when DSC is being
+> +			 * used.
+> +			 *
+> +			 * As long as we do not have full state readout and
+> +			 * config comparison of crtc_state->dsc, we have no way
+> +			 * to ensure reliable fastset. Remove once we have
+> +			 * readout for DSC.
+> +			 */
+> +			if (crtc_state->dsc.compression_enable) {
+> +				ret = drm_atomic_add_affected_connectors(state,
+> +									 &crtc->base);
+> +				if (ret)
+> +					goto out;
+> +				crtc_state->uapi.mode_changed = true;
+> +				drm_dbg_kms(dev, "Force full modeset for DSC\n");
+> +			}
+>  		}
+>  	}
+>  
+> -- 
+> 2.24.1.485.gad05a3d8e5
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
--:613: WARNING:LONG_LINE: line over 100 characters
-#613: FILE: drivers/gpu/drm/i915/intel_pm.h:80:
-+	to_intel_dbuf_state(intel_atomic_get_new_global_obj_state(state, &to_i915(state->base.dev)->dbuf.obj))
-
-total: 0 errors, 2 warnings, 3 checks, 541 lines checked
-8c6729a09771 drm/i915: Polish some dbuf debugs
-f51308e472a5 drm/i915: Unify the low level dbuf code
-23efcff9a67e drm/i915: Nuke skl_ddb_get_hw_state()
-246e420dd654 drm/i915: Move the dbuf pre/post plane update
-bc797241a9a7 drm/i915: Clean up dbuf debugs during .atomic_check()
-
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
