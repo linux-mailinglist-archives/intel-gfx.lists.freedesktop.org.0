@@ -1,33 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228CA15CEB5
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:39:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E92CF15CEB8
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 888E06F899;
-	Thu, 13 Feb 2020 23:39:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF2776F89A;
+	Thu, 13 Feb 2020 23:42:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 728E46F899
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:39:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20217757-1500050 for multiple; Thu, 13 Feb 2020 23:39:02 +0000
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B09076F89A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:42:44 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 15:42:43 -0800
+X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227415651"
+Received: from johnharr-mobl3.ger.corp.intel.com (HELO [10.254.179.240])
+ ([10.254.179.240])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 13 Feb 2020 15:42:43 -0800
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
+ <20200212003124.33844-8-daniele.ceraolospurio@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
+Message-ID: <15b855d9-8c6e-1bff-4f87-a414aacb10ce@Intel.com>
+Date: Thu, 13 Feb 2020 15:42:42 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200212144058.5686-2-jani.nikula@intel.com>
-References: <20200212144058.5686-1-jani.nikula@intel.com>
- <20200212144058.5686-2-jani.nikula@intel.com>
-Message-ID: <158163713950.4660.5341490618839546150@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 13 Feb 2020 23:38:59 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: switch vlv_suspend to use
- intel uncore register accessors
+In-Reply-To: <20200212003124.33844-8-daniele.ceraolospurio@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 07/10] drm/i915/guc: Apply new uC status
+ tracking to GuC submission as well
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,28 +48,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Jani Nikula (2020-02-12 14:40:58)
-> Prefer intel_uncore_* over I915_READ, I915_WRITE, and POSTING_READ.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On 2/11/2020 16:31, Daniele Ceraolo Spurio wrote:
+> To be able to differentiate the before and after of our commitment to
+> GuC submission, which will be used in follow-up patches to early set-up
+> the submission structures.
+>
+> v2: move functions to guc_submission.h (Michal)
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 12 ++++----
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  7 +----
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 ++----
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.h | 19 +++++++++++-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 14 ++++-----
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.h         | 30 +++++++------------
+>   drivers/gpu/drm/i915/gvt/scheduler.c          |  2 +-
+>   drivers/gpu/drm/i915/i915_drv.h               |  6 ----
+>   drivers/gpu/drm/i915/intel_gvt.c              |  2 +-
+>   9 files changed, 48 insertions(+), 53 deletions(-)
 
-A couple of older checkpatch errors that could be cleaned up (pure
-whitespacing).
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 
-Both
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-
-Half this code should be removed as we explicitly reset the registers on
-resume. (And if we need to add a few special runtime-resume hooks, would
-not be a bad thing). And the other half, probably should be removed with
-a bit of extra work.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
