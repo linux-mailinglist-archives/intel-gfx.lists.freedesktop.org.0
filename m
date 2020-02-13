@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B124815C123
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 16:13:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A73915C29E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 16:36:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B5536E326;
-	Thu, 13 Feb 2020 15:13:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13C4F6E332;
+	Thu, 13 Feb 2020 15:36:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 007DA6E326;
- Thu, 13 Feb 2020 15:13:42 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 964B06E332;
+ Thu, 13 Feb 2020 15:36:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F01ACA0094;
- Thu, 13 Feb 2020 15:13:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D9B3A73C8;
+ Thu, 13 Feb 2020 15:36:30 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 13 Feb 2020 15:13:41 -0000
-Message-ID: <158160682197.17959.16571835697506181865@emeril.freedesktop.org>
+Date: Thu, 13 Feb 2020 15:36:30 -0000
+Message-ID: <158160819055.17959.3701780284299092369@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200213132045.6631-1-jani.nikula@intel.com>
 In-Reply-To: <20200213132045.6631-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/dsc=3A_force_full_modeset_whenever_DSC_is_enabled_?=
- =?utf-8?q?at_probe?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsc=3A_force_full_modeset_whenever_DSC_is_enabled_at_prob?=
+ =?utf-8?q?e?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,18 +50,66 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915/dsc: force full modeset whenever DSC is enabled at probe
 URL   : https://patchwork.freedesktop.org/series/73410/
-State : warning
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
+CI Bug Log - changes from CI_DRM_7932 -> Patchwork_16556
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16556/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16556 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16556/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+
+
+Participating hosts (44 -> 46)
+------------------------------
+
+  Additional (9): fi-hsw-peppy fi-skl-6770hq fi-bwr-2160 fi-kbl-r fi-gdg-551 fi-skl-lmem fi-bsw-nick fi-skl-6600u fi-snb-2600 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7932 -> Patchwork_16556
+
+  CI-20190529: 20190529
+  CI_DRM_7932: da6301c2a1bda78897e67fb22e011c1574b7c6a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5439: ed1f7d96d4d5d4565bcd3adb3a23b2002a25419e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16556: 042be97b434710f869f7a59990ee249fd899a810 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
 042be97b4347 drm/i915/dsc: force full modeset whenever DSC is enabled at probe
--:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#14: 
-[1] http://patchwork.freedesktop.org/patch/msgid/20200212150102.7600-1-ville.syrjala@linux.intel.com
 
-total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+== Logs ==
 
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16556/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
