@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F17115B6B1
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 02:29:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D24E915B6B4
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 02:29:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39CF06EB17;
-	Thu, 13 Feb 2020 01:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A14AB6EB14;
+	Thu, 13 Feb 2020 01:29:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 436AB6EB17;
- Thu, 13 Feb 2020 01:29:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5AA6EB1A;
+ Thu, 13 Feb 2020 01:29:19 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2020 17:29:16 -0800
-X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; d="scan'208";a="252111806"
+ 12 Feb 2020 17:29:18 -0800
+X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; d="scan'208";a="252111812"
 Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 12 Feb 2020 17:29:16 -0800
+ 12 Feb 2020 17:29:18 -0800
 From: Dale B Stimson <dale.b.stimson@intel.com>
 To: igt-dev@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Feb 2020 17:28:39 -0800
-Message-Id: <20200213012840.31472-5-dale.b.stimson@intel.com>
+Date: Wed, 12 Feb 2020 17:28:40 -0800
+Message-Id: <20200213012840.31472-6-dale.b.stimson@intel.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200213012840.31472-1-dale.b.stimson@intel.com>
 References: <20200213012840.31472-1-dale.b.stimson@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2 4/5] lib/igt_core.c - Introduce
- igt_exit_early()
+Subject: [Intel-gfx] [PATCH i-g-t v2 5/5] i915/gem_ctx_isolation.c - If
+ initialization fails, exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,72 +49,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Call igt_exit() after dealing with assumptions not valid for early calls.
+At the start of igt_main, failure of the initial tests for successful
+initialization transfer control to the end of an igt_fixture block.
+From there, execution of the main per-engine loop is attempted.
+Instead, the test should be caused to exit.
 
-In particular:
-
-igt_exit() assumes that subtests have been considered for execution.
-With --run-subtest, for an early exit (where subtests had not yet been
-considered):
-- igt_exit() would complain about "Unknown subtest"
-- igt_exit() would exit prematurely.
+If initialization fails, exit.
 
 Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
 ---
- lib/igt_core.c | 27 +++++++++++++++++++++++++++
- lib/igt_core.h |  1 +
- 2 files changed, 28 insertions(+)
+ tests/i915/gem_ctx_isolation.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/lib/igt_core.c b/lib/igt_core.c
-index 70465130c..78704b93a 100644
---- a/lib/igt_core.c
-+++ b/lib/igt_core.c
-@@ -2028,6 +2028,33 @@ void igt_exit(void)
- 	exit(igt_exitcode);
- }
+diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+index 07ffbb84a..b11158dab 100644
+--- a/tests/i915/gem_ctx_isolation.c
++++ b/tests/i915/gem_ctx_isolation.c
+@@ -898,10 +898,13 @@ igt_main
+ 	int fd = -1;
+ 	struct eng_mmio_base_table_s *mbp = NULL;
+ 	uint32_t mmio_base = 0;
++	/* igt_fixture block is skipped if --list-subtests, so start with true. */
++	bool init_successful = true;
  
-+/**
-+ * igt_exit_early()
-+ *
-+ * Call igt_exit() after dealing with assumptions not valid for early calls.
-+ *
-+ * In particular:
-+ * igt_exit() assumes that subtests have been considered for execution
-+ * and complains if a subtest specified by --run-subtest was not executed.
-+ * (The expectation is that the subtest would have been executed if it existed).
-+ *
-+ * In particular:
-+ * igt_exit() assumes that subtests have been considered for execution.
-+ * With --run-subtest, for an early exit (where subtests had not yet been
-+ * considered):
-+ * - igt_exit() would complain about "Unknown subtest"
-+ * - igt_exit() would exit prematurely.
-+ */
-+void igt_exit_early(void)
-+{
-+	if (run_single_subtest) {
-+		free(run_single_subtest);
-+		run_single_subtest = NULL;
+ 	igt_fixture {
+ 		int gen;
+ 
++		init_successful = false;
+ 		fd = drm_open_driver(DRIVER_INTEL);
+ 		igt_require_gem(fd);
+ 		igt_require(gem_has_contexts(fd));
+@@ -916,8 +919,20 @@ igt_main
+ 		igt_skip_on(gen > LAST_KNOWN_GEN);
+ 
+ 		mbp = gem_engine_mmio_base_info_get(fd);
++		init_successful = true;
+ 	}
+ 
++	if (!init_successful) {
++		igt_exit_early();
 +	}
 +
-+	igt_exit();
-+}
++	/**
++	 * With --list-subtests the above igt_fixture block is skipped and so
++	 * the device is not open.  Because fd < 0, __for_each_physical_engine
++	 * falls back to a static engine list, which will affect the output
++	 * of --list-subtests.
++	 */
 +
- /* fork support code */
- static int helper_process_count;
- static pid_t helper_process_pids[] =
-diff --git a/lib/igt_core.h b/lib/igt_core.h
-index c17a7ba81..a1fe4c361 100644
---- a/lib/igt_core.h
-+++ b/lib/igt_core.h
-@@ -500,6 +500,7 @@ void __igt_fail_assert(const char *domain, const char *file,
- 		       const char *format, ...)
- 	__attribute__((noreturn));
- void igt_exit(void) __attribute__((noreturn));
-+void igt_exit_early(void) __attribute__((noreturn));
- void igt_fatal_error(void) __attribute__((noreturn));
- 
- /**
+ 	/* __for_each_physical_engine switches context to all engines. */
+ 	__for_each_physical_engine(fd, e) {
+ 		igt_subtest_group {
 -- 
 2.25.0
 
