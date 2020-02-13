@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24E915B6B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 02:29:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDE5015B6C1
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 02:40:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A14AB6EB14;
-	Thu, 13 Feb 2020 01:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A0786EB10;
+	Thu, 13 Feb 2020 01:40:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5AA6EB1A;
- Thu, 13 Feb 2020 01:29:19 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2020 17:29:18 -0800
-X-IronPort-AV: E=Sophos;i="5.70,434,1574150400"; d="scan'208";a="252111812"
-Received: from dbstims-dev.fm.intel.com ([10.1.27.172])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 12 Feb 2020 17:29:18 -0800
-From: Dale B Stimson <dale.b.stimson@intel.com>
-To: igt-dev@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed, 12 Feb 2020 17:28:40 -0800
-Message-Id: <20200213012840.31472-6-dale.b.stimson@intel.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200213012840.31472-1-dale.b.stimson@intel.com>
-References: <20200213012840.31472-1-dale.b.stimson@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 36E626EB05;
+ Thu, 13 Feb 2020 01:40:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 15E11A0009;
+ Thu, 13 Feb 2020 01:40:11 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t v2 5/5] i915/gem_ctx_isolation.c - If
- initialization fails, exit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ramalingam C" <ramalingam.c@intel.com>
+Date: Thu, 13 Feb 2020 01:40:11 -0000
+Message-ID: <158155801106.17959.1550880228633774631@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200212123007.6659-1-ramalingam.c@intel.com>
+In-Reply-To: <20200212123007.6659-1-ramalingam.c@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_conversion_to_struct_drm=5Fdevice_based_logging_m?=
+ =?utf-8?q?acros=2E?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,65 +39,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the start of igt_main, failure of the initial tests for successful
-initialization transfer control to the end of an igt_fixture block.
-From there, execution of the main per-engine loop is attempted.
-Instead, the test should be caused to exit.
+== Series Details ==
 
-If initialization fails, exit.
+Series: drm/i915/hdcp: conversion to struct drm_device based logging macros.
+URL   : https://patchwork.freedesktop.org/series/73354/
+State : success
 
-Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
----
- tests/i915/gem_ctx_isolation.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+== Summary ==
 
-diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-index 07ffbb84a..b11158dab 100644
---- a/tests/i915/gem_ctx_isolation.c
-+++ b/tests/i915/gem_ctx_isolation.c
-@@ -898,10 +898,13 @@ igt_main
- 	int fd = -1;
- 	struct eng_mmio_base_table_s *mbp = NULL;
- 	uint32_t mmio_base = 0;
-+	/* igt_fixture block is skipped if --list-subtests, so start with true. */
-+	bool init_successful = true;
- 
- 	igt_fixture {
- 		int gen;
- 
-+		init_successful = false;
- 		fd = drm_open_driver(DRIVER_INTEL);
- 		igt_require_gem(fd);
- 		igt_require(gem_has_contexts(fd));
-@@ -916,8 +919,20 @@ igt_main
- 		igt_skip_on(gen > LAST_KNOWN_GEN);
- 
- 		mbp = gem_engine_mmio_base_info_get(fd);
-+		init_successful = true;
- 	}
- 
-+	if (!init_successful) {
-+		igt_exit_early();
-+	}
-+
-+	/**
-+	 * With --list-subtests the above igt_fixture block is skipped and so
-+	 * the device is not open.  Because fd < 0, __for_each_physical_engine
-+	 * falls back to a static engine list, which will affect the output
-+	 * of --list-subtests.
-+	 */
-+
- 	/* __for_each_physical_engine switches context to all engines. */
- 	__for_each_physical_engine(fd, e) {
- 		igt_subtest_group {
--- 
-2.25.0
+CI Bug Log - changes from CI_DRM_7926 -> Patchwork_16540
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16540/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16540 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2] ([i915#877])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16540/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111407])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7926/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16540/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Additional (7): fi-hsw-peppy fi-skl-6770hq fi-bdw-gvtdvm fi-glk-dsi fi-gdg-551 fi-bsw-kefka fi-kbl-r 
+  Missing    (9): fi-ilk-m540 fi-bdw-5557u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-kbl-guc fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7926 -> Patchwork_16540
+
+  CI-20190529: 20190529
+  CI_DRM_7926: 6b2fe829d300abf285e9db8b252ffacd216df3ed @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5437: ae42fedfd0c536c560e8e17b06d9c7b94a4e8f0c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16540: 7a0324dd9a391e02aec32c0afcec6cf12740e324 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7a0324dd9a39 drm/i915/hdcp: conversion to struct drm_device based logging macros.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16540/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
