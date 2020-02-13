@@ -2,31 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E51015C5DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 17:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB9C315C5FD
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 17:11:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD6F06E342;
-	Thu, 13 Feb 2020 16:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A686E348;
+	Thu, 13 Feb 2020 16:11:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB1376E33F;
- Thu, 13 Feb 2020 16:11:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E6FFAA0118;
- Thu, 13 Feb 2020 16:11:17 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF9B6E33F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 16:11:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20213931-1500050 
+ for multiple; Thu, 13 Feb 2020 16:11:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Feb 2020 16:11:21 +0000
+Message-Id: <20200213161122.3689609-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 13 Feb 2020 16:11:17 -0000
-Message-ID: <158161027794.17962.14522115903733206976@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200213140150.3639027-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200213140150.3639027-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Exercise_timeslice_rewinding_=28rev2?=
- =?utf-8?q?=29?=
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Ensure 'ENABLE_BOOT_FETCH' is
+ enabled before ppGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,45 +37,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Cryptic notes in bspec say that "The MBC Driver Boot Enable bit in MBCTL
+register must be set before this register is written to upon boot up
+(including S3 exit)."
 
-Series: drm/i915/selftests: Exercise timeslice rewinding (rev2)
-URL   : https://patchwork.freedesktop.org/series/73198/
-State : warning
+We tried adding it to our list of verified workarounds, but our
+self checks spot that the bit does not stick. It's only meant to be
+cleared after a FLR. As it fails our verification, just blindly apply
+the bit prior to loading the ppGTT.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-$ dim checkpatch origin/drm-tip
-9c851daea682 drm/i915/selftests: Exercise timeslice rewinding
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-References: 5ba32c7be81e ("drm/i915/execlists: Always force a context reload when rewinding RING_TAIL")
-
--:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 5ba32c7be81e ("drm/i915/execlists: Always force a context reload when rewinding RING_TAIL")'
-#13: 
-References: 5ba32c7be81e ("drm/i915/execlists: Always force a context reload when rewinding RING_TAIL")
-
--:116: ERROR:SPACING: spaces required around that '=' (ctx:VxV)
-#116: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:940:
-+		enum { X=1, Y, Z };
- 		        ^
-
--:198: ERROR:SPACING: space prohibited after that open parenthesis '('
-#198: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1022:
-+		GEM_BUG_ON( i915_request_is_active(rq[A2]));
-
--:233: WARNING:MEMORY_BARRIER: memory barrier without comment
-#233: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:1057:
-+		wmb();
-
-total: 3 errors, 2 warnings, 0 checks, 234 lines checked
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index f70b903a98bc..ab58694c3320 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -642,6 +642,9 @@ static void set_pp_dir(struct intel_engine_cs *engine)
+ 	if (vm) {
+ 		struct i915_ppgtt *ppgtt = i915_vm_to_ppgtt(vm);
+ 
++		intel_uncore_rmw(engine->uncore, GEN6_MBCTL,
++				 0, GEN6_MBCTL_ENABLE_BOOT_FETCH);
++
+ 		ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
+ 		ENGINE_WRITE(engine, RING_PP_DIR_BASE,
+ 			     px_base(ppgtt->pd)->ggtt_offset << 10);
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
