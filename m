@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E99A15C644
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 17:12:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D299915C686
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 17:12:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A76E6E33F;
-	Thu, 13 Feb 2020 16:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 361686E351;
+	Thu, 13 Feb 2020 16:12:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACAAF6E33F
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 16:12:01 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20213933-1500050 
- for multiple; Thu, 13 Feb 2020 16:11:24 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Feb 2020 16:11:22 +0000
-Message-Id: <20200213161122.3689609-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200213161122.3689609-1-chris@chris-wilson.co.uk>
-References: <20200213161122.3689609-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 679D06E351;
+ Thu, 13 Feb 2020 16:12:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 63758A0118;
+ Thu, 13 Feb 2020 16:12:30 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Compute PP_DIR_BASE explicitly
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 13 Feb 2020 16:12:30 -0000
+Message-ID: <158161035040.17961.1998999791474993809@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200213132214.30952-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200213132214.30952-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmV2?=
+ =?utf-8?q?ert_=22drm/i915=3A_Update_dbuf_slices_only_with_full_modeset=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,59 +38,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since it was not obvious that 10 == (16 - 6), do it in a couple of steps
-to match up clearly with bspec.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+Series: Revert "drm/i915: Update dbuf slices only with full modeset"
+URL   : https://patchwork.freedesktop.org/series/73412/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index ab58694c3320..72ca85a86af2 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -635,6 +635,12 @@ static struct i915_address_space *vm_alias(struct i915_address_space *vm)
- 	return vm;
- }
- 
-+static u32 pp_dir_base(const struct i915_ppgtt *ppgtt)
-+{
-+	/* 31:16 contains the cacheline (64-byte) offset into the GGTT */
-+	return px_base(ppgtt->pd)->ggtt_offset / 64 << 16;
-+}
-+
- static void set_pp_dir(struct intel_engine_cs *engine)
- {
- 	struct i915_address_space *vm = vm_alias(engine->gt->vm);
-@@ -646,8 +652,7 @@ static void set_pp_dir(struct intel_engine_cs *engine)
- 				 0, GEN6_MBCTL_ENABLE_BOOT_FETCH);
- 
- 		ENGINE_WRITE(engine, RING_PP_DIR_DCLV, PP_DIR_DCLV_2G);
--		ENGINE_WRITE(engine, RING_PP_DIR_BASE,
--			     px_base(ppgtt->pd)->ggtt_offset << 10);
-+		ENGINE_WRITE(engine, RING_PP_DIR_BASE, pp_dir_base(ppgtt));
- 	}
- }
- 
-@@ -1346,7 +1351,7 @@ static int load_pd_dir(struct i915_request *rq,
- 
- 	*cs++ = MI_LOAD_REGISTER_IMM(1);
- 	*cs++ = i915_mmio_reg_offset(RING_PP_DIR_BASE(engine->mmio_base));
--	*cs++ = px_base(ppgtt->pd)->ggtt_offset << 10;
-+	*cs++ = pp_dir_base(ppgtt);
- 
- 	/* Stall until the page table load is complete? */
- 	*cs++ = MI_STORE_REGISTER_MEM | MI_SRM_LRM_GLOBAL_GTT;
--- 
-2.25.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7932 -> Patchwork_16557
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16557 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [PASS][1] -> [FAIL][2] ([i915#694])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-hsw-4770r:       [PASS][3] -> [DMESG-FAIL][4] ([i915#553] / [i915#725])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/fi-hsw-4770r/igt@i915_selftest@live_blt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [TIMEOUT][5] ([fdo#112271] / [i915#1084]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][7] ([i915#722]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][9] ([i915#45]) -> [TIMEOUT][10] ([fdo#112271] / [i915#1084] / [i915#816])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (44 -> 44)
+------------------------------
+
+  Additional (9): fi-hsw-peppy fi-skl-6770hq fi-bwr-2160 fi-kbl-r fi-gdg-551 fi-skl-lmem fi-bsw-nick fi-skl-6600u fi-snb-2600 
+  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-glk-dsi fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7932 -> Patchwork_16557
+
+  CI-20190529: 20190529
+  CI_DRM_7932: da6301c2a1bda78897e67fb22e011c1574b7c6a2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5439: ed1f7d96d4d5d4565bcd3adb3a23b2002a25419e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16557: 1ef54320f2539d9245d33de5d44da5c1ab9c7862 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1ef54320f253 Revert "drm/i915: Update dbuf slices only with full modeset"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16557/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
