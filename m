@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDBB15CD25
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 22:20:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303C415CD2E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 22:22:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C74076F87F;
-	Thu, 13 Feb 2020 21:20:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11649887DE;
+	Thu, 13 Feb 2020 21:22:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD3BD6F87F
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 21:20:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 13:20:42 -0800
-X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227379530"
-Received: from unknown (HELO localhost) ([10.252.53.8])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 13:20:40 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-In-Reply-To: <20200213210615.GK2014153@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200213140412.32697-1-stanislav.lisovskiy@intel.com>
- <20200213140412.32697-3-stanislav.lisovskiy@intel.com>
- <20200213205650.GJ2014153@mdroper-desk1.amr.corp.intel.com>
- <87tv3uw672.fsf@intel.com>
- <20200213210615.GK2014153@mdroper-desk1.amr.corp.intel.com>
-Date: Thu, 13 Feb 2020 23:21:06 +0200
-Message-ID: <87r1yyw5dp.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 557006F882;
+ Thu, 13 Feb 2020 21:22:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4BE8AA0099;
+ Thu, 13 Feb 2020 21:22:53 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v1 2/3] drm/i915/dsc: force full modeset
- whenever DSC is enabled at probe
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 13 Feb 2020 21:22:53 -0000
+Message-ID: <158162897328.17962.2397340984285682949@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Proper_dbuf_global_state?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,117 +38,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Feb 2020, Matt Roper <matthew.d.roper@intel.com> wrote:
-> On Thu, Feb 13, 2020 at 11:03:29PM +0200, Jani Nikula wrote:
->> On Thu, 13 Feb 2020, Matt Roper <matthew.d.roper@intel.com> wrote:
->> > On Thu, Feb 13, 2020 at 04:04:11PM +0200, Stanislav Lisovskiy wrote:
->> >> From: Jani Nikula <jani.nikula@intel.com>
->> >> 
->> >> We lack full state readout of DSC config, which may lead to DSC enable
->> >> using a config that's all zeros, failing spectacularly. Force full
->> >> modeset and thus compute config at probe to get a sane state, until we
->> >> implement DSC state readout. Any fastset that did appear to work with
->> >> DSC at probe, worked by coincidence. [1] is an example of a change that
->> >> triggered the issue on TGL DSI DSC.
->> >> 
->> >> [1] http://patchwork.freedesktop.org/patch/msgid/20200212150102.7600-1-ville.syrjala@linux.intel.com
->> >> 
->> >> Cc: Manasi Navare <manasi.d.navare@intel.com>
->> >> Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
->> >> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
->> >> Cc: stable@vger.kernel.org
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >
->> > Should this be
->> >
->> > Fixes: fbacb15ea814 ("drm/i915/dsc: add basic hardware state readout support")
->> >
->> > since that's where we added the basic readout with a FIXME to add more
->> > later?
->> 
->> That added some readout and checks, but the problem existed before them
->> too.
->
-> Right, but that's as far back as we can go with a fix, right?  Since
-> before that we don't even read out enough to know that compression is
-> enabled?
+== Series Details ==
 
-Ah, that's right. Any fixes predating that commit would have to be
-different. Perhaps we'll just settle for this. ;)
+Series: drm/i915: Proper dbuf global state
+URL   : https://patchwork.freedesktop.org/series/73421/
+State : success
 
-Thanks,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7934 -> Patchwork_16562
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16562 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4] ([fdo#108569])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bxt-dsi:         [PASS][5] -> [TIMEOUT][6] ([fdo#112271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
+    - fi-glk-dsi:         [PASS][7] -> [TIMEOUT][8] ([fdo#112271] / [i915#690])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-glk-dsi/igt@i915_selftest@live_gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-glk-dsi/igt@i915_selftest@live_gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [INCOMPLETE][9] ([i915#45]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-skl-6600u:       [TIMEOUT][11] ([fdo#111732] / [fdo#112271]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7934/fi-skl-6600u/igt@i915_selftest@live_gtt.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/fi-skl-6600u/igt@i915_selftest@live_gtt.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111732]: https://bugs.freedesktop.org/show_bug.cgi?id=111732
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#690]: https://gitlab.freedesktop.org/drm/intel/issues/690
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
+Participating hosts (43 -> 46)
+------------------------------
 
->
->
-> Matt
->
->> 
->> BR,
->> Jani.
->> 
->> 
->> 
->> >
->> > I don't know the specifics of DSC and what state we need, but the
->> > approach here seems reasonable.
->> >
->> > Acked-by: Matt Roper <matthew.d.roper@intel.com>
->> >
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++++++
->> >>  1 file changed, 18 insertions(+)
->> >> 
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> >> index 61ba1f2256a0..1e3f2cc27db8 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> >> @@ -17828,6 +17828,24 @@ static int intel_initial_commit(struct drm_device *dev)
->> >>  			 * have readout for pipe gamma enable.
->> >>  			 */
->> >>  			crtc_state->uapi.color_mgmt_changed = true;
->> >> +
->> >> +			/*
->> >> +			 * FIXME hack to force full modeset when DSC is being
->> >> +			 * used.
->> >> +			 *
->> >> +			 * As long as we do not have full state readout and
->> >> +			 * config comparison of crtc_state->dsc, we have no way
->> >> +			 * to ensure reliable fastset. Remove once we have
->> >> +			 * readout for DSC.
->> >> +			 */
->> >> +			if (crtc_state->dsc.compression_enable) {
->> >> +				ret = drm_atomic_add_affected_connectors(state,
->> >> +									 &crtc->base);
->> >> +				if (ret)
->> >> +					goto out;
->> >> +				crtc_state->uapi.mode_changed = true;
->> >> +				drm_dbg_kms(dev, "Force full modeset for DSC\n");
->> >> +			}
->> >>  		}
->> >>  	}
->> >>  
->> >> -- 
->> >> 2.24.1.485.gad05a3d8e5
->> >> 
->> >> _______________________________________________
->> >> Intel-gfx mailing list
->> >> Intel-gfx@lists.freedesktop.org
->> >> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->> 
->> -- 
->> Jani Nikula, Intel Open Source Graphics Center
+  Additional (8): fi-bsw-n3050 fi-hsw-peppy fi-skl-6770hq fi-bwr-2160 fi-gdg-551 fi-cfl-8109u fi-bsw-kefka fi-skl-lmem 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7934 -> Patchwork_16562
+
+  CI-20190529: 20190529
+  CI_DRM_7934: 16668f8cd3512f56f626acaed0dd9245692ea3dc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5440: 860924b6ccbed75b66ab4b65897bb9abc91763ea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16562: bc797241a9a76df14e51a117b2988c8a9d07cc94 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bc797241a9a7 drm/i915: Clean up dbuf debugs during .atomic_check()
+246e420dd654 drm/i915: Move the dbuf pre/post plane update
+23efcff9a67e drm/i915: Nuke skl_ddb_get_hw_state()
+f51308e472a5 drm/i915: Unify the low level dbuf code
+8c6729a09771 drm/i915: Polish some dbuf debugs
+105574d3d6d9 drm/i915: Introduce proper dbuf state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16562/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
