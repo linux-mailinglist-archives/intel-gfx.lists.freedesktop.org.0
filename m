@@ -2,68 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7767915CEA1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:27:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90A6B15CEAF
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:36:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA9996E42D;
-	Thu, 13 Feb 2020 23:27:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E8776F894;
+	Thu, 13 Feb 2020 23:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABBF06E42D;
- Thu, 13 Feb 2020 23:27:26 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id b18so7666626oie.2;
- Thu, 13 Feb 2020 15:27:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent; bh=phnCn7mKlZPWUI9KXkv1lYA4R+8w6RQ/h4tld1EHfzY=;
- b=tSgExaGoLaq8u6hZyZ70QjOD0b9Mo2pTA/GpwZyxT661oxJn9GDuJ43iuPoGCiWR6Q
- pTGcUIVDI4ZFXeCBb++m1pnArVPMf5e6I1U/+cnUHFgmsvXUwpL9CuB8ilC5wEhU8d7i
- 5RQ7cDhGxWjNcavRCyXp03xB7bqyCULjB6OmO8NisychmtVgAK+4ibK0jYdr7deMXSow
- wquazQ+m7XdjmF0zauXHXG/fGjB1NAAENNjzYsiWJHoDvyb4IruZ/5UYiDgkQYuK5EeR
- 73COvdUelbwqNooYGrBes6ZzhaMUj++cW7C4+olEZfDl9cZLJ32ZgWNPYSP24SB2SaZy
- a3kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=phnCn7mKlZPWUI9KXkv1lYA4R+8w6RQ/h4tld1EHfzY=;
- b=JbI7CbAtOiTnTsy5fLfUYHpmRtVTienHH4OlMGTtCJ4FeX8yu8+20FHGPmEjsv0BqS
- swS8A8uoZ/24Swln01PFx4i+YIGvJ+iWASDZZ6p+23AF5VD7o22/GcGY97gca35rUWt2
- fSmNHpKQRXElX9l7uJjUCBIHftglKNmUeW6GbA4n6FxAdtgJzvfmE2LeFHG2CgZlL0H2
- +HVXzfSJBYuoHYl5H8p40KJ5qxnb3pRdKRGXt5KegHNmkZjX4Kx8HqT8ca4uyAF6865f
- KI/vRRZ1cuNx4j26VQ9zS3iDq3IqERpmySgpmJfBHMGDDaCrcU8Hje2narp9jPLo3DIt
- qbqg==
-X-Gm-Message-State: APjAAAXM/0oR0ZzSDcStn2slku3+RZRY1P8o1KTkFfcP7zfH1GROyBxO
- Z9IyTocAVdi2emhRWg+m13M=
-X-Google-Smtp-Source: APXvYqzUb4skfimU29+d3GeNL8MzppZrPxpAt5aUIZc480u59SxuAnYW5JzENtYOmXrsHln3Fw/n9Q==
-X-Received: by 2002:a54:488d:: with SMTP id r13mr5819oic.115.1581636445805;
- Thu, 13 Feb 2020 15:27:25 -0800 (PST)
-Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id c12sm1291127oic.27.2020.02.13.15.27.25
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 13 Feb 2020 15:27:25 -0800 (PST)
-Date: Thu, 13 Feb 2020 16:27:23 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Nick Desaulniers <ndesaulniers@google.com>
-Message-ID: <20200213232723.GA26697@ubuntu-m2-xlarge-x86>
-References: <20200211050808.29463-1-natechancellor@gmail.com>
- <20200211061338.23666-1-natechancellor@gmail.com>
- <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
- <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
- <f3a6346b-2abf-0b6a-3d84-66e12f700b2b@daenzer.net>
- <20200212170734.GA16396@ubuntu-m2-xlarge-x86>
- <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
- <CAKwvOdm4eS19-D3pEkKsyZw7VjJP9Jeh5gMZaszwgjrJe63yUg@mail.gmail.com>
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2686F894
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:36:11 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 15:36:10 -0800
+X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227414207"
+Received: from johnharr-mobl3.ger.corp.intel.com (HELO [10.254.179.240])
+ ([10.254.179.240])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 13 Feb 2020 15:36:10 -0800
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
+ <20200212003124.33844-7-daniele.ceraolospurio@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
+Message-ID: <fbdaffb1-22a2-a693-4e29-f35e31083000@Intel.com>
+Date: Thu, 13 Feb 2020 15:36:08 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKwvOdm4eS19-D3pEkKsyZw7VjJP9Jeh5gMZaszwgjrJe63yUg@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
- -Wtautological-constant-out-of-range-compare
+In-Reply-To: <20200212003124.33844-7-daniele.ceraolospurio@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 06/10] drm/i915/uc: Improve tracking of
+ uC init status
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,89 +48,239 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 13, 2020 at 02:43:21PM -0800, Nick Desaulniers wrote:
-> On Wed, Feb 12, 2020 at 9:17 AM Michel D=E4nzer <michel@daenzer.net> wrot=
-e:
-> >
-> > On 2020-02-12 6:07 p.m., Nathan Chancellor wrote:
-> > > On Wed, Feb 12, 2020 at 09:52:52AM +0100, Michel D=E4nzer wrote:
-> > >> On 2020-02-11 9:39 p.m., Nathan Chancellor wrote:
-> > >>> On Tue, Feb 11, 2020 at 10:41:48AM +0100, Michel D=E4nzer wrote:
-> > >>>> On 2020-02-11 7:13 a.m., Nathan Chancellor wrote:
-> > >>>>> A recent commit in clang added -Wtautological-compare to -Wall, w=
-hich is
-> > >>>>> enabled for i915 so we see the following warning:
-> > >>>>>
-> > >>>>> ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1485:22: warnin=
-g:
-> > >>>>> result of comparison of constant 576460752303423487 with expressi=
-on of
-> > >>>>> type 'unsigned int' is always false
-> > >>>>> [-Wtautological-constant-out-of-range-compare]
-> > >>>>>         if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> > >>>>>             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-> > >>>>>
-> > >>>>> This warning only happens on x86_64 but that check is relevant for
-> > >>>>> 32-bit x86 so we cannot remove it.
-> > >>>>
-> > >>>> That's suprising. AFAICT N_RELOC(ULONG_MAX) works out to the same =
-value
-> > >>>> in both cases, and remain is a 32-bit value in both cases. How can=
- it be
-> > >>>> larger than N_RELOC(ULONG_MAX) on 32-bit (but not on 64-bit)?
-> > >>>>
-> > >>>
-> > >>> Hi Michel,
-> > >>>
-> > >>> Can't this condition be true when UINT_MAX =3D=3D ULONG_MAX?
-> > >>
-> > >> Oh, right, I think I was wrongly thinking long had 64 bits even on 3=
-2-bit.
-> > >>
-> > >>
-> > >> Anyway, this suggests a possible better solution:
-> > >>
-> > >> #if UINT_MAX =3D=3D ULONG_MAX
-> > >>      if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> > >>              return -EINVAL;
-> > >> #endif
-> > >>
-> > >>
-> > >> Or if that can't be used for some reason, something like
-> > >>
-> > >>      if (unlikely((unsigned long)remain > N_RELOC(ULONG_MAX)))
-> > >>              return -EINVAL;
-> > >>
-> > >> should silence the warning.
-> > >
-> > > I do like this one better than the former.
-> >
-> > FWIW, one downside of this one compared to all alternatives (presumably)
-> > is that it might end up generating actual code even on 64-bit, which
-> > always ends up skipping the return.
-> =
+On 2/11/2020 16:31, Daniele Ceraolo Spurio wrote:
+> To be able to setup GuC submission functions during engine init we need
+> to commit to using GuC as soon as possible.
+> Currently, the only thing that can stop us from using the
+> microcontrollers once we've fetched the blobs is a fundamental
+> error (e.g. OOM); given that if we hit such an error we can't really
+> fall-back to anything, we can "officialize" the FW fetching completion
+> as the moment at which we're committing to using GuC.
+>
+> To better differentiate this case, the uses_guc check, which indicates
+> that GuC is supported and was selected in modparam, is renamed to
+> wants_guc and a new uses_guc is introduced to represent the case were
+> we're committed to using the GuC. Note that uses_guc does still not imply
+> that the blob is actually loaded on the HW (is_running is the check for
+> that). Also, since we need to have attempted the fetch for the result
+> of uses_guc to be meaningful, we need to make sure we've moved away
+> from INTEL_UC_FIRMWARE_SELECTED.
+>
+> All the GuC changes have been mirrored on the HuC for coherency.
+>
+> v2: split fetch return changes and new macros to their own patches,
+>      support HuC only if GuC is wanted, improve "used" state
+>      description (Michal)
+>
+> v3: s/wants_huc/uses_huc in uc_init_wopcm
+>
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Reviewed-by: Fernando Pacheco <fernando.pacheco@intel.com> #v1
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h    |  8 +++++++-
+>   drivers/gpu/drm/i915/gt/uc/intel_huc.h    |  8 +++++++-
+>   drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c |  2 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c     | 21 +++++++++++---------
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.h     | 24 ++++++++++++++++++++++-
+>   5 files changed, 50 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 668b067b71e2..b51adaac8752 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -143,11 +143,17 @@ static inline bool intel_guc_is_supported(struct intel_guc *guc)
+>   	return intel_uc_fw_is_supported(&guc->fw);
+>   }
+>   
+> -static inline bool intel_guc_is_enabled(struct intel_guc *guc)
+> +static inline bool intel_guc_is_wanted(struct intel_guc *guc)
+>   {
+>   	return intel_uc_fw_is_enabled(&guc->fw);
+>   }
+>   
+> +static inline bool intel_guc_is_used(struct intel_guc *guc)
+> +{
+> +	GEM_BUG_ON(__intel_uc_fw_status(&guc->fw) == INTEL_UC_FIRMWARE_SELECTED);
+> +	return intel_uc_fw_is_available(&guc->fw);
+> +}
+> +
+>   static inline bool intel_guc_is_fw_running(struct intel_guc *guc)
+>   {
+>   	return intel_uc_fw_is_running(&guc->fw);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> index 644c059fe01d..a40b9cfc6c22 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+> @@ -41,11 +41,17 @@ static inline bool intel_huc_is_supported(struct intel_huc *huc)
+>   	return intel_uc_fw_is_supported(&huc->fw);
+>   }
+>   
+> -static inline bool intel_huc_is_enabled(struct intel_huc *huc)
+> +static inline bool intel_huc_is_wanted(struct intel_huc *huc)
+>   {
+>   	return intel_uc_fw_is_enabled(&huc->fw);
+>   }
+>   
+> +static inline bool intel_huc_is_used(struct intel_huc *huc)
+> +{
+> +	GEM_BUG_ON(__intel_uc_fw_status(&huc->fw) == INTEL_UC_FIRMWARE_SELECTED);
+> +	return intel_uc_fw_is_available(&huc->fw);
+> +}
+> +
+>   static inline bool intel_huc_is_authenticated(struct intel_huc *huc)
+>   {
+>   	return intel_uc_fw_is_running(&huc->fw);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> index eee193bf2cc4..9cdf4cbe691c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+> @@ -20,7 +20,7 @@ void intel_huc_fw_init_early(struct intel_huc *huc)
+>   	struct drm_i915_private *i915 = gt->i915;
+>   
+>   	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC,
+> -			       intel_uc_uses_guc(uc),
+> +			       intel_uc_wants_guc(uc),
+>   			       INTEL_INFO(i915)->platform, INTEL_REVID(i915));
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index affc4d6f9ead..5825a6c3e0a0 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -48,17 +48,17 @@ static void __confirm_options(struct intel_uc *uc)
+>   	DRM_DEV_DEBUG_DRIVER(i915->drm.dev,
+>   			     "enable_guc=%d (guc:%s submission:%s huc:%s)\n",
+>   			     i915_modparams.enable_guc,
+> -			     yesno(intel_uc_uses_guc(uc)),
+> +			     yesno(intel_uc_wants_guc(uc)),
+>   			     yesno(intel_uc_uses_guc_submission(uc)),
+> -			     yesno(intel_uc_uses_huc(uc)));
+> +			     yesno(intel_uc_wants_huc(uc)));
+>   
+>   	if (i915_modparams.enable_guc == -1)
+>   		return;
+>   
+>   	if (i915_modparams.enable_guc == 0) {
+> -		GEM_BUG_ON(intel_uc_uses_guc(uc));
+> +		GEM_BUG_ON(intel_uc_wants_guc(uc));
+>   		GEM_BUG_ON(intel_uc_uses_guc_submission(uc));
+> -		GEM_BUG_ON(intel_uc_uses_huc(uc));
+> +		GEM_BUG_ON(intel_uc_wants_huc(uc));
+>   		return;
+>   	}
+>   
+> @@ -93,7 +93,7 @@ void intel_uc_init_early(struct intel_uc *uc)
+>   
+>   	__confirm_options(uc);
+>   
+> -	if (intel_uc_uses_guc(uc))
+> +	if (intel_uc_wants_guc(uc))
+>   		uc->ops = &uc_ops_on;
+>   	else
+>   		uc->ops = &uc_ops_off;
+> @@ -257,13 +257,13 @@ static void __uc_fetch_firmwares(struct intel_uc *uc)
+>   {
+>   	int err;
+>   
+> -	GEM_BUG_ON(!intel_uc_uses_guc(uc));
+> +	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+>   
+>   	err = intel_uc_fw_fetch(&uc->guc.fw);
+>   	if (err)
+>   		return;
+>   
+> -	if (intel_uc_uses_huc(uc))
+> +	if (intel_uc_wants_huc(uc))
+>   		intel_uc_fw_fetch(&uc->huc.fw);
+>   }
+>   
+> @@ -279,7 +279,10 @@ static void __uc_init(struct intel_uc *uc)
+>   	struct intel_huc *huc = &uc->huc;
+>   	int ret;
+>   
+> -	GEM_BUG_ON(!intel_uc_uses_guc(uc));
+> +	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+> +
+> +	if (!intel_uc_uses_guc(uc))
+> +		return;
+>   
+>   	/* XXX: GuC submission is unavailable for now */
+>   	GEM_BUG_ON(intel_uc_supports_guc_submission(uc));
+> @@ -402,7 +405,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+>   	int ret, attempts;
+>   
+>   	GEM_BUG_ON(!intel_uc_supports_guc(uc));
+> -	GEM_BUG_ON(!intel_uc_uses_guc(uc));
+> +	GEM_BUG_ON(!intel_uc_wants_guc(uc));
+>   
+>   	if (!intel_uc_fw_is_available(&guc->fw)) {
+>   		ret = __uc_check_hw(uc) ||
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> index 2ce993ceb60a..a41aaf353f88 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> @@ -40,6 +40,27 @@ void intel_uc_runtime_suspend(struct intel_uc *uc);
+>   int intel_uc_resume(struct intel_uc *uc);
+>   int intel_uc_runtime_resume(struct intel_uc *uc);
+>   
+> +/*
+> + * We need to know as early as possible if we're going to use GuC or not to
+> + * take the correct setup paths. Additionally, once we've started loading the
+> + * GuC, it is unsafe to keep executing without it because some parts of the HW,
+> + * a subset of which is not cleaned on GT reset, will start expecting the GuC FW
+> + * to be running.
+> + * To solve both these requirements, we commit to using the microcontrollers if
+> + * the relevant modparam is set and the blobs are found on the system. At this
+> + * stage, the only thing that can stop us from attempting to load the blobs on
+> + * the HW and use them is a fundamental issue (e.g. no memory for our
+> + * structures); if we hit such a problem during driver load we're broken even
+> + * without GuC, so there is no point in trying to fall back.
+> + *
+> + * Given the above, we can be in one of 4 states, with the last one implying
+> + * we're committed to using the microcontroller:
+> + * - Not supported: not available in HW and/or firmware not defined.
+> + * - Supported: available in HW and firmware defined.
+> + * - Wanted: supported + enabled in modparam.
+> + * - In use: wanted + firmware found on the system and successfully fetched.
+Should be another line for 'Running'? I guess the definition of 
+'is_running' comes from elsewhere but it would make sense to include it 
+in the description here.
 
-> The warning is pointing out that the conditional is always false,
-> which is correct on 64b.  The check is only active for 32b.
-> https://godbolt.org/z/oQrgT_
-> The cast silences the warning for 64b.  (Note that GCC and Clang also
-> generate precisely the same instruction sequences in my example, just
-> GCC doesn't warn on such tautologies).
+Also, it would be good to include the actual function names themselves. 
+That way if someone searches on 'intel_uc_uses_guc', for example, they 
+will find this description. Especially as searching for them by either 
+text or symbol will not find the definition!
 
-Thanks for confirming! I'll send a patch to add the cast later tonight.
+With that tweak:
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 
-Cheers,
-Nathan
+
+> + */
+> +
+>   #define __uc_state_checker(x, state, required) \
+>   static inline bool intel_uc_##state##_##x(struct intel_uc *uc) \
+>   { \
+> @@ -48,7 +69,8 @@ static inline bool intel_uc_##state##_##x(struct intel_uc *uc) \
+>   
+>   #define uc_state_checkers(x) \
+>   __uc_state_checker(x, supports, supported) \
+> -__uc_state_checker(x, uses, enabled)
+> +__uc_state_checker(x, wants, wanted) \
+> +__uc_state_checker(x, uses, used)
+>   
+>   uc_state_checkers(guc);
+>   uc_state_checkers(huc);
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
