@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9E915C931
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 18:10:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB9015C981
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 18:37:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC766F60D;
-	Thu, 13 Feb 2020 17:10:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A45C6E3AE;
+	Thu, 13 Feb 2020 17:37:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 180956F60D;
- Thu, 13 Feb 2020 17:10:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 07F28A0087;
- Thu, 13 Feb 2020 17:10:22 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Thu, 13 Feb 2020 17:10:22 -0000
-Message-ID: <158161382202.17961.11932511750068210183@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200213140412.32697-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200213140412.32697-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRml4?=
- =?utf-8?q?_modeset_transitions_related_to_DBuf?=
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 746216E3AC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 17:37:04 +0000 (UTC)
+Received: from localhost (unknown [137.135.114.1])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 26AC1217F4;
+ Thu, 13 Feb 2020 17:37:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1581615424;
+ bh=NvPMM5+pK2jHZbOZupTFm51B0iNkac62dZdX7hFIIyg=;
+ h=Date:From:To:To:To:Cc:Cc:Cc:Subject:In-Reply-To:References:From;
+ b=cClXQypHs15SQt1mOZgSR5+KXJitk5TZqSBG2LnH9BOY2s2YBc9bzJ2zxp8vj981e
+ Mwx1BudNVlauNiwo6eGxQgNYau+Cej6yV2JvaRy1DKVyYCRh2hXM2oFjNRdJnoB0IY
+ 34EeCEh+GvWH+8pY3FLBjuUeSRRwF8P4LZWRjvLU=
+Date: Thu, 13 Feb 2020 17:37:03 +0000
+From: Sasha Levin <sashal@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200212160434.6437-2-jani.nikula@intel.com>
+References: <20200212160434.6437-2-jani.nikula@intel.com>
+Message-Id: <20200213173704.26AC1217F4@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Update drm/i915 bug filing URL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,89 +45,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, stable@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: Fix modeset transitions related to DBuf
-URL   : https://patchwork.freedesktop.org/series/73414/
-State : success
+[This is an automated email]
 
-== Summary ==
+This commit has been processed because it contains a -stable tag.
+The stable tag indicates that it's relevant for the following trees: all
 
-CI Bug Log - changes from CI_DRM_7932 -> Patchwork_16559
-====================================================
+The bot has tested the following trees: v5.5.3, v5.4.19, v4.19.103, v4.14.170, v4.9.213, v4.4.213.
 
-Summary
--------
+v5.5.3: Build OK!
+v5.4.19: Failed to apply! Possible dependencies:
+    d30213e533fa ("drm/i915: Fix Kconfig indentation")
 
-  **SUCCESS**
+v4.19.103: Failed to apply! Possible dependencies:
+    0e39037b3165 ("drm/i915: Cache the error string")
+    1032a2af93f5 ("drm/i915: use upstream version of header tests")
+    16e4dd0342a8 ("drm/i915: Markup paired operations on wakerefs")
+    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
+    52c0fdb25c7c ("drm/i915: Replace global breadcrumbs with per-context interrupt tracking")
+    538ef96b9dae ("drm/i915/gem: Track the rpm wakerefs")
+    6b048706f407 ("drm/i915: Forcibly flush unwanted requests in drop-caches")
+    87f1ef225242 ("drm/i915: Record the sseu configuration per-context & engine")
+    95fd94a645f7 ("drm/i915: avoid rebuilding i915_gpu_error.o on version string updates")
+    c0a6aa7ec2c3 ("drm/i915: Show actual alongside requested frequency in debugfs/i915_rps_boost_info")
+    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
+    c44301fce614 ("drm/i915: Allow control of PSR at runtime through debugfs, v6")
+    d30213e533fa ("drm/i915: Fix Kconfig indentation")
+    e6154e4cb8b0 ("drm/i915: Skip the ERR_PTR error state")
+    eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex")
+    fb6f0b64e455 ("drm/i915: Prevent machine hang from Broxton's vtd w/a and error capture")
 
-  No regressions found.
+v4.14.170: Failed to apply! Possible dependencies:
+    08dd3e1acc16 ("drm/i915/execlists: Move insert_request()")
+    1032a2af93f5 ("drm/i915: use upstream version of header tests")
+    27a5f61b377b ("drm/i915: Cancel all ready but queued requests when wedging")
+    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
+    45ec5bc8774b ("drm/i915/guc: Remove obsolete comments and remove unused variable")
+    52c0fdb25c7c ("drm/i915: Replace global breadcrumbs with per-context interrupt tracking")
+    52d7f16e5543 ("drm/i915: Stop tracking timeline->inflight_seqnos")
+    5427f207852d ("drm/i915: Bump wait-times for the final CS interrupt before parking")
+    62b5ed1f35d7 ("drm/i915: Fix i915_gem_context.h header")
+    6d2cb5aa383b ("drm/i915/execlists: Read the context-status buffer from the HWSP")
+    767a983ab255 ("drm/i915/execlists: Read the context-status HEAD from the HWSP")
+    85e2fe679e05 ("drm/i915/guc: Submit GuC workitems containing coalesced requests")
+    87f1ef225242 ("drm/i915: Record the sseu configuration per-context & engine")
+    aba5e278586b ("drm/i915: Add a hook for making the engines idle (parking) and unparking")
+    b620e870218e ("drm/i915: Make own struct for execlist items")
+    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
+    c5d1f5562ea7 ("drm/i915: Include i915_scheduler.h from i915_gem_context.h")
+    d30213e533fa ("drm/i915: Fix Kconfig indentation")
+    e4d2006f8f04 ("drm/i915: Split out parking from the idle worker for reuse")
+    eb8d0f5af4ec ("drm/i915: Remove GPU reset dependence on struct_mutex")
+    ff320d6e72ff ("drm/i915: Synchronize irq before parking each engine")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16559/index.html
+v4.9.213: Failed to apply! Possible dependencies:
+    1032a2af93f5 ("drm/i915: use upstream version of header tests")
+    1233e2db199d ("drm/i915: Move object backing storage manipulation to its own locking")
+    275f039db56f ("drm/i915: Move user fault tracking to a separate list")
+    3594a3e21f1f ("drm/i915: Remove superfluous locking around userfault_list")
+    3599a91cc8d0 ("drm/i915: Allow shrinking of userptr objects once again")
+    39e2f501c1b4 ("drm/i915: Split struct intel_context definition to its own header")
+    6095868a271d ("drm/i915: Complete kerneldoc for struct i915_gem_context")
+    7093f5ff75ae ("drm/i915: GVT-g driver depends on 64BIT kernel")
+    7c108fd8feac ("drm/i915: Move fence cancellation to runtime suspend")
+    8baa1f04b9ed ("drm/i915: Update debugfs describe_obj() to show fault-mappable")
+    920cf4194954 ("drm/i915: Introduce an internal allocator for disposable private objects")
+    96d776345277 ("drm/i915: Use a radixtree for random access to the object's backing storage")
+    98a2f411671f ("drm/i915: Allow disabling error capture")
+    a4f5ea64f0a8 ("drm/i915: Refactor object page API")
+    b42fe9ca0a1e ("drm/i915: Split out i915_vma.c")
+    c2400ec3b6d1 ("drm/i915: add Makefile magic for testing headers are self-contained")
+    d30213e533fa ("drm/i915: Fix Kconfig indentation")
+    f8a7fde45610 ("drm/i915: Defer active reference until required")
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16559 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [PASS][1] -> [FAIL][2] ([i915#694])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16559/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [TIMEOUT][3] ([fdo#112271] / [i915#1084]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16559/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Additional (8): fi-hsw-peppy fi-skl-6770hq fi-bwr-2160 fi-gdg-551 fi-skl-lmem fi-bsw-nick fi-skl-6600u fi-kbl-r 
-  Missing    (10): fi-kbl-soraka fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-kbl-8809g fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7932 -> Patchwork_16559
-
-  CI-20190529: 20190529
-  CI_DRM_7932: da6301c2a1bda78897e67fb22e011c1574b7c6a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5439: ed1f7d96d4d5d4565bcd3adb3a23b2002a25419e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16559: 26edb118d8a4d148c4bd28316ff3093b67a39b9d @ git://anongit.freedesktop.org/gfx-ci/linux
+v4.4.213: Failed to apply! Possible dependencies:
+    0a9d2bed5557 ("drm/i915/skl: Making DC6 entry is the last call in suspend flow.")
+    13ae3a0d5b13 ("drm/i915/gen9: simplify DC toggling code")
+    414b7999b8be ("drm/i915/gen9: Remove csr.state, csr_lock and related code.")
+    443646c7ee27 ("drm/i915/gen9: Add boot parameter for disabling DC6")
+    4a76f295bc01 ("drm/i915/skl: don't toggle PW1 and MISC power wells on-demand")
+    4deccbb26b4d ("drm/i915/gen9: Always set mask memory up when enabling DC5 or DC6")
+    56fcfd6333a8 ("drm/i915: fix the power well ID for always on wells")
+    755412e29c77 ("drm/i915: Add an optional selection from i915 of CONFIG_MMU_NOTIFIER")
+    9777cca0c4d3 ("drm/i915: Skip capturing an error state if we already have one")
+    98a2f411671f ("drm/i915: Allow disabling error capture")
+    9c5308ea1cd4 ("drm/i915/skl: Refuse to load outdated dmc firmware")
+    9f836f9016ad ("drm/i915/gen9: Turn DC handling into a power well")
+    af5fead2d994 ("drm/i915/gen9: move assert_csr_loaded into intel_rpm.c")
+    b6e7d894c3d2 ("drm/i915/skl: Store and print the DMC firmware version we load")
+    c838d719d625 ("drm/i915: Decouple struct i915_params i915 into i915_params.h")
+    e23ceb83e8b5 ("drm/i915: move drmP.h include to i915_drv.h")
+    edd993fd1728 ("drm/i915: Remove DDI power domain exclusion SKL_DISPLAY_ALWAYS_ON_POWER_DOMAINS")
 
 
-== Linux commits ==
+NOTE: The patch will not be queued to stable trees until it is upstream.
 
-26edb118d8a4 drm/i915: Force state->modeset=true when distrust_bios_wm==true
-20b3246d036d drm/i915/dsc: force full modeset whenever DSC is enabled at probe
-2ec3cae3ec8f drm/i915: Ensure no conflicts with BIOS when updating Dbuf
+How should we proceed with this patch?
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16559/index.html
+-- 
+Thanks,
+Sasha
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
