@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CEA15BEBC
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 13:55:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2766115BF13
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 14:21:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62B3E6F5BB;
-	Thu, 13 Feb 2020 12:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6F786F5D4;
+	Thu, 13 Feb 2020 13:21:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F10006F5BB;
- Thu, 13 Feb 2020 12:55:26 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 439416F5D7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 13:21:11 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 04:55:26 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="222638645"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by orsmga007.jf.intel.com with ESMTP; 13 Feb 2020 04:55:24 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-Date: Thu, 13 Feb 2020 18:25:40 +0530
-Message-Id: <20200213125540.27293-1-ramalingam.c@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 05:20:52 -0800
+X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="227230281"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 05:20:49 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Feb 2020 15:20:45 +0200
+Message-Id: <20200213132045.6631-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4] drm/i915: dont retry stream management at
- seq_num_m roll over
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915/dsc: force full modeset whenever DSC
+ is enabled at probe
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,72 +42,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When roll over detected for seq_num_m, we shouldn't continue with stream
-management with rolled over value.
+We lack full state readout of DSC config, which may lead to DSC enable
+using a config that's all zeros, failing spectacularly. Force full
+modeset and thus compute config at probe to get a sane state, until we
+implement DSC state readout. Any fastset that did appear to work with
+DSC at probe, worked by coincidence. [1] is an example of a change that
+triggered the issue on TGL DSI DSC.
 
-So we are terminating the stream management retry, on roll over of the
-seq_num_m.
+[1] http://patchwork.freedesktop.org/patch/msgid/20200212150102.7600-1-ville.syrjala@linux.intel.com
 
-v2:
-  using drm_dbg_kms instead of DRM_DEBUG_KMS [Anshuman]
-v3:
-  dev_priv is used as i915 [JaniN]
-v4:
-  roll over of seq_num_m detected at the start of stream management.
-
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: stable@vger.kernel.org
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 17 +++++++++++------
- 1 file changed, 11 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index b24d12efae0a..f4b1dd1e62e7 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1391,6 +1391,13 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
- 	const struct intel_hdcp_shim *shim = hdcp->shim;
- 	int ret;
- 
-+	/*
-+	 * seq_num_m roll over is possible only when dynamic update of
-+	 * content type is supported. But implementing as per the spec.
-+	 */
-+	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
-+		return -1;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index e09d3c93c52b..c1c392e2e8c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -17835,6 +17835,24 @@ static int intel_initial_commit(struct drm_device *dev)
+ 			 * have readout for pipe gamma enable.
+ 			 */
+ 			crtc_state->uapi.color_mgmt_changed = true;
 +
- 	/* Prepare RepeaterAuth_Stream_Manage msg */
- 	msgs.stream_manage.msg_id = HDCP_2_2_REP_STREAM_MANAGE;
- 	drm_hdcp_cpu_to_be24(msgs.stream_manage.seq_num_m, hdcp->seq_num_m);
-@@ -1419,11 +1426,6 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
++			/*
++			 * FIXME hack to force full modeset when DSC is being
++			 * used.
++			 *
++			 * As long as we do not have full state readout and
++			 * config comparison of crtc_state->dsc, we have no way
++			 * to ensure reliable fastset. Remove once we have
++			 * readout for DSC.
++			 */
++			if (crtc_state->dsc.compression_enable) {
++				ret = drm_atomic_add_affected_connectors(state,
++									 &crtc->base);
++				if (ret)
++					goto out;
++				crtc_state->uapi.mode_changed = true;
++				drm_dbg_kms(dev, "Force full modeset for DSC\n");
++			}
+ 		}
+ 	}
  
- err_exit:
- 	hdcp->seq_num_m++;
--	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
--		DRM_DEBUG_KMS("seq_num_m roll over.\n");
--		ret = -1;
--	}
--
- 	return ret;
- }
- 
-@@ -1618,8 +1620,11 @@ hdcp2_propagate_stream_management_info(struct intel_connector *connector)
- 
- 	for (i = 0; i < tries; i++) {
- 		ret = _hdcp2_propagate_stream_management_info(connector);
--		if (!ret)
-+		if (!ret || connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
-+			if (connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
-+				drm_dbg_kms(&i915->drm, "seq_num_m roll over.\n");
- 			break;
-+		}
- 
- 		drm_dbg_kms(&i915->drm,
- 			    "HDCP2 stream management %d of %d Failed.(%d)\n",
 -- 
 2.20.1
 
