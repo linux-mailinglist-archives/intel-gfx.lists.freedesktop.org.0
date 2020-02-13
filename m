@@ -1,61 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248D415CE40
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 23:43:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1044915CE4E
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 23:50:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3F116E04A;
-	Thu, 13 Feb 2020 22:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D493F6F890;
+	Thu, 13 Feb 2020 22:50:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
- [IPv6:2607:f8b0:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 585B36E04A
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 22:43:33 +0000 (UTC)
-Received: by mail-pg1-x543.google.com with SMTP id w21so3880678pgl.9
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 14:43:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=1uz4onwD02FQH4e/dvdb1FjZu1rFnkl+4ltvHCVnzHQ=;
- b=Mu7RaWQT57rbjsEgWQeug20f4GIX77GFzc3qAC7n2UMwytWFBLui8a1qKbHPGKy1kO
- 9qHZUeD/Ig7Ke5Azt9yZuWIB3ilP30QdJLPVilNqofkViyiWVw9yHK13NFR7WQruhaev
- K9iZutEjIZ9rx6lvKFO6X2nTrfMLXqseES2VUtMF39yTdsb2GbDCvpgsBONkdsB8nnA5
- MUo5zjOT/BmVDI9DZ/Hr6pq80Tpe5d2g9iwzD+aJyP/o8jZWLS7JhIi11/cydPIK6Nly
- ZZyDKTNDANgpYqFoT7sqnemXJg3T6yPh2tbZSI2Aim3r5vYBVqiLMFEqe5+3ngmFACR/
- q5Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=1uz4onwD02FQH4e/dvdb1FjZu1rFnkl+4ltvHCVnzHQ=;
- b=EuBUFCvBDkUcurZHXyHErXem5HrHD0APneW89XFj09sF/DA8QxDU5GYbO8x/n53Azs
- E6oMQdy+nfh78Blw4NJhlHUXuBy8BuahSONL2s1O/Vajn8JsnQ0m0kKkTeHhv/wJBSr6
- GflvI1bH3Lknh/FBbh6lP8CHVQimzp85gLXJx9TvLaVx50LzsGzxtLSSetGaZXvtKgAm
- HqC6RUo9lp+PYU3Tut5OHppY1Aim3+wGF0I9p62OEwbt3JhpLpaTVYNXlosLKaCXaxy+
- qJk93PpzslgfoxjhK1K4gGv23OuT9Ff24ZjxsL7osxFnLfxSSTQqGPHgODIuUNkEjF4A
- VKZw==
-X-Gm-Message-State: APjAAAWmcxXVPFti5pSA+XLIHEbfq69bngDo+5IOKybev13wzZvbBo1s
- HsHtGdDpyWibGpFDP5IPY79WefdvfuHAcIN+91QumA==
-X-Google-Smtp-Source: APXvYqz+I/Aj0lLNkEM0HAfbgend/2rNUCga5zdKKKJWLstIs2KmGzFR4k/LVIzrSDVahxXfq6sw1G//SGyOO9dV1IY=
-X-Received: by 2002:a63:64c5:: with SMTP id y188mr195696pgb.10.1581633812546; 
- Thu, 13 Feb 2020 14:43:32 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2F7CA6F890;
+ Thu, 13 Feb 2020 22:50:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FE25A0087;
+ Thu, 13 Feb 2020 22:50:06 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200211050808.29463-1-natechancellor@gmail.com>
- <20200211061338.23666-1-natechancellor@gmail.com>
- <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
- <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
- <f3a6346b-2abf-0b6a-3d84-66e12f700b2b@daenzer.net>
- <20200212170734.GA16396@ubuntu-m2-xlarge-x86>
- <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
-In-Reply-To: <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
-From: Nick Desaulniers <ndesaulniers@google.com>
-Date: Thu, 13 Feb 2020 14:43:21 -0800
-Message-ID: <CAKwvOdm4eS19-D3pEkKsyZw7VjJP9Jeh5gMZaszwgjrJe63yUg@mail.gmail.com>
-To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
- -Wtautological-constant-out-of-range-compare
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Derek Morton" <derek.j.morton@intel.com>
+Date: Thu, 13 Feb 2020 22:50:06 -0000
+Message-ID: <158163420610.17960.7040600220583995237@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <2D016F5BA44C744783BA96B1D3EBC5BD13EFA714@IRSMSX102.ger.corp.intel.com>
+In-Reply-To: <2D016F5BA44C744783BA96B1D3EBC5BD13EFA714@IRSMSX102.ger.corp.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgdG9v?=
+ =?utf-8?q?ls/Android=2Emk=3A_Add_zlib_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,58 +38,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- Nathan Chancellor <natechancellor@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBGZWIgMTIsIDIwMjAgYXQgOToxNyBBTSBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRh
-ZW56ZXIubmV0PiB3cm90ZToKPgo+IE9uIDIwMjAtMDItMTIgNjowNyBwLm0uLCBOYXRoYW4gQ2hh
-bmNlbGxvciB3cm90ZToKPiA+IE9uIFdlZCwgRmViIDEyLCAyMDIwIGF0IDA5OjUyOjUyQU0gKzAx
-MDAsIE1pY2hlbCBEw6RuemVyIHdyb3RlOgo+ID4+IE9uIDIwMjAtMDItMTEgOTozOSBwLm0uLCBO
-YXRoYW4gQ2hhbmNlbGxvciB3cm90ZToKPiA+Pj4gT24gVHVlLCBGZWIgMTEsIDIwMjAgYXQgMTA6
-NDE6NDhBTSArMDEwMCwgTWljaGVsIETDpG56ZXIgd3JvdGU6Cj4gPj4+PiBPbiAyMDIwLTAyLTEx
-IDc6MTMgYS5tLiwgTmF0aGFuIENoYW5jZWxsb3Igd3JvdGU6Cj4gPj4+Pj4gQSByZWNlbnQgY29t
-bWl0IGluIGNsYW5nIGFkZGVkIC1XdGF1dG9sb2dpY2FsLWNvbXBhcmUgdG8gLVdhbGwsIHdoaWNo
-IGlzCj4gPj4+Pj4gZW5hYmxlZCBmb3IgaTkxNSBzbyB3ZSBzZWUgdGhlIGZvbGxvd2luZyB3YXJu
-aW5nOgo+ID4+Pj4+Cj4gPj4+Pj4gLi4vZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X2V4ZWNidWZmZXIuYzoxNDg1OjIyOiB3YXJuaW5nOgo+ID4+Pj4+IHJlc3VsdCBvZiBjb21wYXJp
-c29uIG9mIGNvbnN0YW50IDU3NjQ2MDc1MjMwMzQyMzQ4NyB3aXRoIGV4cHJlc3Npb24gb2YKPiA+
-Pj4+PiB0eXBlICd1bnNpZ25lZCBpbnQnIGlzIGFsd2F5cyBmYWxzZQo+ID4+Pj4+IFstV3RhdXRv
-bG9naWNhbC1jb25zdGFudC1vdXQtb2YtcmFuZ2UtY29tcGFyZV0KPiA+Pj4+PiAgICAgICAgIGlm
-ICh1bmxpa2VseShyZW1haW4gPiBOX1JFTE9DKFVMT05HX01BWCkpKQo+ID4+Pj4+ICAgICAgICAg
-ICAgIH5+fn5+fn5+fn5+fn5+fn5efn5+fn5+fn5+fn5+fn5+fn5+fn4KPiA+Pj4+Pgo+ID4+Pj4+
-IFRoaXMgd2FybmluZyBvbmx5IGhhcHBlbnMgb24geDg2XzY0IGJ1dCB0aGF0IGNoZWNrIGlzIHJl
-bGV2YW50IGZvcgo+ID4+Pj4+IDMyLWJpdCB4ODYgc28gd2UgY2Fubm90IHJlbW92ZSBpdC4KPiA+
-Pj4+Cj4gPj4+PiBUaGF0J3Mgc3VwcmlzaW5nLiBBRkFJQ1QgTl9SRUxPQyhVTE9OR19NQVgpIHdv
-cmtzIG91dCB0byB0aGUgc2FtZSB2YWx1ZQo+ID4+Pj4gaW4gYm90aCBjYXNlcywgYW5kIHJlbWFp
-biBpcyBhIDMyLWJpdCB2YWx1ZSBpbiBib3RoIGNhc2VzLiBIb3cgY2FuIGl0IGJlCj4gPj4+PiBs
-YXJnZXIgdGhhbiBOX1JFTE9DKFVMT05HX01BWCkgb24gMzItYml0IChidXQgbm90IG9uIDY0LWJp
-dCk/Cj4gPj4+Pgo+ID4+Pgo+ID4+PiBIaSBNaWNoZWwsCj4gPj4+Cj4gPj4+IENhbid0IHRoaXMg
-Y29uZGl0aW9uIGJlIHRydWUgd2hlbiBVSU5UX01BWCA9PSBVTE9OR19NQVg/Cj4gPj4KPiA+PiBP
-aCwgcmlnaHQsIEkgdGhpbmsgSSB3YXMgd3JvbmdseSB0aGlua2luZyBsb25nIGhhZCA2NCBiaXRz
-IGV2ZW4gb24gMzItYml0Lgo+ID4+Cj4gPj4KPiA+PiBBbnl3YXksIHRoaXMgc3VnZ2VzdHMgYSBw
-b3NzaWJsZSBiZXR0ZXIgc29sdXRpb246Cj4gPj4KPiA+PiAjaWYgVUlOVF9NQVggPT0gVUxPTkdf
-TUFYCj4gPj4gICAgICBpZiAodW5saWtlbHkocmVtYWluID4gTl9SRUxPQyhVTE9OR19NQVgpKSkK
-PiA+PiAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gPj4gI2VuZGlmCj4gPj4KPiA+Pgo+
-ID4+IE9yIGlmIHRoYXQgY2FuJ3QgYmUgdXNlZCBmb3Igc29tZSByZWFzb24sIHNvbWV0aGluZyBs
-aWtlCj4gPj4KPiA+PiAgICAgIGlmICh1bmxpa2VseSgodW5zaWduZWQgbG9uZylyZW1haW4gPiBO
-X1JFTE9DKFVMT05HX01BWCkpKQo+ID4+ICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPiA+
-Pgo+ID4+IHNob3VsZCBzaWxlbmNlIHRoZSB3YXJuaW5nLgo+ID4KPiA+IEkgZG8gbGlrZSB0aGlz
-IG9uZSBiZXR0ZXIgdGhhbiB0aGUgZm9ybWVyLgo+Cj4gRldJVywgb25lIGRvd25zaWRlIG9mIHRo
-aXMgb25lIGNvbXBhcmVkIHRvIGFsbCBhbHRlcm5hdGl2ZXMgKHByZXN1bWFibHkpCj4gaXMgdGhh
-dCBpdCBtaWdodCBlbmQgdXAgZ2VuZXJhdGluZyBhY3R1YWwgY29kZSBldmVuIG9uIDY0LWJpdCwg
-d2hpY2gKPiBhbHdheXMgZW5kcyB1cCBza2lwcGluZyB0aGUgcmV0dXJuLgoKVGhlIHdhcm5pbmcg
-aXMgcG9pbnRpbmcgb3V0IHRoYXQgdGhlIGNvbmRpdGlvbmFsIGlzIGFsd2F5cyBmYWxzZSwKd2hp
-Y2ggaXMgY29ycmVjdCBvbiA2NGIuICBUaGUgY2hlY2sgaXMgb25seSBhY3RpdmUgZm9yIDMyYi4K
-aHR0cHM6Ly9nb2Rib2x0Lm9yZy96L29RcmdUXwpUaGUgY2FzdCBzaWxlbmNlcyB0aGUgd2Fybmlu
-ZyBmb3IgNjRiLiAgKE5vdGUgdGhhdCBHQ0MgYW5kIENsYW5nIGFsc28KZ2VuZXJhdGUgcHJlY2lz
-ZWx5IHRoZSBzYW1lIGluc3RydWN0aW9uIHNlcXVlbmNlcyBpbiBteSBleGFtcGxlLCBqdXN0CkdD
-QyBkb2Vzbid0IHdhcm4gb24gc3VjaCB0YXV0b2xvZ2llcykuCi0tIApUaGFua3MsCn5OaWNrIERl
-c2F1bG5pZXJzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: tools/Android.mk: Add zlib support
+URL   : https://patchwork.freedesktop.org/series/2543/
+State : failure
+
+== Summary ==
+
+CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dpp_cm.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hubp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mpc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_opp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_hubbub.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_optc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_mmhubbub.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_stream_encoder.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_link_encoder.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dccg.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_vmid.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dwb_scl.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn20/dcn20_dsc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/dc_dsc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dsc/rc_calc_dpi.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_init.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_ipp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hw_sequencer_debug.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_opp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_optc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hubp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_mpc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp_dscl.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_dpp_cm.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_cm_common.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_hubbub.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_stream_encoder.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn10/dcn10_link_encoder.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_lib.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_rq_dlg_helpers.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml1_display_rq_dlg_calc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dml_common_defs.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/display_mode_vba.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_rq_dlg_calc_20v2.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn20/display_mode_vba_20v2.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_rq_dlg_calc_21.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dml/dcn21/display_mode_vba_21.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_init.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hubbub.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hubp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_hwseq.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dcn21/dcn21_link_encoder.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_timing_generator.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce120/dce120_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_compressor.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce112/dce112_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_compressor.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_regamma_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_csc_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_timing_generator_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_mem_input_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_opp_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce110/dce110_transform_v.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce100/dce100_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce100/dce100_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_timing_generator.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dce80/dce80_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_resource.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_hw_sequencer.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_sink.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_surface.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_hwss.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_dp.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_link_ddc.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_debug.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_stream.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/core/dc_vm_helper.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_helper.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dc/dc_dmub_srv.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/freesync/freesync.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/color/color_gamma.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/info_packet/info_packet.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/modules/power/power_helpers.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_srv.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_reg.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn20.o
+  CC [M]  drivers/gpu/drm/amd/amdgpu/../display/dmub/src/dmub_dcn21.o
+  LD [M]  drivers/gpu/drm/amd/amdgpu/amdgpu.o
+scripts/Makefile.build:503: recipe for target 'drivers/gpu/drm' failed
+make[2]: *** [drivers/gpu/drm] Error 2
+scripts/Makefile.build:503: recipe for target 'drivers/gpu' failed
+make[1]: *** [drivers/gpu] Error 2
+Makefile:1693: recipe for target 'drivers' failed
+make: *** [drivers] Error 2
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
