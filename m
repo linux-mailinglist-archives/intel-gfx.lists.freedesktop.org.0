@@ -1,38 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE2C15CE29
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 23:37:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 248D415CE40
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 23:43:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 962A06E41B;
-	Thu, 13 Feb 2020 22:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3F116E04A;
+	Thu, 13 Feb 2020 22:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2266E41B
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 22:37:32 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 14:37:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227400268"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 13 Feb 2020 14:37:31 -0800
-Date: Thu, 13 Feb 2020 14:37:31 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Caz Yokoyama <caz.yokoyama@intel.com>
-Message-ID: <20200213223731.GM2014153@mdroper-desk1.amr.corp.intel.com>
-References: <3e1780946bd06f42b9d9e2a2fd1169923dd52e9f.1581444370.git.caz.yokoyama@intel.com>
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com
+ [IPv6:2607:f8b0:4864:20::543])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 585B36E04A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 22:43:33 +0000 (UTC)
+Received: by mail-pg1-x543.google.com with SMTP id w21so3880678pgl.9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 14:43:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=1uz4onwD02FQH4e/dvdb1FjZu1rFnkl+4ltvHCVnzHQ=;
+ b=Mu7RaWQT57rbjsEgWQeug20f4GIX77GFzc3qAC7n2UMwytWFBLui8a1qKbHPGKy1kO
+ 9qHZUeD/Ig7Ke5Azt9yZuWIB3ilP30QdJLPVilNqofkViyiWVw9yHK13NFR7WQruhaev
+ K9iZutEjIZ9rx6lvKFO6X2nTrfMLXqseES2VUtMF39yTdsb2GbDCvpgsBONkdsB8nnA5
+ MUo5zjOT/BmVDI9DZ/Hr6pq80Tpe5d2g9iwzD+aJyP/o8jZWLS7JhIi11/cydPIK6Nly
+ ZZyDKTNDANgpYqFoT7sqnemXJg3T6yPh2tbZSI2Aim3r5vYBVqiLMFEqe5+3ngmFACR/
+ q5Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=1uz4onwD02FQH4e/dvdb1FjZu1rFnkl+4ltvHCVnzHQ=;
+ b=EuBUFCvBDkUcurZHXyHErXem5HrHD0APneW89XFj09sF/DA8QxDU5GYbO8x/n53Azs
+ E6oMQdy+nfh78Blw4NJhlHUXuBy8BuahSONL2s1O/Vajn8JsnQ0m0kKkTeHhv/wJBSr6
+ GflvI1bH3Lknh/FBbh6lP8CHVQimzp85gLXJx9TvLaVx50LzsGzxtLSSetGaZXvtKgAm
+ HqC6RUo9lp+PYU3Tut5OHppY1Aim3+wGF0I9p62OEwbt3JhpLpaTVYNXlosLKaCXaxy+
+ qJk93PpzslgfoxjhK1K4gGv23OuT9Ff24ZjxsL7osxFnLfxSSTQqGPHgODIuUNkEjF4A
+ VKZw==
+X-Gm-Message-State: APjAAAWmcxXVPFti5pSA+XLIHEbfq69bngDo+5IOKybev13wzZvbBo1s
+ HsHtGdDpyWibGpFDP5IPY79WefdvfuHAcIN+91QumA==
+X-Google-Smtp-Source: APXvYqz+I/Aj0lLNkEM0HAfbgend/2rNUCga5zdKKKJWLstIs2KmGzFR4k/LVIzrSDVahxXfq6sw1G//SGyOO9dV1IY=
+X-Received: by 2002:a63:64c5:: with SMTP id y188mr195696pgb.10.1581633812546; 
+ Thu, 13 Feb 2020 14:43:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3e1780946bd06f42b9d9e2a2fd1169923dd52e9f.1581444370.git.caz.yokoyama@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/1] drm/i915: MCHBAR memory info registers
- are moved since GEN 12.
+References: <20200211050808.29463-1-natechancellor@gmail.com>
+ <20200211061338.23666-1-natechancellor@gmail.com>
+ <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
+ <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
+ <f3a6346b-2abf-0b6a-3d84-66e12f700b2b@daenzer.net>
+ <20200212170734.GA16396@ubuntu-m2-xlarge-x86>
+ <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
+In-Reply-To: <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
+From: Nick Desaulniers <ndesaulniers@google.com>
+Date: Thu, 13 Feb 2020 14:43:21 -0800
+Message-ID: <CAKwvOdm4eS19-D3pEkKsyZw7VjJP9Jeh5gMZaszwgjrJe63yUg@mail.gmail.com>
+To: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel@daenzer.net>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
+ -Wtautological-constant-out-of-range-compare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,187 +68,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ Nathan Chancellor <natechancellor@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 11, 2020 at 10:11:42AM -0800, Caz Yokoyama wrote:
-> From: "Yokoyama, Caz" <caz.yokoyama@intel.com>
-> =
-
-> MAD_INTER_CHANNEL_0_0_0_MCHBAR:
-> code name            offset                   DRAM_DDR_TYPE
-> SKL                  0x5000                   1:0 DDR4/DDR3/LPDDR3
-> TGL                  0x6048/0x6248/0xd800     2:0 DDR4/DDR3/LPDDR3/LPDDR4
-> ICL                  0x5000/0x6048/0x48       2:0 DDR4/DDR3/LPDDR3/LPDDR4
-> EHL                  0x5000/0x6048            2:0 DDR4/DDR3/LPDDR3/LPDDR4
-> CNL                  0x5000                   2:0 DDR4/DDR3/LPDDR3/LPDDR4
-> =
-
-> MAD_DIMM_CH0/1_0_0_0_MCHBAR:
-> code name              offset CH0/1
-> SKL                    0x500c/0x5010
-> TGL                    0x6054/0x6058
-> EHL                    0x500c/0x5010
-> ICL                    0x500c/0x5010
-> The bit definition of MAD_DIMM_CH0/1_0_0_0_MCHBAR is same between
-> CNL and TGL.
-
-Have you actually sanity checked the register addresses here on real
-hardware?  I see the same offsets in the doc as what you've put here,
-but since this is a different register database than we get most of our
-gfx-specific register details from, it would still be good to double
-check that you do indeed get sensible values back when reading from
-these addresses before we merge the patch.  Especially since the
-database indicates that some of these registers are present at multiple
-offsets.
-
-> =
-
-> P_CR_MC_BIOS_REQ_0_0_0 is same on BXT and GLK in terms of its address and
-> bit definition.
-> BXT_D_CR_DRP0_DUNIT accesses offset 0x1000, 0x1200, 0x1400, 0x1600.
-> Its register name is RAM_ACCESS_DATA1. There is no difference between
-> BXT and GLK in terms of its address and bit definition.
-> =
-
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Yokoyama, Caz <caz.yokoyama@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_drv.c | 15 ++++++++++++---
->  drivers/gpu/drm/i915/i915_reg.h |  6 ++++++
->  2 files changed, 18 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index 516536234e97..b9418583e503 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -806,12 +806,18 @@ skl_dram_get_channels_info(struct drm_i915_private =
-*dev_priv)
->  	u32 val;
->  	int ret;
->  =
-
-> -	val =3D I915_READ(SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		val =3D I915_READ(TGL_MAD_DIMM_CH0_0_0_0_MCHBAR);
-> +	else
-> +		val =3D I915_READ(SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN);
->  	ret =3D skl_dram_get_channel_info(dev_priv, &ch0, 0, val);
->  	if (ret =3D=3D 0)
->  		dram_info->num_channels++;
->  =
-
-> -	val =3D I915_READ(SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		val =3D I915_READ(TGL_MAD_DIMM_CH1_0_0_0_MCHBAR);
-> +	else
-> +		val =3D I915_READ(SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN);
->  	ret =3D skl_dram_get_channel_info(dev_priv, &ch1, 1, val);
->  	if (ret =3D=3D 0)
->  		dram_info->num_channels++;
-> @@ -852,7 +858,10 @@ skl_get_dram_type(struct drm_i915_private *dev_priv)
->  {
->  	u32 val;
->  =
-
-> -	val =3D I915_READ(SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
-> +	if (INTEL_GEN(dev_priv) >=3D 12)
-> +		val =3D I915_READ(TGL_MAD_INTER_CHANNEL_0_0_0_MCHBAR);
-> +	else
-> +		val =3D I915_READ(SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN);
->  =
-
->  	switch (val & SKL_DRAM_DDR_TYPE_MASK) {
->  	case SKL_DRAM_DDR_TYPE_DDR3:
-
-I'm not sure if it might be cleaner to create regs structures for each
-platform to centralize the platform-selection logic and avoid all the
-if/else in the code.  E.g.,
-
-        struct i915_mchbar_regs {
-                i915_reg_t mad_inter_channel;
-                i915_reg_t mad_dimm_ch0;
-                i915_reg_t mad_dimm_ch1;
-        };
-
-        static const struct i915_mchbar_regs skl_mchbar_regs =3D {
-                .mad_inter_channel =3D SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_M=
-CMAIN,
-                .mad_dimm_ch0 =3D SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN,
-                .mad_dimm_ch1 =3D SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN,
-        };
-
-and then use the appropriate regs structure in each of these functions
-so that you can just do
-
-        val =3D I915_READ(regs->mad_inter_channel);
-
-and not have to update a bunch of different if-trees if more platforms
-show up that move the registers to new offsets.
-
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index b09c1d6dc0aa..9f6ec44dad6e 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -10508,6 +10508,9 @@ enum skl_power_gate {
->  #define  SKL_DRAM_DDR_TYPE_LPDDR3		(2 << 0)
->  #define  SKL_DRAM_DDR_TYPE_LPDDR4		(3 << 0)
->  =
-
-> +#define  TGL_MAD_INTER_CHANNEL_0_0_0_MCHBAR _MMIO(MCHBAR_MIRROR_BASE_SNB=
- + 0x6048)
-
-I'd move this line directly under
-SKL_MAD_INTER_CHANNEL_0_0_0_MCHBAR_MCMAIN's definition to help make it
-clear that the SKL_DRAM_DDR_TYPE_* bit definitions apply to this
-register as well as the SKL variant.  And same idea for the CH0/CH1
-registers farther down --- move them directly under their SKL variants.
-
-> +#define  TGL_DRAM_DDR_TYPE_WIO2			(4 << 0)
-
-This isn't used anywhere and should just be dropped.
-
-> +
->  #define SKL_MAD_DIMM_CH0_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SN=
-B + 0x500C)
->  #define SKL_MAD_DIMM_CH1_0_0_0_MCHBAR_MCMAIN	_MMIO(MCHBAR_MIRROR_BASE_SN=
-B + 0x5010)
->  #define  SKL_DRAM_S_SHIFT			16
-> @@ -10535,6 +10538,9 @@ enum skl_power_gate {
->  #define  CNL_DRAM_RANK_3			(0x2 << 9)
->  #define  CNL_DRAM_RANK_4			(0x3 << 9)
->  =
-
-> +#define TGL_MAD_DIMM_CH0_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6054)
-> +#define TGL_MAD_DIMM_CH1_0_0_0_MCHBAR		_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x=
-6058)
-> +
->  /* Please see hsw_read_dcomp() and hsw_write_dcomp() before using this r=
-egister,
->   * since on HSW we can't write to it using I915_WRITE. */
->  #define D_COMP_HSW			_MMIO(MCHBAR_MIRROR_BASE_SNB + 0x5F0C)
-> -- =
-
-> 2.21.0.5.gaeb582a983
-> =
-
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCBGZWIgMTIsIDIwMjAgYXQgOToxNyBBTSBNaWNoZWwgRMOkbnplciA8bWljaGVsQGRh
+ZW56ZXIubmV0PiB3cm90ZToKPgo+IE9uIDIwMjAtMDItMTIgNjowNyBwLm0uLCBOYXRoYW4gQ2hh
+bmNlbGxvciB3cm90ZToKPiA+IE9uIFdlZCwgRmViIDEyLCAyMDIwIGF0IDA5OjUyOjUyQU0gKzAx
+MDAsIE1pY2hlbCBEw6RuemVyIHdyb3RlOgo+ID4+IE9uIDIwMjAtMDItMTEgOTozOSBwLm0uLCBO
+YXRoYW4gQ2hhbmNlbGxvciB3cm90ZToKPiA+Pj4gT24gVHVlLCBGZWIgMTEsIDIwMjAgYXQgMTA6
+NDE6NDhBTSArMDEwMCwgTWljaGVsIETDpG56ZXIgd3JvdGU6Cj4gPj4+PiBPbiAyMDIwLTAyLTEx
+IDc6MTMgYS5tLiwgTmF0aGFuIENoYW5jZWxsb3Igd3JvdGU6Cj4gPj4+Pj4gQSByZWNlbnQgY29t
+bWl0IGluIGNsYW5nIGFkZGVkIC1XdGF1dG9sb2dpY2FsLWNvbXBhcmUgdG8gLVdhbGwsIHdoaWNo
+IGlzCj4gPj4+Pj4gZW5hYmxlZCBmb3IgaTkxNSBzbyB3ZSBzZWUgdGhlIGZvbGxvd2luZyB3YXJu
+aW5nOgo+ID4+Pj4+Cj4gPj4+Pj4gLi4vZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
+X2V4ZWNidWZmZXIuYzoxNDg1OjIyOiB3YXJuaW5nOgo+ID4+Pj4+IHJlc3VsdCBvZiBjb21wYXJp
+c29uIG9mIGNvbnN0YW50IDU3NjQ2MDc1MjMwMzQyMzQ4NyB3aXRoIGV4cHJlc3Npb24gb2YKPiA+
+Pj4+PiB0eXBlICd1bnNpZ25lZCBpbnQnIGlzIGFsd2F5cyBmYWxzZQo+ID4+Pj4+IFstV3RhdXRv
+bG9naWNhbC1jb25zdGFudC1vdXQtb2YtcmFuZ2UtY29tcGFyZV0KPiA+Pj4+PiAgICAgICAgIGlm
+ICh1bmxpa2VseShyZW1haW4gPiBOX1JFTE9DKFVMT05HX01BWCkpKQo+ID4+Pj4+ICAgICAgICAg
+ICAgIH5+fn5+fn5+fn5+fn5+fn5efn5+fn5+fn5+fn5+fn5+fn5+fn4KPiA+Pj4+Pgo+ID4+Pj4+
+IFRoaXMgd2FybmluZyBvbmx5IGhhcHBlbnMgb24geDg2XzY0IGJ1dCB0aGF0IGNoZWNrIGlzIHJl
+bGV2YW50IGZvcgo+ID4+Pj4+IDMyLWJpdCB4ODYgc28gd2UgY2Fubm90IHJlbW92ZSBpdC4KPiA+
+Pj4+Cj4gPj4+PiBUaGF0J3Mgc3VwcmlzaW5nLiBBRkFJQ1QgTl9SRUxPQyhVTE9OR19NQVgpIHdv
+cmtzIG91dCB0byB0aGUgc2FtZSB2YWx1ZQo+ID4+Pj4gaW4gYm90aCBjYXNlcywgYW5kIHJlbWFp
+biBpcyBhIDMyLWJpdCB2YWx1ZSBpbiBib3RoIGNhc2VzLiBIb3cgY2FuIGl0IGJlCj4gPj4+PiBs
+YXJnZXIgdGhhbiBOX1JFTE9DKFVMT05HX01BWCkgb24gMzItYml0IChidXQgbm90IG9uIDY0LWJp
+dCk/Cj4gPj4+Pgo+ID4+Pgo+ID4+PiBIaSBNaWNoZWwsCj4gPj4+Cj4gPj4+IENhbid0IHRoaXMg
+Y29uZGl0aW9uIGJlIHRydWUgd2hlbiBVSU5UX01BWCA9PSBVTE9OR19NQVg/Cj4gPj4KPiA+PiBP
+aCwgcmlnaHQsIEkgdGhpbmsgSSB3YXMgd3JvbmdseSB0aGlua2luZyBsb25nIGhhZCA2NCBiaXRz
+IGV2ZW4gb24gMzItYml0Lgo+ID4+Cj4gPj4KPiA+PiBBbnl3YXksIHRoaXMgc3VnZ2VzdHMgYSBw
+b3NzaWJsZSBiZXR0ZXIgc29sdXRpb246Cj4gPj4KPiA+PiAjaWYgVUlOVF9NQVggPT0gVUxPTkdf
+TUFYCj4gPj4gICAgICBpZiAodW5saWtlbHkocmVtYWluID4gTl9SRUxPQyhVTE9OR19NQVgpKSkK
+PiA+PiAgICAgICAgICAgICAgcmV0dXJuIC1FSU5WQUw7Cj4gPj4gI2VuZGlmCj4gPj4KPiA+Pgo+
+ID4+IE9yIGlmIHRoYXQgY2FuJ3QgYmUgdXNlZCBmb3Igc29tZSByZWFzb24sIHNvbWV0aGluZyBs
+aWtlCj4gPj4KPiA+PiAgICAgIGlmICh1bmxpa2VseSgodW5zaWduZWQgbG9uZylyZW1haW4gPiBO
+X1JFTE9DKFVMT05HX01BWCkpKQo+ID4+ICAgICAgICAgICAgICByZXR1cm4gLUVJTlZBTDsKPiA+
+Pgo+ID4+IHNob3VsZCBzaWxlbmNlIHRoZSB3YXJuaW5nLgo+ID4KPiA+IEkgZG8gbGlrZSB0aGlz
+IG9uZSBiZXR0ZXIgdGhhbiB0aGUgZm9ybWVyLgo+Cj4gRldJVywgb25lIGRvd25zaWRlIG9mIHRo
+aXMgb25lIGNvbXBhcmVkIHRvIGFsbCBhbHRlcm5hdGl2ZXMgKHByZXN1bWFibHkpCj4gaXMgdGhh
+dCBpdCBtaWdodCBlbmQgdXAgZ2VuZXJhdGluZyBhY3R1YWwgY29kZSBldmVuIG9uIDY0LWJpdCwg
+d2hpY2gKPiBhbHdheXMgZW5kcyB1cCBza2lwcGluZyB0aGUgcmV0dXJuLgoKVGhlIHdhcm5pbmcg
+aXMgcG9pbnRpbmcgb3V0IHRoYXQgdGhlIGNvbmRpdGlvbmFsIGlzIGFsd2F5cyBmYWxzZSwKd2hp
+Y2ggaXMgY29ycmVjdCBvbiA2NGIuICBUaGUgY2hlY2sgaXMgb25seSBhY3RpdmUgZm9yIDMyYi4K
+aHR0cHM6Ly9nb2Rib2x0Lm9yZy96L29RcmdUXwpUaGUgY2FzdCBzaWxlbmNlcyB0aGUgd2Fybmlu
+ZyBmb3IgNjRiLiAgKE5vdGUgdGhhdCBHQ0MgYW5kIENsYW5nIGFsc28KZ2VuZXJhdGUgcHJlY2lz
+ZWx5IHRoZSBzYW1lIGluc3RydWN0aW9uIHNlcXVlbmNlcyBpbiBteSBleGFtcGxlLCBqdXN0CkdD
+QyBkb2Vzbid0IHdhcm4gb24gc3VjaCB0YXV0b2xvZ2llcykuCi0tIApUaGFua3MsCn5OaWNrIERl
+c2F1bG5pZXJzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
