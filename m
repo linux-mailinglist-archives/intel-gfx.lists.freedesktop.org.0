@@ -1,43 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D8F315BACA
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 09:30:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C740E15BB10
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 10:00:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3B56F568;
-	Thu, 13 Feb 2020 08:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAA346F56E;
+	Thu, 13 Feb 2020 09:00:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27FA46F568;
- Thu, 13 Feb 2020 08:29:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01A576F56A;
+ Thu, 13 Feb 2020 09:00:26 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 00:29:57 -0800
+ 13 Feb 2020 01:00:26 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="347685401"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by fmsmga001.fm.intel.com with ESMTP; 13 Feb 2020 00:29:55 -0800
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1j29sh-0007Au-3v; Thu, 13 Feb 2020 10:29:55 +0200
-Date: Thu, 13 Feb 2020 10:29:55 +0200
-From: Petri Latvala <petri.latvala@intel.com>
-To: Dale B Stimson <dale.b.stimson@intel.com>
-Message-ID: <20200213082955.GT25209@platvala-desk.ger.corp.intel.com>
-References: <20200213012840.31472-1-dale.b.stimson@intel.com>
- <20200213012840.31472-6-dale.b.stimson@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="222581907"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga007.jf.intel.com with ESMTP; 13 Feb 2020 01:00:24 -0800
+Date: Thu, 13 Feb 2020 14:21:51 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ramalingam C <ramalingam.c@intel.com>
+Message-ID: <20200213085151.GA11041@intel.com>
+References: <20200212102942.26568-1-ramalingam.c@intel.com>
+ <20200212102942.26568-4-ramalingam.c@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200213012840.31472-6-dale.b.stimson@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2 5/5]
- i915/gem_ctx_isolation.c - If initialization fails, exit
+In-Reply-To: <20200212102942.26568-4-ramalingam.c@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 3/5] drm/i915: terminate reauth at stream
+ management failure
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,70 +46,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 12, 2020 at 05:28:40PM -0800, Dale B Stimson wrote:
-> At the start of igt_main, failure of the initial tests for successful
-> initialization transfer control to the end of an igt_fixture block.
-> From there, execution of the main per-engine loop is attempted.
-> Instead, the test should be caused to exit.
+On 2020-02-12 at 15:59:40 +0530, Ramalingam C wrote:
+> As per the HDCP2.2 compliance test 1B-10 expectation, when stream
+> management for a repeater fails, we retry thrice and when it fails
+> in all retries, HDCP2.2 reauthentication aborted at kernel.
 > 
-> If initialization fails, exit.
+> v2:
+>   seq_num_m++ is extended for steam management failures too.[Anshuman]
+> v3:
+>   use drm_dbg_kms instead of DRM_DEBUG_KMS [Anshuman]
+> v4:
+>   dev_priv is used as i915 [JaniN]
 > 
-> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
+> Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
 > ---
->  tests/i915/gem_ctx_isolation.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 75 ++++++++++++++---------
+>  1 file changed, 46 insertions(+), 29 deletions(-)
 > 
-> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-> index 07ffbb84a..b11158dab 100644
-> --- a/tests/i915/gem_ctx_isolation.c
-> +++ b/tests/i915/gem_ctx_isolation.c
-> @@ -898,10 +898,13 @@ igt_main
->  	int fd = -1;
->  	struct eng_mmio_base_table_s *mbp = NULL;
->  	uint32_t mmio_base = 0;
-> +	/* igt_fixture block is skipped if --list-subtests, so start with true. */
-> +	bool init_successful = true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 30e0a3aa9d57..b24d12efae0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -1380,7 +1380,7 @@ static int hdcp2_session_key_exchange(struct intel_connector *connector)
+>  }
 >  
->  	igt_fixture {
->  		int gen;
+>  static
+> -int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> +int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
+>  	struct intel_hdcp *hdcp = &connector->hdcp;
+> @@ -1406,28 +1406,25 @@ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+>  	ret = shim->write_2_2_msg(intel_dig_port, &msgs.stream_manage,
+>  				  sizeof(msgs.stream_manage));
+>  	if (ret < 0)
+> -		return ret;
+> +		goto err_exit;
 >  
-> +		init_successful = false;
->  		fd = drm_open_driver(DRIVER_INTEL);
->  		igt_require_gem(fd);
->  		igt_require(gem_has_contexts(fd));
-> @@ -916,8 +919,20 @@ igt_main
->  		igt_skip_on(gen > LAST_KNOWN_GEN);
+>  	ret = shim->read_2_2_msg(intel_dig_port, HDCP_2_2_REP_STREAM_READY,
+>  				 &msgs.stream_ready, sizeof(msgs.stream_ready));
+>  	if (ret < 0)
+> -		return ret;
+> +		goto err_exit;
 >  
->  		mbp = gem_engine_mmio_base_info_get(fd);
-> +		init_successful = true;
+>  	hdcp->port_data.seq_num_m = hdcp->seq_num_m;
+>  	hdcp->port_data.streams[0].stream_type = hdcp->content_type;
+> -
+>  	ret = hdcp2_verify_mprime(connector, &msgs.stream_ready);
+> -	if (ret < 0)
+> -		return ret;
+>  
+> +err_exit:
+>  	hdcp->seq_num_m++;
+> -
+>  	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
+>  		DRM_DEBUG_KMS("seq_num_m roll over.\n");
+> -		return -1;
+> +		ret = -1;
 >  	}
 >  
-> +	if (!init_successful) {
-> +		igt_exit_early();
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static
+> @@ -1492,17 +1489,6 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
+>  	return 0;
+>  }
+>  
+> -static int hdcp2_authenticate_repeater(struct intel_connector *connector)
+> -{
+> -	int ret;
+> -
+> -	ret = hdcp2_authenticate_repeater_topology(connector);
+> -	if (ret < 0)
+> -		return ret;
+> -
+> -	return hdcp2_propagate_stream_management_info(connector);
+> -}
+> -
+>  static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  {
+>  	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
+> @@ -1537,18 +1523,13 @@ static int hdcp2_authenticate_sink(struct intel_connector *connector)
+>  	}
+>  
+>  	if (hdcp->is_repeater) {
+> -		ret = hdcp2_authenticate_repeater(connector);
+> +		ret = hdcp2_authenticate_repeater_topology(connector);
+>  		if (ret < 0) {
+>  			DRM_DEBUG_KMS("Repeater Auth Failed. Err: %d\n", ret);
+>  			return ret;
+>  		}
+>  	}
+>  
+> -	hdcp->port_data.streams[0].stream_type = hdcp->content_type;
+> -	ret = hdcp2_authenticate_port(connector);
+> -	if (ret < 0)
+> -		return ret;
+> -
+>  	return ret;
+>  }
+>  
+> @@ -1626,14 +1607,50 @@ static int hdcp2_disable_encryption(struct intel_connector *connector)
+>  	return ret;
+>  }
+>  
+> +static int
+> +hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	int i, tries = 3, ret;
+> +
+> +	if (!connector->hdcp.is_repeater)
+> +		return 0;
+> +
+> +	for (i = 0; i < tries; i++) {
+> +		ret = _hdcp2_propagate_stream_management_info(connector);
+> +		if (!ret)
+> +			break;
+> +
+> +		drm_dbg_kms(&i915->drm,
+> +			    "HDCP2 stream management %d of %d Failed.(%d)\n",
+> +			    i + 1, tries, ret);
 > +	}
 > +
-
-NAK. All this dancing around the infrastructure just makes changing
-the infrastructure later be awkward and produce weird errors.
-
-If something in the fixture failed, with this code you never enter the
-subtest, making the test result 'notrun' instead of the correct 'skip'
-or 'fail'.
-
-What is the problem this is trying to solve? Incorrect engine list
-used? If you have a subtest per static engine, all CI does is execute
-per static engine. Converting this test to use dynamic subtests for
-engines is the way forward.
-
-
--- 
-Petri Latvala
+> +	return ret;
+> +}
+> +
+>  static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  {
+> +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+> +	struct intel_hdcp *hdcp = &connector->hdcp;
+>  	int ret, i, tries = 3;
+>  
+>  	for (i = 0; i < tries; i++) {
+>  		ret = hdcp2_authenticate_sink(connector);
+> -		if (!ret)
+> -			break;
+> +		if (!ret) {
+> +			ret = hdcp2_propagate_stream_management_info(connector);
+IMHO hdcp2_propagate_stream_management_info should be called only for 
+repeater rather then early return in funciton itself (theoretically it may
+avoid a stack operation).
+but this is also ok.
+Tested this patch on HDCP compliance.
+Tested-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Thanks,
+Anshuman Gupta.
+> +			if (!ret) {
+> +				hdcp->port_data.streams[0].stream_type =
+> +							hdcp->content_type;
+> +				ret = hdcp2_authenticate_port(connector);
+> +				if (!ret)
+> +					break;
+> +			} else {
+> +				drm_dbg_kms(&i915->drm,
+> +					    "HDCP2 stream management failed\n");
+> +				break;
+> +			}
+> +		}
+>  
+>  		/* Clearing the mei hdcp session */
+>  		DRM_DEBUG_KMS("HDCP2.2 Auth %d of %d Failed.(%d)\n",
+> @@ -1642,7 +1659,7 @@ static int hdcp2_authenticate_and_encrypt(struct intel_connector *connector)
+>  			DRM_DEBUG_KMS("Port deauth failed.\n");
+>  	}
+>  
+> -	if (i != tries) {
+> +	if (!ret) {
+>  		/*
+>  		 * Ensuring the required 200mSec min time interval between
+>  		 * Session Key Exchange and encryption.
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
