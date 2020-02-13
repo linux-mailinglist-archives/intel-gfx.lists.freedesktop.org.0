@@ -2,38 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF38015BAB2
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 09:23:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D8F315BACA
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 09:30:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B93E89DFD;
-	Thu, 13 Feb 2020 08:23:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC3B56F568;
+	Thu, 13 Feb 2020 08:29:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 527BD89DFD
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 08:23:16 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27FA46F568;
+ Thu, 13 Feb 2020 08:29:58 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 00:23:15 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 00:29:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="227159799"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga008.jf.intel.com with ESMTP; 13 Feb 2020 00:23:13 -0800
-Date: Thu, 13 Feb 2020 13:53:29 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200213082329.GA13448@intel.com>
-References: <20200212084143.13852-1-anshuman.gupta@intel.com>
- <20200212084143.13852-2-anshuman.gupta@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="347685401"
+Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
+ by fmsmga001.fm.intel.com with ESMTP; 13 Feb 2020 00:29:55 -0800
+Received: from platvala by thrakatuluk with local (Exim 4.92)
+ (envelope-from <petri.latvala@intel.com>)
+ id 1j29sh-0007Au-3v; Thu, 13 Feb 2020 10:29:55 +0200
+Date: Thu, 13 Feb 2020 10:29:55 +0200
+From: Petri Latvala <petri.latvala@intel.com>
+To: Dale B Stimson <dale.b.stimson@intel.com>
+Message-ID: <20200213082955.GT25209@platvala-desk.ger.corp.intel.com>
+References: <20200213012840.31472-1-dale.b.stimson@intel.com>
+ <20200213012840.31472-6-dale.b.stimson@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200212084143.13852-2-anshuman.gupta@intel.com>
+In-Reply-To: <20200213012840.31472-6-dale.b.stimson@intel.com>
+X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/1] drm/i915/hdcp: Mandate zero
- seq_num_V at first RecvId msg
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t v2 5/5]
+ i915/gem_ctx_isolation.c - If initialization fails, exit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,64 +50,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-12 at 14:11:43 +0530, Anshuman Gupta wrote:
-> HDCP Repeater initializes seq_num_V to 0 at the beginning of
-> hdcp Session i.e. after AKE_init received, refer
-> HDCP 2.2 Spec HDMI PAGE 19, DP PAGE 20.
+On Wed, Feb 12, 2020 at 05:28:40PM -0800, Dale B Stimson wrote:
+> At the start of igt_main, failure of the initial tests for successful
+> initialization transfer control to the end of an igt_fixture block.
+> From there, execution of the main per-engine loop is attempted.
+> Instead, the test should be caused to exit.
 > 
-> HDCP 2.2 Comp specs 1B-06 test verifies that whether DUT
-> considers failure of authentication if the repeater provides a
-> non-zero value in seq_num_V in the first,
-> RepeaterAuth_Send_ReceiverID_List message.
+> If initialization fails, exit.
 > 
-> Make sure that HDCP repeater initializes seq_num_V to zero at
-> beginning of session i.e. after AKE_Init, fail the Auth if
-> there is non zero seq_num_V.
-> 
-> v2:
-> - Used existing hdcp2_encrypted flag instead of
->   declaring new flag. [Ram]
-> 
-> Cc: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> Signed-off-by: Dale B Stimson <dale.b.stimson@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  tests/i915/gem_ctx_isolation.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 30e0a3aa9d57..75f60ca282fc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -1462,6 +1462,12 @@ int hdcp2_authenticate_repeater_topology(struct intel_connector *connector)
->  	seq_num_v =
->  		drm_hdcp_be24_to_cpu((const u8 *)msgs.recvid_list.seq_num_v);
+> diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+> index 07ffbb84a..b11158dab 100644
+> --- a/tests/i915/gem_ctx_isolation.c
+> +++ b/tests/i915/gem_ctx_isolation.c
+> @@ -898,10 +898,13 @@ igt_main
+>  	int fd = -1;
+>  	struct eng_mmio_base_table_s *mbp = NULL;
+>  	uint32_t mmio_base = 0;
+> +	/* igt_fixture block is skipped if --list-subtests, so start with true. */
+> +	bool init_successful = true;
 >  
-> +	if (!hdcp->hdcp2_encrypted && seq_num_v) {
-> +		drm_dbg_kms(&dev_priv->drm,
-> +			    "Non zero Seq_num_v at first RecvId_List msg\n");
-> +		return -EINVAL;
+>  	igt_fixture {
+>  		int gen;
+>  
+> +		init_successful = false;
+>  		fd = drm_open_driver(DRIVER_INTEL);
+>  		igt_require_gem(fd);
+>  		igt_require(gem_has_contexts(fd));
+> @@ -916,8 +919,20 @@ igt_main
+>  		igt_skip_on(gen > LAST_KNOWN_GEN);
+>  
+>  		mbp = gem_engine_mmio_base_info_get(fd);
+> +		init_successful = true;
+>  	}
+>  
+> +	if (!init_successful) {
+> +		igt_exit_early();
 > +	}
 > +
-As we dont have retry for topology authentication alone and it always
-start with AKE_Init, we can rely on hdcp2_encrypted status for first
-RepeaterAuth_Send_ReceiverID_List detection.
 
-LGTM.
+NAK. All this dancing around the infrastructure just makes changing
+the infrastructure later be awkward and produce weird errors.
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
+If something in the fixture failed, with this code you never enter the
+subtest, making the test result 'notrun' instead of the correct 'skip'
+or 'fail'.
 
->  	if (seq_num_v < hdcp->seq_num_v) {
->  		/* Roll over of the seq_num_v from repeater. Reauthenticate. */
->  		DRM_DEBUG_KMS("Seq_num_v roll over.\n");
-> -- 
-> 2.24.0
-> 
+What is the problem this is trying to solve? Incorrect engine list
+used? If you have a subtest per static engine, all CI does is execute
+per static engine. Converting this test to use dynamic subtests for
+engines is the way forward.
+
+
+-- 
+Petri Latvala
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
