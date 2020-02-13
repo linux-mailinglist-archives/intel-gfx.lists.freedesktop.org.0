@@ -2,36 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5DDD15CA84
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 19:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29FE715CAAB
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 19:48:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9EC46E3E1;
-	Thu, 13 Feb 2020 18:37:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 794B86E3C1;
+	Thu, 13 Feb 2020 18:48:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5B26E3E1
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 18:37:26 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC946E3C1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 18:48:04 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 10:37:26 -0800
-X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="227328092"
-Received: from unknown (HELO localhost) ([10.252.53.8])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 10:37:24 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>
-In-Reply-To: <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200211134427.31605-1-jani.nikula@intel.com>
- <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
-Date: Thu, 13 Feb 2020 20:37:50 +0200
-Message-ID: <87wo8qwcxt.fsf@intel.com>
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 10:48:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="252369258"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 13 Feb 2020 10:48:01 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 13 Feb 2020 20:48:00 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 13 Feb 2020 20:47:54 +0200
+Message-Id: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdmi: prefer to_i915() over
- drm->dev_private to get at i915
+Subject: [Intel-gfx] [PATCH 0/6] drm/i915: Proper dbuf global state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,120 +42,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> On Tue, 11 Feb 2020, Jani Nikula wrote:
->
->> drm->dev_private is to be avoided. Use to_i915() on the struct
->> drm_device pointer instead. Rename the affected local dev_priv variables
->> to i915 while at it.
->>
->
-> Applies cleanly, and compiles.
-> Changes also look good to me.
->
-> Reviewed by: Wambui Karuga <wambui.karugax@gmail.com>
-
-The "Reviewed-by:" tag should include the hyphen.
-
-Thanks for the review, pushed to drm-intel-next-queued.
-
-BR,
-Jani.
-
-
-
->
->> Cc: Wambui Karuga <wambui.karugax@gmail.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->> drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++--------------
->> 1 file changed, 10 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index e68bafb76cb1..bee9c9b1a770 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -1274,10 +1274,9 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
->> static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
->> 				unsigned int offset, void *buffer, size_t size)
->> {
->> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
->> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
->> -	struct drm_i915_private *dev_priv =
->> -		intel_dig_port->base.base.dev->dev_private;
->> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
->> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->> 							      hdmi->ddc_bus);
->> 	int ret;
->> 	u8 start = offset & 0xff;
->> @@ -1304,10 +1303,9 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
->> static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
->> 				 unsigned int offset, void *buffer, size_t size)
->> {
->> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
->> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
->> -	struct drm_i915_private *dev_priv =
->> -		intel_dig_port->base.base.dev->dev_private;
->> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
->> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->> 							      hdmi->ddc_bus);
->> 	int ret;
->> 	u8 *write_buf;
->> @@ -1339,10 +1337,9 @@ static
->> int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
->> 				  u8 *an)
->> {
->> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
->> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
->> -	struct drm_i915_private *dev_priv =
->> -		intel_dig_port->base.base.dev->dev_private;
->> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
->> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
->> 							      hdmi->ddc_bus);
->> 	int ret;
->>
->> @@ -1521,8 +1518,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
->> static
->> bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->> {
->> -	struct drm_i915_private *dev_priv =
->> -		intel_dig_port->base.base.dev->dev_private;
->> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
->> 	struct intel_connector *connector =
->> 		intel_dig_port->hdmi.attached_connector;
->> 	enum port port = intel_dig_port->base.port;
->> @@ -1537,14 +1533,13 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->> 	if (ret)
->> 		return false;
->>
->> -	intel_de_write(dev_priv, HDCP_RPRIME(dev_priv, cpu_transcoder, port),
->> -		       ri.reg);
->> +	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
->>
->> 	/* Wait for Ri prime match */
->> -	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
->> +	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
->> 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
->> 		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
->> -			  intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
->> +			  intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)));
->> 		return false;
->> 	}
->> 	return true;
->> -- 
->> 2.20.1
->>
->>
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCklu
+dHJvZHVjZSBhIGdsb2JhbCBzdGF0ZSBvYmplY3QgZm9yIGRidWYgYW5kIHBvbGlzaCB1cApzb21l
+IHN1cnJvdW5kaW5nIHN0dWZmLgoKT25seSBsaWdodGx5IHNtb2tlIHRlc3RlZCBvbiBrYmwsIGJ1
+dCBob3BlZnVsbHkgdGhlIGljbCsKd2lsbCBqdXN0IHdvcmsgKHRtKSBhcyB3ZWxsLgoKSW1tZWRp
+YXRlIFRPRE86Ci0gUmViYXNlIG9uIHRvcCBvZiBjdXJyZW50IGRidWYgZml4ZXMgb25jZSB0aGV5
+IGxhbmQKCkZ1dHVyZSBUT0RPOgotIFJlbG9jYXRlIHRoZSB3aG9sZSB0aGluZyB0byBzb21lIG5l
+dyBmaWxlCi0gVHJ5IHRvIGZpbmFsbHkgZWxpbW5pbmF0ZSBkaXN0cnVjc3RfYmlvc193bQotIE1h
+eWJlIG90aGVyIHN0dWZmIEknbSBtaXNzaW5nPwoKQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0
+YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPgoKVmlsbGUgU3lyasOkbMOkICg2KToKICBkcm0v
+aTkxNTogSW50cm9kdWNlIHByb3BlciBkYnVmIHN0YXRlCiAgZHJtL2k5MTU6IFBvbGlzaCBzb21l
+IGRidWYgZGVidWdzCiAgZHJtL2k5MTU6IFVuaWZ5IHRoZSBsb3cgbGV2ZWwgZGJ1ZiBjb2RlCiAg
+ZHJtL2k5MTU6IE51a2Ugc2tsX2RkYl9nZXRfaHdfc3RhdGUoKQogIGRybS9pOTE1OiBNb3ZlIHRo
+ZSBkYnVmIHByZS9wb3N0IHBsYW5lIHVwZGF0ZQogIGRybS9pOTE1OiBDbGVhbiB1cCBkYnVmIGRl
+YnVncyBkdXJpbmcgLmF0b21pY19jaGVjaygpCgogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9kaXNwbGF5LmMgIHwgIDU2ICsrLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X2Rpc3BsYXlfcG93ZXIuYyAgICB8ICA4MiArKystLS0KIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfcG93ZXIuaCAgICB8ICAgNiArLQogLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheV90eXBlcy5oICAgIHwgIDEyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oICAgICAgICAgICAgICAgfCAgMTEgKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVs
+X3BtLmMgICAgICAgICAgICAgICB8IDI0NyArKysrKysrKysrKysrLS0tLS0KIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2ludGVsX3BtLmggICAgICAgICAgICAgICB8ICAyNSArLQogNyBmaWxlcyBjaGFu
+Z2VkLCAyNzMgaW5zZXJ0aW9ucygrKSwgMTY2IGRlbGV0aW9ucygtKQoKLS0gCjIuMjQuMQoKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
