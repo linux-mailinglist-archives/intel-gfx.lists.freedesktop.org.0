@@ -1,38 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F5F15CAB2
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 19:48:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4874915CADD
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 20:03:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 796836F617;
-	Thu, 13 Feb 2020 18:48:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2C696F62E;
+	Thu, 13 Feb 2020 19:03:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643556F622
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 18:48:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 10:48:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="222742756"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 13 Feb 2020 10:48:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 13 Feb 2020 20:48:18 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2DE46F62D;
+ Thu, 13 Feb 2020 19:03:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20216058-1500050 
+ for multiple; Thu, 13 Feb 2020 19:03:19 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 13 Feb 2020 20:48:00 +0200
-Message-Id: <20200213184800.14147-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
-References: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
+Date: Thu, 13 Feb 2020 19:03:16 +0000
+Message-Id: <20200213190316.3693878-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915: Clean up dbuf debugs during
- .atomic_check()
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_flush: Forgo
+ I915_EXEC_NORELOC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,62 +37,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkNv
-bWJpbmUgdGhlIHR3byBwZXItcGlwZSBkYnVmIGRlYnVncyBpbnRvIG9uZSwgYW5kIHVzZSB0aGUg
-Y2Fub25pY2FsCltDUlRDOiVkOiVzXSBzdHlsZSB0byBpZGVudGlmeSB0aGUgY3J0Yy4gQWxzbyB1
-c2UgdGhlIHNhbWUgc3R5bGUgYXMKdGhlIHBsYW5lIGNvZGUgdXNlcyBmb3IgdGhlIGRkYiBzdGFy
-dC9lbmQsIGFuZCBwcmVmaXggYml0bWFzayBwcm9wZXJseQp3aXRoIDB4IHRvIG1ha2UgaXQgY2xl
-YXIgdGhleSBhcmUgaW4gZmFjdCBiaXRtYXNrcy4KClRoZSAiaG93IG1hbnkgdG90YWwgc2xpY2Vz
-IHdlIGFyZSBnb2luZyB0byB1c2UiIGRlYnVnIHdlIG1vdmUgdG8Kb3V0c2lkZSB0aGUgY3J0YyBs
-b29wIHNvIGl0IGdldHMgcHJpbnRlZCBvbmx5IG9uY2UgYXQgdGhlIGVuZC4KCkNjOiBTdGFuaXNs
-YXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4KU2lnbmVkLW9mZi1i
-eTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIHwgMjYgKysrKysrKysrKysrKysrKysrKy0t
-LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9wbS5jCmluZGV4IDM5MzQ5ZDMwNTUzMy4uMzNmNjRlNGNlYTUxIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMKQEAgLTM5MTAsMTAgKzM5MTAsNiBAQCBza2xfZGRiX2dl
-dF9waXBlX2FsbG9jYXRpb25fbGltaXRzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diwKIAkgKi8KIAlkYnVmX3NsaWNlX21hc2sgPSBza2xfY29tcHV0ZV9kYnVmX3NsaWNlcyhjcnRj
-X3N0YXRlLCBhY3RpdmVfcGlwZXMpOwogCi0JRFJNX0RFQlVHX0tNUygiREJ1ZiBzbGljZSBtYXNr
-ICV4IHBpcGUgJWMgYWN0aXZlIHBpcGVzICV4XG4iLAotCQkgICAgICBkYnVmX3NsaWNlX21hc2ss
-Ci0JCSAgICAgIHBpcGVfbmFtZShmb3JfcGlwZSksIGFjdGl2ZV9waXBlcyk7Ci0KIAkvKgogCSAq
-IEZpZ3VyZSBvdXQgYXQgd2hpY2ggREJ1ZiBzbGljZSB3ZSBzdGFydCwgaS5lIGlmIHdlIHN0YXJ0
-IGF0IERidWYgUzIKIAkgKiBhbmQgc2xpY2Ugc2l6ZSBpcyAxMDI0LCB0aGUgb2Zmc2V0IHdvdWxk
-IGJlIDEwMjQKQEAgLTM5OTYsOCArMzk5MiwxMCBAQCBza2xfZGRiX2dldF9waXBlX2FsbG9jYXRp
-b25fbGltaXRzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAlhbGxvYy0+c3Rh
-cnQgPSBvZmZzZXQgKyBzdGFydDsKIAlhbGxvYy0+ZW5kID0gb2Zmc2V0ICsgZW5kOwogCi0JRFJN
-X0RFQlVHX0tNUygiUGlwZSAlZCBkZGIgJWQtJWRcbiIsIGZvcl9waXBlLAotCQkgICAgICBhbGxv
-Yy0+c3RhcnQsIGFsbG9jLT5lbmQpOworCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLAorCQkg
-ICAgIltDUlRDOiVkOiVzXSBkYnVmIHNsaWNlcyAweCV4LCBkZGIgKCVkIC0gJWQpLCBhY3RpdmUg
-cGlwZXMgMHgleFxuIiwKKwkJICAgIGZvcl9jcnRjLT5iYXNlLmlkLCBmb3JfY3J0Yy0+bmFtZSwK
-KwkJICAgIGRidWZfc2xpY2VfbWFzaywgYWxsb2MtPnN0YXJ0LCBhbGxvYy0+ZW5kLCBhY3RpdmVf
-cGlwZXMpOwogCiAJcmV0dXJuIDA7CiB9CkBAIC01NDc3LDcgKzU0NzUsMTAgQEAgc2tsX2RkYl9h
-ZGRfYWZmZWN0ZWRfcGxhbmVzKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpvbGRfY3J0
-Y19zdGF0ZSwKIHN0YXRpYyBpbnQKIHNrbF9jb21wdXRlX2RkYihzdHJ1Y3QgaW50ZWxfYXRvbWlj
-X3N0YXRlICpzdGF0ZSkKIHsKLQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqb2xkX2NydGNfc3Rh
-dGU7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShzdGF0ZS0+
-YmFzZS5kZXYpOworCWNvbnN0IHN0cnVjdCBpbnRlbF9kYnVmX3N0YXRlICpvbGRfZGJ1Zl9zdGF0
-ZTsKKwljb25zdCBzdHJ1Y3QgaW50ZWxfZGJ1Zl9zdGF0ZSAqbmV3X2RidWZfc3RhdGU7CisJY29u
-c3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKm9sZF9jcnRjX3N0YXRlOwogCXN0cnVjdCBpbnRl
-bF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsKIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsK
-IAlpbnQgcmV0LCBpOwpAQCAtNTQ5NCw2ICs1NDk1LDE3IEBAIHNrbF9jb21wdXRlX2RkYihzdHJ1
-Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSkKIAkJCXJldHVybiByZXQ7CiAJfQogCisJb2xk
-X2RidWZfc3RhdGUgPSBpbnRlbF9hdG9taWNfZ2V0X29sZF9kYnVmX3N0YXRlKHN0YXRlKTsKKwlu
-ZXdfZGJ1Zl9zdGF0ZSA9IGludGVsX2F0b21pY19nZXRfbmV3X2RidWZfc3RhdGUoc3RhdGUpOwor
-CisJaWYgKG5ld19kYnVmX3N0YXRlICYmCisJICAgIG5ld19kYnVmX3N0YXRlLT5lbmFibGVkX3Ns
-aWNlcyAhPSBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxlZF9zbGljZXMpCisJCWRybV9kYmdfa21zKCZk
-ZXZfcHJpdi0+ZHJtLAorCQkJICAgICJFbmFibGVkIGRidWYgc2xpY2VzIDB4JXggLT4gMHgleCAo
-b3V0IG9mICVkIGRidWYgc2xpY2VzKVxuIiwKKwkJCSAgICBvbGRfZGJ1Zl9zdGF0ZS0+ZW5hYmxl
-ZF9zbGljZXMsCisJCQkgICAgbmV3X2RidWZfc3RhdGUtPmVuYWJsZWRfc2xpY2VzLAorCQkJICAg
-IElOVEVMX0lORk8oZGV2X3ByaXYpLT5udW1fc3VwcG9ydGVkX2RidWZfc2xpY2VzKTsKKwogCXJl
-dHVybiAwOwogfQogCi0tIAoyLjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+As we do not maintain the contents of the batch buffers as we reuse and
+may move the objects between cycles, the requirements for
+I915_EXEC_NORELOC are not met. Rely on natural reloc skipping instead,
+so long as the ioctl overhead is less than the GPU, it should not have
+any impact on the incoherency detection rates.
+
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1203
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_flush.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tests/i915/gem_exec_flush.c b/tests/i915/gem_exec_flush.c
+index 9b6f2ed19..513cde364 100644
+--- a/tests/i915/gem_exec_flush.c
++++ b/tests/i915/gem_exec_flush.c
+@@ -163,7 +163,7 @@ static void run(int fd, unsigned ring, int nchild, int timeout,
+ 		memset(&execbuf, 0, sizeof(execbuf));
+ 		execbuf.buffers_ptr = to_user_pointer(obj);
+ 		execbuf.buffer_count = 3;
+-		execbuf.flags = ring | (1 << 11) | (1<<12);
++		execbuf.flags = ring | (1 << 12);
+ 		if (gen < 6)
+ 			execbuf.flags |= I915_EXEC_SECURE;
+ 
+@@ -251,7 +251,7 @@ static void run(int fd, unsigned ring, int nchild, int timeout,
+ 			i = 16 * (idx % 64) + (idx / 64);
+ 			obj[1].relocs_ptr = to_user_pointer(&reloc0[i]);
+ 			obj[2].relocs_ptr = to_user_pointer(&reloc1[i]);
+-			execbuf.batch_start_offset =  64*i;
++			execbuf.batch_start_offset = 64 * i;
+ 
+ overwrite:
+ 			if ((flags & BEFORE) &&
+@@ -396,7 +396,7 @@ static void batch(int fd, unsigned ring, int nchild, int timeout,
+ 		memset(&execbuf, 0, sizeof(execbuf));
+ 		execbuf.buffers_ptr = to_user_pointer(obj);
+ 		execbuf.buffer_count = 2;
+-		execbuf.flags = ring | (1 << 11) | (1<<12);
++		execbuf.flags = ring | (1 << 12);
+ 		if (gen < 6)
+ 			execbuf.flags |= I915_EXEC_SECURE;
+ 
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
