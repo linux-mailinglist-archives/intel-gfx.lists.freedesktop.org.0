@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD52615CA03
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 19:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DDD15CA84
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 19:37:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 691F56E391;
-	Thu, 13 Feb 2020 18:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9EC46E3E1;
+	Thu, 13 Feb 2020 18:37:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 56C8A8825B;
- Thu, 13 Feb 2020 18:10:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45CBEA011C;
- Thu, 13 Feb 2020 18:10:42 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5B26E3E1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 18:37:26 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 10:37:26 -0800
+X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="227328092"
+Received: from unknown (HELO localhost) ([10.252.53.8])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 10:37:24 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>
+In-Reply-To: <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200211134427.31605-1-jani.nikula@intel.com>
+ <alpine.LNX.2.21.99999.375.2002112047380.21042@wambui>
+Date: Thu, 13 Feb 2020 20:37:50 +0200
+Message-ID: <87wo8qwcxt.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 13 Feb 2020 18:10:42 -0000
-Message-ID: <158161744225.17962.7769476741309852637@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200213161122.3689609-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200213161122.3689609-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/gt=3A_Ensure_=27ENABLE=5FB?=
- =?utf-8?q?OOT=5FFETCH=27_is_enabled_before_ppGTT?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/hdmi: prefer to_i915() over
+ drm->dev_private to get at i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,124 +44,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 11 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> On Tue, 11 Feb 2020, Jani Nikula wrote:
+>
+>> drm->dev_private is to be avoided. Use to_i915() on the struct
+>> drm_device pointer instead. Rename the affected local dev_priv variables
+>> to i915 while at it.
+>>
+>
+> Applies cleanly, and compiles.
+> Changes also look good to me.
+>
+> Reviewed by: Wambui Karuga <wambui.karugax@gmail.com>
 
-Series: series starting with [1/2] drm/i915/gt: Ensure 'ENABLE_BOOT_FETCH' is enabled before ppGTT
-URL   : https://patchwork.freedesktop.org/series/73419/
-State : success
+The "Reviewed-by:" tag should include the hyphen.
 
-== Summary ==
+Thanks for the review, pushed to drm-intel-next-queued.
 
-CI Bug Log - changes from CI_DRM_7933 -> Patchwork_16561
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16561 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gtt:
-    - fi-cfl-8700k:       [PASS][1] -> [TIMEOUT][2] ([fdo#112271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-cfl-8700k/igt@i915_selftest@live_gtt.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-cfl-8700k/igt@i915_selftest@live_gtt.html
-
-  * igt@i915_selftest@live_hangcheck:
-    - fi-hsw-4770r:       [PASS][3] -> [INCOMPLETE][4] ([i915#857])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-hsw-4770r/igt@i915_selftest@live_hangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-hsw-4770r/igt@i915_selftest@live_hangcheck.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-n2820:       [INCOMPLETE][5] ([i915#45]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-byt-n2820/igt@gem_close_race@basic-threads.html
-
-  * igt@i915_selftest@live_active:
-    - fi-kbl-7500u:       [DMESG-FAIL][7] ([i915#666]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-kbl-7500u/igt@i915_selftest@live_active.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-kbl-7500u/igt@i915_selftest@live_active.html
-
-  * igt@i915_selftest@live_gtt:
-    - fi-bxt-dsi:         [TIMEOUT][9] ([fdo#112271]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-bxt-dsi/igt@i915_selftest@live_gtt.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [FAIL][11] ([i915#262]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-skl-6770hq:      [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-skl-6770hq/igt@prime_self_import@basic-llseek-bad.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-skl-6770hq/igt@prime_self_import@basic-llseek-bad.html
-
-  
-#### Warnings ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-byt-j1900:       [INCOMPLETE][15] ([i915#45]) -> [TIMEOUT][16] ([fdo#112271] / [i915#1084] / [i915#816])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7933/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-
-  
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
-  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
-  [i915#857]: https://gitlab.freedesktop.org/drm/intel/issues/857
+BR,
+Jani.
 
 
-Participating hosts (52 -> 45)
-------------------------------
 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+>
+>> Cc: Wambui Karuga <wambui.karugax@gmail.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>> drivers/gpu/drm/i915/display/intel_hdmi.c | 25 +++++++++--------------
+>> 1 file changed, 10 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> index e68bafb76cb1..bee9c9b1a770 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -1274,10 +1274,9 @@ void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
+>> static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
+>> 				unsigned int offset, void *buffer, size_t size)
+>> {
+>> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+>> -	struct drm_i915_private *dev_priv =
+>> -		intel_dig_port->base.base.dev->dev_private;
+>> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+>> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+>> 							      hdmi->ddc_bus);
+>> 	int ret;
+>> 	u8 start = offset & 0xff;
+>> @@ -1304,10 +1303,9 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *intel_dig_port,
+>> static int intel_hdmi_hdcp_write(struct intel_digital_port *intel_dig_port,
+>> 				 unsigned int offset, void *buffer, size_t size)
+>> {
+>> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+>> -	struct drm_i915_private *dev_priv =
+>> -		intel_dig_port->base.base.dev->dev_private;
+>> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+>> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+>> 							      hdmi->ddc_bus);
+>> 	int ret;
+>> 	u8 *write_buf;
+>> @@ -1339,10 +1337,9 @@ static
+>> int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *intel_dig_port,
+>> 				  u8 *an)
+>> {
+>> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> 	struct intel_hdmi *hdmi = &intel_dig_port->hdmi;
+>> -	struct drm_i915_private *dev_priv =
+>> -		intel_dig_port->base.base.dev->dev_private;
+>> -	struct i2c_adapter *adapter = intel_gmbus_get_adapter(dev_priv,
+>> +	struct i2c_adapter *adapter = intel_gmbus_get_adapter(i915,
+>> 							      hdmi->ddc_bus);
+>> 	int ret;
+>>
+>> @@ -1521,8 +1518,7 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *intel_dig_port,
+>> static
+>> bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> {
+>> -	struct drm_i915_private *dev_priv =
+>> -		intel_dig_port->base.base.dev->dev_private;
+>> +	struct drm_i915_private *i915 = to_i915(intel_dig_port->base.base.dev);
+>> 	struct intel_connector *connector =
+>> 		intel_dig_port->hdmi.attached_connector;
+>> 	enum port port = intel_dig_port->base.port;
+>> @@ -1537,14 +1533,13 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+>> 	if (ret)
+>> 		return false;
+>>
+>> -	intel_de_write(dev_priv, HDCP_RPRIME(dev_priv, cpu_transcoder, port),
+>> -		       ri.reg);
+>> +	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
+>>
+>> 	/* Wait for Ri prime match */
+>> -	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+>> +	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
+>> 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+>> 		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
+>> -			  intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)));
+>> +			  intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)));
+>> 		return false;
+>> 	}
+>> 	return true;
+>> -- 
+>> 2.20.1
+>>
+>>
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7933 -> Patchwork_16561
-
-  CI-20190529: 20190529
-  CI_DRM_7933: 30e316a9d8477309cc3e070d72f0dedbfc7604e9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5440: 860924b6ccbed75b66ab4b65897bb9abc91763ea @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16561: 6797ddd102fab7c8ce533f916399abfa97476e62 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6797ddd102fa drm/i915/gt: Compute PP_DIR_BASE explicitly
-9d5b208964c9 drm/i915/gt: Ensure 'ENABLE_BOOT_FETCH' is enabled before ppGTT
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16561/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
