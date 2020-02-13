@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F42615BEB8
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 13:53:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09CEA15BEBC
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 13:55:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 839CD6F5B1;
-	Thu, 13 Feb 2020 12:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62B3E6F5BB;
+	Thu, 13 Feb 2020 12:55:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B4E6F5B1
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 12:53:32 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F10006F5BB;
+ Thu, 13 Feb 2020 12:55:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 04:53:32 -0800
-X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="227223846"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 04:53:30 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200212150102.7600-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200212150102.7600-1-ville.syrjala@linux.intel.com>
-Date: Thu, 13 Feb 2020 14:53:26 +0200
-Message-ID: <87lfp6y7g9.fsf@intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 04:55:26 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,436,1574150400"; d="scan'208";a="222638645"
+Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
+ by orsmga007.jf.intel.com with ESMTP; 13 Feb 2020 04:55:24 -0800
+From: Ramalingam C <ramalingam.c@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Date: Thu, 13 Feb 2020 18:25:40 +0530
+Message-Id: <20200213125540.27293-1-ramalingam.c@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Force state->modeset=true when
- distrust_bios_wm==true
+Subject: [Intel-gfx] [PATCH v4] drm/i915: dont retry stream management at
+ seq_num_m roll over
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,63 +42,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAxMiBGZWIgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
-bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+Cj4KPiBDdXJyZW50bHkgd2hlbiB3ZSBsb2FkIHRoZSBkcml2ZXIgd2Ug
-c2V0IGRpc3RydXN0X2Jpb3Nfd209dHJ1ZSwgd2hpY2gKPiB3aWxsIGNhdXNlIGFjdGl2ZV9waXBl
-X2NoYW5nZXMgdG8gZ2V0IGZsYWdnZWQgZXZlbiB3aGVuIHdlJ3JlIG5vdAo+IHRvZ2dsaW5nIGFu
-eSBwaXBlcyBvbi9vZmYuIFRoZSByZWFzb24gYmVpbmcgdGhhdCB3ZSB3YW50IHRvIGZ1bGx5Cj4g
-cmVkaXN0cmlidXRlIHRoZSBkYnVmIGFtb25nIHRoZSBhY3RpdmUgcGlwZXMgYW5kIGlnbm9yZSB3
-aGF0ZXZlcgo+IHN0YXRlIHRoZSBmaXJtd2FyZSBsZWZ0IGJlaGluZC4KPgo+IFVuZm9ydHVuYXRl
-bHkgd2hlbiB0aGUgY29kZSBmbGFncyBhY3RpdmVfcGlwZV9jaGFuZ2VzIGl0IGRvZXNuJ3QKPiBz
-ZXQgc3RhdGUtPm1vZGVzZXQgdG8gdHJ1ZSwgd2hpY2ggbWVhbnMgdGhlIGhhcmR3YXJlIGRidWYg
-c3RhdGUKPiB3b24ndCBhY3R1YWxseSBnZXQgdXBkYXRlZC4gSGVuY2UgdGhlIGhhcmR3YXJlIGFu
-ZCBzb2Z0d2FyZQo+IHN0YXRlcyBnbyBvdXQgb2Ygc3luYywgd2hpY2ggY2FuIHJlc3VsdCBpbiBw
-bGFuZXMgdHJ5aW5nIHRvIHVzZSBhCj4gZGlzYWJsZWQgZGJ1ZiBzbGljZS4gU3VwcmlzaW5nbHkg
-dGhhdCBvbmx5IHNlZW1zIHRvIGNvcnJ1cHQgdGhlCj4gZGlzcGxheSByYXRoZXIgdGhhbiBtYWtp
-bmcgdGhlIHdob2xlIGRpc3BsYXkgZW5naW5lIGtlZWwgb3Zlci4KPgo+IExldCdzIGZpeCB0aGlz
-IGZvciBub3cgYnkgZmxhZ2dpbmcgc3RhdGUtPm1vZGVzZXQgd2hlbmV2ZXIKPiBkaXN0cnVzdF9i
-aW9zX3dtIGlzIHNldC4KPgo+IEV2ZW50dWFsbHkgd2UnbGwgbGlrZWx5IHdhbnQgdG8gcmlwIG91
-dCBhbGwgb2YgdGhpcyBtZXNzIGFuZAo+IGludHJvZHVjZSBwcm9wZXIgc3RhdHllIHRyYWNraW5n
-IGZvciBkYnVmLiBCdXQgdGhhdCByZXF1aXJlcwo+IG1vcmUgd29yay4gVG9zcyBpbiBhIEZJWE1F
-IHRvIHRoYXQgZWZmZWN0LgoKSSBoYXZlIGEgaGFyZCB0aW1lIGZvbGxvd2luZyBhbGwgdGhlIGlt
-cGxpY2F0aW9ucyBvZiB0aGlzIGNoYW5nZS4gV291bGQKdGhpcyB1bmRlciBzb21lIGNpcmN1bXN0
-YW5jZXMgbGVhZCB0byBhIGNhc2Ugd2hlcmUgd2UgdXNlIHRoZSBzdGF0ZSByZWFkCmF0IHByb2Jl
-LCBhbmQgZG8gYSBmdWxsIG1vZGVzZXQgb24gdGhhdCBzdGF0ZT8KCkRTQywgbGFja2luZyBmdWxs
-IHN0YXRlIHJlYWRvdXQsIGZhaWxzIGJhZGx5IHdpdGggdGhpcyBjaGFuZ2UgWzFdLiBXZSdsbApk
-byBEU0MgZW5hYmxlIHVzaW5nIGEgbW9zdGx5IHplcm9lZCBvdXQgRFNDIGNvbmZpZyBpbiBzdGF0
-ZS4gTGVhZGluZyB0bwpkaXZpc2lvbiBieSB6ZXJvLgoKQlIsCkphbmkuCgoKWzFdIGh0dHBzOi8v
-aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE2NTQ0L2ZpLXRnbC1k
-c2kvYm9vdDAudHh0Cgo+Cj4gQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNv
-dnNraXlAaW50ZWwuY29tPgo+IEZpeGVzOiBmZjJjZDg2MzVlNDEgKCJkcm0vaTkxNTogQ29ycmVj
-dGx5IG1hcCBEQlVGIHNsaWNlcyB0byBwaXBlcyIpCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3ly
-asOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAxNCArKysrKysrKysrKysrKwo+
-ICAxIGZpbGUgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiBpbmRleCA2MWJhMWYyMjU2YTAuLjllNGY5
-OWFlODFmYiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXkuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jCj4gQEAgLTE1MDI3LDYgKzE1MDI3LDIwIEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWlj
-X2NoZWNrKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gIAlpZiAobmV3X2NkY2xrX3N0YXRlICYm
-IG5ld19jZGNsa19zdGF0ZS0+Zm9yY2VfbWluX2NkY2xrX2NoYW5nZWQpCj4gIAkJYW55X21zID0g
-dHJ1ZTsKPiAgCj4gKwkvKgo+ICsJICogZGlzdHJ1c3RfYmlvc193bSB3aWxsIGZvcmNlIGEgZnVs
-bCBkYnVmIHJlY29tcHV0YXRpb24KPiArCSAqIGJ1dCB0aGUgaGFyZHdhcmUgc3RhdGUgd2lsbCBv
-bmx5IGdldCB1cGRhdGVkIGFjY29yZGluZ2x5Cj4gKwkgKiBpZiBzdGF0ZS0+bW9kZXNldD09dHJ1
-ZS4gSGVuY2UgZGlzdHJ1c3RfYmlvc193bT09dHJ1ZSAmJgo+ICsJICogc3RhdGUtPm1vZGVzZXQ9
-PWZhbHNlIGlzIGFuIGludmFsaWQgY29tYmluYXRpb24gd2hpY2gKPiArCSAqIHdvdWxkIGNhdXNl
-IHRoZSBoYXJkd2FyZSBhbmQgc29mdHdhcmUgZGJ1ZiBzdGF0ZSB0byBnZXQKPiArCSAqIG91dCBv
-ZiBzeW5jLiBXZSBtdXN0IHByZXZlbnQgdGhhdC4KPiArCSAqCj4gKwkgKiBGSVhNRSBjbGVhbiB1
-cCB0aGlzIG1lc3MgYW5kIGludHJvZHVjZSBiZXR0ZXIKPiArCSAqIHN0YXRlIHRyYWNraW5nIGZv
-ciBkYnVmLgo+ICsJICovCj4gKwlpZiAoZGV2X3ByaXYtPndtLmRpc3RydXN0X2Jpb3Nfd20pCj4g
-KwkJYW55X21zID0gdHJ1ZTsKPiArCj4gIAlpZiAoYW55X21zKSB7Cj4gIAkJcmV0ID0gaW50ZWxf
-bW9kZXNldF9jaGVja3Moc3RhdGUpOwo+ICAJCWlmIChyZXQpCgotLSAKSmFuaSBOaWt1bGEsIElu
-dGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+When roll over detected for seq_num_m, we shouldn't continue with stream
+management with rolled over value.
+
+So we are terminating the stream management retry, on roll over of the
+seq_num_m.
+
+v2:
+  using drm_dbg_kms instead of DRM_DEBUG_KMS [Anshuman]
+v3:
+  dev_priv is used as i915 [JaniN]
+v4:
+  roll over of seq_num_m detected at the start of stream management.
+
+Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index b24d12efae0a..f4b1dd1e62e7 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -1391,6 +1391,13 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 	const struct intel_hdcp_shim *shim = hdcp->shim;
+ 	int ret;
+ 
++	/*
++	 * seq_num_m roll over is possible only when dynamic update of
++	 * content type is supported. But implementing as per the spec.
++	 */
++	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
++		return -1;
++
+ 	/* Prepare RepeaterAuth_Stream_Manage msg */
+ 	msgs.stream_manage.msg_id = HDCP_2_2_REP_STREAM_MANAGE;
+ 	drm_hdcp_cpu_to_be24(msgs.stream_manage.seq_num_m, hdcp->seq_num_m);
+@@ -1419,11 +1426,6 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 
+ err_exit:
+ 	hdcp->seq_num_m++;
+-	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
+-		DRM_DEBUG_KMS("seq_num_m roll over.\n");
+-		ret = -1;
+-	}
+-
+ 	return ret;
+ }
+ 
+@@ -1618,8 +1620,11 @@ hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 
+ 	for (i = 0; i < tries; i++) {
+ 		ret = _hdcp2_propagate_stream_management_info(connector);
+-		if (!ret)
++		if (!ret || connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
++			if (connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
++				drm_dbg_kms(&i915->drm, "seq_num_m roll over.\n");
+ 			break;
++		}
+ 
+ 		drm_dbg_kms(&i915->drm,
+ 			    "HDCP2 stream management %d of %d Failed.(%d)\n",
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
