@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E92CF15CEB8
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:42:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81ED815CEC1
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 00:44:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF2776F89A;
-	Thu, 13 Feb 2020 23:42:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD8616E42C;
+	Thu, 13 Feb 2020 23:44:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B09076F89A
- for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:42:44 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C4B76E42C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 13 Feb 2020 23:44:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2020 15:42:43 -0800
-X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227415651"
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 15:44:01 -0800
+X-IronPort-AV: E=Sophos;i="5.70,438,1574150400"; d="scan'208";a="227415910"
 Received: from johnharr-mobl3.ger.corp.intel.com (HELO [10.254.179.240])
  ([10.254.179.240])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 13 Feb 2020 15:42:43 -0800
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
+ 13 Feb 2020 15:44:01 -0800
+To: intel-gfx@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 References: <20200212003124.33844-1-daniele.ceraolospurio@intel.com>
- <20200212003124.33844-8-daniele.ceraolospurio@intel.com>
+ <20200212003124.33844-10-daniele.ceraolospurio@intel.com>
 From: John Harrison <John.C.Harrison@Intel.com>
-Message-ID: <15b855d9-8c6e-1bff-4f87-a414aacb10ce@Intel.com>
-Date: Thu, 13 Feb 2020 15:42:42 -0800
+Message-ID: <856d97da-3f5c-f276-8ac0-3d84ee3f6d5c@Intel.com>
+Date: Thu, 13 Feb 2020 15:44:00 -0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.2
 MIME-Version: 1.0
-In-Reply-To: <20200212003124.33844-8-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20200212003124.33844-10-daniele.ceraolospurio@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v3 07/10] drm/i915/guc: Apply new uC status
- tracking to GuC submission as well
+Subject: Re: [Intel-gfx] [PATCH v3 09/10] drm/i915/uc: consolidate firmware
+ cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,27 +54,41 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 2/11/2020 16:31, Daniele Ceraolo Spurio wrote:
-> To be able to differentiate the before and after of our commitment to
-> GuC submission, which will be used in follow-up patches to early set-up
-> the submission structures.
+> We are quite trigger happy in cleaning up the firmware blobs, as we do
+> so from several error/fini paths in GuC/HuC/uC code. We do have the
+> __uc_cleanup_firmwares cleanup function, which unwinds
+> __uc_fetch_firmwares and is already called both from the error path of
+> gem_init and from gem_driver_release, so let's stop cleaning up from
+> all the other paths.
 >
-> v2: move functions to guc_submission.h (Michal)
+> The fact that we're not cleaning the firmware immediately means that
+> we can't consider firmware availability as an indication of
+> initialization success. A "READY_TO_LOAD" status has been added to
+Is it not worth updating the commit message to use the name that is 
+actually in the code now?
+
+Otherwise:
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+> indicate that the initialization was successful, to be used to
+> selectively load HuC only if HuC init has completed (HuC init failure
+> is not considered a fatal error).
+>
+> v2: s/ready_to_load/loadable (Michal), only run guc/huc_fini if the
+>      fw is in loadable state
 >
 > Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com> #v1
 > ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c        | 12 ++++----
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  7 +----
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  9 ++----
->   .../gpu/drm/i915/gt/uc/intel_guc_submission.h | 19 +++++++++++-
->   drivers/gpu/drm/i915/gt/uc/intel_uc.c         | 14 ++++-----
->   drivers/gpu/drm/i915/gt/uc/intel_uc.h         | 30 +++++++------------
->   drivers/gpu/drm/i915/gvt/scheduler.c          |  2 +-
->   drivers/gpu/drm/i915/i915_drv.h               |  6 ----
->   drivers/gpu/drm/i915/intel_gvt.c              |  2 +-
->   9 files changed, 48 insertions(+), 53 deletions(-)
-
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.c   | 12 +++++-------
+>   drivers/gpu/drm/i915/gt/uc/intel_huc.c   |  5 +++--
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c    |  2 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c |  7 +++++--
+>   drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h | 18 +++++++++++++++---
+>   5 files changed, 29 insertions(+), 15 deletions(-)
+>
 
 _______________________________________________
 Intel-gfx mailing list
