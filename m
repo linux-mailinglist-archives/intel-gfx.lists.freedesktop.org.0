@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A61C15C056
-	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 15:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE24F15C075
+	for <lists+intel-gfx@lfdr.de>; Thu, 13 Feb 2020 15:37:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 866A06E30E;
-	Thu, 13 Feb 2020 14:30:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D93D6F5F0;
+	Thu, 13 Feb 2020 14:37:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0B9066E30E;
- Thu, 13 Feb 2020 14:30:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D8680A011A;
- Thu, 13 Feb 2020 14:30:13 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40CA46F5EE;
+ Thu, 13 Feb 2020 14:37:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 06:37:21 -0800
+X-IronPort-AV: E=Sophos;i="5.70,437,1574150400"; d="scan'208";a="227248670"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2020 06:37:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>, Nathan Chancellor
+ <natechancellor@gmail.com>
+In-Reply-To: <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200211050808.29463-1-natechancellor@gmail.com>
+ <20200211061338.23666-1-natechancellor@gmail.com>
+ <4c806435-f32d-1559-9563-ffe3fa69f0d1@daenzer.net>
+ <20200211203935.GA16176@ubuntu-m2-xlarge-x86>
+ <f3a6346b-2abf-0b6a-3d84-66e12f700b2b@daenzer.net>
+ <20200212170734.GA16396@ubuntu-m2-xlarge-x86>
+ <d81a2cfe-79b6-51d4-023e-0960c0593856@daenzer.net>
+Date: Thu, 13 Feb 2020 16:37:15 +0200
+Message-ID: <877e0qy2n8.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aditya Swarup" <aditya.swarup@intel.com>
-Date: Thu, 13 Feb 2020 14:30:13 -0000
-Message-ID: <158160421386.17961.4407865512911104576@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200213092239.30015-1-aditya.swarup@intel.com>
-In-Reply-To: <20200213092239.30015-1-aditya.swarup@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?ing_definitions_for_VRR_registers_and_bitfields?=
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Disable
+ -Wtautological-constant-out-of-range-compare
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,95 +50,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: clang-built-linux@googlegroups.com, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Adding definitions for VRR registers and bitfields
-URL   : https://patchwork.freedesktop.org/series/73398/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7932 -> Patchwork_16553
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16553/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16553 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16553/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([CI#80] / [i915#424])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16553/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@i915_selftest@live_hangcheck:
-    - fi-icl-u3:          [PASS][5] -> [INCOMPLETE][6] ([fdo#108569])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7932/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16553/fi-icl-u3/igt@i915_selftest@live_hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Additional (8): fi-hsw-peppy fi-skl-6770hq fi-bwr-2160 fi-gdg-551 fi-skl-lmem fi-kbl-r fi-skl-6600u fi-snb-2600 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7932 -> Patchwork_16553
-
-  CI-20190529: 20190529
-  CI_DRM_7932: da6301c2a1bda78897e67fb22e011c1574b7c6a2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5439: ed1f7d96d4d5d4565bcd3adb3a23b2002a25419e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16553: 3fa32ca9af63eb5f8cfb73568b96839c15c39ef2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3fa32ca9af63 drm/i915/tgl: Add definitions for VRR registers and bits
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16553/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxMiBGZWIgMjAyMCwgTWljaGVsIETDpG56ZXIgPG1pY2hlbEBkYWVuemVyLm5ldD4g
+d3JvdGU6Cj4gT24gMjAyMC0wMi0xMiA2OjA3IHAubS4sIE5hdGhhbiBDaGFuY2VsbG9yIHdyb3Rl
+Ogo+PiBPbiBXZWQsIEZlYiAxMiwgMjAyMCBhdCAwOTo1Mjo1MkFNICswMTAwLCBNaWNoZWwgRMOk
+bnplciB3cm90ZToKPj4+IE9uIDIwMjAtMDItMTEgOTozOSBwLm0uLCBOYXRoYW4gQ2hhbmNlbGxv
+ciB3cm90ZToKPj4+PiBPbiBUdWUsIEZlYiAxMSwgMjAyMCBhdCAxMDo0MTo0OEFNICswMTAwLCBN
+aWNoZWwgRMOkbnplciB3cm90ZToKPj4+Pj4gT24gMjAyMC0wMi0xMSA3OjEzIGEubS4sIE5hdGhh
+biBDaGFuY2VsbG9yIHdyb3RlOgo+Pj4+Pj4gQSByZWNlbnQgY29tbWl0IGluIGNsYW5nIGFkZGVk
+IC1XdGF1dG9sb2dpY2FsLWNvbXBhcmUgdG8gLVdhbGwsIHdoaWNoIGlzCj4+Pj4+PiBlbmFibGVk
+IGZvciBpOTE1IHNvIHdlIHNlZSB0aGUgZm9sbG93aW5nIHdhcm5pbmc6Cj4+Pj4+Pgo+Pj4+Pj4g
+Li4vZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2V4ZWNidWZmZXIuYzoxNDg1OjIy
+OiB3YXJuaW5nOgo+Pj4+Pj4gcmVzdWx0IG9mIGNvbXBhcmlzb24gb2YgY29uc3RhbnQgNTc2NDYw
+NzUyMzAzNDIzNDg3IHdpdGggZXhwcmVzc2lvbiBvZgo+Pj4+Pj4gdHlwZSAndW5zaWduZWQgaW50
+JyBpcyBhbHdheXMgZmFsc2UKPj4+Pj4+IFstV3RhdXRvbG9naWNhbC1jb25zdGFudC1vdXQtb2Yt
+cmFuZ2UtY29tcGFyZV0KPj4+Pj4+ICAgICAgICAgaWYgKHVubGlrZWx5KHJlbWFpbiA+IE5fUkVM
+T0MoVUxPTkdfTUFYKSkpCj4+Pj4+PiAgICAgICAgICAgICB+fn5+fn5+fn5+fn5+fn5+Xn5+fn5+
+fn5+fn5+fn5+fn5+fn5+Cj4+Pj4+Pgo+Pj4+Pj4gVGhpcyB3YXJuaW5nIG9ubHkgaGFwcGVucyBv
+biB4ODZfNjQgYnV0IHRoYXQgY2hlY2sgaXMgcmVsZXZhbnQgZm9yCj4+Pj4+PiAzMi1iaXQgeDg2
+IHNvIHdlIGNhbm5vdCByZW1vdmUgaXQuCj4+Pj4+Cj4+Pj4+IFRoYXQncyBzdXByaXNpbmcuIEFG
+QUlDVCBOX1JFTE9DKFVMT05HX01BWCkgd29ya3Mgb3V0IHRvIHRoZSBzYW1lIHZhbHVlCj4+Pj4+
+IGluIGJvdGggY2FzZXMsIGFuZCByZW1haW4gaXMgYSAzMi1iaXQgdmFsdWUgaW4gYm90aCBjYXNl
+cy4gSG93IGNhbiBpdCBiZQo+Pj4+PiBsYXJnZXIgdGhhbiBOX1JFTE9DKFVMT05HX01BWCkgb24g
+MzItYml0IChidXQgbm90IG9uIDY0LWJpdCk/Cj4+Pj4+Cj4+Pj4KPj4+PiBIaSBNaWNoZWwsCj4+
+Pj4KPj4+PiBDYW4ndCB0aGlzIGNvbmRpdGlvbiBiZSB0cnVlIHdoZW4gVUlOVF9NQVggPT0gVUxP
+TkdfTUFYPwo+Pj4KPj4+IE9oLCByaWdodCwgSSB0aGluayBJIHdhcyB3cm9uZ2x5IHRoaW5raW5n
+IGxvbmcgaGFkIDY0IGJpdHMgZXZlbiBvbiAzMi1iaXQuCj4+Pgo+Pj4KPj4+IEFueXdheSwgdGhp
+cyBzdWdnZXN0cyBhIHBvc3NpYmxlIGJldHRlciBzb2x1dGlvbjoKPj4+Cj4+PiAjaWYgVUlOVF9N
+QVggPT0gVUxPTkdfTUFYCj4+PiAJaWYgKHVubGlrZWx5KHJlbWFpbiA+IE5fUkVMT0MoVUxPTkdf
+TUFYKSkpCj4+PiAJCXJldHVybiAtRUlOVkFMOwo+Pj4gI2VuZGlmCj4+Pgo+Pj4KPj4+IE9yIGlm
+IHRoYXQgY2FuJ3QgYmUgdXNlZCBmb3Igc29tZSByZWFzb24sIHNvbWV0aGluZyBsaWtlCj4+Pgo+
+Pj4gCWlmICh1bmxpa2VseSgodW5zaWduZWQgbG9uZylyZW1haW4gPiBOX1JFTE9DKFVMT05HX01B
+WCkpKQo+Pj4gCQlyZXR1cm4gLUVJTlZBTDsKPj4+Cj4+PiBzaG91bGQgc2lsZW5jZSB0aGUgd2Fy
+bmluZy4KPj4gCj4+IEkgZG8gbGlrZSB0aGlzIG9uZSBiZXR0ZXIgdGhhbiB0aGUgZm9ybWVyLgo+
+Cj4gRldJVywgb25lIGRvd25zaWRlIG9mIHRoaXMgb25lIGNvbXBhcmVkIHRvIGFsbCBhbHRlcm5h
+dGl2ZXMgKHByZXN1bWFibHkpCj4gaXMgdGhhdCBpdCBtaWdodCBlbmQgdXAgZ2VuZXJhdGluZyBh
+Y3R1YWwgY29kZSBldmVuIG9uIDY0LWJpdCwgd2hpY2gKPiBhbHdheXMgZW5kcyB1cCBza2lwcGlu
+ZyB0aGUgcmV0dXJuLgoKSSBsaWtlIHRoaXMgYmV0dGVyIHRoYW4gdGhlIFVJTlRfTUFYID09IFVM
+T05HX01BWCBjb21wYXJpc29uIGJlY2F1c2UKdGhhdCBjcmVhdGVzIGEgZGVwZW5kZW5jeSBvbiB0
+aGUgdHlwZSBvZiByZW1haW4uCgpUaGVuIGFnYWluLCBhIHN1ZmZpY2llbnRseSBjbGV2ZXIgY29t
+cGlsZXIgY291bGQgc2VlIHRocm91Z2ggdGhlIGNhc3QsCmFuZCBmbGFnIHRoZSB3YXJuaW5nIGFu
+eXdheS4uLgoKQlIsCkphbmkuCgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdy
+YXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
+cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
+ZngK
