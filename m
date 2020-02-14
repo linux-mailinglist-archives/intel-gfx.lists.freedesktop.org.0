@@ -2,37 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8921015F8AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 22:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3137F15F8B1
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 22:24:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7346E87E;
-	Fri, 14 Feb 2020 21:22:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893066E888;
+	Fri, 14 Feb 2020 21:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67EDA6E87E;
- Fri, 14 Feb 2020 21:22:39 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 13:22:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,441,1574150400"; d="scan'208";a="381563782"
-Received: from relo-linux-2.fm.intel.com (HELO [10.1.27.125]) ([10.1.27.125])
- by orsmga004.jf.intel.com with ESMTP; 14 Feb 2020 13:22:38 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200214194016.4054376-1-chris@chris-wilson.co.uk>
-From: Antonio Argenziano <antonio.argenziano@intel.com>
-Message-ID: <098b8231-8e53-7f72-cfb8-13221339e211@intel.com>
-Date: Fri, 14 Feb 2020 13:22:38 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.6.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1E93E6E87F;
+ Fri, 14 Feb 2020 21:24:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 18134A47EB;
+ Fri, 14 Feb 2020 21:24:04 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200214194016.4054376-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t 1/4] i915/gem_ctx_engines:
- Exercise 0 engines[]
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai-Heng Feng" <kai.heng.feng@canonical.com>
+Date: Fri, 14 Feb 2020 21:24:04 -0000
+Message-ID: <158171544409.9931.12264267672769627750@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200214175646.25532-1-kai.heng.feng@canonical.com>
+In-Reply-To: <20200214175646.25532-1-kai.heng.feng@canonical.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Init_lspcon_after_HPD_in_intel=5Fdp=5Fdetect=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,90 +38,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915: Init lspcon after HPD in intel_dp_detect()
+URL   : https://patchwork.freedesktop.org/series/73480/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7942 -> Patchwork_16576
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16576/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16576 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][1] ([i915#694]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7942/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16576/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [TIMEOUT][3] ([fdo#112271] / [i915#1084]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7942/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16576/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][5] ([i915#424]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7942/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16576/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
 
 
-On 14/02/20 11:40, Chris Wilson wrote:
-> Setup a context with no engines, and make sure we reject all execution
-> attempts.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Participating hosts (47 -> 41)
+------------------------------
 
-Reviewed-by: Antonio Argenziano <antonio.argenziano@intel.com>
+  Additional (4): fi-bsw-kefka fi-blb-e6850 fi-cfl-8109u fi-ilk-650 
+  Missing    (10): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-icl-u3 fi-skl-lmem fi-bdw-samus 
 
-> ---
->   tests/i915/gem_ctx_engines.c | 45 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 45 insertions(+)
-> 
-> diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
-> index cb82f08ef..063140e0f 100644
-> --- a/tests/i915/gem_ctx_engines.c
-> +++ b/tests/i915/gem_ctx_engines.c
-> @@ -242,6 +242,48 @@ static void idempotent(int i915)
->   	gem_context_destroy(i915, p.ctx_id);
->   }
->   
-> +static uint32_t batch_create(int i915)
-> +{
-> +	const uint32_t bbe = MI_BATCH_BUFFER_END;
-> +	uint32_t handle = gem_create(i915, 4096);
-> +
-> +	gem_write(i915, handle, 0, &bbe, sizeof(bbe));
-> +	return handle;
-> +}
-> +
-> +static void none(int i915)
-> +{
-> +	struct i915_context_param_engines engines = {};
-> +	struct drm_i915_gem_context_param p = {
-> +		.ctx_id = gem_context_create(i915),
-> +		.param = I915_CONTEXT_PARAM_ENGINES,
-> +		.value = to_user_pointer(&engines),
-> +		.size = sizeof(engines),
-> +	};
-> +
-> +	gem_context_set_param(i915, &p);
-> +
-> +	{
-> +		struct drm_i915_gem_exec_object2 obj = {
-> +			.handle = batch_create(i915),
-> +		};
-> +		struct drm_i915_gem_execbuffer2 execbuf = {
-> +			.buffers_ptr = to_user_pointer(&obj),
-> +			.buffer_count = 1,
-> +			.rsvd1 = p.ctx_id,
-> +		};
-> +
-> +		for (execbuf.flags = 0;
-> +		     execbuf.flags <= I915_EXEC_RING_MASK;
-> +		     execbuf.flags++)
-> +			igt_assert_eq(__gem_execbuf(i915, &execbuf), -EINVAL);
-> +
-> +		gem_close(i915, obj.handle);
-> +	}
-> +
-> +	gem_context_destroy(i915, p.ctx_id);
-> +}
-> +
->   static void execute_one(int i915)
->   {
->   	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines , I915_EXEC_RING_MASK + 1);
-> @@ -527,6 +569,9 @@ igt_main
->   	igt_subtest("idempotent")
->   		idempotent(i915);
->   
-> +	igt_subtest("none")
-> +		none(i915);
-> +
->   	igt_subtest("execute-one")
->   		execute_one(i915);
->   
-> 
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7942 -> Patchwork_16576
+
+  CI-20190529: 20190529
+  CI_DRM_7942: f4805f5a516d0a107438ff0f236c9f4187434819 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5442: 3f6080996885b997685f08ecb8b416b2dc485290 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16576: b2ae75309a73a42403618e73da934af0caf97eec @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b2ae75309a73 drm/i915: Init lspcon after HPD in intel_dp_detect()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16576/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
