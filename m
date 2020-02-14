@@ -2,40 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82D315D962
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21E9815D968
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:27:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1A16E7EF;
-	Fri, 14 Feb 2020 14:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 308B76F94A;
+	Fri, 14 Feb 2020 14:27:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 838296E7EF
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 14:25:27 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61BD96F94A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 14:27:40 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 06:25:27 -0800
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="227611426"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 06:25:23 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Sarvela\, Tomi P" <tomi.p.sarvela@intel.com>, "Hiler\,
- Arkadiusz" <arkadiusz.hiler@intel.com>, "Lisovskiy\,
- Stanislav" <stanislav.lisovskiy@intel.com>
-In-Reply-To: <2b9ee5f16d86408f947eb59383c1960d@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200205082959.31317-1-jani.nikula@intel.com>
- <87imke1xvt.fsf@intel.com>
- <a8c9aee482db2d51630094ea07d7821b27a8d567.camel@intel.com>
- <20200210160009.qazm6krixf7nhtca@ahiler-desk1.fi.intel.com>
- <87mu9l62nh.fsf@intel.com> <2b9ee5f16d86408f947eb59383c1960d@intel.com>
-Date: Fri, 14 Feb 2020 16:25:20 +0200
-Message-ID: <87a75lw8j3.fsf@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 06:27:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="381452092"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga004.jf.intel.com with ESMTP; 14 Feb 2020 06:27:39 -0800
+Received: from fmsmsx120.amr.corp.intel.com (10.18.124.208) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 14 Feb 2020 06:27:39 -0800
+Received: from bgsmsx105.gar.corp.intel.com (10.223.43.197) by
+ fmsmsx120.amr.corp.intel.com (10.18.124.208) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 14 Feb 2020 06:27:38 -0800
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.161]) by
+ BGSMSX105.gar.corp.intel.com ([169.254.3.119]) with mapi id 14.03.0439.000;
+ Fri, 14 Feb 2020 19:57:35 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "Kadiyala, Kishore" <kishore.kadiyala@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
+Thread-Index: AQHV4yT5qm3VIsuOK0KfxwDIODJ5JagaTayAgABw2cA=
+Date: Fri, 14 Feb 2020 14:27:35 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F823E797C@BGSMSX104.gar.corp.intel.com>
+References: <20200214105316.16076-1-kishore.kadiyala@intel.com>
+ <20200214131009.GI13686@intel.com>
+In-Reply-To: <20200214131009.GI13686@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiODA5NTIwYzQtNGZjZi00MmM4LWIwZGUtOGE3M2MxYzY0MDg3IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoidmhiZTlYZE1ubSt2Q1wvV1wveGd6NmYwaHZ0MjlhVUlrMTFnQ0ZDXC9pVU8xU0UzQWVGN1J5cFBiZmx2cWtRWENIWiJ9
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: fix pipe and vblank enable
+Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,82 +64,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Peres,
- Martin" <martin.peres@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 14 Feb 2020, "Sarvela, Tomi P" <tomi.p.sarvela@intel.com> wrote:
->> From: Jani Nikula <jani.nikula@intel.com>
->> 
->> On Mon, 10 Feb 2020, Arkadiusz Hiler <arkadiusz.hiler@intel.com> wrote:
->> > As of the 3 days worth of queued shards:
->> >
->> > I agree that this is unacceptable, but we can do only so much from the
->> > CI/infra side. The time has been creeping up steadily over the last year
->> > or so and the machines are not getting any faster.
->> 
->> I am *not* trying to say that it's all your fault and you need to
->> provide all results faster for the ever-increasing firehose of incoming
->> patches.
->> 
->> I'd like to pose the question, what would all this look like if we made
->> it a hard requirement that we need a go/no-go decision on every patch
->> series within 24 hours? I emphasize that I don't mean full results in 24
->> hours. Given all the other constraints, how could we provide as much
->> useful information as possible within 24 hours to make a decision?
->> 
->> In another thread I said, we've shifted a bit from review being the
->> bottle neck to shard runs being the bottle neck. It's still much more
->> likely that a patch will change due to review feedback instead of shard
->> run results. Half a dozen rounds of review ping pong directly leads to
->> half a dozen rounds of mostly unnecessary testing. I would not outright
->> dismiss only running full igt on reviewed/acked patches.
->
-> This is actually a good idea. In practice, the shards are swamped by the
-> amount of builds today, and the throughput has been close to 1/h a long
-> time, even with work ongoing to prune or tighten stupidest IGT tests.
->
-> We could make the shard run requirements stricter: in addition to passing
-> BAT it would need some amount of Acks. Patchwork already collects them.
-
-Of course, patchwork isn't accurate in picking acks/reviews, but I don't
-think it has to be. Err on the side of testing, and provide a way to
-start shard runs manually, also because sometimes you do want the
-results ASAP on v1. (On that note, would be nice if people could
-*remove* their patch series from the shard queueu too.)
-
-> Another idea has been moving the serialized shard run queue to something
-> that can handle reordering: trybots can be moved after everything else. This
-> doesn't affect to the shard queue length though, if we still want to test
-> everything.
-
-Next we'll be figuring out a fair scheduler that does not starve the
-trybot queue. ;)
-
->> Additionally, there are smaller optimizations to be made (obviously all
->> depending on developer bandwidth to implement this stuff), such as
->> identifying patches that don't change the resulting binary
->> (comment/documentation/whitespace changes), and only running build
->> testing on them.
->
-> This idea has been floating around, and would help in 5% changes or so
-> (which is still noticeable: 1-2 more builds / day tested instead of queued).
->
-> Just need a good diff checker that says "text changes only, skip it".
-
-It's probably not as trivial as it initially sounds, but gut feeling
-says that it's also not a problem that nobody has tried to solve before.
 
 
-BR,
-Jani.
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Friday, February 14, 2020 6:40 PM
+> To: Kadiyala, Kishore <kishore.kadiyala@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2=
+020
+> =
 
+> On Fri, Feb 14, 2020 at 04:23:16PM +0530, Kishore Kadiyala wrote:
+> > Currently the plane property doesn't have support for YCBCR_BT2020,
+> > which enables the corresponding color conversion mode on plane CSC.
+> >
+> > Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
+> > Cc: Uma Shankar <uma.shankar@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > index 7abeefe8dce5..5169a7260d7c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > @@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_private
+> *dev_priv,
+> >  	struct intel_plane *plane;
+> >  	enum drm_plane_type plane_type;
+> >  	unsigned int supported_rotations;
+> > +	unsigned int supported_csc;
+> >  	unsigned int possible_crtcs;
+> >  	const u64 *modifiers;
+> >  	const u32 *formats;
+> > @@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct drm_i915_priva=
+te
+> *dev_priv,
+> >  					   DRM_MODE_ROTATE_0,
+> >  					   supported_rotations);
+> >
+> > +	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) |
+> > +BIT(DRM_COLOR_YCBCR_BT709);
+> > +
+> > +	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
+> > +		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
+> =
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> Missing the actual code to enable it on glk and icl+ sdr planes, so this =
+will not work.
+
+Yeah this need to be handled for Non HDR planes.
+
+> IIRC there was also some kind of hw fail related to some BT.something con=
+versions.
+> But I can't remember if that was in the RGB->RGB or
+> YUV->RGB logic.
+
+Will try to check this out. What kind of fails Ville, was it not all workin=
+g or artifacts ?
+ =
+
+> Also clearly commit 27ee72477c9b ("drm/i915/icl: Handle YCbCr to RGB conv=
+ersion
+> for BT2020 case") was never actually tested :(
+
+Yeah, this seem to miss the BT2020 export from driver. IGT has the stuff to=
+ test this.
+Will work with Kishore to fix this.
+
+Regards,
+Uma Shankar
+> =
+
+> > +
+> >  	drm_plane_create_color_properties(&plane->base,
+> > -					  BIT(DRM_COLOR_YCBCR_BT601) |
+> > -					  BIT(DRM_COLOR_YCBCR_BT709),
+> > +					  supported_csc,
+> >
+> BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+> >  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+> >  					  DRM_COLOR_YCBCR_BT709,
+> > --
+> > 2.17.1
+> >
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
