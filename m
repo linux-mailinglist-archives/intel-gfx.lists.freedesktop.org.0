@@ -2,35 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82F615D682
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 12:26:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EAAA15D6A8
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 12:40:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2983A6F8F8;
-	Fri, 14 Feb 2020 11:26:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C986E5BE;
+	Fri, 14 Feb 2020 11:40:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 717E56F8F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 11:26:01 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C07F46E5BE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 11:40:08 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 03:26:00 -0800
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="406969607"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 03:25:59 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Kishore Kadiyala <kishore.kadiyala@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200214105316.16076-1-kishore.kadiyala@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200214105316.16076-1-kishore.kadiyala@intel.com>
-Date: Fri, 14 Feb 2020 13:25:56 +0200
-Message-ID: <87tv3twgu3.fsf@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 03:40:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="227576849"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by orsmga008.jf.intel.com with ESMTP; 14 Feb 2020 03:40:07 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Feb 2020 03:41:24 -0800
+Message-Id: <20200214114126.13192-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
+Subject: [Intel-gfx] [CI v3 1/3] drm/i915: Introduce
+ encoder->compute_config_late()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,64 +41,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kishore Kadiyala <kishore.kadiyala@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 14 Feb 2020, Kishore Kadiyala <kishore.kadiyala@intel.com> wrote:
-> Currently the plane property doesn't have support for YCBCR_BT2020,
-> which enables the corresponding color conversion mode on plane CSC.
-
-Please prefix your patch subjects properly. "drm/i915: " at a minimum
-for stuff touching i915.
-
-No need to resend for this, but for future reference.
-
-BR,
-Jani.
-
-
->
-> Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-> index 7abeefe8dce5..5169a7260d7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
->  	unsigned int supported_rotations;
-> +	unsigned int supported_csc;
->  	unsigned int possible_crtcs;
->  	const u64 *modifiers;
->  	const u32 *formats;
-> @@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  					   DRM_MODE_ROTATE_0,
->  					   supported_rotations);
->  
-> +	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
-> +
-> +	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> +		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-> +
->  	drm_plane_create_color_properties(&plane->base,
-> -					  BIT(DRM_COLOR_YCBCR_BT601) |
-> -					  BIT(DRM_COLOR_YCBCR_BT709),
-> +					  supported_csc,
->  					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
->  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
->  					  DRM_COLOR_YCBCR_BT709,
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkFk
+ZCBhbiBvcHRpb25hbCBzZWNvbmRhcnkgZW5jb2RlciBzdGF0ZSBjb21wdXRlIGhvb2suIFRoaXMg
+Z2V0cwpjYWxsZWQgYWZ0ZXIgdGhlIG5vcm1hayAuY29tcHV0ZV9jb25maWcoKSBoYXMgYmVlbiBj
+YWxsZWQgZm9yCmFsbCB0aGUgZW5jb2RlcnMgaW4gdGhlIHN0YXRlLiBUaHVzIGluIHRoZSBuZXcg
+aG9vayB3ZSBjYW4gcmVseQpvbiBhbGwgZGVyaXZlZCBzdGF0ZSBwb3B1bGF0ZWQgYnkgLmNvbXB1
+dGVfY29uZmlnKCkgdG8gYmUgYWxyZWFkeQpzZXQgdXAuIFNob3VsZCBiZSB1c2VmdWwgZm9yIE1T
+VCBhbmQgcG9ydCBzeW5jIG1hc3Rlci9zbGF2ZQp0cmFuc2NvZGVyIHNlbGVjdGlvbi4KClNpZ25l
+ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+ClJldmlld2VkLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgot
+LS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICB8IDM5ICsr
+KysrKysrKysrKysrKysrKysKIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlw
+ZXMuaCAgICB8ICAzICsrCiAyIGZpbGVzIGNoYW5nZWQsIDQyIGluc2VydGlvbnMoKykKCmRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGUwOWQzYzkz
+YzUyYi4uY2U3MjU1MWJhMTZhIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXkuYwpAQCAtMTM1NDksNiArMTM1NDksMzUgQEAgaW50ZWxfbW9kZXNldF9waXBl
+X2NvbmZpZyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqcGlwZV9jb25maWcpCiAJcmV0dXJuIDA7
+CiB9CiAKK3N0YXRpYyBpbnQKK2ludGVsX21vZGVzZXRfcGlwZV9jb25maWdfbGF0ZShzdHJ1Y3Qg
+aW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3sKKwlzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
+YXRlICpzdGF0ZSA9CisJCXRvX2ludGVsX2F0b21pY19zdGF0ZShjcnRjX3N0YXRlLT51YXBpLnN0
+YXRlKTsKKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0
+ZS0+dWFwaS5jcnRjKTsKKwlzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZTsK
+KwlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yOworCWludCBpOworCisJZm9yX2VhY2hf
+bmV3X2Nvbm5lY3Rvcl9pbl9zdGF0ZSgmc3RhdGUtPmJhc2UsIGNvbm5lY3RvciwKKwkJCQkJY29u
+bl9zdGF0ZSwgaSkgeworCQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciA9CisJCQl0b19p
+bnRlbF9lbmNvZGVyKGNvbm5fc3RhdGUtPmJlc3RfZW5jb2Rlcik7CisJCWludCByZXQ7CisKKwkJ
+aWYgKGNvbm5fc3RhdGUtPmNydGMgIT0gJmNydGMtPmJhc2UgfHwKKwkJICAgICFlbmNvZGVyLT5j
+b21wdXRlX2NvbmZpZ19sYXRlKQorCQkJY29udGludWU7CisKKwkJcmV0ID0gZW5jb2Rlci0+Y29t
+cHV0ZV9jb25maWdfbGF0ZShlbmNvZGVyLCBjcnRjX3N0YXRlLAorCQkJCQkJICAgY29ubl9zdGF0
+ZSk7CisJCWlmIChyZXQpCisJCQlyZXR1cm4gcmV0OworCX0KKworCXJldHVybiAwOworfQorCiBi
+b29sIGludGVsX2Z1enp5X2Nsb2NrX2NoZWNrKGludCBjbG9jazEsIGludCBjbG9jazIpCiB7CiAJ
+aW50IGRpZmY7CkBAIC0xNDk1NCw2ICsxNDk4MywxNiBAQCBzdGF0aWMgaW50IGludGVsX2F0b21p
+Y19jaGVjayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCQlyZXQgPSBpbnRlbF9tb2Rlc2V0X3Bp
+cGVfY29uZmlnKG5ld19jcnRjX3N0YXRlKTsKIAkJaWYgKHJldCkKIAkJCWdvdG8gZmFpbDsKKwl9
+CisKKwlmb3JfZWFjaF9vbGRuZXdfaW50ZWxfY3J0Y19pbl9zdGF0ZShzdGF0ZSwgY3J0Yywgb2xk
+X2NydGNfc3RhdGUsCisJCQkJCSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgeworCQlpZiAoIW5lZWRz
+X21vZGVzZXQobmV3X2NydGNfc3RhdGUpKQorCQkJY29udGludWU7CisKKwkJcmV0ID0gaW50ZWxf
+bW9kZXNldF9waXBlX2NvbmZpZ19sYXRlKG5ld19jcnRjX3N0YXRlKTsKKwkJaWYgKHJldCkKKwkJ
+CWdvdG8gZmFpbDsKIAogCQlpbnRlbF9jcnRjX2NoZWNrX2Zhc3RzZXQob2xkX2NydGNfc3RhdGUs
+IG5ld19jcnRjX3N0YXRlKTsKIAl9CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCmluZGV4IDI4M2M2MjJmOGJhMS4uMGQ4YTY0MzA1NDY0
+IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
+dHlwZXMuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
+dHlwZXMuaApAQCAtMTQxLDYgKzE0MSw5IEBAIHN0cnVjdCBpbnRlbF9lbmNvZGVyIHsKIAlpbnQg
+KCpjb21wdXRlX2NvbmZpZykoc3RydWN0IGludGVsX2VuY29kZXIgKiwKIAkJCSAgICAgIHN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlICosCiAJCQkgICAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0
+ZSAqKTsKKwlpbnQgKCpjb21wdXRlX2NvbmZpZ19sYXRlKShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAq
+LAorCQkJCSAgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICosCisJCQkJICAgc3RydWN0IGRybV9j
+b25uZWN0b3Jfc3RhdGUgKik7CiAJdm9pZCAoKnVwZGF0ZV9wcmVwYXJlKShzdHJ1Y3QgaW50ZWxf
+YXRvbWljX3N0YXRlICosCiAJCQkgICAgICAgc3RydWN0IGludGVsX2VuY29kZXIgKiwKIAkJCSAg
+ICAgICBzdHJ1Y3QgaW50ZWxfY3J0YyAqKTsKLS0gCjIuMTkuMQoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
