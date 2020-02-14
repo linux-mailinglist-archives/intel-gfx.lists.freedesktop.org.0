@@ -1,50 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40E6015DB0C
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 16:36:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0FC715DB33
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 16:40:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC23A6F963;
-	Fri, 14 Feb 2020 15:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C927A6F969;
+	Fri, 14 Feb 2020 15:40:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
- by gabe.freedesktop.org (Postfix) with ESMTP id 088686E821;
- Fri, 14 Feb 2020 15:36:21 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
- by netline-mail3.netline.ch (Postfix) with ESMTP id C35892A6046;
- Fri, 14 Feb 2020 16:36:19 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
- by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
- with LMTP id hkjvpc2T5O5o; Fri, 14 Feb 2020 16:36:19 +0100 (CET)
-Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
- [83.76.80.252])
- by netline-mail3.netline.ch (Postfix) with ESMTPSA id 2BE0F2A6045;
- Fri, 14 Feb 2020 16:36:19 +0100 (CET)
-Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
- (envelope-from <michel@daenzer.net>)
- id 1j2d0r-000ACQ-Qm; Fri, 14 Feb 2020 16:36:17 +0100
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Nathan Chancellor <natechancellor@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20200214054706.33870-1-natechancellor@gmail.com>
- <87v9o965gg.fsf@intel.com>
- <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
- <87o8u1wfqs.fsf@intel.com>
-From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Message-ID: <ff302c03-d012-a80d-b818-b7feababb86b@daenzer.net>
-Date: Fri, 14 Feb 2020 16:36:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B4D116F964;
+ Fri, 14 Feb 2020 15:40:31 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93F29A47EB;
+ Fri, 14 Feb 2020 15:40:31 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87o8u1wfqs.fsf@intel.com>
-Content-Language: en-CA
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
- eb_relocate_vma
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 14 Feb 2020 15:40:31 -0000
+Message-ID: <158169483157.9932.6978242445022856282@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200214120659.3888735-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200214120659.3888735-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Check_for_the_error_interrupt_before_we_wait?=
+ =?utf-8?q?!?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,55 +39,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: clang-built-linux@googlegroups.com, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wMi0xNCAxMjo0OSBwLm0uLCBKYW5pIE5pa3VsYSB3cm90ZToKPiBPbiBGcmksIDE0
-IEZlYiAyMDIwLCBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4gd3JvdGU6
-Cj4+IFF1b3RpbmcgSmFuaSBOaWt1bGEgKDIwMjAtMDItMTQgMDY6MzY6MTUpCj4+PiBPbiBUaHUs
-IDEzIEZlYiAyMDIwLCBOYXRoYW4gQ2hhbmNlbGxvciA8bmF0ZWNoYW5jZWxsb3JAZ21haWwuY29t
-PiB3cm90ZToKPj4+PiBBIHJlY2VudCBjb21taXQgaW4gY2xhbmcgYWRkZWQgLVd0YXV0b2xvZ2lj
-YWwtY29tcGFyZSB0byAtV2FsbCwgd2hpY2ggaXMKPj4+PiBlbmFibGVkIGZvciBpOTE1IGFmdGVy
-IC1XdGF1dG9sb2dpY2FsLWNvbXBhcmUgaXMgZGlzYWJsZWQgZm9yIHRoZSByZXN0Cj4+Pj4gb2Yg
-dGhlIGtlcm5lbCBzbyB3ZSBzZWUgdGhlIGZvbGxvd2luZyB3YXJuaW5nIG9uIHg4Nl82NDoKPj4+
-Pgo+Pj4+ICAuLi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fZXhlY2J1ZmZlci5j
-OjE0MzM6MjI6IHdhcm5pbmc6Cj4+Pj4gIHJlc3VsdCBvZiBjb21wYXJpc29uIG9mIGNvbnN0YW50
-IDU3NjQ2MDc1MjMwMzQyMzQ4NyB3aXRoIGV4cHJlc3Npb24gb2YKPj4+PiAgdHlwZSAndW5zaWdu
-ZWQgaW50JyBpcyBhbHdheXMgZmFsc2UKPj4+PiAgWy1XdGF1dG9sb2dpY2FsLWNvbnN0YW50LW91
-dC1vZi1yYW5nZS1jb21wYXJlXQo+Pj4+ICAgICAgICAgIGlmICh1bmxpa2VseShyZW1haW4gPiBO
-X1JFTE9DKFVMT05HX01BWCkpKQo+Pj4+ICAgICAgICAgICAgIH5+fn5+fn5+fn5+fn5+fn5efn5+
-fn5+fn5+fn5+fn5+fn5+fn4KPj4+PiAgLi4vaW5jbHVkZS9saW51eC9jb21waWxlci5oOjc4OjQy
-OiBub3RlOiBleHBhbmRlZCBmcm9tIG1hY3JvICd1bmxpa2VseScKPj4+PiAgIyBkZWZpbmUgdW5s
-aWtlbHkoeCkgICAgX19idWlsdGluX2V4cGVjdCghISh4KSwgMCkKPj4+PiAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF4KPj4+PiAgMSB3YXJuaW5nIGdlbmVyYXRl
-ZC4KPj4+Pgo+Pj4+IEl0IGlzIG5vdCB3cm9uZyBpbiB0aGUgY2FzZSB3aGVyZSBVTE9OR19NQVgg
-PiBVSU5UX01BWCBidXQgaXQgZG9lcyBub3QKPj4+PiBhY2NvdW50IGZvciB0aGUgY2FzZSB3aGVy
-ZSB0aGlzIGZpbGUgaXMgYnVpbHQgZm9yIDMyLWJpdCB4ODYsIHdoZXJlCj4+Pj4gVUxPTkdfTUFY
-ID09IFVJTlRfTUFYIGFuZCB0aGlzIGNoZWNrIGlzIHN0aWxsIHJlbGV2YW50Lgo+Pj4+Cj4+Pj4g
-Q2FzdCByZW1haW4gdG8gdW5zaWduZWQgbG9uZywgd2hpY2gga2VlcHMgdGhlIGdlbmVyYXRlZCBj
-b2RlIHRoZSBzYW1lCj4+Pj4gKHZlcmlmaWVkIHdpdGggY2xhbmctMTEgb24geDg2XzY0IGFuZCBH
-Q0MgOS4yLjAgb24geDg2IGFuZCB4ODZfNjQpIGFuZAo+Pj4+IHRoZSB3YXJuaW5nIGlzIHNpbGVu
-Y2VkIHNvIHdlIGNhbiBjYXRjaCBtb3JlIHBvdGVudGlhbCBpc3N1ZXMgaW4gdGhlCj4+Pj4gZnV0
-dXJlLgo+Pj4+Cj4+Pj4gTGluazogaHR0cHM6Ly9naXRodWIuY29tL0NsYW5nQnVpbHRMaW51eC9s
-aW51eC9pc3N1ZXMvNzc4Cj4+Pj4gU3VnZ2VzdGVkLWJ5OiBNaWNoZWwgRMOkbnplciA8bWljaGVs
-QGRhZW56ZXIubmV0Pgo+Pj4+IFNpZ25lZC1vZmYtYnk6IE5hdGhhbiBDaGFuY2VsbG9yIDxuYXRl
-Y2hhbmNlbGxvckBnbWFpbC5jb20+Cj4+Pgo+Pj4gV29ya3MgZm9yIG1lIGFzIGEgd29ya2Fyb3Vu
-ZCwKPj4KPj4gQnV0IHRoZSB3aG9sZSBwb2ludCB3YXMgdGhhdCB0aGUgY29tcGlsZXIgY291bGQg
-c2VlIHRoYXQgaXQgd2FzCj4+IGltcG9zc2libGUgYW5kIG5vdCBlbWl0IHRoZSBjb2RlLiBEb2Vz
-bid0IHRoaXMgYnJlYWsgdGhhdD8KPiAKPiBJdCBzZWVtcyB0aGF0IGdvYWwgYW5kIHRoZSB3YXJu
-aW5nIGFyZSBmdW5kYW1lbnRhbGx5IGluY29tcGF0aWJsZS4KCk5vdCByZWFsbHk6CgogICAgaWYg
-KHNpemVvZihyZW1haW4pID49IHNpemVvZih1bnNpZ25lZCBsb25nKSAmJgoJdW5saWtlbHkocmVt
-YWluID4gTl9SRUxPQyhVTE9OR19NQVgpKSkKICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOwoK
-SW4gY29udHJhc3QgdG8gdGhlIGNhc3QsIHRoaXMgZG9lc24ndCBnZW5lcmF0ZSBhbnkgbWFjaGlu
-ZSBjb2RlIG9uIDY0LWJpdDoKCmh0dHBzOi8vZ29kYm9sdC5vcmcvei9HbVVFNFMKCmJ1dCBzdGls
-bCBnZW5lcmF0ZXMgdGhlIHNhbWUgY29kZSBvbiAzMi1iaXQ6CgpodHRwczovL2dvZGJvbHQub3Jn
-L3ovaEFvejhMCgoKLS0gCkVhcnRobGluZyBNaWNoZWwgRMOkbnplciAgICAgICAgICAgICAgIHwg
-ICAgICAgICAgICAgICBodHRwczovL3JlZGhhdC5jb20KTGlicmUgc29mdHdhcmUgZW50aHVzaWFz
-dCAgICAgICAgICAgICB8ICAgICAgICAgICAgIE1lc2EgYW5kIFggZGV2ZWxvcGVyCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: drm/i915/selftests: Check for the error interrupt before we wait!
+URL   : https://patchwork.freedesktop.org/series/73461/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7939 -> Patchwork_16571
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16571/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16571 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [PASS][1] -> [FAIL][2] ([i915#694])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16571/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][3] ([fdo#108569]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16571/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][5] ([i915#579]) -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16571/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+
+
+Participating hosts (44 -> 40)
+------------------------------
+
+  Additional (5): fi-hsw-peppy fi-glk-dsi fi-ivb-3770 fi-bsw-kefka fi-kbl-r 
+  Missing    (9): fi-ilk-m540 fi-bsw-n3050 fi-hsw-4200u fi-byt-squawks fi-kbl-7500u fi-ctg-p8600 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7939 -> Patchwork_16571
+
+  CI-20190529: 20190529
+  CI_DRM_7939: cceb0c30a34af6ca96e35211ecdc5ca198d44e7e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5441: 534ca091fe4ffed916752165bc5becd7ff56cd84 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16571: 6dc22822beec6cf337e7c3968089dd4ec69cc980 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+6dc22822beec drm/i915/selftests: Check for the error interrupt before we wait!
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16571/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
