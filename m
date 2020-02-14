@@ -2,34 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 057E015D845
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4779C15D848
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:20:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D15E6E7E6;
-	Fri, 14 Feb 2020 13:19:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DFA6F924;
+	Fri, 14 Feb 2020 13:20:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FED6E7E6
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:19:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20224318-1500050 for multiple; Fri, 14 Feb 2020 13:18:51 +0000
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com
+ [IPv6:2607:f8b0:4864:20::943])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6F6B6F924
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:20:15 +0000 (UTC)
+Received: by mail-ua1-x943.google.com with SMTP id y23so3560303ual.2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 05:20:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=mRgMBJInkZOSTwTk4nDSosuUAJBtDimhOBwk4khwz2o=;
+ b=ueuDuydmxYNqWDgNvsOAVbUY7X9OCI/cpmtlACLgsn6SpmXTNvKxQy6hslzAnMlbxf
+ zaOS5ZbuTLEPTuwflc/r7ConrM5vPUhsv0oRrQlej1wMg+0F8sVpdeRaJfGlEdHEfdCt
+ tnPoce6OXF9UxKc3YoD64ySsxi2X8GFQz0ScCLVWj481rLBttkxIPvz3vgaKNtJuuyLh
+ eLeV5I8jt8mw/DPsUOfHxOzszzjn6QBxdeCS/hOe+BJFxIB7SdI4Pk/ENap4FdLab3W2
+ +wrL0Ky2/AZoNCXdGW594joKK5r9v3aVnwcIexDsmYRPPCX1njGYQ/ugD8Epcq/CjOU7
+ PKQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=mRgMBJInkZOSTwTk4nDSosuUAJBtDimhOBwk4khwz2o=;
+ b=Ei9+UnMW3Fa/xOxroOTE4Rl0g1pVaEwfbZGflG9Cc/mdzVWb2c/TbclVib8JCfoHZJ
+ 0aN2YnwEl8Fp20U0YU/LFowvUnmHgnn3fRH6oImp5pWnfCh4w6QTDMjL/dr00ADIBDMW
+ oS8C/6+A7s7WpbPKglbTyw0y5nLaS8zomywsMARA6D8dkFLJuFUQW8KkxUp498KwMyQv
+ S1cPpQ2lFtbJ0P7DkYFs9m4ZzspzHkjqoH9M7L67r3iNaKuO9UErjlJxqEmaIeO38DP2
+ usjZ6d8lMZVcr6SBfHyzfW0h9Nu07h8+Xn5i0HWGYsVzY9q1sD438tIZEXRsNmYG7P9y
+ y24w==
+X-Gm-Message-State: APjAAAX0mr3aLpIS5VinLahIXjM6jTE5Btns3s14q3SL08JJts34oxPG
+ nV6k8mE45efZ9E2+BAOCUSPV2L84tcFjyeRRgX4=
+X-Google-Smtp-Source: APXvYqwteWBARGqDmMfFHMQDu4ikmVMlIX95yQWYMxFlhM/aspyA0q37DJ+Zf/d5ZbVEO0rp2qM8SbqmS1BgcsmeuaE=
+X-Received: by 2002:ab0:1c0e:: with SMTP id a14mr1378109uaj.141.1581686414626; 
+ Fri, 14 Feb 2020 05:20:14 -0800 (PST)
 MIME-Version: 1.0
-To: Andi Shyti <andi.shyti@intel.com>,
- Intel GFX <intel-gfx@lists.freedesktop.org>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <aa7b70a5-149d-5c6b-756c-823c03a0df2b@linux.intel.com>
-References: <20200214110308.2268-1-andi.shyti@intel.com>
- <aa7b70a5-149d-5c6b-756c-823c03a0df2b@linux.intel.com>
-Message-ID: <158168632802.10420.7548890837084892851@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 14 Feb 2020 13:18:48 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: make a gt sysfs group and move
- power management files
+References: <20200214120659.3888735-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200214120659.3888735-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Fri, 14 Feb 2020 13:19:48 +0000
+Message-ID: <CAM0jSHOd9cLFqKhRfWJxHeDyWmAORLeaoXtau3oRa5-5+DbQNw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Check for the error
+ interrupt before we wait!
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,52 +61,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-14 12:54:35)
-> 
-> On 14/02/2020 11:03, Andi Shyti wrote:
-> > +struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev)
-> > +{
-> > +     struct kobject *kobj = &dev->kobj;
-> > +     /*
-> > +      * We are interested at knowing from where the interface
-> > +      * has been called, whether it's called from gt/ or from
-> > +      * the parent directory.
-> > +      * From the interface position it depends also the value of
-> > +      * the private data.
-> > +      * If the interface is called from gt/ then private data is
-> > +      * of the "struct intel_gt *" type, otherwise it's * a
-> > +      * "struct drm_i915_private *" type.
-> > +      */
-> > +     if (strcmp(dev->kobj.name, "gt")) {
-> > +             struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
-> > +
-> > +             drm_warn(&i915->drm, "the interface is obsolete, use gt/\n");
-> 
-> Can you log current->name & pid?
-> 
-> I am also thinking is a level down from warn would be better. Notice 
-> sounds intuitively correct to me.
-
-git grep -e 'pr.*obsolete' | grep warn | wc -l
-21
-git grep -e 'pr.*obsolete' | grep notice | wc -l
-1
-git grep -e 'pr.*obsolete' | grep info | wc -l
-4
-
-Looks like warn's back on the menu, boys.
-
-> I am also tempted by the _once alternative, but then it makes less sense 
-> to include name & pid.
-
-I'm more afraid that there are users out there that frequently poke
-these files.
--Chris
+On Fri, 14 Feb 2020 at 12:07, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Sometimes the error interrupt can fire even before we have seen the
+> request go active -- in which case, we end up waiting until the timeout
+> as the request is already completed. Double check for this case!
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
