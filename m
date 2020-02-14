@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ABEA15D991
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:33:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E4315D9BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:49:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33B436F94F;
-	Fri, 14 Feb 2020 14:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A736E81A;
+	Fri, 14 Feb 2020 14:48:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1896E392
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 14:33:04 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 06:33:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="228503753"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 14 Feb 2020 06:32:58 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Feb 2020 16:32:57 +0200
-Date: Fri, 14 Feb 2020 16:32:57 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Message-ID: <20200214143257.GK13686@intel.com>
-References: <20200214105316.16076-1-kishore.kadiyala@intel.com>
- <20200214131009.GI13686@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F823E797C@BGSMSX104.gar.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BF6556E81A;
+ Fri, 14 Feb 2020 14:48:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B84CFA00C7;
+ Fri, 14 Feb 2020 14:48:58 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F823E797C@BGSMSX104.gar.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Fri, 14 Feb 2020 14:48:58 -0000
+Message-ID: <158169173872.9932.15718721289119071883@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200214114126.13192-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200214114126.13192-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2Cv3=2C1/3=5D_drm/i915=3A_Introd?=
+ =?utf-8?q?uce_encoder-=3Ecompute=5Fconfig=5Flate=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,90 +39,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Kadiyala, Kishore" <kishore.kadiyala@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 14, 2020 at 02:27:35PM +0000, Shankar, Uma wrote:
-> =
-
-> =
-
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: Friday, February 14, 2020 6:40 PM
-> > To: Kadiyala, Kishore <kishore.kadiyala@intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.co=
-m>
-> > Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_B=
-T2020
-> > =
-
-> > On Fri, Feb 14, 2020 at 04:23:16PM +0530, Kishore Kadiyala wrote:
-> > > Currently the plane property doesn't have support for YCBCR_BT2020,
-> > > which enables the corresponding color conversion mode on plane CSC.
-> > >
-> > > Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
-> > > Cc: Uma Shankar <uma.shankar@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
-> > >  1 file changed, 7 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > index 7abeefe8dce5..5169a7260d7c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > @@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_priv=
-ate
-> > *dev_priv,
-> > >  	struct intel_plane *plane;
-> > >  	enum drm_plane_type plane_type;
-> > >  	unsigned int supported_rotations;
-> > > +	unsigned int supported_csc;
-> > >  	unsigned int possible_crtcs;
-> > >  	const u64 *modifiers;
-> > >  	const u32 *formats;
-> > > @@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct drm_i915_pri=
-vate
-> > *dev_priv,
-> > >  					   DRM_MODE_ROTATE_0,
-> > >  					   supported_rotations);
-> > >
-> > > +	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) |
-> > > +BIT(DRM_COLOR_YCBCR_BT709);
-> > > +
-> > > +	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> > > +		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
-> > =
-
-> > Missing the actual code to enable it on glk and icl+ sdr planes, so thi=
-s will not work.
-> =
-
-> Yeah this need to be handled for Non HDR planes.
-> =
-
-> > IIRC there was also some kind of hw fail related to some BT.something c=
-onversions.
-> > But I can't remember if that was in the RGB->RGB or
-> > YUV->RGB logic.
-> =
-
-> Will try to check this out. What kind of fails Ville, was it not all work=
-ing or artifacts ?
-
-IIRC a wrong coefficient was used in one of the hardcoded hw
-matrices. Should be listed on the bspec w/a page.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggW0NJLHYz
+LDEvM10gZHJtL2k5MTU6IEludHJvZHVjZSBlbmNvZGVyLT5jb21wdXRlX2NvbmZpZ19sYXRlKCkK
+VVJMICAgOiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzczNDYwLwpT
+dGF0ZSA6IHdhcm5pbmcKCj09IFN1bW1hcnkgPT0KCiQgZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2Ry
+bS10aXAKOGEzN2U3YzRiOWRlIGRybS9pOTE1OiBJbnRyb2R1Y2UgZW5jb2Rlci0+Y29tcHV0ZV9j
+b25maWdfbGF0ZSgpCi06ODQ6IFdBUk5JTkc6RlVOQ1RJT05fQVJHVU1FTlRTOiBmdW5jdGlvbiBk
+ZWZpbml0aW9uIGFyZ3VtZW50ICdzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqJyBzaG91bGQgYWxzbyBo
+YXZlIGFuIGlkZW50aWZpZXIgbmFtZQojODQ6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oOjE0NDoKKwlpbnQgKCpjb21wdXRlX2NvbmZpZ19s
+YXRlKShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqLAoKLTo4NDogV0FSTklORzpGVU5DVElPTl9BUkdV
+TUVOVFM6IGZ1bmN0aW9uIGRlZmluaXRpb24gYXJndW1lbnQgJ3N0cnVjdCBpbnRlbF9jcnRjX3N0
+YXRlIConIHNob3VsZCBhbHNvIGhhdmUgYW4gaWRlbnRpZmllciBuYW1lCiM4NDogRklMRTogZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmg6MTQ0OgorCWlu
+dCAoKmNvbXB1dGVfY29uZmlnX2xhdGUpKHN0cnVjdCBpbnRlbF9lbmNvZGVyICosCgotOjg0OiBX
+QVJOSU5HOkZVTkNUSU9OX0FSR1VNRU5UUzogZnVuY3Rpb24gZGVmaW5pdGlvbiBhcmd1bWVudCAn
+c3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKicgc2hvdWxkIGFsc28gaGF2ZSBhbiBpZGVudGlm
+aWVyIG5hbWUKIzg0OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXlfdHlwZXMuaDoxNDQ6CisJaW50ICgqY29tcHV0ZV9jb25maWdfbGF0ZSkoc3RydWN0IGlu
+dGVsX2VuY29kZXIgKiwKCnRvdGFsOiAwIGVycm9ycywgMyB3YXJuaW5ncywgMCBjaGVja3MsIDYw
+IGxpbmVzIGNoZWNrZWQKMDNjMWU5M2MxYjg4IGRybS9pOTE1L2RwOiBDb21wdXRlIHBvcnQgc3lu
+YyBjcnRjIHN0YXRlcyBwb3N0IGNvbXB1dGVfY29uZmlnKCkKMzdiOTgwMDkwNzM2IGRybS9pOTE1
+L2RwOiBBZGQgYWxsIHRpbGVkIGFuZCBwb3J0IHN5bmMgY29ubnMgdG8gbW9kZXNldAotOjIzOiBX
+QVJOSU5HOkJBRF9TSUdOX09GRjogVXNlIGEgc2luZ2xlIHNwYWNlIGFmdGVyIFJldmlld2VkLWJ5
+OgojMjM6IApSZXZpZXdlZC1ieTogIFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+Cgp0b3RhbDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCAyNDUg
+bGluZXMgY2hlY2tlZAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
