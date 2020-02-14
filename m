@@ -2,36 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F8E15D8C5
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:51:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ACD615D8D9
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:57:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D07776F935;
-	Fri, 14 Feb 2020 13:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE53E6E7EC;
+	Fri, 14 Feb 2020 13:57:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A736F932
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:51:11 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A63BD6E81F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:57:11 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 05:51:10 -0800
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="223021180"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 05:51:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Feb 2020 15:50:58 +0200
-Message-Id: <20200214135058.7580-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200214135058.7580-1-jani.nikula@intel.com>
-References: <20200214135058.7580-1-jani.nikula@intel.com>
+ 14 Feb 2020 05:57:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="267564856"
+Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
+ by fmsmga002.fm.intel.com with ESMTP; 14 Feb 2020 05:57:09 -0800
+Date: Fri, 14 Feb 2020 15:57:08 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200214135708.GB2502@intel.intel>
+References: <20200214110308.2268-1-andi.shyti@intel.com>
+ <aa7b70a5-149d-5c6b-756c-823c03a0df2b@linux.intel.com>
+ <20200214131619.GA2502@intel.intel>
+ <471dd284-eb06-1240-018a-a86899031fdb@linux.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [CI 2/2] drm/i915: split i915_driver_modeset_remove()
- to pre/post irq uninstall
+Content-Disposition: inline
+In-Reply-To: <471dd284-eb06-1240-018a-a86899031fdb@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: make a gt sysfs group and move
+ power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,37 +47,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UHVzaCBpcnEgdW5pbnN0YWxsIGZ1cnRoZXIgdXAsIGJ5IHNwbGl0dGluZyBpOTE1X2RyaXZlcl9t
-b2Rlc2V0X3JlbW92ZSgpCnRvIHR3bywgdGhlIHBhcnQgd2l0aCB3b3JraW5nIGlycXMgYmVmb3Jl
-IGlycSB1bmluc3RhbGwsIGFuZCB0aGUgcGFydAphZnRlciBpcnEgdW5pbnN0YWxsLiBObyBmdW5j
-dGlvbmFsIGNoYW5nZXMuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4
-LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBp
-bnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYyB8IDExICsrKysr
-KysrKy0tCiAxIGZpbGUgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDQ2MzZkNzIzZDUzMS4uMmU1NjdiZGE3OWJkIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTM0NiwxMiArMzQ2LDE1IEBAIHN0YXRpYyBpbnQg
-aTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkK
-IAlyZXR1cm4gcmV0OwogfQogCisvKiBwYXJ0ICMxOiBjYWxsIGJlZm9yZSBpcnEgdW5pbnN0YWxs
-ICovCiBzdGF0aWMgdm9pZCBpOTE1X2RyaXZlcl9tb2Rlc2V0X3JlbW92ZShzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqaTkxNSkKIHsKIAlpbnRlbF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmUoaTkxNSk7
-Cit9CiAKLQlpbnRlbF9pcnFfdW5pbnN0YWxsKGk5MTUpOwotCisvKiBwYXJ0ICMyOiBjYWxsIGFm
-dGVyIGlycSB1bmluc3RhbGwgKi8KK3N0YXRpYyB2b2lkIGk5MTVfZHJpdmVyX21vZGVzZXRfcmVt
-b3ZlX25vaXJxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQorewogCWludGVsX21vZGVz
-ZXRfZHJpdmVyX3JlbW92ZV9ub2lycShpOTE1KTsKIAogCWludGVsX2Jpb3NfZHJpdmVyX3JlbW92
-ZShpOTE1KTsKQEAgLTE1OTMsNiArMTU5NiwxMCBAQCB2b2lkIGk5MTVfZHJpdmVyX3JlbW92ZShz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIAogCWk5MTVfZHJpdmVyX21vZGVzZXRfcmVt
-b3ZlKGk5MTUpOwogCisJaW50ZWxfaXJxX3VuaW5zdGFsbChpOTE1KTsKKworCWk5MTVfZHJpdmVy
-X21vZGVzZXRfcmVtb3ZlX25vaXJxKGk5MTUpOworCiAJaTkxNV9yZXNldF9lcnJvcl9zdGF0ZShp
-OTE1KTsKIAlpOTE1X2dlbV9kcml2ZXJfcmVtb3ZlKGk5MTUpOwogCi0tIAoyLjIwLjEKCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi Tvrtko,
+
+> > > > +	}
+> > > > +
+> > > > +	intel_gt_sysfs_pm_remove(gt, root);
+> > > > +	kobject_put(root);
+> > > 
+> > > Maybe stick to the same terminology regarding root and parent.
+> > 
+> > yes.
+> > 
+> > > Get/put on the parent looks unbalanced. Both register and unregister take a
+> > > reference and only unregister releases it. But do you even need a reference?
+> > 
+> > why? I take it here:
+> > 
+> > static inline struct kobject *gt_to_parent_obj(struct intel_gt *gt)
+> > {
+> > 	return kobject_get(&gt->i915->drm.primary->kdev->kobj);
+> > }
+> > 
+> > at the beginning (when the driver is loaded) and I release it at
+> > the end (when the driver is unloaded). Am I not seeing something?
+> 
+> Gt_to_parent_obj at the top of intel_gt_sysfs_register balances out with the
+> put at the end of the same function. What balances out gt_to_parent_obj from
+> intel_gt_sysfs_register?
+
+And... you are right!
+either nothing or too many :)
+
+> > > I am also tempted by the _once alternative, but then it makes less sense to
+> > > include name & pid.
+> > 
+> > It's true, it can be an unrelenting message, and I thought of it,
+> > but if the user is resilient at reading out from the wrong
+> > directory, why shouldn't I :)
+> 
+> Because we always try to avoid emitting spammy logs when they can be easily
+> triggered by userspace. Can we do rate limit? I think that could work well
+> with logging the process name & pid.
+
+yes, if two people suggested the same thing, most probably that's
+the right thing to do.
+
+> Also, we need an entry in Documentation/ABI/obsolete/.
+
+I was waiting this patch to get in shape before adding the
+interface to obsolete.
+
+I will include it in the next patch.
+
+Thanks a lot for the review,
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
