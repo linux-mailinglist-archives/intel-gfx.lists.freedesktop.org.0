@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C7B115F0AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 18:57:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA86815F0AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 18:57:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9086FB66;
-	Fri, 14 Feb 2020 17:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A676FB69;
+	Fri, 14 Feb 2020 17:57:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from youngberry.canonical.com (youngberry.canonical.com
- [91.189.89.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 771516FB66;
- Fri, 14 Feb 2020 17:57:08 +0000 (UTC)
-Received: from 61-220-137-37.hinet-ip.hinet.net ([61.220.137.37]
- helo=localhost) by youngberry.canonical.com with esmtpsa
- (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.86_2)
- (envelope-from <kai.heng.feng@canonical.com>)
- id 1j2fD2-0005g2-9K; Fri, 14 Feb 2020 17:57:01 +0000
-From: Kai-Heng Feng <kai.heng.feng@canonical.com>
-To: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com
-Date: Sat, 15 Feb 2020 01:56:27 +0800
-Message-Id: <20200214175646.25532-1-kai.heng.feng@canonical.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH v4] drm/i915: Init lspcon after HPD in
- intel_dp_detect()
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 505386FB69
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 17:57:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 09:57:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,441,1574150400"; d="scan'208";a="227679665"
+Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
+ by orsmga008.jf.intel.com with ESMTP; 14 Feb 2020 09:57:09 -0800
+To: Brian Welty <brian.welty@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200213001418.5899-1-brian.welty@intel.com>
+ <158155408885.11180.1339348747260218156@skylake-alporthouse-com>
+ <6783dddd-a9e4-c8b2-c169-b5aa7088dd7f@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <383e75e2-a29a-4c8c-e3ba-579008464a45@intel.com>
+Date: Fri, 14 Feb 2020 09:56:58 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
+MIME-Version: 1.0
+In-Reply-To: <6783dddd-a9e4-c8b2-c169-b5aa7088dd7f@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Fix selftest_mocs for
+ DGFX
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,128 +48,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>,
- Kai-Heng Feng <kai.heng.feng@canonical.com>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
-becomes useless and never responds to cable hotplugging:
-[    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
-[    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on port D
 
-Seems like the lspcon chip on the system in question only gets powered
-after the cable is plugged.
 
-So let's call lspcon_init() dynamically to properly initialize the
-lspcon chip and make HDMI port work.
+On 2/12/20 4:49 PM, Brian Welty wrote:
+> 
+> On 2/12/2020 4:34 PM, Chris Wilson wrote:
+>> Quoting Brian Welty (2020-02-13 00:14:18)
+>>> For DGFX devices, the MOCS control value is not initialized or used.
+>>
+>> Then why is the table populated?
+>> -Chris
+>>
+> 
+> The format has changed (been reduced?) for DGFX.  drm_i915_mocs_entry.l3cc_value is what is still initialized/used.
+> Probably first needed is the patch that defines the table entries for DGFX.
+> Ugh, I didn't notice this wasn't applied yet.  Let me ask about this.
+> 
 
-Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
----
-v4:
- - Trust VBT in intel_infoframe_init().
- - Init lspcon in intel_dp_detect().
+We do have:
 
-v3:
- - Make sure it's handled under long HPD case.
+commit e6e2ac07118b15f25683fcbd59ea1be73ec9465d
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Oct 24 12:51:21 2019 -0700
 
-v2: 
- - Move lspcon_init() inside of intel_dp_hpd_pulse().
+     drm/i915: do not set MOCS control values on dgfx
 
- drivers/gpu/drm/i915/display/intel_ddi.c  | 17 +----------------
- drivers/gpu/drm/i915/display/intel_dp.c   | 13 ++++++++++++-
- drivers/gpu/drm/i915/display/intel_hdmi.c |  2 +-
- 3 files changed, 14 insertions(+), 18 deletions(-)
+So I see no reason not to add this change to the test side to match 
+that. Maybe we can add an additional check in the test to validate that 
+all the control_entries are set to 0 in the table on DGFX?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 33f1dc3d7c1a..ca717434b406 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4741,7 +4741,7 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 		&dev_priv->vbt.ddi_port_info[port];
- 	struct intel_digital_port *intel_dig_port;
- 	struct intel_encoder *encoder;
--	bool init_hdmi, init_dp, init_lspcon = false;
-+	bool init_hdmi, init_dp;
- 	enum phy phy = intel_port_to_phy(dev_priv, port);
- 
- 	init_hdmi = port_info->supports_dvi || port_info->supports_hdmi;
-@@ -4754,7 +4754,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 		 * is initialized before lspcon.
- 		 */
- 		init_dp = true;
--		init_lspcon = true;
- 		init_hdmi = false;
- 		DRM_DEBUG_KMS("VBT says port %c has lspcon\n", port_name(port));
- 	}
-@@ -4833,20 +4832,6 @@ void intel_ddi_init(struct drm_i915_private *dev_priv, enum port port)
- 			goto err;
- 	}
- 
--	if (init_lspcon) {
--		if (lspcon_init(intel_dig_port))
--			/* TODO: handle hdmi info frame part */
--			DRM_DEBUG_KMS("LSPCON init success on port %c\n",
--				port_name(port));
--		else
--			/*
--			 * LSPCON init faied, but DP init was success, so
--			 * lets try to drive as DP++ port.
--			 */
--			DRM_ERROR("LSPCON init failed on port %c\n",
--				port_name(port));
--	}
--
- 	intel_infoframe_init(intel_dig_port);
- 
- 	return;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c7424e2a04a3..43117aa86292 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5663,8 +5663,19 @@ intel_dp_detect(struct drm_connector *connector,
- 	/* Can't disconnect eDP */
- 	if (intel_dp_is_edp(intel_dp))
- 		status = edp_detect(intel_dp);
--	else if (intel_digital_port_connected(encoder))
-+	else if (intel_digital_port_connected(encoder)) {
-+		if (intel_bios_is_lspcon_present(dev_priv, dig_port->base.port) &&
-+		    !dig_port->lspcon.active) {
-+			if (lspcon_init(dig_port))
-+				DRM_DEBUG_KMS("LSPCON init success on port %c\n",
-+					      port_name(dig_port->base.port));
-+			else
-+				DRM_DEBUG_KMS("LSPCON init failed on port %c\n",
-+					      port_name(dig_port->base.port));
-+		}
-+
- 		status = intel_dp_detect_dpcd(intel_dp);
-+	}
- 	else
- 		status = connector_status_disconnected;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 93ac0f296852..27a5aa8cefc9 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3100,7 +3100,7 @@ void intel_infoframe_init(struct intel_digital_port *intel_dig_port)
- 		intel_dig_port->set_infoframes = g4x_set_infoframes;
- 		intel_dig_port->infoframes_enabled = g4x_infoframes_enabled;
- 	} else if (HAS_DDI(dev_priv)) {
--		if (intel_dig_port->lspcon.active) {
-+		if (intel_bios_is_lspcon_present(dev_priv, intel_dig_port->base.port)) {
- 			intel_dig_port->write_infoframe = lspcon_write_infoframe;
- 			intel_dig_port->read_infoframe = lspcon_read_infoframe;
- 			intel_dig_port->set_infoframes = lspcon_set_infoframes;
--- 
-2.17.1
+Daniele
 
+> -Brian
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
