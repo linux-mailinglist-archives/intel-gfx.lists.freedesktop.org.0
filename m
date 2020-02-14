@@ -2,27 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE00515D5B4
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 11:31:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D463D15D617
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 11:53:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E096EB76;
-	Fri, 14 Feb 2020 10:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F8DE6E0AA;
+	Fri, 14 Feb 2020 10:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl
- [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 415966EB73
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 10:31:02 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 796876E0AA
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 10:53:21 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 02:53:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="234422375"
+Received: from kkadiyal.iind.intel.com ([10.223.74.161])
+ by orsmga003.jf.intel.com with ESMTP; 14 Feb 2020 02:53:19 -0800
+From: Kishore Kadiyala <kishore.kadiyala@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Feb 2020 11:30:55 +0100
-Message-Id: <20200214103055.2117836-20-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.25.0.24.g3f081b084b0
-In-Reply-To: <20200214103055.2117836-1-maarten.lankhorst@linux.intel.com>
-References: <20200214103055.2117836-1-maarten.lankhorst@linux.intel.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 19/19] drm/i915: Use ww pinning for
- intel_context_create_request()
+Date: Fri, 14 Feb 2020 16:23:16 +0530
+Message-Id: <20200214105316.16076-1-kishore.kadiyala@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,56 +39,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Kishore Kadiyala <kishore.kadiyala@intel.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to get rid of intel_context_pin(), convert
-intel_context_create_request() first. :)
+Currently the plane property doesn't have support for YCBCR_BT2020,
+which enables the corresponding color conversion mode on plane CSC.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c | 20 +++++++++++++++-----
- 1 file changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 87f9f9e61916..44868b10be0a 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -436,15 +436,25 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
+diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+index 7abeefe8dce5..5169a7260d7c 100644
+--- a/drivers/gpu/drm/i915/display/intel_sprite.c
++++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+@@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	struct intel_plane *plane;
+ 	enum drm_plane_type plane_type;
+ 	unsigned int supported_rotations;
++	unsigned int supported_csc;
+ 	unsigned int possible_crtcs;
+ 	const u64 *modifiers;
+ 	const u32 *formats;
+@@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 					   DRM_MODE_ROTATE_0,
+ 					   supported_rotations);
  
- struct i915_request *intel_context_create_request(struct intel_context *ce)
- {
-+	struct i915_gem_ww_ctx ww;
- 	struct i915_request *rq;
- 	int err;
- 
--	err = intel_context_pin(ce);
--	if (unlikely(err))
--		return ERR_PTR(err);
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	err = intel_context_pin_ww(ce, &ww);
-+	if (!err) {
-+		rq = i915_request_create(ce);
-+		intel_context_unpin(ce);
-+	} else if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&ww);
-+		if (!err)
-+			goto retry;
-+	} else {
-+		rq = ERR_PTR(err);
-+	}
- 
--	rq = i915_request_create(ce);
--	intel_context_unpin(ce);
-+	i915_gem_ww_ctx_fini(&ww);
- 
- 	if (IS_ERR(rq))
- 		return rq;
++	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
++
++	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
++		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
++
+ 	drm_plane_create_color_properties(&plane->base,
+-					  BIT(DRM_COLOR_YCBCR_BT601) |
+-					  BIT(DRM_COLOR_YCBCR_BT709),
++					  supported_csc,
+ 					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+ 					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+ 					  DRM_COLOR_YCBCR_BT709,
 -- 
-2.25.0.24.g3f081b084b0
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
