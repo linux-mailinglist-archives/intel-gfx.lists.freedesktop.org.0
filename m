@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 726AD15D7FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:10:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD9015D80D
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:13:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B8F6F915;
-	Fri, 14 Feb 2020 13:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 673616E7DC;
+	Fri, 14 Feb 2020 13:13:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 327896F915
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:10:13 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 05:10:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="228486190"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 14 Feb 2020 05:10:09 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 14 Feb 2020 15:10:09 +0200
-Date: Fri, 14 Feb 2020 15:10:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kishore Kadiyala <kishore.kadiyala@intel.com>
-Message-ID: <20200214131009.GI13686@intel.com>
-References: <20200214105316.16076-1-kishore.kadiyala@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 85A33899E8;
+ Fri, 14 Feb 2020 13:13:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7DC70A011A;
+ Fri, 14 Feb 2020 13:13:51 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200214105316.16076-1-kishore.kadiyala@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi@etezian.org>
+Date: Fri, 14 Feb 2020 13:13:51 -0000
+Message-ID: <158168603148.9929.17034165533713461223@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200214110308.2268-1-andi.shyti@intel.com>
+In-Reply-To: <20200214110308.2268-1-andi.shyti@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_make_a_gt_sysfs_group_and_move_power_management_fil?=
+ =?utf-8?b?ZXMgKHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,82 +39,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 14, 2020 at 04:23:16PM +0530, Kishore Kadiyala wrote:
-> Currently the plane property doesn't have support for YCBCR_BT2020,
-> which enables the corresponding color conversion mode on plane CSC.
-> =
+== Series Details ==
 
-> Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
->  1 file changed, 7 insertions(+), 2 deletions(-)
-> =
+Series: drm/i915/gt: make a gt sysfs group and move power management files (rev3)
+URL   : https://patchwork.freedesktop.org/series/73190/
+State : success
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index 7abeefe8dce5..5169a7260d7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_private =
-*dev_priv,
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
->  	unsigned int supported_rotations;
-> +	unsigned int supported_csc;
->  	unsigned int possible_crtcs;
->  	const u64 *modifiers;
->  	const u32 *formats;
-> @@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct drm_i915_private=
- *dev_priv,
->  					   DRM_MODE_ROTATE_0,
->  					   supported_rotations);
->  =
+== Summary ==
 
-> +	supported_csc =3D BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT70=
-9);
-> +
-> +	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
-> +		supported_csc |=3D BIT(DRM_COLOR_YCBCR_BT2020);
+CI Bug Log - changes from CI_DRM_7939 -> Patchwork_16569
+====================================================
 
-Missing the actual code to enable it on glk and icl+ sdr planes, so
-this will not work.
+Summary
+-------
 
-IIRC there was also some kind of hw fail related to some BT.something
-conversions. But I can't remember if that was in the RGB->RGB or
-YUV->RGB logic.
+  **SUCCESS**
 
-Also clearly commit 27ee72477c9b ("drm/i915/icl: Handle YCbCr to RGB
-conversion for BT2020 case") was never actually tested :(
+  No regressions found.
 
-> +
->  	drm_plane_create_color_properties(&plane->base,
-> -					  BIT(DRM_COLOR_YCBCR_BT601) |
-> -					  BIT(DRM_COLOR_YCBCR_BT709),
-> +					  supported_csc,
->  					  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
->  					  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
->  					  DRM_COLOR_YCBCR_BT709,
-> -- =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/index.html
 
-> 2.17.1
-> =
+Known issues
+------------
 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  Here are the changes found in Patchwork_16569 that come from known issues:
 
--- =
+### IGT changes ###
 
-Ville Syrj=E4l=E4
-Intel
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2] ([i915#877])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@contexts:
+    - {fi-ehl-1}:         [INCOMPLETE][3] ([i915#937]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-ehl-1/igt@gem_exec_parallel@contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/fi-ehl-1/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][5] ([fdo#108569]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][7] ([i915#45]) -> [TIMEOUT][8] ([fdo#112271] / [i915#1084] / [i915#816])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][9] ([i915#579]) -> [SKIP][10] ([fdo#109271])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7939/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Additional (7): fi-hsw-peppy fi-glk-dsi fi-ivb-3770 fi-icl-u3 fi-bsw-kefka fi-skl-6600u fi-kbl-r 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7939 -> Patchwork_16569
+
+  CI-20190529: 20190529
+  CI_DRM_7939: cceb0c30a34af6ca96e35211ecdc5ca198d44e7e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5441: 534ca091fe4ffed916752165bc5becd7ff56cd84 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16569: 2bb6ef6acc00a99d609b52064cf9baa76bb79004 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2bb6ef6acc00 drm/i915/gt: make a gt sysfs group and move power management files
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16569/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
