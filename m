@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E580515D7AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 13:51:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC6615D7AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 13:52:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 831AB6F910;
-	Fri, 14 Feb 2020 12:51:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 901816F913;
+	Fri, 14 Feb 2020 12:52:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B427E6F90F;
- Fri, 14 Feb 2020 12:51:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7C67B6F90F;
+ Fri, 14 Feb 2020 12:52:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ACF27A47EB;
- Fri, 14 Feb 2020 12:51:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 77EECA47EB;
+ Fri, 14 Feb 2020 12:52:27 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Andi Shyti" <andi@etezian.org>
-Date: Fri, 14 Feb 2020 12:51:04 -0000
-Message-ID: <158168466468.9929.1623355806962805285@emeril.freedesktop.org>
+Date: Fri, 14 Feb 2020 12:52:27 -0000
+Message-ID: <158168474748.9932.9583576232175226147@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200214110308.2268-1-andi.shyti@intel.com>
 In-Reply-To: <20200214110308.2268-1-andi.shyti@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_make_a_gt_sysfs_group_and_move_power_managem?=
- =?utf-8?q?ent_files_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/gt=3A_make_a_gt_sysfs_group_and_move_power_management_?=
+ =?utf-8?q?files_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,37 +54,10 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-2bb6ef6acc00 drm/i915/gt: make a gt sysfs group and move power management files
--:71: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#71: 
-new file mode 100644
-
--:553: WARNING:DEVICE_ATTR_FUNCTIONS: Consider renaming function(s) 'gt_rp_mhz_show' to 'gt_RP0_freq_mhz_show'
-#553: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:359:
-+static DEVICE_ATTR(gt_RP0_freq_mhz, 0444, gt_rp_mhz_show, NULL);
-
--:554: WARNING:DEVICE_ATTR_FUNCTIONS: Consider renaming function(s) 'gt_rp_mhz_show' to 'gt_RP1_freq_mhz_show'
-#554: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:360:
-+static DEVICE_ATTR(gt_RP1_freq_mhz, 0444, gt_rp_mhz_show, NULL);
-
--:555: CHECK:CAMELCASE: Avoid CamelCase: <gt_RPn_freq_mhz>
-#555: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:361:
-+static DEVICE_ATTR(gt_RPn_freq_mhz, 0444, gt_rp_mhz_show, NULL);
-
--:555: WARNING:DEVICE_ATTR_FUNCTIONS: Consider renaming function(s) 'gt_rp_mhz_show' to 'gt_RPn_freq_mhz_show'
-#555: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:361:
-+static DEVICE_ATTR(gt_RPn_freq_mhz, 0444, gt_rp_mhz_show, NULL);
-
--:570: CHECK:CAMELCASE: Avoid CamelCase: <dev_attr_gt_RPn_freq_mhz>
-#570: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:376:
-+	else if (attr == &dev_attr_gt_RPn_freq_mhz)
-
--:573: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
-#573: FILE: drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:379:
-+		BUG();
-
-total: 0 errors, 5 warnings, 2 checks, 1029 lines checked
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915/gt: make a gt sysfs group and move power management files
++drivers/gpu/drm/i915/gt/sysfs_gt_pm.c:19:17: warning: symbol 'intel_gt_sysfs_get_drvdata' was not declared. Should it be static?
 
 _______________________________________________
 Intel-gfx mailing list
