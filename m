@@ -1,64 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A81015D8AF
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:46:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1FBF15D8C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:51:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823366EB88;
-	Fri, 14 Feb 2020 13:46:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8B206E3D0;
+	Fri, 14 Feb 2020 13:51:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5E596EB88;
- Fri, 14 Feb 2020 13:46:16 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id a142so9424982oii.7;
- Fri, 14 Feb 2020 05:46:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent; bh=Z2AWHyN/sOb4PsOQdZpFIB/8+XI9oSRqPBfKZfRwFiU=;
- b=Cvlk7S2k5FNnFaMpydJh39pH3ElahgOrWipX78FuTVFaxf29cfR+obZPVLb1Fn5iqH
- uDLkhVA0jBDmtwTB3X4MSEOHPBJcXLKCErV9jPgOcdyYFHYwQIOqAghL8TvYQvbMz+5+
- +4TZBxiaF5pLh4ecvXXHacUTkln64pBdi1eQAmrGBrxDjg0xOAiGNyXvOFGcvmKG7PVr
- z/5Chh+c761a76kWqwUuerFL9V2FNYwZzYekwLn2pJQhUZr/E3Y+W7Ywdg6GW6YFdg66
- K/YlabYQv5xVqBZYRlwXrSCgLVMw4IV5wqB0dFL5rO2FihwOIBIIJReYPygoq/8pckPK
- 9FMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=Z2AWHyN/sOb4PsOQdZpFIB/8+XI9oSRqPBfKZfRwFiU=;
- b=tfGfy49fkvMT4CwZBhsuDiYVid08Cm8Qv/dCT07DhoOuqEY10Ml8cu1G6zm9Mnft++
- hPU/fP+TjZCrre0HUXYWxZYT33+zvdOvXmb+Yj8l+9IIlePf2NI8ukAkE/2q41/sXB7m
- bTTkFi0GFyLZ4ECzKX5uZE8HeOA+TghA5/CX0IQI77Abiv37fOCBEu1afavJspCo+ghC
- ECgpbWV7C3HUC5sBtmkLgFLjxFxYRhJcvM1zzxbH6bmfvfh9C7KpGDCRTHc0grfCM0Ob
- waRwIUSLDF+Wja73pVfFLtFdSUSFjHsMh9utjDcz2C35KX9ffZ8+EGwex3AsI9KDn6d+
- vlxA==
-X-Gm-Message-State: APjAAAWfNf/+ZEKNNqfwBzigc+BwmXEJltJCTnQ83Ytld2RSj/0ZGvhE
- DXg2ZAW8Xsfx28sLMhWLsz4=
-X-Google-Smtp-Source: APXvYqzDN8yB/OO+Niqa/er7303KT4elsvbSX2QFbbWCRBEluLHYhvxVws70OxqoDU3dH4uxeKg5Hg==
-X-Received: by 2002:aca:4306:: with SMTP id q6mr1922461oia.54.1581687975994;
- Fri, 14 Feb 2020 05:46:15 -0800 (PST)
-Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id k17sm1885677oic.45.2020.02.14.05.46.14
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Fri, 14 Feb 2020 05:46:15 -0800 (PST)
-Date: Fri, 14 Feb 2020 06:46:13 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200214134613.GA41838@ubuntu-m2-xlarge-x86>
-References: <20200214054706.33870-1-natechancellor@gmail.com>
- <87v9o965gg.fsf@intel.com>
- <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9B36F930
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:51:05 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 05:51:05 -0800
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="227603559"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 05:51:03 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Feb 2020 15:50:57 +0200
+Message-Id: <20200214135058.7580-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
- eb_relocate_vma
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [CI 1/2] drm/i915: split intel_modeset_driver_remove()
+ to pre/post irq uninstall
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,67 +42,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, clang-built-linux@googlegroups.com,
- Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 14, 2020 at 08:32:19AM +0000, Chris Wilson wrote:
-> Quoting Jani Nikula (2020-02-14 06:36:15)
-> > On Thu, 13 Feb 2020, Nathan Chancellor <natechancellor@gmail.com> wrote:
-> > > A recent commit in clang added -Wtautological-compare to -Wall, which=
- is
-> > > enabled for i915 after -Wtautological-compare is disabled for the rest
-> > > of the kernel so we see the following warning on x86_64:
-> > >
-> > >  ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1433:22: warning:
-> > >  result of comparison of constant 576460752303423487 with expression =
-of
-> > >  type 'unsigned int' is always false
-> > >  [-Wtautological-constant-out-of-range-compare]
-> > >          if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> > >             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-> > >  ../include/linux/compiler.h:78:42: note: expanded from macro 'unlike=
-ly'
-> > >  # define unlikely(x)    __builtin_expect(!!(x), 0)
-> > >                                             ^
-> > >  1 warning generated.
-> > >
-> > > It is not wrong in the case where ULONG_MAX > UINT_MAX but it does not
-> > > account for the case where this file is built for 32-bit x86, where
-> > > ULONG_MAX =3D=3D UINT_MAX and this check is still relevant.
-> > >
-> > > Cast remain to unsigned long, which keeps the generated code the same
-> > > (verified with clang-11 on x86_64 and GCC 9.2.0 on x86 and x86_64) and
-> > > the warning is silenced so we can catch more potential issues in the
-> > > future.
-> > >
-> > > Link: https://github.com/ClangBuiltLinux/linux/issues/778
-> > > Suggested-by: Michel D=E4nzer <michel@daenzer.net>
-> > > Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> > =
-
-> > Works for me as a workaround,
-> =
-
-> But the whole point was that the compiler could see that it was
-> impossible and not emit the code. Doesn't this break that?
-> -Chris
-
-As noted in the commit message, I ran diff <(objdump -Dr) <(objdump -Dr)
-on objects files compiled with and without the patch with clang and gcc
-for x86_64 and gcc for i386 (i386 does not build with clang) and there
-was zero difference aside from the file names.
-
-At the end of the day, I do not really care how the warning get fixed,
-just that it does since it is the only one on x86_64 defconfig.
-
-Cheers,
-Nathan
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U3BsaXQgaW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlKCkgdG8gdHdvLCB0aGUgcGFydCB3aXRo
+IHdvcmtpbmcgaXJxcwpiZWZvcmUgaXJxIHVuaW5zdGFsbCwgYW5kIHRoZSBwYXJ0IGFmdGVyIGly
+cSB1bmluc3RhbGwuIE1vdmUKaXJxX3VuaW50YWxsKCkgY2xvc2VyIHRvIHRoZSBsYXllciBpdCBi
+ZWxvbmdzLgoKVGhlIGVycm9yIHBhdGggaW4gaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZSgpIGxv
+b2tzIG9idmlvdXNseSB3ZWlyZAphZnRlciB0aGlzLCBidXQgcmVtYWlucyBhcyBnb29kIG9yIGJy
+b2tlbiBhcyBpdCBldmVyIHdhcy4gTm8gZnVuY3Rpb25hbApjaGFuZ2VzLgoKQ2M6IFZpbGxlIFN5
+cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClJldmlld2VkLWJ5OiBWaWxs
+ZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5
+OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMTIgKysrKystLS0tLS0tCiBkcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCB8ICAxICsKIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgICAgIHwgIDUgKysrKysKIDMgZmlsZXMgY2hh
+bmdlZCwgMTEgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGUwOWQzYzkzYzUyYi4uZDljMWM5
+NTJhMjdkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+YwpAQCAtMTg4OTgsNiArMTg4OTgsNyBAQCBzdGF0aWMgdm9pZCBpbnRlbF9ocGRfcG9sbF9maW5p
+KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogCWRybV9jb25uZWN0b3JfbGlzdF9pdGVy
+X2VuZCgmY29ubl9pdGVyKTsKIH0KIAorLyogcGFydCAjMTogY2FsbCBiZWZvcmUgaXJxIHVuaW5z
+dGFsbCAqLwogdm9pZCBpbnRlbF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmUoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmk5MTUpCiB7CiAJZmx1c2hfd29ya3F1ZXVlKGk5MTUtPmZsaXBfd3EpOwpAQCAt
+MTg5MDUsMTQgKzE4OTA2LDExIEBAIHZvaWQgaW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlKHN0
+cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogCiAJZmx1c2hfd29yaygmaTkxNS0+YXRvbWlj
+X2hlbHBlci5mcmVlX3dvcmspOwogCVdBUk5fT04oIWxsaXN0X2VtcHR5KCZpOTE1LT5hdG9taWNf
+aGVscGVyLmZyZWVfbGlzdCkpOworfQogCi0JLyoKLQkgKiBJbnRlcnJ1cHRzIGFuZCBwb2xsaW5n
+IGFzIHRoZSBmaXJzdCB0aGluZyB0byBhdm9pZCBjcmVhdGluZyBoYXZvYy4KLQkgKiBUb28gbXVj
+aCBzdHVmZiBoZXJlICh0dXJuaW5nIG9mIGNvbm5lY3RvcnMsIC4uLikgd291bGQKLQkgKiBleHBl
+cmllbmNlIGZhbmN5IHJhY2VzIG90aGVyd2lzZS4KLQkgKi8KLQlpbnRlbF9pcnFfdW5pbnN0YWxs
+KGk5MTUpOwotCisvKiBwYXJ0ICMyOiBjYWxsIGFmdGVyIGlycSB1bmluc3RhbGwgKi8KK3ZvaWQg
+aW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlX25vaXJxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICppOTE1KQorewogCS8qCiAJICogRHVlIHRvIHRoZSBocGQgaXJxIHN0b3JtIGhhbmRsaW5nIHRo
+ZSBob3RwbHVnIHdvcmsgY2FuIHJlLWFybSB0aGUKIAkgKiBwb2xsIGhhbmRsZXJzLiBIZW5jZSBk
+aXNhYmxlIHBvbGxpbmcgYWZ0ZXIgaHBkIGhhbmRsaW5nIGlzIHNodXQgZG93bi4KZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgKaW5kZXggNzU0MzhhMTM2ZDU4
+Li5mOTJlZmJiZWM4MzggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+ZGlzcGxheS5oCkBAIC02MTYsNiArNjE2LDcgQEAgaW50ZWxfZm9ybWF0X2luZm9faXNfeXV2X3Nl
+bWlwbGFuYXIoY29uc3Qgc3RydWN0IGRybV9mb3JtYXRfaW5mbyAqaW5mbywKIHZvaWQgaW50ZWxf
+bW9kZXNldF9pbml0X2h3KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KTsKIGludCBpbnRl
+bF9tb2Rlc2V0X2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwogdm9pZCBpbnRl
+bF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwor
+dm9pZCBpbnRlbF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmk5MTUpOwogdm9pZCBpbnRlbF9kaXNwbGF5X3Jlc3VtZShzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZGV2KTsKIHZvaWQgaW50ZWxfaW5pdF9wY2hfcmVmY2xrKHN0cnVjdCBkcm1faTkxNV9wcml2
+YXRlICpkZXZfcHJpdik7CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+ZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDk1NWY1MmJjZDZh
+Mi4uNDYzNmQ3MjNkNTMxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
+di5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTMzMyw2ICszMzMs
+OSBAQCBzdGF0aWMgaW50IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmUoc3RydWN0IGRybV9pOTE1
+X3ByaXZhdGUgKmk5MTUpCiAJaTkxNV9nZW1fZHJpdmVyX3JlbGVhc2UoaTkxNSk7CiBjbGVhbnVw
+X21vZGVzZXQ6CiAJaW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlKGk5MTUpOworCWludGVsX2ly
+cV91bmluc3RhbGwoaTkxNSk7CisJaW50ZWxfbW9kZXNldF9kcml2ZXJfcmVtb3ZlX25vaXJxKGk5
+MTUpOworCWdvdG8gY2xlYW51cF9jc3I7CiBjbGVhbnVwX2lycToKIAlpbnRlbF9pcnFfdW5pbnN0
+YWxsKGk5MTUpOwogY2xlYW51cF9jc3I6CkBAIC0zNDksNiArMzUyLDggQEAgc3RhdGljIHZvaWQg
+aTkxNV9kcml2ZXJfbW9kZXNldF9yZW1vdmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUp
+CiAKIAlpbnRlbF9pcnFfdW5pbnN0YWxsKGk5MTUpOwogCisJaW50ZWxfbW9kZXNldF9kcml2ZXJf
+cmVtb3ZlX25vaXJxKGk5MTUpOworCiAJaW50ZWxfYmlvc19kcml2ZXJfcmVtb3ZlKGk5MTUpOwog
+CiAJaW50ZWxfdmdhX3VucmVnaXN0ZXIoaTkxNSk7Ci0tIAoyLjIwLjEKCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
