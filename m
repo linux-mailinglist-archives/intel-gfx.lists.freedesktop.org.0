@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0601515D5B8
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 11:31:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5C715D5BA
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 11:31:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4716EB72;
-	Fri, 14 Feb 2020 10:31:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE696EB79;
+	Fri, 14 Feb 2020 10:31:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED75D6EB6F
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 10:31:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BDFE6EB72
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 10:31:01 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Feb 2020 11:30:44 +0100
-Message-Id: <20200214103055.2117836-9-maarten.lankhorst@linux.intel.com>
+Date: Fri, 14 Feb 2020 11:30:45 +0100
+Message-Id: <20200214103055.2117836-10-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.0.24.g3f081b084b0
 In-Reply-To: <20200214103055.2117836-1-maarten.lankhorst@linux.intel.com>
 References: <20200214103055.2117836-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/19] drm/i915: Use ww locking in
- intel_renderstate.
+Subject: [Intel-gfx] [PATCH 09/19] drm/i915: Add ww context handling to
+ context_barrier_task
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,245 +39,179 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We want to start using ww locking in intel_context_pin, for this
-we need to lock multiple objects, and the single i915_gem_object_lock
-is not enough.
-
-Convert to using ww-waiting, and make sure we always pin intel_context_state,
-even if we don't have a renderstate object.
+This is required if we want to pass a ww context in intel_context_pin
+and gen6_ppgtt_pin().
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c          | 21 +++---
- drivers/gpu/drm/i915/gt/intel_renderstate.c | 71 ++++++++++++++-------
- drivers/gpu/drm/i915/gt/intel_renderstate.h |  9 ++-
- 3 files changed, 65 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 55 ++++++++++++++-----
+ .../drm/i915/gem/selftests/i915_gem_context.c | 22 +++-----
+ 2 files changed, 48 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index fb4a487e0341..bcae951392ce 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -406,21 +406,20 @@ static int __engines_record_defaults(struct intel_gt *gt)
- 		/* We must be able to switch to something! */
- 		GEM_BUG_ON(!engine->kernel_context);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index e946b395ddf6..2152ac209450 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -975,12 +975,14 @@ I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
+ static int context_barrier_task(struct i915_gem_context *ctx,
+ 				intel_engine_mask_t engines,
+ 				bool (*skip)(struct intel_context *ce, void *data),
++				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
+ 				int (*emit)(struct i915_request *rq, void *data),
+ 				void (*task)(void *data),
+ 				void *data)
+ {
+ 	struct context_barrier_task *cb;
+ 	struct i915_gem_engines_iter it;
++	struct i915_gem_ww_ctx ww;
+ 	struct intel_context *ce;
+ 	int err = 0;
  
--		err = intel_renderstate_init(&so, engine);
--		if (err)
--			goto out;
--
- 		ce = intel_context_create(engine);
- 		if (IS_ERR(ce)) {
- 			err = PTR_ERR(ce);
- 			goto out;
- 		}
+@@ -1012,10 +1014,21 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 		if (skip && skip(ce, data))
+ 			continue;
  
 -		rq = intel_context_create_request(ce);
-+		err = intel_renderstate_init(&so, ce);
++		i915_gem_ww_ctx_init(&ww, true);
++retry:
++		err = intel_context_pin(ce);
 +		if (err)
 +			goto err;
++
++		if (pin)
++			err = pin(ce, &ww, data);
++		if (err)
++			goto err_unpin;
 +
 +		rq = i915_request_create(ce);
  		if (IS_ERR(rq)) {
  			err = PTR_ERR(rq);
--			intel_context_put(ce);
--			goto out;
-+			goto err_fini;
+-			break;
++			goto err_unpin;
  		}
  
- 		err = intel_engine_emit_ctx_wa(rq);
-@@ -434,9 +433,13 @@ static int __engines_record_defaults(struct intel_gt *gt)
- err_rq:
- 		requests[id] = i915_request_get(rq);
+ 		err = 0;
+@@ -1025,6 +1038,16 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 			err = i915_active_add_request(&cb->base, rq);
+ 
  		i915_request_add(rq);
--		intel_renderstate_fini(&so);
--		if (err)
-+err_fini:
-+		intel_renderstate_fini(&so, ce);
++err_unpin:
++		intel_context_unpin(ce);
 +err:
-+		if (err) {
-+			intel_context_put(ce);
- 			goto out;
++		if (err == -EDEADLK) {
++			err = i915_gem_ww_ctx_backoff(&ww);
++			if (!err)
++				goto retry;
 +		}
++		i915_gem_ww_ctx_fini(&ww);
++
+ 		if (err)
+ 			break;
+ 	}
+@@ -1080,6 +1103,17 @@ static void set_ppgtt_barrier(void *data)
+ 	i915_vm_close(old);
+ }
+ 
++static int pin_ppgtt_update(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data)
++{
++	struct i915_address_space *vm = ce->vm;
++
++	if (!HAS_LOGICAL_RING_CONTEXTS(vm->i915))
++		/* ppGTT is not part of the legacy context image */
++		return gen6_ppgtt_pin(i915_vm_to_ppgtt(vm));
++
++	return 0;
++}
++
+ static int emit_ppgtt_update(struct i915_request *rq, void *data)
+ {
+ 	struct i915_address_space *vm = rq->context->vm;
+@@ -1136,20 +1170,10 @@ static int emit_ppgtt_update(struct i915_request *rq, void *data)
+ 
+ static bool skip_ppgtt_update(struct intel_context *ce, void *data)
+ {
+-	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))
+-		return true;
+-
+ 	if (HAS_LOGICAL_RING_CONTEXTS(ce->engine->i915))
+-		return false;
+-
+-	if (!atomic_read(&ce->pin_count))
+-		return true;
+-
+-	/* ppGTT is not part of the legacy context image */
+-	if (gen6_ppgtt_pin(i915_vm_to_ppgtt(ce->vm)))
+-		return true;
+-
+-	return false;
++		return !ce->state;
++	else
++		return !atomic_read(&ce->pin_count);
+ }
+ 
+ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+@@ -1200,6 +1224,7 @@ static int set_ppgtt(struct drm_i915_file_private *file_priv,
+ 	 */
+ 	err = context_barrier_task(ctx, ALL_ENGINES,
+ 				   skip_ppgtt_update,
++				   pin_ppgtt_update,
+ 				   emit_ppgtt_update,
+ 				   set_ppgtt_barrier,
+ 				   old);
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index d3d8981b268f..50b465b62d88 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1904,8 +1904,8 @@ static int mock_context_barrier(void *arg)
+ 		return -ENOMEM;
+ 
+ 	counter = 0;
+-	err = context_barrier_task(ctx, 0,
+-				   NULL, NULL, mock_barrier_task, &counter);
++	err = context_barrier_task(ctx, 0, NULL, NULL, NULL,
++				   mock_barrier_task, &counter);
+ 	if (err) {
+ 		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
+ 		goto out;
+@@ -1917,11 +1917,8 @@ static int mock_context_barrier(void *arg)
  	}
  
- 	/* Flush the default context image to memory, and enable powersaving. */
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index fff61e86cfbf..09ea4d0a14f9 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -27,6 +27,7 @@
+ 	counter = 0;
+-	err = context_barrier_task(ctx, ALL_ENGINES,
+-				   skip_unused_engines,
+-				   NULL,
+-				   mock_barrier_task,
+-				   &counter);
++	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
++				   NULL, NULL, mock_barrier_task, &counter);
+ 	if (err) {
+ 		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
+ 		goto out;
+@@ -1941,8 +1938,8 @@ static int mock_context_barrier(void *arg)
  
- #include "i915_drv.h"
- #include "intel_renderstate.h"
-+#include "gt/intel_context.h"
- #include "intel_ring.h"
+ 	counter = 0;
+ 	context_barrier_inject_fault = BIT(RCS0);
+-	err = context_barrier_task(ctx, ALL_ENGINES,
+-				   NULL, NULL, mock_barrier_task, &counter);
++	err = context_barrier_task(ctx, ALL_ENGINES, NULL, NULL, NULL,
++				   mock_barrier_task, &counter);
+ 	context_barrier_inject_fault = 0;
+ 	if (err == -ENXIO)
+ 		err = 0;
+@@ -1956,11 +1953,8 @@ static int mock_context_barrier(void *arg)
+ 		goto out;
  
- static const struct intel_renderstate_rodata *
-@@ -74,10 +75,9 @@ static int render_state_setup(struct intel_renderstate *so,
- 	u32 *d;
- 	int ret;
- 
--	i915_gem_object_lock(so->vma->obj, NULL);
- 	ret = i915_gem_object_prepare_write(so->vma->obj, &needs_clflush);
- 	if (ret)
--		goto out_unlock;
-+		return ret;
- 
- 	d = kmap_atomic(i915_gem_object_get_dirty_page(so->vma->obj, 0));
- 
-@@ -158,8 +158,6 @@ static int render_state_setup(struct intel_renderstate *so,
- 	ret = 0;
- out:
- 	i915_gem_object_finish_access(so->vma->obj);
--out_unlock:
--	i915_gem_object_unlock(so->vma->obj);
- 	return ret;
- 
- err:
-@@ -171,33 +169,47 @@ static int render_state_setup(struct intel_renderstate *so,
- #undef OUT_BATCH
- 
- int intel_renderstate_init(struct intel_renderstate *so,
--			   struct intel_engine_cs *engine)
-+			   struct intel_context *ce)
- {
--	struct drm_i915_gem_object *obj;
-+	struct intel_engine_cs *engine = ce->engine;
-+	struct drm_i915_gem_object *obj = NULL;
- 	int err;
- 
- 	memset(so, 0, sizeof(*so));
- 
- 	so->rodata = render_state_get_rodata(engine);
--	if (!so->rodata)
--		return 0;
-+	if (so->rodata) {
-+		if (so->rodata->batch_items * 4 > PAGE_SIZE)
-+			return -EINVAL;
-+
-+		obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
-+		if (IS_ERR(obj))
-+			return PTR_ERR(obj);
-+
-+		so->vma = i915_vma_instance(obj, &engine->gt->ggtt->vm, NULL);
-+		if (IS_ERR(so->vma)) {
-+			err = PTR_ERR(so->vma);
-+			goto err_obj;
-+		}
-+	}
- 
--	if (so->rodata->batch_items * 4 > PAGE_SIZE)
--		return -EINVAL;
-+	i915_gem_ww_ctx_init(&so->ww, true);
-+retry:
-+	err = intel_context_pin(ce);
-+	if (err)
-+		goto err_fini;
- 
--	obj = i915_gem_object_create_internal(engine->i915, PAGE_SIZE);
--	if (IS_ERR(obj))
--		return PTR_ERR(obj);
-+	/* return early if there's nothing to setup */
-+	if (!err && !so->rodata)
-+		return 0;
- 
--	so->vma = i915_vma_instance(obj, &engine->gt->ggtt->vm, NULL);
--	if (IS_ERR(so->vma)) {
--		err = PTR_ERR(so->vma);
--		goto err_obj;
--	}
-+	err = i915_gem_object_lock(so->vma->obj, &so->ww);
-+	if (err)
-+		goto err_context;
- 
- 	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
--		goto err_vma;
-+		goto err_context;
- 
- 	err = render_state_setup(so, engine->i915);
- 	if (err)
-@@ -207,10 +219,19 @@ int intel_renderstate_init(struct intel_renderstate *so,
- 
- err_unpin:
- 	i915_vma_unpin(so->vma);
--err_vma:
-+err_context:
-+	intel_context_unpin(ce);
-+err_fini:
-+	if (err == -EDEADLK) {
-+		err = i915_gem_ww_ctx_backoff(&so->ww);
-+		if (!err)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&so->ww);
- 	i915_vma_close(so->vma);
- err_obj:
--	i915_gem_object_put(obj);
-+	if (obj)
-+		i915_gem_object_put(obj);
- 	so->vma = NULL;
- 	return err;
- }
-@@ -238,16 +259,18 @@ int intel_renderstate_emit(struct intel_renderstate *so,
- 			return err;
- 	}
- 
--	i915_vma_lock(so->vma);
- 	err = i915_request_await_object(rq, so->vma->obj, false);
- 	if (err == 0)
- 		err = i915_vma_move_to_active(so->vma, rq, 0);
--	i915_vma_unlock(so->vma);
- 
- 	return err;
- }
- 
--void intel_renderstate_fini(struct intel_renderstate *so)
-+void intel_renderstate_fini(struct intel_renderstate *so,
-+			    struct intel_context *ce)
- {
- 	i915_vma_unpin_and_release(&so->vma, 0);
-+
-+	intel_context_unpin(ce);
-+	i915_gem_ww_ctx_fini(&so->ww);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.h b/drivers/gpu/drm/i915/gt/intel_renderstate.h
-index 5700be69a05a..713aa1e86c80 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.h
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.h
-@@ -25,9 +25,10 @@
- #define _INTEL_RENDERSTATE_H_
- 
- #include <linux/types.h>
-+#include "i915_gem.h"
- 
- struct i915_request;
--struct intel_engine_cs;
-+struct intel_context;
- struct i915_vma;
- 
- struct intel_renderstate_rodata {
-@@ -49,6 +50,7 @@ extern const struct intel_renderstate_rodata gen8_null_state;
- extern const struct intel_renderstate_rodata gen9_null_state;
- 
- struct intel_renderstate {
-+	struct i915_gem_ww_ctx ww;
- 	const struct intel_renderstate_rodata *rodata;
- 	struct i915_vma *vma;
- 	u32 batch_offset;
-@@ -58,9 +60,10 @@ struct intel_renderstate {
- };
- 
- int intel_renderstate_init(struct intel_renderstate *so,
--			   struct intel_engine_cs *engine);
-+			   struct intel_context *ce);
- int intel_renderstate_emit(struct intel_renderstate *so,
- 			   struct i915_request *rq);
--void intel_renderstate_fini(struct intel_renderstate *so);
-+void intel_renderstate_fini(struct intel_renderstate *so,
-+			    struct intel_context *ce);
- 
- #endif /* _INTEL_RENDERSTATE_H_ */
+ 	counter = 0;
+-	err = context_barrier_task(ctx, ALL_ENGINES,
+-				   skip_unused_engines,
+-				   NULL,
+-				   mock_barrier_task,
+-				   &counter);
++	err = context_barrier_task(ctx, ALL_ENGINES, skip_unused_engines,
++				   NULL, NULL, mock_barrier_task, &counter);
+ 	if (err) {
+ 		pr_err("Failed at line %d, err=%d\n", __LINE__, err);
+ 		goto out;
 -- 
 2.25.0.24.g3f081b084b0
 
