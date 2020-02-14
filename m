@@ -1,43 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8FFD15D8A9
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:41:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A81015D8AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 14:46:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B8976E7F1;
-	Fri, 14 Feb 2020 13:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 823366EB88;
+	Fri, 14 Feb 2020 13:46:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2014F6E7F1
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 13:41:37 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 05:41:36 -0800
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="223019356"
-Received: from ayashfe-mobl1.ger.corp.intel.com (HELO [10.251.86.31])
- ([10.251.86.31])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/AES256-SHA;
- 14 Feb 2020 05:41:35 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, Andi Shyti
- <andi.shyti@intel.com>, Intel GFX <intel-gfx@lists.freedesktop.org>
-References: <20200214110308.2268-1-andi.shyti@intel.com>
- <aa7b70a5-149d-5c6b-756c-823c03a0df2b@linux.intel.com>
- <158168632802.10420.7548890837084892851@skylake-alporthouse-com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ea4e2120-ec6b-382b-90b1-e9b32da4c803@linux.intel.com>
-Date: Fri, 14 Feb 2020 13:41:33 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5E596EB88;
+ Fri, 14 Feb 2020 13:46:16 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id a142so9424982oii.7;
+ Fri, 14 Feb 2020 05:46:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=Z2AWHyN/sOb4PsOQdZpFIB/8+XI9oSRqPBfKZfRwFiU=;
+ b=Cvlk7S2k5FNnFaMpydJh39pH3ElahgOrWipX78FuTVFaxf29cfR+obZPVLb1Fn5iqH
+ uDLkhVA0jBDmtwTB3X4MSEOHPBJcXLKCErV9jPgOcdyYFHYwQIOqAghL8TvYQvbMz+5+
+ +4TZBxiaF5pLh4ecvXXHacUTkln64pBdi1eQAmrGBrxDjg0xOAiGNyXvOFGcvmKG7PVr
+ z/5Chh+c761a76kWqwUuerFL9V2FNYwZzYekwLn2pJQhUZr/E3Y+W7Ywdg6GW6YFdg66
+ K/YlabYQv5xVqBZYRlwXrSCgLVMw4IV5wqB0dFL5rO2FihwOIBIIJReYPygoq/8pckPK
+ 9FMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=Z2AWHyN/sOb4PsOQdZpFIB/8+XI9oSRqPBfKZfRwFiU=;
+ b=tfGfy49fkvMT4CwZBhsuDiYVid08Cm8Qv/dCT07DhoOuqEY10Ml8cu1G6zm9Mnft++
+ hPU/fP+TjZCrre0HUXYWxZYT33+zvdOvXmb+Yj8l+9IIlePf2NI8ukAkE/2q41/sXB7m
+ bTTkFi0GFyLZ4ECzKX5uZE8HeOA+TghA5/CX0IQI77Abiv37fOCBEu1afavJspCo+ghC
+ ECgpbWV7C3HUC5sBtmkLgFLjxFxYRhJcvM1zzxbH6bmfvfh9C7KpGDCRTHc0grfCM0Ob
+ waRwIUSLDF+Wja73pVfFLtFdSUSFjHsMh9utjDcz2C35KX9ffZ8+EGwex3AsI9KDn6d+
+ vlxA==
+X-Gm-Message-State: APjAAAWfNf/+ZEKNNqfwBzigc+BwmXEJltJCTnQ83Ytld2RSj/0ZGvhE
+ DXg2ZAW8Xsfx28sLMhWLsz4=
+X-Google-Smtp-Source: APXvYqzDN8yB/OO+Niqa/er7303KT4elsvbSX2QFbbWCRBEluLHYhvxVws70OxqoDU3dH4uxeKg5Hg==
+X-Received: by 2002:aca:4306:: with SMTP id q6mr1922461oia.54.1581687975994;
+ Fri, 14 Feb 2020 05:46:15 -0800 (PST)
+Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id k17sm1885677oic.45.2020.02.14.05.46.14
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Fri, 14 Feb 2020 05:46:15 -0800 (PST)
+Date: Fri, 14 Feb 2020 06:46:13 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200214134613.GA41838@ubuntu-m2-xlarge-x86>
+References: <20200214054706.33870-1-natechancellor@gmail.com>
+ <87v9o965gg.fsf@intel.com>
+ <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
 MIME-Version: 1.0
-In-Reply-To: <158168632802.10420.7548890837084892851@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: make a gt sysfs group and move
- power management files
+Content-Disposition: inline
+In-Reply-To: <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
+ eb_relocate_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,64 +71,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, clang-built-linux@googlegroups.com,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Feb 14, 2020 at 08:32:19AM +0000, Chris Wilson wrote:
+> Quoting Jani Nikula (2020-02-14 06:36:15)
+> > On Thu, 13 Feb 2020, Nathan Chancellor <natechancellor@gmail.com> wrote:
+> > > A recent commit in clang added -Wtautological-compare to -Wall, which=
+ is
+> > > enabled for i915 after -Wtautological-compare is disabled for the rest
+> > > of the kernel so we see the following warning on x86_64:
+> > >
+> > >  ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1433:22: warning:
+> > >  result of comparison of constant 576460752303423487 with expression =
+of
+> > >  type 'unsigned int' is always false
+> > >  [-Wtautological-constant-out-of-range-compare]
+> > >          if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> > >             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+> > >  ../include/linux/compiler.h:78:42: note: expanded from macro 'unlike=
+ly'
+> > >  # define unlikely(x)    __builtin_expect(!!(x), 0)
+> > >                                             ^
+> > >  1 warning generated.
+> > >
+> > > It is not wrong in the case where ULONG_MAX > UINT_MAX but it does not
+> > > account for the case where this file is built for 32-bit x86, where
+> > > ULONG_MAX =3D=3D UINT_MAX and this check is still relevant.
+> > >
+> > > Cast remain to unsigned long, which keeps the generated code the same
+> > > (verified with clang-11 on x86_64 and GCC 9.2.0 on x86 and x86_64) and
+> > > the warning is silenced so we can catch more potential issues in the
+> > > future.
+> > >
+> > > Link: https://github.com/ClangBuiltLinux/linux/issues/778
+> > > Suggested-by: Michel D=E4nzer <michel@daenzer.net>
+> > > Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> > =
 
-On 14/02/2020 13:18, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-02-14 12:54:35)
->>
->> On 14/02/2020 11:03, Andi Shyti wrote:
->>> +struct intel_gt *intel_gt_sysfs_get_drvdata(struct device *dev)
->>> +{
->>> +     struct kobject *kobj = &dev->kobj;
->>> +     /*
->>> +      * We are interested at knowing from where the interface
->>> +      * has been called, whether it's called from gt/ or from
->>> +      * the parent directory.
->>> +      * From the interface position it depends also the value of
->>> +      * the private data.
->>> +      * If the interface is called from gt/ then private data is
->>> +      * of the "struct intel_gt *" type, otherwise it's * a
->>> +      * "struct drm_i915_private *" type.
->>> +      */
->>> +     if (strcmp(dev->kobj.name, "gt")) {
->>> +             struct drm_i915_private *i915 = kdev_minor_to_i915(dev);
->>> +
->>> +             drm_warn(&i915->drm, "the interface is obsolete, use gt/\n");
->>
->> Can you log current->name & pid?
->>
->> I am also thinking is a level down from warn would be better. Notice
->> sounds intuitively correct to me.
-> 
-> git grep -e 'pr.*obsolete' | grep warn | wc -l
-> 21
-> git grep -e 'pr.*obsolete' | grep notice | wc -l
-> 1
-> git grep -e 'pr.*obsolete' | grep info | wc -l
-> 4
-> 
-> Looks like warn's back on the menu, boys.
+> > Works for me as a workaround,
+> =
 
-Majority is just wrong. :P
+> But the whole point was that the compiler could see that it was
+> impossible and not emit the code. Doesn't this break that?
+> -Chris
 
->> I am also tempted by the _once alternative, but then it makes less sense
->> to include name & pid.
-> 
-> I'm more afraid that there are users out there that frequently poke
-> these files.
+As noted in the commit message, I ran diff <(objdump -Dr) <(objdump -Dr)
+on objects files compiled with and without the patch with clang and gcc
+for x86_64 and gcc for i386 (i386 does not build with clang) and there
+was zero difference aside from the file names.
 
-Agreed, I think best option is to go with ratelimited and name & pid 
-logged. And more verbosity about what has been access and what should be 
-accessed instead.
+At the end of the day, I do not really care how the warning get fixed,
+just that it does since it is the only one on x86_64 defconfig.
 
-Regards,
-
-Tvrtko
-
+Cheers,
+Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
