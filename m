@@ -1,60 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD41815D8EF
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:05:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A14CC15D90B
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 15:09:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 155406E808;
-	Fri, 14 Feb 2020 14:05:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 953B26E81F;
+	Fri, 14 Feb 2020 14:09:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC9546E7FA
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 14:04:59 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88D826E81F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 14:09:16 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 06:04:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="234464077"
-Received: from irsmsx107.ger.corp.intel.com ([163.33.3.99])
- by orsmga003.jf.intel.com with ESMTP; 14 Feb 2020 06:04:57 -0800
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- IRSMSX107.ger.corp.intel.com (163.33.3.99) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 14 Feb 2020 14:04:55 +0000
-Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
- IRSMSX605.ger.corp.intel.com (163.33.146.138) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 14 Feb 2020 14:04:55 +0000
-Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7]) by
- irsmsx601.ger.corp.intel.com ([163.33.146.7]) with mapi id 15.01.1713.004;
- Fri, 14 Feb 2020 14:04:55 +0000
-From: "Sarvela, Tomi P" <tomi.p.sarvela@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "Hiler, Arkadiusz"
- <arkadiusz.hiler@intel.com>, "Lisovskiy, Stanislav"
- <stanislav.lisovskiy@intel.com>
-Thread-Topic: [PATCH] drm/i915/mst: fix pipe and vblank enable
-Thread-Index: AQHV4AXLy59NCTtTIUiRj9QDUvw7+agUTqqAgABHoICABby0AIAAaTeg
-Date: Fri, 14 Feb 2020 14:04:55 +0000
-Message-ID: <2b9ee5f16d86408f947eb59383c1960d@intel.com>
-References: <20200205082959.31317-1-jani.nikula@intel.com>
- <87imke1xvt.fsf@intel.com>
- <a8c9aee482db2d51630094ea07d7821b27a8d567.camel@intel.com>
- <20200210160009.qazm6krixf7nhtca@ahiler-desk1.fi.intel.com>
- <87mu9l62nh.fsf@intel.com>
-In-Reply-To: <87mu9l62nh.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-x-originating-ip: [163.33.253.164]
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 06:09:15 -0800
+X-IronPort-AV: E=Sophos;i="5.70,440,1574150400"; d="scan'208";a="227607626"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 06:09:14 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 14 Feb 2020 16:09:09 +0200
+Message-Id: <20200214140910.23194-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/mst: fix pipe and vblank enable
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/csr: use intel_de_*() functions
+ for register access
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,63 +42,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Peres,
- Martin" <martin.peres@intel.com>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> From: Jani Nikula <jani.nikula@intel.com>
-> 
-> On Mon, 10 Feb 2020, Arkadiusz Hiler <arkadiusz.hiler@intel.com> wrote:
-> > As of the 3 days worth of queued shards:
-> >
-> > I agree that this is unacceptable, but we can do only so much from the
-> > CI/infra side. The time has been creeping up steadily over the last year
-> > or so and the machines are not getting any faster.
-> 
-> I am *not* trying to say that it's all your fault and you need to
-> provide all results faster for the ever-increasing firehose of incoming
-> patches.
-> 
-> I'd like to pose the question, what would all this look like if we made
-> it a hard requirement that we need a go/no-go decision on every patch
-> series within 24 hours? I emphasize that I don't mean full results in 24
-> hours. Given all the other constraints, how could we provide as much
-> useful information as possible within 24 hours to make a decision?
-> 
-> In another thread I said, we've shifted a bit from review being the
-> bottle neck to shard runs being the bottle neck. It's still much more
-> likely that a patch will change due to review feedback instead of shard
-> run results. Half a dozen rounds of review ping pong directly leads to
-> half a dozen rounds of mostly unnecessary testing. I would not outright
-> dismiss only running full igt on reviewed/acked patches.
+The implicit "dev_priv" local variable use has been a long-standing pain
+point in the register access macros I915_READ(), I915_WRITE(),
+POSTING_READ(), I915_READ_FW(), and I915_WRITE_FW().
 
-This is actually a good idea. In practice, the shards are swamped by the
-amount of builds today, and the throughput has been close to 1/h a long
-time, even with work ongoing to prune or tighten stupidest IGT tests.
+Replace them with the corresponding new display engine register
+accessors intel_de_read(), intel_de_write(), intel_de_posting_read(),
+intel_de_read_fw(), and intel_de_write_fw().
 
-We could make the shard run requirements stricter: in addition to passing
-BAT it would need some amount of Acks. Patchwork already collects them.
+No functional changes.
 
-Another idea has been moving the serialized shard run queue to something
-that can handle reordering: trybots can be moved after everything else. This
-doesn't affect to the shard queue length though, if we still want to test
-everything.
+Generated using the following semantic patch:
 
-> Additionally, there are smaller optimizations to be made (obviously all
-> depending on developer bandwidth to implement this stuff), such as
-> identifying patches that don't change the resulting binary
-> (comment/documentation/whitespace changes), and only running build
-> testing on them.
+@@
+expression REG, OFFSET;
+@@
+- I915_READ(REG)
++ intel_de_read(dev_priv, REG)
 
-This idea has been floating around, and would help in 5% changes or so
-(which is still noticeable: 1-2 more builds / day tested instead of queued).
+@@
+expression REG, OFFSET;
+@@
+- POSTING_READ(REG)
++ intel_de_posting_read(dev_priv, REG)
 
-Just need a good diff checker that says "text changes only, skip it".
+@@
+expression REG, OFFSET;
+@@
+- I915_WRITE(REG, OFFSET)
++ intel_de_write(dev_priv, REG, OFFSET)
 
-Tomi
+@@
+expression REG;
+@@
+- I915_READ_FW(REG)
++ intel_de_read_fw(dev_priv, REG)
+
+@@
+expression REG, OFFSET;
+@@
+- I915_WRITE_FW(REG, OFFSET)
++ intel_de_write_fw(dev_priv, REG, OFFSET)
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_csr.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_csr.c b/drivers/gpu/drm/i915/display/intel_csr.c
+index 6a408e11a3de..57320c12839f 100644
+--- a/drivers/gpu/drm/i915/display/intel_csr.c
++++ b/drivers/gpu/drm/i915/display/intel_csr.c
+@@ -27,6 +27,7 @@
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_csr.h"
++#include "intel_de.h"
+ 
+ /**
+  * DOC: csr support for dmc
+@@ -276,11 +277,11 @@ static void gen9_set_dc_state_debugmask(struct drm_i915_private *dev_priv)
+ 		mask |= DC_STATE_DEBUG_MASK_CORES;
+ 
+ 	/* The below bit doesn't need to be cleared ever afterwards */
+-	val = I915_READ(DC_STATE_DEBUG);
++	val = intel_de_read(dev_priv, DC_STATE_DEBUG);
+ 	if ((val & mask) != mask) {
+ 		val |= mask;
+-		I915_WRITE(DC_STATE_DEBUG, val);
+-		POSTING_READ(DC_STATE_DEBUG);
++		intel_de_write(dev_priv, DC_STATE_DEBUG, val);
++		intel_de_posting_read(dev_priv, DC_STATE_DEBUG);
+ 	}
+ }
+ 
+@@ -321,8 +322,8 @@ void intel_csr_load_program(struct drm_i915_private *dev_priv)
+ 	preempt_enable();
+ 
+ 	for (i = 0; i < dev_priv->csr.mmio_count; i++) {
+-		I915_WRITE(dev_priv->csr.mmioaddr[i],
+-			   dev_priv->csr.mmiodata[i]);
++		intel_de_write(dev_priv, dev_priv->csr.mmioaddr[i],
++			       dev_priv->csr.mmiodata[i]);
+ 	}
+ 
+ 	dev_priv->csr.dc_state = 0;
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
