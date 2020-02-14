@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B191D15E9E1
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 18:10:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED50715EBEF
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 18:23:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 131216E83B;
-	Fri, 14 Feb 2020 17:10:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 488206E842;
+	Fri, 14 Feb 2020 17:23:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE146E83B
- for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 17:10:39 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24E6D6E842
+ for <intel-gfx@lists.freedesktop.org>; Fri, 14 Feb 2020 17:23:55 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 14 Feb 2020 09:10:39 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 14 Feb 2020 09:23:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,441,1574150400"; d="scan'208";a="381497606"
+X-IronPort-AV: E=Sophos;i="5.70,441,1574150400"; d="scan'208";a="347988292"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga004.jf.intel.com with ESMTP; 14 Feb 2020 09:10:39 -0800
-Date: Fri, 14 Feb 2020 09:10:38 -0800
+ by fmsmga001.fm.intel.com with SMTP; 14 Feb 2020 09:23:53 -0800
+Date: Fri, 14 Feb 2020 09:23:53 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-To: Rafael Antognolli <rafael.antognolli@intel.com>
-Message-ID: <20200214171038.GN2014153@mdroper-desk1.amr.corp.intel.com>
-References: <20200212191728.25227-1-rafael.antognolli@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200214172353.GO2014153@mdroper-desk1.amr.corp.intel.com>
+References: <20200212090611.1251110-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200212191728.25227-1-rafael.antognolli@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1808121037 to tgl.
+In-Reply-To: <20200212090611.1251110-1-chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915: Implement Wa_1607090982"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,49 +45,67 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBGZWIgMTIsIDIwMjAgYXQgMTE6MTc6MjhBTSAtMDgwMCwgUmFmYWVsIEFudG9nbm9s
-bGkgd3JvdGU6Cj4gSXQncyBub3QgY2xlYXIgd2hldGhlciB0aGlzIHdvcmthcm91bmQgaXMgZmlu
-YWwgeWV0LCBidXQgdGhlIEJTcGVjCj4gaW5kaWNhdGVzIHRoYXQgdXNlcnNwYWNlIG5lZWRzIHRv
-IHNldCBiaXQgOSBvZiB0aGlzIHJlZ2lzdGVyIG9uIGRlbWFuZDoKPiAKPiAgICAiVG8gYXZvaWQg
-c3BvcmFkaWMgY29ycnVwdGlvbnMg4oCcU2V0IDB4NzAxMFs5XSB3aGVuIERlcHRoIEJ1ZmZlcgo+
-ICAgIFN1cmZhY2UgRm9ybWF0IGlzIEQxNl9VTk9STSAsIHN1cmZhY2UgdHlwZSBpcyBub3QgTlVM
-TCAmIDFYX01TQUEiCj4gCj4gQnVnTGluazogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
-L21lc2EvbWVzYS9pc3N1ZXMvMjUwMQo+IFNpZ25lZC1vZmYtYnk6IFJhZmFlbCBBbnRvZ25vbGxp
-IDxyYWZhZWwuYW50b2dub2xsaUBpbnRlbC5jb20+CgpTZWVtcyBsaWtlIHRoZSByaWdodCByZWdp
-c3RlciB0byB3aGl0ZWxpc3QgdG8gYWxsb3cgdXNlcnNwYWNlIHRvIGFwcGx5CnRoZSB3b3JrYXJv
-dW5kLgoKUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+
-CgpJIHRoaW5rIHdlIGNhbiBkcm9wIHRoZSAiQWxsb3cgdXNlcnBhY2UgdG8gaW1wbGVtZW50IHRo
-aXMgd29ya2Fyb3VuZCIKcGFydCBvZiB0aGUgY29tbWVudDsgdGhhdCBwYXJ0IGlzIHNlbGYtZXhw
-bGFuYXRvcnkgZ2l2ZW4gdGhhdCBpdCdzIGEKd2hpdGVsaXN0IGVudHJ5LiAgRG8geW91IG1pbmQg
-aWYgd2UganVzdCB0d2VhayB0aGUgY29tbWVudCB3aGlsZQphcHBseWluZz8gIEl0IGxvb2tzIGxp
-a2UgdGhlIENJIHNoYXJkcyBxdWV1ZSBpcyBtYXNzaXZlIHJpZ2h0IG5vdyBzbwppdCdzIGFscmVh
-ZHkgZ29pbmcgdG8gdGFrZSBhIGxvbmcgdGltZSB0byBnZXQgdGhlIGZ1bGwgcmVzdWx0cyBiYWNr
-IGZvcgp0aGlzIHBhdGNoOyBubyBuZWVkIHRvIG1ha2UgaXQgZXZlbiBsb25nZXIgYnkgcmVzdWJt
-aXR0aW5nIGZvciBhIHRyaXZpYWwKY29tbWVudCBzaG9ydGVuaW5nLgoKCk1hdHQKCj4gLS0tCj4g
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCA2ICsrKysrKwo+
-ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4gaW5kZXggNjJiNDNmNTM4YTU2Li41N2I5Njg1
-ZDkzNDcgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fy
-b3VuZHMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRz
-LmMKPiBAQCAtMTI2NCw2ICsxMjY0LDEyIEBAIHN0YXRpYyB2b2lkIHRnbF93aGl0ZWxpc3RfYnVp
-bGQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQo+ICAJCXdoaXRlbGlzdF9yZWdfZXh0
-KHcsIFBTX0lOVk9DQVRJT05fQ09VTlQsCj4gIAkJCQkgIFJJTkdfRk9SQ0VfVE9fTk9OUFJJVl9B
-Q0NFU1NfUkQgfAo+ICAJCQkJICBSSU5HX0ZPUkNFX1RPX05PTlBSSVZfUkFOR0VfNCk7Cj4gKwo+
-ICsJCS8qIFdhXzE4MDgxMjEwMzc6dGdsCj4gKwkJICoKPiArCQkgKiBBbGxvdyB1c2VycGFjZSB0
-byBpbXBsZW1lbnQgdGhpcyB3b3JrYXJvdW5kLgo+ICsJCSAqLwo+ICsJCXdoaXRlbGlzdF9yZWco
-dywgR0VON19DT01NT05fU0xJQ0VfQ0hJQ0tFTjEpOwo+ICAJCWJyZWFrOwo+ICAJZGVmYXVsdDoK
-PiAgCQlicmVhazsKPiAtLSAKPiAyLjI1LjAKPiAKPiBfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwo+IEludGVsLWdmeCBtYWlsaW5nIGxpc3QKPiBJbnRlbC1n
-ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKCi0tIApNYXR0IFJvcGVyCkdyYXBoaWNzIFNvZnR3
-YXJlIEVuZ2luZWVyClZUVC1PU0dDIFBsYXRmb3JtIEVuYWJsZW1lbnQKSW50ZWwgQ29ycG9yYXRp
-b24KKDkxNikgMzU2LTI3OTUKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
-ZWwtZ2Z4Cg==
+On Wed, Feb 12, 2020 at 09:06:11AM +0000, Chris Wilson wrote:
+> BIT(14) is not sticking in 0xe4f4 so we have no idea if the w/a is still
+> in effect when it needs to be. Until that is resolved, remove the
+> failing bit.
+
+The headline for the patch you're reverting was somewhat confusing since
+it doesn't match the name used in the code comment below or the bspec
+workaround page (Wa_1606931601).  But it looks like both numbers refer
+to the same workaround in the underlying database, so it's the correct
+revert.
+
+Maybe also add a reference to the preferred Wa_1606931601 name in your
+commit message so that it's easier to find when searching git history?
+That might help prevent someone from accidentally re-implementing this
+workaround the next time we scrub the WA database.
+
+
+Matt
+
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1169
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 62b43f538a56..4bbea781c142 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -598,9 +598,6 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
+>  	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
+>  			    FF_MODE2_TDS_TIMER_MASK);
+> -
+> -	/* Wa_1606931601:tgl */
+> -	WA_SET_BIT_MASKED(GEN7_ROW_CHICKEN2, GEN12_DISABLE_EARLY_READ);
+>  }
+>  
+>  static void
+> -- 
+> 2.25.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
