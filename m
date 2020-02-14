@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7FEE15F6FD
-	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 20:40:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A6215F6FC
+	for <lists+intel-gfx@lfdr.de>; Fri, 14 Feb 2020 20:40:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFE36FBAB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8A86FBA6;
 	Fri, 14 Feb 2020 19:40:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47EF86E867;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC866E869;
  Fri, 14 Feb 2020 19:40:46 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20230820-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20230821-1500050 
  for multiple; Fri, 14 Feb 2020 19:40:19 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 14 Feb 2020 19:40:14 +0000
-Message-Id: <20200214194016.4054376-2-chris@chris-wilson.co.uk>
+Date: Fri, 14 Feb 2020 19:40:15 +0000
+Message-Id: <20200214194016.4054376-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200214194016.4054376-1-chris@chris-wilson.co.uk>
 References: <20200214194016.4054376-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/4] i915/gem_ctx_engine: Exercise
- for_each_context_engine() with custom engine[]
+Subject: [Intel-gfx] [PATCH i-g-t 3/4] lib/i915: Don't confuse param.size
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,60 +44,51 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Set up a custom engine map with no engines, and check that the
-for_each_context_engine() correctly iterates over nothing.
+If the context has no engines, it has no engines -- do not override the
+user's setup.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_ctx_engines.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+ lib/i915/gem_engine_topology.c | 19 +++++++------------
+ 1 file changed, 7 insertions(+), 12 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_engines.c b/tests/i915/gem_ctx_engines.c
-index 063140e0f..6a2edd1e0 100644
---- a/tests/i915/gem_ctx_engines.c
-+++ b/tests/i915/gem_ctx_engines.c
-@@ -549,6 +549,31 @@ static void independent(int i915)
- 	gem_context_destroy(i915, param.ctx_id);
+diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+index 9daa03df4..ca1c1fdb9 100644
+--- a/lib/i915/gem_engine_topology.c
++++ b/lib/i915/gem_engine_topology.c
+@@ -195,17 +195,6 @@ static int gem_topology_get_param(int fd,
+ 	if (__gem_context_get_param(fd, p))
+ 		return -1; /* using default engine map */
+ 
+-	if (!p->size)
+-		return 0;
+-
+-	/* size will store the engine count */
+-	p->size = (p->size - sizeof(struct i915_context_param_engines)) /
+-		  (offsetof(struct i915_context_param_engines,
+-			    engines[1]) -
+-		  sizeof(struct i915_context_param_engines));
+-
+-	igt_assert_f(p->size <= GEM_MAX_ENGINES, "unsupported engine count\n");
+-
+ 	return 0;
  }
  
-+static void libapi(int i915)
-+{
-+	struct i915_context_param_engines engines = {};
-+	struct drm_i915_gem_context_param p = {
-+		.ctx_id = gem_context_create(i915),
-+		.param = I915_CONTEXT_PARAM_ENGINES,
-+		.value = to_user_pointer(&engines),
-+		.size = sizeof(engines),
-+	};
-+	const struct intel_execution_engine2 *e;
-+	unsigned int count = 0;
+@@ -242,7 +231,13 @@ struct intel_engine_data intel_init_engine_list(int fd, uint32_t ctx_id)
+ 		query_engine_list(fd, &engine_data);
+ 		ctx_map_engines(fd, &engine_data, &param);
+ 	} else {
+-		/* param.size contains the engine count */
++		/* engine count can be inferred from size */
++		param.size -= sizeof(struct i915_context_param_engines);
++		param.size /= sizeof(struct i915_engine_class_instance);
 +
-+	gem_context_set_param(i915, &p);
++		igt_assert_f(param.size <= GEM_MAX_ENGINES,
++			     "unsupported engine count\n");
 +
-+	for_each_context_engine(i915, p.ctx_id, e)
-+		count++;
-+	igt_assert_eq(count, 0);
-+
-+	____for_each_physical_engine(i915, p.ctx_id, e)
-+		count++;
-+	igt_assert_eq(count, 0);
-+
-+	gem_context_destroy(i915, p.ctx_id);
-+}
-+
- igt_main
- {
- 	int i915 = -1;
-@@ -584,6 +609,9 @@ igt_main
- 	igt_subtest("independent")
- 		independent(i915);
- 
-+	igt_subtest("libapi")
-+		libapi(i915);
-+
- 	igt_fixture
- 		igt_stop_hang_detector();
- }
+ 		for (i = 0; i < param.size; i++)
+ 			init_engine(&engine_data.engines[i],
+ 				    engines.engines[i].engine_class,
 -- 
 2.25.0
 
