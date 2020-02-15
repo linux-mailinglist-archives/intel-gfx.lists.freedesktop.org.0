@@ -2,28 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249031600A6
-	for <lists+intel-gfx@lfdr.de>; Sat, 15 Feb 2020 22:22:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B50B1600B8
+	for <lists+intel-gfx@lfdr.de>; Sat, 15 Feb 2020 22:33:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AA686E235;
-	Sat, 15 Feb 2020 21:22:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5DD26E910;
+	Sat, 15 Feb 2020 21:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BC086E235
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Feb 2020 21:22:29 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20239020-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sat, 15 Feb 2020 21:22:29 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 15 Feb 2020 21:22:26 +0000
-Message-Id: <20200215212226.18507-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CEFB96E237;
+ Sat, 15 Feb 2020 21:33:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B7E18A0099;
+ Sat, 15 Feb 2020 21:33:01 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Track hw reported context runtime
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 15 Feb 2020 21:33:01 -0000
+Message-ID: <158180238172.4008.17163587747214006257@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200215092902.4131132-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200215092902.4131132-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Mark_the_mock_ring-=3Evma_as_being_in_the_GG?=
+ =?utf-8?b?VFQgKHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,281 +39,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-GPU saves accumulated context runtime (in CS timestamp units) in PPHWSP
-which will be useful for us in cases when we are not able to track context
-busyness ourselves (like with GuC). Keep a copy of this in struct
-intel_context from where it can be easily read even if the context is not
-pinned.
+Series: drm/i915/selftests: Mark the mock ring->vma as being in the GGTT (rev3)
+URL   : https://patchwork.freedesktop.org/series/73496/
+State : success
 
-QQQ: Do we want to make this accounting conditional / able to turn on/off?
+== Summary ==
 
-v2:
- (Chris)
- * Do not store pphwsp address in intel_context.
- * Log CS wrap-around.
- * Simplify calculation by relying on integer wraparound.
+CI Bug Log - changes from CI_DRM_7947 -> Patchwork_16582
+====================================================
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context.h       |  9 ++
- drivers/gpu/drm/i915/gt/intel_context_types.h |  7 ++
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 41 ++++++++-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        | 85 +++++++++++++++++++
- drivers/gpu/drm/i915/intel_device_info.c      |  6 ++
- drivers/gpu/drm/i915/intel_device_info.h      |  1 +
- 6 files changed, 147 insertions(+), 2 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index 604d5cfc46ba..502cf7361a29 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -12,6 +12,7 @@
- #include <linux/types.h>
- 
- #include "i915_active.h"
-+#include "i915_drv.h"
- #include "intel_context_types.h"
- #include "intel_engine_types.h"
- #include "intel_ring_types.h"
-@@ -227,4 +228,12 @@ intel_context_clear_nopreempt(struct intel_context *ce)
- 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
- }
- 
-+static inline u64 intel_context_get_hw_runtime_ns(struct intel_context *ce)
-+{
-+	const u32 period =
-+		RUNTIME_INFO(ce->engine->i915)->cs_timestamp_period_ns;
-+
-+	return mul_u32_u32(ce->runtime.total, period);
-+}
-+
- #endif /* __INTEL_CONTEXT_H__ */
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ca1420fb8b53..3100823b16c3 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -68,6 +68,13 @@ struct intel_context {
- 	u64 lrc_desc;
- 	u32 tag; /* cookie passed to HW to track this context on submission */
- 
-+	/* Time on GPU as tracked by the hw. */
-+	struct {
-+		u64 total;
-+		u32 last;
-+		I915_SELFTEST_DECLARE(unsigned long underflow);
-+	} runtime;
-+
- 	unsigned int active_count; /* protected by timeline->mutex */
- 
- 	atomic_t pin_count;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c3d7727021db..a505e98c8854 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1195,6 +1195,37 @@ static void reset_active(struct i915_request *rq,
- 	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
- }
- 
-+static u32 intel_context_get_runtime(const struct intel_context *ce)
-+{
-+	/*
-+	 * PPHWSP is one page before the lrc state page and in it at
-+	 * dword 16 we have cumulative context runtime in CS timestamp ticks.
-+	 */
-+	BUILD_BUG_ON((LRC_STATE_PN - LRC_PPHWSP_PN) != 1);
-+	return ce->lrc_reg_state[-1024 + 16];
-+}
-+
-+static void intel_context_update_runtime(struct intel_context *ce)
-+{
-+	u32 new, old;
-+
-+	if (intel_context_is_barrier(ce))
-+		return;
-+
-+	old = ce->runtime.last;
-+	new = intel_context_get_runtime(ce);
-+	if ((s32)(new - old) <= 0) {
-+		CE_TRACE(ce, "runtime underflow: last=%u, new=%u, delta=%d\n",
-+			 old, new, new - old);
-+		I915_SELFTEST_ONLY(ce->runtime.underflow++);
-+		GEM_TRACE_DUMP();
-+		return;
-+	}
-+
-+	ce->runtime.total += new - old;
-+	ce->runtime.last = new;
-+}
-+
- static inline struct intel_engine_cs *
- __execlists_schedule_in(struct i915_request *rq)
- {
-@@ -1278,6 +1309,7 @@ __execlists_schedule_out(struct i915_request *rq,
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
- 
-+	intel_context_update_runtime(ce);
- 	intel_engine_context_out(engine);
- 	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
- 	intel_gt_pm_put_async(engine->gt);
-@@ -4607,8 +4639,13 @@ populate_lr_context(struct intel_context *ce,
- 		inhibit = false;
- 	}
- 
--	/* The second page of the context object contains some fields which must
--	 * be set up prior to the first execution. */
-+	/* Clear the ppHWSP (inc. per-context counters) */
-+	memset(vaddr, 0, PAGE_SIZE);
-+
-+	/*
-+	 * The second page of the context object contains some registers which
-+	 * must be set up prior to the first execution.
-+	 */
- 	execlists_init_reg_state(vaddr + LRC_STATE_PN * PAGE_SIZE,
- 				 ce, engine, ring, inhibit);
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 64761e619876..d71bcd959d48 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4450,6 +4450,90 @@ static int live_gpr_clear(void *arg)
- 	return err;
- }
- 
-+static int __live_pphwsp_runtime(struct intel_engine_cs *engine)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	IGT_TIMEOUT(end_time);
-+	bool timeout = false;
-+	int err;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	ce->runtime.underflow = 0;
-+
-+	while (!timeout) {
-+		unsigned int loop = 1024;
-+
-+		while (loop) {
-+			rq = intel_context_create_request(ce);
-+			if (IS_ERR(rq)) {
-+				err = PTR_ERR(rq);
-+				goto err_rq;
-+			}
-+
-+			if (--loop == 0)
-+				i915_request_get(rq);
-+
-+			i915_request_add(rq);
-+		}
-+		timeout = __igt_timeout(end_time, NULL);
-+		if (!timeout)
-+			i915_request_put(rq);
-+	}
-+
-+	err = i915_request_wait(rq, 0, HZ / 5);
-+	if (err < 0) {
-+		pr_err("%s: request not completed! (err=%d)\n",
-+		       engine->name, err);
-+		goto err_wait;
-+	}
-+
-+	igt_flush_test(engine->i915);
-+
-+	pr_info("%s: pphwsp runtime %lluns\n",
-+		engine->name, intel_context_get_hw_runtime_ns(ce));
-+
-+	err = 0;
-+	if (ce->runtime.underflow) {
-+		pr_err("%s: pphwsp underflow %lu time(s)!\n",
-+		       engine->name, ce->runtime.underflow);
-+		err = -EOVERFLOW;
-+	}
-+
-+err_wait:
-+	i915_request_put(rq);
-+err_rq:
-+	intel_context_put(ce);
-+	return err;
-+}
-+
-+static int live_pphwsp_runtime(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+	int err = 0;
-+
-+	/*
-+	 * Check that cumulative context runtime as stored in the pphwsp[16]
-+	 * is monotonic.
-+	 */
-+
-+	for_each_engine(engine, gt, id) {
-+		err = __live_pphwsp_runtime(engine);
-+		if (err)
-+			break;
-+	}
-+
-+	if (igt_flush_test(gt->i915))
-+		err = -EIO;
-+
-+	return err;
-+}
-+
- int intel_lrc_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
-@@ -4457,6 +4541,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_fixed),
- 		SUBTEST(live_lrc_state),
- 		SUBTEST(live_gpr_clear),
-+		SUBTEST(live_pphwsp_runtime),
- 	};
- 
- 	if (!HAS_LOGICAL_RING_CONTEXTS(i915))
-diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-index fcdacd6d4aa5..113decd59b40 100644
---- a/drivers/gpu/drm/i915/intel_device_info.c
-+++ b/drivers/gpu/drm/i915/intel_device_info.c
-@@ -1045,6 +1045,12 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
- 
- 	/* Initialize command stream timestamp frequency */
- 	runtime->cs_timestamp_frequency_khz = read_timestamp_frequency(dev_priv);
-+	runtime->cs_timestamp_period_ns =
-+		div_u64(1e6, runtime->cs_timestamp_frequency_khz);
-+	drm_dbg(&dev_priv->drm,
-+		"CS timestamp wraparound in %lldms\n",
-+		div_u64(mul_u32_u32(runtime->cs_timestamp_period_ns, U32_MAX),
-+			USEC_PER_SEC));
- }
- 
- void intel_driver_caps_print(const struct intel_driver_caps *caps,
-diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-index 7d4d122d2182..f8bfa26388c1 100644
---- a/drivers/gpu/drm/i915/intel_device_info.h
-+++ b/drivers/gpu/drm/i915/intel_device_info.h
-@@ -217,6 +217,7 @@ struct intel_runtime_info {
- 	struct sseu_dev_info sseu;
- 
- 	u32 cs_timestamp_frequency_khz;
-+	u32 cs_timestamp_period_ns;
- 
- 	/* Media engine access to SFC per instance */
- 	u8 vdbox_sfc_access;
--- 
-2.25.0
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16582/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16582 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-n2820:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7947/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16582/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][3] -> [DMESG-FAIL][4] ([i915#623])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7947/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16582/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
+
+
+Participating hosts (52 -> 37)
+------------------------------
+
+  Missing    (15): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-ivb-3770 fi-cfl-8109u fi-bsw-kefka fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7947 -> Patchwork_16582
+
+  CI-20190529: 20190529
+  CI_DRM_7947: 0a7167dda3bc154af3fbbc8ac5cfc51bde7371db @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5444: c46bae259d427f53fcfcd5f05de0181a9e82d6fe @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16582: 54546d3bd619aa288c25d18f6636f29cb3c85982 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+54546d3bd619 drm/i915/selftests: Mark the mock ring->vma as being in the GGTT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16582/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
