@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0CBA160420
-	for <lists+intel-gfx@lfdr.de>; Sun, 16 Feb 2020 14:13:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D983616042C
+	for <lists+intel-gfx@lfdr.de>; Sun, 16 Feb 2020 14:36:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8E906E2D6;
-	Sun, 16 Feb 2020 13:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A90A6E2E0;
+	Sun, 16 Feb 2020 13:36:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A8896E2D6
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Feb 2020 13:13:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA72F6E2E0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 16 Feb 2020 13:36:24 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20243583-1500050 
- for <intel-gfx@lists.freedesktop.org>; Sun, 16 Feb 2020 13:13:19 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20243682-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Sun, 16 Feb 2020 13:36:23 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sun, 16 Feb 2020 13:13:17 +0000
-Message-Id: <20200216131317.370477-1-chris@chris-wilson.co.uk>
+Date: Sun, 16 Feb 2020 13:36:20 +0000
+Message-Id: <20200216133620.394962-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
 Subject: [Intel-gfx] [CI] drm/i915: Track hw reported context runtime
@@ -62,13 +62,14 @@ Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
  drivers/gpu/drm/i915/gt/intel_context.c       |  6 +-
  drivers/gpu/drm/i915/gt/intel_context.h       | 17 ++++
  drivers/gpu/drm/i915/gt/intel_context_types.h | 12 +++
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 45 ++++++++-
- drivers/gpu/drm/i915/gt/selftest_lrc.c        | 91 +++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 46 ++++++++-
+ drivers/gpu/drm/i915/gt/intel_lrc_reg.h       |  1 +
+ drivers/gpu/drm/i915/gt/selftest_lrc.c        | 96 +++++++++++++++++++
  drivers/gpu/drm/i915/i915_gpu_error.c         | 11 ++-
  drivers/gpu/drm/i915/i915_gpu_error.h         |  4 +
  drivers/gpu/drm/i915/intel_device_info.c      |  6 ++
  drivers/gpu/drm/i915/intel_device_info.h      |  1 +
- 9 files changed, 188 insertions(+), 5 deletions(-)
+ 10 files changed, 195 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
 index e4f89341d17c..8bb444cda14f 100644
@@ -128,7 +129,7 @@ index 604d5cfc46ba..18efad255124 100644
 +
  #endif /* __INTEL_CONTEXT_H__ */
 diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index ca1420fb8b53..90f8f4dd7091 100644
+index ca1420fb8b53..11278343b9b5 100644
 --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
 +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
 @@ -7,6 +7,7 @@
@@ -143,7 +144,7 @@ index ca1420fb8b53..90f8f4dd7091 100644
  
  #define CONTEXT_REDZONE POISON_INUSE
  
-+DECLARE_EWMA(runtime, 3, 4);
++DECLARE_EWMA(runtime, 3, 8);
 +
  struct i915_gem_context;
  struct i915_vma;
@@ -165,21 +166,22 @@ index ca1420fb8b53..90f8f4dd7091 100644
  
  	atomic_t pin_count;
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c3d7727021db..afce5f1330eb 100644
+index c3d7727021db..78e854440949 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1195,6 +1195,41 @@ static void reset_active(struct i915_request *rq,
+@@ -1195,6 +1195,42 @@ static void reset_active(struct i915_request *rq,
  	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
  }
  
 +static u32 intel_context_get_runtime(const struct intel_context *ce)
 +{
 +	/*
-+	 * PPHWSP is one page before the lrc state page and in it at
-+	 * dword 16 we have cumulative context runtime in CS timestamp ticks.
++	 * We can use either ppHWSP[16] which is recorded before the context
++	 * switch (and so excludes the cost of context switches) or use the
++	 * value from the context image itself, which is saved/restored earlier
++	 * and so includes the cost of the save.
 +	 */
-+	BUILD_BUG_ON((LRC_STATE_PN - LRC_PPHWSP_PN) != 1);
-+	return READ_ONCE(ce->lrc_reg_state[-1024 + 16]);
++	return READ_ONCE(ce->lrc_reg_state[CTX_TIMESTAMP]);
 +}
 +
 +static void intel_context_update_runtime(struct intel_context *ce)
@@ -210,7 +212,7 @@ index c3d7727021db..afce5f1330eb 100644
  static inline struct intel_engine_cs *
  __execlists_schedule_in(struct i915_request *rq)
  {
-@@ -1278,6 +1313,7 @@ __execlists_schedule_out(struct i915_request *rq,
+@@ -1278,6 +1314,7 @@ __execlists_schedule_out(struct i915_request *rq,
  	    i915_request_completed(rq))
  		intel_engine_add_retire(engine, ce->timeline);
  
@@ -218,7 +220,7 @@ index c3d7727021db..afce5f1330eb 100644
  	intel_engine_context_out(engine);
  	execlists_context_status_change(rq, INTEL_CONTEXT_SCHEDULE_OUT);
  	intel_gt_pm_put_async(engine->gt);
-@@ -4607,8 +4643,13 @@ populate_lr_context(struct intel_context *ce,
+@@ -4607,8 +4644,13 @@ populate_lr_context(struct intel_context *ce,
  		inhibit = false;
  	}
  
@@ -234,11 +236,35 @@ index c3d7727021db..afce5f1330eb 100644
  	execlists_init_reg_state(vaddr + LRC_STATE_PN * PAGE_SIZE,
  				 ce, engine, ring, inhibit);
  
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+index 08a3be65f700..d39b72590e40 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
++++ b/drivers/gpu/drm/i915/gt/intel_lrc_reg.h
+@@ -17,6 +17,7 @@
+ #define CTX_RING_CTL			(0x0a + 1)
+ #define CTX_BB_STATE			(0x10 + 1)
+ #define CTX_BB_PER_CTX_PTR		(0x18 + 1)
++#define CTX_TIMESTAMP			(0x22 + 1)
+ #define CTX_PDP3_UDW			(0x24 + 1)
+ #define CTX_PDP3_LDW			(0x26 + 1)
+ #define CTX_PDP2_UDW			(0x28 + 1)
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 64761e619876..1a30724529f2 100644
+index 64761e619876..40c53cc1c7c0 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4450,6 +4450,96 @@ static int live_gpr_clear(void *arg)
+@@ -4151,6 +4151,11 @@ static int live_lrc_fixed(void *arg)
+ 				CTX_BB_STATE - 1,
+ 				"BB_STATE"
+ 			},
++			{
++				i915_mmio_reg_offset(RING_CTX_TIMESTAMP(engine->mmio_base)),
++				CTX_TIMESTAMP - 1,
++				"RING_CTX_TIMESTAMP"
++			},
+ 			{ },
+ 		}, *t;
+ 		u32 *hw;
+@@ -4450,6 +4455,96 @@ static int live_gpr_clear(void *arg)
  	return err;
  }
  
@@ -335,7 +361,7 @@ index 64761e619876..1a30724529f2 100644
  int intel_lrc_live_selftests(struct drm_i915_private *i915)
  {
  	static const struct i915_subtest tests[] = {
-@@ -4457,6 +4547,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
+@@ -4457,6 +4552,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
  		SUBTEST(live_lrc_fixed),
  		SUBTEST(live_lrc_state),
  		SUBTEST(live_gpr_clear),
