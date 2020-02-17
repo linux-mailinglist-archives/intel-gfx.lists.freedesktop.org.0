@@ -1,43 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3FD5161464
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 15:17:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B3F71614FB
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 15:45:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 361EE6E04B;
-	Mon, 17 Feb 2020 14:17:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CFFF6E969;
+	Mon, 17 Feb 2020 14:45:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E72C6E04B
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 14:17:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7B36E969
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 14:45:17 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2020 06:17:25 -0800
+ 17 Feb 2020 06:45:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,453,1574150400"; d="scan'208";a="223837533"
+X-IronPort-AV: E=Sophos;i="5.70,453,1574150400"; d="scan'208";a="229214214"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 17 Feb 2020 06:17:22 -0800
+ by fmsmga008.fm.intel.com with SMTP; 17 Feb 2020 06:45:14 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 17 Feb 2020 16:17:22 +0200
-Date: Mon, 17 Feb 2020 16:17:22 +0200
+ Mon, 17 Feb 2020 16:45:13 +0200
+Date: Mon, 17 Feb 2020 16:45:13 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200217141722.GM13686@intel.com>
-References: <20200211172532.14287-1-anshuman.gupta@intel.com>
- <20200211172532.14287-6-anshuman.gupta@intel.com>
- <20200217052227.GD11041@intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200217144513.GN13686@intel.com>
+References: <20200213184800.14147-1-ville.syrjala@linux.intel.com>
+ <20200213184800.14147-2-ville.syrjala@linux.intel.com>
+ <eb8d4416a1f73761899953e3ff62776c7fb18dc7.camel@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200217052227.GD11041@intel.com>
+In-Reply-To: <eb8d4416a1f73761899953e3ff62776c7fb18dc7.camel@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 5/7] drm/i915: Get first crtc instead of
- PIPE_A crtc
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915: Introduce proper dbuf state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,116 +49,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 17, 2020 at 10:52:28AM +0530, Anshuman Gupta wrote:
-> On 2020-02-11 at 22:55:30 +0530, Anshuman Gupta wrote:
-> > intel_plane_fb_max_stride should return the max stride of
-> > primary plane for first available pipe in intel device info
-> > pipe_mask.
-> > Similarly glk_force_audio_cdclk() should also use the first
-> > available CRTC instead of pipe 'A' crtc to force the cdclk
-> > changes.
+On Mon, Feb 17, 2020 at 08:46:40AM +0000, Lisovskiy, Stanislav wrote:
+> On Thu, 2020-02-13 at 20:47 +0200, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > =
 
-> > changes since RFC:
-> > - Introduced a helper to get first intel_crtc intel_get_first_crtc. [Vi=
-lle]
-> > v1:
-> > - Used intel_get_first_crtc() instead of PIPE_A crtc in
-> >   glk_force_audio_cdclk(). [Ville]
-> Hi Ville,
-> You had provided your RB on earlier revision
-> https://patchwork.freedesktop.org/patch/351873/?series=3D72468&rev=3D2
-> later u have provided the above review comment, as current
-> patch fixes the above review comment.
-> can i use your RB for this patch, if current patch is ok.
-
-Yes, this patch looks ok.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> Thanks,
-> Anshuman Gupta. =
-
+> > Add a global state to track the dbuf slices. Gets rid of all the
+> > nasty
+> > coupling between state->modeset and dbuf recompulation. Also we can
+> > now
+> > totally nuke state->active_pipe_changes.
 > > =
 
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > dev_priv->wm.distrust_bios_wm still remains, but should probably also
+> > get nuked from orbit later. Just didn't spend any significant time
+> > pondering how to go about. The obvious thing would be to just
+> > recompute
+> > the thing every time.
+> > =
+
+> > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_audio.c         | 2 +-
-> >  drivers/gpu/drm/i915/display/intel_display.c       | 5 +++--
-> >  drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++++
-> >  3 files changed, 10 insertions(+), 3 deletions(-)
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  69 ++++---
+> >  .../drm/i915/display/intel_display_power.c    |   4 +-
+> >  .../drm/i915/display/intel_display_types.h    |  13 --
+> >  drivers/gpu/drm/i915/i915_drv.h               |  11 +-
+> >  drivers/gpu/drm/i915/intel_pm.c               | 185 ++++++++++++--
+> > ----
+> >  drivers/gpu/drm/i915/intel_pm.h               |  22 +++
+> >  6 files changed, 205 insertions(+), 99 deletions(-)
 > > =
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/d=
-rm/i915/display/intel_audio.c
-> > index 30fb7c887ff0..19bf206037c2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> > @@ -844,7 +844,7 @@ static void glk_force_audio_cdclk(struct drm_i915_p=
-rivate *dev_priv,
-> >  	struct intel_crtc *crtc;
-> >  	int ret;
-> >  =
-
-> > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-> > +	crtc =3D intel_get_first_crtc(dev_priv);
-> >  	if (!crtc)
-> >  		return;
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index 5ba0b40fbfde..6fdaeb019fef 100644
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index e09d3c93c52b..e331ab900336 100644
 > > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2715,9 +2715,10 @@ u32 intel_plane_fb_max_stride(struct drm_i915_pr=
-ivate *dev_priv,
+> > @@ -7558,6 +7558,8 @@ static void intel_crtc_disable_noatomic(struct
+> > intel_crtc *crtc,
+> >  		to_intel_bw_state(dev_priv->bw_obj.state);
+> >  	struct intel_cdclk_state *cdclk_state =3D
+> >  		to_intel_cdclk_state(dev_priv->cdclk.obj.state);
+> > +	struct intel_dbuf_state *dbuf_state =3D
+> > +		to_intel_dbuf_state(dev_priv->dbuf.obj.state);
+> >  	struct intel_crtc_state *crtc_state =3D
+> >  		to_intel_crtc_state(crtc->base.state);
+> >  	enum intel_display_power_domain domain;
+> > @@ -7630,6 +7632,8 @@ static void intel_crtc_disable_noatomic(struct
+> > intel_crtc *crtc,
+> >  	cdclk_state->min_voltage_level[pipe] =3D 0;
+> >  	cdclk_state->active_pipes &=3D ~BIT(pipe);
 > >  =
 
-> >  	/*
-> >  	 * We assume the primary plane for pipe A has
-> > -	 * the highest stride limits of them all.
-> > +	 * the highest stride limits of them all,
-> > +	 * if in case pipe A is disabled, use the first pipe from pipe_mask.
-> >  	 */
-> > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, PIPE_A);
-> > +	crtc =3D intel_get_first_crtc(dev_priv);
-> >  	if (!crtc)
-> >  		return 0;
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
-rs/gpu/drm/i915/display/intel_display_types.h
-> > index d359f1636ba8..359eaa6703a8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -1403,6 +1403,12 @@ vlv_pipe_to_channel(enum pipe pipe)
-> >  	}
-> >  }
-> >  =
-
-> > +static inline struct intel_crtc *
-> > +intel_get_first_crtc(struct drm_i915_private *dev_priv)
-> > +{
-> > +	return to_intel_crtc(drm_crtc_from_index(&dev_priv->drm, 0));
-> > +}
+> > +	dbuf_state->active_pipes &=3D ~BIT(pipe);
 > > +
-> >  static inline struct intel_crtc *
-> >  intel_get_crtc_for_pipe(struct drm_i915_private *dev_priv, enum pipe p=
-ipe)
-> >  {
-> > -- =
+> =
 
-> > 2.24.0
-> > =
+> May be I'm wrong(so being not offensive here :) ), but feels kind of
+> redundant to have active_pipes in cdclk_state and at the same time in
+> dbuf_state. Why can't it be still =
 
+> in some more general state, which is inherited/used/aggregated by those
+> dbuf and cdclk states? Otherwise you will have to do this duplicate
+> code initializations which I see here, for example if there would be
+> even more states you have then three or more similar initializations
+> here,
+> doing the same thing. This pretty much increases probability that
+> somewhere in the code, you will eventually forget to do all
+> initializations(well I guess you understand).
+> Or if you will have to update the behavior, based on active_pipes here
+> somehow, you will also have to change the duplicate code all over the
+> place.
+
+The problem with putting such things in some central place is that then
+we get everything coupled together with said state. You get annoying
+ordering requirements on which order you compute those things etc.
+IMO better to just encapsulate each thing as much as possible. This way
+you don't have to think at all what those other states are doing with
+their lives.
+
+The readout is a bit ugly yes, but we could provide a small helper
+for that. It would still probably have somewhat annoying ordering
+constraints though since we perhaps don't want to do actual readout
+of active_pipes multiple times.
 
 -- =
 
