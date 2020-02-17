@@ -1,31 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D40A16159F
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 16:11:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F01316165F
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 16:40:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 457836E060;
-	Mon, 17 Feb 2020 15:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90EA96E063;
+	Mon, 17 Feb 2020 15:40:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 275D189BAF;
- Mon, 17 Feb 2020 15:11:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 204E0A0118;
- Mon, 17 Feb 2020 15:11:30 +0000 (UTC)
+Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com
+ [IPv6:2607:f8b0:4864:20::a41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD1E6E063
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 15:40:40 +0000 (UTC)
+Received: by mail-vk1-xa41.google.com with SMTP id y184so4661260vkc.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 07:40:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=QXC37PoFdE3eH2dTa7Ij89gbpkCp7vFaYNxYeHIvWH0=;
+ b=VuqnQOGLSb+6zMKDouecMjYAPCGPgpoTQt/jcVB+6JwJRJwNooN7ys9S2dDr79qBns
+ e7iBvZeATUc6JyYSWxzEcVQVTFubYVEmXOMEA9UUTir1XCxTLM2OFgfuWZx/OldJ8f22
+ vmwlJfCXxjxaI67L2sALpDebUSyHN2C/Q6Kt+YrW9mMBhNlv5mma7Qjn8F9B4ANNAy8j
+ SjT+TZdDEJgA06yEFrMsm/Cw8NSmVHW0fzLfU9EqiYw+YMvDlO2nNVy5epkCWLAeeg2g
+ 4YI/UXW4kdio0jSbVIP7U0ZI03hSelS5PV6Oh1O7kld48VaXLe2O1rWDtn5oCqFP7xlu
+ lDjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=QXC37PoFdE3eH2dTa7Ij89gbpkCp7vFaYNxYeHIvWH0=;
+ b=r+VvVmzpBkpIvyrnJSbrjZ01/9IiVxb+fBDa29JyMTbYqJSzk8LD/03PpvOpoFlp01
+ M67lPoj4jNk8ZSyTUaFzuSQ2/qysB+QHTZpZQYxmBTjC6F+iBUBTdqnhuqN71q0Tmom6
+ OlDJtQGY27tnKj1EHB066JedzKThoXaVvtBPGWcO0PZyZdNlkZwKNgiXNEzMm1m0ReYa
+ zuZrFO+sAM5RrcdmHmdDgz4rGU64ucBsJ3xzxeLKIC7b05m7ZSjxo3mI5uwASgSGuqCE
+ 71bzCzt7ejnJhQtH9/JLrWaP1n9KpYj2QmhJs8VpEIpmTtbKt+dTJpqPq3rOBig1l9hA
+ vdJg==
+X-Gm-Message-State: APjAAAWCtflSkUyVCCUmUsNPaNCLP0gUD+m8TisVzRiIUa8Ufr2EBidp
+ lMLix1yCfcvYTgzv9gDtBN1VU4YoLrD9etM2Kk5YE/Tj
+X-Google-Smtp-Source: APXvYqxfjqck2dAvhknBiekQKHOp5m8aqvv4iK6B851pEe7ESDkftvfnerhBCzijuO0O3ysQaJaHOKIYkHNqC04etvk=
+X-Received: by 2002:a1f:5fc1:: with SMTP id t184mr5777930vkb.57.1581954039312; 
+ Mon, 17 Feb 2020 07:40:39 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 17 Feb 2020 15:11:30 -0000
-Message-ID: <158195229011.16571.13410368841460318719@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200217095835.599827-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200217095835.599827-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Rearrange_code_to_silence_compiler?=
+References: <20200215092902.4131132-1-chris@chris-wilson.co.uk>
+ <20200215205927.4170144-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200215205927.4170144-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 17 Feb 2020 15:40:12 +0000
+Message-ID: <CAM0jSHMZjEHYcpi3HGAHczxNerT3V14S3MzBZTnc9e-3+uhxug@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Mark the mock ring->vma
+ as being in the GGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,78 +62,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Rearrange code to silence compiler
-URL   : https://patchwork.freedesktop.org/series/73533/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7954 -> Patchwork_16593
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16593/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16593 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_close_race@basic-threads:
-    - fi-hsw-peppy:       [TIMEOUT][1] ([fdo#112271] / [i915#1084]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7954/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16593/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-
-  
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-
-
-Participating hosts (50 -> 43)
-------------------------------
-
-  Additional (1): fi-ehl-1 
-  Missing    (8): fi-hsw-4200u fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-n2820 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7954 -> Patchwork_16593
-
-  CI-20190529: 20190529
-  CI_DRM_7954: d7c1791394faaa869d3442705413dac8c0ecd677 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5444: c46bae259d427f53fcfcd5f05de0181a9e82d6fe @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16593: 4806975145b511fb2842dd572b7bba3c2d344e66 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4806975145b5 drm/i915/gt: Rearrange code to silence compiler
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16593/index.html
+On Sat, 15 Feb 2020 at 20:59, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> The ringbuffer's vma is expected to be in the GGTT and that is now being
+> checked, so make sure the mocked ring declares it so.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
