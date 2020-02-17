@@ -2,56 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C51F16087E
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 04:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAC0C160A14
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 06:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D7546E43B;
-	Mon, 17 Feb 2020 03:10:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B40526E49D;
+	Mon, 17 Feb 2020 05:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A78ED6E43B
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 03:10:09 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDB9E6E49D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 05:30:58 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2020 19:10:04 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 16 Feb 2020 21:30:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,451,1574150400"; d="scan'208";a="235101273"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga003.jf.intel.com with ESMTP; 16 Feb 2020 19:10:03 -0800
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Sun, 16 Feb 2020 19:10:03 -0800
-Received: from BGSMSX108.gar.corp.intel.com (10.223.4.192) by
- fmsmsx109.amr.corp.intel.com (10.18.116.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Sun, 16 Feb 2020 19:10:02 -0800
-Received: from bgsmsx101.gar.corp.intel.com ([169.254.1.191]) by
- BGSMSX108.gar.corp.intel.com ([169.254.8.91]) with mapi id 14.03.0439.000;
- Mon, 17 Feb 2020 08:39:59 +0530
-From: "Kadiyala, Kishore" <kishore.kadiyala@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
-Thread-Index: AQHV4yT5fwaMvIKlAUaom/lUpfgqHqgaMI4AgASH+nA=
-Date: Mon, 17 Feb 2020 03:09:58 +0000
-Message-ID: <92C2E46C14A43E4BBF8F51564D4E9556587D6284@BGSMSX101.gar.corp.intel.com>
-References: <20200214105316.16076-1-kishore.kadiyala@intel.com>
- <87tv3twgu3.fsf@intel.com>
-In-Reply-To: <87tv3twgu3.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWNhNzFhMzctMmNlYy00MjI0LWEzNDgtMTE0Y2E2Yzg2NGM4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoicUI5V1Y3dGl3dHg0Wlh6ZXF6VGNYdDlnbUZOb2ppRGR0QmhsbWVcLzBFd1wvZXR5dzdZajFBNHA3aGZVdDdTdjAwIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+X-IronPort-AV: E=Sophos;i="5.70,451,1574150400"; d="scan'208";a="229092958"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga008.fm.intel.com with ESMTP; 16 Feb 2020 21:30:55 -0800
+Date: Mon, 17 Feb 2020 10:52:28 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com
+Message-ID: <20200217052227.GD11041@intel.com>
+References: <20200211172532.14287-1-anshuman.gupta@intel.com>
+ <20200211172532.14287-6-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
+Content-Disposition: inline
+In-Reply-To: <20200211172532.14287-6-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 5/7] drm/i915: Get first crtc instead of
+ PIPE_A crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,86 +46,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Friday, February 14, 2020 4:56 PM
-> To: Kadiyala, Kishore <kishore.kadiyala@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Kadiyala, Kishore <kishore.kadiyala@intel.com>
-> Subject: Re: [Intel-gfx] [PATCH] Add support for Color encoding YCBCR_BT2020
-> 
-> On Fri, 14 Feb 2020, Kishore Kadiyala <kishore.kadiyala@intel.com> wrote:
-> > Currently the plane property doesn't have support for YCBCR_BT2020,
-> > which enables the corresponding color conversion mode on plane CSC.
-> 
-> Please prefix your patch subjects properly. "drm/i915: " at a minimum for stuff
-> touching i915.
-
-   Sure Jani, I'll include prefix from next time.
-
-> 
-> No need to resend for this, but for future reference.
-  Ok 
-
-Regards,
-Kishore
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> > Signed-off-by: Kishore Kadiyala <kishore.kadiyala@intel.com>
-> > Cc: Uma Shankar <uma.shankar@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_sprite.c | 9 +++++++--
-> >  1 file changed, 7 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > index 7abeefe8dce5..5169a7260d7c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -3011,6 +3011,7 @@ skl_universal_plane_create(struct drm_i915_private
-> *dev_priv,
-> >  	struct intel_plane *plane;
-> >  	enum drm_plane_type plane_type;
-> >  	unsigned int supported_rotations;
-> > +	unsigned int supported_csc;
-> >  	unsigned int possible_crtcs;
-> >  	const u64 *modifiers;
-> >  	const u32 *formats;
-> > @@ -3088,9 +3089,13 @@ skl_universal_plane_create(struct
-> drm_i915_private *dev_priv,
-> >  					   DRM_MODE_ROTATE_0,
-> >  					   supported_rotations);
-> >
-> > +	supported_csc = BIT(DRM_COLOR_YCBCR_BT601) |
-> > +BIT(DRM_COLOR_YCBCR_BT709);
-> > +
-> > +	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
-> > +		supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-> > +
-> >  	drm_plane_create_color_properties(&plane->base,
-> > -					  BIT(DRM_COLOR_YCBCR_BT601) |
-> > -					  BIT(DRM_COLOR_YCBCR_BT709),
-> > +					  supported_csc,
-> >
-> BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
-> >
-> BIT(DRM_COLOR_YCBCR_FULL_RANGE),
-> >  					  DRM_COLOR_YCBCR_BT709,
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0xMSBhdCAyMjo1NTozMCArMDUzMCwgQW5zaHVtYW4gR3VwdGEgd3JvdGU6Cj4g
+aW50ZWxfcGxhbmVfZmJfbWF4X3N0cmlkZSBzaG91bGQgcmV0dXJuIHRoZSBtYXggc3RyaWRlIG9m
+Cj4gcHJpbWFyeSBwbGFuZSBmb3IgZmlyc3QgYXZhaWxhYmxlIHBpcGUgaW4gaW50ZWwgZGV2aWNl
+IGluZm8KPiBwaXBlX21hc2suCj4gU2ltaWxhcmx5IGdsa19mb3JjZV9hdWRpb19jZGNsaygpIHNo
+b3VsZCBhbHNvIHVzZSB0aGUgZmlyc3QKPiBhdmFpbGFibGUgQ1JUQyBpbnN0ZWFkIG9mIHBpcGUg
+J0EnIGNydGMgdG8gZm9yY2UgdGhlIGNkY2xrCj4gY2hhbmdlcy4KPiAKPiBjaGFuZ2VzIHNpbmNl
+IFJGQzoKPiAtIEludHJvZHVjZWQgYSBoZWxwZXIgdG8gZ2V0IGZpcnN0IGludGVsX2NydGMgaW50
+ZWxfZ2V0X2ZpcnN0X2NydGMuIFtWaWxsZV0KPiB2MToKPiAtIFVzZWQgaW50ZWxfZ2V0X2ZpcnN0
+X2NydGMoKSBpbnN0ZWFkIG9mIFBJUEVfQSBjcnRjIGluCj4gICBnbGtfZm9yY2VfYXVkaW9fY2Rj
+bGsoKS4gW1ZpbGxlXQpIaSBWaWxsZSwKWW91IGhhZCBwcm92aWRlZCB5b3VyIFJCIG9uIGVhcmxp
+ZXIgcmV2aXNpb24KaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3BhdGNoLzM1MTg3
+My8/c2VyaWVzPTcyNDY4JnJldj0yCmxhdGVyIHUgaGF2ZSBwcm92aWRlZCB0aGUgYWJvdmUgcmV2
+aWV3IGNvbW1lbnQsIGFzIGN1cnJlbnQKcGF0Y2ggZml4ZXMgdGhlIGFib3ZlIHJldmlldyBjb21t
+ZW50LgpjYW4gaSB1c2UgeW91ciBSQiBmb3IgdGhpcyBwYXRjaCwgaWYgY3VycmVudCBwYXRjaCBp
+cyBvay4KVGhhbmtzLApBbnNodW1hbiBHdXB0YS4gCj4gCj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8
+dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogQW5zaHVtYW4g
+R3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jICAgICAgICAgfCAyICstCj4gIGRyaXZlcnMvZ3B1
+L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICAgICAgIHwgNSArKystLQo+ICBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCB8IDYgKysrKysr
+Cj4gIDMgZmlsZXMgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiAK
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jCj4gaW5kZXggMzBm
+YjdjODg3ZmYwLi4xOWJmMjA2MDM3YzIgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9hdWRpby5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9hdWRpby5jCj4gQEAgLTg0NCw3ICs4NDQsNyBAQCBzdGF0aWMgdm9pZCBnbGtf
+Zm9yY2VfYXVkaW9fY2RjbGsoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ICAJ
+c3RydWN0IGludGVsX2NydGMgKmNydGM7Cj4gIAlpbnQgcmV0Owo+ICAKPiAtCWNydGMgPSBpbnRl
+bF9nZXRfY3J0Y19mb3JfcGlwZShkZXZfcHJpdiwgUElQRV9BKTsKPiArCWNydGMgPSBpbnRlbF9n
+ZXRfZmlyc3RfY3J0YyhkZXZfcHJpdik7Cj4gIAlpZiAoIWNydGMpCj4gIAkJcmV0dXJuOwo+ICAK
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IGluZGV4
+IDViYTBiNDBmYmZkZS4uNmZkYWViMDE5ZmVmIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiBAQCAtMjcxNSw5ICsyNzE1LDEwIEBAIHUzMiBp
+bnRlbF9wbGFuZV9mYl9tYXhfc3RyaWRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
+diwKPiAgCj4gIAkvKgo+ICAJICogV2UgYXNzdW1lIHRoZSBwcmltYXJ5IHBsYW5lIGZvciBwaXBl
+IEEgaGFzCj4gLQkgKiB0aGUgaGlnaGVzdCBzdHJpZGUgbGltaXRzIG9mIHRoZW0gYWxsLgo+ICsJ
+ICogdGhlIGhpZ2hlc3Qgc3RyaWRlIGxpbWl0cyBvZiB0aGVtIGFsbCwKPiArCSAqIGlmIGluIGNh
+c2UgcGlwZSBBIGlzIGRpc2FibGVkLCB1c2UgdGhlIGZpcnN0IHBpcGUgZnJvbSBwaXBlX21hc2su
+Cj4gIAkgKi8KPiAtCWNydGMgPSBpbnRlbF9nZXRfY3J0Y19mb3JfcGlwZShkZXZfcHJpdiwgUElQ
+RV9BKTsKPiArCWNydGMgPSBpbnRlbF9nZXRfZmlyc3RfY3J0YyhkZXZfcHJpdik7Cj4gIAlpZiAo
+IWNydGMpCj4gIAkJcmV0dXJuIDA7Cj4gIAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oCj4gaW5kZXggZDM1OWYxNjM2YmE4Li4zNTll
+YWE2NzAzYTggMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9kaXNwbGF5X3R5cGVzLmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
+dGVsX2Rpc3BsYXlfdHlwZXMuaAo+IEBAIC0xNDAzLDYgKzE0MDMsMTIgQEAgdmx2X3BpcGVfdG9f
+Y2hhbm5lbChlbnVtIHBpcGUgcGlwZSkKPiAgCX0KPiAgfQo+ICAKPiArc3RhdGljIGlubGluZSBz
+dHJ1Y3QgaW50ZWxfY3J0YyAqCj4gK2ludGVsX2dldF9maXJzdF9jcnRjKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdikKPiArewo+ICsJcmV0dXJuIHRvX2ludGVsX2NydGMoZHJtX2Ny
+dGNfZnJvbV9pbmRleCgmZGV2X3ByaXYtPmRybSwgMCkpOwo+ICt9Cj4gKwo+ICBzdGF0aWMgaW5s
+aW5lIHN0cnVjdCBpbnRlbF9jcnRjICoKPiAgaW50ZWxfZ2V0X2NydGNfZm9yX3BpcGUoc3RydWN0
+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHBpcGUgcGlwZSkKPiAgewo+IC0tIAo+
+IDIuMjQuMAo+IApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
