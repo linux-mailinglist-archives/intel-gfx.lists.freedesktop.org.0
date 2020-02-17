@@ -2,37 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BAC160EBC
-	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 10:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 577B5160F65
+	for <lists+intel-gfx@lfdr.de>; Mon, 17 Feb 2020 10:58:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84D3E89C94;
-	Mon, 17 Feb 2020 09:37:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB9D6E32D;
+	Mon, 17 Feb 2020 09:58:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 332D289C94
- for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 09:37:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2020 01:37:04 -0800
-X-IronPort-AV: E=Sophos;i="5.70,452,1574150400"; d="scan'208";a="223769775"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2020 01:37:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <158163713950.4660.5341490618839546150@skylake-alporthouse-com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200212144058.5686-1-jani.nikula@intel.com>
- <20200212144058.5686-2-jani.nikula@intel.com>
- <158163713950.4660.5341490618839546150@skylake-alporthouse-com>
-Date: Mon, 17 Feb 2020 11:36:59 +0200
-Message-ID: <871rqtwo5g.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36BEC6E32D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 17 Feb 2020 09:58:46 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20249714-1500050 
+ for multiple; Mon, 17 Feb 2020 09:58:37 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 17 Feb 2020 09:58:35 +0000
+Message-Id: <20200217095835.599827-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: switch vlv_suspend to use
- intel uncore register accessors
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Rearrange code to silence compiler
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,39 +36,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: matthew.auld@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 13 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> Quoting Jani Nikula (2020-02-12 14:40:58)
->> Prefer intel_uncore_* over I915_READ, I915_WRITE, and POSTING_READ.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> A couple of older checkpatch errors that could be cleaned up (pure
-> whitespacing).
->
-> Both
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+Without selftests enabled, I915_SELFTEST_ONLY becomes a dummy,
+generating a bare '0'. This causes the compiler to complain about a
+useless line, and while we could use I915_SELFTEST_DECLARE instead, it
+is a bit messier. Move the selftest-only code to a helper and make that
+conditional on having selftests enabled.
 
-Thanks, pushed with one space added to the 2nd patch to silence the
-checkpatch.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-> Half this code should be removed as we explicitly reset the registers on
-> resume. (And if we need to add a few special runtime-resume hooks, would
-> not be a bad thing). And the other half, probably should be removed with
-> a bit of extra work.
-
-It's been rainy lately, but I guess I'll be waiting for a rainier day
-yet to embark on that. ;)
-
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 78e854440949..ba31cbe8c68e 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1206,6 +1206,14 @@ static u32 intel_context_get_runtime(const struct intel_context *ce)
+ 	return READ_ONCE(ce->lrc_reg_state[CTX_TIMESTAMP]);
+ }
+ 
++static void st_update_runtime_underflow(struct intel_context *ce, s32 dt)
++{
++#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
++	ce->runtime.num_underflow += dt < 0;
++	ce->runtime.max_underflow = max_t(u32, ce->runtime.max_underflow, -dt);
++#endif
++}
++
+ static void intel_context_update_runtime(struct intel_context *ce)
+ {
+ 	u32 old;
+@@ -1221,9 +1229,7 @@ static void intel_context_update_runtime(struct intel_context *ce)
+ 	if (unlikely(dt <= 0)) {
+ 		CE_TRACE(ce, "runtime underflow: last=%u, new=%u, delta=%d\n",
+ 			 old, ce->runtime.last, dt);
+-		I915_SELFTEST_ONLY(ce->runtime.num_underflow += dt < 0);
+-		I915_SELFTEST_ONLY(ce->runtime.max_underflow =
+-				   max_t(u32, ce->runtime.max_underflow, -dt));
++		st_update_runtime_underflow(ce, dt);
+ 		return;
+ 	}
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.0
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
