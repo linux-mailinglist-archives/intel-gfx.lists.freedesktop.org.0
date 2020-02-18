@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FC1162417
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 11:00:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85B8F162468
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 11:19:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7877F6E9D1;
-	Tue, 18 Feb 2020 10:00:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CDBE6E9DC;
+	Tue, 18 Feb 2020 10:19:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92C0A6E9CF;
- Tue, 18 Feb 2020 10:00:24 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 02:00:14 -0800
-X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="228689274"
-Received: from jkrzyszt-desk.igk.intel.com (HELO
- jkrzyszt-desk.ger.corp.intel.com) ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 02:00:13 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 10:59:58 +0100
-Message-ID: <1753709.95SIyVXY9N@jkrzyszt-desk.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <158029707943.11197.9136435232625163761@skylake-alporthouse-com>
-References: <20200122162651.1111-1-janusz.krzysztofik@linux.intel.com>
- <157981094566.1145.1616379306006410708@emeril.freedesktop.org>
- <158029707943.11197.9136435232625163761@skylake-alporthouse-com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 317056E9DA;
+ Tue, 18 Feb 2020 10:19:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20261542-1500050 
+ for multiple; Tue, 18 Feb 2020 10:19:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 18 Feb 2020 10:19:23 +0000
+Message-Id: <20200218101923.1049940-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?W2lndC1kZXZdIOKckyBGaS5DSS5JR1Q6IHN1Y2Nl?=
- =?utf-8?q?ss_for_tests/gem=5Fuserptr=5Fblits=3A_Enhance_invalid_mapping_e?=
- =?utf-8?q?xercise?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Protect
+ igt_spin_new() from close races
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,175 +37,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Since the library call of igt_spin_new() asserts if it spots an error,
+we must protect it from the races we are imposing upon ourselves.
+However, to keep those races active, delegate the potentially failing
+calls to the children.
 
-Let me share some of my observations on the userptr(mmap_offset) case.
+References: https://gitlab.freedesktop.org/drm/intel/issues/1241
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_ctx_persistence.c | 47 ++++++++++++++++++++++----------
+ 1 file changed, 33 insertions(+), 14 deletions(-)
 
-On Wednesday, January 29, 2020 12:24:39 PM CET Chris Wilson wrote:
-> Quoting Patchwork (2020-01-23 20:22:25)
-> > == Series Details ==
-> > 
-> > Series: tests/gem_userptr_blits: Enhance invalid mapping exercise
-> > URL   : https://patchwork.freedesktop.org/series/72411/
-> > State : success
-> > 
-> > == Summary ==
-> > 
-> > CI Bug Log - changes from CI_DRM_7794_full -> IGTPW_3969_full
-> > ====================================================
-> > 
-> > Summary
-> > -------
-> > 
-> >   **SUCCESS**
-> > 
-> >   No regressions found.
-> > 
-> >   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_3969/index.html
-> > 
-> > New tests
-> > ---------
-> > 
-> >   New tests have been introduced between CI_DRM_7794_full and IGTPW_3969_full:
-> > 
-> > ### New IGT tests (3) ###
-> > 
-> >   * igt@gem_userptr_blits@invalid-uc-mapping:
-> >     - Statuses : 7 pass(s)
-> >     - Exec time: [0.01, 0.02] s
-> > 
-> >   * igt@gem_userptr_blits@invalid-wb-mapping:
-> >     - Statuses : 7 pass(s)
-> >     - Exec time: [0.01, 0.02] s
-> > 
-> >   * igt@gem_userptr_blits@invalid-wc-mapping:
-> >     - Statuses : 7 pass(s)
-> >     - Exec time: [0.01, 0.02] s
-> 
-> Ok, we need a bit more work to trigger the lockdep loop. We need a
-> cancel_userptr of the same object that is faulted via mmap-offset.
-> 
-> We're basically looking for the equivalent of this
-> 
-> <4> [175.968441] ======================================================
-> <4> [175.968444] WARNING: possible circular locking dependency detected
-> <4> [175.968447] 5.5.0-CI-CI_DRM_7828+ #1 Tainted: G     U
-> <4> [175.968449] ------------------------------------------------------
-> <4> [175.968452] gem_userptr_bli/1564 is trying to acquire lock:
-> <4> [175.968455] ffff888208f49580 (&vm->mutex){+.+.}, at: i915_vma_unbind+0xae/0x110 [i915]
-> <4> [175.968527]
-> but task is already holding lock:
-> <4> [175.968529] ffffffff82664d40 (mmu_notifier_invalidate_range_start){+.+.}, at: unmap_vmas+0x0/0x150
-> <4> [175.968535]
-> which lock already depends on the new lock.
-> <4> [175.968538]
-> the existing dependency chain (in reverse order) is:
-> <4> [175.968541]
-> -> #2 (mmu_notifier_invalidate_range_start){+.+.}:
-> <4> [175.968546]        page_mkclean_one+0xda/0x210
-> <4> [175.968548]        rmap_walk_file+0xff/0x260
-> <4> [175.968551]        page_mkclean+0x9f/0xb0
-> <4> [175.968555]        clear_page_dirty_for_io+0xa2/0x2f0
-> <4> [175.968559]        mpage_submit_page+0x1a/0x70
-> <4> [175.968561]        mpage_process_page_bufs+0xe7/0x110
-> <4> [175.968564]        mpage_prepare_extent_to_map+0x1d2/0x2b0
-> <4> [175.968568]        ext4_writepages+0x5ba/0x12b0
-> <4> [175.968571]        do_writepages+0x46/0xe0
-> <4> [175.968573]        __filemap_fdatawrite_range+0xc6/0x100
-> <4> [175.968576]        file_write_and_wait_range+0x3c/0x90
-> <4> [175.968579]        ext4_sync_file+0x1a4/0x540
-> <4> [175.968582]        do_fsync+0x33/0x60
-> <4> [175.968584]        __x64_sys_fsync+0xb/0x10
-> <4> [175.968587]        do_syscall_64+0x4f/0x220
-> <4> [175.968591]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> <4> [175.968594]
-> -> #1 (&mapping->i_mmap_rwsem){++++}:
-> <4> [175.968599]        down_write+0x33/0x70
-> <4> [175.968601]        unmap_mapping_pages+0x48/0x130
-> <4> [175.968671]        i915_vma_revoke_mmap.part.37+0x66/0x190 [i915]
-> <4> [175.968715]        fence_update+0xfd/0x2d0 [i915]
-> <4> [175.968759]        __i915_vma_unbind+0x1eb/0x530 [i915]
-> <4> [175.968803]        i915_vma_release+0x101/0x220 [i915]
-> <4> [175.968843]        __i915_gem_free_objects+0x113/0x530 [i915]
-> <4> [175.968886]        i915_gem_create_ioctl+0x12/0x40 [i915]
-> <4> [175.968890]        drm_ioctl_kernel+0xad/0xf0
-> <4> [175.968893]        drm_ioctl+0x2e1/0x390
-> <4> [175.968896]        do_vfs_ioctl+0x9c/0x730
-> <4> [175.968899]        ksys_ioctl+0x35/0x60
-> <4> [175.968901]        __x64_sys_ioctl+0x11/0x20
-> <4> [175.968904]        do_syscall_64+0x4f/0x220
-> <4> [175.968906]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> <4> [175.968909]
-> -> #0 (&vm->mutex){+.+.}:
-> <4> [175.968914]        __lock_acquire+0x1328/0x15d0
-> <4> [175.968916]        lock_acquire+0xa7/0x1c0
-> <4> [175.968919]        __mutex_lock+0x9a/0x9c0
-> <4> [175.968962]        i915_vma_unbind+0xae/0x110 [i915]
-> <4> [175.969004]        i915_gem_object_unbind+0x1dc/0x400 [i915]
-> <4> [175.969045]        userptr_mn_invalidate_range_start+0xdd/0x190 [i915]
-
-AFAICU, for that to happen, not only the userptr MMU notifier would have to be 
-registered, but at least one userptr object would have to be added to the 
-notifier's list of active objects.
-
-For a userptr object to be ever added to the notifier's list of active 
-objects,  it would have to be created without I915_USERPTR_UNSYNCHRONIZED flag 
-set.  As "invalid-*-mapping" (or dynamic "invalid-mmap-offset" since 
-addressing your comments in v3 of my patch) subtests create userptr objects 
-with that flag set, we need "-sync" flavors of those subtests in order to have 
-a chance for the lockdep loop to be exercised.  If that observation is not 
-questionable to you, I'm going to address it in my next version of the patch.
-
-Now, the only way to activate the MMU notifier for a userptr object is when 
-__i915_gem_userptr_set_active() is called from i915_gem_userptr_get_pages(). 
-That can happen when either all required pages have already been pinned before 
-and are returned by __get_user_pages_fast(), or, if some pages are not yet 
-pinned, when __i915_gem_userptr_get_pages_schedule() likely succeeds (returns 
--EAGAIN).  In the latter case, __i915_gem_userptr_get_pages_worker() work is 
-scheduled.
-
-In case of a userptr object backed by our mmap-offset mapping, 
-get_user_pages_remote() called from __i915_gem_userptr_get_pages_worker() 
-fails immediately with -EFAULT on (vm_flags & (VM_IO | VM_PFNMAP)) in 
-mm/gup.c:check_vma_flags().  As a result, the MMU notifier is immediately 
-deactivated for the object.  Then indeed, a time window with the MMU notifier 
-being active for the object exists.  However, I still can't find out how 
-userspace could trigger the lockdep loop *within* that time window in a 
-reproducible manner.  Could you think of a way to do it?
-
-On the other hand, if we could postpone activation of the userptr MMU notifier 
-for an object, or otherwise prevent the notifier from doing its job until at 
-least one page is successfully acquired, then a userptr object backed with 
-mmap-offset mapping would never be able to trigger that lockdep loop, I 
-believe.  If you find my conclusions not missing the point, I'm going to 
-propose a patch (i915, not IGT).
-
-Thanks,
-Janusz
-
-
-> <4> [175.969049]        __mmu_notifier_invalidate_range_start+0x148/0x250
-> <4> [175.969052]        unmap_vmas+0x13e/0x150
-> <4> [175.969055]        unmap_region+0xa3/0x100
-> <4> [175.969057]        __do_munmap+0x26d/0x490
-> <4> [175.969060]        __vm_munmap+0x66/0xc0
-> <4> [175.969063]        __x64_sys_munmap+0x12/0x20
-> <4> [175.969066]        do_syscall_64+0x4f/0x220
-> <4> [175.969068]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
-> <4> [175.969071]
-> 
-> cycle but with obj->mm.lock.
-> -Chris
-> 
-
-
-
+diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+index feb8fbd01..20007f5c4 100644
+--- a/tests/i915/gem_ctx_persistence.c
++++ b/tests/i915/gem_ctx_persistence.c
+@@ -804,7 +804,7 @@ static void replace_engines(int i915, const struct intel_execution_engine2 *e)
+ 	gem_quiescent_gpu(i915);
+ }
+ 
+-static void race_set_engines(int i915, int fd)
++static void race_set_engines(int i915, int in, int out)
+ {
+ 	I915_DEFINE_CONTEXT_PARAM_ENGINES(engines, 1) = {
+ 		.engines = {}
+@@ -814,19 +814,31 @@ static void race_set_engines(int i915, int fd)
+ 		.value = to_user_pointer(&engines),
+ 		.size = sizeof(engines),
+ 	};
++	igt_spin_t *spin;
++
++	spin = igt_spin_new(i915);
++	igt_spin_end(spin);
+ 
+-	while (read(fd, &param.ctx_id, sizeof(param.ctx_id)) > 0) {
++	while (read(in, &param.ctx_id, sizeof(param.ctx_id)) > 0) {
+ 		if (!param.ctx_id)
+ 			break;
++
+ 		__gem_context_set_param(i915, &param);
++
++		spin->execbuf.rsvd1 = param.ctx_id;
++		__gem_execbuf(i915, &spin->execbuf);
++
++		write(out, &param.ctx_id, sizeof(param.ctx_id));
+ 	}
++
++	igt_spin_free(i915, spin);
+ }
+ 
+ static void close_replace_race(int i915)
+ {
+ 	const int ncpus = sysconf(_SC_NPROCESSORS_ONLN);
+ 	int fence = -1;
+-	int fd[2];
++	int out[2], in[2];
+ 
+ 	/*
+ 	 * If we time the submission of a hanging batch to one set of engines
+@@ -838,13 +850,15 @@ static void close_replace_race(int i915)
+ 	 * Our challenge is try and expose any such race condition.
+ 	 */
+ 
+-	igt_assert(pipe(fd) == 0);
++	igt_assert(pipe(out) == 0);
++	igt_assert(pipe(in) == 0);
+ 	igt_fork(child, ncpus) {
+-		close(fd[1]);
+-		race_set_engines(i915, fd[0]);
++		close(out[1]);
++		close(in[0]);
++		race_set_engines(i915, out[0], in[1]);
+ 	}
+ 	for (int i = 0; i < ncpus; i++)
+-		close(fd[0]);
++		close(out[0]);
+ 
+ 	igt_until_timeout(5) {
+ 		igt_spin_t *spin;
+@@ -855,7 +869,11 @@ static void close_replace_race(int i915)
+ 
+ 		spin = igt_spin_new(i915, ctx, .flags = IGT_SPIN_FENCE_OUT);
+ 		for (int i = 0; i < ncpus; i++)
+-			write(fd[1], &ctx, sizeof(ctx));
++			write(out[1], &ctx, sizeof(ctx));
++
++		gem_context_destroy(i915, ctx);
++		for (int i = 0; i < ncpus; i++)
++			read(in[0], &ctx, sizeof(ctx));
+ 
+ 		if (fence < 0) {
+ 			fence = spin->out_fence;
+@@ -869,19 +887,20 @@ static void close_replace_race(int i915)
+ 			fence = tmp;
+ 		}
+ 		spin->out_fence = -1;
+-
+-		gem_context_destroy(i915, ctx);
+ 	}
++	close(in[0]);
+ 
+ 	for (int i = 0; i < ncpus; i++) {
+ 		uint32_t end = 0;
+ 
+-		write(fd[1], &end, sizeof(end));
++		write(out[1], &end, sizeof(end));
+ 	}
+-	close(fd[1]);
++	close(out[1]);
+ 
+-	igt_debugfs_dump(i915, "i915_engine_info");
+-	igt_assert(sync_fence_wait(fence, MSEC_PER_SEC / 2) == 0);
++	if (sync_fence_wait(fence, MSEC_PER_SEC / 2)) {
++		igt_debugfs_dump(i915, "i915_engine_info");
++		igt_assert(sync_fence_wait(fence, MSEC_PER_SEC / 2) == 0);
++	}
+ 	close(fence);
+ 
+ 	igt_waitchildren();
+-- 
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
