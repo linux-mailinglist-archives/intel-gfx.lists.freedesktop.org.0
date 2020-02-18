@@ -2,31 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0995B163744
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:33:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1EA16376B
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:44:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E25216E043;
-	Tue, 18 Feb 2020 23:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8B116E426;
+	Tue, 18 Feb 2020 23:44:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6080C6E043;
- Tue, 18 Feb 2020 23:33:00 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 57ED8A0003;
- Tue, 18 Feb 2020 23:33:00 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89B896E426
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 23:44:50 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 15:44:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,458,1574150400"; d="scan'208";a="258728730"
+Received: from rantogno-mobl4.jf.intel.com (HELO
+ rantogno-mobl4.amr.corp.intel.com) ([10.54.72.142])
+ by fmsmga004.fm.intel.com with SMTP; 18 Feb 2020 15:44:49 -0800
+Date: Tue, 18 Feb 2020 15:44:49 -0800
+From: Rafael Antognolli <rafael.antognolli@intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <20200218234449.w6zhjgzkfgjt6kg7@rantogno-mobl4.amr.corp.intel.com>
+References: <20200218194710.2808-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-Date: Tue, 18 Feb 2020 23:33:00 -0000
-Message-ID: <158206878033.31430.15206168952568331657@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200217154509.2265-1-christian.koenig@amd.com>
-In-Reply-To: <20200217154509.2265-1-christian.koenig@amd.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/5=5D_dma-buf=3A_add_dynamic_DMA-b?=
- =?utf-8?q?uf_handling_v14?=
+Content-Disposition: inline
+In-Reply-To: <20200218194710.2808-1-matthew.s.atwood@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt/tgl: implement Wa_1409085225
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,44 +44,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogc2VyaWVzIHN0YXJ0aW5nIHdpdGggWzEvNV0g
-ZG1hLWJ1ZjogYWRkIGR5bmFtaWMgRE1BLWJ1ZiBoYW5kbGluZyB2MTQKVVJMICAgOiBodHRwczov
-L3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzczNTg2LwpTdGF0ZSA6IHdhcm5pbmcK
-Cj09IFN1bW1hcnkgPT0KCiQgZGltIGNoZWNrcGF0Y2ggb3JpZ2luL2RybS10aXAKYzljMmQxNDc3
-NTMwIGRtYS1idWY6IGFkZCBkeW5hbWljIERNQS1idWYgaGFuZGxpbmcgdjE0Ci06MTA6IFdBUk5J
-Tkc6Q09NTUlUX0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQgZGVzY3Jp
-cHRpb24gKHByZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxpbmUpCiMxMDogCmNhbGxlZCB3
-aGVuIHRoZSBpbXBvcnRlciBkb2Vzbid0IGltcGxlbWVudCBkeW5hbWljIGhhbmRsaW5nLCBtb3Zl
-IG5vdGlmaWNhdGlvbgoKLTo0MTE6IFdBUk5JTkc6Tk9fQVVUSE9SX1NJR05fT0ZGOiBNaXNzaW5n
-IFNpZ25lZC1vZmYtYnk6IGxpbmUgYnkgbm9taW5hbCBwYXRjaCBhdXRob3IgJ0NocmlzdGlhbiBL
-w7ZuaWcgPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tPicKCnRvdGFsOiAwIGVycm9y
-cywgMiB3YXJuaW5ncywgMCBjaGVja3MsIDM0MCBsaW5lcyBjaGVja2VkCmVlNTYwNTRmZjU5OCBk
-cm0vdHRtOiByZW1vdmUgdGhlIGJhY2tpbmcgc3RvcmUgaWYgbm8gcGxhY2VtZW50IGlzIGdpdmVu
-Ci06MzY6IFdBUk5JTkc6Tk9fQVVUSE9SX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25lZC1vZmYtYnk6
-IGxpbmUgYnkgbm9taW5hbCBwYXRjaCBhdXRob3IgJ0NocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcu
-bGVpY2h0enVtZXJrZW5AZ21haWwuY29tPicKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywg
-MCBjaGVja3MsIDE4IGxpbmVzIGNoZWNrZWQKOGRkMjgyNWMzYzRhIGRybS9hbWRncHU6IHVzZSBh
-bGxvd2VkX2RvbWFpbnMgZm9yIGV4cG9ydGVkIERNQS1idWZzCi06MzY6IFdBUk5JTkc6Tk9fQVVU
-SE9SX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25lZC1vZmYtYnk6IGxpbmUgYnkgbm9taW5hbCBwYXRj
-aCBhdXRob3IgJ0NocmlzdGlhbiBLw7ZuaWcgPGNrb2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwu
-Y29tPicKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJuaW5ncywgMCBjaGVja3MsIDE3IGxpbmVzIGNo
-ZWNrZWQKZjhiMWM5YjdlNDI0IGRybS9hbWRncHU6IGFkZCBhbWRncHVfZG1hX2J1Zl9waW4vdW5w
-aW4gdjIKLToxMjU6IFdBUk5JTkc6Tk9fQVVUSE9SX1NJR05fT0ZGOiBNaXNzaW5nIFNpZ25lZC1v
-ZmYtYnk6IGxpbmUgYnkgbm9taW5hbCBwYXRjaCBhdXRob3IgJ0NocmlzdGlhbiBLw7ZuaWcgPGNr
-b2VuaWcubGVpY2h0enVtZXJrZW5AZ21haWwuY29tPicKCnRvdGFsOiAwIGVycm9ycywgMSB3YXJu
-aW5ncywgMCBjaGVja3MsIDk3IGxpbmVzIGNoZWNrZWQKOWQzYmNkOGVlNmY5IGRybS9hbWRncHU6
-IGltcGxlbWVudCBhbWRncHVfZ2VtX3ByaW1lX21vdmVfbm90aWZ5IHYyCi06MTIzOiBXQVJOSU5H
-Ok5PX0FVVEhPUl9TSUdOX09GRjogTWlzc2luZyBTaWduZWQtb2ZmLWJ5OiBsaW5lIGJ5IG5vbWlu
-YWwgcGF0Y2ggYXV0aG9yICdDaHJpc3RpYW4gS8O2bmlnIDxja29lbmlnLmxlaWNodHp1bWVya2Vu
-QGdtYWlsLmNvbT4nCgp0b3RhbDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCA5NyBs
-aW5lcyBjaGVja2VkCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+On Tue, Feb 18, 2020 at 02:47:10PM -0500, Matt Atwood wrote:
+> Disable Push Constant buffer addition for A0, which can cause FIFO
+> underruns.
+> 
+> Fix a minor white space issue while we're here.
+> 
+> Bspec: 52890
+> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 ++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h             |  3 +++
+>  2 files changed, 13 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index 887e0dc701f7..9bbd28aa9bde 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -580,6 +580,7 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  				     struct i915_wa_list *wal)
+>  {
+> +	struct drm_i915_private *i915 = engine->i915;
+>  	u32 val;
+>  
+>  	/* Wa_1409142259:tgl */
+> @@ -590,6 +591,7 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	val = intel_uncore_read(engine->uncore, FF_MODE2);
+>  	val &= ~FF_MODE2_TDS_TIMER_MASK;
+>  	val |= FF_MODE2_TDS_TIMER_128;
+> +
+>  	/*
+>  	 * FIXME: FF_MODE2 register is not readable till TGL B0. We can
+>  	 * enable verification of WA from the later steppings, which enables
+> @@ -598,6 +600,14 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
+>  	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
+>  			    FF_MODE2_TDS_TIMER_MASK);
+> +
+> +	/* Wa_1409085225:tgl
+> +	 *
+> +	 * Push Constant Buffer can case FIFO underruns on A0
+> +	 */
+> +	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+
+Is this really only applicable to A stepping?
+
+> +		WA_SET_BIT_MASKED(GEN9_ROW_CHICKEN4,
+> +				  GEN12_DISABLE_TDL_PUSH);
+>  }
+>  
+>  static void
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index b09c1d6dc0aa..a75a27ed63ce 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9153,6 +9153,9 @@ enum {
+>  #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
+>  #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
+>  
+> +#define GEN9_ROW_CHICKEN4		_MMIO(0x48c)
+
+s/0x48c/0xe48c/ ?
+
+> +#define  GEN12_DISABLE_TDL_PUSH		(1 << 9)
+> +
+>  #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
+>  #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
+>  
+> -- 
+> 2.21.1
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
