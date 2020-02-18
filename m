@@ -1,35 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B706162E62
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 19:22:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA64162E76
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 19:26:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DADA6EA62;
-	Tue, 18 Feb 2020 18:22:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5FBD6E391;
+	Tue, 18 Feb 2020 18:26:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1E556EA61
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 18:22:51 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEB8B6E391
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 18:26:41 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 10:22:51 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 10:26:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="268859226"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.14.232])
- by fmsmga002.fm.intel.com with ESMTP; 18 Feb 2020 10:22:51 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 10:23:28 -0800
-Message-Id: <20200218182328.39980-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="253809583"
+Received: from brianliu-mobl1.amr.corp.intel.com (HELO [10.252.205.69])
+ ([10.252.205.69])
+ by orsmga002.jf.intel.com with ESMTP; 18 Feb 2020 10:26:40 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
+ <20200218162150.1300405-10-chris@chris-wilson.co.uk>
+From: Brian Welty <brian.welty@intel.com>
+Message-ID: <65a3f403-383b-9e07-e6d2-c32ac1874dc8@intel.com>
+Date: Tue, 18 Feb 2020 10:26:40 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2-resend] drm/i915/psr: Force PSR probe only
- after full initialization
+In-Reply-To: <20200218162150.1300405-10-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 10/12] drm/i915/gt: Refactor l3cc/mocs
+ availability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,96 +47,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Ross Zwisler <zwisler@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29tbWl0IDYwYzZhMTRiNDg5YiAoImRybS9pOTE1L2Rpc3BsYXk6IEZvcmNlIHRoZSBzdGF0ZSBj
-b21wdXRlIHBoYXNlCm9uY2UgdG8gZW5hYmxlIFBTUiIpIHdhcyBmb3JjaW5nIHRoZSBzdGF0ZSBj
-b21wdXRlIHRvbyBlYXJsaWVyCmNhdXNpbmcgZXJyb3JzIGJlY2F1c2Ugbm90IGV2ZXJ5dGhpbmcg
-d2FzIGluaXRpYWxpemVkLCBzbyBoZXJlCm1vdmluZyB0byBpOTE1X2RyaXZlcl9yZWdpc3Rlcigp
-IHdoZW4gZXZlcnl0aGluZyBpcyByZWFkeSBhbmQgZHJpdmVyCmlzIHJlZ2lzdGVyaW5nIGludG8g
-dGhlIHJlc3Qgb2YgdGhlIHN5c3RlbS4KCkFsc28gZml4aW5nIHRoZSBwbGFjZSB3aGVyZSBpdCBk
-aXNhcm0gdGhlIGZvcmNlIHByb2JlIGFzIGR1cmluZyB0aGUKYXRvbWljIGNoZWNrIHBoYXNlIGVy
-cm9ycyBjb3VsZCBoYXBwZW4gbGlrZSB0aGUgb25lcyBkdWUgbG9ja2luZyBhbmQKaXQgd291bGQg
-Y2F1c2UgUFNSIHRvIG5ldmVyIGJlIGVuYWJsZWQgaWYgdGhhdCBoYXBwZW5zLgpMZWF2aW5nIHRo
-ZSBkaXNhcm0gdG8gdGhlIGF0b21pYyBjb21taXQgcGhhc2UsIGludGVsX3Bzcl9lbmFibGUoKSBv
-cgppbnRlbF9wc3JfdXBkYXRlKCkgd2lsbCBiZSBjYWxsZWQgZXZlbiBpZiB0aGUgY3VycmVudCBz
-dGF0ZSBkbyBub3QKYWxsb3cgUFNSIHRvIGJlIGVuYWJsZWQuCgp2MjogQ2hlY2sgaWYgaW50ZWxf
-ZHAgaXMgbnVsbCBpbiBpbnRlbF9wc3JfZm9yY2VfbW9kZV9jaGFuZ2VkX3NldCgpCgpGaXhlczog
-NjBjNmExNGI0ODliICgiZHJtL2k5MTUvZGlzcGxheTogRm9yY2UgdGhlIHN0YXRlIGNvbXB1dGUg
-cGhhc2Ugb25jZSB0byBlbmFibGUgUFNSIikKQ2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVz
-a3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy8xMTUxClJlcG9ydGVkLWJ5OiBSb3NzIFp3aXNsZXIg
-PHp3aXNsZXJAZ29vZ2xlLmNvbT4KVGVzdGVkLWJ5OiBSb3NzIFp3aXNsZXIgPHp3aXNsZXJAZ29v
-Z2xlLmNvbT4KQ2M6IEd3YW4tZ3llb25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4K
-Q2M6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEpv
-c8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAxOCArKysrKysrKysrKysrKysrLS0K
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmggfCAgMSArCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAgICAgIHwgIDMgKysrCiBkcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgIDIgKy0KIDQgZmlsZXMgY2hhbmdlZCwgMjEg
-aW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9wc3IuYwppbmRleCBiNDk0MmI2NDQ1YWUuLjM1YmFmZDI4MWRlYiAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCkBAIC05MzYsNiArOTM2LDggQEAgdm9p
-ZCBpbnRlbF9wc3JfZW5hYmxlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsCiB7CiAJc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7CiAKKwlp
-bnRlbF9wc3JfZm9yY2VfbW9kZV9jaGFuZ2VkX3NldChpbnRlbF9kcCwgZmFsc2UpOworCiAJaWYg
-KCFjcnRjX3N0YXRlLT5oYXNfcHNyKQogCQlyZXR1cm47CiAKQEAgLTEwOTYsNiArMTA5OCw4IEBA
-IHZvaWQgaW50ZWxfcHNyX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCXN0cnVj
-dCBpOTE1X3BzciAqcHNyID0gJmRldl9wcml2LT5wc3I7CiAJYm9vbCBlbmFibGUsIHBzcjJfZW5h
-YmxlOwogCisJaW50ZWxfcHNyX2ZvcmNlX21vZGVfY2hhbmdlZF9zZXQoaW50ZWxfZHAsIGZhbHNl
-KTsKKwogCWlmICghQ0FOX1BTUihkZXZfcHJpdikgfHwgUkVBRF9PTkNFKHBzci0+ZHApICE9IGlu
-dGVsX2RwKQogCQlyZXR1cm47CiAKQEAgLTE2MjksNyArMTYzMyw3IEBAIHZvaWQgaW50ZWxfcHNy
-X2F0b21pY19jaGVjayhzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXN0cnVjdCBk
-cm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsKIAogCWlmICghQ0FOX1BTUihkZXZfcHJpdikgfHwg
-IW5ld19zdGF0ZS0+Y3J0YyB8fAotCSAgICBkZXZfcHJpdi0+cHNyLmluaXRpYWxseV9wcm9iZWQp
-CisJICAgICFkZXZfcHJpdi0+cHNyLmZvcmNlX21vZGVfY2hhbmdlZCkKIAkJcmV0dXJuOwogCiAJ
-aW50ZWxfY29ubmVjdG9yID0gdG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7CkBAIC0xNjQw
-LDUgKzE2NDQsMTUgQEAgdm9pZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29u
-bmVjdG9yICpjb25uZWN0b3IsCiAJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X25ld19jcnRj
-X3N0YXRlKG5ld19zdGF0ZS0+c3RhdGUsCiAJCQkJCQkgICBuZXdfc3RhdGUtPmNydGMpOwogCWNy
-dGNfc3RhdGUtPm1vZGVfY2hhbmdlZCA9IHRydWU7Ci0JZGV2X3ByaXYtPnBzci5pbml0aWFsbHlf
-cHJvYmVkID0gdHJ1ZTsKK30KKwordm9pZCBpbnRlbF9wc3JfZm9yY2VfbW9kZV9jaGFuZ2VkX3Nl
-dChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCBib29sIHNldCkKK3sKKwlzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsKKworCWlmICghQ0FO
-X1BTUihkZXZfcHJpdikgfHwgIWludGVsX2RwIHx8ICFpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHAp
-IHx8CisJICAgIGludGVsX2RwICE9IGRldl9wcml2LT5wc3IuZHApCisJCXJldHVybjsKKworCWRl
-dl9wcml2LT5wc3IuZm9yY2VfbW9kZV9jaGFuZ2VkID0gc2V0OwogfQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgKaW5kZXggYzU4YTFkNDM4ODA4Li4yN2E3MDQ2OGUyYjkg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgKKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaApAQCAtNDAsNSArNDAs
-NiBAQCBib29sIGludGVsX3Bzcl9lbmFibGVkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApOwog
-dm9pZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0
-b3IsCiAJCQkgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9zdGF0ZSwKIAkJCSAg
-ICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X3N0YXRlKTsKK3ZvaWQgaW50ZWxfcHNy
-X2ZvcmNlX21vZGVfY2hhbmdlZF9zZXQoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgYm9vbCBz
-ZXQpOwogCiAjZW5kaWYgLyogX19JTlRFTF9QU1JfSF9fICovCmRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYu
-YwppbmRleCBmN2ExYzMzNjk3YjcuLjgzNzkxYzE5NzYxMSAxMDA2NDQKLS0tIGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvaTkxNV9kcnYuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Ry
-di5jCkBAIC01OCw2ICs1OCw3IEBACiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9ob3RwbHVnLmgi
-CiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9vdmVybGF5LmgiCiAjaW5jbHVkZSAiZGlzcGxheS9p
-bnRlbF9waXBlX2NyYy5oIgorI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfcHNyLmgiCiAjaW5jbHVk
-ZSAiZGlzcGxheS9pbnRlbF9zcHJpdGUuaCIKICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX3ZnYS5o
-IgogCkBAIC0xMjU2LDYgKzEyNTcsOCBAQCBzdGF0aWMgdm9pZCBpOTE1X2RyaXZlcl9yZWdpc3Rl
-cihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAKIAlpbnRlbF9hdWRpb19pbml0
-KGRldl9wcml2KTsKIAorCWludGVsX3Bzcl9mb3JjZV9tb2RlX2NoYW5nZWRfc2V0KGRldl9wcml2
-LT5wc3IuZHAsIHRydWUpOworCiAJLyoKIAkgKiBTb21lIHBvcnRzIHJlcXVpcmUgY29ycmVjdGx5
-IHNldC11cCBocGQgcmVnaXN0ZXJzIGZvciBkZXRlY3Rpb24gdG8KIAkgKiB3b3JrIHByb3Blcmx5
-IChsZWFkaW5nIHRvIGdob3N0IGNvbm5lY3RlZCBjb25uZWN0b3Igc3RhdHVzKSwgZS5nLiBWR0EK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X2Rydi5oCmluZGV4IDMzMzBiNTM4ZDM3OS4uYTU0NjY1NTA3MmJkIDEw
-MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKQEAgLTUwNSw3ICs1MDUsNyBAQCBzdHJ1Y3QgaTkxNV9w
-c3IgewogCWJvb2wgZGMzY29fZW5hYmxlZDsKIAl1MzIgZGMzY29fZXhpdF9kZWxheTsKIAlzdHJ1
-Y3QgZGVsYXllZF93b3JrIGRjM2NvX3dvcms7Ci0JYm9vbCBpbml0aWFsbHlfcHJvYmVkOworCWJv
-b2wgZm9yY2VfbW9kZV9jaGFuZ2VkOwogfTsKIAogI2RlZmluZSBRVUlSS19MVkRTX1NTQ19ESVNB
-QkxFICgxPDwxKQotLSAKMi4yNS4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+
+On 2/18/2020 8:21 AM, Chris Wilson wrote:
+> On dgfx, we only use l3cc and not mocs, but we share the table of
+> register definitions with Tigerlake (which includes the mocs). This
+> confuses our selftest that verifies that the registers do contain the
+> values in our tables after various events (idling, reset, activity etc).
+> 
+> When constructing the table of register definitions, also include the
+> flags for which registers are valid so that information is computed
+> centrally and available to all callers.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Brian Welty <brian.welty@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_mocs.c    | 72 +++++++++++++++++--------
+>  drivers/gpu/drm/i915/gt/selftest_mocs.c | 24 ++++++---
+>  2 files changed, 67 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> index 0afc1eb3c20f..632e08a4592b 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
+> @@ -280,9 +280,32 @@ static const struct drm_i915_mocs_entry icl_mocs_table[] = {
+>  	GEN11_MOCS_ENTRIES
+>  };
+>  
+> -static bool get_mocs_settings(const struct drm_i915_private *i915,
+> -			      struct drm_i915_mocs_table *table)
+> +enum {
+> +	HAS_GLOBAL_MOCS = BIT(0),
+> +	HAS_ENGINE_MOCS = BIT(1),
+> +	HAS_RENDER_L3CC = BIT(2),
+> +};
+> +
+> +static bool has_l3cc(const struct drm_i915_private *i915)
+>  {
+> +	return true;
+> +}
+> +
+> +static bool has_global_mocs(const struct drm_i915_private *i915)
+> +{
+> +	return HAS_GLOBAL_MOCS_REGISTERS(i915);
+> +}
+> +
+> +static bool has_mocs(const struct drm_i915_private *i915)
+> +{
+> +	return !IS_DGFX(i915);
+> +}
+> +
+> +static unsigned int get_mocs_settings(const struct drm_i915_private *i915,
+> +				      struct drm_i915_mocs_table *table)
+> +{
+> +	unsigned int flags;
+> +
+>  	if (INTEL_GEN(i915) >= 12) {
+>  		table->size  = ARRAY_SIZE(tgl_mocs_table);
+>  		table->table = tgl_mocs_table;
+> @@ -302,11 +325,11 @@ static bool get_mocs_settings(const struct drm_i915_private *i915,
+>  	} else {
+>  		drm_WARN_ONCE(&i915->drm, INTEL_GEN(i915) >= 9,
+>  			      "Platform that should have a MOCS table does not.\n");
+> -		return false;
+> +		return 0;
+>  	}
+>  
+>  	if (GEM_DEBUG_WARN_ON(table->size > table->n_entries))
+> -		return false;
+> +		return 0;
+>  
+>  	/* WaDisableSkipCaching:skl,bxt,kbl,glk */
+>  	if (IS_GEN(i915, 9)) {
+> @@ -315,10 +338,20 @@ static bool get_mocs_settings(const struct drm_i915_private *i915,
+>  		for (i = 0; i < table->size; i++)
+>  			if (GEM_DEBUG_WARN_ON(table->table[i].l3cc_value &
+>  					      (L3_ESC(1) | L3_SCC(0x7))))
+> -				return false;
+> +				return 0;
+>  	}
+>  
+> -	return true;
+> +	flags = 0;
+> +	if (has_mocs(i915)) {
+> +		if (has_global_mocs(i915))
+> +			flags |= HAS_GLOBAL_MOCS;
+> +		else
+> +			flags |= HAS_ENGINE_MOCS;
+> +	}
+> +	if (has_l3cc(i915))
+> +		flags |= HAS_RENDER_L3CC;
+> +
+> +	return flags;
+>  }
+>  
+>  /*
+> @@ -411,18 +444,20 @@ static void init_l3cc_table(struct intel_engine_cs *engine,
+>  void intel_mocs_init_engine(struct intel_engine_cs *engine)
+>  {
+>  	struct drm_i915_mocs_table table;
+> +	unsigned int flags;
+>  
+>  	/* Called under a blanket forcewake */
+>  	assert_forcewakes_active(engine->uncore, FORCEWAKE_ALL);
+>  
+> -	if (!get_mocs_settings(engine->i915, &table))
+> +	flags = get_mocs_settings(engine->i915, &table);
+> +	if (!flags)
+>  		return;
+>  
+>  	/* Platforms with global MOCS do not need per-engine initialization. */
+> -	if (!HAS_GLOBAL_MOCS_REGISTERS(engine->i915))
+> +	if (flags & HAS_ENGINE_MOCS)
+>  		init_mocs_table(engine, &table);
+>  
+> -	if (engine->class == RENDER_CLASS)
+> +	if (flags & HAS_RENDER_L3CC && engine->class == RENDER_CLASS)
+>  		init_l3cc_table(engine, &table);
+>  }
+>  
+> @@ -431,26 +466,17 @@ static u32 global_mocs_offset(void)
+>  	return i915_mmio_reg_offset(GEN12_GLOBAL_MOCS(0));
+>  }
+>  
+> -static void init_global_mocs(struct intel_gt *gt)
+> +void intel_mocs_init(struct intel_gt *gt)
+>  {
+>  	struct drm_i915_mocs_table table;
+> +	unsigned int flags;
+>  
+>  	/*
+>  	 * LLC and eDRAM control values are not applicable to dgfx
+>  	 */
+> -	if (IS_DGFX(gt->i915))
+> -		return;
+> -
+> -	if (!get_mocs_settings(gt->i915, &table))
+> -		return;
+> -
+> -	__init_mocs_table(gt->uncore, &table, global_mocs_offset());
+> -}
+> -
+> -void intel_mocs_init(struct intel_gt *gt)
+> -{
+> -	if (HAS_GLOBAL_MOCS_REGISTERS(gt->i915))
+> -		init_global_mocs(gt);
+> +	flags = get_mocs_settings(gt->i915, &table);
+> +	if (flags & HAS_GLOBAL_MOCS)
+> +		__init_mocs_table(gt->uncore, &table, global_mocs_offset());
+>  }
+>  
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_mocs.c b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> index de1f83100fb6..8831ffee2061 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_mocs.c
+> @@ -12,7 +12,8 @@
+>  #include "selftests/igt_spinner.h"
+>  
+>  struct live_mocs {
+> -	struct drm_i915_mocs_table table;
+> +	struct drm_i915_mocs_table mocs;
+> +	struct drm_i915_mocs_table l3cc;
+>  	struct i915_vma *scratch;
+>  	void *vaddr;
+>  };
+> @@ -70,11 +71,22 @@ static struct i915_vma *create_scratch(struct intel_gt *gt)
+>  
+>  static int live_mocs_init(struct live_mocs *arg, struct intel_gt *gt)
+>  {
+> +	struct drm_i915_mocs_table table;
+> +	unsigned int flags;
+>  	int err;
+>  
+> -	if (!get_mocs_settings(gt->i915, &arg->table))
+> +	memset(arg, 0, sizeof(*arg));
+> +
+> +	flags = get_mocs_settings(gt->i915, &table);
+> +	if (!flags)
+>  		return -EINVAL;
+>  
+> +	if (flags & HAS_RENDER_L3CC)
+> +		arg->l3cc = table;
+> +
+> +	if (flags & (HAS_GLOBAL_MOCS | HAS_ENGINE_MOCS))
+> +		arg->mocs = table;
+> +
+>  	arg->scratch = create_scratch(gt);
+>  	if (IS_ERR(arg->scratch))
+>  		return PTR_ERR(arg->scratch);
+> @@ -223,9 +235,9 @@ static int check_mocs_engine(struct live_mocs *arg,
+>  	/* Read the mocs tables back using SRM */
+>  	offset = i915_ggtt_offset(vma);
+>  	if (!err)
+> -		err = read_mocs_table(rq, &arg->table, &offset);
+> +		err = read_mocs_table(rq, &arg->mocs, &offset);
+>  	if (!err && ce->engine->class == RENDER_CLASS)
+> -		err = read_l3cc_table(rq, &arg->table, &offset);
+> +		err = read_l3cc_table(rq, &arg->l3cc, &offset);
+
+
+Above functions will call read_regs().
+I thought we'd still want to avoid this.  Shouldn't you test flags here?
+Maybe store flags in the struct live_mocs and something like:
+
+ 	if (!err && (arg->flags & (HAS_GLOBAL_MOCS | HAS_ENGINE_MOCS)))
+		err = read_mocs_table(rq, &arg->mocs, &offset);
+ 	if (!err && (arg->flags & HAS_RENDER_L3CC) && ce->engine->class == RENDER_CLASS)
+		err = read_l3cc_table(rq, &arg->l3cc, &offset);
+
+
+>  	offset -= i915_ggtt_offset(vma);
+>  	GEM_BUG_ON(offset > PAGE_SIZE);
+>  
+> @@ -236,9 +248,9 @@ static int check_mocs_engine(struct live_mocs *arg,
+>  	/* Compare the results against the expected tables */
+>  	vaddr = arg->vaddr;
+>  	if (!err)
+> -		err = check_mocs_table(ce->engine, &arg->table, &vaddr);
+> +		err = check_mocs_table(ce->engine, &arg->mocs, &vaddr);
+>  	if (!err && ce->engine->class == RENDER_CLASS)
+> -		err = check_l3cc_table(ce->engine, &arg->table, &vaddr);
+> +		err = check_l3cc_table(ce->engine, &arg->l3cc, &vaddr);
+>  	if (err)
+>  		return err;
+>  
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
