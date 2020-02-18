@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F68A1625A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 12:41:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC1E1625E7
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 13:06:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84C8B6E9EB;
-	Tue, 18 Feb 2020 11:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF2789C6A;
+	Tue, 18 Feb 2020 12:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AA8C36E9EA;
- Tue, 18 Feb 2020 11:41:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A2D57A47E9;
- Tue, 18 Feb 2020 11:41:37 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19AA589C6A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:06:03 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 04:06:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="228714056"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga008.jf.intel.com with ESMTP; 18 Feb 2020 04:06:00 -0800
+Date: Tue, 18 Feb 2020 17:27:34 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200218115734.GE11041@intel.com>
+References: <20200211172532.14287-1-anshuman.gupta@intel.com>
+ <20200211172532.14287-6-anshuman.gupta@intel.com>
+ <20200217052227.GD11041@intel.com>
+ <20200217141722.GM13686@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 18 Feb 2020 11:41:37 -0000
-Message-ID: <158202609763.31432.14594036448582925212@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/6=5D_drm/i915/gt=3A_Show_the_cumu?=
- =?utf-8?q?lative_context_runtime_in_engine_debug?=
+Content-Disposition: inline
+In-Reply-To: <20200217141722.GM13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 5/7] drm/i915: Get first crtc instead of
+ PIPE_A crtc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,35 +48,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [1/6] drm/i915/gt: Show the cumulative context runtime in engine debug
-URL   : https://patchwork.freedesktop.org/series/73567/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-bc3998499b8b drm/i915/gt: Show the cumulative context runtime in engine debug
--:35: WARNING:LONG_LINE: line over 100 characters
-#35: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1393:
-+						DIV_ROUND_CLOSEST_ULL(intel_context_get_total_runtime_ns(rq->context),
-
-total: 0 errors, 1 warnings, 0 checks, 22 lines checked
-a5a21f76779e drm/i915/execlists: Check the sentinel is alone in the ELSP
-6f9a3708f010 drm/i915/gt: Fix up missing error propagation for heartbeat pulses
-0b1cbf2f8e55 drm/i915/gt: Prevent allocation on a banned context
-80b24ffec43b drm/i915/gem: Check that the context wasn't closed during setup
-25201c4b415a drm/i915/gem: Consolidate ctx->engines[] release
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0xNyBhdCAxNjoxNzoyMiArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+IE9uIE1vbiwgRmViIDE3LCAyMDIwIGF0IDEwOjUyOjI4QU0gKzA1MzAsIEFuc2h1bWFuIEd1cHRh
+IHdyb3RlOgo+ID4gT24gMjAyMC0wMi0xMSBhdCAyMjo1NTozMCArMDUzMCwgQW5zaHVtYW4gR3Vw
+dGEgd3JvdGU6Cj4gPiA+IGludGVsX3BsYW5lX2ZiX21heF9zdHJpZGUgc2hvdWxkIHJldHVybiB0
+aGUgbWF4IHN0cmlkZSBvZgo+ID4gPiBwcmltYXJ5IHBsYW5lIGZvciBmaXJzdCBhdmFpbGFibGUg
+cGlwZSBpbiBpbnRlbCBkZXZpY2UgaW5mbwo+ID4gPiBwaXBlX21hc2suCj4gPiA+IFNpbWlsYXJs
+eSBnbGtfZm9yY2VfYXVkaW9fY2RjbGsoKSBzaG91bGQgYWxzbyB1c2UgdGhlIGZpcnN0Cj4gPiA+
+IGF2YWlsYWJsZSBDUlRDIGluc3RlYWQgb2YgcGlwZSAnQScgY3J0YyB0byBmb3JjZSB0aGUgY2Rj
+bGsKPiA+ID4gY2hhbmdlcy4KPiA+ID4gCj4gPiA+IGNoYW5nZXMgc2luY2UgUkZDOgo+ID4gPiAt
+IEludHJvZHVjZWQgYSBoZWxwZXIgdG8gZ2V0IGZpcnN0IGludGVsX2NydGMgaW50ZWxfZ2V0X2Zp
+cnN0X2NydGMuIFtWaWxsZV0KPiA+ID4gdjE6Cj4gPiA+IC0gVXNlZCBpbnRlbF9nZXRfZmlyc3Rf
+Y3J0YygpIGluc3RlYWQgb2YgUElQRV9BIGNydGMgaW4KPiA+ID4gICBnbGtfZm9yY2VfYXVkaW9f
+Y2RjbGsoKS4gW1ZpbGxlXQo+ID4gSGkgVmlsbGUsCj4gPiBZb3UgaGFkIHByb3ZpZGVkIHlvdXIg
+UkIgb24gZWFybGllciByZXZpc2lvbgo+ID4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL3BhdGNoLzM1MTg3My8/c2VyaWVzPTcyNDY4JnJldj0yCj4gPiBsYXRlciB1IGhhdmUgcHJv
+dmlkZWQgdGhlIGFib3ZlIHJldmlldyBjb21tZW50LCBhcyBjdXJyZW50Cj4gPiBwYXRjaCBmaXhl
+cyB0aGUgYWJvdmUgcmV2aWV3IGNvbW1lbnQuCj4gPiBjYW4gaSB1c2UgeW91ciBSQiBmb3IgdGhp
+cyBwYXRjaCwgaWYgY3VycmVudCBwYXRjaCBpcyBvay4KPiAKPiBZZXMsIHRoaXMgcGF0Y2ggbG9v
+a3Mgb2suCj4gCj4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+ClRoYW5rcyBWaWxsZSBmb3IgUkIuCj4gCj4gPiBUaGFua3MsCj4gPiBB
+bnNodW1hbiBHdXB0YS4gCj4gPiA+IAo+ID4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5z
+eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPiA+ID4gU2lnbmVkLW9mZi1ieTogQW5zaHVtYW4gR3Vw
+dGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KPiA+ID4gLS0tCj4gPiA+ICBkcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F1ZGlvLmMgICAgICAgICB8IDIgKy0KPiA+ID4gIGRy
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jICAgICAgIHwgNSArKyst
+LQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVz
+LmggfCA2ICsrKysrKwo+ID4gPiAgMyBmaWxlcyBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspLCAz
+IGRlbGV0aW9ucygtKQo+ID4gPiAKPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfYXVkaW8uYwo+ID4gPiBpbmRleCAzMGZiN2M4ODdmZjAuLjE5YmYyMDYwMzdjMiAxMDA2
+NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdWRpby5j
+Cj4gPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXVkaW8uYwo+
+ID4gPiBAQCAtODQ0LDcgKzg0NCw3IEBAIHN0YXRpYyB2b2lkIGdsa19mb3JjZV9hdWRpb19jZGNs
+ayhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gPiA+ICAJc3RydWN0IGludGVs
+X2NydGMgKmNydGM7Cj4gPiA+ICAJaW50IHJldDsKPiA+ID4gIAo+ID4gPiAtCWNydGMgPSBpbnRl
+bF9nZXRfY3J0Y19mb3JfcGlwZShkZXZfcHJpdiwgUElQRV9BKTsKPiA+ID4gKwljcnRjID0gaW50
+ZWxfZ2V0X2ZpcnN0X2NydGMoZGV2X3ByaXYpOwo+ID4gPiAgCWlmICghY3J0YykKPiA+ID4gIAkJ
+cmV0dXJuOwo+ID4gPiAgCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGlzcGxheS5jCj4gPiA+IGluZGV4IDViYTBiNDBmYmZkZS4uNmZkYWViMDE5ZmVmIDEwMDY0
+NAo+ID4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+Ywo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+Ywo+ID4gPiBAQCAtMjcxNSw5ICsyNzE1LDEwIEBAIHUzMiBpbnRlbF9wbGFuZV9mYl9tYXhfc3Ry
+aWRlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiA+ID4gIAo+ID4gPiAgCS8q
+Cj4gPiA+ICAJICogV2UgYXNzdW1lIHRoZSBwcmltYXJ5IHBsYW5lIGZvciBwaXBlIEEgaGFzCj4g
+PiA+IC0JICogdGhlIGhpZ2hlc3Qgc3RyaWRlIGxpbWl0cyBvZiB0aGVtIGFsbC4KPiA+ID4gKwkg
+KiB0aGUgaGlnaGVzdCBzdHJpZGUgbGltaXRzIG9mIHRoZW0gYWxsLAo+ID4gPiArCSAqIGlmIGlu
+IGNhc2UgcGlwZSBBIGlzIGRpc2FibGVkLCB1c2UgdGhlIGZpcnN0IHBpcGUgZnJvbSBwaXBlX21h
+c2suCj4gPiA+ICAJICovCj4gPiA+IC0JY3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRl
+dl9wcml2LCBQSVBFX0EpOwo+ID4gPiArCWNydGMgPSBpbnRlbF9nZXRfZmlyc3RfY3J0YyhkZXZf
+cHJpdik7Cj4gPiA+ICAJaWYgKCFjcnRjKQo+ID4gPiAgCQlyZXR1cm4gMDsKPiA+ID4gIAo+ID4g
+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
+X3R5cGVzLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlw
+ZXMuaAo+ID4gPiBpbmRleCBkMzU5ZjE2MzZiYTguLjM1OWVhYTY3MDNhOCAxMDA2NDQKPiA+ID4g
+LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgK
+PiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5
+cGVzLmgKPiA+ID4gQEAgLTE0MDMsNiArMTQwMywxMiBAQCB2bHZfcGlwZV90b19jaGFubmVsKGVu
+dW0gcGlwZSBwaXBlKQo+ID4gPiAgCX0KPiA+ID4gIH0KPiA+ID4gIAo+ID4gPiArc3RhdGljIGlu
+bGluZSBzdHJ1Y3QgaW50ZWxfY3J0YyAqCj4gPiA+ICtpbnRlbF9nZXRfZmlyc3RfY3J0YyhzdHJ1
+Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiA+ICt7Cj4gPiA+ICsJcmV0dXJuIHRv
+X2ludGVsX2NydGMoZHJtX2NydGNfZnJvbV9pbmRleCgmZGV2X3ByaXYtPmRybSwgMCkpOwo+ID4g
+PiArfQo+ID4gPiArCj4gPiA+ICBzdGF0aWMgaW5saW5lIHN0cnVjdCBpbnRlbF9jcnRjICoKPiA+
+ID4gIGludGVsX2dldF9jcnRjX2Zvcl9waXBlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZf
+cHJpdiwgZW51bSBwaXBlIHBpcGUpCj4gPiA+ICB7Cj4gPiA+IC0tIAo+ID4gPiAyLjI0LjAKPiA+
+ID4gCj4gCj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
+bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
