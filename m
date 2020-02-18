@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607C61636C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:03:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F40C21636C7
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:03:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5BB76EAD9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 967E46EAD8;
 	Tue, 18 Feb 2020 23:03:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from namei.org (namei.org [65.99.196.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E36DB6E3C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 19:45:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31C716E3D2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 19:45:45 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by namei.org (8.14.4/8.14.4) with ESMTP id 01IJhv9J016349;
- Tue, 18 Feb 2020 19:43:58 GMT
-Date: Wed, 19 Feb 2020 06:43:57 +1100 (AEDT)
+ by namei.org (8.14.4/8.14.4) with ESMTP id 01IJiQMI016417;
+ Tue, 18 Feb 2020 19:44:26 GMT
+Date: Wed, 19 Feb 2020 06:44:26 +1100 (AEDT)
 From: James Morris <jmorris@namei.org>
 To: Alexey Budankov <alexey.budankov@linux.intel.com>
-In-Reply-To: <48baecd5-a015-3dbf-f774-9f2caee13893@linux.intel.com>
-Message-ID: <alpine.LRH.2.21.2002190643390.10165@namei.org>
+In-Reply-To: <046beedf-e074-58e2-579d-df535799169c@linux.intel.com>
+Message-ID: <alpine.LRH.2.21.2002190644070.10165@namei.org>
 References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
- <48baecd5-a015-3dbf-f774-9f2caee13893@linux.intel.com>
+ <046beedf-e074-58e2-579d-df535799169c@linux.intel.com>
 User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 18 Feb 2020 23:03:31 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 09/12] drivers/perf: open access for
+Subject: Re: [Intel-gfx] [PATCH v7 10/12] drivers/oprofile: open access for
  CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
