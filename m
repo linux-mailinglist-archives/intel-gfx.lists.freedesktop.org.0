@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CD31636C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:03:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD931636BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:03:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 028956EADC;
-	Tue, 18 Feb 2020 23:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6BF56EADD;
+	Tue, 18 Feb 2020 23:03:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from namei.org (namei.org [65.99.196.166])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA36EA76
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 19:22:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 180DD6E3B8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 19:23:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
- by namei.org (8.14.4/8.14.4) with ESMTP id 01IJMJhB013131;
- Tue, 18 Feb 2020 19:22:19 GMT
-Date: Wed, 19 Feb 2020 06:22:19 +1100 (AEDT)
+ by namei.org (8.14.4/8.14.4) with ESMTP id 01IJMet4013185;
+ Tue, 18 Feb 2020 19:22:40 GMT
+Date: Wed, 19 Feb 2020 06:22:40 +1100 (AEDT)
 From: James Morris <jmorris@namei.org>
 To: Alexey Budankov <alexey.budankov@linux.intel.com>
-In-Reply-To: <e68be109-7174-2c9e-11a9-9770a6316834@linux.intel.com>
-Message-ID: <alpine.LRH.2.21.2002190622060.10165@namei.org>
+In-Reply-To: <3364fa26-b5d1-1808-aaee-c057f26e0eb4@linux.intel.com>
+Message-ID: <alpine.LRH.2.21.2002190622300.10165@namei.org>
 References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
- <e68be109-7174-2c9e-11a9-9770a6316834@linux.intel.com>
+ <3364fa26-b5d1-1808-aaee-c057f26e0eb4@linux.intel.com>
 User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
 X-Mailman-Approved-At: Tue, 18 Feb 2020 23:03:31 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 02/12] perf/core: open access to the core
+Subject: Re: [Intel-gfx] [PATCH v7 03/12] perf/core: open access to probes
  for CAP_PERFMON privileged process
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,11 +66,16 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Mon, 17 Feb 2020, Alexey Budankov wrote:
 
 > 
-> Open access to monitoring of kernel code, cpus, tracepoints and
-> namespaces data for a CAP_PERFMON privileged process. Providing the
-> access under CAP_PERFMON capability singly, without the rest of
-> CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials
-> and makes operation more secure.
+> Open access to monitoring via kprobes and uprobes and eBPF tracing for
+> CAP_PERFMON privileged process. Providing the access under CAP_PERFMON
+> capability singly, without the rest of CAP_SYS_ADMIN credentials,
+> excludes chances to misuse the credentials and makes operation more
+> secure.
+> 
+> perf kprobes and uprobes are used by ftrace and eBPF. perf probe uses
+> ftrace to define new kprobe events, and those events are treated as
+> tracepoint events. eBPF defines new probes via perf_event_open interface
+> and then the probes are used in eBPF tracing.
 > 
 > CAP_PERFMON implements the principal of least privilege for performance
 > monitoring and observability operations (POSIX IEEE 1003.1e 2.2.2.39
