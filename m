@@ -1,67 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7746162C5C
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 18:17:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DB9F162CC0
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 18:28:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7B0C6E36F;
-	Tue, 18 Feb 2020 17:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C0366EA54;
+	Tue, 18 Feb 2020 17:28:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D2DD6E9F7;
- Tue, 18 Feb 2020 13:20:07 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id p9so2754157wmc.2;
- Tue, 18 Feb 2020 05:20:07 -0800 (PST)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1160D6EA52;
+ Tue, 18 Feb 2020 17:28:50 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id u6so25025160wrt.0;
+ Tue, 18 Feb 2020 09:28:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=U3h6aJz6L+CS9MjTdIAS5p90j+53sA+NzuXTs9Hdx+A=;
- b=J5wCZNOBYgMGXWxxuPHydKz4W2tgHFhTlGNww6yT7HdFkez8lu3MaFJBmtMTmX2aGx
- Pcm2OCDY/u5gqkN5P6rywPIi6c6lbrJWqrIemHOHrK/oIMLU+0VV2LWJYy9y8FpdFGzT
- Oi57zpoos8dOLjG69GHWnNafC49BMvvmqHV8Fo1G8SLIGmOdyj+M3yJGDJ5e7GotYiZy
- OfEyps24C8sN1ptI+o4MlUtNnr/tZf1jURWL5t9zQcWroZYcC2jgRwcxdjTLC/6oAwx+
- JSZPAuCd3Ed8S3IevjABYYp7RuvF5r7ouJVx30jIuHy74K3df5VbmVKp9IyHwYSX6RCi
- 6Dow==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=RQKZJvHf1WtLQUnnQ+YYr8z0U0bnUL/X5oP4lbmCs/g=;
+ b=of1bnSomwHNCr/K4IwVeC844d2lNrG7EeEsYbcslvaQOYTyn6ONlfHSBA/bDDBcsgw
+ Fr292hw7tiOAcRcAg9S8LuNfeHmlaYQ0bP2vEF4rX4oGw01MQ1Pas0LFZrpIVOvetzBe
+ e3r1Cj5ZrC32v8GmGAMIrk2dmXsbojIb1aZAGrQzBJsv1KVhaZQM6+xXpKCF1BZlGku3
+ hc+nI4Mw1AB4noQRq7YvpeJLzVMMtK1pGm7KpHMlAzyoUl/eWD7pyKX8LvRfyoBPbQIo
+ YwM8VZSeZWzArpoMW5cJvhDFavE/qu9/YQUBRLMCTXPiqGPikviiKQ9uCyiv0TGlC6GI
+ vlEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=U3h6aJz6L+CS9MjTdIAS5p90j+53sA+NzuXTs9Hdx+A=;
- b=N3m0AG4YGHvr34P5o0AwKe/Xyyt4T+180d+V1jpJmU/5x7Q7iphL9hhPjBndzx69II
- H7woUK7TMYrLmQuE+xjzIkKFIGr5lCE46B96xOELlw8/JYbJ6bbie9JhlDs5p+Ta6vyA
- +79aUGBGz9BuzO6T3Awp/5UkdnS6JLHPwrSZT8nDDhhUiYykakvGYRsOmkC5BCLwsWXD
- tjFGAeF+GHP8vUxFFb2usb9mZkEqNVJznjRk2ulWakrdZt8D9wbr14csABpQbYBzdkOv
- xddJdBDZ/Tv/kOyiYdUM5zQNqa3WoupLF2AB6yvgKC7Y4tjel80avHCVT0G3oisaeeFv
- +RBw==
-X-Gm-Message-State: APjAAAVzMOtoawYfRkmEj0veWBbqEngESozbIfK8it/nXnH5VLRZHYEC
- P47l6T/yOkok9ZKWxMUl3lA8cCnW
-X-Google-Smtp-Source: APXvYqxs90yRwp11u2cPh92Slih7u9UJMgkAd+EynHMZhb5WK4JACCingOqk947Kuw3FR58afqOxtg==
-X-Received: by 2002:a1c:e28a:: with SMTP id z132mr3091894wmg.157.1582032005691; 
- Tue, 18 Feb 2020 05:20:05 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id p11sm5988848wrn.40.2020.02.18.05.20.03
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Tue, 18 Feb 2020 05:20:05 -0800 (PST)
-To: Daniel Vetter <daniel@ffwll.ch>
-References: <20191029104049.9011-1-christian.koenig@amd.com>
- <20191029104049.9011-2-christian.koenig@amd.com>
- <20191105102045.GC10326@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <cb607ed5-eaeb-5332-d1de-77cae8512c1d@gmail.com>
-Date: Tue, 18 Feb 2020 14:20:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=RQKZJvHf1WtLQUnnQ+YYr8z0U0bnUL/X5oP4lbmCs/g=;
+ b=k7+vyKTyN3esKhuYyL4OzFtYOed9beQFfkbWT9Y3CJOIL0bNqqhVzBtj+CbhT08jzT
+ DVY8m6gvkMoLt3W77kpUpDDVPFkOvuJh40nN3k7bJfjC3KYGZYKMVWE3ltkI6TNQGXB0
+ 4JOlV26oOVJ8pWXTJBfc36zsHcA8Z1T1VBLb1KPXWEovPdyMGc+jOMnAiMAt2xFRWOWU
+ po7owO6NGG3xEC4aDCMK+TyTcO8donzTKbgijMK8B47VoQ4TaaaIq81rZfndwFoAzdOf
+ 6vlvAdKREUnm/XRYdPkRDBo92eGJEUxf/SIcLN8afy6UAYEbNhpgTqkX08FIvj6vWvED
+ OwtQ==
+X-Gm-Message-State: APjAAAXGIsJiTeV+XJBQeIU+ZAc+HbL8o8l/m0vqUxPn0XRYIT5Z8ozd
+ keB/MR7HTG/ZlRU9iofARWQ=
+X-Google-Smtp-Source: APXvYqwCmwWwQooLJukyapOJfGjMEKhOTHvMcsMfWr+K1Mn4hamrwPeP1liVlfVU3P2zF5Jk8xifdQ==
+X-Received: by 2002:adf:e641:: with SMTP id b1mr30114961wrn.34.1582046928676; 
+ Tue, 18 Feb 2020 09:28:48 -0800 (PST)
+Received: from wambui.zuku.co.ke ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id t13sm6998757wrw.19.2020.02.18.09.28.43
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 18 Feb 2020 09:28:48 -0800 (PST)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Tue, 18 Feb 2020 20:28:16 +0300
+Message-Id: <20200218172821.18378-5-wambui.karugax@gmail.com>
+X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200218172821.18378-1-wambui.karugax@gmail.com>
+References: <20200218172821.18378-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20191105102045.GC10326@phenom.ffwll.local>
-Content-Language: en-US
-X-Mailman-Approved-At: Tue, 18 Feb 2020 17:16:57 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/5] dma-buf: add dynamic DMA-buf handling
- v14
+Subject: [Intel-gfx] [PATCH] drm/i915: make i915_debugfs_register return
+ void.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,78 +68,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org,
- sumit.semwal@linaro.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMDUuMTEuMTkgdW0gMTE6MjAgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+IE9uIFR1ZSwgT2N0
-IDI5LCAyMDE5IGF0IDExOjQwOjQ1QU0gKzAxMDAsIENocmlzdGlhbiBLw7ZuaWcgd3JvdGU6Cj4g
-W1NOSVBdCj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2RtYS1idWYvZG1hLWJ1Zi5jIGIvZHJpdmVy
-cy9kbWEtYnVmL2RtYS1idWYuYwo+PiBpbmRleCBkMzc3YjRjYTY2YmYuLmNlMjkzY2VlNzZlZCAx
-MDA2NDQKPj4gLS0tIGEvZHJpdmVycy9kbWEtYnVmL2RtYS1idWYuYwo+PiArKysgYi9kcml2ZXJz
-L2RtYS1idWYvZG1hLWJ1Zi5jCj4+IEBAIC01MjksNiArNTI5LDEwIEBAIHN0cnVjdCBkbWFfYnVm
-ICpkbWFfYnVmX2V4cG9ydChjb25zdCBzdHJ1Y3QgZG1hX2J1Zl9leHBvcnRfaW5mbyAqZXhwX2lu
-Zm8pCj4+ICAgCQkgICAgZXhwX2luZm8tPm9wcy0+ZHluYW1pY19tYXBwaW5nKSkKPj4gICAJCXJl
-dHVybiBFUlJfUFRSKC1FSU5WQUwpOwo+PiAgIAo+PiArCWlmIChXQVJOX09OKCFleHBfaW5mby0+
-b3BzLT5keW5hbWljX21hcHBpbmcgJiYKPj4gKwkJICAgIChleHBfaW5mby0+b3BzLT5waW4gfHwg
-ZXhwX2luZm8tPm9wcy0+dW5waW4pKSkKPj4gKwkJcmV0dXJuIEVSUl9QVFIoLUVJTlZBTCk7Cj4g
-SW1vIG1ha2UgdGhpcyBzdHJvbmdlciwgaGF2ZSBhIGR5bmFtaWMgbWFwcGluZyBpZmYgdGhlcmUn
-cyBib3RoIGEgcGluIGFuZAo+IHVucGluIGZ1bmN0aW9uLiBPdGhlcndpc2UgdGhpcyBkb2Vzbid0
-IG1ha2UgYSBsb3Qgb2Ygc2Vuc2UgdG8gbWUuCgpJIHdhbnQgdG8gYXZvaWQgdGhhdCBmb3IgdGhl
-IGluaXRpYWwgaW1wbGVtZW50YXRpb24uIFNvIGZhciBkeW5hbWljIG9ubHkgCm1lYW50IHRoYXQg
-d2UgaGF2ZSB0aGUgbmV3IGxvY2tpbmcgc2VtYW50aWNzLgoKV2UgY291bGQgbWFrZSB0aGF0IG1h
-bmRhdG9yeSBhZnRlciB0aGlzIHBhdGNoIHNldCB3aGVuIGFtZGdwdSBpcyAKbWlncmF0ZWQgYW5k
-IGhhcyBpbXBsZW1lbnRlZCB0aGUgbmVjZXNzYXJ5IGNhbGxiYWNrcy4KCj4+IFtTTklQXQo+PiBA
-QCAtODIxLDEzICs4NzcsMjMgQEAgc3RydWN0IHNnX3RhYmxlICpkbWFfYnVmX21hcF9hdHRhY2ht
-ZW50KHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaCwKPj4gICAJCXJldHVybiBhdHRh
-Y2gtPnNndDsKPj4gICAJfQo+PiAgIAo+PiAtCWlmIChkbWFfYnVmX2lzX2R5bmFtaWMoYXR0YWNo
-LT5kbWFidWYpKQo+PiArCWlmIChkbWFfYnVmX2lzX2R5bmFtaWMoYXR0YWNoLT5kbWFidWYpKSB7
-Cj4+ICAgCQlkbWFfcmVzdl9hc3NlcnRfaGVsZChhdHRhY2gtPmRtYWJ1Zi0+cmVzdik7Cj4+ICsJ
-CWlmICghYXR0YWNoLT5pbXBvcnRlcl9vcHMtPm1vdmVfbm90aWZ5KSB7Cj4gSW1vIGp1c3QgcmVx
-dWlyZSAtPm1vdmVfbm90aWZ5IGZvciBpbXBvcnRlcnMgdGhhdCBnaXZlIHlvdSBhbiBvcHMKPiBm
-dW5jdGlvbi4gRG9lc24ndCByZWFsbHkgbWFrZSBzZW5zZSB0byBhbGxvdyBkeW5hbWljIHdpdGhv
-dXQgc3VwcG9ydAo+IC0+bW92ZV9ub3RpZnkuCgpTYW1lIHRoaW5nIGhlcmUuIFdlIGNvdWxkIG1h
-a2UgdGhhdCBtYW5kYXRvcnkgYW5kIGNsZWFuIGl0IHVwIGFmdGVyIAptaWdyYXRpbmcgYW1kZ3B1
-LgoKPj4gW1NOSVBdCj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2RtYS1idWYuaCBiL2lu
-Y2x1ZGUvbGludXgvZG1hLWJ1Zi5oCj4+IGluZGV4IGFmNzNmODM1YzUxYy4uNzQ1NmJiOTM3NjM1
-IDEwMDY0NAo+PiAtLS0gYS9pbmNsdWRlL2xpbnV4L2RtYS1idWYuaAo+PiArKysgYi9pbmNsdWRl
-L2xpbnV4L2RtYS1idWYuaAo+PiBAQCAtOTMsMTQgKzkzLDQwIEBAIHN0cnVjdCBkbWFfYnVmX29w
-cyB7Cj4+ICAgCSAqLwo+PiAgIAl2b2lkICgqZGV0YWNoKShzdHJ1Y3QgZG1hX2J1ZiAqLCBzdHJ1
-Y3QgZG1hX2J1Zl9hdHRhY2htZW50ICopOwo+PiAgIAo+PiArCS8qKgo+PiArCSAqIEBwaW46Cj4+
-ICsJICoKPj4gKwkgKiBUaGlzIGlzIGNhbGxlZCBieSBkbWFfYnVmX3BpbiBhbmQgbGV0cyB0aGUg
-ZXhwb3J0ZXIga25vdyB0aGF0IHRoZQo+PiArCSAqIERNQS1idWYgY2FuJ3QgYmUgbW92ZWQgYW55
-IG1vcmUuCj4gSSB0aGluayB3ZSBzaG91bGQgYWRkIGEgd2FybmluZyBoZXJlIHRoYXQgcGlubmlu
-ZyBpcyBvbmx5IG9rIGZvciBsaW1pdGVkCj4gdXNlLWNhc2VzIChsaWtlIHNjYW5vdXQgb3Igc2lt
-aWxhciksIGFuZCBub3QgYXMgcGFydCBvZiBnZW5lcmFsIGJ1ZmZlcgo+IG1hbmFnZW1lbnQuCj4K
-PiBpOTE1IHVzZXMgdGVtcG9yYXJ5IHBpbnMgdGhyb3VnaCBpdCdzIGV4ZWNidWYgbWFuYWdlbWVu
-dCAoYW5kIGV2ZXJ5d2hlcmUKPiBlbHNlKSwgc28gd2UgaGF2ZSBhIF9sb3RfIG9mIHBlb3BsZSBp
-biBkcmktZGV2ZWwgd2l0aCBxdWl0ZSBkaWZmZXJlbnQKPiBpZGVhcyBvZiB3aGF0IHRoaXMgbWln
-aHQgYmUgZm9yIDotKQoKWWVhaCwgdGhhdCBpcyBhbHNvIGEgZ29vZCBpZGVhIGZvciB1cy4gV3Jv
-dGUgYSBvbmUgbGluZXIsIGJ1dCB5b3UgbWlnaHQgCndhbnQgdG8gZG91YmxlIGNoZWNrIHRoZSB3
-b3JkaW5nLgoKPj4gW1NOSVBdCj4+IEBAIC0xNDEsOSArMTY3LDYgQEAgc3RydWN0IGRtYV9idWZf
-b3BzIHsKPj4gICAJICoKPj4gICAJICogVGhpcyBpcyBjYWxsZWQgYnkgZG1hX2J1Zl91bm1hcF9h
-dHRhY2htZW50KCkgYW5kIHNob3VsZCB1bm1hcCBhbmQKPj4gICAJICogcmVsZWFzZSB0aGUgJnNn
-X3RhYmxlIGFsbG9jYXRlZCBpbiBAbWFwX2RtYV9idWYsIGFuZCBpdCBpcyBtYW5kYXRvcnkuCj4+
-IC0JICogSXQgc2hvdWxkIGFsc28gdW5waW4gdGhlIGJhY2tpbmcgc3RvcmFnZSBpZiB0aGlzIGlz
-IHRoZSBsYXN0IG1hcHBpbmcKPj4gLQkgKiBvZiB0aGUgRE1BIGJ1ZmZlciwgaXQgdGhlIGV4cG9y
-dGVyIHN1cHBvcnRzIGJhY2tpbmcgc3RvcmFnZQo+PiAtCSAqIG1pZ3JhdGlvbi4KPiBUaGlzIGlz
-IHN0aWxsIHZhbGlkIGZvciBub24tZHluYW1pYyBleHBvcnRlcnMuIEltbyBrZWVwIGJ1dCBjbGFy
-aWZ5IHRoYXQuCgpPSywgY2hhbmdlZC4KCj4+IFtTTklQXQo+PiBAQCAtNDM4LDE2ICs0OTEsMTkg
-QEAgc3RhdGljIGlubGluZSBib29sIGRtYV9idWZfaXNfZHluYW1pYyhzdHJ1Y3QgZG1hX2J1ZiAq
-ZG1hYnVmKQo+PiAgIHN0YXRpYyBpbmxpbmUgYm9vbAo+PiAgIGRtYV9idWZfYXR0YWNobWVudF9p
-c19keW5hbWljKHN0cnVjdCBkbWFfYnVmX2F0dGFjaG1lbnQgKmF0dGFjaCkKPj4gICB7Cj4+IC0J
-cmV0dXJuIGF0dGFjaC0+ZHluYW1pY19tYXBwaW5nOwo+PiArCXJldHVybiAhIWF0dGFjaC0+aW1w
-b3J0ZXJfb3BzOwo+IEhtIHdoeSBub3QgZG8gdGhlIHNhbWUgZm9yIGV4cG9ydGVycywgYW5kIG1h
-a2UgdGhlbSBkeW5hbWljIGlmZiB0aGV5IGhhdmUKPiBwaW4vdW5waW4/CgpTYW1lIHRoaW5nIGFz
-IGJlZm9yZSwgdG8gbWlncmF0ZSBhbWRncHUgdG8gdGhlIG5ldyBpbnRlcmZhY2UgZmlyc3QgYW5k
-IAp0aGVuIG1ha2UgaXQgbWFuZGF0b3J5LgoKSSB0aGluayBJIHdpbGwganVzdCB3cml0ZSBhIGNs
-ZWFudXAgcGF0Y2ggaW50byB0aGUgc2VyaWVzIHdoaWNoIGNvbWVzIAphZnRlciB0aGUgYW1kZ3B1
-IGNoYW5nZXMuCgpUaGFua3MsCkNocmlzdGlhbi4KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+As drm_debugfs_create_files should return void, remove its use as the
+return value of i915_debugfs_register and have i915_debugfs_register
+return void.
+
+Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+---
+ drivers/gpu/drm/i915/i915_debugfs.c | 8 ++++----
+ drivers/gpu/drm/i915/i915_debugfs.h | 4 ++--
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index e5eea915bd0d..4a3c58f9fc1e 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -2391,7 +2391,7 @@ static const struct i915_debugfs_files {
+ 	{"i915_guc_log_relay", &i915_guc_log_relay_fops},
+ };
+ 
+-int i915_debugfs_register(struct drm_i915_private *dev_priv)
++void i915_debugfs_register(struct drm_i915_private *dev_priv)
+ {
+ 	struct drm_minor *minor = dev_priv->drm.primary;
+ 	int i;
+@@ -2408,7 +2408,7 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
+ 				    i915_debugfs_files[i].fops);
+ 	}
+ 
+-	return drm_debugfs_create_files(i915_debugfs_list,
+-					I915_DEBUGFS_ENTRIES,
+-					minor->debugfs_root, minor);
++	drm_debugfs_create_files(i915_debugfs_list,
++				 I915_DEBUGFS_ENTRIES,
++				 minor->debugfs_root, minor);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.h b/drivers/gpu/drm/i915/i915_debugfs.h
+index 6da39c76ab5e..1de2736f1248 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.h
++++ b/drivers/gpu/drm/i915/i915_debugfs.h
+@@ -12,10 +12,10 @@ struct drm_i915_private;
+ struct seq_file;
+ 
+ #ifdef CONFIG_DEBUG_FS
+-int i915_debugfs_register(struct drm_i915_private *dev_priv);
++void i915_debugfs_register(struct drm_i915_private *dev_priv);
+ void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj);
+ #else
+-static inline int i915_debugfs_register(struct drm_i915_private *dev_priv) { return 0; }
++static inline void i915_debugfs_register(struct drm_i915_private *dev_priv) {}
+ static inline void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj) {}
+ #endif
+ 
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
