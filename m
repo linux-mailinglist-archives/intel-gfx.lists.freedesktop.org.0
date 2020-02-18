@@ -1,32 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71BD1632E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:17:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B399F1632E4
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:19:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9826EA82;
-	Tue, 18 Feb 2020 20:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F306EA7E;
+	Tue, 18 Feb 2020 20:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7634D6EA7E;
- Tue, 18 Feb 2020 20:17:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6DC8EA47E2;
- Tue, 18 Feb 2020 20:17:38 +0000 (UTC)
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30F876EA7E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:19:16 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id 1so7974236uao.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:19:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=C09+b4WycVqWStNpRbvjJ/yZ/X36X45pr5K1a9fWHVs=;
+ b=jH/ouQZx22EZ9oJLSia5+ipLB/VNSHR016O8ACzBqRPq0Ix0I4c07mDZU80bFiq7z9
+ 3itxmMjC4p2otsHlCPWkT5FuTH61nRt09aUmVUh8iqHyRa+N0FmsrIKkoPvUuKPdWOhe
+ VXzCdajNvhdmmCfLCnzdQ1EJSDur50bdlkegIIKoupzYxAfJIgzhHYcULCxGQuDjBtPA
+ 6+Mil3G6xgkQjgPQEaeOa2JvoLLpSTR0LKW/yLXTvE8GmSXukEPmZTTO7tbF4DEUp1W0
+ Ky9k972ggDdKbAP9AKQSJh2e9im/8e0+AaXCdmYr81nA6W4KIR33WSdyaWOVR5YaxGsK
+ PZNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=C09+b4WycVqWStNpRbvjJ/yZ/X36X45pr5K1a9fWHVs=;
+ b=T3sDeKwfkFFR44xEMabHRRnFrNPk3UYfHDW0N6iufzc3uu4p3EhOwsqp+y63WOXgex
+ JTXUaLxuwVcBOVR/x0zsznAot2lJRno6HJGYeq9oOtW33vGx+Qf2mKkTAM33wVxIrKnF
+ bOcPZqJs6Nr7OKEBWu+KUQJsuhhzlQZn5eNCtgBwUZWiWKlz7W6h4+I/ajpQXNj8r3DN
+ SfZDd2QaOhfXOYHMgN1x9/yi7hfk9nsEfqXsC0kaVVJT20LXfIwltATR8MxUJmUCIowC
+ KUU1QCP411u0hnMLKq/ruJZHDv3c+pDM76r/YwV9xzuEk/eHNtLrgbYe11b70+FfJWLD
+ 6PkQ==
+X-Gm-Message-State: APjAAAW1KcfIzuubjSBMyirmuhYxdDe5CQmGQ+TXrAyc3ND59ZoI4sGW
+ o969hBK29VnyrXjEs048ZZVedWfNJ3rN4UTHcPCOfyd7
+X-Google-Smtp-Source: APXvYqw574WM/xlvvS/Hd9oJIHXLEVBR1Slr932FLD++bmSaT/ImMekWSeweZrp6LAS4AvirETrWT/zwz8iWNs+Z1cY=
+X-Received: by 2002:ab0:e16:: with SMTP id g22mr11529704uak.129.1582057155137; 
+ Tue, 18 Feb 2020 12:19:15 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 18 Feb 2020 20:17:38 -0000
-Message-ID: <158205705842.31433.1240859742377090534@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200218141305.1258394-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200218141305.1258394-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Check_for_any_sign_of_request_startin?=
- =?utf-8?q?g_in_wait=5Ffor=5Fsubmit=28=29?=
+References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
+ <20200218162150.1300405-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218162150.1300405-4-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 18 Feb 2020 20:18:48 +0000
+Message-ID: <CAM0jSHMpE2Twm6shFH_AZHj-U6HyNiGZSCUvdrKxeo9jOQ2-TA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915/gt: Fix up missing error
+ propagation for heartbeat pulses
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +62,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/selftests: Check for any sign of request starting in wait_for_submit()
-URL   : https://patchwork.freedesktop.org/series/73572/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-261fc108dea2 drm/i915/selftests: Check for any sign of request starting in wait_for_submit()
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-References: fcf7df7aae24 ("drm/i915/selftests: Check for the error interrupt before we wait!")
-
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fcf7df7aae24 ("drm/i915/selftests: Check for the error interrupt before we wait!")'
-#10: 
-References: fcf7df7aae24 ("drm/i915/selftests: Check for the error interrupt before we wait!")
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-
+On Tue, 18 Feb 2020 at 16:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Just missed setting err along an interruptible error path for the
+> intel_engine_pulse().
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
