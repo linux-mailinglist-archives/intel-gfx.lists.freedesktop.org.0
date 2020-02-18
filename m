@@ -1,54 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FA42163240
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:09:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E02B1632B3
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:13:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51EF66E3EC;
-	Tue, 18 Feb 2020 20:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 969B26EA7A;
+	Tue, 18 Feb 2020 20:13:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe36.google.com (mail-vs1-xe36.google.com
- [IPv6:2607:f8b0:4864:20::e36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B35556E3EC
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:09:16 +0000 (UTC)
-Received: by mail-vs1-xe36.google.com with SMTP id k188so13548066vsc.8
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:09:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=0ur0ECKTEMo1cKjbE+UaHL2PSNKrJRYc8uvlzlvvsGU=;
- b=cdUlci/hvGGs2n/prNFLZj+HbcrHQpPb7RWfCbCp1q/4qKcD1Vr5uG2UsvP5u603j+
- Dcpx/d+feUSpV80EnCgpd/FQ8SN5hMdpw0yOqpO5iZm8VptWz00/1Ut3LK1/cAahBB9s
- Brt5Y56yyUJxbMwTHRkdYoX8IZHnJA+aHkBpxKenKWl41C1NpPrtJ3jMN7Q8/ZRRdXNL
- ex1gy9X0SKISeLHzYMiwb9Ixi2e7iFyJlkbpsEQ8hMNsIBRHBg8pmWWcaaeurFJsyJNM
- uBknP+klnMyeAl30FvxqUGIPx92MUuOESGZdM8HvmYePPx6K333keR8jbuqs1BGlxAXl
- XirQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=0ur0ECKTEMo1cKjbE+UaHL2PSNKrJRYc8uvlzlvvsGU=;
- b=cXnRh5T+vwGpteOWAgZaPqQgB0pLNlV4q5xehAKLb5UPDvVdWPcRoiZwn3xG9r6R7Q
- zYySzh/9hJqKQIV1T2Hj7jUJdVkkqQqpDDJIql5/KwsGmsZiZgeftuV1ugcokU5YdVze
- Spg1cgS+Zf4WH1C3nkaX5SqNSbxUpUovn/3mDmSvDL4L5oEm3Xzbha4sdQWqgTJ7ehkg
- BvI42Ng8x6jZ74+wUcUWXP7cjIQUFqEhdQS1Z1QIGzHuT8NcI6cDrder3hvuj5Sv5Bsf
- blogtdgwSt3HbXEvSpcoXtOPw4xYf091i+a/gvOm0iOzfCI8K4WORzn4kqJ0W+gMo8oD
- 76TA==
-X-Gm-Message-State: APjAAAVnWwEU8oZ4eE5JECOJZUGLBZRJcmyCGW3XwZs6sBOTDdQ08kf6
- YYWJwjnwOkzw4kBOmvxt2rPPmWaPOforZjI7KT4=
-X-Google-Smtp-Source: APXvYqwcVZ0YRV7TBH/WgKeXng0k09Rsbc3jMhV7BsVSNud0xMtgLYBDWc20Xx0J9GZt56RzxrI0TBGGqMZizKvMOM0=
-X-Received: by 2002:a67:f591:: with SMTP id i17mr12010943vso.34.1582056555720; 
- Tue, 18 Feb 2020 12:09:15 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 37C986EA78;
+ Tue, 18 Feb 2020 20:13:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 28C82A47E8;
+ Tue, 18 Feb 2020 20:13:23 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 18 Feb 2020 20:08:49 +0000
-Message-ID: <CAM0jSHObg5xFHbpE4YA4WXv25DDhH084TmUkdHj7TWhH-kTZhg@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 01/12] drm/i915/selftests: Check for any
- sign of request starting in wait_for_submit()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 18 Feb 2020 20:13:23 -0000
+Message-ID: <158205680315.31431.4028990580188550787@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/gt=3A_Show_the_cumulative_?=
+ =?utf-8?q?context_runtime_in_engine_debug_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,22 +39,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Feb 2020 at 16:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> We only want to wait until the request has been submitted at least once;
-> that is it is either in flight, or has been.
->
-> References: fcf7df7aae24 ("drm/i915/selftests: Check for the error interrupt before we wait!")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: series starting with [1/6] drm/i915/gt: Show the cumulative context runtime in engine debug (rev3)
+URL   : https://patchwork.freedesktop.org/series/73567/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_7961 -> Patchwork_16598
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16598/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16598 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [PASS][1] -> [INCOMPLETE][2] ([i915#694] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7961/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16598/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-guc:         [INCOMPLETE][3] ([i915#151]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7961/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16598/fi-skl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cml-s:           [DMESG-FAIL][5] ([i915#877]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7961/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16598/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (43 -> 36)
+------------------------------
+
+  Additional (5): fi-kbl-7500u fi-cfl-8109u fi-snb-2600 fi-skl-6600u fi-kbl-r 
+  Missing    (12): fi-kbl-soraka fi-tgl-dsi fi-bsw-n3050 fi-hsw-4200u fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-gdg-551 fi-skl-lmem fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7961 -> Patchwork_16598
+
+  CI-20190529: 20190529
+  CI_DRM_7961: e922b318df45b82e75087ecfaceb998db2dd6213 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5448: 116020b1f83c1b3994c76882df7f77b6731d78ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16598: 540b8e659c60bd91b1740d50ea2c235b07a712c9 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+540b8e659c60 drm/i915/gem: Consolidate ctx->engines[] release
+6e9aa6de237d drm/i915/gem: Check that the context wasn't closed during setup
+51a299b7d6d2 drm/i915/gt: Prevent allocation on a banned context
+95d5a65c62ea drm/i915/gt: Fix up missing error propagation for heartbeat pulses
+f8058a6a339b drm/i915/execlists: Check the sentinel is alone in the ELSP
+e1dc2d81cb6a drm/i915/gt: Show the cumulative context runtime in engine debug
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16598/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
