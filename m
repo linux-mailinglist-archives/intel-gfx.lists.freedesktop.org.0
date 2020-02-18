@@ -2,32 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9439162A5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 17:25:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76996162A5E
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 17:25:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C48F06EA3C;
-	Tue, 18 Feb 2020 16:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 431426EA3B;
+	Tue, 18 Feb 2020 16:25:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C37D36EA38
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 16:25:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D35E06EA38
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 16:25:42 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 08:25:40 -0800
+ 18 Feb 2020 08:25:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="228326314"
+X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="228326321"
 Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
- by fmsmga007.fm.intel.com with ESMTP; 18 Feb 2020 08:25:38 -0800
+ by fmsmga007.fm.intel.com with ESMTP; 18 Feb 2020 08:25:40 -0800
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 18:22:25 +0200
-Message-Id: <20200218162232.14368-1-stanislav.lisovskiy@intel.com>
+Date: Tue, 18 Feb 2020 18:22:26 +0200
+Message-Id: <20200218162232.14368-2-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200218162232.14368-1-stanislav.lisovskiy@intel.com>
+References: <20200218162232.14368-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v16 0/7] Refactor Gen11+ SAGV support
+Subject: [Intel-gfx] [PATCH v16 1/7] drm/i915: Start passing latency as
+ parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,36 +48,67 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For Gen11+ platforms BSpec suggests disabling specific
-QGV points separately, depending on bandwidth limitations
-and current display configuration. Thus it required adding
-a new PCode request for disabling QGV points and some
-refactoring of already existing SAGV code.
-Also had to refactor intel_can_enable_sagv function,
-as current seems to be outdated and using skl specific
-workarounds, also not following BSpec for Gen11+.
+We need to start passing memory latency as a
+parameter when calculating plane wm levels,
+as latency can get changed in different
+circumstances(for example with or without SAGV).
+So we need to be more flexible on that matter.
 
-Stanislav Lisovskiy (7):
-  drm/i915: Start passing latency as parameter
-  drm/i915: Introduce skl_plane_wm_level accessor.
-  drm/i915: Init obj state in intel_atomic_get_old/new_global_obj_state
-  drm/i915: Refactor intel_can_enable_sagv
-  drm/i915: Added required new PCode commands
-  drm/i915: Restrict qgv points which don't have enough bandwidth.
-  drm/i915: Enable SAGV support for Gen12
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pm.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_bw.c       | 199 ++++--
- drivers/gpu/drm/i915/display/intel_bw.h       |  24 +
- drivers/gpu/drm/i915/display/intel_display.c  | 131 +++-
- .../drm/i915/display/intel_display_types.h    |   8 +
- .../gpu/drm/i915/display/intel_global_state.h |   1 +
- drivers/gpu/drm/i915/i915_drv.h               |   3 +
- drivers/gpu/drm/i915/i915_reg.h               |   4 +
- drivers/gpu/drm/i915/intel_pm.c               | 564 +++++++++++++++---
- drivers/gpu/drm/i915/intel_pm.h               |   4 +-
- drivers/gpu/drm/i915/intel_sideband.c         |   2 +
- 10 files changed, 801 insertions(+), 139 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index ffac0b862ca5..d6933e382657 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -4002,6 +4002,7 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 				 int color_plane);
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 int level,
++				 u32 latency,
+ 				 const struct skl_wm_params *wp,
+ 				 const struct skl_wm_level *result_prev,
+ 				 struct skl_wm_level *result /* out */);
+@@ -4024,7 +4025,9 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+ 	drm_WARN_ON(&dev_priv->drm, ret);
+ 
+ 	for (level = 0; level <= max_level; level++) {
+-		skl_compute_plane_wm(crtc_state, level, &wp, &wm, &wm);
++		u32 latency = dev_priv->wm.skl_latency[level];
++
++		skl_compute_plane_wm(crtc_state, level, latency, &wp, &wm, &wm);
+ 		if (wm.min_ddb_alloc == U16_MAX)
+ 			break;
+ 
+@@ -4978,12 +4981,12 @@ static bool skl_wm_has_lines(struct drm_i915_private *dev_priv, int level)
+ 
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 int level,
++				 u32 latency,
+ 				 const struct skl_wm_params *wp,
+ 				 const struct skl_wm_level *result_prev,
+ 				 struct skl_wm_level *result /* out */)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+-	u32 latency = dev_priv->wm.skl_latency[level];
+ 	uint_fixed_16_16_t method1, method2;
+ 	uint_fixed_16_16_t selected_result;
+ 	u32 res_blocks, res_lines, min_ddb_alloc = 0;
+@@ -5112,9 +5115,10 @@ skl_compute_wm_levels(const struct intel_crtc_state *crtc_state,
+ 
+ 	for (level = 0; level <= max_level; level++) {
+ 		struct skl_wm_level *result = &levels[level];
++		u32 latency = dev_priv->wm.skl_latency[level];
+ 
+-		skl_compute_plane_wm(crtc_state, level, wm_params,
+-				     result_prev, result);
++		skl_compute_plane_wm(crtc_state, level, latency,
++				     wm_params, result_prev, result);
+ 
+ 		result_prev = result;
+ 	}
 -- 
 2.24.1.485.gad05a3d8e5
 
