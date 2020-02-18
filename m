@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BEC61635A8
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76AD81635AB
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:03:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0EC6EA99;
-	Tue, 18 Feb 2020 22:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5335C6EA96;
+	Tue, 18 Feb 2020 22:03:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-xc41.google.com (mail-yw1-xc41.google.com
- [IPv6:2607:f8b0:4864:20::c41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC796EA96
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 22:03:30 +0000 (UTC)
-Received: by mail-yw1-xc41.google.com with SMTP id 192so10180881ywy.0
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 14:03:30 -0800 (PST)
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com
+ [IPv6:2607:f8b0:4864:20::b43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A64526EA96
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 22:03:31 +0000 (UTC)
+Received: by mail-yb1-xb43.google.com with SMTP id b6so11337045ybr.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 14:03:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=poorly.run; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=cmEv6KYeIZ/itTi4Tb2yD0Ax+KLuuOVxjE5ac+Oou1Q=;
- b=epgew5uQNxLRoaIaCHs5pjx5HAoV2sUOXIVFAmZHlbT6lWtkSao4PFI7tch/wT6lKY
- nDCVDLFmL4b1oCjWmAfqrhY9KiAIafJPsITlDHhH5q5SeuRyiIjFij8sk6B4osXsrH8E
- UEOHj86nlOnNMS6Wg48FbPSO8iIxHSQzwz4p7XuyDhyJRvuduuvAKgYdHA3Cgsm04Q3s
- 1JUuS8P6By/j+Fo5is5rVw4AwtB7hXg72WZ5CwgeLLJ/lpOjN7oUrfFBh5iG2XUHFRnx
- x1BqCQz7Jw3fRBVa6U73cfUoGNpWy8WDxh/Kn+VkLei8JG5FBqMMIY2EnN1S3S3PetM+
- bDcg==
+ bh=IfpImic0Um1/+E93YU2yBYy/dmBtMwQl96DrDYQiErg=;
+ b=QdGz5jmSSv0P5AQZi05BnWRF9EhmKDcGfOjeMdqInmj48MGazwSQSiPTk483TmEJA+
+ kQt3znS0mw0h9eQLnzCFXeyEolF7H3V4MLdKpAodmkkd0bg02+zuiNXca+8E5iYdxzV9
+ JsQZjZSvo7Mlbl6NACMRXk2mRtuDSm0IBG7OOJH4z4dGBg+hiTyuE041gqXgkC1Z81uL
+ KSTQVQhw1dEHqn3hon3aObj1Vl3lMumYA6W9PjSGoHKTGwxsosrq+10FstTpGbpIySci
+ DgqBthKAwo9n8lgd2/yrwkfeoQ2H7EK23tKsoK8a3+KdK2Fdltefq7D9FHfqmBHiFFq7
+ eoWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=cmEv6KYeIZ/itTi4Tb2yD0Ax+KLuuOVxjE5ac+Oou1Q=;
- b=kMwni/0Ycu06bgJCojY865hNzrrxQcXqDIpcuWep8lQjtnq4B1Ppj3qGqhLbXhkJPg
- uzhwh7M3XAV6XHz5p7YnUlAv7fpmu2KbvWJctt72oOVJd/HHkTszZLvpYsmz7AUexbYi
- zxflvc1FW5PaaVLJgaq5jD1AjX8eTONxCbyloFaN4tuFz9xU3PZ/9w4dhFqQ9XnKsKPI
- FHvn02r1/VbfItWd3LiGOpFrkGmugocLit2Xo6wQaPqk/BH3PkeRa6ii19hSSJc4Dck9
- Gr1voNVAmkVy9lKCcwI6NZQXZAkk+VgY4m9bG57+8wzlxOlgep+Nd9YwcFIkB9AUaZNa
- klAA==
-X-Gm-Message-State: APjAAAVKyM14T4c0q7M91cWmDZBwr4AQnSjrOaaSvOZ5LV882RMaEP2c
- Tf/IhTHU1AR40JCovlmluofQrQ==
-X-Google-Smtp-Source: APXvYqwV1SVHQrglY5ZjNw0BIqPSTUVQoEHyY+37gVGqJ8yZPu7K2f0g7J89NYU7Zqf/RqVm/8q56A==
-X-Received: by 2002:a81:2550:: with SMTP id l77mr18000249ywl.347.1582063409523; 
- Tue, 18 Feb 2020 14:03:29 -0800 (PST)
+ bh=IfpImic0Um1/+E93YU2yBYy/dmBtMwQl96DrDYQiErg=;
+ b=sb2A+XcKAxYhz7LuihFBVZa3NBH9XTswPOmFTuuPZTpGpgWx/npCbfl1dQ5XlFXZ8v
+ 8TlOKCkXrmfGOEEylBCznlVBXVC9itHFpD2ACV/f+VBc1+HCcTDqgXN+JiZo/Pe6TC2A
+ qoSUqk19OcGEtsTu3/USNw5V5W9wZVp9yYaknjv3MHAE6sAS9kRdKB4oVWY0vrHSgr5A
+ PBY/yC/DkYlCgMkVxRnFIEHfo8TGA7aYogz6yrtkZL2EwEeEihiiMlya/VkDaDLOfCuz
+ kmmd5oxbtonkKvcZa6jaEG7CqmxEAspbaNRo7mC0pglpxfpJMzsERddG0tFJnyArdfGE
+ cPpQ==
+X-Gm-Message-State: APjAAAWcMubNq6Kftu40KuP8DO1KTYZj6AgqKC07p1ftqD31Up18boOA
+ 1P7NFNzDD5UVRSc3mbnrByTHAw==
+X-Google-Smtp-Source: APXvYqx2fAVGNlQKTOGmly5wlHfYcLk+3IYqdnsojURjw6fCbaf9yaVGbL3sNWz0CgG73hWXTNC//g==
+X-Received: by 2002:a05:6902:52e:: with SMTP id
+ y14mr21161614ybs.133.1582063410899; 
+ Tue, 18 Feb 2020 14:03:30 -0800 (PST)
 Received: from localhost ([2620:0:1013:11:1e1:4760:6ce4:fc64])
- by smtp.gmail.com with ESMTPSA id a124sm8230ywc.104.2020.02.18.14.03.28
+ by smtp.gmail.com with ESMTPSA id z2sm32831ywb.13.2020.02.18.14.03.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 18 Feb 2020 14:03:28 -0800 (PST)
+ Tue, 18 Feb 2020 14:03:30 -0800 (PST)
 From: Sean Paul <sean@poorly.run>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 17:02:29 -0500
-Message-Id: <20200218220242.107265-2-sean@poorly.run>
+Date: Tue, 18 Feb 2020 17:02:30 -0500
+Message-Id: <20200218220242.107265-3-sean@poorly.run>
 X-Mailer: git-send-email 2.25.0.265.gbab2e86ba0-goog
 In-Reply-To: <20200218220242.107265-1-sean@poorly.run>
 References: <20200218220242.107265-1-sean@poorly.run>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 01/14] drm/i915: Fix sha_text population code
+Subject: [Intel-gfx] [PATCH v4 02/14] drm/i915: Clear the repeater bit on
+ HDCP disable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,24 +78,8 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Sean Paul <seanpaul@chromium.org>
 
-This patch fixes a few bugs:
-
-1- We weren't taking into account sha_leftovers when adding multiple
-   ksvs to sha_text. As such, we were or'ing the end of ksv[j - 1] with
-   the beginning of ksv[j]
-
-2- In the sha_leftovers == 2 and sha_leftovers == 3 case, bstatus was
-   being placed on the wrong half of sha_text, overlapping the leftover
-   ksv value
-
-3- In the sha_leftovers == 2 case, we need to manually terminate the
-   byte stream with 0x80 since the hardware doesn't have enough room to
-   add it after writing M0
-
-The upside is that all of the HDCP supported HDMI repeaters I could
-find on Amazon just strip HDCP anyways, so it turns out to be _really_
-hard to hit any of these cases without an MST hub, which is not (yet)
-supported. Oh, and the sha_leftovers == 1 case works perfectly!
+On HDCP disable, clear the repeater bit. This ensures if we connect a
+non-repeater sink after a repeater, the bit is in the state we expect.
 
 Fixes: ee5e5e7a5e0f (drm/i915: Add HDCP framework + base implementation)
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
@@ -107,94 +93,47 @@ Cc: intel-gfx@lists.freedesktop.org
 Cc: <stable@vger.kernel.org> # v4.17+
 Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
 Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Link: https://patchwork.freedesktop.org/patch/msgid/20191203173638.94919-2-sean@poorly.run #v1
-Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-2-sean@poorly.run #v2
-Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-2-sean@poorly.run #v3
+Link: https://patchwork.freedesktop.org/patch/msgid/20191212190230.188505-3-sean@poorly.run #v2
+Link: https://patchwork.freedesktop.org/patch/msgid/20200117193103.156821-3-sean@poorly.run #v3
 
 Changes in v2:
--None
+-Added to the set
 Changes in v3:
 -None
+  I had previously agreed that clearing the rep_ctl bits on enable would
+  also be a good idea. However when I committed that idea to code, it
+  didn't look right. So let's rely on enables and disables being paired
+  and everything outside of that will be considered a bug
 Changes in v4:
--Rebased on intel_de_write changes
+-s/I915_(READ|WRITE)/intel_de_(read|write)/
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 26 +++++++++++++++++------
- include/drm/drm_hdcp.h                    |  3 +++
- 2 files changed, 23 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 30e0a3aa9d574..de996f4f56997 100644
+index de996f4f56997..f31a2f5d51a17 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -337,8 +337,10 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
+@@ -790,6 +790,7 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+ 	enum port port = intel_dig_port->base.port;
+ 	enum transcoder cpu_transcoder = hdcp->cpu_transcoder;
++	u32 repeater_ctl;
+ 	int ret;
  
- 		/* Fill up the empty slots in sha_text and write it out */
- 		sha_empty = sizeof(sha_text) - sha_leftovers;
--		for (j = 0; j < sha_empty; j++)
--			sha_text |= ksv[j] << ((sizeof(sha_text) - j - 1) * 8);
-+		for (j = 0; j < sha_empty; j++) {
-+			u8 off = ((sizeof(sha_text) - j - 1 - sha_leftovers) * 8);
-+			sha_text |= ksv[j] << off;
-+		}
+ 	drm_dbg_kms(&dev_priv->drm, "[%s:%d] HDCP is being disabled...\n",
+@@ -805,6 +806,11 @@ static int _intel_hdcp_disable(struct intel_connector *connector)
+ 		return -ETIMEDOUT;
+ 	}
  
- 		ret = intel_write_sha_text(dev_priv, sha_text);
- 		if (ret < 0)
-@@ -436,7 +438,7 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
- 		/* Write 32 bits of text */
- 		intel_de_write(dev_priv, HDCP_REP_CTL,
- 			       rep_ctl | HDCP_SHA1_TEXT_32);
--		sha_text |= bstatus[0] << 24 | bstatus[1] << 16;
-+		sha_text |= bstatus[0] << 8 | bstatus[1];
- 		ret = intel_write_sha_text(dev_priv, sha_text);
- 		if (ret < 0)
- 			return ret;
-@@ -451,17 +453,29 @@ int intel_hdcp_validate_v_prime(struct intel_connector *connector,
- 				return ret;
- 			sha_idx += sizeof(sha_text);
- 		}
++	repeater_ctl = intel_hdcp_get_repeater_ctl(dev_priv, cpu_transcoder,
++						   port);
++	intel_de_write(dev_priv, HDCP_REP_CTL,
++		       intel_de_read(dev_priv, HDCP_REP_CTL) & ~repeater_ctl);
 +
-+		/*
-+		 * Terminate the SHA-1 stream by hand. For the other leftover
-+		 * cases this is appended by the hardware.
-+		 */
-+		intel_de_write(dev_priv, HDCP_REP_CTL,
-+			       rep_ctl | HDCP_SHA1_TEXT_32);
-+		sha_text = DRM_HDCP_SHA1_TERMINATOR << 24;
-+		ret = intel_write_sha_text(dev_priv, sha_text);
-+		if (ret < 0)
-+			return ret;
-+		sha_idx += sizeof(sha_text);
- 	} else if (sha_leftovers == 3) {
--		/* Write 32 bits of text */
-+		/* Write 32 bits of text (filled from LSB) */
- 		intel_de_write(dev_priv, HDCP_REP_CTL,
- 			       rep_ctl | HDCP_SHA1_TEXT_32);
--		sha_text |= bstatus[0] << 24;
-+		sha_text |= bstatus[0];
- 		ret = intel_write_sha_text(dev_priv, sha_text);
- 		if (ret < 0)
- 			return ret;
- 		sha_idx += sizeof(sha_text);
- 
--		/* Write 8 bits of text, 24 bits of M0 */
-+		/* Write 8 bits of text (filled from LSB), 24 bits of M0 */
- 		intel_de_write(dev_priv, HDCP_REP_CTL,
- 			       rep_ctl | HDCP_SHA1_TEXT_8);
- 		ret = intel_write_sha_text(dev_priv, bstatus[1]);
-diff --git a/include/drm/drm_hdcp.h b/include/drm/drm_hdcp.h
-index 06a11202a0976..20498c8222046 100644
---- a/include/drm/drm_hdcp.h
-+++ b/include/drm/drm_hdcp.h
-@@ -29,6 +29,9 @@
- /* Slave address for the HDCP registers in the receiver */
- #define DRM_HDCP_DDC_ADDR			0x3A
- 
-+/* Value to use at the end of the SHA-1 bytestream used for repeaters */
-+#define DRM_HDCP_SHA1_TERMINATOR		0x80
-+
- /* HDCP register offsets for HDMI/DVI devices */
- #define DRM_HDCP_DDC_BKSV			0x00
- #define DRM_HDCP_DDC_RI_PRIME			0x08
+ 	ret = hdcp->shim->toggle_signalling(intel_dig_port, false);
+ 	if (ret) {
+ 		drm_err(&dev_priv->drm, "Failed to disable HDCP signalling\n");
 -- 
 Sean Paul, Software Engineer, Google / Chromium OS
 
