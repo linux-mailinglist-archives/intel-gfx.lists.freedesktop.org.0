@@ -2,30 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B4B16267A
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 13:51:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86571626A9
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 14:01:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00D076E23F;
-	Tue, 18 Feb 2020 12:51:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 187676E1ED;
+	Tue, 18 Feb 2020 13:01:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2D4E6E23F
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:51:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20263440-1500050 
- for multiple; Tue, 18 Feb 2020 12:51:45 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 12:51:45 +0000
-Message-Id: <20200218125145.1252559-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200218111624.1198504-6-chris@chris-wilson.co.uk>
-References: <20200218111624.1198504-6-chris@chris-wilson.co.uk>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5801C6E1ED
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 13:01:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 05:01:34 -0800
+X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="228726040"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 05:01:33 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200205183546.9291-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200205183546.9291-1-ville.syrjala@linux.intel.com>
+ <20200205183546.9291-3-ville.syrjala@linux.intel.com>
+Date: Tue, 18 Feb 2020 15:01:29 +0200
+Message-ID: <87pnecuk0m.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Consolidate ctx->engines[] release
+Subject: Re: [Intel-gfx] [PATCH v2 2/5] drm/i915: Mark all HPD capabled
+ connectors as such
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,280 +45,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the same engine_idle_release() routine for cleaning all old
-ctx->engine[] state, closing any potential races with concurrent execbuf
-submission.
-
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1241
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
-Reorder set-closed/engine_idle_release to avoid premature killing
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 179 +++++++++++---------
- 1 file changed, 96 insertions(+), 83 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 3e82739bdbc0..b7d824a2b711 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -243,7 +243,6 @@ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
- 		if (!e->engines[count])
- 			continue;
- 
--		RCU_INIT_POINTER(e->engines[count]->gem_context, NULL);
- 		intel_context_put(e->engines[count]);
- 	}
- 	kfree(e);
-@@ -305,7 +304,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
- 	list_del(&ctx->link);
- 	spin_unlock(&ctx->i915->gem.contexts.lock);
- 
--	free_engines(rcu_access_pointer(ctx->engines));
- 	mutex_destroy(&ctx->engines_mutex);
- 
- 	if (ctx->timeline)
-@@ -492,30 +490,107 @@ static void kill_engines(struct i915_gem_engines *engines)
- static void kill_stale_engines(struct i915_gem_context *ctx)
- {
- 	struct i915_gem_engines *pos, *next;
--	unsigned long flags;
- 
--	spin_lock_irqsave(&ctx->stale.lock, flags);
-+	spin_lock_irq(&ctx->stale.lock);
-+	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
- 	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
--		if (!i915_sw_fence_await(&pos->fence))
-+		if (!i915_sw_fence_await(&pos->fence)) {
-+			list_del_init(&pos->link);
- 			continue;
-+		}
- 
--		spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+		spin_unlock_irq(&ctx->stale.lock);
- 
- 		kill_engines(pos);
- 
--		spin_lock_irqsave(&ctx->stale.lock, flags);
-+		spin_lock_irq(&ctx->stale.lock);
-+		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
- 		list_safe_reset_next(pos, next, link);
- 		list_del_init(&pos->link); /* decouple from FENCE_COMPLETE */
- 
- 		i915_sw_fence_complete(&pos->fence);
- 	}
--	spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+	spin_unlock_irq(&ctx->stale.lock);
- }
- 
- static void kill_context(struct i915_gem_context *ctx)
- {
- 	kill_stale_engines(ctx);
--	kill_engines(__context_engines_static(ctx));
-+}
-+
-+static int engines_notify(struct i915_sw_fence *fence,
-+			  enum i915_sw_fence_notify state)
-+{
-+	struct i915_gem_engines *engines =
-+		container_of(fence, typeof(*engines), fence);
-+
-+	switch (state) {
-+	case FENCE_COMPLETE:
-+		if (!list_empty(&engines->link)) {
-+			struct i915_gem_context *ctx = engines->ctx;
-+			unsigned long flags;
-+
-+			spin_lock_irqsave(&ctx->stale.lock, flags);
-+			list_del(&engines->link);
-+			spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+		}
-+		break;
-+
-+	case FENCE_FREE:
-+		init_rcu_head(&engines->rcu);
-+		call_rcu(&engines->rcu, free_engines_rcu);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static void engines_idle_release(struct i915_gem_engines *engines)
-+{
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+
-+	GEM_BUG_ON(!engines);
-+	i915_sw_fence_init(&engines->fence, engines_notify);
-+	INIT_LIST_HEAD(&engines->link);
-+
-+	for_each_gem_engine(ce, engines, it) {
-+		int err = 0;
-+
-+		RCU_INIT_POINTER(ce->gem_context, NULL);
-+
-+		if (!ce->timeline) { /* XXX serialisation with execbuf? */
-+			intel_context_set_banned(ce);
-+			continue;
-+		}
-+
-+		mutex_lock(&ce->timeline->mutex);
-+		if (!list_empty(&ce->timeline->requests)) {
-+			struct i915_request *rq;
-+
-+			rq = list_last_entry(&ce->timeline->requests,
-+					     typeof(*rq),
-+					     link);
-+
-+			err = i915_sw_fence_await_dma_fence(&engines->fence,
-+							    &rq->fence, 0,
-+							    GFP_KERNEL);
-+		}
-+		mutex_unlock(&ce->timeline->mutex);
-+		if (err < 0)
-+			goto kill;
-+	}
-+
-+	spin_lock_irq(&engines->ctx->stale.lock);
-+	if (!i915_gem_context_is_closed(engines->ctx))
-+		list_add_tail(&engines->link, &engines->ctx->stale.engines);
-+	spin_unlock_irq(&engines->ctx->stale.lock);
-+
-+kill:
-+	if (list_empty(&engines->link)) /* raced, already closed */
-+		kill_engines(engines);
-+
-+	i915_sw_fence_commit(&engines->fence);
- }
- 
- static void set_closed_name(struct i915_gem_context *ctx)
-@@ -539,11 +614,16 @@ static void context_close(struct i915_gem_context *ctx)
- {
- 	struct i915_address_space *vm;
- 
-+	/* Flush any concurrent set_engines() */
-+	mutex_lock(&ctx->engines_mutex);
-+	engines_idle_release(rcu_replace_pointer(ctx->engines, NULL, 1));
- 	i915_gem_context_set_closed(ctx);
--	set_closed_name(ctx);
-+	mutex_unlock(&ctx->engines_mutex);
- 
- 	mutex_lock(&ctx->mutex);
- 
-+	set_closed_name(ctx);
-+
- 	vm = i915_gem_context_vm(ctx);
- 	if (vm)
- 		i915_vm_close(vm);
-@@ -1562,77 +1642,6 @@ static const i915_user_extension_fn set_engines__extensions[] = {
- 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
- };
- 
--static int engines_notify(struct i915_sw_fence *fence,
--			  enum i915_sw_fence_notify state)
--{
--	struct i915_gem_engines *engines =
--		container_of(fence, typeof(*engines), fence);
--
--	switch (state) {
--	case FENCE_COMPLETE:
--		if (!list_empty(&engines->link)) {
--			struct i915_gem_context *ctx = engines->ctx;
--			unsigned long flags;
--
--			spin_lock_irqsave(&ctx->stale.lock, flags);
--			list_del(&engines->link);
--			spin_unlock_irqrestore(&ctx->stale.lock, flags);
--		}
--		break;
--
--	case FENCE_FREE:
--		init_rcu_head(&engines->rcu);
--		call_rcu(&engines->rcu, free_engines_rcu);
--		break;
--	}
--
--	return NOTIFY_DONE;
--}
--
--static void engines_idle_release(struct i915_gem_engines *engines)
--{
--	struct i915_gem_engines_iter it;
--	struct intel_context *ce;
--	unsigned long flags;
--
--	GEM_BUG_ON(!engines);
--	i915_sw_fence_init(&engines->fence, engines_notify);
--
--	INIT_LIST_HEAD(&engines->link);
--	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
--	if (!i915_gem_context_is_closed(engines->ctx))
--		list_add(&engines->link, &engines->ctx->stale.engines);
--	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
--	if (list_empty(&engines->link)) /* raced, already closed */
--		goto kill;
--
--	for_each_gem_engine(ce, engines, it) {
--		struct dma_fence *fence;
--		int err;
--
--		if (!ce->timeline)
--			continue;
--
--		fence = i915_active_fence_get(&ce->timeline->last_request);
--		if (!fence)
--			continue;
--
--		err = i915_sw_fence_await_dma_fence(&engines->fence,
--						    fence, 0,
--						    GFP_KERNEL);
--
--		dma_fence_put(fence);
--		if (err < 0)
--			goto kill;
--	}
--	goto out;
--
--kill:
--	kill_engines(engines);
--out:
--	i915_sw_fence_commit(&engines->fence);
--}
--
- static int
- set_engines(struct i915_gem_context *ctx,
- 	    const struct drm_i915_gem_context_param *args)
-@@ -1729,6 +1738,11 @@ set_engines(struct i915_gem_context *ctx,
- 
- replace:
- 	mutex_lock(&ctx->engines_mutex);
-+	if (i915_gem_context_is_closed(ctx)) {
-+		mutex_unlock(&ctx->engines_mutex);
-+		free_engines(set.engines);
-+		return -ENOENT;
-+	}
- 	if (args->size)
- 		i915_gem_context_set_user_engines(ctx);
- 	else
-@@ -2033,8 +2047,7 @@ static int clone_engines(struct i915_gem_context *dst,
- 	i915_gem_context_unlock_engines(src);
- 
- 	/* Serialised by constructor */
--	free_engines(__context_engines_static(dst));
--	RCU_INIT_POINTER(dst->engines, clone);
-+	engines_idle_release(rcu_replace_pointer(dst->engines, clone, 1));
- 	if (user_engines)
- 		i915_gem_context_set_user_engines(dst);
- 	else
--- 
-2.25.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAwNSBGZWIgMjAyMCwgVmlsbGUgU3lyamFsYSA8dmlsbGUuc3lyamFsYUBsaW51eC5p
+bnRlbC5jb20+IHdyb3RlOgo+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4KPiBDdXJyZW50bHkgd2Ugb25seSBzZXQgdGhlIERSTV9DT05ORUNU
+T1JfUE9MTF97RElTQ09OTkVDVCxDT05ORUNUfQo+IGJpdHMgaW4gaW50ZWxfY29ubmVjdG9yLT5w
+b2xsZWQgKHRoZSBiYXNlIHNldHRpbmcpLCBsZWFkaW5nIHRvCj4gc29tZSBjb25mdXNpbmcgbG9v
+a2luZyBjb2RlIHRvIHJlc2V0IGRybV9jb25uZWN0b3ItPnBvbGxlZAo+ICh0aGUgYWN0dWFsIHNl
+dHRpbmcpIHRvIERSTV9DT05ORUNUT1JfUE9MTF9IUEQuIExldCdzIHNldAo+IGludGVsX2Nvbm5l
+Y3Rvci0+cG9sbGVkID0gRFJNX0NPTk5FQ1RPUl9QT0xMX0hQRCBmb3IgYWxsIGhwZAo+IGNhcGFi
+bGUgY29ubmVjdG9ycywgYW5kIHRoZW4gd2UgZG9uJ3QgbmVlZCBzbyBtYW55IHNwZWNpYWwKPiBj
+YXNlcyBpbiB0aGUgaG90cGx1ZyBjb2RlLgo+Cj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOk
+bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkkgZG9uJ3Qga25vdyB3aHkgaXQg
+d2FzIHNvIGhhcmQgdG8gd3JhcCBteSBoZWFkIGFyb3VuZCB0aGlzIG9uZS4uLiBJCmd1ZXNzIGp1
+c3QgdHJhY2tpbmcgYWxsIHRoZSBwbGFjZXMgdGhhdCBuZWVkIHNvbWV0aGluZyB0aGF0IHdhc24n
+dCB0aGVyZQpiZWZvcmUuCgpSZXZpZXdlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGlu
+dGVsLmNvbT4KCgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Ny
+dC5jICAgICB8ICAxICsKPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5j
+ICAgICAgfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5j
+ICAgIHwgIDEgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hvdHBsdWcu
+YyB8IDE3ICsrKysrKysrLS0tLS0tLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfc2R2by5jICAgIHwgIDEgKwo+ICA1IGZpbGVzIGNoYW5nZWQsIDEyIGluc2VydGlvbnMo
+KyksIDkgZGVsZXRpb25zKC0pCj4KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9jcnQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+Y3J0LmMKPiBpbmRleCAwZTJmNjNiMGQ0NTguLmJhMDcxN2Q4YzI0OCAxMDA2NDQKPiAtLS0gYS9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NydC5jCj4gKysrIGIvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jcnQuYwo+IEBAIC0xMDMzLDYgKzEwMzMsNyBAQCB2
+b2lkIGludGVsX2NydF9pbml0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikKPiAg
+CSAgICAhZG1pX2NoZWNrX3N5c3RlbShpbnRlbF9zcHVyaW91c19jcnRfZGV0ZWN0KSkgewo+ICAJ
+CWNydC0+YmFzZS5ocGRfcGluID0gSFBEX0NSVDsKPiAgCQljcnQtPmJhc2UuaG90cGx1ZyA9IGlu
+dGVsX2VuY29kZXJfaG90cGx1ZzsKPiArCQlpbnRlbF9jb25uZWN0b3ItPnBvbGxlZCA9IERSTV9D
+T05ORUNUT1JfUE9MTF9IUEQ7Cj4gIAl9IGVsc2Ugewo+ICAJCWludGVsX2Nvbm5lY3Rvci0+cG9s
+bGVkID0gRFJNX0NPTk5FQ1RPUl9QT0xMX0NPTk5FQ1Q7Cj4gIAl9Cj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IGluZGV4IGY0ZGVkZTYyNTNmOC4uNGRmYjI2YjJiMmY3
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+
+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYwo+IEBAIC03NTc2
+LDYgKzc1NzYsNyBAQCBpbnRlbF9kcF9pbml0X2Nvbm5lY3RvcihzdHJ1Y3QgaW50ZWxfZGlnaXRh
+bF9wb3J0ICppbnRlbF9kaWdfcG9ydCwKPiAgCQljb25uZWN0b3ItPnljYmNyXzQyMF9hbGxvd2Vk
+ID0gdHJ1ZTsKPiAgCj4gIAlpbnRlbF9lbmNvZGVyLT5ocGRfcGluID0gaW50ZWxfaHBkX3Bpbl9k
+ZWZhdWx0KGRldl9wcml2LCBwb3J0KTsKPiArCWludGVsX2Nvbm5lY3Rvci0+cG9sbGVkID0gRFJN
+X0NPTk5FQ1RPUl9QT0xMX0hQRDsKPiAgCj4gIAlpbnRlbF9kcF9hdXhfaW5pdChpbnRlbF9kcCk7
+Cj4gIAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hk
+bWkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4gaW5kZXgg
+ZTY4YmFmYjc2Y2IxLi4xYTlhM2IyM2NhZTQgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2hkbWkuYwo+IEBAIC0zMTgwLDYgKzMxODAsNyBAQCB2b2lkIGludGVsX2hk
+bWlfaW5pdF9jb25uZWN0b3Ioc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3Bv
+cnQsCj4gIAkJY29ubmVjdG9yLT55Y2Jjcl80MjBfYWxsb3dlZCA9IHRydWU7Cj4gIAo+ICAJaW50
+ZWxfZW5jb2Rlci0+aHBkX3BpbiA9IGludGVsX2hwZF9waW5fZGVmYXVsdChkZXZfcHJpdiwgcG9y
+dCk7Cj4gKwlpbnRlbF9jb25uZWN0b3ItPnBvbGxlZCA9IERSTV9DT05ORUNUT1JfUE9MTF9IUEQ7
+Cj4gIAo+ICAJaWYgKEhBU19EREkoZGV2X3ByaXYpKQo+ICAJCWludGVsX2Nvbm5lY3Rvci0+Z2V0
+X2h3X3N0YXRlID0gaW50ZWxfZGRpX2Nvbm5lY3Rvcl9nZXRfaHdfc3RhdGU7Cj4gZGlmZiAtLWdp
+dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaG90cGx1Zy5jIGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9ob3RwbHVnLmMKPiBpbmRleCA1MzEwMjEwMDJl
+MzQuLjhhZjBhZTYxZTFiYiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2hvdHBsdWcuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfaG90cGx1Zy5jCj4gQEAgLTI2Miw4ICsyNjIsNiBAQCBzdGF0aWMgdm9pZCBpbnRlbF9o
+cGRfaXJxX3N0b3JtX3JlZW5hYmxlX3dvcmsoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQo+ICAJ
+CQlEUk1fREVCVUdfRFJJVkVSKCJSZWVuYWJsaW5nIEhQRCBvbiBjb25uZWN0b3IgJXNcbiIsCj4g
+IAkJCQkJIGNvbm5lY3Rvci0+YmFzZS5uYW1lKTsKPiAgCQljb25uZWN0b3ItPmJhc2UucG9sbGVk
+ID0gY29ubmVjdG9yLT5wb2xsZWQ7Cj4gLQkJaWYgKCFjb25uZWN0b3ItPmJhc2UucG9sbGVkKQo+
+IC0JCQljb25uZWN0b3ItPmJhc2UucG9sbGVkID0gRFJNX0NPTk5FQ1RPUl9QT0xMX0hQRDsKPiAg
+CX0KPiAgCWRybV9jb25uZWN0b3JfbGlzdF9pdGVyX2VuZCgmY29ubl9pdGVyKTsKPiAgCj4gQEAg
+LTYyMCwxNiArNjE4LDE3IEBAIHN0YXRpYyB2b2lkIGk5MTVfaHBkX3BvbGxfaW5pdF93b3JrKHN0
+cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgCj4gIAlkcm1fY29ubmVjdG9yX2xpc3RfaXRlcl9i
+ZWdpbihkZXYsICZjb25uX2l0ZXIpOwo+ICAJZm9yX2VhY2hfaW50ZWxfY29ubmVjdG9yX2l0ZXIo
+Y29ubmVjdG9yLCAmY29ubl9pdGVyKSB7Cj4gLQkJZW51bSBocGRfcGluIHBpbiA9IGludGVsX2Nv
+bm5lY3Rvcl9ocGRfcGluKGNvbm5lY3Rvcik7Cj4gKwkJZW51bSBocGRfcGluIHBpbjsKPiArCj4g
+KwkJcGluID0gaW50ZWxfY29ubmVjdG9yX2hwZF9waW4oY29ubmVjdG9yKTsKPiArCQlpZiAocGlu
+ID09IEhQRF9OT05FKQo+ICsJCQljb250aW51ZTsKPiAgCj4gIAkJY29ubmVjdG9yLT5iYXNlLnBv
+bGxlZCA9IGNvbm5lY3Rvci0+cG9sbGVkOwo+ICAKPiAtCQlpZiAocGluICE9IEhQRF9OT05FICYm
+IEk5MTVfSEFTX0hPVFBMVUcoZGV2X3ByaXYpICYmCj4gLQkJICAgICFjb25uZWN0b3ItPmJhc2Uu
+cG9sbGVkKQo+IC0JCQljb25uZWN0b3ItPmJhc2UucG9sbGVkID0gZW5hYmxlZCA/Cj4gLQkJCQlE
+Uk1fQ09OTkVDVE9SX1BPTExfQ09OTkVDVCB8Cj4gLQkJCQlEUk1fQ09OTkVDVE9SX1BPTExfRElT
+Q09OTkVDVCA6Cj4gLQkJCQlEUk1fQ09OTkVDVE9SX1BPTExfSFBEOwo+ICsJCWlmIChlbmFibGVk
+ICYmIGNvbm5lY3Rvci0+YmFzZS5wb2xsZWQgPT0gRFJNX0NPTk5FQ1RPUl9QT0xMX0hQRCkKPiAr
+CQkJY29ubmVjdG9yLT5iYXNlLnBvbGxlZCA9IERSTV9DT05ORUNUT1JfUE9MTF9DT05ORUNUIHwK
+PiArCQkJCURSTV9DT05ORUNUT1JfUE9MTF9ESVNDT05ORUNUOwo+ICAJfQo+ICAJZHJtX2Nvbm5l
+Y3Rvcl9saXN0X2l0ZXJfZW5kKCZjb25uX2l0ZXIpOwo+ICAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zZHZvLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3Nkdm8uYwo+IGluZGV4IGE0OTIxYjU0OWY4Yi4uYjA1ODgxNTA3NTJj
+IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc2R2by5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zZHZvLmMKPiBAQCAt
+MjcyMSw2ICsyNzIxLDcgQEAgaW50ZWxfc2R2b19kdmlfaW5pdChzdHJ1Y3QgaW50ZWxfc2R2byAq
+aW50ZWxfc2R2bywgaW50IGRldmljZSkKPiAgCQkgKiBTb21lIFNEVk8gZGV2aWNlcyBoYXZlIG9u
+ZS1zaG90IGhvdHBsdWcgaW50ZXJydXB0cy4KPiAgCQkgKiBFbnN1cmUgdGhhdCB0aGV5IGdldCBy
+ZS1lbmFibGVkIHdoZW4gYW4gaW50ZXJydXB0IGhhcHBlbnMuCj4gIAkJICovCj4gKwkJaW50ZWxf
+Y29ubmVjdG9yLT5wb2xsZWQgPSBEUk1fQ09OTkVDVE9SX1BPTExfSFBEOwo+ICAJCWludGVsX2Vu
+Y29kZXItPmhvdHBsdWcgPSBpbnRlbF9zZHZvX2hvdHBsdWc7Cj4gIAkJaW50ZWxfc2R2b19lbmFi
+bGVfaG90cGx1ZyhpbnRlbF9lbmNvZGVyKTsKPiAgCX0gZWxzZSB7CgotLSAKSmFuaSBOaWt1bGEs
+IEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNzIENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
