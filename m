@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D684A163698
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35C621636C8
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:03:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E466E420;
-	Tue, 18 Feb 2020 22:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB046E41F;
+	Tue, 18 Feb 2020 23:03:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D38D86E41F;
- Tue, 18 Feb 2020 22:58:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CB755A47E9;
- Tue, 18 Feb 2020 22:58:52 +0000 (UTC)
+Received: from namei.org (namei.org [65.99.196.166])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67D196E3B8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 19:22:25 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by namei.org (8.14.4/8.14.4) with ESMTP id 01IJLesW013028;
+ Tue, 18 Feb 2020 19:21:40 GMT
+Date: Wed, 19 Feb 2020 06:21:40 +1100 (AEDT)
+From: James Morris <jmorris@namei.org>
+To: Alexey Budankov <alexey.budankov@linux.intel.com>
+In-Reply-To: <f56fbb5c-1477-44d5-7346-85a1ca0869dc@linux.intel.com>
+Message-ID: <alpine.LRH.2.21.2002190621180.10165@namei.org>
+References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
+ <f56fbb5c-1477-44d5-7346-85a1ca0869dc@linux.intel.com>
+User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hillf Danton" <hdanton@sina.com>
-Date: Tue, 18 Feb 2020 22:58:52 -0000
-Message-ID: <158206673283.31431.11682804270427239055@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200216032625.11452-1-hdanton@sina.com>
-In-Reply-To: <20200216032625.11452-1-hdanton@sina.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_kernel_5=2E5=2E4=3A_BUG=3A_kernel_NULL_pointer_dereference?=
- =?utf-8?q?=2C_address=3A_000000000000000_=28rev2=29?=
+X-Mailman-Approved-At: Tue, 18 Feb 2020 23:03:31 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 01/12] capabilities: introduce
+ CAP_PERFMON to kernel and user space
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +39,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: linux-man@vger.kernel.org,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, Paul Mackerras <paulus@samba.org>,
+ Jiri Olsa <jolsa@redhat.com>, Ingo Molnar <mingo@kernel.org>,
+ Andi Kleen <ak@linux.intel.com>, Will Deacon <will@kernel.org>,
+ Helge Deller <deller@gmx.de>, Igor Lubashev <ilubashe@akamai.com>,
+ oprofile-list@lists.sf.net, Stephen Smalley <sds@tycho.nsa.gov>,
+ Serge Hallyn <serge@hallyn.com>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 17 Feb 2020, Alexey Budankov wrote:
 
-Series: kernel 5.5.4: BUG: kernel NULL pointer dereference, address: 000000000000000 (rev2)
-URL   : https://patchwork.freedesktop.org/series/73585/
-State : warning
+> 
+> Introduce CAP_PERFMON capability designed to secure system performance
+> monitoring and observability operations so that CAP_PERFMON would assist
+> CAP_SYS_ADMIN capability in its governing role for performance
+> monitoring and observability subsystems.
 
-== Summary ==
 
-$ dim checkpatch origin/drm-tip
-053c95b596f5 kernel 5.5.4: BUG: kernel NULL pointer dereference, address: 000000000000000
--:9: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#9: 
-> This is similar to the behaviour before, the BUG occurres after few minutes/hours.
+Acked-by: James Morris <jamorris@linux.microsoft.com>
 
--:108: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-total: 1 errors, 1 warnings, 0 checks, 24 lines checked
+-- 
+James Morris
+<jmorris@namei.org>
 
 _______________________________________________
 Intel-gfx mailing list
