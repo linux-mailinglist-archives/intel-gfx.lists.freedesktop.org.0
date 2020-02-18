@@ -2,42 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FDE51626CE
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 14:08:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9E1216272B
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 14:33:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE9F6E2D1;
-	Tue, 18 Feb 2020 13:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBF576EA00;
+	Tue, 18 Feb 2020 13:33:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D09306E277
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 13:08:54 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 05:08:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="268750932"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 18 Feb 2020 05:08:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 18 Feb 2020 15:08:50 +0200
-Date: Tue, 18 Feb 2020 15:08:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200218130850.GP13686@intel.com>
-References: <20200205183546.9291-1-ville.syrjala@linux.intel.com>
- <20200205183546.9291-3-ville.syrjala@linux.intel.com>
- <87pnecuk0m.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8372F6E9FF;
+ Tue, 18 Feb 2020 13:33:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7AC16A011A;
+ Tue, 18 Feb 2020 13:33:18 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87pnecuk0m.fsf@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 2/5] drm/i915: Mark all HPD capabled
- connectors as such
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 18 Feb 2020 13:33:18 -0000
+Message-ID: <158203279849.31432.11387556716784800327@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218111624.1198504-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/gt=3A_Show_the_cumulative_?=
+ =?utf-8?q?context_runtime_in_engine_debug_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,167 +39,240 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2020 at 03:01:29PM +0200, Jani Nikula wrote:
-> On Wed, 05 Feb 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >
-> > Currently we only set the DRM_CONNECTOR_POLL_{DISCONNECT,CONNECT}
-> > bits in intel_connector->polled (the base setting), leading to
-> > some confusing looking code to reset drm_connector->polled
-> > (the actual setting) to DRM_CONNECTOR_POLL_HPD. Let's set
-> > intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD for all hpd
-> > capable connectors, and then we don't need so many special
-> > cases in the hotplug code.
-> >
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> I don't know why it was so hard to wrap my head around this one... I
-> guess just tracking all the places that need something that wasn't there
-> before.
+Series: series starting with [1/6] drm/i915/gt: Show the cumulative context runtime in engine debug (rev2)
+URL   : https://patchwork.freedesktop.org/series/73567/
+State : failure
 
-connector->polled vs. connector->base.polled probably doesn't help.
-We should perhaps rename the first one to something else. Just not
-sure what to call it. "default_polled" or something maybe?
+== Summary ==
 
-> =
+CI Bug Log - changes from CI_DRM_7958 -> Patchwork_16597
+====================================================
 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> =
+Summary
+-------
 
-> =
+  **FAILURE**
 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_crt.c     |  1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c      |  1 +
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c    |  1 +
-> >  drivers/gpu/drm/i915/display/intel_hotplug.c | 17 ++++++++---------
-> >  drivers/gpu/drm/i915/display/intel_sdvo.c    |  1 +
-> >  5 files changed, 12 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm=
-/i915/display/intel_crt.c
-> > index 0e2f63b0d458..ba0717d8c248 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> > @@ -1033,6 +1033,7 @@ void intel_crt_init(struct drm_i915_private *dev_=
-priv)
-> >  	    !dmi_check_system(intel_spurious_crt_detect)) {
-> >  		crt->base.hpd_pin =3D HPD_CRT;
-> >  		crt->base.hotplug =3D intel_encoder_hotplug;
-> > +		intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> >  	} else {
-> >  		intel_connector->polled =3D DRM_CONNECTOR_POLL_CONNECT;
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/=
-i915/display/intel_dp.c
-> > index f4dede6253f8..4dfb26b2b2f7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -7576,6 +7576,7 @@ intel_dp_init_connector(struct intel_digital_port=
- *intel_dig_port,
-> >  		connector->ycbcr_420_allowed =3D true;
-> >  =
+  Serious unknown changes coming with Patchwork_16597 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16597, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> >  	intel_encoder->hpd_pin =3D intel_hpd_pin_default(dev_priv, port);
-> > +	intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> >  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/index.html
 
-> >  	intel_dp_aux_init(intel_dp);
-> >  =
+Possible new issues
+-------------------
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/dr=
-m/i915/display/intel_hdmi.c
-> > index e68bafb76cb1..1a9a3b23cae4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > @@ -3180,6 +3180,7 @@ void intel_hdmi_init_connector(struct intel_digit=
-al_port *intel_dig_port,
-> >  		connector->ycbcr_420_allowed =3D true;
-> >  =
+  Here are the unknown changes that may have been introduced in Patchwork_16597:
 
-> >  	intel_encoder->hpd_pin =3D intel_hpd_pin_default(dev_priv, port);
-> > +	intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> >  =
+### IGT changes ###
 
-> >  	if (HAS_DDI(dev_priv))
-> >  		intel_connector->get_hw_state =3D intel_ddi_connector_get_hw_state;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu=
-/drm/i915/display/intel_hotplug.c
-> > index 531021002e34..8af0ae61e1bb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> > @@ -262,8 +262,6 @@ static void intel_hpd_irq_storm_reenable_work(struc=
-t work_struct *work)
-> >  			DRM_DEBUG_DRIVER("Reenabling HPD on connector %s\n",
-> >  					 connector->base.name);
-> >  		connector->base.polled =3D connector->polled;
-> > -		if (!connector->base.polled)
-> > -			connector->base.polled =3D DRM_CONNECTOR_POLL_HPD;
-> >  	}
-> >  	drm_connector_list_iter_end(&conn_iter);
-> >  =
+#### Possible regressions ####
 
-> > @@ -620,16 +618,17 @@ static void i915_hpd_poll_init_work(struct work_s=
-truct *work)
-> >  =
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-u2/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-u2/igt@i915_selftest@live_gem_contexts.html
+    - fi-icl-dsi:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-dsi/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-dsi/igt@i915_selftest@live_gem_contexts.html
+    - fi-bdw-5557u:       [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-bdw-5557u/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-bdw-5557u/igt@i915_selftest@live_gem_contexts.html
+    - fi-icl-y:           [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-y/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-y/igt@i915_selftest@live_gem_contexts.html
+    - fi-icl-u3:          [PASS][9] -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-u3/igt@i915_selftest@live_gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-u3/igt@i915_selftest@live_gem_contexts.html
+    - fi-icl-guc:         [PASS][11] -> [INCOMPLETE][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-guc/igt@i915_selftest@live_gem_contexts.html
 
-> >  	drm_connector_list_iter_begin(dev, &conn_iter);
-> >  	for_each_intel_connector_iter(connector, &conn_iter) {
-> > -		enum hpd_pin pin =3D intel_connector_hpd_pin(connector);
-> > +		enum hpd_pin pin;
-> > +
-> > +		pin =3D intel_connector_hpd_pin(connector);
-> > +		if (pin =3D=3D HPD_NONE)
-> > +			continue;
-> >  =
+  * igt@runner@aborted:
+    - fi-apl-guc:         NOTRUN -> [FAIL][13]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-apl-guc/igt@runner@aborted.html
+    - fi-bxt-dsi:         NOTRUN -> [FAIL][14]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-bxt-dsi/igt@runner@aborted.html
 
-> >  		connector->base.polled =3D connector->polled;
-> >  =
+  
+#### Warnings ####
 
-> > -		if (pin !=3D HPD_NONE && I915_HAS_HOTPLUG(dev_priv) &&
-> > -		    !connector->base.polled)
-> > -			connector->base.polled =3D enabled ?
-> > -				DRM_CONNECTOR_POLL_CONNECT |
-> > -				DRM_CONNECTOR_POLL_DISCONNECT :
-> > -				DRM_CONNECTOR_POLL_HPD;
-> > +		if (enabled && connector->base.polled =3D=3D DRM_CONNECTOR_POLL_HPD)
-> > +			connector->base.polled =3D DRM_CONNECTOR_POLL_CONNECT |
-> > +				DRM_CONNECTOR_POLL_DISCONNECT;
-> >  	}
-> >  	drm_connector_list_iter_end(&conn_iter);
-> >  =
+  * igt@amdgpu/amd_prime@i915-to-amd:
+    - fi-kbl-8809g:       [DMESG-WARN][15] ([i915#1209]) -> [INCOMPLETE][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-kbl-8809g/igt@amdgpu/amd_prime@i915-to-amd.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-kbl-8809g/igt@amdgpu/amd_prime@i915-to-amd.html
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/dr=
-m/i915/display/intel_sdvo.c
-> > index a4921b549f8b..b0588150752c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-> > @@ -2721,6 +2721,7 @@ intel_sdvo_dvi_init(struct intel_sdvo *intel_sdvo=
-, int device)
-> >  		 * Some SDVO devices have one-shot hotplug interrupts.
-> >  		 * Ensure that they get re-enabled when an interrupt happens.
-> >  		 */
-> > +		intel_connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> >  		intel_encoder->hotplug =3D intel_sdvo_hotplug;
-> >  		intel_sdvo_enable_hotplug(intel_encoder);
-> >  	} else {
-> =
+  
+Known issues
+------------
 
-> -- =
+  Here are the changes found in Patchwork_16597 that come from known issues:
 
-> Jani Nikula, Intel Open Source Graphics Center
+### IGT changes ###
 
--- =
+#### Issues hit ####
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@gem_exec_parallel@contexts:
+    - fi-apl-guc:         [PASS][17] -> [INCOMPLETE][18] ([fdo#103927])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-apl-guc/igt@gem_exec_parallel@contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-apl-guc/igt@gem_exec_parallel@contexts.html
+    - fi-bxt-dsi:         [PASS][19] -> [INCOMPLETE][20] ([fdo#103927])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [PASS][21] -> [FAIL][22] ([i915#694])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-skl-6600u:       [PASS][23] -> [INCOMPLETE][24] ([i915#424])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-skl-6600u/igt@i915_selftest@live_gem_contexts.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-skl-6600u/igt@i915_selftest@live_gem_contexts.html
+    - fi-cml-u2:          [PASS][25] -> [INCOMPLETE][26] ([i915#283])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-cml-u2/igt@i915_selftest@live_gem_contexts.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-cml-u2/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-8700k:       [PASS][27] -> [INCOMPLETE][28] ([i915#424])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+    - fi-kbl-guc:         [PASS][29] -> [INCOMPLETE][30] ([i915#504])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-kbl-guc/igt@i915_selftest@live_gem_contexts.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-kbl-guc/igt@i915_selftest@live_gem_contexts.html
+    - fi-kbl-7500u:       [PASS][31] -> [INCOMPLETE][32] ([i915#504])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-kbl-7500u/igt@i915_selftest@live_gem_contexts.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-kbl-7500u/igt@i915_selftest@live_gem_contexts.html
+    - fi-skl-guc:         [PASS][33] -> [INCOMPLETE][34] ([i915#424])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-skl-guc/igt@i915_selftest@live_gem_contexts.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-skl-guc/igt@i915_selftest@live_gem_contexts.html
+    - fi-kbl-r:           [PASS][35] -> [INCOMPLETE][36] ([i915#504])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-kbl-r/igt@i915_selftest@live_gem_contexts.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-kbl-r/igt@i915_selftest@live_gem_contexts.html
+    - fi-kbl-x1275:       [PASS][37] -> [INCOMPLETE][38] ([i915#504])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-kbl-x1275/igt@i915_selftest@live_gem_contexts.html
+    - fi-skl-6700k2:      [PASS][39] -> [INCOMPLETE][40] ([i915#424])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-skl-6700k2/igt@i915_selftest@live_gem_contexts.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-skl-6700k2/igt@i915_selftest@live_gem_contexts.html
+    - fi-cfl-guc:         [PASS][41] -> [INCOMPLETE][42] ([fdo#106070] / [i915#424])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+    - fi-cml-s:           [PASS][43] -> [INCOMPLETE][44] ([i915#283])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-skl-6600u:       [PASS][45] -> [TIMEOUT][46] ([fdo#111732] / [fdo#112271])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-skl-6600u/igt@i915_selftest@live_gtt.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-skl-6600u/igt@i915_selftest@live_gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][47] ([i915#694]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_pm_rpm@basic-pci-d3-state:
+    - fi-skl-6770hq:      [INCOMPLETE][49] ([i915#151]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
+
+  * igt@i915_selftest@live_active:
+    - fi-icl-y:           [DMESG-FAIL][51] ([i915#765]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-y/igt@i915_selftest@live_active.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-y/igt@i915_selftest@live_active.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-guc:         [TIMEOUT][53] ([fdo#112271]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-icl-guc/igt@i915_selftest@live_gtt.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-icl-guc/igt@i915_selftest@live_gtt.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [FAIL][55] ([i915#217] / [i915#976]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [TIMEOUT][57] ([fdo#112271] / [i915#1084] / [i915#816]) -> [INCOMPLETE][58] ([i915#45])
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][59] ([i915#1052]) -> [INCOMPLETE][60] ([i915#45])
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7958/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#111732]: https://bugs.freedesktop.org/show_bug.cgi?id=111732
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#504]: https://gitlab.freedesktop.org/drm/intel/issues/504
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (51 -> 40)
+------------------------------
+
+  Additional (1): fi-hsw-peppy 
+  Missing    (12): fi-bsw-n3050 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-elk-e7500 fi-skl-lmem fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7958 -> Patchwork_16597
+
+  CI-20190529: 20190529
+  CI_DRM_7958: af30970548f72cf8a37886f009e0cfe02b23c8a4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5445: 21e523814d692978d6d04ba85eadd67fcbd88b7e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16597: 7d1de8fda493e156deff2ec551d70fcb0ab83cd6 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7d1de8fda493 drm/i915/gem: Consolidate ctx->engines[] release
+e16c771779a1 drm/i915/gem: Check that the context wasn't closed during setup
+394aeed8e20e drm/i915/gt: Prevent allocation on a banned context
+8c5ed860c271 drm/i915/gt: Fix up missing error propagation for heartbeat pulses
+74c461f64d41 drm/i915/execlists: Check the sentinel is alone in the ELSP
+db917091f9b4 drm/i915/gt: Show the cumulative context runtime in engine debug
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16597/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
