@@ -1,55 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B399F1632E4
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:19:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9BC1632FE
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:22:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F306EA7E;
-	Tue, 18 Feb 2020 20:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D16286E3E3;
+	Tue, 18 Feb 2020 20:22:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
- [IPv6:2607:f8b0:4864:20::942])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30F876EA7E
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:19:16 +0000 (UTC)
-Received: by mail-ua1-x942.google.com with SMTP id 1so7974236uao.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:19:16 -0800 (PST)
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com
+ [IPv6:2607:f8b0:4864:20::a43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3E2E6E3E3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:22:55 +0000 (UTC)
+Received: by mail-vk1-xa43.google.com with SMTP id m195so5925669vkh.10
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:22:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=C09+b4WycVqWStNpRbvjJ/yZ/X36X45pr5K1a9fWHVs=;
- b=jH/ouQZx22EZ9oJLSia5+ipLB/VNSHR016O8ACzBqRPq0Ix0I4c07mDZU80bFiq7z9
- 3itxmMjC4p2otsHlCPWkT5FuTH61nRt09aUmVUh8iqHyRa+N0FmsrIKkoPvUuKPdWOhe
- VXzCdajNvhdmmCfLCnzdQ1EJSDur50bdlkegIIKoupzYxAfJIgzhHYcULCxGQuDjBtPA
- 6+Mil3G6xgkQjgPQEaeOa2JvoLLpSTR0LKW/yLXTvE8GmSXukEPmZTTO7tbF4DEUp1W0
- Ky9k972ggDdKbAP9AKQSJh2e9im/8e0+AaXCdmYr81nA6W4KIR33WSdyaWOVR5YaxGsK
- PZNg==
+ :cc; bh=2rGVI7sArX0rAGRBP4x86R2CEhdfwR8XC/1Jm/vlXC8=;
+ b=nmEzO+1EGfquUFXXwGDqduImBEmOwhHJL9u1enZCMSd3JIhVn2ueatTIJHuT4yh4u5
+ oVfgSw78Qc/o3GUBtsh7hbYFOdswiFxYOQrBP+EE9/YVYO6aG947B27DOJv8xpKET6Ln
+ SnlO3KX+RI5Hfaja4WW0imgbyYMshjXuA2xIzdNXc8GUosE0Ct6esT+xLjFNJcwlg257
+ FwXmbpA1StQZBx4Ifd0aYjZvpx+X6JKMdyBHWcWtntMBixQ5UdnfJmD5yn6T1w5WC3O+
+ wtihAiP91r9Xbk5Y/kFwdcJ4IA7XoF5lA87UT+NNSS3NuZkjFRO8fZ1LHBQRzhKzOQi9
+ 81QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=C09+b4WycVqWStNpRbvjJ/yZ/X36X45pr5K1a9fWHVs=;
- b=T3sDeKwfkFFR44xEMabHRRnFrNPk3UYfHDW0N6iufzc3uu4p3EhOwsqp+y63WOXgex
- JTXUaLxuwVcBOVR/x0zsznAot2lJRno6HJGYeq9oOtW33vGx+Qf2mKkTAM33wVxIrKnF
- bOcPZqJs6Nr7OKEBWu+KUQJsuhhzlQZn5eNCtgBwUZWiWKlz7W6h4+I/ajpQXNj8r3DN
- SfZDd2QaOhfXOYHMgN1x9/yi7hfk9nsEfqXsC0kaVVJT20LXfIwltATR8MxUJmUCIowC
- KUU1QCP411u0hnMLKq/ruJZHDv3c+pDM76r/YwV9xzuEk/eHNtLrgbYe11b70+FfJWLD
- 6PkQ==
-X-Gm-Message-State: APjAAAW1KcfIzuubjSBMyirmuhYxdDe5CQmGQ+TXrAyc3ND59ZoI4sGW
- o969hBK29VnyrXjEs048ZZVedWfNJ3rN4UTHcPCOfyd7
-X-Google-Smtp-Source: APXvYqw574WM/xlvvS/Hd9oJIHXLEVBR1Slr932FLD++bmSaT/ImMekWSeweZrp6LAS4AvirETrWT/zwz8iWNs+Z1cY=
-X-Received: by 2002:ab0:e16:: with SMTP id g22mr11529704uak.129.1582057155137; 
- Tue, 18 Feb 2020 12:19:15 -0800 (PST)
+ bh=2rGVI7sArX0rAGRBP4x86R2CEhdfwR8XC/1Jm/vlXC8=;
+ b=H6R0Gow8NYa3qDMQQxZR2O3wuDuXKb7csnKFbdx/C68HW0Jep3mhiHOufVbvi1BJVt
+ wIzwVtQLdqibTDTqFQmAtG0x5it+BiIPwR9/bHFzae4/H6dB4upLpuU8LOdwr9w4TriY
+ lU9kZO2bluGo0GoY7AA2zmS7fV/kUiWO34MEgaojYkujWPHCdK+D8zEVTTpbAnkGor95
+ Eut7EYV7SL/vYh0r9xOS7LnggZwqCHvsbAV41loMijooloNOkD+cYfZHHJ0QLK1zNQLh
+ 1LexRLQv1PNxTQX3EPwmGpuz7aYFswWLxmnHTcF00o1sR/R8GTB/S0g+xdQcEHEYR3Oj
+ c7Dg==
+X-Gm-Message-State: APjAAAXhAmg4q5qDoakYny2pIOvYvhuMqVEyAHtT5xG5eg+hW06qK1LS
+ jbX/fugD9uUqA53/8ieg0My74l0Y5kePN4DtA9OSO0ls
+X-Google-Smtp-Source: APXvYqwpuQdh4flisIk4UkijF+ShyaOlTpAc2apQ50rmVTfZP0LHy1+/fYsEx32nQQwIHOQnnj0Sh085cw9f4hHZHgg=
+X-Received: by 2002:a05:6122:1065:: with SMTP id
+ k5mr9455364vko.14.1582057375076; 
+ Tue, 18 Feb 2020 12:22:55 -0800 (PST)
 MIME-Version: 1.0
 References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
- <20200218162150.1300405-4-chris@chris-wilson.co.uk>
-In-Reply-To: <20200218162150.1300405-4-chris@chris-wilson.co.uk>
+ <20200218162150.1300405-5-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218162150.1300405-5-chris@chris-wilson.co.uk>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 18 Feb 2020 20:18:48 +0000
-Message-ID: <CAM0jSHMpE2Twm6shFH_AZHj-U6HyNiGZSCUvdrKxeo9jOQ2-TA@mail.gmail.com>
+Date: Tue, 18 Feb 2020 20:22:28 +0000
+Message-ID: <CAM0jSHMP73Kefoix-ToBFdC4yvW_qn+9EVADX1WY9SYTO6fGgg@mail.gmail.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm/i915/gt: Fix up missing error
- propagation for heartbeat pulses
+Subject: Re: [Intel-gfx] [PATCH 05/12] drm/i915/gt: Prevent allocation on a
+ banned context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,8 +71,9 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 18 Feb 2020 at 16:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
 >
-> Just missed setting err along an interruptible error path for the
-> intel_engine_pulse().
+> If a context is banned even before we submit our first request to it,
+> report the failure before we attempt to allocate any resources for the
+> context.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
