@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99421162A4C
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 17:22:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD581162A49
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 17:22:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A8B96EA3D;
-	Tue, 18 Feb 2020 16:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266C06E34A;
+	Tue, 18 Feb 2020 16:22:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 056616E33A
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 16:22:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 365C06E33A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 16:22:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20265832-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20265833-1500050 
  for multiple; Tue, 18 Feb 2020 16:21:54 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 16:21:39 +0000
-Message-Id: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
+Date: Tue, 18 Feb 2020 16:21:40 +0000
+Message-Id: <20200218162150.1300405-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.0
+In-Reply-To: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
+References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/12] drm/i915/selftests: Check for any sign of
- request starting in wait_for_submit()
+Subject: [Intel-gfx] [PATCH 02/12] drm/i915/gt: Show the cumulative context
+ runtime in engine debug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,35 +39,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We only want to wait until the request has been submitted at least once;
-that is it is either in flight, or has been.
+As we have the total runtime known to us, show it when dumping the
+engine state for debug.
 
-References: fcf7df7aae24 ("drm/i915/selftests: Check for the error interrupt before we wait!")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 40c53cc1c7c0..7b303d5fd5b8 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -83,7 +83,7 @@ static int wait_for_submit(struct intel_engine_cs *engine,
- 			return 0;
- 		}
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index f6f5e1ec48fc..e46e55354e95 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1376,7 +1376,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 		execlists_active_lock_bh(execlists);
+ 		rcu_read_lock();
+ 		for (port = execlists->active; (rq = *port); port++) {
+-			char hdr[80];
++			char hdr[160];
+ 			int len;
  
--		if (i915_request_completed(rq)) /* that was quick! */
-+		if (i915_request_started(rq)) /* that was quick! */
- 			return 0;
- 	} while (time_before(jiffies, timeout));
+ 			len = snprintf(hdr, sizeof(hdr),
+@@ -1386,10 +1386,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 				struct intel_timeline *tl = get_timeline(rq);
  
+ 				len += snprintf(hdr + len, sizeof(hdr) - len,
+-						"ring:{start:%08x, hwsp:%08x, seqno:%08x}, ",
++						"ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
+ 						i915_ggtt_offset(rq->ring->vma),
+ 						tl ? tl->hwsp_offset : 0,
+-						hwsp_seqno(rq));
++						hwsp_seqno(rq),
++						DIV_ROUND_CLOSEST_ULL(intel_context_get_total_runtime_ns(rq->context),
++								      1000 * 1000));
+ 
+ 				if (tl)
+ 					intel_timeline_put(tl);
 -- 
 2.25.0
 
