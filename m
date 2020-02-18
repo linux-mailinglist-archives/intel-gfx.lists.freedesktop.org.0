@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90549162D9A
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 19:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6098162DA9
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 19:02:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9B366E39C;
-	Tue, 18 Feb 2020 18:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 700836EA57;
+	Tue, 18 Feb 2020 18:02:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 616046E39C;
- Tue, 18 Feb 2020 18:00:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20267083-1500050 for multiple; Tue, 18 Feb 2020 18:00:04 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E3226E3AE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 18:02:24 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2020 10:02:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,456,1574150400"; d="scan'208";a="434168194"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga005.fm.intel.com with ESMTP; 18 Feb 2020 10:02:09 -0800
+Date: Tue, 18 Feb 2020 23:23:43 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200218175343.GB7545@intel.com>
+References: <20200207142042.19689-1-anshuman.gupta@intel.com>
+ <20200207142042.19689-2-anshuman.gupta@intel.com>
+ <20200207144753.GH13686@intel.com>
 MIME-Version: 1.0
-To: Antonio Argenziano <antonio.argenziano@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <7c8a0bc1-3e3f-4551-7e62-9f21bed92192@intel.com>
-References: <20200218122648.1252102-1-chris@chris-wilson.co.uk>
- <20200218174219.1301127-1-chris@chris-wilson.co.uk>
- <7c8a0bc1-3e3f-4551-7e62-9f21bed92192@intel.com>
-Message-ID: <158204880357.8112.17918282201515978143@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 18 Feb 2020 18:00:03 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_schedule: Exercise
- implicit ordering between engines
+Content-Disposition: inline
+In-Reply-To: <20200207144753.GH13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 1/6] drm/i915: Iterate over pipe and skip
+ the disabled one
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,95 +47,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org,
- Sravan Kumar Nedunoori <sravan.kumar.nedunoori@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Antonio Argenziano (2020-02-18 17:56:10)
-> 
-> 
-> On 18/02/20 09:42, Chris Wilson wrote:
-> > Check that reads are serialised after a write, and that a subsequent
-> > write is after all reads.
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Antonio Argenziano <antonio.argenziano@intel.com>
-> > Cc: Sravan Kumar Nedunoori <sravan.kumar.nedunoori@intel.com>
-> > ---
-> >   tests/i915/gem_exec_schedule.c | 73 ++++++++++++++++++++++++++++++++++
-> >   1 file changed, 73 insertions(+)
-> > 
-> > diff --git a/tests/i915/gem_exec_schedule.c b/tests/i915/gem_exec_schedule.c
-> > index a20985864..cfd06aa55 100644
-> > --- a/tests/i915/gem_exec_schedule.c
-> > +++ b/tests/i915/gem_exec_schedule.c
-> > @@ -241,6 +241,61 @@ static void fifo(int fd, unsigned ring)
-> >       igt_assert_eq_u32(result, 2);
-> >   }
-> >   
-> > +enum implicit_dir {
-> > +     READ_WRITE = 0x1,
-> > +     WRITE_READ = 0x2,
-> > +};
-> > +
-> > +static void implicit_rw(int i915, unsigned ring, enum implicit_dir dir)
-> > +{
-> > +     IGT_CORK_FENCE(cork);
-> > +     unsigned int count;
-> > +     uint32_t scratch;
-> > +     uint32_t result;
-> > +     int fence;
-> > +
-> > +     count = 0;
-> > +     for_each_physical_engine(other, i915) {
-> > +             if (eb_ring(other) == ring)
-> > +                     continue;
-> > +
-> > +             count++;
-> > +     }
-> > +     igt_require(count);
-> > +
-> > +     scratch = gem_create(i915, 4096);
-> > +     fence = igt_cork_plug(&cork, i915);
-> > +
-> > +     if (dir & WRITE_READ)
-> > +             store_dword_fenced(i915, 0,
-> > +                                ring, scratch, 0, -ring,
-> > +                                fence, I915_GEM_DOMAIN_RENDER);
-> > +
-> > +     for_each_physical_engine(other, i915) {
-> > +             if (eb_ring(other) == ring)
-> > +                     continue;
-> > +
-> > +             store_dword_fenced(i915, 0,
-> > +                                eb_ring(other), scratch, 0, eb_ring(other),
-> > +                                fence, 0);
-> > +     }
-> > +
-> > +     if (dir & READ_WRITE)
-> > +             store_dword_fenced(i915, 0,
-> > +                                ring, scratch, 0, ring,
-> > +                                fence, I915_GEM_DOMAIN_RENDER);
-> > +
-> > +     unplug_show_queue(i915, &cork, ring);
-> > +     close(fence);
-> > +
-> > +     result =  __sync_read_u32(i915, scratch, 0);
-> > +     gem_close(i915, scratch);
-> > +
-> > +     igt_assert_neq_u32(result, -ring);
-> 
-> if (dir & WRITE_READ) ?
-
-We should never have -ring in there. If we have 2 billion engines, CI
-will timeout first. And ring should always be !0.
-
-Although the symmetry is pleasing.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0wNyBhdCAxNjo0Nzo1MyArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+IE9uIEZyaSwgRmViIDA3LCAyMDIwIGF0IDA3OjUwOjM3UE0gKzA1MzAsIEFuc2h1bWFuIEd1cHRh
+IHdyb3RlOgo+ID4gSXQgc2hvdWxkIG5vdCBiZSBhc3N1bWVkIHRoYXQgYSBkaXNhYmxlZCBkaXNw
+bGF5IHBpcGUgd2lsbCBiZQo+ID4gYWx3YXlzIGxhc3QgdGhlIHBpcGUuCj4gPiBmb3JfZWFjaF9w
+aXBlKCkgc2hvdWxkIGl0ZXJhdGUgb3ZlciBJOTE1X01BWF9QSVBFUyBhbmQgY2hlY2sKPiA+IGZv
+ciB0aGUgZGlzYWJsZWQgcGlwZSBhbmQgc2tpcCB0aGF0IHBpcGUgc28gdGhhdCBpdCBzaG91bGQg
+bm90Cj4gPiBpbml0aWFsaXplIHRoZSBpbnRlbCBjcnRjIGZvciBhbnkgZGlzYWJsZWQgcGlwZXMu
+Cj4gPiAKPiA+IEJlbG93IGNvbXBpbGF0aW9uIGVycm9yIHJlcXVpcmUgdG8gYmUgaGFuZGxlIGR1
+ZSB0byBjaGFuZ2UgaW4KPiA+IGZvcl9lYWNoX3BpcGUoKSBtYWNyby4KPiA+ICJzdWdnZXN0IGV4
+cGxpY2l0IGJyYWNlcyB0byBhdm9pZCBhbWJpZ3VvdXMg4oCYZWxzZeKAmSBbLVdlcnJvcj1kYW5n
+bGluZy1lbHNlXSIKPiA+IAo+ID4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
+aW51eC5pbnRlbC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNodW1hbiBHdXB0YSA8YW5zaHVt
+YW4uZ3VwdGFAaW50ZWwuY29tPgo+ID4gLS0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
+cGxheS9pbnRlbF9kaXNwbGF5LmggfCA1ICsrKy0tCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9pcnEuYyAgICAgICAgICAgICAgfCA2ICsrKystLQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwg
+NyBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAo+ID4gaW5kZXggNzU0MzhhMTM2ZDU4Li43
+YTUzMWU0ODViNTMgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
+L2ludGVsX2Rpc3BsYXkuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9kaXNwbGF5LmgKPiA+IEBAIC0zMTMsMTAgKzMxMywxMSBAQCBlbnVtIHBoeV9maWEgewo+
+ID4gIH07Cj4gPiAgCj4gPiAgI2RlZmluZSBmb3JfZWFjaF9waXBlKF9fZGV2X3ByaXYsIF9fcCkg
+XAo+ID4gLQlmb3IgKChfX3ApID0gMDsgKF9fcCkgPCBJTlRFTF9OVU1fUElQRVMoX19kZXZfcHJp
+dik7IChfX3ApKyspCj4gPiArCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IEk5MTVfTUFYX1BJUEVT
+OyAoX19wKSsrKSBcCj4gPiArCQlmb3JfZWFjaF9pZigoSU5URUxfSU5GTyhfX2Rldl9wcml2KS0+
+cGlwZV9tYXNrKSAmIEJJVChfX3ApKQo+IAo+IERvbid0IG5lZWQgdGhlIHBhcmVucyBhcm91bmQg
+dGhlICgtPnBpcGVfbWFzaykKVGhhbmtzIGZvciByZXZpZXcgaSB3aWxsIGFkZHJlc3MgdGhpcy4K
+PiAKPiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX3BpcGVfbWFza2VkKF9fZGV2X3ByaXYsIF9f
+cCwgX19tYXNrKSBcCj4gPiAtCWZvciAoKF9fcCkgPSAwOyAoX19wKSA8IElOVEVMX05VTV9QSVBF
+UyhfX2Rldl9wcml2KTsgKF9fcCkrKykgXAo+ID4gKwlmb3JfZWFjaF9waXBlKF9fZGV2X3ByaXYs
+IF9fcCkgXAo+ID4gIAkJZm9yX2VhY2hfaWYoKF9fbWFzaykgJiBCSVQoX19wKSkKPiAKPiBTaG91
+bGRuJ3QgdGhpcyBvbmUgc3RpbGwgY29uc3VsdCB0aGUgcGlwZV9tYXNrPyBUaGVyZSdzIG5vIHJl
+YXNvbiB0bwo+IGFzc3VtZSB0aGF0IHRoZSBjYWxsZXIgYm90aGVyZWQgdG8gZmlsdGVyIHRoZSBt
+YXNrIGl0IHBhc3NlZCBpbi4KQUZBSVUgY3VycmVudCBjYWxsZXIgaXMgaW50ZXJlc3RlZCB0byBp
+bml0IHRoZSBwaXBlIHtJSVIsSU1SLElFUn0KZm9yIHRoZSBwYXNzZWQgbWFzay4gUGxlYXNlIGNv
+cnJlY3QgbWUgaWYgaSBhbSB3cm9uZwpoZXJlLiAKVGhhbmtzLApBbnNodW1hbiBHdXB0YS4KPiAK
+PiA+ICAKPiA+ICAjZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFuc2NvZGVyX21hc2tlZChfX2Rldl9w
+cml2LCBfX3QsIF9fbWFzaykgXAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfaXJxLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gPiBpbmRleCAz
+ZDBjZDA5NjBiZDIuLmEyNmYyYmYxYjZlYSAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2k5MTVfaXJxLmMKPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJx
+LmMKPiA+IEBAIC0xNzM5LDExICsxNzM5LDEyIEBAIHN0YXRpYyB2b2lkIGlieF9pcnFfaGFuZGxl
+cihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBwY2hfaWlyKQo+ID4gIAlp
+ZiAocGNoX2lpciAmIFNERV9QT0lTT04pCj4gPiAgCQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAi
+UENIIHBvaXNvbiBpbnRlcnJ1cHRcbiIpOwo+ID4gIAo+ID4gLQlpZiAocGNoX2lpciAmIFNERV9G
+RElfTUFTSykKPiA+ICsJaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0spIHsKPiA+ICAJCWZvcl9l
+YWNoX3BpcGUoZGV2X3ByaXYsIHBpcGUpCj4gPiAgCQkJZHJtX2RiZygmZGV2X3ByaXYtPmRybSwg
+IiAgcGlwZSAlYyBGREkgSUlSOiAweCUwOHhcbiIsCj4gPiAgCQkJCXBpcGVfbmFtZShwaXBlKSwK
+PiA+ICAJCQkJSTkxNV9SRUFEKEZESV9SWF9JSVIocGlwZSkpKTsKPiA+ICsJfQo+ID4gIAo+ID4g
+IAlpZiAocGNoX2lpciAmIChTREVfVFJBTlNCX0NSQ19ET05FIHwgU0RFX1RSQU5TQV9DUkNfRE9O
+RSkpCj4gPiAgCQlkcm1fZGJnKCZkZXZfcHJpdi0+ZHJtLCAiUENIIHRyYW5zY29kZXIgQ1JDIGRv
+bmUgaW50ZXJydXB0XG4iKTsKPiA+IEBAIC0xODIzLDExICsxODI0LDEyIEBAIHN0YXRpYyB2b2lk
+IGNwdF9pcnFfaGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIHUzMiBw
+Y2hfaWlyKQo+ID4gIAlpZiAocGNoX2lpciAmIFNERV9BVURJT19DUF9DSEdfQ1BUKQo+ID4gIAkJ
+ZHJtX2RiZygmZGV2X3ByaXYtPmRybSwgIkF1ZGlvIENQIGNoYW5nZSBpbnRlcnJ1cHRcbiIpOwo+
+ID4gIAo+ID4gLQlpZiAocGNoX2lpciAmIFNERV9GRElfTUFTS19DUFQpCj4gPiArCWlmIChwY2hf
+aWlyICYgU0RFX0ZESV9NQVNLX0NQVCkgewo+ID4gIAkJZm9yX2VhY2hfcGlwZShkZXZfcHJpdiwg
+cGlwZSkKPiA+ICAJCQlkcm1fZGJnKCZkZXZfcHJpdi0+ZHJtLCAiICBwaXBlICVjIEZESSBJSVI6
+IDB4JTA4eFxuIiwKPiA+ICAJCQkJcGlwZV9uYW1lKHBpcGUpLAo+ID4gIAkJCQlJOTE1X1JFQUQo
+RkRJX1JYX0lJUihwaXBlKSkpOwo+ID4gKwl9Cj4gPiAgCj4gPiAgCWlmIChwY2hfaWlyICYgU0RF
+X0VSUk9SX0NQVCkKPiA+ICAJCWNwdF9zZXJyX2ludF9oYW5kbGVyKGRldl9wcml2KTsKPiA+IC0t
+IAo+ID4gMi4yNC4wCj4gCj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcg
+bGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRl
+c2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
