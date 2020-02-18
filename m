@@ -1,29 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08AF9163301
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:23:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98883163331
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 21:39:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 635806EA80;
-	Tue, 18 Feb 2020 20:23:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03DF989BCD;
+	Tue, 18 Feb 2020 20:39:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50EDF6EA80
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:23:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20268768-1500050 
- for multiple; Tue, 18 Feb 2020 20:23:02 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 20:23:02 +0000
-Message-Id: <20200218202302.1326399-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
+ [IPv6:2607:f8b0:4864:20::e44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A07DF89BCD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 20:39:08 +0000 (UTC)
+Received: by mail-vs1-xe44.google.com with SMTP id n27so13986226vsa.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 12:39:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MMT53wxq4oIiiy7G6zYkmt/ksi5ImRHCTM0009pNDiY=;
+ b=iTt6FnagYc+TBQV+rL4DxUaa+zhFVhOPK49t7daKQFYM/dehQcpXOyhkja0mj8TBRo
+ 2VZWSjLjMAKWAuR1Z8aKmKf5T9Sai87wGaEX4q1FS2Y6Zgd/8PbM8ckW7wk5rXSzd8IU
+ 5eD9MGEuFQR2ioq+KcwdTrhD7kABMil5cqPiD9/P5v/vacVCZVH9gtRGbdP4ovUs1iRe
+ 1qUOAdrn69JgQw1jilbg5rcQj6h5KMKZUh/9cnVHEW5lF9fEt7Wlqh/i9ZYh1byaIhlU
+ +Xa2LTlmES5LINyev7jHPhnDt8MtMYVEl8gBZ38WWPqaHmgzhazv6+sF/sqhsgQXL6Ta
+ PDMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MMT53wxq4oIiiy7G6zYkmt/ksi5ImRHCTM0009pNDiY=;
+ b=rO6h4M8uiE91O7NMhCyZN+mH5wLeV5QYSSpJroUKtuRH0ZUDF4O1YVJltyl5uaSh96
+ Gfpu0Xw0h702vf90fzAj8YsSKiKwd9SPsUNTas34UlHFFAoi8tTLbd0+8mYbZkk/C4zQ
+ muQT81zhWwodpsTdBF+rJEXIkIqtMBzt9fqYtfsI1gDgWX8FCwZbR25XacB5c6XtElpd
+ Hnwd4te8POJf1P+Mw/M6wLwFrljNBuoVAVUv4TE1JhuTt2Sgv7O4zif9gCA4h+haOxmJ
+ r8gF+k9+uKYO4gvDnCyuy/xObPv2gDy+jAnqPUBpXPI39oSvfKrh5NeGOY82r4CDYuW8
+ Mv4g==
+X-Gm-Message-State: APjAAAXui899iLl+mL0ftEQzT8fsW2jn0WaM6JFgxTdEnNsSCYjrycV9
+ TY7h2iXe/rgr6isrDqiozGCVFjO47VmBwhaWKJDxv3Hu
+X-Google-Smtp-Source: APXvYqxkU/NEnbi/k59TcsiUlmHlZ4bNtL1B1Gr8F5vOnyB+YO3th6nIV+r1gBHf5QkHaBBS0MLo7+QTkIic+yFKPXY=
+X-Received: by 2002:a67:15c7:: with SMTP id 190mr12136192vsv.178.1582058347769; 
+ Tue, 18 Feb 2020 12:39:07 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Protect signaler walk with RCU
+References: <20200218162150.1300405-1-chris@chris-wilson.co.uk>
+ <20200218162150.1300405-6-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218162150.1300405-6-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 18 Feb 2020 20:38:41 +0000
+Message-ID: <CAM0jSHO4Yn_gKYiBa0Vz6tVJ6MJ+yxMQVdhYwUzMJoiLCLOZLw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 06/12] drm/i915/gem: Check that the context
+ wasn't closed during setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,101 +62,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While we know that the waiters cannot disappear as we walk our list
-(only that they might be added), the same cannot be said for our
-signalers as they may be completed by the HW and retired as we process
-this request. Ergo we need to use rcu to protect the list iteration and
-remember to mark up the list_del_rcu.
-
-Fixes: 793c22617367 ("drm/i915/gt: Protect execlists_hold/unhold from new waiters")
-Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c   | 16 ++++++++++------
- drivers/gpu/drm/i915/i915_scheduler.c |  4 ++--
- 2 files changed, 12 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index ba31cbe8c68e..47561dc29304 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1668,9 +1668,9 @@ last_active(const struct intel_engine_execlists *execlists)
- 				     wait_link)
- 
- #define for_each_signaler(p__, rq__) \
--	list_for_each_entry_lockless(p__, \
--				     &(rq__)->sched.signalers_list, \
--				     signal_link)
-+	list_for_each_entry_rcu(p__, \
-+				&(rq__)->sched.signalers_list, \
-+				signal_link)
- 
- static void defer_request(struct i915_request *rq, struct list_head * const pl)
- {
-@@ -2533,11 +2533,13 @@ static bool execlists_hold(struct intel_engine_cs *engine,
- static bool hold_request(const struct i915_request *rq)
- {
- 	struct i915_dependency *p;
-+	bool result = false;
- 
- 	/*
- 	 * If one of our ancestors is on hold, we must also be on hold,
- 	 * otherwise we will bypass it and execute before it.
- 	 */
-+	rcu_read_lock();
- 	for_each_signaler(p, rq) {
- 		const struct i915_request *s =
- 			container_of(p->signaler, typeof(*s), sched);
-@@ -2545,11 +2547,13 @@ static bool hold_request(const struct i915_request *rq)
- 		if (s->engine != rq->engine)
- 			continue;
- 
--		if (i915_request_on_hold(s))
--			return true;
-+		result = i915_request_on_hold(s);
-+		if (result)
-+			break;
- 	}
-+	rcu_read_unlock();
- 
--	return false;
-+	return result;
- }
- 
- static void __execlists_unhold(struct i915_request *rq)
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index e19a37a83397..4e48757e9de6 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -486,7 +486,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
- 	list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
- 		GEM_BUG_ON(!list_empty(&dep->dfs_link));
- 
--		list_del(&dep->wait_link);
-+		list_del_rcu(&dep->wait_link);
- 		if (dep->flags & I915_DEPENDENCY_ALLOC)
- 			i915_dependency_free(dep);
- 	}
-@@ -497,7 +497,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
- 		GEM_BUG_ON(dep->signaler != node);
- 		GEM_BUG_ON(!list_empty(&dep->dfs_link));
- 
--		list_del(&dep->signal_link);
-+		list_del_rcu(&dep->signal_link);
- 		if (dep->flags & I915_DEPENDENCY_ALLOC)
- 			i915_dependency_free(dep);
- 	}
--- 
-2.25.0
-
+On Tue, 18 Feb 2020 at 16:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> As setup takes a long time, the user may close the context during the
+> construction of the execbuf. In order to make sure we correctly track
+> all outstanding work with non-persistent contexts, we need to serialise
+> the submission with the context closure and mop up any leaks.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
