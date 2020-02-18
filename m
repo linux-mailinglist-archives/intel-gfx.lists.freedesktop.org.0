@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B17EE163636
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B73163643
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7EE66EACF;
-	Tue, 18 Feb 2020 22:33:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD22B890D3;
+	Tue, 18 Feb 2020 22:36:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 794AB6EAC9
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 22:33:51 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 14:33:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,458,1574150400"; d="scan'208";a="434264155"
-Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by fmsmga005.fm.intel.com with ESMTP; 18 Feb 2020 14:33:51 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 14:33:27 -0800
-Message-Id: <20200218223327.11058-10-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200218223327.11058-1-daniele.ceraolospurio@intel.com>
-References: <20200218223327.11058-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 85A37890D3;
+ Tue, 18 Feb 2020 22:36:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 725F7A41FB;
+ Tue, 18 Feb 2020 22:36:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 10/10] HAX: drm/i915: default to enable_guc=2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 18 Feb 2020 22:36:24 -0000
+Message-ID: <158206538443.31433.1078540227345379126@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200218162232.14368-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200218162232.14368-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Refactor_Gen11+_SAGV_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,33 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To enable GuC and HuC loading on all gen9+ CI machines.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/i915_params.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: Refactor Gen11+ SAGV support
+URL   : https://patchwork.freedesktop.org/series/73584/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 45323732f099..7b5d32c990bc 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -56,7 +56,7 @@ struct drm_printer;
- 	param(int, disable_power_well, -1, 0400) \
- 	param(int, enable_ips, 1, 0600) \
- 	param(int, invert_brightness, 0, 0600) \
--	param(int, enable_guc, 0, 0400) \
-+	param(int, enable_guc, 2, 0400) \
- 	param(int, guc_log_level, -1, 0400) \
- 	param(char *, guc_firmware_path, NULL, 0400) \
- 	param(char *, huc_firmware_path, NULL, 0400) \
--- 
-2.24.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+1c72d442abeb drm/i915: Start passing latency as parameter
+b0f9bed0c1be drm/i915: Introduce skl_plane_wm_level accessor.
+f8c8b7d5f472 drm/i915: Init obj state in intel_atomic_get_old/new_global_obj_state
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+also in intel_atomic_get_old_global_obj_state and intel_atomic_get_new_global_obj_state
+
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_bw.c:395:
++	struct intel_global_state *bw_state;
++	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
+
+total: 0 errors, 2 warnings, 0 checks, 49 lines checked
+fe62c40aa234 drm/i915: Refactor intel_can_enable_sagv
+-:77: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#77: 
+      when using skl_plane_wm_level accessor, as we had previously for Gen11+
+
+-:203: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#203: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:87:
+ 
++
+
+-:298: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#298: FILE: drivers/gpu/drm/i915/intel_pm.c:3812:
++
++
+
+-:357: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'state->active_pipes == dev_priv->active_pipes'
+#357: FILE: drivers/gpu/drm/i915/intel_pm.c:3871:
++	if ((state->active_pipes == dev_priv->active_pipes) &&
++	    (total_affected_planes == 0))
+
+-:357: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'total_affected_planes == 0'
+#357: FILE: drivers/gpu/drm/i915/intel_pm.c:3871:
++	if ((state->active_pipes == dev_priv->active_pipes) &&
++	    (total_affected_planes == 0))
+
+-:456: WARNING:LINE_SPACING: Missing a blank line after declarations
+#456: FILE: drivers/gpu/drm/i915/intel_pm.c:4002:
++		int active_pipe_bit = dev_priv->active_pipes & BIT(i);
++		if (active_pipe_bit) {
+
+-:566: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#566: FILE: drivers/gpu/drm/i915/intel_pm.c:4810:
++
++
+
+-:659: WARNING:LONG_LINE: line over 100 characters
+#659: FILE: drivers/gpu/drm/i915/intel_pm.c:5883:
++					    old_wm->sagv_wm0.min_ddb_alloc : old_wm->wm[0].min_ddb_alloc;
+
+-:662: WARNING:LONG_LINE: line over 100 characters
+#662: FILE: drivers/gpu/drm/i915/intel_pm.c:5886:
++					    new_wm->sagv_wm0.min_ddb_alloc : new_wm->wm[0].min_ddb_alloc;
+
+-:774: WARNING:LONG_LINE: line over 100 characters
+#774: FILE: drivers/gpu/drm/i915/intel_pm.c:6125:
++						 &new_crtc_state->wm.skl.optimal.planes[plane_id])) {
+
+total: 0 errors, 5 warnings, 5 checks, 702 lines checked
+5c948ee6e68b drm/i915: Added required new PCode commands
+d54a20f1dbff drm/i915: Restrict qgv points which don't have enough bandwidth.
+ce7aae32b76b drm/i915: Enable SAGV support for Gen12
 
 _______________________________________________
 Intel-gfx mailing list
