@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 213EE163660
-	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:47:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A8616362C
+	for <lists+intel-gfx@lfdr.de>; Tue, 18 Feb 2020 23:33:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 780E26EAD0;
-	Tue, 18 Feb 2020 22:47:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 723566E030;
+	Tue, 18 Feb 2020 22:33:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC6E76EAD0
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 22:47:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB6F36E030
+ for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 22:33:41 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 14:47:18 -0800
+ 18 Feb 2020 14:33:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,458,1574150400"; d="scan'208";a="382606366"
-Received: from msatwood-mobl.jf.intel.com (HELO msatwood-mobl.intel.com)
- ([10.24.15.21])
- by orsmga004.jf.intel.com with ESMTP; 18 Feb 2020 14:47:18 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,458,1574150400"; d="scan'208";a="434264049"
+Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
+ by fmsmga005.fm.intel.com with ESMTP; 18 Feb 2020 14:33:40 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 18 Feb 2020 14:47:10 -0500
-Message-Id: <20200218194710.2808-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.21.1
+Date: Tue, 18 Feb 2020 14:33:18 -0800
+Message-Id: <20200218223327.11058-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt/tgl: implement Wa_1409085225
+Subject: [Intel-gfx] [CI 01/10] drm/i915/debugfs: Pass guc_log struct to
+ i915_guc_log_info
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,70 +46,47 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable Push Constant buffer addition for A0, which can cause FIFO
-underruns.
+The log struct is the only thing the function needs (apart from
+the seq_file), so we can pass just that instead of the whole dev_priv.
 
-Fix a minor white space issue while we're here.
+v2: Split this change to its own patch (Michal)
 
-Bspec: 52890
-Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 ++++++++++
- drivers/gpu/drm/i915/i915_reg.h             |  3 +++
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/i915_debugfs.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 887e0dc701f7..9bbd28aa9bde 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -580,6 +580,7 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
- static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 				     struct i915_wa_list *wal)
- {
-+	struct drm_i915_private *i915 = engine->i915;
- 	u32 val;
- 
- 	/* Wa_1409142259:tgl */
-@@ -590,6 +591,7 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	val = intel_uncore_read(engine->uncore, FF_MODE2);
- 	val &= ~FF_MODE2_TDS_TIMER_MASK;
- 	val |= FF_MODE2_TDS_TIMER_128;
-+
- 	/*
- 	 * FIXME: FF_MODE2 register is not readable till TGL B0. We can
- 	 * enable verification of WA from the later steppings, which enables
-@@ -598,6 +600,14 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
- 	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
- 			    FF_MODE2_TDS_TIMER_MASK);
-+
-+	/* Wa_1409085225:tgl
-+	 *
-+	 * Push Constant Buffer can case FIFO underruns on A0
-+	 */
-+	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
-+		WA_SET_BIT_MASKED(GEN9_ROW_CHICKEN4,
-+				  GEN12_DISABLE_TDL_PUSH);
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index e5eea915bd0d..4afa5c48994e 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -1533,10 +1533,8 @@ stringify_guc_log_type(enum guc_log_buffer_type type)
+ 	return "";
  }
  
- static void
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b09c1d6dc0aa..a75a27ed63ce 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9153,6 +9153,9 @@ enum {
- #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
- #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
+-static void i915_guc_log_info(struct seq_file *m,
+-			      struct drm_i915_private *dev_priv)
++static void i915_guc_log_info(struct seq_file *m, struct intel_guc_log *log)
+ {
+-	struct intel_guc_log *log = &dev_priv->gt.uc.guc.log;
+ 	enum guc_log_buffer_type type;
  
-+#define GEN9_ROW_CHICKEN4		_MMIO(0x48c)
-+#define  GEN12_DISABLE_TDL_PUSH		(1 << 9)
-+
- #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
- #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
+ 	if (!intel_guc_log_relay_created(log)) {
+@@ -1564,7 +1562,7 @@ static int i915_guc_info(struct seq_file *m, void *data)
+ 	if (!USES_GUC(dev_priv))
+ 		return -ENODEV;
+ 
+-	i915_guc_log_info(m, dev_priv);
++	i915_guc_log_info(m, &dev_priv->gt.uc.guc.log);
+ 
+ 	/* Add more as required ... */
  
 -- 
-2.21.1
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
