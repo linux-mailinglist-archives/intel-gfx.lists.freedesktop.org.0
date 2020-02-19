@@ -2,33 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DF71646A2
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:15:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A01181646D0
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:22:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20E816E7F1;
-	Wed, 19 Feb 2020 14:15:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8D826E808;
+	Wed, 19 Feb 2020 14:22:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02F66E7F1
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 14:15:00 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 06:15:00 -0800
-X-IronPort-AV: E=Sophos;i="5.70,459,1574150400"; d="scan'208";a="224512259"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 06:14:58 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 15:14:35 +0100
-Message-Id: <20200219141435.23651-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEAF96E808;
+ Wed, 19 Feb 2020 14:22:36 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
+ [81.175.216.236])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5A12F2F9;
+ Wed, 19 Feb 2020 15:22:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1582122155;
+ bh=hdAYzomJhaxy0DSd8b/nOVZASYeXhOhOUsp8XKuJ3rU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=oZLEn5udRwppYh2zjWY0mJoMa4pKFAbwRSgIWXdYFFkU1LHcwdImSo/hg2EuMrSEF
+ hlhMEqW2wVUxLVUqzgXBbG8QT7fWXgoyV3wFUScpqb7fdN5hoefysPr0wYvkhFrMdX
+ qAYHmB4senfhXVegkAd5F/CnfAxM2TfHQwJEMtP8=
+Date: Wed, 19 Feb 2020 16:22:17 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200219142217.GK5070@pendragon.ideasonboard.com>
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-25-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH v2] drm/i915/userptr: Activate MMU notifier
- only after pages are set
+Content-Disposition: inline
+In-Reply-To: <20200219102122.1607365-25-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 24/52] drm: Manage drm_gem_init with drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,80 +47,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The purpose of userptr MMU notifier is to invalidate object pages as
-soon as someone unpins them from memory.  While doing that,
-obj->mm.lock is acquired.  If the notifier was called with obj->mm.lock
-already held, a lockdep loop would be triggered.  That scenario is
-believed to be possible in several cases, one of which is when the
-userptr object is created from an mmap-offset mapping of another i915
-GEM object.  This patch tries to address this case.
+Hi Daniel,
 
-Even if creating a userptr object on an mmap-offset mapping succeeds,
-trying to pin pages of the mapping in memory always fails because of
-them having a VM_PFNMAP flag set.  However, the notifier can be
-activated for a userptr object even before required pages are found
-already pinned in memory, as soon as a worker expected to get missing
-pages is scheduled successfully.  If the worker then fails to collect
-the pages, it deactivates the notifier.  However, a time window exists
-when the notifier can be called for an object even with no pages set
-yet.
+Thank you for the patch.
 
-Postpone activation of the userptr MMU notifier for an object until
-pages are successfully acquired and set.
+On Wed, Feb 19, 2020 at 11:20:54AM +0100, Daniel Vetter wrote:
+> We might want to look into pushing this down into drm_mm_init, but
+> that would mean rolling out return codes to a pile of functions
+> unfortunately. So let's leave that for now.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_drv.c      |  8 +-------
+>  drivers/gpu/drm/drm_gem.c      | 21 ++++++++++-----------
+>  drivers/gpu/drm/drm_internal.h |  1 -
+>  3 files changed, 11 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 03a1fb377830..7b3df1188da9 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -688,13 +688,10 @@ int drm_dev_init(struct drm_device *dev,
+>  
+>  	ret = drm_dev_set_unique(dev, dev_name(parent));
+>  	if (ret)
+> -		goto err_setunique;
+> +		goto err;
+>  
+>  	return 0;
+>  
+> -err_setunique:
+> -	if (drm_core_check_feature(dev, DRIVER_GEM))
+> -		drm_gem_destroy(dev);
+>  err:
+>  	drm_managed_release(dev);
+>  
+> @@ -756,9 +753,6 @@ EXPORT_SYMBOL(devm_drm_dev_init);
+>  void drm_dev_fini(struct drm_device *dev)
+>  {
+>  	drm_vblank_cleanup(dev);
+> -
+> -	if (drm_core_check_feature(dev, DRIVER_GEM))
+> -		drm_gem_destroy(dev);
+>  }
+>  EXPORT_SYMBOL(drm_dev_fini);
+>  
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 0b6e6623735e..31095e0f6b9f 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -44,6 +44,7 @@
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_gem.h>
+> +#include <drm/drm_managed.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_vma_manager.h>
+>  
+> @@ -77,6 +78,12 @@
+>   * up at a later date, and as our interface with shmfs for memory allocation.
+>   */
+>  
+> +static void
+> +drm_gem_init_release(struct drm_device *dev, void *ptr)
+> +{
+> +	drm_vma_offset_manager_destroy(dev->vma_offset_manager);
+> +}
+> +
+>  /**
+>   * drm_gem_init - Initialize the GEM device fields
+>   * @dev: drm_devic structure to initialize
+> @@ -89,7 +96,8 @@ drm_gem_init(struct drm_device *dev)
+>  	mutex_init(&dev->object_name_lock);
+>  	idr_init_base(&dev->object_name_idr, 1);
+>  
+> -	vma_offset_manager = kzalloc(sizeof(*vma_offset_manager), GFP_KERNEL);
+> +	vma_offset_manager = drmm_kzalloc(dev, sizeof(*vma_offset_manager),
+> +					  GFP_KERNEL);
+>  	if (!vma_offset_manager) {
+>  		DRM_ERROR("out of memory\n");
+>  		return -ENOMEM;
+> @@ -100,16 +108,7 @@ drm_gem_init(struct drm_device *dev)
+>  				    DRM_FILE_PAGE_OFFSET_START,
+>  				    DRM_FILE_PAGE_OFFSET_SIZE);
+>  
+> -	return 0;
+> -}
+> -
+> -void
+> -drm_gem_destroy(struct drm_device *dev)
+> -{
+> -
+> -	drm_vma_offset_manager_destroy(dev->vma_offset_manager);
+> -	kfree(dev->vma_offset_manager);
+> -	dev->vma_offset_manager = NULL;
+> +	return drmm_add_action(dev, drm_gem_init_release, NULL);
 
-v2: Don't activate the notifier for as long as pages have not been set.
+This looks fine as such (although I'm not sure if the managed API
+overhead is really worth it for core code), but it leads to a potential
+issue: if we handle more of the cleanup through the managed API, how do
+we ensure that the cleanup functions are called in the right order (when
+order matters) ?
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
-Hi,
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+> index 8c2628dfc6c7..cb09e95a795e 100644
+> --- a/drivers/gpu/drm/drm_internal.h
+> +++ b/drivers/gpu/drm/drm_internal.h
+> @@ -144,7 +144,6 @@ void drm_sysfs_lease_event(struct drm_device *dev);
+>  /* drm_gem.c */
+>  struct drm_gem_object;
+>  int drm_gem_init(struct drm_device *dev);
+> -void drm_gem_destroy(struct drm_device *dev);
+>  int drm_gem_handle_create_tail(struct drm_file *file_priv,
+>  			       struct drm_gem_object *obj,
+>  			       u32 *handlep);
 
-This is a slightly modified alternative to the patch "drm/i915/userptr:
-Don't activate MMU notifier if no pages can be acquired" just submitted.
-I think it is better than the original as it prevents the notifier from
-being uselessly called before object pages are even set.
-
-Thanks,
-Janusz
-
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 63ead7a2b64a..1cb88ab61a57 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -498,14 +498,13 @@ __i915_gem_userptr_get_pages_worker(struct work_struct *_work)
- 			pages = __i915_gem_userptr_alloc_pages(obj, pvec,
- 							       npages);
- 			if (!IS_ERR(pages)) {
-+				__i915_gem_userptr_set_active(obj, true);
- 				pinned = 0;
- 				pages = NULL;
- 			}
- 		}
- 
- 		obj->userptr.work = ERR_CAST(pages);
--		if (IS_ERR(pages))
--			__i915_gem_userptr_set_active(obj, false);
- 	}
- 	mutex_unlock(&obj->mm.lock);
- 
-@@ -613,7 +612,6 @@ static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
- 		pinned = 0;
- 	} else if (pinned < num_pages) {
- 		pages = __i915_gem_userptr_get_pages_schedule(obj);
--		active = pages == ERR_PTR(-EAGAIN);
- 	} else {
- 		pages = __i915_gem_userptr_alloc_pages(obj, pvec, num_pages);
- 		active = !IS_ERR(pages);
 -- 
-2.21.0
+Regards,
 
+Laurent Pinchart
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
