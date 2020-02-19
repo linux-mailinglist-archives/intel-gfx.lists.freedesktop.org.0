@@ -2,34 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 314E51645C9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 14:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0036F1645CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 14:39:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87CDB6EBE3;
-	Wed, 19 Feb 2020 13:38:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE6D6E7E6;
+	Wed, 19 Feb 2020 13:39:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BAFD6E7E6
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 13:38:16 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 05:38:09 -0800
-X-IronPort-AV: E=Sophos;i="5.70,459,1574150400"; d="scan'208";a="229111962"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 05:38:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 15:37:56 +0200
-Message-Id: <20200219133756.13224-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBB846E7E6;
+ Wed, 19 Feb 2020 13:39:19 +0000 (UTC)
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
+ [81.175.216.236])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4FB2E2F9;
+ Wed, 19 Feb 2020 14:39:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1582119558;
+ bh=LyUONTSrdds7t3gz62H8MOFqWkmg+wPrBzed1rOyYiQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=GDZDd/u5eH4Y/7GygTdJqJJmFrn3hhVkcuts6v0LOA7RJL/e7uodMW5U5n6fz2MZI
+ 92Fp3L2aSCKUoNZV4opTYicob4qbQIKcipwE7wIMeglUpHc3hPgEvCwqLeO6TnLFg4
+ /cUkChpTe5Lrq1QfAAqfOTQKzMKaQUWFr5EvKF60=
+Date: Wed, 19 Feb 2020 15:39:00 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200219133900.GE5070@pendragon.ideasonboard.com>
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-5-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [CI] drm/i915: split i915_driver_modeset_probe() to
- pre/post irq install
+Content-Disposition: inline
+In-Reply-To: <20200219102122.1607365-5-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 04/52] drm: Set final_kfree in drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,67 +47,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, xen-devel@lists.xenproject.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UGFpciB0aGUgaXJxIGluc3RhbGwgYW5kIHVuaW5zdGFsbCBpbiB0aGUgc2FtZSBsYXllci4gVGhl
-cmUgYXJlIG5vCmZ1bmN0aW9uYWwgY2hhbmdlcyBpbiB0aGUgaGFwcHkgZGF5IHNjZW5hcmlvLiBU
-aGUgY2xlYW51cCBwYXRocyBhcmUKY3VycmVudGx5IGEgbWVzcyB0aG91Z2guCgpOb3RlIHRoYXQg
-bW9kZXNldCBwcm9iZSBwcmUtaXJxICsgcG9zdC1pcnEgaW5zdGFsbCBhcmUgbWF0Y2hlZCBieQpt
-b2Rlc2V0IGRyaXZlciByZW1vdmUgcHJlLWlycSArIHBvc3QtaXJxIHVuaW5zdGFsbCwgdG9nZXRo
-ZXIsIGJ1dCBub3QKaW5kZXBlbmRlbnRseS4gVGhleSBhcmUgbm90IHN5bW1ldHJpYyBwYWlycy4K
-CnYyOiBkb24ndCBhZGQgYSBuZXcgcHJvYmUgZmFpbHVyZSBwb2ludCBoZXJlCgpDYzogVmlsbGUg
-U3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IFZp
-bGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYt
-Ynk6IEphbmkgTmlrdWxhIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9kcnYuYyB8IDQwICsrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0t
-LQogMSBmaWxlIGNoYW5nZWQsIDI3IGluc2VydGlvbnMoKyksIDEzIGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5jCmluZGV4IDc1OWQzMzM0NDhlMS4uN2FhZDY1NjQ0MzUxIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2LmMKQEAgLTIxMiw3ICsyMTIsOCBAQCBpbnRlbF90ZWFyZG93bl9t
-Y2hiYXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCQlyZWxlYXNlX3Jlc291
-cmNlKCZkZXZfcHJpdi0+bWNoX3Jlcyk7CiB9CiAKLXN0YXRpYyBpbnQgaTkxNV9kcml2ZXJfbW9k
-ZXNldF9wcm9iZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKKy8qIHBhcnQgIzE6IGNh
-bGwgYmVmb3JlIGlycSBpbnN0YWxsICovCitzdGF0aWMgaW50IGk5MTVfZHJpdmVyX21vZGVzZXRf
-cHJvYmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCiB7CiAJaW50IHJldDsK
-IApAQCAtMjM2LDE1ICsyMzcsMjIgQEAgc3RhdGljIGludCBpOTE1X2RyaXZlcl9tb2Rlc2V0X3By
-b2JlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogCiAJaW50ZWxfY3NyX3Vjb2RlX2lu
-aXQoaTkxNSk7CiAKLQlyZXQgPSBpbnRlbF9pcnFfaW5zdGFsbChpOTE1KTsKLQlpZiAocmV0KQot
-CQlnb3RvIGNsZWFudXBfY3NyOworCXJldHVybiAwOworCitvdXQ6CisJcmV0dXJuIHJldDsKK30K
-KworLyogcGFydCAjMjogY2FsbCBhZnRlciBpcnEgaW5zdGFsbCAqLworc3RhdGljIGludCBpOTE1
-X2RyaXZlcl9tb2Rlc2V0X3Byb2JlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQorewor
-CWludCByZXQ7CiAKIAkvKiBJbXBvcnRhbnQ6IFRoZSBvdXRwdXQgc2V0dXAgZnVuY3Rpb25zIGNh
-bGxlZCBieSBtb2Rlc2V0X2luaXQgbmVlZAogCSAqIHdvcmtpbmcgaXJxcyBmb3IgZS5nLiBnbWJ1
-cyBhbmQgZHAgYXV4IHRyYW5zZmVycy4gKi8KIAlyZXQgPSBpbnRlbF9tb2Rlc2V0X2luaXQoaTkx
-NSk7CiAJaWYgKHJldCkKLQkJZ290byBjbGVhbnVwX2lycTsKKwkJZ290byBvdXQ7CiAKIAlyZXQg
-PSBpOTE1X2dlbV9pbml0KGk5MTUpOwogCWlmIChyZXQpCkBAIC0yNzEsMTYgKzI3OSwxMCBAQCBz
-dGF0aWMgaW50IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmUoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpCiAJaTkxNV9nZW1fZHJpdmVyX3JlbW92ZShpOTE1KTsKIAlpOTE1X2dlbV9kcml2
-ZXJfcmVsZWFzZShpOTE1KTsKIGNsZWFudXBfbW9kZXNldDoKKwkvKiBGSVhNRSAqLwogCWludGVs
-X21vZGVzZXRfZHJpdmVyX3JlbW92ZShpOTE1KTsKIAlpbnRlbF9pcnFfdW5pbnN0YWxsKGk5MTUp
-OwogCWludGVsX21vZGVzZXRfZHJpdmVyX3JlbW92ZV9ub2lycShpOTE1KTsKLQlnb3RvIGNsZWFu
-dXBfY3NyOwotY2xlYW51cF9pcnE6Ci0JaW50ZWxfaXJxX3VuaW5zdGFsbChpOTE1KTsKLWNsZWFu
-dXBfY3NyOgotCWludGVsX2Nzcl91Y29kZV9maW5pKGk5MTUpOwotCWludGVsX3Bvd2VyX2RvbWFp
-bnNfZHJpdmVyX3JlbW92ZShpOTE1KTsKLQlpbnRlbF92Z2FfdW5yZWdpc3RlcihpOTE1KTsKIG91
-dDoKIAlyZXR1cm4gcmV0OwogfQpAQCAtMTQ1OSwxMCArMTQ2MSwxOCBAQCBpbnQgaTkxNV9kcml2
-ZXJfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsIGNvbnN0IHN0cnVjdCBwY2lfZGV2aWNlX2lk
-ICplbnQpCiAJaWYgKHJldCA8IDApCiAJCWdvdG8gb3V0X2NsZWFudXBfbW1pbzsKIAotCXJldCA9
-IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmUoaTkxNSk7CisJcmV0ID0gaTkxNV9kcml2ZXJfbW9k
-ZXNldF9wcm9iZV9ub2lycShpOTE1KTsKIAlpZiAocmV0IDwgMCkKIAkJZ290byBvdXRfY2xlYW51
-cF9odzsKIAorCXJldCA9IGludGVsX2lycV9pbnN0YWxsKGk5MTUpOworCWlmIChyZXQpCisJCWdv
-dG8gb3V0X2NsZWFudXBfbW9kZXNldDsKKworCXJldCA9IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJv
-YmUoaTkxNSk7CisJaWYgKHJldCA8IDApCisJCWdvdG8gb3V0X2NsZWFudXBfaXJxOworCiAJaTkx
-NV9kcml2ZXJfcmVnaXN0ZXIoaTkxNSk7CiAKIAllbmFibGVfcnBtX3dha2VyZWZfYXNzZXJ0cygm
-aTkxNS0+cnVudGltZV9wbSk7CkBAIC0xNDcxLDYgKzE0ODEsMTAgQEAgaW50IGk5MTVfZHJpdmVy
-X3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAq
-ZW50KQogCiAJcmV0dXJuIDA7CiAKK291dF9jbGVhbnVwX2lycToKKwlpbnRlbF9pcnFfdW5pbnN0
-YWxsKGk5MTUpOworb3V0X2NsZWFudXBfbW9kZXNldDoKKwkvKiBGSVhNRSAqLwogb3V0X2NsZWFu
-dXBfaHc6CiAJaTkxNV9kcml2ZXJfaHdfcmVtb3ZlKGk5MTUpOwogCWludGVsX21lbW9yeV9yZWdp
-b25zX2RyaXZlcl9yZWxlYXNlKGk5MTUpOwotLSAKMi4yMC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Hi Daniel,
+
+Thank you for the patch.
+
+On Wed, Feb 19, 2020 at 11:20:34AM +0100, Daniel Vetter wrote:
+> I also did a full review of all callers, and only the xen driver
+> forgot to call drm_dev_put in the failure path. Fix that up too.
+
+I'd split this patch in two then, with the Xen first coming first, and
+with an explanation in the commit message of the second patch about why
+you call drmm_add_final_kfree() in drm_dev_alloc().
+
+> v2: I noticed that xen has a drm_driver.release hook, and uses
+> drm_dev_alloc(). We need to remove the kfree from
+> xen_drm_drv_release().
+> 
+> bochs also has a release hook, but leaked the drm_device ever since
+> 
+> commit 0a6659bdc5e8221da99eebb176fd9591435e38de
+> Author: Gerd Hoffmann <kraxel@redhat.com>
+> Date:   Tue Dec 17 18:04:46 2013 +0100
+> 
+>     drm/bochs: new driver
+> 
+> This patch here fixes that leak.
+> 
+> Same for virtio, started leaking with
+> 
+> commit b1df3a2b24a917f8853d43fe9683c0e360d2c33a
+> Author: Gerd Hoffmann <kraxel@redhat.com>
+> Date:   Tue Feb 11 14:58:04 2020 +0100
+> 
+>     drm/virtio: add drm_driver.release callback.
+> 
+> Cc: Gerd Hoffmann <kraxel@redhat.com>
+> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+> Cc: xen-devel@lists.xenproject.org
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+> Cc: xen-devel@lists.xenproject.org
+> ---
+>  drivers/gpu/drm/drm_drv.c           | 3 +++
+>  drivers/gpu/drm/xen/xen_drm_front.c | 2 +-
+>  2 files changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 3e5627d6eba6..9e62e28bbc62 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -39,6 +39,7 @@
+>  #include <drm/drm_color_mgmt.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+> +#include <drm/drm_managed.h>
+>  #include <drm/drm_mode_object.h>
+>  #include <drm/drm_print.h>
+>  
+> @@ -819,6 +820,8 @@ struct drm_device *drm_dev_alloc(struct drm_driver *driver,
+>  		return ERR_PTR(ret);
+>  	}
+>  
+> +	drmm_add_final_kfree(dev, dev);
+
+drmm_add_final_kfree() can only be called once. Does this mean that a
+driver using drm_dev_alloc() isn't allowed to use drmm_add_final_kfree()
+to tract its own private structure ?
+
+> +
+>  	return dev;
+>  }
+>  EXPORT_SYMBOL(drm_dev_alloc);
+> diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
+> index 4be49c1aef51..d22b5da38935 100644
+> --- a/drivers/gpu/drm/xen/xen_drm_front.c
+> +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+> @@ -461,7 +461,6 @@ static void xen_drm_drv_release(struct drm_device *dev)
+>  	drm_mode_config_cleanup(dev);
+>  
+>  	drm_dev_fini(dev);
+> -	kfree(dev);
+>  
+>  	if (front_info->cfg.be_alloc)
+>  		xenbus_switch_state(front_info->xb_dev,
+> @@ -561,6 +560,7 @@ static int xen_drm_drv_init(struct xen_drm_front_info *front_info)
+>  fail_modeset:
+>  	drm_kms_helper_poll_fini(drm_dev);
+>  	drm_mode_config_cleanup(drm_dev);
+> +	drm_dev_put(drm_dev);
+>  fail:
+>  	kfree(drm_info);
+>  	return ret;
+
+-- 
+Regards,
+
+Laurent Pinchart
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
