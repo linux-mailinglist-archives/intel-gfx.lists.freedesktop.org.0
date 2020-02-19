@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6C21641DE
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72A901641C1
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64A366EB69;
-	Wed, 19 Feb 2020 10:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1CA6EB95;
+	Wed, 19 Feb 2020 10:22:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
  [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 700E46EB5F
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:20 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id a6so6143859wme.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:20 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 816FE6EB67
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:21 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id t14so6137499wmi.5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=Ra/jYUSiXamgYu/JamVQr8pWXrAQtMQY8c7jRMMc6pY=;
- b=S8G+9qlagL5yIxvDS2Cmne8waOo0yaG0iNuzqxZupk4N2TnpZOeD9Y+aBIzJ89UiyC
- yMXxqMPId9KcRWO43mwxgBpTIwZx/8M+Ez3vr0pbRlhmimOiJemxIuG0PsCnUqm+hYYV
- hasVGlBcvKMJ2cVFWasJDiqAsucEUXpFD26Zw=
+ bh=xMlgdU1cYExkP2QmLXd1n53OowDsHqDIXTQr8j/y3Q8=;
+ b=T+x49BUuQM7M/z3U38Vqp7Kmd4NXSMDNcFJe991R5bZt0s8aChJvrMmz7fsDCSLOhp
+ jv8FE72a5MrrcrFuHDqXOz/ULMzBBR56wKPlc4NOlK2a5jN35HHmACcATr7QaeAsazY7
+ 61cbCtIOligGJrJbU0kSCW97mdiqOdjAI1AXw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=Ra/jYUSiXamgYu/JamVQr8pWXrAQtMQY8c7jRMMc6pY=;
- b=d17LR4hdRjavJpOBolP8EvU5G6S0dRaQF2X0iAMCG2qBj2SnR72QuH/Crs66zTZN7U
- w7wNQccqa/V74aAYhtLMZ4dKZ51xIWfQY9WDe+oFsI6ZDznsypF4aKyw+PGBpiKoQ9M2
- H+R8dx8vEdSowmoTA8cmiOjXpINUGN3MNcazxUtvnarmAU1tkj3e7/i48svGMpbN7Q6c
- lLsiMfueN6iqxHWz40kgifpYBvkyWfmD0K56Zj1Qje70X1gV0U6oaiubV129HyBRbtJI
- JE5ETKUfCCjw45D/50UCkAxWwaGwKE68e6fXH422mTKfggMAAMntQNhSiVuuUn61QmEO
- voBw==
-X-Gm-Message-State: APjAAAXh+M/WRUNuq49gvJKfRYjdA6pdjqSSoaXfWBWFkuvFOJqflKv5
- Qjw7yTt1HrG/H8Aprk0FrMCdhA==
-X-Google-Smtp-Source: APXvYqyXrsEWE44mHqV6H9DQnZaeWEEjB0A4IvWm1mBkRUT8/uZfDnbxEm/1kdjWKDQVjddy+Vgj8A==
-X-Received: by 2002:a7b:c3d1:: with SMTP id t17mr9100246wmj.27.1582107739143; 
- Wed, 19 Feb 2020 02:22:19 -0800 (PST)
+ bh=xMlgdU1cYExkP2QmLXd1n53OowDsHqDIXTQr8j/y3Q8=;
+ b=j55N5xX1Vtnz+MKYX/I5w4prC+kMKax8Vqa3rB3L4Eru40njcBEqZhik9szNtr4xgK
+ 2frORnEhpf9i5HBKMbX8hHc/PDS3NTcdxrabMYygby8DPEkq5BH2xdmlf2+1ixn/VXQc
+ XmU58fWR2fM2kmwLtqKBC0uGMJmQ6M7urN45lJYqj7ve8yZsD7shYOkMI0Km9B5OnxkN
+ sFKdLXT75nc7Q1eH/5F037J7EZrSfi8M3zs2zAqvEa7g7b4qZ7LwKGyqnvYnu3mYBGqZ
+ al9BYInDAfg/u7GlaNYiNfP13a4YpAN6NDL0L/JGBj7nJTvVqgILU7QlvzJxhU19E8Kj
+ X4Iw==
+X-Gm-Message-State: APjAAAXJ9rTSMc2aBpF7+QZ2b5KsBX9RBJ/tjjqvCShDL8GSpv8qQy2J
+ K1aGcuUcmNym/WBUpoxC7WZMjg==
+X-Google-Smtp-Source: APXvYqymi9589CDsGB+zjTSFgOOAfFLrPZpKIiRrm56SLHkI/2PZysDoDOjkW1ClCmBMu5VkiuS1AA==
+X-Received: by 2002:a1c:7205:: with SMTP id n5mr9512518wmc.9.1582107740163;
+ Wed, 19 Feb 2020 02:22:20 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.18
+ by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 02:22:18 -0800 (PST)
+ Wed, 19 Feb 2020 02:22:19 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 19 Feb 2020 11:21:10 +0100
-Message-Id: <20200219102122.1607365-41-daniel.vetter@ffwll.ch>
+Date: Wed, 19 Feb 2020 11:21:11 +0100
+Message-Id: <20200219102122.1607365-42-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 40/52] drm/shmob: Drop explicit
+Subject: [Intel-gfx] [PATCH 41/52] drm/mtk: Drop explicit
  drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,9 +66,6 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- linux-renesas-soc@vger.kernel.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -81,51 +78,51 @@ Aside: Another driver with a bit much devm_kzalloc, which should
 probably use drmm_kzalloc instead ...
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: linux-renesas-soc@vger.kernel.org
 ---
- drivers/gpu/drm/shmobile/shmob_drm_drv.c | 2 --
- drivers/gpu/drm/shmobile/shmob_drm_kms.c | 6 +++++-
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-index b8c0930959c7..ae9d6b8d3ca8 100644
---- a/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-+++ b/drivers/gpu/drm/shmobile/shmob_drm_drv.c
-@@ -192,7 +192,6 @@ static int shmob_drm_remove(struct platform_device *pdev)
+diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+index 0563c6813333..947b2cbe2836 100644
+--- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
++++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+@@ -162,7 +162,9 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+ 	}
+ 	private->mutex_dev = &pdev->dev;
  
- 	drm_dev_unregister(ddev);
- 	drm_kms_helper_poll_fini(ddev);
--	drm_mode_config_cleanup(ddev);
- 	drm_irq_uninstall(ddev);
- 	drm_dev_put(ddev);
- 
-@@ -288,7 +287,6 @@ static int shmob_drm_probe(struct platform_device *pdev)
- 	drm_irq_uninstall(ddev);
- err_modeset_cleanup:
- 	drm_kms_helper_poll_fini(ddev);
--	drm_mode_config_cleanup(ddev);
- err_free_drm_dev:
- 	drm_dev_put(ddev);
- 
-diff --git a/drivers/gpu/drm/shmobile/shmob_drm_kms.c b/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-index c51197b6fd85..e6e34bb75ba0 100644
---- a/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-+++ b/drivers/gpu/drm/shmobile/shmob_drm_kms.c
-@@ -126,7 +126,11 @@ static const struct drm_mode_config_funcs shmob_drm_mode_config_funcs = {
- 
- int shmob_drm_modeset_init(struct shmob_drm_device *sdev)
- {
--	drm_mode_config_init(sdev->ddev);
-+	int ret;
-+
-+	ret = drm_mode_config_init(sdev->ddev);
+-	drm_mode_config_init(drm);
++	ret = drm_mode_config_init(drm);
 +	if (ret)
 +		return ret;
  
- 	shmob_drm_crtc_create(sdev);
- 	shmob_drm_encoder_create(sdev);
+ 	drm->mode_config.min_width = 64;
+ 	drm->mode_config.min_height = 64;
+@@ -179,7 +181,7 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+ 
+ 	ret = component_bind_all(drm->dev, drm);
+ 	if (ret)
+-		goto err_config_cleanup;
++		return ret;
+ 
+ 	/*
+ 	 * We currently support two fixed data streams, each optional,
+@@ -255,8 +257,6 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+ 		dma_dev->dma_parms = NULL;
+ err_component_unbind:
+ 	component_unbind_all(drm->dev, drm);
+-err_config_cleanup:
+-	drm_mode_config_cleanup(drm);
+ 
+ 	return ret;
+ }
+@@ -272,7 +272,6 @@ static void mtk_drm_kms_deinit(struct drm_device *drm)
+ 		private->dma_dev->dma_parms = NULL;
+ 
+ 	component_unbind_all(drm->dev, drm);
+-	drm_mode_config_cleanup(drm);
+ }
+ 
+ static const struct file_operations mtk_drm_fops = {
 -- 
 2.24.1
 
