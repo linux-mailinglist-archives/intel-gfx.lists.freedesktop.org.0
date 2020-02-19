@@ -1,41 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F08B164688
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:11:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DF71646A2
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:15:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC996E3D0;
-	Wed, 19 Feb 2020 14:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20E816E7F1;
+	Wed, 19 Feb 2020 14:15:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680E46E7DC;
- Wed, 19 Feb 2020 14:11:36 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
- [81.175.216.236])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id BECCB2F9;
- Wed, 19 Feb 2020 15:11:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1582121495;
- bh=mrNMgGmsSah0cfjOGKPD1HLUQozwUr32qMmb62eujsk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Pehkv4uv8ktd4JuJcbF6MCEvT49NuGDn3Iwe+lbQtkH/celGymdf4/oDqgDujD/y9
- uhdkh793diOrh77Id+KwagH1+G96lOSgDHVjgQczrGB5lMK5FKNwahcn36beofqCrR
- 4AyZrZk/mZSXNeZahsTKdu9261wfyJLz6ZUmCsG4=
-Date: Wed, 19 Feb 2020 16:11:16 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200219141116.GJ5070@pendragon.ideasonboard.com>
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-20-daniel.vetter@ffwll.ch>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B02F66E7F1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 14:15:00 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2020 06:15:00 -0800
+X-IronPort-AV: E=Sophos;i="5.70,459,1574150400"; d="scan'208";a="224512259"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2020 06:14:58 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Feb 2020 15:14:35 +0100
+Message-Id: <20200219141435.23651-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200219102122.1607365-20-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 19/52] drm/<drivers>: Use
- drmm_add_final_kfree
+Subject: [Intel-gfx] [RFC PATCH v2] drm/i915/userptr: Activate MMU notifier
+ only after pages are set
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,106 +41,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Russell King <linux@armlinux.org.uk>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+The purpose of userptr MMU notifier is to invalidate object pages as
+soon as someone unpins them from memory.  While doing that,
+obj->mm.lock is acquired.  If the notifier was called with obj->mm.lock
+already held, a lockdep loop would be triggered.  That scenario is
+believed to be possible in several cases, one of which is when the
+userptr object is created from an mmap-offset mapping of another i915
+GEM object.  This patch tries to address this case.
 
-Thank you for the patch.
+Even if creating a userptr object on an mmap-offset mapping succeeds,
+trying to pin pages of the mapping in memory always fails because of
+them having a VM_PFNMAP flag set.  However, the notifier can be
+activated for a userptr object even before required pages are found
+already pinned in memory, as soon as a worker expected to get missing
+pages is scheduled successfully.  If the worker then fails to collect
+the pages, it deactivates the notifier.  However, a time window exists
+when the notifier can be called for an object even with no pages set
+yet.
 
-On Wed, Feb 19, 2020 at 11:20:49AM +0100, Daniel Vetter wrote:
-> These are the leftover drivers that didn't have a ->release hook that
-> needed to be updated.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Mihail Atanassov <mihail.atanassov@arm.com>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> ---
->  drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 ++
->  drivers/gpu/drm/armada/armada_drv.c             | 2 ++
->  drivers/gpu/drm/vboxvideo/vbox_drv.c            | 2 ++
->  3 files changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> index 442d4656150a..16dfd5cdb66c 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> @@ -14,6 +14,7 @@
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
->  #include <drm/drm_irq.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_vblank.h>
->  
-> @@ -271,6 +272,7 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
->  	err = drm_dev_init(drm, &komeda_kms_driver, mdev->dev);
->  	if (err)
->  		goto free_kms;
-> +	drmm_add_final_kfree(drm, kms);
+Postpone activation of the userptr MMU notifier for an object until
+pages are successfully acquired and set.
 
-Instead of sprinkling calls to drmm_add_final_kfree() everywhere,
-wouldn't it be better to pass the parent pointer to drm_dev_init() ?
+v2: Don't activate the notifier for as long as pages have not been set.
 
->  
->  	drm->dev_private = mdev;
->  
-> diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-> index 197dca3fc84c..dd9ed71ed942 100644
-> --- a/drivers/gpu/drm/armada/armada_drv.c
-> +++ b/drivers/gpu/drm/armada/armada_drv.c
-> @@ -12,6 +12,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_ioctl.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_prime.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_fb_helper.h>
-> @@ -103,6 +104,7 @@ static int armada_drm_bind(struct device *dev)
->  		kfree(priv);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(&priv->drm, priv);
->  
->  	/* Remove early framebuffers */
->  	ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
-> diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> index 8512d970a09f..13eaae7921f5 100644
-> --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> @@ -17,6 +17,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_ioctl.h>
-> +#include <drm/drm_managed.h>
->  
->  #include "vbox_drv.h"
->  
-> @@ -54,6 +55,7 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  	vbox->ddev.pdev = pdev;
->  	vbox->ddev.dev_private = vbox;
->  	pci_set_drvdata(pdev, vbox);
-> +	drmm_add_final_kfree(&vbox->ddev, vbox);
->  	mutex_init(&vbox->hw_mutex);
->  
->  	ret = pci_enable_device(pdev);
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+Hi,
 
+This is a slightly modified alternative to the patch "drm/i915/userptr:
+Don't activate MMU notifier if no pages can be acquired" just submitted.
+I think it is better than the original as it prevents the notifier from
+being uselessly called before object pages are even set.
+
+Thanks,
+Janusz
+
+ drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+index 63ead7a2b64a..1cb88ab61a57 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
+@@ -498,14 +498,13 @@ __i915_gem_userptr_get_pages_worker(struct work_struct *_work)
+ 			pages = __i915_gem_userptr_alloc_pages(obj, pvec,
+ 							       npages);
+ 			if (!IS_ERR(pages)) {
++				__i915_gem_userptr_set_active(obj, true);
+ 				pinned = 0;
+ 				pages = NULL;
+ 			}
+ 		}
+ 
+ 		obj->userptr.work = ERR_CAST(pages);
+-		if (IS_ERR(pages))
+-			__i915_gem_userptr_set_active(obj, false);
+ 	}
+ 	mutex_unlock(&obj->mm.lock);
+ 
+@@ -613,7 +612,6 @@ static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
+ 		pinned = 0;
+ 	} else if (pinned < num_pages) {
+ 		pages = __i915_gem_userptr_get_pages_schedule(obj);
+-		active = pages == ERR_PTR(-EAGAIN);
+ 	} else {
+ 		pages = __i915_gem_userptr_alloc_pages(obj, pvec, num_pages);
+ 		active = !IS_ERR(pages);
 -- 
-Regards,
+2.21.0
 
-Laurent Pinchart
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
