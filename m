@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2853164EFC
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 20:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D302164F17
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 20:42:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C92689CF7;
-	Wed, 19 Feb 2020 19:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB8286E85C;
+	Wed, 19 Feb 2020 19:42:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 40D7389CF3;
- Wed, 19 Feb 2020 19:36:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2F154A0118;
- Wed, 19 Feb 2020 19:36:12 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-Date: Wed, 19 Feb 2020 19:36:12 -0000
-Message-ID: <158214097217.21060.1091822167971002836@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200219161822.24592-1-michal.winiarski@intel.com>
-In-Reply-To: <20200219161822.24592-1-michal.winiarski@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915/pmu=3A_Avoid_using_?=
- =?utf-8?q?globals_for_CPU_hotplug_state?=
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 302226E85C;
+ Wed, 19 Feb 2020 19:42:40 +0000 (UTC)
+Received: from X1 (nat-ab2241.sltdut.senawave.net [162.218.216.4])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id AA4E9207FD;
+ Wed, 19 Feb 2020 19:42:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1582141360;
+ bh=1/a4Xx7AYtpyRHkBndK/JCsGsEXByxqpk4z2Vsn4cDw=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=Uj3MuukA5jUnnY+8Ogc8/SRaW1zDsJsUMgWiFSN5e61POmQMF2e8I1QqfftdJaq2l
+ Ed+hqGyvNplUaUCzQFG1dsedWuI/bncsDV06wiYNUlwV1vj/cuxDFWhTJ7Lm0a6PS7
+ OELziXddtDVsjHu4WF5SwkQqE7fV0X0XKGKfBoLk=
+Date: Wed, 19 Feb 2020 11:42:39 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-Id: <20200219114239.e8cf142af32a63bda44eef1f@linux-foundation.org>
+In-Reply-To: <20200219102122.1607365-2-daniel.vetter@ffwll.ch>
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-2-daniel.vetter@ffwll.ch>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH 01/52] mm/sl[uo]b: export
+ __kmalloc_track(_node)_caller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +47,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Pekka Enberg <penberg@kernel.org>, linux-mm@kvack.org,
+ David Rientjes <rientjes@google.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Christoph Lameter <cl@linux.com>, Joonsoo Kim <iamjoonsoo.kim@lge.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, 19 Feb 2020 11:20:31 +0100 Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
 
-Series: series starting with [1/2] drm/i915/pmu: Avoid using globals for CPU hotplug state
-URL   : https://patchwork.freedesktop.org/series/73663/
-State : warning
+> tracker in drm for stuff that's tied to the lifetime of a drm_device,
+> not the underlying struct device. Kinda like devres, but for drm.
+> 
+> ...
+>
+> Ack for merging through drm trees very much appreciated.
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-c91c32fb10db drm/i915/pmu: Avoid using globals for CPU hotplug state
-547528017979 drm/i915/pmu: Avoid using globals for PMU events
--:11: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#11: 
-double free the global state, hitting null ptr deref in free_event_attributes.
-
-total: 0 errors, 1 warnings, 0 checks, 108 lines checked
-
+Acked-by: Andrew Morton <akpm@linux-foundation.org>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
