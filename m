@@ -1,34 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576561643F9
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:09:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3129C1643FC
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:13:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C11A66E5BE;
-	Wed, 19 Feb 2020 12:09:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547A56E459;
+	Wed, 19 Feb 2020 12:13:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 406716E5BE
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:09:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 04:09:53 -0800
-X-IronPort-AV: E=Sophos;i="5.70,459,1574150400"; d="scan'208";a="229093337"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 04:09:52 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0AFA6E459;
+ Wed, 19 Feb 2020 12:13:25 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20275167-1500050 
+ for multiple; Wed, 19 Feb 2020 12:13:12 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 13:09:44 +0100
-Message-Id: <20200219120944.21200-1-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.0
+Date: Wed, 19 Feb 2020 12:13:12 +0000
+Message-Id: <20200219121312.1428041-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH] drm/i915/userptr: Don't activate MMU
- notifier if no pages can be acquired
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_vm_create: Call set-domain
+ manually
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,71 +37,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The purpose of userptr MMU notifier is to invalidate object pages as
-soon as someone unpins them from memory.  While doing that,
-obj->mm.lock is acquired.  If the notifier was called with obj->mm.lock
-already held, a lockdep loop would be triggered.  That scenario is
-believed to be possible in several cases, one of which is when the
-userptr object is created from an mmap-offset mapping of another i915
-GEM object.  This patch tries to address this case.
+Since we are secretly using execbuf to write into an object's location,
+then read back from the object we must manually handle the domain
+changes.
 
-Even if creating a userptr object on an mmap-offset mapping succeeds,
-trying to pin pages of the mapping in memory always fails because of
-them having a VM_PFNMAP flag set.  However, the notifier can be
-activated for a userptr object even before required pages are found
-already pinned in memory, as soon as a worker expected to get missing
-pages is scheduled successfully.  If the worker then fails to collect
-the pages, it deactivates the notifier.  However, a time window exists
-when the notifier can be called for an object even with no pages set
-yet.
-
-Postpone activation of the userptr MMU notifier for an object until
-some pages are successfully acquired.
-
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/314
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_userptr.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ tests/i915/gem_vm_create.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-index 63ead7a2b64a..d9f3d66694a2 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_userptr.c
-@@ -45,7 +45,9 @@ struct i915_mmu_object {
+diff --git a/tests/i915/gem_vm_create.c b/tests/i915/gem_vm_create.c
+index cbd273d9d..e14b07b5f 100644
+--- a/tests/i915/gem_vm_create.c
++++ b/tests/i915/gem_vm_create.c
+@@ -324,11 +324,15 @@ static void isolation(int i915)
+ 	gem_execbuf(i915, &eb); /* bind object into vm[0] */
  
- static void add_object(struct i915_mmu_object *mo)
- {
--	GEM_BUG_ON(!RB_EMPTY_NODE(&mo->it.rb));
-+	if (!RB_EMPTY_NODE(&mo->it.rb))
-+		return;
-+
- 	interval_tree_insert(&mo->it, &mo->mn->objects);
- }
+ 	/* Verify the trick with the assumed target address works */
++	gem_set_domain(i915, obj[0].handle,
++		       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
+ 	write_to_address(i915, ctx[0], obj[0].offset, 1);
+ 	gem_read(i915, obj[0].handle, 0, &result, sizeof(result));
+ 	igt_assert_eq(result, 1);
  
-@@ -498,6 +500,7 @@ __i915_gem_userptr_get_pages_worker(struct work_struct *_work)
- 			pages = __i915_gem_userptr_alloc_pages(obj, pvec,
- 							       npages);
- 			if (!IS_ERR(pages)) {
-+				__i915_gem_userptr_set_active(obj, true);
- 				pinned = 0;
- 				pages = NULL;
- 			}
-@@ -613,7 +616,7 @@ static int i915_gem_userptr_get_pages(struct drm_i915_gem_object *obj)
- 		pinned = 0;
- 	} else if (pinned < num_pages) {
- 		pages = __i915_gem_userptr_get_pages_schedule(obj);
--		active = pages == ERR_PTR(-EAGAIN);
-+		active = pages == ERR_PTR(-EAGAIN) && pinned;
- 	} else {
- 		pages = __i915_gem_userptr_alloc_pages(obj, pvec, num_pages);
- 		active = !IS_ERR(pages);
+ 	/* Now check that we can't write to vm[0] from second fd/vm */
++	gem_set_domain(i915, obj[0].handle,
++		       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
+ 	write_to_address(other, ctx[1], obj[0].offset, 2);
+ 	gem_read(i915, obj[0].handle, 0, &result, sizeof(result));
+ 	igt_assert_eq(result, 1);
 -- 
-2.21.0
+2.25.0
 
 _______________________________________________
 Intel-gfx mailing list
