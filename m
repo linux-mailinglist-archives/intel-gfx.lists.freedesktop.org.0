@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6581A164997
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 17:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A143716499A
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 17:13:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDFE6EC3A;
-	Wed, 19 Feb 2020 16:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA9AC6EC3C;
+	Wed, 19 Feb 2020 16:13:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
- [IPv6:2a00:1450:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78C8C6E3F3
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 16:12:52 +0000 (UTC)
-Received: by mail-lj1-x241.google.com with SMTP id d10so937167ljl.9
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 08:12:52 -0800 (PST)
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com
+ [IPv6:2a00:1450:4864:20::143])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D18DB6EC3C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 16:13:28 +0000 (UTC)
+Received: by mail-lf1-x143.google.com with SMTP id c23so553903lfi.7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 08:13:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=Hmg0e58Llvdw4Inqfn8X80e2eYeLDQtQXiBtM6n4esA=;
- b=e3Ih6Ny7chpcs5sdZ2gyHR5JBlDADKpsBnoUtVzlLjOR8EE1yAK3JN5lvyRAkW3IsY
- zF51RXn0Na9NQ/iyqpxyrrlV9BG1A3xDcQOimhV4zxRWufgowK+ub22zIS+HqLN8eZ/e
- RKp0KxrRqopgAyEoBiuVL5hUkCNmF6nGweEynoWWLAlIbEQAcIwQKYRnCJoVBs2uzABp
- +TlDDgUmLRUsY/L4u+AZ2PlEMypG54MBbs1peSMRjbqRkALurkVxZWCGkFpnUFgvnwbg
- BcwiKTNS44gGcNJ7LrJJqRR/hsRKS6pa0dFeDkj16mZYvJj52FNj1bMvhW1W49YBaA3J
- lENA==
+ :cc; bh=22/PVbYKXHMADDhw0wzpGPRk2i7z5XpXWtaUk7jhSPc=;
+ b=WIzcvICIqCO9Zlof090PeCcCxpyVkOi+7K+16gUgIRz0a3iLcbVsLJpJweZaSqGLP/
+ p+KZMkUwhQPjUN6iv/91Z7b8gYeWJSqtfpOqlLWrUoF1QmHiCwc6D+qyGxwlEYaAP05T
+ ZC8VFIglKc5DCKRNfusBnmMI9Y4A6PvDt4O1gNZLg9Q3KBrls59Efl6I49Y1kN86aveC
+ 59zReTM++k6+R9cc3sjJdUaIaS4Qfn9hptLMgHvEEI0vcpCWApRwls9EmbMeuL9zCZEy
+ tdk2fI5aGK/0ZoooZiP+3OApW7qQy1a/oZtLG4kE7J3ZA+Ueostx3OKaoyRIaPvKvkKV
+ 5D3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=Hmg0e58Llvdw4Inqfn8X80e2eYeLDQtQXiBtM6n4esA=;
- b=dlleplkapBTs0LIT1UJFyZEZTxKy9XKLWAbGayQ67MsSWpxuTXt0EOV6KYsXQIWU0M
- tCPZt6TTePza+0veE4hJK+0oO6ACyYr/Ne/JH3fD/BUHkrnUK94GrjY9w9nRJ0jLTBTF
- c4byRQULR3QOgBZI9C5rbtdlp7NtEjOvmRwQglnNXpDRiBdzVAOtcsniF33pnNpYH85j
- uVwNDXrbX/0+EG924DYoIpk1h/kVuWFb0DdYIrApO+h5kXcxROaphfIuwgHGGoE1WiT2
- Fl19tiZFRmigIrtBsPmhwElwiJ0vqFx1jVT7aCG/0Y3nrFxtYFaU+kzgX/x/jVQpMDdX
- TFxA==
-X-Gm-Message-State: APjAAAUwqlgKYhfdAREuwR4qdJFh+vQXlpaEPgJLu6s11EVRwfvJg4lj
- RTSI3vKXQuSeQCv/EPdfjBA/aB+sd2CAGFJx7dEwVQ==
-X-Google-Smtp-Source: APXvYqwqmbvk7o9JHtK1u30MtYBrhvUHNeAQS8pEmYYwQ50AlZQhBSsFNdDZi83HjOLzGAxdZDoy3Pvw8WWyxWisQZc=
-X-Received: by 2002:a2e:b6ce:: with SMTP id m14mr15179637ljo.99.1582128770966; 
- Wed, 19 Feb 2020 08:12:50 -0800 (PST)
+ bh=22/PVbYKXHMADDhw0wzpGPRk2i7z5XpXWtaUk7jhSPc=;
+ b=GgHJeREh1a/p++PqtSzU/Q0bIZKd8h+Rpv/7UI7/SP+7HtDbo3Nbhk15odU0koqKpa
+ bRiayntSR4fPahvphy26ZmkAI3kBeVO5AyW7ymSGcQvOCSChH1EJ9RHjEvsdj7E5NgYl
+ +MZfL/F/oUSzzXwylddHGvr3cTDkekujzpvq/mk577rz8f8Q6zb9T3JBSQ/PLct4fh5n
+ 1f/CrilBYi/zOTbcNybXTqztqiCQggBc3cOU+KKvtVHeQIp29bDTq8bEHI4lwsmV7Pef
+ rarsqZuStAM7dQYFZJT0Km7o9DXDC8rlV6CwyrRrI0vTLE4t7EKh9wANUe8Uov6r4xdb
+ fn4Q==
+X-Gm-Message-State: APjAAAW4JAhk2ybh8G4aJpVANguPgsjOcQtsZPxqBai5oYnuoteW2rfI
+ R2fY4NsxlXFCVJlZ+p6ngN2zAesxa+CvNpl1Ixx6Z5joGLpEQQ==
+X-Google-Smtp-Source: APXvYqw3VD6FmHX4qJfF16RzBYM36HdY6H5Tm+D6dP6mXLk3si7sNYGp6eQNFjw4N/S6mUKDfZu8qke/COBt01ynPKY=
+X-Received: by 2002:ac2:4d04:: with SMTP id r4mr14008314lfi.77.1582128807267; 
+ Wed, 19 Feb 2020 08:13:27 -0800 (PST)
 MIME-Version: 1.0
 References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-34-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200219102122.1607365-34-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-35-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200219102122.1607365-35-daniel.vetter@ffwll.ch>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 19 Feb 2020 17:12:39 +0100
-Message-ID: <CACRpkdZk93zL1e3NpCXa+NQ+uLGU5TOTC4PCf81QQNK=1u-q3Q@mail.gmail.com>
+Date: Wed, 19 Feb 2020 17:13:15 +0100
+Message-ID: <CACRpkdZpSsZbVe-YyzXH9pLaim=3LTwQS4AVGjDTAKfq602DrA@mail.gmail.com>
 To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 33/52] drm/mcde: Drop explicit
- drm_mode_config_cleanup call
+Subject: Re: [Intel-gfx] [PATCH 34/52] drm/mcde: More devm_drm_dev_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,7 +71,12 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, Feb 19, 2020 at 11:22 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
 
-> Allows us to drop the drm_driver.release callback.
+> Auto-unwind ftw, now possible with the fixed drm_device related
+> management.
+>
+> Aside, clk/regulator seem to be missing devm versions for a bunch of
+> functions, preventing a pile of these simpler drivers from outright
+> losing their ->remove hook.
 >
 > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 > Cc: Linus Walleij <linus.walleij@linaro.org>
