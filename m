@@ -1,43 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D6B916472E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:39:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C1A164744
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 15:41:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74A1D6EC0D;
-	Wed, 19 Feb 2020 14:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E072D6EC0E;
+	Wed, 19 Feb 2020 14:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36EDB891EC;
- Wed, 19 Feb 2020 14:39:39 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
- [81.175.216.236])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 458262F9;
- Wed, 19 Feb 2020 15:39:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1582123177;
- bh=J4hmOOjdtJyZjtQ+Bt1KQOWXYZXnGF0H2DZDFhKcAeQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=VASj8ZQsbA8c4aPhUp6Z5XpwwLPPIO3c2Eh53Yo7xIlHZ2rSXE+ow5XY5XRP8cn2b
- 5ZCOIry4i3YvXFVDPS8g2pUg/xaXpAu085oYAGU7lrNBpjDhTDtKhUWaJp9wOaGRmt
- I/PKV4i3fQTOAKXajKr7U0pyndZPv97YXLflgQOM=
-Date: Wed, 19 Feb 2020 16:39:18 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200219143918.GN5070@pendragon.ideasonboard.com>
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-20-daniel.vetter@ffwll.ch>
- <20200219141116.GJ5070@pendragon.ideasonboard.com>
- <CAKMK7uGek38Xt_CpYC09eaYrLVfLHf_YZiVLY9sVeN+4N9NA0w@mail.gmail.com>
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
+ [IPv6:2607:f8b0:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50BAA6EC0B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 14:41:19 +0000 (UTC)
+Received: by mail-oi1-x242.google.com with SMTP id p125so23979499oif.10
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 06:41:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6LKfyG4rH5EfpUi30c13AAPS68NmIvHHD02r+L3Dggw=;
+ b=Mv8cfHSCpmPx/g0LYMDekwaCn69z3efbzziY08NWuOY78CgrsRsDwCVF+ztFn/7oPY
+ ON7Wshq6eIYsoKgWLit0FvgWf4xkie9bTslnKV0miqIxsbvvW0YoLZ/ogbQlhtJkQmcZ
+ oNzlMdqtVgnVSoenvyqwQ1RP+owHeeccqjKdY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6LKfyG4rH5EfpUi30c13AAPS68NmIvHHD02r+L3Dggw=;
+ b=gjtE0YSGQ9OhnIWziPzpQg7e8U6YfQ1qYTRy+FUyvbmAht62XXJ5Ks+GN9T0NYd+Hp
+ h50xfcy8XgyH0AfB2q2tl2rZkfKIFjgdIpxiKGzmZ1O2B44omFJPNVVoq8H/341+xAuF
+ B69eIziUsTfmWv8/PqrXKk+U3CXt92LRGAeI4AfieNAzhDTYosMVQkJ0sWDa4jT/FbQV
+ BpCTo/sP6TS/FBUV2rIGoe2+YQ/RQ67bhNjAbl6pMn8PfssrrTBQglPscxqbp96nJVga
+ frJoADRYBxW75F4ves0Q9FuYmN2ZoBlJqP5o73J33nKCr+8hv5CjTgLDw4eo8VYrrM0q
+ u4Ag==
+X-Gm-Message-State: APjAAAX/yz/JlnNwDL8zXRx66w6xQ2kh7GrbZ77DOeU3Hou39cA7Egdx
+ I8tz4MLe2UnyBjqGDnWrXV4VsqRD8+PqqxIz6TNhXg==
+X-Google-Smtp-Source: APXvYqzNdGME456SKaX1Qim+QM5UpqgJb+dI/Qyuquzzy/Wv6p4Q5iaWqcJ8xiUHqXbl8HJmb+Jx+OGTTm/maWHpKZI=
+X-Received: by 2002:aca:2407:: with SMTP id n7mr4859370oic.14.1582123278554;
+ Wed, 19 Feb 2020 06:41:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uGek38Xt_CpYC09eaYrLVfLHf_YZiVLY9sVeN+4N9NA0w@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 19/52] drm/<drivers>: Use
- drmm_add_final_kfree
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-5-daniel.vetter@ffwll.ch>
+ <20200219133900.GE5070@pendragon.ideasonboard.com>
+In-Reply-To: <20200219133900.GE5070@pendragon.ideasonboard.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 19 Feb 2020 15:41:07 +0100
+Message-ID: <CAKMK7uFACJa15K6OfnPFj2nP_WQ=a1tWAe09BJ3Mt+KX-VQ1-g@mail.gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: Re: [Intel-gfx] [PATCH 04/52] drm: Set final_kfree in drm_dev_alloc
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,123 +59,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Russell King <linux@armlinux.org.uk>,
+Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, xen-devel@lists.xenproject.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
-
-On Wed, Feb 19, 2020 at 03:30:59PM +0100, Daniel Vetter wrote:
-> On Wed, Feb 19, 2020 at 3:11 PM Laurent Pinchart wrote:
-> > On Wed, Feb 19, 2020 at 11:20:49AM +0100, Daniel Vetter wrote:
-> > > These are the leftover drivers that didn't have a ->release hook that
-> > > needed to be updated.
-> > >
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
-> > > Cc: Liviu Dudau <liviu.dudau@arm.com>
-> > > Cc: Mihail Atanassov <mihail.atanassov@arm.com>
-> > > Cc: Russell King <linux@armlinux.org.uk>
-> > > Cc: Hans de Goede <hdegoede@redhat.com>
-> > > ---
-> > >  drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 ++
-> > >  drivers/gpu/drm/armada/armada_drv.c             | 2 ++
-> > >  drivers/gpu/drm/vboxvideo/vbox_drv.c            | 2 ++
-> > >  3 files changed, 6 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> > > index 442d4656150a..16dfd5cdb66c 100644
-> > > --- a/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> > > +++ b/drivers/gpu/drm/arm/display/komeda/komeda_kms.c
-> > > @@ -14,6 +14,7 @@
-> > >  #include <drm/drm_gem_cma_helper.h>
-> > >  #include <drm/drm_gem_framebuffer_helper.h>
-> > >  #include <drm/drm_irq.h>
-> > > +#include <drm/drm_managed.h>
-> > >  #include <drm/drm_probe_helper.h>
-> > >  #include <drm/drm_vblank.h>
-> > >
-> > > @@ -271,6 +272,7 @@ struct komeda_kms_dev *komeda_kms_attach(struct komeda_dev *mdev)
-> > >       err = drm_dev_init(drm, &komeda_kms_driver, mdev->dev);
-> > >       if (err)
-> > >               goto free_kms;
-> > > +     drmm_add_final_kfree(drm, kms);
+On Wed, Feb 19, 2020 at 2:39 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Daniel,
+>
+> Thank you for the patch.
+>
+> On Wed, Feb 19, 2020 at 11:20:34AM +0100, Daniel Vetter wrote:
+> > I also did a full review of all callers, and only the xen driver
+> > forgot to call drm_dev_put in the failure path. Fix that up too.
+>
+> I'd split this patch in two then, with the Xen first coming first, and
+> with an explanation in the commit message of the second patch about why
+> you call drmm_add_final_kfree() in drm_dev_alloc().
+>
+> > v2: I noticed that xen has a drm_driver.release hook, and uses
+> > drm_dev_alloc(). We need to remove the kfree from
+> > xen_drm_drv_release().
 > >
-> > Instead of sprinkling calls to drmm_add_final_kfree() everywhere,
-> > wouldn't it be better to pass the parent pointer to drm_dev_init() ?
-> 
-> Would lead to a horrendous monster patch, and even with this splitting
-> there were a few corner cases.
+> > bochs also has a release hook, but leaked the drm_device ever since
+> >
+> > commit 0a6659bdc5e8221da99eebb176fd9591435e38de
+> > Author: Gerd Hoffmann <kraxel@redhat.com>
+> > Date:   Tue Dec 17 18:04:46 2013 +0100
+> >
+> >     drm/bochs: new driver
+> >
+> > This patch here fixes that leak.
+> >
+> > Same for virtio, started leaking with
+> >
+> > commit b1df3a2b24a917f8853d43fe9683c0e360d2c33a
+> > Author: Gerd Hoffmann <kraxel@redhat.com>
+> > Date:   Tue Feb 11 14:58:04 2020 +0100
+> >
+> >     drm/virtio: add drm_driver.release callback.
+> >
+> > Cc: Gerd Hoffmann <kraxel@redhat.com>
+> > Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+> > Cc: xen-devel@lists.xenproject.org
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+> > Cc: xen-devel@lists.xenproject.org
+> > ---
+> >  drivers/gpu/drm/drm_drv.c           | 3 +++
+> >  drivers/gpu/drm/xen/xen_drm_front.c | 2 +-
+> >  2 files changed, 4 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > index 3e5627d6eba6..9e62e28bbc62 100644
+> > --- a/drivers/gpu/drm/drm_drv.c
+> > +++ b/drivers/gpu/drm/drm_drv.c
+> > @@ -39,6 +39,7 @@
+> >  #include <drm/drm_color_mgmt.h>
+> >  #include <drm/drm_drv.h>
+> >  #include <drm/drm_file.h>
+> > +#include <drm/drm_managed.h>
+> >  #include <drm/drm_mode_object.h>
+> >  #include <drm/drm_print.h>
+> >
+> > @@ -819,6 +820,8 @@ struct drm_device *drm_dev_alloc(struct drm_driver *driver,
+> >               return ERR_PTR(ret);
+> >       }
+> >
+> > +     drmm_add_final_kfree(dev, dev);
+>
+> drmm_add_final_kfree() can only be called once. Does this mean that a
+> driver using drm_dev_alloc() isn't allowed to use drmm_add_final_kfree()
+> to tract its own private structure ?
 
-It could be generated by coccinelle, with the semantic patch included in
-the commit message, so that regenerating it should be possible when
-merging if conflict arise.
+There is only _one_ final kfree() for the structure containing
+drm_device. Anything else you can just allocate with drmm_kzalloc, and
+it will be cleaned up before. The chicken/egg doesn't just exist
+around init time with drm_device, but also at cleanup time - the list
+of cleanup actions is stored in drm_device, plus the logging macros
+also need a drm_device. Which means we really, really, really need to
+make sure that the drm_device is the very last thing that goes away.
+Hence this special case. I was semi-tempted to drill through the slab
+debug layer and add a check that the drm_device pointer in the
+final_kfree is actually within the slab allocation block. Just to make
+sure people use this correctly, and not just as a "hey here's a random
+kmalloc block I want you to release, thxokbye". Because doing that
+would cause a few use-after-free (or a leak).
+-Daniel
 
-> My plan is to add a devm_drm_dev_alloc
-> pattern which combines the usual pattern that most drivers use, see
-> the last patch for all these glorious ideas.
+>
+> > +
+> >       return dev;
+> >  }
+> >  EXPORT_SYMBOL(drm_dev_alloc);
+> > diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
+> > index 4be49c1aef51..d22b5da38935 100644
+> > --- a/drivers/gpu/drm/xen/xen_drm_front.c
+> > +++ b/drivers/gpu/drm/xen/xen_drm_front.c
+> > @@ -461,7 +461,6 @@ static void xen_drm_drv_release(struct drm_device *dev)
+> >       drm_mode_config_cleanup(dev);
+> >
+> >       drm_dev_fini(dev);
+> > -     kfree(dev);
+> >
+> >       if (front_info->cfg.be_alloc)
+> >               xenbus_switch_state(front_info->xb_dev,
+> > @@ -561,6 +560,7 @@ static int xen_drm_drv_init(struct xen_drm_front_info *front_info)
+> >  fail_modeset:
+> >       drm_kms_helper_poll_fini(drm_dev);
+> >       drm_mode_config_cleanup(drm_dev);
+> > +     drm_dev_put(drm_dev);
+> >  fail:
+> >       kfree(drm_info);
+> >       return ret;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
-OK I will.
 
-> So yeah I hope this will all go away (or mostly at least), but for
-> bisecting I didn't come up with a better idea to get this all off the
-> ground unfortunately.
-> 
-> > >
-> > >       drm->dev_private = mdev;
-> > >
-> > > diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-> > > index 197dca3fc84c..dd9ed71ed942 100644
-> > > --- a/drivers/gpu/drm/armada/armada_drv.c
-> > > +++ b/drivers/gpu/drm/armada/armada_drv.c
-> > > @@ -12,6 +12,7 @@
-> > >  #include <drm/drm_atomic_helper.h>
-> > >  #include <drm/drm_drv.h>
-> > >  #include <drm/drm_ioctl.h>
-> > > +#include <drm/drm_managed.h>
-> > >  #include <drm/drm_prime.h>
-> > >  #include <drm/drm_probe_helper.h>
-> > >  #include <drm/drm_fb_helper.h>
-> > > @@ -103,6 +104,7 @@ static int armada_drm_bind(struct device *dev)
-> > >               kfree(priv);
-> > >               return ret;
-> > >       }
-> > > +     drmm_add_final_kfree(&priv->drm, priv);
-> > >
-> > >       /* Remove early framebuffers */
-> > >       ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
-> > > diff --git a/drivers/gpu/drm/vboxvideo/vbox_drv.c b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> > > index 8512d970a09f..13eaae7921f5 100644
-> > > --- a/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> > > +++ b/drivers/gpu/drm/vboxvideo/vbox_drv.c
-> > > @@ -17,6 +17,7 @@
-> > >  #include <drm/drm_fb_helper.h>
-> > >  #include <drm/drm_file.h>
-> > >  #include <drm/drm_ioctl.h>
-> > > +#include <drm/drm_managed.h>
-> > >
-> > >  #include "vbox_drv.h"
-> > >
-> > > @@ -54,6 +55,7 @@ static int vbox_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> > >       vbox->ddev.pdev = pdev;
-> > >       vbox->ddev.dev_private = vbox;
-> > >       pci_set_drvdata(pdev, vbox);
-> > > +     drmm_add_final_kfree(&vbox->ddev, vbox);
-> > >       mutex_init(&vbox->hw_mutex);
-> > >
-> > >       ret = pci_enable_device(pdev);
 
 -- 
-Regards,
-
-Laurent Pinchart
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
