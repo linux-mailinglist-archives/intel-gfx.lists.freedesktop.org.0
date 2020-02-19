@@ -2,49 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00352165203
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 22:59:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D195D165210
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 23:05:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C5C16E882;
-	Wed, 19 Feb 2020 21:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0A3E6ECBE;
+	Wed, 19 Feb 2020 22:05:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3E816E882
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 21:59:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECE8F6ECBE
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 22:05:35 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 13:59:33 -0800
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2020 14:05:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="436381024"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga006.fm.intel.com with ESMTP; 19 Feb 2020 13:59:32 -0800
-Received: from fmsmsx157.amr.corp.intel.com (10.18.116.73) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 19 Feb 2020 13:59:32 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- FMSMSX157.amr.corp.intel.com ([169.254.14.117]) with mapi id 14.03.0439.000;
- Wed, 19 Feb 2020 13:59:32 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2] drm/i915/tgl: Add Wa_22010178259:tgl
-Thread-Index: AQHV52+HfxWG9WBgQEWoVI09Uvr3E6gjlyiA
-Date: Wed, 19 Feb 2020 21:59:31 +0000
-Message-ID: <3654c9483055f022a9cde09d78b91eaf4f02acaf.camel@intel.com>
-References: <838de8a5c95f31e021a87a60d36167281667aad3.camel@intel.com>
- <20200219215655.2923650-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200219215655.2923650-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.232]
-Content-ID: <752460C1E645484DBCD78152701A39FE@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="228726656"
+Received: from msatwood-mobl.jf.intel.com (HELO msatwood-mobl.intel.com)
+ ([10.24.15.21])
+ by fmsmga007.fm.intel.com with ESMTP; 19 Feb 2020 14:05:34 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 19 Feb 2020 14:05:29 -0500
+Message-Id: <20200219190529.10502-1-matthew.s.atwood@intel.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/tgl: Add Wa_22010178259:tgl
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: add Wa_1409085225, Wa_14010229206
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,49 +41,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTAyLTE5IGF0IDEzOjU2IC0wODAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBX
-ZSBuZWVkIHRvIGV4cGxpY2l0bHkgc2V0IHRoZSBUTEIgUmVxdWVzdCBUaW1lciBpbml0aWFsIHZh
-bHVlIGluIHRoZQ0KPiBCV19CVUREWSByZWdpc3RlcnMgdG8gMHg4IHJhdGhlciB0aGFuIHJlbHlp
-bmcgb24gdGhlIGhhcmR3YXJlDQo+IGRlZmF1bHQuDQo+IA0KPiB2MjogQXBwbHkgbWlzc2luZyBS
-RUdfRklFTERfUFJFUCB0byBlbnN1cmUgMHg4IGlzIHBsYWNlZCBpbiB0aGUNCj4gY29ycmVjdA0K
-PiAgICAgYml0cyBkdXJpbmcgdGhlIHJtdy4gIChKb3NlKQ0KPiANCj4gQnNwZWM6IDUyODkwDQo+
-IEJzcGVjOiA1MDA0NA0KDQpSZXZpZXdlZC1ieTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xh
-di5saXNvdnNraXlAaW50ZWwuY29tPg0KPiBDYzogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9z
-ZS5zb3V6YUBpbnRlbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcu
-ZC5yb3BlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgfCA4ICsrKysrKysrDQo+ICBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgICAgICAgICB8IDEgKw0KPiAgMiBmaWxlcyBjaGFu
-Z2VkLCA5IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5jDQo+IGluZGV4IDBkOTRmZTAxYmU3Zi4u
-OGJhNjhlYzZkYzI0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiBAQCAtNTAwMyw2ICs1MDAzLDE0IEBAIHN0YXRp
-YyB2b2lkIHRnbF9id19idWRkeV9pbml0KHN0cnVjdA0KPiBkcm1faTkxNV9wcml2YXRlICpkZXZf
-cHJpdikNCj4gIAkJCSAgICAgICB0YWJsZVtpXS5wYWdlX21hc2spOw0KPiAgCQlpbnRlbF9kZV93
-cml0ZShkZXZfcHJpdiwgQldfQlVERFkyX1BBR0VfTUFTSywNCj4gIAkJCSAgICAgICB0YWJsZVtp
-XS5wYWdlX21hc2spOw0KPiArDQo+ICsJCS8qIFdhXzIyMDEwMTc4MjU5OnRnbCAqLw0KPiArCQlp
-bnRlbF9kZV9ybXcoZGV2X3ByaXYsIEJXX0JVRERZMV9DVEwsDQo+ICsJCQkgICAgIEJXX0JVRERZ
-X1RMQl9SRVFfVElNRVJfTUFTSywNCj4gKwkJCSAgICAgUkVHX0ZJRUxEX1BSRVAoQldfQlVERFlf
-VExCX1JFUV9USU1FUl9NQVNLDQo+ICwgMHg4KSk7DQo+ICsJCWludGVsX2RlX3JtdyhkZXZfcHJp
-diwgQldfQlVERFkyX0NUTCwNCj4gKwkJCSAgICAgQldfQlVERFlfVExCX1JFUV9USU1FUl9NQVNL
-LA0KPiArCQkJICAgICBSRUdfRklFTERfUFJFUChCV19CVUREWV9UTEJfUkVRX1RJTUVSX01BU0sN
-Cj4gLCAweDgpKTsNCj4gIAl9DQo+ICB9DQo+ICANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
-DQo+IGluZGV4IGE2ODQ3ZjI2Njc4Yy4uZDgyOWI5YWU4NDAyIDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcmVnLmgNCj4gQEAgLTc3NjYsNiArNzc2Niw3IEBAIGVudW0gew0KPiAgI2RlZmluZSBC
-V19CVUREWTFfQ1RMCQkJX01NSU8oMHg0NTE0MCkNCj4gICNkZWZpbmUgQldfQlVERFkyX0NUTAkJ
-CV9NTUlPKDB4NDUxNTApDQo+ICAjZGVmaW5lICAgQldfQlVERFlfRElTQUJMRQkJUkVHX0JJVCgz
-MSkNCj4gKyNkZWZpbmUgICBCV19CVUREWV9UTEJfUkVRX1RJTUVSX01BU0sJUkVHX0dFTk1BU0so
-MjEsIDE2KQ0KPiAgDQo+ICAjZGVmaW5lIEJXX0JVRERZMV9QQUdFX01BU0sJCV9NTUlPKDB4NDUx
-NDQpDQo+ICAjZGVmaW5lIEJXX0JVRERZMl9QQUdFX01BU0sJCV9NTUlPKDB4NDUxNTQpDQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Disable Push Constant buffer addition, which can cause FIFO
+underruns.
+
+Fix a minor white space issue while we're here.
+
+v2: typos, add additional Wa reference
+
+Bspec: 52890
+Cc: Rafael Antognolli <rafael.antognolli@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 9 +++++++++
+ drivers/gpu/drm/i915/i915_reg.h             | 3 +++
+ 2 files changed, 12 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 887e0dc701f7..0681e64be741 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -580,6 +580,7 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 				     struct i915_wa_list *wal)
+ {
++	struct drm_i915_private *i915 = engine->i915;
+ 	u32 val;
+ 
+ 	/* Wa_1409142259:tgl */
+@@ -590,6 +591,7 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	val = intel_uncore_read(engine->uncore, FF_MODE2);
+ 	val &= ~FF_MODE2_TDS_TIMER_MASK;
+ 	val |= FF_MODE2_TDS_TIMER_128;
++
+ 	/*
+ 	 * FIXME: FF_MODE2 register is not readable till TGL B0. We can
+ 	 * enable verification of WA from the later steppings, which enables
+@@ -598,6 +600,13 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
+ 	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
+ 			    FF_MODE2_TDS_TIMER_MASK);
++
++	/*
++	 * Wa_1409085225:tgl
++	 * Wa_14010229206:tgl
++	 * Push Constant Buffer can cause FIFO underruns on tgl
++	 */
++	WA_SET_BIT_MASKED(GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index b09c1d6dc0aa..70cbe576fdfa 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9153,6 +9153,9 @@ enum {
+ #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
+ #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
+ 
++#define GEN9_ROW_CHICKEN4		_MMIO(0xe48c)
++#define  GEN12_DISABLE_TDL_PUSH		(1 << 9)
++
+ #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
+ #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
+ 
+-- 
+2.21.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
