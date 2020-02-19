@@ -2,52 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAA4416486E
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 16:24:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DA016487C
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 16:26:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11F926EC20;
-	Wed, 19 Feb 2020 15:24:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E593889F75;
+	Wed, 19 Feb 2020 15:26:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com
- [IPv6:2607:f8b0:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38F6C6E81E
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 15:24:55 +0000 (UTC)
-Received: by mail-ot1-x344.google.com with SMTP id r27so472336otc.8
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 07:24:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=qYhTUrrqc0aLy+KOWkzKXyYiFD3OiQz8nR4EBQhR2MQ=;
- b=YYXCWoS/O3lwoqOnriNrI0nnKjLXig8xjLg1dPM4g4apQg8la80sjEaj2II6A8Lkng
- 4hDjOyou6Jw43+fp3Cmy8u9aFzek4SHaJGqNdcd/62UvQmYU7O4ZbzKd7GBZsc9gfRb2
- obggNzcSt85e6r374iBK5U8h+7ZMKxbUUUFeI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=qYhTUrrqc0aLy+KOWkzKXyYiFD3OiQz8nR4EBQhR2MQ=;
- b=UXZYZlYqqAImdkfhxfF9fg+8lmUGDbG7YiGubAmc4c3e5x9z/04gKWCfnCfuAciXQZ
- 25xUnxkvt1e/+3LFg9mJItI2jYjbTSjxHvPZWeI2Qb1Sh3mBzDvPa5U0aTf+nNuExxxD
- GsvZ4QO5+8HAkqfoh8cD0rEUm5oZ6ySZkaUTPgx/eH/0K65+XX3sNJby8byWBJoEboM5
- Xf1U8cezsSmxrgkWz5sBl54EsBT2TNiN73xJnSvCVOpG6mEc2Os/Zzz8X/D8qZ7vZ0Z0
- ZB77Rws/UVL/tdXj6VdmxPk/tmwSmcUGSAKvL6F7JMvGoyy66PXYUgXbkEiVsKPC7dvy
- 6Pug==
-X-Gm-Message-State: APjAAAVrurpT1SpADUGYIjd6Q3x83KuU/VlrjYmbPRvjzsZA/Wtn7ceT
- smC4yBu9p7bo4+OJDq6nS0Oh9q7FNYry5R5cbqDNiQ==
-X-Google-Smtp-Source: APXvYqzzmLKI5olmUYDKGNYNd+676QwGsmwy/g9Z33JvLCyh2VU+peD3DX1CWR9wXdvcuaIGdVrRj+sWqszyHt7zp+4=
-X-Received: by 2002:a9d:7f11:: with SMTP id j17mr21278221otq.281.1582125894477; 
- Wed, 19 Feb 2020 07:24:54 -0800 (PST)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16E3289F75
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 15:26:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20277405-1500050 for multiple; Wed, 19 Feb 2020 15:25:43 +0000
 MIME-Version: 1.0
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-22-daniel.vetter@ffwll.ch>
- <20200219142806.GL5070@pendragon.ideasonboard.com>
-In-Reply-To: <20200219142806.GL5070@pendragon.ideasonboard.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Wed, 19 Feb 2020 16:24:42 +0100
-Message-ID: <CAKMK7uF+_CGAiLhd772HBEmgsdH9RgBV9F_cmvOfZZrCR7-Q4w@mail.gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg KH <gregkh@linuxfoundation.org>
-Subject: Re: [Intel-gfx] [PATCH 21/52] drm: Handle dev->unique with drmm_
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200219150804.27158-1-michal.winiarski@intel.com>
+References: <20200219150804.27158-1-michal.winiarski@intel.com>
+Message-ID: <158212594298.8112.18024639793150286735@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Wed, 19 Feb 2020 15:25:43 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/pmu: Avoid using globals for
+ per-device state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +40,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 19, 2020 at 3:28 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Daniel,
->
-> Thank you for the patch.
->
-> On Wed, Feb 19, 2020 at 11:20:51AM +0100, Daniel Vetter wrote:
-> > We need to add a drmm_kstrdup for this, but let's start somewhere.
-> >
-> > This is not exactly perfect onion unwinding, but it's jsut a kfree so
-> > doesn't really matter at all.
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c     |  5 ++---
-> >  drivers/gpu/drm/drm_managed.c | 16 ++++++++++++++++
-> >  include/drm/drm_managed.h     |  1 +
-> >  3 files changed, 19 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 1ee606b4a4f9..782fd5d6f8b2 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -777,7 +777,6 @@ void drm_dev_fini(struct drm_device *dev)
-> >       mutex_destroy(&dev->filelist_mutex);
-> >       mutex_destroy(&dev->struct_mutex);
-> >       drm_legacy_destroy_members(dev);
-> > -     kfree(dev->unique);
-> >  }
-> >  EXPORT_SYMBOL(drm_dev_fini);
-> >
-> > @@ -1063,8 +1062,8 @@ EXPORT_SYMBOL(drm_dev_unregister);
-> >   */
-> >  int drm_dev_set_unique(struct drm_device *dev, const char *name)
-> >  {
-> > -     kfree(dev->unique);
-> > -     dev->unique = kstrdup(name, GFP_KERNEL);
-> > +     drmm_kfree(dev, dev->unique);
-> > +     dev->unique = drmm_kstrdup(dev, name, GFP_KERNEL);
-> >
-> >       return dev->unique ? 0 : -ENOMEM;
-> >  }
-> > diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
-> > index ee7c7253af61..d8a484e19830 100644
-> > --- a/drivers/gpu/drm/drm_managed.c
-> > +++ b/drivers/gpu/drm/drm_managed.c
-> > @@ -147,6 +147,22 @@ void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
-> >  }
-> >  EXPORT_SYMBOL(drmm_kmalloc);
-> >
-> > +char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
->
-> Do we need support for gfp_t other than GFP_KERNEL ? Given that the
-> memory will be released when the drm_device is destroyed, GFP_ATOMIC
-> would seem of dubious use to me, and we may want to not make it possible
-> to use it.
-
-Hm .. I just copied the devm_ functions with struct drm_device
-substituting struct device. I agree there's not going to be a use-case
-for anything else than GFP_KERNEL. If there ever will be, I guess we
-could add a __drm_kmallock for that case.
-
-The downside of dropping the gfp argument is that drmm_ wont be a
-drop-in replacament for devm_k*alloc functions anymore. Adding Greg,
-maybe he has a good idea about what we should be doing here?
-
-Personally I'd be happy to drop the gfp argument, it feels somewhat
-pointless for these.
--Daniel
-
-
-> > +{
-> > +     size_t size;
-> > +     char *buf;
-> > +
-> > +     if (!s)
-> > +             return NULL;
-> > +
-> > +     size = strlen(s) + 1;
-> > +     buf = drmm_kmalloc(dev, size, gfp);
-> > +     if (buf)
-> > +             memcpy(buf, s, size);
-> > +     return buf;
-> > +}
-> > +EXPORT_SYMBOL_GPL(drmm_kstrdup);
-> > +
-> >  void drmm_kfree(struct drm_device *dev, void *data)
-> >  {
-> >       struct drmres *dr = NULL, *tmp;
-> > diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-> > index 75f2c8932c69..240edd395e88 100644
-> > --- a/include/drm/drm_managed.h
-> > +++ b/include/drm/drm_managed.h
-> > @@ -21,5 +21,6 @@ static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
-> >  {
-> >       return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
-> >  }
-> > +char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
-> >
-> >  void drmm_kfree(struct drm_device *dev, void *data);
->
-> --
-> Regards,
->
-> Laurent Pinchart
-
-
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBNaWNoYcWCIFdpbmlhcnNraSAoMjAyMC0wMi0xOSAxNTowODowNCkKPiBBdHRlbXB0
+aW5nIHRvIGJpbmQgLyB1bmJpbmQgbW9kdWxlIGZyb20gZGV2aWNlcyB3aGVyZSB3ZSBoYXZlIGJv
+dGgKPiBpbnRlZ3JhdGVkIGFuZCBkaXNjcmVldGUgR1BVIGhhbmRlZCBieSBpOTE1IG1heSBsZWFk
+IHRvIGludGVyZXN0aW5nCj4gcmVzdWx0cyB3aGVyZSB3ZSdyZSBrZWVwaW5nIHBlci1kZXZpY2Ug
+c3RhdGUgaW4gcGVyLW1vZHVsZSBnbG9iYWxzLgo+IAo+IEZpeGVzOiAwNTQ4ODY3M2E0ZDQgKCJk
+cm0vaTkxNS9wbXU6IFN1cHBvcnQgbXVsdGlwbGUgR1BVcyIpCj4gU2lnbmVkLW9mZi1ieTogTWlj
+aGHFgiBXaW5pYXJza2kgPG1pY2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgo+IENjOiBDaHJpcyBX
+aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiBDYzogTWljaGFsIFdhamRlY3prbyA8
+bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+Cj4gQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28u
+dXJzdWxpbkBpbnRlbC5jb20+Cj4gLS0tCj4gLSAgICAgICBpOTE1X3BtdV9ldmVudHNfYXR0cl9n
+cm91cC5hdHRycyA9IGNyZWF0ZV9ldmVudF9hdHRyaWJ1dGVzKHBtdSk7Cj4gLSAgICAgICBpZiAo
+IWk5MTVfcG11X2V2ZW50c19hdHRyX2dyb3VwLmF0dHJzKQo+ICsgICAgICAgcG11LT5ldmVudHNf
+YXR0cl9ncm91cC5uYW1lID0gImV2ZW50cyI7Cj4gKyAgICAgICBwbXUtPmV2ZW50c19hdHRyX2dy
+b3VwLmF0dHJzID0gY3JlYXRlX2V2ZW50X2F0dHJpYnV0ZXMocG11KTsKPiArICAgICAgIGlmICgh
+cG11LT5ldmVudHNfYXR0cl9ncm91cC5hdHRycykKPiAgICAgICAgICAgICAgICAgZ290byBlcnJf
+bmFtZTsKPiAgCj4gLSAgICAgICBwbXUtPmJhc2UuYXR0cl9ncm91cHMgICA9IGk5MTVfcG11X2F0
+dHJfZ3JvdXBzOwo+ICsgICAgICAgcG11LT5iYXNlLmF0dHJfZ3JvdXBzID0ga2NhbGxvYyhBUlJB
+WV9TSVpFKGF0dHJfZ3JvdXBzKSwKPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgc2l6ZW9mKCphdHRyX2dyb3VwcyksCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIEdGUF9LRVJORUwpOwo+ICsgICAgICAgaWYgKCFwbXUtPmJhc2UuYXR0cl9n
+cm91cHMpCj4gKyAgICAgICAgICAgICAgIGdvdG8gZXJyX2F0dHI7Cj4gKyAgICAgICBtZW1jcHko
+YXR0cl9ncm91cHMsIHBtdS0+YmFzZS5hdHRyX2dyb3VwcywKPiArICAgICAgICAgICAgICBBUlJB
+WV9TSVpFKGF0dHJfZ3JvdXBzKSAqIHNpemVvZigqYXR0cl9ncm91cHMpKTsKCmttZW1kdXAoYXR0
+cl9ncm91cHMsIHNpemVvZihhdHRyX2dyb3VwcykpOwoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvaTkxNV9wbXUuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcG11LmgK
+PiBpbmRleCA2YzE2NDdjNWRhZjIuLmRjMTM2MWU4ZTI3YSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wbXUuaAo+IEBAIC00Miw2ICs0MiwxMCBAQCBzdHJ1Y3QgaTkxNV9wbXUgewo+ICAgICAgICAg
+ICogQG5vZGU6IExpc3Qgbm9kZSBmb3IgQ1BVIGhvdHBsdWcgaGFuZGxpbmcuCj4gICAgICAgICAg
+Ki8KPiAgICAgICAgIHN0cnVjdCBobGlzdF9ub2RlIG5vZGU7Cj4gKyAgICAgICAvKioKPiArICAg
+ICAgICAqIEBjcHVocF9zbG90OiBTdGF0ZSBmb3IgQ1BVIGhvdHBsdWcgaGFuZGxpbmcuCj4gKyAg
+ICAgICAgKi8KPiArICAgICAgIGVudW0gY3B1aHBfc3RhdGUgY3B1aHBfc2xvdDsKClBlcmhhcHMg
+c3RydWN0IHsKCQlzdHJ1Y3QgaGxpc3Rfbm9kZSBub2RlOwoJCWVudW0gY3B1aHBfc3RhdGUgc2xv
+dDsKCX0gY3B1aHA7CgpGd2l3LCBzZXBhcmF0ZSB0aGlzIGludG8gYSBzZXBhcmF0ZSBwYXRjaCwg
+c28gd2UgaGF2ZSBvbmUgdG8gZGVnbG9iYWwKY3B1aHAgYW5kIG9uZSBmb3IgZXZlbnQgZ3JvdXBz
+LgoKSnVzdCBncmltYWNpbmcgb3ZlciB0aGUgd2FzdGVkIHN0cmluZ3MgdGhhdCB3ZSBjb3VsZCBp
+bnRlcm4gZm9yIGFjdHVhbAphdHRyLgoKQnV0IHRoZSBlc3NlbmNlIG9mIHRoZSBwYXRjaCBpcyBj
+b3JyZWN0LCBzaW5jZSB0aGUgZXZlbnRzIGdyb3VwIGlzCmNyZWF0ZWQgYXQgcnVudGltZSBmcm9t
+IHByb2JpbmcgdGhlIGRldmljZSwgaXQgaXMgbm90IGdsb2JhbC4KClJldmlld2VkLWJ5OiBDaHJp
+cyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLUNocmlzCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
+SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
+Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
