@@ -1,33 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 402CE165315
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 00:30:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F49165323
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 00:44:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85D8E6E887;
-	Wed, 19 Feb 2020 23:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C04E6E88C;
+	Wed, 19 Feb 2020 23:43:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC4D6E887
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 23:30:46 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 15:30:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="224665136"
-Received: from invictus.jf.intel.com ([10.165.21.212])
- by orsmga007.jf.intel.com with ESMTP; 19 Feb 2020 15:30:45 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 15:31:17 -0800
-Message-Id: <20200219233117.5698-1-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E8B0C6EC8E;
+ Wed, 19 Feb 2020 23:43:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DFFA6A00C7;
+ Wed, 19 Feb 2020 23:43:55 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/ehl: Donot reuse icl get and put dplls
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 19 Feb 2020 23:43:55 -0000
+Message-ID: <158215583588.21062.2328261384735984389@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200218202302.1326399-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200218202302.1326399-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Protect_signaler_walk_with_RCU_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,137 +38,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Elkhartlake does not have as many PLL combinations as Icelake.
-Use a simpler get pll function and reuse intel_put_pll for ehl.
+== Series Details ==
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 56 +++++++++++++++----
- 2 files changed, 53 insertions(+), 14 deletions(-)
+Series: drm/i915/gt: Protect signaler walk with RCU (rev2)
+URL   : https://patchwork.freedesktop.org/series/73601/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ee7d54ccd3e6..9bb6ccb5b3ea 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10763,10 +10763,15 @@ static void icl_get_ddi_pll(struct drm_i915_private *dev_priv, enum port port,
- 		return;
- 	}
- 
--	pipe_config->icl_port_dplls[port_dpll_id].pll =
--		intel_get_shared_dpll_by_id(dev_priv, id);
-+	if (!IS_ELKHARTLAKE(dev_priv)) {
-+		pipe_config->icl_port_dplls[port_dpll_id].pll =
-+			intel_get_shared_dpll_by_id(dev_priv, id);
- 
--	icl_set_active_port_dpll(pipe_config, port_dpll_id);
-+		icl_set_active_port_dpll(pipe_config, port_dpll_id);
-+	} else {
-+		pipe_config->shared_dpll =
-+			intel_get_shared_dpll_by_id(dev_priv, id);
-+	}
- }
- 
- static void bxt_get_ddi_pll(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index e5bfe5245276..6d79547433f5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3016,8 +3016,6 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct icl_port_dpll *port_dpll =
- 		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	enum port port = encoder->port;
- 	unsigned long dpll_mask;
- 
- 	if (!icl_calc_dpll_state(crtc_state, encoder, &port_dpll->hw_state)) {
-@@ -3027,13 +3025,7 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		return false;
- 	}
- 
--	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
--		dpll_mask =
--			BIT(DPLL_ID_EHL_DPLL4) |
--			BIT(DPLL_ID_ICL_DPLL1) |
--			BIT(DPLL_ID_ICL_DPLL0);
--	else
--		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+	dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
- 
- 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
- 						&port_dpll->hw_state,
-@@ -3154,6 +3146,48 @@ static void icl_put_dplls(struct intel_atomic_state *state,
- 	}
- }
- 
-+static bool ehl_get_dpll(struct intel_atomic_state *state,
-+			 struct intel_crtc *crtc,
-+			 struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_shared_dpll *pll;
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum port port = encoder->port;
-+	unsigned long dpll_mask;
-+
-+
-+	if (!icl_calc_dpll_state(crtc_state, encoder, &crtc_state->dpll_hw_state)) {
-+		DRM_DEBUG_KMS("Could not calculate combo PHY PLL state.\n");
-+
-+		return false;
-+	}
-+
-+	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
-+		dpll_mask =
-+			BIT(DPLL_ID_EHL_DPLL4) |
-+			BIT(DPLL_ID_ICL_DPLL1) |
-+			BIT(DPLL_ID_ICL_DPLL0);
-+	else
-+		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+
-+	pll = intel_find_shared_dpll(state, crtc,
-+				     &crtc_state->dpll_hw_state,
-+				     dpll_mask);
-+	if (!pll) {
-+		DRM_DEBUG_KMS("No PLL selected\n");
-+		return false;
-+	}
-+
-+	intel_reference_shared_dpll(state, crtc,
-+				    pll, &crtc_state->dpll_hw_state);
-+
-+	crtc_state->shared_dpll = pll;
-+
-+	return true;
-+}
-+
- static bool mg_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 				struct intel_shared_dpll *pll,
- 				struct intel_dpll_hw_state *hw_state)
-@@ -3751,8 +3785,8 @@ static const struct dpll_info ehl_plls[] = {
- 
- static const struct intel_dpll_mgr ehl_pll_mgr = {
- 	.dpll_info = ehl_plls,
--	.get_dplls = icl_get_dplls,
--	.put_dplls = icl_put_dplls,
-+	.get_dplls = ehl_get_dpll,
-+	.put_dplls = intel_put_dpll,
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_7967 -> Patchwork_16633
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16633 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2] ([i915#424])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-byt-n2820:       [FAIL][3] ([i915#694]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][5] ([i915#725]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-byt-n2820:       [DMESG-FAIL][7] ([i915#1052]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [FAIL][9] ([i915#976]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][11] ([i915#45]) -> [TIMEOUT][12] ([fdo#112271] / [i915#1084] / [i915#816])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (49 -> 45)
+------------------------------
+
+  Additional (2): fi-bwr-2160 fi-bsw-nick 
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7967 -> Patchwork_16633
+
+  CI-20190529: 20190529
+  CI_DRM_7967: 0d3c3511d707cc46d78ffcf7fe39ac882c0030af @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5452: c05dc6cd816feb1cc518ce777ab3fd6c81893113 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16633: 13adcd1e3f54b2ecff48acd425222a159633cad3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+13adcd1e3f54 drm/i915/gt: Protect signaler walk with RCU
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16633/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
