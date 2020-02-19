@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202D6165073
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 21:59:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F8F9165170
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 22:16:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E19616E870;
-	Wed, 19 Feb 2020 20:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5BD489DFA;
+	Wed, 19 Feb 2020 21:15:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0AB166E870;
- Wed, 19 Feb 2020 20:59:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 01448A47E1;
- Wed, 19 Feb 2020 20:59:18 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC1CB89DFA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 21:15:56 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2020 13:15:56 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="259053071"
+Received: from bpaauwe-desk1.fm.intel.com ([10.105.128.11])
+ by fmsmga004.fm.intel.com with ESMTP; 19 Feb 2020 13:15:56 -0800
+From: Bob Paauwe <bob.j.paauwe@intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Date: Wed, 19 Feb 2020 13:15:50 -0800
+Message-Id: <20200219211551.20125-1-bob.j.paauwe@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 19 Feb 2020 20:59:18 -0000
-Message-ID: <158214595897.21062.8758059422482557024@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Put_drm=5Fdisplay=5Fmode_on_diet?=
+Subject: [Intel-gfx] [PATCH 0/1] Adding YUV444 packed format support for skl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,48 +40,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Test-with: 20200127192859.20029-1-bob.j.paauwe@intel.com
 
-Series: drm: Put drm_display_mode on diet
-URL   : https://patchwork.freedesktop.org/series/73674/
-State : warning
+Stanislav Lisovskiy (1):
+  drm/i915: Adding YUV444 packed format support for skl+ (V14)
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 6 ++++++
+ drivers/gpu/drm/i915/i915_reg.h              | 2 +-
+ 3 files changed, 12 insertions(+), 1 deletion(-)
 
-$ dim checkpatch origin/drm-tip
-1547c317f1a8 drm: Nuke mode->hsync
-60d00db46691 drm/exynos: Use mode->clock instead of reverse calculating it from the vrefresh
-28e0079cb232 drm/i915: Introduce some local intel_dp variables
-fc4bd0c92150 drm: Nuke mode->vrefresh
--:1393: WARNING:LONG_LINE: line over 100 characters
-#1393: FILE: drivers/gpu/drm/i915/display/intel_dp.c:7225:
-+					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-
--:1402: WARNING:LONG_LINE: line over 100 characters
-#1402: FILE: drivers/gpu/drm/i915/display/intel_dp.c:7271:
-+					drm_mode_vrefresh(intel_dp->attached_connector->panel.fixed_mode));
-
-total: 0 errors, 2 warnings, 0 checks, 2529 lines checked
-5ffd09532dbc drm/msm/dpu: Stop copying around mode->private_flags
--:84: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#84: FILE: drivers/gpu/drm/msm/disp/dpu1/dpu_trace.h:330:
-+	TP_PROTO(uint32_t drm_id, unsigned int flags),
-
-total: 0 errors, 0 warnings, 1 checks, 71 lines checked
-ebc0d4878fa3 drm: Shrink {width,height}_mm to u16
-123730c56db7 drm: Shrink mode->type to u8
-95bbdbf0fc19 drm: Make mode->flags u32
-461918918abd drm: Shrink drm_display_mode timings
-2b38c59a9a1c drm: Flatten drm_mode_vrefresh()
-185304bca386 drm: Shrink mode->private_flags
-133ee95728f4 drm: pahole struct drm_display_mode
+-- 
+2.21.0
 
 _______________________________________________
 Intel-gfx mailing list
