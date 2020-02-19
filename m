@@ -2,35 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DE41649EC
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 17:18:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33D27164A1E
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 17:22:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDA86EC50;
-	Wed, 19 Feb 2020 16:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2753689150;
+	Wed, 19 Feb 2020 16:22:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E515C6EC4C
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 16:18:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 08:18:36 -0800
-X-IronPort-AV: E=Sophos;i="5.70,461,1574150400"; d="scan'208";a="408483820"
-Received: from mwiniars-main.igk.intel.com (HELO localhost) ([172.28.172.64])
- by orsmga005-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Feb 2020 08:18:34 -0800
-From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 17:18:22 +0100
-Message-Id: <20200219161822.24592-2-michal.winiarski@intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200219161822.24592-1-michal.winiarski@intel.com>
-References: <20200219161822.24592-1-michal.winiarski@intel.com>
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
+ [IPv6:2607:f8b0:4864:20::244])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36B8989150
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 16:22:51 +0000 (UTC)
+Received: by mail-oi1-x244.google.com with SMTP id z2so24350797oih.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 08:22:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=PGAKSCVTSlba76kA8bCj6BIFCNLxdM654SnMC1CZakI=;
+ b=R5zPn6HZUHGW8ujR++mj5GhFJO+wctrfDvewWzI9fEtUe+knpO9tqXj5bQBOBOmYQH
+ k9cnW41+4SMVu8vLW9ULz2Cv8hNIXoG1/iNxp7budiyYNqpk49dBWR/zv3v/C9Tj8UZj
+ m5KE+n/Gj02f7ONLKU/0C4gKB2S5Pyf5C1T90=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=PGAKSCVTSlba76kA8bCj6BIFCNLxdM654SnMC1CZakI=;
+ b=GLDaNl+X7zpSSb1BxdFOAZlNz5EXxnuGEVveecm07kI/7Mnw4YBQ++VnaIPHB6mlyl
+ i51V9kBioySTt7FekJIxF2GN8SUbqfhIOaC1Suq2PFajGGCKKUbinXvjqKjwWNMti90K
+ SEuJzA7DbrExsr2S4KcA0RYlOJJb3F9bGQwLv7sDN1LLRaZz9UVzIh7YSlXqUX0T16g/
+ I8/eqKexYkgiObB/oHFgZCjC56CfVccX1DtRTsXiUQQBpyK2whHbpXX9UIZ8fsfddZTf
+ Be57eib1tQHyVVNSVdSPdQcTIF9wWpL30C/mEDjlrMOKimNoHKs8mhWfAMIgje9J37Ts
+ rt5A==
+X-Gm-Message-State: APjAAAVE+HVZs1OBtmtMSd42n9eX3RHvNTap4IVF8PvbvSo8i0YrGk2+
+ etzsOeg5mINa8mUDupZNrAUkN9GNP7OEyp7TscLV9Q==
+X-Google-Smtp-Source: APXvYqyHd9QLuG1IAm0JRlxSQge8GavRlgai0M3HTGlykXOt08Ru/Me79hNAWFx/KZ27QfRerUA73KM5+xqQXJ0AzAs=
+X-Received: by 2002:aca:af09:: with SMTP id y9mr4804950oie.101.1582129370370; 
+ Wed, 19 Feb 2020 08:22:50 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/pmu: Avoid using globals for PMU
- events
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-4-daniel.vetter@ffwll.ch>
+ <20200219132847.GD5070@pendragon.ideasonboard.com>
+ <20200219133302.GA2837131@kroah.com>
+ <CAKMK7uHHMmqZ6FrK3r6J3SXV8FmsJ=+QfeNHRtodZboV5CwQyw@mail.gmail.com>
+ <CACvgo52qxstEeXBgNvrck9zPZUYsOUbjQ9=a_C3x9u74gTA85w@mail.gmail.com>
+In-Reply-To: <CACvgo52qxstEeXBgNvrck9zPZUYsOUbjQ9=a_C3x9u74gTA85w@mail.gmail.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 19 Feb 2020 17:22:38 +0100
+Message-ID: <CAKMK7uE0wAR9DsmL9gPYJCeAzRw8kEE5eGwXRoVpxb4ByHtehA@mail.gmail.com>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 03/52] drm: add managed resources tied to
+ drm_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,91 +63,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXR0ZW1wdGluZyB0byBiaW5kIC8gdW5iaW5kIG1vZHVsZSBmcm9tIGRldmljZXMgd2hlcmUgd2Ug
-aGF2ZSBib3RoCmludGVncmF0ZWQgYW5kIGRpc2NyZWV0ZSBHUFUgaGFuZGxlZCBieSBpOTE1LCB3
-aWxsIGNhdXNlIHVzIHRvIHRyeSBhbmQKZG91YmxlIGZyZWUgdGhlIGdsb2JhbCBzdGF0ZSwgaGl0
-dGluZyBudWxsIHB0ciBkZXJlZiBpbiBmcmVlX2V2ZW50X2F0dHJpYnV0ZXMuCgpMZXQncyBtb3Zl
-IGl0IHRvIGk5MTVfcG11LgoKRml4ZXM6IDA1NDg4NjczYTRkNCAoImRybS9pOTE1L3BtdTogU3Vw
-cG9ydCBtdWx0aXBsZSBHUFVzIikKU2lnbmVkLW9mZi1ieTogTWljaGHFgiBXaW5pYXJza2kgPG1p
-Y2hhbC53aW5pYXJza2lAaW50ZWwuY29tPgpDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13
-aWxzb24uY28udWs+CkNjOiBNaWNoYWwgV2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVs
-LmNvbT4KQ2M6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+ClJldmll
-d2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5jIHwgNDEgKysrKysrKysrKysrKysrKysrLS0tLS0t
-LS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5oIHwgIDQgKysrKwogMiBm
-aWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCAxOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9wbXUuYwppbmRleCAxMmY0ODE4Yzc4YjguLjJjMDYyNTM0ZWFjMSAxMDA2NDQKLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wbXUuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X3BtdS5jCkBAIC04MjIsMTEgKzgyMiw2IEBAIHN0YXRpYyBzc2l6ZV90IGk5MTVf
-cG11X2V2ZW50X3Nob3coc3RydWN0IGRldmljZSAqZGV2LAogCXJldHVybiBzcHJpbnRmKGJ1Ziwg
-ImNvbmZpZz0weCVseFxuIiwgZWF0dHItPnZhbCk7CiB9CiAKLXN0YXRpYyBzdHJ1Y3QgYXR0cmli
-dXRlX2dyb3VwIGk5MTVfcG11X2V2ZW50c19hdHRyX2dyb3VwID0gewotCS5uYW1lID0gImV2ZW50
-cyIsCi0JLyogUGF0Y2ggaW4gYXR0cnMgYXQgcnVudGltZS4gKi8KLX07Ci0KIHN0YXRpYyBzc2l6
-ZV90CiBpOTE1X3BtdV9nZXRfYXR0cl9jcHVtYXNrKHN0cnVjdCBkZXZpY2UgKmRldiwKIAkJCSAg
-c3RydWN0IGRldmljZV9hdHRyaWJ1dGUgKmF0dHIsCkBAIC04NDYsMTMgKzg0MSw2IEBAIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgYXR0cmlidXRlX2dyb3VwIGk5MTVfcG11X2NwdW1hc2tfYXR0cl9ncm91
-cCA9IHsKIAkuYXR0cnMgPSBpOTE1X2NwdW1hc2tfYXR0cnMsCiB9OwogCi1zdGF0aWMgY29uc3Qg
-c3RydWN0IGF0dHJpYnV0ZV9ncm91cCAqaTkxNV9wbXVfYXR0cl9ncm91cHNbXSA9IHsKLQkmaTkx
-NV9wbXVfZm9ybWF0X2F0dHJfZ3JvdXAsCi0JJmk5MTVfcG11X2V2ZW50c19hdHRyX2dyb3VwLAot
-CSZpOTE1X3BtdV9jcHVtYXNrX2F0dHJfZ3JvdXAsCi0JTlVMTAotfTsKLQogI2RlZmluZSBfX2V2
-ZW50KF9fY29uZmlnLCBfX25hbWUsIF9fdW5pdCkgXAogeyBcCiAJLmNvbmZpZyA9IChfX2NvbmZp
-ZyksIFwKQEAgLTEwMjYsMTYgKzEwMTQsMTYgQEAgZXJyOjsKIAogc3RhdGljIHZvaWQgZnJlZV9l
-dmVudF9hdHRyaWJ1dGVzKHN0cnVjdCBpOTE1X3BtdSAqcG11KQogewotCXN0cnVjdCBhdHRyaWJ1
-dGUgKiphdHRyX2l0ZXIgPSBpOTE1X3BtdV9ldmVudHNfYXR0cl9ncm91cC5hdHRyczsKKwlzdHJ1
-Y3QgYXR0cmlidXRlICoqYXR0cl9pdGVyID0gcG11LT5ldmVudHNfYXR0cl9ncm91cC5hdHRyczsK
-IAogCWZvciAoOyAqYXR0cl9pdGVyOyBhdHRyX2l0ZXIrKykKIAkJa2ZyZWUoKCphdHRyX2l0ZXIp
-LT5uYW1lKTsKIAotCWtmcmVlKGk5MTVfcG11X2V2ZW50c19hdHRyX2dyb3VwLmF0dHJzKTsKKwlr
-ZnJlZShwbXUtPmV2ZW50c19hdHRyX2dyb3VwLmF0dHJzKTsKIAlrZnJlZShwbXUtPmk5MTVfYXR0
-cik7CiAJa2ZyZWUocG11LT5wbXVfYXR0cik7CiAKLQlpOTE1X3BtdV9ldmVudHNfYXR0cl9ncm91
-cC5hdHRycyA9IE5VTEw7CisJcG11LT5ldmVudHNfYXR0cl9ncm91cC5hdHRycyA9IE5VTEw7CiAJ
-cG11LT5pOTE1X2F0dHIgPSBOVUxMOwogCXBtdS0+cG11X2F0dHIgPSBOVUxMOwogfQpAQCAtMTEx
-Nyw2ICsxMTA1LDEzIEBAIHN0YXRpYyBib29sIGlzX2lncChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqaTkxNSkKIHZvaWQgaTkxNV9wbXVfcmVnaXN0ZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUpCiB7CiAJc3RydWN0IGk5MTVfcG11ICpwbXUgPSAmaTkxNS0+cG11OworCWNvbnN0IHN0
-cnVjdCBhdHRyaWJ1dGVfZ3JvdXAgKmF0dHJfZ3JvdXBzW10gPSB7CisJCSZpOTE1X3BtdV9mb3Jt
-YXRfYXR0cl9ncm91cCwKKwkJJnBtdS0+ZXZlbnRzX2F0dHJfZ3JvdXAsCisJCSZpOTE1X3BtdV9j
-cHVtYXNrX2F0dHJfZ3JvdXAsCisJCU5VTEwKKwl9OworCiAJaW50IHJldCA9IC1FTk9NRU07CiAK
-IAlpZiAoSU5URUxfR0VOKGk5MTUpIDw9IDIpIHsKQEAgLTExNDMsMTEgKzExMzgsMTYgQEAgdm9p
-ZCBpOTE1X3BtdV9yZWdpc3RlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIAlpZiAo
-IXBtdS0+bmFtZSkKIAkJZ290byBlcnI7CiAKLQlpOTE1X3BtdV9ldmVudHNfYXR0cl9ncm91cC5h
-dHRycyA9IGNyZWF0ZV9ldmVudF9hdHRyaWJ1dGVzKHBtdSk7Ci0JaWYgKCFpOTE1X3BtdV9ldmVu
-dHNfYXR0cl9ncm91cC5hdHRycykKKwlwbXUtPmV2ZW50c19hdHRyX2dyb3VwLm5hbWUgPSAiZXZl
-bnRzIjsKKwlwbXUtPmV2ZW50c19hdHRyX2dyb3VwLmF0dHJzID0gY3JlYXRlX2V2ZW50X2F0dHJp
-YnV0ZXMocG11KTsKKwlpZiAoIXBtdS0+ZXZlbnRzX2F0dHJfZ3JvdXAuYXR0cnMpCiAJCWdvdG8g
-ZXJyX25hbWU7CiAKLQlwbXUtPmJhc2UuYXR0cl9ncm91cHMJPSBpOTE1X3BtdV9hdHRyX2dyb3Vw
-czsKKwlwbXUtPmJhc2UuYXR0cl9ncm91cHMgPSBrbWVtZHVwKGF0dHJfZ3JvdXBzLCBzaXplb2Yo
-YXR0cl9ncm91cHMpLAorCQkJCQlHRlBfS0VSTkVMKTsKKwlpZiAoIXBtdS0+YmFzZS5hdHRyX2dy
-b3VwcykKKwkJZ290byBlcnJfYXR0cjsKKwogCXBtdS0+YmFzZS50YXNrX2N0eF9ucgk9IHBlcmZf
-aW52YWxpZF9jb250ZXh0OwogCXBtdS0+YmFzZS5ldmVudF9pbml0CT0gaTkxNV9wbXVfZXZlbnRf
-aW5pdDsKIAlwbXUtPmJhc2UuYWRkCQk9IGk5MTVfcG11X2V2ZW50X2FkZDsKQEAgLTExNTksNyAr
-MTE1OSw3IEBAIHZvaWQgaTkxNV9wbXVfcmVnaXN0ZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-Kmk5MTUpCiAKIAlyZXQgPSBwZXJmX3BtdV9yZWdpc3RlcigmcG11LT5iYXNlLCBwbXUtPm5hbWUs
-IC0xKTsKIAlpZiAocmV0KQotCQlnb3RvIGVycl9hdHRyOworCQlnb3RvIGVycl9ncm91cHM7CiAK
-IAlyZXQgPSBpOTE1X3BtdV9yZWdpc3Rlcl9jcHVocF9zdGF0ZShwbXUpOwogCWlmIChyZXQpCkBA
-IC0xMTY5LDYgKzExNjksOCBAQCB2b2lkIGk5MTVfcG11X3JlZ2lzdGVyKHN0cnVjdCBkcm1faTkx
-NV9wcml2YXRlICppOTE1KQogCiBlcnJfdW5yZWc6CiAJcGVyZl9wbXVfdW5yZWdpc3RlcigmcG11
-LT5iYXNlKTsKK2Vycl9ncm91cHM6CisJa2ZyZWUocG11LT5iYXNlLmF0dHJfZ3JvdXBzKTsKIGVy
-cl9hdHRyOgogCXBtdS0+YmFzZS5ldmVudF9pbml0ID0gTlVMTDsKIAlmcmVlX2V2ZW50X2F0dHJp
-YnV0ZXMocG11KTsKQEAgLTExOTQsNiArMTE5Niw3IEBAIHZvaWQgaTkxNV9wbXVfdW5yZWdpc3Rl
-cihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKIAogCXBlcmZfcG11X3VucmVnaXN0ZXIo
-JnBtdS0+YmFzZSk7CiAJcG11LT5iYXNlLmV2ZW50X2luaXQgPSBOVUxMOworCWtmcmVlKHBtdS0+
-YmFzZS5hdHRyX2dyb3Vwcyk7CiAJaWYgKCFpc19pZ3AoaTkxNSkpCiAJCWtmcmVlKHBtdS0+bmFt
-ZSk7CiAJZnJlZV9ldmVudF9hdHRyaWJ1dGVzKHBtdSk7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pOTE1X3BtdS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wbXUuaApp
-bmRleCAyMDcwNTgzOTFjZWMuLmYxZDZjYWQwZDdkNSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9wbXUuaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BtdS5o
-CkBAIC0xMDcsNiArMTA3LDEwIEBAIHN0cnVjdCBpOTE1X3BtdSB7CiAJICogQHNsZWVwX2xhc3Q6
-IExhc3QgdGltZSBHVCBwYXJrZWQgZm9yIFJDNiBlc3RpbWF0aW9uLgogCSAqLwogCWt0aW1lX3Qg
-c2xlZXBfbGFzdDsKKwkvKioKKwkgKiBAZXZlbnRzX2F0dHJfZ3JvdXA6IERldmljZSBldmVudHMg
-YXR0cmlidXRlIGdyb3VwLgorCSAqLworCXN0cnVjdCBhdHRyaWJ1dGVfZ3JvdXAgZXZlbnRzX2F0
-dHJfZ3JvdXA7CiAJLyoqCiAJICogQGk5MTVfYXR0cjogTWVtb3J5IGJsb2NrIGhvbGRpbmcgZGV2
-aWNlIGF0dHJpYnV0ZXMuCiAJICovCi0tIAoyLjIxLjEKCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Feb 19, 2020 at 5:09 PM Emil Velikov <emil.l.velikov@gmail.com> wrote:
+>
+> On Wed, 19 Feb 2020 at 14:23, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> >
+> > On Wed, Feb 19, 2020 at 2:33 PM Greg Kroah-Hartman
+> > <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > On Wed, Feb 19, 2020 at 03:28:47PM +0200, Laurent Pinchart wrote:
+> > > > Hi Daniel,
+> > > >
+> > > > Thank you for the patch.
+> > > >
+> > > > On Wed, Feb 19, 2020 at 11:20:33AM +0100, Daniel Vetter wrote:
+> > > > > We have lots of these. And the cleanup code tends to be of dubious
+> > > > > quality. The biggest wrong pattern is that developers use devm_, which
+> > > > > ties the release action to the underlying struct device, whereas
+> > > > > all the userspace visible stuff attached to a drm_device can long
+> > > > > outlive that one (e.g. after a hotunplug while userspace has open
+> > > > > files and mmap'ed buffers). Give people what they want, but with more
+> > > > > correctness.
+> > > > >
+> > > > > Mostly copied from devres.c, with types adjusted to fit drm_device and
+> > > > > a few simplifications - I didn't (yet) copy over everything. Since
+> > > > > the types don't match code sharing looked like a hopeless endeavour.
+> > > > >
+> > > > > For now it's only super simplified, no groups, you can't remove
+> > > > > actions (but kfree exists, we'll need that soon). Plus all specific to
+> > > > > drm_device ofc, including the logging. Which I didn't bother to make
+> > > > > compile-time optional, since none of the other drm logging is compile
+> > > > > time optional either.
+> > > > >
+> > > > > One tricky bit here is the chicken&egg between allocating your
+> > > > > drm_device structure and initiliazing it with drm_dev_init. For
+> > > > > perfect onion unwinding we'd need to have the action to kfree the
+> > > > > allocation registered before drm_dev_init registers any of its own
+> > > > > release handlers. But drm_dev_init doesn't know where exactly the
+> > > > > drm_device is emebedded into the overall structure, and by the time it
+> > > > > returns it'll all be too late. And forcing drivers to be able clean up
+> > > > > everything except the one kzalloc is silly.
+> > > > >
+> > > > > Work around this by having a very special final_kfree pointer. This
+> > > > > also avoids troubles with the list head possibly disappearing from
+> > > > > underneath us when we release all resources attached to the
+> > > > > drm_device.
+> > > >
+> > > > This is all a very good idea ! Many subsystems are plagged by drivers
+> > > > using devm_k*alloc to allocate data accessible by userspace. Since the
+> > > > introduction of devm_*, we've likely reduced the number of memory leaks,
+> > > > but I'm pretty sure we've increased the risk of crashes as I've seen
+> > > > some drivers that used .release() callbacks correctly being naively
+> > > > converted to incorrect devm_* usage :-(
+> > > >
+> > > > This leads me to a question: if other subsystems have the same problem,
+> > > > could we turn this implementation into something more generic ? It
+> > > > doesn't have to be done right away and shouldn't block merging this
+> > > > series, but I think it would be very useful.
+> > >
+> > > It shouldn't be that hard to tie this into a drv_m() type of a thing
+> > > (driver_memory?)
+> > >
+> > > And yes, I think it's much better than devm_* for the obvious reasons of
+> > > this being needed here.
+> >
+> > There's two reasons I went with copypasta instead of trying to share code:
+> > - Type checking, I definitely don't want people to mix up devm_ with
+> > drmm_. But even if we do a drv_m that subsystems could embed we do
+> > have quite a few different types of component drivers (and with
+> > drm_panel and drm_bridge even standardized), and I don't want people
+> > to be able to pass the wrong kind of struct to e.g. a managed
+> > drmm_connector_init - it really needs to be the drm_device, not a
+> > panel or bridge or something else.
+> >
+> > - We could still share the code as a kind of implementation/backend
+> > library. But it's not much, and with embedding I could use the drm
+> > device logging stuff which is kinda nice. But if there's more demand
+> > for this I can definitely see the point in sharing this, as Laurent
+> > pointed out with the tiny optimization with not allocating a NULL void
+> > * that I've done (and screwed up) it's not entirely trivial code.
+> >
+>
+> My 2c as they say, although closer to a brain dump :-)
+>
+> On one hand the drm_device has an embedded struct device. On the other
+> drm_device preserves state which outlives the embedded struct device.
+>
+> Would it make sense to keep drm_device better related to the
+> underlying device? Effectively moving the $misc state to drm_driver.
+> This idea does raise another question - struct drm_driver unlike many
+> other struct $foo_driver, does not embedded device_driver :-(
+> So if one is to cover the above two, then the embedding concerns will
+> be elevated.
+
+drm_driver isn't a bus device driver in the linux driver model sense,
+but an uapi thing that sits on top of some underlying device. So maybe
+better to rename drm_driver to drm_interface_driver, and drm_device to
+drm_interface. But that would be giantic churn and probably lots of
+confusion. We do require a link between drm_device->struct device
+nowadays, but that's just to guarantee userspace can find the
+drm_device in sysfs somewhere and make sense of what it actually
+drives.
+
+That's also why the lifetimes for the two things are totally
+different. The device driver an all it's resources are tied to the
+underlying physical device, and resources can be released when that
+driver<->device link is broken (either unbind or hotunplug). That's
+what devm_ does. The drm_driver/drm_device otoh is tied to the
+userspace api, and can only disappear once all the userspace handles
+have been cleaned up and released. And we have an enormous amount of
+those, with all the mmaps, and shared fd for dma-buf, sync_file,
+synobj and whatever else. The drm_device can only be cleaned up once
+userspace has closed all these things, or we'll go boom somewhere. The
+only connection is that the userspace interface drives the underlying
+hw (as long as it's still there) and the hw side holds a reference on
+the uapi side (drm_dev_get/put) to make sure the userspace side
+doesn't go poof and disappear when no one has the /dev node open :-)
+
+But aside from these links they're completely separate worlds, and
+mixing up the lifetimes results in all kinds of bad things happening.
+Ofc normally these two things exist at the same time, but hotunplug
+makes things very interesting here. And traditionally we've handled it
+badly, if at all in drm.
+
+> WRT type safety, with the embedded work sorted, one could introduce
+> trivial helpers for drmm_connector_init and friends.
+>
+> In another email you've also raised the question of API diversity and
+> reviews, I believe. IMHO one could start with a bare minimum set and
+> extend as needed.
+> Based on the prompt response from Greg, I suspect review won't be an issue.
+
+The drmm_ stuff in here is the bare minimum we need to get started. I
+expect lots of stuff will be added, but those are all just going to be
+convenience functions on top of the drmm_add_action primitive.
+
+> If people agree with my analysis and considering the size/complexity
+> of drm_device <> drm_driver reshuffle, we could add a TODO task.
+> I suspect the underlying work will be larger than the current 52 patch
+> set, so doing it in one go will be PITA.
+
+I'm not following what you want to shuffle. drm_driver is entirely
+static and kinda global, drm_device is the per-instance structure we
+have. And here we mean per-userspace uapi interface instance. So I
+guess I'm confused what you want to do?
+-Daniel
+
+>
+> HTH
+> Emil
+>
+> * Based on the following quick greps
+> $git grep -W "struct [a-zA-Z0-9-]*_driver {" -- include/ | grep -w
+> "struct device_driver\>.*;"  | wc -l
+> 56
+> $git cgrep "struct [a-zA-Z0-9-]*_driver {" -- include/ | wc -l
+> 71
+
+
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
