@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A901641C1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 837F81641C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1CA6EB95;
-	Wed, 19 Feb 2020 10:22:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A866EB94;
+	Wed, 19 Feb 2020 10:22:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 816FE6EB67
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:21 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id t14so6137499wmi.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:21 -0800 (PST)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A1A66EB67
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:23 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id a6so6144011wme.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=xMlgdU1cYExkP2QmLXd1n53OowDsHqDIXTQr8j/y3Q8=;
- b=T+x49BUuQM7M/z3U38Vqp7Kmd4NXSMDNcFJe991R5bZt0s8aChJvrMmz7fsDCSLOhp
- jv8FE72a5MrrcrFuHDqXOz/ULMzBBR56wKPlc4NOlK2a5jN35HHmACcATr7QaeAsazY7
- 61cbCtIOligGJrJbU0kSCW97mdiqOdjAI1AXw=
+ bh=rr4O+ONX2Z8M6GReNFE6BySLzR+uhIBS806KKHWYPwI=;
+ b=cZYEyvoll2hg561RetSEjP7VjGjvOwOTHoe95zvHlWEXhANThcHVrrsgChhpr/Tyn+
+ 6DaH/lpywtlxU4+97R03I51fWsEuXIQvc6GIA8MxqSLnXnG6rCv21Mfzry2uZrZ8WBgf
+ KWak7Him3+bCeRLDgfls4qzaj0TE2SskFCOqY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=xMlgdU1cYExkP2QmLXd1n53OowDsHqDIXTQr8j/y3Q8=;
- b=j55N5xX1Vtnz+MKYX/I5w4prC+kMKax8Vqa3rB3L4Eru40njcBEqZhik9szNtr4xgK
- 2frORnEhpf9i5HBKMbX8hHc/PDS3NTcdxrabMYygby8DPEkq5BH2xdmlf2+1ixn/VXQc
- XmU58fWR2fM2kmwLtqKBC0uGMJmQ6M7urN45lJYqj7ve8yZsD7shYOkMI0Km9B5OnxkN
- sFKdLXT75nc7Q1eH/5F037J7EZrSfi8M3zs2zAqvEa7g7b4qZ7LwKGyqnvYnu3mYBGqZ
- al9BYInDAfg/u7GlaNYiNfP13a4YpAN6NDL0L/JGBj7nJTvVqgILU7QlvzJxhU19E8Kj
- X4Iw==
-X-Gm-Message-State: APjAAAXJ9rTSMc2aBpF7+QZ2b5KsBX9RBJ/tjjqvCShDL8GSpv8qQy2J
- K1aGcuUcmNym/WBUpoxC7WZMjg==
-X-Google-Smtp-Source: APXvYqymi9589CDsGB+zjTSFgOOAfFLrPZpKIiRrm56SLHkI/2PZysDoDOjkW1ClCmBMu5VkiuS1AA==
-X-Received: by 2002:a1c:7205:: with SMTP id n5mr9512518wmc.9.1582107740163;
- Wed, 19 Feb 2020 02:22:20 -0800 (PST)
+ bh=rr4O+ONX2Z8M6GReNFE6BySLzR+uhIBS806KKHWYPwI=;
+ b=EnXlIqzEYjwXZDoyNq0ITfdRbM30ItCsFtCpI6lhMn5TBG+GA2L9hBvdnLxehBapk7
+ Rp61tlDvqoZHYFW7WOe4aeQsi+cWPAEBQO5m3k4Va8QUD5pNjc6D9Sr5EMDFlAGb6dZW
+ /n7WgqhGPWyYGjG9kQLX4IyjX+GlzerS7jY1ZJGuQo/RXc0wc26DoZIRftZ80xCV4b0W
+ DFqadHyExfDvNvPWri2w34YEE5EFwk2k2NxSrVFGOkMJneHuYU+Xhe16Hdk6WCz9j3OS
+ ouq7qAL6Sgmm05LmbYBUYjtM07gilhJlsK59i95pJV2BKISmYpUqGLcWH7UU7dT3PURf
+ c5cA==
+X-Gm-Message-State: APjAAAVbyHAgIpcI3XO0xBdPYIs6nPgHaqxvWi6LMrkRJ1gV3/cVYCOe
+ IEGnxIua7J+RJDwRY0cyX7Y3GA==
+X-Google-Smtp-Source: APXvYqwZDBM44gEUF+WK198J6o5bIQn2Yi0j7i8eWZz2CQO+fOVdi51TJ7/t55leB/eX6PBGPcicrQ==
+X-Received: by 2002:a1c:1b42:: with SMTP id b63mr9340142wmb.16.1582107741586; 
+ Wed, 19 Feb 2020 02:22:21 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.19
+ by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 02:22:19 -0800 (PST)
+ Wed, 19 Feb 2020 02:22:20 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 19 Feb 2020 11:21:11 +0100
-Message-Id: <20200219102122.1607365-42-daniel.vetter@ffwll.ch>
+Date: Wed, 19 Feb 2020 11:21:12 +0100
+Message-Id: <20200219102122.1607365-43-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 41/52] drm/mtk: Drop explicit
+Subject: [Intel-gfx] [PATCH 42/52] drm/tidss: Drop explicit
  drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,6 +66,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Jyri Sarha <jsarha@ti.com>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -77,52 +78,98 @@ It's right above the drm_dev_put().
 Aside: Another driver with a bit much devm_kzalloc, which should
 probably use drmm_kzalloc instead ...
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+I'm pretty sure this one blows up already under KASAN because it's
+using devm_drm_dev_init, and later on devm_kzalloc. Hence the memory
+will get freed before the final drm_dev_put (all from the devres
+code), but the cleanup in that final drm_dev_put will access the just
+freed memory.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 0563c6813333..947b2cbe2836 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -162,7 +162,9 @@ static int mtk_drm_kms_init(struct drm_device *drm)
- 	}
- 	private->mutex_dev = &pdev->dev;
+Unfortunately fixing this properly needs slightly more work, namely
+drmm_ versions for all the drm objects (planes, crtc, ...), so that
+the cleanup actually happens before even drmm_kzalloc would release
+the underlying memory. Not quite there yet.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Jyri Sarha <jsarha@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+---
+ drivers/gpu/drm/tidss/tidss_drv.c |  4 ----
+ drivers/gpu/drm/tidss/tidss_kms.c | 19 +++++--------------
+ drivers/gpu/drm/tidss/tidss_kms.h |  1 -
+ 3 files changed, 5 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+index 460d5e9d0cf4..ad449d104306 100644
+--- a/drivers/gpu/drm/tidss/tidss_drv.c
++++ b/drivers/gpu/drm/tidss/tidss_drv.c
+@@ -103,11 +103,7 @@ static const struct dev_pm_ops tidss_pm_ops = {
  
--	drm_mode_config_init(drm);
-+	ret = drm_mode_config_init(drm);
+ static void tidss_release(struct drm_device *ddev)
+ {
+-	struct tidss_device *tidss = ddev->dev_private;
+-
+ 	drm_kms_helper_poll_fini(ddev);
+-
+-	tidss_modeset_cleanup(tidss);
+ }
+ 
+ DEFINE_DRM_GEM_CMA_FOPS(tidss_fops);
+diff --git a/drivers/gpu/drm/tidss/tidss_kms.c b/drivers/gpu/drm/tidss/tidss_kms.c
+index 5311e0f1c551..87e07e0e4eae 100644
+--- a/drivers/gpu/drm/tidss/tidss_kms.c
++++ b/drivers/gpu/drm/tidss/tidss_kms.c
+@@ -208,7 +208,9 @@ int tidss_modeset_init(struct tidss_device *tidss)
+ 
+ 	dev_dbg(tidss->dev, "%s\n", __func__);
+ 
+-	drm_mode_config_init(ddev);
++	ret = drm_mode_config_init(ddev);
 +	if (ret)
 +		return ret;
  
- 	drm->mode_config.min_width = 64;
- 	drm->mode_config.min_height = 64;
-@@ -179,7 +181,7 @@ static int mtk_drm_kms_init(struct drm_device *drm)
+ 	ddev->mode_config.min_width = 8;
+ 	ddev->mode_config.min_height = 8;
+@@ -220,11 +222,11 @@ int tidss_modeset_init(struct tidss_device *tidss)
  
- 	ret = component_bind_all(drm->dev, drm);
+ 	ret = tidss_dispc_modeset_init(tidss);
  	if (ret)
--		goto err_config_cleanup;
+-		goto err_mode_config_cleanup;
 +		return ret;
  
- 	/*
- 	 * We currently support two fixed data streams, each optional,
-@@ -255,8 +257,6 @@ static int mtk_drm_kms_init(struct drm_device *drm)
- 		dma_dev->dma_parms = NULL;
- err_component_unbind:
- 	component_unbind_all(drm->dev, drm);
--err_config_cleanup:
--	drm_mode_config_cleanup(drm);
+ 	ret = drm_vblank_init(ddev, tidss->num_crtcs);
+ 	if (ret)
+-		goto err_mode_config_cleanup;
++		return ret;
  
- 	return ret;
+ 	/* Start with vertical blanking interrupt reporting disabled. */
+ 	for (i = 0; i < tidss->num_crtcs; ++i)
+@@ -235,15 +237,4 @@ int tidss_modeset_init(struct tidss_device *tidss)
+ 	dev_dbg(tidss->dev, "%s done\n", __func__);
+ 
+ 	return 0;
+-
+-err_mode_config_cleanup:
+-	drm_mode_config_cleanup(ddev);
+-	return ret;
+-}
+-
+-void tidss_modeset_cleanup(struct tidss_device *tidss)
+-{
+-	struct drm_device *ddev = &tidss->ddev;
+-
+-	drm_mode_config_cleanup(ddev);
  }
-@@ -272,7 +272,6 @@ static void mtk_drm_kms_deinit(struct drm_device *drm)
- 		private->dma_dev->dma_parms = NULL;
+diff --git a/drivers/gpu/drm/tidss/tidss_kms.h b/drivers/gpu/drm/tidss/tidss_kms.h
+index dda5625d0128..99aaff099f22 100644
+--- a/drivers/gpu/drm/tidss/tidss_kms.h
++++ b/drivers/gpu/drm/tidss/tidss_kms.h
+@@ -10,6 +10,5 @@
+ struct tidss_device;
  
- 	component_unbind_all(drm->dev, drm);
--	drm_mode_config_cleanup(drm);
- }
+ int tidss_modeset_init(struct tidss_device *tidss);
+-void tidss_modeset_cleanup(struct tidss_device *tidss);
  
- static const struct file_operations mtk_drm_fops = {
+ #endif
 -- 
 2.24.1
 
