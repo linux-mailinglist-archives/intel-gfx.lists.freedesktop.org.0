@@ -1,32 +1,63 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE49164459
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:34:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D96B164481
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:41:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0D4A6EBB6;
-	Wed, 19 Feb 2020 12:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 000806EBC5;
+	Wed, 19 Feb 2020 12:40:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6826EBB6
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:34:26 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20275434-1500050 
- for multiple; Wed, 19 Feb 2020 12:34:18 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 12:34:18 +0000
-Message-Id: <20200219123418.1447428-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200219112004.1412791-2-chris@chris-wilson.co.uk>
-References: <20200219112004.1412791-2-chris@chris-wilson.co.uk>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA106E7D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:40:57 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id y11so346517wrt.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 04:40:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=LjRLU1S8ubvmSNDUw0qavhTBctk1LWngefBqopvudHg=;
+ b=CYKxIYAw/qJ8aQWgaKub255KGYLrhVtUoKJYKd4LFs9xi0DIul5gBRhW67dgYdpka6
+ Sw3MdL7PnGA2UTvg3r/E1FK483pMhgQwk5svaK4wbf7mBERi13FeQK41cUjKd6hXw3TQ
+ rpc5mlnsw/6k+xCecmyMUVqS3feSSJVME4ET8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=LjRLU1S8ubvmSNDUw0qavhTBctk1LWngefBqopvudHg=;
+ b=C3S3nD+mKba2z8HJ2nfqfsBMTobwI6q/JAcn1KhBOU70BR2/pOuQaFVHNGZH0/ckqm
+ qpx8X2R+yTD3RNyLnJ/AidZnTopANTH/BAsMcS6QygwRvQFuV4BqpIdWCe4d4pxCz/Ri
+ DenYgTDz3/CbvnW5PqpN6fdMG2DlaZSDA7dImGKLsFpKEefogiC8LdpkqGGqwnLb583z
+ UvUrMqAx4WpDNm3YtN/kCprgZ5fZZLdxNUrAFE4t2UfQ1bUTWlNFtcPz+VqLQuhWTWjW
+ Zrt3LrpD5VVH/uiXBgtUqcP7868ymN9feJ1JT/YvVmFFR6S7N6BpuxT2MK0AhXCegB5q
+ VLVA==
+X-Gm-Message-State: APjAAAURqUXHXZcSqR6aPQhSY8g2YUq0NGIzSN2YvkD8cTzy1IyseQ1w
+ 0IVJNGQOGnTkP7lcoWmqxTXQhA==
+X-Google-Smtp-Source: APXvYqwyfla5/5OoJuQjb0Zy7o9RZQQVJKEaRvPBDgnIYUH8Xp/48v1ZgGjUCJTRzNhh1G0d1Zpi2A==
+X-Received: by 2002:adf:ec02:: with SMTP id x2mr3012853wrn.8.1582116056215;
+ Wed, 19 Feb 2020 04:40:56 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u8sm2895524wmm.15.2020.02.19.04.40.55
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 19 Feb 2020 04:40:55 -0800 (PST)
+Date: Wed, 19 Feb 2020 13:40:53 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Message-ID: <20200219124053.GQ2363188@phenom.ffwll.local>
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-38-daniel.vetter@ffwll.ch>
+ <CAMuHMdXit+F2nK8JSXyzP26epeDA3pxOYyzVMFtKWqaGCNqBxA@mail.gmail.com>
+ <CAKMK7uFrzjAOxBK0GBPtHt=VGRjvC3GJcOTvP087gyO1nAEVPQ@mail.gmail.com>
+ <CAMuHMdUBKJTcPg8GB_c52p8jXWqdn8JX3tiPxsQkRRW2EA3+yA@mail.gmail.com>
+ <20200219121727.GC5070@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/selftests: Mark GPR checking more
- hostile
+Content-Disposition: inline
+In-Reply-To: <20200219121727.GC5070@pendragon.ideasonboard.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 37/52] drm/rcar-du: Drop explicit
+ drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,239 +70,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we check that a new context has a clear set of general
-purpose registers. Add a little bit of hostility by preempting our new
-context and re-poisoning the GPR to ensure that there is no context
-leakage from preemption.
+On Wed, Feb 19, 2020 at 02:17:27PM +0200, Laurent Pinchart wrote:
+> Hi Daniel,
+> 
+> On Wed, Feb 19, 2020 at 12:10:18PM +0100, Geert Uytterhoeven wrote:
+> > On Wed, Feb 19, 2020 at 11:57 AM Daniel Vetter wrote:
+> > > On Wed, Feb 19, 2020 at 11:30 AM Geert Uytterhoeven wrote:
+> > > > On Wed, Feb 19, 2020 at 11:22 AM Daniel Vetter wrote:
+> > > > > It's right above the drm_dev_put().
+> > > > >
+> > > > > Aside: Another driver with a bit much devm_kzalloc, which should
+> > > > > probably use drmm_kzalloc instead ...
+> > > >
+> > > > What's drmm_kzalloc()?
+> > > > The only references I can find are in this patch series.
+> > >
+> > > Yup, it's all new. Read cover letter for reading instructions for the
+> > > entire patch series. I'm afraid the driver patches wont make much
+> > > sense without the context. None actually :-/
+> > 
+> > IC, as the cover letter was sent only to dri-devel and intel-gfx, many
+> > recipients of the patches won't have received it...
+> > https://lore.kernel.org/dri-devel/20200219102122.1607365-1-daniel.vetter@ffwll.ch/
+> 
+> I was also going to mention that it would be nice to send the cover
+> letter to all recipients from the series, otherwise it's a bit painful.
+> Daniel, is this something that could be integrated in your workflow ?
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 127 +++++++++++++++++++------
- 1 file changed, 96 insertions(+), 31 deletions(-)
+No, the usual result of that if you do it is that mail servers scream at
+you for too many recipients.
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 52eb1a8a1a9a..49b93cda04ca 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4344,13 +4344,13 @@ static int live_lrc_state(void *arg)
- 	return err;
- }
- 
--static int gpr_make_dirty(struct intel_engine_cs *engine)
-+static int gpr_make_dirty(struct intel_context *ce)
- {
- 	struct i915_request *rq;
- 	u32 *cs;
- 	int n;
- 
--	rq = intel_engine_create_kernel_request(engine);
-+	rq = intel_context_create_request(ce);
- 	if (IS_ERR(rq))
- 		return PTR_ERR(rq);
- 
-@@ -4362,53 +4362,54 @@ static int gpr_make_dirty(struct intel_engine_cs *engine)
- 
- 	*cs++ = MI_LOAD_REGISTER_IMM(NUM_GPR_DW);
- 	for (n = 0; n < NUM_GPR_DW; n++) {
--		*cs++ = CS_GPR(engine, n);
-+		*cs++ = CS_GPR(ce->engine, n);
- 		*cs++ = STACK_MAGIC;
- 	}
- 	*cs++ = MI_NOOP;
- 
- 	intel_ring_advance(rq, cs);
-+
-+	rq->sched.attr.priority = I915_PRIORITY_BARRIER;
- 	i915_request_add(rq);
- 
- 	return 0;
- }
- 
--static int __live_gpr_clear(struct intel_engine_cs *engine,
--			    struct i915_vma *scratch)
-+static struct i915_request *
-+__gpr_read(struct intel_context *ce, struct i915_vma *scratch, u32 *slot)
- {
--	struct intel_context *ce;
-+	const u32 offset =
-+		i915_ggtt_offset(ce->engine->status_page.vma) +
-+		offset_in_page(slot);
- 	struct i915_request *rq;
- 	u32 *cs;
- 	int err;
- 	int n;
- 
--	if (INTEL_GEN(engine->i915) < 9 && engine->class != RENDER_CLASS)
--		return 0; /* GPR only on rcs0 for gen8 */
--
--	err = gpr_make_dirty(engine);
--	if (err)
--		return err;
--
--	ce = intel_context_create(engine);
--	if (IS_ERR(ce))
--		return PTR_ERR(ce);
--
- 	rq = intel_context_create_request(ce);
--	if (IS_ERR(rq)) {
--		err = PTR_ERR(rq);
--		goto err_put;
--	}
-+	if (IS_ERR(rq))
-+		return rq;
- 
--	cs = intel_ring_begin(rq, 4 * NUM_GPR_DW);
-+	cs = intel_ring_begin(rq, 6 + 4 * NUM_GPR_DW);
- 	if (IS_ERR(cs)) {
--		err = PTR_ERR(cs);
- 		i915_request_add(rq);
--		goto err_put;
-+		return ERR_CAST(cs);
- 	}
- 
-+	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-+	*cs++ = MI_NOOP;
-+
-+	*cs++ = MI_SEMAPHORE_WAIT |
-+		MI_SEMAPHORE_GLOBAL_GTT |
-+		MI_SEMAPHORE_POLL |
-+		MI_SEMAPHORE_SAD_NEQ_SDD;
-+	*cs++ = 0;
-+	*cs++ = offset;
-+	*cs++ = 0;
-+
- 	for (n = 0; n < NUM_GPR_DW; n++) {
- 		*cs++ = MI_STORE_REGISTER_MEM_GEN8 | MI_USE_GGTT;
--		*cs++ = CS_GPR(engine, n);
-+		*cs++ = CS_GPR(ce->engine, n);
- 		*cs++ = i915_ggtt_offset(scratch) + n * sizeof(u32);
- 		*cs++ = 0;
- 	}
-@@ -4421,9 +4422,59 @@ static int __live_gpr_clear(struct intel_engine_cs *engine,
- 
- 	i915_request_get(rq);
- 	i915_request_add(rq);
-+	if (err) {
-+		i915_request_put(rq);
-+		rq = ERR_PTR(err);
-+	}
-+
-+	return rq;
-+}
-+
-+static int __live_lrc_gpr(struct intel_engine_cs *engine,
-+			  struct i915_vma *scratch,
-+			  bool preempt)
-+{
-+	u32 *slot = memset32(engine->status_page.addr + 1000, 0, 4);
-+	struct intel_context *ce;
-+	struct i915_request *rq;
-+	u32 *cs;
-+	int err;
-+	int n;
-+
-+	if (INTEL_GEN(engine->i915) < 9 && engine->class != RENDER_CLASS)
-+		return 0; /* GPR only on rcs0 for gen8 */
-+
-+	err = gpr_make_dirty(engine->kernel_context);
-+	if (err)
-+		return err;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	rq = __gpr_read(ce, scratch, slot);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_put;
-+	}
-+
-+	err = wait_for_submit(engine, rq, HZ / 2);
- 	if (err)
- 		goto err_rq;
- 
-+	if (preempt) {
-+		err = gpr_make_dirty(engine->kernel_context);
-+		if (err)
-+			goto err_rq;
-+
-+		err = emit_semaphore_signal(engine->kernel_context, slot);
-+		if (err)
-+			goto err_rq;
-+	} else {
-+		slot[0] = 1;
-+		wmb();
-+	}
-+
- 	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
- 		err = -ETIME;
- 		goto err_rq;
-@@ -4449,13 +4500,15 @@ static int __live_gpr_clear(struct intel_engine_cs *engine,
- 	i915_gem_object_unpin_map(scratch->obj);
- 
- err_rq:
-+	memset32(&slot[0], -1, 4);
-+	wmb();
- 	i915_request_put(rq);
- err_put:
- 	intel_context_put(ce);
- 	return err;
- }
- 
--static int live_gpr_clear(void *arg)
-+static int live_lrc_gpr(void *arg)
- {
- 	struct intel_gt *gt = arg;
- 	struct intel_engine_cs *engine;
-@@ -4473,14 +4526,26 @@ static int live_gpr_clear(void *arg)
- 		return PTR_ERR(scratch);
- 
- 	for_each_engine(engine, gt, id) {
--		err = __live_gpr_clear(engine, scratch);
-+		unsigned long heartbeat;
-+
-+		engine_heartbeat_disable(engine, &heartbeat);
-+
-+		err = __live_lrc_gpr(engine, scratch, false);
-+		if (err)
-+			goto err;
-+
-+		err = __live_lrc_gpr(engine, scratch, true);
-+		if (err)
-+			goto err;
-+
-+err:
-+		engine_heartbeat_enable(engine, heartbeat);
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
- 		if (err)
- 			break;
- 	}
- 
--	if (igt_flush_test(gt->i915))
--		err = -EIO;
--
- 	i915_vma_unpin_and_release(&scratch, 0);
- 	return err;
- }
-@@ -4779,7 +4844,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_layout),
- 		SUBTEST(live_lrc_fixed),
- 		SUBTEST(live_lrc_state),
--		SUBTEST(live_gpr_clear),
-+		SUBTEST(live_lrc_gpr),
- 		SUBTEST(live_lrc_timestamp),
- 		SUBTEST(live_pphwsp_runtime),
- 	};
+dri-devel is on lore.kernel.org now, with full historical backlog, so all
+there.
+
+https://lore.kernel.org/dri-devel/20200219102122.1607365-1-daniel.vetter@ffwll.ch/T/#t
+
+Cheers, Daniel
 -- 
-2.25.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
