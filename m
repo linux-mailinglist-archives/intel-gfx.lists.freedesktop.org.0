@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0036F1645CD
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 14:39:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A7581645D3
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 14:40:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AE6D6E7E6;
-	Wed, 19 Feb 2020 13:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C38D16EBE8;
+	Wed, 19 Feb 2020 13:40:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB846E7E6;
- Wed, 19 Feb 2020 13:39:19 +0000 (UTC)
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi
- [81.175.216.236])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4FB2E2F9;
- Wed, 19 Feb 2020 14:39:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1582119558;
- bh=LyUONTSrdds7t3gz62H8MOFqWkmg+wPrBzed1rOyYiQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=GDZDd/u5eH4Y/7GygTdJqJJmFrn3hhVkcuts6v0LOA7RJL/e7uodMW5U5n6fz2MZI
- 92Fp3L2aSCKUoNZV4opTYicob4qbQIKcipwE7wIMeglUpHc3hPgEvCwqLeO6TnLFg4
- /cUkChpTe5Lrq1QfAAqfOTQKzMKaQUWFr5EvKF60=
-Date: Wed, 19 Feb 2020 15:39:00 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200219133900.GE5070@pendragon.ideasonboard.com>
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-5-daniel.vetter@ffwll.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 313DD6EBE8;
+ Wed, 19 Feb 2020 13:40:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2A1FEA0003;
+ Wed, 19 Feb 2020 13:40:52 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200219102122.1607365-5-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 04/52] drm: Set final_kfree in drm_dev_alloc
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Date: Wed, 19 Feb 2020 13:40:52 -0000
+Message-ID: <158211965216.21062.8885021036466910868@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200219120944.21200-1-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20200219120944.21200-1-janusz.krzysztofik@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/userptr=3A_Don=27t_activate_MMU_notifier_if_no_pages_can_?=
+ =?utf-8?q?be_acquired?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +39,169 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, xen-devel@lists.xenproject.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel,
+== Series Details ==
 
-Thank you for the patch.
+Series: drm/i915/userptr: Don't activate MMU notifier if no pages can be acquired
+URL   : https://patchwork.freedesktop.org/series/73641/
+State : success
 
-On Wed, Feb 19, 2020 at 11:20:34AM +0100, Daniel Vetter wrote:
-> I also did a full review of all callers, and only the xen driver
-> forgot to call drm_dev_put in the failure path. Fix that up too.
+== Summary ==
 
-I'd split this patch in two then, with the Xen first coming first, and
-with an explanation in the commit message of the second patch about why
-you call drmm_add_final_kfree() in drm_dev_alloc().
+CI Bug Log - changes from CI_DRM_7963 -> Patchwork_16620
+====================================================
 
-> v2: I noticed that xen has a drm_driver.release hook, and uses
-> drm_dev_alloc(). We need to remove the kfree from
-> xen_drm_drv_release().
-> 
-> bochs also has a release hook, but leaked the drm_device ever since
-> 
-> commit 0a6659bdc5e8221da99eebb176fd9591435e38de
-> Author: Gerd Hoffmann <kraxel@redhat.com>
-> Date:   Tue Dec 17 18:04:46 2013 +0100
-> 
->     drm/bochs: new driver
-> 
-> This patch here fixes that leak.
-> 
-> Same for virtio, started leaking with
-> 
-> commit b1df3a2b24a917f8853d43fe9683c0e360d2c33a
-> Author: Gerd Hoffmann <kraxel@redhat.com>
-> Date:   Tue Feb 11 14:58:04 2020 +0100
-> 
->     drm/virtio: add drm_driver.release callback.
-> 
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-> Cc: xen-devel@lists.xenproject.org
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-> Cc: xen-devel@lists.xenproject.org
-> ---
->  drivers/gpu/drm/drm_drv.c           | 3 +++
->  drivers/gpu/drm/xen/xen_drm_front.c | 2 +-
->  2 files changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 3e5627d6eba6..9e62e28bbc62 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -39,6 +39,7 @@
->  #include <drm/drm_color_mgmt.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_file.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mode_object.h>
->  #include <drm/drm_print.h>
->  
-> @@ -819,6 +820,8 @@ struct drm_device *drm_dev_alloc(struct drm_driver *driver,
->  		return ERR_PTR(ret);
->  	}
->  
-> +	drmm_add_final_kfree(dev, dev);
+Summary
+-------
 
-drmm_add_final_kfree() can only be called once. Does this mean that a
-driver using drm_dev_alloc() isn't allowed to use drmm_add_final_kfree()
-to tract its own private structure ?
+  **SUCCESS**
 
-> +
->  	return dev;
->  }
->  EXPORT_SYMBOL(drm_dev_alloc);
-> diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
-> index 4be49c1aef51..d22b5da38935 100644
-> --- a/drivers/gpu/drm/xen/xen_drm_front.c
-> +++ b/drivers/gpu/drm/xen/xen_drm_front.c
-> @@ -461,7 +461,6 @@ static void xen_drm_drv_release(struct drm_device *dev)
->  	drm_mode_config_cleanup(dev);
->  
->  	drm_dev_fini(dev);
-> -	kfree(dev);
->  
->  	if (front_info->cfg.be_alloc)
->  		xenbus_switch_state(front_info->xb_dev,
-> @@ -561,6 +560,7 @@ static int xen_drm_drv_init(struct xen_drm_front_info *front_info)
->  fail_modeset:
->  	drm_kms_helper_poll_fini(drm_dev);
->  	drm_mode_config_cleanup(drm_dev);
-> +	drm_dev_put(drm_dev);
->  fail:
->  	kfree(drm_info);
->  	return ret;
+  No regressions found.
 
--- 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/index.html
 
-Laurent Pinchart
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16620 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live_sanitycheck:
+    - fi-icl-u3:          [PASS][1] -> [DMESG-WARN][2] ([i915#585]) +39 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][3] ([i915#694] / [i915#816]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-n2820:       [INCOMPLETE][5] ([i915#45]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_parallel@contexts:
+    - {fi-ehl-1}:         [INCOMPLETE][7] ([i915#937]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-ehl-1/igt@gem_exec_parallel@contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-ehl-1/igt@gem_exec_parallel@contexts.html
+
+  * igt@i915_selftest@live_active:
+    - fi-icl-dsi:         [DMESG-FAIL][9] ([i915#765]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-dsi/igt@i915_selftest@live_active.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-icl-dsi/igt@i915_selftest@live_active.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][11] ([i915#424]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+    - fi-cml-s:           [DMESG-FAIL][13] ([i915#877]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gt_heartbeat:
+    - fi-kbl-7500u:       [DMESG-FAIL][15] ([fdo#112406]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-kbl-7500u/igt@i915_selftest@live_gt_heartbeat.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-kbl-7500u/igt@i915_selftest@live_gt_heartbeat.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - {fi-tgl-u}:         [INCOMPLETE][17] ([i915#1233]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bsw-n3050:       [FAIL][19] ([i915#34]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Warnings ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-icl-u3:          [SKIP][21] ([fdo#109315]) -> [SKIP][22] ([fdo#109315] / [i915#585])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [INCOMPLETE][23] ([i915#45]) -> [TIMEOUT][24] ([fdo#112271] / [i915#1084] / [i915#816])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][25] ([i915#579]) -> [SKIP][26] ([fdo#109271])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-icl-u3:          [SKIP][27] ([fdo#109284] / [fdo#111827]) -> [SKIP][28] ([fdo#109284] / [fdo#111827] / [i915#585])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@kms_chamelium@dp-hpd-fast.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-icl-u3/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u3:          [SKIP][29] ([fdo#109285]) -> [SKIP][30] ([fdo#109285] / [i915#585])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@kms_force_connector_basic@force-load-detect.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/fi-icl-u3/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [fdo#112406]: https://bugs.freedesktop.org/show_bug.cgi?id=112406
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#585]: https://gitlab.freedesktop.org/drm/intel/issues/585
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#937]: https://gitlab.freedesktop.org/drm/intel/issues/937
+
+
+Participating hosts (50 -> 44)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-kbl-x1275 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7963 -> Patchwork_16620
+
+  CI-20190529: 20190529
+  CI_DRM_7963: e0d737598eb749378a5dc4ed3dfafc6f79d512cb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5448: 116020b1f83c1b3994c76882df7f77b6731d78ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16620: 38013f5c424c2d28bb3e9155b64ae7b51db63687 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+38013f5c424c drm/i915/userptr: Don't activate MMU notifier if no pages can be acquired
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16620/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
