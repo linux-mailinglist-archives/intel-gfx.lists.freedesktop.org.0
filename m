@@ -1,37 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1EA16376B
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 00:44:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE5B163804
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 01:06:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8B116E426;
-	Tue, 18 Feb 2020 23:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF74A6E34D;
+	Wed, 19 Feb 2020 00:06:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89B896E426
- for <intel-gfx@lists.freedesktop.org>; Tue, 18 Feb 2020 23:44:50 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2020 15:44:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,458,1574150400"; d="scan'208";a="258728730"
-Received: from rantogno-mobl4.jf.intel.com (HELO
- rantogno-mobl4.amr.corp.intel.com) ([10.54.72.142])
- by fmsmga004.fm.intel.com with SMTP; 18 Feb 2020 15:44:49 -0800
-Date: Tue, 18 Feb 2020 15:44:49 -0800
-From: Rafael Antognolli <rafael.antognolli@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-Message-ID: <20200218234449.w6zhjgzkfgjt6kg7@rantogno-mobl4.amr.corp.intel.com>
-References: <20200218194710.2808-1-matthew.s.atwood@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3835B6E34D;
+ Wed, 19 Feb 2020 00:06:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2666FA0138;
+ Wed, 19 Feb 2020 00:06:49 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200218194710.2808-1-matthew.s.atwood@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt/tgl: implement Wa_1409085225
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Wed, 19 Feb 2020 00:06:49 -0000
+Message-ID: <158207080912.21059.495155231876962879@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200217154509.2265-1-christian.koenig@amd.com>
+In-Reply-To: <20200217154509.2265-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/5=5D_dma-buf=3A_add_dynamic_DMA-buf_hand?=
+ =?utf-8?q?ling_v14?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,84 +39,163 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2020 at 02:47:10PM -0500, Matt Atwood wrote:
-> Disable Push Constant buffer addition for A0, which can cause FIFO
-> underruns.
-> 
-> Fix a minor white space issue while we're here.
-> 
-> Bspec: 52890
-> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 ++++++++++
->  drivers/gpu/drm/i915/i915_reg.h             |  3 +++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 887e0dc701f7..9bbd28aa9bde 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -580,6 +580,7 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
->  static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
->  				     struct i915_wa_list *wal)
->  {
-> +	struct drm_i915_private *i915 = engine->i915;
->  	u32 val;
->  
->  	/* Wa_1409142259:tgl */
-> @@ -590,6 +591,7 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	val = intel_uncore_read(engine->uncore, FF_MODE2);
->  	val &= ~FF_MODE2_TDS_TIMER_MASK;
->  	val |= FF_MODE2_TDS_TIMER_128;
-> +
->  	/*
->  	 * FIXME: FF_MODE2 register is not readable till TGL B0. We can
->  	 * enable verification of WA from the later steppings, which enables
-> @@ -598,6 +600,14 @@ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
->  	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ? 0 :
->  			    FF_MODE2_TDS_TIMER_MASK);
-> +
-> +	/* Wa_1409085225:tgl
-> +	 *
-> +	 * Push Constant Buffer can case FIFO underruns on A0
-> +	 */
-> +	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+== Series Details ==
 
-Is this really only applicable to A stepping?
+Series: series starting with [1/5] dma-buf: add dynamic DMA-buf handling v14
+URL   : https://patchwork.freedesktop.org/series/73586/
+State : success
 
-> +		WA_SET_BIT_MASKED(GEN9_ROW_CHICKEN4,
-> +				  GEN12_DISABLE_TDL_PUSH);
->  }
->  
->  static void
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index b09c1d6dc0aa..a75a27ed63ce 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9153,6 +9153,9 @@ enum {
->  #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
->  #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
->  
-> +#define GEN9_ROW_CHICKEN4		_MMIO(0x48c)
+== Summary ==
 
-s/0x48c/0xe48c/ ?
+CI Bug Log - changes from CI_DRM_7963 -> Patchwork_16603
+====================================================
 
-> +#define  GEN12_DISABLE_TDL_PUSH		(1 << 9)
-> +
->  #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
->  #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
->  
-> -- 
-> 2.21.1
-> 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16603 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cfl-8109u:       [PASS][1] -> [INCOMPLETE][2] ([i915#1242])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live_sanitycheck:
+    - fi-icl-u3:          [PASS][3] -> [DMESG-WARN][4] ([i915#585]) +39 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217] / [i915#976])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][7] ([i915#694] / [i915#816]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_active:
+    - fi-icl-dsi:         [DMESG-FAIL][9] ([i915#765]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-dsi/igt@i915_selftest@live_active.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-icl-dsi/igt@i915_selftest@live_active.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][11] ([i915#424]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+    - fi-cml-s:           [DMESG-FAIL][13] ([i915#877]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gt_heartbeat:
+    - fi-kbl-7500u:       [DMESG-FAIL][15] ([fdo#112406]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-kbl-7500u/igt@i915_selftest@live_gt_heartbeat.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-kbl-7500u/igt@i915_selftest@live_gt_heartbeat.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - {fi-tgl-u}:         [INCOMPLETE][17] ([i915#1233]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bsw-n3050:       [FAIL][19] ([i915#34]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][21] ([i915#579]) -> [SKIP][22] ([fdo#109271])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@kms_chamelium@dp-hpd-fast:
+    - fi-icl-u3:          [SKIP][23] ([fdo#109284] / [fdo#111827]) -> [SKIP][24] ([fdo#109284] / [fdo#111827] / [i915#585])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@kms_chamelium@dp-hpd-fast.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-icl-u3/igt@kms_chamelium@dp-hpd-fast.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - fi-icl-u3:          [SKIP][25] ([fdo#109285]) -> [SKIP][26] ([fdo#109285] / [i915#585])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7963/fi-icl-u3/igt@kms_force_connector_basic@force-load-detect.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/fi-icl-u3/igt@kms_force_connector_basic@force-load-detect.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109284]: https://bugs.freedesktop.org/show_bug.cgi?id=109284
+  [fdo#109285]: https://bugs.freedesktop.org/show_bug.cgi?id=109285
+  [fdo#111827]: https://bugs.freedesktop.org/show_bug.cgi?id=111827
+  [fdo#112406]: https://bugs.freedesktop.org/show_bug.cgi?id=112406
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+  [i915#585]: https://gitlab.freedesktop.org/drm/intel/issues/585
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (50 -> 42)
+------------------------------
+
+  Missing    (8): fi-hsw-4770r fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus fi-skl-6700k2 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7963 -> Patchwork_16603
+
+  CI-20190529: 20190529
+  CI_DRM_7963: e0d737598eb749378a5dc4ed3dfafc6f79d512cb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5448: 116020b1f83c1b3994c76882df7f77b6731d78ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16603: 9d3bcd8ee6f9b86d423d0135b12a1e8cb81d2c5f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9d3bcd8ee6f9 drm/amdgpu: implement amdgpu_gem_prime_move_notify v2
+f8b1c9b7e424 drm/amdgpu: add amdgpu_dma_buf_pin/unpin v2
+8dd2825c3c4a drm/amdgpu: use allowed_domains for exported DMA-bufs
+ee56054ff598 drm/ttm: remove the backing store if no placement is given
+c9c2d1477530 dma-buf: add dynamic DMA-buf handling v14
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16603/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
