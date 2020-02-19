@@ -1,30 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3129C1643FC
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:13:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5083E164404
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 13:17:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547A56E459;
-	Wed, 19 Feb 2020 12:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E016E5C5;
+	Wed, 19 Feb 2020 12:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0AFA6E459;
- Wed, 19 Feb 2020 12:13:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72B086E5C5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 12:17:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20275167-1500050 
- for multiple; Wed, 19 Feb 2020 12:13:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 12:13:12 +0000
-Message-Id: <20200219121312.1428041-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.0
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20275230-1500050 for multiple; Wed, 19 Feb 2020 12:17:13 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_vm_create: Call set-domain
- manually
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200219120944.21200-1-janusz.krzysztofik@linux.intel.com>
+References: <20200219120944.21200-1-janusz.krzysztofik@linux.intel.com>
+Message-ID: <158211463293.8112.7903202756518800530@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Wed, 19 Feb 2020 12:17:12 +0000
+Subject: Re: [Intel-gfx] [RFC PATCH] drm/i915/userptr: Don't activate MMU
+ notifier if no pages can be acquired
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,45 +40,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since we are secretly using execbuf to write into an object's location,
-then read back from the object we must manually handle the domain
-changes.
+Quoting Janusz Krzysztofik (2020-02-19 12:09:44)
+> The purpose of userptr MMU notifier is to invalidate object pages as
+> soon as someone unpins them from memory.  While doing that,
+> obj->mm.lock is acquired.  If the notifier was called with obj->mm.lock
+> already held, a lockdep loop would be triggered.  That scenario is
+> believed to be possible in several cases, one of which is when the
+> userptr object is created from an mmap-offset mapping of another i915
+> GEM object.  This patch tries to address this case.
+> 
+> Even if creating a userptr object on an mmap-offset mapping succeeds,
+> trying to pin pages of the mapping in memory always fails because of
+> them having a VM_PFNMAP flag set.  However, the notifier can be
+> activated for a userptr object even before required pages are found
+> already pinned in memory, as soon as a worker expected to get missing
+> pages is scheduled successfully.  If the worker then fails to collect
+> the pages, it deactivates the notifier.  However, a time window exists
+> when the notifier can be called for an object even with no pages set
+> yet.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/314
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_vm_create.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/tests/i915/gem_vm_create.c b/tests/i915/gem_vm_create.c
-index cbd273d9d..e14b07b5f 100644
---- a/tests/i915/gem_vm_create.c
-+++ b/tests/i915/gem_vm_create.c
-@@ -324,11 +324,15 @@ static void isolation(int i915)
- 	gem_execbuf(i915, &eb); /* bind object into vm[0] */
- 
- 	/* Verify the trick with the assumed target address works */
-+	gem_set_domain(i915, obj[0].handle,
-+		       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
- 	write_to_address(i915, ctx[0], obj[0].offset, 1);
- 	gem_read(i915, obj[0].handle, 0, &result, sizeof(result));
- 	igt_assert_eq(result, 1);
- 
- 	/* Now check that we can't write to vm[0] from second fd/vm */
-+	gem_set_domain(i915, obj[0].handle,
-+		       I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
- 	write_to_address(other, ctx[1], obj[0].offset, 2);
- 	gem_read(i915, obj[0].handle, 0, &result, sizeof(result));
- 	igt_assert_eq(result, 1);
--- 
-2.25.0
-
+You mean something like
+https://patchwork.freedesktop.org/patch/275514/?series=54869&rev=2
+to avoid lockdep cross-contamination.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
