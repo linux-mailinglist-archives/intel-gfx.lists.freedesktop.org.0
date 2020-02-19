@@ -1,57 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEA11641E1
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8DC1641DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:23:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC8916EBA9;
-	Wed, 19 Feb 2020 10:22:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 491186EBAD;
+	Wed, 19 Feb 2020 10:22:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7516EB6A
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:28 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id y11so27506157wrt.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:28 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8287C6EB69
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 10:22:29 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id u6so27603017wrt.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 19 Feb 2020 02:22:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=lIaP46HNJqsV2xcSO1/Lcgf0ktGtkKF9adts2it9DSM=;
- b=lQFV2ZR16yH4Q+Xk9P1EFMs/dlrjmIRgnHCx9Q6BkvPOvHE9n9JVxsGm8/q/mILnl8
- cZ913ejm/eFFpav58dXEZWcW28O+xQTbzMkjvt/2EDCz2M9sMPxAS0Ec1npGm1xb78dq
- j9VQBtL+UZXzKByez/VEVnr/tJusupalsLuOs=
+ bh=LItQjwA9mV8nuzJaVMbtJa/Mr2QhOC3mRaiFX1ZxXdY=;
+ b=YxkwRj6v8sA1O8uUWpxaiC1weDjQG0/dB9BrF0omx8hP4Cfvm/u3uhChTRy6OUV9c5
+ MME0yXSd2SwFPef/kLxlM8Njyy1NU6o0vGjdrZ4gljtlg7T+4hHN65kvlH8sUt0Xd1xy
+ IWXKEZP2Wn4cKJOp6SCZGu0gDb8hWdX7siKqM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=lIaP46HNJqsV2xcSO1/Lcgf0ktGtkKF9adts2it9DSM=;
- b=olkbHPoUvhUBvH7tleKFIZYUq83rLjcFAhyMGwTPLIOkcZ41MfPQkvNUfkRNLd4Qnv
- Fcgv6qBkL8jATf9a6CT9HvTvmc1TD1VZDI5s9NxGQURgILQlOjuxzkFtoXqtGjl//xAd
- 82nFFIGM5+XSIo/b3qMqSr/FBvQpknpabf83fIDfIWtEWhCFezDyUI5A8bRe2s6Wzrgl
- cxcwqroCaXsdwIEm8JAWgZsF3sgP8rsp2Uvu/DWy4xuMlCJNe9wBuOq7Gjva+rzQrP2J
- yQ+YBlH28PuRKTf2iOcV8NHx2cDlw3up8xww5AjZVAFAeFB85Se7bVVJAybgPFmhcCeM
- I7WA==
-X-Gm-Message-State: APjAAAXIieZtbKsjQuIw1KD8MwsNLKiivrHhRpEhlPkglwDLHQkm5S9p
- Y/34UCK8uvuczp0yJqX3Jsfbnw==
-X-Google-Smtp-Source: APXvYqzN5joCkR1iKQ8phrZJL7c16LaWsGd/6eMQJSMXl5TnxwaA+CzLiMPo9UawpgHinn+J2OPcQA==
-X-Received: by 2002:adf:c54e:: with SMTP id s14mr33823657wrf.385.1582107747046; 
+ bh=LItQjwA9mV8nuzJaVMbtJa/Mr2QhOC3mRaiFX1ZxXdY=;
+ b=qLrxOKxrZ9kHSM3fvqnQyg6MTRS0kOkUs0spFd2IlXTOrvYGrwhsxxCiCw1/N1kyFZ
+ MmNVXVmtksxpzfkzIgB/Ay9k0xQEOnOAKkd7zFDLnGoLtN18iV2OUZ5faaVGSd/JySkQ
+ JBTP8tYx4ps4ECHlc3b1WFSBZRJpRibDCkMXJ24YqfDvGgGuIB/IO0fgq1cz8BskCNed
+ +W1Cc8gc0x7/iDy3DomTfYzXSXfgU2uHBrxLB4A1XvlfjkpvNISpyOUbPTLInZZD/IpQ
+ dzDlk/k+ub15WDriZD+o9PzHNWSd6UPAmMU8I4iyoWUQktVsiWbskY8s8H7043R/YdOl
+ OGWQ==
+X-Gm-Message-State: APjAAAWZACMI3EdFwndhz9G4WTfZO+0PUUp4x0W2TjyyRSfCHHtQbyTZ
+ MxbF6pMB5BdSWTtV47GU79auEQ==
+X-Google-Smtp-Source: APXvYqy41ijA+ytu4BpqRVdObmpuN0/v9OCf6kG77+ZmHtW3b1DODLTtx1plfAc+TznLQGGvJDIdxA==
+X-Received: by 2002:adf:e70d:: with SMTP id c13mr34515327wrm.248.1582107747996; 
  Wed, 19 Feb 2020 02:22:27 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.25
+ by smtp.gmail.com with ESMTPSA id s23sm2370339wra.15.2020.02.19.02.22.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 19 Feb 2020 02:22:26 -0800 (PST)
+ Wed, 19 Feb 2020 02:22:27 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Wed, 19 Feb 2020 11:21:17 +0100
-Message-Id: <20200219102122.1607365-48-daniel.vetter@ffwll.ch>
+Date: Wed, 19 Feb 2020 11:21:18 +0100
+Message-Id: <20200219102122.1607365-49-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 47/52] drm/repaper: Drop explicit
- drm_mode_config_cleanup call
+Subject: [Intel-gfx] [PATCH 48/52] drm/mipi-dbi: Move drm_mode_config_init
+ into mipi library
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,33 +66,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
  Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QWxsb3dzIHVzIHRvIGRyb3AgdGhlIGRybV9kcml2ZXIucmVsZWFzZSBjYWxsYmFjay4KClNpZ25l
-ZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzogIk5v
-cmFsZiBUcsO4bm5lcyIgPG5vcmFsZkB0cm9ubmVzLm9yZz4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-dGlueS9yZXBhcGVyLmMgfCA4IC0tLS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgOCBkZWxldGlvbnMo
-LSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vdGlueS9yZXBhcGVyLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vdGlueS9yZXBhcGVyLmMKaW5kZXggNDc0MWZmNjcwZWM5Li4yZjcwZmIxYmUyMDAg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS90aW55L3JlcGFwZXIuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vdGlueS9yZXBhcGVyLmMKQEAgLTkwOSwxMyArOTA5LDYgQEAgc3RhdGljIGNvbnN0
-IHN0cnVjdCBkcm1fbW9kZV9jb25maWdfZnVuY3MgcmVwYXBlcl9tb2RlX2NvbmZpZ19mdW5jcyA9
-IHsKIAkuYXRvbWljX2NvbW1pdCA9IGRybV9hdG9taWNfaGVscGVyX2NvbW1pdCwKIH07CiAKLXN0
-YXRpYyB2b2lkIHJlcGFwZXJfcmVsZWFzZShzdHJ1Y3QgZHJtX2RldmljZSAqZHJtKQotewotCURS
-TV9ERUJVR19EUklWRVIoIlxuIik7Ci0KLQlkcm1fbW9kZV9jb25maWdfY2xlYW51cChkcm0pOwot
-fQotCiBzdGF0aWMgY29uc3QgdWludDMyX3QgcmVwYXBlcl9mb3JtYXRzW10gPSB7CiAJRFJNX0ZP
-Uk1BVF9YUkdCODg4OCwKIH07CkBAIC05NTMsNyArOTQ2LDYgQEAgREVGSU5FX0RSTV9HRU1fQ01B
-X0ZPUFMocmVwYXBlcl9mb3BzKTsKIHN0YXRpYyBzdHJ1Y3QgZHJtX2RyaXZlciByZXBhcGVyX2Ry
-aXZlciA9IHsKIAkuZHJpdmVyX2ZlYXR1cmVzCT0gRFJJVkVSX0dFTSB8IERSSVZFUl9NT0RFU0VU
-IHwgRFJJVkVSX0FUT01JQywKIAkuZm9wcwkJCT0gJnJlcGFwZXJfZm9wcywKLQkucmVsZWFzZQkJ
-PSByZXBhcGVyX3JlbGVhc2UsCiAJRFJNX0dFTV9DTUFfVk1BUF9EUklWRVJfT1BTLAogCS5uYW1l
-CQkJPSAicmVwYXBlciIsCiAJLmRlc2MJCQk9ICJQZXJ2YXNpdmUgRGlzcGxheXMgUmVQYXBlciBl
-LWluayBwYW5lbHMiLAotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5m
-cmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0
-aW5mby9pbnRlbC1nZngK
+7/7 drivers agree that's the right choice, let's do this.
+
+This avoids duplicating the same old error checking code over all 7
+drivers, which is the motivation here.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+---
+ drivers/gpu/drm/drm_mipi_dbi.c  | 4 ++++
+ drivers/gpu/drm/tiny/hx8357d.c  | 2 --
+ drivers/gpu/drm/tiny/ili9225.c  | 2 --
+ drivers/gpu/drm/tiny/ili9341.c  | 2 --
+ drivers/gpu/drm/tiny/ili9486.c  | 2 --
+ drivers/gpu/drm/tiny/mi0283qt.c | 2 --
+ drivers/gpu/drm/tiny/st7586.c   | 2 --
+ drivers/gpu/drm/tiny/st7735r.c  | 2 --
+ 8 files changed, 4 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_dbi.c
+index a678e07508d4..9de1586659be 100644
+--- a/drivers/gpu/drm/drm_mipi_dbi.c
++++ b/drivers/gpu/drm/drm_mipi_dbi.c
+@@ -510,6 +510,10 @@ int mipi_dbi_dev_init_with_formats(struct mipi_dbi_dev *dbidev,
+ 	if (!dbidev->dbi.command)
+ 		return -EINVAL;
+ 
++	ret = drm_mode_config_init(drm);
++	if (ret)
++		return ret;
++
+ 	dbidev->tx_buf = devm_kmalloc(drm->dev, tx_buf_size, GFP_KERNEL);
+ 	if (!dbidev->tx_buf)
+ 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/tiny/hx8357d.c b/drivers/gpu/drm/tiny/hx8357d.c
+index 42bc5dadcb1c..c88b84366dc5 100644
+--- a/drivers/gpu/drm/tiny/hx8357d.c
++++ b/drivers/gpu/drm/tiny/hx8357d.c
+@@ -239,8 +239,6 @@ static int hx8357d_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dc = devm_gpiod_get(dev, "dc", GPIOD_OUT_LOW);
+ 	if (IS_ERR(dc)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'dc'\n");
+diff --git a/drivers/gpu/drm/tiny/ili9225.c b/drivers/gpu/drm/tiny/ili9225.c
+index aae88dc5b3f7..fa998a16026c 100644
+--- a/drivers/gpu/drm/tiny/ili9225.c
++++ b/drivers/gpu/drm/tiny/ili9225.c
+@@ -390,8 +390,6 @@ static int ili9225_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
+diff --git a/drivers/gpu/drm/tiny/ili9341.c b/drivers/gpu/drm/tiny/ili9341.c
+index 7d40cb4ff72b..945e15169866 100644
+--- a/drivers/gpu/drm/tiny/ili9341.c
++++ b/drivers/gpu/drm/tiny/ili9341.c
+@@ -197,8 +197,6 @@ static int ili9341_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
+diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili9486.c
+index 7d735fc67498..38d293cf5377 100644
+--- a/drivers/gpu/drm/tiny/ili9486.c
++++ b/drivers/gpu/drm/tiny/ili9486.c
+@@ -211,8 +211,6 @@ static int ili9486_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
+diff --git a/drivers/gpu/drm/tiny/mi0283qt.c b/drivers/gpu/drm/tiny/mi0283qt.c
+index 8555a56bce8c..b8c973bc2347 100644
+--- a/drivers/gpu/drm/tiny/mi0283qt.c
++++ b/drivers/gpu/drm/tiny/mi0283qt.c
+@@ -201,8 +201,6 @@ static int mi0283qt_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dbi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
+diff --git a/drivers/gpu/drm/tiny/st7586.c b/drivers/gpu/drm/tiny/st7586.c
+index 427c2561f5f4..1f1a576be93c 100644
+--- a/drivers/gpu/drm/tiny/st7586.c
++++ b/drivers/gpu/drm/tiny/st7586.c
+@@ -331,8 +331,6 @@ static int st7586_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	bufsize = (st7586_mode.vdisplay + 2) / 3 * st7586_mode.hdisplay;
+ 
+ 	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735r.c
+index b447235c3d47..0f48a5a2d3d7 100644
+--- a/drivers/gpu/drm/tiny/st7735r.c
++++ b/drivers/gpu/drm/tiny/st7735r.c
+@@ -212,8 +212,6 @@ static int st7735r_probe(struct spi_device *spi)
+ 	}
+ 	drmm_add_final_kfree(drm, dbidev);
+ 
+-	drm_mode_config_init(drm);
+-
+ 	dbi->reset = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+ 	if (IS_ERR(dbi->reset)) {
+ 		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
