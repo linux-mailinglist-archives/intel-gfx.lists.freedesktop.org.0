@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93F8E164225
-	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:30:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 885C6164229
+	for <lists+intel-gfx@lfdr.de>; Wed, 19 Feb 2020 11:31:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA0766E584;
-	Wed, 19 Feb 2020 10:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7496EB67;
+	Wed, 19 Feb 2020 10:31:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E663B6E584;
- Wed, 19 Feb 2020 10:30:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B0C2CA0099;
- Wed, 19 Feb 2020 10:30:03 +0000 (UTC)
+Received: from mail-oi1-f193.google.com (mail-oi1-f193.google.com
+ [209.85.167.193])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33EB66EB67;
+ Wed, 19 Feb 2020 10:30:59 +0000 (UTC)
+Received: by mail-oi1-f193.google.com with SMTP id b18so23331987oie.2;
+ Wed, 19 Feb 2020 02:30:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=FvkhkBjXP3xwonKXIkY4RihP08iRrqR721UJBkfJeTA=;
+ b=QdbNF4oP1JheUFF6jnKjuE2ark+pdzzD76z5DfWqzpEG0XgbAC8d1ss4K/3A4FExwT
+ YcTr+Zdo/uub05LAkk4NdpfHiTEhry4GGFND2Ftb8gNprzeETIKpSpDoCo7CGxZCPFMN
+ RJk8iOHc25mdiJJLor7UJjBgfYW9yGbnHebod4vx+/iv2XpHFcPdZDm8MP7xy6jbq4vr
+ om4fhpP9KpUyGGbxtHH1FFyRhYLK+FrR+lcSDazzHomrCECHf3mHDjTQ94A6bN6vD/4f
+ kRma2nCbBfdcVLnzDY6uc9oacyrmNv1KwJpe9+mI+IEunlBG9OfbK//sli+qZIW4p1cw
+ wJ7A==
+X-Gm-Message-State: APjAAAVCFpjTPoszoreOoolJEFp9meiZD57ICiEnvWxWjuTlI8b/U3L2
+ Vt3uNwxOZp6V5IEh80O+OnusfD43O2wpFYjO3yc=
+X-Google-Smtp-Source: APXvYqyiFJRzLPKkcTXbZ92ixD2SB2MQqGjOS7f+m696AuxASfdlt+S3DyBRmMwQmUieZHK69GTMDoaWwBRuatifNi0=
+X-Received: by 2002:aca:c4d2:: with SMTP id u201mr4226894oif.54.1582108258523; 
+ Wed, 19 Feb 2020 02:30:58 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Wed, 19 Feb 2020 10:30:03 -0000
-Message-ID: <158210820372.21061.5174695886256681173@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200218173936.19664-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200218173936.19664-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/perf=3A_conversion_to_struct_drm=5Fdevice_based_lo?=
- =?utf-8?q?gging_macros=2E_=28rev2=29?=
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-38-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200219102122.1607365-38-daniel.vetter@ffwll.ch>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 19 Feb 2020 11:30:47 +0100
+Message-ID: <CAMuHMdXit+F2nK8JSXyzP26epeDA3pxOYyzVMFtKWqaGCNqBxA@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 37/52] drm/rcar-du: Drop explicit
+ drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,29 +53,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel,
 
-Series: drm/i915/perf: conversion to struct drm_device based logging macros. (rev2)
-URL   : https://patchwork.freedesktop.org/series/73589/
-State : warning
+On Wed, Feb 19, 2020 at 11:22 AM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> It's right above the drm_dev_put().
+>
+> Aside: Another driver with a bit much devm_kzalloc, which should
+> probably use drmm_kzalloc instead ...
 
-== Summary ==
+What's drmm_kzalloc()?
+The only references I can find are in this patch series.
 
-$ dim checkpatch origin/drm-tip
-9139cc1d6f24 drm/i915/perf: conversion to struct drm_device based logging macros.
--:17: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#17: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+Gr{oetje,eeting}s,
 
-total: 0 errors, 1 warnings, 0 checks, 69 lines checked
+                        Geert
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
