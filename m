@@ -1,49 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67CBA16624C
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:22:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5B916632A
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:33:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 841246EDDA;
-	Thu, 20 Feb 2020 16:22:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8BC6EDC3;
+	Thu, 20 Feb 2020 16:33:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.domeneshop.no (smtp.domeneshop.no
- [IPv6:2a01:5b40:0:3005::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEC86EDDA;
- Thu, 20 Feb 2020 16:22:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
- ; s=ds201912;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=GOPmvuckOnVbES/G9qOKANm26ZaDTrMZ6UpkJ5dN+K8=; b=Xr2c1iJMZKymf6mWo3eL6dY2s4
- 24HqQxMOe6feHZAlYQRWrSx/rPjmUR3LkygBvEAOAlcGgVoIwYgrOgyJuyRJZQ0Bf694oXTOeYSzm
- 8KH3CpeaLUudSXrUhryHiBJwCztQ4pvgnO+Uja1GgHPZleNZTXHbi1CH+ooiPr9oBYniwezDcr05N
- guFHWwpYZmg1JGTyELoNMtqZEdMzE1EQABQFfUkNOm35FfCg3Q2uhFyFyfPro+kBL+8jAPmcNdi7f
- F+cLWG2qxRiNxcGt3t5uQ45Kb1sOg/xXIKC0ZMCM2PBpX6eFY9R6N1TpR4znC88HmiHGqcbDBHQdH
- B76CafTg==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:50613
- helo=[192.168.10.61])
- by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <noralf@tronnes.org>)
- id 1j4ob4-0002Ev-Bi; Thu, 20 Feb 2020 17:22:42 +0100
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-50-daniel.vetter@ffwll.ch>
-From: =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-Message-ID: <19431f69-460d-ba59-edb0-736bbec7803d@tronnes.org>
-Date: Thu, 20 Feb 2020 17:22:37 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AEA166EDC3;
+ Thu, 20 Feb 2020 16:33:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A6E6FA011A;
+ Thu, 20 Feb 2020 16:33:45 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200219102122.1607365-50-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 49/52] drm/mipi-dbi: Drop explicit
- drm_mode_config_cleanup call
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Thu, 20 Feb 2020 16:33:45 -0000
+Message-ID: <158221642565.17409.17373785060945506580@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Refactor_Gen11+_SAGV_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,31 +38,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maxime Ripard <mripard@kernel.org>, Eric Anholt <eric@anholt.net>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
- Sam Ravnborg <sam@ravnborg.org>, David Lechner <david@lechnology.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CkRlbiAxOS4wMi4yMDIwIDExLjIxLCBza3JldiBEYW5pZWwgVmV0dGVyOgo+IEFsbG93cyB1cyB0
-byBkcm9wIHRoZSBkcm1fZHJpdmVyLnJlbGVhc2UgY2FsbGJhY2sgZnJvbSBhbGwKPiBkcml2ZXJz
-LCBhbmQgcmVtb3ZlIHRoZSBtaXBpX2RiaV9yZWxlYXNlKCkgZnVuY3Rpb24uCj4gCj4gU2lnbmVk
-LW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4gQ2M6IE1h
-YXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6
-IE1heGltZSBSaXBhcmQgPG1yaXBhcmRAa2VybmVsLm9yZz4KPiBDYzogVGhvbWFzIFppbW1lcm1h
-bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+Cj4gQ2M6IERhdmlkIEFpcmxpZSA8YWlybGllZEBsaW51
-eC5pZT4KPiBDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPgo+IENjOiBFcmljIEFu
-aG9sdCA8ZXJpY0BhbmhvbHQubmV0Pgo+IENjOiBEYXZpZCBMZWNobmVyIDxkYXZpZEBsZWNobm9s
-b2d5LmNvbT4KPiBDYzogS2FtbGVzaCBHdXJ1ZGFzYW5pIDxrYW1sZXNoLmd1cnVkYXNhbmlAZ21h
-aWwuY29tPgo+IENjOiAiTm9yYWxmIFRyw7hubmVzIiA8bm9yYWxmQHRyb25uZXMub3JnPgo+IENj
-OiBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9yZy5vcmc+Cj4gLS0tCgpSZXZpZXdlZC1ieTogTm9y
-YWxmIFRyw7hubmVzIDxub3JhbGZAdHJvbm5lcy5vcmc+Cl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: Refactor Gen11+ SAGV support
+URL   : https://patchwork.freedesktop.org/series/73703/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+5d070083c766 drm/i915: Start passing latency as parameter
+0ada6eb4565d drm/i915: Introduce skl_plane_wm_level accessor.
+44448ba23cf9 drm/i915: Init obj state in intel_atomic_get_old/new_global_obj_state
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+also in intel_atomic_get_old_global_obj_state and intel_atomic_get_new_global_obj_state
+
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_bw.c:395:
++	struct intel_global_state *bw_state;
++	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
+
+total: 0 errors, 2 warnings, 0 checks, 49 lines checked
+44d1ee8de76a drm/i915: Refactor intel_can_enable_sagv
+-:77: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#77: 
+      when using skl_plane_wm_level accessor, as we had previously for Gen11+
+
+-:204: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#204: FILE: drivers/gpu/drm/i915/display/intel_global_state.h:87:
+ 
++
+
+-:299: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#299: FILE: drivers/gpu/drm/i915/intel_pm.c:3812:
++
++
+
+-:360: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'state->active_pipes == dev_priv->active_pipes'
+#360: FILE: drivers/gpu/drm/i915/intel_pm.c:3873:
++	if ((state->active_pipes == dev_priv->active_pipes) &&
++	    (total_affected_planes == 0)) {
+
+-:360: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'total_affected_planes == 0'
+#360: FILE: drivers/gpu/drm/i915/intel_pm.c:3873:
++	if ((state->active_pipes == dev_priv->active_pipes) &&
++	    (total_affected_planes == 0)) {
+
+-:406: WARNING:LINE_SPACING: Missing a blank line after declarations
+#406: FILE: drivers/gpu/drm/i915/intel_pm.c:3919:
++		int active_pipe_bit = dev_priv->active_pipes & BIT(pipe);
++		if (active_pipe_bit) {
+
+-:594: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#594: FILE: drivers/gpu/drm/i915/intel_pm.c:4831:
++
++
+
+-:687: WARNING:LONG_LINE: line over 100 characters
+#687: FILE: drivers/gpu/drm/i915/intel_pm.c:5904:
++					    old_wm->sagv_wm0.min_ddb_alloc : old_wm->wm[0].min_ddb_alloc;
+
+-:690: WARNING:LONG_LINE: line over 100 characters
+#690: FILE: drivers/gpu/drm/i915/intel_pm.c:5907:
++					    new_wm->sagv_wm0.min_ddb_alloc : new_wm->wm[0].min_ddb_alloc;
+
+-:802: WARNING:LONG_LINE: line over 100 characters
+#802: FILE: drivers/gpu/drm/i915/intel_pm.c:6146:
++						 &new_crtc_state->wm.skl.optimal.planes[plane_id])) {
+
+total: 0 errors, 5 warnings, 5 checks, 729 lines checked
+0acee8e77bfd drm/i915: Added required new PCode commands
+e96fefdd8ad6 drm/i915: Restrict qgv points which don't have enough bandwidth.
+b0b1b0e549ad drm/i915: Enable SAGV support for Gen12
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
