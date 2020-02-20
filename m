@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572BC1660E6
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 16:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E371660FA
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 16:32:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97CAC6EDB5;
-	Thu, 20 Feb 2020 15:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E7256EDB7;
+	Thu, 20 Feb 2020 15:32:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A39AA6EDB5
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 15:26:55 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD82B6EDB7;
+ Thu, 20 Feb 2020 15:32:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 07:26:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="229511399"
-Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
- by orsmga008.jf.intel.com with ESMTP; 20 Feb 2020 07:26:52 -0800
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Feb 2020 17:23:47 +0200
-Message-Id: <20200220152347.2530-1-stanislav.lisovskiy@intel.com>
-X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 07:32:15 -0800
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="229513060"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 07:32:13 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 16:32:03 +0100
+Message-Id: <20200220153203.29571-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v1] drm/i915: Use intel_plane_data_rate for
- min_cdclk calculation
+Subject: [Intel-gfx] [RFC PATCH i-g-t] lib/i915: Restrict mmap types to GTT
+ if no MMAP_OFFSET support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,174 +41,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There seems to be a bit of confusing redundancy in a way, how
-plane data rate/min cdclk are calculated.
-In fact both min cdclk, pixel rate and plane data rate are all
-part of the same formula as per BSpec.
-
-However currently we have intel_plane_data_rate, which is used
-to calculate plane data rate and which is also used in bandwidth
-calculations. However for calculating min_cdclk we have another
-piece of code, doing almost same calculation, but a bit differently
-and in a different place. However as both are actually part of same
-formula, probably would be wise to use plane data rate calculations
-as a basis anyway, thus avoiding code duplication and possible bugs
-related to this.
-
-Another thing is that I've noticed that during min_cdclk calculations
-we account for plane scaling, while for plane data rate, we don't.
-crtc->pixel_rate seems to account only for pipe ratio, however it is
-clearly stated in BSpec that plane data rate also need to account
-plane ratio as well.
-
-So what this commit does is:
-- Adds a plane ratio calculation to intel_plane_data_rate
-- Removes redundant calculations from skl_plane_min_cdclk which is
-  used for gen9+ and now uses intel_plane_data_rate as a basis from
-  there as well.
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
----
- .../gpu/drm/i915/display/intel_atomic_plane.c | 16 ++++++-
- drivers/gpu/drm/i915/display/intel_sprite.c   | 46 +++++++++++--------
- 2 files changed, 41 insertions(+), 21 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index c86d7a35c816..702dfa14d112 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -133,15 +133,27 @@ intel_plane_destroy_state(struct drm_plane *plane,
- 	kfree(plane_state);
- }
- 
-+
-+
- unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
- 				   const struct intel_plane_state *plane_state)
- {
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	unsigned int cpp;
-+	unsigned int src_w, src_h, dst_w, dst_h;
- 
- 	if (!plane_state->uapi.visible)
- 		return 0;
- 
-+	src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
-+	src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
-+	dst_w = drm_rect_width(&plane_state->uapi.dst);
-+	dst_h = drm_rect_height(&plane_state->uapi.dst);
-+
-+	/* Downscaling limits the maximum pixel rate */
-+	dst_w = min(src_w, dst_w);
-+	dst_h = min(src_h, dst_h);
-+
- 	cpp = fb->format->cpp[0];
- 
- 	/*
-@@ -153,7 +165,9 @@ unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_state,
- 	if (fb->format->is_yuv && fb->format->num_planes > 1)
- 		cpp *= 4;
- 
--	return cpp * crtc_state->pixel_rate;
-+	return DIV64_U64_ROUND_UP(mul_u32_u32(cpp * crtc_state->pixel_rate,
-+					      src_w * src_h),
-+				  mul_u32_u32(dst_w, dst_h));
- }
- 
- int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 7abeefe8dce5..75afb78ff1b0 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -330,24 +330,34 @@ bool icl_is_hdr_plane(struct drm_i915_private *dev_priv, enum plane_id plane_id)
- }
- 
- static void
--skl_plane_ratio(const struct intel_crtc_state *crtc_state,
--		const struct intel_plane_state *plane_state,
--		unsigned int *num, unsigned int *den)
-+skl_plane_bpp_constraints(const struct intel_crtc_state *crtc_state,
-+			  const struct intel_plane_state *plane_state,
-+			  unsigned int *num, unsigned int *den)
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane_state->uapi.plane->dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	unsigned int cpp = fb->format->cpp[0];
-+
-+	/*
-+	 * Based on HSD#:1408715493
-+	 * NV12 cpp == 4, P010 cpp == 8
-+	 *
-+	 * FIXME what is the logic behind this?
-+	 */
-+	if (fb->format->is_yuv && fb->format->num_planes > 1)
-+		cpp *= 4;
- 
- 	if (fb->format->cpp[0] == 8) {
- 		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)) {
- 			*num = 10;
--			*den = 8;
-+			*den = 8 * cpp;
- 		} else {
- 			*num = 9;
--			*den = 8;
-+			*den = 8 * cpp;
- 		}
- 	} else {
- 		*num = 1;
--		*den = 1;
-+		*den = cpp;
- 	}
- }
- 
-@@ -355,27 +365,23 @@ static int skl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
- 			       const struct intel_plane_state *plane_state)
- {
- 	struct drm_i915_private *dev_priv = to_i915(plane_state->uapi.plane->dev);
--	unsigned int pixel_rate = crtc_state->pixel_rate;
--	unsigned int src_w, src_h, dst_w, dst_h;
- 	unsigned int num, den;
-+	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 
--	skl_plane_ratio(crtc_state, plane_state, &num, &den);
-+	skl_plane_bpp_constraints(crtc_state, plane_state, &num, &den);
- 
- 	/* two pixels per clock on glk+ */
- 	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
- 		den *= 2;
- 
--	src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
--	src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
--	dst_w = drm_rect_width(&plane_state->uapi.dst);
--	dst_h = drm_rect_height(&plane_state->uapi.dst);
--
--	/* Downscaling limits the maximum pixel rate */
--	dst_w = min(src_w, dst_w);
--	dst_h = min(src_h, dst_h);
--
--	return DIV64_U64_ROUND_UP(mul_u32_u32(pixel_rate * num, src_w * src_h),
--				  mul_u32_u32(den, dst_w * dst_h));
-+	/*
-+	 * intel_atomic_check_planes has already been called by this
-+	 * time in intel_atomic_check, so use calculated plane
-+	 * data rate as a basis, in order not to have duplicate code.
-+	 * According to BSpec, plane data rate is anyway used as
-+	 * a basis for this calculation.
-+	 */
-+	return DIV64_U64_ROUND_UP(crtc_state->data_rate[plane->id] * num, den);
- }
- 
- static unsigned int
--- 
-2.24.1.485.gad05a3d8e5
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q29tbWl0IGIwZGE4YmI3MDVjMCAoImxpYi9pOTE1OiBmb3JfZWFjaF9tbWFwX29mZnNldF90eXBl
+KCkiKQppbnRyb2R1Y2VkIGEgbWFjcm8gdGhhdCBtYWtlcyBpdCBlYXN5IHRvIHJlcGVhdCBhIHRl
+c3QgYm9keSB3aXRoaW4gYQpsb29wIGZvciBlYWNoIG1tYXAtb2Zmc2V0IG1hcHBpbmcgdHlwZSBz
+dXBwb3J0ZWQgYnkgdjQgb2YgaTkxNSBNTUFQX0dUVApBUEkuIEhvd2V2ZXIsIHdoZW4gcnVuIG9u
+IGFuIG9sZGVyIHZlcnNpb24gb2YgdGhlIGRyaXZlciwgdGhvc2UKc3VidGVzdHMgYXJlIGJlbGll
+dmVkIHRvIGJlIHN0aWxsIHJlcGVhdGVkIGZvciBlYWNoIGtub3duIG1tYXAtb2Zmc2V0Cm1hcHBp
+bmcgdHlwZSB3aGlsZSBlZmZlY3RpdmVseSBleGVyY2lzaW5nIEdUVCBtYXBwaW5nIHR5cGUgb25s
+eS4gIEFzCnRoYXQgbWF5IGJlIGNvbmZ1c2luZywgZml4IGl0LgoKSXQgaGFzIGJlZW4gYXNzdW1l
+ZCB0aGF0IHRoZSBtb2RpZmllZCBtYWNybyBpcyBzdGlsbCBzdWl0YWJsZSBmb3IgdXNlCmluc2lk
+ZSBnZW1fbW1hcF9vZmZzZXQgdGVzdCBpdHNlbGYuICBXb3VsZCB0aGF0IG5vdCBiZSBjYXNlLApn
+ZW1fbW1hcF9vZmZzZXQgY291bGQgcmVkZWZpbmUgdGhlIG1hY3JvIGJhY2sgdG8gaXRzIGluaXRp
+YWwgZm9ybSBmb3IKaW50ZXJuYWwgdXNlLgoKU3VnZ2VzdGVkLWJ5OiBNaWNoYcWCIFdpbmlhcnNr
+aSA8bWljaGFsLndpbmlhcnNraUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEphbnVzeiBLcnp5
+c3p0b2ZpayA8amFudXN6LmtyenlzenRvZmlrQGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGxpYi9pOTE1L2dlbV9tbWFuLmgg
+ICAgICAgICAgfCAgNSArKystLQogdGVzdHMvaTkxNS9nZW1fY3R4X3NzZXUuYyAgICB8ICAyICst
+CiB0ZXN0cy9pOTE1L2dlbV9leGVjX3BhcmFtcy5jIHwgIDIgKy0KIHRlc3RzL2k5MTUvZ2VtX21h
+ZHZpc2UuYyAgICAgfCAxOCArKysrKysrKysrKysrKy0tLS0KIHRlc3RzL2k5MTUvZ2VtX21tYXBf
+b2Zmc2V0LmMgfCAxMCArKysrKy0tLS0tCiB0ZXN0cy9pOTE1L2k5MTVfcG1fcnBtLmMgICAgIHwg
+IDIgKy0KIDYgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgMTQgZGVsZXRpb25zKC0p
+CgpkaWZmIC0tZ2l0IGEvbGliL2k5MTUvZ2VtX21tYW4uaCBiL2xpYi9pOTE1L2dlbV9tbWFuLmgK
+aW5kZXggNGZjNmEwMTg2Li40OTE3NjcwMjMgMTAwNjQ0Ci0tLSBhL2xpYi9pOTE1L2dlbV9tbWFu
+LmgKKysrIGIvbGliL2k5MTUvZ2VtX21tYW4uaApAQCAtMTAxLDkgKzEwMSwxMCBAQCBleHRlcm4g
+Y29uc3Qgc3RydWN0IG1tYXBfb2Zmc2V0IHsKIAl1bnNpZ25lZCBpbnQgZG9tYWluOwogfSBtbWFw
+X29mZnNldF90eXBlc1tdOwogCi0jZGVmaW5lIGZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoX190
+KSBcCisjZGVmaW5lIGZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoZmQsIF9fdCkgXAogCWZvciAo
+Y29uc3Qgc3RydWN0IG1tYXBfb2Zmc2V0ICpfX3QgPSBtbWFwX29mZnNldF90eXBlczsgXAotCSAg
+ICAgKF9fdCktPm5hbWU7IFwKKwkgICAgIChfX3QpLT5uYW1lICYmIChnZW1faGFzX21tYXBfb2Zm
+c2V0KGZkKSB8fCBcCisJCQkgICAgIChfX3QpLT50eXBlID09IEk5MTVfTU1BUF9PRkZTRVRfR1RU
+KTsgXAogCSAgICAgKF9fdCkrKykKIAogI2VuZGlmIC8qIEdFTV9NTUFOX0ggKi8KZGlmZiAtLWdp
+dCBhL3Rlc3RzL2k5MTUvZ2VtX2N0eF9zc2V1LmMgYi90ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5j
+CmluZGV4IGQ1NThjOGJhYS4uM2JlZjExYjUxIDEwMDY0NAotLS0gYS90ZXN0cy9pOTE1L2dlbV9j
+dHhfc3NldS5jCisrKyBiL3Rlc3RzL2k5MTUvZ2VtX2N0eF9zc2V1LmMKQEAgLTUzMSw3ICs1MzEs
+NyBAQCBpZ3RfbWFpbgogCQkJdGVzdF9pbnZhbGlkX3NzZXUoZmQpOwogCiAJCWlndF9zdWJ0ZXN0
+X3dpdGhfZHluYW1pYygibW1hcC1hcmdzIikgewotCQkJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlw
+ZSh0KSB7CisJCQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGZkLCB0KSB7CiAJCQkJaWd0X2R5
+bmFtaWNfZigiJXMiLCB0LT5uYW1lKQogCQkJCQl0ZXN0X21tYXBwZWRfYXJncyhmZCwgdCk7CiAJ
+CQl9CmRpZmYgLS1naXQgYS90ZXN0cy9pOTE1L2dlbV9leGVjX3BhcmFtcy5jIGIvdGVzdHMvaTkx
+NS9nZW1fZXhlY19wYXJhbXMuYwppbmRleCBlMjkxMjY4NWIuLmNmN2VhMzA2NSAxMDA2NDQKLS0t
+IGEvdGVzdHMvaTkxNS9nZW1fZXhlY19wYXJhbXMuYworKysgYi90ZXN0cy9pOTE1L2dlbV9leGVj
+X3BhcmFtcy5jCkBAIC0yNDQsNyArMjQ0LDcgQEAgc3RhdGljIHZvaWQgbW1hcHBlZChpbnQgaTkx
+NSkKIAlidWYgPSBnZW1fY3JlYXRlKGk5MTUsIDQwOTYpOwogCWhhbmRsZSA9IGJhdGNoX2NyZWF0
+ZShpOTE1KTsKIAotCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeyAvKiByZXBldGl0aXZl
+ISAqLworCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoaTkxNSwgdCkgeyAvKiByZXBldGl0aXZl
+ISAqLwogCQlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNidWZmZXIyICpleGVjYnVmOwogCQlzdHJ1
+Y3QgZHJtX2k5MTVfZ2VtX2V4ZWNfb2JqZWN0MiAqZXhlYzsKIApkaWZmIC0tZ2l0IGEvdGVzdHMv
+aTkxNS9nZW1fbWFkdmlzZS5jIGIvdGVzdHMvaTkxNS9nZW1fbWFkdmlzZS5jCmluZGV4IGU4NzE2
+YTg5MS4uNTRjOWJlZmZmIDEwMDY0NAotLS0gYS90ZXN0cy9pOTE1L2dlbV9tYWR2aXNlLmMKKysr
+IGIvdGVzdHMvaTkxNS9nZW1fbWFkdmlzZS5jCkBAIC02MiwxMiArNjIsMTMgQEAgZG9udG5lZWRf
+YmVmb3JlX21tYXAodm9pZCkKIAljaGFyICpwdHI7CiAJaW50IGZkOwogCi0JZm9yX2VhY2hfbW1h
+cF9vZmZzZXRfdHlwZSh0KSB7CisJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsK
+KworCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoZmQsIHQpIHsKIAkJc2lnaGFuZGxlcl90IG9s
+ZF9zaWdzZWd2LCBvbGRfc2lnYnVzOwogCiAJCWlndF9kZWJ1ZygiTWFwcGluZyBtb2RlOiAlc1xu
+IiwgdC0+bmFtZSk7CiAKLQkJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKIAkJ
+aGFuZGxlID0gZ2VtX2NyZWF0ZShmZCwgT0JKRUNUX1NJWkUpOwogCQlnZW1fbWFkdmlzZShmZCwg
+aGFuZGxlLCBJOTE1X01BRFZfRE9OVE5FRUQpOwogCkBAIC05Myw3ICs5NCwxMSBAQCBkb250bmVl
+ZF9iZWZvcmVfbW1hcCh2b2lkKQogCQltdW5tYXAocHRyLCBPQkpFQ1RfU0laRSk7CiAJCXNpZ25h
+bChTSUdCVVMsIG9sZF9zaWdzZWd2KTsKIAkJc2lnbmFsKFNJR1NFR1YsIG9sZF9zaWdidXMpOwor
+CisJCWZkID0gZHJtX29wZW5fZHJpdmVyKERSSVZFUl9JTlRFTCk7CiAJfQorCisJY2xvc2UoZmQp
+OwogfQogCiBzdGF0aWMgdm9pZApAQCAtMTAzLDEyICsxMDgsMTMgQEAgZG9udG5lZWRfYWZ0ZXJf
+bW1hcCh2b2lkKQogCWNoYXIgKnB0cjsKIAlpbnQgZmQ7CiAKLQlmb3JfZWFjaF9tbWFwX29mZnNl
+dF90eXBlKHQpIHsKKwlmZCA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOworCisJZm9y
+X2VhY2hfbW1hcF9vZmZzZXRfdHlwZShmZCwgdCkgewogCQlzaWdoYW5kbGVyX3Qgb2xkX3NpZ3Nl
+Z3YsIG9sZF9zaWdidXM7CiAKIAkJaWd0X2RlYnVnKCJNYXBwaW5nIG1vZGU6ICVzXG4iLCB0LT5u
+YW1lKTsKIAotCQlmZCA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOwogCQloYW5kbGUg
+PSBnZW1fY3JlYXRlKGZkLCBPQkpFQ1RfU0laRSk7CiAKIAkJcHRyID0gX19nZW1fbW1hcF9vZmZz
+ZXQoZmQsIGhhbmRsZSwgMCwgT0JKRUNUX1NJWkUsCkBAIC0xMzQsNyArMTQwLDExIEBAIGRvbnRu
+ZWVkX2FmdGVyX21tYXAodm9pZCkKIAkJbXVubWFwKHB0ciwgT0JKRUNUX1NJWkUpOwogCQlzaWdu
+YWwoU0lHQlVTLCBvbGRfc2lnYnVzKTsKIAkJc2lnbmFsKFNJR1NFR1YsIG9sZF9zaWdzZWd2KTsK
+KworCQlmZCA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOwogCX0KKworCWNsb3NlKGZk
+KTsKIH0KIAogc3RhdGljIHZvaWQKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvZ2VtX21tYXBfb2Zm
+c2V0LmMgYi90ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jCmluZGV4IGY0OWQxOGU2My4uMWVj
+OTYzYjI1IDEwMDY0NAotLS0gYS90ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jCisrKyBiL3Rl
+c3RzL2k5MTUvZ2VtX21tYXBfb2Zmc2V0LmMKQEAgLTEyOCw3ICsxMjgsNyBAQCBzdGF0aWMgdm9p
+ZCBiYXNpY191YWYoaW50IGk5MTUpCiB7CiAJY29uc3QgdWludDMyX3Qgb2JqX3NpemUgPSA0MDk2
+OwogCi0JZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZSh0KSB7CisJZm9yX2VhY2hfbW1hcF9vZmZz
+ZXRfdHlwZShpOTE1LCB0KSB7CiAJCXVpbnQzMl90IGhhbmRsZSA9IGdlbV9jcmVhdGUoaTkxNSwg
+b2JqX3NpemUpOwogCQl1aW50OF90ICpleHBlY3RlZCwgKmJ1ZiwgKmFkZHI7CiAKQEAgLTE3Niw3
+ICsxNzYsNyBAQCBzdGF0aWMgdm9pZCBiYXNpY191YWYoaW50IGk5MTUpCiAKIHN0YXRpYyB2b2lk
+IGlzb2xhdGlvbihpbnQgaTkxNSkKIHsKLQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKHQpIHsK
+Kwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGk5MTUsIHQpIHsKIAkJc3RydWN0IGRybV9pOTE1
+X2dlbV9tbWFwX29mZnNldCBtbWFwX2FyZyA9IHsKIAkJCS5mbGFncyA9IHQtPnR5cGUKIAkJfTsK
+QEAgLTI0NSw3ICsyNDUsNyBAQCBzdGF0aWMgdm9pZCBwZl9ub25ibG9jayhpbnQgaTkxNSkKIHsK
+IAlpZ3Rfc3Bpbl90ICpzcGluID0gaWd0X3NwaW5fbmV3KGk5MTUpOwogCi0JZm9yX2VhY2hfbW1h
+cF9vZmZzZXRfdHlwZSh0KSB7CisJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZShpOTE1LCB0KSB7
+CiAJCXVpbnQzMl90ICpwdHI7CiAKIAkJcHRyID0gX19tbWFwX29mZnNldChpOTE1LCBzcGluLT5o
+YW5kbGUsIDAsIDQwOTYsCkBAIC0zMjQsNyArMzI0LDcgQEAgc3RhdGljIHZvaWQgb3Blbl9mbG9v
+ZChpbnQgaTkxNSwgaW50IHRpbWVvdXQpCiAJaGFuZGxlID0gZ2VtX2NyZWF0ZShpOTE1LCA0MDk2
+KTsKIAlkbWFidWYgPSBwcmltZV9oYW5kbGVfdG9fZmQoaTkxNSwgaGFuZGxlKTsKIAotCWZvcl9l
+YWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeworCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoaTkx
+NSwgdCkgewogCQlzdHJ1Y3QgZHJtX2k5MTVfZ2VtX21tYXBfb2Zmc2V0IGFyZyA9IHsKIAkJCS5o
+YW5kbGUgPSBoYW5kbGUsCiAJCQkuZmxhZ3MgPSB0LT50eXBlLApAQCAtMzUxLDcgKzM1MSw3IEBA
+IHN0YXRpYyB2b2lkIG9wZW5fZmxvb2QoaW50IGk5MTUsIGludCB0aW1lb3V0KQogCQl0bXAgPSBn
+ZW1fcmVvcGVuX2RyaXZlcihpOTE1KTsKIAkJaGFuZGxlID0gcHJpbWVfZmRfdG9faGFuZGxlKGk5
+MTUsIGRtYWJ1Zik7CiAKLQkJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZSh0KSB7CisJCWZvcl9l
+YWNoX21tYXBfb2Zmc2V0X3R5cGUoaTkxNSwgdCkgewogCQkJc3RydWN0IGRybV9pOTE1X2dlbV9t
+bWFwX29mZnNldCBhcmcgPSB7CiAJCQkJLmhhbmRsZSA9IGhhbmRsZSwKIAkJCQkuZmxhZ3MgPSB0
+LT50eXBlLApkaWZmIC0tZ2l0IGEvdGVzdHMvaTkxNS9pOTE1X3BtX3JwbS5jIGIvdGVzdHMvaTkx
+NS9pOTE1X3BtX3JwbS5jCmluZGV4IDBjMjgyMTEyMi4uMWJlYzgwZGI3IDEwMDY0NAotLS0gYS90
+ZXN0cy9pOTE1L2k5MTVfcG1fcnBtLmMKKysrIGIvdGVzdHMvaTkxNS9pOTE1X3BtX3JwbS5jCkBA
+IC0yMDA2LDcgKzIwMDYsNyBAQCBpZ3RfbWFpbl9hcmdzKCIiLCBsb25nX29wdGlvbnMsIGhlbHBf
+c3RyLCBvcHRfaGFuZGxlciwgTlVMTCkKIAogCS8qIEdFTSAqLwogCWlndF9zdWJ0ZXN0X3dpdGhf
+ZHluYW1pYygiZ2VtLW1tYXAtdHlwZSIpIHsKLQkJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZSh0
+KSB7CisJCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoZHJtX2ZkLCB0KSB7CiAJCQlpZ3RfZHlu
+YW1pY19mKCIlcyIsIHQtPm5hbWUpCiAJCQkJZ2VtX21tYXBfYXJncyh0KTsKIAkJfQotLSAKMi4y
+MS4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRl
+bC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6
+Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
