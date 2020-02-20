@@ -1,46 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D45165E22
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 14:05:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17818165E70
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 14:14:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE706ED76;
-	Thu, 20 Feb 2020 13:05:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C483D6E218;
+	Thu, 20 Feb 2020 13:14:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4B0B6ED76
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 13:05:23 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BB76E218
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 13:14:21 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 05:05:23 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 05:14:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="283399590"
-Received: from linux.intel.com ([10.54.29.200])
- by FMSMGA003.fm.intel.com with ESMTP; 20 Feb 2020 05:05:21 -0800
-Received: from [10.125.252.166] (abudanko-mobl.ccr.corp.intel.com
- [10.125.252.166])
- by linux.intel.com (Postfix) with ESMTP id 253CC580472;
- Thu, 20 Feb 2020 05:05:12 -0800 (PST)
-From: Alexey Budankov <alexey.budankov@linux.intel.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Stephen Smalley
- <sds@tycho.nsa.gov>, Serge Hallyn <serge@hallyn.com>,
- James Morris <jmorris@namei.org>
-References: <875zgizkyk.fsf@nanos.tec.linutronix.de>
- <7d6f4210-423f-e454-3910-9f8e17dff1aa@linux.intel.com>
-Organization: Intel Corp.
-Message-ID: <95aa57e6-4d78-39df-386c-a98734f19777@linux.intel.com>
-Date: Thu, 20 Feb 2020 16:05:11 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-MIME-Version: 1.0
-In-Reply-To: <7d6f4210-423f-e454-3910-9f8e17dff1aa@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="236238719"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+ by orsmga003.jf.intel.com with ESMTP; 20 Feb 2020 05:14:19 -0800
+Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
+ IRSMSX109.ger.corp.intel.com (163.33.3.23) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 20 Feb 2020 13:14:12 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 20 Feb 2020 13:14:12 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Thu, 20 Feb 2020 13:14:12 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v17 3/7] drm/i915: Init obj state in
+ intel_atomic_get_old/new_global_obj_state
+Thread-Index: AQHV5+bP+3Nwmv1ggEqGt9ibQePzyagkBiCAgAAId4A=
+Date: Thu, 20 Feb 2020 13:14:12 +0000
+Message-ID: <f770e54f703754728615e4516e583cdc5906f461.camel@intel.com>
+References: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
+ <20200220120741.6917-4-stanislav.lisovskiy@intel.com>
+ <87tv3ltos4.fsf@intel.com>
+In-Reply-To: <87tv3ltos4.fsf@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5 01/10] capabilities: introduce
- CAP_PERFMON to kernel and user space
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <86984839E2F5F8489114E19BF188952E@intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v17 3/7] drm/i915: Init obj state in
+ intel_atomic_get_old/new_global_obj_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,67 +64,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Song Liu <songliubraving@fb.com>,
- Peter Zijlstra <peterz@infradead.org>,
- "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
- Will Deacon <will.deacon@arm.com>, Alexei Starovoitov <ast@kernel.org>,
- Paul Mackerras <paulus@samba.org>, Jiri Olsa <jolsa@redhat.com>,
- Alexei Starovoitov <alexei.starovoitov@gmail.com>,
- Andi Kleen <ak@linux.intel.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Igor Lubashev <ilubashe@akamai.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ingo Molnar <mingo@redhat.com>, oprofile-list@lists.sf.net,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Robert Richter <rric@kernel.org>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Stephane Eranian <eranian@google.com>,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- Andy Lutomirski <luto@amacapital.net>,
- "linux-perf-users@vger.kernel.org" <linux-perf-users@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ck9uIDA3LjAyLjIwMjAgMTY6MzksIEFsZXhleSBCdWRhbmtvdiB3cm90ZToKPiAKPiBPbiAwNy4w
-Mi4yMDIwIDE0OjM4LCBUaG9tYXMgR2xlaXhuZXIgd3JvdGU6Cj4+IEFsZXhleSBCdWRhbmtvdiA8
-YWxleGV5LmJ1ZGFua292QGxpbnV4LmludGVsLmNvbT4gd3JpdGVzOgo+Pj4gT24gMjIuMDEuMjAy
-MCAxNzoyNSwgQWxleGV5IEJ1ZGFua292IHdyb3RlOgo+Pj4+IE9uIDIyLjAxLjIwMjAgMTc6MDcs
-IFN0ZXBoZW4gU21hbGxleSB3cm90ZToKPj4+Pj4+IEl0IGtlZXBzIHRoZSBpbXBsZW1lbnRhdGlv
-biBzaW1wbGUgYW5kIHJlYWRhYmxlLiBUaGUgaW1wbGVtZW50YXRpb24gaXMgbW9yZQo+Pj4+Pj4g
-cGVyZm9ybWFudCBpbiB0aGUgc2Vuc2Ugb2YgY2FsbGluZyB0aGUgQVBJIC0gb25lIGNhcGFibGUo
-KSBjYWxsIGZvciBDQVBfUEVSRk1PTgo+Pj4+Pj4gcHJpdmlsZWdlZCBwcm9jZXNzLgo+Pj4+Pj4K
-Pj4+Pj4+IFllcywgaXQgYmxvYXRzIGF1ZGl0IGxvZyBmb3IgQ0FQX1NZU19BRE1JTiBwcml2aWxl
-Z2VkIGFuZCB1bnByaXZpbGVnZWQgcHJvY2Vzc2VzLAo+Pj4+Pj4gYnV0IHRoaXMgYmxvYXRpbmcg
-YWxzbyBhZHZlcnRpc2VzIGFuZCBsZXZlcmFnZXMgdXNpbmcgbW9yZSBzZWN1cmUgQ0FQX1BFUkZN
-T04KPj4+Pj4+IGJhc2VkIGFwcHJvYWNoIHRvIHVzZSBwZXJmX2V2ZW50X29wZW4gc3lzdGVtIGNh
-bGwuCj4+Pj4+Cj4+Pj4+IEkgY2FuIGxpdmUgd2l0aCB0aGF0LsKgIFdlIGp1c3QgbmVlZCB0byBk
-b2N1bWVudCB0aGF0IHdoZW4geW91IHNlZQo+Pj4+PiBib3RoIGEgQ0FQX1BFUkZNT04gYW5kIGEg
-Q0FQX1NZU19BRE1JTiBhdWRpdCBtZXNzYWdlIGZvciBhIHByb2Nlc3MsCj4+Pj4+IHRyeSBvbmx5
-IGFsbG93aW5nIENBUF9QRVJGTU9OIGZpcnN0IGFuZCBzZWUgaWYgdGhhdCByZXNvbHZlcyB0aGUK
-Pj4+Pj4gaXNzdWUuwqAgV2UgaGF2ZSBhIHNpbWlsYXIgaXNzdWUgd2l0aCBDQVBfREFDX1JFQURf
-U0VBUkNIIHZlcnN1cwo+Pj4+PiBDQVBfREFDX09WRVJSSURFLgo+Pj4+Cj4+Pj4gcGVyZiBzZWN1
-cml0eSBbMV0gZG9jdW1lbnQgY2FuIGJlIHVwZGF0ZWQsIGF0IGxlYXN0LCB0byBhbGlnbiBhbmQg
-ZG9jdW1lbnQgCj4+Pj4gdGhpcyBhdWRpdCBsb2dnaW5nIHNwZWNpZmljcy4KPj4+Cj4+PiBBbmQg
-SSBwbGFuIHRvIHVwZGF0ZSB0aGUgZG9jdW1lbnQgcmlnaHQgYWZ0ZXIgdGhpcyBwYXRjaCBzZXQg
-aXMgYWNjZXB0ZWQuCj4+PiBGZWVsIGZyZWUgdG8gbGV0IG1lIGtub3cgb2YgdGhlIHBsYWNlcyBp
-biB0aGUga2VybmVsIGRvY3MgdGhhdCBhbHNvCj4+PiByZXF1aXJlIHVwZGF0ZSB3LnIudCBDQVBf
-UEVSRk1PTiBleHRlbnNpb24uCj4+Cj4+IFRoZSBkb2N1bWVudGF0aW9uIHVwZGF0ZSB3YW50cyBi
-ZSBwYXJ0IG9mIHRoZSBwYXRjaCBzZXQgYW5kIG5vdCBwbGFubmVkCj4+IHRvIGJlIGRvbmUgX2Fm
-dGVyXyB0aGUgcGF0Y2ggc2V0IGlzIG1lcmdlZC4KPiAKPiBXZWxsLCBhY2NlcHRlZC4gSXQgaXMg
-Z29pbmcgdG8gbWFrZSBwYXRjaGVzICMxMSBhbmQgYmV5b25kLgoKUGF0Y2hlcyAjMTEgYW5kICMx
-MiBvZiB2NyBbMV0gY29udGFpbiBpbmZvcm1hdGlvbiBvbiBDQVBfUEVSRk1PTiBpbnRlbnRpb24g
-YW5kIHVzYWdlLgpQYXRjaCBmb3IgbWFuLXBhZ2VzIFsyXSBleHRlbmRzIHBlcmZfZXZlbnRfb3Bl
-bi4yIGRvY3VtZW50YXRpb24uCgpUaGFua3MsCkFsZXhleQoKLS0tClsxXSBodHRwczovL2xvcmUu
-a2VybmVsLm9yZy9sa21sL2M4ZGU5MzdhLTBiM2EtNzE0Ny1mNWVmLTY5ZjQ2N2U4N2ExM0BsaW51
-eC5pbnRlbC5jb20vClsyXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzE4ZDEwODNkLWVm
-ZTUtZjVmOC1jNTMxLWQxNDJjMGU1YzFhOEBsaW51eC5pbnRlbC5jb20vCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, 2020-02-20 at 14:40 +0200, Jani Nikula wrote:
+> On Thu, 20 Feb 2020, Stanislav Lisovskiy <
+> stanislav.lisovskiy@intel.com> wrote:
+> > We might be willing to call intel_atomic_get_old_global_obj_state
+> > and intel_atomic_get_new_global_obj_state right away, however
+> > those are not initializing global obj state as
+> > intel_atomic_get_global_obj_state does.
+> > Extracted initializing part to separate function and now using this
+> > also in intel_atomic_get_old_global_obj_state and
+> > intel_atomic_get_new_global_obj_state
+> > 
+> > v2: - Fixed typo in function call
+> > 
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.c | 28
+> > ++++++++++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_bw.h |  9 ++++++++
+> >  2 files changed, 36 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
+> > b/drivers/gpu/drm/i915/display/intel_bw.c
+> > index 58b264bc318d..ff57277e8880 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> > @@ -374,7 +374,33 @@ static unsigned int intel_bw_data_rate(struct
+> > drm_i915_private *dev_priv,
+> >  	return data_rate;
+> >  }
+> >  
+> > -static struct intel_bw_state *
+> > +struct intel_bw_state *
+> > +intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	struct intel_global_state *bw_state;
+> > +
+> > +	bw_state = intel_atomic_get_old_global_obj_state(state,
+> > &dev_priv->bw_obj);
+> > +	if (IS_ERR(bw_state))
+> > +		return ERR_CAST(bw_state);
+> > +
+> > +	return to_intel_bw_state(bw_state);
+> > +}
+> > +
+> > +struct intel_bw_state *
+> > +intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > +	struct intel_global_state *bw_state;
+> > +	bw_state = intel_atomic_get_new_global_obj_state(state,
+> > &dev_priv->bw_obj);
+> > +
+> > +	if (IS_ERR(bw_state))
+> > +		return ERR_CAST(bw_state);
+> > +
+> > +	return to_intel_bw_state(bw_state);
+> > +}
+> > +
+> > +struct intel_bw_state *
+> >  intel_atomic_get_bw_state(struct intel_atomic_state *state)
+> >  {
+> >  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h
+> > b/drivers/gpu/drm/i915/display/intel_bw.h
+> > index a8aa7624c5aa..ac004d6f4276 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > @@ -24,6 +24,15 @@ struct intel_bw_state {
+> >  
+> >  #define to_intel_bw_state(x) container_of((x), struct
+> > intel_bw_state, base)
+> >  
+> > +struct intel_bw_state *
+> > +intel_atomic_get_old_bw_state(struct intel_atomic_state *state);
+> > +
+> > +struct intel_bw_state *
+> > +intel_atomic_get_new_bw_state(struct intel_atomic_state *state);
+> > +
+> > +struct intel_bw_state *
+> > +intel_atomic_get_bw_state(struct intel_atomic_state *state);
+> > +
+> 
+> I'm trying to promote a convention that a module foo_bar.[ch] would
+> export functions prefixed foo_bar_. Here, intel_bw_* like below.
+
+I'm fine with that. However most of the functions in this file have
+intel_atomic_* prefix, so if I now follow this convention it won't be
+consistent with current naming in the file.
+
+Anyway if this is now mandatory, will change it. Just will wait now
+first if CI doesn't blow up with this series, as I haven't rebased it
+for a while..
+
+Stan
+
+> 
+> BR,
+> Jani.
+> 
+> 
+> >  void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+> >  int intel_bw_init(struct drm_i915_private *dev_priv);
+> >  int intel_bw_atomic_check(struct intel_atomic_state *state);
+> 
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
