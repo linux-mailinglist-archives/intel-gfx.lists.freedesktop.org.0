@@ -2,41 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A837F166496
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 18:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AB061664DB
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 18:31:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 779D789E47;
-	Thu, 20 Feb 2020 17:26:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 747EE6EDE2;
+	Thu, 20 Feb 2020 17:31:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D9D189DE6
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 17:26:06 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 762556EDE2;
+ Thu, 20 Feb 2020 17:31:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 09:26:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="240078778"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 20 Feb 2020 09:26:02 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Feb 2020 19:26:02 +0200
-Date: Thu, 20 Feb 2020 19:26:02 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200220172602.GI13686@intel.com>
-References: <20200219014230.145601-1-jose.souza@intel.com>
- <20200219014230.145601-3-jose.souza@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 09:31:10 -0800
+X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="229550223"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 09:31:09 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 18:30:56 +0100
+Message-Id: <20200220173056.23088-1-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200219014230.145601-3-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 3/3] drm/i915/display/fbc: Make fences a
- nice-to-have for GEN9+
+Subject: [Intel-gfx] [PATCH i-g-t v3] lib/i915: Restrict mmap types to GTT
+ if no MMAP_OFFSET support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,211 +41,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>, intel-gfx@lists.freedesktop.org,
- Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 18, 2020 at 05:42:30PM -0800, Jos=E9 Roberto de Souza wrote:
-> dGFX have local memory so it do not have aperture and do not support
-> CPU fences but even for iGFX it have a small number of fences.
-> =
-
-> As replacement for fences to track frontbuffer modifications by CPU
-> we have a software tracking that is already in used by FBC and PSR.
-> PSR don't support fences so it shows that this tracking is reliable.
-> =
-
-> So lets make fences a nice-to-have to activate FBC for GEN9+, this
-> will allow us to enable FBC for dGFXs and iGFXs even when there is no
-> available fence.
-> =
-
-> We do not set fences to rotated planes but FBC only have restrictions
-> against 16bpp, so adding it here.
-> =
-
-> Also adding a new check for the tiling format, fences are only set
-> to X and Y tiled planes but again FBC don't have any restrictions
-> against tiling so adding linear as supported as well, other formats
-> should be added after tested but IGT only supports drawing in thse
-> 3 formats.
-> =
-
-> intel_fbc_hw_tracking_covers_screen() maybe can also have the same
-> treatment as fences but BSpec is not clear if the size limitation is
-> for hardware tracking or general use of FBC and I don't have a 5K
-> display to test it, so keeping as is for safety.
-> =
-
-> v2:
-> - Added tiling and pixel format rotation checks
-> - Changed the GEN version not requiring fences to 11 from 9, DDX
-> needs some changes but it don't have support for GEN11+
-> =
-
-> v3:
-> - Changed back to GEN9+
-> - Moved GEN test to inside of tiling_is_valid()
-> =
-
-> Cc: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Dhinakaran Pandiyan <dhinakaran.pandiyan@intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c | 45 ++++++++++++++++++++----
->  drivers/gpu/drm/i915/i915_drv.h          |  1 +
->  2 files changed, 39 insertions(+), 7 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i=
-915/display/intel_fbc.c
-> index 1d76e3646a25..a0d1d661a006 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -585,7 +585,7 @@ static bool stride_is_valid(struct drm_i915_private *=
-dev_priv,
->  }
->  =
-
->  static bool pixel_format_is_valid(struct drm_i915_private *dev_priv,
-> -				  u32 pixel_format)
-> +				  u32 pixel_format, unsigned int rotation)
->  {
->  	switch (pixel_format) {
->  	case DRM_FORMAT_XRGB8888:
-> @@ -599,6 +599,9 @@ static bool pixel_format_is_valid(struct drm_i915_pri=
-vate *dev_priv,
->  		/* WaFbcOnly1to1Ratio:ctg */
->  		if (IS_G4X(dev_priv))
->  			return false;
-> +		if ((rotation & (DRM_MODE_ROTATE_90 | DRM_MODE_ROTATE_270)) &&
-> +		    INTEL_GEN(dev_priv) >=3D 9)
-> +			return false;
-
-Would still would prefer a rotations_is_valid() or some such thing.
-
->  		return true;
->  	default:
->  		return false;
-> @@ -639,6 +642,22 @@ static bool intel_fbc_hw_tracking_covers_screen(stru=
-ct intel_crtc *crtc)
->  	return effective_w <=3D max_w && effective_h <=3D max_h;
->  }
->  =
-
-> +static bool tiling_is_valid(struct drm_i915_private *dev_priv,
-> +			    uint64_t modifier)
-> +{
-> +	switch (modifier) {
-> +	case DRM_FORMAT_MOD_LINEAR:
-> +		if (INTEL_GEN(dev_priv) >=3D 9)
-> +			return true;
-
-Have we checked that eg. fbcon cursor still blinks correctly
-with FBC active and all?
-
-> +		return false;
-> +	case I915_FORMAT_MOD_X_TILED:
-> +	case I915_FORMAT_MOD_Y_TILED:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  static void intel_fbc_update_state_cache(struct intel_crtc *crtc,
->  					 const struct intel_crtc_state *crtc_state,
->  					 const struct intel_plane_state *plane_state)
-> @@ -672,6 +691,7 @@ static void intel_fbc_update_state_cache(struct intel=
-_crtc *crtc,
->  =
-
->  	cache->fb.format =3D fb->format;
->  	cache->fb.stride =3D fb->pitches[0];
-> +	cache->fb.modifier =3D fb->modifier;
->  =
-
->  	drm_WARN_ON(&dev_priv->drm, plane_state->flags & PLANE_HAS_FENCE &&
->  		    !plane_state->vma->fence);
-> @@ -720,23 +740,33 @@ static bool intel_fbc_can_activate(struct intel_crt=
-c *crtc)
->  		return false;
->  	}
->  =
-
-> -	/* The use of a CPU fence is mandatory in order to detect writes
-> -	 * by the CPU to the scanout and trigger updates to the FBC.
-> +	/* The use of a CPU fence is one of two ways to detect writes by the
-> +	 * CPU to the scanout and trigger updates to the FBC.
-> +	 *
-> +	 * The other method is by software tracking(see
-> +	 * intel_fbc_invalidate/flush()), it will manually notify FBC and nuke
-> +	 * the current compressed buffer and recompress it.
->  	 *
->  	 * Note that is possible for a tiled surface to be unmappable (and
-> -	 * so have no fence associated with it) due to aperture constaints
-> +	 * so have no fence associated with it) due to aperture constraints
->  	 * at the time of pinning.
->  	 *
->  	 * FIXME with 90/270 degree rotation we should use the fence on
->  	 * the normal GTT view (the rotated view doesn't even have a
->  	 * fence). Would need changes to the FBC fence Y offset as well.
-> -	 * For now this will effecively disable FBC with 90/270 degree
-> +	 * For now this will effectively disable FBC with 90/270 degree
->  	 * rotation.
->  	 */
-> -	if (cache->fence_id < 0) {
-> +	if (INTEL_GEN(dev_priv) < 9 && cache->fence_id < 0) {
->  		fbc->no_fbc_reason =3D "framebuffer not tiled or fenced";
->  		return false;
->  	}
-> +
-> +	if (!tiling_is_valid(dev_priv, cache->fb.modifier)) {
-> +		fbc->no_fbc_reason =3D "tiling unsupported";
-> +		return false;
-> +	}
-> +
->  	if (INTEL_GEN(dev_priv) <=3D 4 && !IS_G4X(dev_priv) &&
->  	    cache->plane.rotation !=3D DRM_MODE_ROTATE_0) {
->  		fbc->no_fbc_reason =3D "rotation unsupported";
-> @@ -748,7 +778,8 @@ static bool intel_fbc_can_activate(struct intel_crtc =
-*crtc)
->  		return false;
->  	}
->  =
-
-> -	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format)) {
-> +	if (!pixel_format_is_valid(dev_priv, cache->fb.format->format,
-> +				   cache->plane.rotation)) {
->  		fbc->no_fbc_reason =3D "pixel format is invalid";
->  		return false;
->  	}
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 3330b538d379..bf88663d8217 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -413,6 +413,7 @@ struct intel_fbc {
->  		struct {
->  			const struct drm_format_info *format;
->  			unsigned int stride;
-> +			u64 modifier;
->  		} fb;
->  		u16 gen9_wa_cfb_stride;
->  		s8 fence_id;
-> -- =
-
-> 2.25.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q29tbWl0IGIwZGE4YmI3MDVjMCAoImxpYi9pOTE1OiBmb3JfZWFjaF9tbWFwX29mZnNldF90eXBl
+KCkiKQppbnRyb2R1Y2VkIGEgbWFjcm8gdGhhdCBtYWtlcyBpdCBlYXN5IHRvIHJlcGVhdCBhIHRl
+c3QgYm9keSB3aXRoaW4gYQpsb29wIGZvciBlYWNoIG1tYXAtb2Zmc2V0IG1hcHBpbmcgdHlwZSBz
+dXBwb3J0ZWQgYnkgdjQgb2YgaTkxNSBNTUFQX0dUVApBUEkuIEhvd2V2ZXIsIHdoZW4gcnVuIG9u
+IGFuIG9sZGVyIHZlcnNpb24gb2YgdGhlIGRyaXZlciwgdGhvc2UKc3VidGVzdHMgYXJlIGJlbGll
+dmVkIHRvIGJlIHN0aWxsIHJlcGVhdGVkIGZvciBlYWNoIGtub3duIG1tYXAtb2Zmc2V0Cm1hcHBp
+bmcgdHlwZSB3aGlsZSBlZmZlY3RpdmVseSBleGVyY2lzaW5nIEdUVCBtYXBwaW5nIHR5cGUgb25s
+eS4gIEFzCnRoYXQgbWF5IGJlIGNvbmZ1c2luZywgZml4IGl0LgoKSXQgaGFzIGJlZW4gYXNzdW1l
+ZCB0aGF0IHRoZSBtb2RpZmllZCBtYWNybyBpcyBzdGlsbCBzdWl0YWJsZSBmb3IgdXNlCmluc2lk
+ZSBnZW1fbW1hcF9vZmZzZXQgdGVzdCBpdHNlbGYuICBXb3VsZCB0aGF0IG5vdCBiZSBjYXNlLApn
+ZW1fbW1hcF9vZmZzZXQgY291bGQgcmVkZWZpbmUgdGhlIG1hY3JvIGJhY2sgdG8gaXRzIGluaXRp
+YWwgZm9ybSBmb3IKaW50ZXJuYWwgdXNlLgoKdjI6IE1vdmUgZXh0cmEgY29uZGl0aW9uIHRvIGEg
+c2VwYXJhdGUgZnVuY3Rpb24gYW5kIGNhbGwgaXQgdmlhCiAgICBmb3JfZWFjaF9pZigpLCBpbiBj
+YXNlIHdlIG5lZWQgdG8gZml4IGl0IGFnYWluIGluIGZ1dHVyZSAoQ2hyaXMpCnYzOiBGaXggYmxp
+bmQgY29weS1wYXN0ZQoKU3VnZ2VzdGVkLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndp
+bmlhcnNraUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEphbnVzeiBLcnp5c3p0b2ZpayA8amFu
+dXN6LmtyenlzenRvZmlrQGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNA
+Y2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGxpYi9pOTE1L2dlbV9tbWFuLmMgICAgICAgICAgfCAg
+NSArKysrKwogbGliL2k5MTUvZ2VtX21tYW4uaCAgICAgICAgICB8ICA3ICsrKysrLS0KIHRlc3Rz
+L2k5MTUvZ2VtX2N0eF9zc2V1LmMgICAgfCAgMiArLQogdGVzdHMvaTkxNS9nZW1fZXhlY19wYXJh
+bXMuYyB8ICAyICstCiB0ZXN0cy9pOTE1L2dlbV9tYWR2aXNlLmMgICAgIHwgMTggKysrKysrKysr
+KysrKystLS0tCiB0ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jIHwgMTAgKysrKystLS0tLQog
+dGVzdHMvaTkxNS9pOTE1X3BtX3JwbS5jICAgICB8ICAyICstCiA3IGZpbGVzIGNoYW5nZWQsIDMy
+IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2xpYi9pOTE1L2dl
+bV9tbWFuLmMgYi9saWIvaTkxNS9nZW1fbW1hbi5jCmluZGV4IDA4YWU2NzY5Ni4uOTNiZWYyYmZj
+IDEwMDY0NAotLS0gYS9saWIvaTkxNS9nZW1fbW1hbi5jCisrKyBiL2xpYi9pOTE1L2dlbV9tbWFu
+LmMKQEAgLTYwLDYgKzYwLDExIEBAIGJvb2wgZ2VtX2hhc19tbWFwX29mZnNldChpbnQgZmQpCiAJ
+cmV0dXJuIGd0dF92ZXJzaW9uID49IDQ7CiB9CiAKK2Jvb2wgZ2VtX2hhc19tbWFwX29mZnNldF90
+eXBlKGludCBmZCwgY29uc3Qgc3RydWN0IG1tYXBfb2Zmc2V0ICp0KQoreworCXJldHVybiBnZW1f
+aGFzX21tYXBfb2Zmc2V0KGZkKSB8fCB0LT50eXBlID09IEk5MTVfTU1BUF9PRkZTRVRfR1RUOwor
+fQorCiAvKioKICAqIF9fZ2VtX21tYXBfX2d0dDoKICAqIEBmZDogb3BlbiBpOTE1IGRybSBmaWxl
+IGRlc2NyaXB0b3IKZGlmZiAtLWdpdCBhL2xpYi9pOTE1L2dlbV9tbWFuLmggYi9saWIvaTkxNS9n
+ZW1fbW1hbi5oCmluZGV4IDRmYzZhMDE4Ni4uMmM0YTdhMDBiIDEwMDY0NAotLS0gYS9saWIvaTkx
+NS9nZW1fbW1hbi5oCisrKyBiL2xpYi9pOTE1L2dlbV9tbWFuLmgKQEAgLTEwMSwxMCArMTAxLDEz
+IEBAIGV4dGVybiBjb25zdCBzdHJ1Y3QgbW1hcF9vZmZzZXQgewogCXVuc2lnbmVkIGludCBkb21h
+aW47CiB9IG1tYXBfb2Zmc2V0X3R5cGVzW107CiAKLSNkZWZpbmUgZm9yX2VhY2hfbW1hcF9vZmZz
+ZXRfdHlwZShfX3QpIFwKK2Jvb2wgZ2VtX2hhc19tbWFwX29mZnNldF90eXBlKGludCBmZCwgY29u
+c3Qgc3RydWN0IG1tYXBfb2Zmc2V0ICp0KTsKKworI2RlZmluZSBmb3JfZWFjaF9tbWFwX29mZnNl
+dF90eXBlKGZkLCBfX3QpIFwKIAlmb3IgKGNvbnN0IHN0cnVjdCBtbWFwX29mZnNldCAqX190ID0g
+bW1hcF9vZmZzZXRfdHlwZXM7IFwKIAkgICAgIChfX3QpLT5uYW1lOyBcCi0JICAgICAoX190KSsr
+KQorCSAgICAgKF9fdCkrKykgXAorCQlmb3JfZWFjaF9pZihnZW1faGFzX21tYXBfb2Zmc2V0X3R5
+cGUoKGZkKSwgKF9fdCkpKQogCiAjZW5kaWYgLyogR0VNX01NQU5fSCAqLwogCmRpZmYgLS1naXQg
+YS90ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5jIGIvdGVzdHMvaTkxNS9nZW1fY3R4X3NzZXUuYwpp
+bmRleCBkNTU4YzhiYWEuLjNiZWYxMWI1MSAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fY3R4
+X3NzZXUuYworKysgYi90ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5jCkBAIC01MzEsNyArNTMxLDcg
+QEAgaWd0X21haW4KIAkJCXRlc3RfaW52YWxpZF9zc2V1KGZkKTsKIAogCQlpZ3Rfc3VidGVzdF93
+aXRoX2R5bmFtaWMoIm1tYXAtYXJncyIpIHsKLQkJCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUo
+dCkgeworCQkJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZShmZCwgdCkgewogCQkJCWlndF9keW5h
+bWljX2YoIiVzIiwgdC0+bmFtZSkKIAkJCQkJdGVzdF9tbWFwcGVkX2FyZ3MoZmQsIHQpOwogCQkJ
+fQpkaWZmIC0tZ2l0IGEvdGVzdHMvaTkxNS9nZW1fZXhlY19wYXJhbXMuYyBiL3Rlc3RzL2k5MTUv
+Z2VtX2V4ZWNfcGFyYW1zLmMKaW5kZXggZTI5MTI2ODViLi5jZjdlYTMwNjUgMTAwNjQ0Ci0tLSBh
+L3Rlc3RzL2k5MTUvZ2VtX2V4ZWNfcGFyYW1zLmMKKysrIGIvdGVzdHMvaTkxNS9nZW1fZXhlY19w
+YXJhbXMuYwpAQCAtMjQ0LDcgKzI0NCw3IEBAIHN0YXRpYyB2b2lkIG1tYXBwZWQoaW50IGk5MTUp
+CiAJYnVmID0gZ2VtX2NyZWF0ZShpOTE1LCA0MDk2KTsKIAloYW5kbGUgPSBiYXRjaF9jcmVhdGUo
+aTkxNSk7CiAKLQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKHQpIHsgLyogcmVwZXRpdGl2ZSEg
+Ki8KKwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGk5MTUsIHQpIHsgLyogcmVwZXRpdGl2ZSEg
+Ki8KIAkJc3RydWN0IGRybV9pOTE1X2dlbV9leGVjYnVmZmVyMiAqZXhlY2J1ZjsKIAkJc3RydWN0
+IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmV4ZWM7CiAKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5
+MTUvZ2VtX21hZHZpc2UuYyBiL3Rlc3RzL2k5MTUvZ2VtX21hZHZpc2UuYwppbmRleCBlODcxNmE4
+OTEuLjU0YzliZWZmZiAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fbWFkdmlzZS5jCisrKyBi
+L3Rlc3RzL2k5MTUvZ2VtX21hZHZpc2UuYwpAQCAtNjIsMTIgKzYyLDEzIEBAIGRvbnRuZWVkX2Jl
+Zm9yZV9tbWFwKHZvaWQpCiAJY2hhciAqcHRyOwogCWludCBmZDsKIAotCWZvcl9lYWNoX21tYXBf
+b2Zmc2V0X3R5cGUodCkgeworCWZkID0gZHJtX29wZW5fZHJpdmVyKERSSVZFUl9JTlRFTCk7CisK
+Kwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGZkLCB0KSB7CiAJCXNpZ2hhbmRsZXJfdCBvbGRf
+c2lnc2Vndiwgb2xkX3NpZ2J1czsKIAogCQlpZ3RfZGVidWcoIk1hcHBpbmcgbW9kZTogJXNcbiIs
+IHQtPm5hbWUpOwogCi0JCWZkID0gZHJtX29wZW5fZHJpdmVyKERSSVZFUl9JTlRFTCk7CiAJCWhh
+bmRsZSA9IGdlbV9jcmVhdGUoZmQsIE9CSkVDVF9TSVpFKTsKIAkJZ2VtX21hZHZpc2UoZmQsIGhh
+bmRsZSwgSTkxNV9NQURWX0RPTlRORUVEKTsKIApAQCAtOTMsNyArOTQsMTEgQEAgZG9udG5lZWRf
+YmVmb3JlX21tYXAodm9pZCkKIAkJbXVubWFwKHB0ciwgT0JKRUNUX1NJWkUpOwogCQlzaWduYWwo
+U0lHQlVTLCBvbGRfc2lnc2Vndik7CiAJCXNpZ25hbChTSUdTRUdWLCBvbGRfc2lnYnVzKTsKKwor
+CQlmZCA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOwogCX0KKworCWNsb3NlKGZkKTsK
+IH0KIAogc3RhdGljIHZvaWQKQEAgLTEwMywxMiArMTA4LDEzIEBAIGRvbnRuZWVkX2FmdGVyX21t
+YXAodm9pZCkKIAljaGFyICpwdHI7CiAJaW50IGZkOwogCi0JZm9yX2VhY2hfbW1hcF9vZmZzZXRf
+dHlwZSh0KSB7CisJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKKworCWZvcl9l
+YWNoX21tYXBfb2Zmc2V0X3R5cGUoZmQsIHQpIHsKIAkJc2lnaGFuZGxlcl90IG9sZF9zaWdzZWd2
+LCBvbGRfc2lnYnVzOwogCiAJCWlndF9kZWJ1ZygiTWFwcGluZyBtb2RlOiAlc1xuIiwgdC0+bmFt
+ZSk7CiAKLQkJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKIAkJaGFuZGxlID0g
+Z2VtX2NyZWF0ZShmZCwgT0JKRUNUX1NJWkUpOwogCiAJCXB0ciA9IF9fZ2VtX21tYXBfb2Zmc2V0
+KGZkLCBoYW5kbGUsIDAsIE9CSkVDVF9TSVpFLApAQCAtMTM0LDcgKzE0MCwxMSBAQCBkb250bmVl
+ZF9hZnRlcl9tbWFwKHZvaWQpCiAJCW11bm1hcChwdHIsIE9CSkVDVF9TSVpFKTsKIAkJc2lnbmFs
+KFNJR0JVUywgb2xkX3NpZ2J1cyk7CiAJCXNpZ25hbChTSUdTRUdWLCBvbGRfc2lnc2Vndik7CisK
+KwkJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKIAl9CisKKwljbG9zZShmZCk7
+CiB9CiAKIHN0YXRpYyB2b2lkCmRpZmYgLS1naXQgYS90ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNl
+dC5jIGIvdGVzdHMvaTkxNS9nZW1fbW1hcF9vZmZzZXQuYwppbmRleCBmNDlkMThlNjMuLjFlYzk2
+M2IyNSAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fbW1hcF9vZmZzZXQuYworKysgYi90ZXN0
+cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jCkBAIC0xMjgsNyArMTI4LDcgQEAgc3RhdGljIHZvaWQg
+YmFzaWNfdWFmKGludCBpOTE1KQogewogCWNvbnN0IHVpbnQzMl90IG9ial9zaXplID0gNDA5NjsK
+IAotCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeworCWZvcl9lYWNoX21tYXBfb2Zmc2V0
+X3R5cGUoaTkxNSwgdCkgewogCQl1aW50MzJfdCBoYW5kbGUgPSBnZW1fY3JlYXRlKGk5MTUsIG9i
+al9zaXplKTsKIAkJdWludDhfdCAqZXhwZWN0ZWQsICpidWYsICphZGRyOwogCkBAIC0xNzYsNyAr
+MTc2LDcgQEAgc3RhdGljIHZvaWQgYmFzaWNfdWFmKGludCBpOTE1KQogCiBzdGF0aWMgdm9pZCBp
+c29sYXRpb24oaW50IGk5MTUpCiB7Ci0JZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZSh0KSB7CisJ
+Zm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZShpOTE1LCB0KSB7CiAJCXN0cnVjdCBkcm1faTkxNV9n
+ZW1fbW1hcF9vZmZzZXQgbW1hcF9hcmcgPSB7CiAJCQkuZmxhZ3MgPSB0LT50eXBlCiAJCX07CkBA
+IC0yNDUsNyArMjQ1LDcgQEAgc3RhdGljIHZvaWQgcGZfbm9uYmxvY2soaW50IGk5MTUpCiB7CiAJ
+aWd0X3NwaW5fdCAqc3BpbiA9IGlndF9zcGluX25ldyhpOTE1KTsKIAotCWZvcl9lYWNoX21tYXBf
+b2Zmc2V0X3R5cGUodCkgeworCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoaTkxNSwgdCkgewog
+CQl1aW50MzJfdCAqcHRyOwogCiAJCXB0ciA9IF9fbW1hcF9vZmZzZXQoaTkxNSwgc3Bpbi0+aGFu
+ZGxlLCAwLCA0MDk2LApAQCAtMzI0LDcgKzMyNCw3IEBAIHN0YXRpYyB2b2lkIG9wZW5fZmxvb2Qo
+aW50IGk5MTUsIGludCB0aW1lb3V0KQogCWhhbmRsZSA9IGdlbV9jcmVhdGUoaTkxNSwgNDA5Nik7
+CiAJZG1hYnVmID0gcHJpbWVfaGFuZGxlX3RvX2ZkKGk5MTUsIGhhbmRsZSk7CiAKLQlmb3JfZWFj
+aF9tbWFwX29mZnNldF90eXBlKHQpIHsKKwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGk5MTUs
+IHQpIHsKIAkJc3RydWN0IGRybV9pOTE1X2dlbV9tbWFwX29mZnNldCBhcmcgPSB7CiAJCQkuaGFu
+ZGxlID0gaGFuZGxlLAogCQkJLmZsYWdzID0gdC0+dHlwZSwKQEAgLTM1MSw3ICszNTEsNyBAQCBz
+dGF0aWMgdm9pZCBvcGVuX2Zsb29kKGludCBpOTE1LCBpbnQgdGltZW91dCkKIAkJdG1wID0gZ2Vt
+X3Jlb3Blbl9kcml2ZXIoaTkxNSk7CiAJCWhhbmRsZSA9IHByaW1lX2ZkX3RvX2hhbmRsZShpOTE1
+LCBkbWFidWYpOwogCi0JCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeworCQlmb3JfZWFj
+aF9tbWFwX29mZnNldF90eXBlKGk5MTUsIHQpIHsKIAkJCXN0cnVjdCBkcm1faTkxNV9nZW1fbW1h
+cF9vZmZzZXQgYXJnID0gewogCQkJCS5oYW5kbGUgPSBoYW5kbGUsCiAJCQkJLmZsYWdzID0gdC0+
+dHlwZSwKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvaTkxNV9wbV9ycG0uYyBiL3Rlc3RzL2k5MTUv
+aTkxNV9wbV9ycG0uYwppbmRleCAwYzI4MjExMjIuLjFiZWM4MGRiNyAxMDA2NDQKLS0tIGEvdGVz
+dHMvaTkxNS9pOTE1X3BtX3JwbS5jCisrKyBiL3Rlc3RzL2k5MTUvaTkxNV9wbV9ycG0uYwpAQCAt
+MjAwNiw3ICsyMDA2LDcgQEAgaWd0X21haW5fYXJncygiIiwgbG9uZ19vcHRpb25zLCBoZWxwX3N0
+ciwgb3B0X2hhbmRsZXIsIE5VTEwpCiAKIAkvKiBHRU0gKi8KIAlpZ3Rfc3VidGVzdF93aXRoX2R5
+bmFtaWMoImdlbS1tbWFwLXR5cGUiKSB7Ci0JCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkg
+eworCQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGRybV9mZCwgdCkgewogCQkJaWd0X2R5bmFt
+aWNfZigiJXMiLCB0LT5uYW1lKQogCQkJCWdlbV9tbWFwX2FyZ3ModCk7CiAJCX0KLS0gCjIuMjEu
+MAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
