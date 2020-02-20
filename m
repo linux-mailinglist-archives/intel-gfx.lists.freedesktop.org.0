@@ -2,32 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D3E6165DE4
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 206A8165DE5
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:53:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1006ED6F;
-	Thu, 20 Feb 2020 12:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81DA96ED70;
+	Thu, 20 Feb 2020 12:53:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4A4E6ED6F
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 12:52:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20288019-1500050 for multiple; Thu, 20 Feb 2020 12:52:11 +0000
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
+ [IPv6:2607:f8b0:4864:20::e42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A289C6ED70;
+ Thu, 20 Feb 2020 12:53:14 +0000 (UTC)
+Received: by mail-vs1-xe42.google.com with SMTP id p6so2551459vsj.11;
+ Thu, 20 Feb 2020 04:53:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=2ZYiaFprZKI8sbOfz0ySwE/77QPZO1cz80M3bvgxz4U=;
+ b=TNn7AqxHRyQin/O7IuDw0yRPRsGGT53Fyelgq2Pt1kxn8Yk4O/EwqR/5QxwLbUro4C
+ C/iWCfNFz8o4ZD6XWCs30i3QUojQnFxayYPvXzK+6l6zLOIVqCwC76FPzh0aQW+e5REL
+ eCKGXf2rrbxKALz8Q9PiJUsUkLIguMR2Jo0/LdMFON1blMHlHYW9Y0Vi0PLa6Gve9rD9
+ XDXfb2nLj/tpmS3HFqi+6nS1kJCCek3PNARYI/Zzsjh/HOcgH/obm13EZsz1oCJ9OP8Z
+ meuag/3VgbPIRroTspCNocd8z826EcMxedhdDAH5zmS+E91Ch5df4ZE0tZE/WgecwqGz
+ 4nlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=2ZYiaFprZKI8sbOfz0ySwE/77QPZO1cz80M3bvgxz4U=;
+ b=szjuRlvSiWX+OwzvlQIpDDZ5IzWNvBpLwRF8cnmgoKYyN9KDxPLn/eu3rlRQ8l+K1T
+ Vsq4NMtzHwo01vXElUQ9iMHhoHnhmtflCdyblVwfDNdZJbuQqSr0iWyYOmYNWvVZEk56
+ 3UElOu5OTLR0ZLUJNJVZPEf9/MrMqq6rBhAjonbBrH7bQyv8HSXNtktLK9cCSa96E8Y8
+ JjEsr81z2ncy+U/9UwET9SQH3LA4UzMGNS+QOuN4O5DpO44dhhAFMVBf4h4rwtn9abJy
+ nBChGQYIhgjROdUDYXho8M3sRx7kOgxsqHqmJ9V1wzyEr9Rxsf8miDg5tINogLTK6I5M
+ p2LA==
+X-Gm-Message-State: APjAAAX8rDSHvQF+5OgYcDjz4Flq4bJEGSwjv9J+93iFfZYLJGq6NHUB
+ YsmFclzfLNX9cgaRWEUtFjUZD8esz2vOuncEdzGoWw==
+X-Google-Smtp-Source: APXvYqwYukDE0594XCLoIv9he4fmykpQEr8ngrDMMbGocTt6zzgCGTe6FHXcftVWYQKNtTOAOzBD3ZQA4nuzHtuAJCE=
+X-Received: by 2002:a67:c204:: with SMTP id i4mr17796097vsj.118.1582203193845; 
+ Thu, 20 Feb 2020 04:53:13 -0800 (PST)
 MIME-Version: 1.0
-To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <a916179e-8f26-902d-5707-d6b85337e732@intel.com>
-References: <20200220075025.1539375-1-chris@chris-wilson.co.uk>
- <a916179e-8f26-902d-5707-d6b85337e732@intel.com>
-Message-ID: <158220312908.8112.2646972720625616758@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 20 Feb 2020 12:52:09 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/gt: Protect signaler walk with
- RCU
+References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+ <20200219203544.31013-13-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200219203544.31013-13-ville.syrjala@linux.intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Thu, 20 Feb 2020 12:53:01 +0000
+Message-ID: <CACvgo52d9XN1AkwviN8WhsyHuT94KQd87K1rGaA0wNq3xk6n2g@mail.gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 12/12] drm: pahole struct drm_display_mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,120 +62,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-02-20 12:47:28)
-> On 20/02/2020 07:50, Chris Wilson wrote:
-> > While we know that the waiters cannot disappear as we walk our list
-> > (only that they might be added), the same cannot be said for our
-> > signalers as they may be completed by the HW and retired as we process
-> > this request. Ergo we need to use rcu to protect the list iteration and
-> > remember to mark up the list_del_rcu.
-> > 
-> > v2: Mark the deps as safe-for-rcu
-> > 
-> > Fixes: 793c22617367 ("drm/i915/gt: Protect execlists_hold/unhold from new waiters")
-> > Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_lrc.c   | 16 ++++++++++------
-> >   drivers/gpu/drm/i915/i915_scheduler.c |  7 ++++---
-> >   2 files changed, 14 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index ba31cbe8c68e..47561dc29304 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -1668,9 +1668,9 @@ last_active(const struct intel_engine_execlists *execlists)
-> >                                    wait_link)
-> >   
-> >   #define for_each_signaler(p__, rq__) \
-> > -     list_for_each_entry_lockless(p__, \
-> > -                                  &(rq__)->sched.signalers_list, \
-> > -                                  signal_link)
-> > +     list_for_each_entry_rcu(p__, \
-> > +                             &(rq__)->sched.signalers_list, \
-> > +                             signal_link)
-> >   
-> >   static void defer_request(struct i915_request *rq, struct list_head * const pl)
-> >   {
-> > @@ -2533,11 +2533,13 @@ static bool execlists_hold(struct intel_engine_cs *engine,
-> >   static bool hold_request(const struct i915_request *rq)
-> >   {
-> >       struct i915_dependency *p;
-> > +     bool result = false;
-> >   
-> >       /*
-> >        * If one of our ancestors is on hold, we must also be on hold,
-> >        * otherwise we will bypass it and execute before it.
-> >        */
-> > +     rcu_read_lock();
-> >       for_each_signaler(p, rq) {
-> >               const struct i915_request *s =
-> >                       container_of(p->signaler, typeof(*s), sched);
-> > @@ -2545,11 +2547,13 @@ static bool hold_request(const struct i915_request *rq)
-> >               if (s->engine != rq->engine)
-> >                       continue;
-> >   
-> > -             if (i915_request_on_hold(s))
-> > -                     return true;
-> > +             result = i915_request_on_hold(s);
-> > +             if (result)
-> > +                     break;
-> >       }
-> > +     rcu_read_unlock();
-> >   
-> > -     return false;
-> > +     return result;
-> >   }
-> >   
-> >   static void __execlists_unhold(struct i915_request *rq)
-> > diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> > index e19a37a83397..59f70b674665 100644
-> > --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> > +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> > @@ -486,7 +486,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
-> >       list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
-> >               GEM_BUG_ON(!list_empty(&dep->dfs_link));
-> >   
-> > -             list_del(&dep->wait_link);
-> > +             list_del_rcu(&dep->wait_link);
-> >               if (dep->flags & I915_DEPENDENCY_ALLOC)
-> >                       i915_dependency_free(dep);
-> >       }
-> > @@ -497,7 +497,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
-> >               GEM_BUG_ON(dep->signaler != node);
-> >               GEM_BUG_ON(!list_empty(&dep->dfs_link));
-> >   
-> > -             list_del(&dep->signal_link);
-> > +             list_del_rcu(&dep->signal_link);
-> >               if (dep->flags & I915_DEPENDENCY_ALLOC)
-> >                       i915_dependency_free(dep);
-> >       }
-> > @@ -526,7 +526,8 @@ static struct i915_global_scheduler global = { {
-> >   int __init i915_global_scheduler_init(void)
-> >   {
-> >       global.slab_dependencies = KMEM_CACHE(i915_dependency,
-> > -                                           SLAB_HWCACHE_ALIGN);
-> > +                                           SLAB_HWCACHE_ALIGN |
-> > +                                           SLAB_TYPESAFE_BY_RCU);
-> 
-> So, the claim is that we should be fine if the node is re-used and then 
-> initialised, even though there might exist a minuscule window where 
-> hold_request might still be able to see it, somehow?
-
-Yes. That is my claim. The saving grace here is that for the on-hold
-transitions we must go through the engine->active.lock which we are
-holding. Ergo hold_request() is safe.
--Chris
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxOSBGZWIgMjAyMCBhdCAyMDozNiwgVmlsbGUgU3lyamFsYQo8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IFJlb3JnYW5pemUgZHJtX2Rpc3BsYXlfbW9k
+ZSB0byBlbGltaW5hdGUgYWxsIHRoZSBob2xlcy4KPiBXZSdsbCBwdXQgYWxsIHRoZSBhY3R1YWwg
+dGltaW5ncyB0byB0aGUgc3RhcnQgb2YgdGhlCj4gc3RydWN0IGFuZCBhbGwgdGhlIGV4dHJhIGp1
+bmsgdG8gdGhlIGVuZC4KPgo+IEdldHMgdGhlIHNpemUgZG93biB0byAxMzYgYnl0ZXMgb24gNjRi
+aXQgYW5kIDEyMCBieXRlcyBvbgo+IDMyYml0LiBXaXRoIGEgYml0IG1vcmUgd29yayB3ZSBzaG91
+bGQgYmUgYWJsZSB0byBnZXQgdGhpcwo+IGJlbG93IHRoZSB0d28gY2FjaGVsaW5lIG1hcmsgZXZl
+biBvbiA2NGJpdC4KPgo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
+amFsYUBsaW51eC5pbnRlbC5jb20+CgpQYXRjaGVzIDA3LTEyIGFyZToKUmV2aWV3ZWQtYnk6IEVt
+aWwgVmVsaWtvdiA8ZW1pbC52ZWxpa292QGNvbGxhYm9yYS5jb20+CgotRW1pbApfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
