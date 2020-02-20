@@ -1,40 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036FA165E7D
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 14:16:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2254165E9C
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 14:21:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0E636ED79;
-	Thu, 20 Feb 2020 13:16:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DBFB6ED7D;
+	Thu, 20 Feb 2020 13:21:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C98716ED79
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 13:16:16 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 05:16:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="269582597"
-Received: from unknown (HELO [10.252.15.175]) ([10.252.15.175])
- by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2020 05:16:14 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200220075025.1539375-1-chris@chris-wilson.co.uk>
- <a916179e-8f26-902d-5707-d6b85337e732@intel.com>
- <158220312908.8112.2646972720625616758@skylake-alporthouse-com>
-From: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <389148b7-6176-5195-d604-987c189a7b09@intel.com>
-Date: Thu, 20 Feb 2020 13:16:13 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
+ [IPv6:2607:f8b0:4864:20::e41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6FE16E211;
+ Thu, 20 Feb 2020 13:21:15 +0000 (UTC)
+Received: by mail-vs1-xe41.google.com with SMTP id p14so2617571vsq.6;
+ Thu, 20 Feb 2020 05:21:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=bfeBaMQJowqKuBPGq1jCQAdcuUQhER5bpvMHDL+36js=;
+ b=BPh/X7y1X/TI/zK0D9FrYesuumhGCUl/3ZP797zljG8et+TMR663KhE8jk3vsOZ+WS
+ VTVlfYRviNsatSa+dQ3LgfJrOR2agEtTG4Rg9+jEYX9a8AvLpZgksgkTvOlql3CTRc90
+ +YA44oDhPaFyV0FqAKx00v0flMifBuaQrfu7khqGfJbj34AZFha/zFxBkDr99ejrexnW
+ 6m5CRns0DSUUEj1EsRIBv6pm9V3krFvcxeQDqJSkxDthTsUCuuP3TN6KEqNdLAwScyeJ
+ SsG0j4Wwaapn2wKO8MJdn6LC88RVY0MpPf0i+F4bqMXngl4cFIMCwiYzoICps7ui1mbO
+ lwbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=bfeBaMQJowqKuBPGq1jCQAdcuUQhER5bpvMHDL+36js=;
+ b=TKqUaLADdeWJecle7+gY/o2k580FWADIHbUpBc3LcbtY6/z5MzWVgVOFm+LrySFR5g
+ aFBiw0CoSdXVxLiuAFy6RUk4ALtryfPW2e3+R21dFoh2z0ynCX2jIJ13ZtdidVEgJlBE
+ SqZGUywAzgC34Ool/me4w4xpa4O8ZvnxBvUZlUQVqqALSdJRmCIXahqm36e+eY5/jvPj
+ Sk77psc0DVtULcnP1uS+VSpPxUqGBBZogAnfmX2YWkqYflSZza2SI0bmxD1OrAGiZ9Kf
+ wUfDFPqTrZv4OuAQDsetctM2Aupjux6JYiyn3sGrzooc5+2/cKpSmuoiuZLs/3G3bEQv
+ G9+w==
+X-Gm-Message-State: APjAAAWlouSOHKUXVrlVY/6KV60ofWBxGibT1WrET8YaFTgCuvkq7iyX
+ 3athjGbGcJOnTNBfGlUdTeqoLjl8WsbsPJKzGeqv0Ux8
+X-Google-Smtp-Source: APXvYqxD+HRo/XEOFOJrweIejogYdtGxnUbH1wLlnsFF6xybVoN8GJpnTLLs+EXbzo20xqOXqPkw3JFIoNwwjsnzVZg=
+X-Received: by 2002:a67:f102:: with SMTP id n2mr17351565vsk.138.1582204874889; 
+ Thu, 20 Feb 2020 05:21:14 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <158220312908.8112.2646972720625616758@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/gt: Protect signaler walk with
- RCU
+References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Thu, 20 Feb 2020 13:21:03 +0000
+Message-ID: <CACvgo50pCb4OafEs9tLm7YEPqHc+BtDAvagRnwjXtZeQDNwUwg@mail.gmail.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH 00/12] drm: Put drm_display_mode on diet
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,125 +61,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 20/02/2020 12:52, Chris Wilson wrote:
-> Quoting Matthew Auld (2020-02-20 12:47:28)
->> On 20/02/2020 07:50, Chris Wilson wrote:
->>> While we know that the waiters cannot disappear as we walk our list
->>> (only that they might be added), the same cannot be said for our
->>> signalers as they may be completed by the HW and retired as we process
->>> this request. Ergo we need to use rcu to protect the list iteration and
->>> remember to mark up the list_del_rcu.
->>>
->>> v2: Mark the deps as safe-for-rcu
->>>
->>> Fixes: 793c22617367 ("drm/i915/gt: Protect execlists_hold/unhold from new waiters")
->>> Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/gt/intel_lrc.c   | 16 ++++++++++------
->>>    drivers/gpu/drm/i915/i915_scheduler.c |  7 ++++---
->>>    2 files changed, 14 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> index ba31cbe8c68e..47561dc29304 100644
->>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>> @@ -1668,9 +1668,9 @@ last_active(const struct intel_engine_execlists *execlists)
->>>                                     wait_link)
->>>    
->>>    #define for_each_signaler(p__, rq__) \
->>> -     list_for_each_entry_lockless(p__, \
->>> -                                  &(rq__)->sched.signalers_list, \
->>> -                                  signal_link)
->>> +     list_for_each_entry_rcu(p__, \
->>> +                             &(rq__)->sched.signalers_list, \
->>> +                             signal_link)
->>>    
->>>    static void defer_request(struct i915_request *rq, struct list_head * const pl)
->>>    {
->>> @@ -2533,11 +2533,13 @@ static bool execlists_hold(struct intel_engine_cs *engine,
->>>    static bool hold_request(const struct i915_request *rq)
->>>    {
->>>        struct i915_dependency *p;
->>> +     bool result = false;
->>>    
->>>        /*
->>>         * If one of our ancestors is on hold, we must also be on hold,
->>>         * otherwise we will bypass it and execute before it.
->>>         */
->>> +     rcu_read_lock();
->>>        for_each_signaler(p, rq) {
->>>                const struct i915_request *s =
->>>                        container_of(p->signaler, typeof(*s), sched);
->>> @@ -2545,11 +2547,13 @@ static bool hold_request(const struct i915_request *rq)
->>>                if (s->engine != rq->engine)
->>>                        continue;
->>>    
->>> -             if (i915_request_on_hold(s))
->>> -                     return true;
->>> +             result = i915_request_on_hold(s);
->>> +             if (result)
->>> +                     break;
->>>        }
->>> +     rcu_read_unlock();
->>>    
->>> -     return false;
->>> +     return result;
->>>    }
->>>    
->>>    static void __execlists_unhold(struct i915_request *rq)
->>> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
->>> index e19a37a83397..59f70b674665 100644
->>> --- a/drivers/gpu/drm/i915/i915_scheduler.c
->>> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
->>> @@ -486,7 +486,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
->>>        list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
->>>                GEM_BUG_ON(!list_empty(&dep->dfs_link));
->>>    
->>> -             list_del(&dep->wait_link);
->>> +             list_del_rcu(&dep->wait_link);
->>>                if (dep->flags & I915_DEPENDENCY_ALLOC)
->>>                        i915_dependency_free(dep);
->>>        }
->>> @@ -497,7 +497,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
->>>                GEM_BUG_ON(dep->signaler != node);
->>>                GEM_BUG_ON(!list_empty(&dep->dfs_link));
->>>    
->>> -             list_del(&dep->signal_link);
->>> +             list_del_rcu(&dep->signal_link);
->>>                if (dep->flags & I915_DEPENDENCY_ALLOC)
->>>                        i915_dependency_free(dep);
->>>        }
->>> @@ -526,7 +526,8 @@ static struct i915_global_scheduler global = { {
->>>    int __init i915_global_scheduler_init(void)
->>>    {
->>>        global.slab_dependencies = KMEM_CACHE(i915_dependency,
->>> -                                           SLAB_HWCACHE_ALIGN);
->>> +                                           SLAB_HWCACHE_ALIGN |
->>> +                                           SLAB_TYPESAFE_BY_RCU);
->>
->> So, the claim is that we should be fine if the node is re-used and then
->> initialised, even though there might exist a minuscule window where
->> hold_request might still be able to see it, somehow?
-> 
-> Yes. That is my claim. The saving grace here is that for the on-hold
-> transitions we must go through the engine->active.lock which we are
-> holding. Ergo hold_request() is safe.
-
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-
-> -Chris
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAxOSBGZWIgMjAyMCBhdCAyMDozNSwgVmlsbGUgU3lyamFsYQo8dmlsbGUuc3lyamFs
+YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlIGlz
+IGV4dHJlbWVseSBmYXQuIFB1dCBpdCBvbiBkaWV0Lgo+Cj4gU29tZSBzdGF0cyBmb3IgdGhlIHdo
+b2xlIHNlcmllczoKPgo+IDY0Yml0IHNpemVvZihzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSk6Cj4g
+MjAwIC0+IDEzNiBieXRlcyAoLTMyJSkKPgo+IDY0Yml0IGJsb2F0LW8tbWV0ZXIgLWMgZHJtLmtv
+Ogo+IGFkZC9yZW1vdmU6IDEvMCBncm93L3NocmluazogMjkvNDcgdXAvZG93bjogODkzLy0xNTQ0
+ICgtNjUxKQo+IEZ1bmN0aW9uICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG9s
+ZCAgICAgbmV3ICAgZGVsdGEKPiAuLi4KPiBUb3RhbDogQmVmb3JlPTE4OTQzMCwgQWZ0ZXI9MTg4
+Nzc5LCBjaGcgLTAuMzQlCj4gYWRkL3JlbW92ZTogMC8wIGdyb3cvc2hyaW5rOiAwLzAgdXAvZG93
+bjogMC8wICgwKQo+IERhdGEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IG9sZCAgICAgbmV3ICAgZGVsdGEKPiBUb3RhbDogQmVmb3JlPTExNjY3LCBBZnRlcj0xMTY2Nywg
+Y2hnICswLjAwJQo+IGFkZC9yZW1vdmU6IDAvMCBncm93L3NocmluazogMC81IHVwL2Rvd246IDAv
+LTE2ODk2ICgtMTY4OTYpCj4gUk8gRGF0YSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgb2xkICAgICBuZXcgICBkZWx0YQo+IGVkaWRfNGtfbW9kZXMgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgMTAwMCAgICAgNjgwICAgIC0zMjAKPiBlZGlkX2VzdF9tb2RlcyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDM0MDAgICAgMjMxMiAgIC0xMDg4Cj4gZWRpZF9jZWFf
+bW9kZXNfMTkzICAgICAgICAgICAgICAgICAgICAgICAgICA1NDAwICAgIDM2NzIgICAtMTcyOAo+
+IGRybV9kbXRfbW9kZXMgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAxNzYwMCAgIDExOTY4
+ICAgLTU2MzIKPiBlZGlkX2NlYV9tb2Rlc18xICAgICAgICAgICAgICAgICAgICAgICAgICAgMjU0
+MDAgICAxNzI3MiAgIC04MTI4Cj4gVG90YWw6IEJlZm9yZT03MTIzOSwgQWZ0ZXI9NTQzNDMsIGNo
+ZyAtMjMuNzIlCj4KPgo+IDY0Yml0IGJsb2F0LW8tbWV0ZXIgZHJtLmtvOgo+IGFkZC9yZW1vdmU6
+IDEvMCBncm93L3NocmluazogMjkvNTIgdXAvZG93bjogODkzLy0xODQ0MCAoLTE3NTQ3KQo+IC4u
+Lgo+IFRvdGFsOiBCZWZvcmU9MjcyMzM2LCBBZnRlcj0yNTQ3ODksIGNoZyAtNi40NCUKPgo+Cj4g
+MzJiaXQgc2l6ZW9mKHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlKToKPiAxODQgLT4gMTIwIGJ5dGVz
+ICgtMzQlKQo+Cj4gMzJiaXQgYmxvYXQtby1tZXRlciAtYyBkcm0ua28KPiBhZGQvcmVtb3ZlOiAx
+LzAgZ3Jvdy9zaHJpbms6IDE5LzIxIHVwL2Rvd246IDc0My8tMTM2OCAoLTYyNSkKPiBGdW5jdGlv
+biAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvbGQgICAgIG5ldyAgIGRlbHRh
+Cj4gLi4uCj4gVG90YWw6IEJlZm9yZT0xNzIzNTksIEFmdGVyPTE3MTczNCwgY2hnIC0wLjM2JQo+
+IGFkZC9yZW1vdmU6IDAvMCBncm93L3NocmluazogMC8wIHVwL2Rvd246IDAvMCAoMCkKPiBEYXRh
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvbGQgICAgIG5ldyAgIGRl
+bHRhCj4gVG90YWw6IEJlZm9yZT00MjI3LCBBZnRlcj00MjI3LCBjaGcgKzAuMDAlCj4gYWRkL3Jl
+bW92ZTogMC8wIGdyb3cvc2hyaW5rOiAwLzUgdXAvZG93bjogMC8tMTY4OTYgKC0xNjg5NikKPiBS
+TyBEYXRhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBvbGQgICAgIG5ldyAg
+IGRlbHRhCj4gZWRpZF80a19tb2RlcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgOTIw
+ICAgICA2MDAgICAgLTMyMAo+IGVkaWRfZXN0X21vZGVzICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgMzEyOCAgICAyMDQwICAgLTEwODgKPiBlZGlkX2NlYV9tb2Rlc18xOTMgICAgICAgICAg
+ICAgICAgICAgICAgICAgIDQ5NjggICAgMzI0MCAgIC0xNzI4Cj4gZHJtX2RtdF9tb2RlcyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDE2MTkyICAgMTA1NjAgICAtNTYzMgo+IGVkaWRfY2Vh
+X21vZGVzXzEgICAgICAgICAgICAgICAgICAgICAgICAgICAyMzM2OCAgIDE1MjQwICAgLTgxMjgK
+PiBUb3RhbDogQmVmb3JlPTU5MjMwLCBBZnRlcj00MjMzNCwgY2hnIC0yOC41MyUKPgo+IDMyYml0
+IGJsb2F0LW8tbWV0ZXIgZHJtLmtvOgo+IGFkZC9yZW1vdmU6IDEvMCBncm93L3NocmluazogMTkv
+MjYgdXAvZG93bjogNzQzLy0xODI2NCAoLTE3NTIxKQo+IC4uLgo+IFRvdGFsOiBCZWZvcmU9MjM1
+ODE2LCBBZnRlcj0yMTgyOTUsIGNoZyAtNy40MyUKPgo+Cj4gU29tZSBpZGVhcyBmb3IgZnVydGhl
+ciByZWR1Y3Rpb246Cj4gLSBDb252ZXJ0IG1vZGUtPm5hbWUgdG8gYSBwb2ludGVyIChzYXZlcyAy
+NC8yOCBieXRlcyBpbiB0aGUKPiAgIHN0cnVjdCBidXQgd291bGQgb2Z0ZW4gcmVxdWlyZSBhIGhl
+YXAgYWxsb2MgZm9yIHRoZSBuYW1lICh0aG91Z2gKPiAgIHR5cGljYWwgbW9kZSBuYW1lIGlzIDwx
+MCBieXRlcyBzbyBzdGlsbCBvdmVyYWxsIHdpbiBwZXJoYXBzKQo+IC0gR2V0IHJpZCBvZiBtb2Rl
+LT5uYW1lIGVudGlyZWx5PyBJIGd1ZXNzIHNldGNydGMgJiBjby4gaXMgdGhlIG9ubHkKPiAgIHBs
+YWNlIHdoZXJlIHdlIGhhdmUgdG8gcHJlc2VydmUgdGhlIHVzZXIgcHJvdmlkZWQgbmFtZSwgZWxz
+ZXdoZXJlCj4gICBjb3VsZCBwZWhhcHMganVzdCBnZW5lcmF0ZSBvbiBkZW1hbmQ/IE5vdCBzdXJl
+IGhvdyB0cmlja3kgdGhpcwo+ICAgd291bGQgZ2V0LgoKVGhlIHNlcmllcyBkb2VzIHNvbWUgZ3Jl
+YXQgd29yaywgd2l0aCBmdXR1cmUgd29yayByZWFjaGluZyB0aGUgY2FjaGUKbGluZSBmb3IgNjRi
+aXQuCkRvaW5nIG11Y2ggbW9yZSB0aGFuIHRoYXQgbWlnaHQgYmUgYW4gb3ZlcmtpbGwgSU1ITy4K
+CkluIHBhcnRpY3VsYXIsIGlmIHdlIGNoYW5nZSBEUk1fRElTUExBWV9NT0RFX0xFTiB0byAyNCB3
+ZSBnZXQgdGhlcmUsCmF2b2lkaW5nIHRoZSBoZWFwIGFsbG9jL2NhbGMgb24gZGVtYW5kIGZ1bi4K
+V2hpbGUgYWxzbyBlbnN1cmluZyB0aGUgbmFtZSBpcyBzdWZmaWNpZW50bHkgbGFyZ2UgZm9yIHRo
+ZSBuZXh0IGRlY2FkZSBvciBzby4KCkZyb20gZHJtX21vZGVfc2V0X25hbWUoKToKCnNucHJpbnRm
+KG1vZGUtPm5hbWUsIERSTV9ESVNQTEFZX01PREVfTEVOLCAiJWR4JWQlcyIsCiAgICBtb2RlLT5o
+ZGlzcGxheSwgbW9kZS0+dmRpc3BsYXksIGludGVybGFjZWQgPyAiaSIgOiAiIik7CgoKV2UgY2hh
+bmdlIHRoZSBoL3YgZGlzcGxheSBmcm9tICgxMF4xNSktMSB0byAoMTBeMTEpLTEgd2hpY2ggc2Vl
+bXMgcmVhc29uYWJsZS4KCk5vdGU6IGhhdmVuJ3QgY2hlY2tlZCBpZiBuYW1lIGluY2x1ZGVzIHRo
+ZSB0ZXJtaW5hdGluZyBcMCwgc28gdGFrZQpudW1iZXJzIHdpdGggYSBncmFpbiBvZiBzYWx0LgoK
+LUVtaWwKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
