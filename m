@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6C7165645
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 05:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C60416564B
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 05:34:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D856ECD2;
-	Thu, 20 Feb 2020 04:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 950C96ECD4;
+	Thu, 20 Feb 2020 04:34:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 097536ECD1;
- Thu, 20 Feb 2020 04:31:55 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 273EE6ECD3;
+ Thu, 20 Feb 2020 04:33:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 019F4A0088;
- Thu, 20 Feb 2020 04:31:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F791A0088;
+ Thu, 20 Feb 2020 04:33:59 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 20 Feb 2020 04:31:54 -0000
-Message-ID: <158217311497.17408.17693120316947956930@emeril.freedesktop.org>
+Date: Thu, 20 Feb 2020 04:33:59 -0000
+Message-ID: <158217323909.17409.4208146894689220904@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200220014325.1527804-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200220014325.1527804-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915=3A_Add_mechanism_to?=
- =?utf-8?q?_submit_a_context_WA_on_ring_submission?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?series_starting_with_=5B1/4=5D_drm/i915=3A_Add_mechanism_to_sub?=
+ =?utf-8?q?mit_a_context_WA_on_ring_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,30 +54,22 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-6fa7e7f3fc3a drm/i915: Add mechanism to submit a context WA on ring submission
-c85cf8225fe4 drm/i915/gen7: Clear all EU/L3 residual contexts
--:38: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#38: 
-new file mode 100644
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915: Add mechanism to submit a context WA on ring submission
+Okay!
 
-total: 0 errors, 1 warnings, 0 checks, 598 lines checked
-986254d23dbb fix
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+Commit: drm/i915/gen7: Clear all EU/L3 residual contexts
++drivers/gpu/drm/i915/gt/gen7_5_clearbuffer.h:14:11: warning: symbol 'hsw_eu_kernel' was not declared. Should it be static?
++drivers/gpu/drm/i915/gt/gen7_clearbuffer.h:14:11: warning: symbol 'ivb_eu_kernel' was not declared. Should it be static?
 
--:51: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+Commit: fix
+Okay!
 
-total: 1 errors, 1 warnings, 0 checks, 38 lines checked
-2e93e87685a1 tidy
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#47: 
-rename from drivers/gpu/drm/i915/gt/gen7_5_clearbuffer.h
-
--:100: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
-
-total: 1 errors, 2 warnings, 0 checks, 65 lines checked
+Commit: tidy
+-O:drivers/gpu/drm/i915/gt/gen7_5_clearbuffer.h:14:11: warning: symbol 'hsw_eu_kernel' was not declared. Should it be static?
+-O:drivers/gpu/drm/i915/gt/gen7_clearbuffer.h:14:11: warning: symbol 'ivb_eu_kernel' was not declared. Should it be static?
++
 
 _______________________________________________
 Intel-gfx mailing list
