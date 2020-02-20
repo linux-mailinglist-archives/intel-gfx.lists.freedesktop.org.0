@@ -2,41 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B97AD166108
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 16:34:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F9F166130
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 16:43:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0616B6EDB9;
-	Thu, 20 Feb 2020 15:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4053A6EDBE;
+	Thu, 20 Feb 2020 15:43:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F22F6EDB9;
- Thu, 20 Feb 2020 15:34:30 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 050F96EDBE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 15:43:17 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 07:34:29 -0800
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 07:43:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="229513709"
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="224895801"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 20 Feb 2020 07:34:26 -0800
+ by orsmga007.jf.intel.com with SMTP; 20 Feb 2020 07:43:11 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 20 Feb 2020 17:34:26 +0200
-Date: Thu, 20 Feb 2020 17:34:26 +0200
+ Thu, 20 Feb 2020 17:43:11 +0200
+Date: Thu, 20 Feb 2020 17:43:11 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Emil Velikov <emil.l.velikov@gmail.com>
-Message-ID: <20200220153426.GC13686@intel.com>
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <CACvgo50pCb4OafEs9tLm7YEPqHc+BtDAvagRnwjXtZeQDNwUwg@mail.gmail.com>
- <20200220142759.GA13686@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200220154311.GD13686@intel.com>
+References: <20200220152347.2530-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200220142759.GA13686@intel.com>
+In-Reply-To: <20200220152347.2530-1-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 00/12] drm: Put drm_display_mode on diet
+Subject: Re: [Intel-gfx] [PATCH v1] drm/i915: Use intel_plane_data_rate for
+ min_cdclk calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,111 +48,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 20, 2020 at 04:27:59PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Feb 20, 2020 at 01:21:03PM +0000, Emil Velikov wrote:
-> > On Wed, 19 Feb 2020 at 20:35, Ville Syrjala
-> > <ville.syrjala@linux.intel.com> wrote:
-> > >
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > >
-> > > struct drm_display_mode is extremely fat. Put it on diet.
-> > >
-> > > Some stats for the whole series:
-> > >
-> > > 64bit sizeof(struct drm_display_mode):
-> > > 200 -> 136 bytes (-32%)
-> > >
-> > > 64bit bloat-o-meter -c drm.ko:
-> > > add/remove: 1/0 grow/shrink: 29/47 up/down: 893/-1544 (-651)
-> > > Function                                     old     new   delta
-> > > ...
-> > > Total: Before=3D189430, After=3D188779, chg -0.34%
-> > > add/remove: 0/0 grow/shrink: 0/0 up/down: 0/0 (0)
-> > > Data                                         old     new   delta
-> > > Total: Before=3D11667, After=3D11667, chg +0.00%
-> > > add/remove: 0/0 grow/shrink: 0/5 up/down: 0/-16896 (-16896)
-> > > RO Data                                      old     new   delta
-> > > edid_4k_modes                               1000     680    -320
-> > > edid_est_modes                              3400    2312   -1088
-> > > edid_cea_modes_193                          5400    3672   -1728
-> > > drm_dmt_modes                              17600   11968   -5632
-> > > edid_cea_modes_1                           25400   17272   -8128
-> > > Total: Before=3D71239, After=3D54343, chg -23.72%
-> > >
-> > >
-> > > 64bit bloat-o-meter drm.ko:
-> > > add/remove: 1/0 grow/shrink: 29/52 up/down: 893/-18440 (-17547)
-> > > ...
-> > > Total: Before=3D272336, After=3D254789, chg -6.44%
-> > >
-> > >
-> > > 32bit sizeof(struct drm_display_mode):
-> > > 184 -> 120 bytes (-34%)
-> > >
-> > > 32bit bloat-o-meter -c drm.ko
-> > > add/remove: 1/0 grow/shrink: 19/21 up/down: 743/-1368 (-625)
-> > > Function                                     old     new   delta
-> > > ...
-> > > Total: Before=3D172359, After=3D171734, chg -0.36%
-> > > add/remove: 0/0 grow/shrink: 0/0 up/down: 0/0 (0)
-> > > Data                                         old     new   delta
-> > > Total: Before=3D4227, After=3D4227, chg +0.00%
-> > > add/remove: 0/0 grow/shrink: 0/5 up/down: 0/-16896 (-16896)
-> > > RO Data                                      old     new   delta
-> > > edid_4k_modes                                920     600    -320
-> > > edid_est_modes                              3128    2040   -1088
-> > > edid_cea_modes_193                          4968    3240   -1728
-> > > drm_dmt_modes                              16192   10560   -5632
-> > > edid_cea_modes_1                           23368   15240   -8128
-> > > Total: Before=3D59230, After=3D42334, chg -28.53%
-> > >
-> > > 32bit bloat-o-meter drm.ko:
-> > > add/remove: 1/0 grow/shrink: 19/26 up/down: 743/-18264 (-17521)
-> > > ...
-> > > Total: Before=3D235816, After=3D218295, chg -7.43%
-> > >
-> > >
-> > > Some ideas for further reduction:
-> > > - Convert mode->name to a pointer (saves 24/28 bytes in the
-> > >   struct but would often require a heap alloc for the name (though
-> > >   typical mode name is <10 bytes so still overall win perhaps)
-> > > - Get rid of mode->name entirely? I guess setcrtc & co. is the only
-> > >   place where we have to preserve the user provided name, elsewhere
-> > >   could pehaps just generate on demand? Not sure how tricky this
-> > >   would get.
-> > =
-
-> > The series does some great work, with future work reaching the cache
-> > line for 64bit.
-> > Doing much more than that might be an overkill IMHO.
-> > =
-
-> > In particular, if we change DRM_DISPLAY_MODE_LEN to 24 we get there,
-> > avoiding the heap alloc/calc on demand fun.
-> > While also ensuring the name is sufficiently large for the next decade =
-or so.
+On Thu, Feb 20, 2020 at 05:23:47PM +0200, Stanislav Lisovskiy wrote:
+> There seems to be a bit of confusing redundancy in a way, how
+> plane data rate/min cdclk are calculated.
+> In fact both min cdclk, pixel rate and plane data rate are all
+> part of the same formula as per BSpec.
 > =
 
-> Unfortunately it's part of the uabi. So can't change it without some
-> risk of userspace breakage.
+> However currently we have intel_plane_data_rate, which is used
+> to calculate plane data rate and which is also used in bandwidth
+> calculations. However for calculating min_cdclk we have another
+> piece of code, doing almost same calculation, but a bit differently
+> and in a different place. However as both are actually part of same
+> formula, probably would be wise to use plane data rate calculations
+> as a basis anyway, thus avoiding code duplication and possible bugs
+> related to this.
 > =
 
-> The least demanding option is probably to nuke export_head. We need
-> one bit to replace it, which we can get by either:
-> - stealing from eg. mode->type, or perhaps mode->private_flags
-> - nuke private_flags outright and replace it with a bool for this
->   purpose
+> Another thing is that I've noticed that during min_cdclk calculations
+> we account for plane scaling, while for plane data rate, we don't.
+> crtc->pixel_rate seems to account only for pipe ratio, however it is
+> clearly stated in BSpec that plane data rate also need to account
+> plane ratio as well.
+> =
 
-Looks like getting rid of private_flags is going to be pretty
-straightforward. I'll post patches for that once this first series
-lands.
+> So what this commit does is:
+> - Adds a plane ratio calculation to intel_plane_data_rate
+> - Removes redundant calculations from skl_plane_min_cdclk which is
+>   used for gen9+ and now uses intel_plane_data_rate as a basis from
+>   there as well.
+> =
+
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 16 ++++++-
+>  drivers/gpu/drm/i915/display/intel_sprite.c   | 46 +++++++++++--------
+>  2 files changed, 41 insertions(+), 21 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
+gpu/drm/i915/display/intel_atomic_plane.c
+> index c86d7a35c816..702dfa14d112 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -133,15 +133,27 @@ intel_plane_destroy_state(struct drm_plane *plane,
+>  	kfree(plane_state);
+>  }
+>  =
+
+> +
+> +
+>  unsigned int intel_plane_data_rate(const struct intel_crtc_state *crtc_s=
+tate,
+>  				   const struct intel_plane_state *plane_state)
+>  {
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>  	unsigned int cpp;
+> +	unsigned int src_w, src_h, dst_w, dst_h;
+>  =
+
+>  	if (!plane_state->uapi.visible)
+>  		return 0;
+>  =
+
+> +	src_w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
+> +	src_h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
+> +	dst_w =3D drm_rect_width(&plane_state->uapi.dst);
+> +	dst_h =3D drm_rect_height(&plane_state->uapi.dst);
+> +
+> +	/* Downscaling limits the maximum pixel rate */
+> +	dst_w =3D min(src_w, dst_w);
+> +	dst_h =3D min(src_h, dst_h);
+> +
+>  	cpp =3D fb->format->cpp[0];
+>  =
+
+>  	/*
+> @@ -153,7 +165,9 @@ unsigned int intel_plane_data_rate(const struct intel=
+_crtc_state *crtc_state,
+>  	if (fb->format->is_yuv && fb->format->num_planes > 1)
+>  		cpp *=3D 4;
+>  =
+
+> -	return cpp * crtc_state->pixel_rate;
+> +	return DIV64_U64_ROUND_UP(mul_u32_u32(cpp * crtc_state->pixel_rate,
+> +					      src_w * src_h),
+> +				  mul_u32_u32(dst_w, dst_h));
+
+You don't need a 64bit divisor for this.
+
+>  }
+>  =
+
+>  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 7abeefe8dce5..75afb78ff1b0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -330,24 +330,34 @@ bool icl_is_hdr_plane(struct drm_i915_private *dev_=
+priv, enum plane_id plane_id)
+>  }
+>  =
+
+>  static void
+> -skl_plane_ratio(const struct intel_crtc_state *crtc_state,
+> -		const struct intel_plane_state *plane_state,
+> -		unsigned int *num, unsigned int *den)
+> +skl_plane_bpp_constraints(const struct intel_crtc_state *crtc_state,
+> +			  const struct intel_plane_state *plane_state,
+> +			  unsigned int *num, unsigned int *den)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(plane_state->uapi.plane->=
+dev);
+>  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
+> +	unsigned int cpp =3D fb->format->cpp[0];
+> +
+> +	/*
+> +	 * Based on HSD#:1408715493
+> +	 * NV12 cpp =3D=3D 4, P010 cpp =3D=3D 8
+> +	 *
+> +	 * FIXME what is the logic behind this?
+> +	 */
+> +	if (fb->format->is_yuv && fb->format->num_planes > 1)
+> +		cpp *=3D 4;
+
+This is ugly. I think we need a plane pixel rate instead of =
+
+abusing the data rate as the pixel rate like this.
+
+>  =
+
+>  	if (fb->format->cpp[0] =3D=3D 8) {
+>  		if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv)) {
+>  			*num =3D 10;
+> -			*den =3D 8;
+> +			*den =3D 8 * cpp;
+>  		} else {
+>  			*num =3D 9;
+> -			*den =3D 8;
+> +			*den =3D 8 * cpp;
+>  		}
+>  	} else {
+>  		*num =3D 1;
+> -		*den =3D 1;
+> +		*den =3D cpp;
+>  	}
+>  }
+>  =
+
+> @@ -355,27 +365,23 @@ static int skl_plane_min_cdclk(const struct intel_c=
+rtc_state *crtc_state,
+>  			       const struct intel_plane_state *plane_state)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(plane_state->uapi.plane->=
+dev);
+> -	unsigned int pixel_rate =3D crtc_state->pixel_rate;
+> -	unsigned int src_w, src_h, dst_w, dst_h;
+>  	unsigned int num, den;
+> +	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+>  =
+
+> -	skl_plane_ratio(crtc_state, plane_state, &num, &den);
+> +	skl_plane_bpp_constraints(crtc_state, plane_state, &num, &den);
+>  =
+
+>  	/* two pixels per clock on glk+ */
+>  	if (INTEL_GEN(dev_priv) >=3D 10 || IS_GEMINILAKE(dev_priv))
+>  		den *=3D 2;
+>  =
+
+> -	src_w =3D drm_rect_width(&plane_state->uapi.src) >> 16;
+> -	src_h =3D drm_rect_height(&plane_state->uapi.src) >> 16;
+> -	dst_w =3D drm_rect_width(&plane_state->uapi.dst);
+> -	dst_h =3D drm_rect_height(&plane_state->uapi.dst);
+> -
+> -	/* Downscaling limits the maximum pixel rate */
+> -	dst_w =3D min(src_w, dst_w);
+> -	dst_h =3D min(src_h, dst_h);
+> -
+> -	return DIV64_U64_ROUND_UP(mul_u32_u32(pixel_rate * num, src_w * src_h),
+> -				  mul_u32_u32(den, dst_w * dst_h));
+> +	/*
+> +	 * intel_atomic_check_planes has already been called by this
+> +	 * time in intel_atomic_check, so use calculated plane
+> +	 * data rate as a basis, in order not to have duplicate code.
+> +	 * According to BSpec, plane data rate is anyway used as
+> +	 * a basis for this calculation.
+> +	 */
+> +	return DIV64_U64_ROUND_UP(crtc_state->data_rate[plane->id] * num, den);
+>  }
+>  =
+
+>  static unsigned int
+> -- =
+
+> 2.24.1.485.gad05a3d8e5
 
 -- =
 
