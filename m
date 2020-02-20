@@ -1,34 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3AB816539E
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 01:32:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 734A61653DF
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 01:49:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 252696E891;
-	Thu, 20 Feb 2020 00:32:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C16026E895;
+	Thu, 20 Feb 2020 00:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD5046E891
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 00:32:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 16:32:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="229968735"
-Received: from invictus.jf.intel.com ([10.165.21.212])
- by fmsmga008.fm.intel.com with ESMTP; 19 Feb 2020 16:32:20 -0800
-From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 19 Feb 2020 16:32:50 -0800
-Message-Id: <20200220003250.23248-1-radhakrishna.sripada@intel.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C6A66E892;
+ Thu, 20 Feb 2020 00:49:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 55C93A0087;
+ Thu, 20 Feb 2020 00:49:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/ehl: Donot reuse icl get and put
- dplls
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Date: Thu, 20 Feb 2020 00:49:24 -0000
+Message-ID: <158215976432.17406.18182985507681000396@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129224729.4684-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20200129224729.4684-1-vivek.kasireddy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hotplug=3A_Use_phy_to_get_the_hpd=5Fpin_instead_of_the_po?=
+ =?utf-8?b?cnQgKHJldjQp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,140 +39,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Elkhartlake does not have as many PLL combinations as Icelake.
-Use a simpler get pll function and reuse intel_put_pll for ehl.
+== Series Details ==
 
-v2: Fix the build error
+Series: drm/i915/hotplug: Use phy to get the hpd_pin instead of the port (rev4)
+URL   : https://patchwork.freedesktop.org/series/72747/
+State : success
 
-Suggested-by: Matt Roper <matthew.d.roper@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 11 +++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 57 +++++++++++++++----
- 2 files changed, 54 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ee7d54ccd3e6..9bb6ccb5b3ea 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -10763,10 +10763,15 @@ static void icl_get_ddi_pll(struct drm_i915_private *dev_priv, enum port port,
- 		return;
- 	}
- 
--	pipe_config->icl_port_dplls[port_dpll_id].pll =
--		intel_get_shared_dpll_by_id(dev_priv, id);
-+	if (!IS_ELKHARTLAKE(dev_priv)) {
-+		pipe_config->icl_port_dplls[port_dpll_id].pll =
-+			intel_get_shared_dpll_by_id(dev_priv, id);
- 
--	icl_set_active_port_dpll(pipe_config, port_dpll_id);
-+		icl_set_active_port_dpll(pipe_config, port_dpll_id);
-+	} else {
-+		pipe_config->shared_dpll =
-+			intel_get_shared_dpll_by_id(dev_priv, id);
-+	}
- }
- 
- static void bxt_get_ddi_pll(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index e5bfe5245276..6092abc2b875 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3016,8 +3016,7 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct icl_port_dpll *port_dpll =
- 		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
--	enum port port = encoder->port;
-+	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
- 	unsigned long dpll_mask;
- 
- 	if (!icl_calc_dpll_state(crtc_state, encoder, &port_dpll->hw_state)) {
-@@ -3027,13 +3026,7 @@ static bool icl_get_combo_phy_dpll(struct intel_atomic_state *state,
- 		return false;
- 	}
- 
--	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
--		dpll_mask =
--			BIT(DPLL_ID_EHL_DPLL4) |
--			BIT(DPLL_ID_ICL_DPLL1) |
--			BIT(DPLL_ID_ICL_DPLL0);
--	else
--		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+	dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
- 
- 	port_dpll->pll = intel_find_shared_dpll(state, crtc,
- 						&port_dpll->hw_state,
-@@ -3154,6 +3147,48 @@ static void icl_put_dplls(struct intel_atomic_state *state,
- 	}
- }
- 
-+static bool ehl_get_dpll(struct intel_atomic_state *state,
-+			 struct intel_crtc *crtc,
-+			 struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_shared_dpll *pll;
-+	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	enum port port = encoder->port;
-+	unsigned long dpll_mask;
-+
-+
-+	if (!icl_calc_dpll_state(crtc_state, encoder, &crtc_state->dpll_hw_state)) {
-+		DRM_DEBUG_KMS("Could not calculate combo PHY PLL state.\n");
-+
-+		return false;
-+	}
-+
-+	if (IS_ELKHARTLAKE(dev_priv) && port != PORT_A)
-+		dpll_mask =
-+			BIT(DPLL_ID_EHL_DPLL4) |
-+			BIT(DPLL_ID_ICL_DPLL1) |
-+			BIT(DPLL_ID_ICL_DPLL0);
-+	else
-+		dpll_mask = BIT(DPLL_ID_ICL_DPLL1) | BIT(DPLL_ID_ICL_DPLL0);
-+
-+	pll = intel_find_shared_dpll(state, crtc,
-+				     &crtc_state->dpll_hw_state,
-+				     dpll_mask);
-+	if (!pll) {
-+		DRM_DEBUG_KMS("No PLL selected\n");
-+		return false;
-+	}
-+
-+	intel_reference_shared_dpll(state, crtc,
-+				    pll, &crtc_state->dpll_hw_state);
-+
-+	crtc_state->shared_dpll = pll;
-+
-+	return true;
-+}
-+
- static bool mg_pll_get_hw_state(struct drm_i915_private *dev_priv,
- 				struct intel_shared_dpll *pll,
- 				struct intel_dpll_hw_state *hw_state)
-@@ -3751,8 +3786,8 @@ static const struct dpll_info ehl_plls[] = {
- 
- static const struct intel_dpll_mgr ehl_pll_mgr = {
- 	.dpll_info = ehl_plls,
--	.get_dplls = icl_get_dplls,
--	.put_dplls = icl_put_dplls,
-+	.get_dplls = ehl_get_dpll,
-+	.put_dplls = intel_put_dpll,
- 	.dump_hw_state = icl_dump_hw_state,
- };
- 
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_7967 -> Patchwork_16637
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16637 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [PASS][1] -> [INCOMPLETE][2] ([i915#694] / [i915#816])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [PASS][3] -> [INCOMPLETE][4] ([CI#80] / [fdo#106070] / [i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-icl-dsi:         [PASS][5] -> [TIMEOUT][6] ([fdo#112271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-icl-dsi/igt@i915_selftest@live_gtt.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/fi-icl-dsi/igt@i915_selftest@live_gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_blt:
+    - fi-ivb-3770:        [DMESG-FAIL][7] ([i915#725]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-ivb-3770/igt@i915_selftest@live_blt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/fi-ivb-3770/igt@i915_selftest@live_blt.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [FAIL][9] ([i915#976]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7967/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (49 -> 40)
+------------------------------
+
+  Additional (2): fi-bwr-2160 fi-bsw-nick 
+  Missing    (11): fi-ilk-m540 fi-tgl-dsi fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-cfl-8109u fi-byt-n2820 fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7967 -> Patchwork_16637
+
+  CI-20190529: 20190529
+  CI_DRM_7967: 0d3c3511d707cc46d78ffcf7fe39ac882c0030af @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5452: c05dc6cd816feb1cc518ce777ab3fd6c81893113 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16637: e755f16ff5e05125fd8f3e16d68e81b002034273 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e755f16ff5e0 drm/i915/hotplug: Use phy to get the hpd_pin instead of the port (v3)
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16637/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
