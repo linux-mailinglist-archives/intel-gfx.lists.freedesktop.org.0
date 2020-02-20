@@ -2,29 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89EE5166399
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 977311663D1
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 18:05:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9FD26EDE8;
-	Thu, 20 Feb 2020 16:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 519A46EDE9;
+	Thu, 20 Feb 2020 17:05:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C429F89E35;
- Thu, 20 Feb 2020 16:57:39 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20291269-1500050 
- for multiple; Thu, 20 Feb 2020 16:57:27 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Feb 2020 16:57:21 +0000
-Message-Id: <20200220165721.2056191-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 870F86EDE9;
+ Thu, 20 Feb 2020 17:05:49 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 09:05:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="349202447"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Feb 2020 09:05:45 -0800
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 22:24:59 +0530
+Message-Id: <20200220165507.16823-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] sw_sync: Use fixed runtime for
- sync_expired_merge
+Subject: [Intel-gfx] [PATCH v7 0/8] drm: Introduce struct drm_device based
+ WARN* and use them in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,66 +42,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert from using a fixed number of iterations (1 million), to using a
-fixed runtime so that we have predictable (and shorter!) run times across
-a wide variety of machines.
+Device specific dev_WARN and dev_WARN_ONCE macros available in kernel
+include device information in the backtrace, so we know what device
+the warnings originate from.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Martin Peres <martin.peres@linux.intel.com>
----
- tests/sw_sync.c | 17 +++++++----------
- 1 file changed, 7 insertions(+), 10 deletions(-)
+Similar to this, add new struct drm_device based drm_WARN* macros. These
+macros include device information in the backtrace, so we know
+what device the warnings originate from. Knowing the device specific
+information in the backtrace would be helpful in development all
+around.
 
-diff --git a/tests/sw_sync.c b/tests/sw_sync.c
-index 626b6d39f..6e439496d 100644
---- a/tests/sw_sync.c
-+++ b/tests/sw_sync.c
-@@ -747,30 +747,27 @@ static void test_sync_multi_producer_single_consumer(void)
- 
- static void test_sync_expired_merge(void)
- {
--	int iterations = 1 << 20;
- 	int timeline;
--	int i;
--	int fence_expired, fence_merged;
-+	int expired;
- 
- 	timeline = sw_sync_timeline_create();
- 
- 	sw_sync_timeline_inc(timeline, 100);
--	fence_expired = sw_sync_timeline_create_fence(timeline, 1);
--	igt_assert_f(sync_fence_wait(fence_expired, 0) == 0,
-+	expired = sw_sync_timeline_create_fence(timeline, 1);
-+	igt_assert_f(sync_fence_wait(expired, 0) == 0,
- 	             "Failure waiting for expired fence\n");
- 
--	fence_merged = sync_fence_merge(fence_expired, fence_expired);
--	close(fence_merged);
-+	close(sync_fence_merge(expired, expired));
- 
--	for (i = 0; i < iterations; i++) {
--		int fence = sync_fence_merge(fence_expired, fence_expired);
-+	igt_until_timeout(2) {
-+		int fence = sync_fence_merge(expired, expired);
- 
- 		igt_assert_f(sync_fence_wait(fence, -1) == 0,
- 			     "Failure waiting on fence\n");
- 		close(fence);
- 	}
- 
--	close(fence_expired);
-+	close(expired);
- }
- 
- static void test_sync_random_merge(void)
+This patch series aims to convert calls of WARN(), WARN_ON(),
+WARN_ONCE() and WARN_ON_ONCE() in i915 driver to use the drm
+device-specific variants automatically wherever struct device pointer
+is available.
+
+To do this, this patch series -
+  - introduces new struct drm_device based WARN* macros
+  - automatically converts WARN* with device specific dev_WARN*
+    variants using coccinelle semantic patch scripts.
+
+The goal is to convert all the calls of WARN* with drm_WARN* in i915,
+but there are still cases where device pointer is not readily
+available in some functions (or I missed them somehow) using WARN*
+hence some manual churning is needed. Handle such remaining cases
+separately later.
+
+changes since v6: 
+   - rebase unmerged patches onto drm-tip
+     (07350317e4b2 dm-tip: 2020y-02m-20d-12h-11m-40s UTC integration manifest)
+
+changes since v5:
+   - rebase unmerged patches onto drm-tip
+     (db0579be2554 drm-tip: 2020y-02m-05d-10h-51m-13s UTC integration manifest)
+
+changes since v4:
+   - Address Jani's comment
+     - split major i915/display related conversions per file into
+       seperate patches so that non conflicting patches can be
+       merged.
+
+changes since v3:
+  - rebase pending unmerged patches on drm-tip
+	(bc626bbb5b6e drm-tip: 2020y-01m-25d-14h-28m-41s UTC integration manifest)
+
+changes since v2:
+  - rebase pending unmerged patches on drm-tip
+
+changes since v1:
+  - Address Jani's review comments
+    - Fix typo in comment of patch 0001
+    - Get rid of helper functions
+    - Split patches by directory
+
+Changes since RFC at [1]
+  - Introduce drm_WARN* macros and use them as suggested by Sam and Jani
+  - Get rid of extra local variables
+
+[1] https://patchwork.freedesktop.org/series/71668/
+
+
+Pankaj Bharadiya (8):
+  drm/i915/display/cdclk: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/ddi: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/display: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/power: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available
+  drm/i915/display/hdcp: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+  drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
+
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  84 ++++---
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  92 ++++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 237 ++++++++++--------
+ .../drm/i915/display/intel_display_power.c    | 181 +++++++------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 120 +++++----
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  20 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |   6 +-
+ drivers/gpu/drm/i915/gvt/cfg_space.c          |  23 +-
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |   4 +-
+ drivers/gpu/drm/i915/gvt/display.c            |   6 +-
+ drivers/gpu/drm/i915/gvt/dmabuf.c             |   4 +-
+ drivers/gpu/drm/i915/gvt/edid.c               |  19 +-
+ drivers/gpu/drm/i915/gvt/gtt.c                |  21 +-
+ drivers/gpu/drm/i915/gvt/gvt.c                |   4 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  22 +-
+ drivers/gpu/drm/i915/gvt/interrupt.c          |  15 +-
+ drivers/gpu/drm/i915/gvt/kvmgt.c              |  10 +-
+ drivers/gpu/drm/i915/gvt/mmio.c               |  30 ++-
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |   8 +-
+ drivers/gpu/drm/i915/gvt/scheduler.c          |   6 +-
+ drivers/gpu/drm/i915/gvt/vgpu.c               |   6 +-
+ 21 files changed, 537 insertions(+), 381 deletions(-)
+
 -- 
-2.25.1
+2.23.0
 
 _______________________________________________
 Intel-gfx mailing list
