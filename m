@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFA051669C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 22:22:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E58E81669C9
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 22:26:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 426526EE5F;
-	Thu, 20 Feb 2020 21:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D125888A28;
+	Thu, 20 Feb 2020 21:26:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22DDF6EE5F
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 21:22:09 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 13:22:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="236372616"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga003.jf.intel.com with SMTP; 20 Feb 2020 13:22:08 -0800
-Date: Thu, 20 Feb 2020 13:22:08 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200220212208.GI2733348@mdroper-desk1.amr.corp.intel.com>
-References: <20200204011032.582737-1-matthew.d.roper@intel.com>
- <158137321780.3099.10671401057618107059@emeril.freedesktop.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5B0BE88A28;
+ Thu, 20 Feb 2020 21:26:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 52CD0A0138;
+ Thu, 20 Feb 2020 21:26:08 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158137321780.3099.10671401057618107059@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_Program_MBUS_with_rmw_d?=
- =?utf-8?q?uring_initialization_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Thu, 20 Feb 2020 21:26:08 -0000
+Message-ID: <158223396833.17408.11003576352095402983@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200220165507.16823-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200220165507.16823-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Introduce_struct_drm=5Fdevice_based_WARN*_and_use_th?=
+ =?utf-8?q?em_in_i915_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,160 +39,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 10, 2020 at 10:20:17PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: series starting with [1/2] drm/i915: Program MBUS with rmw during initialization (rev2)
-> URL   : https://patchwork.freedesktop.org/series/72950/
-> State : success
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_7903 -> Patchwork_16509
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **WARNING**
-> 
->   Minor unknown changes coming with Patchwork_16509 need to be verified
->   manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_16509, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/index.html
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_16509:
-> 
-> ### IGT changes ###
-> 
-> #### Warnings ####
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - fi-ivb-3770:        [SKIP][1] ([fdo#109271]) -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-ivb-3770/igt@i915_pm_rpm@module-reload.html
+== Series Details ==
 
-Unrelated IVB issue; wouldn't be caused by this patch.
+Series: drm: Introduce struct drm_device based WARN* and use them in i915 (rev7)
+URL   : https://patchwork.freedesktop.org/series/72035/
+State : warning
 
-Patchwork also shows clean results for the shards CI, although I can't
-find the results mail in my inbox.
+== Summary ==
 
-Applied to dinq.  Thanks Matt Atwood for the reviews.
+$ dim checkpatch origin/drm-tip
+f3e1e10ac32d drm/i915/display/cdclk: Make WARN* drm specific where drm_priv ptr is available
+37b11379faf7 drm/i915/display/ddi: Make WARN* drm specific where drm_device ptr is available
+0a9eccf2eb1a drm/i915/display/display: Make WARN* drm specific where drm_device ptr is available
+-:497: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#497: FILE: drivers/gpu/drm/i915/display/intel_display.c:10699:
++		drm_WARN_ON(dev, !pll->info->funcs->get_hw_state(dev_priv, pll,
++						 &pipe_config->dpll_hw_state));
 
+total: 0 errors, 0 warnings, 1 checks, 657 lines checked
+bca7c0209467 drm/i915/display/power: Make WARN* drm specific where drm_priv ptr is available
+714a69f8bd80 drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available
+7fd6b4d78e27 drm/i915/display/hdcp: Make WARN* drm specific where drm_priv ptr is available
+-:103: WARNING:LONG_LINE: line over 100 characters
+#103: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:1604:
++	drm_WARN_ON(&dev_priv->drm, !(intel_de_read(dev_priv, HDCP2_STATUS(dev_priv, cpu_transcoder, port)) &
 
-Matt
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+820962439df7 drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+5e643f5a8467 drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
+-:293: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#293: FILE: drivers/gpu/drm/i915/gvt/handlers.c:1373:
++		drm_WARN_ONCE(&i915->drm, 1,
++				"VM(%d): iGVT-g doesn't support GuC\n",
 
-> 
->   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_16509 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_exec_parallel@basic:
->     - fi-byt-n2820:       [PASS][3] -> [TIMEOUT][4] ([fdo#112271])
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-byt-n2820/igt@gem_exec_parallel@basic.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-byt-n2820/igt@gem_exec_parallel@basic.html
-> 
->   * igt@i915_selftest@live_blt:
->     - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#553] / [i915#725])
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-hsw-4770r/igt@i915_selftest@live_blt.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-hsw-4770r/igt@i915_selftest@live_blt.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@i915_selftest@live_blt:
->     - fi-bsw-n3050:       [INCOMPLETE][7] ([i915#392]) -> [PASS][8]
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bsw-n3050/igt@i915_selftest@live_blt.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-bsw-n3050/igt@i915_selftest@live_blt.html
->     - fi-hsw-4770:        [DMESG-FAIL][9] ([i915#553] / [i915#725]) -> [PASS][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-hsw-4770/igt@i915_selftest@live_blt.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-hsw-4770/igt@i915_selftest@live_blt.html
-> 
->   * igt@i915_selftest@live_gem_contexts:
->     - fi-cfl-8700k:       [DMESG-FAIL][11] ([i915#623]) -> [PASS][12]
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
->     - fi-byt-n2820:       [DMESG-FAIL][13] ([i915#1052]) -> [PASS][14]
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-byt-n2820/igt@i915_selftest@live_gem_contexts.html
->     - fi-cfl-guc:         [INCOMPLETE][15] ([CI#80] / [fdo#106070] / [i915#424]) -> [PASS][16]
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
->     - fi-cml-s:           [DMESG-FAIL][17] ([i915#877]) -> [PASS][18]
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-> 
->   * igt@i915_selftest@live_gtt:
->     - fi-bdw-5557u:       [TIMEOUT][19] ([fdo#112271]) -> [PASS][20]
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7903/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
-> 
->   
->   [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
->   [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
->   [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
->   [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
->   [i915#1052]: https://gitlab.freedesktop.org/drm/intel/issues/1052
->   [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
->   [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
->   [i915#553]: https://gitlab.freedesktop.org/drm/intel/issues/553
->   [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
->   [i915#725]: https://gitlab.freedesktop.org/drm/intel/issues/725
->   [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-> 
-> 
-> Participating hosts (47 -> 44)
-> ------------------------------
-> 
->   Additional (3): fi-skl-lmem fi-kbl-7560u fi-snb-2600 
->   Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-snb-2520m fi-byt-clapper fi-bdw-samus 
-> 
-> 
-> Build changes
-> -------------
-> 
->   * CI: CI-20190529 -> None
->   * Linux: CI_DRM_7903 -> Patchwork_16509
-> 
->   CI-20190529: 20190529
->   CI_DRM_7903: 47b768c475f4a11a48bc43e6228660f8b26a542b @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_5433: 6a96c17f3a1b4e1f90b1a0b0ce42a7219875d1a4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
->   Patchwork_16509: 5a3c01778052d138ca6065b76e55f9a98d225f34 @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> 
-> == Linux commits ==
-> 
-> 5a3c01778052 drm/i915/tgl: Program MBUS_ABOX{1, 2}_CTL during display init
-> 901419eb8a59 drm/i915: Program MBUS with rmw during initialization
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16509/index.html
+-:307: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#307: FILE: drivers/gpu/drm/i915/gvt/handlers.c:1389:
++		drm_WARN(&i915->drm, 1,
++				"VM(%d): Use physical address for TRTT!\n",
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+total: 0 errors, 0 warnings, 2 checks, 519 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
