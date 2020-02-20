@@ -1,56 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E17165C42
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 11:56:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016C9165C46
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 11:57:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0971B6ED28;
-	Thu, 20 Feb 2020 10:56:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59BB16ED2A;
+	Thu, 20 Feb 2020 10:57:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
- [IPv6:2607:f8b0:4864:20::942])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CB8C6ED28;
- Thu, 20 Feb 2020 10:56:13 +0000 (UTC)
-Received: by mail-ua1-x942.google.com with SMTP id l6so1375894uap.13;
- Thu, 20 Feb 2020 02:56:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=RY6iEngyDGKQkKYzT387W2sKpng6F5mXSDUfIpnBVSk=;
- b=Iw7qK2saEf79xbHnnTjKmXFDEwgCMbqULPpGlxgGLq1o/kVLTrcTERV1YbMSCRJ6dl
- U7x0ojXSdkRQ4dsAKqn50Ryuoq+b8i1goUr4DcmItWDNzOGTOhPsl4OdR9JXt2d14yuC
- 95DQiOmnq9lyXdLP5PKbZrhg0Z0fOevebeS+KnHbr5ZthehM1FC8l0L0NGFDrc5zbXNB
- fKftPPYjo5rzdtbWKOhLu+DM2i/FvbiF1Uaf0qfsSGM0cjopqCJs1GMpJWV01eivkZth
- HHXEsyPtLKeT5xEfu6MlWLyGIXENguJrWOhX2lnwavI4mWWU7AmSUZpUxQI7kMIwZW8n
- KmQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=RY6iEngyDGKQkKYzT387W2sKpng6F5mXSDUfIpnBVSk=;
- b=CqjUIwUfkTSpm0Ps45sHATFVxrNcd9ywFiUooW51v+7rk/KKWeArWwrtxRscetfHzl
- OJLjUpzJPeXXDoZR+xhGjlfFZFuucjk5BpOeAGqfI5Kb19rBKAr8MxfhFZ2Fzz0aOo4Q
- wQvEQjHjyVYZEClo+2sKKYMNy2Y+yOdmyIG/Hrl4w0gyizpXfcIo0eOnzo0FNDV8QaJ7
- +pMki9SHnAyrTjBkK1SvQmvfFt5U1bFgmus40qLUH1RtboK4EoG6uc8QS1F1TJu+pnZC
- 3r06zaHGr++rQrzkf5/h/hdKTBY/tJ4qBQ0/x8Me5CXam+cTQ8/FhCW3zyvraRO6dFza
- jmfQ==
-X-Gm-Message-State: APjAAAUgqcun8VAKf1WUkw+wJZbXeenTuAclrT7lB+cKIGaaEiUPfU/D
- JChizhTGIcCOyRYmHjVjqFOq95BcZMWp/lciSTUWLVpd
-X-Google-Smtp-Source: APXvYqw6OJDC07yI2TJg5MCOmtjuCCFvl3RTMh/HoxPvylYmgGlhJ7tD19Qc9w6FEC//9mzZBbQ09iuS72AZGiQAE0o=
-X-Received: by 2002:ab0:5bc6:: with SMTP id z6mr16681385uae.46.1582196172410; 
- Thu, 20 Feb 2020 02:56:12 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5366ED2A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 10:57:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 02:57:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="269543716"
+Received: from unknown (HELO mwahaha-bdw.ger.corp.intel.com) ([10.252.15.175])
+ by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2020 02:57:08 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 10:57:07 +0000
+Message-Id: <20200220105707.344522-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <20200219203544.31013-3-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200219203544.31013-3-ville.syrjala@linux.intel.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Thu, 20 Feb 2020 10:56:01 +0000
-Message-ID: <CACvgo50fK+5CVUFJAnMQvHGcbaNWP8TQA0c+r6ikoRJTJcUVhg@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/exynos: Use mode->clock instead
- of reverse calculating it from the vrefresh
+Subject: [Intel-gfx] [PATCH] drm/i915: remove the other slab_dependencies
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,26 +40,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kyungmin Park <kyungmin.park@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Joonyoung Shim <jy0922.shim@samsung.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAxOSBGZWIgMjAyMCBhdCAyMDozNiwgVmlsbGUgU3lyamFsYQo8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IGh0b3RhbCp2dG90YWwqdnJlZnJlc2ggfj0g
-Y2xvY2suIFNvIGp1c3QgdXNlIHNheSAiY2xvY2siIHdoZW4gd2UgbWVhbiBpdC4KPgo+IENjOiBJ
-bmtpIERhZSA8aW5raS5kYWVAc2Ftc3VuZy5jb20+Cj4gQ2M6IEpvb255b3VuZyBTaGltIDxqeTA5
-MjIuc2hpbUBzYW1zdW5nLmNvbT4KPiBDYzogU2V1bmctV29vIEtpbSA8c3cwMzEyLmtpbUBzYW1z
-dW5nLmNvbT4KPiBDYzogS3l1bmdtaW4gUGFyayA8a3l1bmdtaW4ucGFya0BzYW1zdW5nLmNvbT4K
-PiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgoKUmV2aWV3ZWQtYnk6IEVtaWwgVmVsaWtvdiA8ZW1pbC52ZWxpa292QGNvbGxhYm9y
-YS5jb20+CgotRW1pbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1n
-ZngK
+The real one can be found in i915_scheduler.c.
+
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_request.c | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index 6daf18dbb3d4..dbd882fe22ef 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -51,7 +51,6 @@ struct execute_cb {
+ static struct i915_global_request {
+ 	struct i915_global base;
+ 	struct kmem_cache *slab_requests;
+-	struct kmem_cache *slab_dependencies;
+ 	struct kmem_cache *slab_execute_cbs;
+ } global;
+ 
+@@ -1614,14 +1613,12 @@ long i915_request_wait(struct i915_request *rq,
+ 
+ static void i915_global_request_shrink(void)
+ {
+-	kmem_cache_shrink(global.slab_dependencies);
+ 	kmem_cache_shrink(global.slab_execute_cbs);
+ 	kmem_cache_shrink(global.slab_requests);
+ }
+ 
+ static void i915_global_request_exit(void)
+ {
+-	kmem_cache_destroy(global.slab_dependencies);
+ 	kmem_cache_destroy(global.slab_execute_cbs);
+ 	kmem_cache_destroy(global.slab_requests);
+ }
+@@ -1651,16 +1648,9 @@ int __init i915_global_request_init(void)
+ 	if (!global.slab_execute_cbs)
+ 		goto err_requests;
+ 
+-	global.slab_dependencies = KMEM_CACHE(i915_dependency,
+-					      SLAB_HWCACHE_ALIGN |
+-					      SLAB_RECLAIM_ACCOUNT);
+-	if (!global.slab_dependencies)
+-		goto err_execute_cbs;
+-
+ 	i915_global_register(&global.base);
+ 	return 0;
+ 
+-err_execute_cbs:
+ 	kmem_cache_destroy(global.slab_execute_cbs);
+ err_requests:
+ 	kmem_cache_destroy(global.slab_requests);
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
