@@ -2,35 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E181166846
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 21:25:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78AFF1667ED
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 21:02:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF8E6EE0D;
-	Thu, 20 Feb 2020 20:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B8F56E203;
+	Thu, 20 Feb 2020 20:02:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0A3E6EE0D
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 20:25:40 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A1B86E203
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 20:02:39 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 12:25:40 -0800
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 12:02:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="408903496"
-Received: from msatwood-mobl.jf.intel.com (HELO msatwood-mobl.intel.com)
- ([10.24.15.21])
- by orsmga005.jf.intel.com with ESMTP; 20 Feb 2020 12:25:40 -0800
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Feb 2020 12:25:30 -0500
-Message-Id: <20200220172530.8201-1-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200220171952.7966-1-matthew.s.atwood@intel.com>
-References: <20200220171952.7966-1-matthew.s.atwood@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,465,1574150400"; d="scan'208";a="229594512"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 20 Feb 2020 12:02:36 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 20 Feb 2020 22:02:35 +0200
+Date: Thu, 20 Feb 2020 22:02:35 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200220200235.GK13686@intel.com>
+References: <20200211172532.14287-1-anshuman.gupta@intel.com>
+ <20200211172532.14287-4-anshuman.gupta@intel.com>
+ <20200220171632.GF13686@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1409085225, Wa_14010229206
+Content-Disposition: inline
+In-Reply-To: <20200220171632.GF13686@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 3/7] drm/i915: Fix broken transcoder err
+ state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,59 +50,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Disable Push Constant buffer addition for TGL.
+On Thu, Feb 20, 2020 at 07:16:32PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Tue, Feb 11, 2020 at 10:55:28PM +0530, Anshuman Gupta wrote:
+> > Skip the transcoder whose pipe is disabled while
+> > initializing transcoder error state in 3 non-contiguous
+> > display pipe system.
+> > =
 
-v2: typos, add additional Wa reference
-v3: use REG_BIT macro, move to rcs_engine_wa_init, clean up commit
-message.
+> > v2:
+> > - Don't skip EDP_TRANSCODER error state. [Ville]
+> > - Use a helper has_transcoder(). [Ville]
+> > =
 
-Bspec: 52890
-Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 5 +++++
- drivers/gpu/drm/i915/i915_reg.h             | 3 +++
- 2 files changed, 8 insertions(+)
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c       |  2 +-
+> >  drivers/gpu/drm/i915/display/intel_display_types.h | 14 ++++++++++++++
+> >  drivers/gpu/drm/i915/i915_drv.h                    |  2 ++
+> >  3 files changed, 17 insertions(+), 1 deletion(-)
+> > =
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 7cc8a7fc53c7..5db9a9fa9ca5 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1334,6 +1334,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
- 		wa_masked_en(wal,
- 			     GEN7_ROW_CHICKEN2,
- 			     GEN12_DISABLE_EARLY_READ);
-+		/*
-+		* Wa_1409085225:tgl
-+		* Wa_14010229206:tgl
-+		*/
-+		WA_SET_BIT_MASKED(GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
- 	}
- 
- 	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b09c1d6dc0aa..4d6342a2883e 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9153,6 +9153,9 @@ enum {
- #define   PUSH_CONSTANT_DEREF_DISABLE	(1 << 8)
- #define   GEN11_TDL_CLOCK_GATING_FIX_DISABLE	(1 << 1)
- 
-+#define GEN9_ROW_CHICKEN4		_MMIO(0xe48c)
-+#define  GEN12_DISABLE_TDL_PUSH		REG_BIT(9)
-+
- #define HSW_ROW_CHICKEN3		_MMIO(0xe49c)
- #define  HSW_ROW_CHICKEN3_L3_GLOBAL_ATOMICS_DISABLE    (1 << 6)
- 
--- 
-2.21.1
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
+/drm/i915/display/intel_display.c
+> > index 5333f7a7db42..a3649020ea97 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -19051,7 +19051,7 @@ intel_display_capture_error_state(struct drm_i9=
+15_private *dev_priv)
+> >  	for (i =3D 0; i < ARRAY_SIZE(error->transcoder); i++) {
+> >  		enum transcoder cpu_transcoder =3D transcoders[i];
+> >  =
 
+> > -		if (!INTEL_INFO(dev_priv)->trans_offsets[cpu_transcoder])
+> > +		if (!has_transcoder(dev_priv, cpu_transcoder))
+> >  			continue;
+> >  =
+
+> >  		error->transcoder[i].available =3D true;
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drive=
+rs/gpu/drm/i915/display/intel_display_types.h
+> > index 14e3d78fef7c..d359f1636ba8 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -1626,4 +1626,18 @@ static inline u32 intel_plane_ggtt_offset(const =
+struct intel_plane_state *state)
+> >  	return i915_ggtt_offset(state->vma);
+> >  }
+> >  =
+
+> > +static inline bool
+> > +has_transcoder(struct drm_i915_private *dev_priv, enum transcoder tran=
+scoder) {
+> =
+
+> { is in the wrong place.
+
+Oh and 'cpu_transcoder' is the variable name used everwhere else. Pls
+stick to established patterns if possible.
+
+> =
+
+> > +	switch (transcoder) {
+> > +	case TRANSCODER_EDP:
+> > +		return HAS_TRANSCODER_EDP(dev_priv);
+> > +	case TRANSCODER_DSI_0:
+> > +		return HAS_TRANSCODER_DSI0(dev_priv);
+> > +	case TRANSCODER_DSI_1:
+> > +		return HAS_TRANSCODER_DSI1(dev_priv);
+> =
+
+> The error capture so far doesn't care about DSI, so I wouldn't bother
+> with these for now.
+> =
+
+> > +	default:
+> > +		return INTEL_INFO(dev_priv)->pipe_mask & BIT(transcoder);
+> > +	}
+> > +}
+> =
+
+> This functions has one user so no point in putting it into a header.
+> =
+
+> > +
+> >  #endif /*  __INTEL_DISPLAY_TYPES_H__ */
+> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i91=
+5_drv.h
+> > index da509d9b8895..17bbaf7f0844 100644
+> > --- a/drivers/gpu/drm/i915/i915_drv.h
+> > +++ b/drivers/gpu/drm/i915/i915_drv.h
+> > @@ -1674,6 +1674,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i91=
+5,
+> >  #define HAS_FPGA_DBG_UNCLAIMED(dev_priv) (INTEL_INFO(dev_priv)->has_fp=
+ga_dbg)
+> >  #define HAS_PSR(dev_priv)		 (INTEL_INFO(dev_priv)->display.has_psr)
+> >  #define HAS_TRANSCODER_EDP(dev_priv)	 (INTEL_INFO(dev_priv)->trans_off=
+sets[TRANSCODER_EDP] !=3D 0)
+> > +#define HAS_TRANSCODER_DSI0(dev_priv)	 (INTEL_INFO(dev_priv)->trans_of=
+fsets[TRANSCODER_DSI_0] !=3D 0)
+> > +#define HAS_TRANSCODER_DSI1(dev_priv)	 (INTEL_INFO(dev_priv)->trans_of=
+fsets[TRANSCODER_DSI_1] !=3D 0)
+> >  =
+
+> >  #define HAS_RC6(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6)
+> >  #define HAS_RC6p(dev_priv)		 (INTEL_INFO(dev_priv)->has_rc6p)
+> > -- =
+
+> > 2.24.0
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
