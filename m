@@ -2,40 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293E9165DD9
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D3E6165DE4
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:52:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0816ED77;
-	Thu, 20 Feb 2020 12:49:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1006ED6F;
+	Thu, 20 Feb 2020 12:52:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42E9F6ED74;
- Thu, 20 Feb 2020 12:49:29 +0000 (UTC)
-Received: from localhost (unknown [137.135.114.1])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id DA58024673;
- Thu, 20 Feb 2020 12:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1582202969;
- bh=ehB71jOxEuEltq0UpVyPGKXSoFbLZXbr+DTyz9vEYuw=;
- h=Date:From:To:To:To:To:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Cc:Subject:
- In-Reply-To:References:From;
- b=YlBZMzcR7CdOAWMZywqRdpEvoAx+xiwUb7+xFEChlaUR2KuPbzKtfW1BAE8MP29zu
- 7vlMJYUKPWkbtngrUjc9sCQuz4mqoWIEakjIrmDcEwyri9G0cOVqsEiU3OhdY2iHI1
- eQKIEySHibR37mdVzJB+zTduHXHpY6Oo3OIUkwyA=
-Date: Thu, 20 Feb 2020 12:49:28 +0000
-From: Sasha Levin <sashal@kernel.org>
-To: Sasha Levin <sashal@kernel.org>
-To: Sean Paul <sean@poorly.run>
-To: Sean Paul <seanpaul@chromium.org>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200218220242.107265-2-sean@poorly.run>
-References: <20200218220242.107265-2-sean@poorly.run>
-Message-Id: <20200220124928.DA58024673@mail.kernel.org>
-Subject: Re: [Intel-gfx] [PATCH v4 01/14] drm/i915: Fix sha_text population
- code
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4A4E6ED6F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 12:52:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20288019-1500050 for multiple; Thu, 20 Feb 2020 12:52:11 +0000
+MIME-Version: 1.0
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <a916179e-8f26-902d-5707-d6b85337e732@intel.com>
+References: <20200220075025.1539375-1-chris@chris-wilson.co.uk>
+ <a916179e-8f26-902d-5707-d6b85337e732@intel.com>
+Message-ID: <158220312908.8112.2646972720625616758@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 20 Feb 2020 12:52:09 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/6] drm/i915/gt: Protect signaler walk with
+ RCU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,61 +40,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , intel-gfx@lists.freedesktop.org, Sean Paul <seanpaul@chromium.org>,
- stable@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+Quoting Matthew Auld (2020-02-20 12:47:28)
+> On 20/02/2020 07:50, Chris Wilson wrote:
+> > While we know that the waiters cannot disappear as we walk our list
+> > (only that they might be added), the same cannot be said for our
+> > signalers as they may be completed by the HW and retired as we process
+> > this request. Ergo we need to use rcu to protect the list iteration and
+> > remember to mark up the list_del_rcu.
+> > 
+> > v2: Mark the deps as safe-for-rcu
+> > 
+> > Fixes: 793c22617367 ("drm/i915/gt: Protect execlists_hold/unhold from new waiters")
+> > Fixes: 32ff621fd744 ("drm/i915/gt: Allow temporary suspension of inflight requests")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_lrc.c   | 16 ++++++++++------
+> >   drivers/gpu/drm/i915/i915_scheduler.c |  7 ++++---
+> >   2 files changed, 14 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > index ba31cbe8c68e..47561dc29304 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> > @@ -1668,9 +1668,9 @@ last_active(const struct intel_engine_execlists *execlists)
+> >                                    wait_link)
+> >   
+> >   #define for_each_signaler(p__, rq__) \
+> > -     list_for_each_entry_lockless(p__, \
+> > -                                  &(rq__)->sched.signalers_list, \
+> > -                                  signal_link)
+> > +     list_for_each_entry_rcu(p__, \
+> > +                             &(rq__)->sched.signalers_list, \
+> > +                             signal_link)
+> >   
+> >   static void defer_request(struct i915_request *rq, struct list_head * const pl)
+> >   {
+> > @@ -2533,11 +2533,13 @@ static bool execlists_hold(struct intel_engine_cs *engine,
+> >   static bool hold_request(const struct i915_request *rq)
+> >   {
+> >       struct i915_dependency *p;
+> > +     bool result = false;
+> >   
+> >       /*
+> >        * If one of our ancestors is on hold, we must also be on hold,
+> >        * otherwise we will bypass it and execute before it.
+> >        */
+> > +     rcu_read_lock();
+> >       for_each_signaler(p, rq) {
+> >               const struct i915_request *s =
+> >                       container_of(p->signaler, typeof(*s), sched);
+> > @@ -2545,11 +2547,13 @@ static bool hold_request(const struct i915_request *rq)
+> >               if (s->engine != rq->engine)
+> >                       continue;
+> >   
+> > -             if (i915_request_on_hold(s))
+> > -                     return true;
+> > +             result = i915_request_on_hold(s);
+> > +             if (result)
+> > +                     break;
+> >       }
+> > +     rcu_read_unlock();
+> >   
+> > -     return false;
+> > +     return result;
+> >   }
+> >   
+> >   static void __execlists_unhold(struct i915_request *rq)
+> > diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> > index e19a37a83397..59f70b674665 100644
+> > --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> > +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> > @@ -486,7 +486,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
+> >       list_for_each_entry_safe(dep, tmp, &node->signalers_list, signal_link) {
+> >               GEM_BUG_ON(!list_empty(&dep->dfs_link));
+> >   
+> > -             list_del(&dep->wait_link);
+> > +             list_del_rcu(&dep->wait_link);
+> >               if (dep->flags & I915_DEPENDENCY_ALLOC)
+> >                       i915_dependency_free(dep);
+> >       }
+> > @@ -497,7 +497,7 @@ void i915_sched_node_fini(struct i915_sched_node *node)
+> >               GEM_BUG_ON(dep->signaler != node);
+> >               GEM_BUG_ON(!list_empty(&dep->dfs_link));
+> >   
+> > -             list_del(&dep->signal_link);
+> > +             list_del_rcu(&dep->signal_link);
+> >               if (dep->flags & I915_DEPENDENCY_ALLOC)
+> >                       i915_dependency_free(dep);
+> >       }
+> > @@ -526,7 +526,8 @@ static struct i915_global_scheduler global = { {
+> >   int __init i915_global_scheduler_init(void)
+> >   {
+> >       global.slab_dependencies = KMEM_CACHE(i915_dependency,
+> > -                                           SLAB_HWCACHE_ALIGN);
+> > +                                           SLAB_HWCACHE_ALIGN |
+> > +                                           SLAB_TYPESAFE_BY_RCU);
+> 
+> So, the claim is that we should be fine if the node is re-used and then 
+> initialised, even though there might exist a minuscule window where 
+> hold_request might still be able to see it, somehow?
 
-[This is an automated email]
-
-This commit has been processed because it contains a "Fixes:" tag,
-fixing commit: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation").
-
-The bot has tested the following trees: v5.5.4, v5.4.20, v4.19.104.
-
-v5.5.4: Failed to apply! Possible dependencies:
-    65833c463886 ("drm/i915/hdcp: conversion to struct drm_device based logging macros.")
-    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
-
-v5.4.20: Failed to apply! Possible dependencies:
-    65833c463886 ("drm/i915/hdcp: conversion to struct drm_device based logging macros.")
-    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
-    692059318c0f ("drm/i915/hdcp: Enable HDCP 1.4 and 2.2 on Gen12+")
-
-v4.19.104: Failed to apply! Possible dependencies:
-    04707f971636 ("drm/i915: Initialize HDCP2.2")
-    09d56393c1d8 ("drm/i915: hdcp1.4 CP_IRQ handling and SW encryption tracking")
-    2f80d7bd8d93 ("drm/i915: drop all drmP.h includes")
-    33b7f3ee6e00 ("drm/i915: Add CRTC output format YCBCR 4:2:0")
-    340a44bef234 ("drm/i915/icl: program MG_DP_MODE")
-    342ac601df64 ("drm/i915: hdcp_check_link only on CP_IRQ")
-    47658556da85 ("drm/i915/dp: Do not grab crtc modeset lock in intel_dp_detect()")
-    667944ad77f1 ("drm/i915/hdcp: use intel_de_*() functions for register access")
-    668b6c176c33 ("drm/i915: Add YCBCR 4:2:0/4:4:4 support for LSPCON")
-    7b610f1fbed2 ("drm/i915/dp: Add DSC params and DSC config to intel_crtc_state")
-    9055aac76589 ("drm/i915: MEI interface implementation")
-    9844bc87cb7a ("drm/i915/dp: Fix duplication of DEVICE_SERVICE_IRQ handling")
-    bdc93fe0eb82 ("drm/i915/debugfs: hdcp capability of a sink")
-    cbfa8ac835cb ("drm/i915/dp: Kill intel_dp->detect_done flag")
-    d3dacc70797b ("drm/i915: wrapping all hdcp var into intel_hdcp")
-    d5acd97f5571 ("drm/i915/dp: Use a local variable for intel_encoder *")
-    d78aa650670d ("drm: Add drm/drm_util.h header file")
-    de25eb7f3075 ("drm/i915: introduce dp_to_i915() helper")
-    f106d1005ac7 ("drm/i915: Pullout the bksv read and validation")
-
-
-NOTE: The patch will not be queued to stable trees until it is upstream.
-
-How should we proceed with this patch?
-
--- 
-Thanks,
-Sasha
+Yes. That is my claim. The saving grace here is that for the on-hold
+transitions we must go through the engine->active.lock which we are
+holding. Ergo hold_request() is safe.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
