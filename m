@@ -1,55 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8D4165DB1
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:39:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C593A165DB2
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:40:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79B6F6ED62;
-	Thu, 20 Feb 2020 12:39:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26B2C6ED63;
+	Thu, 20 Feb 2020 12:40:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFE66ED62
- for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 12:39:46 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B17E6ED63
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 12:40:48 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2020 04:39:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="224849811"
-Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
- by orsmga007.jf.intel.com with ESMTP; 20 Feb 2020 04:39:45 -0800
-Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
- irsmsx110.ger.corp.intel.com (163.33.3.25) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 20 Feb 2020 12:39:44 +0000
-Received: from irsmsx605.ger.corp.intel.com (163.33.146.138) by
- irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 20 Feb 2020 12:39:43 +0000
-Received: from irsmsx605.ger.corp.intel.com ([163.33.146.138]) by
- IRSMSX605.ger.corp.intel.com ([163.33.146.138]) with mapi id 15.01.1713.004;
- Thu, 20 Feb 2020 12:39:43 +0000
-From: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Souza, Jose" <jose.souza@intel.com>
-Thread-Topic: [PATCH v3] drm/i915/psr: Force PSR probe only after full
- initialization
-Thread-Index: AQHV5ptpBytFDx7QLEi0aBDTaf855qgkCG2A
-Date: Thu, 20 Feb 2020 12:39:43 +0000
-Message-ID: <d6bf9b47a2d88437d6e81f43bcac27305ab1ce19.camel@intel.com>
-References: <20200218203916.58636-1-jose.souza@intel.com>
-In-Reply-To: <20200218203916.58636-1-jose.souza@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.66.160]
-Content-ID: <9D32732C15BDBD4D9E679D9F5F3233DD@intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 04:40:48 -0800
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="229468708"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 04:40:46 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200220120741.6917-4-stanislav.lisovskiy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
+ <20200220120741.6917-4-stanislav.lisovskiy@intel.com>
+Date: Thu, 20 Feb 2020 14:40:43 +0200
+Message-ID: <87tv3ltos4.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/psr: Force PSR probe only after
- full initialization
+Subject: Re: [Intel-gfx] [PATCH v17 3/7] drm/i915: Init obj state in
+ intel_atomic_get_old/new_global_obj_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,113 +45,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "zwisler@google.com" <zwisler@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTAyLTE4IGF0IDEyOjM5IC0wODAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
-IHdyb3RlOg0KPiBDb21taXQgNjBjNmExNGI0ODliICgiZHJtL2k5MTUvZGlzcGxheTogRm9yY2Ug
-dGhlIHN0YXRlIGNvbXB1dGUgcGhhc2UNCj4gb25jZSB0byBlbmFibGUgUFNSIikgd2FzIGZvcmNp
-bmcgdGhlIHN0YXRlIGNvbXB1dGUgdG9vIGVhcmxpZXINCj4gY2F1c2luZyBlcnJvcnMgYmVjYXVz
-ZSBub3QgZXZlcnl0aGluZyB3YXMgaW5pdGlhbGl6ZWQsIHNvIGhlcmUNCj4gbW92aW5nIHRvIGk5
-MTVfZHJpdmVyX3JlZ2lzdGVyKCkgd2hlbiBldmVyeXRoaW5nIGlzIHJlYWR5IGFuZCBkcml2ZXIN
-Cj4gaXMgcmVnaXN0ZXJpbmcgaW50byB0aGUgcmVzdCBvZiB0aGUgc3lzdGVtLg0KPiANCj4gQWxz
-byBmaXhpbmcgdGhlIHBsYWNlIHdoZXJlIGl0IGRpc2FybSB0aGUgZm9yY2UgcHJvYmUgYXMgZHVy
-aW5nIHRoZQ0KPiBhdG9taWMgY2hlY2sgcGhhc2UgZXJyb3JzIGNvdWxkIGhhcHBlbiBsaWtlIHRo
-ZSBvbmVzIGR1ZSBsb2NraW5nIGFuZA0KPiBpdCB3b3VsZCBjYXVzZSBQU1IgdG8gbmV2ZXIgYmUg
-ZW5hYmxlZCBpZiB0aGF0IGhhcHBlbnMuDQo+IExlYXZpbmcgdGhlIGRpc2FybSB0byB0aGUgYXRv
-bWljIGNvbW1pdCBwaGFzZSwgaW50ZWxfcHNyX2VuYWJsZSgpIG9yDQo+IGludGVsX3Bzcl91cGRh
-dGUoKSB3aWxsIGJlIGNhbGxlZCBldmVuIGlmIHRoZSBjdXJyZW50IHN0YXRlIGRvIG5vdA0KPiBh
-bGxvdyBQU1IgdG8gYmUgZW5hYmxlZC4NCj4gDQo+IHYyOiBDaGVjayBpZiBpbnRlbF9kcCBpcyBu
-dWxsIGluIGludGVsX3Bzcl9mb3JjZV9tb2RlX2NoYW5nZWRfc2V0KCkNCj4gdjM6IENoZWNrIGlu
-dGVsX2RwIGJlZm9yZSBnZXQgZGV2X3ByaXYNCj4gDQo+IEZpeGVzOiA2MGM2YTE0YjQ4OWIgKCJk
-cm0vaTkxNS9kaXNwbGF5OiBGb3JjZSB0aGUgc3RhdGUgY29tcHV0ZSBwaGFzZQ0KPiBvbmNlIHRv
-IGVuYWJsZSBQU1IiKQ0KPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9k
-cm0vaW50ZWwvaXNzdWVzLzExNTENCj4gVGVzdGVkLWJ5OiBSb3NzIFp3aXNsZXIgPHp3aXNsZXJA
-Z29vZ2xlLmNvbT4NCj4gUmVwb3J0ZWQtYnk6IFJvc3MgWndpc2xlciA8endpc2xlckBnb29nbGUu
-Y29tPg0KPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9uZy5tdW5AaW50ZWwuY29tPg0K
-PiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1i
-eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQo+IC0tLQ0K
-PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyB8IDIyICsrKysrKysr
-KysrKysrKysrKysrLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNy
-LmggfCAgMSArDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jICAgICAgICAgIHwg
-IDMgKysrDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAgICAgIHwgIDIg
-Ky0NCj4gIDQgZmlsZXMgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkN
-Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
-ci5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRl
-eCBiNDk0MmI2NDQ1YWUuLjJhMGY3MzU0ZmJhNSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IEBAIC05MzYsNiArOTM2LDggQEAgdm9pZCBpbnRlbF9w
-c3JfZW5hYmxlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQo+ICB7DQo+ICAJc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gZHBfdG9faTkxNShpbnRlbF9kcCk7DQo+ICANCj4g
-KwlpbnRlbF9wc3JfZm9yY2VfbW9kZV9jaGFuZ2VkX3NldChpbnRlbF9kcCwgZmFsc2UpOw0KPiAr
-DQpIaSwNCmludGVsX3Bzcl9lbmFibGUoKSBhbmQgaW50ZWxfcHNyX3VwZGF0ZSBhbHJlYWR5IGhh
-dmUgY2hlY2tpbmcgcm91dGluZQ0KZm9yIENBTl9QU1IgYW5kIGhhc19wc3IuDQp0aGVyZWZvcmUg
-d2UgZG9uJ3QgbmVlZCB0byBjaGVjayB0d2ljZSBoZXJlLg0KQW5kIGlmIHRoZXJlIGFyZSBubyBp
-c3N1ZXMgdGhhdCBtb3ZpbmcgImRpc2FybWluZyBmb3JjZV9tb2RlX2NoYW5nZWQiDQp0byBpbnRl
-bF9wc3JfY29tcHV0ZV9jb25maWcoKSwgDQpjYW4gd2UgbW92ZSB0aGVtIHRvIGludGVsX3Bzcl9j
-b21wdXRlX2NvbmZpZygpPw0KDQo+ICAJaWYgKCFjcnRjX3N0YXRlLT5oYXNfcHNyKQ0KPiAgCQly
-ZXR1cm47DQo+ICANCj4gQEAgLTEwOTYsNiArMTA5OCw4IEBAIHZvaWQgaW50ZWxfcHNyX3VwZGF0
-ZShzdHJ1Y3QgaW50ZWxfZHANCj4gKmludGVsX2RwLA0KPiAgCXN0cnVjdCBpOTE1X3BzciAqcHNy
-ID0gJmRldl9wcml2LT5wc3I7DQo+ICAJYm9vbCBlbmFibGUsIHBzcjJfZW5hYmxlOw0KPiAgDQo+
-ICsJaW50ZWxfcHNyX2ZvcmNlX21vZGVfY2hhbmdlZF9zZXQoaW50ZWxfZHAsIGZhbHNlKTsNCj4g
-Kw0KPiAgCWlmICghQ0FOX1BTUihkZXZfcHJpdikgfHwgUkVBRF9PTkNFKHBzci0+ZHApICE9IGlu
-dGVsX2RwKQ0KPiAgCQlyZXR1cm47DQo+ICANCj4gQEAgLTE2MjksNyArMTYzMyw3IEBAIHZvaWQg
-aW50ZWxfcHNyX2F0b21pY19jaGVjayhzdHJ1Y3QNCj4gZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9y
-LA0KPiAgCXN0cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsNCj4gIA0KPiAgCWlmICgh
-Q0FOX1BTUihkZXZfcHJpdikgfHwgIW5ld19zdGF0ZS0+Y3J0YyB8fA0KPiAtCSAgICBkZXZfcHJp
-di0+cHNyLmluaXRpYWxseV9wcm9iZWQpDQo+ICsJICAgICFkZXZfcHJpdi0+cHNyLmZvcmNlX21v
-ZGVfY2hhbmdlZCkNCj4gIAkJcmV0dXJuOw0KPiAgDQo+ICAJaW50ZWxfY29ubmVjdG9yID0gdG9f
-aW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7DQo+IEBAIC0xNjQwLDUgKzE2NDQsMTkgQEAgdm9p
-ZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdA0KPiBkcm1fY29ubmVjdG9yICpjb25uZWN0
-b3IsDQo+ICAJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X25ld19jcnRjX3N0YXRlKG5ld19z
-dGF0ZS0+c3RhdGUsDQo+ICAJCQkJCQkgICBuZXdfc3RhdGUtPmNydGMpOw0KPiAgCWNydGNfc3Rh
-dGUtPm1vZGVfY2hhbmdlZCA9IHRydWU7DQo+IC0JZGV2X3ByaXYtPnBzci5pbml0aWFsbHlfcHJv
-YmVkID0gdHJ1ZTsNCj4gK30NCj4gKw0KPiArdm9pZCBpbnRlbF9wc3JfZm9yY2VfbW9kZV9jaGFu
-Z2VkX3NldChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiBib29sIHNldCkNCklNSE8sIGl0
-IHdvdWxkIGJlIGJldHRlciBpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpIGFzIGEN
-CmZ1bmN0aW9uIG5hbWUuDQo+ICt7DQo+ICsJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2Ow0KPiArDQo+ICsJaWYgKCFpbnRlbF9kcCkNCj4gKwkJcmV0dXJuOw0KPiArDQo+ICsJZGV2
-X3ByaXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gKwlpZiAoIUNBTl9QU1IoZGV2X3ByaXYp
-IHx8ICFpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHApIHx8DQo+ICsJICAgIGludGVsX2RwICE9IGRl
-dl9wcml2LT5wc3IuZHApDQo+ICsJCXJldHVybjsNCj4gKw0KPiArCWRldl9wcml2LT5wc3IuZm9y
-Y2VfbW9kZV9jaGFuZ2VkID0gc2V0Ow0KPiAgfQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaA0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfcHNyLmgNCj4gaW5kZXggYzU4YTFkNDM4ODA4Li4yN2E3MDQ2OGUyYjkgMTAw
-NjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgNCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaA0KPiBAQCAtNDAs
-NSArNDAsNiBAQCBib29sIGludGVsX3Bzcl9lbmFibGVkKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
-ZHApOw0KPiAgdm9pZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29ubmVjdG9y
-ICpjb25uZWN0b3IsDQo+ICAJCQkgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm9sZF9z
-dGF0ZSwNCj4gIAkJCSAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqbmV3X3N0YXRlKTsN
-Cj4gK3ZvaWQgaW50ZWxfcHNyX2ZvcmNlX21vZGVfY2hhbmdlZF9zZXQoc3RydWN0IGludGVsX2Rw
-ICppbnRlbF9kcCwNCj4gYm9vbCBzZXQpOw0KPiAgDQo+ICAjZW5kaWYgLyogX19JTlRFTF9QU1Jf
-SF9fICovDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiBpbmRleCBmN2ExYzMzNjk3Yjcu
-LjgzNzkxYzE5NzYxMSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9k
-cnYuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+IEBAIC01OCw2
-ICs1OCw3IEBADQo+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9ob3RwbHVnLmgiDQo+ICAjaW5j
-bHVkZSAiZGlzcGxheS9pbnRlbF9vdmVybGF5LmgiDQo+ICAjaW5jbHVkZSAiZGlzcGxheS9pbnRl
-bF9waXBlX2NyYy5oIg0KPiArI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfcHNyLmgiDQo+ICAjaW5j
-bHVkZSAiZGlzcGxheS9pbnRlbF9zcHJpdGUuaCINCj4gICNpbmNsdWRlICJkaXNwbGF5L2ludGVs
-X3ZnYS5oIg0KPiAgDQo+IEBAIC0xMjU2LDYgKzEyNTcsOCBAQCBzdGF0aWMgdm9pZCBpOTE1X2Ry
-aXZlcl9yZWdpc3RlcihzdHJ1Y3QNCj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ICAN
-Cj4gIAlpbnRlbF9hdWRpb19pbml0KGRldl9wcml2KTsNCj4gIA0KPiArCWludGVsX3Bzcl9mb3Jj
-ZV9tb2RlX2NoYW5nZWRfc2V0KGRldl9wcml2LT5wc3IuZHAsIHRydWUpOw0KPiArDQo+ICAJLyoN
-Cj4gIAkgKiBTb21lIHBvcnRzIHJlcXVpcmUgY29ycmVjdGx5IHNldC11cCBocGQgcmVnaXN0ZXJz
-IGZvcg0KPiBkZXRlY3Rpb24gdG8NCj4gIAkgKiB3b3JrIHByb3Blcmx5IChsZWFkaW5nIHRvIGdo
-b3N0IGNvbm5lY3RlZCBjb25uZWN0b3Igc3RhdHVzKSwNCj4gZS5nLiBWR0ENCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2Rydi5oDQo+IGluZGV4IDMzMzBiNTM4ZDM3OS4uYTU0NjY1NTA3MmJkIDEwMDY0
-NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gQEAgLTUwNSw3ICs1MDUsNyBAQCBzdHJ1Y3Qg
-aTkxNV9wc3Igew0KPiAgCWJvb2wgZGMzY29fZW5hYmxlZDsNCj4gIAl1MzIgZGMzY29fZXhpdF9k
-ZWxheTsNCj4gIAlzdHJ1Y3QgZGVsYXllZF93b3JrIGRjM2NvX3dvcms7DQo+IC0JYm9vbCBpbml0
-aWFsbHlfcHJvYmVkOw0KPiArCWJvb2wgZm9yY2VfbW9kZV9jaGFuZ2VkOw0KPiAgfTsNCj4gIA0K
-PiAgI2RlZmluZSBRVUlSS19MVkRTX1NTQ19ESVNBQkxFICgxPDwxKQ0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Thu, 20 Feb 2020, Stanislav Lisovskiy <stanislav.lisovskiy@intel.com> wrote:
+> We might be willing to call intel_atomic_get_old_global_obj_state
+> and intel_atomic_get_new_global_obj_state right away, however
+> those are not initializing global obj state as
+> intel_atomic_get_global_obj_state does.
+> Extracted initializing part to separate function and now using this
+> also in intel_atomic_get_old_global_obj_state and intel_atomic_get_new_global_obj_state
+>
+> v2: - Fixed typo in function call
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 28 ++++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_bw.h |  9 ++++++++
+>  2 files changed, 36 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 58b264bc318d..ff57277e8880 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -374,7 +374,33 @@ static unsigned int intel_bw_data_rate(struct drm_i915_private *dev_priv,
+>  	return data_rate;
+>  }
+>  
+> -static struct intel_bw_state *
+> +struct intel_bw_state *
+> +intel_atomic_get_old_bw_state(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_global_state *bw_state;
+> +
+> +	bw_state = intel_atomic_get_old_global_obj_state(state, &dev_priv->bw_obj);
+> +	if (IS_ERR(bw_state))
+> +		return ERR_CAST(bw_state);
+> +
+> +	return to_intel_bw_state(bw_state);
+> +}
+> +
+> +struct intel_bw_state *
+> +intel_atomic_get_new_bw_state(struct intel_atomic_state *state)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> +	struct intel_global_state *bw_state;
+> +	bw_state = intel_atomic_get_new_global_obj_state(state, &dev_priv->bw_obj);
+> +
+> +	if (IS_ERR(bw_state))
+> +		return ERR_CAST(bw_state);
+> +
+> +	return to_intel_bw_state(bw_state);
+> +}
+> +
+> +struct intel_bw_state *
+>  intel_atomic_get_bw_state(struct intel_atomic_state *state)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i915/display/intel_bw.h
+> index a8aa7624c5aa..ac004d6f4276 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> @@ -24,6 +24,15 @@ struct intel_bw_state {
+>  
+>  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, base)
+>  
+> +struct intel_bw_state *
+> +intel_atomic_get_old_bw_state(struct intel_atomic_state *state);
+> +
+> +struct intel_bw_state *
+> +intel_atomic_get_new_bw_state(struct intel_atomic_state *state);
+> +
+> +struct intel_bw_state *
+> +intel_atomic_get_bw_state(struct intel_atomic_state *state);
+> +
+
+I'm trying to promote a convention that a module foo_bar.[ch] would
+export functions prefixed foo_bar_. Here, intel_bw_* like below.
+
+BR,
+Jani.
+
+
+>  void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+>  int intel_bw_init(struct drm_i915_private *dev_priv);
+>  int intel_bw_atomic_check(struct intel_atomic_state *state);
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
