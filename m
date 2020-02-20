@@ -1,39 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D530E1654BB
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 02:56:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAE1165492
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 02:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 561756E89F;
-	Thu, 20 Feb 2020 01:56:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FDC46ECC8;
+	Thu, 20 Feb 2020 01:43:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C94016E89F;
- Thu, 20 Feb 2020 01:56:22 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2020 17:56:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; d="scan'208";a="224697213"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by orsmga007.jf.intel.com with ESMTP; 19 Feb 2020 17:56:20 -0800
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1j4b4d-00013B-T0; Thu, 20 Feb 2020 09:56:19 +0800
-Date: Thu, 20 Feb 2020 09:09:34 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <202002200910.2hKiML2U%lkp@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 177B76E89A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 01:43:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20282064-1500050 
+ for multiple; Thu, 20 Feb 2020 01:43:27 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 01:43:22 +0000
+Message-Id: <20200220014325.1527804-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 18/21] init/Kconfig:77:
- symbol BROKEN is selected by DRM_I915_DEBUG
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Add mechanism to submit a context
+ WA on ring submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,66 +37,261 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
-head:   2a97892fdbae277a104d6ba0b90f8a47cbe53681
-commit: 0db409f2a5a4ec41dba541c21d6fa294c8a4dfd4 [18/21] Revert "drm/i915: Don't select BROKEN"
-config: powerpc-ksi8560_defconfig
-compiler: powerpc-linux-gcc (GCC) 7.5.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git checkout 0db409f2a5a4ec41dba541c21d6fa294c8a4dfd4
-        GCC_VERSION=7.5.0 make.cross ARCH=powerpc  85xx/ksi8560_defconfig
-        GCC_VERSION=7.5.0 make.cross ARCH=powerpc 
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+This patch adds framework to submit an arbitrary batchbuffer on each
+context switch to clear residual state for render engine on Gen7/7.5
+devices.
 
-All errors (new ones prefixed by >>):
+The idea of always emitting the context and vm setup around each request
+is primary to make reset recovery easy, and not require rewriting the
+ringbuffer. As each request would set up its own context, leaving it to
+the HW to notice and elide no-op context switches, we could restart the
+ring at any point, and reorder the requests freely.
 
->> arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
->> arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
->> init/Kconfig:80: symbol BROKEN_ON_SMP depends on BROKEN
->> init/Kconfig:77: symbol BROKEN is selected by DRM_I915_DEBUG
->> drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
->> drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
->> drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
->> drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
->> drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
->> drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
->> drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
->> arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
-   For a resolution refer to Documentation/kbuild/kconfig-language.rst
-   subsection "Kconfig recursive dependency limitations"
+However, to avoid emitting clear_residuals() between consecutive requests
+in the ringbuffer of the same context, we do want to track the current
+context in the ring. In doing so, we need to be careful to only record a
+context switch when we are sure the next request will be emitted.
 
-vim +77 init/Kconfig
+This security mitigation change does not trigger any performance
+regression. Performance is on par with current mainline/drm-tip.
 
-^1da177e4c3f41 Linus Torvalds 2005-04-16  76  
-^1da177e4c3f41 Linus Torvalds 2005-04-16 @77  config BROKEN
-^1da177e4c3f41 Linus Torvalds 2005-04-16  78  	bool
-^1da177e4c3f41 Linus Torvalds 2005-04-16  79  
-^1da177e4c3f41 Linus Torvalds 2005-04-16 @80  config BROKEN_ON_SMP
-^1da177e4c3f41 Linus Torvalds 2005-04-16  81  	bool
-^1da177e4c3f41 Linus Torvalds 2005-04-16  82  	depends on BROKEN || !SMP
-^1da177e4c3f41 Linus Torvalds 2005-04-16  83  	default y
-^1da177e4c3f41 Linus Torvalds 2005-04-16  84  
+v2: Update vm_alias params to point to correct address space "vm" due to
+changes made in the patch "f21613797bae98773"
 
-:::::: The code at line 77 was first introduced by commit
-:::::: 1da177e4c3f41524e886b7f1b8a0c1fc7321cac2 Linux-2.6.12-rc2
-
-:::::: TO: Linus Torvalds <torvalds@ppc970.osdl.org>
-:::::: CC: Linus Torvalds <torvalds@ppc970.osdl.org>
-
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Signed-off-by: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Balestrieri Francesco <francesco.balestrieri@intel.com>
+Cc: Bloomfield Jon <jon.bloomfield@intel.com>
+Cc: Dutt Sudeep <sudeep.dutt@intel.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 134 +++++++++++++++++-
+ 1 file changed, 130 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index f70b903a98bc..593710558b99 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -1360,7 +1360,9 @@ static int load_pd_dir(struct i915_request *rq,
+ 	return rq->engine->emit_flush(rq, EMIT_FLUSH);
+ }
+ 
+-static inline int mi_set_context(struct i915_request *rq, u32 flags)
++static inline int mi_set_context(struct i915_request *rq,
++				 struct intel_context *ce,
++				 u32 flags)
+ {
+ 	struct drm_i915_private *i915 = rq->i915;
+ 	struct intel_engine_cs *engine = rq->engine;
+@@ -1435,7 +1437,7 @@ static inline int mi_set_context(struct i915_request *rq, u32 flags)
+ 
+ 	*cs++ = MI_NOOP;
+ 	*cs++ = MI_SET_CONTEXT;
+-	*cs++ = i915_ggtt_offset(rq->context->state) | flags;
++	*cs++ = i915_ggtt_offset(ce->state) | flags;
+ 	/*
+ 	 * w/a: MI_SET_CONTEXT must always be followed by MI_NOOP
+ 	 * WaMiSetContext_Hang:snb,ivb,vlv
+@@ -1550,13 +1552,56 @@ static int switch_mm(struct i915_request *rq, struct i915_address_space *vm)
+ 	return rq->engine->emit_flush(rq, EMIT_INVALIDATE);
+ }
+ 
++static int clear_residuals(struct i915_request *rq)
++{
++	struct intel_engine_cs *engine = rq->engine;
++	int ret;
++
++	GEM_BUG_ON(!engine->kernel_context->state);
++
++	ret = switch_mm(rq, vm_alias(engine->kernel_context->vm));
++	if (ret)
++		return ret;
++
++	ret = mi_set_context(rq,
++			     engine->kernel_context,
++			     MI_MM_SPACE_GTT | MI_RESTORE_INHIBIT);
++	if (ret)
++		return ret;
++
++	ret = engine->emit_bb_start(rq,
++				    engine->wa_ctx.vma->node.start, 0,
++				    0);
++	if (ret)
++		return ret;
++
++	ret = engine->emit_flush(rq, EMIT_FLUSH);
++	if (ret)
++		return ret;
++
++	/* Always invalidate before the next switch_mm() */
++	return engine->emit_flush(rq, EMIT_INVALIDATE);
++}
++
+ static int switch_context(struct i915_request *rq)
+ {
++	struct intel_engine_cs *engine = rq->engine;
+ 	struct intel_context *ce = rq->context;
++	void **residuals = NULL;
+ 	int ret;
+ 
+ 	GEM_BUG_ON(HAS_EXECLISTS(rq->i915));
+ 
++	if (engine->wa_ctx.vma && ce != engine->kernel_context) {
++		if (engine->wa_ctx.vma->private != ce) {
++			ret = clear_residuals(rq);
++			if (ret)
++				return ret;
++
++			residuals = &engine->wa_ctx.vma->private;
++		}
++	}
++
+ 	ret = switch_mm(rq, vm_alias(ce->vm));
+ 	if (ret)
+ 		return ret;
+@@ -1564,7 +1609,7 @@ static int switch_context(struct i915_request *rq)
+ 	if (ce->state) {
+ 		u32 flags;
+ 
+-		GEM_BUG_ON(rq->engine->id != RCS0);
++		GEM_BUG_ON(engine->id != RCS0);
+ 
+ 		/* For resource streamer on HSW+ and power context elsewhere */
+ 		BUILD_BUG_ON(HSW_MI_RS_SAVE_STATE_EN != MI_SAVE_EXT_STATE_EN);
+@@ -1576,7 +1621,7 @@ static int switch_context(struct i915_request *rq)
+ 		else
+ 			flags |= MI_RESTORE_INHIBIT;
+ 
+-		ret = mi_set_context(rq, flags);
++		ret = mi_set_context(rq, ce, flags);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -1585,6 +1630,20 @@ static int switch_context(struct i915_request *rq)
+ 	if (ret)
+ 		return ret;
+ 
++	/*
++	 * Now past the point of no return, this request _will_ be emitted.
++	 *
++	 * Or at least this preamble will be emitted, the request may be
++	 * interrupted prior to submitting the user payload. If so, we
++	 * still submit the "empty" request in order to preserve global
++	 * state tracking such as this, our tracking of the current
++	 * dirty context.
++	 */
++	if (residuals) {
++		intel_context_put(*residuals);
++		*residuals = intel_context_get(ce);
++	}
++
+ 	return 0;
+ }
+ 
+@@ -1769,6 +1828,11 @@ static void ring_release(struct intel_engine_cs *engine)
+ 
+ 	intel_engine_cleanup_common(engine);
+ 
++	if (engine->wa_ctx.vma) {
++		intel_context_put(engine->wa_ctx.vma->private);
++		i915_vma_unpin_and_release(&engine->wa_ctx.vma, 0);
++	}
++
+ 	intel_ring_unpin(engine->legacy.ring);
+ 	intel_ring_put(engine->legacy.ring);
+ 
+@@ -1916,6 +1980,60 @@ static void setup_vecs(struct intel_engine_cs *engine)
+ 	engine->emit_fini_breadcrumb = gen7_xcs_emit_breadcrumb;
+ }
+ 
++static int gen7_ctx_switch_bb_setup(struct intel_engine_cs * const engine,
++				    struct i915_vma * const vma)
++{
++	return 0;
++}
++
++static int gen7_ctx_switch_bb_init(struct intel_engine_cs *engine)
++{
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++	int size;
++	int err;
++
++	size = gen7_ctx_switch_bb_setup(engine, NULL /* probe size */);
++	if (size <= 0)
++		return size;
++
++	size = ALIGN(size, PAGE_SIZE);
++	obj = i915_gem_object_create_internal(engine->i915, size);
++	if (IS_ERR(obj))
++		return PTR_ERR(obj);
++
++	vma = i915_vma_instance(obj, engine->gt->vm, NULL);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto err_obj;
++	}
++
++	vma->private = intel_context_create(engine); /* dummy residuals */
++	if (IS_ERR(vma->private)) {
++		err = PTR_ERR(vma->private);
++		goto err_obj;
++	}
++
++	err = i915_vma_pin(vma, 0, 0, PIN_USER | PIN_HIGH);
++	if (err)
++		goto err_private;
++
++	err = gen7_ctx_switch_bb_setup(engine, vma);
++	if (err)
++		goto err_unpin;
++
++	engine->wa_ctx.vma = vma;
++	return 0;
++
++err_unpin:
++	i915_vma_unpin(vma);
++err_private:
++	intel_context_put(vma->private);
++err_obj:
++	i915_gem_object_put(obj);
++	return err;
++}
++
+ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ {
+ 	struct intel_timeline *timeline;
+@@ -1969,11 +2087,19 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 
+ 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
+ 
++	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
++		err = gen7_ctx_switch_bb_init(engine);
++		if (err)
++			goto err_ring_unpin;
++	}
++
+ 	/* Finally, take ownership and responsibility for cleanup! */
+ 	engine->release = ring_release;
+ 
+ 	return 0;
+ 
++err_ring_unpin:
++	intel_ring_unpin(ring);
+ err_ring:
+ 	intel_ring_put(ring);
+ err_timeline_unpin:
+-- 
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
