@@ -1,34 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41521661EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:10:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A7A166202
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:13:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 378256EDC5;
-	Thu, 20 Feb 2020 16:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0494A6EDCE;
+	Thu, 20 Feb 2020 16:13:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1CF76EDC3;
- Thu, 20 Feb 2020 16:10:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20290654-1500050 for multiple; Thu, 20 Feb 2020 16:10:19 +0000
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 693426EDCC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 16:13:09 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id p8so4123643oth.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 08:13:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=2cv7a5bUQjuPkMHk7UwybBDaplNeaD9SMLS2O3cAc9A=;
+ b=ONg5U5WoIFLjwMWKqZXu5j6b6CeDK0ikBrmyqfzmSkmcPq+7ZFFo3oT42ahVzdmeKw
+ ZzioqQSMyj+vHsY8hYB5GJSNAXHhrfXMD0hgHXck17CT57sfBqyKDd4Yomp9Q0Xapexj
+ dP5Ip/MwSNfvkbUENG9OlIvXOuVTlzqv8NOkw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=2cv7a5bUQjuPkMHk7UwybBDaplNeaD9SMLS2O3cAc9A=;
+ b=Ptk6yIbzAQbJ+fCJavdbcqMG6XDKWpJC31HXHhH8W+zw91Y0ztoHCkOhRC/t5yvp2p
+ H6GyrEzQeFa0XKnLOBLw8QoDQ1h7lY23f13ZkYSjOZ7bIEC+nStmnIyiZXeKjB2pJN0a
+ BolO8Cl7MsIvoLtbMqTo8s+bm2Bxl/4XAqERZFQWPvFIDWdfUdbzlVNYPNqyMMCAXtzp
+ yHaZk8k4986c1Hfbo8wmONrVITRN3rE7pYN1tu9fgnvB2KHc9zdbEMauGTUT+Yl3+aEM
+ vckXEviMs4EDNdElgK/Yl2UftITY8Hr8Q8YsfyvoWUNeuJBa0X3t3URa6uVgqJs5ac1x
+ Kg9A==
+X-Gm-Message-State: APjAAAWRGQtS3snqCjHfqvo9GZQCe1cQixrfSansoa8BrLWJGHTZDWkg
+ bCEYFophXR/vbzlefkuyGUaKcHQUYYf12V/NIqBqxQ==
+X-Google-Smtp-Source: APXvYqzFIGcln3VKGQY6f7FjTVpMYXh7wPjZYVsdkIaSjoSgCmdzk2GkQ/rYXK8jFBx0wRnyWUrxMSC2cyklaYSHnDk=
+X-Received: by 2002:a9d:7696:: with SMTP id j22mr25664349otl.188.1582215188621; 
+ Thu, 20 Feb 2020 08:13:08 -0800 (PST)
 MIME-Version: 1.0
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <158221495468.8112.473694413094253324@skylake-alporthouse-com>
-References: <20200220153203.29571-1-janusz.krzysztofik@linux.intel.com>
- <158221495468.8112.473694413094253324@skylake-alporthouse-com>
-Message-ID: <158221501725.28524.13379236691342209554@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Thu, 20 Feb 2020 16:10:17 +0000
-Subject: Re: [Intel-gfx] [RFC PATCH i-g-t] lib/i915: Restrict mmap types to
- GTT if no MMAP_OFFSET support
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-40-daniel.vetter@ffwll.ch>
+ <30ed80c9-8b18-8e23-a26b-2c406d43c90d@st.com>
+In-Reply-To: <30ed80c9-8b18-8e23-a26b-2c406d43c90d@st.com>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 20 Feb 2020 17:12:57 +0100
+Message-ID: <CAKMK7uFCus1X7A4c_SA_n=_9KEhRVwtom_aB1CecGkQuOptoNA@mail.gmail.com>
+To: Philippe CORNU <philippe.cornu@st.com>
+Subject: Re: [Intel-gfx] [PATCH 39/52] drm/stm: Drop explicit
+ drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,50 +60,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Yannick FERTRE <yannick.fertre@st.com>,
+ Benjamin Gaignard <benjamin.gaignard@linaro.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Vincent ABRIOU <vincent.abriou@st.com>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ Alexandre TORGUE <alexandre.torgue@st.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBDaHJpcyBXaWxzb24gKDIwMjAtMDItMjAgMTY6MDk6MTQpCj4gUXVvdGluZyBKYW51
-c3ogS3J6eXN6dG9maWsgKDIwMjAtMDItMjAgMTU6MzI6MDMpCj4gPiBDb21taXQgYjBkYThiYjcw
-NWMwICgibGliL2k5MTU6IGZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoKSIpCj4gPiBpbnRyb2R1
-Y2VkIGEgbWFjcm8gdGhhdCBtYWtlcyBpdCBlYXN5IHRvIHJlcGVhdCBhIHRlc3QgYm9keSB3aXRo
-aW4gYQo+ID4gbG9vcCBmb3IgZWFjaCBtbWFwLW9mZnNldCBtYXBwaW5nIHR5cGUgc3VwcG9ydGVk
-IGJ5IHY0IG9mIGk5MTUgTU1BUF9HVFQKPiA+IEFQSS4gSG93ZXZlciwgd2hlbiBydW4gb24gYW4g
-b2xkZXIgdmVyc2lvbiBvZiB0aGUgZHJpdmVyLCB0aG9zZQo+ID4gc3VidGVzdHMgYXJlIGJlbGll
-dmVkIHRvIGJlIHN0aWxsIHJlcGVhdGVkIGZvciBlYWNoIGtub3duIG1tYXAtb2Zmc2V0Cj4gPiBt
-YXBwaW5nIHR5cGUgd2hpbGUgZWZmZWN0aXZlbHkgZXhlcmNpc2luZyBHVFQgbWFwcGluZyB0eXBl
-IG9ubHkuICBBcwo+ID4gdGhhdCBtYXkgYmUgY29uZnVzaW5nLCBmaXggaXQuCj4gPiAKPiA+IEl0
-IGhhcyBiZWVuIGFzc3VtZWQgdGhhdCB0aGUgbW9kaWZpZWQgbWFjcm8gaXMgc3RpbGwgc3VpdGFi
-bGUgZm9yIHVzZQo+ID4gaW5zaWRlIGdlbV9tbWFwX29mZnNldCB0ZXN0IGl0c2VsZi4gIFdvdWxk
-IHRoYXQgbm90IGJlIGNhc2UsCj4gPiBnZW1fbW1hcF9vZmZzZXQgY291bGQgcmVkZWZpbmUgdGhl
-IG1hY3JvIGJhY2sgdG8gaXRzIGluaXRpYWwgZm9ybSBmb3IKPiA+IGludGVybmFsIHVzZS4KPiA+
-IAo+ID4gU3VnZ2VzdGVkLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndpbmlhcnNraUBp
-bnRlbC5jb20+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBKYW51c3ogS3J6eXN6dG9maWsgPGphbnVzei5r
-cnp5c3p0b2Zpa0BsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogQ2hyaXMgV2lsc29uIDxjaHJpc0Bj
-aHJpcy13aWxzb24uY28udWs+Cj4gPiAtLS0KPiA+ICBsaWIvaTkxNS9nZW1fbW1hbi5oICAgICAg
-ICAgIHwgIDUgKysrLS0KPiA+ICB0ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5jICAgIHwgIDIgKy0K
-PiA+ICB0ZXN0cy9pOTE1L2dlbV9leGVjX3BhcmFtcy5jIHwgIDIgKy0KPiA+ICB0ZXN0cy9pOTE1
-L2dlbV9tYWR2aXNlLmMgICAgIHwgMTggKysrKysrKysrKysrKystLS0tCj4gPiAgdGVzdHMvaTkx
-NS9nZW1fbW1hcF9vZmZzZXQuYyB8IDEwICsrKysrLS0tLS0KPiA+ICB0ZXN0cy9pOTE1L2k5MTVf
-cG1fcnBtLmMgICAgIHwgIDIgKy0KPiA+ICA2IGZpbGVzIGNoYW5nZWQsIDI1IGluc2VydGlvbnMo
-KyksIDE0IGRlbGV0aW9ucygtKQo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvbGliL2k5MTUvZ2VtX21t
-YW4uaCBiL2xpYi9pOTE1L2dlbV9tbWFuLmgKPiA+IGluZGV4IDRmYzZhMDE4Ni4uNDkxNzY3MDIz
-IDEwMDY0NAo+ID4gLS0tIGEvbGliL2k5MTUvZ2VtX21tYW4uaAo+ID4gKysrIGIvbGliL2k5MTUv
-Z2VtX21tYW4uaAo+ID4gQEAgLTEwMSw5ICsxMDEsMTAgQEAgZXh0ZXJuIGNvbnN0IHN0cnVjdCBt
-bWFwX29mZnNldCB7Cj4gPiAgICAgICAgIHVuc2lnbmVkIGludCBkb21haW47Cj4gPiAgfSBtbWFw
-X29mZnNldF90eXBlc1tdOwo+ID4gIAo+ID4gLSNkZWZpbmUgZm9yX2VhY2hfbW1hcF9vZmZzZXRf
-dHlwZShfX3QpIFwKPiA+ICsjZGVmaW5lIGZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoZmQsIF9f
-dCkgXAo+ID4gICAgICAgICBmb3IgKGNvbnN0IHN0cnVjdCBtbWFwX29mZnNldCAqX190ID0gbW1h
-cF9vZmZzZXRfdHlwZXM7IFwKPiA+IC0gICAgICAgICAgICAoX190KS0+bmFtZTsgXAo+ID4gKyAg
-ICAgICAgICAgIChfX3QpLT5uYW1lICYmIChnZW1faGFzX21tYXBfb2Zmc2V0KGZkKSB8fCBcCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIChfX3QpLT50eXBlID09IEk5MTVfTU1BUF9P
-RkZTRVRfR1RUKTsgXAo+IAo+IFNpZ2guCj4gCj4gZXh0ZXJuIGJvb2wgZ2VtX2hhc19tbWFwX29m
-ZnNldF90eXBlKGludCBpOTE1LCBjb25zdCBzdHJ1Y3QgbW1hcF9vZmZzZXQgKnQpOwo+IAo+ICYm
-IGdlbV9oYXNfbW1hcF9vZmZzZXRfdHlwZShmZCwgdCkKClNvcnJ5LCBtYWtlIHRoYXQKCglmb3Jf
-ZWFjaF9pZihnZW1faGFzX21tYXBfb2Zmc2V0X3R5cGUoaTkxNSwgdCkpCi1DaHJpcwpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGlu
-ZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVl
-ZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, Feb 20, 2020 at 3:19 PM Philippe CORNU <philippe.cornu@st.com> wrote:
+>
+> Hi Daniel,
+>
+> On 2/19/20 11:21 AM, Daniel Vetter wrote:
+> > It's right above the drm_dev_put().
+> >
+> > Aside: Another driver with a bit much devm_kzalloc, which should
+> > probably use drmm_kzalloc instead ...
+> >
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > Cc: Yannick Fertre <yannick.fertre@st.com>
+> > Cc: Philippe Cornu <philippe.cornu@st.com>
+> > Cc: Benjamin Gaignard <benjamin.gaignard@linaro.org>
+> > Cc: Vincent Abriou <vincent.abriou@st.com>
+> > Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
+> > Cc: Alexandre Torgue <alexandre.torgue@st.com>
+> > Cc: linux-stm32@st-md-mailman.stormreply.com
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > ---
+> >   drivers/gpu/drm/stm/drv.c | 10 ++++------
+> >   1 file changed, 4 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/stm/drv.c b/drivers/gpu/drm/stm/drv.c
+> > index ea9fcbdc68b3..5b374531dd8c 100644
+> > --- a/drivers/gpu/drm/stm/drv.c
+> > +++ b/drivers/gpu/drm/stm/drv.c
+> > @@ -88,7 +88,9 @@ static int drv_load(struct drm_device *ddev)
+> >
+> >       ddev->dev_private = (void *)ldev;
+> >
+> > -     drm_mode_config_init(ddev);
+> > +     ret = drm_mode_config_init(ddev);
+> > +     if (ret)
+> > +             return ret;
+> >
+> >       /*
+> >        * set max width and height as default value.
+> > @@ -103,7 +105,7 @@ static int drv_load(struct drm_device *ddev)
+> >
+> >       ret = ltdc_load(ddev);
+> >       if (ret)
+> > -             goto err;
+> > +             return ret;
+> >
+> >       drm_mode_config_reset(ddev);
+> >       drm_kms_helper_poll_init(ddev);
+> > @@ -111,9 +113,6 @@ static int drv_load(struct drm_device *ddev)
+> >       platform_set_drvdata(pdev, ddev);
+> >
+> >       return 0;
+> > -err:
+> > -     drm_mode_config_cleanup(ddev);
+> > -     return ret;
+> >   }
+> >
+> >   static void drv_unload(struct drm_device *ddev)
+> > @@ -122,7 +121,6 @@ static void drv_unload(struct drm_device *ddev)
+> >
+> >       drm_kms_helper_poll_fini(ddev);
+> >       ltdc_unload(ddev);
+> > -     drm_mode_config_cleanup(ddev);
+> >   }
+> >
+> >   static __maybe_unused int drv_suspend(struct device *dev)
+> >
+>
+> Thank you for your patch,
+> For this stm part,
+> Acked-by: Philippe Cornu <philippe.cornu@st.com>
+>
+> note: we will handle devm_kzalloc() asap, thanks.
+
+Note that as-is you can't just blindly switch devm_kzalloc over to
+drmm_kzalloc for the structures containing a drm_* object, or you'll
+just replace one type of use-after free with another one (and probably
+worse, since the new one will hit you on normal driver unload too).
+There's a bit more work needed in this area, this here is just the
+first steps and a heads up. And removing the devm_kzalloc would result
+in lots of code added for a bunch of kfree() all over, not so great
+option either.
+
+I'd say wait for the next round :-)
+-Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
