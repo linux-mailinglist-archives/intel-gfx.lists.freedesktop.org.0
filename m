@@ -1,32 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FDA616637A
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:51:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D0B16638C
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:53:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA8DC6EDDC;
-	Thu, 20 Feb 2020 16:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 165506EDE3;
+	Thu, 20 Feb 2020 16:53:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F3E626E8ED;
- Thu, 20 Feb 2020 16:51:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E40B5A0118;
- Thu, 20 Feb 2020 16:51:19 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2796E8ED;
+ Thu, 20 Feb 2020 16:53:22 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20291217-1500050 
+ for multiple; Thu, 20 Feb 2020 16:53:02 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 16:53:01 +0000
+Message-Id: <20200220165301.1996742-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 20 Feb 2020 16:51:19 -0000
-Message-ID: <158221747990.17408.7956824980757044898@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200220123608.1666271-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200220123608.1666271-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/2=5D_drm/i915=3A_Double_check_bum?=
- =?utf-8?q?ping_after_the_spinlock?=
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_eio: Trim kms workload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,33 +36,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We don't need to try reset-stress on every engine with the display, just
+once is enough to stress any interlinkage.
 
-Series: series starting with [1/2] drm/i915: Double check bumping after the spinlock
-URL   : https://patchwork.freedesktop.org/series/73707/
-State : warning
+This should reduce the runtime to 10s.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Martin Peres <martin.peres@linux.intel.com>
+---
+ tests/i915/gem_eio.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-$ dim checkpatch origin/drm-tip
-00c160893898 drm/i915: Double check bumping after the spinlock
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-References: a79ca656b648 ("drm/i915: Push the wakeref->count deferral to the backend")
-
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit a79ca656b648 ("drm/i915: Push the wakeref->count deferral to the backend")'
-#10: 
-References: a79ca656b648 ("drm/i915: Push the wakeref->count deferral to the backend")
-
-total: 1 errors, 1 warnings, 0 checks, 9 lines checked
-e5bc0f843da3 drm/i915: Protect i915_request_await_start from early waits
+diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
+index 0fe51efeb..1ec609410 100644
+--- a/tests/i915/gem_eio.c
++++ b/tests/i915/gem_eio.c
+@@ -898,8 +898,14 @@ static void test_kms(int i915, igt_display_t *dpy)
+ 
+ 	test_inflight(i915, 0);
+ 	if (gem_has_contexts(i915)) {
+-		test_reset_stress(i915, 0);
+-		test_reset_stress(i915, TEST_WEDGE);
++		uint32_t ctx = context_create_safe(i915);
++
++		reset_stress(i915, ctx,
++			     "default", I915_EXEC_DEFAULT, 0);
++		reset_stress(i915, ctx,
++			     "default", I915_EXEC_DEFAULT, TEST_WEDGE);
++
++		gem_context_destroy(i915, ctx);
+ 	}
+ 
+ 	*shared = 1;
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
