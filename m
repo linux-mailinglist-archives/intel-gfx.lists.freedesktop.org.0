@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFA0A165D0E
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:00:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B739A165D46
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 13:10:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACC236ED3F;
-	Thu, 20 Feb 2020 12:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 024AD6ED3C;
+	Thu, 20 Feb 2020 12:10:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com
- [IPv6:2607:f8b0:4864:20::e44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53FF36ED38;
- Thu, 20 Feb 2020 12:00:17 +0000 (UTC)
-Received: by mail-vs1-xe44.google.com with SMTP id p14so2471105vsq.6;
- Thu, 20 Feb 2020 04:00:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=2maRxbwaWQdYG4KYSFEZQXuW4XTvPWB6+BI1DcPAf7s=;
- b=uiPbHKi5ifQGd/+vU3Bg2bWwW7uLXfeb9jyg9h2kuFqSvFAb1meTuoyQT7Y9xyn+yh
- 4GG01nAiQRzNFnEJrL47dFGQKR1BYAmbCJf+MfMsaxFYIJuOV/5vU6V05TXW0iicvMgx
- T7tuBRl0TROqcMMqKJh83gz12LnbkmlMWphR1KmZU8esWp5KmbFCQID1SH7M7DIdj/7e
- wjmfYeR4RdGMh8NA8mptJhe16sKbTGyIRlaVruSMOr7muGBwwGjUvNRt/vVGeEyq9xL0
- zYGcpP0qYWT/GA6N40zvpI8RYaTAIz4/1gP/YlGXbiNKi0PkhuHjxSgonlp/utReHYwp
- HLyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=2maRxbwaWQdYG4KYSFEZQXuW4XTvPWB6+BI1DcPAf7s=;
- b=aBWjwmgqWmRrD3MQWOch+smgMDutJP2QWZax1U2K6oHv6j5I0ptbZjFSq5K+2DAyII
- 2gcKmLeySdiRwLQwavx8cS9W4leVEQSJIdGOfnka6m+D5xhZ8lhm2T4CDTQrC+8jtN9x
- uOAjBAARubWFPc2I6EK/mhfglK9jT/rTyMt9GOQ1ljqMPOAWvX5y5Kwv3OCprx/4sTlP
- ZRT2unjDr32Vp/Bs6l3raKYIME4NhrwJ3rCPAqXTV9Y6t4AVWaVcJvEBcucDM6OkXYay
- Qn8W8r3BKOnYz41Ns8loM2SwqQZTso91Dvfeg+TYWhEw1HGvoMnGI7QvG8k8JauWiKRa
- AHFg==
-X-Gm-Message-State: APjAAAUCPpWFxe13w2hvNz82cz3mYZwQwG7ip1wBUdnua15o5F1NmK4f
- CcAf41ZrPTk65eNR8carcLceDV9cBUGUve+uHgQ=
-X-Google-Smtp-Source: APXvYqxXNcOfGZ2acPaakwTwE7nSVQySWcCd6QGUbcsKuezSgJtJAGBBcyUTM0+jsTO+dzIDRVrFr42LH1TZAFyMVv0=
-X-Received: by 2002:a67:c204:: with SMTP id i4mr17663271vsj.118.1582200016567; 
- Thu, 20 Feb 2020 04:00:16 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 992606ED3C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 20 Feb 2020 12:10:48 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 20 Feb 2020 04:10:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,464,1574150400"; d="scan'208";a="259252297"
+Received: from slisovsk-lenovo-ideapad-720s-13ikb.fi.intel.com ([10.237.72.89])
+ by fmsmga004.fm.intel.com with ESMTP; 20 Feb 2020 04:10:45 -0800
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 20 Feb 2020 14:07:34 +0200
+Message-Id: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <20200219203544.31013-5-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200219203544.31013-5-ville.syrjala@linux.intel.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Thu, 20 Feb 2020 12:00:04 +0000
-Message-ID: <CACvgo52gOX7OioTqaLUEi1Luc49y2FpREv5ERRP5DPYxodRMLw@mail.gmail.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 04/12] drm: Nuke mode->vrefresh
+Subject: [Intel-gfx] [PATCH v17 0/7] Refactor Gen11+ SAGV support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +40,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Neil Armstrong <narmstrong@baylibre.com>,
- ML nouveau <nouveau@lists.freedesktop.org>,
- =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Andrzej Hajda <a.hajda@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Sam Ravnborg <sam@ravnborg.org>, Thomas Hellstrom <thellstrom@vmware.com>,
- Joonyoung Shim <jy0922.shim@samsung.com>, Stefan Mavrodiev <stefan@olimex.com>,
- Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
- VMware Graphics <linux-graphics-maintainer@vmware.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Robert Chiras <robert.chiras@nxp.com>,
- Icenowy Zheng <icenowy@aosc.io>, Jonas Karlman <jonas@kwiboo.se>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Ben Skeggs <bskeggs@redhat.com>, linux-amlogic@lists.infradead.org,
- Vincent Abriou <vincent.abriou@st.com>,
- Jernej Skrabec <jernej.skrabec@siol.net>, Purism Kernel Team <kernel@puri.sm>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAxOSBGZWIgMjAyMCBhdCAyMDozNiwgVmlsbGUgU3lyamFsYQo8dmlsbGUuc3lyamFs
-YUBsaW51eC5pbnRlbC5jb20+IHdyb3RlOgo+Cj4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxs
-ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KPgo+IEdldCByaWQgb2YgbW9kZS0+dnJlZnJlc2gg
-YW5kIGp1c3QgY2FsY3VsYXRlIGl0IG9uIGRlbWFuZC4gU2F2ZXMKPiBhIGJpdCBvZiBzcGFjZSBh
-bmQgYXZvaWRzIHRoZSBjYWNoZWQgdmFsdWUgZ2V0dGluZyBvdXQgb2Ygc3luYwo+IHdpdGggcmVh
-bGl0eS4KPgo+IE1vc3RseSBkb25lIHdpdGggY29jY2ksIHdpdGggdGhlIGZvbGxvd2luZyBtYW51
-YWwgZml4dXBzOgo+IC0gUmVtb3ZlIHRoZSBub3cgZW1wdHkgbG9vcCBpbiBkcm1faGVscGVyX3By
-b2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXMoKQo+IC0gRml4IF9fTU9ERSgpIG1hY3JvIGluIGNo
-NzAwNl9tb2RlLmMKClNwZWFraW5nIG9mIGNoNzAwNl9tb2RlLmMsIGl0IGhhcyBpdHMgb3duICJm
-aXhlZCB2cmVmcmVzaCIsIHdoaWNoCmRvZXNuJ3Qgc2VlbSB0byBiZSB1c2VkIGFueXdoZXJlLgpP
-bmUgY291bGQgcG90ZW50aWFsbHkgbnVrZSBpdCwgYWx0aG91Z2ggaXQgY2FuIGJlIGEgY29tcGxl
-dGVseSBzZXBhcmF0ZSBwYXRjaC4KClRoaXMgcGF0Y2ggaXM6ClJldmlld2VkLWJ5OiBFbWlsIFZl
-bGlrb3YgPGVtaWwudmVsaWtvdkBjb2xsYWJvcmEuY29tPgoKLUVtaWwKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+For Gen11+ platforms BSpec suggests disabling specific
+QGV points separately, depending on bandwidth limitations
+and current display configuration. Thus it required adding
+a new PCode request for disabling QGV points and some
+refactoring of already existing SAGV code.
+Also had to refactor intel_can_enable_sagv function,
+as current seems to be outdated and using skl specific
+workarounds, also not following BSpec for Gen11+.
+
+v17: Had to rebase the whole series.
+
+Stanislav Lisovskiy (7):
+  drm/i915: Start passing latency as parameter
+  drm/i915: Introduce skl_plane_wm_level accessor.
+  drm/i915: Init obj state in intel_atomic_get_old/new_global_obj_state
+  drm/i915: Refactor intel_can_enable_sagv
+  drm/i915: Added required new PCode commands
+  drm/i915: Restrict qgv points which don't have enough bandwidth.
+  drm/i915: Enable SAGV support for Gen12
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 205 ++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  36 ++
+ drivers/gpu/drm/i915/display/intel_display.c  | 131 +++-
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ .../gpu/drm/i915/display/intel_global_state.h |   1 +
+ drivers/gpu/drm/i915/i915_drv.h               |   3 +
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/intel_pm.c               | 585 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_pm.h               |   4 +-
+ drivers/gpu/drm/i915/intel_sideband.c         |   2 +
+ 10 files changed, 834 insertions(+), 139 deletions(-)
+
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
