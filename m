@@ -2,28 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D0B16638C
-	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89EE5166399
+	for <lists+intel-gfx@lfdr.de>; Thu, 20 Feb 2020 17:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 165506EDE3;
-	Thu, 20 Feb 2020 16:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9FD26EDE8;
+	Thu, 20 Feb 2020 16:57:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A2796E8ED;
- Thu, 20 Feb 2020 16:53:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C429F89E35;
+ Thu, 20 Feb 2020 16:57:39 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20291217-1500050 
- for multiple; Thu, 20 Feb 2020 16:53:02 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20291269-1500050 
+ for multiple; Thu, 20 Feb 2020 16:57:27 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 20 Feb 2020 16:53:01 +0000
-Message-Id: <20200220165301.1996742-1-chris@chris-wilson.co.uk>
+Date: Thu, 20 Feb 2020 16:57:21 +0000
+Message-Id: <20200220165721.2056191-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_eio: Trim kms workload
+Subject: [Intel-gfx] [PATCH i-g-t] sw_sync: Use fixed runtime for
+ sync_expired_merge
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,38 +43,58 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We don't need to try reset-stress on every engine with the display, just
-once is enough to stress any interlinkage.
-
-This should reduce the runtime to 10s.
+Convert from using a fixed number of iterations (1 million), to using a
+fixed runtime so that we have predictable (and shorter!) run times across
+a wide variety of machines.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Cc: Martin Peres <martin.peres@linux.intel.com>
 ---
- tests/i915/gem_eio.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ tests/sw_sync.c | 17 +++++++----------
+ 1 file changed, 7 insertions(+), 10 deletions(-)
 
-diff --git a/tests/i915/gem_eio.c b/tests/i915/gem_eio.c
-index 0fe51efeb..1ec609410 100644
---- a/tests/i915/gem_eio.c
-+++ b/tests/i915/gem_eio.c
-@@ -898,8 +898,14 @@ static void test_kms(int i915, igt_display_t *dpy)
+diff --git a/tests/sw_sync.c b/tests/sw_sync.c
+index 626b6d39f..6e439496d 100644
+--- a/tests/sw_sync.c
++++ b/tests/sw_sync.c
+@@ -747,30 +747,27 @@ static void test_sync_multi_producer_single_consumer(void)
  
- 	test_inflight(i915, 0);
- 	if (gem_has_contexts(i915)) {
--		test_reset_stress(i915, 0);
--		test_reset_stress(i915, TEST_WEDGE);
-+		uint32_t ctx = context_create_safe(i915);
-+
-+		reset_stress(i915, ctx,
-+			     "default", I915_EXEC_DEFAULT, 0);
-+		reset_stress(i915, ctx,
-+			     "default", I915_EXEC_DEFAULT, TEST_WEDGE);
-+
-+		gem_context_destroy(i915, ctx);
+ static void test_sync_expired_merge(void)
+ {
+-	int iterations = 1 << 20;
+ 	int timeline;
+-	int i;
+-	int fence_expired, fence_merged;
++	int expired;
+ 
+ 	timeline = sw_sync_timeline_create();
+ 
+ 	sw_sync_timeline_inc(timeline, 100);
+-	fence_expired = sw_sync_timeline_create_fence(timeline, 1);
+-	igt_assert_f(sync_fence_wait(fence_expired, 0) == 0,
++	expired = sw_sync_timeline_create_fence(timeline, 1);
++	igt_assert_f(sync_fence_wait(expired, 0) == 0,
+ 	             "Failure waiting for expired fence\n");
+ 
+-	fence_merged = sync_fence_merge(fence_expired, fence_expired);
+-	close(fence_merged);
++	close(sync_fence_merge(expired, expired));
+ 
+-	for (i = 0; i < iterations; i++) {
+-		int fence = sync_fence_merge(fence_expired, fence_expired);
++	igt_until_timeout(2) {
++		int fence = sync_fence_merge(expired, expired);
+ 
+ 		igt_assert_f(sync_fence_wait(fence, -1) == 0,
+ 			     "Failure waiting on fence\n");
+ 		close(fence);
  	}
  
- 	*shared = 1;
+-	close(fence_expired);
++	close(expired);
+ }
+ 
+ static void test_sync_random_merge(void)
 -- 
 2.25.1
 
