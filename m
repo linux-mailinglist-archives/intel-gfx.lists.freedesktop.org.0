@@ -1,45 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9AB1674C6
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 09:28:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1074D167982
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 10:36:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C31566EEB6;
-	Fri, 21 Feb 2020 08:28:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12196EF27;
+	Fri, 21 Feb 2020 09:36:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD4886EEB5;
- Fri, 21 Feb 2020 08:28:20 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 042756EF27
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 09:36:11 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 00:28:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,467,1574150400"; d="scan'208";a="229777811"
-Received: from linux.intel.com ([10.54.29.200])
- by orsmga008.jf.intel.com with ESMTP; 21 Feb 2020 00:28:20 -0800
-Received: from [10.237.72.173] (mperes-desk.fi.intel.com [10.237.72.173])
- (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 20B8C58056A;
- Fri, 21 Feb 2020 00:28:18 -0800 (PST)
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200220174155.2162242-1-chris@chris-wilson.co.uk>
- <023b88f4-7b98-a376-aee1-db09cec21a98@linux.intel.com>
- <158227331733.3099.1298656919493160116@skylake-alporthouse-com>
-From: Martin Peres <martin.peres@linux.intel.com>
-Message-ID: <37e6fded-72f3-6480-6ed8-6591c2d2733b@linux.intel.com>
-Date: Fri, 21 Feb 2020 10:28:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 01:36:10 -0800
+X-IronPort-AV: E=Sophos;i="5.70,467,1574150400"; d="scan'208";a="229794351"
+Received: from jmiler-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.249.38.187])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 01:36:07 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+In-Reply-To: <20200218173936.19664-1-wambui.karugax@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200218173936.19664-1-wambui.karugax@gmail.com>
+Date: Fri, 21 Feb 2020 11:36:12 +0200
+Message-ID: <87blpsz3hv.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <158227331733.3099.1298656919493160116@skylake-alporthouse-com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rpm: Only check for
- suspend failures after each debugfs entry
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/perf: conversion to struct
+ drm_device based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,51 +45,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-02-21 10:21, Chris Wilson wrote:
-> Quoting Martin Peres (2020-02-21 07:33:59)
->> On 2020-02-20 19:41, Chris Wilson wrote:
->>> Since we check before and then after each debugfs entry, we do not need
->>> to check before each time as well. We will error out as soon as it does
->>> fail, at all other times we know the system to be idle.
->>>
->>> No impact on runtime for glk (which apparently is one of the better
->>> behaving systems).
->>>
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> Cc: Martin Peres <martin.peres@linux.intel.com>
->>
->> I don't like this patch because the first read might not have the gpu
->> suspended, and there shouldn't be much overhead in checking twice rather
->> than once.
->>
->> What's your rationale here?
-> 
-> We always do a check before after each file. We start in a known state,
-> and expect to be able to return to that suspended state, and the _real_
-> guts of the test is that any device access is accounted for.
-> 
-> assert(suspended) would be a better check for non-interference.
+On Tue, 18 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> Manual conversion of instances of printk based drm logging macros to the
+> struct drm_device based logging macros in i915/i915_perf.c.
+> Also involves extraction of the struct drm_i915_private device from
+> various intel types for use in the macros.
+>
+> Instances of the DRM_DEBUG printk macro were not converted due to the
+> lack of an analogous struct drm_device based logging macro.
+>
+> v2: remove instances of DRM_DEBUG that were converted.
+>
+> References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 
-I would feel better with assert(suspended) added, but would it really
-speed anything up since I assume wait_for_suspended() should be
-instantaneous if we are already suspended, right?
+Thanks, pushed to drm-intel-next-queued.
 
+BR,
+Jani.
+
+> ---
+>  drivers/gpu/drm/i915/i915_perf.c | 27 +++++++++++++++++----------
+>  1 file changed, 17 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index b5249ee5bda6..e34c79df6ebc 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -555,8 +555,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
+>  				aging_tail = hw_tail;
+>  			stream->oa_buffer.aging_timestamp = now;
+>  		} else {
+> -			DRM_ERROR("Ignoring spurious out of range OA buffer tail pointer = %x\n",
+> -				  hw_tail);
+> +			drm_err(&stream->perf->i915->drm,
+> +				"Ignoring spurious out of range OA buffer tail pointer = %x\n",
+> +				hw_tail);
+>  		}
+>  	}
 >  
->> To me, the issue is that some platforms suspend in milliseconds while
->> some take seconds, and that might be indicative a real bug in the driver.
-> 
-> Exactly.
+> @@ -745,7 +746,8 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+>  		 */
+>  		if (drm_WARN_ON(&uncore->i915->drm,
+>  				(OA_BUFFER_SIZE - head) < report_size)) {
+> -			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
+> +			drm_err(&uncore->i915->drm,
+> +				"Spurious OA head ptr: non-integral report offset\n");
+>  			break;
+>  		}
+>  
+> @@ -1041,7 +1043,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
+>  		 */
+>  		if (drm_WARN_ON(&uncore->i915->drm,
+>  				(OA_BUFFER_SIZE - head) < report_size)) {
+> -			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
+> +			drm_err(&uncore->i915->drm,
+> +				"Spurious OA head ptr: non-integral report offset\n");
+>  			break;
+>  		}
+>  
+> @@ -1339,9 +1342,10 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
+>  
+>  	ce->tag = stream->specific_ctx_id;
+>  
+> -	DRM_DEBUG_DRIVER("filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
+> -			 stream->specific_ctx_id,
+> -			 stream->specific_ctx_id_mask);
+> +	drm_dbg(&stream->perf->i915->drm,
+> +		"filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
+> +		stream->specific_ctx_id,
+> +		stream->specific_ctx_id_mask);
+>  
+>  	return 0;
+>  }
+> @@ -2657,7 +2661,8 @@ static void gen7_oa_disable(struct i915_perf_stream *stream)
+>  	if (intel_wait_for_register(uncore,
+>  				    GEN7_OACONTROL, GEN7_OACONTROL_ENABLE, 0,
+>  				    50))
+> -		DRM_ERROR("wait for OA to be disabled timed out\n");
+> +		drm_err(&stream->perf->i915->drm,
+> +			"wait for OA to be disabled timed out\n");
+>  }
+>  
+>  static void gen8_oa_disable(struct i915_perf_stream *stream)
+> @@ -2668,7 +2673,8 @@ static void gen8_oa_disable(struct i915_perf_stream *stream)
+>  	if (intel_wait_for_register(uncore,
+>  				    GEN8_OACONTROL, GEN8_OA_COUNTER_ENABLE, 0,
+>  				    50))
+> -		DRM_ERROR("wait for OA to be disabled timed out\n");
+> +		drm_err(&stream->perf->i915->drm,
+> +			"wait for OA to be disabled timed out\n");
+>  }
+>  
+>  static void gen12_oa_disable(struct i915_perf_stream *stream)
+> @@ -2680,7 +2686,8 @@ static void gen12_oa_disable(struct i915_perf_stream *stream)
+>  				    GEN12_OAG_OACONTROL,
+>  				    GEN12_OAG_OACONTROL_OA_COUNTER_ENABLE, 0,
+>  				    50))
+> -		DRM_ERROR("wait for OA to be disabled timed out\n");
+> +		drm_err(&stream->perf->i915->drm,
+> +			"wait for OA to be disabled timed out\n");
+>  }
+>  
+>  /**
 
-Good to hear :)
-
-> -Chris
-> 
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
