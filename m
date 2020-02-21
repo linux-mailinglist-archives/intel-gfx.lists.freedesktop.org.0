@@ -1,36 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E20167F58
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 14:55:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6498167F5D
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 14:56:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0226E2E5;
-	Fri, 21 Feb 2020 13:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 192F66E2EF;
+	Fri, 21 Feb 2020 13:56:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE2089083;
- Fri, 21 Feb 2020 13:55:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9667B6E2EF;
+ Fri, 21 Feb 2020 13:56:30 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20302643-1500050 for multiple; Fri, 21 Feb 2020 13:55:51 +0000
-MIME-Version: 1.0
-To: Martin Peres <martin.peres@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20302652-1500050 
+ for multiple; Fri, 21 Feb 2020 13:56:21 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <37e6fded-72f3-6480-6ed8-6591c2d2733b@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Feb 2020 13:56:20 +0000
+Message-Id: <20200221135620.2794706-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200220174155.2162242-1-chris@chris-wilson.co.uk>
 References: <20200220174155.2162242-1-chris@chris-wilson.co.uk>
- <023b88f4-7b98-a376-aee1-db09cec21a98@linux.intel.com>
- <158227331733.3099.1298656919493160116@skylake-alporthouse-com>
- <37e6fded-72f3-6480-6ed8-6591c2d2733b@linux.intel.com>
-Message-ID: <158229334931.6499.15177905985585454217@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 21 Feb 2020 13:55:49 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rpm: Only check for
- suspend failures after each debugfs entry
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rpm: Only check for suspend
+ failures after each debugfs entry
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,39 +45,53 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Martin Peres (2020-02-21 08:28:16)
-> On 2020-02-21 10:21, Chris Wilson wrote:
-> > Quoting Martin Peres (2020-02-21 07:33:59)
-> >> On 2020-02-20 19:41, Chris Wilson wrote:
-> >>> Since we check before and then after each debugfs entry, we do not need
-> >>> to check before each time as well. We will error out as soon as it does
-> >>> fail, at all other times we know the system to be idle.
-> >>>
-> >>> No impact on runtime for glk (which apparently is one of the better
-> >>> behaving systems).
-> >>>
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> Cc: Martin Peres <martin.peres@linux.intel.com>
-> >>
-> >> I don't like this patch because the first read might not have the gpu
-> >> suspended, and there shouldn't be much overhead in checking twice rather
-> >> than once.
-> >>
-> >> What's your rationale here?
-> > 
-> > We always do a check before after each file. We start in a known state,
-> > and expect to be able to return to that suspended state, and the _real_
-> > guts of the test is that any device access is accounted for.
-> > 
-> > assert(suspended) would be a better check for non-interference.
-> 
-> I would feel better with assert(suspended) added, but would it really
-> speed anything up since I assume wait_for_suspended() should be
-> instantaneous if we are already suspended, right?
+Since we check before and then after each debugfs entry, we do not need
+to check before each time as well. We will error out as soon as it does
+fail, at all other times we know the system to be idle.
 
-No, only if there was some random bug, we would now get a failure rather
-than papering it over.
--Chris
+No impact on runtime for glk (which apparently is one of the better
+behaving systems).
+
+v2: Assert that we are currently suspended prior to opening the file,
+i.e. that nothing else is waking up the device behind our backs.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Martin Peres <martin.peres@linux.intel.com>
+---
+ tests/i915/i915_pm_rpm.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/tests/i915/i915_pm_rpm.c b/tests/i915/i915_pm_rpm.c
+index 0c2821122..36416a9db 100644
+--- a/tests/i915/i915_pm_rpm.c
++++ b/tests/i915/i915_pm_rpm.c
+@@ -183,6 +183,14 @@ static enum pc8_status get_pc8_status(void)
+ 		return PC8_DISABLED;
+ }
+ 
++static bool is_suspended(void)
++{
++	if (has_pc8 && !has_runtime_pm)
++		return get_pc8_status() == PC8_ENABLED;
++	else
++		return igt_get_runtime_pm_status() == IGT_RUNTIME_PM_STATUS_SUSPENDED;
++}
++
+ static bool wait_for_pc8_status(enum pc8_status status)
+ {
+ 	return igt_wait(get_pc8_status() == status, 10000, 100);
+@@ -932,7 +940,7 @@ static int read_entry(const char *filepath,
+ 	int fd;
+ 	int rc;
+ 
+-	igt_assert_f(wait_for_suspended(), "Before opening: %s (%s)\n",
++	igt_assert_f(is_suspended(), "Before opening: %s (%s)\n",
+ 		     filepath + pathinfo->base, filepath);
+ 
+ 	fd = open(filepath, O_RDONLY | O_NONBLOCK);
+-- 
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
