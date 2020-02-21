@@ -1,57 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 131C41684F0
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 18:29:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E949E1684F2
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 18:29:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9306A6F4E7;
-	Fri, 21 Feb 2020 17:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 986976F4ED;
+	Fri, 21 Feb 2020 17:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E40F6F4E7
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 17:29:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582306176;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=L30wAdzsX20R3uas81dT/5ea8Szhyh5HgNjoGetAd34=;
- b=jAT8t5k2fNh/TAUPUrabVQdcqk7q22/h+fnb3vf9q23IJNkaEYVMlNlLkXeCGMCPepgm8h
- YsaGJ+fC5pgjxtSsXdlVAlnUAJjSnHsrEn6KmujjKJGIihtYKWwV56Xh2BFuIHDUuDWav6
- csZzXjHfGVFO1Y+azF4hs+WzP40cSkA=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-176-EBv9ItfrPWaB4Zk7xM22Tg-1; Fri, 21 Feb 2020 12:29:34 -0500
-X-MC-Unique: EBv9ItfrPWaB4Zk7xM22Tg-1
-Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
- [10.5.11.13])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7F9CE18AB2D1;
- Fri, 21 Feb 2020 17:29:33 +0000 (UTC)
-Received: from x1.localdomain.com (ovpn-116-191.ams2.redhat.com
- [10.36.116.191])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 9F27C8ED1A;
- Fri, 21 Feb 2020 17:29:31 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Fri, 21 Feb 2020 18:29:27 +0100
-Message-Id: <20200221172927.510027-2-hdegoede@redhat.com>
-In-Reply-To: <20200221172927.510027-1-hdegoede@redhat.com>
-References: <20200221172927.510027-1-hdegoede@redhat.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF7816F4E8;
+ Fri, 21 Feb 2020 17:29:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C6347A47E7;
+ Fri, 21 Feb 2020 17:29:42 +0000 (UTC)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [PATCH resend 2/2] drm/i915: Add invert-brightness
- quirk for Thundersoft TST178 tablet
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 21 Feb 2020 17:29:42 -0000
+Message-ID: <158230618280.7919.2793629266759291535@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200221101724.2602426-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200221101724.2602426-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Drop_inspection_of_exec?=
+ =?utf-8?q?buf_flags_during_evict?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,54 +39,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The Thundersoft TST178 tablet uses a DSI panel with an external PWM
-controller (as all DSI panels do). But unlike other DSI panels a duty-cycle
-of 100% turns the backlight off and 0% sets it to maximum brightness.
+== Series Details ==
 
-I've checked the VBT and there is a BDB_LVDS_BACKLIGHT section, but
-it does not set the active_low_pwm flag. This tablet re-uses the main
-PCI vendor and product ids for the subsystem ids, so I see no other option
-then to add a DMI based quirk to fix this.
+Series: series starting with [1/3] drm/i915: Drop inspection of execbuf flags during evict
+URL   : https://patchwork.freedesktop.org/series/73753/
+State : failure
 
-Note that the PWM backlight code in intel_panel.c currently does not honor
-the vbt.active_low_pwm flag, but that does not matter in this case.
+== Summary ==
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_quirks.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+CI Bug Log - changes from CI_DRM_7982 -> Patchwork_16656
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 399b1542509f..54dba152ead8 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -82,6 +82,16 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
- 					    DMI_MATCH(DMI_PRODUCT_NAME, ""),
- 				},
- 			},
-+			{
-+				.callback = intel_dmi_reverse_brightness,
-+				.ident = "Thundersoft TST178 tablet",
-+				/* DMI strings are too generic, also match on BIOS date */
-+				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "AMI Corporation"),
-+					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "Aptio CRB"),
-+					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "To be filled by O.E.M."),
-+					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "04/15/2014"),
-+				},
-+			},
- 			{ }  /* terminating entry */
- 		},
- 		.hook = quirk_invert_brightness,
--- 
-2.25.0
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16656 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16656, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16656:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gt_lrc:
+    - fi-cml-u2:          [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-cml-u2/igt@i915_selftest@live_gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-cml-u2/igt@i915_selftest@live_gt_lrc.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16656 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [PASS][5] -> [DMESG-FAIL][6] ([fdo#108569])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@i915_selftest@live_gtt:
+    - fi-bdw-5557u:       [PASS][7] -> [TIMEOUT][8] ([fdo#112271])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-bdw-5557u/igt@i915_selftest@live_gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-6600u:       [INCOMPLETE][9] ([i915#146] / [i915#69]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-skl-6600u/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@i915_selftest@live_sanitycheck:
+    - fi-icl-u3:          [DMESG-WARN][11] ([i915#585]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
+
+  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
+    - fi-tgl-y:           [DMESG-WARN][13] ([CI#94] / [i915#402]) -> [PASS][14] +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
+
+  
+#### Warnings ####
+
+  * igt@amdgpu/amd_prime@amd-to-i915:
+    - fi-icl-u3:          [SKIP][15] ([fdo#109315]) -> [SKIP][16] ([fdo#109315] / [i915#585])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7982/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#585]: https://gitlab.freedesktop.org/drm/intel/issues/585
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+
+
+Participating hosts (51 -> 45)
+------------------------------
+
+  Additional (3): fi-hsw-peppy fi-kbl-7560u fi-snb-2520m 
+  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7982 -> Patchwork_16656
+
+  CI-20190529: 20190529
+  CI_DRM_7982: f02659605b48dcabb562bbb96db2996b334e57fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5457: 3e686098d928aa928f668e00fa01e92234e173ff @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16656: abe672fec509e25bac2749186527b4cbde6c1a75 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+abe672fec509 drm/i915/gem: Only call eb_lookup_vma once during execbuf ioctl
+442831af9f67 drm/i915/gem: Extract transient execbuf flags from i915_vma
+8c048a656876 drm/i915: Drop inspection of execbuf flags during evict
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16656/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
