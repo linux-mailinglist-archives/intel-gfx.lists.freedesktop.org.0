@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AD7167BDE
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 12:17:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1C5167BDD
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 12:17:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD8446F419;
-	Fri, 21 Feb 2020 11:17:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B2596F414;
+	Fri, 21 Feb 2020 11:17:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A6496F406;
- Fri, 21 Feb 2020 11:17:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3DD56F41C;
+ Fri, 21 Feb 2020 11:17:34 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 03:17:33 -0800
-X-IronPort-AV: E=Sophos;i="5.70,468,1574150400"; d="scan'208";a="225190773"
+ 21 Feb 2020 03:17:34 -0800
+X-IronPort-AV: E=Sophos;i="5.70,468,1574150400"; d="scan'208";a="225190780"
 Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.17])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 03:17:31 -0800
+ 21 Feb 2020 03:17:33 -0800
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 21 Feb 2020 12:17:00 +0100
-Message-Id: <20200221111701.30006-2-janusz.krzysztofik@linux.intel.com>
+Date: Fri, 21 Feb 2020 12:17:01 +0100
+Message-Id: <20200221111701.30006-3-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200221111701.30006-1-janusz.krzysztofik@linux.intel.com>
 References: <20200221111701.30006-1-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t v2 1/2] lib/i915: Restrict mmap types
- to GTT if no MMAP_OFFSET support
+Subject: [Intel-gfx] [RFC PATCH i-g-t v2 2/2] tests/gem_userptr_blits:
+ Exercise mmap-offset mapping to userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,129 +43,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29tbWl0IGIwZGE4YmI3MDVjMCAoImxpYi9pOTE1OiBmb3JfZWFjaF9tbWFwX29mZnNldF90eXBl
-KCkiKQppbnRyb2R1Y2VkIGEgbWFjcm8gdGhhdCBtYWtlcyBpdCBlYXN5IHRvIHJlcGVhdCBhIHRl
-c3QgYm9keSB3aXRoaW4gYQpsb29wIGZvciBlYWNoIG1tYXAtb2Zmc2V0IG1hcHBpbmcgdHlwZSBz
-dXBwb3J0ZWQgYnkgdjQgb2YgaTkxNSBNTUFQX0dUVApBUEkuIEhvd2V2ZXIsIHdoZW4gcnVuIG9u
-IGFuIG9sZGVyIHZlcnNpb24gb2YgdGhlIGRyaXZlciwgdGhvc2UKc3VidGVzdHMgYXJlIGJlbGll
-dmVkIHRvIGJlIHN0aWxsIHJlcGVhdGVkIGZvciBlYWNoIGtub3duIG1tYXAtb2Zmc2V0Cm1hcHBp
-bmcgdHlwZSB3aGlsZSBlZmZlY3RpdmVseSBleGVyY2lzaW5nIEdUVCBtYXBwaW5nIHR5cGUgb25s
-eS4gIEFzCnRoYXQgbWF5IGJlIGNvbmZ1c2luZywgZml4IGl0LgoKSXQgaGFzIGJlZW4gYXNzdW1l
-ZCB0aGF0IHRoZSBtb2RpZmllZCBtYWNybyBpcyBzdGlsbCBzdWl0YWJsZSBmb3IgdXNlCmluc2lk
-ZSBnZW1fbW1hcF9vZmZzZXQgdGVzdCBpdHNlbGYuICBXb3VsZCB0aGF0IG5vdCBiZSBjYXNlLApn
-ZW1fbW1hcF9vZmZzZXQgY291bGQgcmVkZWZpbmUgdGhlIG1hY3JvIGJhY2sgdG8gaXRzIGluaXRp
-YWwgZm9ybSBmb3IKaW50ZXJuYWwgdXNlLgoKdjI6IE1vdmUgZXh0cmEgY29uZGl0aW9uIHRvIGEg
-c2VwYXJhdGUgZnVuY3Rpb24gYW5kIGNhbGwgaXQgdmlhCiAgICBmb3JfZWFjaF9pZigpLCBpbiBj
-YXNlIHdlIG5lZWQgdG8gZml4IGl0IGFnYWluIGluIGZ1dHVyZSAoQ2hyaXMpCnYzOiBGaXggYmxp
-bmQgY29weS1wYXN0ZQoKU3VnZ2VzdGVkLWJ5OiBNaWNoYcWCIFdpbmlhcnNraSA8bWljaGFsLndp
-bmlhcnNraUBpbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEphbnVzeiBLcnp5c3p0b2ZpayA8amFu
-dXN6LmtyenlzenRvZmlrQGxpbnV4LmludGVsLmNvbT4KQ2M6IENocmlzIFdpbHNvbiA8Y2hyaXNA
-Y2hyaXMtd2lsc29uLmNvLnVrPgotLS0KIGxpYi9pOTE1L2dlbV9tbWFuLmMgICAgICAgICAgfCAg
-NSArKysrKwogbGliL2k5MTUvZ2VtX21tYW4uaCAgICAgICAgICB8ICA3ICsrKysrLS0KIHRlc3Rz
-L2k5MTUvZ2VtX2N0eF9zc2V1LmMgICAgfCAgMiArLQogdGVzdHMvaTkxNS9nZW1fZXhlY19wYXJh
-bXMuYyB8ICAyICstCiB0ZXN0cy9pOTE1L2dlbV9tYWR2aXNlLmMgICAgIHwgMTggKysrKysrKysr
-KysrKystLS0tCiB0ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jIHwgMTAgKysrKystLS0tLQog
-dGVzdHMvaTkxNS9pOTE1X3BtX3JwbS5jICAgICB8ICAyICstCiA3IGZpbGVzIGNoYW5nZWQsIDMy
-IGluc2VydGlvbnMoKyksIDE0IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2xpYi9pOTE1L2dl
-bV9tbWFuLmMgYi9saWIvaTkxNS9nZW1fbW1hbi5jCmluZGV4IDA4YWU2NzY5Ni4uOTNiZWYyYmZj
-IDEwMDY0NAotLS0gYS9saWIvaTkxNS9nZW1fbW1hbi5jCisrKyBiL2xpYi9pOTE1L2dlbV9tbWFu
-LmMKQEAgLTYwLDYgKzYwLDExIEBAIGJvb2wgZ2VtX2hhc19tbWFwX29mZnNldChpbnQgZmQpCiAJ
-cmV0dXJuIGd0dF92ZXJzaW9uID49IDQ7CiB9CiAKK2Jvb2wgZ2VtX2hhc19tbWFwX29mZnNldF90
-eXBlKGludCBmZCwgY29uc3Qgc3RydWN0IG1tYXBfb2Zmc2V0ICp0KQoreworCXJldHVybiBnZW1f
-aGFzX21tYXBfb2Zmc2V0KGZkKSB8fCB0LT50eXBlID09IEk5MTVfTU1BUF9PRkZTRVRfR1RUOwor
-fQorCiAvKioKICAqIF9fZ2VtX21tYXBfX2d0dDoKICAqIEBmZDogb3BlbiBpOTE1IGRybSBmaWxl
-IGRlc2NyaXB0b3IKZGlmZiAtLWdpdCBhL2xpYi9pOTE1L2dlbV9tbWFuLmggYi9saWIvaTkxNS9n
-ZW1fbW1hbi5oCmluZGV4IDRmYzZhMDE4Ni4uMmM0YTdhMDBiIDEwMDY0NAotLS0gYS9saWIvaTkx
-NS9nZW1fbW1hbi5oCisrKyBiL2xpYi9pOTE1L2dlbV9tbWFuLmgKQEAgLTEwMSwxMCArMTAxLDEz
-IEBAIGV4dGVybiBjb25zdCBzdHJ1Y3QgbW1hcF9vZmZzZXQgewogCXVuc2lnbmVkIGludCBkb21h
-aW47CiB9IG1tYXBfb2Zmc2V0X3R5cGVzW107CiAKLSNkZWZpbmUgZm9yX2VhY2hfbW1hcF9vZmZz
-ZXRfdHlwZShfX3QpIFwKK2Jvb2wgZ2VtX2hhc19tbWFwX29mZnNldF90eXBlKGludCBmZCwgY29u
-c3Qgc3RydWN0IG1tYXBfb2Zmc2V0ICp0KTsKKworI2RlZmluZSBmb3JfZWFjaF9tbWFwX29mZnNl
-dF90eXBlKGZkLCBfX3QpIFwKIAlmb3IgKGNvbnN0IHN0cnVjdCBtbWFwX29mZnNldCAqX190ID0g
-bW1hcF9vZmZzZXRfdHlwZXM7IFwKIAkgICAgIChfX3QpLT5uYW1lOyBcCi0JICAgICAoX190KSsr
-KQorCSAgICAgKF9fdCkrKykgXAorCQlmb3JfZWFjaF9pZihnZW1faGFzX21tYXBfb2Zmc2V0X3R5
-cGUoKGZkKSwgKF9fdCkpKQogCiAjZW5kaWYgLyogR0VNX01NQU5fSCAqLwogCmRpZmYgLS1naXQg
-YS90ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5jIGIvdGVzdHMvaTkxNS9nZW1fY3R4X3NzZXUuYwpp
-bmRleCBkNTU4YzhiYWEuLjNiZWYxMWI1MSAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fY3R4
-X3NzZXUuYworKysgYi90ZXN0cy9pOTE1L2dlbV9jdHhfc3NldS5jCkBAIC01MzEsNyArNTMxLDcg
-QEAgaWd0X21haW4KIAkJCXRlc3RfaW52YWxpZF9zc2V1KGZkKTsKIAogCQlpZ3Rfc3VidGVzdF93
-aXRoX2R5bmFtaWMoIm1tYXAtYXJncyIpIHsKLQkJCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUo
-dCkgeworCQkJZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZShmZCwgdCkgewogCQkJCWlndF9keW5h
-bWljX2YoIiVzIiwgdC0+bmFtZSkKIAkJCQkJdGVzdF9tbWFwcGVkX2FyZ3MoZmQsIHQpOwogCQkJ
-fQpkaWZmIC0tZ2l0IGEvdGVzdHMvaTkxNS9nZW1fZXhlY19wYXJhbXMuYyBiL3Rlc3RzL2k5MTUv
-Z2VtX2V4ZWNfcGFyYW1zLmMKaW5kZXggZTI5MTI2ODViLi5jZjdlYTMwNjUgMTAwNjQ0Ci0tLSBh
-L3Rlc3RzL2k5MTUvZ2VtX2V4ZWNfcGFyYW1zLmMKKysrIGIvdGVzdHMvaTkxNS9nZW1fZXhlY19w
-YXJhbXMuYwpAQCAtMjQ0LDcgKzI0NCw3IEBAIHN0YXRpYyB2b2lkIG1tYXBwZWQoaW50IGk5MTUp
-CiAJYnVmID0gZ2VtX2NyZWF0ZShpOTE1LCA0MDk2KTsKIAloYW5kbGUgPSBiYXRjaF9jcmVhdGUo
-aTkxNSk7CiAKLQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKHQpIHsgLyogcmVwZXRpdGl2ZSEg
-Ki8KKwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGk5MTUsIHQpIHsgLyogcmVwZXRpdGl2ZSEg
-Ki8KIAkJc3RydWN0IGRybV9pOTE1X2dlbV9leGVjYnVmZmVyMiAqZXhlY2J1ZjsKIAkJc3RydWN0
-IGRybV9pOTE1X2dlbV9leGVjX29iamVjdDIgKmV4ZWM7CiAKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5
-MTUvZ2VtX21hZHZpc2UuYyBiL3Rlc3RzL2k5MTUvZ2VtX21hZHZpc2UuYwppbmRleCBlODcxNmE4
-OTEuLjU0YzliZWZmZiAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fbWFkdmlzZS5jCisrKyBi
-L3Rlc3RzL2k5MTUvZ2VtX21hZHZpc2UuYwpAQCAtNjIsMTIgKzYyLDEzIEBAIGRvbnRuZWVkX2Jl
-Zm9yZV9tbWFwKHZvaWQpCiAJY2hhciAqcHRyOwogCWludCBmZDsKIAotCWZvcl9lYWNoX21tYXBf
-b2Zmc2V0X3R5cGUodCkgeworCWZkID0gZHJtX29wZW5fZHJpdmVyKERSSVZFUl9JTlRFTCk7CisK
-Kwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGZkLCB0KSB7CiAJCXNpZ2hhbmRsZXJfdCBvbGRf
-c2lnc2Vndiwgb2xkX3NpZ2J1czsKIAogCQlpZ3RfZGVidWcoIk1hcHBpbmcgbW9kZTogJXNcbiIs
-IHQtPm5hbWUpOwogCi0JCWZkID0gZHJtX29wZW5fZHJpdmVyKERSSVZFUl9JTlRFTCk7CiAJCWhh
-bmRsZSA9IGdlbV9jcmVhdGUoZmQsIE9CSkVDVF9TSVpFKTsKIAkJZ2VtX21hZHZpc2UoZmQsIGhh
-bmRsZSwgSTkxNV9NQURWX0RPTlRORUVEKTsKIApAQCAtOTMsNyArOTQsMTEgQEAgZG9udG5lZWRf
-YmVmb3JlX21tYXAodm9pZCkKIAkJbXVubWFwKHB0ciwgT0JKRUNUX1NJWkUpOwogCQlzaWduYWwo
-U0lHQlVTLCBvbGRfc2lnc2Vndik7CiAJCXNpZ25hbChTSUdTRUdWLCBvbGRfc2lnYnVzKTsKKwor
-CQlmZCA9IGRybV9vcGVuX2RyaXZlcihEUklWRVJfSU5URUwpOwogCX0KKworCWNsb3NlKGZkKTsK
-IH0KIAogc3RhdGljIHZvaWQKQEAgLTEwMywxMiArMTA4LDEzIEBAIGRvbnRuZWVkX2FmdGVyX21t
-YXAodm9pZCkKIAljaGFyICpwdHI7CiAJaW50IGZkOwogCi0JZm9yX2VhY2hfbW1hcF9vZmZzZXRf
-dHlwZSh0KSB7CisJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKKworCWZvcl9l
-YWNoX21tYXBfb2Zmc2V0X3R5cGUoZmQsIHQpIHsKIAkJc2lnaGFuZGxlcl90IG9sZF9zaWdzZWd2
-LCBvbGRfc2lnYnVzOwogCiAJCWlndF9kZWJ1ZygiTWFwcGluZyBtb2RlOiAlc1xuIiwgdC0+bmFt
-ZSk7CiAKLQkJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKIAkJaGFuZGxlID0g
-Z2VtX2NyZWF0ZShmZCwgT0JKRUNUX1NJWkUpOwogCiAJCXB0ciA9IF9fZ2VtX21tYXBfb2Zmc2V0
-KGZkLCBoYW5kbGUsIDAsIE9CSkVDVF9TSVpFLApAQCAtMTM0LDcgKzE0MCwxMSBAQCBkb250bmVl
-ZF9hZnRlcl9tbWFwKHZvaWQpCiAJCW11bm1hcChwdHIsIE9CSkVDVF9TSVpFKTsKIAkJc2lnbmFs
-KFNJR0JVUywgb2xkX3NpZ2J1cyk7CiAJCXNpZ25hbChTSUdTRUdWLCBvbGRfc2lnc2Vndik7CisK
-KwkJZmQgPSBkcm1fb3Blbl9kcml2ZXIoRFJJVkVSX0lOVEVMKTsKIAl9CisKKwljbG9zZShmZCk7
-CiB9CiAKIHN0YXRpYyB2b2lkCmRpZmYgLS1naXQgYS90ZXN0cy9pOTE1L2dlbV9tbWFwX29mZnNl
-dC5jIGIvdGVzdHMvaTkxNS9nZW1fbW1hcF9vZmZzZXQuYwppbmRleCBmNDlkMThlNjMuLjFlYzk2
-M2IyNSAxMDA2NDQKLS0tIGEvdGVzdHMvaTkxNS9nZW1fbW1hcF9vZmZzZXQuYworKysgYi90ZXN0
-cy9pOTE1L2dlbV9tbWFwX29mZnNldC5jCkBAIC0xMjgsNyArMTI4LDcgQEAgc3RhdGljIHZvaWQg
-YmFzaWNfdWFmKGludCBpOTE1KQogewogCWNvbnN0IHVpbnQzMl90IG9ial9zaXplID0gNDA5NjsK
-IAotCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeworCWZvcl9lYWNoX21tYXBfb2Zmc2V0
-X3R5cGUoaTkxNSwgdCkgewogCQl1aW50MzJfdCBoYW5kbGUgPSBnZW1fY3JlYXRlKGk5MTUsIG9i
-al9zaXplKTsKIAkJdWludDhfdCAqZXhwZWN0ZWQsICpidWYsICphZGRyOwogCkBAIC0xNzYsNyAr
-MTc2LDcgQEAgc3RhdGljIHZvaWQgYmFzaWNfdWFmKGludCBpOTE1KQogCiBzdGF0aWMgdm9pZCBp
-c29sYXRpb24oaW50IGk5MTUpCiB7Ci0JZm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZSh0KSB7CisJ
-Zm9yX2VhY2hfbW1hcF9vZmZzZXRfdHlwZShpOTE1LCB0KSB7CiAJCXN0cnVjdCBkcm1faTkxNV9n
-ZW1fbW1hcF9vZmZzZXQgbW1hcF9hcmcgPSB7CiAJCQkuZmxhZ3MgPSB0LT50eXBlCiAJCX07CkBA
-IC0yNDUsNyArMjQ1LDcgQEAgc3RhdGljIHZvaWQgcGZfbm9uYmxvY2soaW50IGk5MTUpCiB7CiAJ
-aWd0X3NwaW5fdCAqc3BpbiA9IGlndF9zcGluX25ldyhpOTE1KTsKIAotCWZvcl9lYWNoX21tYXBf
-b2Zmc2V0X3R5cGUodCkgeworCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUoaTkxNSwgdCkgewog
-CQl1aW50MzJfdCAqcHRyOwogCiAJCXB0ciA9IF9fbW1hcF9vZmZzZXQoaTkxNSwgc3Bpbi0+aGFu
-ZGxlLCAwLCA0MDk2LApAQCAtMzI0LDcgKzMyNCw3IEBAIHN0YXRpYyB2b2lkIG9wZW5fZmxvb2Qo
-aW50IGk5MTUsIGludCB0aW1lb3V0KQogCWhhbmRsZSA9IGdlbV9jcmVhdGUoaTkxNSwgNDA5Nik7
-CiAJZG1hYnVmID0gcHJpbWVfaGFuZGxlX3RvX2ZkKGk5MTUsIGhhbmRsZSk7CiAKLQlmb3JfZWFj
-aF9tbWFwX29mZnNldF90eXBlKHQpIHsKKwlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGk5MTUs
-IHQpIHsKIAkJc3RydWN0IGRybV9pOTE1X2dlbV9tbWFwX29mZnNldCBhcmcgPSB7CiAJCQkuaGFu
-ZGxlID0gaGFuZGxlLAogCQkJLmZsYWdzID0gdC0+dHlwZSwKQEAgLTM1MSw3ICszNTEsNyBAQCBz
-dGF0aWMgdm9pZCBvcGVuX2Zsb29kKGludCBpOTE1LCBpbnQgdGltZW91dCkKIAkJdG1wID0gZ2Vt
-X3Jlb3Blbl9kcml2ZXIoaTkxNSk7CiAJCWhhbmRsZSA9IHByaW1lX2ZkX3RvX2hhbmRsZShpOTE1
-LCBkbWFidWYpOwogCi0JCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkgeworCQlmb3JfZWFj
-aF9tbWFwX29mZnNldF90eXBlKGk5MTUsIHQpIHsKIAkJCXN0cnVjdCBkcm1faTkxNV9nZW1fbW1h
-cF9vZmZzZXQgYXJnID0gewogCQkJCS5oYW5kbGUgPSBoYW5kbGUsCiAJCQkJLmZsYWdzID0gdC0+
-dHlwZSwKZGlmZiAtLWdpdCBhL3Rlc3RzL2k5MTUvaTkxNV9wbV9ycG0uYyBiL3Rlc3RzL2k5MTUv
-aTkxNV9wbV9ycG0uYwppbmRleCAwYzI4MjExMjIuLjFiZWM4MGRiNyAxMDA2NDQKLS0tIGEvdGVz
-dHMvaTkxNS9pOTE1X3BtX3JwbS5jCisrKyBiL3Rlc3RzL2k5MTUvaTkxNV9wbV9ycG0uYwpAQCAt
-MjAwNiw3ICsyMDA2LDcgQEAgaWd0X21haW5fYXJncygiIiwgbG9uZ19vcHRpb25zLCBoZWxwX3N0
-ciwgb3B0X2hhbmRsZXIsIE5VTEwpCiAKIAkvKiBHRU0gKi8KIAlpZ3Rfc3VidGVzdF93aXRoX2R5
-bmFtaWMoImdlbS1tbWFwLXR5cGUiKSB7Ci0JCWZvcl9lYWNoX21tYXBfb2Zmc2V0X3R5cGUodCkg
-eworCQlmb3JfZWFjaF9tbWFwX29mZnNldF90eXBlKGRybV9mZCwgdCkgewogCQkJaWd0X2R5bmFt
-aWNfZigiJXMiLCB0LT5uYW1lKQogCQkJCWdlbV9tbWFwX2FyZ3ModCk7CiAJCX0KLS0gCjIuMjEu
-MAoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
-Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Currently unavoidable lockedp loop related to userptr MMU notifier
+exists in the i915 driver.  For that reason, attempts to set up a
+mmap-offset (or mmap-gtt) mapping to a userptr object may be now
+preventively rejected by the driver.
+
+A test should exists which checks for that.  Would a mapping attempt
+succeed, the test should trigger the MMU notifier in a way that is
+proven to result in the lockdep slpat.
+
+As that exercise is strictly userptr related, it has been decided to
+add it as a new subtest to gem_userptr_blits.  The new subtest examines
+userptr interaction with every supported mmap-offset type mapping on
+top of it.
+
+v2: Move the subtest from gem_mmap_offset to gem_userptr_blits,
+  - use dynamic subtests (Chris),
+  - don't FAIL but SKIP on mmap-offset attempt failure (Chris),
+  - on success, try to anger lockdep (Chris).
+
+Suggested-by: Chris Wilson <chris@chris-wilson.co.uk
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+In order to be able to prove the proposed method of angering lockdep
+actually works,  I'm going to submit a kernel patch that reverts commit
+f6c26b555e14 ("drm/i915: Never allow userptr into the new mapping
+types") to be tested on Trybot together with this one, so at least
+non-GTT mmap-offset attempts succeed and the MMU notifier is triggered.
+
+Thanks,
+Janusz
+
+ tests/i915/gem_userptr_blits.c | 42 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
+index fcad374ef..5f716a3ea 100644
+--- a/tests/i915/gem_userptr_blits.c
++++ b/tests/i915/gem_userptr_blits.c
+@@ -797,6 +797,42 @@ static int test_map_fixed_invalidate(int fd, uint32_t flags)
+ 	return 0;
+ }
+ 
++static void test_mmap_offset_invalidate(int fd, const struct mmap_offset *t)
++{
++	void *ptr, *map;
++	uint32_t handle;
++
++	/* check if mmap_offset type is supported by hardware, skip if not */
++	handle = gem_create(fd, PAGE_SIZE);
++	map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
++				PROT_READ | PROT_WRITE, t->type);
++	igt_require_f(map,
++		      "HW & kernel support for mmap_offset(%s)\n", t->name);
++	munmap(map, PAGE_SIZE);
++	gem_close(fd, handle);
++
++	/* create userptr object */
++	igt_assert_eq(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE), 0);
++	gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
++
++	/* set up mmap-offset mapping on top of the object, skip if refused */
++	map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
++				PROT_READ | PROT_WRITE, t->type);
++	igt_skip_on_f(!map && errno == -ENODEV,
++		      "lockdep loop preventive failure possibly occurred\n");
++	igt_assert(map);
++
++	/* set object pages in order to activate MMU notifier for it */
++	gem_set_domain(fd, handle, t->domain, t->domain);
++
++	/* trigger the notifier */
++	munmap(ptr, PAGE_SIZE);
++
++	/* cleanup */
++	munmap(map, PAGE_SIZE);
++	gem_close(fd, handle);
++}
++
+ static int test_forbidden_ops(int fd)
+ {
+ 	struct drm_i915_gem_pread gem_pread;
+@@ -2170,6 +2206,12 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
+ 			}
+ 		}
+ 
++		igt_describe("Invalidate pages of userptr with mmap-offset on top");
++		igt_subtest_with_dynamic("mmap-offset-invalidate")
++			for_each_mmap_offset_type(fd, t)
++				igt_dynamic_f("%s", t->name)
++					test_mmap_offset_invalidate(fd, t);
++
+ 		igt_subtest("coherency-sync")
+ 			test_coherency(fd, count);
+ 
+-- 
+2.21.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
