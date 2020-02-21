@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 885BE168898
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:04:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 035C8168899
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:04:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1516F6F526;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7BB46F52A;
 	Fri, 21 Feb 2020 21:03:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B5C6F511
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 21:03:40 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id y11so3528048wrt.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 13:03:40 -0800 (PST)
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F8736F522
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 21:03:41 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id r11so3524428wrq.10
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 13:03:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=9nD53yPZX4v8vgtD8EOoZEhsSHssxTCZRe0/MkLpBlw=;
- b=gLJtX00Vg5JU3ArhBwZKhK9Z4vjUUjZc1J5dX/GjnIc218ure4A0dywCW0bnmLuoGd
- DqCMW5ecji2gG3xhy6PRd4cpKC6qWVaGvyD5FExu2SZfOlCM41YWxVnqCl2HRAmmk0b7
- Ign9ymlUh9DVMa5b7En+CDvav7dY4t3PXaWKQ=
+ bh=q7MWd5yKDDN4kYPLlNzre71uaGPyUp7BlB0OXWxic1I=;
+ b=HmHnKc8O3LaXCEq6vibOoz4VL3wFj2DwDlFe7VDIA5K0lefT/mmHJW20b+GpwRX/1i
+ Pgl2bYI+DkoCskYja46KSzbjQG2snq3D2QHKITyTBHLMtXIpO3DiJmg/3L01ISWHy6Lw
+ m7L2/lmvDTmVF08D/+m/WTCq1whSLP8U1fA4o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=9nD53yPZX4v8vgtD8EOoZEhsSHssxTCZRe0/MkLpBlw=;
- b=dWu0UIytG42n0CkcZiZHzOQrV6rdSdf4H+c17C4QvJs+MlsGcpwzX5cYJpechIbSoi
- bX+XTXJqNydtiz1M9xS40wprSmwyxyktNTSZWGRf5om4r19c8wFrtFRpr//dUuzVXR/y
- dD+OlC/PmooEutHYYpSzPC/PL4X+t4Jw9Iw/ZtS+Ofslu1ZyCNEJXP0maDJ9skq4Ikfp
- 48Q7Rq0y12/Gk4alIIwfQxkeqAwwC/uhPYOUg3i3GOIm9SgxATCLF6W5X6g1UYYueOdg
- jfbmInMBDyZuWW+9WzJtlGFCv2hUCtl0TyLV+x0c4kvdblFljNtg1QHvBfFji+liP9uL
- hqXw==
-X-Gm-Message-State: APjAAAUut7XkXVgsJy0xHfy3NeZIIrL3wPxFftIYJrK+PzGn93pDYhWV
- wHyq7uCTuWU4vbMb9OjGGUIUkg==
-X-Google-Smtp-Source: APXvYqx609MWlI8G3v84wpPj7NcyO73xwNe4/Ay37NwKGM5VVP8qHe7AHiyPqpp+BQ5RitSQrEMb0A==
-X-Received: by 2002:adf:ec4c:: with SMTP id w12mr52987783wrn.124.1582319018705; 
- Fri, 21 Feb 2020 13:03:38 -0800 (PST)
+ bh=q7MWd5yKDDN4kYPLlNzre71uaGPyUp7BlB0OXWxic1I=;
+ b=HDhnVCshcBJiKxHw7AK1XGZGjs79tyFaAV0qqMkdZFPJCGRjpVdpVp4voa0Mz99PF+
+ twX79iG/A5GarXtFpigry9vn90vyA7bKWAP6qn3ms+c4L3eV+Ho7DjpqtnS00/6wtp3w
+ CXJYSmDv3Gbyj+R0P0iYGrTDi2J+8/MtVS0CfpCJlbhIJPCobQ33wkbmyuB6idvTmXbs
+ TiI1TYWmLL9cU6E9DyrO/eBpZ2NLulLZfw+WTKskh0CVjyCGe3mRS43XmH93OmSbcgb2
+ qTbUr5oV/f/imUxGXQIjz9mdStybcDzmFfCC/pmgq1FtZXkttNpiYc+PCC5bntqvHRPk
+ QQzw==
+X-Gm-Message-State: APjAAAWNCLU5sKASFksTb2VTNElZJpy0pxzn86Dns4qxmYKJKs7PHOAT
+ wGA9nf+bAjMI4jXLzakLtp0YaQ==
+X-Google-Smtp-Source: APXvYqwAfatSmqdVJs2mNGL8TD1RsnWLfWQUrfOI/1wgGKW9rAsKOL1Jvx9d9aWptOyihWl290STdQ==
+X-Received: by 2002:adf:eb51:: with SMTP id u17mr53747250wrn.29.1582319019850; 
+ Fri, 21 Feb 2020 13:03:39 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z6sm5483930wrw.36.2020.02.21.13.03.37
+ by smtp.gmail.com with ESMTPSA id z6sm5483930wrw.36.2020.02.21.13.03.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 13:03:38 -0800 (PST)
+ Fri, 21 Feb 2020 13:03:39 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 21 Feb 2020 22:02:36 +0100
-Message-Id: <20200221210319.2245170-9-daniel.vetter@ffwll.ch>
+Date: Fri, 21 Feb 2020 22:02:37 +0100
+Message-Id: <20200221210319.2245170-10-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
 References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/51] drm/i915: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH 09/51] drm/cirrus: Use drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,193 +65,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ virtualization@lists.linux-foundation.org,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
+ Sam Ravnborg <sam@ravnborg.org>, Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With this we can drop the final kfree from the release function.
-
-The mock device in the selftests needed it's pci_device split
-up from the drm_device. In the future we could simplify this again
-by allocating the pci_device as a managed allocation too.
-
-v2: I overlooked that i915_driver_destroy is also called in the
-unwind code of the error path. There we need a drm_dev_put.
-Similar for the mock object.
-
-Now the problem with that is that the drm_driver->release callbacks
-for both the real driver and the mock one assume everything has been
-set up. Hence going through that path for a partially set up driver
-will result in issues. Quickest fix is to disable the ->release() hook
-until the driver is fully initialized, and keep the onion unwinding.
-Long term would be cleanest to move everything over to drmm_ release
-actions, but that's a lot of work for a big driver like i915. Plus
-more core work needed first anyway.
-
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
----
- drivers/gpu/drm/i915/i915_drv.c                |  9 ++++++++-
- drivers/gpu/drm/i915/i915_drv.h                |  3 +++
- .../gpu/drm/i915/selftests/mock_gem_device.c   | 18 +++++++++++++++++-
- 3 files changed, 28 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 8b8a9c9a9b2a..ae81c74d0136 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -43,6 +43,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_irq.h>
-+#include <drm/drm_managed.h>
- #include <drm/drm_probe_helper.h>
- #include <drm/i915_drm.h>
- 
-@@ -1371,6 +1372,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	}
- 
- 	i915->drm.dev_private = i915;
-+	drmm_add_final_kfree(&i915->drm, i915);
- 
- 	i915->drm.pdev = pdev;
- 	pci_set_drvdata(pdev, i915);
-@@ -1390,7 +1392,6 @@ static void i915_driver_destroy(struct drm_i915_private *i915)
- 	struct pci_dev *pdev = i915->drm.pdev;
- 
- 	drm_dev_fini(&i915->drm);
--	kfree(i915);
- }
- 
- /**
-@@ -1466,6 +1467,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	i915_welcome_messages(i915);
- 
-+	i915->do_release = true;
-+
- 	return 0;
- 
- out_cleanup_hw:
-@@ -1482,6 +1485,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- out_fini:
- 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
- 	i915_driver_destroy(i915);
-+	drm_dev_put(&i915->drm);
- 	return ret;
- }
- 
-@@ -1528,6 +1532,9 @@ static void i915_driver_release(struct drm_device *dev)
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
- 
-+	if (!dev_priv->do_release)
-+		return;
-+
- 	disable_rpm_wakeref_asserts(rpm);
- 
- 	i915_gem_driver_release(dev_priv);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 4305ccc4c683..6e88eae40a87 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -884,6 +884,9 @@ struct i915_selftest_stash {
- struct drm_i915_private {
- 	struct drm_device drm;
- 
-+	/* FIXME: Device release actions should all be moved to drmm_ */
-+	bool do_release;
-+
- 	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
- 	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
- 	struct intel_driver_caps caps;
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 3b8986983afc..9b06d5ec889a 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -25,6 +25,8 @@
- #include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- 
-+#include <drm/drm_managed.h>
-+
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_requests.h"
- #include "gt/mock_engine.h"
-@@ -55,6 +57,9 @@ static void mock_device_release(struct drm_device *dev)
- {
- 	struct drm_i915_private *i915 = to_i915(dev);
- 
-+	if (!i915->do_release)
-+		return;
-+
- 	mock_device_flush(i915);
- 	intel_gt_driver_remove(&i915->gt);
- 
-@@ -114,9 +119,14 @@ struct drm_i915_private *mock_gem_device(void)
- 	struct pci_dev *pdev;
- 	int err;
- 
--	pdev = kzalloc(sizeof(*pdev) + sizeof(*i915), GFP_KERNEL);
-+	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
- 	if (!pdev)
- 		goto err;
-+	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
-+	if (!i915) {
-+		kfree(pdev);
-+		goto err;
-+	}
- 
- 	device_initialize(&pdev->dev);
- 	pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
-@@ -141,10 +151,13 @@ struct drm_i915_private *mock_gem_device(void)
- 	err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
- 	if (err) {
- 		pr_err("Failed to initialise mock GEM device: err=%d\n", err);
-+		kfree(i915);
-+
- 		goto put_device;
- 	}
- 	i915->drm.pdev = pdev;
- 	i915->drm.dev_private = i915;
-+	drmm_add_final_kfree(&i915->drm, i915);
- 
- 	intel_runtime_pm_init_early(&i915->runtime_pm);
- 
-@@ -189,6 +202,8 @@ struct drm_i915_private *mock_gem_device(void)
- 	__clear_bit(I915_WEDGED, &i915->gt.reset.flags);
- 	intel_engines_driver_register(i915);
- 
-+	i915->do_release = true;
-+
- 	return i915;
- 
- err_context:
-@@ -200,6 +215,7 @@ struct drm_i915_private *mock_gem_device(void)
- 	intel_memory_regions_driver_release(i915);
- 	drm_mode_config_cleanup(&i915->drm);
- 	drm_dev_fini(&i915->drm);
-+	drm_dev_put(&i915->drm);
- put_device:
- 	put_device(&pdev->dev);
- err:
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2l0aCB0aGlzIHdlIGNhbiBkcm9wIHRoZSBmaW5hbCBrZnJlZSBmcm9tIHRoZSByZWxlYXNlIGZ1
+bmN0aW9uLgoKSSBhbHNvIG5vdGljZWQgdGhhdCBjaXJydXMgZm9yZ290IHRvIGNhbGwgZHJtX2Rl
+dl9maW5pKCkuCgp2MjogRG9uJ3QgY2FsbCBrZnJlZShjaXJydXMpIGFmdGVyIHdlJ3ZlIGhhbmRl
+ZCBvdmVyc2hpcCBvZiB0aGF0IHRvCmRybV9kZXZpY2UgYW5kIHRoZSBkcm1tXyBzdHVmZi4KClNp
+Z25lZC1vZmYtYnk6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52ZXR0ZXJAaW50ZWwuY29tPgpDYzog
+RGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNvbT4KQ2M6IEdlcmQgSG9mZm1hbm4gPGtyYXhl
+bEByZWRoYXQuY29tPgpDYzogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBmZndsbC5jaD4K
+Q2M6ICJOb3JhbGYgVHLDuG5uZXMiIDxub3JhbGZAdHJvbm5lcy5vcmc+CkNjOiBMaW51cyBXYWxs
+ZWlqIDxsaW51cy53YWxsZWlqQGxpbmFyby5vcmc+CkNjOiBTYW0gUmF2bmJvcmcgPHNhbUByYXZu
+Ym9yZy5vcmc+CkNjOiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KQ2M6
+IHZpcnR1YWxpemF0aW9uQGxpc3RzLmxpbnV4LWZvdW5kYXRpb24ub3JnCi0tLQogZHJpdmVycy9n
+cHUvZHJtL2NpcnJ1cy9jaXJydXMuYyB8IDE0ICsrKysrKystLS0tLS0tCiAxIGZpbGUgY2hhbmdl
+ZCwgNyBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+Z3B1L2RybS9jaXJydXMvY2lycnVzLmMgYi9kcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1cy5j
+CmluZGV4IGQyZmY2M2NlOGVhZi4uMjIzMjU1NmNlMzRjIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vY2lycnVzL2NpcnJ1cy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVz
+LmMKQEAgLTM1LDYgKzM1LDcgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2dlbV9zaG1lbV9oZWxwZXIu
+aD4KICNpbmNsdWRlIDxkcm0vZHJtX2dlbV9mcmFtZWJ1ZmZlcl9oZWxwZXIuaD4KICNpbmNsdWRl
+IDxkcm0vZHJtX2lvY3RsLmg+CisjaW5jbHVkZSA8ZHJtL2RybV9tYW5hZ2VkLmg+CiAjaW5jbHVk
+ZSA8ZHJtL2RybV9tb2Rlc2V0X2hlbHBlcl92dGFibGVzLmg+CiAjaW5jbHVkZSA8ZHJtL2RybV9w
+cm9iZV9oZWxwZXIuaD4KICNpbmNsdWRlIDxkcm0vZHJtX3NpbXBsZV9rbXNfaGVscGVyLmg+CkBA
+IC01MjcsMTAgKzUyOCw4IEBAIHN0YXRpYyB2b2lkIGNpcnJ1c19tb2RlX2NvbmZpZ19pbml0KHN0
+cnVjdCBjaXJydXNfZGV2aWNlICpjaXJydXMpCiAKIHN0YXRpYyB2b2lkIGNpcnJ1c19yZWxlYXNl
+KHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiB7Ci0Jc3RydWN0IGNpcnJ1c19kZXZpY2UgKmNpcnJ1
+cyA9IGRldi0+ZGV2X3ByaXZhdGU7Ci0KIAlkcm1fbW9kZV9jb25maWdfY2xlYW51cChkZXYpOwot
+CWtmcmVlKGNpcnJ1cyk7CisJZHJtX2Rldl9maW5pKGRldik7CiB9CiAKIERFRklORV9EUk1fR0VN
+X0ZPUFMoY2lycnVzX2ZvcHMpOwpAQCAtNTc1LDkgKzU3NCwxMiBAQCBzdGF0aWMgaW50IGNpcnJ1
+c19wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsCiAKIAlkZXYgPSAmY2lycnVzLT5kZXY7
+CiAJcmV0ID0gZHJtX2Rldl9pbml0KGRldiwgJmNpcnJ1c19kcml2ZXIsICZwZGV2LT5kZXYpOwot
+CWlmIChyZXQpCi0JCWdvdG8gZXJyX2ZyZWVfY2lycnVzOworCWlmIChyZXQpIHsKKwkJa2ZyZWUo
+Y2lycnVzKTsKKwkJZ290byBlcnJfcGNpX3JlbGVhc2U7CisJfQogCWRldi0+ZGV2X3ByaXZhdGUg
+PSBjaXJydXM7CisJZHJtbV9hZGRfZmluYWxfa2ZyZWUoZGV2LCBjaXJydXMpOwogCiAJcmV0ID0g
+LUVOT01FTTsKIAljaXJydXMtPnZyYW0gPSBpb3JlbWFwKHBjaV9yZXNvdXJjZV9zdGFydChwZGV2
+LCAwKSwKQEAgLTYxOCw4ICs2MjAsNiBAQCBzdGF0aWMgaW50IGNpcnJ1c19wY2lfcHJvYmUoc3Ry
+dWN0IHBjaV9kZXYgKnBkZXYsCiAJaW91bm1hcChjaXJydXMtPnZyYW0pOwogZXJyX2Rldl9wdXQ6
+CiAJZHJtX2Rldl9wdXQoZGV2KTsKLWVycl9mcmVlX2NpcnJ1czoKLQlrZnJlZShjaXJydXMpOwog
+ZXJyX3BjaV9yZWxlYXNlOgogCXBjaV9yZWxlYXNlX3JlZ2lvbnMocGRldik7CiAJcmV0dXJuIHJl
+dDsKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
