@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FCE21684ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 18:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 131C41684F0
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 18:29:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D54906E44B;
-	Fri, 21 Feb 2020 17:29:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9306A6F4E7;
+	Fri, 21 Feb 2020 17:29:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D0356F4E6
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 17:29:35 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E40F6F4E7
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 17:29:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582306174;
+ s=mimecast20190719; t=1582306176;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=lc1NqF94incyQcopC/Dox1BDuYn451a0G+1WVUCmp8Q=;
- b=O0lPUDa6X0bUdI3p5c8gfvbyyH1zcV9AqfR0E3OOzrLZ7x5pkMQIYmeJ4BLjmcdPVWfjUx
- +FgCmBexA+cTSwCeqriOZjXp5Y00RGWJft5GHTWkbg5JpURq6F+HdtrwjXFWKxpaVBysVN
- k8ZTetlyf0m83McmODcbv1TTHYVehIU=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=L30wAdzsX20R3uas81dT/5ea8Szhyh5HgNjoGetAd34=;
+ b=jAT8t5k2fNh/TAUPUrabVQdcqk7q22/h+fnb3vf9q23IJNkaEYVMlNlLkXeCGMCPepgm8h
+ YsaGJ+fC5pgjxtSsXdlVAlnUAJjSnHsrEn6KmujjKJGIihtYKWwV56Xh2BFuIHDUuDWav6
+ csZzXjHfGVFO1Y+azF4hs+WzP40cSkA=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-131-0OQW9_xgMnOabR68oiNlmQ-1; Fri, 21 Feb 2020 12:29:32 -0500
-X-MC-Unique: 0OQW9_xgMnOabR68oiNlmQ-1
+ us-mta-176-EBv9ItfrPWaB4Zk7xM22Tg-1; Fri, 21 Feb 2020 12:29:34 -0500
+X-MC-Unique: EBv9ItfrPWaB4Zk7xM22Tg-1
 Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com
  [10.5.11.13])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 420AE133656E;
- Fri, 21 Feb 2020 17:29:31 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7F9CE18AB2D1;
+ Fri, 21 Feb 2020 17:29:33 +0000 (UTC)
 Received: from x1.localdomain.com (ovpn-116-191.ams2.redhat.com
  [10.36.116.191])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4FF14909E2;
- Fri, 21 Feb 2020 17:29:29 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9F27C8ED1A;
+ Fri, 21 Feb 2020 17:29:31 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Fri, 21 Feb 2020 18:29:26 +0100
-Message-Id: <20200221172927.510027-1-hdegoede@redhat.com>
+Date: Fri, 21 Feb 2020 18:29:27 +0100
+Message-Id: <20200221172927.510027-2-hdegoede@redhat.com>
+In-Reply-To: <20200221172927.510027-1-hdegoede@redhat.com>
+References: <20200221172927.510027-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [PATCH resend 1/2] drm/i915: panel: Use
- intel_panel_compute_brightness() from pwm_setup_backlight()
+Subject: [Intel-gfx] [PATCH resend 2/2] drm/i915: Add invert-brightness
+ quirk for Thundersoft TST178 tablet
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,59 +71,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use intel_panel_compute_brightness() from pwm_setup_backlight() so that
-we correctly take i915_modparams.invert_brightness and/or
-QUIRK_INVERT_BRIGHTNESS into account when setting + getting the initial
-brightness value.
+The Thundersoft TST178 tablet uses a DSI panel with an external PWM
+controller (as all DSI panels do). But unlike other DSI panels a duty-cycle
+of 100% turns the backlight off and 0% sets it to maximum brightness.
+
+I've checked the VBT and there is a BDB_LVDS_BACKLIGHT section, but
+it does not set the active_low_pwm flag. This tablet re-uses the main
+PCI vendor and product ids for the subsystem ids, so I see no other option
+then to add a DMI based quirk to fix this.
+
+Note that the PWM backlight code in intel_panel.c currently does not honor
+the vbt.active_low_pwm flag, but that does not matter in this case.
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_panel.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_quirks.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 7b3ec6eb3382..9ebee7d93414 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -1843,6 +1843,7 @@ static int pwm_setup_backlight(struct intel_connector *connector,
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_panel *panel = &connector->panel;
- 	const char *desc;
-+	u32 level, ns;
- 	int retval;
- 
- 	/* Get the right PWM chip for DSI backlight according to VBT */
-@@ -1866,8 +1867,12 @@ static int pwm_setup_backlight(struct intel_connector *connector,
- 	 */
- 	pwm_apply_args(panel->backlight.pwm);
- 
--	retval = pwm_config(panel->backlight.pwm, CRC_PMIC_PWM_PERIOD_NS,
--			    CRC_PMIC_PWM_PERIOD_NS);
-+	panel->backlight.min = 0; /* 0% */
-+	panel->backlight.max = 100; /* 100% */
-+	level = intel_panel_compute_brightness(connector, 100);
-+	ns = DIV_ROUND_UP(level * CRC_PMIC_PWM_PERIOD_NS, 100);
-+
-+	retval = pwm_config(panel->backlight.pwm, ns, CRC_PMIC_PWM_PERIOD_NS);
- 	if (retval < 0) {
- 		DRM_ERROR("Failed to configure the pwm chip\n");
- 		pwm_put(panel->backlight.pwm);
-@@ -1875,11 +1880,10 @@ static int pwm_setup_backlight(struct intel_connector *connector,
- 		return retval;
- 	}
- 
--	panel->backlight.min = 0; /* 0% */
--	panel->backlight.max = 100; /* 100% */
--	panel->backlight.level = DIV_ROUND_UP(
--				 pwm_get_duty_cycle(panel->backlight.pwm) * 100,
--				 CRC_PMIC_PWM_PERIOD_NS);
-+	level = DIV_ROUND_UP(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
-+			     CRC_PMIC_PWM_PERIOD_NS);
-+	panel->backlight.level =
-+		intel_panel_compute_brightness(connector, level);
- 	panel->backlight.enabled = panel->backlight.level != 0;
- 
- 	DRM_INFO("Using %s PWM for LCD backlight control\n", desc);
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 399b1542509f..54dba152ead8 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -82,6 +82,16 @@ static const struct intel_dmi_quirk intel_dmi_quirks[] = {
+ 					    DMI_MATCH(DMI_PRODUCT_NAME, ""),
+ 				},
+ 			},
++			{
++				.callback = intel_dmi_reverse_brightness,
++				.ident = "Thundersoft TST178 tablet",
++				/* DMI strings are too generic, also match on BIOS date */
++				.matches = {DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "AMI Corporation"),
++					    DMI_EXACT_MATCH(DMI_BOARD_NAME, "Aptio CRB"),
++					    DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "To be filled by O.E.M."),
++					    DMI_EXACT_MATCH(DMI_BIOS_DATE, "04/15/2014"),
++				},
++			},
+ 			{ }  /* terminating entry */
+ 		},
+ 		.hook = quirk_invert_brightness,
 -- 
 2.25.0
 
