@@ -1,35 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DDA31681ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 16:38:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46B231681FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 16:40:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D079E6F48C;
-	Fri, 21 Feb 2020 15:38:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F8166F48B;
+	Fri, 21 Feb 2020 15:40:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 356756F489;
- Fri, 21 Feb 2020 15:38:54 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20304006-1500050 for multiple; Fri, 21 Feb 2020 15:38:34 +0000
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90B476F48B;
+ Fri, 21 Feb 2020 15:40:35 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 07:40:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,468,1574150400"; d="scan'208";a="225247479"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 21 Feb 2020 07:40:32 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 21 Feb 2020 17:40:31 +0200
+Date: Fri, 21 Feb 2020 17:40:31 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+Message-ID: <20200221154031.GQ13686@intel.com>
+References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+ <CACvgo50pCb4OafEs9tLm7YEPqHc+BtDAvagRnwjXtZeQDNwUwg@mail.gmail.com>
+ <20200220142759.GA13686@intel.com>
+ <20200220153426.GC13686@intel.com> <871rqoyy42.fsf@intel.com>
+ <20200221114309.GM13686@intel.com>
+ <CAKMK7uGTpEHuBA09FuUA5ihPLtw7s+6=YBfQ2A4i=8Q-4SsRjA@mail.gmail.com>
 MIME-Version: 1.0
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <2714492.eSyeoD3iCD@jkrzyszt-desk.ger.corp.intel.com>
-References: <20200221111701.30006-1-janusz.krzysztofik@linux.intel.com>
- <20200221111701.30006-3-janusz.krzysztofik@linux.intel.com>
- <158229528380.6499.10205591790332300594@skylake-alporthouse-com>
- <2714492.eSyeoD3iCD@jkrzyszt-desk.ger.corp.intel.com>
-Message-ID: <158229951247.7320.6866015757235628790@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 21 Feb 2020 15:38:32 +0000
-Subject: Re: [Intel-gfx] [RFC PATCH i-g-t v2 2/2] tests/gem_userptr_blits:
- Exercise mmap-offset mapping to userptr
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uGTpEHuBA09FuUA5ihPLtw7s+6=YBfQ2A4i=8Q-4SsRjA@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 00/12] drm: Put drm_display_mode on diet
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,32 +52,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Janusz Krzysztofik (2020-02-21 15:36:08)
-> Hi Chris,
-> 
-> Thanks for review.
-> 
-> On Friday, February 21, 2020 3:28:03 PM CET Chris Wilson wrote:
-> > Quoting Janusz Krzysztofik (2020-02-21 11:17:01)
-> > > +       /* set object pages in order to activate MMU notifier for it */
-> > > +       gem_set_domain(fd, handle, t->domain, t->domain);
-> > 
-> > I would suggest (a variant?) that also attached a igt_spin_t to the userptr,
-> > waited for it to start executing, call igt_spin_set_timeout and then do
-> > the munmap.
-> 
-> OK.  Will that be OK if I prepare a follow up patch with that subtest variant 
-> added?
+On Fri, Feb 21, 2020 at 03:42:56PM +0100, Daniel Vetter wrote:
+> On Fri, Feb 21, 2020 at 12:43 PM Ville Syrj=E4l=E4
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > On Fri, Feb 21, 2020 at 01:32:29PM +0200, Jani Nikula wrote:
+> > > On Thu, 20 Feb 2020, Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com=
+> wrote:
+> > > > Looks like getting rid of private_flags is going to be pretty
+> > > > straightforward. I'll post patches for that once this first series
+> > > > lands.
+> > >
+> > > Going all in on crtc state? I suppose migrating away from private_fla=
+gs
+> > > could easily start in i915 before that. Seems rather independent.
+> > >
+> > > I guess it's __intel_get_crtc_scanline() and:
+> > >
+> > >       vblank =3D &crtc->base.dev->vblank[drm_crtc_index(&crtc->base)];
+> > >       mode =3D &vblank->hwmode;
+> > >
+> > >       if (mode->private_flags & I915_MODE_FLAG_GET_SCANLINE_FROM_TIME=
+STAMP)
+> > >
+> > > that gives me the creeps in reviewing all that.
+> > >
+> > > There's also [1] adding new uses for private_flags; I think there were
+> > > issues in getting at the right crtc state on some of those paths, but=
+ I
+> > > forget the exact details. Ideas?
+> >
+> > I'm just going to move them to the crtc_state and put a copy into the
+> > crtc itself for the vblank code. Pretty much a 1:1 replacement.
+> > Saves me from having to think ;)
+> =
 
-Perfectly acceptable.
--Chris
+> I've looked through the patches, and didn't spot any place where we
+> couldn't just get at the full crtc state. Might need some crtc->state
+> dereferencing and upcasting and making sure stuff is ordered correctly
+> with enable/disable paths of crtc, but nothing to jump over.
+
+swap_state() could easily race with the irq handler. I guess
+practically unlikely the old crtc state would disappear before
+the irq handler is done, but still seems somewhat dubious.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
