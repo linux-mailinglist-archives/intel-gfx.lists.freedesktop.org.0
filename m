@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29243168897
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:04:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA1FB168896
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:04:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A3436F527;
-	Fri, 21 Feb 2020 21:03:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48126F524;
+	Fri, 21 Feb 2020 21:03:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCC616F51C
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 21:03:37 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id c9so3525756wrw.8
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 13:03:37 -0800 (PST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD7B36F51C
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 21:03:38 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id n10so3557319wrm.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 13:03:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=gKWR/t9h5ZQ8oC0csntnZ62otqvVOekkZh+S0/SdzhE=;
- b=TzE+QYA5e4H1ERPWfuNEF+gpqabhL1tTjGYtGrBHv2QC7+C17e+i0CGwnVa1MBePf+
- qdLwXvYZOyRG+Mu5dhKjn12Ef+R/3LCk0I4hc8iFs5wx0FxzHL7jbCJMXH+NVxm/MIGm
- YOoWrJL2GRxeePzFVXN8UGPfqCdmusjN7Pm+c=
+ bh=jGkQy6GARMrTdcko1Rer3WUnvLpzhV0C66wlxAxhWNE=;
+ b=OUs744sfBj5Yz8FxWBbt8pW3CMj0kJQQuffQ6w3kONmB7i7nLUpEo6lRzYKC9JV7i8
+ 9TpKdlpvdxRAbYZqx3zz4rE0OH6c3o/y5Fpet2Z6OUurTg1yZRHHBiYlNaBdnqY/abnm
+ Osr1M+2I5bcERAqC/o5bxjfmgVS5FgYaCozLI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=gKWR/t9h5ZQ8oC0csntnZ62otqvVOekkZh+S0/SdzhE=;
- b=SlSje+Byh8XoArzWttghh1LACuErzz4h4uhPFUwb8FGi9TbPPSPj9fVzgr8oJY2qbE
- 0D2gI4PEvDgWMWUJ/t5fOSA/j4UtUyU3Wsa7i5NpoDuIMKiPVOASdubtPghPDr+rgQgW
- sVvPr4cl6n1NEyXmP0TTG3tnFjjMgoFK/Fx7edOC5hMJiqnEBG4ImINIJDnpKR1lItgQ
- 06OBUYHZ5/OUaKu3cD/BsfdoOpBSshaUlpPFn1oaOjV+QdM2KemjSOIuwh6X2tAWnvnd
- zAdahYM9jAfCpvbVnj1oq5ZF1rbarsx8jUidFwwE8B3Y7ldZmIXKkaH0xXvCgwNlPCn0
- /19A==
-X-Gm-Message-State: APjAAAUQLppgbljCmb+FQQHhfHqaLyOj8PD2O0jJNL7YFrlqw2GU6yTZ
- 9aWDGaClwiSW3h+a2hFifnVjXA==
-X-Google-Smtp-Source: APXvYqwHS3wNfXJc+el08SanFXgdvHDfR4f/8UZJNgK8WmMARaRphlMxSQx0jCyDS4QaJjAPlpOJdg==
-X-Received: by 2002:adf:e8ca:: with SMTP id k10mr47662067wrn.50.1582319016492; 
- Fri, 21 Feb 2020 13:03:36 -0800 (PST)
+ bh=jGkQy6GARMrTdcko1Rer3WUnvLpzhV0C66wlxAxhWNE=;
+ b=pdN+VbBZJ/aR4Snhh3poYg5BKOnMRKyLGjRSvFJ7W5N3NVtIPho0NAQakpz+dPdwia
+ C+Zjegusb1iItiwtqnOSmFMWaBnYzUho4Hu8gNgqnhzqpoIdP7kEPTD0hsk6jw+M3Br2
+ oxT6W+v0Dnho1MM3PfC1wKGZF/4p4DPZOdfnffODrsF4h93yVdwrM5+A5Ld0HKpyRqMm
+ +9bml0QJPFlH0PeZUY/TD3Fd/5ND7eNFi2f4kGWFJsfJyGWmS34oZLhBea3IqDat1OvN
+ J+SM050QR6LMbwIZ2vNw7iFMuIjq2iv27gq0+S6RoTA1+98rpxLKdcJ5RFwwA23sdc7O
+ SMQw==
+X-Gm-Message-State: APjAAAVd+0e9ezuY620EJfsmWBPGQJfJyeC/EwVT2jojM4kZ5N+Viba0
+ QhVTz8FkL5kKjJLbYXFnHoSc/w==
+X-Google-Smtp-Source: APXvYqzmMEGPKaIKETbiA7OJ6Ovghfws0dfiq7Mol0uFNN7+X3yV0LhNGEsGp238gAJXe0N+E0ExQw==
+X-Received: by 2002:a5d:5011:: with SMTP id e17mr47740612wrt.134.1582319017533; 
+ Fri, 21 Feb 2020 13:03:37 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z6sm5483930wrw.36.2020.02.21.13.03.35
+ by smtp.gmail.com with ESMTPSA id z6sm5483930wrw.36.2020.02.21.13.03.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 13:03:35 -0800 (PST)
+ Fri, 21 Feb 2020 13:03:36 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Fri, 21 Feb 2020 22:02:34 +0100
-Message-Id: <20200221210319.2245170-7-daniel.vetter@ffwll.ch>
+Date: Fri, 21 Feb 2020 22:02:35 +0100
+Message-Id: <20200221210319.2245170-8-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
 References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/51] drm/udl: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH 07/51] drm/qxl: Use drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +63,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sam Ravnborg <sam@ravnborg.org>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>,
- Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Dave Airlie <airlied@redhat.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2l0aCB0aGlzIHdlIGNhbiBkcm9wIHRoZSBmaW5hbCBrZnJlZSBmcm9tIHRoZSByZWxlYXNlIGZ1
-bmN0aW9uLgoKdjI6IFdlIG5lZWQgZHJtX2Rldl9wdXQgdG8gdW5yb2xsIHRoZSBkcml2ZXIgY3Jl
-YXRpb24gKG9uY2UKZHJtX2Rldl9pbml0IGFuZCBkcm1tX2FkZF9maW5hbF9rZnJlZSBzdWNlZWRl
-ZCksIG90aGVyd2lzZQp0aGUgZHJtbV8gbWFnaWMgZG9lc24ndCBoYXBwZW4uCgp2MzogQWN0dWFs
-bHkgc3F1YXNoIGluIHRoZSBmaXh1cCAoTGF1cmVudCkuCgpTaWduZWQtb2ZmLWJ5OiBEYW5pZWwg
-VmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KQ2M6IExhdXJlbnQgUGluY2hhcnQgPGxh
-dXJlbnQucGluY2hhcnRAaWRlYXNvbmJvYXJkLmNvbT4KQ2M6IERhdmUgQWlybGllIDxhaXJsaWVk
-QHJlZGhhdC5jb20+CkNjOiBTZWFuIFBhdWwgPHNlYW5AcG9vcmx5LnJ1bj4KQ2M6IFRob21hcyBa
-aW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPgpDYzogRW1pbCBWZWxpa292IDxlbWlsLmwu
-dmVsaWtvdkBnbWFpbC5jb20+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xs
-LmNoPgpDYzogIk5vcmFsZiBUcsO4bm5lcyIgPG5vcmFsZkB0cm9ubmVzLm9yZz4KQ2M6IFRob21h
-cyBHbGVpeG5lciA8dGdseEBsaW51dHJvbml4LmRlPgpDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2
-bmJvcmcub3JnPgotLS0KIGRyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX2Rydi5jIHwgNiArKystLS0K
-IDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vdWRs
-L3VkbF9kcnYuYwppbmRleCBlNmMxY2Q3N2Q0ZDQuLjZhNTU5NDk0NjA5NiAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfZHJ2LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3VkbC91
-ZGxfZHJ2LmMKQEAgLTEwLDYgKzEwLDcgQEAKICNpbmNsdWRlIDxkcm0vZHJtX2ZiX2hlbHBlci5o
-PgogI2luY2x1ZGUgPGRybS9kcm1fZmlsZS5oPgogI2luY2x1ZGUgPGRybS9kcm1fZ2VtX3NobWVt
-X2hlbHBlci5oPgorI2luY2x1ZGUgPGRybS9kcm1fbWFuYWdlZC5oPgogI2luY2x1ZGUgPGRybS9k
-cm1faW9jdGwuaD4KICNpbmNsdWRlIDxkcm0vZHJtX3Byb2JlX2hlbHBlci5oPgogI2luY2x1ZGUg
-PGRybS9kcm1fcHJpbnQuaD4KQEAgLTM4LDcgKzM5LDYgQEAgc3RhdGljIHZvaWQgdWRsX2RyaXZl
-cl9yZWxlYXNlKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCiAJdWRsX2ZpbmkoZGV2KTsKIAl1ZGxf
-bW9kZXNldF9jbGVhbnVwKGRldik7CiAJZHJtX2Rldl9maW5pKGRldik7Ci0Ja2ZyZWUoZGV2KTsK
-IH0KIAogc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGRyaXZlciA9IHsKQEAgLTc3LDExICs3Nywx
-MSBAQCBzdGF0aWMgc3RydWN0IHVkbF9kZXZpY2UgKnVkbF9kcml2ZXJfY3JlYXRlKHN0cnVjdCB1
-c2JfaW50ZXJmYWNlICppbnRlcmZhY2UpCiAKIAl1ZGwtPnVkZXYgPSB1ZGV2OwogCXVkbC0+ZHJt
-LmRldl9wcml2YXRlID0gdWRsOworCWRybW1fYWRkX2ZpbmFsX2tmcmVlKCZ1ZGwtPmRybSwgdWRs
-KTsKIAogCXIgPSB1ZGxfaW5pdCh1ZGwpOwogCWlmIChyKSB7Ci0JCWRybV9kZXZfZmluaSgmdWRs
-LT5kcm0pOwotCQlrZnJlZSh1ZGwpOworCQlkcm1fZGV2X3B1dCgmdWRsLT5kcm0pOwogCQlyZXR1
-cm4gRVJSX1BUUihyKTsKIAl9CiAKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxt
-YW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+With this we can drop the final kfree from the release function.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
+Cc: virtualization@lists.linux-foundation.org
+Cc: spice-devel@lists.freedesktop.org
+---
+ drivers/gpu/drm/qxl/qxl_drv.c | 2 --
+ drivers/gpu/drm/qxl/qxl_kms.c | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
+index 4fda3f9b29f4..09102e2efabc 100644
+--- a/drivers/gpu/drm/qxl/qxl_drv.c
++++ b/drivers/gpu/drm/qxl/qxl_drv.c
+@@ -144,8 +144,6 @@ static void qxl_drm_release(struct drm_device *dev)
+ 	 */
+ 	qxl_modeset_fini(qdev);
+ 	qxl_device_fini(qdev);
+-	dev->dev_private = NULL;
+-	kfree(qdev);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
+index 70b20ee4741a..09d7b5f6d172 100644
+--- a/drivers/gpu/drm/qxl/qxl_kms.c
++++ b/drivers/gpu/drm/qxl/qxl_kms.c
+@@ -27,6 +27,7 @@
+ #include <linux/pci.h>
+ 
+ #include <drm/drm_drv.h>
++#include <drm/drm_managed.h>
+ #include <drm/drm_probe_helper.h>
+ 
+ #include "qxl_drv.h"
+@@ -121,6 +122,7 @@ int qxl_device_init(struct qxl_device *qdev,
+ 	qdev->ddev.pdev = pdev;
+ 	pci_set_drvdata(pdev, &qdev->ddev);
+ 	qdev->ddev.dev_private = qdev;
++	drmm_add_final_kfree(&qdev->ddev, qdev);
+ 
+ 	mutex_init(&qdev->gem.mutex);
+ 	mutex_init(&qdev->update_area_mutex);
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
