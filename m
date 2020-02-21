@@ -2,38 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A53A8168913
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7A7616891F
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:18:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C686F575;
-	Fri, 21 Feb 2020 21:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E266F583;
+	Fri, 21 Feb 2020 21:18:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9788D6F56E;
- Fri, 21 Feb 2020 21:13:29 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 668AD20085;
- Fri, 21 Feb 2020 22:13:27 +0100 (CET)
-Date: Fri, 21 Feb 2020 22:13:26 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200221211326.GA3456@ravnborg.org>
-References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
- <20200219102122.1607365-53-daniel.vetter@ffwll.ch>
- <20200221202335.GB27701@ravnborg.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EC3866F582;
+ Fri, 21 Feb 2020 21:18:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E5848A47E4;
+ Fri, 21 Feb 2020 21:18:08 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200221202335.GB27701@ravnborg.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
- a=B7lRcbbRPIbKLViGkP0A:9 a=CjuIK1q_8ugA:10
-Subject: Re: [Intel-gfx] [PATCH 52/52] drm: Add docs for managed resources
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 21 Feb 2020 21:18:08 -0000
+Message-ID: <158231988893.7919.10659463207109417638@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200221094002.2481703-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200221094002.2481703-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
+ =?utf-8?q?eries_starting_with_=5B1/3=5D_drm/i915=3A_Flush_idle_barriers_w?=
+ =?utf-8?q?hen_waiting_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,24 +39,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Daniel.
+== Series Details ==
 
-> What I miss in all of this is how do other subsystems deal
-> with the different lifetime of their stuff?
-> Or maybe only drm really has this issue?
-> Anything we could learn from others?
-Reading through the thread - this is all covered in more than sufficient
-details in other mails. So forget this comment.
+Series: series starting with [1/3] drm/i915: Flush idle barriers when waiting (rev2)
+URL   : https://patchwork.freedesktop.org/series/73751/
+State : failure
 
-	Sam
+== Summary ==
+
+Applying: drm/i915: Flush idle barriers when waiting
+Applying: drm/i915: Allow userspace to specify ringsize on construction
+Applying: drm/i915/gem: Only call eb_lookup_vma once during execbuf ioctl
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0003 drm/i915/gem: Only call eb_lookup_vma once during execbuf ioctl
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
