@@ -2,51 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E15316881F
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 21:12:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E052A16884C
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 21:23:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3329C6F502;
-	Fri, 21 Feb 2020 20:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7DA26F503;
+	Fri, 21 Feb 2020 20:23:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB2A26F502
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 20:12:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 12:12:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,469,1574150400"; d="scan'208";a="225322860"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by orsmga007.jf.intel.com with ESMTP; 21 Feb 2020 12:12:00 -0800
-Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 21 Feb 2020 12:12:00 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- fmsmsx123.amr.corp.intel.com ([169.254.7.117]) with mapi id 14.03.0439.000;
- Fri, 21 Feb 2020 12:12:00 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v4] drm/i915/psr: Force PSR probe only after full
- initialization
-Thread-Index: AQHV6EOO/c1K0ED130Kyc8MAf9UQ+6gmmdEAgAACUIA=
-Date: Fri, 21 Feb 2020 20:11:59 +0000
-Message-ID: <3b53436178aaa66bc02b63838cc5c84c5d625cd7.camel@intel.com>
-References: <20200220231523.55197-1-jose.souza@intel.com>
- <ad25b866fb1512bd2a104aae99a0759e88412ae9.camel@intel.com>
-In-Reply-To: <ad25b866fb1512bd2a104aae99a0759e88412ae9.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.221]
-Content-ID: <F5CD24195D46344B9F019FE3EDC83E0C@intel.com>
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76E686F503;
+ Fri, 21 Feb 2020 20:23:40 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 852B120044;
+ Fri, 21 Feb 2020 21:23:36 +0100 (CET)
+Date: Fri, 21 Feb 2020 21:23:35 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200221202335.GB27701@ravnborg.org>
+References: <20200219102122.1607365-1-daniel.vetter@ffwll.ch>
+ <20200219102122.1607365-53-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/psr: Force PSR probe only after
- full initialization
+Content-Disposition: inline
+In-Reply-To: <20200219102122.1607365-53-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=e5mUnYsNAAAA:8
+ a=la3sf7WCWzTiMNMG3OsA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 52/52] drm: Add docs for managed resources
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,137 +45,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "zwisler@google.com" <zwisler@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCAyMDIwLTAyLTIxIGF0IDIwOjA0ICswMDAwLCBNdW4sIEd3YW4tZ3llb25nIHdyb3Rl
-Og0KPiBPbiBUaHUsIDIwMjAtMDItMjAgYXQgMTU6MTUgLTA4MDAsIEpvc8OpIFJvYmVydG8gZGUg
-U291emEgd3JvdGU6DQo+ID4gQ29tbWl0IDYwYzZhMTRiNDg5YiAoImRybS9pOTE1L2Rpc3BsYXk6
-IEZvcmNlIHRoZSBzdGF0ZSBjb21wdXRlDQo+ID4gcGhhc2UNCj4gPiBvbmNlIHRvIGVuYWJsZSBQ
-U1IiKSB3YXMgZm9yY2luZyB0aGUgc3RhdGUgY29tcHV0ZSB0b28gZWFybGllcg0KPiA+IGNhdXNp
-bmcgZXJyb3JzIGJlY2F1c2Ugbm90IGV2ZXJ5dGhpbmcgd2FzIGluaXRpYWxpemVkLCBzbyBoZXJl
-DQo+ID4gbW92aW5nIHRvIHRoZSBlbmQgb2YgaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZSgpIHdo
-ZW4gdGhlIGRpc3BsYXkNCj4gPiBpcw0KPiA+IGFsbCBpbml0aWFsaXplZC4NCj4gPiANCj4gPiBB
-bHNvIGZpeGluZyB0aGUgcGxhY2Ugd2hlcmUgaXQgZGlzYXJtIHRoZSBmb3JjZSBwcm9iZSBhcyBk
-dXJpbmcgdGhlDQo+ID4gYXRvbWljIGNoZWNrIHBoYXNlIGVycm9ycyBjb3VsZCBoYXBwZW4gbGlr
-ZSB0aGUgb25lcyBkdWUgbG9ja2luZw0KPiA+IGFuZA0KPiA+IGl0IHdvdWxkIGNhdXNlIFBTUiB0
-byBuZXZlciBiZSBlbmFibGVkIGlmIHRoYXQgaGFwcGVucy4NCj4gPiBMZWF2aW5nIHRoZSBkaXNh
-cm0gdG8gdGhlIGF0b21pYyBjb21taXQgcGhhc2UsIGludGVsX3Bzcl9lbmFibGUoKQ0KPiA+IG9y
-DQo+ID4gaW50ZWxfcHNyX3VwZGF0ZSgpIHdpbGwgYmUgY2FsbGVkIGV2ZW4gaWYgdGhlIGN1cnJl
-bnQgc3RhdGUgZG8gbm90DQo+ID4gYWxsb3cgUFNSIHRvIGJlIGVuYWJsZWQuDQo+ID4gDQo+ID4g
-djI6IENoZWNrIGlmIGludGVsX2RwIGlzIG51bGwgaW4gaW50ZWxfcHNyX2ZvcmNlX21vZGVfY2hh
-bmdlZF9zZXQoKQ0KPiA+IHYzOiBDaGVjayBpbnRlbF9kcCBiZWZvcmUgZ2V0IGRldl9wcml2DQo+
-ID4gdjQ6DQo+ID4gLSByZW5hbWVkIGludGVsX3Bzcl9mb3JjZV9tb2RlX2NoYW5nZWRfc2V0KCkg
-dG8NCj4gPiBpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpDQo+ID4gLSByZW1vdmVk
-IHRoZSBzZXQgcGFyYW1ldGVyIGZyb20gaW50ZWxfcHNyX3NldF9mb3JjZV9tb2RlX2NoYW5nZWQo
-KQ0KPiA+IC0gbm90IGNhbGxpbmcgaW50ZWxfcHNyX3NldF9mb3JjZV9tb2RlX2NoYW5nZWQoKSBm
-cm9tDQo+ID4gaW50ZWxfcHNyX2VuYWJsZS91cGRhdGUoKSwgZGlyZWN0bHkgc2V0dGluZyBpdCBh
-ZnRlciB0aGUgc2FtZQ0KPiA+IGNoZWNrcw0KPiA+IHRoYXQgaW50ZWxfcHNyX3NldF9mb3JjZV9t
-b2RlX2NoYW5nZWQoKSBkb2VzDQo+ID4gLSBtb3ZlZCBpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVf
-Y2hhbmdlZCgpIGFybSBjYWxsIHRvDQo+ID4gaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZSgpIGFz
-IGl0IGlzIGEgYmV0dGVyIGZvciBhIFBTUiBjYWxsLCBhbGwNCj4gPiB0aGUNCj4gPiBmdW5jdGlv
-bnMgY2FsbHMgaGFwcGVuaW5nIGJldHdlZW4gdGhlIG9sZCBhbmQgdGhlIG5ldyBmdW5jdGlvbiBj
-YWxsDQo+ID4gd2lsbCBjYXVzZSBpc3N1ZQ0KPiA+IA0KPiA+IEZpeGVzOiA2MGM2YTE0YjQ4OWIg
-KCJkcm0vaTkxNS9kaXNwbGF5OiBGb3JjZSB0aGUgc3RhdGUgY29tcHV0ZQ0KPiA+IHBoYXNlDQo+
-ID4gb25jZSB0byBlbmFibGUgUFNSIikNCj4gPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVk
-ZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzExNTENCj4gPiBUZXN0ZWQtYnk6IFJvc3MgWndp
-c2xlciA8endpc2xlckBnb29nbGUuY29tPg0KPiA+IFJlcG9ydGVkLWJ5OiBSb3NzIFp3aXNsZXIg
-PHp3aXNsZXJAZ29vZ2xlLmNvbT4NCj4gPiBDYzogR3dhbi1neWVvbmcgTXVuIDxnd2FuLWd5ZW9u
-Zy5tdW5AaW50ZWwuY29tPg0KPiA+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwu
-Y29tPg0KPiA+IENjOiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4uZ3VwdGFAaW50ZWwuY29tPg0K
-PiA+IFNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
-ZWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Bzci5jIHwgMjUgKysrKysrKysrKysrKysrKysrKysNCj4gPiAtLS0tDQo+ID4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmggfCAgMSArDQo+ID4gIGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAgfCAgMyArKysNCj4gPiAgZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICB8ICAyICstDQo+ID4gIDQgZmlsZXMgY2hhbmdl
-ZCwgMjYgaW5zZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+IGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiA+IGluZGV4IGI0OTQyYjY0NDVh
-ZS4uN2U3NTQyMDFmNTRkIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfcHNyLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jDQo+ID4gQEAgLTkzNiwxMCArOTM2LDEyIEBAIHZvaWQgaW50ZWxfcHNyX2Vu
-YWJsZShzdHJ1Y3QgaW50ZWxfZHANCj4gPiAqaW50ZWxfZHAsDQo+ID4gIHsNCj4gPiAgCXN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOw0KPiA+
-ICANCj4gPiAtCWlmICghY3J0Y19zdGF0ZS0+aGFzX3BzcikNCj4gRW5hYmxpbmcgb2YgY3J0Y19z
-dGF0ZS0+aGFzX3BzciBpcyBoYW5kbGVkIG9uDQo+IGludGVsX3Bzcl9jb21wdXRlX2NvbmZpZygp
-Lg0KPiBBbmQgdGhlIGludGVsX3Bzcl9jb21wdXRlX2NvbmZpZygpIGNoZWNrcyAiQ0FOX1BTUihk
-ZXZfcHJpdikgYW5kDQo+IGludGVsX2RwICE9IGRldl9wcml2LT5wc3IuZHAiLg0KPiB0aGVyZWZv
-cmUgaWYgd2UgaGF2ZSB0aGlzIGxpbmUgImlmICghY3J0Y19zdGF0ZS0+aGFzX3BzcikiLCB3ZSBk
-b24ndA0KPiBuZWVkIHRvIGFkZCAiaWYgKCFDQU5fUFNSKGRldl9wcml2KSB8fCBkZXZfcHJpdi0+
-cHNyLmRwICE9IGludGVsX2RwKSINCg0KY3J0Y19zdGF0ZS0+aGFzX3BzciB3aWxsIG9ubHkgYmUg
-c2V0IHRvIHRydWUgaWYgdGhlIHN0YXRlIGFsbG93cywgd2UNCmRvbid0IHdhbnQgdG8ga2VlcCBj
-b21wdXRpbmcgcGlwZSBjb25maWd1cmF0aW9uIGZvciBldmVyeSBmb2xsb3dpbmcNCnBhZ2UgZmxp
-cCBpZiBQU1IgY2FuIG5vdCBiZSBlbmFibGUobGlrZSBQU1Igc2V0dXAgdGltZSBkbyBub3QgZml0
-IGluDQp2YmxhbmspLg0KDQpUaGF0IGlzIHdoeSBpdCBpcyB1bnNldGluZyBmb3JjZV9tb2RlX2No
-YW5nZWQgZXZlbiBpZiBjcnRjX3N0YXRlLQ0KPmhhc19wc3IgaXMgZmFsc2UuDQoNCj4gDQo+IEV4
-Y2VwdCB0aGF0LCBsb29rcyBnb29kIHRvIG1lLg0KPiANCj4gUmV2aWV3ZWQtYnk6IEd3YW4tZ3ll
-b25nIE11biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4NCj4gDQo+ID4gKwlpZiAoIUNBTl9Q
-U1IoZGV2X3ByaXYpIHx8IGRldl9wcml2LT5wc3IuZHAgIT0gaW50ZWxfZHApDQo+ID4gIAkJcmV0
-dXJuOw0KPiA+ICANCj4gPiAtCWlmIChkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgIUNBTl9Q
-U1IoZGV2X3ByaXYpKSkNCj4gPiArCWRldl9wcml2LT5wc3IuZm9yY2VfbW9kZV9jaGFuZ2VkID0g
-ZmFsc2U7DQo+ID4gKw0KPiA+ICsJaWYgKCFjcnRjX3N0YXRlLT5oYXNfcHNyKQ0KPiA+ICAJCXJl
-dHVybjsNCj4gPiAgDQo+ID4gIAlkcm1fV0FSTl9PTigmZGV2X3ByaXYtPmRybSwgZGV2X3ByaXYt
-PmRycnMuZHApOw0KPiA+IEBAIC0xMDk5LDYgKzExMDEsOCBAQCB2b2lkIGludGVsX3Bzcl91cGRh
-dGUoc3RydWN0IGludGVsX2RwDQo+ID4gKmludGVsX2RwLA0KPiA+ICAJaWYgKCFDQU5fUFNSKGRl
-dl9wcml2KSB8fCBSRUFEX09OQ0UocHNyLT5kcCkgIT0gaW50ZWxfZHApDQo+ID4gIAkJcmV0dXJu
-Ow0KPiA+ICANCj4gPiArCWRldl9wcml2LT5wc3IuZm9yY2VfbW9kZV9jaGFuZ2VkID0gZmFsc2U7
-DQo+ID4gKw0KPiA+ICAJbXV0ZXhfbG9jaygmZGV2X3ByaXYtPnBzci5sb2NrKTsNCj4gPiAgDQo+
-ID4gIAllbmFibGUgPSBjcnRjX3N0YXRlLT5oYXNfcHNyICYmIHBzcl9nbG9iYWxfZW5hYmxlZChk
-ZXZfcHJpdik7DQo+ID4gQEAgLTE2MjksNyArMTYzMyw3IEBAIHZvaWQgaW50ZWxfcHNyX2F0b21p
-Y19jaGVjayhzdHJ1Y3QNCj4gPiBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsDQo+ID4gIAlzdHJ1
-Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGU7DQo+ID4gIA0KPiA+ICAJaWYgKCFDQU5fUFNS
-KGRldl9wcml2KSB8fCAhbmV3X3N0YXRlLT5jcnRjIHx8DQo+ID4gLQkgICAgZGV2X3ByaXYtPnBz
-ci5pbml0aWFsbHlfcHJvYmVkKQ0KPiA+ICsJICAgICFkZXZfcHJpdi0+cHNyLmZvcmNlX21vZGVf
-Y2hhbmdlZCkNCj4gPiAgCQlyZXR1cm47DQo+ID4gIA0KPiA+ICAJaW50ZWxfY29ubmVjdG9yID0g
-dG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7DQo+ID4gQEAgLTE2NDAsNSArMTY0NCwxOCBA
-QCB2b2lkIGludGVsX3Bzcl9hdG9taWNfY2hlY2soc3RydWN0DQo+ID4gZHJtX2Nvbm5lY3RvciAq
-Y29ubmVjdG9yLA0KPiA+ICAJY3J0Y19zdGF0ZSA9IGRybV9hdG9taWNfZ2V0X25ld19jcnRjX3N0
-YXRlKG5ld19zdGF0ZS0+c3RhdGUsDQo+ID4gIAkJCQkJCSAgIG5ld19zdGF0ZS0+Y3J0Yyk7DQo+
-ID4gIAljcnRjX3N0YXRlLT5tb2RlX2NoYW5nZWQgPSB0cnVlOw0KPiA+IC0JZGV2X3ByaXYtPnBz
-ci5pbml0aWFsbHlfcHJvYmVkID0gdHJ1ZTsNCj4gPiArfQ0KPiA+ICsNCj4gPiArdm9pZCBpbnRl
-bF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0K
-PiA+ICt7DQo+ID4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXY7DQo+ID4gKw0K
-PiA+ICsJaWYgKCFpbnRlbF9kcCkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJZGV2X3By
-aXYgPSBkcF90b19pOTE1KGludGVsX2RwKTsNCj4gPiArCWlmICghQ0FOX1BTUihkZXZfcHJpdikg
-fHwgaW50ZWxfZHAgIT0gZGV2X3ByaXYtPnBzci5kcCkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0K
-PiA+ICsJZGV2X3ByaXYtPnBzci5mb3JjZV9tb2RlX2NoYW5nZWQgPSB0cnVlOw0KPiA+ICB9DQo+
-ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgN
-Cj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmgNCj4gPiBpbmRl
-eCBjNThhMWQ0Mzg4MDguLjI3NGZjNmJiNjIyMSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuaA0KPiA+IEBAIC00MCw1ICs0MCw2IEBAIGJvb2wgaW50
-ZWxfcHNyX2VuYWJsZWQoc3RydWN0IGludGVsX2RwDQo+ID4gKmludGVsX2RwKTsNCj4gPiAgdm9p
-ZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNrKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3Is
-DQo+ID4gIAkJCSAgICBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqb2xkX3N0YXRlLA0KPiA+
-ICAJCQkgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKm5ld19zdGF0ZSk7DQo+ID4gK3Zv
-aWQgaW50ZWxfcHNyX3NldF9mb3JjZV9tb2RlX2NoYW5nZWQoc3RydWN0IGludGVsX2RwICppbnRl
-bF9kcCk7DQo+ID4gIA0KPiA+ICAjZW5kaWYgLyogX19JTlRFTF9QU1JfSF9fICovDQo+ID4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMNCj4gPiBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMNCj4gPiBpbmRleCA3NTlkMzMzNDQ4ZTEuLjA2NjkzNDMy
-NzM0NSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jDQo+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYw0KPiA+IEBAIC01OCw2ICs1
-OCw3IEBADQo+ID4gICNpbmNsdWRlICJkaXNwbGF5L2ludGVsX2hvdHBsdWcuaCINCj4gPiAgI2lu
-Y2x1ZGUgImRpc3BsYXkvaW50ZWxfb3ZlcmxheS5oIg0KPiA+ICAjaW5jbHVkZSAiZGlzcGxheS9p
-bnRlbF9waXBlX2NyYy5oIg0KPiA+ICsjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9wc3IuaCINCj4g
-PiAgI2luY2x1ZGUgImRpc3BsYXkvaW50ZWxfc3ByaXRlLmgiDQo+ID4gICNpbmNsdWRlICJkaXNw
-bGF5L2ludGVsX3ZnYS5oIg0KPiA+ICANCj4gPiBAQCAtMjY0LDYgKzI2NSw4IEBAIHN0YXRpYyBp
-bnQgaTkxNV9kcml2ZXJfbW9kZXNldF9wcm9iZShzdHJ1Y3QNCj4gPiBkcm1faTkxNV9wcml2YXRl
-ICppOTE1KQ0KPiA+ICANCj4gPiAgCWludGVsX2luaXRfaXBjKGk5MTUpOw0KPiA+ICANCj4gPiAr
-CWludGVsX3Bzcl9zZXRfZm9yY2VfbW9kZV9jaGFuZ2VkKGk5MTUtPnBzci5kcCk7DQo+ID4gKw0K
-PiA+ICAJcmV0dXJuIDA7DQo+ID4gIA0KPiA+ICBjbGVhbnVwX2dlbToNCj4gPiBkaWZmIC0tZ2l0
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9kcnYuaA0KPiA+IGluZGV4IDQzMDVjY2M0YzY4My4uMmI3NDFiMzUyY2UwIDEw
-MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oDQo+ID4gQEAgLTUwNSw3ICs1MDUsNyBA
-QCBzdHJ1Y3QgaTkxNV9wc3Igew0KPiA+ICAJYm9vbCBkYzNjb19lbmFibGVkOw0KPiA+ICAJdTMy
-IGRjM2NvX2V4aXRfZGVsYXk7DQo+ID4gIAlzdHJ1Y3QgZGVsYXllZF93b3JrIGRjM2NvX3dvcms7
-DQo+ID4gLQlib29sIGluaXRpYWxseV9wcm9iZWQ7DQo+ID4gKwlib29sIGZvcmNlX21vZGVfY2hh
-bmdlZDsNCj4gPiAgfTsNCj4gPiAgDQo+ID4gICNkZWZpbmUgUVVJUktfTFZEU19TU0NfRElTQUJM
-RSAoMTw8MSkNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi Daniel.
+
+In general I think I could follow the documentation, this is good.
+If the overall design is the best possible I cannot say,
+but looks sane to me.
+
+I like the drmm_ naming as a counterpart to devm_, each handling
+resources with different lifetimes.
+
+What I miss in all of this is how do other subsystems deal
+with the different lifetime of their stuff?
+Or maybe only drm really has this issue?
+Anything we could learn from others?
+
+Some more or less clueless comments in the following. Filter as usual.
+
+And a bikeshedding detail.
+"dev" is in my vocalubary a "struct device". So each time I see a "dev"
+I think a struct device.
+drm or ddev makes me think of struct drm_device - with the former being
+my favorite.
+
+	Sam
+
+> + * Note that any allocation or resource which is visible to userspace must be
+> + * released only when the final drm_dev_put() is called, and not when the
+> + * driver is unbound from the underlying physical struct &device. Best to use
+> + * &drm_device managed resources with drmm_add_action(), drmm_kmalloc() and
+> + * related functions.
+
+Best to use => Maybe "It is recommended to use ..."
+
+> + *
+> + * devres managed resources like devm_kmalloc() can only be used for resources
+> + * directly related to the underlying hardware device, and only used in code
+> + * paths fully protected by drm_dev_enter() and drm_dev_exit().
+Maybe this is obvious to others, but maybe add just a bit more about
+what is required to be "fully protected". Or maybe this is already
+documented somewhere else?
+In drm_dev_enter() the term "critical section" is used.
+I gues this is the section that is fully protected.
+
+> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> index fb44fe65c2cd..7fcbe90d3f46 100644
+> --- a/drivers/gpu/drm/drm_managed.c
+> +++ b/drivers/gpu/drm/drm_managed.c
+> @@ -17,10 +17,22 @@
+>  /**
+>   * DOC: managed resources
+>   *
+> - * Inspired by sturct &device managed resources, but tied to the lifetime of
+> + * Inspired by struct &device managed resources, but tied to the lifetime of
+Maybe fix this when the text is added.
+
+> +/**
+> + * drmm_add_final_kfree - add release action for the final kfree()
+> + * @dev: DRM device
+> + * @data: pointer to the kmalloc allocation containing @dev
+> + *
+> + * Since the allocation containing the struct &drm_device must be allocated
+> + * before it can be initialized with drm_dev_init() there's no way to allocate
+> + * that memory with drmm_kmalloc().
+
+To side-step this chicken-egg problem the
+> + * pointer for this final kfree() must be specified by calling this function. It
+> + * will be released in the final drm_dev_put() for @dev, after all other release
+> + * actions installed through drmm_add_action() have been processed.
+
+Or maybe
+
+Use drmm_add_final_kfree() to record that the allocation must be
+released as the last step when the final drm_dev_put() for @dev is
+called.
+
+
+> + */
+>  void drmm_add_final_kfree(struct drm_device *dev, void *parent)
+>  {
+>  	WARN_ON(dev->managed.final_kfree);
+> @@ -132,6 +156,14 @@ int __drmm_add_action(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(__drmm_add_action);
+>  
+> +/**
+> + * drmm_add_action - remave a managed release action to a &drm_device
+s/remave/remove/
+"action to a &drm_device" => "action from a &drm_device"?
+
+> @@ -160,6 +192,16 @@ void drmm_remove_action(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(drmm_remove_action);
+>  
+> +/**
+> + * drmm_kmalloc - &drm_device managed kmalloc()
+> + * @dev: DRM device
+> + * @size: size of the memory allocation
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kmalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put(). Memory can also be freed
+> + * before the final drm_dev_put() by calling drmm_kfree().
+
+RETURNS: ?
+
+> + */
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  {
+>  	struct drmres *dr;
+> @@ -175,6 +217,16 @@ void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  }
+>  EXPORT_SYMBOL(drmm_kmalloc);
+>  
+> +/**
+> + * drmm_kstrdup - &drm_device managed kstrdup()
+> + * @dev: DRM device
+> + * @size: 0 terminated string to be duplicated
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kstrdup(). The allocated memory is
+> + * automatically freed on the final drm_dev_put() and works exactly like a
+> + * memory allocation obtained by drmm_kmalloc().
+
+RETURNS: ?
+> + */
+>  char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
+>  {
+>  	size_t size;
+> @@ -191,6 +243,15 @@ char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
+>  }
+>  EXPORT_SYMBOL_GPL(drmm_kstrdup);
+>  
+
+
+> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> index 573cadca4b3d..0e7616bd0858 100644
+> --- a/include/drm/drm_managed.h
+> +++ b/include/drm/drm_managed.h
+> @@ -8,6 +8,19 @@ struct drm_device;
+>  
+>  typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
+>  
+> +/**
+> + * drmm_add_action - add a managed release action to a &drm_device
+> + * @dev: DRM device
+> + * @action: function which should be called when @dev is released
+> + * @data: opaque pointer, passed to @action
+> + *
+> + * This function adds the @release action wwith optional parameter @data to the
+s/wwith/with/
+
+> + * list of cleanup actions for @dev. The cleanup actions will be run in reverse
+> + * order in the final drm_dev_put() call for @dev.
+> + *
+> + * A release action can be removed before @dev is released by calling
+> + * drmm_remove_action() with matching parameters for @action and @data.
+> + */
+>  #define drmm_add_action(dev, action, data) \
+>  	__drmm_add_action(dev, action, data, #action)
+>  
+> @@ -22,12 +35,45 @@ void drmm_remove_action(struct drm_device *dev,
+>  void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+>  
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
+> +
+> +/**
+> + * drmm_kzalloc - &drm_device managed kzalloc()
+> + * @dev: DRM device
+> + * @size: size of the memory allocation
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kzalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put(). Memory can also be freed
+> + * before the final drm_dev_put() by calling drmm_kfree().
+
+RETURNS: ?
+
+> + */
+>  static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  {
+>  	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
+>  }
+> +
+> +/**
+> + * drmm_kmalloc_array - &drm_device managed kmalloc_array()
+> + * @dev: DRM device
+> + * @size: 0 terminated string to be duplicated
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kmalloc_array(). The allocated
+> + * memory is automatically freed on the final drm_dev_put() and works exactly
+> + * like a memory allocation obtained by drmm_kmalloc().
+
+RETURNS: ?
+
+> + */
+>  static inline void *drmm_kmalloc_array(struct drm_device *dev,
+>  				       size_t n, size_t size, gfp_t flags)
+> +
+> +/**
+> + * drmm_kcalloc - &drm_device managed kcalloc()
+> + * @dev: DRM device
+> + * @size: 0 terminated string to be duplicated
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kcalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put() and works exactly like a
+> + * memory allocation obtained by drmm_kmalloc().
+
+RETURNS: ?
+
+> + */
+>  {
+>  	size_t bytes;
+>  
+> @@ -41,6 +87,7 @@ static inline void *drmm_kcalloc(struct drm_device *dev,
+>  {
+>  	return drmm_kmalloc_array(dev, n, size, flags | __GFP_ZERO);
+>  }
+> +
+>  char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
+>  
+>  void drmm_kfree(struct drm_device *dev, void *data);
+> -- 
+> 2.24.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
