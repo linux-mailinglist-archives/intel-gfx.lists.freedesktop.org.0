@@ -1,54 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7015E1680E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 15:54:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8215E1680F1
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 15:56:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 346026F467;
-	Fri, 21 Feb 2020 14:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B826F46A;
+	Fri, 21 Feb 2020 14:56:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com
- [IPv6:2607:f8b0:4864:20::244])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97B946F466
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 14:54:51 +0000 (UTC)
-Received: by mail-oi1-x244.google.com with SMTP id d62so1791106oia.11
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 06:54:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=srGPntGHrtyR2uaDr0/5fF7b7+5YyS+ull9sDB6HqWE=;
- b=YPDkCBTy+neuaAXnyEa0TnkfgA3iZfG6VugKco1xjsQ9nkrtUz1DI4XxewGHpmPKZ+
- 5fIeS+qJO3Wq8ejP+Jp9cb+BrWN/GM4cyGuh4t63At0sDMuSaivrOcnofYyueVZFg6aI
- XDLql52UCoR455r+ZjOu/Rk4XI6OIUlPk8/j4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=srGPntGHrtyR2uaDr0/5fF7b7+5YyS+ull9sDB6HqWE=;
- b=Nw1DoYY4kJYXZq3G2U25ebpO4UIAhO+OEbX6AG+J0POEh3avCY93pLjvYjOamz0gP7
- 1hS1uu40AygrGkKn6rAYmWliGXR7ZdgYShLaZJtc3TbS6bT8dQOVp8EzUCgC5urcO6ey
- EQu7pgSwCxksfj3hcyD+p8Yl4ZcozEb8dPAKpvi+WkZIVPbew9o5atOzfAZnYC7B0pVh
- 5T7pBlnRY7DCyRAuUBYvLPYhFCeewSWDFWR7TA3glbiW/UWlRt+8g852h6fe1N0duEXY
- EUO0YGaMMZrmWoW/ZM2y00w6blJetOI9cbPcDaHGBE5uIHYuzoDB9C3TIOY5Ojdnq+Wx
- cD+w==
-X-Gm-Message-State: APjAAAWeUdsyKxjWxIkW6GfFAFvPDrWNjWk2P+K2o4UAzpN/82/1vydM
- bUrhOoM1zAaqsrnv16uILpB2KDb9852Lwnb1ilzVcA==
-X-Google-Smtp-Source: APXvYqyqC7OVJv0aDwaVzwp4YWvyVUKdQj02tVL/0EJXUiO0GSjzkWVd2QeEe7UINj6nLNvwVQp74uFz5cH/NcylHgo=
-X-Received: by 2002:aca:2407:: with SMTP id n7mr2338119oic.14.1582296890919;
- Fri, 21 Feb 2020 06:54:50 -0800 (PST)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931216E356;
+ Fri, 21 Feb 2020 14:56:27 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 06:56:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,468,1574150400"; d="scan'208";a="259639700"
+Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.251.87.71])
+ by fmsmga004.fm.intel.com with ESMTP; 21 Feb 2020 06:56:21 -0800
 MIME-Version: 1.0
-References: <20191208161252.3015727-1-chris@chris-wilson.co.uk>
- <20191208161252.3015727-2-chris@chris-wilson.co.uk>
-In-Reply-To: <20191208161252.3015727-2-chris@chris-wilson.co.uk>
-From: Daniel Vetter <daniel@ffwll.ch>
-Date: Fri, 21 Feb 2020 15:54:39 +0100
-Message-ID: <CAKMK7uGE0Fzw9CcmAZDN00tt4GCCX2Dk6O=JT7iODyvCXN3aag@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Change i915_vma_unbind() to
- report -EAGAIN on activity
+From: Chris Wilson <chris.p.wilson@intel.com>
+User-Agent: alot/0.6
+To: akeem.g.abodunrin@intel.com, d.scott.phillips@intel.com,
+ daniel.vetter@intel.com, david.c.stewart@intel.com,
+ dri-devel@lists.freedesktop.org, francesco.balestrieri@intel.com,
+ intel-gfx@lists.freedesktop.org, jani.nikula@intel.com,
+ jon.bloomfield@intel.com, joonas.lahtinen@linux.intel.com,
+ mika.kuoppala@intel.com, omer.aran@intel.com, pragyansri.pathi@intel.com,
+ prathap.kumar.valsan@intel.com, sudeep.dutt@intel.com, tony.luck@intel.com
+References: <20200220230023.18905-1-akeem.g.abodunrin@intel.com>
+ <20200220230023.18905-3-akeem.g.abodunrin@intel.com>
+In-Reply-To: <20200220230023.18905-3-akeem.g.abodunrin@intel.com>
+Message-ID: <158229697947.6499.9383893602491436028@skylake-alporthouse-com>
+Date: Fri, 21 Feb 2020 14:56:19 +0000
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/gen7: Clear all EU/L3
+ residual contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,71 +50,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sun, Dec 8, 2019 at 5:13 PM Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> If someone else acquires the i915_vma before we complete our wait and
-> unbind it, we currently error out with -EBUSY. Use -EAGAIN instead so
-> that if necessary the caller is prepared to try again.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_vma.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 9ca6664c190c..6794c742fbbf 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1181,7 +1181,7 @@ int __i915_vma_unbind(struct i915_vma *vma)
->         GEM_BUG_ON(i915_vma_is_active(vma));
->         if (i915_vma_is_pinned(vma)) {
->                 vma_print_allocator(vma, "is pinned");
-> -               return -EBUSY;
-> +               return -EAGAIN;
+Quoting Akeem G Abodunrin (2020-02-20 23:00:23)
+> +static void emit_batch(struct i915_vma * const vma,
+> +                      u32 *start,
+> +                      const struct batch_vals *bv)
+> +{
+> +       struct drm_i915_private *i915 = vma->vm->i915;
+> +       unsigned int desc_count = 64;
+> +       const u32 urb_size = 112;
+> +       struct batch_chunk cmds, state;
+> +       u32 interface_descriptor;
+> +       unsigned int i;
+> +
+> +       batch_init(&cmds, vma, start, 0, bv->cmd_size);
+> +       batch_init(&state, vma, start, bv->state_start, bv->state_size);
+> +
+> +       interface_descriptor =
+> +               gen7_fill_interface_descriptor(&state, bv,
+> +                                              IS_HASWELL(i915) ?
+> +                                              &cb_kernel_hsw :
+> +                                              &cb_kernel_ivb,
+> +                                              desc_count);
 
-Maarten is apparently hitting this somehow in his dma_resv work, and
-no idea yet why. But just general comment: We can't be leaking
-temporary pins outside of holding the right locks, because then other
-threads can spot these pins and fail, because parts of whatever they
-need more of (vma or object doesn't really matter) can't be evicted
-properly. And sprinkling more EAGAIN all over the place really isn't
-the solution to get us out of these problems in the long term.
+Negligible in the grand scheme of things, but there was a
+STATE_CACHE_INVALIDATION flush just prior to this batch.
 
-So if we do have random spurious pins that leak out from under their
-locks, then we need to tug them back under those locks (struct_mutex
-is the worst case for a bunch of these right now). That's the
-fundamental shift in locking design with dma_resv vs the previous
-design that had the explicit goal of lots of temporary and
-not-so-temporary pins to untangle the locking. Now fully clear that we
-have a lot of that still lying around, but we really can't spread it
-further.
--Daniel
+> +       gen7_emit_pipeline_flush(&cmds);
+> +       batch_add(&cmds, PIPELINE_SELECT | PIPELINE_SELECT_MEDIA);
+> +       batch_add(&cmds, MI_NOOP);
 
->         }
->
->         GEM_BUG_ON(i915_vma_is_active(vma));
-> --
-> 2.24.0
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+What's the reason for the noop here?
 
+> +       gen7_emit_state_base_address(&cmds, interface_descriptor);
+> +       gen7_emit_pipeline_flush(&cmds);
 
+And iirc, this is recommended for SBI. Does this flush require a
+CS_STALL?
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+> +       gen7_emit_vfe_state(&cmds, bv, urb_size - 1, 0, 0);
+> +
+> +       gen7_emit_interface_descriptor_load(&cmds,
+> +                                           interface_descriptor,
+> +                                           desc_count);
+> +
+> +       for (i = 0; i < bv->max_primitives; i++)
+> +               gen7_emit_media_object(&cmds, i);
+> +
+> +       batch_add(&cmds, MI_BATCH_BUFFER_END);
+> +}
+
+I can't comment on the efficacy of the kernels, but the code is finally
+passing CI and the batch takes long enough that it has to be doing
+something! Just running a giant loop mostly.
+
+Acked-by: Chris Wilson <chris.p.wilson@intel.com>
+-Chris
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
