@@ -1,38 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1074D167982
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 10:36:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A38A81679FE
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 10:56:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A12196EF27;
-	Fri, 21 Feb 2020 09:36:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C2BD6E24D;
+	Fri, 21 Feb 2020 09:56:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 042756EF27
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 09:36:11 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 01:36:10 -0800
-X-IronPort-AV: E=Sophos;i="5.70,467,1574150400"; d="scan'208";a="229794351"
-Received: from jmiler-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.38.187])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 01:36:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-In-Reply-To: <20200218173936.19664-1-wambui.karugax@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200218173936.19664-1-wambui.karugax@gmail.com>
-Date: Fri, 21 Feb 2020 11:36:12 +0200
-Message-ID: <87blpsz3hv.fsf@intel.com>
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521616E24D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 09:56:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20299071-1500050 
+ for multiple; Fri, 21 Feb 2020 09:40:04 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Feb 2020 09:40:00 +0000
+Message-Id: <20200221094002.2481703-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/perf: conversion to struct
- drm_device based logging macros.
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Flush idle barriers when waiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,118 +36,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 18 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> Manual conversion of instances of printk based drm logging macros to the
-> struct drm_device based logging macros in i915/i915_perf.c.
-> Also involves extraction of the struct drm_i915_private device from
-> various intel types for use in the macros.
->
-> Instances of the DRM_DEBUG printk macro were not converted due to the
-> lack of an analogous struct drm_device based logging macro.
->
-> v2: remove instances of DRM_DEBUG that were converted.
->
-> References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+If we do find ourselves with an idle barrier inside our active while
+waiting, attempt to flush it by emitting a pulse using the kernel
+context.
 
-Thanks, pushed to drm-intel-next-queued.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Steve Carbonari <steven.carbonari@intel.com>
+---
+ drivers/gpu/drm/i915/i915_active.c           | 42 ++++++++++++++----
+ drivers/gpu/drm/i915/selftests/i915_active.c | 46 ++++++++++++++++++++
+ 2 files changed, 79 insertions(+), 9 deletions(-)
 
-BR,
-Jani.
-
-> ---
->  drivers/gpu/drm/i915/i915_perf.c | 27 +++++++++++++++++----------
->  1 file changed, 17 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index b5249ee5bda6..e34c79df6ebc 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -555,8 +555,9 @@ static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
->  				aging_tail = hw_tail;
->  			stream->oa_buffer.aging_timestamp = now;
->  		} else {
-> -			DRM_ERROR("Ignoring spurious out of range OA buffer tail pointer = %x\n",
-> -				  hw_tail);
-> +			drm_err(&stream->perf->i915->drm,
-> +				"Ignoring spurious out of range OA buffer tail pointer = %x\n",
-> +				hw_tail);
->  		}
->  	}
->  
-> @@ -745,7 +746,8 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
->  		 */
->  		if (drm_WARN_ON(&uncore->i915->drm,
->  				(OA_BUFFER_SIZE - head) < report_size)) {
-> -			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
-> +			drm_err(&uncore->i915->drm,
-> +				"Spurious OA head ptr: non-integral report offset\n");
->  			break;
->  		}
->  
-> @@ -1041,7 +1043,8 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
->  		 */
->  		if (drm_WARN_ON(&uncore->i915->drm,
->  				(OA_BUFFER_SIZE - head) < report_size)) {
-> -			DRM_ERROR("Spurious OA head ptr: non-integral report offset\n");
-> +			drm_err(&uncore->i915->drm,
-> +				"Spurious OA head ptr: non-integral report offset\n");
->  			break;
->  		}
->  
-> @@ -1339,9 +1342,10 @@ static int oa_get_render_ctx_id(struct i915_perf_stream *stream)
->  
->  	ce->tag = stream->specific_ctx_id;
->  
-> -	DRM_DEBUG_DRIVER("filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
-> -			 stream->specific_ctx_id,
-> -			 stream->specific_ctx_id_mask);
-> +	drm_dbg(&stream->perf->i915->drm,
-> +		"filtering on ctx_id=0x%x ctx_id_mask=0x%x\n",
-> +		stream->specific_ctx_id,
-> +		stream->specific_ctx_id_mask);
->  
->  	return 0;
->  }
-> @@ -2657,7 +2661,8 @@ static void gen7_oa_disable(struct i915_perf_stream *stream)
->  	if (intel_wait_for_register(uncore,
->  				    GEN7_OACONTROL, GEN7_OACONTROL_ENABLE, 0,
->  				    50))
-> -		DRM_ERROR("wait for OA to be disabled timed out\n");
-> +		drm_err(&stream->perf->i915->drm,
-> +			"wait for OA to be disabled timed out\n");
->  }
->  
->  static void gen8_oa_disable(struct i915_perf_stream *stream)
-> @@ -2668,7 +2673,8 @@ static void gen8_oa_disable(struct i915_perf_stream *stream)
->  	if (intel_wait_for_register(uncore,
->  				    GEN8_OACONTROL, GEN8_OA_COUNTER_ENABLE, 0,
->  				    50))
-> -		DRM_ERROR("wait for OA to be disabled timed out\n");
-> +		drm_err(&stream->perf->i915->drm,
-> +			"wait for OA to be disabled timed out\n");
->  }
->  
->  static void gen12_oa_disable(struct i915_perf_stream *stream)
-> @@ -2680,7 +2686,8 @@ static void gen12_oa_disable(struct i915_perf_stream *stream)
->  				    GEN12_OAG_OACONTROL,
->  				    GEN12_OAG_OACONTROL_OA_COUNTER_ENABLE, 0,
->  				    50))
-> -		DRM_ERROR("wait for OA to be disabled timed out\n");
-> +		drm_err(&stream->perf->i915->drm,
-> +			"wait for OA to be disabled timed out\n");
->  }
->  
->  /**
-
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 9ccb931a733e..fae7e3820592 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -7,6 +7,7 @@
+ #include <linux/debugobjects.h>
+ 
+ #include "gt/intel_context.h"
++#include "gt/intel_engine_heartbeat.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_ring.h"
+ 
+@@ -460,26 +461,49 @@ static void enable_signaling(struct i915_active_fence *active)
+ 	dma_fence_put(fence);
+ }
+ 
+-int i915_active_wait(struct i915_active *ref)
++static int flush_barrier(struct active_node *it)
+ {
+-	struct active_node *it, *n;
+-	int err = 0;
++	struct intel_engine_cs *engine;
+ 
+-	might_sleep();
++	if (!is_barrier(&it->base))
++		return 0;
+ 
+-	if (!i915_active_acquire_if_busy(ref))
++	engine = __barrier_to_engine(it);
++	smp_rmb(); /* serialise with add_active_barriers */
++	if (!is_barrier(&it->base))
+ 		return 0;
+ 
+-	/* Flush lazy signals */
++	return intel_engine_flush_barriers(engine);
++}
++
++static int flush_lazy_signals(struct i915_active *ref)
++{
++	struct active_node *it, *n;
++	int err = 0;
++
+ 	enable_signaling(&ref->excl);
+ 	rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+-		if (is_barrier(&it->base)) /* unconnected idle barrier */
+-			continue;
++		err = flush_barrier(it); /* unconnected idle barrier? */
++		if (err)
++			break;
+ 
+ 		enable_signaling(&it->base);
+ 	}
+-	/* Any fence added after the wait begins will not be auto-signaled */
+ 
++	return err;
++}
++
++int i915_active_wait(struct i915_active *ref)
++{
++	int err;
++
++	might_sleep();
++
++	if (!i915_active_acquire_if_busy(ref))
++		return 0;
++
++	/* Any fence added after the wait begins will not be auto-signaled */
++	err = flush_lazy_signals(ref);
+ 	i915_active_release(ref);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index ef572a0c2566..067e30b8927f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -201,11 +201,57 @@ static int live_active_retire(void *arg)
+ 	return err;
+ }
+ 
++static int live_active_barrier(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	struct intel_engine_cs *engine;
++	struct live_active *active;
++	int err = 0;
++
++	/* Check that we get a callback when requests retire upon waiting */
++
++	active = __live_alloc(i915);
++	if (!active)
++		return -ENOMEM;
++
++	err = i915_active_acquire(&active->base);
++	if (err)
++		goto out;
++
++	for_each_uabi_engine(engine, i915) {
++		err = i915_active_acquire_preallocate_barrier(&active->base,
++							      engine);
++		if (err)
++			break;
++
++		i915_active_acquire_barrier(&active->base);
++	}
++
++	i915_active_release(&active->base);
++
++	if (err == 0)
++		err = i915_active_wait(&active->base);
++
++	if (err == 0 && !READ_ONCE(active->retired)) {
++		pr_err("i915_active not retired after flushing barriers!\n");
++		err = -EINVAL;
++	}
++
++out:
++	__live_put(active);
++
++	if (igt_flush_test(i915))
++		err = -EIO;
++
++	return err;
++}
++
+ int i915_active_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(live_active_wait),
+ 		SUBTEST(live_active_retire),
++		SUBTEST(live_active_barrier),
+ 	};
+ 
+ 	if (intel_gt_is_wedged(&i915->gt))
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
