@@ -2,30 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F71E168953
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 592A8168962
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 22:36:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C5B86E4BB;
-	Fri, 21 Feb 2020 21:28:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34CB16E092;
+	Fri, 21 Feb 2020 21:36:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 840266F589;
- Fri, 21 Feb 2020 21:28:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7CDFBA41FB;
- Fri, 21 Feb 2020 21:28:29 +0000 (UTC)
+Received: from fireflyinternet.com (unknown [77.68.26.236])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2F3D6E092;
+ Fri, 21 Feb 2020 21:36:45 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20307617-1500050 for multiple; Fri, 21 Feb 2020 21:36:22 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Fri, 21 Feb 2020 21:28:29 -0000
-Message-ID: <158232050948.7919.7605768995091154772@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200220120741.6917-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Refactor_Gen11+_SAGV_support_=28rev2=29?=
+To: DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200221210319.2245170-3-daniel.vetter@ffwll.ch>
+References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
+ <20200221210319.2245170-3-daniel.vetter@ffwll.ch>
+Message-ID: <158232098048.7320.8539611385294752480@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 21 Feb 2020 21:36:20 +0000
+Subject: Re: [Intel-gfx] [PATCH 02/51] drm/i915: Don't clear drvdata in
+ ->release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,45 +41,26 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Daniel Vetter (2020-02-21 21:02:30)
+> For two reasons:
+> 
+> - The driver core clears this already for us after we're unloaded in
+>   __device_release_driver().
 
-Series: Refactor Gen11+ SAGV support (rev2)
-URL   : https://patchwork.freedesktop.org/series/73703/
-State : warning
+Even if we abort before loading?
 
-== Summary ==
-
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915: Start passing latency as parameter
-Okay!
-
-Commit: drm/i915: Introduce skl_plane_wm_level accessor.
-Okay!
-
-Commit: drm/i915: Init obj state in intel_atomic_get_old/new_global_obj_state
-Okay!
-
-Commit: drm/i915: Refactor intel_can_enable_sagv
-+drivers/gpu/drm/i915/intel_pm.c:3851:6: warning: symbol 'intel_compute_sagv_mask' was not declared. Should it be static?
-+drivers/gpu/drm/i915/intel_pm.c:3905:6: warning: symbol 'intel_calculate_sagv_result' was not declared. Should it be static?
-
-Commit: drm/i915: Added required new PCode commands
-Okay!
-
-Commit: drm/i915: Restrict qgv points which don't have enough bandwidth.
-Okay!
-
-Commit: drm/i915: Enable SAGV support for Gen12
-Okay!
-
+History notes that i915_pci_remove was called with a stale pointer on
+error.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
