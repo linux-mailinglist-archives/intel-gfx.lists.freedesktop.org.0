@@ -1,43 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4984B167AE0
-	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 11:35:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0FC5167B64
+	for <lists+intel-gfx@lfdr.de>; Fri, 21 Feb 2020 11:54:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F05B6EF32;
-	Fri, 21 Feb 2020 10:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1523D6EF34;
+	Fri, 21 Feb 2020 10:54:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96F026EF30;
- Fri, 21 Feb 2020 10:35:18 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A07F6EF34
+ for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 10:54:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 02:35:12 -0800
-X-IronPort-AV: E=Sophos;i="5.70,467,1574150400"; d="scan'208";a="229811346"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 02:54:15 -0800
+X-IronPort-AV: E=Sophos;i="5.70,468,1574150400"; d="scan'208";a="229817043"
 Received: from jmiler-mobl.ger.corp.intel.com (HELO localhost)
  ([10.249.38.187])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 21 Feb 2020 02:35:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Randy Dunlap <rdunlap@infradead.org>, akpm@linux-foundation.org,
- broonie@kernel.org, mhocko@suse.cz, sfr@canb.auug.org.au,
- linux-next@vger.kernel.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, mm-commits@vger.kernel.org,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>
-In-Reply-To: <d8112767-4089-4c58-d7d3-2ce03139858a@infradead.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200220035155.PempH%akpm@linux-foundation.org>
- <d8112767-4089-4c58-d7d3-2ce03139858a@infradead.org>
-Date: Fri, 21 Feb 2020 12:35:13 +0200
-Message-ID: <874kvkz0ri.fsf@intel.com>
+ 21 Feb 2020 02:54:13 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 21 Feb 2020 12:54:14 +0200
+Message-Id: <20200221105414.14358-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] mmotm 2020-02-19-19-51 uploaded (gpu/drm/i915/ +
- HDRTEST)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915: fix header test with GCOV
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,50 +42,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com, Masahiro Yamada <masahiroy@kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 20 Feb 2020, Randy Dunlap <rdunlap@infradead.org> wrote:
-> On 2/19/20 7:51 PM, akpm@linux-foundation.org wrote:
->> The mm-of-the-moment snapshot 2020-02-19-19-51 has been uploaded to
->> 
->>    http://www.ozlabs.org/~akpm/mmotm/
->> 
->> mmotm-readme.txt says
->> 
->> README for mm-of-the-moment:
->> 
->> http://www.ozlabs.org/~akpm/mmotm/
->> 
->> This is a snapshot of my -mm patch queue.  Uploaded at random hopefully
->> more than once a week.
->> 
->
-> on x86_64:
-> when GCOV is set/enabled:
->
->   HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
-> /dev/null:1:0: error: cannot open /dev/null.gcno
->   HDRTEST drivers/gpu/drm/i915/display/intel_ddi.h
-> /dev/null:1:0: error: cannot open /dev/null.gcno
-> make[5]: *** [../drivers/gpu/drm/i915/Makefile:307: drivers/gpu/drm/i915/display/intel_ddi.hdrtest] Error 1
-> make[5]: *** Waiting for unfinished jobs....
-> make[5]: *** [../drivers/gpu/drm/i915/Makefile:307: drivers/gpu/drm/i915/display/intel_frontbuffer.hdrtest] Error 1
->
->
-> Full randconfig file is attached.
+$(CC) with $(CFLAGS_GCOV) assumes the output filename with .gcno suffix
+appended is writable. This is not the case when the output filename is
+/dev/null:
 
-We're trying to hide that from the general population, only to be used
-by our developers and CI, with e.g. "depends on !COMPILE_TEST". Can't
-hide from randconfig it seems.
+  HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
+/dev/null:1:0: error: cannot open /dev/null.gcno
+  HDRTEST drivers/gpu/drm/i915/display/intel_ddi.h
+/dev/null:1:0: error: cannot open /dev/null.gcno
+make[5]: *** [../drivers/gpu/drm/i915/Makefile:307:
+drivers/gpu/drm/i915/display/intel_ddi.hdrtest] Error 1
+make[5]: *** Waiting for unfinished jobs....
+make[5]: *** [../drivers/gpu/drm/i915/Makefile:307:
+drivers/gpu/drm/i915/display/intel_frontbuffer.hdrtest] Error 1
 
-Does the below patch help?
+Filter out $(CFLAGS_GVOC) from the header test $(c_flags) as they don't
+make sense here anyway.
 
-BR,
-Jani.
-
+References: http://lore.kernel.org/r/d8112767-4089-4c58-d7d3-2ce03139858a@infradead.org
+Reported-by: Randy Dunlap <rdunlap@infradead.org>
+Fixes: c6d4a099a240 ("drm/i915: reimplement header test feature")
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
 index b314d44ded5e..bc28c31c4f78 100644
@@ -108,10 +88,9 @@ index b314d44ded5e..bc28c31c4f78 100644
  
  $(obj)/%.hdrtest: $(src)/%.h FORCE
  	$(call if_changed_dep,hdrtest)
-
-
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
