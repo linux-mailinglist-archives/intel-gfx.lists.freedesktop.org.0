@@ -1,31 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2758168F6A
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 15:52:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83107168FBC
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 16:24:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219986E913;
-	Sat, 22 Feb 2020 14:52:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 377D36E054;
+	Sat, 22 Feb 2020 15:24:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AB816E913;
- Sat, 22 Feb 2020 14:52:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6183FA47E8;
- Sat, 22 Feb 2020 14:52:02 +0000 (UTC)
+X-Greylist: delayed 435 seconds by postgrey-1.36 at gabe;
+ Sat, 22 Feb 2020 15:23:59 UTC
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk
+ [IPv6:2001:4d48:ad52:3201:214:fdff:fe10:1be6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 145AB6E054
+ for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 15:23:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=YF1UM2wgenJ2oHYpM5nrog9MJrnzYmIb0kMFg2Ft9ys=; b=UvFJKE9xO0dYi17RmAW5J79cx
+ 5xkSardFiLwbRrLoNL5F3fd+T3EA8R6zF5JT6JRigq0OQ2FZUUEkJFsIgpB9KITPzegrog3ErXt0N
+ d352Zt6IZb5vCQcPJinfsFv/LVyZGl8BBmHElZbvkFiWDvj1+kn118it98vsrM6oRzJaiJKTHB3Bi
+ ijicYkVWkW6K6lM6Wl9dzUocdTk0I7dsem7n6UAkksdWSpX/MOT7FwE3N5iNbjy0bb+yc1WIEBDib
+ TTuzKI91pBf8yIV6uOjwVBwmsXQG4BKtq2NI2aMqi72OpIFIEn21DV4GoRP78Tr2Sf5XNYqcgoRti
+ pF6BV25JA==;
+Received: from shell.armlinux.org.uk
+ ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:51318)
+ by pandora.armlinux.org.uk with esmtpsa
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <linux@armlinux.org.uk>)
+ id 1j5WW7-0008K9-H3; Sat, 22 Feb 2020 15:16:31 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+ (envelope-from <linux@shell.armlinux.org.uk>)
+ id 1j5WW0-0004Zk-Uo; Sat, 22 Feb 2020 15:16:24 +0000
+Date: Sat, 22 Feb 2020 15:16:24 +0000
+From: Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200222151624.GN25745@shell.armlinux.org.uk>
+References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
+ <20200221210319.2245170-19-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Colin King" <colin.king@canonical.com>
-Date: Sat, 22 Feb 2020 14:52:02 -0000
-Message-ID: <158238312236.32577.3053576051876414404@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200222134755.134209-1-colin.king@canonical.com>
-In-Reply-To: <20200222134755.134209-1-colin.king@canonical.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_remove_redundant_assignment_to_variable_dw?=
+Content-Disposition: inline
+In-Reply-To: <20200221210319.2245170-19-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 18/51] drm/<drivers>: Use
+ drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,112 +60,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ "James \(Qian\) Wang" <james.qian.wang@arm.com>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Mihail Atanassov <mihail.atanassov@arm.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Feb 21, 2020 at 10:02:46PM +0100, Daniel Vetter wrote:
+> These are the leftover drivers that didn't have a ->release hook that
+> needed to be updated.
+> 
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: "James (Qian) Wang" <james.qian.wang@arm.com>
+> Cc: Liviu Dudau <liviu.dudau@arm.com>
+> Cc: Mihail Atanassov <mihail.atanassov@arm.com>
+> Cc: Russell King <linux@armlinux.org.uk>
+> Cc: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/gpu/drm/arm/display/komeda/komeda_kms.c | 2 ++
+>  drivers/gpu/drm/armada/armada_drv.c             | 2 ++
+>  drivers/gpu/drm/vboxvideo/vbox_drv.c            | 2 ++
+>  3 files changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
+> index 197dca3fc84c..dd9ed71ed942 100644
+> --- a/drivers/gpu/drm/armada/armada_drv.c
+> +++ b/drivers/gpu/drm/armada/armada_drv.c
+> @@ -12,6 +12,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_ioctl.h>
+> +#include <drm/drm_managed.h>
+>  #include <drm/drm_prime.h>
+>  #include <drm/drm_probe_helper.h>
+>  #include <drm/drm_fb_helper.h>
+> @@ -103,6 +104,7 @@ static int armada_drm_bind(struct device *dev)
+>  		kfree(priv);
+>  		return ret;
+>  	}
+> +	drmm_add_final_kfree(&priv->drm, priv);
+>  
+>  	/* Remove early framebuffers */
+>  	ret = drm_fb_helper_remove_conflicting_framebuffers(NULL,
 
-Series: drm/i915/gt: remove redundant assignment to variable dw
-URL   : https://patchwork.freedesktop.org/series/73808/
-State : success
+I have no visibility of what the changes behind this are, so I
+can't ack this change.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7986 -> Patchwork_16677
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16677 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-modifier-no-flag:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7986/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/fi-tgl-y/igt@kms_addfb_basic@addfb25-modifier-no-flag.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_sanitycheck:
-    - fi-icl-u3:          [DMESG-WARN][3] ([i915#585]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7986/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/fi-icl-u3/igt@i915_selftest@live_sanitycheck.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([fdo#111096] / [i915#323]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7986/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@prime_self_import@basic-with_one_bo_two_files:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7986/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
-
-  
-#### Warnings ####
-
-  * igt@amdgpu/amd_prime@amd-to-i915:
-    - fi-icl-u3:          [SKIP][9] ([fdo#109315]) -> [SKIP][10] ([fdo#109315] / [i915#585])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7986/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/fi-icl-u3/igt@amdgpu/amd_prime@amd-to-i915.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109315]: https://bugs.freedesktop.org/show_bug.cgi?id=109315
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#585]: https://gitlab.freedesktop.org/drm/intel/issues/585
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Additional (4): fi-byt-j1900 fi-glk-dsi fi-gdg-551 fi-hsw-peppy 
-  Missing    (11): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bwr-2160 fi-snb-2520m fi-ctg-p8600 fi-skl-lmem fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7986 -> Patchwork_16677
-
-  CI-20190529: 20190529
-  CI_DRM_7986: 7d005c577514b8148a13adbead1f6749f233c065 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5458: 5f7e4ae6a91ed2c104593b8abd5b71a6cc96fc10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16677: 8ef5beec2ea363e14c6a0c921e1bacea817e26fd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8ef5beec2ea3 drm/i915/gt: remove redundant assignment to variable dw
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16677/index.html
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
