@@ -1,54 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8EB16AE65
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:13:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0A3B16AE62
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:13:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E7B6E83F;
-	Mon, 24 Feb 2020 18:13:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E18816E834;
+	Mon, 24 Feb 2020 18:13:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from conssluserg-06.nifty.com (conssluserg-06.nifty.com
- [210.131.2.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B44026F5D2
- for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 05:50:32 +0000 (UTC)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com
- [209.85.221.173]) (authenticated)
- by conssluserg-06.nifty.com with ESMTP id 01M5o4NZ030390
- for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 14:50:05 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-06.nifty.com 01M5o4NZ030390
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1582350605;
- bh=eq8IO/VMpfJ1RJrC1x1R1P0tHfinL6GT1Btf9n8F004=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=1hUr8OYvNwQkeLHY+zP5zqW8Qb+ozYDbgl3HAQzCFHZLbasbZa4KLBM/SvJIi66lZ
- AQf0mF7pTn0B3qAC1CDi8UvNBwDRR5ewzKej5oxwefi7FSorv4uikCMaVYb4hvm4CQ
- gFcIy4+uHuD4hkbSMubTO26yc3TSAm0sjCmHv4ZO2tzH9Sjz5eTI4J5ztQOrPrH7Dw
- PKVRXENv91BUcnOH8Z5+fXvZyqRaemO7W58fnzz+FKJShtuoAI0ankskrW1Dk6byq/
- ebD1U4cV2a8nIw6AGRhc/avWe5QqZ2tc4dNR/eZAIEDjWRG2Sq6caD/cXsOfi1lT5y
- tU4WZLE6GrBXA==
-X-Nifty-SrcIP: [209.85.221.173]
-Received: by mail-vk1-f173.google.com with SMTP id b2so1197561vkk.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 21 Feb 2020 21:50:05 -0800 (PST)
-X-Gm-Message-State: APjAAAX33hZH/k+1KmLciWF+6hdW244gl1Q1XA8Pt8NHvAJ7Kq1UAwTa
- aiLebu0K4ob/+fsbhKxk6cN5EIZbnSTHHYLuWdw=
-X-Google-Smtp-Source: APXvYqwJWpEaE796xeyan5SmnaRzumJrz/i7eeBS+BaRFmmhAaxfTB5EXpEN3YY5l0ESuLjYT2L/syj/2pfDzT43rsg=
-X-Received: by 2002:a1f:6344:: with SMTP id x65mr18539272vkb.26.1582350603944; 
- Fri, 21 Feb 2020 21:50:03 -0800 (PST)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49B026E513;
+ Sat, 22 Feb 2020 09:00:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+ Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=QtOz5Yqndfg4b3crCuadwzvowf+vDC2E5h6k4EWHytI=; b=DpH4PMwIppLr6/X5/tooSLY7BT
+ vxbKby3+VAM0XUPcsmazZqb7SY83m8ex3rjxnFhCcs/YFiUv+BVkVfe5BQvtmZKr9BpYUQt6Gz9FD
+ WztETKG0mq+h2t9VlU1aO3ivFnTENOAa23jTwpxPUKQBUKF4c6OMlCmGeF4Le5uRcoj6BXY9M7E7K
+ mklR4r7fBXphre/H7RlKsk+x24wnkOB2uaZvz2FtWcJhG7IFWbrIFwHR/Lwgp3LOXcAE6N3wo4dWA
+ nMQ52CJN0npwrXw+Tet31VHIIhvCdCkbZ9utTcpHchmXCPPbmVv5jC86fkEKoncwxx5Ri6txt5Lim
+ Uj+nwA/A==;
+Received: from [80.156.29.194] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1j5Qdz-0007Ht-DL; Sat, 22 Feb 2020 09:00:15 +0000
+Received: from mchehab by bombadil.infradead.org with local (Exim 4.92.3)
+ (envelope-from <mchehab@bombadil.infradead.org>)
+ id 1j5Qdx-001N4f-NW; Sat, 22 Feb 2020 10:00:13 +0100
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Date: Sat, 22 Feb 2020 10:00:07 +0100
+Message-Id: <ab08b73be87b66700f244a4e41db8a5e7e768916.1582361738.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <cover.1582361737.git.mchehab+huawei@kernel.org>
+References: <cover.1582361737.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-References: <20200221105414.14358-1-jani.nikula@intel.com>
- <CAK7LNATbVytK_3GscB8RUTR4zWFN48Faz6T+_O4OAJFpXR3TvQ@mail.gmail.com>
- <CAK7LNASJmps=DvnfvhXJBCG533PYMYX_Hv3CS-fK4o47S1wq+g@mail.gmail.com>
- <373b4c07-2355-6e78-e9f4-e1bf50322287@infradead.org>
-In-Reply-To: <373b4c07-2355-6e78-e9f4-e1bf50322287@infradead.org>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Sat, 22 Feb 2020 14:49:28 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAR838UVsXUxWFZFPTNbqqCw1V2+G0B6=k3GOghajMp35A@mail.gmail.com>
-Message-ID: <CAK7LNAR838UVsXUxWFZFPTNbqqCw1V2+G0B6=k3GOghajMp35A@mail.gmail.com>
-To: Randy Dunlap <rdunlap@infradead.org>
 X-Mailman-Approved-At: Mon, 24 Feb 2020 18:13:30 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix header test with GCOV
+Subject: [Intel-gfx] [PATCH 7/7] docs: gpu: i915.rst: fix warnings due to
+ file renames
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,88 +52,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, Jonathan Corbet <corbet@lwn.net>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+ intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ Maxime Ripard <mripard@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Feb 22, 2020 at 2:25 PM Randy Dunlap <rdunlap@infradead.org> wrote:
->
-> On 2/21/20 8:53 PM, Masahiro Yamada wrote:
-> > On Sat, Feb 22, 2020 at 1:43 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> >>
-> >> Hi Jani,
-> >>
-> >> On Fri, Feb 21, 2020 at 7:54 PM Jani Nikula <jani.nikula@intel.com> wrote:
-> >>>
-> >>> $(CC) with $(CFLAGS_GCOV) assumes the output filename with .gcno suffix
-> >>> appended is writable. This is not the case when the output filename is
-> >>> /dev/null:
-> >>>
-> >>>   HDRTEST drivers/gpu/drm/i915/display/intel_frontbuffer.h
-> >>> /dev/null:1:0: error: cannot open /dev/null.gcno
-> >>>   HDRTEST drivers/gpu/drm/i915/display/intel_ddi.h
-> >>> /dev/null:1:0: error: cannot open /dev/null.gcno
-> >>> make[5]: *** [../drivers/gpu/drm/i915/Makefile:307:
-> >>> drivers/gpu/drm/i915/display/intel_ddi.hdrtest] Error 1
-> >>> make[5]: *** Waiting for unfinished jobs....
-> >>> make[5]: *** [../drivers/gpu/drm/i915/Makefile:307:
-> >>> drivers/gpu/drm/i915/display/intel_frontbuffer.hdrtest] Error 1
-> >>>
-> >>> Filter out $(CFLAGS_GVOC) from the header test $(c_flags) as they don't
-> >>> make sense here anyway.
-> >>
-> >>
-> >>
-> >> Is GCOV the only case that produces a separate file?
-> >>
-> >> Could you also test CONFIG_DEBUG_INFO_SPLIT, please ?
-> >>
-> >>
-> >> The GCC manual says this:
-> >>
-> >> -gsplit-dwarf
-> >>
-> >>    Separate as much DWARF debugging information as possible into a
-> >> separate output
-> >>    file with the extension .dwo. This option allows the build system
-> >> to avoid linking
-> >>    files with debug information. To be useful, this option requires a debugger
-> >>    capable of reading .dwo files.
-> >>
-> >
-> >
-> > I just tested it.
-> >
-> > This is not a problem for header test
-> > because cmd_hdrtest uses '-S' instead of '-c'.
-> >
-> > If '-c' were used, we would see a similar error.
-> >
-> >
-> > So, gsplit-dwarf is OK.
->
-> Yes, works for me also.
->
-> (I think you have a faster build machine that I do. I began the build
-> almost immediately after reading your email. :)
+Fix two warnings due to file rename:
 
+	WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function csr support for dmc ./drivers/gpu/drm/i915/intel_csr.c' failed with return code 1
+	WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -internal ./drivers/gpu/drm/i915/intel_csr.c' failed with return code 2
 
-I use a reasonable PC for my development.
-(core-i9 with 4 physical cores)
+Fixes: 06d3ff6e7451 ("drm/i915: move intel_csr.[ch] under display/")
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+---
+ Documentation/gpu/i915.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
-I just compiled under i915/ with this command:
-
-make drivers/gpu/drm/i915/
-
-
-
-
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index e539c42a3e78..cc74e24ca3b5 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -207,10 +207,10 @@ DPIO
+ CSR firmware support for DMC
+ ----------------------------
+ 
+-.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
++.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+    :doc: csr support for dmc
+ 
+-.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
++.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+    :internal:
+ 
+ Video BIOS Table (VBT)
 -- 
-Best Regards
-Masahiro Yamada
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
