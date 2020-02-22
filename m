@@ -1,26 +1,26 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B87168E68
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 12:23:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ED90168E73
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 12:28:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 022E06E86A;
-	Sat, 22 Feb 2020 11:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3556E6E86D;
+	Sat, 22 Feb 2020 11:28:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (unknown [77.68.26.236])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 510E36E86A
- for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 11:23:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CA7F6E86D
+ for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 11:28:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20312654-1500050 
- for multiple; Sat, 22 Feb 2020 11:23:18 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20312688-1500050 
+ for multiple; Sat, 22 Feb 2020 11:28:00 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 22 Feb 2020 11:23:18 +0000
-Message-Id: <20200222112318.2894386-1-chris@chris-wilson.co.uk>
+Date: Sat, 22 Feb 2020 11:27:56 +0000
+Message-Id: <20200222112756.2911549-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Verify LRC isolation
@@ -48,14 +48,14 @@ normal per-context register state.
 References: https://gitlab.freedesktop.org/drm/intel/issues/1233
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 528 +++++++++++++++++++++++++
- 1 file changed, 528 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 545 +++++++++++++++++++++++++
+ 1 file changed, 545 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index febd608c23a7..e4a9d087a7be 100644
+index febd608c23a7..64e57d8e4d25 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4748,6 +4748,533 @@ static int live_lrc_timestamp(void *arg)
+@@ -4748,6 +4748,550 @@ static int live_lrc_timestamp(void *arg)
  	return 0;
  }
  
@@ -346,12 +346,18 @@ index febd608c23a7..e4a9d087a7be 100644
 +	return err;
 +}
 +
++static bool is_moving(u32 a, u32 b)
++{
++	return a != b;
++}
++
 +static int compare_isolation(struct intel_engine_cs *engine,
 +			     struct i915_vma *ref[2],
 +			     struct i915_vma *result[2],
++			     struct intel_context *ce,
 +			     u32 poison)
 +{
-+	u32 x, dw, *hw;
++	u32 x, dw, *hw, *lrc;
 +	u32 *A[2], *B[2];
 +	int err = 0;
 +
@@ -377,6 +383,14 @@ index febd608c23a7..e4a9d087a7be 100644
 +		goto err_B0;
 +	}
 +
++	lrc = i915_gem_object_pin_map(ce->state->obj,
++				      i915_coherent_map_type(engine->i915));
++	if (IS_ERR(lrc)) {
++		err = PTR_ERR(lrc);
++		goto err_B1;
++	}
++	lrc += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
++
 +	x = 0;
 +	dw = 0;
 +	hw = engine->pinned_default_state;
@@ -400,7 +414,7 @@ index febd608c23a7..e4a9d087a7be 100644
 +		dw++;
 +
 +		while (lri) {
-+			if (A[0][x] == A[1][x] &&
++			if (!is_moving(A[0][x], A[1][x]) &&
 +			    (A[0][x] != B[0][x] || A[1][x] != B[1][x])) {
 +				switch (hw[dw] & 4095) {
 +				case 0x30: /* RING_HEAD */
@@ -408,10 +422,11 @@ index febd608c23a7..e4a9d087a7be 100644
 +					break;
 +
 +				default:
-+					pr_err("%s[%d]: Mismatch for register %4x, reference %08x, result (%08x, %08x), poison %08x\n",
-+					       engine->name, x, hw[dw],
++					pr_err("%s[%d]: Mismatch for register %4x, default %08x, reference %08x, result (%08x, %08x), poison %08x, context %08x\n",
++					       engine->name, x,
++					       hw[dw], hw[dw + 1],
 +					       A[0][x], B[0][x], B[1][x],
-+					       poison);
++					       poison, lrc[dw + 1]);
 +					err = -EINVAL;
 +					break;
 +				}
@@ -423,6 +438,8 @@ index febd608c23a7..e4a9d087a7be 100644
 +	} while (dw < PAGE_SIZE / sizeof(u32) &&
 +		 (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
 +
++	i915_gem_object_unpin_map(ce->state->obj);
++err_B1:
 +	i915_gem_object_unpin_map(result[1]->obj);
 +err_B0:
 +	i915_gem_object_unpin_map(result[0]->obj);
@@ -511,7 +528,7 @@ index febd608c23a7..e4a9d087a7be 100644
 +	}
 +	i915_request_put(rq);
 +
-+	err = compare_isolation(engine, ref, result, poison);
++	err = compare_isolation(engine, ref, result, A, poison);
 +
 +err_result1:
 +	i915_vma_put(result[1]);
@@ -589,7 +606,7 @@ index febd608c23a7..e4a9d087a7be 100644
  static int __live_pphwsp_runtime(struct intel_engine_cs *engine)
  {
  	struct intel_context *ce;
-@@ -4845,6 +5372,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
+@@ -4845,6 +5389,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
  		SUBTEST(live_lrc_fixed),
  		SUBTEST(live_lrc_state),
  		SUBTEST(live_lrc_gpr),
