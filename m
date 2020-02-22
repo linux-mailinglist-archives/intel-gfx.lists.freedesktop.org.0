@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE42168B97
-	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 02:36:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE27168B9B
+	for <lists+intel-gfx@lfdr.de>; Sat, 22 Feb 2020 02:39:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DD5C6F595;
-	Sat, 22 Feb 2020 01:36:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 023426E3A6;
+	Sat, 22 Feb 2020 01:39:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E83ED6E3A6;
- Sat, 22 Feb 2020 01:36:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E0A60A363D;
- Sat, 22 Feb 2020 01:36:42 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5306B6E3A6
+ for <intel-gfx@lists.freedesktop.org>; Sat, 22 Feb 2020 01:39:21 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 17:39:20 -0800
+X-IronPort-AV: E=Sophos;i="5.70,470,1574150400"; d="scan'208";a="240497105"
+Received: from ldmartin-desk1.jf.intel.com ([134.134.244.69])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 21 Feb 2020 17:39:20 -0800
+Date: Fri, 21 Feb 2020 17:39:14 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200222013914.4ddtcdf274cvzhdy@ldmartin-desk1.jf.intel.com>
+References: <20200222002824.17103-1-lucas.demarchi@intel.com>
+ <4a1fc6a341c803943cd79c9a1961bd37ec5e5cb8.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 22 Feb 2020 01:36:42 -0000
-Message-ID: <158233540289.32576.17275708297501950080@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200221184355.2848409-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200221184355.2848409-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Verify_LRC_isolation?=
+Content-Disposition: inline
+In-Reply-To: <4a1fc6a341c803943cd79c9a1961bd37ec5e5cb8.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1608008084
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,34 +44,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "michel.thierry@intel.com" <michel.thierry@intel.com>,
+ "ramlingam.c@intel.com" <ramlingam.c@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Feb 21, 2020 at 04:36:53PM -0800, Jose Souza wrote:
+>+ CCing people involved in the patch fixed.
+>
+>On Fri, 2020-02-21 at 16:28 -0800, Lucas De Marchi wrote:
+>> Wa_1608008084 is an additional WA that applies to writes on FF_MODE2
+>> register. We can't read it back either from CPU or GPU. Since the
+>> other
+>> bits should be 0, recommendation to handle Wa_1604555607 is to
+>> actually
+>> just write the timer value.
+>>
+>> Do a write only and don't try to read it, neither before or after
+>> the WA is applied.
+>>
+>> Fixes: ff690b2111ba ("drm/i915/tgl: Implement Wa_1604555607")
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 22 ++++++++++---------
+>> --
+>>  1 file changed, 10 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> index 887e0dc701f7..0d76e1d6ec87 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -580,24 +580,22 @@ static void icl_ctx_workarounds_init(struct
+>> intel_engine_cs *engine,
+>>  static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+>>  				     struct i915_wa_list *wal)
+>>  {
+>> -	u32 val;
+>> -
+>>  	/* Wa_1409142259:tgl */
+>>  	WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
+>>  			  GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
+>>
+>> -	/* Wa_1604555607:tgl */
+>> -	val =3D intel_uncore_read(engine->uncore, FF_MODE2);
+>> -	val &=3D ~FF_MODE2_TDS_TIMER_MASK;
+>> -	val |=3D FF_MODE2_TDS_TIMER_128;
+>>  	/*
+>> -	 * FIXME: FF_MODE2 register is not readable till TGL B0. We can
+>> -	 * enable verification of WA from the later steppings, which
+>> enables
+>> -	 * the read of FF_MODE2.
+>> +	 * Wa_1604555607:gen12
+>> +	 * FF_MODE2 register is not readable till TGL B0, either by CPU
+>> or GPU.
+>
+>The line above could be removed as the comments above explain it
+>better, also BSpec don't say that it will be fixed in B0.
 
-Series: drm/i915/selftests: Verify LRC isolation
-URL   : https://patchwork.freedesktop.org/series/73788/
-State : warning
+1604555607 was documented to be fixed in B0. Just saw it's not anymore.
 
-== Summary ==
+>
+>With that:
+>Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-$ dim checkpatch origin/drm-tip
-14585105911e drm/i915/selftests: Verify LRC isolation
--:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#123: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:4853:
-+record_registers(struct intel_context *ce,
-+		struct i915_vma *before,
+thanks
+Lucas De Marchi
 
--:432: WARNING:MEMORY_BARRIER: memory barrier without comment
-#432: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5162:
-+	wmb();
+>
+>> +	 *
+>> +	 * Wa_1608008084:gen12
+>> +	 * FF_MODE2 register will return the wrong value when read. The
+>> default =
 
-total: 0 errors, 1 warnings, 1 checks, 537 lines checked
-
+>> +	 * value for this register is zero for all fields and there are
+>> no bit
+>> +	 * masks. So instead of doing a RMW we should just write the
+>> TDS timer
+>> +	 * value for Wa_1604555607.
+>>  	 */
+>> -	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK, val,
+>> -	       IS_TGL_REVID(engine->i915, TGL_REVID_A0, TGL_REVID_A0) ?
+>> 0 :
+>> -			    FF_MODE2_TDS_TIMER_MASK);
+>> +	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK,
+>> +	       FF_MODE2_TDS_TIMER_128, 0);
+>>  }
+>>
+>>  static void
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
