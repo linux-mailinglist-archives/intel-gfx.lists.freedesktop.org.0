@@ -1,45 +1,76 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0A3B16AE62
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:13:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0221816AE63
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:13:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E18816E834;
-	Mon, 24 Feb 2020 18:13:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 740906E83D;
+	Mon, 24 Feb 2020 18:13:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B026E513;
- Sat, 22 Feb 2020 09:00:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
- Reply-To:Content-Type:Content-ID:Content-Description;
- bh=QtOz5Yqndfg4b3crCuadwzvowf+vDC2E5h6k4EWHytI=; b=DpH4PMwIppLr6/X5/tooSLY7BT
- vxbKby3+VAM0XUPcsmazZqb7SY83m8ex3rjxnFhCcs/YFiUv+BVkVfe5BQvtmZKr9BpYUQt6Gz9FD
- WztETKG0mq+h2t9VlU1aO3ivFnTENOAa23jTwpxPUKQBUKF4c6OMlCmGeF4Le5uRcoj6BXY9M7E7K
- mklR4r7fBXphre/H7RlKsk+x24wnkOB2uaZvz2FtWcJhG7IFWbrIFwHR/Lwgp3LOXcAE6N3wo4dWA
- nMQ52CJN0npwrXw+Tet31VHIIhvCdCkbZ9utTcpHchmXCPPbmVv5jC86fkEKoncwxx5Ri6txt5Lim
- Uj+nwA/A==;
-Received: from [80.156.29.194] (helo=bombadil.infradead.org)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1j5Qdz-0007Ht-DL; Sat, 22 Feb 2020 09:00:15 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92.3)
- (envelope-from <mchehab@bombadil.infradead.org>)
- id 1j5Qdx-001N4f-NW; Sat, 22 Feb 2020 10:00:13 +0100
-From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To: Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Date: Sat, 22 Feb 2020 10:00:07 +0100
-Message-Id: <ab08b73be87b66700f244a4e41db8a5e7e768916.1582361738.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <cover.1582361737.git.mchehab+huawei@kernel.org>
-References: <cover.1582361737.git.mchehab+huawei@kernel.org>
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 316FA6E091;
+ Sun, 23 Feb 2020 15:45:18 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id b17so6823419wmb.0;
+ Sun, 23 Feb 2020 07:45:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=inzn9KgooBAx5M8NGIgtozNP6e9nFtoEVn58fHfHS9U=;
+ b=hYw76MzTFFctGmd2sCZFPBrCelb2cowVUlYA/AM1Mvij3bAAMGhlNYI0rXUyDABN1Z
+ 3xnZU9YMt1g+8dxTLcHslrSYtN5qhEKRhjfGJjKacSGiPP2zDpUV6GpuaBsjENJ5rp55
+ 0avPNo7K+rwCSa4uwE970DBGcopjfo26u+SjVLwGhH7MMCFk9TzZNgGma7wEJ07pI0L7
+ 0Kln0X7vwiTJduenaOPAj0ddeX47KooxkTj5sNpoZLc5xD5l+sK34dEtrWWnL+II+aaT
+ bu5X7itzmxjo3NBXoW1/JcihM6tqGVze2sSaY8eNYVgJ7JP2g1QLDt6FRNZqVMGHqZ48
+ 04ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=inzn9KgooBAx5M8NGIgtozNP6e9nFtoEVn58fHfHS9U=;
+ b=qgmbYe5EYCKlnZci1sn88sbWSH2kerhtnEJlFkbO99BTiGv7stFGWWVuNSBf6iwjfr
+ oRIe8Vh7vP3dq8o5AcYqMG+xOMujTtWeo9I9mL09U2Kg+TI0xtNzdoQYzy1aRb6PZXI+
+ K6Z1+wkpf56S3jwKLxALLWzJVJEjg0jwhgs7l6mZ/W2XqPASvsBP9R6ayRY8wNTDREPZ
+ 8KiIHzmGpSbvXUAvUoQFffaoz6d1kxtHeYUQmKv5qgoSHg2RDhoUoIlM432bSElpOdF5
+ fULDywGO2DrWg2SpD/d6FKvT1x1/yvGCwvi934fIlXxVWlzpiRzAy2C3X0cFkbZhWH7A
+ NApQ==
+X-Gm-Message-State: APjAAAXzlOdNGxrtQ8unYZ7uBy71wkQoXs6Q9TCN8DmQJcCxhborGcQY
+ rQ4d7nodvStvjYigIOLpmLM=
+X-Google-Smtp-Source: APXvYqxhJh1O9a4M4aCqcycel5moNklWx8r/xJq6nuMHEP0zx83oOzF3CBVTxvvIT9/L5THTkiHlGw==
+X-Received: by 2002:a7b:c14e:: with SMTP id z14mr16451275wmi.58.1582472716864; 
+ Sun, 23 Feb 2020 07:45:16 -0800 (PST)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id w7sm13097479wmi.9.2020.02.23.07.45.15
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 23 Feb 2020 07:45:16 -0800 (PST)
+To: Daniel Vetter <daniel@ffwll.ch>,
+ =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
+References: <20200217154509.2265-6-christian.koenig@amd.com>
+ <20200217175518.GL2363188@phenom.ffwll.local>
+ <f8ac7cbc-7c90-7119-735c-9f55adb6fa7f@shipmail.org>
+ <CAKMK7uHG3EkEPbAQ3UEHHLcfmR+0NPq0wZuBX+s2-WCFdso8ew@mail.gmail.com>
+ <79a0d79f-91bd-2481-740c-20e6c819c7c9@shipmail.org>
+ <ee929c93-c9d7-7243-810e-94c6f0fc64b0@shipmail.org>
+ <20200220180459.GS2363188@phenom.ffwll.local>
+ <d1c37ec4-b63e-437a-a2be-80ba5192e048@shipmail.org>
+ <20200220200831.GA2363188@phenom.ffwll.local>
+ <501bf409-e4fe-a318-17b4-d5d050b09529@shipmail.org>
+ <20200221171217.GD2363188@phenom.ffwll.local>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <d9343617-9da8-5fea-a0f1-99db34a0cf2c@gmail.com>
+Date: Sun, 23 Feb 2020 16:45:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <20200221171217.GD2363188@phenom.ffwll.local>
+Content-Language: en-US
 X-Mailman-Approved-At: Mon, 24 Feb 2020 18:13:30 +0000
-Subject: [Intel-gfx] [PATCH 7/7] docs: gpu: i915.rst: fix warnings due to
- file renames
+Subject: Re: [Intel-gfx] [PATCH 5/5] drm/amdgpu: implement
+ amdgpu_gem_prime_move_notify v2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,45 +83,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Jonathan Corbet <corbet@lwn.net>,
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Maxime Ripard <mripard@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
+Reply-To: christian.koenig@amd.com
+Cc: "moderated list:DMA BUFFER SHARING FRAMEWORK"
+ <linaro-mm-sig@lists.linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix two warnings due to file rename:
+Am 21.02.20 um 18:12 schrieb Daniel Vetter:
+> [SNIP]
+> Yeah the Great Plan (tm) is to fully rely on ww_mutex slowly degenerating
+> into essentially a global lock. But only when there's actual contention
+> and thrashing.
 
-	WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function csr support for dmc ./drivers/gpu/drm/i915/intel_csr.c' failed with return code 1
-	WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -internal ./drivers/gpu/drm/i915/intel_csr.c' failed with return code 2
+Yes exactly. A really big problem in TTM is currently that we drop the 
+lock after evicting BOs because they tend to move in again directly 
+after that.
 
-Fixes: 06d3ff6e7451 ("drm/i915: move intel_csr.[ch] under display/")
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- Documentation/gpu/i915.rst | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ From practice I can also confirm that there is exactly zero benefit 
+from dropping locks early and reacquire them for example for the VM page 
+tables. That's just makes it more likely that somebody needs to roll 
+back and this is what we need to avoid in the first place.
 
-diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-index e539c42a3e78..cc74e24ca3b5 100644
---- a/Documentation/gpu/i915.rst
-+++ b/Documentation/gpu/i915.rst
-@@ -207,10 +207,10 @@ DPIO
- CSR firmware support for DMC
- ----------------------------
- 
--.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
-+.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
-    :doc: csr support for dmc
- 
--.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
-+.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
-    :internal:
- 
- Video BIOS Table (VBT)
--- 
-2.24.1
+Contention on BO locks during command submission is perfectly fine as 
+long as this is as lightweight as possible while we don't have trashing. 
+When we have trashing multi submission performance is best archived to 
+just favor a single process to finish its business and block everybody else.
+
+Because of this I would actually vote for forbidding to release 
+individual ww_mutex() locks in a context.
+
+Regards,
+Christian.
+
+> -Daniel
 
 _______________________________________________
 Intel-gfx mailing list
