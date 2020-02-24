@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051EA16A35F
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B32F16A35D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3D736E3E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21B7D6E3C6;
 	Mon, 24 Feb 2020 10:00:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0B8F6E3B5
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBC86E3C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328993-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328994-1500050 
  for multiple; Mon, 24 Feb 2020 10:00:10 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 10:00:02 +0000
-Message-Id: <20200224100007.4024184-9-chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 10:00:03 +0000
+Message-Id: <20200224100007.4024184-10-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/14] drm/i915/gt: Prevent allocation on a
- banned context
+Subject: [Intel-gfx] [PATCH 10/14] drm/i915/gem: Check that the context
+ wasn't closed during setup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,32 +45,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If a context is banned even before we submit our first request to it,
-report the failure before we attempt to allocate any resources for the
-context.
+As setup takes a long time, the user may close the context during the
+construction of the execbuf. In order to make sure we correctly track
+all outstanding work with non-persistent contexts, we need to serialise
+the submission with the context closure and mop up any leaks.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index 8bb444cda14f..01474d3a558b 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -51,6 +51,11 @@ int intel_context_alloc_state(struct intel_context *ce)
- 		return -EINTR;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 8646d76f4b6e..5200d5c1d732 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -2736,6 +2736,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 		goto err_batch_unpin;
+ 	}
  
- 	if (!test_bit(CONTEXT_ALLOC_BIT, &ce->flags)) {
-+		if (intel_context_is_banned(ce)) {
-+			err = -EIO;
-+			goto unlock;
-+		}
++	/* Check that the context wasn't destroyed before setup */
++	if (!rcu_access_pointer(eb.context->gem_context)) {
++		err = -ENOENT;
++		goto err_request;
++	}
 +
- 		err = ce->ops->alloc(ce);
- 		if (unlikely(err))
- 			goto unlock;
+ 	if (in_fence) {
+ 		err = i915_request_await_dma_fence(eb.request, in_fence);
+ 		if (err < 0)
 -- 
 2.25.1
 
