@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61E9516A474
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC56E16A476
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:59:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7E066E42A;
-	Mon, 24 Feb 2020 10:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1396E430;
+	Mon, 24 Feb 2020 10:59:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A266E42A
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:58:08 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 02:58:07 -0800
-X-IronPort-AV: E=Sophos;i="5.70,479,1574150400"; d="scan'208";a="230609537"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 02:58:05 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200224102429.4076883-1-chris@chris-wilson.co.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200224102429.4076883-1-chris@chris-wilson.co.uk>
-Date: Mon, 24 Feb 2020 12:58:03 +0200
-Message-ID: <87r1yktfpg.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 853C76E42F;
+ Mon, 24 Feb 2020 10:59:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7D5CCA0099;
+ Mon, 24 Feb 2020 10:59:02 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix inverted WARN_ON
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 10:59:02 -0000
+Message-ID: <158254194250.28361.9284764157523651596@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/14=5D_drm/i915/selftests=3A_Veri?=
+ =?utf-8?q?fy_LRC_isolation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,51 +39,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> Restore the previous WARN_ON(cond) so that we don't complain about poor
-> old Cherryview.
->
-> Fixes: eb020ca3d43f ("drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-Why the resubmission? Already r-b'd the original.
+Series: series starting with [01/14] drm/i915/selftests: Verify LRC isolation
+URL   : https://patchwork.freedesktop.org/series/73840/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
+$ dim checkpatch origin/drm-tip
+748167061786 drm/i915/selftests: Verify LRC isolation
+-:451: WARNING:MEMORY_BARRIER: memory barrier without comment
+#451: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5181:
++	wmb();
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 2f93326c16a3..e8bebd27004d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1023,9 +1023,10 @@ void intel_power_sequencer_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_encoder *encoder;
->  
-> -	if (drm_WARN_ON(&dev_priv->drm, !IS_VALLEYVIEW(dev_priv) &&
-> -			IS_CHERRYVIEW(dev_priv) &&
-> -			!IS_GEN9_LP(dev_priv)))
-> +	if (drm_WARN_ON(&dev_priv->drm,
-> +			!(IS_VALLEYVIEW(dev_priv) ||
-> +			  IS_CHERRYVIEW(dev_priv) ||
-> +			  IS_GEN9_LP(dev_priv))))
->  		return;
->  
->  	/*
+total: 0 errors, 1 warnings, 0 checks, 559 lines checked
+43180ee37d91 drm/i915/selftests: Check recovery from corrupted LRC
+91df47ab4b46 drm/i915: Flush idle barriers when waiting
+9b9b9e729e66 drm/i915: Allow userspace to specify ringsize on construction
+-:228: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#228: 
+new file mode 100644
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 1 warnings, 0 checks, 305 lines checked
+78811038e2dc drm/i915/gem: Honour O_NONBLOCK before throttling execbuf submissions
+f8a4a1a69d1e drm/i915/selftests: Be a little more lenient for reset workers
+78e115ce3f07 drm/i915: Protect i915_request_await_start from early waits
+0a2f475520dc drm/i915/gem: Consolidate ctx->engines[] release
+7cb395eb4a69 drm/i915/gt: Prevent allocation on a banned context
+cc42d7921f1b drm/i915/gem: Check that the context wasn't closed during setup
+69ce6bbda208 drm/i915/gt: Declare when we enabled timeslicing
+01288567a278 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+b77c79afbfe7 drm/i915/execlists: Check the sentinel is alone in the ELSP
+d3bd4cdb8f90 drm/i915/execlists: Reduce preempt-to-busy roundtrip delay
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
