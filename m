@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A8416AF4A
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8BEB16AF5B
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:39:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43EDE6E840;
-	Mon, 24 Feb 2020 18:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB13D6E846;
+	Mon, 24 Feb 2020 18:39:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC7406E840;
- Mon, 24 Feb 2020 18:37:37 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 78A986E846;
+ Mon, 24 Feb 2020 18:39:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A5605A00E8;
- Mon, 24 Feb 2020 18:37:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72FF8A00E8;
+ Mon, 24 Feb 2020 18:39:46 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 24 Feb 2020 18:37:37 -0000
-Message-ID: <158256945764.28361.2241151404050420805@emeril.freedesktop.org>
+Date: Mon, 24 Feb 2020 18:39:46 -0000
+Message-ID: <158256958644.28360.9940270789228496292@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200224153240.9047-1-stanislav.lisovskiy@intel.com>
 In-Reply-To: <20200224153240.9047-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Refactor_Gen11+_SAGV_support?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Refactor_Gen11+_SAGV_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,31 +53,16 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-658365e95a33 drm/i915: Start passing latency as parameter
-ba654cc920d4 drm/i915: Introduce skl_plane_wm_level accessor.
-b339bbdf676c drm/i915: Add intel_bw_get_*_state helpers
-4d3ce9ab4bc3 drm/i915: Introduce more *_state_changed indicators
-1a4b8e91ea4b drm/i915: Refactor intel_can_enable_sagv
--:357: CHECK:BOOL_COMPARISON: Using comparison to false is error prone
-#357: FILE: drivers/gpu/drm/i915/intel_pm.c:3863:
-+	if (state->active_pipe_changes == 0 && state->ddb_state_changed == false)
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915: Start passing latency as parameter
+Okay!
 
--:394: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#394: FILE: drivers/gpu/drm/i915/intel_pm.c:3900:
-+	if (new_bw_state->pipe_sagv_mask != old_bw_state->pipe_sagv_mask) {
-+
+Commit: drm/i915: Introduce skl_plane_wm_level accessor.
+Okay!
 
-total: 0 errors, 0 warnings, 2 checks, 720 lines checked
-95a34afc3826 drm/i915: Added required new PCode commands
-d9e474c18262 drm/i915: Restrict qgv points which don't have enough bandwidth.
--:357: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#357: FILE: drivers/gpu/drm/i915/display/intel_bw.c:557:
-+	if (new_bw_state->qgv_points_mask != old_bw_state->qgv_points_mask) {
-+
-
-total: 0 errors, 0 warnings, 1 checks, 406 lines checked
-a8667395977a drm/i915: Enable SAGV support for Gen12
+Commit: drm/i915: Add intel_bw_get_*_state helpers
+Okay!
 
 _______________________________________________
 Intel-gfx mailing list
