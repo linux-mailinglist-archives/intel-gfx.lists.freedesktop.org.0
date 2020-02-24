@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309DC16A35B
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 867C016A359
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2BD6E3C1;
-	Mon, 24 Feb 2020 10:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93DBF6E3A8;
+	Mon, 24 Feb 2020 10:00:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 182C06E3C1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00E256E3B5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328986-1500050 
- for multiple; Mon, 24 Feb 2020 10:00:09 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328989-1500050 
+ for multiple; Mon, 24 Feb 2020 10:00:10 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 09:59:56 +0000
-Message-Id: <20200224100007.4024184-3-chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 09:59:59 +0000
+Message-Id: <20200224100007.4024184-6-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/14] drm/i915: Flush idle barriers when waiting
+Subject: [Intel-gfx] [PATCH 06/14] drm/i915/selftests: Be a little more
+ lenient for reset workers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,150 +44,129 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we do find ourselves with an idle barrier inside our active while
-waiting, attempt to flush it by emitting a pulse using the kernel
-context.
+Give the reset worker a kick before losing help when waiting for hang
+recovery, as the CPU scheduler is a little unreliable.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Steve Carbonari <steven.carbonari@intel.com>
 ---
- drivers/gpu/drm/i915/i915_active.c           | 42 ++++++++++++++----
- drivers/gpu/drm/i915/selftests/i915_active.c | 46 ++++++++++++++++++++
- 2 files changed, 79 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 74 ++++++++++++++++++--------
+ 1 file changed, 52 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 9ccb931a733e..fae7e3820592 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -7,6 +7,7 @@
- #include <linux/debugobjects.h>
- 
- #include "gt/intel_context.h"
-+#include "gt/intel_engine_heartbeat.h"
- #include "gt/intel_engine_pm.h"
- #include "gt/intel_ring.h"
- 
-@@ -460,26 +461,49 @@ static void enable_signaling(struct i915_active_fence *active)
- 	dma_fence_put(fence);
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index 5fdfb67c3bab..83165bf9caaa 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -90,6 +90,48 @@ static int wait_for_submit(struct intel_engine_cs *engine,
+ 	return -ETIME;
  }
  
--int i915_active_wait(struct i915_active *ref)
-+static int flush_barrier(struct active_node *it)
- {
--	struct active_node *it, *n;
--	int err = 0;
-+	struct intel_engine_cs *engine;
- 
--	might_sleep();
-+	if (!is_barrier(&it->base))
-+		return 0;
- 
--	if (!i915_active_acquire_if_busy(ref))
-+	engine = __barrier_to_engine(it);
-+	smp_rmb(); /* serialise with add_active_barriers */
-+	if (!is_barrier(&it->base))
- 		return 0;
- 
--	/* Flush lazy signals */
-+	return intel_engine_flush_barriers(engine);
-+}
-+
-+static int flush_lazy_signals(struct i915_active *ref)
++static int wait_for_reset(struct intel_engine_cs *engine,
++			  struct i915_request *rq,
++			  unsigned long timeout)
 +{
-+	struct active_node *it, *n;
-+	int err = 0;
++	timeout += jiffies;
++	do {
++		cond_resched();
++		intel_engine_flush_submission(engine);
 +
- 	enable_signaling(&ref->excl);
- 	rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
--		if (is_barrier(&it->base)) /* unconnected idle barrier */
--			continue;
-+		err = flush_barrier(it); /* unconnected idle barrier? */
-+		if (err)
++		if (READ_ONCE(engine->execlists.pending[0]))
++			continue;
++
++		if (i915_request_completed(rq))
 +			break;
- 
- 		enable_signaling(&it->base);
- 	}
--	/* Any fence added after the wait begins will not be auto-signaled */
- 
-+	return err;
++
++		if (READ_ONCE(rq->fence.error))
++			break;
++	} while (time_before(jiffies, timeout));
++
++	flush_scheduled_work();
++
++	if (rq->fence.error != -EIO) {
++		pr_err("%s: hanging request %llx:%lld not reset\n",
++		       engine->name,
++		       rq->fence.context,
++		       rq->fence.seqno);
++		return -EINVAL;
++	}
++
++	/* Give the request a jiffie to complete after flushing the worker */
++	if (i915_request_wait(rq, 0,
++			      max(0l, (long)(timeout - jiffies)) + 1) < 0) {
++		pr_err("%s: hanging request %llx:%lld did not complete\n",
++		       engine->name,
++		       rq->fence.context,
++		       rq->fence.seqno);
++		return -ETIME;
++	}
++
++	return 0;
 +}
 +
-+int i915_active_wait(struct i915_active *ref)
-+{
-+	int err;
-+
-+	might_sleep();
-+
-+	if (!i915_active_acquire_if_busy(ref))
-+		return 0;
-+
-+	/* Any fence added after the wait begins will not be auto-signaled */
-+	err = flush_lazy_signals(ref);
- 	i915_active_release(ref);
+ static int live_sanitycheck(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -1805,14 +1847,9 @@ static int __cancel_active0(struct live_preempt_cancel *arg)
  	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index ef572a0c2566..067e30b8927f 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -201,11 +201,57 @@ static int live_active_retire(void *arg)
- 	return err;
- }
+ 		goto out;
  
-+static int live_active_barrier(void *arg)
-+{
-+	struct drm_i915_private *i915 = arg;
-+	struct intel_engine_cs *engine;
-+	struct live_active *active;
-+	int err = 0;
-+
-+	/* Check that we get a callback when requests retire upon waiting */
-+
-+	active = __live_alloc(i915);
-+	if (!active)
-+		return -ENOMEM;
-+
-+	err = i915_active_acquire(&active->base);
+-	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+-		err = -EIO;
+-		goto out;
+-	}
+-
+-	if (rq->fence.error != -EIO) {
+-		pr_err("Cancelled inflight0 request did not report -EIO\n");
+-		err = -EINVAL;
++	err = wait_for_reset(arg->engine, rq, HZ / 2);
++	if (err) {
++		pr_err("Cancelled inflight0 request did not reset\n");
+ 		goto out;
+ 	}
+ 
+@@ -1870,10 +1907,9 @@ static int __cancel_active1(struct live_preempt_cancel *arg)
+ 		goto out;
+ 
+ 	igt_spinner_end(&arg->a.spin);
+-	if (i915_request_wait(rq[1], 0, HZ / 5) < 0) {
+-		err = -EIO;
++	err = wait_for_reset(arg->engine, rq[1], HZ / 2);
 +	if (err)
-+		goto out;
-+
-+	for_each_uabi_engine(engine, i915) {
-+		err = i915_active_acquire_preallocate_barrier(&active->base,
-+							      engine);
-+		if (err)
-+			break;
-+
-+		i915_active_acquire_barrier(&active->base);
-+	}
-+
-+	i915_active_release(&active->base);
-+
-+	if (err == 0)
-+		err = i915_active_wait(&active->base);
-+
-+	if (err == 0 && !READ_ONCE(active->retired)) {
-+		pr_err("i915_active not retired after flushing barriers!\n");
-+		err = -EINVAL;
-+	}
-+
-+out:
-+	__live_put(active);
-+
-+	if (igt_flush_test(i915))
-+		err = -EIO;
-+
-+	return err;
-+}
-+
- int i915_active_live_selftests(struct drm_i915_private *i915)
- {
- 	static const struct i915_subtest tests[] = {
- 		SUBTEST(live_active_wait),
- 		SUBTEST(live_active_retire),
-+		SUBTEST(live_active_barrier),
- 	};
+ 		goto out;
+-	}
  
- 	if (intel_gt_is_wedged(&i915->gt))
+ 	if (rq[0]->fence.error != 0) {
+ 		pr_err("Normal inflight0 request did not complete\n");
+@@ -1953,10 +1989,9 @@ static int __cancel_queued(struct live_preempt_cancel *arg)
+ 	if (err)
+ 		goto out;
+ 
+-	if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
+-		err = -EIO;
++	err = wait_for_reset(arg->engine, rq[2], HZ / 2);
++	if (err)
+ 		goto out;
+-	}
+ 
+ 	if (rq[0]->fence.error != -EIO) {
+ 		pr_err("Cancelled inflight0 request did not report -EIO\n");
+@@ -2014,14 +2049,9 @@ static int __cancel_hostile(struct live_preempt_cancel *arg)
+ 	if (err)
+ 		goto out;
+ 
+-	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+-		err = -EIO;
+-		goto out;
+-	}
+-
+-	if (rq->fence.error != -EIO) {
+-		pr_err("Cancelled inflight0 request did not report -EIO\n");
+-		err = -EINVAL;
++	err = wait_for_reset(arg->engine, rq, HZ / 2);
++	if (err) {
++		pr_err("Cancelled inflight0 request did not reset\n");
+ 		goto out;
+ 	}
+ 
 -- 
 2.25.1
 
