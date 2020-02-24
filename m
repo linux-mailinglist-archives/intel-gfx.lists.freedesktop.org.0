@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA6316A35C
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 438DB16A384
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:09:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02E796E3BC;
-	Mon, 24 Feb 2020 10:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0FDE6E3FE;
+	Mon, 24 Feb 2020 10:09:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1449B6E3D8
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:22 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328998-1500050 
- for multiple; Mon, 24 Feb 2020 10:00:11 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 10:00:07 +0000
-Message-Id: <20200224100007.4024184-14-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
-References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6425B6E3FC;
+ Mon, 24 Feb 2020 10:09:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5C6EAA00E8;
+ Mon, 24 Feb 2020 10:09:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 14/14] drm/i915/execlists: Reduce
- preempt-to-busy roundtrip delay
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Date: Mon, 24 Feb 2020 10:09:05 -0000
+Message-ID: <158253894534.28363.3326858698572298615@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200131114258.22306-1-animesh.manna@intel.com>
+In-Reply-To: <20200131114258.22306-1-animesh.manna@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/dsb=3A_Enable_lmem_for_dsb_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,232 +38,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To prevent the context from proceeding past the end of the request as we
-unwind, we embed a semaphore into the footer of each request. (If the
-context were to skip past the end of the request as we perform the
-preemption, next time we reload the context it's RING_HEAD would be past
-the RING_TAIL and instead of replaying the commands it would read the
-read of the uninitialised ringbuffer.)
+== Series Details ==
 
-However, this requires us to keep the ring paused at the end of the
-request until we have a change to process the preemption ack and remove
-the semaphore. Our processing of acks is at the whim of ksoftirqd, and
-so it is entirely possible that the GPU has to wait for the tasklet
-before it can proceed with the next request.
+Series: drm/i915/dsb: Enable lmem for dsb (rev2)
+URL   : https://patchwork.freedesktop.org/series/72818/
+State : failure
 
-It was suggested that we could also embed a MI_LOAD_REGISTER_MEM into
-the footer to read the current RING_TAIL from the context, which would
-allow us to not only avoid this round trip (and so release the context
-as soon as we had submitted the preemption request to in ELSP), but also
-skip using ELSP for lite-restores entirely. That has the nice benefit of
-dramatically reducing contention and the frequency of interrupts when a
-client submits two or more execbufs in rapid succession.
+== Summary ==
 
-* This did not work out quite as well as anticipated due to us reloading
-the new RING_TAIL from the context image moments before the HW acted
-upon the ELSP. With the calamitous effect that we would submit a
-preemption request with an identical RING_TAIL as the current RING_HEAD,
-causing us to fail WaIdleLiteRestore and the HW stop working.
+CI Bug Log - changes from CI_DRM_7993 -> Patchwork_16681
+====================================================
 
-However, mmio access to RING_TAIL was defeatured in gen11 so we can only
-employ this handy trick for gen8/gen9.
+Summary
+-------
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 23 +++--
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 93 +++++++++++++++++++-
- 2 files changed, 106 insertions(+), 10 deletions(-)
+  **FAILURE**
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 24cff658e6e5..ae8724915320 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -488,14 +488,15 @@ struct intel_engine_cs {
- 	/* status_notifier: list of callbacks for context-switch changes */
- 	struct atomic_notifier_head context_status_notifier;
- 
--#define I915_ENGINE_USING_CMD_PARSER BIT(0)
--#define I915_ENGINE_SUPPORTS_STATS   BIT(1)
--#define I915_ENGINE_HAS_PREEMPTION   BIT(2)
--#define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
--#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(4)
--#define I915_ENGINE_IS_VIRTUAL       BIT(5)
--#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
--#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
-+#define I915_ENGINE_REQUIRES_CMD_PARSER		BIT(0)
-+#define I915_ENGINE_USING_CMD_PARSER		BIT(1)
-+#define I915_ENGINE_SUPPORTS_STATS		BIT(2)
-+#define I915_ENGINE_HAS_PREEMPTION		BIT(3)
-+#define I915_ENGINE_HAS_SEMAPHORES		BIT(4)
-+#define I915_ENGINE_HAS_TAIL_LRM		BIT(5)
-+#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET	BIT(6)
-+#define I915_ENGINE_IS_VIRTUAL			BIT(7)
-+#define I915_ENGINE_HAS_RELATIVE_MMIO		BIT(8)
- 	unsigned int flags;
- 
- 	/*
-@@ -592,6 +593,12 @@ intel_engine_has_semaphores(const struct intel_engine_cs *engine)
- 	return engine->flags & I915_ENGINE_HAS_SEMAPHORES;
- }
- 
-+static inline bool
-+intel_engine_has_tail_lrm(const struct intel_engine_cs *engine)
-+{
-+	return engine->flags & I915_ENGINE_HAS_TAIL_LRM;
-+}
-+
- static inline bool
- intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 51d0886c70f4..9b3d4e0179da 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1861,6 +1861,76 @@ static inline void clear_ports(struct i915_request **ports, int count)
- 	memset_p((void **)ports, NULL, count);
- }
- 
-+static struct i915_request *
-+skip_lite_restore(struct intel_engine_cs *const engine,
-+		  struct i915_request *first,
-+		  bool *submit)
-+{
-+	struct intel_engine_execlists *const execlists = &engine->execlists;
-+	struct i915_request *last = first;
-+	struct rb_node *rb;
-+
-+	if (!intel_engine_has_tail_lrm(engine))
-+		return last;
-+
-+	GEM_BUG_ON(*submit);
-+	while ((rb = rb_first_cached(&execlists->queue))) {
-+		struct i915_priolist *p = to_priolist(rb);
-+		struct i915_request *rq, *rn;
-+		int i;
-+
-+		priolist_for_each_request_consume(rq, rn, p, i) {
-+			if (!can_merge_rq(last, rq))
-+				goto out;
-+
-+			if (__i915_request_submit(rq)) {
-+				*submit = true;
-+				last = rq;
-+			}
-+		}
-+
-+		rb_erase_cached(&p->node, &execlists->queue);
-+		i915_priolist_free(p);
-+	}
-+out:
-+	if (*submit) {
-+		ring_set_paused(engine, 1);
-+
-+		/*
-+		 * If we are quick and the current context hasn't yet completed
-+		 * its request, we can just tell it to extend the RING_TAIL
-+		 * onto the next without having to submit a new ELSP.
-+		 */
-+		if (!i915_request_completed(first)) {
-+			struct i915_request **port;
-+
-+			ENGINE_TRACE(engine,
-+				     "eliding lite-restore last=%llx:%lld->%lld, current %d\n",
-+				     first->fence.context,
-+				     first->fence.seqno,
-+				     last->fence.seqno,
-+				     hwsp_seqno(last));
-+			GEM_BUG_ON(first->context != last->context);
-+
-+			for (port = (struct i915_request **)execlists->active;
-+			     *port != first;
-+			     port++)
-+				;
-+
-+			GEM_BUG_ON(first == last);
-+			WRITE_ONCE(*port, i915_request_get(last));
-+			execlists_update_context(last);
-+
-+			i915_request_put(first);
-+			*submit = false;
-+		}
-+
-+		ring_set_paused(engine, 0);
-+	}
-+
-+	return last;
-+}
-+
- static void execlists_dequeue(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -1998,6 +2068,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 				return;
- 			}
-+
-+			last = skip_lite_restore(engine, last, &submit);
- 		}
- 	}
- 
-@@ -4221,15 +4293,28 @@ static u32 *emit_preempt_busywait(struct i915_request *request, u32 *cs)
- 	return cs;
- }
- 
-+static u32 *emit_lrm_tail(struct i915_request *request, u32 *cs)
-+{
-+	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+	*cs++ = i915_mmio_reg_offset(RING_TAIL(request->engine->mmio_base));
-+	*cs++ = i915_ggtt_offset(request->context->state) +
-+		LRC_STATE_PN * PAGE_SIZE +
-+		CTX_RING_TAIL * sizeof(u32);
-+	*cs++ = 0;
-+
-+	return cs;
-+}
-+
- static __always_inline u32*
--gen8_emit_fini_breadcrumb_footer(struct i915_request *request,
--				 u32 *cs)
-+gen8_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
- {
- 	*cs++ = MI_USER_INTERRUPT;
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
- 	if (intel_engine_has_semaphores(request->engine))
- 		cs = emit_preempt_busywait(request, cs);
-+	if (intel_engine_has_tail_lrm(request->engine))
-+		cs = emit_lrm_tail(request, cs);
- 
- 	request->tail = intel_ring_offset(request, cs);
- 	assert_ring_tail_valid(request->ring, request->tail);
-@@ -4318,6 +4403,8 @@ static u32 *gen12_emit_preempt_busywait(struct i915_request *request, u32 *cs)
- static __always_inline u32*
- gen12_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
- {
-+	GEM_BUG_ON(intel_engine_has_tail_lrm(request->engine));
-+
- 	*cs++ = MI_USER_INTERRUPT;
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-@@ -4384,6 +4471,8 @@ void intel_execlists_set_default_submission(struct intel_engine_cs *engine)
- 		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
- 		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
- 			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
-+		if (INTEL_GEN(engine->i915) < 11)
-+			engine->flags |= I915_ENGINE_HAS_TAIL_LRM;
- 	}
- 
- 	if (INTEL_GEN(engine->i915) >= 12)
--- 
-2.25.1
+  Serious unknown changes coming with Patchwork_16681 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16681, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16681:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_dmabuf:
+    - fi-bwr-2160:        [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-bwr-2160/igt@i915_selftest@live_dmabuf.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16681 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [PASS][3] -> [INCOMPLETE][4] ([i915#694] / [i915#816])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-n2820:       [PASS][5] -> [INCOMPLETE][6] ([i915#45])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@vgem_basic@create:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-tgl-y/igt@vgem_basic@create.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-tgl-y/igt@vgem_basic@create.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@bad-pitch-999:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-999.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-999.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][11] ([fdo#111407]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7993/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Additional (7): fi-bdw-5557u fi-skl-6770hq fi-glk-dsi fi-ilk-650 fi-ivb-3770 fi-skl-lmem fi-skl-6600u 
+  Missing    (8): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-icl-u3 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7993 -> Patchwork_16681
+
+  CI-20190529: 20190529
+  CI_DRM_7993: db7cdbfad15a4b58edea31e516886081aeab188b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5459: ca5337002b52fe115cb871d5146543616fd1f207 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16681: fd559e8f5963751f76c03eabcea478b8806e1d1a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fd559e8f5963 drm/i915/dsb: Enable lmem for dsb
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16681/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
