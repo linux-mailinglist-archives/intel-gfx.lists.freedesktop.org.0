@@ -1,42 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E133716ABFF
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:46:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E7C516AC20
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:50:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5C256E5B4;
-	Mon, 24 Feb 2020 16:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E566E5BF;
+	Mon, 24 Feb 2020 16:50:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDDC6E5B4
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 16:46:48 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74BC16E5BF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 16:50:04 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP; 24 Feb 2020 08:46:47 -0800
-X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="230707325"
-Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
- ([10.251.85.135])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 24 Feb 2020 08:46:46 -0800
-To: Andi Shyti <andi.shyti@intel.com>
-References: <20200219190223.16972-1-andi.shyti@intel.com>
- <20200219193020.17673-1-andi.shyti@intel.com>
- <dd611192-cf41-9538-66bd-d6a1b800bdf7@linux.intel.com>
- <20200224163029.GA1579@intel.intel>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
-Date: Mon, 24 Feb 2020 16:46:44 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 08:49:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="437765685"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga006.fm.intel.com with ESMTP; 24 Feb 2020 08:49:52 -0800
+Date: Mon, 24 Feb 2020 08:49:52 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200224164952.GM3112363@mdroper-desk1.amr.corp.intel.com>
+References: <20200222020815.50599-1-jose.souza@intel.com>
+ <20200222020815.50599-8-jose.souza@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200224163029.GA1579@intel.intel>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: make a gt sysfs group and
- move power management files
+Content-Disposition: inline
+In-Reply-To: <20200222020815.50599-8-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/tgl: Extend Wa_1409767108 to B0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,84 +45,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, Feb 21, 2020 at 06:08:15PM -0800, Jos=E9 Roberto de Souza wrote:
+> This Wa will also be needed by B0 stepping.
+> =
 
-On 24/02/2020 16:30, Andi Shyti wrote:
->>> +void intel_gt_sysfs_register(struct intel_gt *gt)
->>> +{
->>> +	struct kobject *parent = kobject_get(gt_get_parent_obj(gt));
->>> +	int ret;
->>> +
->>> +	ret = kobject_init_and_add(&gt->sysfs_root,
->>> +				   &sysfs_gt_ktype,
->>> +				   parent, "gt");
->>> +	if (ret) {
->>> +		drm_err(&gt->i915->drm, "failed to initialize sysfs file\n");
->>
->> I'd perhaps pin point the failure more by s/file/GT sysfs root/.
-> 
-> OK
-> 
->>> +		kobject_put(&gt->sysfs_root);
->>
->> Is the reference needed for the registration steps? I am thinking if you
->> could kobject_get only once everything worked to simplify.
-> 
-> I haven't really understood what you mean here. Are you saying
-> that kobject_put not needed? in the lib/kobject.c it says as
-> comment to kobject_init_and_add():
-> 
-> "
->   * If this function returns an error, kobject_put() must be called to
->   * properly clean up the memory associated with the object.  This is the
->   * same type of error handling after a call to kobject_add() and kobject
->   * lifetime rules are the same here.
->   */
-> "
+> BSpec: 52890
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-My mistake, I confused the two objects.
+Same question as patch #1 --- does the bspec's stepping for display
+workarounds reflect the CPU+GT stepping or the display stepping?  If
+it's the display stepping, then I believe we should already be covered.
 
->>> +	ret = sysfs_create_file(&gt->sysfs_root, &dev_attr_gt_info.attr);
->>> +	if (ret)
->>> +		drm_err(&gt->i915->drm, "failed to create sysfs gt info files\n");
->>> +
->>> +	intel_gt_sysfs_pm_init(gt, &gt->sysfs_root);
->>
->> If you put this first you can avoid the goto I think which makes the
->> function smaller.
-> 
-> True!
-> 
->>> +void intel_gt_sysfs_unregister(struct intel_gt *gt)
->>> +{
->>> +	struct kobject *parent = gt_get_parent_obj(gt);
->>> +
->>> +	/*
->>> +	 * the name gt tells us wether sysfs_root
->>> +	 * object was initialized properly
->>> +	 */
->>> +	if (!strcmp(gt->sysfs_root.name, "gt"))
->>> +		kobject_put(&gt->sysfs_root);
->>
->> Slightly nicer would be looking at  kobj->state_initialized for this check I
->> think. Or even kref_get_unless_zero on kobj->kref? Ugliness there is double
->> put on sucess which makes me ask whether holding a reference on parent is
->> even needed? It can't go away so perhaps it isn't.
-> 
-> I'd rather use the state_initialized, even though I don't trust
-> its value if the kobject has failed to initialise earlier, I
-> trust it only if it's '1', maybe I'm paranoic.
 
-But is the reference even needed?
+Matt
 
-Regards,
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> =
 
-Tvrtko
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 8ba68ec6dc24..e9af21c08ff6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4982,7 +4982,7 @@ static void tgl_bw_buddy_init(struct drm_i915_priva=
+te *dev_priv)
+>  	const struct buddy_page_mask *table;
+>  	int i;
+>  =
+
+> -	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
+> +	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
+>  		/* Wa_1409767108: tgl */
+>  		table =3D wa_1409767108_buddy_page_masks;
+>  	else
+> -- =
+
+> 2.25.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
