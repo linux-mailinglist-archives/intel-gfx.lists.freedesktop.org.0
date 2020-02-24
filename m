@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD8B16ABB7
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:36:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AB416ABD8
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:42:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5BAC6E5C1;
-	Mon, 24 Feb 2020 16:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44DB26E3CE;
+	Mon, 24 Feb 2020 16:42:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1A4606E5B4;
- Mon, 24 Feb 2020 16:36:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12670A0099;
- Mon, 24 Feb 2020 16:36:01 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E026E3CE
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 16:42:21 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 08:42:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="437763402"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga006.fm.intel.com with ESMTP; 24 Feb 2020 08:42:20 -0800
+Date: Mon, 24 Feb 2020 08:42:20 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200224164220.GK3112363@mdroper-desk1.amr.corp.intel.com>
+References: <20200222020815.50599-1-jose.souza@intel.com>
+ <20200222020815.50599-6-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 24 Feb 2020 16:36:01 -0000
-Message-ID: <158256216104.28360.2055759265856917732@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200224120828.22105-1-jani.nikula@intel.com>
-In-Reply-To: <20200224120828.22105-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_split_intel=5Fmodeset=5Finit=28=29_to_pre/post_irq_ins?=
- =?utf-8?q?tall?=
+Content-Disposition: inline
+In-Reply-To: <20200222020815.50599-6-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 6/8] drm/i915/tgl: Add note to Wa_1607297627
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,162 +45,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Feb 21, 2020 at 06:08:13PM -0800, Jos=E9 Roberto de Souza wrote:
+> Add note about the confliting information in BSpec about this WA.
+> =
 
-Series: drm/i915: split intel_modeset_init() to pre/post irq install
-URL   : https://patchwork.freedesktop.org/series/73849/
-State : success
+> BSpec: 52890
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-== Summary ==
+Acked-by: Matt Roper <matthew.d.roper@intel.com>
 
-CI Bug Log - changes from CI_DRM_7997 -> Patchwork_16686
-====================================================
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 978a5b051ce9..bc5025c81c4f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1344,9 +1344,13 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,=
+ struct i915_wa_list *wal)
+>  			    GEN9_CTX_PREEMPT_REG,
+>  			    GEN12_DISABLE_POSH_BUSY_FF_DOP_CG);
+>  =
 
-  **SUCCESS**
+> -		/* Wa_1607030317:tgl */
+> -		/* Wa_1607186500:tgl */
+> -		/* Wa_1607297627:tgl */
+> +		/*
+> +		 * Wa_1607030317:tgl
+> +		 * Wa_1607186500:tgl
+> +		 * Wa_1607297627:tgl there is 3 entries for this WA on BSpec, 2
+> +		 * of then says it is fixed on B0 the other one says it is
+> +		 * permanent
+> +		 */
+>  		wa_masked_en(wal,
+>  			     GEN6_RC_SLEEP_PSMI_CONTROL,
+>  			     GEN12_WAIT_FOR_EVENT_POWER_DOWN_DISABLE |
+> -- =
 
-  No regressions found.
+> 2.25.1
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
-Known issues
-------------
+-- =
 
-  Here are the changes found in Patchwork_16686 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-j1900:       [PASS][1] -> [FAIL][2] ([i915#694])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-j1900/igt@gem_exec_parallel@contexts.html
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-n2820:       [PASS][3] -> [FAIL][4] ([i915#694])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-n2820/igt@gem_exec_parallel@fds.html
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][5] -> [FAIL][6] ([CI#94])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_getparams_basic@basic-eu-total:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-icl-u2:          [PASS][9] -> [FAIL][10] ([fdo#109635] / [i915#262])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([fdo#111407])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][13] -> [DMESG-WARN][14] ([i915#44])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_store@basic-all:
-    - fi-byt-j1900:       [FAIL][15] ([i915#694]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-j1900/igt@gem_exec_store@basic-all.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-j1900/igt@gem_exec_store@basic-all.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-byt-j1900:       [TIMEOUT][17] ([fdo#112271] / [i915#1084]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_getparams_basic@basic-subslice-total:
-    - fi-tgl-y:           [DMESG-WARN][19] ([CI#94] / [i915#402]) -> [PASS][20] +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
-
-  * igt@i915_selftest@live_gt_lrc:
-    - fi-kbl-x1275:       [DMESG-FAIL][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-kbl-x1275/igt@i915_selftest@live_gt_lrc.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-kbl-x1275/igt@i915_selftest@live_gt_lrc.html
-
-  * igt@i915_selftest@live_perf:
-    - fi-apl-guc:         [INCOMPLETE][23] ([fdo#103927]) -> [PASS][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-apl-guc/igt@i915_selftest@live_perf.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-apl-guc/igt@i915_selftest@live_perf.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-byt-n2820:       [FAIL][25] ([i915#694]) -> [TIMEOUT][26] ([fdo#112271])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-n2820/igt@gem_exec_parallel@contexts.html
-
-  * igt@gem_exec_parallel@fds:
-    - fi-byt-j1900:       [TIMEOUT][27] ([fdo#112271] / [i915#1084]) -> [FAIL][28] ([i915#694])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7997/fi-byt-j1900/igt@gem_exec_parallel@fds.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/fi-byt-j1900/igt@gem_exec_parallel@fds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
-  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
-  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
-
-
-Participating hosts (50 -> 45)
-------------------------------
-
-  Additional (1): fi-snb-2520m 
-  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7997 -> Patchwork_16686
-
-  CI-20190529: 20190529
-  CI_DRM_7997: 3d3098d1384ee777baa141f69112669fed5ea90e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5463: d519c80219ebe558cd2fa378f26f9d73f9e35310 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16686: 8af6978ef20bd1afa0234aabd96d9bd64e476758 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8af6978ef20b drm/i915: split intel_modeset_init() to pre/post irq install
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16686/index.html
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
