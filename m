@@ -1,30 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C718C16A395
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:11:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD92416A3D2
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:24:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E256E0A1;
-	Mon, 24 Feb 2020 10:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EDEC6E422;
+	Mon, 24 Feb 2020 10:24:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 665A66E0A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:11:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA6616E420
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:24:42 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20329231-1500050 
- for multiple; Mon, 24 Feb 2020 10:11:21 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20329436-1500050 
+ for multiple; Mon, 24 Feb 2020 10:24:30 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 10:11:20 +0000
-Message-Id: <20200224101120.4024481-1-chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 10:24:29 +0000
+Message-Id: <20200224102429.4076883-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gtt: Downgrade gen7 (ivb, byt,
- hsw) back to aliasing-ppgtt
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Fix inverted WARN_ON
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,48 +36,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Dave Airlie <airlied@redhat.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Full-ppgtt on gen7 is proving to be highly unstable and not robust.
+Restore the previous WARN_ON(cond) so that we don't complain about poor
+old Cherryview.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/694
-Fixes: 3cd6e8860ecd ("drm/i915/gen7: Re-enable full-ppgtt for ivb & hsw")
+Fixes: eb020ca3d43f ("drm/i915/display/dp: Make WARN* drm specific where drm_device ptr is available")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
 Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_pci.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index 24b1f0ce8743..1d678aa7d420 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -437,7 +437,7 @@ static const struct intel_device_info snb_m_gt2_info = {
- 	.has_rc6 = 1, \
- 	.has_rc6p = 1, \
- 	.has_rps = true, \
--	.ppgtt_type = INTEL_PPGTT_FULL, \
-+	.ppgtt_type = INTEL_PPGTT_ALIASING, \
- 	.ppgtt_size = 31, \
- 	IVB_PIPE_OFFSETS, \
- 	IVB_CURSOR_OFFSETS, \
-@@ -494,7 +494,7 @@ static const struct intel_device_info vlv_info = {
- 	.has_rps = true,
- 	.display.has_gmch = 1,
- 	.display.has_hotplug = 1,
--	.ppgtt_type = INTEL_PPGTT_FULL,
-+	.ppgtt_type = INTEL_PPGTT_ALIASING,
- 	.ppgtt_size = 31,
- 	.has_snoop = true,
- 	.has_coherent_ggtt = false,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2f93326c16a3..e8bebd27004d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1023,9 +1023,10 @@ void intel_power_sequencer_reset(struct drm_i915_private *dev_priv)
+ {
+ 	struct intel_encoder *encoder;
+ 
+-	if (drm_WARN_ON(&dev_priv->drm, !IS_VALLEYVIEW(dev_priv) &&
+-			IS_CHERRYVIEW(dev_priv) &&
+-			!IS_GEN9_LP(dev_priv)))
++	if (drm_WARN_ON(&dev_priv->drm,
++			!(IS_VALLEYVIEW(dev_priv) ||
++			  IS_CHERRYVIEW(dev_priv) ||
++			  IS_GEN9_LP(dev_priv))))
+ 		return;
+ 
+ 	/*
 -- 
 2.25.1
 
