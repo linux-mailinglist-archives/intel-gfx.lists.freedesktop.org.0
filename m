@@ -2,75 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0221816AE63
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00CA816AE48
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:00:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 740906E83D;
-	Mon, 24 Feb 2020 18:13:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6236E837;
+	Mon, 24 Feb 2020 18:00:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 316FA6E091;
- Sun, 23 Feb 2020 15:45:18 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id b17so6823419wmb.0;
- Sun, 23 Feb 2020 07:45:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
- :mime-version:in-reply-to:content-transfer-encoding:content-language;
- bh=inzn9KgooBAx5M8NGIgtozNP6e9nFtoEVn58fHfHS9U=;
- b=hYw76MzTFFctGmd2sCZFPBrCelb2cowVUlYA/AM1Mvij3bAAMGhlNYI0rXUyDABN1Z
- 3xnZU9YMt1g+8dxTLcHslrSYtN5qhEKRhjfGJjKacSGiPP2zDpUV6GpuaBsjENJ5rp55
- 0avPNo7K+rwCSa4uwE970DBGcopjfo26u+SjVLwGhH7MMCFk9TzZNgGma7wEJ07pI0L7
- 0Kln0X7vwiTJduenaOPAj0ddeX47KooxkTj5sNpoZLc5xD5l+sK34dEtrWWnL+II+aaT
- bu5X7itzmxjo3NBXoW1/JcihM6tqGVze2sSaY8eNYVgJ7JP2g1QLDt6FRNZqVMGHqZ48
- 04ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:reply-to:subject:to:cc:references:from
- :message-id:date:user-agent:mime-version:in-reply-to
- :content-transfer-encoding:content-language;
- bh=inzn9KgooBAx5M8NGIgtozNP6e9nFtoEVn58fHfHS9U=;
- b=qgmbYe5EYCKlnZci1sn88sbWSH2kerhtnEJlFkbO99BTiGv7stFGWWVuNSBf6iwjfr
- oRIe8Vh7vP3dq8o5AcYqMG+xOMujTtWeo9I9mL09U2Kg+TI0xtNzdoQYzy1aRb6PZXI+
- K6Z1+wkpf56S3jwKLxALLWzJVJEjg0jwhgs7l6mZ/W2XqPASvsBP9R6ayRY8wNTDREPZ
- 8KiIHzmGpSbvXUAvUoQFffaoz6d1kxtHeYUQmKv5qgoSHg2RDhoUoIlM432bSElpOdF5
- fULDywGO2DrWg2SpD/d6FKvT1x1/yvGCwvi934fIlXxVWlzpiRzAy2C3X0cFkbZhWH7A
- NApQ==
-X-Gm-Message-State: APjAAAXzlOdNGxrtQ8unYZ7uBy71wkQoXs6Q9TCN8DmQJcCxhborGcQY
- rQ4d7nodvStvjYigIOLpmLM=
-X-Google-Smtp-Source: APXvYqxhJh1O9a4M4aCqcycel5moNklWx8r/xJq6nuMHEP0zx83oOzF3CBVTxvvIT9/L5THTkiHlGw==
-X-Received: by 2002:a7b:c14e:: with SMTP id z14mr16451275wmi.58.1582472716864; 
- Sun, 23 Feb 2020 07:45:16 -0800 (PST)
-Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
- ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
- by smtp.gmail.com with ESMTPSA id w7sm13097479wmi.9.2020.02.23.07.45.15
- (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
- Sun, 23 Feb 2020 07:45:16 -0800 (PST)
-To: Daniel Vetter <daniel@ffwll.ch>,
- =?UTF-8?Q?Thomas_Hellstr=c3=b6m_=28VMware=29?= <thomas_os@shipmail.org>
-References: <20200217154509.2265-6-christian.koenig@amd.com>
- <20200217175518.GL2363188@phenom.ffwll.local>
- <f8ac7cbc-7c90-7119-735c-9f55adb6fa7f@shipmail.org>
- <CAKMK7uHG3EkEPbAQ3UEHHLcfmR+0NPq0wZuBX+s2-WCFdso8ew@mail.gmail.com>
- <79a0d79f-91bd-2481-740c-20e6c819c7c9@shipmail.org>
- <ee929c93-c9d7-7243-810e-94c6f0fc64b0@shipmail.org>
- <20200220180459.GS2363188@phenom.ffwll.local>
- <d1c37ec4-b63e-437a-a2be-80ba5192e048@shipmail.org>
- <20200220200831.GA2363188@phenom.ffwll.local>
- <501bf409-e4fe-a318-17b4-d5d050b09529@shipmail.org>
- <20200221171217.GD2363188@phenom.ffwll.local>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <d9343617-9da8-5fea-a0f1-99db34a0cf2c@gmail.com>
-Date: Sun, 23 Feb 2020 16:45:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B941E6E834;
+ Mon, 24 Feb 2020 18:00:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B18DFA0099;
+ Mon, 24 Feb 2020 18:00:45 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200221171217.GD2363188@phenom.ffwll.local>
-Content-Language: en-US
-X-Mailman-Approved-At: Mon, 24 Feb 2020 18:13:30 +0000
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/amdgpu: implement
- amdgpu_gem_prime_move_notify v2
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 18:00:45 -0000
+Message-ID: <158256724570.28362.8485523567112459736@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200224130342.4080773-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200224130342.4080773-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Pull_marking_vm_as_closed_underneath_the_vm-=3Emute?=
+ =?utf-8?q?x?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,44 +39,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: christian.koenig@amd.com
-Cc: "moderated list:DMA BUFFER SHARING FRAMEWORK"
- <linaro-mm-sig@lists.linaro.org>, intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 21.02.20 um 18:12 schrieb Daniel Vetter:
-> [SNIP]
-> Yeah the Great Plan (tm) is to fully rely on ww_mutex slowly degenerating
-> into essentially a global lock. But only when there's actual contention
-> and thrashing.
+== Series Details ==
 
-Yes exactly. A really big problem in TTM is currently that we drop the 
-lock after evicting BOs because they tend to move in again directly 
-after that.
+Series: drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
+URL   : https://patchwork.freedesktop.org/series/73851/
+State : success
 
- From practice I can also confirm that there is exactly zero benefit 
-from dropping locks early and reacquire them for example for the VM page 
-tables. That's just makes it more likely that somebody needs to roll 
-back and this is what we need to avoid in the first place.
+== Summary ==
 
-Contention on BO locks during command submission is perfectly fine as 
-long as this is as lightweight as possible while we don't have trashing. 
-When we have trashing multi submission performance is best archived to 
-just favor a single process to finish its business and block everybody else.
+CI Bug Log - changes from CI_DRM_7998 -> Patchwork_16688
+====================================================
 
-Because of this I would actually vote for forbidding to release 
-individual ww_mutex() locks in a context.
+Summary
+-------
 
-Regards,
-Christian.
+  **SUCCESS**
 
-> -Daniel
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16688 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][3] -> [FAIL][4] ([CI#94])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@gem_wait@basic-await-all:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_wait@basic-await-all.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_wait@basic-await-all.html
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [PASS][7] -> [DMESG-FAIL][8] ([i915#623])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][9] ([i915#694] / [i915#816]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_flink_basic@basic:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_flink_basic@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_flink_basic@basic.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-byt-j1900:       [FAIL][13] ([i915#999]) -> [FAIL][14] ([i915#816])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-j1900/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-byt-j1900/igt@runner@aborted.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [i915#999]: https://gitlab.freedesktop.org/drm/intel/issues/999
+
+
+Participating hosts (51 -> 39)
+------------------------------
+
+  Missing    (12): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bwr-2160 fi-snb-2520m fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-byt-n2820 fi-byt-clapper fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7998 -> Patchwork_16688
+
+  CI-20190529: 20190529
+  CI_DRM_7998: 7b1bb0188905d180ee11694d9c26c5dd656dc1d1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5463: d519c80219ebe558cd2fa378f26f9d73f9e35310 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16688: b040538f8e04a0317013e09afd388999da8657f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b040538f8e04 drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
