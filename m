@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 680E916A83F
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 15:24:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA5316A85D
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 15:32:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 707E06E507;
-	Mon, 24 Feb 2020 14:24:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F6456E50D;
+	Mon, 24 Feb 2020 14:32:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 309896E507
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 14:24:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 06:24:48 -0800
-X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="230664710"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 06:24:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200203124735.365-2-vandita.kulkarni@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200203124735.365-1-vandita.kulkarni@intel.com>
- <20200203124735.365-2-vandita.kulkarni@intel.com>
-Date: Mon, 24 Feb 2020 16:24:43 +0200
-Message-ID: <87a758t650.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 618EC6E509;
+ Mon, 24 Feb 2020 14:32:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B09DA363D;
+ Mon, 24 Feb 2020 14:32:26 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [V7 1/9] drm/i915/dsi: Configure transcoder
- operation for command mode.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 14:32:26 -0000
+Message-ID: <158255474634.28360.990189632135723988@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200224101120.4024481-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200224101120.4024481-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gtt=3A_Downgrade_gen7_=28ivb=2C_byt=2C_hsw=29_back_to_ali?=
+ =?utf-8?q?asing-ppgtt?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,127 +39,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 03 Feb 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
-> Configure the transcoder to operate in TE GATE command mode
-> and  take TE events from GPIO.
-> Also disable the periodic command mode, that GOP would have
-> programmed.
->
-> v2: Disable util pin (Jani)
->
-> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 52 ++++++++++++++++++++++++++
->  1 file changed, 52 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index d842e280699d..ce5e38c16201 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -744,6 +744,18 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
->  				tmp |= VIDEO_MODE_SYNC_PULSE;
->  				break;
->  			}
-> +		} else {
-> +			/*
-> +			 * FIXME: Retrieve this info from VBT.
-> +			 * As per the spec when dsi transcoder is operating
-> +			 * in TE GATE mode, TE comes from GPIO
-> +			 * which is UTIL PIN for DSI 0.
-> +			 * Also this GPIO would not be used for other
-> +			 * purposes is an assumption.
-> +			 */
-> +			tmp &= ~OP_MODE_MASK;
-> +			tmp |= CMD_MODE_TE_GATE;
-> +			tmp |= TE_SOURCE_GPIO;
->  		}
->  
->  		intel_de_write(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
-> @@ -1016,6 +1028,32 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
->  	}
->  }
->  
-> +static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
-> +				      bool enable)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_dsi *intel_dsi = enc_to_intel_dsi(&encoder->base);
-> +	u32 tmp;
-> +
-> +	/*
-> +	 * used as TE i/p for DSI0,
-> +	 * for dual link/DSI1 TE is from slave DSI1
-> +	 * through GPIO.
-> +	 */
-> +	if (is_vid_mode(intel_dsi) || (intel_dsi->ports & BIT(PORT_B)))
-> +		return;
-> +
-> +	tmp = I915_READ(UTIL_PIN_CTL);
-> +
-> +	if (enable) {
-> +		tmp |= UTIL_PIN_DIRECTION_INPUT;
-> +		tmp |= UTIL_PIN_ENABLE;
-> +	} else {
-> +		tmp &= ~UTIL_PIN_ENABLE;
-> +	}
-> +	I915_WRITE(UTIL_PIN_CTL, tmp);
+== Series Details ==
 
-Please use intel_de_read() and intel_de_write().
+Series: drm/i915/gtt: Downgrade gen7 (ivb, byt, hsw) back to aliasing-ppgtt
+URL   : https://patchwork.freedesktop.org/series/73842/
+State : failure
 
-> +}
-> +
->  static void
->  gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->  			      const struct intel_crtc_state *crtc_state)
-> @@ -1037,6 +1075,9 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
->  	/* setup D-PHY timings */
->  	gen11_dsi_setup_dphy_timings(encoder, crtc_state);
->  
-> +	/* Since transcoder is configured to take events from GPIO */
-> +	gen11_dsi_config_util_pin(encoder, true);
-> +
->  	/* step 4h: setup DSI protocol timeouts */
->  	gen11_dsi_setup_timeouts(encoder, crtc_state);
->  
-> @@ -1180,6 +1221,15 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
->  	enum transcoder dsi_trans;
->  	u32 tmp;
->  
-> +	/* disable periodic update mode */
-> +	if (is_cmd_mode(intel_dsi)) {
-> +		for_each_dsi_port(port, intel_dsi->ports) {
-> +			tmp = I915_READ(DSI_CMD_FRMCTL(port));
-> +			tmp &= ~DSI_PERIODIC_FRAME_UPDATE_ENABLE;
-> +			I915_WRITE(DSI_CMD_FRMCTL(port), tmp);
+== Summary ==
 
-Ditto. With those fixed,
+CI Bug Log - changes from CI_DRM_7996 -> Patchwork_16683
+====================================================
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16683 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16683, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16683:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@reload:
+    - fi-hsw-peppy:       NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-hsw-peppy/igt@i915_module_load@reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16683 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-skl-6700k2:      [PASS][2] -> [INCOMPLETE][3] ([i915#151])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-skl-6700k2/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_addfb_basic@addfb25-x-tiled:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([CI#94] / [i915#402]) +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-hsw-peppy:       [INCOMPLETE][6] ([i915#694] / [i915#816]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+    - fi-byt-j1900:       [INCOMPLETE][8] ([i915#45]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+    - fi-byt-n2820:       [INCOMPLETE][10] ([i915#45]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-byt-n2820/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][12] ([CI#94]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [DMESG-WARN][14] ([CI#94] / [i915#402]) -> [PASS][15] +1 similar issue
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  
+#### Warnings ####
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][16] ([fdo#111096] / [i915#323]) -> [FAIL][17] ([fdo#111407])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@runner@aborted:
+    - fi-hsw-peppy:       [FAIL][18] ([i915#694]) -> [FAIL][19] ([k.org#204565])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7996/fi-hsw-peppy/igt@runner@aborted.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/fi-hsw-peppy/igt@runner@aborted.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#151]: https://gitlab.freedesktop.org/drm/intel/issues/151
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+  [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
+  [k.org#204565]: https://bugzilla.kernel.org/show_bug.cgi?id=204565
 
 
-> +		}
-> +	}
-> +
->  	/* put dsi link in ULPS */
->  	for_each_dsi_port(port, intel_dsi->ports) {
->  		dsi_trans = dsi_port_to_transcoder(port);
-> @@ -1286,6 +1336,8 @@ static void gen11_dsi_disable(struct intel_encoder *encoder,
->  	/* step3: disable port */
->  	gen11_dsi_disable_port(encoder);
->  
-> +	gen11_dsi_config_util_pin(encoder, false);
-> +
->  	/* step4: disable IO power */
->  	gen11_dsi_disable_io_power(encoder);
->  }
+Participating hosts (46 -> 44)
+------------------------------
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+  Additional (3): fi-kbl-soraka fi-ehl-1 fi-pnv-d510 
+  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_7996 -> Patchwork_16683
+
+  CI-20190529: 20190529
+  CI_DRM_7996: 2a1fa22ec29545044f07076bea91f8e382cd8356 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5461: 9d7d9d0455409d0e562ca7ffdf206c7646c50e58 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16683: 74fe1378a7cfc67cc0169d7e797dc1f03bde6176 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+74fe1378a7cf drm/i915/gtt: Downgrade gen7 (ivb, byt, hsw) back to aliasing-ppgtt
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16683/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
