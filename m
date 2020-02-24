@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A7116A35E
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E786716A365
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9AB16E3D3;
-	Mon, 24 Feb 2020 10:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 142A86E3F0;
+	Mon, 24 Feb 2020 10:00:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD226E3C6
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 050816E3BC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:22 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328990-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328992-1500050 
  for multiple; Mon, 24 Feb 2020 10:00:10 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 10:00:00 +0000
-Message-Id: <20200224100007.4024184-7-chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 10:00:01 +0000
+Message-Id: <20200224100007.4024184-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/14] drm/i915: Protect
- i915_request_await_start from early waits
+Subject: [Intel-gfx] [PATCH 08/14] drm/i915/gem: Consolidate ctx->engines[]
+ release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,105 +44,311 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We need to be extremely careful inside i915_request_await_start() as it
-needs to walk the list of requests in the foreign timeline with very
-little protection. As we hold our own timeline mutex, we can not nest
-inside the signaler's timeline mutex, so all that remains is our RCU
-protection. However, to be safe we need to tell the compiler that we may
-be traversing the list only under RCU protection, and furthermore we
-need to start declaring requests as elements of the timeline from their
-construction.
+Use the same engine_idle_release() routine for cleaning all old
+ctx->engine[] state, closing any potential races with concurrent execbuf
+submission.
 
-Fixes: 9ddc8ec027a3 ("drm/i915: Eliminate the trylock for awaiting an earlier request")
-Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1241
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_request.c | 40 +++++++++++++++++++----------
- 1 file changed, 27 insertions(+), 13 deletions(-)
+Reorder set-closed/engine_idle_release to avoid premature killing
+Take a reference to prevent racing context free with engine cleanup
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 190 ++++++++++----------
+ 1 file changed, 100 insertions(+), 90 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index d53af93b919b..8b22c8bb2fa8 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -290,7 +290,7 @@ bool i915_request_retire(struct i915_request *rq)
- 	spin_unlock_irq(&rq->lock);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index b24ee8e104cf..3fd93ac911ef 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -244,7 +244,6 @@ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
+ 		if (!e->engines[count])
+ 			continue;
  
- 	remove_from_client(rq);
--	list_del(&rq->link);
-+	list_del_rcu(&rq->link);
+-		RCU_INIT_POINTER(e->engines[count]->gem_context, NULL);
+ 		intel_context_put(e->engines[count]);
+ 	}
+ 	kfree(e);
+@@ -271,8 +270,6 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
  
- 	intel_context_exit(rq->context);
- 	intel_context_unpin(rq->context);
-@@ -736,6 +736,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
- 	rq->infix = rq->ring->emit; /* end of header; start of user payload */
+-	e->ctx = ctx;
+-
+ 	for_each_engine(engine, gt, id) {
+ 		struct intel_context *ce;
  
- 	intel_context_mark_active(ce);
-+	list_add_tail_rcu(&rq->link, &tl->requests);
+@@ -306,7 +303,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	list_del(&ctx->link);
+ 	spin_unlock(&ctx->i915->gem.contexts.lock);
+ 
+-	free_engines(rcu_access_pointer(ctx->engines));
+ 	mutex_destroy(&ctx->engines_mutex);
+ 
+ 	if (ctx->timeline)
+@@ -493,30 +489,110 @@ static void kill_engines(struct i915_gem_engines *engines)
+ static void kill_stale_engines(struct i915_gem_context *ctx)
+ {
+ 	struct i915_gem_engines *pos, *next;
+-	unsigned long flags;
+ 
+-	spin_lock_irqsave(&ctx->stale.lock, flags);
++	spin_lock_irq(&ctx->stale.lock);
++	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
+-		if (!i915_sw_fence_await(&pos->fence))
++		if (!i915_sw_fence_await(&pos->fence)) {
++			list_del_init(&pos->link);
+ 			continue;
++		}
+ 
+-		spin_unlock_irqrestore(&ctx->stale.lock, flags);
++		spin_unlock_irq(&ctx->stale.lock);
+ 
+ 		kill_engines(pos);
+ 
+-		spin_lock_irqsave(&ctx->stale.lock, flags);
++		spin_lock_irq(&ctx->stale.lock);
++		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+ 		list_safe_reset_next(pos, next, link);
+ 		list_del_init(&pos->link); /* decouple from FENCE_COMPLETE */
+ 
+ 		i915_sw_fence_complete(&pos->fence);
+ 	}
+-	spin_unlock_irqrestore(&ctx->stale.lock, flags);
++	spin_unlock_irq(&ctx->stale.lock);
+ }
+ 
+ static void kill_context(struct i915_gem_context *ctx)
+ {
+ 	kill_stale_engines(ctx);
+-	kill_engines(__context_engines_static(ctx));
++}
 +
- 	return rq;
- 
- err_unwind:
-@@ -792,13 +794,18 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
- 	GEM_BUG_ON(i915_request_timeline(rq) ==
- 		   rcu_access_pointer(signal->timeline));
- 
-+	if (i915_request_started(signal))
-+		return 0;
++static int engines_notify(struct i915_sw_fence *fence,
++			  enum i915_sw_fence_notify state)
++{
++	struct i915_gem_engines *engines =
++		container_of(fence, typeof(*engines), fence);
 +
- 	fence = NULL;
- 	rcu_read_lock();
- 	spin_lock_irq(&signal->lock);
--	if (!i915_request_started(signal) &&
--	    !list_is_first(&signal->link,
--			   &rcu_dereference(signal->timeline)->requests)) {
--		struct i915_request *prev = list_prev_entry(signal, link);
-+	do {
-+		struct list_head *pos = READ_ONCE(signal->link.prev);
-+		struct i915_request *prev;
++	switch (state) {
++	case FENCE_COMPLETE:
++		if (!list_empty(&engines->link)) {
++			struct i915_gem_context *ctx = engines->ctx;
++			unsigned long flags;
 +
-+		if (pos == &rcu_dereference(signal->timeline)->requests)
-+			break;
- 
- 		/*
- 		 * Peek at the request before us in the timeline. That
-@@ -806,13 +813,22 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
- 		 * after acquiring a reference to it, confirm that it is
- 		 * still part of the signaler's timeline.
- 		 */
--		if (i915_request_get_rcu(prev)) {
--			if (list_next_entry(prev, link) == signal)
--				fence = &prev->fence;
--			else
--				i915_request_put(prev);
-+		prev = list_entry(pos, typeof(*prev), link);
-+		if (!i915_request_get_rcu(prev))
-+			break;
++			spin_lock_irqsave(&ctx->stale.lock, flags);
++			list_del(&engines->link);
++			spin_unlock_irqrestore(&ctx->stale.lock, flags);
++		}
++		break;
 +
-+		if (unlikely(READ_ONCE(prev->link.next) != &signal->link)) {
-+			i915_request_put(prev);
-+			break;
- 		}
--	}
++	case FENCE_FREE:
++		i915_gem_context_put(engines->ctx);
++		init_rcu_head(&engines->rcu);
++		call_rcu(&engines->rcu, free_engines_rcu);
++		break;
++	}
 +
-+		if (unlikely(i915_request_started(signal))) {
-+			i915_request_put(prev);
-+			break;
++	return NOTIFY_DONE;
++}
++
++static void engines_idle_release(struct i915_gem_context *ctx,
++				 struct i915_gem_engines *engines)
++{
++	struct i915_gem_engines_iter it;
++	struct intel_context *ce;
++
++	i915_sw_fence_init(&engines->fence, engines_notify);
++	INIT_LIST_HEAD(&engines->link);
++
++	engines->ctx = i915_gem_context_get(ctx);
++
++	for_each_gem_engine(ce, engines, it) {
++		int err = 0;
++
++		RCU_INIT_POINTER(ce->gem_context, NULL);
++
++		if (!ce->timeline) { /* XXX serialisation with execbuf? */
++			intel_context_set_banned(ce);
++			continue;
 +		}
 +
-+		fence = &prev->fence;
-+	} while (0);
- 	spin_unlock_irq(&signal->lock);
- 	rcu_read_unlock();
- 	if (!fence)
-@@ -1253,8 +1269,6 @@ __i915_request_add_to_timeline(struct i915_request *rq)
- 							 0);
- 	}
++		mutex_lock(&ce->timeline->mutex);
++		if (!list_empty(&ce->timeline->requests)) {
++			struct i915_request *rq;
++
++			rq = list_last_entry(&ce->timeline->requests,
++					     typeof(*rq),
++					     link);
++
++			err = i915_sw_fence_await_dma_fence(&engines->fence,
++							    &rq->fence, 0,
++							    GFP_KERNEL);
++		}
++		mutex_unlock(&ce->timeline->mutex);
++		if (err < 0)
++			goto kill;
++	}
++
++	spin_lock_irq(&engines->ctx->stale.lock);
++	if (!i915_gem_context_is_closed(engines->ctx))
++		list_add_tail(&engines->link, &engines->ctx->stale.engines);
++	spin_unlock_irq(&engines->ctx->stale.lock);
++
++kill:
++	if (list_empty(&engines->link)) /* raced, already closed */
++		kill_engines(engines);
++
++	i915_sw_fence_commit(&engines->fence);
+ }
  
--	list_add_tail(&rq->link, &timeline->requests);
+ static void set_closed_name(struct i915_gem_context *ctx)
+@@ -540,11 +616,16 @@ static void context_close(struct i915_gem_context *ctx)
+ {
+ 	struct i915_address_space *vm;
+ 
++	/* Flush any concurrent set_engines() */
++	mutex_lock(&ctx->engines_mutex);
++	engines_idle_release(ctx, rcu_replace_pointer(ctx->engines, NULL, 1));
+ 	i915_gem_context_set_closed(ctx);
+-	set_closed_name(ctx);
++	mutex_unlock(&ctx->engines_mutex);
+ 
+ 	mutex_lock(&ctx->mutex);
+ 
++	set_closed_name(ctx);
++
+ 	vm = i915_gem_context_vm(ctx);
+ 	if (vm)
+ 		i915_vm_close(vm);
+@@ -1628,77 +1709,6 @@ static const i915_user_extension_fn set_engines__extensions[] = {
+ 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+ };
+ 
+-static int engines_notify(struct i915_sw_fence *fence,
+-			  enum i915_sw_fence_notify state)
+-{
+-	struct i915_gem_engines *engines =
+-		container_of(fence, typeof(*engines), fence);
 -
- 	/*
- 	 * Make sure that no request gazumped us - if it was allocated after
- 	 * our i915_request_alloc() and called __i915_request_add() before
+-	switch (state) {
+-	case FENCE_COMPLETE:
+-		if (!list_empty(&engines->link)) {
+-			struct i915_gem_context *ctx = engines->ctx;
+-			unsigned long flags;
+-
+-			spin_lock_irqsave(&ctx->stale.lock, flags);
+-			list_del(&engines->link);
+-			spin_unlock_irqrestore(&ctx->stale.lock, flags);
+-		}
+-		break;
+-
+-	case FENCE_FREE:
+-		init_rcu_head(&engines->rcu);
+-		call_rcu(&engines->rcu, free_engines_rcu);
+-		break;
+-	}
+-
+-	return NOTIFY_DONE;
+-}
+-
+-static void engines_idle_release(struct i915_gem_engines *engines)
+-{
+-	struct i915_gem_engines_iter it;
+-	struct intel_context *ce;
+-	unsigned long flags;
+-
+-	GEM_BUG_ON(!engines);
+-	i915_sw_fence_init(&engines->fence, engines_notify);
+-
+-	INIT_LIST_HEAD(&engines->link);
+-	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
+-	if (!i915_gem_context_is_closed(engines->ctx))
+-		list_add(&engines->link, &engines->ctx->stale.engines);
+-	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
+-	if (list_empty(&engines->link)) /* raced, already closed */
+-		goto kill;
+-
+-	for_each_gem_engine(ce, engines, it) {
+-		struct dma_fence *fence;
+-		int err;
+-
+-		if (!ce->timeline)
+-			continue;
+-
+-		fence = i915_active_fence_get(&ce->timeline->last_request);
+-		if (!fence)
+-			continue;
+-
+-		err = i915_sw_fence_await_dma_fence(&engines->fence,
+-						    fence, 0,
+-						    GFP_KERNEL);
+-
+-		dma_fence_put(fence);
+-		if (err < 0)
+-			goto kill;
+-	}
+-	goto out;
+-
+-kill:
+-	kill_engines(engines);
+-out:
+-	i915_sw_fence_commit(&engines->fence);
+-}
+-
+ static int
+ set_engines(struct i915_gem_context *ctx,
+ 	    const struct drm_i915_gem_context_param *args)
+@@ -1741,8 +1751,6 @@ set_engines(struct i915_gem_context *ctx,
+ 	if (!set.engines)
+ 		return -ENOMEM;
+ 
+-	set.engines->ctx = ctx;
+-
+ 	for (n = 0; n < num_engines; n++) {
+ 		struct i915_engine_class_instance ci;
+ 		struct intel_engine_cs *engine;
+@@ -1795,6 +1803,11 @@ set_engines(struct i915_gem_context *ctx,
+ 
+ replace:
+ 	mutex_lock(&ctx->engines_mutex);
++	if (i915_gem_context_is_closed(ctx)) {
++		mutex_unlock(&ctx->engines_mutex);
++		free_engines(set.engines);
++		return -ENOENT;
++	}
+ 	if (args->size)
+ 		i915_gem_context_set_user_engines(ctx);
+ 	else
+@@ -1803,7 +1816,7 @@ set_engines(struct i915_gem_context *ctx,
+ 	mutex_unlock(&ctx->engines_mutex);
+ 
+ 	/* Keep track of old engine sets for kill_context() */
+-	engines_idle_release(set.engines);
++	engines_idle_release(ctx, set.engines);
+ 
+ 	return 0;
+ }
+@@ -2079,8 +2092,6 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	if (!clone)
+ 		goto err_unlock;
+ 
+-	clone->ctx = dst;
+-
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		struct intel_engine_cs *engine;
+ 
+@@ -2123,8 +2134,7 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	i915_gem_context_unlock_engines(src);
+ 
+ 	/* Serialised by constructor */
+-	free_engines(__context_engines_static(dst));
+-	RCU_INIT_POINTER(dst->engines, clone);
++	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
+ 	if (user_engines)
+ 		i915_gem_context_set_user_engines(dst);
+ 	else
 -- 
 2.25.1
 
