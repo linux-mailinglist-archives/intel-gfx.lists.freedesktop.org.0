@@ -1,38 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D058816AABE
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:08:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6C3E16AAE8
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 17:10:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A41556E55E;
-	Mon, 24 Feb 2020 16:08:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8C36E573;
+	Mon, 24 Feb 2020 16:10:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BBFA6E55E
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 16:08:53 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 08:08:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="229877771"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga007.fm.intel.com with ESMTP; 24 Feb 2020 08:08:52 -0800
-Date: Mon, 24 Feb 2020 08:08:52 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200224160852.GH3112363@mdroper-desk1.amr.corp.intel.com>
-References: <20200222020815.50599-1-jose.souza@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11BE36E573
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 16:10:52 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20333997-1500050 
+ for multiple; Mon, 24 Feb 2020 16:10:47 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Feb 2020 16:10:46 +0000
+Message-Id: <20200224161046.4149881-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200222020815.50599-1-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915/tgl: Extend Wa_1409825376
- stepping
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Make the kernel_context
+ pulse explicit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,83 +37,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 21, 2020 at 06:08:08PM -0800, Jos=E9 Roberto de Souza wrote:
-> This workaround is only fixed in C0 stepping to extend it to B0 too.
-> =
+As we disable the heartbeat, and prevent the engine parking, the switch
+to kernel context is not automatic. Make it an explicit switch instead.
 
-> BSpec: 52890
-> Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_drv.h | 1 +
->  drivers/gpu/drm/i915/intel_pm.c | 2 +-
->  2 files changed, 2 insertions(+), 1 deletion(-)
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index 4305ccc4c683..57282b719ece 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1575,6 +1575,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  	(IS_ICELAKE(p) && IS_REVID(p, since, until))
->  =
+diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+index febd608c23a7..35a7b37b1abc 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
++++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+@@ -4644,6 +4644,10 @@ static int __lrc_timestamp(const struct lrc_timestamp *arg, bool preempt)
+ 	}
+ 
+ 	/* and wait for switch to kernel */
++	err = intel_engine_pulse(arg->engine);
++	if (err)
++		goto err;
++
+ 	if (igt_flush_test(arg->engine->i915)) {
+ 		err = -EIO;
+ 		goto err;
+-- 
+2.25.1
 
->  #define TGL_REVID_A0		0x0
-> +#define TGL_REVID_B0		0x1
-
-revid 1 is CPU + GT B0, but already has display C0 stepping
-incorporated.  I forget...do the display workaround limits in the bspec
-refer to display stepping or CPU/GT stepping?
-
-For reference, bspec 44455.
-
-
-Matt
-
->  =
-
->  #define IS_TGL_REVID(p, since, until) \
->  	(IS_TIGERLAKE(p) && IS_REVID(p, since, until))
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index ffac0b862ca5..33149bccd117 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -6852,7 +6852,7 @@ static void tgl_init_clock_gating(struct drm_i915_p=
-rivate *dev_priv)
->  		   I915_READ(POWERGATE_ENABLE) | vd_pg_enable);
->  =
-
->  	/* Wa_1409825376:tgl (pre-prod)*/
-> -	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
-> +	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_B0))
->  		I915_WRITE(GEN9_CLKGATE_DIS_3, I915_READ(GEN9_CLKGATE_DIS_3) |
->  			   TGL_VRH_GATING_DIS);
->  }
-> -- =
-
-> 2.25.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
