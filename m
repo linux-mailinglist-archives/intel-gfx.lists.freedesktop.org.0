@@ -2,30 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065EE16B174
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 22:06:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4E116B181
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 22:07:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 461F36E977;
-	Mon, 24 Feb 2020 21:06:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE996E975;
+	Mon, 24 Feb 2020 21:07:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 895876E975;
- Mon, 24 Feb 2020 21:06:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7A4F7A011A;
- Mon, 24 Feb 2020 21:06:11 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F396E975
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 21:07:51 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 13:07:50 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,481,1574150400"; d="scan'208";a="384255057"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga004.jf.intel.com with ESMTP; 24 Feb 2020 13:07:50 -0800
+Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 24 Feb 2020 13:07:50 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
+ FMSMSX109.amr.corp.intel.com ([169.254.15.123]) with mapi id 14.03.0439.000;
+ Mon, 24 Feb 2020 13:07:50 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>
+Thread-Topic: [Intel-gfx] [PATCH 3/8] drm/i915/tgl: Implement Wa_1806527549
+Thread-Index: AQHV6STatPl4JmANjkiKYwjMHT9HJagnbtYAgAPyJYA=
+Date: Mon, 24 Feb 2020 21:07:49 +0000
+Message-ID: <80ba328ce588334b9458b7ed32284409dd795392.camel@intel.com>
+References: <20200222020815.50599-1-jose.souza@intel.com>
+ <20200222020815.50599-3-jose.souza@intel.com>
+ <158236159095.13442.15888416881045741746@skylake-alporthouse-com>
+In-Reply-To: <158236159095.13442.15888416881045741746@skylake-alporthouse-com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.234]
+Content-ID: <7C3C760A9CA0254FB95EDD76FA01ECFF@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Mon, 24 Feb 2020 21:06:11 -0000
-Message-ID: <158257837147.28360.1001285137142199863@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200224191258.15668-1-lucas.demarchi@intel.com>
-In-Reply-To: <20200224191258.15668-1-lucas.demarchi@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Add_Wa=5F1608008084_=28rev2=29?=
+Subject: Re: [Intel-gfx] [PATCH 3/8] drm/i915/tgl: Implement Wa_1806527549
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,106 +58,17 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/tgl: Add Wa_1608008084 (rev2)
-URL   : https://patchwork.freedesktop.org/series/73801/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_7999 -> Patchwork_16694
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16694 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@gem_mmap@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-tgl-y/igt@gem_mmap@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-tgl-y/igt@gem_mmap@basic.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-hsw-peppy:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-hsw-peppy/igt@i915_selftest@live_gem_contexts.html
-    - fi-hsw-4770r:       [PASS][7] -> [DMESG-FAIL][8] ([i915#722])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([fdo#111407])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_addfb_basic@addfb25-yf-tiled:
-    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7999/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/fi-tgl-y/igt@kms_addfb_basic@addfb25-yf-tiled.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
-
-
-Participating hosts (52 -> 42)
-------------------------------
-
-  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7999 -> Patchwork_16694
-
-  CI-20190529: 20190529
-  CI_DRM_7999: e853e3d470d1bb4ac87042094b99adbdbaa87944 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5463: d519c80219ebe558cd2fa378f26f9d73f9e35310 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16694: f7e443d7006eb83427b962f2ed0043822856ea3f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f7e443d7006e drm/i915/tgl: Add Wa_1608008084
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16694/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T3VjaCEgVGhhbmtzIGZpeGVkDQoNCk9uIFNhdCwgMjAyMC0wMi0yMiBhdCAwODo1MyArMDAwMCwg
+Q2hyaXMgV2lsc29uIHdyb3RlOg0KPiBRdW90aW5nIEpvc8OpIFJvYmVydG8gZGUgU291emEgKDIw
+MjAtMDItMjIgMDI6MDg6MTApDQo+ID4gVGhpcyB3aWxsIHdoaXRlbGlzdCB0aGUgSElaX0NISUNL
+RU4gcmVnaXN0ZXIgc28gbWVzYSBjYW4gZGlzYWJsZQ0KPiA+IHRoZQ0KPiA+IG9wdGltaXphdGlv
+bnMgYW5kIHZvaWQgaGFuZyB3aGVuIHVzaW5nIEQxNl9VTk9STS4NCj4gDQo+IEJ1dCBpdCdzIG5v
+dCBhZGRlZCB0byB0aGUgd2hpdGVsaXN0Lg0KPiAtQ2hyaXMNCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
