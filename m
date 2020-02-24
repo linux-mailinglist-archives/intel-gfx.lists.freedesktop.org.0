@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6261A16A73D
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 14:24:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D65216A78E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 14:47:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47BCE6E4CB;
-	Mon, 24 Feb 2020 13:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 125EF6E4D7;
+	Mon, 24 Feb 2020 13:47:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78CA26E4B7;
- Mon, 24 Feb 2020 13:24:02 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 05:24:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="229839624"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 24 Feb 2020 05:23:59 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 24 Feb 2020 15:23:58 +0200
-Date: Mon, 24 Feb 2020 15:23:58 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <20200224132358.GX13686@intel.com>
-References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
- <20200219203544.31013-12-ville.syrjala@linux.intel.com>
- <20200221161520.GB20663@ravnborg.org>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 25C446E4D7;
+ Mon, 24 Feb 2020 13:47:48 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1E8DCA0099;
+ Mon, 24 Feb 2020 13:47:48 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200221161520.GB20663@ravnborg.org>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 11/12] drm: Shrink mode->private_flags
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Laxminarayan Bharadiya, Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Mon, 24 Feb 2020 13:47:48 -0000
+Message-ID: <158255206809.28362.11563608664018421604@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200224102429.4076883-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200224102429.4076883-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Fix_inverted_WARN=5FON_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,71 +38,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 21, 2020 at 05:15:20PM +0100, Sam Ravnborg wrote:
-> On Wed, Feb 19, 2020 at 10:35:43PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+== Series Details ==
 
-> > gma500 needs 4 bits (to store a pixel multiplier) in the
-> > mode->private_flags, i915 currently has three bits defined.
-> > No one else uses this. Reduce the size to u8.
-> > =
+Series: drm/i915/display: Fix inverted WARN_ON (rev3)
+URL   : https://patchwork.freedesktop.org/series/73823/
+State : failure
 
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Summary ==
 
-> There seems to be talk about dropping use of private_flags
-> from i915 and gma500 (IIRC).
-> So maybe drop this patch as we are about to get rid of
-> private_flags - which is much better?
+Applying: drm/i915/display: Fix inverted WARN_ON
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/display/intel_dp.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
+No changes -- Patch already applied.
 
-Hmm. Yeah, this is patch 11/12 so I guess I might as well drop
-it.
-
-> =
-
-> 	Sam
-> =
-
-> > ---
-> >  include/drm/drm_modes.h | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > =
-
-> > diff --git a/include/drm/drm_modes.h b/include/drm/drm_modes.h
-> > index b585074945b5..dadb0f3e5b0b 100644
-> > --- a/include/drm/drm_modes.h
-> > +++ b/include/drm/drm_modes.h
-> > @@ -378,7 +378,7 @@ struct drm_display_mode {
-> >  	 * by atomic drivers since they can store any additional data by
-> >  	 * subclassing state structures.
-> >  	 */
-> > -	int private_flags;
-> > +	u8 private_flags;
-> >  =
-
-> >  	/**
-> >  	 * @picture_aspect_ratio:
-> > -- =
-
-> > 2.24.1
-> > =
-
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
