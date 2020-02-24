@@ -2,36 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E37016A49F
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 12:11:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31DDA16A4F5
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 12:33:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63E266E435;
-	Mon, 24 Feb 2020 11:11:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1444B6E434;
+	Mon, 24 Feb 2020 11:33:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D5DD888AE;
- Mon, 24 Feb 2020 11:11:12 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8274D6E434
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 11:33:18 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 03:11:11 -0800
-X-IronPort-AV: E=Sophos;i="5.70,479,1574150400"; d="scan'208";a="230613760"
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 03:33:18 -0800
+X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="230619390"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 03:11:08 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-In-Reply-To: <20200224095704.GC13783@zhen-hp.sh.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200220165507.16823-1-pankaj.laxminarayan.bharadiya@intel.com>
- <87eeulthds.fsf@intel.com> <20200224095704.GC13783@zhen-hp.sh.intel.com>
-Date: Mon, 24 Feb 2020 13:11:05 +0200
-Message-ID: <87mu98tf3q.fsf@intel.com>
+ 24 Feb 2020 03:33:16 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Feb 2020 13:33:12 +0200
+Message-Id: <20200224113312.13674-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 0/8] drm: Introduce struct drm_device
- based WARN* and use them in i915
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915: stop assigning drm->dev_private
+ pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,38 +42,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2020, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
-> On 2020.02.23 18:09:35 +0200, Jani Nikula wrote:
->> On Thu, 20 Feb 2020, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
->> >   drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
->> >   drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
->> 
->> Thanks for the patches, pushed everything except these, which are for
->> Zhenyu & Zhi.
->> 
->
-> For GVT changes.
->
-> Acked-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+We no longer need or use it as we subclass struct drm_device in our
+struct drm_i915_private, and can always use to_i915() to get at
+i915. Stop assigning the pointer to catch anyone trying to add new users
+for ->dev_private.
 
-I assume you'll pick these up and merge via gvt tree.
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.c                  | 2 --
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
+ 2 files changed, 3 deletions(-)
 
-BR,
-Jani.
-
->
-> Please also cc intel-gvt-dev list in future for gvt change.
->
-> Thanks!
-
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 4034e431cc4c..d5aed3b7d7e3 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1372,8 +1372,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return ERR_PTR(err);
+ 	}
+ 
+-	i915->drm.dev_private = i915;
+-
+ 	i915->drm.pdev = pdev;
+ 	pci_set_drvdata(pdev, i915);
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 3b8986983afc..754d0eb6beaa 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -144,7 +144,6 @@ struct drm_i915_private *mock_gem_device(void)
+ 		goto put_device;
+ 	}
+ 	i915->drm.pdev = pdev;
+-	i915->drm.dev_private = i915;
+ 
+ 	intel_runtime_pm_init_early(&i915->runtime_pm);
+ 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
