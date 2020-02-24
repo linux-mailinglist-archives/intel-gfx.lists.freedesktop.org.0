@@ -2,33 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E00316A679
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 13:52:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C657216A677
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 13:52:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 066EE6E46F;
-	Mon, 24 Feb 2020 12:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E866E461;
+	Mon, 24 Feb 2020 12:52:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32DD46E461
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C91C6E463
  for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 12:52:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 04:52:32 -0800
+ 24 Feb 2020 04:52:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="225967568"
+X-IronPort-AV: E=Sophos;i="5.70,480,1574150400"; d="scan'208";a="225967577"
 Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by orsmga007.jf.intel.com with ESMTP; 24 Feb 2020 04:52:30 -0800
+ by orsmga007.jf.intel.com with ESMTP; 24 Feb 2020 04:52:32 -0800
 From: Anshuman Gupta <anshuman.gupta@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 18:09:57 +0530
-Message-Id: <20200224124004.26712-1-anshuman.gupta@intel.com>
+Date: Mon, 24 Feb 2020 18:09:58 +0530
+Message-Id: <20200224124004.26712-2-anshuman.gupta@intel.com>
 X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20200224124004.26712-1-anshuman.gupta@intel.com>
+References: <20200224124004.26712-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 0/7] 3 display pipes combination system
- support
+Subject: [Intel-gfx] [PATCH v3 1/7] drm/i915: Iterate over pipes and skip
+ the disabled one
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,35 +44,60 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This update is Rebased and fixes the review comment provided by 
-Ville.
-
-Anshuman Gupta (7):
-  drm/i915: Iterate over pipes and skip the disabled one
-  drm/i915: Remove (pipe == crtc->index) assumption
-  drm/i915: Fix broken transcoder err state
-  drm/i915: Fix wrongly populated plane possible_crtcs bit mask
-  drm/i915: Get first crtc instead of PIPE_A crtc
-  drm/i915: Add WARN_ON in intel_get_crtc_for_pipe()
-  drm/i915: Fix broken num_entries in skl_ddb_allocation_overlaps
-
- drivers/gpu/drm/i915/display/intel_audio.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 44 ++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_display.h  |  5 ++-
- .../drm/i915/display/intel_display_types.h    | 15 ++++++-
- drivers/gpu/drm/i915/display/intel_sprite.c   |  5 +--
- drivers/gpu/drm/i915/i915_irq.c               | 28 ++++++++----
- 6 files changed, 71 insertions(+), 28 deletions(-)
-
--- 
-2.24.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SXQgc2hvdWxkIG5vdCBiZSBhc3N1bWVkIHRoYXQgYSBkaXNhYmxlZCBkaXNwbGF5IHBpcGUgd2ls
+bCBiZQphbHdheXMgbGFzdCB0aGUgcGlwZS4KZm9yX2VhY2hfcGlwZSgpIHNob3VsZCBpdGVyYXRl
+IG92ZXIgSTkxNV9NQVhfUElQRVMgYW5kIGNoZWNrCmZvciB0aGUgZGlzYWJsZWQgcGlwZSBhbmQg
+c2tpcCB0aGF0IHBpcGUgc28gdGhhdCBpdCBzaG91bGQgbm90CmluaXRpYWxpemUgdGhlIGludGVs
+IGNydGMgZm9yIGFueSBkaXNhYmxlZCBwaXBlcy4KCkR1ZSB0byBjaGFuZ2VzIGluIGZvcl9lYWNo
+X3BpcGUoKSBtYWNybywgaXQgcmVxdWlyZXMgdG8gaGFuZGxlCnRoZSBiZWxvdyBjb21waWxhdGlv
+biBlcnJvci4KInN1Z2dlc3QgZXhwbGljaXQgYnJhY2VzIHRvIGF2b2lkIGFtYmlndW91cyDigJhl
+bHNl4oCZClstV2Vycm9yPWRhbmdsaW5nLWVsc2VdIgoKdjI6Ci0gQ29zbWV0aWMgY2hhbmdlcywg
+cmVtb3ZlZCB1bndhbnRlZCBwYXJlbnRoZXNlcy4gW1ZpbGxlXQoKQ2M6IFZpbGxlIFN5cmrDpGzD
+pCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEFuc2h1bWFu
+IEd1cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggfCA1ICsrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkx
+NS9pOTE1X2lycS5jICAgICAgICAgICAgICB8IDYgKysrKy0tCiAyIGZpbGVzIGNoYW5nZWQsIDcg
+aW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5oCmluZGV4IGY5MmVmYmJlYzgzOC4uMmQ2ODhmZWIyZWYzIDEw
+MDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAor
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaApAQCAtMzEz
+LDEwICszMTMsMTEgQEAgZW51bSBwaHlfZmlhIHsKIH07CiAKICNkZWZpbmUgZm9yX2VhY2hfcGlw
+ZShfX2Rldl9wcml2LCBfX3ApIFwKLQlmb3IgKChfX3ApID0gMDsgKF9fcCkgPCBJTlRFTF9OVU1f
+UElQRVMoX19kZXZfcHJpdik7IChfX3ApKyspCisJZm9yICgoX19wKSA9IDA7IChfX3ApIDwgSTkx
+NV9NQVhfUElQRVM7IChfX3ApKyspIFwKKwkJZm9yX2VhY2hfaWYoSU5URUxfSU5GTyhfX2Rldl9w
+cml2KS0+cGlwZV9tYXNrICYgQklUKF9fcCkpCiAKICNkZWZpbmUgZm9yX2VhY2hfcGlwZV9tYXNr
+ZWQoX19kZXZfcHJpdiwgX19wLCBfX21hc2spIFwKLQlmb3IgKChfX3ApID0gMDsgKF9fcCkgPCBJ
+TlRFTF9OVU1fUElQRVMoX19kZXZfcHJpdik7IChfX3ApKyspIFwKKwlmb3JfZWFjaF9waXBlKF9f
+ZGV2X3ByaXYsIF9fcCkgXAogCQlmb3JfZWFjaF9pZigoX19tYXNrKSAmIEJJVChfX3ApKQogCiAj
+ZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFuc2NvZGVyX21hc2tlZChfX2Rldl9wcml2LCBfX3QsIF9f
+bWFzaykgXApkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKaW5kZXggNWQxYjExMzQ2MTQ1Li44NTQ3MDFh
+YWI0ZjEgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKKysrIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwpAQCAtMTc0OSwxMSArMTc0OSwxMiBAQCBz
+dGF0aWMgdm9pZCBpYnhfaXJxX2hhbmRsZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2LCB1MzIgcGNoX2lpcikKIAlpZiAocGNoX2lpciAmIFNERV9QT0lTT04pCiAJCWRybV9lcnIo
+JmRldl9wcml2LT5kcm0sICJQQ0ggcG9pc29uIGludGVycnVwdFxuIik7CiAKLQlpZiAocGNoX2lp
+ciAmIFNERV9GRElfTUFTSykKKwlpZiAocGNoX2lpciAmIFNERV9GRElfTUFTSykgewogCQlmb3Jf
+ZWFjaF9waXBlKGRldl9wcml2LCBwaXBlKQogCQkJZHJtX2RiZygmZGV2X3ByaXYtPmRybSwgIiAg
+cGlwZSAlYyBGREkgSUlSOiAweCUwOHhcbiIsCiAJCQkJcGlwZV9uYW1lKHBpcGUpLAogCQkJCUk5
+MTVfUkVBRChGRElfUlhfSUlSKHBpcGUpKSk7CisJfQogCiAJaWYgKHBjaF9paXIgJiAoU0RFX1RS
+QU5TQl9DUkNfRE9ORSB8IFNERV9UUkFOU0FfQ1JDX0RPTkUpKQogCQlkcm1fZGJnKCZkZXZfcHJp
+di0+ZHJtLCAiUENIIHRyYW5zY29kZXIgQ1JDIGRvbmUgaW50ZXJydXB0XG4iKTsKQEAgLTE4MzMs
+MTEgKzE4MzQsMTIgQEAgc3RhdGljIHZvaWQgY3B0X2lycV9oYW5kbGVyKHN0cnVjdCBkcm1faTkx
+NV9wcml2YXRlICpkZXZfcHJpdiwgdTMyIHBjaF9paXIpCiAJaWYgKHBjaF9paXIgJiBTREVfQVVE
+SU9fQ1BfQ0hHX0NQVCkKIAkJZHJtX2RiZygmZGV2X3ByaXYtPmRybSwgIkF1ZGlvIENQIGNoYW5n
+ZSBpbnRlcnJ1cHRcbiIpOwogCi0JaWYgKHBjaF9paXIgJiBTREVfRkRJX01BU0tfQ1BUKQorCWlm
+IChwY2hfaWlyICYgU0RFX0ZESV9NQVNLX0NQVCkgewogCQlmb3JfZWFjaF9waXBlKGRldl9wcml2
+LCBwaXBlKQogCQkJZHJtX2RiZygmZGV2X3ByaXYtPmRybSwgIiAgcGlwZSAlYyBGREkgSUlSOiAw
+eCUwOHhcbiIsCiAJCQkJcGlwZV9uYW1lKHBpcGUpLAogCQkJCUk5MTVfUkVBRChGRElfUlhfSUlS
+KHBpcGUpKSk7CisJfQogCiAJaWYgKHBjaF9paXIgJiBTREVfRVJST1JfQ1BUKQogCQljcHRfc2Vy
+cl9pbnRfaGFuZGxlcihkZXZfcHJpdik7Ci0tIAoyLjI0LjAKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
