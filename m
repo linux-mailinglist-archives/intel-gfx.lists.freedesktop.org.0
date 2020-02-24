@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 266EF16B348
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 22:54:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A7016B360
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 22:57:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 173CD6E878;
-	Mon, 24 Feb 2020 21:54:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A47026E872;
+	Mon, 24 Feb 2020 21:56:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59DB46E878
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 21:54:20 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 13:54:19 -0800
-X-IronPort-AV: E=Sophos;i="5.70,481,1574150400"; d="scan'208";a="271055358"
-Received: from ldmartin-desk1.jf.intel.com (HELO ldmartin-desk1)
- ([134.134.244.163])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 13:54:19 -0800
-Date: Mon, 24 Feb 2020 13:54:12 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200224215412.ema43ia2ejz7mkoh@ldmartin-desk1>
-X-Patchwork-Hint: ignore
-References: <20200222002824.17103-1-lucas.demarchi@intel.com>
- <4a1fc6a341c803943cd79c9a1961bd37ec5e5cb8.camel@intel.com>
- <158257863477.26598.16478479176829373309@skylake-alporthouse-com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AAA56E872;
+ Mon, 24 Feb 2020 21:56:57 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20337733-1500050 
+ for multiple; Mon, 24 Feb 2020 21:56:50 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 24 Feb 2020 21:56:50 +0000
+Message-Id: <20200224215650.39624-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158257863477.26598.16478479176829373309@skylake-alporthouse-com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Add Wa_1608008084
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Check precision
+ of hostile cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,81 +37,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "michel.thierry@intel.com" <michel.thierry@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "ramlingam.c@intel.com" <ramlingam.c@intel.com>
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2020 at 09:10:34PM +0000, Chris Wilson wrote:
->Quoting Souza, Jose (2020-02-22 00:36:53)
->> + CCing people involved in the patch fixed.
->>
->> On Fri, 2020-02-21 at 16:28 -0800, Lucas De Marchi wrote:
->> > Wa_1608008084 is an additional WA that applies to writes on FF_MODE2
->> > register. We can't read it back either from CPU or GPU. Since the
->> > other
->> > bits should be 0, recommendation to handle Wa_1604555607 is to
->> > actually
->> > just write the timer value.
->> >
->> > Do a write only and don't try to read it, neither before or after
->> > the WA is applied.
->> >
->> > Fixes: ff690b2111ba ("drm/i915/tgl: Implement Wa_1604555607")
->> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 22 ++++++++++---------
->> > --
->> >  1 file changed, 10 insertions(+), 12 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > index 887e0dc701f7..0d76e1d6ec87 100644
->> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
->> > @@ -580,24 +580,22 @@ static void icl_ctx_workarounds_init(struct
->> > intel_engine_cs *engine,
->> >  static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
->> >                                    struct i915_wa_list *wal)
->> >  {
->> > -     u32 val;
->> > -
->> >       /* Wa_1409142259:tgl */
->> >       WA_SET_BIT_MASKED(GEN11_COMMON_SLICE_CHICKEN3,
->> >                         GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
->> >
->> > -     /* Wa_1604555607:tgl */
->> > -     val = intel_uncore_read(engine->uncore, FF_MODE2);
->> > -     val &= ~FF_MODE2_TDS_TIMER_MASK;
->> > -     val |= FF_MODE2_TDS_TIMER_128;
->> >       /*
->> > -      * FIXME: FF_MODE2 register is not readable till TGL B0. We can
->> > -      * enable verification of WA from the later steppings, which
->> > enables
->> > -      * the read of FF_MODE2.
->> > +      * Wa_1604555607:gen12
->> > +      * FF_MODE2 register is not readable till TGL B0, either by CPU
->> > or GPU.
->>
->> The line above could be removed as the comments above explain it
->> better, also BSpec don't say that it will be fixed in B0.
->
->The HW guys on discovering the bug promised it would be fixed for B0.
->-Chris
+Check that if we have to remove a hostile request from a non-persistent
+context, we do so without harming any other concurrent users.
 
-So... we have 2 different things here:  setting the timer in FF_MODE2
-is the Wa_1604555607. According to the comments on the spec it could
-even be treated as a general "gen12 programming mode" rather that a WA.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_ctx_persistence.c | 63 ++++++++++++++++++++++++++++++++
+ 1 file changed, 63 insertions(+)
 
-The fact that we can't read the register since it's tied to another
-clock is the Wa_1608008084. I don't see it documented anywhere that it is
-fixed in B0. Not even as a comment to the issue. And it's in fact even
-marked as permanent.
+diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+index 20007f5c4..cd174d263 100644
+--- a/tests/i915/gem_ctx_persistence.c
++++ b/tests/i915/gem_ctx_persistence.c
+@@ -613,6 +613,62 @@ static void test_process_mixed(int pfd, unsigned int engine)
+ 	gem_quiescent_gpu(pfd);
+ }
+ 
++static void
++test_saturated_hostile(int i915, const struct intel_execution_engine2 *engine)
++{
++	const struct intel_execution_engine2 *other;
++	igt_spin_t *spin;
++	uint32_t ctx;
++	int fence = -1;
++
++	/*
++	 * Check that if we have to remove a hostile request from a
++	 * non-persistent context, we do so without harming any other
++	 * concurrent users.
++	 */
++
++	__for_each_physical_engine(i915, other) {
++		if (other->flags == engine->flags)
++			continue;
++
++		spin = igt_spin_new(i915,
++				   .engine = other->flags,
++				   .flags = (IGT_SPIN_NO_PREEMPTION |
++					     IGT_SPIN_FENCE_OUT));
++
++		if (fence < 0) {
++			fence = spin->out_fence;
++		} else {
++			int tmp;
++
++			tmp = sync_fence_merge(fence, spin->out_fence);
++			close(fence);
++			close(spin->out_fence);
++
++			fence = tmp;
++		}
++		spin->out_fence = -1;
++	}
++
++	ctx = gem_context_clone_with_engines(i915, 0);
++	gem_context_set_persistence(i915, ctx, false);
++	spin = igt_spin_new(i915, ctx,
++			    .engine = engine->flags,
++			    .flags = (IGT_SPIN_NO_PREEMPTION |
++				      IGT_SPIN_POLL_RUN |
++				      IGT_SPIN_FENCE_OUT));
++	igt_spin_busywait_until_started(spin);
++	gem_context_destroy(i915, ctx);
++
++	igt_assert_eq(sync_fence_wait(spin->out_fence, reset_timeout_ms), 0);
++	igt_assert_eq(sync_fence_status(spin->out_fence), -EIO);
++
++	/* All other spinners should be left unharmed */
++	gem_quiescent_gpu(i915);
++	igt_assert_eq(sync_fence_wait(fence, reset_timeout_ms), 0);
++	igt_assert_eq(sync_fence_status(fence), 1);
++}
++
+ static void test_processes(int i915)
+ {
+ 	struct {
+@@ -1041,6 +1097,13 @@ igt_main
+ 			}
+ 		}
+ 
++		igt_subtest_with_dynamic_f("saturated-hostile") {
++			__for_each_physical_engine(i915, e) {
++				igt_dynamic_f("%s", e->name)
++					test_saturated_hostile(i915, e);
++			}
++		}
++
+ 		igt_subtest("smoketest")
+ 			smoketest(i915);
+ 	}
+-- 
+2.25.1
 
-Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
