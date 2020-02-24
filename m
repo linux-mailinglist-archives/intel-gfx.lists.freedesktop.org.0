@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CA816AE48
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:00:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B98DB16AF32
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 19:32:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B6236E837;
-	Mon, 24 Feb 2020 18:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF5BA6E832;
+	Mon, 24 Feb 2020 18:32:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B941E6E834;
- Mon, 24 Feb 2020 18:00:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B1C086E830;
+ Mon, 24 Feb 2020 18:32:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B18DFA0099;
- Mon, 24 Feb 2020 18:00:45 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AAE3AA00E9;
+ Mon, 24 Feb 2020 18:32:51 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 24 Feb 2020 18:00:45 -0000
-Message-ID: <158256724570.28362.8485523567112459736@emeril.freedesktop.org>
+Date: Mon, 24 Feb 2020 18:32:51 -0000
+Message-ID: <158256917167.28360.15234007448099206698@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200224130342.4080773-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200224130342.4080773-1-chris@chris-wilson.co.uk>
+References: <20200224144036.4086608-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200224144036.4086608-1-chris@chris-wilson.co.uk>
 Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Pull_marking_vm_as_closed_underneath_the_vm-=3Emute?=
- =?utf-8?q?x?=
+ =?utf-8?q?/i915=3A_Drop_assertion_that_active-=3Efence_is_unchanged?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +47,13 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
-URL   : https://patchwork.freedesktop.org/series/73851/
+Series: drm/i915: Drop assertion that active->fence is unchanged
+URL   : https://patchwork.freedesktop.org/series/73853/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_7998 -> Patchwork_16688
+CI Bug Log - changes from CI_DRM_7998 -> Patchwork_16690
 ====================================================
 
 Summary
@@ -64,12 +63,12 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/index.html
 
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_16688 that come from known issues:
+  Here are the changes found in Patchwork_16690 that come from known issues:
 
 ### IGT changes ###
 
@@ -78,22 +77,22 @@ Known issues
   * igt@gem_close_race@basic-threads:
     - fi-byt-j1900:       [PASS][1] -> [INCOMPLETE][2] ([i915#45])
    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-j1900/igt@gem_close_race@basic-threads.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-byt-j1900/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-byt-j1900/igt@gem_close_race@basic-threads.html
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][3] -> [FAIL][4] ([CI#94])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@gem_wait@basic-await-all:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_wait@basic-await-all.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_wait@basic-await-all.html
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
 
   * igt@i915_selftest@live_gem_contexts:
-    - fi-cfl-guc:         [PASS][7] -> [DMESG-FAIL][8] ([i915#623])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+    - fi-hsw-4770r:       [PASS][5] -> [DMESG-FAIL][6] ([i915#722])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-hsw-4770r/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
   
 #### Possible fixes ####
@@ -101,56 +100,65 @@ Known issues
   * igt@gem_close_race@basic-threads:
     - fi-hsw-peppy:       [INCOMPLETE][9] ([i915#694] / [i915#816]) -> [PASS][10]
    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-hsw-peppy/igt@gem_close_race@basic-threads.html
 
   * igt@gem_flink_basic@basic:
     - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-tgl-y/igt@gem_flink_basic@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-tgl-y/igt@gem_flink_basic@basic.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-tgl-y/igt@gem_flink_basic@basic.html
 
   
 #### Warnings ####
 
+  * igt@gem_exec_parallel@fds:
+    - fi-byt-n2820:       [FAIL][13] ([i915#694]) -> [TIMEOUT][14] ([fdo#112271] / [i915#1084])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-byt-n2820/igt@gem_exec_parallel@fds.html
+
   * igt@runner@aborted:
-    - fi-byt-j1900:       [FAIL][13] ([i915#999]) -> [FAIL][14] ([i915#816])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-j1900/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/fi-byt-j1900/igt@runner@aborted.html
+    - fi-byt-j1900:       [FAIL][15] ([i915#999]) -> [FAIL][16] ([i915#816])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_7998/fi-byt-j1900/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/fi-byt-j1900/igt@runner@aborted.html
 
   
   [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [fdo#112271]: https://bugs.freedesktop.org/show_bug.cgi?id=112271
+  [i915#1084]: https://gitlab.freedesktop.org/drm/intel/issues/1084
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
   [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
   [i915#694]: https://gitlab.freedesktop.org/drm/intel/issues/694
+  [i915#722]: https://gitlab.freedesktop.org/drm/intel/issues/722
   [i915#816]: https://gitlab.freedesktop.org/drm/intel/issues/816
   [i915#999]: https://gitlab.freedesktop.org/drm/intel/issues/999
 
 
-Participating hosts (51 -> 39)
+Participating hosts (51 -> 44)
 ------------------------------
 
-  Missing    (12): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-bwr-2160 fi-snb-2520m fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-byt-n2820 fi-byt-clapper fi-snb-2600 
+  Missing    (7): fi-ilk-m540 fi-bxt-dsi fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_7998 -> Patchwork_16688
+  * Linux: CI_DRM_7998 -> Patchwork_16690
 
   CI-20190529: 20190529
   CI_DRM_7998: 7b1bb0188905d180ee11694d9c26c5dd656dc1d1 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5463: d519c80219ebe558cd2fa378f26f9d73f9e35310 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16688: b040538f8e04a0317013e09afd388999da8657f0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_16690: 4f42f847513211548e64453389d014114eeb1a6c @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-b040538f8e04 drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
+4f42f8475132 drm/i915: Drop assertion that active->fence is unchanged
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16688/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16690/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
