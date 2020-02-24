@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E69116A367
-	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A7116A35E
+	for <lists+intel-gfx@lfdr.de>; Mon, 24 Feb 2020 11:00:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68AA86E3E1;
-	Mon, 24 Feb 2020 10:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AB16E3D3;
+	Mon, 24 Feb 2020 10:00:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C4BF6E3E1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD226E3C6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 10:00:21 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328988-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20328990-1500050 
  for multiple; Mon, 24 Feb 2020 10:00:10 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 24 Feb 2020 09:59:58 +0000
-Message-Id: <20200224100007.4024184-5-chris@chris-wilson.co.uk>
+Date: Mon, 24 Feb 2020 10:00:00 +0000
+Message-Id: <20200224100007.4024184-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 05/14] drm/i915/gem: Honour O_NONBLOCK before
- throttling execbuf submissions
+Subject: [Intel-gfx] [PATCH 07/14] drm/i915: Protect
+ i915_request_await_start from early waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,54 +44,105 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check the user's flags on the struct file before deciding whether or not
-to stall before submitting a request. This allows us to reasonably
-cheaply honour O_NONBLOCK without checking at more critical phases
-during request submission.
+We need to be extremely careful inside i915_request_await_start() as it
+needs to walk the list of requests in the foreign timeline with very
+little protection. As we hold our own timeline mutex, we can not nest
+inside the signaler's timeline mutex, so all that remains is our RCU
+protection. However, to be safe we need to tell the compiler that we may
+be traversing the list only under RCU protection, and furthermore we
+need to start declaring requests as elements of the timeline from their
+construction.
 
-Suggested-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Fixes: 9ddc8ec027a3 ("drm/i915: Eliminate the trylock for awaiting an earlier request")
+Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Steve Carbonari <steven.carbonari@intel.com>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 21 ++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 40 +++++++++++++++++++----------
+ 1 file changed, 27 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 87fa5f42c39a..8646d76f4b6e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2327,15 +2327,22 @@ static int __eb_pin_engine(struct i915_execbuffer *eb, struct intel_context *ce)
- 	intel_context_timeline_unlock(tl);
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d53af93b919b..8b22c8bb2fa8 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -290,7 +290,7 @@ bool i915_request_retire(struct i915_request *rq)
+ 	spin_unlock_irq(&rq->lock);
  
- 	if (rq) {
--		if (i915_request_wait(rq,
--				      I915_WAIT_INTERRUPTIBLE,
--				      MAX_SCHEDULE_TIMEOUT) < 0) {
--			i915_request_put(rq);
--			err = -EINTR;
--			goto err_exit;
--		}
-+		bool nonblock = eb->file->filp->f_flags & O_NONBLOCK;
-+		long timeout;
-+
-+		timeout = MAX_SCHEDULE_TIMEOUT;
-+		if (nonblock)
-+			timeout = 0;
+ 	remove_from_client(rq);
+-	list_del(&rq->link);
++	list_del_rcu(&rq->link);
  
-+		timeout = i915_request_wait(rq,
-+					    I915_WAIT_INTERRUPTIBLE,
-+					    timeout);
- 		i915_request_put(rq);
+ 	intel_context_exit(rq->context);
+ 	intel_context_unpin(rq->context);
+@@ -736,6 +736,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 	rq->infix = rq->ring->emit; /* end of header; start of user payload */
+ 
+ 	intel_context_mark_active(ce);
++	list_add_tail_rcu(&rq->link, &tl->requests);
 +
-+		if (timeout < 0) {
-+			err = nonblock ? -EWOULDBLOCK : timeout;
-+			goto err_exit;
+ 	return rq;
+ 
+ err_unwind:
+@@ -792,13 +794,18 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	GEM_BUG_ON(i915_request_timeline(rq) ==
+ 		   rcu_access_pointer(signal->timeline));
+ 
++	if (i915_request_started(signal))
++		return 0;
++
+ 	fence = NULL;
+ 	rcu_read_lock();
+ 	spin_lock_irq(&signal->lock);
+-	if (!i915_request_started(signal) &&
+-	    !list_is_first(&signal->link,
+-			   &rcu_dereference(signal->timeline)->requests)) {
+-		struct i915_request *prev = list_prev_entry(signal, link);
++	do {
++		struct list_head *pos = READ_ONCE(signal->link.prev);
++		struct i915_request *prev;
++
++		if (pos == &rcu_dereference(signal->timeline)->requests)
++			break;
+ 
+ 		/*
+ 		 * Peek at the request before us in the timeline. That
+@@ -806,13 +813,22 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 		 * after acquiring a reference to it, confirm that it is
+ 		 * still part of the signaler's timeline.
+ 		 */
+-		if (i915_request_get_rcu(prev)) {
+-			if (list_next_entry(prev, link) == signal)
+-				fence = &prev->fence;
+-			else
+-				i915_request_put(prev);
++		prev = list_entry(pos, typeof(*prev), link);
++		if (!i915_request_get_rcu(prev))
++			break;
++
++		if (unlikely(READ_ONCE(prev->link.next) != &signal->link)) {
++			i915_request_put(prev);
++			break;
+ 		}
+-	}
++
++		if (unlikely(i915_request_started(signal))) {
++			i915_request_put(prev);
++			break;
 +		}
++
++		fence = &prev->fence;
++	} while (0);
+ 	spin_unlock_irq(&signal->lock);
+ 	rcu_read_unlock();
+ 	if (!fence)
+@@ -1253,8 +1269,6 @@ __i915_request_add_to_timeline(struct i915_request *rq)
+ 							 0);
  	}
  
- 	eb->engine = ce->engine;
+-	list_add_tail(&rq->link, &timeline->requests);
+-
+ 	/*
+ 	 * Make sure that no request gazumped us - if it was allocated after
+ 	 * our i915_request_alloc() and called __i915_request_add() before
 -- 
 2.25.1
 
