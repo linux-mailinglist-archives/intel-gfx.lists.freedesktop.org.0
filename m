@@ -1,37 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD9016BF6A
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 12:15:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5576A16BF6B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 12:15:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AAE46EA92;
-	Tue, 25 Feb 2020 11:15:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA8C6EA91;
+	Tue, 25 Feb 2020 11:15:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058186EA92
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 11:15:27 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 03:15:27 -0800
-X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="410210225"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 03:15:25 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 13:15:09 +0200
-Message-Id: <20200225111509.21879-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200225111509.21879-1-jani.nikula@intel.com>
-References: <20200225111509.21879-1-jani.nikula@intel.com>
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com
+ [IPv6:2607:f8b0:4864:20::a42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 343246EA91
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 11:15:48 +0000 (UTC)
+Received: by mail-vk1-xa42.google.com with SMTP id w67so3393061vkf.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 03:15:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=aMtQ3pHp1xucuYJZG57dvLV5RZBiN+sE4qCLKwfsYLU=;
+ b=YAJdnzjMj3TSy4oTHurXxB8/SI/2d2v2qkdWWs2rXS75YgOd40sFbOO3dqgxjHYWBS
+ cIIiFaJmUSwAatrwnZvZz+vkftvTi1Q6deimhp6vQPktkX+0pcTAKpPV+nZe46HUHKgw
+ S5LxQzI2gPhc2IHtjHJeGMK4IS4s472I4YFVFXe+itFuzv7LTc3CNnqwrQUXHJpa5FAq
+ CYOvipvCUbxSF/1uubVcgetyOAAGnTxcyWyWUBe8FrVULwH+31bxpuDfprNqv7lOGyq9
+ c+vPaFcIMZ6O1+kEIPvVG50lHqxEfn+JyiCQ6JZqSGFxFfXBZClb2+6Im4SCeENwET6s
+ tFpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=aMtQ3pHp1xucuYJZG57dvLV5RZBiN+sE4qCLKwfsYLU=;
+ b=ogXg0AcQ3ZEBNecz497y3Cv1+pPjq1qk+GVQzOePnBtLgIylkC+NR1yMwocoeXes9L
+ FQNrG8BzUUsYfDCAegKa0UECcZu2YCAU8RpNLXC6vGs88+uIvvBSztFNLUoKCJw8IbAv
+ PfXu2EZJJDhK1/qfoCBXIVaUdENN/PIe2tX9GGL9SUkMXMcbLOWXLD3lmbJ0BIN/bQjm
+ 00yMDeRjwpqgspUziSSzUq481ZHeTwVLnpEhVqYhR3FX9sBcWM669Obzj08fJmPvaN0c
+ POYnGEgaqjsfSOSIkGXbGVBPobNjpB1dKQoF8ELloTKVXdT4SWiz+KHnk3hwJ4bhu5QV
+ mGOQ==
+X-Gm-Message-State: APjAAAW5CFgPZbEA25NHKAaopPtzziMjlxCeA0z0OBTg8EPUhxg9rs/k
+ tbMb7RWjKgUiVlwXZ5dsCpgZyql+0MJykdR77tmb0Q==
+X-Google-Smtp-Source: APXvYqyfgueqtYkXQLZUvDxI+aC+2C6ykOIUuERGxtBesnnFsY0/+1+K8PqFMW79yGaYphkiJ3ZgL+sZSod1KmYdavg=
+X-Received: by 2002:a1f:604e:: with SMTP id u75mr24880276vkb.78.1582629347170; 
+ Tue, 25 Feb 2020 03:15:47 -0800 (PST)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/drv: use intel_uncore_write() for
- register access
+References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
+ <20200225082233.274530-4-chris@chris-wilson.co.uk>
+In-Reply-To: <20200225082233.274530-4-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 25 Feb 2020 11:15:20 +0000
+Message-ID: <CAM0jSHM+jVAM6+SAjZb0Hs_nE3W8SApF5LbGJQgOEBLvCTOHMA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH 04/11] drm/i915/gem: Cleanup shadow batch
+ after I915_EXEC_SECURE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,44 +62,18 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The implicit "dev_priv" local variable use has been a long-standing pain
-point in the register access macros I915_READ(), I915_WRITE(),
-POSTING_READ(), I915_READ_FW(), and I915_WRITE_FW().
-
-Replace the sole remaining I915_WRITE() in i915_drv.c with
-intel_uncore_write(), although it might be better to keep the entire
-file void of direct register access.
-
-No functional changes.
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/i915_drv.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-index 7f0e0ba918e9..57e2fc911dac 100644
---- a/drivers/gpu/drm/i915/i915_drv.c
-+++ b/drivers/gpu/drm/i915/i915_drv.c
-@@ -758,7 +758,8 @@ static void i915_driver_register(struct drm_i915_private *dev_priv)
- 	 * when running inside a VM.
- 	 */
- 	if (intel_vgpu_active(dev_priv))
--		I915_WRITE(vgtif_reg(display_ready), VGT_DRV_DISPLAY_READY);
-+		intel_uncore_write(&dev_priv->uncore, vgtif_reg(display_ready),
-+				   VGT_DRV_DISPLAY_READY);
- 
- 	/* Reveal our presence to userspace */
- 	if (drm_dev_register(dev, 0) == 0) {
--- 
-2.20.1
-
+On Tue, 25 Feb 2020 at 08:23, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Tidy up after a call to eb_parse() if a later bind fails.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
