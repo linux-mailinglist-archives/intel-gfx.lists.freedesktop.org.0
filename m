@@ -2,31 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B68716BE0D
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 10:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8F916BE4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 11:09:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C14E6E8A5;
-	Tue, 25 Feb 2020 09:57:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C06BC6EA7B;
+	Tue, 25 Feb 2020 10:09:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2829A6E1E8;
- Tue, 25 Feb 2020 09:57:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22282A66C9;
- Tue, 25 Feb 2020 09:57:24 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 446E26EA7B;
+ Tue, 25 Feb 2020 10:09:47 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 02:09:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="271252934"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by fmsmga002.fm.intel.com with ESMTP; 25 Feb 2020 02:09:46 -0800
+Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 25 Feb 2020 02:09:46 -0800
+Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
+ fmsmsx117.amr.corp.intel.com (10.18.116.17) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 25 Feb 2020 02:09:45 -0800
+Received: from BGSMSX107.gar.corp.intel.com ([169.254.9.58]) by
+ BGSMSX153.gar.corp.intel.com ([169.254.2.95]) with mapi id 14.03.0439.000;
+ Tue, 25 Feb 2020 15:39:43 +0530
+From: "Laxminarayan Bharadiya, Pankaj"
+ <pankaj.laxminarayan.bharadiya@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, "daniel@ffwll.ch"
+ <daniel@ffwll.ch>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "ville.syrjala@linux.intel.com"
+ <ville.syrjala@linux.intel.com>, "airlied@linux.ie" <airlied@linux.ie>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, "mripard@kernel.org"
+ <mripard@kernel.org>, "mihail.atanassov@arm.com" <mihail.atanassov@arm.com>
+Thread-Topic: [RFC][PATCH 1/5] drm: Introduce scaling filter property
+Thread-Index: AQHV66uGwTJMv8I+wEuEQcDULMK+vagrUAeAgABcxWA=
+Date: Tue, 25 Feb 2020 10:09:42 +0000
+Message-ID: <E92BA18FDE0A5B43B7B3DA7FCA03128605773303@BGSMSX107.gar.corp.intel.com>
+References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200225070545.4482-2-pankaj.laxminarayan.bharadiya@intel.com>
+ <87pne3rnwu.fsf@intel.com>
+In-Reply-To: <87pne3rnwu.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 25 Feb 2020 09:57:24 -0000
-Message-ID: <158262464413.5725.13754548443604554949@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/11=5D_drm/i915=3A_Drop_assertion?=
- =?utf-8?q?_that_active-=3Efence_is_unchanged_=28rev2=29?=
+Subject: Re: [Intel-gfx] [RFC][PATCH 1/5] drm: Introduce scaling filter
+ property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,49 +71,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [01/11] drm/i915: Drop assertion that active->fence is unchanged (rev2)
-URL   : https://patchwork.freedesktop.org/series/73885/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-b123d93c63fa drm/i915: Drop assertion that active->fence is unchanged
-5a1236317071 drm/i915: Manually acquire engine-wakeref around use of kernel_context
-fef10565bb54 drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
-
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")'
-#12: 
-References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
-
-total: 1 errors, 1 warnings, 0 checks, 26 lines checked
-3a60eb342c62 drm/i915/gem: Cleanup shadow batch after I915_EXEC_SECURE
-e1df2a76132a drm/i915: Protect i915_request_await_start from early waits
-72ecc965378b drm/i915/selftests: Verify LRC isolation
--:449: WARNING:MEMORY_BARRIER: memory barrier without comment
-#449: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5179:
-+	wmb();
-
-total: 0 errors, 1 warnings, 0 checks, 557 lines checked
-aebf10206b49 drm/i915/selftests: Check recovery from corrupted LRC
-eb26b66bdc2e drm/i915/selftests: Be a little more lenient for reset workers
-bf1b76aeb2d1 drm/i915/gem: Consolidate ctx->engines[] release
-4161e451abba drm/i915/gt: Prevent allocation on a banned context
-b79648161fa4 drm/i915/gem: Check that the context wasn't closed during setup
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSmFuaSBOaWt1bGEgPGph
+bmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT4NCj4gU2VudDogMjUgRmVicnVhcnkgMjAyMCAxNToy
+Ng0KPiBUbzogTGF4bWluYXJheWFuIEJoYXJhZGl5YSwgUGFua2FqDQo+IDxwYW5rYWoubGF4bWlu
+YXJheWFuLmJoYXJhZGl5YUBpbnRlbC5jb20+OyBkYW5pZWxAZmZ3bGwuY2g7IGludGVsLQ0KPiBn
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBkcmktZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Ow0KPiB2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbTsgYWlybGllZEBsaW51eC5pZTsNCj4g
+bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tOyB0emltbWVybWFubkBzdXNlLmRlOw0K
+PiBtcmlwYXJkQGtlcm5lbC5vcmc7IG1paGFpbC5hdGFuYXNzb3ZAYXJtLmNvbQ0KPiBDYzogTGF4
+bWluYXJheWFuIEJoYXJhZGl5YSwgUGFua2FqDQo+IDxwYW5rYWoubGF4bWluYXJheWFuLmJoYXJh
+ZGl5YUBpbnRlbC5jb20+OyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBOYXV0aXlh
+bCwgQW5raXQgSyA8YW5raXQuay5uYXV0aXlhbEBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
+UkZDXVtQQVRDSCAxLzVdIGRybTogSW50cm9kdWNlIHNjYWxpbmcgZmlsdGVyIHByb3BlcnR5DQo+
+IA0KPiBPbiBUdWUsIDI1IEZlYiAyMDIwLCBQYW5rYWogQmhhcmFkaXlhDQo+IDxwYW5rYWoubGF4
+bWluYXJheWFuLmJoYXJhZGl5YUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+IFNpZ25lZC1vZmYtYnk6
+IFBhbmthaiBCaGFyYWRpeWENCj4gPiA8cGFua2FqLmxheG1pbmFyYXlhbi5iaGFyYWRpeWFAaW50
+ZWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFNoYXNoYW5rIFNoYXJtYSA8c2hhc2hhbmsuc2hh
+cm1hQGludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbmtpdCBOYXV0aXlhbCA8YW5raXQu
+ay5uYXV0aXlhbEBpbnRlbC5jb20+DQo+IA0KPiBXaGF0IGRpZCBTaGFzaGFuayBhbmQgQW5raXQg
+ZG8sIHNob3VsZCBvbmUgb3IgdGhlIG90aGVyIHBlcmhhcHMgcmV0YWluDQo+IGF1dGhvcnNoaXA/
+DQoNCkkga2luZCBvZiByZWZhY3RvcmVkIHRoZSBjb2RlLCBhZGRlZCBwbGFuZSBzY2FsaW5nIHN1
+cHBvcnQgYWRkZWQgbmV3IEFQSXMgJiBkb2N1bWVudGF0aW9uDQogYW5kIHJld3JvdGUgdGhlIHNj
+YWxpbmcgZmlsdGVyIHNldHRpbmcgbG9naWMuIFNpbmNlIEkgbWFkZSBzaWduaWZpY2FudCBjaGFu
+Z2VzIChJTUhPKSwgSSB0aG91Z2h0DQpvZiBjaGFuZ2luZyB0aGUgYXV0aG9yc2hpcC4gSSBzcG9r
+ZSB3aXRoIEFua2l0IHJlZ2FyZGluZyB0aGlzIGR1cmluZyBteSBpbml0aWFsIGRpc2N1c3Npb24g
+d2l0aCBoaW0uDQoNCldpbGwgeW91IHBsZWFzZSByZXZpZXcgdGhlIHByZXNlbnQgUkZDIGFuZCB0
+aGUgb2xkZXIgb25lIGFuZCBzdWdnZXN0LiAgSSBoYXZlDQpubyBpc3N1ZXMgd2l0aCBjaGFuZ2lu
+ZyB0aGUgYXV0aG9yc2hpcCDwn5iKLg0KIA0KPiANCj4gSW4gYW55IGNhc2UsIHdoZW4gdGFraW5n
+IG92ZXIgY29kZSBhbmQgc3VibWl0dGluZywgeW91IHNob3VsZCBhZGQgeW91ciBzaWduLW9mZg0K
+PiAqbGFzdCouIFBsZWFzZSBzZWUgWzFdIGZvciB3aGF0IFNpZ25lZC1vZmYtYnkgbWVhbnMuDQoN
+CldhcyBub3QgYXdhcmUsIHdpbGwgZG8gdGhlIG5lZWRmdWwuDQoNClRoYW5rcywNClBhbmthag0K
+DQo+IA0KPiBCUiwNCj4gSmFuaS4NCj4gDQo+IA0KPiBbMV0gaHR0cHM6Ly9kZXZlbG9wZXJjZXJ0
+aWZpY2F0ZS5vcmcvDQo+IA0KPiAtLQ0KPiBKYW5pIE5pa3VsYSwgSW50ZWwgT3BlbiBTb3VyY2Ug
+R3JhcGhpY3MgQ2VudGVyDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
+bC1nZngK
