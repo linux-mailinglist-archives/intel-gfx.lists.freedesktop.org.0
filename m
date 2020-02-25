@@ -1,55 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4AC516ED64
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 19:00:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA1316ED7A
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 19:08:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 316056E216;
-	Tue, 25 Feb 2020 18:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 424DD6E8EE;
+	Tue, 25 Feb 2020 18:08:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com
- [IPv6:2607:f8b0:4864:20::e43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62D016E216
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 18:00:50 +0000 (UTC)
-Received: by mail-vs1-xe43.google.com with SMTP id 7so19055vsr.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 10:00:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=NmH1PDxlTNwZxKnarwO0akr1+Jp+3Ie//XVEH9roo8A=;
- b=pP82PdoOmLy8vUwQMApgcB0AOtEGRa1Km+glFpTr6a/BQXyLVd99fQNjpmK0ZQLVVU
- TH1geYHFFyNB35e2lZebkUECas4wHL7dkqfudYzinrc/kcVsjKakPQUdORix9zoR2bai
- m/K6Dw8BmSioAVHnS5hRhhq0xA+en1y7RjgltzzAtoKkn5nLE/acaLtE09D/i5Lntf6g
- r5FlPIE5MD4OT+yPMLr6mNuP02m+dfzP8PpdaWRt3V8M0lmZ3jYqzSoFS9sD8TiY47/H
- ITd48Ja0tSAaP3jumjUo+qLa+U51E3O6Wk+U+Ophvz1R/9glexp3eDSxmzPrvP4WF60q
- 6GeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=NmH1PDxlTNwZxKnarwO0akr1+Jp+3Ie//XVEH9roo8A=;
- b=CXwvL3rCC0uAz8xnWLixbwDU+0iuW4BV/PDEeOkcqbr8wA9bIXBCOr6RuahnO/fZ6I
- Z9F1ClZXQ7WjMNLSZxPrjvZy2HqA/I5fikISWX4Zj1nHzvFHtVLf3RQfaXrfOW/nnKEj
- ARwOVFdZEhq61YLS8tci71SliQ3N5dJ9J1m3T6NPk91ewa4/6zpwG0Dlsr6ahL+Ra9fc
- ZLRP4yPSode+G0rLkQDup51sz1JOT8eQogUIJAWUDgvWMqaEyLK6aGRY+oBJKLZJIXWE
- M8zj0DSLwtgELSNr9IklEC7Ebl7ujV61B0W/aBfT+5o1W5iRdijxx6jaCh/Unowu6Lka
- 2Qiw==
-X-Gm-Message-State: APjAAAXUW3A61p4KWKwPgceTg2LnFFRC60/KDVfuXtMjYnyhGHAEZ0Fj
- XenRvLHDY93SUIzVQdUgdvL3wMzXKbzYopvsjyoSiA==
-X-Google-Smtp-Source: APXvYqz7ae/dHlurNQeQXqOYqtJ7iOJyeDDFSCiNwok3yGACrhNrRVbC3GPMqJ700W9f01QzKQclbrygHJtcXb0TPBE=
-X-Received: by 2002:a67:f591:: with SMTP id i17mr299994vso.34.1582653649536;
- Tue, 25 Feb 2020 10:00:49 -0800 (PST)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 454936E8EE;
+ Tue, 25 Feb 2020 18:08:19 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 10:08:18 -0800
+X-IronPort-AV: E=Sophos;i="5.70,485,1574150400"; d="scan'208";a="231105872"
+Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
+ ([10.251.85.135])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 25 Feb 2020 10:08:17 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200224215650.39624-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <6ad2e8c7-f3e3-a43e-ea4c-92ab57d69b06@linux.intel.com>
+Date: Tue, 25 Feb 2020 18:08:14 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
- <20200225082233.274530-7-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225082233.274530-7-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Tue, 25 Feb 2020 18:00:23 +0000
-Message-ID: <CAM0jSHOsakZdypStwtYU4WTaFsQFeNBpiCZA91wQSghpKe=pnQ@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 07/11] drm/i915/selftests: Check recovery
- from corrupted LRC
+In-Reply-To: <20200224215650.39624-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_persistence: Check
+ precision of hostile cancellation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,18 +47,113 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 25 Feb 2020 at 08:22, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Check that we can recover if the LRC is totally corrupted.
->
+
+On 24/02/2020 21:56, Chris Wilson wrote:
+> Check that if we have to remove a hostile request from a non-persistent
+> context, we do so without harming any other concurrent users.
+> 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   tests/i915/gem_ctx_persistence.c | 63 ++++++++++++++++++++++++++++++++
+>   1 file changed, 63 insertions(+)
+> 
+> diff --git a/tests/i915/gem_ctx_persistence.c b/tests/i915/gem_ctx_persistence.c
+> index 20007f5c4..cd174d263 100644
+> --- a/tests/i915/gem_ctx_persistence.c
+> +++ b/tests/i915/gem_ctx_persistence.c
+> @@ -613,6 +613,62 @@ static void test_process_mixed(int pfd, unsigned int engine)
+>   	gem_quiescent_gpu(pfd);
+>   }
+>   
+> +static void
+> +test_saturated_hostile(int i915, const struct intel_execution_engine2 *engine)
+> +{
+> +	const struct intel_execution_engine2 *other;
+> +	igt_spin_t *spin;
+> +	uint32_t ctx;
+> +	int fence = -1;
+> +
+> +	/*
+> +	 * Check that if we have to remove a hostile request from a
+> +	 * non-persistent context, we do so without harming any other
+> +	 * concurrent users.
+> +	 */
+> +
+> +	__for_each_physical_engine(i915, other) {
+> +		if (other->flags == engine->flags)
+> +			continue;
+> +
+> +		spin = igt_spin_new(i915,
+> +				   .engine = other->flags,
+> +				   .flags = (IGT_SPIN_NO_PREEMPTION |
+> +					     IGT_SPIN_FENCE_OUT));
+> +
+> +		if (fence < 0) {
+> +			fence = spin->out_fence;
+> +		} else {
+> +			int tmp;
+> +
+> +			tmp = sync_fence_merge(fence, spin->out_fence);
+> +			close(fence);
+> +			close(spin->out_fence);
+> +
+> +			fence = tmp;
+> +		}
+> +		spin->out_fence = -1;
+> +	}
+> +
+> +	ctx = gem_context_clone_with_engines(i915, 0);
+> +	gem_context_set_persistence(i915, ctx, false);
+> +	spin = igt_spin_new(i915, ctx,
+> +			    .engine = engine->flags,
+> +			    .flags = (IGT_SPIN_NO_PREEMPTION |
+> +				      IGT_SPIN_POLL_RUN |
+> +				      IGT_SPIN_FENCE_OUT));
+> +	igt_spin_busywait_until_started(spin);
+> +	gem_context_destroy(i915, ctx);
+> +
+> +	igt_assert_eq(sync_fence_wait(spin->out_fence, reset_timeout_ms), 0);
+> +	igt_assert_eq(sync_fence_status(spin->out_fence), -EIO);
+> +
+> +	/* All other spinners should be left unharmed */
+> +	gem_quiescent_gpu(i915);
+> +	igt_assert_eq(sync_fence_wait(fence, reset_timeout_ms), 0);
+> +	igt_assert_eq(sync_fence_status(fence), 1);
+
+I don't quite get this test. Why would other spinners be unharmed? They 
+are non-preemptible as well. And non-persistent spinner is alone on the 
+engine. So what aspect you wanted to test?
+
+Regards,
+
+Tvrtko
+
+> +}
+> +
+>   static void test_processes(int i915)
+>   {
+>   	struct {
+> @@ -1041,6 +1097,13 @@ igt_main
+>   			}
+>   		}
+>   
+> +		igt_subtest_with_dynamic_f("saturated-hostile") {
+> +			__for_each_physical_engine(i915, e) {
+> +				igt_dynamic_f("%s", e->name)
+> +					test_saturated_hostile(i915, e);
+> +			}
+> +		}
+> +
+>   		igt_subtest("smoketest")
+>   			smoketest(i915);
+>   	}
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
