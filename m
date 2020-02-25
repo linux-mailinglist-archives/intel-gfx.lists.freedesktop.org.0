@@ -2,37 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BADC16BCE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 10:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C9416BD43
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 10:26:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29BF86EA4B;
-	Tue, 25 Feb 2020 09:00:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A0F16E146;
+	Tue, 25 Feb 2020 09:26:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D36A36EA4B
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 09:00:37 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 01:00:37 -0800
-X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="226280461"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 01:00:34 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <877e0ct4et.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200203124735.365-1-vandita.kulkarni@intel.com>
- <20200203124735.365-3-vandita.kulkarni@intel.com> <877e0ct4et.fsf@intel.com>
-Date: Tue, 25 Feb 2020 11:00:30 +0200
-Message-ID: <87y2srrqhd.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA9866E146
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 09:26:39 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341990-1500050 
+ for multiple; Tue, 25 Feb 2020 09:26:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 25 Feb 2020 09:26:32 +0000
+Message-Id: <20200225092632.284525-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200225082233.274530-5-chris@chris-wilson.co.uk>
+References: <20200225082233.274530-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [V7 2/9] drm/i915/dsi: Add vblank calculation for
- command mode
+Subject: [Intel-gfx] [PATCH] drm/i915: Protect i915_request_await_start from
+ early waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,19 +44,109 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 24 Feb 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Mon, 03 Feb 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
->> +		vtotal = vactive + DIV_ROUND_UP(460, line_time_us);
->
-> Ugh, the bspec definition says 400 us, and the example has 460 us.
+We need to be extremely careful inside i915_request_await_start() as it
+needs to walk the list of requests in the foreign timeline with very
+little protection. As we hold our own timeline mutex, we can not nest
+inside the signaler's timeline mutex, so all that remains is our RCU
+protection. However, to be safe we need to tell the compiler that we may
+be traversing the list only under RCU protection, and furthermore we
+need to start declaring requests as elements of the timeline from their
+construction.
 
-Got clarification for this one, it should be 400 us.
+Fixes: 9ddc8ec027a3 ("drm/i915: Eliminate the trylock for awaiting an earlier request")
+Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/i915_request.c | 41 ++++++++++++++++++++---------
+ 1 file changed, 28 insertions(+), 13 deletions(-)
 
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d53af93b919b..e5a55801f753 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -290,7 +290,7 @@ bool i915_request_retire(struct i915_request *rq)
+ 	spin_unlock_irq(&rq->lock);
+ 
+ 	remove_from_client(rq);
+-	list_del(&rq->link);
++	list_del_rcu(&rq->link);
+ 
+ 	intel_context_exit(rq->context);
+ 	intel_context_unpin(rq->context);
+@@ -736,6 +736,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 	rq->infix = rq->ring->emit; /* end of header; start of user payload */
+ 
+ 	intel_context_mark_active(ce);
++	list_add_tail_rcu(&rq->link, &tl->requests);
++
+ 	return rq;
+ 
+ err_unwind:
+@@ -792,13 +794,23 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	GEM_BUG_ON(i915_request_timeline(rq) ==
+ 		   rcu_access_pointer(signal->timeline));
+ 
++	if (i915_request_started(signal))
++		return 0;
++
+ 	fence = NULL;
+ 	rcu_read_lock();
+ 	spin_lock_irq(&signal->lock);
+-	if (!i915_request_started(signal) &&
+-	    !list_is_first(&signal->link,
+-			   &rcu_dereference(signal->timeline)->requests)) {
+-		struct i915_request *prev = list_prev_entry(signal, link);
++	do {
++		struct list_head *pos = READ_ONCE(signal->link.prev);
++		struct i915_request *prev;
++
++		/* Confirm signal has not been retired, the link is valid */
++		if (unlikely(i915_request_started(signal)))
++			break;
++
++		/* Is signal the earliest request on its timeline? */
++		if (pos == &rcu_dereference(signal->timeline)->requests)
++			break;
+ 
+ 		/*
+ 		 * Peek at the request before us in the timeline. That
+@@ -806,13 +818,18 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 		 * after acquiring a reference to it, confirm that it is
+ 		 * still part of the signaler's timeline.
+ 		 */
+-		if (i915_request_get_rcu(prev)) {
+-			if (list_next_entry(prev, link) == signal)
+-				fence = &prev->fence;
+-			else
+-				i915_request_put(prev);
++		prev = list_entry(pos, typeof(*prev), link);
++		if (!i915_request_get_rcu(prev))
++			break;
++
++		/* After the strong barrier, confirm prev is still attached */
++		if (unlikely(READ_ONCE(prev->link.next) != &signal->link)) {
++			i915_request_put(prev);
++			break;
+ 		}
+-	}
++
++		fence = &prev->fence;
++	} while (0);
+ 	spin_unlock_irq(&signal->lock);
+ 	rcu_read_unlock();
+ 	if (!fence)
+@@ -1253,8 +1270,6 @@ __i915_request_add_to_timeline(struct i915_request *rq)
+ 							 0);
+ 	}
+ 
+-	list_add_tail(&rq->link, &timeline->requests);
+-
+ 	/*
+ 	 * Make sure that no request gazumped us - if it was allocated after
+ 	 * our i915_request_alloc() and called __i915_request_add() before
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
