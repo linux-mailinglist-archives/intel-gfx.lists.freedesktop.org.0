@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D461C16BBC3
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:23:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E36016BBC0
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:23:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A489F6EA0B;
-	Tue, 25 Feb 2020 08:23:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92CA96EA21;
+	Tue, 25 Feb 2020 08:23:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46BC96EA01
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C38A6EA00
  for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 08:22:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341121-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341122-1500050 
  for multiple; Tue, 25 Feb 2020 08:22:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 08:22:26 +0000
-Message-Id: <20200225082233.274530-4-chris@chris-wilson.co.uk>
+Date: Tue, 25 Feb 2020 08:22:27 +0000
+Message-Id: <20200225082233.274530-5-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 04/11] drm/i915/gem: Cleanup shadow batch after
- I915_EXEC_SECURE
+Subject: [Intel-gfx] [PATCH 05/11] drm/i915: Protect
+ i915_request_await_start from early waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,34 +44,105 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tidy up after a call to eb_parse() if a later bind fails.
+We need to be extremely careful inside i915_request_await_start() as it
+needs to walk the list of requests in the foreign timeline with very
+little protection. As we hold our own timeline mutex, we can not nest
+inside the signaler's timeline mutex, so all that remains is our RCU
+protection. However, to be safe we need to tell the compiler that we may
+be traversing the list only under RCU protection, and furthermore we
+need to start declaring requests as elements of the timeline from their
+construction.
 
+Fixes: 9ddc8ec027a3 ("drm/i915: Eliminate the trylock for awaiting an earlier request")
+Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_request.c | 40 +++++++++++++++++++----------
+ 1 file changed, 27 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 87fa5f42c39a..4f9c1f5a4ded 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2713,7 +2713,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 		vma = i915_gem_object_ggtt_pin(eb.batch->obj, NULL, 0, 0, 0);
- 		if (IS_ERR(vma)) {
- 			err = PTR_ERR(vma);
--			goto err_vma;
-+			goto err_parse;
- 		}
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d53af93b919b..8b22c8bb2fa8 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -290,7 +290,7 @@ bool i915_request_retire(struct i915_request *rq)
+ 	spin_unlock_irq(&rq->lock);
  
- 		eb.batch = vma;
-@@ -2792,6 +2792,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- err_batch_unpin:
- 	if (eb.batch_flags & I915_DISPATCH_SECURE)
- 		i915_vma_unpin(eb.batch);
-+err_parse:
- 	if (eb.batch->private)
- 		intel_engine_pool_put(eb.batch->private);
- err_vma:
+ 	remove_from_client(rq);
+-	list_del(&rq->link);
++	list_del_rcu(&rq->link);
+ 
+ 	intel_context_exit(rq->context);
+ 	intel_context_unpin(rq->context);
+@@ -736,6 +736,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+ 	rq->infix = rq->ring->emit; /* end of header; start of user payload */
+ 
+ 	intel_context_mark_active(ce);
++	list_add_tail_rcu(&rq->link, &tl->requests);
++
+ 	return rq;
+ 
+ err_unwind:
+@@ -792,13 +794,18 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 	GEM_BUG_ON(i915_request_timeline(rq) ==
+ 		   rcu_access_pointer(signal->timeline));
+ 
++	if (i915_request_started(signal))
++		return 0;
++
+ 	fence = NULL;
+ 	rcu_read_lock();
+ 	spin_lock_irq(&signal->lock);
+-	if (!i915_request_started(signal) &&
+-	    !list_is_first(&signal->link,
+-			   &rcu_dereference(signal->timeline)->requests)) {
+-		struct i915_request *prev = list_prev_entry(signal, link);
++	do {
++		struct list_head *pos = READ_ONCE(signal->link.prev);
++		struct i915_request *prev;
++
++		if (pos == &rcu_dereference(signal->timeline)->requests)
++			break;
+ 
+ 		/*
+ 		 * Peek at the request before us in the timeline. That
+@@ -806,13 +813,22 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+ 		 * after acquiring a reference to it, confirm that it is
+ 		 * still part of the signaler's timeline.
+ 		 */
+-		if (i915_request_get_rcu(prev)) {
+-			if (list_next_entry(prev, link) == signal)
+-				fence = &prev->fence;
+-			else
+-				i915_request_put(prev);
++		prev = list_entry(pos, typeof(*prev), link);
++		if (!i915_request_get_rcu(prev))
++			break;
++
++		if (unlikely(READ_ONCE(prev->link.next) != &signal->link)) {
++			i915_request_put(prev);
++			break;
+ 		}
+-	}
++
++		if (unlikely(i915_request_started(signal))) {
++			i915_request_put(prev);
++			break;
++		}
++
++		fence = &prev->fence;
++	} while (0);
+ 	spin_unlock_irq(&signal->lock);
+ 	rcu_read_unlock();
+ 	if (!fence)
+@@ -1253,8 +1269,6 @@ __i915_request_add_to_timeline(struct i915_request *rq)
+ 							 0);
+ 	}
+ 
+-	list_add_tail(&rq->link, &timeline->requests);
+-
+ 	/*
+ 	 * Make sure that no request gazumped us - if it was allocated after
+ 	 * our i915_request_alloc() and called __i915_request_add() before
 -- 
 2.25.1
 
