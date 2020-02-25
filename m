@@ -1,32 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0452C16C2AE
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 14:46:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDC216C2F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 14:57:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBE26EABF;
-	Tue, 25 Feb 2020 13:46:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C93A6EAC2;
+	Tue, 25 Feb 2020 13:57:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 173766EAC6;
- Tue, 25 Feb 2020 13:46:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10A7DA47E2;
- Tue, 25 Feb 2020 13:46:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 227F36EAC2;
+ Tue, 25 Feb 2020 13:57:40 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 05:57:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="350152991"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2020 05:57:37 -0800
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Tue, 25 Feb 2020 19:16:59 +0530
+Message-Id: <20200225134709.6153-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 25 Feb 2020 13:46:29 -0000
-Message-ID: <158263838906.5725.16834728300704959762@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_avoid_spurious_EBUSY_due_to_nonblocking_atomic_modes?=
- =?utf-8?q?ets_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH 00/10] drm/i915: Introduce i915 based
+ i915_MISSING_CASE macro and us it in i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +42,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Existing MISSING_CASE macro uses WARN call to dump the stack trace.
 
-Series: drm: avoid spurious EBUSY due to nonblocking atomic modesets (rev3)
-URL   : https://patchwork.freedesktop.org/series/45968/
-State : warning
+Now that we have struct drm_device based drm_WARN, introduce struct
+drm_i915_private based i915_MISSING_CASE macro which uses drm_WARN so
+that device specific information will also get printed in backtrace.
 
-== Summary ==
+Also, automatically convert the MISSING_CASE with i915 specific
+i915_MISSING_CASE  variant using coccinelle semantic patch scripts.
 
-$ dim checkpatch origin/drm-tip
-fa89a2596808 drm: avoid spurious EBUSY due to nonblocking atomic modesets
--:35: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#35: 
-References: https://lists.freedesktop.org/archives/dri-devel/2018-July/182281.html
+i915_MISSING_CASE macro should be preferred over MISSING_CASE,
+wherever possible.
 
--:52: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#52: FILE: drivers/gpu/drm/drm_atomic.c:1365:
-+	unsigned requested_crtc = 0;
+Pankaj Bharadiya (10):
+  drm/i915: Add i915 device based MISSING_CASE macro
+  drm/i915/display/cdclk: Make MISSING_CASE backtrace i915 specific
+  drm/i915/display/ddi: Make MISSING_CASE backtrace i915 specific
+  drm/i915/display/display: Make MISSING_CASE backtrace i915 specific
+  drm/i915/dp: Make MISSING_CASE backtrace i915 specific
+  drm/i915/display/hdmi: Make MISSING_CASE backtrace i915 specific
+  drm/i915/display: Make MISSING_CASE backtrace i915 specific
+  drm/i915/gem: Make MISSING_CASE backtrace i915 specific
+  drm/i915/gt: Make MISSING_CASE backtrace i915 specific
+  drm/i915: Make MISSING_CASE backtrace i915 specific
 
--:53: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#53: FILE: drivers/gpu/drm/drm_atomic.c:1366:
-+	unsigned affected_crtc = 0;
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  8 +++--
+ drivers/gpu/drm/i915/display/intel_bios.c     |  4 +--
+ drivers/gpu/drm/i915/display/intel_bw.c       |  6 ++--
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 19 +++++++-----
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  6 ++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 19 ++++++------
+ drivers/gpu/drm/i915/display/intel_display.c  | 29 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 28 +++++++++---------
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 +++----
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 12 ++++----
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  4 +--
+ drivers/gpu/drm/i915/display/intel_tc.c       |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c    | 17 +++++++----
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  6 ++--
+ drivers/gpu/drm/i915/i915_debugfs.c           |  3 +-
+ drivers/gpu/drm/i915/i915_drv.c               |  2 +-
+ drivers/gpu/drm/i915/i915_gem_fence_reg.c     |  2 +-
+ drivers/gpu/drm/i915/i915_gpu_error.c         |  2 +-
+ drivers/gpu/drm/i915/i915_utils.h             |  4 +++
+ drivers/gpu/drm/i915/intel_device_info.c      | 13 +++++----
+ drivers/gpu/drm/i915/intel_pm.c               | 10 +++----
+ 22 files changed, 113 insertions(+), 95 deletions(-)
 
--:93: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 4 warnings, 0 checks, 46 lines checked
+-- 
+2.23.0
 
 _______________________________________________
 Intel-gfx mailing list
