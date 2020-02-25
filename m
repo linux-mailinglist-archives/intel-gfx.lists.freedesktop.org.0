@@ -2,55 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C405716BA99
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F4616BB38
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:49:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7676E9F1;
-	Tue, 25 Feb 2020 07:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41A656E9F8;
+	Tue, 25 Feb 2020 07:49:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CED96E9F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 07:30:23 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z15so5058723wrl.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 23:30:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=EQMT6lDKStyiOUIYBwkRHyQecoL65OHS2/xGbDrARdU=;
- b=vgSELXD8DgGTQSv5a9IRoU2vtK9mb9ywLlrNtNTfRByEKonxyGGQfz/bGiGZIVWhSg
- BzzgxbqaG//TC38gDoGSIy5avusNbIPE6sjoLz84rZF2c2wFoHfBQ3iwVQrMI5PauN8B
- EAyxHujlLgelVEI1uF2NJcG412aR9yLyioUc3bc4J9XUPxsxMjPPgwc5OcIaWUqLI2Q7
- 93jeIzpMQ8sP011Rr83RsF8dVv7vVtfmAIMXl3AGtQRoUT8SByWxj0tGM9EvZUu+4B82
- QpmP/9+h9DlZJurP/vlC3xHOf1o+C66VkrjeuC0eaU2/2gJuU+gCwyy0uf8Rvnn/L0fp
- ZjKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=EQMT6lDKStyiOUIYBwkRHyQecoL65OHS2/xGbDrARdU=;
- b=P5hI9V3BZvxe75u7lDueCNrz+CtNzZ4OgZYZMKCtIxBGzSSHVh64csqT21TvLRiObg
- 3Nwt7a9qHgSTENkL5K0cP94XM6LnFqkaCmigxxQV1fBOi6MrqgmGx9GLUA1WZGIXUXbb
- cPRoqtsUokBCblEMDq7rkohUdWTYD4hJ9hph9gMMHIQ+PoDnaYYllZsFvyYLiEK+Dc/k
- lyYv9MzWD5rlL+DDjnUatZ32mXwg5SQy1eTdTT2oue5wBFGNdsvAPlSjvKlNZ40xyjyD
- 2QUUt24EB0vlCu5WgA0pqvrM7sPEHGToF+JPlSmveKAatUltoaR27S83P1AaqLnqsDVz
- dpjg==
-X-Gm-Message-State: APjAAAVKvtQKzx7m/w++2whfoQZi3ojNEz+0n2CKBy6jOR8B0ZmpZ5ve
- 129HxLp7dSnUK2kCJPqD4qnsHE71qCt0Gf4LWvq2/A==
-X-Google-Smtp-Source: APXvYqxwdub7/sbabb0IU0ArscIZ++rPosDp5bcpc1f1YhP3DV42pWo8sOtcmqMfJnBEAUHeeC6p36vrruaZ75Dn9nA=
-X-Received: by 2002:adf:fc12:: with SMTP id i18mr12634989wrr.354.1582615821594; 
- Mon, 24 Feb 2020 23:30:21 -0800 (PST)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9387C6E9F8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 07:49:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 23:49:12 -0800
+X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="230939826"
+Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.254.213.43])
+ ([10.254.213.43])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 24 Feb 2020 23:49:10 -0800
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200221153209.268712-1-michal.wajdeczko@intel.com>
+From: "Ye, Tony" <tony.ye@intel.com>
+Message-ID: <c71b8087-9159-20ce-51c7-a862fb26b386@intel.com>
+Date: Tue, 25 Feb 2020 15:49:04 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Tue, 25 Feb 2020 07:29:44 +0000
-Message-ID: <CAPj87rPHFCntSOCx=92HitNxRBkXx3xSft0krkFLzdM2FrDSRw@mail.gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Subject: Re: [Intel-gfx] [RFC][PATCH 5/5] drm/i915/display: Add
- Nearest-neighbor based integer scaling support
+In-Reply-To: <20200221153209.268712-1-michal.wajdeczko@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/huc: Fix error reported by
+ I915_PARAM_HUC_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,46 +47,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, tzimmermann@suse.de,
- David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>, "Nautiyal,
- Ankit K" <ankit.k.nautiyal@intel.com>, mihail.atanassov@arm.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
 
-On Tue, 25 Feb 2020 at 07:17, Pankaj Bharadiya
-<pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> @@ -415,18 +415,26 @@ skl_program_scaler(struct intel_plane *plane,
->         u16 y_vphase, uv_rgb_vphase;
->         int hscale, vscale;
->         const struct drm_plane_state *state = &plane_state->uapi;
-> +       u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
-> +       u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
->         u32 scaling_filter = PS_FILTER_MEDIUM;
-> +       struct drm_rect dst;
->
->         if (state->scaling_filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
->                 scaling_filter = PS_FILTER_PROGRAMMED;
-> +               skl_setup_nearest_neighbor_filter(dev_priv, pipe, scaler_id);
+
+On 2/21/2020 11:32 PM, Michal Wajdeczko wrote:
+>  From commit 84b1ca2f0e68 ("drm/i915/uc: prefer intel_gt over i915
+> in GuC/HuC paths") we stopped using HUC_STATUS error -ENODEV only
+> to indicate lack of HuC hardware and we started to use this error
+> also for all other cases when HuC was not in use or supported.
+> 
+> Fix that by relying again on HAS_GT_UC macro, since currently
+> used function intel_huc_is_supported() is based on HuC firmware
+> support which could be unsupported also due to force disabled
+> GuC firmware.
+> 
+> v2: use 0 only for disabled, add more error codes for other failures
+> 
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Tony Ye <tony.ye@intel.com>
+> Cc: Robert M. Fosha <robert.m.fosha@intel.com>
+> Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> #v1
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_huc.c | 29 +++++++++++++++++++++-----
+>   1 file changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> index a74b65694512..301bb5d5e59a 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+> @@ -200,9 +200,13 @@ int intel_huc_auth(struct intel_huc *huc)
+>    * This function reads status register to verify if HuC
+>    * firmware was successfully loaded.
+>    *
+> - * Returns: 1 if HuC firmware is loaded and verified,
+> - * 0 if HuC firmware is not loaded and -ENODEV if HuC
+> - * is not present on this platform.
+> + * Returns:
+> + *  * 1 if HuC firmware is loaded and verified,
+> + *  * 0 if HuC firmware was disabled,
+> + *  * -ENODEV if HuC is not present on this platform,
+> + *  * -ENOPKG if HuC firmware was not installed,
+> + *  * -ENOEXEC if HuC firmware is invalid,
+> + *  * -EACCES if HuC firmware was not authenticated.
+>    */
+>   int intel_huc_check_status(struct intel_huc *huc)
+>   {
+> @@ -210,11 +214,26 @@ int intel_huc_check_status(struct intel_huc *huc)
+>   	intel_wakeref_t wakeref;
+>   	u32 status = 0;
+>   
+> -	if (!intel_huc_is_supported(huc))
+> +	if (!HAS_GT_UC(gt->i915))
+>   		return -ENODEV;
+>   
+> +	switch (__intel_uc_fw_status(&huc->fw)) {
+> +	case INTEL_UC_FIRMWARE_NOT_SUPPORTED:
+> +	case INTEL_UC_FIRMWARE_DISABLED:
+> +		return 0;
+> +	case INTEL_UC_FIRMWARE_MISSING:
+> +		return -ENOPKG;
+> +	case INTEL_UC_FIRMWARE_ERROR:
+> +		return -ENOEXEC;
+
+What about INTEL_UC_FIRMWARE_FAIL?
+
+Regards,
+Tony
+
+> +	default:
+> +		break;
+> +	}
 > +
-> +               /* Make the scaling window size to integer multiple of source
-> +                * TODO: Should userspace take desision to round scaling window
-> +                * to integer multiple?
-> +                */
-> +               crtc_w = rounddown(crtc_w, src_w);
-> +               crtc_h = rounddown(crtc_h, src_h);
-
-The kernel should absolutely not be changing the co-ordinates that
-userspace requested.
-
-Cheers,
-Daniel
+>   	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
+>   		status = intel_uncore_read(gt->uncore, huc->status.reg);
+>   
+> -	return (status & huc->status.mask) == huc->status.value;
+> +	if ((status & huc->status.mask) != huc->status.value)
+> +		return -EACCES;
+> +
+> +	return 1;
+>   }
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
