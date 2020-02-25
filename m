@@ -1,31 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC50216BA8D
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:24:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C405716BA99
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:30:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA23E6E9EE;
-	Tue, 25 Feb 2020 07:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C7676E9F1;
+	Tue, 25 Feb 2020 07:30:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A7B506E9EE;
- Tue, 25 Feb 2020 07:24:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9E168A00E8;
- Tue, 25 Feb 2020 07:24:15 +0000 (UTC)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CED96E9F1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 07:30:23 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id z15so5058723wrl.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 23:30:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=EQMT6lDKStyiOUIYBwkRHyQecoL65OHS2/xGbDrARdU=;
+ b=vgSELXD8DgGTQSv5a9IRoU2vtK9mb9ywLlrNtNTfRByEKonxyGGQfz/bGiGZIVWhSg
+ BzzgxbqaG//TC38gDoGSIy5avusNbIPE6sjoLz84rZF2c2wFoHfBQ3iwVQrMI5PauN8B
+ EAyxHujlLgelVEI1uF2NJcG412aR9yLyioUc3bc4J9XUPxsxMjPPgwc5OcIaWUqLI2Q7
+ 93jeIzpMQ8sP011Rr83RsF8dVv7vVtfmAIMXl3AGtQRoUT8SByWxj0tGM9EvZUu+4B82
+ QpmP/9+h9DlZJurP/vlC3xHOf1o+C66VkrjeuC0eaU2/2gJuU+gCwyy0uf8Rvnn/L0fp
+ ZjKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=EQMT6lDKStyiOUIYBwkRHyQecoL65OHS2/xGbDrARdU=;
+ b=P5hI9V3BZvxe75u7lDueCNrz+CtNzZ4OgZYZMKCtIxBGzSSHVh64csqT21TvLRiObg
+ 3Nwt7a9qHgSTENkL5K0cP94XM6LnFqkaCmigxxQV1fBOi6MrqgmGx9GLUA1WZGIXUXbb
+ cPRoqtsUokBCblEMDq7rkohUdWTYD4hJ9hph9gMMHIQ+PoDnaYYllZsFvyYLiEK+Dc/k
+ lyYv9MzWD5rlL+DDjnUatZ32mXwg5SQy1eTdTT2oue5wBFGNdsvAPlSjvKlNZ40xyjyD
+ 2QUUt24EB0vlCu5WgA0pqvrM7sPEHGToF+JPlSmveKAatUltoaR27S83P1AaqLnqsDVz
+ dpjg==
+X-Gm-Message-State: APjAAAVKvtQKzx7m/w++2whfoQZi3ojNEz+0n2CKBy6jOR8B0ZmpZ5ve
+ 129HxLp7dSnUK2kCJPqD4qnsHE71qCt0Gf4LWvq2/A==
+X-Google-Smtp-Source: APXvYqxwdub7/sbabb0IU0ArscIZ++rPosDp5bcpc1f1YhP3DV42pWo8sOtcmqMfJnBEAUHeeC6p36vrruaZ75Dn9nA=
+X-Received: by 2002:adf:fc12:: with SMTP id i18mr12634989wrr.354.1582615821594; 
+ Mon, 24 Feb 2020 23:30:21 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Tue, 25 Feb 2020 07:24:15 -0000
-Message-ID: <158261545561.5725.10332909894053607425@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
 References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_drm_scaling_filter_property?=
+ <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Tue, 25 Feb 2020 07:29:44 +0000
+Message-ID: <CAPj87rPHFCntSOCx=92HitNxRBkXx3xSft0krkFLzdM2FrDSRw@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [RFC][PATCH 5/5] drm/i915/display: Add
+ Nearest-neighbor based integer scaling support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,93 +63,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, tzimmermann@suse.de,
+ David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>, "Nautiyal,
+ Ankit K" <ankit.k.nautiyal@intel.com>, mihail.atanassov@arm.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: Introduce drm scaling filter property
-URL   : https://patchwork.freedesktop.org/series/73883/
-State : warning
+On Tue, 25 Feb 2020 at 07:17, Pankaj Bharadiya
+<pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> @@ -415,18 +415,26 @@ skl_program_scaler(struct intel_plane *plane,
+>         u16 y_vphase, uv_rgb_vphase;
+>         int hscale, vscale;
+>         const struct drm_plane_state *state = &plane_state->uapi;
+> +       u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
+> +       u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
+>         u32 scaling_filter = PS_FILTER_MEDIUM;
+> +       struct drm_rect dst;
+>
+>         if (state->scaling_filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
+>                 scaling_filter = PS_FILTER_PROGRAMMED;
+> +               skl_setup_nearest_neighbor_filter(dev_priv, pipe, scaler_id);
+> +
+> +               /* Make the scaling window size to integer multiple of source
+> +                * TODO: Should userspace take desision to round scaling window
+> +                * to integer multiple?
+> +                */
+> +               crtc_w = rounddown(crtc_w, src_w);
+> +               crtc_h = rounddown(crtc_h, src_h);
 
-== Summary ==
+The kernel should absolutely not be changing the co-ordinates that
+userspace requested.
 
-$ dim checkpatch origin/drm-tip
-21c6a10f68e0 drm: Introduce scaling filter property
--:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#110: FILE: drivers/gpu/drm/drm_mode_config.c:379:
-+	prop = drm_property_create_enum(dev, 0,
-+				"SCALING_FILTER",
-
--:171: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#171: FILE: include/drm/drm_crtc.h:61:
- 
-+
-
--:221: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#221: FILE: include/drm/drm_plane.h:38:
- 
-+
-
-total: 0 errors, 0 warnings, 3 checks, 182 lines checked
-bce91bc41fe1 drm/drm-kms.rst: Add Scaling filter property documentation
-582f010154af drm/i915: Enable scaling filter for plane and pipe
--:56: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#56: FILE: drivers/gpu/drm/i915/display/intel_display.c:16707:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 78 lines checked
-1e1be21b4151 drm/i915: Introduce scaling filter related registers and bit fields.
--:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#41: FILE: drivers/gpu/drm/i915/i915_reg.h:7333:
-+#define SKL_PS_COEF_INDEX_SET0(pipe, id)  _MMIO_PIPE(pipe,    \
-+			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
-+			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
-
--:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#45: FILE: drivers/gpu/drm/i915/i915_reg.h:7337:
-+#define SKL_PS_COEF_DATA_SET0(pipe, id)  _MMIO_PIPE(pipe,     \
-+			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
-+			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
-
-total: 0 errors, 0 warnings, 2 checks, 32 lines checked
-02e442488928 drm/i915/display: Add Nearest-neighbor based integer scaling support
--:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#71: FILE: drivers/gpu/drm/i915/display/intel_display.c:6277:
-+void skl_setup_nearest_neighbor_filter(struct drm_i915_private *dev_priv,
-+				  enum pipe pipe, int scaler_id)
-
--:73: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:6279:
-+{
-+
-
--:90: WARNING:LONG_LINE: line over 100 characters
-#90: FILE: drivers/gpu/drm/i915/display/intel_display.c:6296:
-+				intel_de_write_fw(dev_priv, SKL_PS_COEF_DATA_SET0(pipe, scaler_id), val);
-
--:94: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:6300:
-+
-+		}
-
--:96: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#96: FILE: drivers/gpu/drm/i915/display/intel_display.c:6302:
-+
-+	}
-
--:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#146: FILE: drivers/gpu/drm/i915/display/intel_display.h:590:
-+void skl_setup_nearest_neighbor_filter(struct drm_i915_private *dev_priv,
-+				  enum pipe pipe, int scaler_id);
-
-total: 0 errors, 1 warnings, 5 checks, 144 lines checked
-
+Cheers,
+Daniel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
