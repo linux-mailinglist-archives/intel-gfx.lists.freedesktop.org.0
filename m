@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAEE16B6E2
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 01:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B81F16B73E
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 02:35:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5092C6E9C7;
-	Tue, 25 Feb 2020 00:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCBE6E9CC;
+	Tue, 25 Feb 2020 01:35:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 948036E899;
- Tue, 25 Feb 2020 00:50:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8C654A47E9;
- Tue, 25 Feb 2020 00:50:59 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4326E9CC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 01:35:39 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2020 17:35:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,482,1574150400"; d="scan'208";a="260535214"
+Received: from fproca-mobl.ger.corp.intel.com (HELO intel.com) ([10.252.23.52])
+ by fmsmga004.fm.intel.com with ESMTP; 24 Feb 2020 17:35:37 -0800
+Date: Tue, 25 Feb 2020 03:35:36 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200225013208.GA2708@intel.intel>
+References: <20200219190223.16972-1-andi.shyti@intel.com>
+ <20200219193020.17673-1-andi.shyti@intel.com>
+ <dd611192-cf41-9538-66bd-d6a1b800bdf7@linux.intel.com>
+ <20200224163029.GA1579@intel.intel>
+ <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 25 Feb 2020 00:50:59 -0000
-Message-ID: <158259185954.5723.15894878018224766552@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200224233110.263694-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200224233110.263694-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Manually_acquire_engine-wakeref_around_use_of_kernel?=
- =?utf-8?q?=5Fcontext?=
+Content-Disposition: inline
+In-Reply-To: <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: make a gt sysfs group and
+ move power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,151 +48,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+> > > > +void intel_gt_sysfs_unregister(struct intel_gt *gt)
+> > > > +{
+> > > > +	struct kobject *parent = gt_get_parent_obj(gt);
+> > > > +
+> > > > +	/*
+> > > > +	 * the name gt tells us wether sysfs_root
+> > > > +	 * object was initialized properly
+> > > > +	 */
+> > > > +	if (!strcmp(gt->sysfs_root.name, "gt"))
+> > > > +		kobject_put(&gt->sysfs_root);
+> > > 
+> > > Slightly nicer would be looking at  kobj->state_initialized for this check I
+> > > think. Or even kref_get_unless_zero on kobj->kref? Ugliness there is double
+> > > put on sucess which makes me ask whether holding a reference on parent is
+> > > even needed? It can't go away so perhaps it isn't.
+> > 
+> > I'd rather use the state_initialized, even though I don't trust
+> > its value if the kobject has failed to initialise earlier, I
+> > trust it only if it's '1', maybe I'm paranoic.
+> 
+> But is the reference even needed?
 
-Series: drm/i915: Manually acquire engine-wakeref around use of kernel_context
-URL   : https://patchwork.freedesktop.org/series/73878/
-State : failure
+yes, because I _get it here (i.e. above, during initialization):
 
-== Summary ==
+> > > > +void intel_gt_sysfs_register(struct intel_gt *gt)
+> > > > +{
+> > > > +	struct kobject *parent = kobject_get(gt_get_parent_obj(gt));
+> > > > +	int ret;
+> > > > +
 
-CI Bug Log - changes from CI_DRM_8000 -> Patchwork_16696
-====================================================
+and if I need to call kobject_put at the end. If for some reason
+the files have failed to be initialized, I would have an
+unbalanced put and a warning would be printed.
 
-Summary
--------
+I'll summarize in pseudo code:
 
-  **FAILURE**
+intel_gt_sysfs_register()
+{
+	kobject_init_and_add(sysfs_root...); /* which calls kobject_get() inside */
+	if (fails)
+		kobject_put(sysfs_root); /* reference goes to '0' */
+}
 
-  Serious unknown changes coming with Patchwork_16696 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16696, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+intel_gt_sysfs_unregister()
+{
+	option1: I don't call kobject_put(), I have an unbalanced
+                 situation as you reviewed in patch 1.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/index.html
+        option2: I call kobject_put(), if it did fail during init
+                 there is an unbalanced situation, which is
+                 handled but an annoying WARN() is issued.
 
-Possible new issues
--------------------
+	option3: I check if "state_initialized" which I suppose
+                 has been properly initialised during declaration
+                 (maybe too paranoic?) and call _put()
+                 accordingly
+}
 
-  Here are the unknown changes that may have been introduced in Patchwork_16696:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@reload:
-    - fi-hsw-peppy:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-hsw-peppy/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-hsw-peppy/igt@i915_module_load@reload.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16696 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live_gt_lrc:
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4] ([i915#695])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-bwr-2160/igt@i915_selftest@live_gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-bwr-2160/igt@i915_selftest@live_gt_lrc.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@gem_render_linear_blits@basic:
-    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-tgl-y/igt@gem_render_linear_blits@basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-tgl-y/igt@gem_render_linear_blits@basic.html
-
-  * igt@i915_selftest@live_execlists:
-    - fi-bsw-kefka:       [DMESG-FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-bsw-kefka/igt@i915_selftest@live_execlists.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-bsw-kefka/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][13] ([i915#877]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [DMESG-WARN][15] ([i915#44]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live_gt_lrc:
-    - fi-tgl-y:           [DMESG-FAIL][17] ([CI#94] / [i915#1233]) -> [INCOMPLETE][18] ([CI#94] / [i915#1233])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-tgl-y/igt@i915_selftest@live_gt_lrc.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-tgl-y/igt@i915_selftest@live_gt_lrc.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][19] ([fdo#111407]) -> [FAIL][20] ([fdo#111096] / [i915#323])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8000/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#695]: https://gitlab.freedesktop.org/drm/intel/issues/695
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (48 -> 45)
-------------------------------
-
-  Additional (2): fi-byt-n2820 fi-cfl-8109u 
-  Missing    (5): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8000 -> Patchwork_16696
-
-  CI-20190529: 20190529
-  CI_DRM_8000: e231691d89abd1b3fff01e75f142e435b44b522f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5463: d519c80219ebe558cd2fa378f26f9d73f9e35310 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16696: 38ff2e8edc02e7792d6950ed5bef40d8e2f798a5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-38ff2e8edc02 drm/i915: Manually acquire engine-wakeref around use of kernel_context
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16696/index.html
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
