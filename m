@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8373916BBBE
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:22:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D461C16BBC3
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:23:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 502496EA05;
-	Tue, 25 Feb 2020 08:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A489F6EA0B;
+	Tue, 25 Feb 2020 08:23:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F1776E9FF
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 08:22:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46BC96EA01
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 08:22:49 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341120-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341121-1500050 
  for multiple; Tue, 25 Feb 2020 08:22:35 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 08:22:25 +0000
-Message-Id: <20200225082233.274530-3-chris@chris-wilson.co.uk>
+Date: Tue, 25 Feb 2020 08:22:26 +0000
+Message-Id: <20200225082233.274530-4-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 03/11] drm/i915/gt: Pull marking vm as closed
- underneath the vm->mutex
+Subject: [Intel-gfx] [PATCH 04/11] drm/i915/gem: Cleanup shadow batch after
+ I915_EXEC_SECURE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,55 +44,34 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pull the final atomic_dec of vm->open (marking the vm as closed)
-underneath the same vm->mutex as used to close it. This is required to
-correctly serialise with attempting to reuse the vma as the vm is closed
-by a second thread.
+Tidy up after a call to eb_parse() if a later bind fails.
 
-References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_gtt.c | 5 ++++-
- drivers/gpu/drm/i915/gt/intel_gtt.h | 3 +--
- 2 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-index bb9a6e638175..dfb1be050cca 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-@@ -171,7 +171,9 @@ void __i915_vm_close(struct i915_address_space *vm)
- {
- 	struct i915_vma *vma, *vn;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 87fa5f42c39a..4f9c1f5a4ded 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -2713,7 +2713,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 		vma = i915_gem_object_ggtt_pin(eb.batch->obj, NULL, 0, 0, 0);
+ 		if (IS_ERR(vma)) {
+ 			err = PTR_ERR(vma);
+-			goto err_vma;
++			goto err_parse;
+ 		}
  
--	mutex_lock(&vm->mutex);
-+	if (!atomic_dec_and_mutex_lock(&vm->open, &vm->mutex))
-+		return;
-+
- 	list_for_each_entry_safe(vma, vn, &vm->bound_list, vm_link) {
- 		struct drm_i915_gem_object *obj = vma->obj;
- 
-@@ -186,6 +188,7 @@ void __i915_vm_close(struct i915_address_space *vm)
- 		i915_gem_object_put(obj);
- 	}
- 	GEM_BUG_ON(!list_empty(&vm->bound_list));
-+
- 	mutex_unlock(&vm->mutex);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-index 23004445806a..eac38c682ef4 100644
---- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-@@ -429,8 +429,7 @@ static inline void
- i915_vm_close(struct i915_address_space *vm)
- {
- 	GEM_BUG_ON(!atomic_read(&vm->open));
--	if (atomic_dec_and_test(&vm->open))
--		__i915_vm_close(vm);
-+	__i915_vm_close(vm);
- 
- 	i915_vm_put(vm);
- }
+ 		eb.batch = vma;
+@@ -2792,6 +2792,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ err_batch_unpin:
+ 	if (eb.batch_flags & I915_DISPATCH_SECURE)
+ 		i915_vma_unpin(eb.batch);
++err_parse:
+ 	if (eb.batch->private)
+ 		intel_engine_pool_put(eb.batch->private);
+ err_vma:
 -- 
 2.25.1
 
