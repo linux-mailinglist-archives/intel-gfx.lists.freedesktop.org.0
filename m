@@ -2,40 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B81F16B73E
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 02:35:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB5716B821
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 04:34:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCBE6E9CC;
-	Tue, 25 Feb 2020 01:35:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4373B6E0D4;
+	Tue, 25 Feb 2020 03:33:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B4326E9CC
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 01:35:39 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 17:35:38 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,482,1574150400"; d="scan'208";a="260535214"
-Received: from fproca-mobl.ger.corp.intel.com (HELO intel.com) ([10.252.23.52])
- by fmsmga004.fm.intel.com with ESMTP; 24 Feb 2020 17:35:37 -0800
-Date: Tue, 25 Feb 2020 03:35:36 +0200
-From: Andi Shyti <andi.shyti@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <20200225013208.GA2708@intel.intel>
-References: <20200219190223.16972-1-andi.shyti@intel.com>
- <20200219193020.17673-1-andi.shyti@intel.com>
- <dd611192-cf41-9538-66bd-d6a1b800bdf7@linux.intel.com>
- <20200224163029.GA1579@intel.intel>
- <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com
+ [IPv6:2607:f8b0:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA1F46E0D4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 03:33:55 +0000 (UTC)
+Received: by mail-ot1-x334.google.com with SMTP id p8so10785514oth.10
+ for <intel-gfx@lists.freedesktop.org>; Mon, 24 Feb 2020 19:33:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=/AtHRSTtrgdpxX7I9KkYj8t+4xP5KBWvQCkTpEy+3KU=;
+ b=pVTjx6gLDVSqirZcMfRkxTMBQy+HPbUBDYKIPzvhxPVQDlljeZa8FR8gILTA0HOUKE
+ 68LfM0OV9T3nGwGa0R38F4M1VPAMD8SE9yLQ3dBnS3cTvly+m9o51ujOWtHXI5bFgKqC
+ F4JcSM81rtvzr0X+QPgs82S+fY8SHpjGeSkiXWrmy3FGJNLukuqD01iZHN2t4RfLTJ9B
+ zdOXzMxdwfusXVmubgd2Ssl4JW7DTUslWvfuiT3rB5Y8eUvOag6R3YC/n7hQISRQW4mH
+ 20XW+/Ib+yFmr++JsxHxsSacy4U4Ie7N42UILVRHZMknVTlfDtUu55b/TRi8eKDf08QJ
+ /ZWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=/AtHRSTtrgdpxX7I9KkYj8t+4xP5KBWvQCkTpEy+3KU=;
+ b=LHALvtNBnD3QOHIunR4jsJcne24AUp4SZZFHinvPU2NZG9XFYKKGV8XjLMqsE6LR6l
+ +HlYemCZPkpJGF0gbF5EgdsG1qXzDd723vkea5DhdKz0atQKi1odOQZ+dHk8U3O3fFrd
+ YtqJxIxUhkeKLfHihdhLh8D+rqJi9ibWIfpIaG+5pdaAB8Li9zTDqFSmf7dodjIMNDd1
+ Che8FGLc3t4GFrFV4UMFyYIUVCtv3ALFS+DPWvTotZMZO2oa6LqKeqNCoB1/rhZi7C0F
+ eFWj1cJPLSjQn1GnykHbv2IbbWxS9TWleY5b2VYODCAGvyRSqv+sJswY/dksXdvxmIPC
+ 509g==
+X-Gm-Message-State: APjAAAVfb0PkC6iK2+njr/bqa+Vaep8IHv2rVyFPNihrmWfW0/6gmdQ2
+ GN3Ho8MUMuc0dY+c/3rKdYCpwIJLLiDCx1mySzU=
+X-Google-Smtp-Source: APXvYqwHUUEHXCJbBdkJoX9BDITo2hdWfvSbhL0O1Efu2QWpvI2GZeU35fVK5ueGzDNohKTUnHOLtZ+vBHupavqkCJA=
+X-Received: by 2002:a9d:4f04:: with SMTP id d4mr42798017otl.78.1582601634987; 
+ Mon, 24 Feb 2020 19:33:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: make a gt sysfs group and
- move power management files
+References: <CADDKRnBq6oFFfVzqDRwwx2Eoc74M7f_9Z7UCdSVmS_xGMD1wdQ@mail.gmail.com>
+ <CAHk-=wh101Kcdby3UwzGWcCVELdGJoyduQ7Hwp2B6tavzx8ULw@mail.gmail.com>
+ <158257881650.26598.5580907010251811605@skylake-alporthouse-com>
+In-Reply-To: <158257881650.26598.5580907010251811605@skylake-alporthouse-com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Tue, 25 Feb 2020 13:33:43 +1000
+Message-ID: <CAPM=9twmxKz97jMNjMq7U47tZ_3QiZp73EZrcwrYuwLhApcx4Q@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] i915 GPU-hang regression in v5.6-rcx
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,72 +62,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ =?UTF-8?Q?J=C3=B6rg_Otte?= <jrg.otte@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> > > > +void intel_gt_sysfs_unregister(struct intel_gt *gt)
-> > > > +{
-> > > > +	struct kobject *parent = gt_get_parent_obj(gt);
-> > > > +
-> > > > +	/*
-> > > > +	 * the name gt tells us wether sysfs_root
-> > > > +	 * object was initialized properly
-> > > > +	 */
-> > > > +	if (!strcmp(gt->sysfs_root.name, "gt"))
-> > > > +		kobject_put(&gt->sysfs_root);
-> > > 
-> > > Slightly nicer would be looking at  kobj->state_initialized for this check I
-> > > think. Or even kref_get_unless_zero on kobj->kref? Ugliness there is double
-> > > put on sucess which makes me ask whether holding a reference on parent is
-> > > even needed? It can't go away so perhaps it isn't.
-> > 
-> > I'd rather use the state_initialized, even though I don't trust
-> > its value if the kobject has failed to initialise earlier, I
-> > trust it only if it's '1', maybe I'm paranoic.
-> 
-> But is the reference even needed?
+On Tue, 25 Feb 2020 at 07:13, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Linus Torvalds (2020-02-24 20:18:03)
+> > Let's add in some of the i915 people and list.
+>
+> Haswell eating kittens. The offending patch will be rolled back shortly.
+> -Chris
 
-yes, because I _get it here (i.e. above, during initialization):
+https://patchwork.freedesktop.org/patch/354775/
 
-> > > > +void intel_gt_sysfs_register(struct intel_gt *gt)
-> > > > +{
-> > > > +	struct kobject *parent = kobject_get(gt_get_parent_obj(gt));
-> > > > +	int ret;
-> > > > +
+is the patch that is working it's way through the system.
 
-and if I need to call kobject_put at the end. If for some reason
-the files have failed to be initialized, I would have an
-unbalanced put and a warning would be printed.
-
-I'll summarize in pseudo code:
-
-intel_gt_sysfs_register()
-{
-	kobject_init_and_add(sysfs_root...); /* which calls kobject_get() inside */
-	if (fails)
-		kobject_put(sysfs_root); /* reference goes to '0' */
-}
-
-intel_gt_sysfs_unregister()
-{
-	option1: I don't call kobject_put(), I have an unbalanced
-                 situation as you reviewed in patch 1.
-
-        option2: I call kobject_put(), if it did fail during init
-                 there is an unbalanced situation, which is
-                 handled but an annoying WARN() is issued.
-
-	option3: I check if "state_initialized" which I suppose
-                 has been properly initialised during declaration
-                 (maybe too paranoic?) and call _put()
-                 accordingly
-}
-
-Thanks,
-Andi
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
