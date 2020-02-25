@@ -1,35 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4934B16EED4
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 20:16:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE26E16EEE7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 20:22:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B324689F63;
-	Tue, 25 Feb 2020 19:16:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C28906EBA5;
+	Tue, 25 Feb 2020 19:22:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC2E89F63
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 19:16:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B404E6EBA5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 19:22:10 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20349392-1500050 for multiple; Tue, 25 Feb 2020 19:16:07 +0000
-MIME-Version: 1.0
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20349450-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 19:22:06 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200224100007.4024184-1-chris@chris-wilson.co.uk>
- <20200224100007.4024184-3-chris@chris-wilson.co.uk>
- <452b0706-4b0d-9548-0456-081c0d950dbc@linux.intel.com>
-In-Reply-To: <452b0706-4b0d-9548-0456-081c0d950dbc@linux.intel.com>
-Message-ID: <158265816615.3656.1841269218082044932@skylake-alporthouse-com>
-Date: Tue, 25 Feb 2020 19:16:06 +0000
-Subject: Re: [Intel-gfx] [PATCH 03/14] drm/i915: Flush idle barriers when
- waiting
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 25 Feb 2020 19:22:04 +0000
+Message-Id: <20200225192206.1107336-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [CI 1/3] drm/i915: Flush idle barriers when waiting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,34 +41,154 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-25 19:07:43)
-> 
-> On 24/02/2020 09:59, Chris Wilson wrote:
-> > -int i915_active_wait(struct i915_active *ref)
-> > +static int flush_barrier(struct active_node *it)
-> >   {
-> > -     struct active_node *it, *n;
-> > -     int err = 0;
-> > +     struct intel_engine_cs *engine;
-> >   
-> > -     might_sleep();
-> > +     if (!is_barrier(&it->base))
-> > +             return 0;
-> >   
-> > -     if (!i915_active_acquire_if_busy(ref))
-> > +     engine = __barrier_to_engine(it);
-> > +     smp_rmb(); /* serialise with add_active_barriers */
-> > +     if (!is_barrier(&it->base))
-> >               return 0;
-> 
-> What is the purpose of the first !is_barrier check? Just to kind of look 
-> better by not calling __bariier_to_engine on the wrong thing?
+If we do find ourselves with an idle barrier inside our active while
+waiting, attempt to flush it by emitting a pulse using the kernel
+context.
 
-Yeah, and that smp_rmb() is on the expensive side (enough to justify a
-branch). If I was confident I would mark up that first !is_barrier() with
-likely(). Hmm, does the kernel still have the infrastructure to warn
-those annotations are wrong?
--Chris
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Steve Carbonari <steven.carbonari@intel.com>
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_active.c           | 42 ++++++++++++++----
+ drivers/gpu/drm/i915/selftests/i915_active.c | 46 ++++++++++++++++++++
+ 2 files changed, 79 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 992b00fc5745..0b12d5023800 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -7,6 +7,7 @@
+ #include <linux/debugobjects.h>
+ 
+ #include "gt/intel_context.h"
++#include "gt/intel_engine_heartbeat.h"
+ #include "gt/intel_engine_pm.h"
+ #include "gt/intel_ring.h"
+ 
+@@ -460,26 +461,49 @@ static void enable_signaling(struct i915_active_fence *active)
+ 	dma_fence_put(fence);
+ }
+ 
+-int i915_active_wait(struct i915_active *ref)
++static int flush_barrier(struct active_node *it)
+ {
+-	struct active_node *it, *n;
+-	int err = 0;
++	struct intel_engine_cs *engine;
+ 
+-	might_sleep();
++	if (likely(!is_barrier(&it->base)))
++		return 0;
+ 
+-	if (!i915_active_acquire_if_busy(ref))
++	engine = __barrier_to_engine(it);
++	smp_rmb(); /* serialise with add_active_barriers */
++	if (!is_barrier(&it->base))
+ 		return 0;
+ 
+-	/* Flush lazy signals */
++	return intel_engine_flush_barriers(engine);
++}
++
++static int flush_lazy_signals(struct i915_active *ref)
++{
++	struct active_node *it, *n;
++	int err = 0;
++
+ 	enable_signaling(&ref->excl);
+ 	rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+-		if (is_barrier(&it->base)) /* unconnected idle barrier */
+-			continue;
++		err = flush_barrier(it); /* unconnected idle barrier? */
++		if (err)
++			break;
+ 
+ 		enable_signaling(&it->base);
+ 	}
+-	/* Any fence added after the wait begins will not be auto-signaled */
+ 
++	return err;
++}
++
++int i915_active_wait(struct i915_active *ref)
++{
++	int err;
++
++	might_sleep();
++
++	if (!i915_active_acquire_if_busy(ref))
++		return 0;
++
++	/* Any fence added after the wait begins will not be auto-signaled */
++	err = flush_lazy_signals(ref);
+ 	i915_active_release(ref);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index ef572a0c2566..067e30b8927f 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -201,11 +201,57 @@ static int live_active_retire(void *arg)
+ 	return err;
+ }
+ 
++static int live_active_barrier(void *arg)
++{
++	struct drm_i915_private *i915 = arg;
++	struct intel_engine_cs *engine;
++	struct live_active *active;
++	int err = 0;
++
++	/* Check that we get a callback when requests retire upon waiting */
++
++	active = __live_alloc(i915);
++	if (!active)
++		return -ENOMEM;
++
++	err = i915_active_acquire(&active->base);
++	if (err)
++		goto out;
++
++	for_each_uabi_engine(engine, i915) {
++		err = i915_active_acquire_preallocate_barrier(&active->base,
++							      engine);
++		if (err)
++			break;
++
++		i915_active_acquire_barrier(&active->base);
++	}
++
++	i915_active_release(&active->base);
++
++	if (err == 0)
++		err = i915_active_wait(&active->base);
++
++	if (err == 0 && !READ_ONCE(active->retired)) {
++		pr_err("i915_active not retired after flushing barriers!\n");
++		err = -EINVAL;
++	}
++
++out:
++	__live_put(active);
++
++	if (igt_flush_test(i915))
++		err = -EIO;
++
++	return err;
++}
++
+ int i915_active_live_selftests(struct drm_i915_private *i915)
+ {
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(live_active_wait),
+ 		SUBTEST(live_active_retire),
++		SUBTEST(live_active_barrier),
+ 	};
+ 
+ 	if (intel_gt_is_wedged(&i915->gt))
+-- 
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
