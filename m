@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39CB16EA2B
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 16:32:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1913116EA35
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 16:34:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD7EA6E8D0;
-	Tue, 25 Feb 2020 15:32:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6C06E8DC;
+	Tue, 25 Feb 2020 15:34:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 501986E8CA;
- Tue, 25 Feb 2020 15:32:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3FBECA0071;
- Tue, 25 Feb 2020 15:32:33 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB20E6E8CA;
+ Tue, 25 Feb 2020 15:34:04 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 07:34:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="271349579"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 25 Feb 2020 07:34:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 25 Feb 2020 17:34:00 +0200
+Date: Tue, 25 Feb 2020 17:34:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200225153400.GE13686@intel.com>
+References: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
+ <20200225144814.GC13686@intel.com>
+ <CAKMK7uFKJd1G8qT2Kup8nOfp22V7eQmDZC=6bdU=UEpqO7K3QQ@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 25 Feb 2020 15:32:33 -0000
-Message-ID: <158264475325.5723.11270889197335850555@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225132342.427055-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225132342.427055-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Mark_up_the_racy_use_of_perf-=3Eexclusive=5Fstrea?=
- =?utf-8?q?m?=
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uFKJd1G8qT2Kup8nOfp22V7eQmDZC=6bdU=UEpqO7K3QQ@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
+ nonblocking atomic modesets
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,114 +50,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Daniel Stone <daniels@collabora.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ stable <stable@vger.kernel.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Feb 25, 2020 at 04:09:26PM +0100, Daniel Vetter wrote:
+> On Tue, Feb 25, 2020 at 3:48 PM Ville Syrj=E4l=E4
+> <ville.syrjala@linux.intel.com> wrote:
+> >
+> > On Tue, Feb 25, 2020 at 12:50:24PM +0100, Daniel Vetter wrote:
+> > > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
+> > > pull in arbitrary other resources, including CRTCs (e.g. when
+> > > reconfiguring global resources).
+> > >
+> > > But in nonblocking mode userspace has then no idea this happened,
+> > > which can lead to spurious EBUSY calls, both:
+> > > - when that other CRTC is currently busy doing a page_flip the
+> > >   ALLOW_MODESET commit can fail with an EBUSY
+> > > - on the other CRTC a normal atomic flip can fail with EBUSY because
+> > >   of the additional commit inserted by the kernel without userspace's
+> > >   knowledge
+> > >
+> > > For blocking commits this isn't a problem, because everyone else will
+> > > just block until all the CRTC are reconfigured. Only thing userspace
+> > > can notice is the dropped frames without any reason for why frames got
+> > > dropped.
+> > >
+> > > Consensus is that we need new uapi to handle this properly, but no one
+> > > has any idea what exactly the new uapi should look like. As a stop-gap
+> > > plug this problem by demoting nonblocking commits which might cause
+> > > issues by including CRTCs not in the original request to blocking
+> > > commits.
+> > >
+> > > v2: Add comments and a WARN_ON to enforce this only when allowed - we
+> > > don't want to silently convert page flips into blocking plane updates
+> > > just because the driver is buggy.
+> > >
+> > > v3: Fix inverted WARN_ON (Pekka).
+> > >
+> > > References: https://lists.freedesktop.org/archives/dri-devel/2018-Jul=
+y/182281.html
+> > > Bugzilla: https://gitlab.freedesktop.org/wayland/weston/issues/24#not=
+e_9568
+> > > Cc: Daniel Stone <daniel@fooishbar.org>
+> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> > > Cc: stable@vger.kernel.org
+> > > Reviewed-by: Daniel Stone <daniels@collabora.com>
+> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/drm_atomic.c | 34 +++++++++++++++++++++++++++++++---
+> > >  1 file changed, 31 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomi=
+c.c
+> > > index 9ccfbf213d72..4c035abf98b8 100644
+> > > --- a/drivers/gpu/drm/drm_atomic.c
+> > > +++ b/drivers/gpu/drm/drm_atomic.c
+> > > @@ -1362,15 +1362,43 @@ EXPORT_SYMBOL(drm_atomic_commit);
+> > >  int drm_atomic_nonblocking_commit(struct drm_atomic_state *state)
+> > >  {
+> > >       struct drm_mode_config *config =3D &state->dev->mode_config;
+> > > -     int ret;
+> > > +     unsigned requested_crtc =3D 0;
+> > > +     unsigned affected_crtc =3D 0;
+> > > +     struct drm_crtc *crtc;
+> > > +     struct drm_crtc_state *crtc_state;
+> > > +     bool nonblocking =3D true;
+> > > +     int ret, i;
+> > > +
+> > > +     /*
+> > > +      * For commits that allow modesets drivers can add other CRTCs =
+to the
+> > > +      * atomic commit, e.g. when they need to reallocate global reso=
+urces.
+> > > +      *
+> > > +      * But when userspace also requests a nonblocking commit then u=
+serspace
+> > > +      * cannot know that the commit affects other CRTCs, which can r=
+esult in
+> > > +      * spurious EBUSY failures. Until we have better uapi plug this=
+ by
+> > > +      * demoting such commits to blocking mode.
+> > > +      */
+> > > +     for_each_new_crtc_in_state(state, crtc, crtc_state, i)
+> > > +             requested_crtc |=3D drm_crtc_mask(crtc);
+> > >
+> > >       ret =3D drm_atomic_check_only(state);
+> > >       if (ret)
+> > >               return ret;
+> > >
+> > > -     DRM_DEBUG_ATOMIC("committing %p nonblocking\n", state);
+> > > +     for_each_new_crtc_in_state(state, crtc, crtc_state, i)
+> > > +             affected_crtc |=3D drm_crtc_mask(crtc);
+> > > +
+> > > +     if (affected_crtc !=3D requested_crtc) {
+> > > +             /* adding other CRTC is only allowed for modeset commit=
+s */
+> > > +             WARN_ON(!state->allow_modeset);
+> >
+> > Not sure that's really true. What if the driver needs to eg.
+> > redistribute FIFO space or something between the pipes? Or do we
+> > expect drivers to now examine state->allow_modeset to figure out
+> > if they're allowed to do certain things?
+> =
 
-Series: drm/i915/perf: Mark up the racy use of perf->exclusive_stream
-URL   : https://patchwork.freedesktop.org/series/73905/
-State : success
+> Maybe we need more fine-grained flags here, but adding other states
+> (and blocking a commit flow) is exactly the uapi headaches this patch
+> tries to solve here. So if our driver currently adds crtc states to
+> reallocate fifo between pipes for an atomic flip then yes we're
+> breaking userspace. Well, everyone figured out by now that you get
+> random EBUSY and dropped frames for no apparent reason at all, and
+> work around it. But happy, they are not.
 
-== Summary ==
+I don't think we do this currently for the FIFO, but in theory we
+could.
 
-CI Bug Log - changes from CI_DRM_8004 -> Patchwork_16703
-====================================================
+The one thing we might do currently is cdclk reprogramming, but that
+can only happen without a full modeset when there's only a single
+active pipe. So we shouldn't hit this right now. But that restriction
+is going to disappear in the future, at which point we may want to
+do this even with multiple active pipes.
 
-Summary
--------
+-- =
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16703 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live_gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-cml-s/igt@i915_selftest@live_gem_contexts.html
-
-  * igt@vgem_basic@dmabuf-export:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-tgl-y/igt@vgem_basic@dmabuf-export.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [INCOMPLETE][7] ([i915#140]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-icl-y/igt@i915_selftest@live_execlists.html
-
-  * igt@kms_addfb_basic@addfb25-bad-modifier:
-    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [FAIL][11] ([i915#217] / [i915#976]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8004/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (43 -> 43)
-------------------------------
-
-  Additional (8): fi-ehl-1 fi-skl-6770hq fi-ilk-650 fi-snb-2520m fi-gdg-551 fi-elk-e7500 fi-blb-e6850 fi-skl-6600u 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-byt-clapper fi-bsw-nick fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8004 -> Patchwork_16703
-
-  CI-20190529: 20190529
-  CI_DRM_8004: 1a2e0cce5af4a9ad9694995610ed64578ccc430f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5464: 8cf2f8684992052ab89de1cf328c418224c0c2a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16703: 0dd2fa1856167d951facb19c40185fb2929cf67d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-0dd2fa185616 drm/i915/perf: Mark up the racy use of perf->exclusive_stream
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
