@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1913116EA35
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 16:34:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 325A416EA49
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 16:42:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6C06E8DC;
-	Tue, 25 Feb 2020 15:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AF1C6E20A;
+	Tue, 25 Feb 2020 15:41:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB20E6E8CA;
- Tue, 25 Feb 2020 15:34:04 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE0E6E20A;
+ Tue, 25 Feb 2020 15:41:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 07:34:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="271349579"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 25 Feb 2020 07:34:00 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 25 Feb 2020 17:34:00 +0200
-Date: Tue, 25 Feb 2020 17:34:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200225153400.GE13686@intel.com>
-References: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
- <20200225144814.GC13686@intel.com>
- <CAKMK7uFKJd1G8qT2Kup8nOfp22V7eQmDZC=6bdU=UEpqO7K3QQ@mail.gmail.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 07:41:57 -0800
+X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="241359091"
+Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 07:41:55 -0800
+Message-ID: <2cfd56bbd82abeba251ad38d7dd9830f8e503e68.camel@linux.intel.com>
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, igt-dev@lists.freedesktop.org
+Date: Tue, 25 Feb 2020 16:41:28 +0100
+In-Reply-To: <158229528380.6499.10205591790332300594@skylake-alporthouse-com>
+References: <20200221111701.30006-1-janusz.krzysztofik@linux.intel.com>
+ <20200221111701.30006-3-janusz.krzysztofik@linux.intel.com>
+ <158229528380.6499.10205591790332300594@skylake-alporthouse-com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uFKJd1G8qT2Kup8nOfp22V7eQmDZC=6bdU=UEpqO7K3QQ@mail.gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm: avoid spurious EBUSY due to
- nonblocking atomic modesets
+Subject: Re: [Intel-gfx] [RFC PATCH i-g-t v2 2/2] tests/gem_userptr_blits:
+ Exercise mmap-offset mapping to userptr
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,138 +47,140 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Stone <daniels@collabora.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- stable <stable@vger.kernel.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2020 at 04:09:26PM +0100, Daniel Vetter wrote:
-> On Tue, Feb 25, 2020 at 3:48 PM Ville Syrj=E4l=E4
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > On Tue, Feb 25, 2020 at 12:50:24PM +0100, Daniel Vetter wrote:
-> > > When doing an atomic modeset with ALLOW_MODESET drivers are allowed to
-> > > pull in arbitrary other resources, including CRTCs (e.g. when
-> > > reconfiguring global resources).
-> > >
-> > > But in nonblocking mode userspace has then no idea this happened,
-> > > which can lead to spurious EBUSY calls, both:
-> > > - when that other CRTC is currently busy doing a page_flip the
-> > >   ALLOW_MODESET commit can fail with an EBUSY
-> > > - on the other CRTC a normal atomic flip can fail with EBUSY because
-> > >   of the additional commit inserted by the kernel without userspace's
-> > >   knowledge
-> > >
-> > > For blocking commits this isn't a problem, because everyone else will
-> > > just block until all the CRTC are reconfigured. Only thing userspace
-> > > can notice is the dropped frames without any reason for why frames got
-> > > dropped.
-> > >
-> > > Consensus is that we need new uapi to handle this properly, but no one
-> > > has any idea what exactly the new uapi should look like. As a stop-gap
-> > > plug this problem by demoting nonblocking commits which might cause
-> > > issues by including CRTCs not in the original request to blocking
-> > > commits.
-> > >
-> > > v2: Add comments and a WARN_ON to enforce this only when allowed - we
-> > > don't want to silently convert page flips into blocking plane updates
-> > > just because the driver is buggy.
-> > >
-> > > v3: Fix inverted WARN_ON (Pekka).
-> > >
-> > > References: https://lists.freedesktop.org/archives/dri-devel/2018-Jul=
-y/182281.html
-> > > Bugzilla: https://gitlab.freedesktop.org/wayland/weston/issues/24#not=
-e_9568
-> > > Cc: Daniel Stone <daniel@fooishbar.org>
-> > > Cc: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> > > Cc: stable@vger.kernel.org
-> > > Reviewed-by: Daniel Stone <daniels@collabora.com>
-> > > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_atomic.c | 34 +++++++++++++++++++++++++++++++---
-> > >  1 file changed, 31 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomi=
-c.c
-> > > index 9ccfbf213d72..4c035abf98b8 100644
-> > > --- a/drivers/gpu/drm/drm_atomic.c
-> > > +++ b/drivers/gpu/drm/drm_atomic.c
-> > > @@ -1362,15 +1362,43 @@ EXPORT_SYMBOL(drm_atomic_commit);
-> > >  int drm_atomic_nonblocking_commit(struct drm_atomic_state *state)
-> > >  {
-> > >       struct drm_mode_config *config =3D &state->dev->mode_config;
-> > > -     int ret;
-> > > +     unsigned requested_crtc =3D 0;
-> > > +     unsigned affected_crtc =3D 0;
-> > > +     struct drm_crtc *crtc;
-> > > +     struct drm_crtc_state *crtc_state;
-> > > +     bool nonblocking =3D true;
-> > > +     int ret, i;
-> > > +
-> > > +     /*
-> > > +      * For commits that allow modesets drivers can add other CRTCs =
-to the
-> > > +      * atomic commit, e.g. when they need to reallocate global reso=
-urces.
-> > > +      *
-> > > +      * But when userspace also requests a nonblocking commit then u=
-serspace
-> > > +      * cannot know that the commit affects other CRTCs, which can r=
-esult in
-> > > +      * spurious EBUSY failures. Until we have better uapi plug this=
- by
-> > > +      * demoting such commits to blocking mode.
-> > > +      */
-> > > +     for_each_new_crtc_in_state(state, crtc, crtc_state, i)
-> > > +             requested_crtc |=3D drm_crtc_mask(crtc);
-> > >
-> > >       ret =3D drm_atomic_check_only(state);
-> > >       if (ret)
-> > >               return ret;
-> > >
-> > > -     DRM_DEBUG_ATOMIC("committing %p nonblocking\n", state);
-> > > +     for_each_new_crtc_in_state(state, crtc, crtc_state, i)
-> > > +             affected_crtc |=3D drm_crtc_mask(crtc);
-> > > +
-> > > +     if (affected_crtc !=3D requested_crtc) {
-> > > +             /* adding other CRTC is only allowed for modeset commit=
-s */
-> > > +             WARN_ON(!state->allow_modeset);
-> >
-> > Not sure that's really true. What if the driver needs to eg.
-> > redistribute FIFO space or something between the pipes? Or do we
-> > expect drivers to now examine state->allow_modeset to figure out
-> > if they're allowed to do certain things?
-> =
+Hi Chris,
 
-> Maybe we need more fine-grained flags here, but adding other states
-> (and blocking a commit flow) is exactly the uapi headaches this patch
-> tries to solve here. So if our driver currently adds crtc states to
-> reallocate fifo between pipes for an atomic flip then yes we're
-> breaking userspace. Well, everyone figured out by now that you get
-> random EBUSY and dropped frames for no apparent reason at all, and
-> work around it. But happy, they are not.
+On Fri, 2020-02-21 at 14:28 +0000, Chris Wilson wrote:
+> Quoting Janusz Krzysztofik (2020-02-21 11:17:01)
+> > Currently unavoidable lockedp loop related to userptr MMU notifier
+> > exists in the i915 driver.  For that reason, attempts to set up a
+> > mmap-offset (or mmap-gtt) mapping to a userptr object may be now
+> > preventively rejected by the driver.
+> > 
+> > A test should exists which checks for that.  Would a mapping
+> > attempt
+> > succeed, the test should trigger the MMU notifier in a way that is
+> > proven to result in the lockdep slpat.
+> > 
+> > As that exercise is strictly userptr related, it has been decided
+> > to
+> > add it as a new subtest to gem_userptr_blits.  The new subtest
+> > examines
+> > userptr interaction with every supported mmap-offset type mapping
+> > on
+> > top of it.
+> > 
+> > v2: Move the subtest from gem_mmap_offset to gem_userptr_blits,
+> >   - use dynamic subtests (Chris),
+> >   - don't FAIL but SKIP on mmap-offset attempt failure (Chris),
+> >   - on success, try to anger lockdep (Chris).
+> > 
+> > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk
+> > Signed-off-by: Janusz Krzysztofik <
+> > janusz.krzysztofik@linux.intel.com>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> > In order to be able to prove the proposed method of angering
+> > lockdep
+> > actually works,  I'm going to submit a kernel patch that reverts
+> > commit
+> > f6c26b555e14 ("drm/i915: Never allow userptr into the new mapping
+> > types") to be tested on Trybot together with this one, so at least
+> > non-GTT mmap-offset attempts succeed and the MMU notifier is
+> > triggered.
+> > 
+> > Thanks,
+> > Janusz
+> > 
+> >  tests/i915/gem_userptr_blits.c | 42
+> > ++++++++++++++++++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+> > 
+> > diff --git a/tests/i915/gem_userptr_blits.c
+> > b/tests/i915/gem_userptr_blits.c
+> > index fcad374ef..5f716a3ea 100644
+> > --- a/tests/i915/gem_userptr_blits.c
+> > +++ b/tests/i915/gem_userptr_blits.c
+> > @@ -797,6 +797,42 @@ static int test_map_fixed_invalidate(int fd,
+> > uint32_t flags)
+> >         return 0;
+> >  }
+> >  
+> > +static void test_mmap_offset_invalidate(int fd, const struct
+> > mmap_offset *t)
+> > +{
+> > +       void *ptr, *map;
+> > +       uint32_t handle;
+> > +
+> > +       /* check if mmap_offset type is supported by hardware, skip
+> > if not */
+> > +       handle = gem_create(fd, PAGE_SIZE);
+> > +       map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
+> > +                               PROT_READ | PROT_WRITE, t->type);
+> > +       igt_require_f(map,
+> > +                     "HW & kernel support for mmap_offset(%s)\n",
+> > t->name);
+> > +       munmap(map, PAGE_SIZE);
+> > +       gem_close(fd, handle);
+> > +
+> > +       /* create userptr object */
+> > +       igt_assert_eq(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE),
+> > 0);
+> > +       gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags, &handle);
+> > +
+> > +       /* set up mmap-offset mapping on top of the object, skip if
+> > refused */
+> > +       map = __gem_mmap_offset(fd, handle, 0, PAGE_SIZE,
+> > +                               PROT_READ | PROT_WRITE, t->type);
+> > +       igt_skip_on_f(!map && errno == -ENODEV,
 
-I don't think we do this currently for the FIFO, but in theory we
-could.
+errno should be compared against a positive value, sorry for that bug.
+Thanks for fixing it and merging.
 
-The one thing we might do currently is cdclk reprogramming, but that
-can only happen without a full modeset when there's only a single
-active pipe. So we shouldn't hit this right now. But that restriction
-is going to disappear in the future, at which point we may want to
-do this even with multiple active pipes.
+Janusz
 
--- =
 
-Ville Syrj=E4l=E4
-Intel
+> > +                     "lockdep loop preventive failure possibly
+> > occurred\n");
+> 
+> s/possibly occurred//
+> 
+> It's taken for granted that we don't know exactly why the kernel
+> rejected the call (though if we had tracefs hooked up, we should be
+> including that information there) just that it falls under our
+> blanket
+> incompatible device errno.
+> 
+> > +       igt_assert(map);
+> 
+> Ok, looks future proof.
+> 
+> > +       /* set object pages in order to activate MMU notifier for
+> > it */
+> > +       gem_set_domain(fd, handle, t->domain, t->domain);
+> 
+> I would suggest (a variant?) that also attached a igt_spin_t to the
+> userptr,
+> waited for it to start executing, call igt_spin_set_timeout and then
+> do
+> the munmap.
+> 
+> > +       /* trigger the notifier */
+> > +       munmap(ptr, PAGE_SIZE);
+> > +
+> > +       /* cleanup */
+> > +       munmap(map, PAGE_SIZE);
+> > +       gem_close(fd, handle);
+> > +}
+> 
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+> -Chris
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
