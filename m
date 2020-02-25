@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 689D516BBE2
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:31:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A3BD16BBF7
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:39:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B665A6EA0F;
-	Tue, 25 Feb 2020 08:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAB26EA14;
+	Tue, 25 Feb 2020 08:39:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 82B976EA0C;
- Tue, 25 Feb 2020 08:31:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 78D06A66C9;
- Tue, 25 Feb 2020 08:31:30 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CAC26EA14
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 08:39:33 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 00:39:33 -0800
+X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="230951313"
+Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
+ ([10.251.85.135])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 25 Feb 2020 00:39:31 -0800
+To: Andi Shyti <andi.shyti@intel.com>
+References: <20200219190223.16972-1-andi.shyti@intel.com>
+ <20200219193020.17673-1-andi.shyti@intel.com>
+ <dd611192-cf41-9538-66bd-d6a1b800bdf7@linux.intel.com>
+ <20200224163029.GA1579@intel.intel>
+ <421b0bd8-6bc6-e6c2-7e08-6d112c57a860@linux.intel.com>
+ <20200225013208.GA2708@intel.intel>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <2b7d426d-a8e9-40f9-fb1c-184f0f9b0dfd@linux.intel.com>
+Date: Tue, 25 Feb 2020 08:39:29 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 25 Feb 2020 08:31:30 -0000
-Message-ID: <158261949046.5721.2283253365926869980@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/11=5D_drm/i915=3A_Drop_assertion?=
- =?utf-8?q?_that_active-=3Efence_is_unchanged?=
+In-Reply-To: <20200225013208.GA2708@intel.intel>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v5] drm/i915/gt: make a gt sysfs group and
+ move power management files
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,48 +52,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [01/11] drm/i915: Drop assertion that active->fence is unchanged
-URL   : https://patchwork.freedesktop.org/series/73885/
-State : warning
+On 25/02/2020 01:35, Andi Shyti wrote:
+>>>>> +void intel_gt_sysfs_unregister(struct intel_gt *gt)
+>>>>> +{
+>>>>> +	struct kobject *parent = gt_get_parent_obj(gt);
+>>>>> +
+>>>>> +	/*
+>>>>> +	 * the name gt tells us wether sysfs_root
+>>>>> +	 * object was initialized properly
+>>>>> +	 */
+>>>>> +	if (!strcmp(gt->sysfs_root.name, "gt"))
+>>>>> +		kobject_put(&gt->sysfs_root);
+>>>>
+>>>> Slightly nicer would be looking at  kobj->state_initialized for this check I
+>>>> think. Or even kref_get_unless_zero on kobj->kref? Ugliness there is double
+>>>> put on sucess which makes me ask whether holding a reference on parent is
+>>>> even needed? It can't go away so perhaps it isn't.
+>>>
+>>> I'd rather use the state_initialized, even though I don't trust
+>>> its value if the kobject has failed to initialise earlier, I
+>>> trust it only if it's '1', maybe I'm paranoic.
+>>
+>> But is the reference even needed?
+> 
+> yes, because I _get it here (i.e. above, during initialization):
+> 
+>>>>> +void intel_gt_sysfs_register(struct intel_gt *gt)
+>>>>> +{
+>>>>> +	struct kobject *parent = kobject_get(gt_get_parent_obj(gt));
+>>>>> +	int ret;
+>>>>> +
+> 
+> and if I need to call kobject_put at the end. If for some reason
+> the files have failed to be initialized, I would have an
+> unbalanced put and a warning would be printed.
+> 
+> I'll summarize in pseudo code:
+> 
+> intel_gt_sysfs_register()
+> {
+> 	kobject_init_and_add(sysfs_root...); /* which calls kobject_get() inside */
+> 	if (fails)
+> 		kobject_put(sysfs_root); /* reference goes to '0' */
+> }
+> 
+> intel_gt_sysfs_unregister()
+> {
+> 	option1: I don't call kobject_put(), I have an unbalanced
+>                   situation as you reviewed in patch 1.
+> 
+>          option2: I call kobject_put(), if it did fail during init
+>                   there is an unbalanced situation, which is
+>                   handled but an annoying WARN() is issued.
+> 
+> 	option3: I check if "state_initialized" which I suppose
+>                   has been properly initialised during declaration
+>                   (maybe too paranoic?) and call _put()
+>                   accordingly
+> }
 
-== Summary ==
+Yes you are right, I confused the two parents again. :I
 
-$ dim checkpatch origin/drm-tip
-116a85830f70 drm/i915: Drop assertion that active->fence is unchanged
-99c957394dc0 drm/i915: Manually acquire engine-wakeref around use of kernel_context
-4a107b77a0ee drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
+Okay then, is the extra kobject_get/put on the parent 
+(kobject_get(gt_get_parent_obj(gt) - this one) needed?
 
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")'
-#12: 
-References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
+Regards,
 
-total: 1 errors, 1 warnings, 0 checks, 26 lines checked
-197b287a872f drm/i915/gem: Cleanup shadow batch after I915_EXEC_SECURE
-4a5d710d5720 drm/i915: Protect i915_request_await_start from early waits
-e0ed0c3b4803 drm/i915/selftests: Verify LRC isolation
--:449: WARNING:MEMORY_BARRIER: memory barrier without comment
-#449: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5179:
-+	wmb();
-
-total: 0 errors, 1 warnings, 0 checks, 557 lines checked
-9635b717c078 drm/i915/selftests: Check recovery from corrupted LRC
-d88c6fb794e9 drm/i915/selftests: Be a little more lenient for reset workers
-38f0de3a05b3 drm/i915/gem: Consolidate ctx->engines[] release
-3629118c25f6 drm/i915/gt: Prevent allocation on a banned context
-673a1ac1e5fc drm/i915/gem: Check that the context wasn't closed during setup
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
