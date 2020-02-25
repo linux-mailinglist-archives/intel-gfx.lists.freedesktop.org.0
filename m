@@ -2,26 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7144716C424
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 15:38:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4293516C425
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 15:38:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E99376EB07;
-	Tue, 25 Feb 2020 14:38:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B8736EB0C;
+	Tue, 25 Feb 2020 14:38:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D021E6EAFC
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C99EA6EAF9
  for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 14:38:32 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 15:38:22 +0100
-Message-Id: <20200225143824.1858038-18-maarten.lankhorst@linux.intel.com>
+Date: Tue, 25 Feb 2020 15:38:23 +0100
+Message-Id: <20200225143824.1858038-19-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.0.24.g3f081b084b0
 In-Reply-To: <20200225143824.1858038-1-maarten.lankhorst@linux.intel.com>
 References: <20200225143824.1858038-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 18/20] drm/i915/selftests: Fix locking inversion
- in lrc selftest.
+Subject: [Intel-gfx] [PATCH 19/20] drm/i915: Use ww pinning for
+ intel_context_create_request()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,65 +40,49 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This function does not use intel_context_create_request, so it has
-to use the same locking order as normal code. This is required to
-shut up lockdep in selftests.
+We want to get rid of intel_context_pin(), convert
+intel_context_create_request() first. :)
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_context.c | 20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index febd608c23a7..d312b847172b 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -4226,6 +4226,7 @@ static int __live_lrc_state(struct intel_engine_cs *engine,
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index c5dc714958f2..9e9da6dbb592 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -440,15 +440,25 @@ int intel_context_prepare_remote_request(struct intel_context *ce,
+ 
+ struct i915_request *intel_context_create_request(struct intel_context *ce)
  {
- 	struct intel_context *ce;
- 	struct i915_request *rq;
 +	struct i915_gem_ww_ctx ww;
- 	enum {
- 		RING_START_IDX = 0,
- 		RING_TAIL_IDX,
-@@ -4240,7 +4241,11 @@ static int __live_lrc_state(struct intel_engine_cs *engine,
- 	if (IS_ERR(ce))
- 		return PTR_ERR(ce);
+ 	struct i915_request *rq;
+ 	int err;
  
 -	err = intel_context_pin(ce);
-+	i915_gem_ww_ctx_init(&ww, false);
+-	if (unlikely(err))
+-		return ERR_PTR(err);
++	i915_gem_ww_ctx_init(&ww, true);
 +retry:
-+	err = i915_gem_object_lock(scratch->obj, &ww);
-+	if (!err)
-+		err = intel_context_pin_ww(ce, &ww);
- 	if (err)
- 		goto err_put;
- 
-@@ -4269,11 +4274,9 @@ static int __live_lrc_state(struct intel_engine_cs *engine,
- 	*cs++ = i915_ggtt_offset(scratch) + RING_TAIL_IDX * sizeof(u32);
- 	*cs++ = 0;
- 
--	i915_vma_lock(scratch);
- 	err = i915_request_await_object(rq, scratch->obj, true);
- 	if (!err)
- 		err = i915_vma_move_to_active(scratch, rq, EXEC_OBJECT_WRITE);
--	i915_vma_unlock(scratch);
- 
- 	i915_request_get(rq);
- 	i915_request_add(rq);
-@@ -4310,6 +4313,12 @@ static int __live_lrc_state(struct intel_engine_cs *engine,
- err_unpin:
- 	intel_context_unpin(ce);
- err_put:
-+	if (err == -EDEADLK) {
++	err = intel_context_pin_ww(ce, &ww);
++	if (!err) {
++		rq = i915_request_create(ce);
++		intel_context_unpin(ce);
++	} else if (err == -EDEADLK) {
 +		err = i915_gem_ww_ctx_backoff(&ww);
 +		if (!err)
 +			goto retry;
++	} else {
++		rq = ERR_PTR(err);
 +	}
+ 
+-	rq = i915_request_create(ce);
+-	intel_context_unpin(ce);
 +	i915_gem_ww_ctx_fini(&ww);
- 	intel_context_put(ce);
- 	return err;
- }
+ 
+ 	if (IS_ERR(rq))
+ 		return rq;
 -- 
 2.25.0.24.g3f081b084b0
 
