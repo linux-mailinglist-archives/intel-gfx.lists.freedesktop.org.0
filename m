@@ -2,30 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9AA016C408
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 15:36:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A9C16C41B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 15:38:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 349356EAF3;
-	Tue, 25 Feb 2020 14:36:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74A806EAFB;
+	Tue, 25 Feb 2020 14:38:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 124BE6EAF3
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 14:36:13 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20346196-1500050 
- for multiple; Tue, 25 Feb 2020 14:36:05 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F516EAF8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 14:38:30 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 14:36:04 +0000
-Message-Id: <20200225143604.500731-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200225143604.500731-1-chris@chris-wilson.co.uk>
-References: <20200225143604.500731-1-chris@chris-wilson.co.uk>
+Date: Tue, 25 Feb 2020 15:38:05 +0100
+Message-Id: <20200225143824.1858038-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.25.0.24.g3f081b084b0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
+Subject: [Intel-gfx] [PATCH 01/20] drm/i915: Drop inspection of execbuf
+ flags during evict
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,54 +37,69 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This timeout is only used in one place, to provide a tiny bit of grace
-for slow igt to cleanup after themselves. If we are a bit stricter, we
-can speed up igt by not waiting for 200ms.
+From: Chris Wilson <chris@chris-wilson.co.uk>
+
+With the goal of removing the serialisation from around execbuf, we will
+no longer have the privilege of there being a single execbuf in flight
+at any time and so will only be able to inspect the user's flags within
+the carefully controlled execbuf context. i915_gem_evict_for_node() is
+the only user outside of execbuf that currently peeks at the flag to
+convert an overlapping softpinned request from ENOSPC to EINVAL. Retract
+this nicety and only report ENOSPC if the location is in current use,
+either due to this execbuf or another.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20191203121316.2972257-1-chris@chris-wilson.co.uk
 ---
- drivers/gpu/drm/i915/i915_debugfs.c | 11 ++++++-----
- drivers/gpu/drm/i915/i915_drv.h     |  2 --
- 2 files changed, 6 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_gem_evict.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8f2525e4ce0f..dfb8a2a6e844 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -1949,12 +1949,13 @@ gt_drop_caches(struct intel_gt *gt, u64 val)
- {
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 0697bedebeef..b75fd3ccd63b 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -292,7 +292,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 		GEM_BUG_ON(!drm_mm_node_allocated(node));
+ 		vma = container_of(node, typeof(*vma), node);
  
--	if (val & DROP_RESET_ACTIVE &&
--	    wait_for(intel_engines_are_idle(gt), I915_IDLE_ENGINES_TIMEOUT))
--		intel_gt_set_wedged(gt);
-+	if (val & (DROP_RETIRE | DROP_RESET_ACTIVE))
-+		intel_gt_wait_for_idle(gt, 1);
+-		/* If we are using coloring to insert guard pages between
++		/*
++		 * If we are using coloring to insert guard pages between
+ 		 * different cache domains within the address space, we have
+ 		 * to check whether the objects on either side of our range
+ 		 * abutt and conflict. If they are in conflict, then we evict
+@@ -309,22 +310,18 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 			}
+ 		}
  
--	if (val & DROP_RETIRE)
--		intel_gt_retire_requests(gt);
-+	if (val & DROP_RESET_ACTIVE && intel_gt_pm_get_if_awake(gt)) {
-+		intel_gt_set_wedged(gt);
-+		intel_gt_pm_put(gt);
-+	}
+-		if (flags & PIN_NONBLOCK &&
+-		    (i915_vma_is_pinned(vma) || i915_vma_is_active(vma))) {
++		if (i915_vma_is_pinned(vma)) {
+ 			ret = -ENOSPC;
+ 			break;
+ 		}
  
- 	if (val & (DROP_IDLE | DROP_ACTIVE)) {
- 		ret = intel_gt_wait_for_idle(gt, MAX_SCHEDULE_TIMEOUT);
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 6b56f31c850f..3e4dbcbb98eb 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -608,8 +608,6 @@ struct i915_gem_mm {
- 	u32 shrink_count;
- };
+-		/* Overlap of objects in the same batch? */
+-		if (i915_vma_is_pinned(vma)) {
++		if (flags & PIN_NONBLOCK && i915_vma_is_active(vma)) {
+ 			ret = -ENOSPC;
+-			if (vma->exec_flags &&
+-			    *vma->exec_flags & EXEC_OBJECT_PINNED)
+-				ret = -EINVAL;
+ 			break;
+ 		}
  
--#define I915_IDLE_ENGINES_TIMEOUT (200) /* in ms */
--
- unsigned long i915_fence_timeout(const struct drm_i915_private *i915);
- 
- /* Amount of SAGV/QGV points, BSpec precisely defines this */
+-		/* Never show fear in the face of dragons!
++		/*
++		 * Never show fear in the face of dragons!
+ 		 *
+ 		 * We cannot directly remove this node from within this
+ 		 * iterator and as with i915_gem_evict_something() we employ
 -- 
-2.25.1
+2.25.0.24.g3f081b084b0
 
 _______________________________________________
 Intel-gfx mailing list
