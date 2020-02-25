@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F01116BBBF
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E42DF16BBC4
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 09:23:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96CB86EA06;
-	Tue, 25 Feb 2020 08:22:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F7936EA03;
+	Tue, 25 Feb 2020 08:23:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3A56EA01
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6621E6EA00
  for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 08:22:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341124-1500050 
- for multiple; Tue, 25 Feb 2020 08:22:35 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20341125-1500050 
+ for multiple; Tue, 25 Feb 2020 08:22:36 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 25 Feb 2020 08:22:29 +0000
-Message-Id: <20200225082233.274530-7-chris@chris-wilson.co.uk>
+Date: Tue, 25 Feb 2020 08:22:30 +0000
+Message-Id: <20200225082233.274530-8-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/11] drm/i915/selftests: Check recovery from
- corrupted LRC
+Subject: [Intel-gfx] [PATCH 08/11] drm/i915/selftests: Be a little more
+ lenient for reset workers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,165 +44,128 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check that we can recover if the LRC is totally corrupted.
+Give the reset worker a kick before losing help when waiting for hang
+recovery, as the CPU scheduler is a little unreliable.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 135 +++++++++++++++++++++++++
- 1 file changed, 135 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 74 ++++++++++++++++++--------
+ 1 file changed, 52 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 810f7857ad26..d7f98aada626 100644
+index d7f98aada626..979381b879d0 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -5292,6 +5292,140 @@ static int live_lrc_isolation(void *arg)
- 	return 0;
+@@ -90,6 +90,48 @@ static int wait_for_submit(struct intel_engine_cs *engine,
+ 	return -ETIME;
  }
  
-+static void garbage_reset(struct intel_engine_cs *engine,
-+			  struct i915_request *rq)
++static int wait_for_reset(struct intel_engine_cs *engine,
++			  struct i915_request *rq,
++			  unsigned long timeout)
 +{
-+	const unsigned int bit = I915_RESET_ENGINE + engine->id;
-+	unsigned long *lock = &engine->gt->reset.flags;
++	timeout += jiffies;
++	do {
++		cond_resched();
++		intel_engine_flush_submission(engine);
 +
-+	if (test_and_set_bit(bit, lock))
-+		return;
-+
-+	tasklet_disable(&engine->execlists.tasklet);
-+
-+	if (!rq->fence.error)
-+		intel_engine_reset(engine, NULL);
-+
-+	tasklet_enable(&engine->execlists.tasklet);
-+	clear_and_wake_up_bit(bit, lock);
-+}
-+
-+static struct i915_request *garbage(struct intel_context *ce,
-+				    struct rnd_state *prng)
-+{
-+	struct i915_request *rq;
-+	int err;
-+
-+	err = intel_context_pin(ce);
-+	if (err)
-+		return ERR_PTR(err);
-+
-+	prandom_bytes_state(prng,
-+			    ce->lrc_reg_state,
-+			    ce->engine->context_size -
-+			    LRC_STATE_PN * PAGE_SIZE);
-+
-+	rq = intel_context_create_request(ce);
-+	if (IS_ERR(rq)) {
-+		err = PTR_ERR(rq);
-+		goto err_unpin;
-+	}
-+
-+	i915_request_get(rq);
-+	i915_request_add(rq);
-+	return rq;
-+
-+err_unpin:
-+	intel_context_unpin(ce);
-+	return ERR_PTR(err);
-+}
-+
-+static int __lrc_garbage(struct intel_engine_cs *engine, struct rnd_state *prng)
-+{
-+	struct intel_context *ce;
-+	struct i915_request *hang;
-+	int err = 0;
-+
-+	ce = intel_context_create(engine);
-+	if (IS_ERR(ce))
-+		return PTR_ERR(ce);
-+
-+	hang = garbage(ce, prng);
-+	if (IS_ERR(hang)) {
-+		err = PTR_ERR(hang);
-+		goto err_ce;
-+	}
-+
-+	if (wait_for_submit(engine, hang, HZ / 2)) {
-+		i915_request_put(hang);
-+		err = -ETIME;
-+		goto err_ce;
-+	}
-+
-+	intel_context_set_banned(ce);
-+	garbage_reset(engine, hang);
-+
-+	intel_engine_flush_submission(engine);
-+	if (!hang->fence.error) {
-+		i915_request_put(hang);
-+		pr_err("%s: corrupted context was not reset\n",
-+		       engine->name);
-+		err = -EINVAL;
-+		goto err_ce;
-+	}
-+
-+	if (i915_request_wait(hang, 0, HZ / 2) < 0) {
-+		pr_err("%s: corrupted context did not recover\n",
-+		       engine->name);
-+		i915_request_put(hang);
-+		err = -EIO;
-+		goto err_ce;
-+	}
-+	i915_request_put(hang);
-+
-+err_ce:
-+	intel_context_put(ce);
-+	return err;
-+}
-+
-+static int live_lrc_garbage(void *arg)
-+{
-+	struct intel_gt *gt = arg;
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
-+
-+	/*
-+	 * Verify that we can recover if one context state is completely
-+	 * corrupted.
-+	 */
-+
-+	if (!IS_ENABLED(CONFIG_DRM_I915_SELFTEST_BROKEN))
-+		return 0;
-+
-+	for_each_engine(engine, gt, id) {
-+		I915_RND_STATE(prng);
-+		int err = 0, i;
-+
-+		if (!intel_has_reset_engine(engine->gt))
++		if (READ_ONCE(engine->execlists.pending[0]))
 +			continue;
 +
-+		intel_engine_pm_get(engine);
-+		for (i = 0; i < 3; i++) {
-+			err = __lrc_garbage(engine, &prng);
-+			if (err)
-+				break;
-+		}
-+		intel_engine_pm_put(engine);
++		if (i915_request_completed(rq))
++			break;
 +
-+		if (igt_flush_test(gt->i915))
-+			err = -EIO;
-+		if (err)
-+			return err;
++		if (READ_ONCE(rq->fence.error))
++			break;
++	} while (time_before(jiffies, timeout));
++
++	flush_scheduled_work();
++
++	if (rq->fence.error != -EIO) {
++		pr_err("%s: hanging request %llx:%lld not reset\n",
++		       engine->name,
++		       rq->fence.context,
++		       rq->fence.seqno);
++		return -EINVAL;
++	}
++
++	/* Give the request a jiffie to complete after flushing the worker */
++	if (i915_request_wait(rq, 0,
++			      max(0l, (long)(timeout - jiffies)) + 1) < 0) {
++		pr_err("%s: hanging request %llx:%lld did not complete\n",
++		       engine->name,
++		       rq->fence.context,
++		       rq->fence.seqno);
++		return -ETIME;
 +	}
 +
 +	return 0;
 +}
 +
- static int __live_pphwsp_runtime(struct intel_engine_cs *engine)
+ static int live_sanitycheck(void *arg)
  {
- 	struct intel_context *ce;
-@@ -5391,6 +5525,7 @@ int intel_lrc_live_selftests(struct drm_i915_private *i915)
- 		SUBTEST(live_lrc_gpr),
- 		SUBTEST(live_lrc_isolation),
- 		SUBTEST(live_lrc_timestamp),
-+		SUBTEST(live_lrc_garbage),
- 		SUBTEST(live_pphwsp_runtime),
- 	};
+ 	struct intel_gt *gt = arg;
+@@ -1805,14 +1847,9 @@ static int __cancel_active0(struct live_preempt_cancel *arg)
+ 	if (err)
+ 		goto out;
+ 
+-	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+-		err = -EIO;
+-		goto out;
+-	}
+-
+-	if (rq->fence.error != -EIO) {
+-		pr_err("Cancelled inflight0 request did not report -EIO\n");
+-		err = -EINVAL;
++	err = wait_for_reset(arg->engine, rq, HZ / 2);
++	if (err) {
++		pr_err("Cancelled inflight0 request did not reset\n");
+ 		goto out;
+ 	}
+ 
+@@ -1870,10 +1907,9 @@ static int __cancel_active1(struct live_preempt_cancel *arg)
+ 		goto out;
+ 
+ 	igt_spinner_end(&arg->a.spin);
+-	if (i915_request_wait(rq[1], 0, HZ / 5) < 0) {
+-		err = -EIO;
++	err = wait_for_reset(arg->engine, rq[1], HZ / 2);
++	if (err)
+ 		goto out;
+-	}
+ 
+ 	if (rq[0]->fence.error != 0) {
+ 		pr_err("Normal inflight0 request did not complete\n");
+@@ -1953,10 +1989,9 @@ static int __cancel_queued(struct live_preempt_cancel *arg)
+ 	if (err)
+ 		goto out;
+ 
+-	if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
+-		err = -EIO;
++	err = wait_for_reset(arg->engine, rq[2], HZ / 2);
++	if (err)
+ 		goto out;
+-	}
+ 
+ 	if (rq[0]->fence.error != -EIO) {
+ 		pr_err("Cancelled inflight0 request did not report -EIO\n");
+@@ -2014,14 +2049,9 @@ static int __cancel_hostile(struct live_preempt_cancel *arg)
+ 	if (err)
+ 		goto out;
+ 
+-	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
+-		err = -EIO;
+-		goto out;
+-	}
+-
+-	if (rq->fence.error != -EIO) {
+-		pr_err("Cancelled inflight0 request did not report -EIO\n");
+-		err = -EINVAL;
++	err = wait_for_reset(arg->engine, rq, HZ / 2);
++	if (err) {
++		pr_err("Cancelled inflight0 request did not reset\n");
+ 		goto out;
+ 	}
  
 -- 
 2.25.1
