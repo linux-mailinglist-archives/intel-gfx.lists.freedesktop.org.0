@@ -2,46 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6185316BA73
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:17:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC50216BA8D
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 08:24:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E9F06E9E9;
-	Tue, 25 Feb 2020 07:17:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA23E6E9EE;
+	Tue, 25 Feb 2020 07:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4F9A6E9E9;
- Tue, 25 Feb 2020 07:17:01 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2020 23:17:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,483,1574150400"; d="scan'208";a="230068218"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by fmsmga007.fm.intel.com with ESMTP; 24 Feb 2020 23:16:54 -0800
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, airlied@linux.ie,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, mripard@kernel.org,
- mihail.atanassov@arm.com,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Imre Deak <imre.deak@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Date: Tue, 25 Feb 2020 12:35:45 +0530
-Message-Id: <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A7B506E9EE;
+ Tue, 25 Feb 2020 07:24:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9E168A00E8;
+ Tue, 25 Feb 2020 07:24:15 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC][PATCH 5/5] drm/i915/display: Add Nearest-neighbor
- based integer scaling support
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Tue, 25 Feb 2020 07:24:15 -0000
+Message-ID: <158261545561.5725.10332909894053607425@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_drm_scaling_filter_property?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,199 +38,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ankit.k.nautiyal@intel.com, linux-kernel@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Integer scaling (IS) is a nearest-neighbor upscaling technique that
-simply scales up the existing pixels by an integer
-(i.e., whole number) multiplier.Nearest-neighbor (NN) interpolation
-works by filling in the missing color values in the upscaled image
-with that of the coordinate-mapped nearest source pixel value.
+== Series Details ==
 
-Both IS and NN preserve the clarity of the original image. Integer
-scaling is particularly useful for pixel art games that rely on
-sharp, blocky images to deliver their distinctive look.
+Series: Introduce drm scaling filter property
+URL   : https://patchwork.freedesktop.org/series/73883/
+State : warning
 
-Program the scaler filter coefficients to enable the NN filter if
-scaling filter property is set to DRM_SCALING_FILTER_NEAREST_NEIGHBOR
-and enable integer scaling.
+== Summary ==
 
-Bspec: 49247
+$ dim checkpatch origin/drm-tip
+21c6a10f68e0 drm: Introduce scaling filter property
+-:110: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#110: FILE: drivers/gpu/drm/drm_mode_config.c:379:
++	prop = drm_property_create_enum(dev, 0,
++				"SCALING_FILTER",
 
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 83 +++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_display.h |  2 +
- drivers/gpu/drm/i915/display/intel_sprite.c  | 20 +++--
- 3 files changed, 97 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b5903ef3c5a0..6d5f59203258 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6237,6 +6237,73 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state)
- 		skl_detach_scaler(crtc, i);
- }
+-:171: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#171: FILE: include/drm/drm_crtc.h:61:
  
-+/**
-+ *  Theory behind setting nearest-neighbor integer scaling:
-+ *
-+ *  17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
-+ *  The letter represents the filter tap (D is the center tap) and the number
-+ *  represents the coefficient set for a phase (0-16).
-+ *
-+ *         +------------+------------------------+------------------------+
-+ *         |Index value | Data value coeffient 1 | Data value coeffient 2 |
-+ *         +------------+------------------------+------------------------+
-+ *         |   00h      |          B0            |          A0            |
-+ *         +------------+------------------------+------------------------+
-+ *         |   01h      |          D0            |          C0            |
-+ *         +------------+------------------------+------------------------+
-+ *         |   02h      |          F0            |          E0            |
-+ *         +------------+------------------------+------------------------+
-+ *         |   03h      |          A1            |          G0            |
-+ *         +------------+------------------------+------------------------+
-+ *         |   04h      |          C1            |          B1            |
-+ *         +------------+------------------------+------------------------+
-+ *         |   ...      |          ...           |          ...           |
-+ *         +------------+------------------------+------------------------+
-+ *         |   38h      |          B16           |          A16           |
-+ *         +------------+------------------------+------------------------+
-+ *         |   39h      |          D16           |          C16           |
-+ *         +------------+------------------------+------------------------+
-+ *         |   3Ah      |          F16           |          C16           |
-+ *         +------------+------------------------+------------------------+
-+ *         |   3Bh      |        Reserved        |          G16           |
-+ *         +------------+------------------------+------------------------+
-+ *
-+ *  To enable nearest-neighbor scaling:  program scaler coefficents with
-+ *  the center tap (Dxx) values set to 1 and all other values set to 0 as per
-+ *  SCALER_COEFFICIENT_FORMAT
-+ *
-+ */
++
+
+-:221: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#221: FILE: include/drm/drm_plane.h:38:
+ 
++
+
+total: 0 errors, 0 warnings, 3 checks, 182 lines checked
+bce91bc41fe1 drm/drm-kms.rst: Add Scaling filter property documentation
+582f010154af drm/i915: Enable scaling filter for plane and pipe
+-:56: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#56: FILE: drivers/gpu/drm/i915/display/intel_display.c:16707:
+ 
++
+
+total: 0 errors, 0 warnings, 1 checks, 78 lines checked
+1e1be21b4151 drm/i915: Introduce scaling filter related registers and bit fields.
+-:41: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#41: FILE: drivers/gpu/drm/i915/i915_reg.h:7333:
++#define SKL_PS_COEF_INDEX_SET0(pipe, id)  _MMIO_PIPE(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
+
+-:45: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#45: FILE: drivers/gpu/drm/i915/i915_reg.h:7337:
++#define SKL_PS_COEF_DATA_SET0(pipe, id)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
+
+total: 0 errors, 0 warnings, 2 checks, 32 lines checked
+02e442488928 drm/i915/display: Add Nearest-neighbor based integer scaling support
+-:71: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#71: FILE: drivers/gpu/drm/i915/display/intel_display.c:6277:
 +void skl_setup_nearest_neighbor_filter(struct drm_i915_private *dev_priv,
 +				  enum pipe pipe, int scaler_id)
+
+-:73: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#73: FILE: drivers/gpu/drm/i915/display/intel_display.c:6279:
 +{
 +
-+	int coeff = 0;
-+	int phase = 0;
-+	int tap;
-+	int val = 0;
-+
-+	/*enable the index auto increment.*/
-+	intel_de_write_fw(dev_priv, SKL_PS_COEF_INDEX_SET0(pipe, scaler_id),
-+			  _PS_COEE_INDEX_AUTO_INC);
-+
-+	for (phase = 0; phase < 17; phase++) {
-+		for (tap = 0; tap < 7; tap++) {
-+			coeff++;
-+			if (tap == 3)
-+				val = (phase % 2) ? (0x800) : (0x800 << 16);
-+
-+			if (coeff % 2 == 0) {
+
+-:90: WARNING:LONG_LINE: line over 100 characters
+#90: FILE: drivers/gpu/drm/i915/display/intel_display.c:6296:
 +				intel_de_write_fw(dev_priv, SKL_PS_COEF_DATA_SET0(pipe, scaler_id), val);
-+				val = 0;
-+			}
+
+-:94: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#94: FILE: drivers/gpu/drm/i915/display/intel_display.c:6300:
 +
 +		}
+
+-:96: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#96: FILE: drivers/gpu/drm/i915/display/intel_display.c:6302:
 +
 +	}
-+
-+	intel_de_write_fw(dev_priv, SKL_PS_COEF_DATA_SET0(pipe, scaler_id), 0);
-+}
-+
- static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -6260,9 +6327,23 @@ static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 		pfit_w = (crtc_state->pch_pfit.size >> 16) & 0xFFFF;
- 		pfit_h = crtc_state->pch_pfit.size & 0xFFFF;
- 
-+		id = scaler_state->scaler_id;
-+
- 		if (state->scaling_filter ==
- 		    DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
- 			scaling_filter = PS_FILTER_PROGRAMMED;
-+			skl_setup_nearest_neighbor_filter(dev_priv, pipe, id);
-+
-+			/* Make the scaling window size to integer multiple of
-+			 * source.
-+			 *
-+			 * TODO: Should userspace take desision to round
-+			 * scaling window to integer multiple?
-+			 */
-+			pfit_w = rounddown(pfit_w,
-+					   (crtc_state->pipe_src_w << 16));
-+			pfit_h = rounddown(pfit_h,
-+					   (crtc_state->pipe_src_h << 16));
- 		}
- 
- 		hscale = (crtc_state->pipe_src_w << 16) / pfit_w;
-@@ -6271,8 +6352,6 @@ static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 		uv_rgb_hphase = skl_scaler_calc_phase(1, hscale, false);
- 		uv_rgb_vphase = skl_scaler_calc_phase(1, vscale, false);
- 
--		id = scaler_state->scaler_id;
--
- 		spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
- 		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id),
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index f92efbbec838..49f58d3c98fe 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -586,6 +586,8 @@ void intel_crtc_arm_fifo_underrun(struct intel_crtc *crtc,
- u16 skl_scaler_calc_phase(int sub, int scale, bool chroma_center);
- int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state);
- void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
+
+-:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#146: FILE: drivers/gpu/drm/i915/display/intel_display.h:590:
 +void skl_setup_nearest_neighbor_filter(struct drm_i915_private *dev_priv,
 +				  enum pipe pipe, int scaler_id);
- void ilk_pfit_disable(const struct intel_crtc_state *old_crtc_state);
- u32 glk_plane_color_ctl(const struct intel_crtc_state *crtc_state,
- 			const struct intel_plane_state *plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index fd7b31a21723..5bef5c031374 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -415,18 +415,26 @@ skl_program_scaler(struct intel_plane *plane,
- 	u16 y_vphase, uv_rgb_vphase;
- 	int hscale, vscale;
- 	const struct drm_plane_state *state = &plane_state->uapi;
-+	u32 src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
-+	u32 src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
- 	u32 scaling_filter = PS_FILTER_MEDIUM;
-+	struct drm_rect dst;
- 
- 	if (state->scaling_filter == DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
- 		scaling_filter = PS_FILTER_PROGRAMMED;
-+		skl_setup_nearest_neighbor_filter(dev_priv, pipe, scaler_id);
-+
-+		/* Make the scaling window size to integer multiple of source
-+		 * TODO: Should userspace take desision to round scaling window
-+		 * to integer multiple?
-+		 */
-+		crtc_w = rounddown(crtc_w, src_w);
-+		crtc_h = rounddown(crtc_h, src_h);
- 	}
- 
--	hscale = drm_rect_calc_hscale(&plane_state->uapi.src,
--				      &plane_state->uapi.dst,
--				      0, INT_MAX);
--	vscale = drm_rect_calc_vscale(&plane_state->uapi.src,
--				      &plane_state->uapi.dst,
--				      0, INT_MAX);
-+	drm_rect_init(&dst, crtc_x, crtc_y, crtc_w, crtc_h);
-+	hscale = drm_rect_calc_hscale(&plane_state->uapi.src, &dst, 0, INT_MAX);
-+	vscale = drm_rect_calc_vscale(&plane_state->uapi.src, &dst, 0, INT_MAX);
- 
- 	/* TODO: handle sub-pixel coordinates */
- 	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
--- 
-2.23.0
+
+total: 0 errors, 1 warnings, 5 checks, 144 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
