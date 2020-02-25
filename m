@@ -1,68 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D28716EC51
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 18:16:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F4EF16EC9B
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 18:37:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C15AC6EB5E;
-	Tue, 25 Feb 2020 17:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFB5389B5F;
+	Tue, 25 Feb 2020 17:37:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F37E6EB5C
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 17:16:12 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id j7so3156175wrp.13
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 09:16:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=GYk2QcDkuI7bY7Ycp3cPdTiIrqm0dU3EnOzwwnwFQVs=;
- b=fRc9PDmEUYQeHEUzQvneYMvmjv90szvmBucVnDjiWGAH/a4Vsu0ET6D63hAuFkYiWI
- JO/BZQWw6LI4ST8duwv0dBhbcIQS1MgY49RirpgpC1qrsulSlwAMOZ7DCH0uWyih3x6B
- l+jAPdM1kCwD7ZpNdJNPayRiukt7iX4VKeF1U=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=GYk2QcDkuI7bY7Ycp3cPdTiIrqm0dU3EnOzwwnwFQVs=;
- b=mlwzSoBliS7KQ/a+DDkD6bBJK0Vu0e1SP8iD+fU9q78UnvnU/fLwd1L5Xd8qWWulOE
- hS6yFmZ7zlpCY9iWpDPhwSAty0gLhDJIkikxwNqcfKzxZ1a1H4Y5TdCYIRr/rUXwhDyj
- HXhvG7SR6iLYPcXZn9RQJm5ahlX2dnpUiwClapRpY/dni4SoT16zYvPBn+RSwnObBxSB
- EAkFplpsKwrqx8eaEuFH29B3CGwrox6Sg0YLn2SyOKTQOLDVn4d9cMoMR7wY2mih6caj
- ivOYegY/jotHg+wxFkABgMxf+XBKKgZ9ZiNvAsYGhqCQSlSdUGTdXROOJGSUZHCWJ8O6
- oN5w==
-X-Gm-Message-State: APjAAAV6zNvZfHVQn+WxsTLP1PiHq2WVGVPqt9Mr/x84uDGm+E3PG8is
- CNHwdQeubT3tVni1Ue00bs1khQ==
-X-Google-Smtp-Source: APXvYqxPv758xs0rVGrzUYSuz3k0C21pnOuOE7Ko83tkL+3sFhQmpiLR2wPi5cGvO1eZDUIrFMyCag==
-X-Received: by 2002:a5d:6344:: with SMTP id b4mr189846wrw.224.1582650971011;
- Tue, 25 Feb 2020 09:16:11 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z19sm4925664wmi.35.2020.02.25.09.16.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Feb 2020 09:16:10 -0800 (PST)
-Date: Tue, 25 Feb 2020 18:16:08 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <20200225171608.GN2363188@phenom.ffwll.local>
-References: <79a0d79f-91bd-2481-740c-20e6c819c7c9@shipmail.org>
- <ee929c93-c9d7-7243-810e-94c6f0fc64b0@shipmail.org>
- <20200220180459.GS2363188@phenom.ffwll.local>
- <d1c37ec4-b63e-437a-a2be-80ba5192e048@shipmail.org>
- <20200220200831.GA2363188@phenom.ffwll.local>
- <501bf409-e4fe-a318-17b4-d5d050b09529@shipmail.org>
- <20200221171217.GD2363188@phenom.ffwll.local>
- <d9343617-9da8-5fea-a0f1-99db34a0cf2c@gmail.com>
- <8f29b152-9c7b-3427-efa2-4a39f0daced8@shipmail.org>
- <7d73bdfa-63d0-11af-7029-382ad1015c4c@amd.com>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51B0889B5F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 17:37:25 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 09:37:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="271395613"
+Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
+ by fmsmga002.fm.intel.com with ESMTP; 25 Feb 2020 09:37:23 -0800
+Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
+ IRSMSX153.ger.corp.intel.com (163.33.192.75) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 25 Feb 2020 17:30:58 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 25 Feb 2020 17:30:57 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Tue, 25 Feb 2020 17:30:57 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 05/20] drm/i915: Make skl_compute_dbuf_slices() behave
+ consistently for all platforms
+Thread-Index: AQHV6/6tz02Jn0qi+0C39L0ep1RTsagsKdKA
+Date: Tue, 25 Feb 2020 17:30:57 +0000
+Message-ID: <587c8ad3b5fc69b2ec0d4fcae302d4e8c959ba82.camel@intel.com>
+References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
+ <20200225171125.28885-6-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200225171125.28885-6-ville.syrjala@linux.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <020BBAA7F00ACF40B0887EC6681FAF26@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <7d73bdfa-63d0-11af-7029-382ad1015c4c@amd.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 5/5] drm/amdgpu: implement
- amdgpu_gem_prime_move_notify v2
+Subject: Re: [Intel-gfx] [PATCH v2 05/20] drm/i915: Make
+ skl_compute_dbuf_slices() behave consistently for all platforms
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,159 +63,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m_=28VMware=29?= <thomas_os@shipmail.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- "moderated list:DMA BUFFER SHARING FRAMEWORK" <linaro-mm-sig@lists.linaro.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "open list:DMA BUFFER SHARING FRAMEWORK" <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 24, 2020 at 07:46:59PM +0100, Christian K=F6nig wrote:
-> Am 23.02.20 um 17:54 schrieb Thomas Hellstr=F6m (VMware):
-> > On 2/23/20 4:45 PM, Christian K=F6nig wrote:
-> > > Am 21.02.20 um 18:12 schrieb Daniel Vetter:
-> > > > [SNIP]
-> > > > Yeah the Great Plan (tm) is to fully rely on ww_mutex slowly
-> > > > degenerating
-> > > > into essentially a global lock. But only when there's actual conten=
-tion
-> > > > and thrashing.
-> > > =
-
-> > > Yes exactly. A really big problem in TTM is currently that we drop
-> > > the lock after evicting BOs because they tend to move in again
-> > > directly after that.
-> > > =
-
-> > > From practice I can also confirm that there is exactly zero benefit
-> > > from dropping locks early and reacquire them for example for the VM
-> > > page tables. That's just makes it more likely that somebody needs to
-> > > roll back and this is what we need to avoid in the first place.
-> > =
-
-> > If you have a benchmarking setup available it would be very interesting
-> > for future reference to see how changing from WD to WW mutexes affects
-> > the roll back frequency. WW is known to cause rollbacks much less
-> > frequently but there is more work associated with each rollback.
-> =
-
-> Not of hand. To be honest I still have a hard time to get a grip on the
-> difference between WD and WW from the algorithm point of view. So I can't
-> judge that difference at all.
-> =
-
-> > > Contention on BO locks during command submission is perfectly fine
-> > > as long as this is as lightweight as possible while we don't have
-> > > trashing. When we have trashing multi submission performance is best
-> > > archived to just favor a single process to finish its business and
-> > > block everybody else.
-> > =
-
-> > Hmm. Sounds like we need a per-manager ww_rwsem protecting manager
-> > allocation, taken in write-mode then there's thrashing. In read-mode
-> > otherwise. That would limit the amount of "unnecessary" locks we'd have
-> > to keep and reduce unwanted side-effects, (see below):
-> =
-
-> Well per-manager (you mean per domain here don't you?) doesn't sound like
-> that useful because we rarely use only one domain, but I'm actually
-> questioning for quite a while if the per BO lock scheme was the right
-> approach.
-> =
-
-> See from the performance aspect the closest to ideal solution I can think=
- of
-> would be a ww_rwsem per user of a resource.
-> =
-
-> In other words we don't lock BOs, but instead a list of all their users a=
-nd
-> when you want to evict a BO you need to walk that list and inform all use=
-rs
-> that the BO will be moving.
-> =
-
-> During command submission you then have the fast path which rather just
-> grabs the read side of the user lock and check if all BOs are still in the
-> expected place.
-> =
-
-> If some BOs were evicted you back off and start the slow path, e.g. maybe
-> even copy additional data from userspace then grab the write side of the
-> lock etc.. etc...
-> =
-
-> That approach is similar to what we use in amdgpu with the per-VM BOs, but
-> goes a step further. Problem is that we are so used to per BO locks in the
-> kernel that this is probably not doable any more.
-
-Yeah I think it'd be nice to have the same approach for shared bo too. I
-guess what we could do is something like this (spinning your ww_rwmutex
-idea a bit further):
-
-dma_buf_read_lock(buf, vm)
-{
-	if (enabled(CONFIG_DEBUG_WW_MUTEX_SLOWPATH))
-	{
-		check that vm is indeed listed in buf and splat if not
-	}
-
-	/* for a buf that's not shared in multiple vm we'd have buf->resv
-	 * =3D=3D vm->resv here */
-	return ww_mutex_lock(vm->resv);
-}
-
-dma_buf_write_lock(buf)
-{
-	for_each_vm_in_buf(buf, vm) {
-		ww_mutex_lock(vm->resv);
-	}
-}
-
-Ideally we'd track all these vms with something slightly less shoddy than
-a linked list :-) Resizeable array is probably pretty good, I think we
-only ever need to go from buf -> vm list, not the other way round. At
-least in dma_resv/dma_buf code, driver code ofc needs to keep a list of
-all bo bound to a vm somewhere. But that's probably a much bigger
-datastructure for tracking vma offsets and mappings and other things on
-top.
-
-Ofc to even just get there we'd need something like the sublock list to
-keep track of all the additional locks we'd need for the writer lock. And
-we'd need the release callback for backoff, so that we could also go
-through the slowpath on a vm object that we're not holding a full
-reference on. That also means vm need to be refcounted.
-
-And the list of vms on a buffer need to be protected with some lock and
-the usual kref_get_unless_zero trickery.
-
-But with all this I think we can make the dma_buf_write_lock lock 100%
-like the old per-buffer lock for everyone. And execbuf could switch over
-to dma_buf_read_lock for shared buffers. Bonus points when the gpu context
-just keeps track of a list of shared vm used by buffers in that context
-...
-
-That way we could make vm fastpath locking a la amdgpu opt-in, while
-keeping everyone else on the per-object locking juices.
-
-Thoughts?
-
-Cheers, Daniel
-
-PS: Of course the write lock for these buffers is going to be terrible, so
-every time you need to update fences for implicit sync on shared buffer
-(well write fence at least) it's going to suck. We probably also want a
-read_to_write_upgrade function, which also can be done easily with
-ww_mutex magic.
--- =
-
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAyMDIwLTAyLTI1IGF0IDE5OjExICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
+PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
+PiANCj4gQ3VycmVudGx5IHNrbF9jb21wdXRlX2RidWZfc2xpY2VzKCkgcmV0dXJucyAwIGZvciBh
+bnkgaW5hY3RpdmUgcGlwZQ0KPiBvbg0KPiBpY2wrLCBidXQgcmV0dXJucyBCSVQoUzEpIG9uIHBy
+ZS1pY2wgZm9yIGFueSBwaXBlICh3aGV0aGVyIGl0J3MNCj4gYWN0aXZlIG9yDQo+IG5vdCkuIExl
+dCdzIG1ha2UgdGhlIGJlaGF2aW91ciBjb25zaXN0ZW50IGFuZCBhbHdheXMgcmV0dXJuIDAgZm9y
+IGFueQ0KPiBpbmFjdGl2ZSBwaXBlLg0KPiANCj4gQ2M6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0
+YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJq
+w6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZlcnMv
+Z3B1L2RybS9pOTE1L2ludGVsX3BtLmMgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
+cnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pbnRlbF9wbS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYw0K
+PiBpbmRleCBhMmU3ODk2OWMwZGYuLjY0MGY0YzRmZDUwOCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
+bnRlbF9wbS5jDQo+IEBAIC00NDA4LDcgKzQ0MDgsNyBAQCBzdGF0aWMgdTggc2tsX2NvbXB1dGVf
+ZGJ1Zl9zbGljZXMoY29uc3Qgc3RydWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUs
+DQo+ICAJICogRm9yIGFueXRoaW5nIGVsc2UganVzdCByZXR1cm4gb25lIHNsaWNlIHlldC4NCj4g
+IAkgKiBTaG91bGQgYmUgZXh0ZW5kZWQgZm9yIG90aGVyIHBsYXRmb3Jtcy4NCj4gIAkgKi8NCj4g
+LQlyZXR1cm4gQklUKERCVUZfUzEpOw0KPiArCXJldHVybiBhY3RpdmVfcGlwZXMgJiBCSVQocGlw
+ZSkgPyBCSVQoREJVRl9TMSkgOiAwOw0KDQpJIHRoaW5rIHRoZSBpbml0aWFsIGlkZWEgd2FzIHRo
+aXMgd29uJ3QgYmUgZXZlbiBjYWxsZWQgaWYgdGhlcmUgDQphcmUgbm8gYWN0aXZlIHBpcGVzIGF0
+IGFsbCAtIHNrbF9kZGJfZ2V0X3BpcGVfYWxsb2NhdGlvbl9saW1pdHMgd291bGQNCmJhaWwgb3V0
+IGltbWVkaWF0ZWx5LiBJZiB0aGVyZSB3ZXJlIHNvbWUgYWN0aXZlIHBpcGVzIC0gdGhlbiB3ZSB3
+aWxsDQpoYXZlIHRvIHVzZSBzbGljZSBTMSBhbnl3YXkgLSBiZWNhdXNlIHRoZXJlIHdlcmUgc2lt
+cGx5IG5vIG90aGVyIHNsaWNlcw0KYXZhaWxhYmxlLiBJZiBzb21lIHBpcGVzIHdlcmUgaW5hY3Rp
+dmUgLSB0aGV5IGFyZSBjdXJyZW50bHkgc2tpcHBlZCBieQ0KIWNydGNfc3RhdGUtPmh3LmFjdGl2
+ZSBjaGVjayAtIHNvIEkgd291bGQganVzdCBrZWVwIGl0IHNpbXBsZSBhbmQgZG9uJ3QNCmNhbGwg
+dGhpcyBmdW5jdGlvbiBmb3Igbm9uLWFjdGl2ZSBwaXBlcyBhdCBhbGwuDQoNCkN1cnJlbnRseSB3
+ZSBhcmUganVzdCBPUmluZyBzbGljZSBiaXRtYXNrcyBvbmx5IGZyb20gYWN0aXZlIHBpcGVzLg0K
+DQpTdGFuDQoNCj4gIH0NCj4gIA0KPiAgc3RhdGljIHU2NA0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1n
+ZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21h
+aWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
