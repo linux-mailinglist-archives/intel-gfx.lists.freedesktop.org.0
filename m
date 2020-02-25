@@ -2,33 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F2A16C25A
-	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 14:30:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B1016C25D
+	for <lists+intel-gfx@lfdr.de>; Tue, 25 Feb 2020 14:31:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0E8E6E20B;
-	Tue, 25 Feb 2020 13:30:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 817F86E22E;
+	Tue, 25 Feb 2020 13:31:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F12F6E20B
- for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 13:30:36 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECE5D6E22E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 25 Feb 2020 13:31:18 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2020 05:30:35 -0800
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2020 05:31:18 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="350148632"
+X-IronPort-AV: E=Sophos;i="5.70,484,1574150400"; d="scan'208";a="350148723"
 Received: from awymyslx-mobl.ger.corp.intel.com (HELO [10.249.153.102])
  ([10.249.153.102])
- by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2020 05:30:34 -0800
+ by fmsmga001.fm.intel.com with ESMTP; 25 Feb 2020 05:31:17 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200225132342.427055-1-chris@chris-wilson.co.uk>
 From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
  Swindon SN3 1RJ
-Message-ID: <58d02e69-8c8c-4725-51b0-016385e4049e@intel.com>
-Date: Tue, 25 Feb 2020 15:30:33 +0200
+Message-ID: <8c4af2cf-31e7-2fce-030b-5505c8efcb68@intel.com>
+Date: Tue, 25 Feb 2020 15:31:16 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.5.0
 MIME-Version: 1.0
@@ -53,6 +53,10 @@ Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Actually, what about drivers/gpu/drm/i915/gt/intel_sseu.c?
+
+-Lionel
+
 On 25/02/2020 15:23, Chris Wilson wrote:
 > Inside the general i915_oa_init_reg_state() we avoid using the
 > perf->mutex. However, we rely on perf->exclusive_stream being valid to
@@ -68,7 +72,6 @@ On 25/02/2020 15:23, Chris Wilson wrote:
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 > ---
 >   drivers/gpu/drm/i915/i915_perf.c | 13 +++++++------
 >   1 file changed, 7 insertions(+), 6 deletions(-)
