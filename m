@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AB71706ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 19:04:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71545170706
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 19:06:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47C016EB47;
-	Wed, 26 Feb 2020 18:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6147B6E46B;
+	Wed, 26 Feb 2020 18:06:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C32E66E442;
- Wed, 26 Feb 2020 18:04:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 76BB76E442;
+ Wed, 26 Feb 2020 18:06:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B2FFAA47E8;
- Wed, 26 Feb 2020 18:04:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6A2AAA47E2;
+ Wed, 26 Feb 2020 18:06:02 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 26 Feb 2020 18:04:54 -0000
-Message-ID: <158274029470.21012.16348260958164429939@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 18:06:02 -0000
+Message-ID: <158274036243.21009.14289552433707817752@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915=3A_Proper_dbuf_global_state_=28rev2=29?=
+References: <20200225192206.1107336-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200225192206.1107336-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5BCI=2C1/3=5D_drm/i915=3A_Flush_idle_barrier?=
+ =?utf-8?q?s_when_waiting?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,35 +48,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Proper dbuf global state (rev2)
-URL   : https://patchwork.freedesktop.org/series/73421/
+Series: series starting with [CI,1/3] drm/i915: Flush idle barriers when waiting
+URL   : https://patchwork.freedesktop.org/series/73927/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915: Handle some leftover s/intel_crtc/crtc/
-Applying: drm/i915: Remove garbage WARNs
-Applying: drm/i915: Add missing commas to dbuf tables
-Applying: drm/i915: Use a sentinel to terminate the dbuf slice arrays
-Applying: drm/i915: Make skl_compute_dbuf_slices() behave consistently for all platforms
-Applying: drm/i915: Polish some dbuf debugs
-Applying: drm/i915: Unify the low level dbuf code
-Applying: drm/i915: Introduce proper dbuf state
-Applying: drm/i915: Nuke skl_ddb_get_hw_state()
-Applying: drm/i915: Move the dbuf pre/post plane update
-Applying: drm/i915: Clean up dbuf debugs during .atomic_check()
-Applying: drm/i915: Extract intel_crtc_ddb_weight()
-Applying: drm/i915: Pass the crtc to skl_compute_dbuf_slices()
-Applying: drm/i915: Introduce intel_dbuf_slice_size()
-Applying: drm/i915: Introduce skl_ddb_entry_for_slices()
-Applying: drm/i915: Move pipe ddb entries into the dbuf state
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/display/intel_display.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0016 drm/i915: Move pipe ddb entries into the dbuf state
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/i915: Flush idle barriers when waiting
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/i915_active.c
+M	drivers/gpu/drm/i915/selftests/i915_active.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+Applying: drm/i915: Allow userspace to specify ringsize on construction
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/Makefile
+M	drivers/gpu/drm/i915/gem/i915_gem_context.c
+M	drivers/gpu/drm/i915/gt/intel_lrc.c
+M	include/uapi/drm/i915_drm.h
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
+Applying: drm/i915/gem: Honour O_NONBLOCK before throttling execbuf submissions
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+Falling back to patching base and 3-way merge...
+No changes -- Patch already applied.
 
 _______________________________________________
 Intel-gfx mailing list
