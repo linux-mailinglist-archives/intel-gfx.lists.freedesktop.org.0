@@ -1,57 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18C511703C2
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 17:05:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5121703D0
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 17:10:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53A0B6EA89;
-	Wed, 26 Feb 2020 16:05:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD5E6EABE;
+	Wed, 26 Feb 2020 16:10:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AF236EA89;
- Wed, 26 Feb 2020 16:05:53 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id t14so3782617wmi.5;
- Wed, 26 Feb 2020 08:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=3qi+0tGwIWEKy1hnGWa4P3/DiSSARIorQYfmbahGyA4=;
- b=IigQNtMd+Gp223VMzPb/l1bgq4goOL/g0wxisxBmzhDW6s7UA2+UxYVwqmMFqoQhYN
- Df53tcPnkZS76uVJDTQOO+Frx7HQ6ozvMxR+LdAWGKz3FtrekvFcgLT9PeVcxHzAJ36o
- BVEHCsd+SX/06TDtdrJZQJWRNj6tVpfoBLM2AceMQPB30PrYB12eE+y1dzcns3kZLT/v
- Dt4H5kjQ/1lzQ42rs+ZVOG5STW4dcZuMyUn3WPbt5tIkpH6szYssG85eMWkXMBWJRF2n
- 8mwNjm+8EwkW+bh+A6zHmgzSAbqBfpGECKhiuIfp4Wu/Q1bCfPM2JO+OuHnPNbjuViC4
- Q+HQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=3qi+0tGwIWEKy1hnGWa4P3/DiSSARIorQYfmbahGyA4=;
- b=S67eS+1RTMnpw19pVgKyrN2d3EoixRMuQ3W8GyVtJ9JC9Hvvo1I5YLN7h3PXIi1msy
- QfICp316MDvBYbbUnmr88Bd7C8hIW5N+jAOhgKyPk7pOCzZL+9a9UhXSoQkYZp6V1Jg8
- 3lwAmr/AiNGLEYH03nE0D635KpaNz7/yMA3CS6iYtKDm+aUntfuHgXWYnLJXZ647AHkU
- e6e2j8XTu1w/GUwKnizMg67Iq4+uJ1S67U99Z49gH8Jebb9cayGaEFk3v8muo81BIfa2
- 9Svd+oslVKcvi1hz+T1AoJlmez5IhixV8riv4rCUEUgoBbmDlZVER8GW87yjNNZju02x
- AIDw==
-X-Gm-Message-State: APjAAAXDEhR648msFBo2yBKJu+OygubkAwnn+GydECiJCc4ZUFJ/amEk
- HjymnnvMkeQJI1fAanlC2bTD3VZcG/H1qTzSwZACEg==
-X-Google-Smtp-Source: APXvYqynJils2ghFzpJ1KjlILKk3RK1kNKJK7LGYTO+A0j0+Hy5I7wYhc201hJdrr2S4M0VTEiNbw+OAsSHZexOEFA0=
-X-Received: by 2002:a7b:c152:: with SMTP id z18mr6220158wmi.70.1582733152116; 
- Wed, 26 Feb 2020 08:05:52 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C3256E037;
+ Wed, 26 Feb 2020 16:10:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8B54CA41FB;
+ Wed, 26 Feb 2020 16:10:02 +0000 (UTC)
 MIME-Version: 1.0
-References: <99213368-5025-8435-502b-3d23b875ca60@redhat.com>
- <CADnq5_OUt5XaJ_Nf23F2zsKeuPgoka8p2S6ny-H2WK==Ncg7vA@mail.gmail.com>
- <b0181c20-017b-7e3f-13c0-3ea5b98cadaa@redhat.com>
-In-Reply-To: <b0181c20-017b-7e3f-13c0-3ea5b98cadaa@redhat.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Wed, 26 Feb 2020 11:05:40 -0500
-Message-ID: <CADnq5_MjaOD+QrupjQwjdu-MgVZm1sg1x9=4uxdv92u1xuSdvQ@mail.gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>, "Lipski,
- Mikita" <mikita.lipski@amd.com>
-Subject: Re: [Intel-gfx] 5.6 DP-MST regression: 1 of 2 monitors on TB3
- (DP-MST) dock no longer light up
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 16:10:02 -0000
+Message-ID: <158273340254.21012.16022467285146403643@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200225132342.427055-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200225132342.427055-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Mark_up_the_racy_use_of_perf-=3Eexclusive=5Fstrea?=
+ =?utf-8?q?m?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,89 +39,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 26, 2020 at 10:43 AM Hans de Goede <hdegoede@redhat.com> wrote:
->
-> Hi,
->
-> On 2/26/20 4:29 PM, Alex Deucher wrote:
-> > On Wed, Feb 26, 2020 at 10:16 AM Hans de Goede <hdegoede@redhat.com> wrote:
-> >>
-> >> Hi Lyude and everyone else,
-> >>
-> >> Lyude I'm mailing you about this because you have done a lot of
-> >> work on DP MST, but if this rings a bell to anyone else feel
-> >> free to weigh in on this.
-> >
-> > Might be a duplicate of:
-> > https://gitlab.freedesktop.org/drm/amd/issues/1052
->
-> Looks like you are right, reverting the commit which the bisect
-> from that issue points to:
->
-> cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
->
-> Fixes the issue for me. I will add a comment to the issue.
->
-> Note I'm using integrated Intel gfx, so that means that this issue
-> definitely is not amdgpu specific.
->
+== Series Details ==
 
-I'm not too familiar with the mst code, but I wonder if we were
-exceeding the bandwidth limits in some setups and it just happened to
-work, but now that we enforcing them, they don't which is correct, but
-a regression from some users' perspective?
+Series: drm/i915/perf: Mark up the racy use of perf->exclusive_stream
+URL   : https://patchwork.freedesktop.org/series/73905/
+State : failure
 
-Alex
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8004_full -> Patchwork_16703_full
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16703_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16703_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16703_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_tiled_blits@normal:
+    - shard-apl:          NOTRUN -> [TIMEOUT][1] +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/shard-apl3/igt@gem_tiled_blits@normal.html
+
+  * igt@i915_pm_rpm@pm-tiling:
+    - shard-iclb:         NOTRUN -> [SKIP][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/shard-iclb2/igt@i915_pm_rpm@pm-tiling.html
+
+  * igt@sw_sync@sync_multi_producer_single_consumer:
+    - shard-kbl:          NOTRUN -> [TIMEOUT][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/shard-kbl2/igt@sw_sync@sync_multi_producer_single_consumer.html
+    - shard-skl:          NOTRUN -> [TIMEOUT][4] +1 similar issue
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/shard-skl5/igt@sw_sync@sync_multi_producer_single_consumer.html
+    - shard-glk:          NOTRUN -> [TIMEOUT][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/shard-glk4/igt@sw_sync@sync_multi_producer_single_consumer.html
+
+  
 
 
-> Regards,
->
-> Hans
->
->
->
->
-> >> I'm currently using a Lenovo X1 7th gen + a Lenovo TB3 gen 2 dock
-> >> as my daily rider for testing purposes. When 5.6-rc1 came out I
-> >> noticed that only 1 of the 2 1920x1080@60 monitors on the dock
-> >> lights up.
-> >>
-> >> There are no kernel errors in the logs, but mutter/gnome-shell says:
-> >>
-> >> gnome-shell[1316]: Failed to post KMS update: Page flip of 93 failed
-> >>
-> >> With 93 being the crtc-id of the crtc used for the monitor which is
-> >> displaying black. Since then I've waited for 5.6-rc3 hoping that a
-> >> fix was already queued up, but 5.6-rc3 still has this problem.
-> >>
-> >> gnome-shell does behave as if all monitors are connected, so the
-> >> monitor is seen, but we are failing to actually send any frames
-> >> to it.
-> >>
-> >> I've put a log collected with drm.debug=0x104 here:
-> >> https://fedorapeople.org/~jwrdegoede/drm-debug.log
-> >>
-> >> This message stands out as pointing to the likely cause of this problem:
-> >>
-> >> [    3.309061] [drm:intel_dump_pipe_config [i915]] MST master transcoder: <invalid>
-> >>
-> >> Regards,
-> >>
-> >> Hans
-> >>
-> >> _______________________________________________
-> >> dri-devel mailing list
-> >> dri-devel@lists.freedesktop.org
-> >> https://lists.freedesktop.org/mailman/listinfo/dri-devel
-> >
->
+Participating hosts (8 -> 10)
+------------------------------
+
+  Additional (2): pig-skl-6260u pig-glk-j5005 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8004 -> Patchwork_16703
+  * Piglit: None -> piglit_4509
+
+  CI-20190529: 20190529
+  CI_DRM_8004: 1a2e0cce5af4a9ad9694995610ed64578ccc430f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5464: 8cf2f8684992052ab89de1cf328c418224c0c2a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16703: 0dd2fa1856167d951facb19c40185fb2929cf67d @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16703/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
