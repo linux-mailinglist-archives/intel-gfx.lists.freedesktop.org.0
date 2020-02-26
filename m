@@ -2,77 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83A01706AC
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:52:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC4C1706BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:55:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2096E439;
-	Wed, 26 Feb 2020 17:52:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC4666E44B;
+	Wed, 26 Feb 2020 17:55:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 024356E219
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 17:52:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582739564;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=opKYEzTmrhgv0fqiV+/SN67+BhHwBWcdJidevtuJOik=;
- b=T0mZ1/9Mu3lGyNdTWtpx10CoHKQ1EVrTY5eE4vU3BlmZ4TtRZDg415HR8JEmlbk9P9EBtH
- LcUgEDFN4LlXNAMxpdGhsshD4FDMamvU8CkxqnnTTjpSmb3Y5GC9QC8vnkfmbxsAJZ90po
- wUXSP2W5LnQZVIGCLoWdWip7LQ+qtrI=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-345-EN2vJz7ZOVaDVDp-VazZ_w-1; Wed, 26 Feb 2020 12:52:37 -0500
-X-MC-Unique: EN2vJz7ZOVaDVDp-VazZ_w-1
-Received: by mail-wr1-f69.google.com with SMTP id t14so82445wrs.12
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 09:52:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=opKYEzTmrhgv0fqiV+/SN67+BhHwBWcdJidevtuJOik=;
- b=JPhM9Ol/vjWj26YibMEUaeTwSLbS+P77uvsrzzrkNNGqfZG7KPRp2k+iMSXVyln6Lf
- bkCs746raMP9SPFD6rWKanMPUvewUPI4D5xcOHXAK7ven/WCgyGILav/KIMZL9+sG5cl
- fQSruNstca3xt6cbVrHbXGqT5xyAtltis1LMW5UcimSxnaXCQr7wgtSCFytvEUEvhEcF
- ABDw8eK+IwxKnEBdQbXCKUr4Eo8rXqtBK2Cy9RIHIky5EXWHfaw7wUvq15vwavqVIHId
- WJfSu927+BSUO9+WLEPuSFEBkoJV/+AmFKNIDbfZGWIofsoIOxsNhxt0GWh0qcrkrlr7
- wqkw==
-X-Gm-Message-State: APjAAAVfDCs+qA05pIIS9P3e3OvTs+LkS08HLtA2g11+G9H6qHNtUtQM
- JCGjxeoTGsN9rf6+bHQAZdmk4y4bL7BFWyI0tfCfGCRxwRB2zs+2yeXp/uBWtglXipu3hugWj/p
- d6PDufUV/vW3maD3PqCvohmChBOdW
-X-Received: by 2002:a5d:5303:: with SMTP id e3mr6641776wrv.274.1582739555956; 
- Wed, 26 Feb 2020 09:52:35 -0800 (PST)
-X-Google-Smtp-Source: APXvYqx6aQnzqQT7Mf+Jdf99cfnakrt3ZpzVmn3BZgHyjq4hd1k2l9gAX6rcdbxJGMEyf8kZLHOBaA==
-X-Received: by 2002:a5d:5303:: with SMTP id e3mr6641755wrv.274.1582739555706; 
- Wed, 26 Feb 2020 09:52:35 -0800 (PST)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-fc7e-fd47-85c1-1ab3.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:fc7e:fd47:85c1:1ab3])
- by smtp.gmail.com with ESMTPSA id w1sm4187128wro.72.2020.02.26.09.52.34
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 26 Feb 2020 09:52:35 -0800 (PST)
-To: Alex Deucher <alexdeucher@gmail.com>,
- "Lipski, Mikita" <mikita.lipski@amd.com>
-References: <99213368-5025-8435-502b-3d23b875ca60@redhat.com>
- <CADnq5_OUt5XaJ_Nf23F2zsKeuPgoka8p2S6ny-H2WK==Ncg7vA@mail.gmail.com>
- <b0181c20-017b-7e3f-13c0-3ea5b98cadaa@redhat.com>
- <CADnq5_MjaOD+QrupjQwjdu-MgVZm1sg1x9=4uxdv92u1xuSdvQ@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <77b812d5-5b87-49b7-87dc-16d50a5666df@redhat.com>
-Date: Wed, 26 Feb 2020 18:52:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 732B36E442;
+ Wed, 26 Feb 2020 17:55:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6B961A47E9;
+ Wed, 26 Feb 2020 17:55:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CADnq5_MjaOD+QrupjQwjdu-MgVZm1sg1x9=4uxdv92u1xuSdvQ@mail.gmail.com>
-Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] 5.6 DP-MST regression: 1 of 2 monitors on TB3
- (DP-MST) dock no longer light up
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 17:55:36 -0000
+Message-ID: <158273973641.21012.15697488278460790578@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200225143604.500731-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200225143604.500731-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Replace_the_hardcoded_I?=
+ =?utf-8?q?915=5FFENCE=5FTIMEOUT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,118 +39,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 2/26/20 5:05 PM, Alex Deucher wrote:
-> On Wed, Feb 26, 2020 at 10:43 AM Hans de Goede <hdegoede@redhat.com> wrote:
->>
->> Hi,
->>
->> On 2/26/20 4:29 PM, Alex Deucher wrote:
->>> On Wed, Feb 26, 2020 at 10:16 AM Hans de Goede <hdegoede@redhat.com> wrote:
->>>>
->>>> Hi Lyude and everyone else,
->>>>
->>>> Lyude I'm mailing you about this because you have done a lot of
->>>> work on DP MST, but if this rings a bell to anyone else feel
->>>> free to weigh in on this.
->>>
->>> Might be a duplicate of:
->>> https://gitlab.freedesktop.org/drm/amd/issues/1052
->>
->> Looks like you are right, reverting the commit which the bisect
->> from that issue points to:
->>
->> cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
->>
->> Fixes the issue for me. I will add a comment to the issue.
->>
->> Note I'm using integrated Intel gfx, so that means that this issue
->> definitely is not amdgpu specific.
->>
-> 
-> I'm not too familiar with the mst code, but I wonder if we were
-> exceeding the bandwidth limits in some setups and it just happened to
-> work, but now that we enforcing them, they don't which is correct, but
-> a regression from some users' perspective?
+Series: series starting with [1/3] drm/i915: Replace the hardcoded I915_FENCE_TIMEOUT
+URL   : https://patchwork.freedesktop.org/series/73914/
+State : success
 
-I seriously doubt that is the case according to:
-https://support.lenovo.com/nl/en/solutions/pd029622
+== Summary ==
 
-The gen 2 tb3 dock can handle 2 external
-displays at 3840*2160@60Hz together with the internal
-panel being on and both my external displays run at
-1920x1080@60 so I'm consuming less then half of the
-maximum bandwidth.
+CI Bug Log - changes from CI_DRM_8008 -> Patchwork_16706
+====================================================
 
-There definitely is a bug somewhere in the
-cd82d82cbc04 ("drm/dp_mst: Add branch bandwidth validation to MST atomic check")
-commit (or somewhere else and triggered by that commit).
+Summary
+-------
 
-Regards,
+  **SUCCESS**
 
-Hans
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16706 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#69])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-skl-lmem/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-skl-lmem/igt@gem_exec_suspend@basic-s3.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][3] -> [FAIL][4] ([CI#94])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-pnv-d510:        [PASS][7] -> [FAIL][8] ([i915#34])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-pnv-d510/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_execlists:
+    - fi-icl-y:           [DMESG-FAIL][9] ([fdo#108569]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-icl-y/igt@i915_selftest@live_execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-icl-y/igt@i915_selftest@live_execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][11] ([fdo#111407]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [DMESG-WARN][13] ([CI#94] / [i915#402]) -> [PASS][14] +1 similar issue
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
 
 
+Participating hosts (52 -> 43)
+------------------------------
+
+  Additional (1): fi-byt-n2820 
+  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-byt-clapper fi-bdw-samus fi-snb-2600 
 
 
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8008 -> Patchwork_16706
+
+  CI-20190529: 20190529
+  CI_DRM_8008: 13b6e2575f2c05722679bc1c9d0b97c13bde49a1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5469: 4f875016eb1ebc211b8aadb280ae16c7e6cdc8ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16706: d545877af0ce392fdd9ec70d6d8698e0816d1813 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
+== Linux commits ==
 
-> 
-> Alex
-> 
-> 
->> Regards,
->>
->> Hans
->>
->>
->>
->>
->>>> I'm currently using a Lenovo X1 7th gen + a Lenovo TB3 gen 2 dock
->>>> as my daily rider for testing purposes. When 5.6-rc1 came out I
->>>> noticed that only 1 of the 2 1920x1080@60 monitors on the dock
->>>> lights up.
->>>>
->>>> There are no kernel errors in the logs, but mutter/gnome-shell says:
->>>>
->>>> gnome-shell[1316]: Failed to post KMS update: Page flip of 93 failed
->>>>
->>>> With 93 being the crtc-id of the crtc used for the monitor which is
->>>> displaying black. Since then I've waited for 5.6-rc3 hoping that a
->>>> fix was already queued up, but 5.6-rc3 still has this problem.
->>>>
->>>> gnome-shell does behave as if all monitors are connected, so the
->>>> monitor is seen, but we are failing to actually send any frames
->>>> to it.
->>>>
->>>> I've put a log collected with drm.debug=0x104 here:
->>>> https://fedorapeople.org/~jwrdegoede/drm-debug.log
->>>>
->>>> This message stands out as pointing to the likely cause of this problem:
->>>>
->>>> [    3.309061] [drm:intel_dump_pipe_config [i915]] MST master transcoder: <invalid>
->>>>
->>>> Regards,
->>>>
->>>> Hans
->>>>
->>>> _______________________________________________
->>>> dri-devel mailing list
->>>> dri-devel@lists.freedesktop.org
->>>> https://lists.freedesktop.org/mailman/listinfo/dri-devel
->>>
->>
-> 
+d545877af0ce drm/i915: Drop I915_IDLE_ENGINES_TIMEOUT
+2b0721bdc3f9 drm/i915: Drop I915_RESET_TIMEOUT and friends
+a337f6ea6d33 drm/i915: Replace the hardcoded I915_FENCE_TIMEOUT
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16706/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
