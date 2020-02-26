@@ -2,54 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BD8316FDFB
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 12:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6FAF16FE67
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 12:57:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE3FB6E8AA;
-	Wed, 26 Feb 2020 11:40:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E56396E287;
+	Wed, 26 Feb 2020 11:57:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96F216E8AA
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 11:40:36 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6B06E284;
+ Wed, 26 Feb 2020 11:57:20 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 03:40:35 -0800
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 03:57:19 -0800
+Message-Id: <86d0ec$ae4ffc@fmsmga001.fm.intel.com>
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,487,1574150400"; d="scan'208";a="410574389"
-Received: from irsmsx110.ger.corp.intel.com ([163.33.3.25])
- by orsmga005.jf.intel.com with ESMTP; 26 Feb 2020 03:40:34 -0800
-Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
- irsmsx110.ger.corp.intel.com (163.33.3.25) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 26 Feb 2020 11:40:33 +0000
-Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
- irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 26 Feb 2020 11:40:33 +0000
-Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
- IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Wed, 26 Feb 2020 11:40:33 +0000
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH v2 09/20] drm/i915: Nuke skl_ddb_get_hw_state()
-Thread-Index: AQHV6/6xhfQ4BfMTGE2kfxEWPARV8KgtWkeA
-Date: Wed, 26 Feb 2020 11:40:33 +0000
-Message-ID: <c48ca86a98a3018ab863675d34b0f654d260e9c4.camel@intel.com>
-References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
- <20200225171125.28885-10-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200225171125.28885-10-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.72.89]
-Content-ID: <D376A04F8F53114FA1F0EB74202AABCD@intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 09/20] drm/i915: Nuke
- skl_ddb_get_hw_state()
+X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="350371308"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 26 Feb 2020 03:57:09 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 Feb 2020 13:57:08 +0200
+Date: Wed, 26 Feb 2020 13:57:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Subject: [Intel-gfx] (no subject)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,50 +40,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Josh Wu <josh.wu@atmel.com>,
+ Bhuvanchandra DV <bhuvanchandra.dv@toradex.com>,
+ Neil Armstrong <narmstrong@baylibre.com>, Eric Anholt <eric@anholt.net>,
+ nouveau@lists.freedesktop.org,
+ Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+ "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+ Gustaf =?iso-8859-1?Q?Lindstr=F6m?= <gl@axentia.se>,
+ Andrzej Hajda <a.hajda@samsung.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Philipp Zabel <philipp.zabel@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Thomas Hellstrom <thellstrom@vmware.com>,
+ Joonyoung Shim <jy0922.shim@samsung.com>, Jonathan Marek <jonathan@marek.ca>,
+ Stefan Mavrodiev <stefan@olimex.com>, Adam Ford <aford173@gmail.com>,
+ Jerry Han <hanxu5@huaqin.corp-partner.google.com>,
+ VMware Graphics <linux-graphics-maintainer@vmware.com>,
+ Ben Skeggs <bskeggs@redhat.com>, "H. Nikolaus Schaller" <hns@goldelico.com>,
+ Robert Chiras <robert.chiras@nxp.com>, Heiko Schocher <hs@denx.de>,
+ Icenowy Zheng <icenowy@aosc.io>, Jonas Karlman <jonas@kwiboo.se>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ Fabio Estevam <festevam@gmail.com>,
+ "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+ Vincent Abriou <vincent.abriou@st.com>, Andreas Pretzsch <apr@cn-eng.de>,
+ Jernej Skrabec <jernej.skrabec@siol.net>,
+ Alex Gonzalez <alex.gonzalez@digi.com>, Purism Kernel Team <kernel@puri.sm>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Christoph Fritz <chf.fritz@googlemail.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+ Eugen Hristev <eugen.hristev@microchip.com>,
+ Giulio Benetti <giulio.benetti@micronovasrl.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="===============1434613373=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTAyLTI1IGF0IDE5OjExICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gc2tsX2RkYl9nZXRfaHdfc3RhdGUoKSBpcyByZWR1bmRhbnQgYW5kIGtpbmRhIGNhbGxl
-ZCBpbiB0aHcgd3JvbmcNCj4gc3BvdCBhbnl3YXkuIEp1c3Qga2lsbCBpdC4NCg0KUmV2aWV3ZWQt
-Ynk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xhdi5saXNvdnNraXlAaW50ZWwuY29tPg0K
-DQo+IA0KPiBDYzogU3RhbmlzbGF2IExpc292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRl
-bC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0u
-YyB8IDcgLS0tLS0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uaCB8IDEgLQ0K
-PiAgMiBmaWxlcyBjaGFuZ2VkLCA4IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-bnRlbF9wbS5jDQo+IGluZGV4IGQ0NzMwZDliNGUxYi4uODdmODhlYTZiN2FlIDEwMDY0NA0KPiAt
-LS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2ludGVsX3BtLmMNCj4gQEAgLTQxMTcsMTIgKzQxMTcsNiBAQCB2b2lkIHNrbF9w
-aXBlX2RkYl9nZXRfaHdfc3RhdGUoc3RydWN0DQo+IGludGVsX2NydGMgKmNydGMsDQo+ICAJaW50
-ZWxfZGlzcGxheV9wb3dlcl9wdXQoZGV2X3ByaXYsIHBvd2VyX2RvbWFpbiwgd2FrZXJlZik7DQo+
-ICB9DQo+ICANCj4gLXZvaWQgc2tsX2RkYl9nZXRfaHdfc3RhdGUoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2KQ0KPiAtew0KPiAtCWRldl9wcml2LT5kYnVmLmVuYWJsZWRfc2xpY2Vz
-ID0NCj4gLQkJaW50ZWxfZW5hYmxlZF9kYnVmX3NsaWNlc19tYXNrKGRldl9wcml2KTsNCj4gLX0N
-Cj4gLQ0KPiAgLyoNCj4gICAqIERldGVybWluZXMgdGhlIGRvd25zY2FsZSBhbW91bnQgb2YgYSBw
-bGFuZSBmb3IgdGhlIHB1cnBvc2VzIG9mDQo+IHdhdGVybWFyayBjYWxjdWxhdGlvbnMuDQo+ICAg
-KiBUaGUgYnNwZWMgZGVmaW5lcyBkb3duc2NhbGUgYW1vdW50IGFzOg0KPiBAQCAtNTkxMCw3ICs1
-OTA0LDYgQEAgdm9pZCBza2xfd21fZ2V0X2h3X3N0YXRlKHN0cnVjdA0KPiBkcm1faTkxNV9wcml2
-YXRlICpkZXZfcHJpdikNCj4gIAlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsNCj4gIAlzdHJ1Y3Qg
-aW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZTsNCj4gIA0KPiAtCXNrbF9kZGJfZ2V0X2h3X3N0
-YXRlKGRldl9wcml2KTsNCj4gIAlmb3JfZWFjaF9pbnRlbF9jcnRjKCZkZXZfcHJpdi0+ZHJtLCBj
-cnRjKSB7DQo+ICAJCWNydGNfc3RhdGUgPSB0b19pbnRlbF9jcnRjX3N0YXRlKGNydGMtPmJhc2Uu
-c3RhdGUpOw0KPiAgDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9w
-bS5oDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uaA0KPiBpbmRleCBmYWRmN2Ni
-YzQ0YzQuLjEwNTRhMGFiMWU0MCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aW50ZWxfcG0uaA0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5oDQo+IEBA
-IC0zOCw3ICszOCw2IEBAIHU4IGludGVsX2VuYWJsZWRfZGJ1Zl9zbGljZXNfbWFzayhzdHJ1Y3QN
-Cj4gZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpOw0KPiAgdm9pZCBza2xfcGlwZV9kZGJfZ2V0
-X2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjLA0KPiAgCQkJICAgICAgIHN0cnVjdCBz
-a2xfZGRiX2VudHJ5ICpkZGJfeSwNCj4gIAkJCSAgICAgICBzdHJ1Y3Qgc2tsX2RkYl9lbnRyeSAq
-ZGRiX3V2KTsNCj4gLXZvaWQgc2tsX2RkYl9nZXRfaHdfc3RhdGUoc3RydWN0IGRybV9pOTE1X3By
-aXZhdGUgKmRldl9wcml2KTsNCj4gIHZvaWQgc2tsX3BpcGVfd21fZ2V0X2h3X3N0YXRlKHN0cnVj
-dCBpbnRlbF9jcnRjICpjcnRjLA0KPiAgCQkJICAgICAgc3RydWN0IHNrbF9waXBlX3dtICpvdXQp
-Ow0KPiAgdm9pZCBnNHhfd21fc2FuaXRpemUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2KTsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+--===============1434613373==
+Content-Type: text/plain
+
+Subject: Re: [PATCH 04/12] drm: Nuke mode->vrefresh
+Message-ID: <20200226115708.GH13686@intel.com>
+References: <20200219203544.31013-1-ville.syrjala@linux.intel.com>
+ <CGME20200219203620eucas1p24b4990a91e758dbcf3e9b943669b0c8f@eucas1p2.samsung.com>
+ <20200219203544.31013-5-ville.syrjala@linux.intel.com>
+ <0f278771-79ce-fe23-e72c-3935dbe82d24@samsung.com>
+ <20200225112114.GA13686@intel.com>
+ <3ca785f2-9032-aaf9-0965-8657d31116ba@samsung.com>
+ <20200225154506.GF13686@intel.com>
+ <20200225192720.GG13686@intel.com>
+ <CACRpkdZk9QEy+Kzkmy4BXiHB+aq9hprf=dmA_-R23yqH3NCt1g@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdZk9QEy+Kzkmy4BXiHB+aq9hprf=dmA_-R23yqH3NCt1g@mail.gmail.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+
+On Tue, Feb 25, 2020 at 10:52:25PM +0100, Linus Walleij wrote:
+> On Tue, Feb 25, 2020 at 8:27 PM Ville Syrjälä
+> <ville.syrjala@linux.intel.com> wrote:
+> 
+> > OK, so I went ahead a wrote a bit of cocci [1] to find the bad apples.
+> 
+> That's impressive :D
+> 
+> > Unfortunately it found a lot of strange stuff:
+> 
+> I will answer for the weirdness I caused.
+> 
+> I have long suspected that a whole bunch of the "simple" displays
+> are not simple but contains a display controller and memory.
+> That means that the speed over the link to the display and
+> actual refresh rate on the actual display is asymmetric because
+> well we are just updating a RAM, the resolution just limits how
+> much data we are sending, the clock limits the speed on the
+> bus over to the RAM on the other side.
+
+IMO even in command mode mode->clock should probably be the actual
+dotclock used by the display. If there's another clock for the bus
+speed/etc. it should be stored somewhere else.
+
+-- 
+Ville Syrjälä
+Intel
+
+--===============1434613373==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1434613373==--
