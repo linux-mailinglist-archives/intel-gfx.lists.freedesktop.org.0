@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91B6516FBBF
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:12:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB48916FBC0
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:12:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D86AB6E45D;
-	Wed, 26 Feb 2020 10:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07BCA6E462;
+	Wed, 26 Feb 2020 10:12:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
  [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9A766E45D
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:12:13 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id y17so2214586wrn.6
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:12:13 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4C0F6E45D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:12:17 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id z15so2252701wrl.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:12:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=1WOVepM1Uf2vh7KtDZ4wgsszkBZH4kiU6Km+guJGG3o=;
- b=rdj3GWv+byLwxkJ80jU8ejeTVJqxelCMUdtaIvesMcNAW4dlEfO+TJ/ts6Xu8z3CrQ
- eyok/dQmNveT2i0bB7y00ug0N03A8qm88UfBkDldERKa0UkdRl63L8UL161kCDpTrhte
- eJR66dACWfvuM6dJWuZSM6RHgZZdukXDhfFiJpdgMAj4OH4G2GjLgfmgywuFR7VjmGPF
- qzOU3RUYo8qrPOJ0bPhPI/Qrf6+hQpRrfQ5F+wtc0rbvnHMEZlc23PKgxipI5VwoOABU
- 3T/Zl7u+Qg5c1gymiNgXJIY7CHfiqRPLt11WBjRMTL17I+RM1odXh5CVfTyBJWAL3sXQ
- Vgiw==
+ bh=D27umM5eKC6kuJaTlJyOZRCvSSNF8jl3xsRSxdd6CKE=;
+ b=dnXlEbI/o8k0A8TAkDMndqqTPfi6EUFodYMxmtRVu94dfM3pPUlr59vmwlRbRzS+YT
+ qGx64lujnshYICr5kEAdzODAnXl+Xd97lqJsruBDTb/plAqzw/fALNnqwsuzljKnDIFv
+ kt518tFHvPYvEuBwKFM6XWBq+nSQ6ziaeYRp5en5/Tv5BI67+D8MMB7cE2yuvB3lnNuY
+ WHB51Y8FHK6+COfaD9uO+J/3+P5J0Vx0p/WDXORSPlYianYLuS+arYMiqcorRh4iYZ5d
+ cp54r+kvBGskJ2gs8W5Rj8mB4LUq/kPjflGr1foxCK8Z4lymp0qrHg54y9ajl/27sbKT
+ SIAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=1WOVepM1Uf2vh7KtDZ4wgsszkBZH4kiU6Km+guJGG3o=;
- b=ixfRv7+xl20K5/+tEdcpJYWFZrmDIPilphmx7eTlITkm8nDkESXlQL/0T+tRvz6LvA
- raSRcI2TTQDYVakJHmglbFyNaNU4YdNvu+QiFmRytjklMgHDBEEd0eWCyifhtoR2RpiY
- wIcwJrEPZi/NjKVCHdWIWPycWVngfXPSYafXZkODp9/aXtO551Sf/YtsOSr7b0qU8tLq
- gf3pElVAQhX7fP/tOBhYrOsHzf8n1bmmINIeebQSpdYIIdTc/GONHpIRM5IpMGNbL3x2
- M3xm1vED1GGkZ30jV+2Bhx9FE3uXV5uM35QRdsKSa7uSYPGlMefMJhlY3lEDUD4YAsPQ
- MKgQ==
-X-Gm-Message-State: APjAAAX0/T2ZBf3Y0M/h1o1rBWZcIw1iA/wFuibSH7353/kbGWmX05Wa
- ACAxPkrixp++AGn5PdEsNUk=
-X-Google-Smtp-Source: APXvYqxI16oKjFD32STkd77ftx2UqKMMXay7iqRMWqnfGjlRNf3y21B+UV6kdiBlQCsx3LjRwLJnkA==
-X-Received: by 2002:a5d:4481:: with SMTP id j1mr4601757wrq.348.1582711932435; 
- Wed, 26 Feb 2020 02:12:12 -0800 (PST)
+ bh=D27umM5eKC6kuJaTlJyOZRCvSSNF8jl3xsRSxdd6CKE=;
+ b=DQ4CWi1VVFprRwo5VLttFtbzz4gGhXvQriUW5sTlP9HwoWVd1DMILVFoa/HfAL0X+1
+ 75Yz3MCimYUuIt/4RSL2oNK3WDWvBzmt2rzjT3K2VRccb0v+Q15C33laEG3QfI+XMfhk
+ 1nAzO26jYhiGeeyq8vabO5b/p/O9pQE27eeqWgXUXr67nYr4utj1H7Myo38t7mpZrdJy
+ G5VE13DjGHeula+lkf1TwGWbRDs2i4oHQBB9dxcd4vpv/BPRTjuZKyPogmzAkLWiEn8P
+ BcZMACvoYM29gYIEPsb8owoTnvBPun5Ord85K/thxXjLd8cXQHAzJL6AH5jWrxej43SD
+ 8+pA==
+X-Gm-Message-State: APjAAAXPwTs68Lo1ObFx4qni8XqrUxHHfJ6xh37l27rLRrDrTvNRLXXc
+ /fgcfZfLD0RojOHV6fU9EP8=
+X-Google-Smtp-Source: APXvYqw3jwWMPWN0xvBdfVK3DdsvzPGI6vp/p6ul6p4LtOEEfEKFqQA9Q7OUAEUn2lpzljlm9zoczA==
+X-Received: by 2002:adf:ee01:: with SMTP id y1mr4907206wrn.152.1582711935998; 
+ Wed, 26 Feb 2020 02:12:15 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.12.09
+ by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.12.12
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 02:12:11 -0800 (PST)
+ Wed, 26 Feb 2020 02:12:15 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Wed, 26 Feb 2020 13:11:35 +0300
-Message-Id: <20200226101138.15435-8-wambui.karugax@gmail.com>
+Date: Wed, 26 Feb 2020 13:11:36 +0300
+Message-Id: <20200226101138.15435-9-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
 References: <20200226101138.15435-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/10] drm/i915/hotplug: convert to drm_device
- based logging.
+Subject: [Intel-gfx] [PATCH 08/10] drm/i915/lpe_audio: convert to drm_device
+ based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,111 +74,96 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Converts various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_hotplug.c.
-In some cases, this involves extracting the drm_i915_private pointer from
-the drm_device struct to be used in the logging macros.
+Convert various uses of the printk based drm logging macros to the
+struct drm_device based logging macros in
+i915/display/intel_lpe_audio.c.
 
+Note that this converts DRM_DEBUG to drm_dbg().
+
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_hotplug.c | 40 ++++++++++++--------
- 1 file changed, 24 insertions(+), 16 deletions(-)
+ .../gpu/drm/i915/display/intel_lpe_audio.c    | 23 +++++++++++--------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 8af0ae61e1bb..585a6b1a0d7b 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -185,10 +185,13 @@ static bool intel_hpd_irq_storm_detect(struct drm_i915_private *dev_priv,
- 	hpd->stats[pin].count += increment;
- 	if (hpd->stats[pin].count > threshold) {
- 		hpd->stats[pin].state = HPD_MARK_DISABLED;
--		DRM_DEBUG_KMS("HPD interrupt storm detected on PIN %d\n", pin);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "HPD interrupt storm detected on PIN %d\n", pin);
- 		storm = true;
- 	} else {
--		DRM_DEBUG_KMS("Received HPD interrupt on PIN %d - cnt: %d\n", pin,
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Received HPD interrupt on PIN %d - cnt: %d\n",
-+			      pin,
- 			      hpd->stats[pin].count);
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 516e7179a5a4..ad5cc13037ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -127,7 +127,8 @@ lpe_audio_platdev_create(struct drm_i915_private *dev_priv)
+ 	kfree(pdata);
+ 
+ 	if (IS_ERR(platdev)) {
+-		DRM_ERROR("Failed to allocate LPE audio platform device\n");
++		drm_err(&dev_priv->drm,
++			"Failed to allocate LPE audio platform device\n");
+ 		return platdev;
  	}
  
-@@ -217,7 +220,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
- 		    dev_priv->hotplug.stats[pin].state != HPD_MARK_DISABLED)
- 			continue;
+@@ -190,7 +191,8 @@ static bool lpe_audio_detect(struct drm_i915_private *dev_priv)
+ 		};
  
--		DRM_INFO("HPD interrupt storm detected on connector %s: "
-+		drm_info(&dev_priv->drm,
-+			 "HPD interrupt storm detected on connector %s: "
- 			 "switching from hotplug detection to polling\n",
- 			 connector->base.name);
- 
-@@ -259,8 +263,9 @@ static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
- 			continue;
- 
- 		if (connector->base.polled != connector->polled)
--			DRM_DEBUG_DRIVER("Reenabling HPD on connector %s\n",
--					 connector->base.name);
-+			drm_dbg(&dev_priv->drm,
-+				"Reenabling HPD on connector %s\n",
-+				connector->base.name);
- 		connector->base.polled = connector->polled;
+ 		if (!pci_dev_present(atom_hdaudio_ids)) {
+-			DRM_INFO("HDaudio controller not detected, using LPE audio instead\n");
++			drm_info(&dev_priv->drm,
++				 "HDaudio controller not detected, using LPE audio instead\n");
+ 			lpe_present = true;
+ 		}
  	}
- 	drm_connector_list_iter_end(&conn_iter);
-@@ -295,11 +300,12 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
- 	if (old_status == connector->base.status)
- 		return INTEL_HOTPLUG_UNCHANGED;
+@@ -203,18 +205,19 @@ static int lpe_audio_setup(struct drm_i915_private *dev_priv)
  
--	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s\n",
--		      connector->base.base.id,
--		      connector->base.name,
--		      drm_get_connector_status_name(old_status),
--		      drm_get_connector_status_name(connector->base.status));
-+	drm_dbg_kms(&to_i915(dev)->drm,
-+		    "[CONNECTOR:%d:%s] status updated from %s to %s\n",
-+		    connector->base.base.id,
-+		    connector->base.name,
-+		    drm_get_connector_status_name(old_status),
-+		    drm_get_connector_status_name(connector->base.status));
+ 	dev_priv->lpe_audio.irq = irq_alloc_desc(0);
+ 	if (dev_priv->lpe_audio.irq < 0) {
+-		DRM_ERROR("Failed to allocate IRQ desc: %d\n",
++		drm_err(&dev_priv->drm, "Failed to allocate IRQ desc: %d\n",
+ 			dev_priv->lpe_audio.irq);
+ 		ret = dev_priv->lpe_audio.irq;
+ 		goto err;
+ 	}
  
- 	return INTEL_HOTPLUG_CHANGED;
+-	DRM_DEBUG("irq = %d\n", dev_priv->lpe_audio.irq);
++	drm_dbg(&dev_priv->drm, "irq = %d\n", dev_priv->lpe_audio.irq);
+ 
+ 	ret = lpe_audio_irq_init(dev_priv);
+ 
+ 	if (ret) {
+-		DRM_ERROR("Failed to initialize irqchip for lpe audio: %d\n",
++		drm_err(&dev_priv->drm,
++			"Failed to initialize irqchip for lpe audio: %d\n",
+ 			ret);
+ 		goto err_free_irq;
+ 	}
+@@ -223,7 +226,8 @@ static int lpe_audio_setup(struct drm_i915_private *dev_priv)
+ 
+ 	if (IS_ERR(dev_priv->lpe_audio.platdev)) {
+ 		ret = PTR_ERR(dev_priv->lpe_audio.platdev);
+-		DRM_ERROR("Failed to create lpe audio platform device: %d\n",
++		drm_err(&dev_priv->drm,
++			"Failed to create lpe audio platform device: %d\n",
+ 			ret);
+ 		goto err_free_irq;
+ 	}
+@@ -259,8 +263,8 @@ void intel_lpe_audio_irq_handler(struct drm_i915_private *dev_priv)
+ 
+ 	ret = generic_handle_irq(dev_priv->lpe_audio.irq);
+ 	if (ret)
+-		DRM_ERROR_RATELIMITED("error handling LPE audio irq: %d\n",
+-				ret);
++		drm_err_ratelimited(&dev_priv->drm,
++				    "error handling LPE audio irq: %d\n", ret);
  }
-@@ -373,7 +379,7 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 	u32 hpd_retry_bits;
  
- 	mutex_lock(&dev->mode_config.mutex);
--	DRM_DEBUG_KMS("running encoder hotplug functions\n");
-+	drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 
-@@ -401,8 +407,9 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 			struct intel_encoder *encoder =
- 				intel_attached_encoder(connector);
- 
--			DRM_DEBUG_KMS("Connector %s (pin %i) received hotplug event.\n",
--				      connector->base.name, pin);
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Connector %s (pin %i) received hotplug event.\n",
-+				    connector->base.name, pin);
- 
- 			switch (encoder->hotplug(encoder, connector,
- 						 hpd_event_bits & hpd_bit)) {
-@@ -487,9 +494,10 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 
- 		long_hpd = long_mask & BIT(pin);
- 
--		DRM_DEBUG_DRIVER("digital hpd on [ENCODER:%d:%s] - %s\n",
--				 encoder->base.base.id, encoder->base.name,
--				 long_hpd ? "long" : "short");
-+		drm_dbg(&dev_priv->drm,
-+			"digital hpd on [ENCODER:%d:%s] - %s\n",
-+			encoder->base.base.id, encoder->base.name,
-+			long_hpd ? "long" : "short");
- 		queue_dig = true;
- 
- 		if (long_hpd) {
+ /**
+@@ -278,7 +282,8 @@ int intel_lpe_audio_init(struct drm_i915_private *dev_priv)
+ 	if (lpe_audio_detect(dev_priv)) {
+ 		ret = lpe_audio_setup(dev_priv);
+ 		if (ret < 0)
+-			DRM_ERROR("failed to setup LPE Audio bridge\n");
++			drm_err(&dev_priv->drm,
++				"failed to setup LPE Audio bridge\n");
+ 	}
+ 	return ret;
+ }
 -- 
 2.25.0
 
