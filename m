@@ -1,50 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B8F8170BD7
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 23:47:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01558170C52
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 00:09:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0EAE6E1B1;
-	Wed, 26 Feb 2020 22:47:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 677256E27F;
+	Wed, 26 Feb 2020 23:09:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1DF6E1B1
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 22:47:26 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B69C06E27F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 23:09:29 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 14:47:26 -0800
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 15:09:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="230581871"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga007.fm.intel.com with ESMTP; 26 Feb 2020 14:47:24 -0800
-Received: from fmsmsx102.amr.corp.intel.com (10.18.124.200) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 26 Feb 2020 14:47:25 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- FMSMSX102.amr.corp.intel.com ([169.254.10.49]) with mapi id 14.03.0439.000;
- Wed, 26 Feb 2020 14:47:25 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH v4] drm/i915/tgl: Add Wa_1606054188:tgl
-Thread-Index: AQHV62MD5cdgps78/USkBfpPh35QcqgunP+A
-Date: Wed, 26 Feb 2020 22:47:24 +0000
-Message-ID: <4dbedbcb4202dc473038367129de1a5b1e5e9e17.camel@intel.com>
-References: <20200201082834.10163-1-matthew.s.atwood@intel.com>
- <20200224223651.3801646-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200224223651.3801646-1-matthew.d.roper@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.234]
-Content-ID: <16E7296F290F204FB629DD012D2ABCB1@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="261231158"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by fmsmga004.fm.intel.com with ESMTP; 26 Feb 2020 15:09:28 -0800
+Date: Wed, 26 Feb 2020 15:09:28 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200226230928.GD3936367@mdroper-desk1.amr.corp.intel.com>
+References: <20200220231843.3127468-1-matthew.d.roper@intel.com>
+ <aedc17580c809c06bd70cb1446047fb826dadb80.camel@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/tgl: Add Wa_1606054188:tgl
+Content-Disposition: inline
+In-Reply-To: <aedc17580c809c06bd70cb1446047fb826dadb80.camel@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Allow DC5/DC6 entry while PG2
+ is active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,51 +46,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIwLTAyLTI0IGF0IDE0OjM2IC0wODAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBG
-cm9tOiBNYXR0IEF0d29vZCA8bWF0dGhldy5zLmF0d29vZEBpbnRlbC5jb20+DQo+IA0KPiBPbiBU
-aWdlciBMYWtlIHdlIGRvIG5vdCBzdXBwb3J0IHNvdXJjZSBrZXlpbmcgaW4gdGhlIHBpeGVsIGZv
-cm1hdHMNCj4gUDAxMCwNCj4gUDAxMiwgUDAxNi4NCj4gDQo+IHYyOiBNb3ZlIFdBIHRvIGVuZCBv
-ZiBmdW5jdGlvbi4gQ3JlYXRlIGhlbHBlciBmdW5jdGlvbiBmb3IgZm9ybWF0DQo+IGNoZWNrLiBM
-ZXNzIHZlcmJvc2UgZGVidWdnaW5nIG1lc3NhZ2luZy4NCj4gDQo+IHYzOiB3aGl0ZXNwYWNlDQo+
-IA0KPiB2NChNYXR0Uik6DQo+ICAtIEFjdHVhbGx5IHJldHVybiBFSU5WQUwgdG8gcmVqZWN0IHRo
-aXMgY29tYmluYXRpb24uDQo+ICAtIFBhc3MgZm9ybWF0IHBhcmFtZXRlciBhcyB1MzIuDQo+ICAt
-IE1ha2UgdGVzdCBUR0wtc3BlY2lmaWMgZm9yIG5vdy4NCj4gIC0gU3dpdGNoIHRvIHBlci1kZXZp
-Y2UgbG9nZ2luZy4NCj4gIC0gU2hvcnRlbi9zaW1wbGlmeSBjb21tZW50Lg0KDQpSZXZpZXdlZC1i
-eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+DQoNCj4gDQo+
-IEJzcGVjOiA1Mjg5MA0KPiBDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNv
-bT4NCj4gQ2M6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+DQo+IENj
-OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBNYXR0IEF0d29vZCA8bWF0dGhldy5zLmF0d29vZEBpbnRlbC5jb20+DQo+IFNp
-Z25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+DQo+IC0t
-LQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYyB8IDIxDQo+
-ICsrKysrKysrKysrKysrKysrKysrKw0KPiAgMSBmaWxlIGNoYW5nZWQsIDIxIGluc2VydGlvbnMo
-KykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X3Nwcml0ZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUu
-Yw0KPiBpbmRleCA3YWJlZWZlOGRjZTUuLmRjN2QzZjNmNGViMyAxMDA2NDQNCj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYw0KPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jDQo+IEBAIC0yMDc3LDYgKzIwNzcs
-MTggQEAgdmx2X3Nwcml0ZV9jaGVjayhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19z
-dGF0ZSwNCj4gIAlyZXR1cm4gMDsNCj4gIH0NCj4gIA0KPiArc3RhdGljIGJvb2wgaW50ZWxfZm9y
-bWF0X2lzX3AwMXgodTMyIGZvcm1hdCkNCj4gK3sNCj4gKwlzd2l0Y2ggKGZvcm1hdCkgew0KPiAr
-CWNhc2UgRFJNX0ZPUk1BVF9QMDEwOg0KPiArCWNhc2UgRFJNX0ZPUk1BVF9QMDEyOg0KPiArCWNh
-c2UgRFJNX0ZPUk1BVF9QMDE2Og0KPiArCQlyZXR1cm4gdHJ1ZTsNCj4gKwlkZWZhdWx0Og0KPiAr
-CQlyZXR1cm4gZmFsc2U7DQo+ICsJfQ0KPiArfQ0KPiArDQo+ICBzdGF0aWMgaW50IHNrbF9wbGFu
-ZV9jaGVja19mYihjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSwN
-Cj4gIAkJCSAgICAgIGNvbnN0IHN0cnVjdCBpbnRlbF9wbGFuZV9zdGF0ZQ0KPiAqcGxhbmVfc3Rh
-dGUpDQo+ICB7DQo+IEBAIC0yMTU1LDYgKzIxNjcsMTUgQEAgc3RhdGljIGludCBza2xfcGxhbmVf
-Y2hlY2tfZmIoY29uc3Qgc3RydWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsDQo+
-ICAJCXJldHVybiAtRUlOVkFMOw0KPiAgCX0NCj4gIA0KPiArCS8qIFdhXzE2MDYwNTQxODg6dGds
-ICovDQo+ICsJaWYgKElTX1RJR0VSTEFLRShkZXZfcHJpdikgJiYNCj4gKwkgICAgcGxhbmVfc3Rh
-dGUtPmNrZXkuZmxhZ3MgJiBJOTE1X1NFVF9DT0xPUktFWV9TT1VSQ0UgJiYNCj4gKwkgICAgaW50
-ZWxfZm9ybWF0X2lzX3AwMXgoZmItPmZvcm1hdC0+Zm9ybWF0KSkgew0KPiArCQlkcm1fZGJnX2tt
-cygmZGV2X3ByaXYtPmRybSwNCj4gKwkJCSAgICAiU291cmNlIGNvbG9yIGtleWluZyBub3Qgc3Vw
-cG9ydGVkIHdpdGgNCj4gUDAxeCBmb3JtYXRzXG4iKTsNCj4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+
-ICsJfQ0KPiArDQo+ICAJcmV0dXJuIDA7DQo+ICB9DQo+ICANCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
-YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Feb 26, 2020 at 02:19:52PM -0800, Souza, Jose wrote:
+> On Thu, 2020-02-20 at 15:18 -0800, Matt Roper wrote:
+> > On gen12, we no longer need to disable DC5/DC6 when when PG2 is in
+> > use
+> > (which translates to cases where we're using VDSC on pipe A).
+> > =
+
+> > Bspec: 49193
+> =
+
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+
+Applied to dinq.  Thanks for the review.
+
+
+Matt
+
+> =
+
+> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > ---
+> >  .../gpu/drm/i915/display/intel_display_power.c   | 16 +++++++++++---
+> > --
+> >  .../gpu/drm/i915/display/intel_display_power.h   |  1 +
+> >  2 files changed, 12 insertions(+), 5 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > index 8ba68ec6dc24..1d21a850e933 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > @@ -926,10 +926,16 @@ void
+> > intel_display_power_set_target_dc_state(struct drm_i915_private
+> > *dev_priv,
+> >  =
+
+> >  static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
+> >  {
+> > -	bool pg2_enabled =3D
+> > intel_display_power_well_is_enabled(dev_priv,
+> > -					SKL_DISP_PW_2);
+> > +	enum i915_power_well_id high_pg;
+> >  =
+
+> > -	WARN_ONCE(pg2_enabled, "PG2 not disabled to enable DC5.\n");
+> > +	/* Power wells at this level and above must be disabled for DC5
+> > entry */
+> > +	if (INTEL_GEN(dev_priv) >=3D 12)
+> > +		high_pg =3D TGL_DISP_PW_3;
+> > +	else
+> > +		high_pg =3D SKL_DISP_PW_2;
+> > +
+> > +	WARN_ONCE(intel_display_power_well_is_enabled(dev_priv,
+> > high_pg),
+> > +		  "Power wells above platform's DC5 limit still
+> > enabled.\n");
+> >  =
+
+> >  	WARN_ONCE((intel_de_read(dev_priv, DC_STATE_EN) &
+> > DC_STATE_EN_UPTO_DC5),
+> >  		  "DC5 already programmed to be enabled.\n");
+> > @@ -2712,7 +2718,7 @@ void intel_display_power_put(struct
+> > drm_i915_private *dev_priv,
+> >  	BIT_ULL(POWER_DOMAIN_INIT))
+> >  =
+
+> >  #define TGL_DISPLAY_DC_OFF_POWER_DOMAINS (		\
+> > -	TGL_PW_2_POWER_DOMAINS |			\
+> > +	TGL_PW_3_POWER_DOMAINS |			\
+> >  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
+> >  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
+> > @@ -3908,7 +3914,7 @@ static const struct i915_power_well_desc
+> > tgl_power_wells[] =3D {
+> >  		.name =3D "power well 3",
+> >  		.domains =3D TGL_PW_3_POWER_DOMAINS,
+> >  		.ops =3D &hsw_power_well_ops,
+> > -		.id =3D DISP_PW_ID_NONE,
+> > +		.id =3D TGL_DISP_PW_3,
+> >  		{
+> >  			.hsw.regs =3D &hsw_power_well_regs,
+> >  			.hsw.idx =3D ICL_PW_CTL_IDX_PW_3,
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > index 601e000ffd0d..da64a5edae7a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > @@ -100,6 +100,7 @@ enum i915_power_well_id {
+> >  	SKL_DISP_PW_MISC_IO,
+> >  	SKL_DISP_PW_1,
+> >  	SKL_DISP_PW_2,
+> > +	TGL_DISP_PW_3,
+> >  	SKL_DISP_DC_OFF,
+> >  };
+> >  =
+
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
