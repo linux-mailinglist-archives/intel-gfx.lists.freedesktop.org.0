@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C43170879
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 20:08:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6213C17088C
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 20:12:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04AE26EB8D;
-	Wed, 26 Feb 2020 19:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B85D36EBB1;
+	Wed, 26 Feb 2020 19:12:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CD9A86EB8D;
- Wed, 26 Feb 2020 19:08:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C59CC6EB99;
+ Wed, 26 Feb 2020 19:12:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C6EA5A0138;
- Wed, 26 Feb 2020 19:08:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BEE1BA0088;
+ Wed, 26 Feb 2020 19:12:06 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Wed, 26 Feb 2020 19:08:01 -0000
-Message-ID: <158274408181.21009.13482178465107574674@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 19:12:06 -0000
+Message-ID: <158274432675.21011.11573924751100681636@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200226014603.42190-1-jose.souza@intel.com>
-In-Reply-To: <20200226014603.42190-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv2=2C01/14=5D_drm/i915/tgl=3A_Split_GT_and?=
- =?utf-8?q?_display_workarounds?=
+References: <20200226094314.1500667-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200226094314.1500667-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/17=5D_drm/i915/gt=3A_Reset_queue?=
+ =?utf-8?q?=5Fpriority=5Fhint_after_wedging?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,120 +48,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,01/14] drm/i915/tgl: Split GT and display workarounds
-URL   : https://patchwork.freedesktop.org/series/73934/
-State : failure
+Series: series starting with [01/17] drm/i915/gt: Reset queue_priority_hint after wedging
+URL   : https://patchwork.freedesktop.org/series/73947/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8008 -> Patchwork_16713
-====================================================
+$ dim checkpatch origin/drm-tip
+aa291c2295eb drm/i915/gt: Reset queue_priority_hint after wedging
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+<0> [574.303565] i915_sel-6278    2.... 481822445us : __i915_subtests: Running intel_execlists_live_selftests/live_error_interrupt
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+484da80f25b3 drm/i915/perf: Mark up the racy use of perf->exclusive_stream
+9e5ee39ddb1c drm/i915: Manually acquire engine-wakeref around use of kernel_context
+4527d2916345 drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
 
-  **FAILURE**
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")'
+#12: 
+References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
 
-  Serious unknown changes coming with Patchwork_16713 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16713, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+total: 1 errors, 1 warnings, 0 checks, 26 lines checked
+eb2b326b0dea drm/i915: Protect i915_request_await_start from early waits
+c607016634a6 drm/i915/selftests: Verify LRC isolation
+-:449: WARNING:MEMORY_BARRIER: memory barrier without comment
+#449: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5179:
++	wmb();
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/index.html
+total: 0 errors, 1 warnings, 0 checks, 557 lines checked
+c99201ca8f26 drm/i915/selftests: Check recovery from corrupted LRC
+8da3c4b72fce drm/i915/selftests: Wait for the kernel context switch
+b89f481f3c16 drm/i915/selftests: Be a little more lenient for reset workers
+2fc8b161a281 drm/i915/selftests: Add request throughput measurement to perf
+-:90: WARNING:LINE_SPACING: Missing a blank line after declarations
+#90: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1515:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-Possible new issues
--------------------
+-:157: WARNING:LINE_SPACING: Missing a blank line after declarations
+#157: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1582:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-  Here are the unknown changes that may have been introduced in Patchwork_16713:
+-:213: WARNING:LINE_SPACING: Missing a blank line after declarations
+#213: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1638:
++	struct drm_i915_private *i915 = arg;
++	static int (* const func[])(void *arg) = {
 
-### IGT changes ###
+-:221: WARNING:LINE_SPACING: Missing a blank line after declarations
+#221: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1646:
++	struct intel_engine_cs *engine;
++	int (* const *fn)(void *arg);
 
-#### Possible regressions ####
+-:263: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
+#263: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1688:
++		yield(); /* start all threads before we kthread_stop() */
 
-  * igt@dmabuf@sanitycheck:
-    - fi-bwr-2160:        [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-bwr-2160/igt@dmabuf@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/fi-bwr-2160/igt@dmabuf@sanitycheck.html
+total: 0 errors, 5 warnings, 0 checks, 301 lines checked
+427424c22617 drm/i915/gem: Consolidate ctx->engines[] release
+e3f8fe7b97da drm/i915/gt: Prevent allocation on a banned context
+5bf996f43d21 drm/i915/gem: Check that the context wasn't closed during setup
+849c205f51cd drm/i915/gt: Declare when we enabled timeslicing
+3cb060d11b8b drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+420dfaf3f69f drm/i915/execlists: Check the sentinel is alone in the ELSP
+2fa006f39991 drm/i915/execlists: Reduce preempt-to-busy roundtrip delay
 
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16713 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@bad-flink:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/fi-tgl-y/igt@gem_flink_basic@bad-flink.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [DMESG-FAIL][5] ([fdo#108569]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/fi-icl-y/igt@i915_selftest@live_execlists.html
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (52 -> 44)
-------------------------------
-
-  Additional (1): fi-byt-n2820 
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8008 -> Patchwork_16713
-
-  CI-20190529: 20190529
-  CI_DRM_8008: 13b6e2575f2c05722679bc1c9d0b97c13bde49a1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5469: 4f875016eb1ebc211b8aadb280ae16c7e6cdc8ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16713: 3f7e7be95819fb6c8e2d3451578465b5d0f61f6d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3f7e7be95819 drm/i915/tgl: Implement Wa_1407901919
-91ad7e7c3b57 drm/i915/tgl: Add Wa number to WaAllowPMDepthAndInvocationCountAccessFromUMD
-4663f5dc469f drm/i915/tgl: Restrict Wa_1408615072 to GT A0 stepping
-2b971433ed1e drm/i915/tgl: Add note about Wa_1409142259
-89be33cb7055 drm/i915/tgl: Fix the Wa number of a fix
-5a6cb2d06c81 drm/i915/tgl: Extend Wa_1409767108 to B0
-a9caaf045a2d drm/i915/tgl: Add note about Wa_1607063988
-c1bfb255ece7 drm/i915/tgl: Add note to Wa_1607297627
-41b18f808a31 drm/i915/tgl: Extend Wa_1606931601 for all steppings
-48fc18342e19 drm/i915/tgl: Add Wa_1409085225, Wa_14010229206
-33c977b2b167 drm/i915/tgl: Implement Wa_1806527549
-636c7aa65c45 drm/i915/tgl: Implement Wa_1409804808
-c844fca8f0ab drm/i915/tgl: Extend Wa_1409825376 stepping
-78f68ec9e707 drm/i915/tgl: Split GT and display workarounds
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16713/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
