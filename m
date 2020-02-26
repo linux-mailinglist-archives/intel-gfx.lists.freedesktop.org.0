@@ -1,32 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F3491705ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:22:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4401E170613
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:27:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 730546EB20;
-	Wed, 26 Feb 2020 17:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A5F6EB35;
+	Wed, 26 Feb 2020 17:27:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 174CB6EB20;
- Wed, 26 Feb 2020 17:22:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 10107A00EF;
- Wed, 26 Feb 2020 17:22:02 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97B9E6EB4D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 17:27:32 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 09:27:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="230504655"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 26 Feb 2020 09:27:29 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 Feb 2020 19:27:28 +0200
+Date: Wed, 26 Feb 2020 19:27:28 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200226172728.GM13686@intel.com>
+References: <20200224124004.26712-1-anshuman.gupta@intel.com>
+ <20200224124004.26712-5-anshuman.gupta@intel.com>
+ <20200225150639.GD13686@intel.com>
+ <20200226150943.GL13686@intel.com>
+ <20200226152407.GA18198@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Wed, 26 Feb 2020 17:22:02 -0000
-Message-ID: <158273772203.21009.13289261003510540000@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225134709.6153-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200225134709.6153-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Introduce_i915_based_i915=5FMISSING=5FCASE_macro_and_u?=
- =?utf-8?q?s_it_in_i915?=
+Content-Disposition: inline
+In-Reply-To: <20200226152407.GA18198@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915: Fix wrongly populated
+ plane possible_crtcs bit mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,139 +52,125 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Feb 26, 2020 at 08:54:08PM +0530, Anshuman Gupta wrote:
+> On 2020-02-26 at 17:09:43 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Tue, Feb 25, 2020 at 05:06:39PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Mon, Feb 24, 2020 at 06:10:01PM +0530, Anshuman Gupta wrote:
+> > > > As a disabled pipe in pipe_mask is not having a valid intel crtc,
+> > > > driver wrongly populates the possible_crtcs mask while initializing
+> > > > the plane for a CRTC. Fixing up the plane possible_crtcs mask.
+> > > > =
 
-Series: drm/i915: Introduce i915 based i915_MISSING_CASE macro and us it in i915
-URL   : https://patchwork.freedesktop.org/series/73908/
-State : success
+> > > > changes since RFC:
+> > > > - Simplify the possible_crtcs initialization. [Ville]
+> > > > v2:
+> > > > - Removed the unnecessary stack garbage possible_crtcs to
+> > > >   drm_universal_plane_init. [Ville]
+> > > > v3:
+> > > > - Combine the intel_crtc assignment and declaration. [Ville]
+> > > > =
 
-== Summary ==
+> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++++++++
+> > > >  drivers/gpu/drm/i915/display/intel_sprite.c  |  5 +----
+> > > >  2 files changed, 14 insertions(+), 4 deletions(-)
+> > > > =
 
-CI Bug Log - changes from CI_DRM_8008 -> Patchwork_16705
-====================================================
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index aacbdc47fcea..41a0f2e9b6b9 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -16628,6 +16628,18 @@ static void intel_crtc_free(struct intel_c=
+rtc *crtc)
+> > > >  	kfree(crtc);
+> > > >  }
+> > > >  =
 
-Summary
--------
+> > > > +static void intel_plane_possible_crtcs_init(struct drm_i915_privat=
+e *dev_priv)
+> > > > +{
+> > > > +	struct intel_plane *plane;
+> > > > +
+> > > > +	for_each_intel_plane(&dev_priv->drm, plane) {
+> > > > +		struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv,
+> > > > +								  plane->pipe);
+> > > > +
+> > > > +		plane->base.possible_crtcs =3D drm_crtc_mask(&crtc->base);
+> > > > +	}
+> > > > +}
+> > > > +
+> > > >  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum=
+ pipe pipe)
+> > > >  {
+> > > >  	struct intel_plane *primary, *cursor;
+> > > > @@ -17843,6 +17855,7 @@ int intel_modeset_init(struct drm_i915_priv=
+ate *i915)
+> > > >  		}
+> > > >  	}
+> > > >  =
 
-  **SUCCESS**
+> > > > +	intel_plane_possible_crtcs_init(i915);
+> > > >  	intel_shared_dpll_init(dev);
+> > > >  	intel_update_fdi_pll_freq(i915);
+> > > >  =
 
-  No regressions found.
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/=
+gpu/drm/i915/display/intel_sprite.c
+> > > > index 7abeefe8dce5..b5c7b271a1a4 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> > > > @@ -3011,7 +3011,6 @@ skl_universal_plane_create(struct drm_i915_pr=
+ivate *dev_priv,
+> > > >  	struct intel_plane *plane;
+> > > >  	enum drm_plane_type plane_type;
+> > > >  	unsigned int supported_rotations;
+> > > > -	unsigned int possible_crtcs;
+> > > >  	const u64 *modifiers;
+> > > >  	const u32 *formats;
+> > > >  	int num_formats;
+> > > > @@ -3066,10 +3065,8 @@ skl_universal_plane_create(struct drm_i915_p=
+rivate *dev_priv,
+> > > >  	else
+> > > >  		plane_type =3D DRM_PLANE_TYPE_OVERLAY;
+> > > >  =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/index.html
+> > > > -	possible_crtcs =3D BIT(pipe);
+> > > > -
+> > > >  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> > > > -				       possible_crtcs, plane_funcs,
+> > > > +				       0, plane_funcs,
+> > > >  				       formats, num_formats, modifiers,
+> > > >  				       plane_type,
+> > > >  				       "plane %d%c", plane_id + 1,
+> > > =
 
-Known issues
-------------
+> > > Looks like you missed all the other places that do this:
+> > > intel_primary_plane_create(), intel_sprite_plane_create(),
+> > > intel_cursor_plane_create().
+> Yes i missed intel_cursor_plane_create(), but other two sprite and
+> primary using the skl_universal_plane_create() for gen > gen9 and
+> having early return, considering that i have modiefied only =
 
-  Here are the changes found in Patchwork_16705 that come from known issues:
+> skl_universal_plane_create() and overlooked intel_cursor_plane_create().
+> Shall i fix this for all *plane_create() or just for cursor?
 
-### IGT changes ###
+Just change all of them. We don't want to accumulate pointless
+differences between the platforms.
 
-#### Issues hit ####
+-- =
 
-  * igt@gem_flink_basic@bad-open:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-
-  * igt@i915_selftest@live_gt_pm:
-    - fi-skl-6770hq:      [PASS][3] -> [DMESG-FAIL][4] ([i915#801])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-skl-6770hq/igt@i915_selftest@live_gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-skl-6770hq/igt@i915_selftest@live_gt_pm.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live_execlists:
-    - fi-icl-y:           [DMESG-FAIL][5] ([fdo#108569]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-icl-y/igt@i915_selftest@live_execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-icl-y/igt@i915_selftest@live_execlists.html
-
-  * igt@i915_selftest@live_gt_lrc:
-    - {fi-tgl-u}:         [DMESG-FAIL][7] ([i915#1233]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [DMESG-WARN][11] ([i915#106]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][13] ([fdo#111407]) -> [FAIL][14] ([fdo#111096] / [i915#323])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - fi-skl-6770hq:      [SKIP][15] ([fdo#109271]) -> [DMESG-WARN][16] ([i915#106])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8008/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#801]: https://gitlab.freedesktop.org/drm/intel/issues/801
-
-
-Participating hosts (52 -> 39)
-------------------------------
-
-  Additional (1): fi-byt-n2820 
-  Missing    (14): fi-ilk-m540 fi-bdw-samus fi-tgl-dsi fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ilk-650 fi-ctg-p8600 fi-gdg-551 fi-blb-e6850 fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8008 -> Patchwork_16705
-
-  CI-20190529: 20190529
-  CI_DRM_8008: 13b6e2575f2c05722679bc1c9d0b97c13bde49a1 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5469: 4f875016eb1ebc211b8aadb280ae16c7e6cdc8ba @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16705: 4908d4bfc3d886cfd24f39666f00e0187fa6050a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4908d4bfc3d8 drm/i915: Make MISSING_CASE backtrace i915 specific
-cda06a3fe764 drm/i915/gt: Make MISSING_CASE backtrace i915 specific
-a04daf106db7 drm/i915/gem: Make MISSING_CASE backtrace i915 specific
-8de10f450920 drm/i915/display: Make MISSING_CASE backtrace i915 specific
-f634ed71f53a drm/i915/display/hdmi: Make MISSING_CASE backtrace i915 specific
-fa563d2d4620 drm/i915/dp: Make MISSING_CASE backtrace i915 specific
-f8315a3a078d drm/i915/display/display: Make MISSING_CASE backtrace i915 specific
-ec2632eb9e18 drm/i915/display/ddi: Make MISSING_CASE backtrace i915 specific
-cc9141f3850c drm/i915/display/cdclk: Make MISSING_CASE backtrace i915 specific
-f04e32590e91 drm/i915: Add i915 device based MISSING_CASE macro
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16705/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
