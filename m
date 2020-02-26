@@ -1,62 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B51E1704AB
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 17:44:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D7F1704A9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 17:44:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1047D6EAE4;
-	Wed, 26 Feb 2020 16:44:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A3786EAD3;
+	Wed, 26 Feb 2020 16:44:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
- [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B3CF6E141
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 08:07:31 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id q9so1852837wmj.5
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 00:07:31 -0800 (PST)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49F8F6E141
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 08:07:32 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id p17so1925854wma.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 00:07:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:reply-to:mime-version
- :content-transfer-encoding;
- bh=eWNe5H5elDplr9dzRmr+X+FDgyg6zJaEW0r6NO3ufz4=;
- b=UkyTfy4pzaeXVg/bTBo0d358BZhrHAfT1WrClwCW4qlcQB6lYA3LMazWhUNwwnBKK2
- uTInHH2xO9sdbe7ahXV9krWJbdQdbsS2Y80lBlKe0dlXzfYNvGED7HxIMGGVTA0ip6pT
- neLWuFFtycbzFg7Nxzsfx/Kf0K27IpTnj5ib7g+ZfSU5mfo+WXDbtW2PiHX1PvCr4EGc
- AJJhxiYR7dgw1FYyg2Y/NaAVl+JScD5LmjAoC+30UtyTkOd5XYZQyzwoVa4wdjc2EeCt
- JpP2KrZOBM9G9J/V/Vz4finTc7a4L60LgyXJDpMfu9vZoM+6o+VXhpuOI5boAOZqGzI7
- NbyA==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references:reply-to
+ :mime-version:content-transfer-encoding;
+ bh=IzSm6B28RpmTh92RLe5K6IhynzM/MfGpTdfts4Zbi3E=;
+ b=UdpXAPD/e+26DwUZYad66XSsvC1aZBlUU5iK9j5QFssNUF++8BHy5Na21ElNLCXq21
+ jTiTHrLTgpA2Z6kSmdcmoYBJERVYmc6FMUTZ/C0BBcvZ7jRd2zAW6KVRzatRxrQ4jbNs
+ BF2OaoCPRTTbqUGfsCoNytEn56RRXtHA+yZrEfFiAJqUDywaU88sYJBe/odOZvHCNJOy
+ jVBxvIStTMJgt0gayf1gtJB+hLBr3WNLAum+Gcpvq8Omg1MsTk5F3+OznoaiY++l/2Io
+ 09fEVhHI5TGW1nKofVTCG32KMyCzRUFwlGXkeOrxhO3Yur/vQ+ctad1tzcBX3gsV4+jK
+ deGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :mime-version:content-transfer-encoding;
- bh=eWNe5H5elDplr9dzRmr+X+FDgyg6zJaEW0r6NO3ufz4=;
- b=JjhRvQ/0DyZ3lzKyI/1gf82xgATuoo0owoGCTPirS7kc6CtfL60P2aIHVcn/A3tE/N
- O6iK6rXMwPH5oWCECPNjvDd0Ifxe3ckcErx0HxgiJ5Rb3YHwpiMmAA3PuHe9gPKXj1j7
- kEm5eybn1k9PM2RRVdyzPbQnFNAZmJs6lVHuDXRYQApRkq+zRfLsE/JUIvcNjX4hyz9h
- Bqt9Tu7LH/9LlfDuH3MCjXbtJnqZtxWfdB/tnSwWhh/ilUJf7xoI0igqcNAQDw6wtJ/x
- 1yTSDDa2vJkAxsisblDaHULaEJdqxooykSadJMyAxRbJ/Q0Pd4ia89yZOtTR9mL/fKfu
- c7Lw==
-X-Gm-Message-State: APjAAAUJl0FjJMf+c7FV8BbizxZ0w0Kpx5wSiTst+nnvplOU5WKmB0HQ
- 1yh4TS+RmDVNKCldxC4wMMyIiRGC8n8=
-X-Google-Smtp-Source: APXvYqwb+p5rEO1k0ooEN4qo53ZEenm7JO9aJM8dtxWDyYL0UNpZVdGjnTiadXKEcCmVi0BoXbbS3A==
-X-Received: by 2002:a7b:cf12:: with SMTP id l18mr4153309wmg.66.1582704449670; 
- Wed, 26 Feb 2020 00:07:29 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:reply-to:mime-version:content-transfer-encoding;
+ bh=IzSm6B28RpmTh92RLe5K6IhynzM/MfGpTdfts4Zbi3E=;
+ b=NF8uDeD8LLwQy9vXXibt1Uk7MiDm17EOH/COwJVMYRQZgUzGrWAZzAcRHnQSRVAU1Q
+ ueThOXyfyajPiuOaCiC4lnrpFdyYElEjZDUyQEa47osmK0IQvHwkco0aCayl85MrPhRc
+ XiOg7xL/i4PmxtO85gJpm8t8Pz6bXtiAf0U1tZ/n2DUYt8QDDAzzJdflpl9dVwJYjy6L
+ Jrr+oDyRbnTS4lTWnNM+GRBm9XkSxF6rT3M1/appLVGBX1DFYFVCB1d8oxRrCRztC+Qm
+ 6/DNItOg8QcmNb4AZNaXF6677dUuWCGWrpXOHuUrZMXvuSg+RvbXE4v0LlGFPJs9x8Cv
+ IShw==
+X-Gm-Message-State: APjAAAXhyBZ/oRJT+B1ypRy/4COT1FkxcRGyDCeTK236tpZK55Pp6KK4
+ Dppgjt4ymq2HTVX9IDHea1IQBfilchY=
+X-Google-Smtp-Source: APXvYqxUsNPJO/mYLgrBDPF0dkgjzygO1uKz+zwfC/LqukWtCpVGw8FrIun5EjL26na5PJF3D/fCVQ==
+X-Received: by 2002:a05:600c:23cd:: with SMTP id
+ p13mr3861501wmb.28.1582704450765; 
+ Wed, 26 Feb 2020 00:07:30 -0800 (PST)
 Received: from xyz-CELSIUS-H720.fritz.box (x4d001122.dyn.telefonica.de.
  [77.0.17.34])
- by smtp.gmail.com with ESMTPSA id t3sm2147494wrx.38.2020.02.26.00.07.26
+ by smtp.gmail.com with ESMTPSA id t3sm2147494wrx.38.2020.02.26.00.07.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 00:07:29 -0800 (PST)
+ Wed, 26 Feb 2020 00:07:30 -0800 (PST)
 From: Oliver Barta <o.barta89@gmail.com>
 X-Google-Original-From: Oliver Barta <oliver.barta@aptiv.com>
 To: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Date: Wed, 26 Feb 2020 09:06:43 +0100
-Message-Id: <20200226080645.7421-1-oliver.barta@aptiv.com>
+Date: Wed, 26 Feb 2020 09:06:44 +0100
+Message-Id: <20200226080645.7421-2-oliver.barta@aptiv.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200226080645.7421-1-oliver.barta@aptiv.com>
+References: <20200226080645.7421-1-oliver.barta@aptiv.com>
 MIME-Version: 1.0
 X-Mailman-Approved-At: Wed, 26 Feb 2020 16:44:12 +0000
-Subject: [Intel-gfx] [PATCH 1/3] drm/i915: HDCP: fix Ri prime check done
- during link check
+Subject: [Intel-gfx] [PATCH 2/3] drm/i915: HDCP: fix Ri prime and R0 checks
+ during auth
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,30 +81,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The check was always succeeding even in case of a mismatch
-due to the HDCP_STATUS_ENC bit being set. Make sure both
-bits are actually set.
+Including HDCP_STATUS_ENC bit in the checks is pointless.
+It is simply not set at this point.
 
 Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
-Fixes: 2320175feb74 ("drm/i915: Implement HDCP for HDMI")
+Fixes: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation")
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 93ac0f296852..14912daad7ff 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -1526,7 +1526,8 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
- 	I915_WRITE(HDCP_RPRIME(dev_priv, cpu_transcoder, port), ri.reg);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 0fdbd39f6641..9d7af15e128e 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -689,7 +689,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
  
- 	/* Wait for Ri prime match */
--	if (wait_for(I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
-+	if (wait_for((I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
-+		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
- 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
- 		DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
- 			  I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder,
+ 	/* Wait for R0 ready */
+ 	if (wait_for(I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+-		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
++		     HDCP_STATUS_R0_READY, 1)) {
+ 		DRM_ERROR("Timed out waiting for R0 ready\n");
+ 		return -ETIMEDOUT;
+ 	}
+@@ -721,7 +721,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 		/* Wait for Ri prime match */
+ 		if (!wait_for(I915_READ(HDCP_STATUS(dev_priv, cpu_transcoder,
+ 						    port)) &
+-		    (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1))
++		    HDCP_STATUS_RI_MATCH, 1))
+ 			break;
+ 	}
+ 
 -- 
 2.20.1
 
