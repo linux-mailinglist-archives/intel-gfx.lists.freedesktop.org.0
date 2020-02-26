@@ -2,60 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FBBC16FBC3
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD4116FBE6
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:21:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09E946E45E;
-	Wed, 26 Feb 2020 10:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C903899F0;
+	Wed, 26 Feb 2020 10:21:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE05B6E46D
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:12:24 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id a5so2311732wmb.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:12:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=D+5EDmU/i4eaQLtcqAziX7PTmVAeWPa5JDX8ZST2Q+o=;
- b=H9eHSs51vcnyWb5a2lEYgdYRx1AdCA9OoWiJbjIq6slwC/vnNR6SS2KWd7qALfn50x
- ipcenmCxPG8psLkPKEY2Kz+4CU4TzzsiYB7xDHOBGFinsdLvv8ysQd0jLZib1Uif36lY
- 47nWbQUqDk9RUO58buZrqmqXev9jet63Dg2wx98Fb+fmJftD9JV7UWFR9XbazmklDewC
- sJ+9Wxnl541Rs8z3MCgWecEFGXSPiupkk7+6SWD5rbSNgfvmHSA6FtYmL3dUN1JExYVh
- BvaJwO4lFtJMS8LWUEiTIobO6FI3C72qP+1znV7AA4Jv4QSkMlxhGqdoQ9QvfFxnpZ/D
- rumg==
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 036508991C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:21:23 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id u6so2298804wrt.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:21:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=tKWM/NdAzG8m/+DUwDoGEGRF5Zik76ep3vvNYPf1i6o=;
+ b=CJ2KbxDQl4RYf7jJMlrwjoYqBi6c0rR8c3pH5AK/TtkeKJ6iPR0U1EkUjMOGcludZs
+ IhCD178BphZZYWRGqU5wSB6k9Nhp+xfbPgMVHo0xgkYNBYDUwgiZDtXnRW21CD+XDSOY
+ s9WhJ1HVnFpmorel3DK3p9pvyrduJQ7OUf7hE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=D+5EDmU/i4eaQLtcqAziX7PTmVAeWPa5JDX8ZST2Q+o=;
- b=aip0oC8aEiHtymlZggYWYfwbUKY8APhL25n0jctlGe62zGH8Zfe+UFTxQm/tf7Jcud
- X1aydzde5JATkwvLSuLnmynMijw1pL+19nrHO7VayEGhCCNHjo73tcoMxtPbELZCckX4
- ON7u3675+p7VKWz33kmEJDgJyvMi9bz9IloceHAqyVsAVVNm49znbG1htC5RGukicf0M
- xSyxhtfVvie4s+S1xYDC4H73/R5VTulk+OCMUoHYYMMIG6ozNk8PXMG8xu0G7/W2nAxJ
- K3o9yIAp8bsrlUVT822RRpnwiXAaadQNbVKO8hkjZ8TB53f0xJLj0vOohExiHmfPE+Oe
- P45Q==
-X-Gm-Message-State: APjAAAVIsSge7cJCcjHKTxxz5Fin3bvRecjM+cM2RpsgyM64n2cXqYCL
- cw4mU3tWhS3hGRIvfUUJDyyvV09T0mw=
-X-Google-Smtp-Source: APXvYqyTbLWrOIssTpC7fT2t1FRFkpYoBjf2y5CWs9Ig9UUZaL+M4ad86toNz/Yk08asDi6vlvUfoQ==
-X-Received: by 2002:a1c:488a:: with SMTP id v132mr4710097wma.153.1582711943578; 
- Wed, 26 Feb 2020 02:12:23 -0800 (PST)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.12.20
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=tKWM/NdAzG8m/+DUwDoGEGRF5Zik76ep3vvNYPf1i6o=;
+ b=QW4fAFsEI35PQX2aFUK8Hvnca9FAe/QKQ9t73ZfhrsC5JXCw0QqmAx95gjUhki7PuQ
+ 0YjPsvW3Fe3mGo0P9DWxnUf7ja97qEB3Pf+8gl+ES+PwsKpLvTB7oyy9462qLgJzwxdB
+ rqwks9i7mW3a3FCM+HrPrTjjLMqjkLQbxfA5pAXOQMTLBSH4QtHBEtbC9yiq/c3mdjjl
+ 0oacAh58qGhUgVBPSbg4U3mQ90RaH9IB+rHxDU5XWxtTJrCHar+UcvZD62ASHayecwQf
+ XX7uE9TewGbQBx0zIOMnO9f0OyHOBiInilGSCKIN4aXuNNCBL35DvJv0vHDxKudAGOOV
+ Ttcw==
+X-Gm-Message-State: APjAAAUgrVMZ9pYYPkAj3o8KQUilU6NxnizVk/lTC3gbQ+ZQ6XbWy5EO
+ 6O4f605u+zaHDLHq+nskKMWKSw==
+X-Google-Smtp-Source: APXvYqyIUnXv52tlOk45TgWvol5IBDaTP8JcM2U5IkklDxspVSN8lij9yAF3ikyVVhflyjqPhZIPhQ==
+X-Received: by 2002:a5d:6545:: with SMTP id z5mr4604525wrv.3.1582712481437;
+ Wed, 26 Feb 2020 02:21:21 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id h205sm2296559wmf.25.2020.02.26.02.21.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 02:12:23 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Wed, 26 Feb 2020 13:11:38 +0300
-Message-Id: <20200226101138.15435-11-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
-References: <20200226101138.15435-1-wambui.karugax@gmail.com>
+ Wed, 26 Feb 2020 02:21:20 -0800 (PST)
+Date: Wed, 26 Feb 2020 11:21:18 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Andrzej Hajda <a.hajda@samsung.com>
+Message-ID: <20200226102118.GS2363188@phenom.ffwll.local>
+References: <20200221210319.2245170-1-daniel.vetter@ffwll.ch>
+ <CGME20200221210354eucas1p1b9377cb5c64ae9f657191cf7d6c9e92c@eucas1p1.samsung.com>
+ <20200221210319.2245170-4-daniel.vetter@ffwll.ch>
+ <c088ce3b-d409-3a66-1f45-72f8ee9d9784@samsung.com>
+ <CAKMK7uE+8eQGfV=6t_3vV+L=fOL6zUm5CqSxWf26JNUSL54brg@mail.gmail.com>
+ <fd3ebf4e-8ba3-b2a5-20a4-9dd35f35c244@samsung.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/10] drm/i915/overlay: convert to drm_device
- based logging.
+Content-Disposition: inline
+In-Reply-To: <fd3ebf4e-8ba3-b2a5-20a4-9dd35f35c244@samsung.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
+ drm_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,156 +71,296 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_overlay.c.
-This transformation was achieved using the following coccinelle script:
-@@
-identifier fn, T;
-@@
+On Wed, Feb 26, 2020 at 10:21:17AM +0100, Andrzej Hajda wrote:
+> On 25.02.2020 16:03, Daniel Vetter wrote:
+> > On Tue, Feb 25, 2020 at 11:27 AM Andrzej Hajda <a.hajda@samsung.com> wr=
+ote:
+> >> Hi Daniel,
+> >>
+> >>
+> >> The patchset looks interesting.
+> >>
+> >>
+> >> On 21.02.2020 22:02, Daniel Vetter wrote:
+> >>> We have lots of these. And the cleanup code tends to be of dubious
+> >>> quality. The biggest wrong pattern is that developers use devm_, which
+> >>> ties the release action to the underlying struct device, whereas
+> >>> all the userspace visible stuff attached to a drm_device can long
+> >>> outlive that one (e.g. after a hotunplug while userspace has open
+> >>> files and mmap'ed buffers). Give people what they want, but with more
+> >>> correctness.
+> >>
+> >> I am not familiar with this stuff, so forgive me stupid questions.
+> >>
+> >> Is it documented how uapi should behave in such case?
+> >>
+> >> I guess the general rule is to return errors on most ioctls (ENODEV,
+> >> EIO?), and wait until userspace releases everything, as there is not
+> >> much more to do.
+> >>
+> >> If that is true what is the point of keeping these structs anyway -
+> >> trivial functions with small context data should do the job.
+> >>
+> >> I suspect I am missing something but I do not know what :)
+> > We could do the above (also needs unmapping of all mmaps, so userspace
+> > then gets SIGSEGV everywhere) and watch userspace crash&burn.
+> > Essentially if the kernel can't do this properly, then there's no hope
+> > that userspace will be any better.
+> =
 
-fn(...,struct drm_i915_private *T,...) {
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
+> =
 
-@@
-identifier fn, T;
-@@
+> We do not want to crash userspace. We just need to tell userspace that
+> the kernel objects userspace has references to are not valid.
+> =
 
-fn(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
+> For this two mechanism should be enough:
+> =
 
-Note that this converts DRM_DEBUG to drm_dbg().
+> - signal hot-unplug,
+> =
 
-Checkpatch warnings were addressed manually.
+> - report error (ENODEV for example) on any userspace requests (ioctls)
+> on invalid objects.
+> =
 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+> Expecting from userspace properly handling ioctl errors seems to be fair.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 5f1207dec10e..97754ad340b8 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -324,7 +324,7 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
- 	/* check for underruns */
- 	tmp = intel_de_read(dev_priv, DOVSTA);
- 	if (tmp & (1 << 17))
--		DRM_DEBUG("overlay underrun, DOVSTA: %x\n", tmp);
-+		drm_dbg(&dev_priv->drm, "overlay underrun, DOVSTA: %x\n", tmp);
- 
- 	rq = alloc_request(overlay, NULL);
- 	if (IS_ERR(rq))
-@@ -1069,7 +1069,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 
- 	overlay = dev_priv->overlay;
- 	if (!overlay) {
--		DRM_DEBUG("userspace bug: no overlay\n");
-+		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
- 		return -ENODEV;
- 	}
- 
-@@ -1093,7 +1093,8 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 	drm_modeset_lock_all(dev);
- 
- 	if (i915_gem_object_is_tiled(new_bo)) {
--		DRM_DEBUG_KMS("buffer used for overlay image can not be tiled\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "buffer used for overlay image can not be tiled\n");
- 		ret = -EINVAL;
- 		goto out_unlock;
- 	}
-@@ -1228,7 +1229,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
- 
- 	overlay = dev_priv->overlay;
- 	if (!overlay) {
--		DRM_DEBUG("userspace bug: no overlay\n");
-+		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
- 		return -ENODEV;
- 	}
- 
-@@ -1372,7 +1373,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
- 	update_reg_attrs(overlay, overlay->regs);
- 
- 	dev_priv->overlay = overlay;
--	DRM_INFO("Initialized overlay support.\n");
-+	drm_info(&dev_priv->drm, "Initialized overlay support.\n");
- 	return;
- 
- out_free:
--- 
-2.25.0
+The trouble is that maybe it's fair, practice says it's just not going to
+happen.
 
+> Regarding mmap I am not sure how to properly handle disappearing
+> devices, but this is common problem regardless which solution we use.
+
+signal handler wrapped around every mmap access. Which doesn't compose
+across libraries, so is essentially impossible.
+
+Note that e.g. GL's robustness extensions works exactly like this here
+too: GPU dies, kernel kills all your objects and contexts and everything.
+But the driver keeps "working". The only way to get information that
+everything is actually dead is by querying the robustness extension, which
+then will tell you what's happened.
+
+Again this is because it's impossible to make sure userspace actually
+checks error codes every where. It's also prohibitively expensive. vk goes
+as far as outright removing all error validation (at least as much as
+possible).
+
+> > Hence the idea is that we keep everything userspace facing still
+> > around, except it doesn't do much anymore. So connectors still there,
+> > but they look disconnected.
+> =
+
+> =
+
+> It looks like lying to userspace that physical connectors still exists.
+> If we want to lie we need good reason for that. What is that reason?
+> =
+
+> Why not just tell connectors are gone?
+
+Userspace sucks at handling hotunplugged connectors. Most of it is special
+case code for DP MST connectors only.
+
+> > Userspace can then hopefully eventually
+> > get around to processing the sysfs hotunplug event and remove the
+> > device from all its list. So the long-term idea is that a lot of stuff
+> > keeps working, except the driver doesn't talk to the hardware anymore.
+> > And we just sit around waiting for userspace to clean things up.
+> =
+
+> =
+
+> What does it mean "lot of stuff keeps working"? What drm driver can do
+> without hardware? Could you show some examples?
+
+Nothing will "work", the goal is simply for userspace to not explode in
+fire and take the entire desktop down with it.
+
+> > I guess once we have a bunch of the panel/usb drivers converted over
+> > we could indeed document how this is all supposed to work from an uapi
+> > pov. But right now a lot of this is all rather aspirational, I think
+> > only the recent simple display pipe based drivers implement this as
+> > described above.
+> >
+> >>> Mostly copied from devres.c, with types adjusted to fit drm_device and
+> >>> a few simplifications - I didn't (yet) copy over everything. Since
+> >>> the types don't match code sharing looked like a hopeless endeavour.
+> >>>
+> >>> For now it's only super simplified, no groups, you can't remove
+> >>> actions (but kfree exists, we'll need that soon). Plus all specific to
+> >>> drm_device ofc, including the logging. Which I didn't bother to make
+> >>> compile-time optional, since none of the other drm logging is compile
+> >>> time optional either.
+> >>
+> >> I saw in v1 thread that copy/paste is OK and merging back devres and
+> >> drmres can be done later, but experience shows that after short time
+> >> things get de-synchronized and merging process becomes quite painful.
+> >>
+> >> On the other side I guess it shouldn't be difficult to split devres in=
+to
+> >> consumer agnostic core and "struct device" helpers and then use the co=
+re
+> >> in drm.
+> >>
+> >> For example currently devres uses two fields from struct device:
+> >>
+> >>     spinlock_t        devres_lock;
+> >>     struct list_head    devres_head;
+> >>
+> >> Lets put it into separate struct:
+> >>
+> >> struct devres {
+> >>
+> >>     spinlock_t        lock;
+> >>     struct list_head    head;
+> >>
+> >> };
+> >>
+> >> And embed this struct into "struct device".
+> >>
+> >> Then convert all core devres functions to take "struct devres *"
+> >> argument instead of "struct device *" and then these core functions can
+> >> be usable in drm.
+> >>
+> >> Looks quite simple separation of abstraction (devres) and its consumer
+> >> (struct device).
+> >>
+> >> After such split one could think about changing name devres to somethi=
+ng
+> >> more reliable.
+> > There was a long discussion on v1 exactly about this, Greg's
+> > suggestion was to "just share a struct device". So we're not going to
+> > do this here, and the struct device seems like slight overkill and not
+> > a good enough fit here.
+> =
+
+> =
+
+> But my proposition is different, I want to get rid of "struct device"
+> from devres core - devres has nothing to do with device, it was bound to
+> it probably because it was convenient as device was the only client of
+> devres (I guess). Now if we want to have more devres clients abstracting
+> out devres from device seems quite natural. This way we will have proper
+> abstractions without code duplication.
+> =
+
+> Examples of devres related code according to my proposition:
+> =
+
+> // devres core
+> =
+
+> void devres_add(struct devres_head *dh, void *res)
+> {
+> =
+
+> =A0=A0 struct devres *dr =3D container_of(res, struct devres, data);
+> =
+
+> =A0=A0=A0 unsigned long flags;
+> =
+
+> =A0=A0=A0 spin_lock_irqsave(&dh->lock, flags);
+> =A0=A0=A0 add_dr(dev, &dr->node);
+> =A0=A0=A0 spin_unlock_irqrestore(&dh->lock, flags);
+> }
+> =
+
+> // device devres helper (non core)
+> =
+
+> struct clk *devm_clk_get(struct device *dev, const char *id)
+> {
+> =A0=A0=A0 struct clk **ptr, *clk;
+> =
+
+> =A0=A0=A0 ptr =3D devres_alloc(devm_clk_release, sizeof(*ptr), GFP_KERNEL=
+);
+> =A0=A0=A0 if (!ptr)
+> =A0=A0=A0 =A0=A0=A0 return ERR_PTR(-ENOMEM);
+> =
+
+> =A0=A0=A0 clk =3D clk_get(dev, id);
+> =A0=A0=A0 if (!IS_ERR(clk)) {
+> =A0=A0=A0 =A0=A0=A0 *ptr =3D clk;
+> =A0=A0=A0 =A0=A0=A0 devres_add(&dev->devres, ptr);
+> =A0=A0=A0 } else {
+> =A0=A0=A0 =A0=A0=A0 devres_free(ptr);
+> =A0=A0=A0 }
+> =
+
+> =A0=A0=A0 return clk;
+> }
+> =
+
+> =
+
+> Changes are cosmetic. But then you can easily add devres to drmdev:
+> =
+
+> struct drm_device {
+> =
+
+> =A0=A0 ...
+> =
+
+> +=A0=A0 struct devres_head devres;
+> =
+
+> };
+> =
+
+> // then copy/modify from your patch:
+> =
+
+> +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> +{
+> +	struct drmres *dr;
+> +
+> +	dr =3D alloc_dr(NULL, size, gfp, dev_to_node(dev->dev));
+> +	if (!dr)
+> +		return NULL;
+> +	dr->node.name =3D "kmalloc";
+> +
+> +	devres_add(&dev->devres, dr); // the only change is here
+> +
+> +	return dr->data;
+> +}
+> =
+
+> =
+
+> Btw, reimplemented add_dr is different of original add_dr and is similar
+> to original devres_add, so your implementation differs already from
+> original one, merging back these two will be painfull :)
+
+Oh I know, I guess I could go more into details about why exactly. One
+reason is that I want type-checking, so struct drm_device * instead of
+something else. At least for the userspace callbacks. That's going to be
+tough with your approach - kmalloc is easy, it's the _add_action which
+gets nasty with the type checking.
+
+The other is that we can use drm debugging, which gives us some nice
+consistency within drm at least.
+-Daniel
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
