@@ -1,31 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F0A9170643
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:39:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85E6C17064D
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:40:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2BF76EB32;
-	Wed, 26 Feb 2020 17:39:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0EBF6EB3B;
+	Wed, 26 Feb 2020 17:40:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EE85789B48;
- Wed, 26 Feb 2020 17:39:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E2252A41FB;
- Wed, 26 Feb 2020 17:39:19 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C630B6EB3B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 17:40:41 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 09:40:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="317490344"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga001.jf.intel.com with SMTP; 26 Feb 2020 09:40:39 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 26 Feb 2020 19:40:38 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 26 Feb 2020 19:40:36 +0200
+Message-Id: <20200226174038.8391-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 26 Feb 2020 17:39:19 -0000
-Message-ID: <158273875989.21012.8228494025710136935@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200225162329.558359-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225162329.558359-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Autotune_idle_timeouts?=
+Subject: [Intel-gfx] [PATCH 1/3] drm/i915: Fix 400 MHz FSB readout on elk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,30 +42,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: Autotune idle timeouts
-URL   : https://patchwork.freedesktop.org/series/73919/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-251374a10d4d drm/i915/gt: Autotune idle timeouts
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b81e4d9b5941 ("drm/i915/gt: Track engine round-trip times")'
-#12: 
-References: b81e4d9b5941 ("drm/i915/gt: Track engine round-trip times")
-
-total: 1 errors, 0 warnings, 0 checks, 95 lines checked
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkxv
+b2tzIGxpa2UgZWxrIHJlZGVmaW5lcyBzb21lIG9mIHRoZSBDTEtDRkcgRlNCIHZhbHVlcyB0bwpt
+YWtlIHJvb20gZm9yIDQwMCBNSHogRlNCLiBUaGUgc2V0dGluZyBvdmVybGFwcyB3aXRoIG9uZSBv
+Zgp0aGUgMjY2TUh6IHNldHRpbmdzICh3aGljaCBpcyBldmVuIGRvY3VtZW50ZWQgaW4gdGhlIGN0
+ZyBkb2NzLAphbmQgY29maXJtZWQgdG8gYmUgY29ycmVjdCBvbiBteSBjdGcpLiBTbyB3ZSBsaW1p
+dCB0aGUgc3BlY2lhbApjYXNlIHRvIGVsayBvbmx5LgoKVGhvdWdoIGl0IG1pZ2h0IGFsc28gYmUg
+dGhhdCB3ZSBoYXZlIHNvbWUga2luZCBvZiBkZXNrdG9wIHZzLgptb2JpbGUgZGlmZmVyZW5jZSBn
+b2luZyBvbiBoZXJlIGFzIGVnLiBib3RoIGczNSBhbmQgZWxrCnVzZSAweDAgZm9yIHRoZSAyNjYg
+TUh6IHNldHRpbmcsIHZzLiAweDYgdXNlZCBieSBjdGcpLiBUaGUKZzM1IGRvZXNuJ3QgbGV0IG1l
+IHNlbGVjdCA0MDBNSHogZm9yIHRoZSBGU0Igc3RyYXAgc28gY2FuJ3QKY29uZmlybSB3aGljaCB3
+YXkgaXQgd291bGQgZ28gaGVyZS4gQnV0IGFueXdheXMgYXMgaXQgc2VlbXMKb25seSBlbGsgaGFz
+IHRoZSA0MDBNSHogb3B0aW9uIHdlIHNob3VsZG4ndCBsb3NlIGFueXRoaW5nCmJ5IGxpbWl0aW5n
+IHRoZSBzcGVjaWFsIGNhc2UgdG8gaXQgYWxvbmUuCgpNeSBlYXJsaWVyIGV4cGVyaW1lbnRzIG9u
+IHRoaXMgYXBwZWFyIHRvIGhhdmUgYmVlbiBub25zZW5zZSBhcwp0aGUgY29tbWVudCBJIGFkZGVk
+IGNsYWltcyB0aGF0IEZTQiBzdHJhcCBvZiA0MDBNSHogcmVzdWx0cyBpbgphIHZhbHVlIG9mIDB4
+NCwgYnV0IEkndmUgbm93IHJldGVzdGVkIGl0IGFuZCBJIGRlZmluaXRlbHkgZ2V0IGEKdmFsdWUg
+b2YgMHg2IGluc3RlYWQuIFNvIGxldCdzIHJlbW92ZSB0aGF0IGJvZ3VzIGNvbW1lbnQuCgpTaWdu
+ZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsuYyB8IDkgKysr
+KysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAgfCA2ICst
+LS0tLQogMiBmaWxlcyBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pCgpk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jIGIv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCmluZGV4IDA3NDFkNjQz
+NDU1Yi4uZWIzMjBiMmNkOWY0IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2NkY2xrLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
+bF9jZGNsay5jCkBAIC0yNjgzLDggKzI2ODMsMTMgQEAgc3RhdGljIGludCBnNHhfaHJhd2Nsayhz
+dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJdTMyIGNsa2NmZzsKIAogCS8qIGhy
+YXdjbG9jayBpcyAxLzQgdGhlIEZTQiBmcmVxdWVuY3kgKi8KLQljbGtjZmcgPSBpbnRlbF9kZV9y
+ZWFkKGRldl9wcml2LCBDTEtDRkcpOwotCXN3aXRjaCAoY2xrY2ZnICYgQ0xLQ0ZHX0ZTQl9NQVNL
+KSB7CisJY2xrY2ZnID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgQ0xLQ0ZHKSAmIENMS0NGR19G
+U0JfTUFTSzsKKworCS8qIEVMSyBzZWVtcyB0byByZWRlZmluZSBzb21lIG9mIHRoZSB2YWx1ZXMg
+Ki8KKwlpZiAoSVNfRzQ1KGRldl9wcml2KSAmJiBjbGtjZmcgPT0gQ0xLQ0ZHX0ZTQl8xNjAwX0VM
+SykKKwkJcmV0dXJuIDQwMDAwMDsKKworCXN3aXRjaCAoY2xrY2ZnKSB7CiAJY2FzZSBDTEtDRkdf
+RlNCXzQwMDoKIAkJcmV0dXJuIDEwMDAwMDsKIAljYXNlIENMS0NGR19GU0JfNTMzOgpkaWZmIC0t
+Z2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2k5MTVfcmVnLmgKaW5kZXggZjQ1YjVlODZlYzYzLi5lYTBiZTUzNGQ3M2MgMTAwNjQ0Ci0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgKKysrIGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvaTkxNV9yZWcuaApAQCAtMzc2MCwxMiArMzc2MCw4IEBAIHN0YXRpYyBpbmxpbmUgYm9v
+bCBpOTE1X21taW9fcmVnX3ZhbGlkKGk5MTVfcmVnX3QgcmVnKQogI2RlZmluZSBDTEtDRkdfRlNC
+XzEwNjcJCQkJCSg2IDw8IDApCS8qIGhyYXdjbGsgMjY2ICovCiAjZGVmaW5lIENMS0NGR19GU0Jf
+MTA2N19BTFQJCQkJKDAgPDwgMCkJLyogaHJhd2NsayAyNjYgKi8KICNkZWZpbmUgQ0xLQ0ZHX0ZT
+Ql8xMzMzCQkJCQkoNyA8PCAwKQkvKiBocmF3Y2xrIDMzMyAqLwotLyoKLSAqIE5vdGUgdGhhdCBv
+biBhdCBsZWFzdCBvbiBFTEsgdGhlIGJlbG93IHZhbHVlIGlzIHJlcG9ydGVkIGZvciBib3RoCi0g
+KiAzMzMgYW5kIDQwMCBNSHogQklPUyBGU0Igc2V0dGluZywgYnV0IGdpdmVuIHRoYXQgdGhlIGdt
+Y2ggZGF0YXNoZWV0Ci0gKiBsaXN0cyBvbmx5IDIwMC8yNjYvMzMzIE1IeiBGU0IgYXMgc3VwcG9y
+dGVkIGxldCdzIGRlY29kZSBpdCBhcyAzMzMgTUh6LgotICovCiAjZGVmaW5lIENMS0NGR19GU0Jf
+MTMzM19BTFQJCQkJKDQgPDwgMCkJLyogaHJhd2NsayAzMzMgKi8KKyNkZWZpbmUgQ0xLQ0ZHX0ZT
+Ql8xNjAwX0VMSwkJCQkoNiA8PCAwKQkvKiBocmF3Y2xrIDQwMCAqLwogI2RlZmluZSBDTEtDRkdf
+RlNCX01BU0sJCQkJCSg3IDw8IDApCiAjZGVmaW5lIENMS0NGR19NRU1fNTMzCQkJCQkoMSA8PCA0
+KQogI2RlZmluZSBDTEtDRkdfTUVNXzY2NwkJCQkJKDIgPDwgNCkKLS0gCjIuMjQuMQoKX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
+bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
