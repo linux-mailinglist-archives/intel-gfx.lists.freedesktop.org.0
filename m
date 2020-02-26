@@ -2,39 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A3716FFB5
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 14:12:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D1CE16FFD8
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 14:22:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0396D6E28A;
-	Wed, 26 Feb 2020 13:12:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E37406E29D;
+	Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37DEE6E29D
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 13:12:43 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 05:12:42 -0800
-X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="231393617"
-Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
- ([10.251.85.135])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 26 Feb 2020 05:12:41 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200224155601.4125280-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <2eedf86b-967e-c6e5-28ba-984ee1d7ace0@linux.intel.com>
-Date: Wed, 26 Feb 2020 13:12:39 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 19C936E296;
+ Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 104D3A41FB;
+ Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200224155601.4125280-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Cleanup shadow batch after
- I915_EXEC_SECURE
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 13:22:18 -0000
+Message-ID: <158272333803.21009.3915113497809261039@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/i915=3A_Drop_assertion_that_a?=
+ =?utf-8?q?ctive-=3Efence_is_unchanged_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,48 +39,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 24/02/2020 15:56, Chris Wilson wrote:
-> Tidy up after a call to eb_parse() if a later bind fails.
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 3 ++-
->   1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 87fa5f42c39a..4f9c1f5a4ded 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2713,7 +2713,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   		vma = i915_gem_object_ggtt_pin(eb.batch->obj, NULL, 0, 0, 0);
->   		if (IS_ERR(vma)) {
->   			err = PTR_ERR(vma);
-> -			goto err_vma;
-> +			goto err_parse;
->   		}
->   
->   		eb.batch = vma;
-> @@ -2792,6 +2792,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
->   err_batch_unpin:
->   	if (eb.batch_flags & I915_DISPATCH_SECURE)
->   		i915_vma_unpin(eb.batch);
-> +err_parse:
->   	if (eb.batch->private)
->   		intel_engine_pool_put(eb.batch->private);
->   err_vma:
-> 
+Series: series starting with [01/11] drm/i915: Drop assertion that active->fence is unchanged (rev2)
+URL   : https://patchwork.freedesktop.org/series/73885/
+State : failure
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Summary ==
 
-Regards,
+CI Bug Log - changes from CI_DRM_8002_full -> Patchwork_16699_full
+====================================================
 
-Tvrtko
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16699_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16699_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16699_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@mock_requests:
+    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8002/shard-tglb7/igt@i915_selftest@mock_requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb5/igt@i915_selftest@mock_requests.html
+
+  * igt@runner@aborted:
+    - shard-tglb:         NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb5/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16699_full that come from known issues:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_pm_rpm@universal-planes-dpms:
+    - shard-tglb:         [TIMEOUT][4] ([fdo#112126]) -> [TIMEOUT][5] ([fdo#112126] / [i915#1281]) +3 similar issues
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8002/shard-tglb5/igt@i915_pm_rpm@universal-planes-dpms.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb1/igt@i915_pm_rpm@universal-planes-dpms.html
+
+  
+  [fdo#112126]: https://bugs.freedesktop.org/show_bug.cgi?id=112126
+  [i915#1281]: https://gitlab.freedesktop.org/drm/intel/issues/1281
+
+
+Participating hosts (8 -> 8)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8002 -> Patchwork_16699
+
+  CI-20190529: 20190529
+  CI_DRM_8002: 9a201f217db6b51322008733fbc3e77e16c5dbfe @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5464: 8cf2f8684992052ab89de1cf328c418224c0c2a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16699: b79648161fa451aa6a3d33dead10dc62a5dec136 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
