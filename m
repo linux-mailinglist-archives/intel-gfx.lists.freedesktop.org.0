@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D1CE16FFD8
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 14:22:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFABF170093
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 14:57:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E37406E29D;
-	Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF2D6E94C;
+	Wed, 26 Feb 2020 13:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 19C936E296;
- Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1AE266E94C;
+ Wed, 26 Feb 2020 13:57:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 104D3A41FB;
- Wed, 26 Feb 2020 13:22:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1263CA0099;
+ Wed, 26 Feb 2020 13:57:54 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 26 Feb 2020 13:22:18 -0000
-Message-ID: <158272333803.21009.3915113497809261039@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Wed, 26 Feb 2020 13:57:54 -0000
+Message-ID: <158272547404.21011.12507076475620137402@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200225082233.274530-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/11=5D_drm/i915=3A_Drop_assertion_that_a?=
- =?utf-8?q?ctive-=3Efence_is_unchanged_=28rev2=29?=
+References: <20200225130728.20198-1-jani.nikula@intel.com>
+In-Reply-To: <20200225130728.20198-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_significantly_reduce_the_use_of_=3Cdrm/i915=5Fdrm=2Eh?=
+ =?utf-8?b?PiAocmV2Mik=?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,87 +48,105 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [01/11] drm/i915: Drop assertion that active->fence is unchanged (rev2)
-URL   : https://patchwork.freedesktop.org/series/73885/
-State : failure
+Series: drm/i915: significantly reduce the use of <drm/i915_drm.h> (rev2)
+URL   : https://patchwork.freedesktop.org/series/73902/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8002_full -> Patchwork_16699_full
+CI Bug Log - changes from CI_DRM_8005 -> Patchwork_16704
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_16699_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16699_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/index.html
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16699_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@mock_requests:
-    - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8002/shard-tglb7/igt@i915_selftest@mock_requests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb5/igt@i915_selftest@mock_requests.html
-
-  * igt@runner@aborted:
-    - shard-tglb:         NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb5/igt@runner@aborted.html
-
-  
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_16699_full that come from known issues:
+  Here are the changes found in Patchwork_16704 that come from known issues:
 
 ### IGT changes ###
 
-#### Warnings ####
+#### Issues hit ####
 
-  * igt@i915_pm_rpm@universal-planes-dpms:
-    - shard-tglb:         [TIMEOUT][4] ([fdo#112126]) -> [TIMEOUT][5] ([fdo#112126] / [i915#1281]) +3 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8002/shard-tglb5/igt@i915_pm_rpm@universal-planes-dpms.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/shard-tglb1/igt@i915_pm_rpm@universal-planes-dpms.html
+  * igt@i915_selftest@live_active:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([i915#765])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-icl-y/igt@i915_selftest@live_active.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-icl-y/igt@i915_selftest@live_active.html
+
+  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled-mismatch.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled-mismatch.html
 
   
-  [fdo#112126]: https://bugs.freedesktop.org/show_bug.cgi?id=112126
-  [i915#1281]: https://gitlab.freedesktop.org/drm/intel/issues/1281
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-guc:         [INCOMPLETE][5] ([fdo#106070] / [i915#424]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-cfl-guc/igt@i915_selftest@live_gem_contexts.html
+
+  * igt@i915_selftest@live_gt_lrc:
+    - {fi-tgl-u}:         [DMESG-FAIL][7] ([i915#1233]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-tgl-u/igt@i915_selftest@live_gt_lrc.html
+
+  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-icl-u2:          [FAIL][11] ([i915#217]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8005/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#765]: https://gitlab.freedesktop.org/drm/intel/issues/765
 
 
-Participating hosts (8 -> 8)
+Participating hosts (49 -> 45)
 ------------------------------
 
-  No changes in participating hosts
+  Additional (1): fi-bdw-gvtdvm 
+  Missing    (5): fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8002 -> Patchwork_16699
+  * Linux: CI_DRM_8005 -> Patchwork_16704
 
   CI-20190529: 20190529
-  CI_DRM_8002: 9a201f217db6b51322008733fbc3e77e16c5dbfe @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5464: 8cf2f8684992052ab89de1cf328c418224c0c2a7 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16699: b79648161fa451aa6a3d33dead10dc62a5dec136 @ git://anongit.freedesktop.org/gfx-ci/linux
+  CI_DRM_8005: 81f641f60edbfa1ccb169689206f0af360a06e31 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5466: ffa98bc80f2f76b212d10b72ef7b93f842dbcb5a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16704: 50cad9bb5ff27db0745fccc3a0dd365153e90d17 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+50cad9bb5ff2 drm/i915: significantly reduce the use of <drm/i915_drm.h>
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16699/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16704/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
