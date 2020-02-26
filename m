@@ -2,40 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB39D17028A
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 16:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0739C17027A
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 16:30:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 099886EA88;
-	Wed, 26 Feb 2020 15:32:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D55B6EA84;
+	Wed, 26 Feb 2020 15:30:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA876EA88
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:32:25 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 07:32:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="226757780"
-Received: from unknown (HELO intel.com) ([10.223.74.178])
- by orsmga007.jf.intel.com with ESMTP; 26 Feb 2020 07:32:22 -0800
-Date: Wed, 26 Feb 2020 20:54:08 +0530
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200226152407.GA18198@intel.com>
-References: <20200224124004.26712-1-anshuman.gupta@intel.com>
- <20200224124004.26712-5-anshuman.gupta@intel.com>
- <20200225150639.GD13686@intel.com>
- <20200226150943.GL13686@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D30C96EA84
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:30:51 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20359042-1500050 
+ for multiple; Wed, 26 Feb 2020 15:30:44 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 26 Feb 2020 15:30:44 +0000
+Message-Id: <20200226153044.1547829-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200226150943.GL13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915: Fix wrongly populated
- plane possible_crtcs bit mask
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Disable heartbeat around
+ manual pulse tests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,83 +37,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMjAyMC0wMi0yNiBhdCAxNzowOTo0MyArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
-IE9uIFR1ZSwgRmViIDI1LCAyMDIwIGF0IDA1OjA2OjM5UE0gKzAyMDAsIFZpbGxlIFN5cmrDpGzD
-pCB3cm90ZToKPiA+IE9uIE1vbiwgRmViIDI0LCAyMDIwIGF0IDA2OjEwOjAxUE0gKzA1MzAsIEFu
-c2h1bWFuIEd1cHRhIHdyb3RlOgo+ID4gPiBBcyBhIGRpc2FibGVkIHBpcGUgaW4gcGlwZV9tYXNr
-IGlzIG5vdCBoYXZpbmcgYSB2YWxpZCBpbnRlbCBjcnRjLAo+ID4gPiBkcml2ZXIgd3JvbmdseSBw
-b3B1bGF0ZXMgdGhlIHBvc3NpYmxlX2NydGNzIG1hc2sgd2hpbGUgaW5pdGlhbGl6aW5nCj4gPiA+
-IHRoZSBwbGFuZSBmb3IgYSBDUlRDLiBGaXhpbmcgdXAgdGhlIHBsYW5lIHBvc3NpYmxlX2NydGNz
-IG1hc2suCj4gPiA+IAo+ID4gPiBjaGFuZ2VzIHNpbmNlIFJGQzoKPiA+ID4gLSBTaW1wbGlmeSB0
-aGUgcG9zc2libGVfY3J0Y3MgaW5pdGlhbGl6YXRpb24uIFtWaWxsZV0KPiA+ID4gdjI6Cj4gPiA+
-IC0gUmVtb3ZlZCB0aGUgdW5uZWNlc3Nhcnkgc3RhY2sgZ2FyYmFnZSBwb3NzaWJsZV9jcnRjcyB0
-bwo+ID4gPiAgIGRybV91bml2ZXJzYWxfcGxhbmVfaW5pdC4gW1ZpbGxlXQo+ID4gPiB2MzoKPiA+
-ID4gLSBDb21iaW5lIHRoZSBpbnRlbF9jcnRjIGFzc2lnbm1lbnQgYW5kIGRlY2xhcmF0aW9uLiBb
-VmlsbGVdCj4gPiA+IAo+ID4gPiBDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxp
-bnV4LmludGVsLmNvbT4KPiA+ID4gUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
-c3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiA+IFNpZ25lZC1vZmYtYnk6IEFuc2h1bWFuIEd1
-cHRhIDxhbnNodW1hbi5ndXB0YUBpbnRlbC5jb20+Cj4gPiA+IC0tLQo+ID4gPiAgZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCAxMyArKysrKysrKysrKysrCj4g
-PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jICB8ICA1ICst
-LS0tCj4gPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDQgZGVsZXRpb25z
-KC0pCj4gPiA+IAo+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYwo+ID4gPiBpbmRleCBhYWNiZGM0N2ZjZWEuLjQxYTBmMmU5YjZiOSAxMDA2NDQKPiA+
-ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiA+
-ID4gQEAgLTE2NjI4LDYgKzE2NjI4LDE4IEBAIHN0YXRpYyB2b2lkIGludGVsX2NydGNfZnJlZShz
-dHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YykKPiA+ID4gIAlrZnJlZShjcnRjKTsKPiA+ID4gIH0KPiA+
-ID4gIAo+ID4gPiArc3RhdGljIHZvaWQgaW50ZWxfcGxhbmVfcG9zc2libGVfY3J0Y3NfaW5pdChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCj4gPiA+ICt7Cj4gPiA+ICsJc3RydWN0
-IGludGVsX3BsYW5lICpwbGFuZTsKPiA+ID4gKwo+ID4gPiArCWZvcl9lYWNoX2ludGVsX3BsYW5l
-KCZkZXZfcHJpdi0+ZHJtLCBwbGFuZSkgewo+ID4gPiArCQlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0
-YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9wcml2LAo+ID4gPiArCQkJCQkJCQkgIHBs
-YW5lLT5waXBlKTsKPiA+ID4gKwo+ID4gPiArCQlwbGFuZS0+YmFzZS5wb3NzaWJsZV9jcnRjcyA9
-IGRybV9jcnRjX21hc2soJmNydGMtPmJhc2UpOwo+ID4gPiArCX0KPiA+ID4gK30KPiA+ID4gKwo+
-ID4gPiAgc3RhdGljIGludCBpbnRlbF9jcnRjX2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2LCBlbnVtIHBpcGUgcGlwZSkKPiA+ID4gIHsKPiA+ID4gIAlzdHJ1Y3QgaW50ZWxf
-cGxhbmUgKnByaW1hcnksICpjdXJzb3I7Cj4gPiA+IEBAIC0xNzg0Myw2ICsxNzg1NSw3IEBAIGlu
-dCBpbnRlbF9tb2Rlc2V0X2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4gPiA+
-ICAJCX0KPiA+ID4gIAl9Cj4gPiA+ICAKPiA+ID4gKwlpbnRlbF9wbGFuZV9wb3NzaWJsZV9jcnRj
-c19pbml0KGk5MTUpOwo+ID4gPiAgCWludGVsX3NoYXJlZF9kcGxsX2luaXQoZGV2KTsKPiA+ID4g
-IAlpbnRlbF91cGRhdGVfZmRpX3BsbF9mcmVxKGk5MTUpOwo+ID4gPiAgCj4gPiA+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwo+ID4gPiBpbmRleCA3YWJlZWZl
-OGRjZTUuLmI1YzdiMjcxYTFhNCAxMDA2NDQKPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYwo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCj4gPiA+IEBAIC0zMDExLDcgKzMwMTEsNiBAQCBza2xf
-dW5pdmVyc2FsX3BsYW5lX2NyZWF0ZShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
-Cj4gPiA+ICAJc3RydWN0IGludGVsX3BsYW5lICpwbGFuZTsKPiA+ID4gIAllbnVtIGRybV9wbGFu
-ZV90eXBlIHBsYW5lX3R5cGU7Cj4gPiA+ICAJdW5zaWduZWQgaW50IHN1cHBvcnRlZF9yb3RhdGlv
-bnM7Cj4gPiA+IC0JdW5zaWduZWQgaW50IHBvc3NpYmxlX2NydGNzOwo+ID4gPiAgCWNvbnN0IHU2
-NCAqbW9kaWZpZXJzOwo+ID4gPiAgCWNvbnN0IHUzMiAqZm9ybWF0czsKPiA+ID4gIAlpbnQgbnVt
-X2Zvcm1hdHM7Cj4gPiA+IEBAIC0zMDY2LDEwICszMDY1LDggQEAgc2tsX3VuaXZlcnNhbF9wbGFu
-ZV9jcmVhdGUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ID4gPiAgCWVsc2UK
-PiA+ID4gIAkJcGxhbmVfdHlwZSA9IERSTV9QTEFORV9UWVBFX09WRVJMQVk7Cj4gPiA+ICAKPiA+
-ID4gLQlwb3NzaWJsZV9jcnRjcyA9IEJJVChwaXBlKTsKPiA+ID4gLQo+ID4gPiAgCXJldCA9IGRy
-bV91bml2ZXJzYWxfcGxhbmVfaW5pdCgmZGV2X3ByaXYtPmRybSwgJnBsYW5lLT5iYXNlLAo+ID4g
-PiAtCQkJCSAgICAgICBwb3NzaWJsZV9jcnRjcywgcGxhbmVfZnVuY3MsCj4gPiA+ICsJCQkJICAg
-ICAgIDAsIHBsYW5lX2Z1bmNzLAo+ID4gPiAgCQkJCSAgICAgICBmb3JtYXRzLCBudW1fZm9ybWF0
-cywgbW9kaWZpZXJzLAo+ID4gPiAgCQkJCSAgICAgICBwbGFuZV90eXBlLAo+ID4gPiAgCQkJCSAg
-ICAgICAicGxhbmUgJWQlYyIsIHBsYW5lX2lkICsgMSwKPiA+IAo+ID4gTG9va3MgbGlrZSB5b3Ug
-bWlzc2VkIGFsbCB0aGUgb3RoZXIgcGxhY2VzIHRoYXQgZG8gdGhpczoKPiA+IGludGVsX3ByaW1h
-cnlfcGxhbmVfY3JlYXRlKCksIGludGVsX3Nwcml0ZV9wbGFuZV9jcmVhdGUoKSwKPiA+IGludGVs
-X2N1cnNvcl9wbGFuZV9jcmVhdGUoKS4KWWVzIGkgbWlzc2VkIGludGVsX2N1cnNvcl9wbGFuZV9j
-cmVhdGUoKSwgYnV0IG90aGVyIHR3byBzcHJpdGUgYW5kCnByaW1hcnkgdXNpbmcgdGhlIHNrbF91
-bml2ZXJzYWxfcGxhbmVfY3JlYXRlKCkgZm9yIGdlbiA+IGdlbjkgYW5kCmhhdmluZyBlYXJseSBy
-ZXR1cm4sIGNvbnNpZGVyaW5nIHRoYXQgaSBoYXZlIG1vZGllZmllZCBvbmx5IApza2xfdW5pdmVy
-c2FsX3BsYW5lX2NyZWF0ZSgpIGFuZCBvdmVybG9va2VkIGludGVsX2N1cnNvcl9wbGFuZV9jcmVh
-dGUoKS4KU2hhbGwgaSBmaXggdGhpcyBmb3IgYWxsICpwbGFuZV9jcmVhdGUoKSBvciBqdXN0IGZv
-ciBjdXJzb3I/Cj4gPiAKPiA+IEFwYXJ0IGZyb20gdGhhdCBldmVyeXRoaW5nIGluIHRoZSBzZXJp
-ZXMgbG9va3MgcmVhZHkuCj4gCj4gSSBwdXNoZWQgdGhlIG90aGVyIHBhdGNoZXMgdG8gZGlucS4g
-VGhhbmtzLgpUaGFua3MgZm9yIG1lcmdpbmcgdGhlIHBhY3RoZXMuClRoYW5rcywKQW5zaHVtYW4g
-R3VwdGEuCj4gCj4gLS0gCj4gVmlsbGUgU3lyasOkbMOkCj4gSW50ZWwKX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+Still chasing the mystery of the stray idle flush, let's ensure that the
+heartbeat does not run at the same time as our test and confuse us.
+
+References: https://gitlab.freedesktop.org/drm/intel/issues/541
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../drm/i915/gt/selftest_engine_heartbeat.c   | 30 ++++++++++++++++---
+ drivers/gpu/drm/i915/selftests/i915_active.c  |  3 +-
+ 2 files changed, 27 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+index 43d4d589749f..697114dd1f47 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_heartbeat.c
+@@ -142,6 +142,24 @@ static int __live_idle_pulse(struct intel_engine_cs *engine,
+ 	return err;
+ }
+ 
++static void engine_heartbeat_disable(struct intel_engine_cs *engine,
++				     unsigned long *saved)
++{
++	*saved = engine->props.heartbeat_interval_ms;
++	engine->props.heartbeat_interval_ms = 0;
++
++	intel_engine_pm_get(engine);
++	intel_engine_park_heartbeat(engine);
++}
++
++static void engine_heartbeat_enable(struct intel_engine_cs *engine,
++				    unsigned long saved)
++{
++	intel_engine_pm_put(engine);
++
++	engine->props.heartbeat_interval_ms = saved;
++}
++
+ static int live_idle_flush(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+@@ -152,9 +170,11 @@ static int live_idle_flush(void *arg)
+ 	/* Check that we can flush the idle barriers */
+ 
+ 	for_each_engine(engine, gt, id) {
+-		intel_engine_pm_get(engine);
++		unsigned long heartbeat;
++
++		engine_heartbeat_disable(engine, &heartbeat);
+ 		err = __live_idle_pulse(engine, intel_engine_flush_barriers);
+-		intel_engine_pm_put(engine);
++		engine_heartbeat_enable(engine, heartbeat);
+ 		if (err)
+ 			break;
+ 	}
+@@ -172,9 +192,11 @@ static int live_idle_pulse(void *arg)
+ 	/* Check that heartbeat pulses flush the idle barriers */
+ 
+ 	for_each_engine(engine, gt, id) {
+-		intel_engine_pm_get(engine);
++		unsigned long heartbeat;
++
++		engine_heartbeat_disable(engine, &heartbeat);
+ 		err = __live_idle_pulse(engine, intel_engine_pulse);
+-		intel_engine_pm_put(engine);
++		engine_heartbeat_enable(engine, heartbeat);
+ 		if (err && err != -ENODEV)
+ 			break;
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index 067e30b8927f..3a37c67ab6c4 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -331,8 +331,7 @@ void i915_active_unlock_wait(struct i915_active *ref)
+ 	}
+ 
+ 	/* And wait for the retire callback */
+-	spin_lock_irq(&ref->tree_lock);
+-	spin_unlock_irq(&ref->tree_lock);
++	spin_unlock_wait(&ref->tree_lock);
+ 
+ 	/* ... which may have been on a thread instead */
+ 	flush_work(&ref->work);
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
