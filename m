@@ -1,34 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FF6E1709C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 21:35:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32B541709C5
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 21:35:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 880536EBC0;
-	Wed, 26 Feb 2020 20:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63A856EBC1;
+	Wed, 26 Feb 2020 20:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F15A66EBBB
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 20:35:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A2B66EBBB
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 20:35:32 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 12:35:31 -0800
+ 26 Feb 2020 12:35:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="238154924"
+X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="238154938"
 Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 26 Feb 2020 12:35:30 -0800
+ by orsmga003.jf.intel.com with ESMTP; 26 Feb 2020 12:35:31 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Feb 2020 22:34:42 +0200
-Message-Id: <20200226203455.23032-1-imre.deak@intel.com>
+Date: Wed, 26 Feb 2020 22:34:43 +0200
+Message-Id: <20200226203455.23032-2-imre.deak@intel.com>
 X-Mailer: git-send-email 2.23.1
+In-Reply-To: <20200226203455.23032-1-imre.deak@intel.com>
+References: <20200226203455.23032-1-imre.deak@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/13] drm/i915: Clean up DPLL output/refclock
- tracking
+Subject: [Intel-gfx] [PATCH 01/13] drm/i915: Fix bounds check in
+ intel_get_shared_dpll_id()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,39 +48,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patchset moves the platforms specific functions calculating the
-DPLL frequency next to the counterpart functions calculating DPLL params
-from a given frequency.
+Fix an off-by-one error in the upper-bound check and while at it clear
+up a bit the function.
 
-It also adds a way to track the DPLL reference clock frequencies in a
-unified way across platforms.
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-Imre Deak (13):
-  drm/i915: Fix bounds check in intel_get_shared_dpll_id()
-  drm/i915: Move DPLL HW readout/sanitize fns to intel_dpll_mgr.c
-  drm/i915: Keep the global DPLL state in a DPLL specific struct
-  drm/i915: Move the DPLL vfunc inits after the func defines
-  drm/i915/hsw: Use the DPLL ID when calculating DPLL clock
-  drm/i915: Move DPLL frequency calculation to intel_dpll_mgr.c
-  drm/i915/skl: Parametrize the DPLL ref clock instead of open-coding it
-  drm/i915/hsw: Rename the get HDMI/DP DPLL funcs to get WRPLL/LCPLL
-  drm/i915/hsw: Split out the SPLL parameter calculation
-  drm/i915/hsw: Split out the WRPLL,LCPLL,SPLL frequency calculation
-  drm/i915/skl,cnl: Split out the WRPLL/LCPLL frequency calculation
-  drm/i915/hsw: Use the read-out WRPLL/SPLL state instead of reading out
-    again
-  drm/i915: Unify the DPLL ref clock frequency tracking
-
- drivers/gpu/drm/i915/display/icl_dsi.c        |  18 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      | 455 +---------
- drivers/gpu/drm/i915/display/intel_ddi.h      |   2 -
- drivers/gpu/drm/i915/display/intel_display.c  |  52 +-
- .../drm/i915/display/intel_display_debugfs.c  |   9 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 808 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   8 +-
- drivers/gpu/drm/i915/i915_drv.h               |  27 +-
- 8 files changed, 736 insertions(+), 643 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index e5bfe5245276..6cf291754390 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -103,11 +103,14 @@ enum intel_dpll_id
+ intel_get_shared_dpll_id(struct drm_i915_private *dev_priv,
+ 			 struct intel_shared_dpll *pll)
+ {
+-	if (drm_WARN_ON(&dev_priv->drm, pll < dev_priv->shared_dplls ||
+-			pll > &dev_priv->shared_dplls[dev_priv->num_shared_dpll]))
++	long pll_idx = pll - dev_priv->shared_dplls;
++
++	if (drm_WARN_ON(&dev_priv->drm,
++			pll_idx < 0 ||
++			pll_idx >= dev_priv->num_shared_dpll))
+ 		return -1;
+ 
+-	return (enum intel_dpll_id) (pll - dev_priv->shared_dplls);
++	return pll_idx;
+ }
+ 
+ /* For ILK+ */
 -- 
 2.23.1
 
