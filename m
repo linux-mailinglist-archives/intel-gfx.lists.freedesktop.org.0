@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C734017057D
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:06:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C8C817059B
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 18:08:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28B936EB15;
-	Wed, 26 Feb 2020 17:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0686EB1D;
+	Wed, 26 Feb 2020 17:08:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E70286EB15
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 17:06:43 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20360244-1500050 for multiple; Wed, 26 Feb 2020 17:06:38 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D57F96EAF2;
+ Wed, 26 Feb 2020 17:08:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CD47BA47E6;
+ Wed, 26 Feb 2020 17:08:43 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200225082233.274530-1-chris@chris-wilson.co.uk>
- <20200225082233.274530-9-chris@chris-wilson.co.uk>
- <d29def7f-7be2-2415-3c09-b3bacd6035ce@linux.intel.com>
-In-Reply-To: <d29def7f-7be2-2415-3c09-b3bacd6035ce@linux.intel.com>
-Message-ID: <158273679788.4613.6366893168115680815@skylake-alporthouse-com>
-Date: Wed, 26 Feb 2020 17:06:37 +0000
-Subject: Re: [Intel-gfx] [PATCH 09/11] drm/i915/gem: Consolidate
- ctx->engines[] release
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
+Date: Wed, 26 Feb 2020 17:08:43 -0000
+Message-ID: <158273692381.21009.16116092661060299748@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200225140347.GA22864@embeddedor>
+In-Reply-To: <20200225140347.GA22864@embeddedor>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_Replace_zero-length_array_with_flexible-array_member?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,142 +38,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-26 16:41:03)
-> 
-> On 25/02/2020 08:22, Chris Wilson wrote:
-> > Use the same engine_idle_release() routine for cleaning all old
-> > ctx->engine[] state, closing any potential races with concurrent execbuf
-> > submission.
-> > 
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1241
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> > Reorder set-closed/engine_idle_release to avoid premature killing
-> > Take a reference to prevent racing context free with engine cleanup
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 199 +++++++++++---------
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.h |   1 -
-> >   2 files changed, 108 insertions(+), 92 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > index adcebf22a3d3..0862a77d81ed 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> > @@ -243,7 +243,6 @@ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
-> >               if (!e->engines[count])
-> >                       continue;
-> >   
-> > -             RCU_INIT_POINTER(e->engines[count]->gem_context, NULL);
-> >               intel_context_put(e->engines[count]);
-> >       }
-> >       kfree(e);
-> > @@ -256,7 +255,11 @@ static void free_engines(struct i915_gem_engines *e)
-> >   
-> >   static void free_engines_rcu(struct rcu_head *rcu)
-> >   {
-> > -     free_engines(container_of(rcu, struct i915_gem_engines, rcu));
-> > +     struct i915_gem_engines *engines =
-> > +             container_of(rcu, struct i915_gem_engines, rcu);
-> > +
-> > +     i915_sw_fence_fini(&engines->fence);
-> 
-> This was missing so far?
+== Series Details ==
 
-Yes. Completely missed it until throwing it in a loop long enough for
-kmalloc recycling to catch up. And having ODEBUG enabled helps!
+Series: drm: Replace zero-length array with flexible-array member
+URL   : https://patchwork.freedesktop.org/series/73916/
+State : warning
 
-> > +static int engines_notify(struct i915_sw_fence *fence,
-> > +                       enum i915_sw_fence_notify state)
-> > +{
-> > +     struct i915_gem_engines *engines =
-> > +             container_of(fence, typeof(*engines), fence);
-> > +
-> > +     switch (state) {
-> > +     case FENCE_COMPLETE:
-> > +             if (!list_empty(&engines->link)) {
-> > +                     struct i915_gem_context *ctx = engines->ctx;
-> > +                     unsigned long flags;
-> > +
-> > +                     spin_lock_irqsave(&ctx->stale.lock, flags);
-> > +                     list_del(&engines->link);
-> > +                     spin_unlock_irqrestore(&ctx->stale.lock, flags);
-> > +             }
-> > +             break;
-> > +
-> > +     case FENCE_FREE:
-> > +             i915_gem_context_put(engines->ctx);
-> 
-> This put can go under FENCE_COMPLETE?
+== Summary ==
 
-Yes. Either works, I thought it was more of a release operation. But if
-you would rather FENCE_FREE == just call_rcu(free_engines_rcu), I can see
-the elegance in that.
+$ dim checkpatch origin/drm-tip
+bdffb4ce0539 drm: Replace zero-length array with flexible-array member
+-:171: CHECK:CAMELCASE: Avoid CamelCase: <SVGA3dBox>
+#171: FILE: drivers/gpu/drm/vmwgfx/vmwgfx_surface.c:82:
++	SVGA3dBox boxes[];
 
-> > +             init_rcu_head(&engines->rcu);
-> > +             call_rcu(&engines->rcu, free_engines_rcu);
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> > +static void engines_idle_release(struct i915_gem_context *ctx,
-> > +                              struct i915_gem_engines *engines)
-> > +{
-> > +     struct i915_gem_engines_iter it;
-> > +     struct intel_context *ce;
-> > +
-> > +     i915_sw_fence_init(&engines->fence, engines_notify);
-> > +     INIT_LIST_HEAD(&engines->link);
-> > +
-> > +     engines->ctx = i915_gem_context_get(ctx);
-> > +
-> > +     for_each_gem_engine(ce, engines, it) {
-> > +             int err = 0;
-> > +
-> > +             RCU_INIT_POINTER(ce->gem_context, NULL);
-> > +
-> > +             if (!ce->timeline) { /* XXX serialisation with execbuf? */
-> > +                     intel_context_set_banned(ce);
-> 
-> What is banned for?
+total: 0 errors, 0 warnings, 1 checks, 127 lines checked
 
-Banned is how we prevent further execution. The problem here is making
-sure we catch concurrent execbuf allocating/pinning the context. This
-does not and leaves a window in which between the !ce->timline and
-set_banned the other thread could see in with the hanging batch :|
-
-On the other hand, we don't want to mark the context as banned too
-early. So we unfortunately can't mark it unconditionally.
-
-> > +                     continue;
-> > +             }
-> > +
-> > +             mutex_lock(&ce->timeline->mutex);
-> > +             if (!list_empty(&ce->timeline->requests)) {
-> > +                     struct i915_request *rq;
-> > +
-> > +                     rq = list_last_entry(&ce->timeline->requests,
-> > +                                          typeof(*rq),
-> > +                                          link);
-> 
-> Why no more i915_active_fence_get?
-
-I was looking for something concrete with which we can serialise with
-execbuf, the timeline mutex is one and we can check for a late ban
-inside execbuf.
-
-But there's still the tiny window above.
-
-Hmm. Actually the ce->pin_mutex might work^Whelp for execbuf serialisation.
-Not by itself it won't though. But it should be able to close the
-!ce->timeline hole...
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
