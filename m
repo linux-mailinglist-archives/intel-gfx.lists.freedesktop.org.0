@@ -1,37 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC30516F9F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 09:50:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B89D716F9FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 09:51:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0410E6E258;
-	Wed, 26 Feb 2020 08:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD50A89ECD;
+	Wed, 26 Feb 2020 08:51:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CFB06E258
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 08:50:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6147389E41
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 08:51:08 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 00:50:36 -0800
-X-IronPort-AV: E=Sophos;i="5.70,487,1574150400"; d="scan'208";a="231327209"
+ 26 Feb 2020 00:51:07 -0800
+X-IronPort-AV: E=Sophos;i="5.70,487,1574150400"; d="scan'208";a="226649760"
 Received: from mkoeck-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.50.250])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 00:50:35 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 00:51:06 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200224120828.22105-1-jani.nikula@intel.com>
+To: "Stimson\, Dale B" <dale.b.stimson@intel.com>
+In-Reply-To: <20200225210738.GA70617@dbstims-dev.fm.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200224120828.22105-1-jani.nikula@intel.com>
-Date: Wed, 26 Feb 2020 10:50:53 +0200
-Message-ID: <875zftu3yq.fsf@intel.com>
+References: <20200224113312.13674-1-jani.nikula@intel.com>
+ <20200225210738.GA70617@dbstims-dev.fm.intel.com>
+Date: Wed, 26 Feb 2020 10:51:24 +0200
+Message-ID: <8736axu3xv.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [CI] drm/i915: split intel_modeset_init() to
- pre/post irq install
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: stop assigning drm->dev_private
+ pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,66 +45,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyNCBGZWIgMjAyMCwgSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4g
-d3JvdGU6Cj4gU3BsaXQgaW50ZV9tb2Rlc2V0X2luaXQoKSB0byBwYXJ0cyBiZWZvcmUgYW5kIGFm
-dGVyIGlycSBpbnN0YWxsLCB0bwo+IGZhY2lsaXRhdGUgZnVydGhlciBjbGVhbnVwLiBUaGUgZXJy
-b3IgcGF0aHMgYXJlIGEgbWVzcywgb3RoZXJ3aXNlIG5vCj4gZnVuY3Rpb25hbCBjaGFuZ2VzLgo+
-Cj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4g
-UmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+Cj4gU2lnbmVkLW9mZi1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4K
-ClB1c2hlZCB0byBkaW5xLCB0aGFua3MgZm9yIHRoZSByZXZpZXcuCgpCUiwKSmFuaS4KCj4gLS0t
-Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgMTcgKysr
-KysrKysrKysrKy0tLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmggfCAgMSArCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgICAgICAgICAg
-ICAgIHwgIDYgKysrKysrCj4gIDMgZmlsZXMgY2hhbmdlZCwgMjAgaW5zZXJ0aW9ucygrKSwgNCBk
-ZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jCj4gaW5kZXggMzAzMWU2NGVlNTE4Li5iNzlkNWUyZTNjMTIgMTAwNjQ0Cj4gLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKPiArKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+IEBAIC0xNzc4NSwxMSAr
-MTc3ODUsOSBAQCBzdGF0aWMgdm9pZCBwbGFuZV9jb25maWdfZmluaShzdHJ1Y3QgaW50ZWxfaW5p
-dGlhbF9wbGFuZV9jb25maWcgKnBsYW5lX2NvbmZpZykKPiAgCQlpOTE1X3ZtYV9wdXQocGxhbmVf
-Y29uZmlnLT52bWEpOwo+ICB9Cj4gIAo+IC1pbnQgaW50ZWxfbW9kZXNldF9pbml0KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1KQo+ICsvKiBwYXJ0ICMxOiBjYWxsIGJlZm9yZSBpcnEgaW5z
-dGFsbCAqLwo+ICtpbnQgaW50ZWxfbW9kZXNldF9pbml0X25vaXJxKHN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICppOTE1KQo+ICB7Cj4gLQlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gJmk5MTUtPmRy
-bTsKPiAtCWVudW0gcGlwZSBwaXBlOwo+IC0Jc3RydWN0IGludGVsX2NydGMgKmNydGM7Cj4gIAlp
-bnQgcmV0Owo+ICAKPiAgCWk5MTUtPm1vZGVzZXRfd3EgPSBhbGxvY19vcmRlcmVkX3dvcmtxdWV1
-ZSgiaTkxNV9tb2Rlc2V0IiwgMCk7Cj4gQEAgLTE3ODE0LDYgKzE3ODEyLDE3IEBAIGludCBpbnRl
-bF9tb2Rlc2V0X2luaXQoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpCj4gIAo+ICAJaW50
-ZWxfZmJjX2luaXQoaTkxNSk7Cj4gIAo+ICsJcmV0dXJuIDA7Cj4gK30KPiArCj4gKy8qIHBhcnQg
-IzI6IGNhbGwgYWZ0ZXIgaXJxIGluc3RhbGwgKi8KPiAraW50IGludGVsX21vZGVzZXRfaW5pdChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSkKPiArewo+ICsJc3RydWN0IGRybV9kZXZpY2Ug
-KmRldiA9ICZpOTE1LT5kcm07Cj4gKwllbnVtIHBpcGUgcGlwZTsKPiArCXN0cnVjdCBpbnRlbF9j
-cnRjICpjcnRjOwo+ICsJaW50IHJldDsKPiArCj4gIAlpbnRlbF9pbml0X3BtKGk5MTUpOwo+ICAK
-PiAgCWludGVsX3BhbmVsX3Nhbml0aXplX3NzYyhpOTE1KTsKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmggYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuaAo+IGluZGV4IGY5MmVmYmJlYzgzOC4uOGY5OTQy
-NDRjY2M3IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5oCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
-bGF5LmgKPiBAQCAtNjE0LDYgKzYxNCw3IEBAIGludGVsX2Zvcm1hdF9pbmZvX2lzX3l1dl9zZW1p
-cGxhbmFyKGNvbnN0IHN0cnVjdCBkcm1fZm9ybWF0X2luZm8gKmluZm8sCj4gIAo+ICAvKiBtb2Rl
-c2V0dGluZyAqLwo+ICB2b2lkIGludGVsX21vZGVzZXRfaW5pdF9odyhzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqaTkxNSk7Cj4gK2ludCBpbnRlbF9tb2Rlc2V0X2luaXRfbm9pcnEoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUpOwo+ICBpbnQgaW50ZWxfbW9kZXNldF9pbml0KHN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICppOTE1KTsKPiAgdm9pZCBpbnRlbF9tb2Rlc2V0X2RyaXZlcl9yZW1v
-dmUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpOwo+ICB2b2lkIGludGVsX21vZGVzZXRf
-ZHJpdmVyX3JlbW92ZV9ub2lycShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSk7Cj4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9pOTE1X2Rydi5jCj4gaW5kZXggNDAzNGU0MzFjYzRjLi44NTkzMmQyYTA3NmEgMTAw
-NjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYwo+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmMKPiBAQCAtMjM3LDggKzIzNywxNCBAQCBzdGF0aWMg
-aW50IGk5MTVfZHJpdmVyX21vZGVzZXRfcHJvYmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZh
-dGUgKmk5MTUpCj4gIAo+ICAJaW50ZWxfY3NyX3Vjb2RlX2luaXQoaTkxNSk7Cj4gIAo+ICsJcmV0
-ID0gaW50ZWxfbW9kZXNldF9pbml0X25vaXJxKGk5MTUpOwo+ICsJaWYgKHJldCkKPiArCQlnb3Rv
-IGNsZWFudXBfdmdhX2NsaWVudDsKPiArCj4gIAlyZXR1cm4gMDsKPiAgCj4gK2NsZWFudXBfdmdh
-X2NsaWVudDoKPiArCWludGVsX3ZnYV91bnJlZ2lzdGVyKGk5MTUpOwo+ICBvdXQ6Cj4gIAlyZXR1
-cm4gcmV0Owo+ICB9CgotLSAKSmFuaSBOaWt1bGEsIEludGVsIE9wZW4gU291cmNlIEdyYXBoaWNz
-IENlbnRlcgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJ
-bnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0
-cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, 25 Feb 2020, "Stimson, Dale B" <dale.b.stimson@intel.com> wrote:
+> On 2020-02-24 13:33:12, Jani Nikula wrote:
+>> We no longer need or use it as we subclass struct drm_device in our
+>> struct drm_i915_private, and can always use to_i915() to get at
+>> i915. Stop assigning the pointer to catch anyone trying to add new users
+>> for ->dev_private.
+>> 
+>> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Dale B Stimson <dale.b.stimson@intel.com>
+
+Thanks for the review, pushed to dinq.
+
+BR,
+Jani.
+
+>
+>> ---
+>>  drivers/gpu/drm/i915/i915_drv.c                  | 2 --
+>>  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 -
+>>  2 files changed, 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+>> index 4034e431cc4c..d5aed3b7d7e3 100644
+>> --- a/drivers/gpu/drm/i915/i915_drv.c
+>> +++ b/drivers/gpu/drm/i915/i915_drv.c
+>> @@ -1372,8 +1372,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>  		return ERR_PTR(err);
+>>  	}
+>>  
+>> -	i915->drm.dev_private = i915;
+>> -
+>>  	i915->drm.pdev = pdev;
+>>  	pci_set_drvdata(pdev, i915);
+>>  
+>> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> index 3b8986983afc..754d0eb6beaa 100644
+>> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+>> @@ -144,7 +144,6 @@ struct drm_i915_private *mock_gem_device(void)
+>>  		goto put_device;
+>>  	}
+>>  	i915->drm.pdev = pdev;
+>> -	i915->drm.dev_private = i915;
+>>  
+>>  	intel_runtime_pm_init_early(&i915->runtime_pm);
+>>  
+>> -- 
+>> 2.20.1
+>> 
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
