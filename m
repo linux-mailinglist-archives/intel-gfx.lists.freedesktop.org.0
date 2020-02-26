@@ -1,61 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C177E16FBC2
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:12:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FBBC16FBC3
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:12:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 250A16E46D;
-	Wed, 26 Feb 2020 10:12:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09E946E45E;
+	Wed, 26 Feb 2020 10:12:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 735D86E46C
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:12:21 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id z3so2235282wru.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:12:21 -0800 (PST)
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE05B6E46D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:12:24 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id a5so2311732wmb.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:12:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=qRn5bzH2uogH2ukfUKIFvB7Ad0MObk0DVtrVOOHB2mw=;
- b=Eb2dzOi+VaYjCdb4YidOVtyzZ+a8iZYurvBqJh/rtOsRji7R/FchtUm0VEs/odTc02
- 783CO3zwUzJZ1chSXlyOKgj7kYD98U7aIFWPrDgONDGygu01yN+43cVImQavW7U7KY7g
- Li2lamOFmyN9eK2BdH/A30Xe1o4GGod4/EA/ZaYtURbIkFTEGZ6SssO+ZN6XBkZwvEtS
- qc1raKfUI3JRLRikSUzbUh92SPqcfxmZ+yMw1UtxMopJEBZxWSIrhTIl+5jr6NMoTEMD
- ZgL4D8VGQ7IWBxhH2MYmOsfjw2aF3+Q5V5DP9RUS9ELbWZ5z/Loz5vU6CSgnN7kz9Tce
- x1dw==
+ bh=D+5EDmU/i4eaQLtcqAziX7PTmVAeWPa5JDX8ZST2Q+o=;
+ b=H9eHSs51vcnyWb5a2lEYgdYRx1AdCA9OoWiJbjIq6slwC/vnNR6SS2KWd7qALfn50x
+ ipcenmCxPG8psLkPKEY2Kz+4CU4TzzsiYB7xDHOBGFinsdLvv8ysQd0jLZib1Uif36lY
+ 47nWbQUqDk9RUO58buZrqmqXev9jet63Dg2wx98Fb+fmJftD9JV7UWFR9XbazmklDewC
+ sJ+9Wxnl541Rs8z3MCgWecEFGXSPiupkk7+6SWD5rbSNgfvmHSA6FtYmL3dUN1JExYVh
+ BvaJwO4lFtJMS8LWUEiTIobO6FI3C72qP+1znV7AA4Jv4QSkMlxhGqdoQ9QvfFxnpZ/D
+ rumg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=qRn5bzH2uogH2ukfUKIFvB7Ad0MObk0DVtrVOOHB2mw=;
- b=Qf5+V5fU5fBDfE+okahX4GxykMbkO1ShpDB0FFDmgyZFqaAWdqsCQoUAYkQp7FlnOG
- Rkd4FbnhGoKyue2vwCaaYhY2jrTbHdH2Akp2B85xXAjoi9UjcHSTYdmeXa2xU78kJJps
- AE7ZQc0XR+hwDOVBg7TJ2blbz6CNUFX5mozyMeYMEKJj0yg7xnTChYaSoaf6D5garpzd
- EQcT/Li9kkmSTL08X50ZTtE+kqtSzNjYSepDkMiXpwrx1kRz1/ViYYho3cbZYHXsNBEB
- KiPBH/llcx/jkePfR9CHEHPy+yJHcNG+w4ujOoyoALGhvciUv2ma8YOuH2A+uDve1ncu
- oa8Q==
-X-Gm-Message-State: APjAAAVuXTMVXrrJINKUvALtMHkqHTLKiwJEnhLPiO34h2h9yYoRyWLP
- D1yFeotT98HAJzjNhyJb/X6D6eR14cA=
-X-Google-Smtp-Source: APXvYqwTPhERNWF+TKvHWMbdASt2+UQbR9Q21gyFnujEM3Fq6VABWo7IRofdz8unmTdC8gLOG0WznQ==
-X-Received: by 2002:a5d:4651:: with SMTP id j17mr4693797wrs.237.1582711939812; 
- Wed, 26 Feb 2020 02:12:19 -0800 (PST)
+ bh=D+5EDmU/i4eaQLtcqAziX7PTmVAeWPa5JDX8ZST2Q+o=;
+ b=aip0oC8aEiHtymlZggYWYfwbUKY8APhL25n0jctlGe62zGH8Zfe+UFTxQm/tf7Jcud
+ X1aydzde5JATkwvLSuLnmynMijw1pL+19nrHO7VayEGhCCNHjo73tcoMxtPbELZCckX4
+ ON7u3675+p7VKWz33kmEJDgJyvMi9bz9IloceHAqyVsAVVNm49znbG1htC5RGukicf0M
+ xSyxhtfVvie4s+S1xYDC4H73/R5VTulk+OCMUoHYYMMIG6ozNk8PXMG8xu0G7/W2nAxJ
+ K3o9yIAp8bsrlUVT822RRpnwiXAaadQNbVKO8hkjZ8TB53f0xJLj0vOohExiHmfPE+Oe
+ P45Q==
+X-Gm-Message-State: APjAAAVIsSge7cJCcjHKTxxz5Fin3bvRecjM+cM2RpsgyM64n2cXqYCL
+ cw4mU3tWhS3hGRIvfUUJDyyvV09T0mw=
+X-Google-Smtp-Source: APXvYqyTbLWrOIssTpC7fT2t1FRFkpYoBjf2y5CWs9Ig9UUZaL+M4ad86toNz/Yk08asDi6vlvUfoQ==
+X-Received: by 2002:a1c:488a:: with SMTP id v132mr4710097wma.153.1582711943578; 
+ Wed, 26 Feb 2020 02:12:23 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.12.16
+ by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.12.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 02:12:19 -0800 (PST)
+ Wed, 26 Feb 2020 02:12:23 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Wed, 26 Feb 2020 13:11:37 +0300
-Message-Id: <20200226101138.15435-10-wambui.karugax@gmail.com>
+Date: Wed, 26 Feb 2020 13:11:38 +0300
+Message-Id: <20200226101138.15435-11-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
 References: <20200226101138.15435-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 09/10] drm/i915/lvds: convert to drm_device
- based logging macros.
+Subject: [Intel-gfx] [PATCH 10/10] drm/i915/overlay: convert to drm_device
+ based logging.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,10 +74,9 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Converts various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_lvds.c.
-This transformation was done by the following coccinelle script that
-matches based on the existence of a drm_i915_private device:
+Convert various instances of the printk based drm logging macros to the
+struct drm_device based logging macros in i915/display/intel_overlay.c.
+This transformation was achieved using the following coccinelle script:
 @@
 identifier fn, T;
 @@
@@ -156,139 +155,66 @@ struct drm_i915_private *T = ...;
 ...+>
 }
 
-New checkpatch warnings were fixed manually.
+Note that this converts DRM_DEBUG to drm_dbg().
 
+Checkpatch warnings were addressed manually.
+
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_lvds.c | 43 +++++++++++++----------
- 1 file changed, 25 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index b7ad0b534790..471e668e4ba0 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -182,8 +182,9 @@ static void intel_lvds_pps_get_hw_state(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 5f1207dec10e..97754ad340b8 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -324,7 +324,7 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
+ 	/* check for underruns */
+ 	tmp = intel_de_read(dev_priv, DOVSTA);
+ 	if (tmp & (1 << 17))
+-		DRM_DEBUG("overlay underrun, DOVSTA: %x\n", tmp);
++		drm_dbg(&dev_priv->drm, "overlay underrun, DOVSTA: %x\n", tmp);
  
- 	if (INTEL_GEN(dev_priv) <= 4 &&
- 	    pps->t1_t2 == 0 && pps->t5 == 0 && pps->t3 == 0 && pps->tx == 0) {
--		DRM_DEBUG_KMS("Panel power timings uninitialized, "
--			      "setting defaults\n");
+ 	rq = alloc_request(overlay, NULL);
+ 	if (IS_ERR(rq))
+@@ -1069,7 +1069,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 
+ 	overlay = dev_priv->overlay;
+ 	if (!overlay) {
+-		DRM_DEBUG("userspace bug: no overlay\n");
++		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
+ 		return -ENODEV;
+ 	}
+ 
+@@ -1093,7 +1093,8 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 	drm_modeset_lock_all(dev);
+ 
+ 	if (i915_gem_object_is_tiled(new_bo)) {
+-		DRM_DEBUG_KMS("buffer used for overlay image can not be tiled\n");
 +		drm_dbg_kms(&dev_priv->drm,
-+			    "Panel power timings uninitialized, "
-+			    "setting defaults\n");
- 		/* Set T2 to 40ms and T5 to 200ms in 100 usec units */
- 		pps->t1_t2 = 40 * 10;
- 		pps->t5 = 200 * 10;
-@@ -192,10 +193,10 @@ static void intel_lvds_pps_get_hw_state(struct drm_i915_private *dev_priv,
- 		pps->tx = 200 * 10;
++			    "buffer used for overlay image can not be tiled\n");
+ 		ret = -EINVAL;
+ 		goto out_unlock;
+ 	}
+@@ -1228,7 +1229,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 
+ 	overlay = dev_priv->overlay;
+ 	if (!overlay) {
+-		DRM_DEBUG("userspace bug: no overlay\n");
++		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
+ 		return -ENODEV;
  	}
  
--	DRM_DEBUG_DRIVER("LVDS PPS:t1+t2 %d t3 %d t4 %d t5 %d tx %d "
--			 "divider %d port %d powerdown_on_reset %d\n",
--			 pps->t1_t2, pps->t3, pps->t4, pps->t5, pps->tx,
--			 pps->divider, pps->port, pps->powerdown_on_reset);
-+	drm_dbg(&dev_priv->drm, "LVDS PPS:t1+t2 %d t3 %d t4 %d t5 %d tx %d "
-+		"divider %d port %d powerdown_on_reset %d\n",
-+		pps->t1_t2, pps->t3, pps->t4, pps->t5, pps->tx,
-+		pps->divider, pps->port, pps->powerdown_on_reset);
- }
+@@ -1372,7 +1373,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
+ 	update_reg_attrs(overlay, overlay->regs);
  
- static void intel_lvds_pps_init_hw(struct drm_i915_private *dev_priv,
-@@ -317,7 +318,8 @@ static void intel_enable_lvds(struct intel_encoder *encoder,
- 	intel_de_posting_read(dev_priv, lvds_encoder->reg);
+ 	dev_priv->overlay = overlay;
+-	DRM_INFO("Initialized overlay support.\n");
++	drm_info(&dev_priv->drm, "Initialized overlay support.\n");
+ 	return;
  
- 	if (intel_de_wait_for_set(dev_priv, PP_STATUS(0), PP_ON, 5000))
--		DRM_ERROR("timed out waiting for panel to power on\n");
-+		drm_err(&dev_priv->drm,
-+			"timed out waiting for panel to power on\n");
- 
- 	intel_panel_enable_backlight(pipe_config, conn_state);
- }
-@@ -332,7 +334,8 @@ static void intel_disable_lvds(struct intel_encoder *encoder,
- 	intel_de_write(dev_priv, PP_CONTROL(0),
- 		       intel_de_read(dev_priv, PP_CONTROL(0)) & ~PANEL_POWER_ON);
- 	if (intel_de_wait_for_clear(dev_priv, PP_STATUS(0), PP_ON, 1000))
--		DRM_ERROR("timed out waiting for panel to power off\n");
-+		drm_err(&dev_priv->drm,
-+			"timed out waiting for panel to power off\n");
- 
- 	intel_de_write(dev_priv, lvds_encoder->reg,
- 		       intel_de_read(dev_priv, lvds_encoder->reg) & ~LVDS_PORT_EN);
-@@ -398,7 +401,7 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
- 
- 	/* Should never happen!! */
- 	if (INTEL_GEN(dev_priv) < 4 && intel_crtc->pipe == 0) {
--		DRM_ERROR("Can't support LVDS on pipe A\n");
-+		drm_err(&dev_priv->drm, "Can't support LVDS on pipe A\n");
- 		return -EINVAL;
- 	}
- 
-@@ -408,8 +411,9 @@ static int intel_lvds_compute_config(struct intel_encoder *intel_encoder,
- 		lvds_bpp = 6*3;
- 
- 	if (lvds_bpp != pipe_config->pipe_bpp && !pipe_config->bw_constrained) {
--		DRM_DEBUG_KMS("forcing display bpp (was %d) to LVDS (%d)\n",
--			      pipe_config->pipe_bpp, lvds_bpp);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "forcing display bpp (was %d) to LVDS (%d)\n",
-+			    pipe_config->pipe_bpp, lvds_bpp);
- 		pipe_config->pipe_bpp = lvds_bpp;
- 	}
- 
-@@ -833,7 +837,8 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	}
- 
- 	if (!dev_priv->vbt.int_lvds_support) {
--		DRM_DEBUG_KMS("Internal LVDS support disabled by VBT\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Internal LVDS support disabled by VBT\n");
- 		return;
- 	}
- 
-@@ -852,10 +857,12 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	pin = GMBUS_PIN_PANEL;
- 	if (!intel_bios_is_lvds_present(dev_priv, &pin)) {
- 		if ((lvds & LVDS_PORT_EN) == 0) {
--			DRM_DEBUG_KMS("LVDS is not present in VBT\n");
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "LVDS is not present in VBT\n");
- 			return;
- 		}
--		DRM_DEBUG_KMS("LVDS is not present in VBT, but enabled anyway\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "LVDS is not present in VBT, but enabled anyway\n");
- 	}
- 
- 	lvds_encoder = kzalloc(sizeof(*lvds_encoder), GFP_KERNEL);
-@@ -969,7 +976,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	 */
- 	fixed_mode = intel_encoder_current_mode(intel_encoder);
- 	if (fixed_mode) {
--		DRM_DEBUG_KMS("using current (BIOS) mode: ");
-+		drm_dbg_kms(&dev_priv->drm, "using current (BIOS) mode: ");
- 		drm_mode_debug_printmodeline(fixed_mode);
- 		fixed_mode->type |= DRM_MODE_TYPE_PREFERRED;
- 	}
-@@ -985,8 +992,8 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- 	intel_panel_setup_backlight(connector, INVALID_PIPE);
- 
- 	lvds_encoder->is_dual_link = compute_is_dual_link_lvds(lvds_encoder);
--	DRM_DEBUG_KMS("detected %s-link lvds configuration\n",
--		      lvds_encoder->is_dual_link ? "dual" : "single");
-+	drm_dbg_kms(&dev_priv->drm, "detected %s-link lvds configuration\n",
-+		    lvds_encoder->is_dual_link ? "dual" : "single");
- 
- 	lvds_encoder->a3_power = lvds & LVDS_A3_POWER_MASK;
- 
-@@ -995,7 +1002,7 @@ void intel_lvds_init(struct drm_i915_private *dev_priv)
- failed:
- 	mutex_unlock(&dev->mode_config.mutex);
- 
--	DRM_DEBUG_KMS("No LVDS modes found, disabling.\n");
-+	drm_dbg_kms(&dev_priv->drm, "No LVDS modes found, disabling.\n");
- 	drm_connector_cleanup(connector);
- 	drm_encoder_cleanup(encoder);
- 	kfree(lvds_encoder);
+ out_free:
 -- 
 2.25.0
 
