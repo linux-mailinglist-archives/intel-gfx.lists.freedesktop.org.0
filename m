@@ -1,43 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889141701F9
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 16:09:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08EC3170217
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 16:16:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEEAA6E9AB;
-	Wed, 26 Feb 2020 15:09:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D5586E9AF;
+	Wed, 26 Feb 2020 15:15:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03D2F6E9AB
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:09:46 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 07:09:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,488,1574150400"; d="scan'208";a="256352315"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 26 Feb 2020 07:09:43 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 26 Feb 2020 17:09:43 +0200
-Date: Wed, 26 Feb 2020 17:09:43 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200226150943.GL13686@intel.com>
-References: <20200224124004.26712-1-anshuman.gupta@intel.com>
- <20200224124004.26712-5-anshuman.gupta@intel.com>
- <20200225150639.GD13686@intel.com>
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 688786E9AF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 15:15:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582730155;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=vlqJvdOJUT/fcJ/c+/eBjXQbTAJrNXWIRm6p2rPgmi0=;
+ b=Q0NQCH4oxv/INF7Zln9febrAKbOv4yRuKioSwFUGPWQ8ziGf1N8dSFWdiRoAvqj7lR/wMV
+ 8wi7i2PNgRA9iQinHr39huCNAtOeR2J0Odkr8axYti1iK2owRGLLPehNWGx9iMPIt2i5ag
+ xQqP3jxG3n4dsQjVX0OsTYptQMR0Sjg=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-185-4Vntp-FoNOyCPUjyIttBbw-1; Wed, 26 Feb 2020 10:15:46 -0500
+X-MC-Unique: 4Vntp-FoNOyCPUjyIttBbw-1
+Received: by mail-wr1-f72.google.com with SMTP id n12so1599627wrp.19
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 07:15:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:subject:to:cc:message-id:date:user-agent
+ :mime-version:content-language:content-transfer-encoding;
+ bh=vlqJvdOJUT/fcJ/c+/eBjXQbTAJrNXWIRm6p2rPgmi0=;
+ b=mlHCKAvXnr3lSklRYT0s7hGLOG/tk7gTvLNvGnVGkW8MvYSdaTHpA/y9QZ+XMw3ss2
+ jpj37n1W+jnriQU1X9xDkEPrB60rRPyjrMvWQkjzFOIY4rlKidepjzNbp6aK2V3O/6lm
+ 2X5yv9EfdoIwYzy/z34I1ulBq04X/6f1x8c8DSavOzdpvj9/U5chtDwtnxxc43P9FAfy
+ 3DDPjcRJi9NYjNKjrrQQZlqtysgOmQP0A4QTn5rmA+sQPUXFpVZJq6JTXBWRmECdZjz4
+ f2H2xCqWDypeD6aGKEcgdkP5cfUayEaWZedflEn8c3pKSlTa9SVUnbbJbqkkYGRzEsQL
+ 46LQ==
+X-Gm-Message-State: APjAAAWT8e7FR50q45oL9aUWitRIMqNKYOq2s3jUSUnd1s95x9gLaHPE
+ 0fSYv7RXt2aPu+EN7dfkcuc174sCYgJPiuV4LRdUSOINe5LJ5bDMe9IPm4a++s3wtV6WIEc0ksB
+ 4miIwPKX5j3p78SDv/SR+K//ZLQEO
+X-Received: by 2002:a1c:9854:: with SMTP id a81mr5884457wme.1.1582730144069;
+ Wed, 26 Feb 2020 07:15:44 -0800 (PST)
+X-Google-Smtp-Source: APXvYqwag0vTFX22t7gPPA5l7esl1Nj/Rk2Mq5RJdLikdQu43lnhFzehhKnaVD4Gt5NN9LZrlqU0mw==
+X-Received: by 2002:a1c:9854:: with SMTP id a81mr5884441wme.1.1582730143825;
+ Wed, 26 Feb 2020 07:15:43 -0800 (PST)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-fc7e-fd47-85c1-1ab3.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:fc7e:fd47:85c1:1ab3])
+ by smtp.gmail.com with ESMTPSA id r28sm3721723wra.16.2020.02.26.07.15.42
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 26 Feb 2020 07:15:43 -0800 (PST)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <99213368-5025-8435-502b-3d23b875ca60@redhat.com>
+Date: Wed, 26 Feb 2020 16:15:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200225150639.GD13686@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 4/7] drm/i915: Fix wrongly populated
- plane possible_crtcs bit mask
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: [Intel-gfx] 5.6 DP-MST regression: 1 of 2 monitors on TB3 (DP-MST)
+ dock no longer light up
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,119 +77,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2020 at 05:06:39PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Mon, Feb 24, 2020 at 06:10:01PM +0530, Anshuman Gupta wrote:
-> > As a disabled pipe in pipe_mask is not having a valid intel crtc,
-> > driver wrongly populates the possible_crtcs mask while initializing
-> > the plane for a CRTC. Fixing up the plane possible_crtcs mask.
-> > =
+Hi Lyude and everyone else,
 
-> > changes since RFC:
-> > - Simplify the possible_crtcs initialization. [Ville]
-> > v2:
-> > - Removed the unnecessary stack garbage possible_crtcs to
-> >   drm_universal_plane_init. [Ville]
-> > v3:
-> > - Combine the intel_crtc assignment and declaration. [Ville]
-> > =
+Lyude I'm mailing you about this because you have done a lot of
+work on DP MST, but if this rings a bell to anyone else feel
+free to weigh in on this.
 
-> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display.c | 13 +++++++++++++
-> >  drivers/gpu/drm/i915/display/intel_sprite.c  |  5 +----
-> >  2 files changed, 14 insertions(+), 4 deletions(-)
-> > =
+I'm currently using a Lenovo X1 7th gen + a Lenovo TB3 gen 2 dock
+as my daily rider for testing purposes. When 5.6-rc1 came out I
+noticed that only 1 of the 2 1920x1080@60 monitors on the dock
+lights up.
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu=
-/drm/i915/display/intel_display.c
-> > index aacbdc47fcea..41a0f2e9b6b9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -16628,6 +16628,18 @@ static void intel_crtc_free(struct intel_crtc =
-*crtc)
-> >  	kfree(crtc);
-> >  }
-> >  =
+There are no kernel errors in the logs, but mutter/gnome-shell says:
 
-> > +static void intel_plane_possible_crtcs_init(struct drm_i915_private *d=
-ev_priv)
-> > +{
-> > +	struct intel_plane *plane;
-> > +
-> > +	for_each_intel_plane(&dev_priv->drm, plane) {
-> > +		struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv,
-> > +								  plane->pipe);
-> > +
-> > +		plane->base.possible_crtcs =3D drm_crtc_mask(&crtc->base);
-> > +	}
-> > +}
-> > +
-> >  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pip=
-e pipe)
-> >  {
-> >  	struct intel_plane *primary, *cursor;
-> > @@ -17843,6 +17855,7 @@ int intel_modeset_init(struct drm_i915_private =
-*i915)
-> >  		}
-> >  	}
-> >  =
+gnome-shell[1316]: Failed to post KMS update: Page flip of 93 failed
 
-> > +	intel_plane_possible_crtcs_init(i915);
-> >  	intel_shared_dpll_init(dev);
-> >  	intel_update_fdi_pll_freq(i915);
-> >  =
+With 93 being the crtc-id of the crtc used for the monitor which is
+displaying black. Since then I've waited for 5.6-rc3 hoping that a
+fix was already queued up, but 5.6-rc3 still has this problem.
 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/=
-drm/i915/display/intel_sprite.c
-> > index 7abeefe8dce5..b5c7b271a1a4 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > @@ -3011,7 +3011,6 @@ skl_universal_plane_create(struct drm_i915_privat=
-e *dev_priv,
-> >  	struct intel_plane *plane;
-> >  	enum drm_plane_type plane_type;
-> >  	unsigned int supported_rotations;
-> > -	unsigned int possible_crtcs;
-> >  	const u64 *modifiers;
-> >  	const u32 *formats;
-> >  	int num_formats;
-> > @@ -3066,10 +3065,8 @@ skl_universal_plane_create(struct drm_i915_priva=
-te *dev_priv,
-> >  	else
-> >  		plane_type =3D DRM_PLANE_TYPE_OVERLAY;
-> >  =
+gnome-shell does behave as if all monitors are connected, so the
+monitor is seen, but we are failing to actually send any frames
+to it.
 
-> > -	possible_crtcs =3D BIT(pipe);
-> > -
-> >  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> > -				       possible_crtcs, plane_funcs,
-> > +				       0, plane_funcs,
-> >  				       formats, num_formats, modifiers,
-> >  				       plane_type,
-> >  				       "plane %d%c", plane_id + 1,
-> =
+I've put a log collected with drm.debug=0x104 here:
+https://fedorapeople.org/~jwrdegoede/drm-debug.log
 
-> Looks like you missed all the other places that do this:
-> intel_primary_plane_create(), intel_sprite_plane_create(),
-> intel_cursor_plane_create().
-> =
+This message stands out as pointing to the likely cause of this problem:
 
-> Apart from that everything in the series looks ready.
+[    3.309061] [drm:intel_dump_pipe_config [i915]] MST master transcoder: <invalid>
 
-I pushed the other patches to dinq. Thanks.
+Regards,
 
--- =
+Hans
 
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
