@@ -1,39 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01558170C52
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 00:09:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53041170C50
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 00:09:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 677256E27F;
-	Wed, 26 Feb 2020 23:09:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81CF86E1BB;
+	Wed, 26 Feb 2020 23:09:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B69C06E27F
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 23:09:29 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DAE6E1BB;
+ Wed, 26 Feb 2020 23:09:02 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 15:09:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="261231158"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by fmsmga004.fm.intel.com with ESMTP; 26 Feb 2020 15:09:28 -0800
-Date: Wed, 26 Feb 2020 15:09:28 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200226230928.GD3936367@mdroper-desk1.amr.corp.intel.com>
-References: <20200220231843.3127468-1-matthew.d.roper@intel.com>
- <aedc17580c809c06bd70cb1446047fb826dadb80.camel@intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 15:09:01 -0800
+X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="230586727"
+Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
+ ([10.165.21.202])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 15:09:01 -0800
+Date: Wed, 26 Feb 2020 15:10:00 -0800
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Message-ID: <20200226231000.GA2094112@intel.com>
+References: <20200226103840.GD10413@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <aedc17580c809c06bd70cb1446047fb826dadb80.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Allow DC5/DC6 entry while PG2
- is active
+In-Reply-To: <20200226103840.GD10413@zhen-hp.sh.intel.com>
+Subject: Re: [Intel-gfx] [PULL] gvt-next
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,120 +44,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
+ Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 26, 2020 at 02:19:52PM -0800, Souza, Jose wrote:
-> On Thu, 2020-02-20 at 15:18 -0800, Matt Roper wrote:
-> > On gen12, we no longer need to disable DC5/DC6 when when PG2 is in
-> > use
-> > (which translates to cases where we're using VDSC on pipe A).
-> > =
+On Wed, Feb 26, 2020 at 06:38:40PM +0800, Zhenyu Wang wrote:
+> 
+> Hi,
+> 
+> Here's gvt-next pull. Mostly for cleanup and kvmgt specific struct
+> has been moved to its own module, also enable VFIO edid for all platform
+> including CML. Pls see details below.
 
-> > Bspec: 49193
-> =
+pulled, thanks
 
-> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-
-Applied to dinq.  Thanks for the review.
-
-
-Matt
-
-> =
-
-> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > ---
-> >  .../gpu/drm/i915/display/intel_display_power.c   | 16 +++++++++++---
-> > --
-> >  .../gpu/drm/i915/display/intel_display_power.h   |  1 +
-> >  2 files changed, 12 insertions(+), 5 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index 8ba68ec6dc24..1d21a850e933 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -926,10 +926,16 @@ void
-> > intel_display_power_set_target_dc_state(struct drm_i915_private
-> > *dev_priv,
-> >  =
-
-> >  static void assert_can_enable_dc5(struct drm_i915_private *dev_priv)
-> >  {
-> > -	bool pg2_enabled =3D
-> > intel_display_power_well_is_enabled(dev_priv,
-> > -					SKL_DISP_PW_2);
-> > +	enum i915_power_well_id high_pg;
-> >  =
-
-> > -	WARN_ONCE(pg2_enabled, "PG2 not disabled to enable DC5.\n");
-> > +	/* Power wells at this level and above must be disabled for DC5
-> > entry */
-> > +	if (INTEL_GEN(dev_priv) >=3D 12)
-> > +		high_pg =3D TGL_DISP_PW_3;
-> > +	else
-> > +		high_pg =3D SKL_DISP_PW_2;
-> > +
-> > +	WARN_ONCE(intel_display_power_well_is_enabled(dev_priv,
-> > high_pg),
-> > +		  "Power wells above platform's DC5 limit still
-> > enabled.\n");
-> >  =
-
-> >  	WARN_ONCE((intel_de_read(dev_priv, DC_STATE_EN) &
-> > DC_STATE_EN_UPTO_DC5),
-> >  		  "DC5 already programmed to be enabled.\n");
-> > @@ -2712,7 +2718,7 @@ void intel_display_power_put(struct
-> > drm_i915_private *dev_priv,
-> >  	BIT_ULL(POWER_DOMAIN_INIT))
-> >  =
-
-> >  #define TGL_DISPLAY_DC_OFF_POWER_DOMAINS (		\
-> > -	TGL_PW_2_POWER_DOMAINS |			\
-> > +	TGL_PW_3_POWER_DOMAINS |			\
-> >  	BIT_ULL(POWER_DOMAIN_MODESET) |			\
-> >  	BIT_ULL(POWER_DOMAIN_AUX_A) |			\
-> >  	BIT_ULL(POWER_DOMAIN_AUX_B) |			\
-> > @@ -3908,7 +3914,7 @@ static const struct i915_power_well_desc
-> > tgl_power_wells[] =3D {
-> >  		.name =3D "power well 3",
-> >  		.domains =3D TGL_PW_3_POWER_DOMAINS,
-> >  		.ops =3D &hsw_power_well_ops,
-> > -		.id =3D DISP_PW_ID_NONE,
-> > +		.id =3D TGL_DISP_PW_3,
-> >  		{
-> >  			.hsw.regs =3D &hsw_power_well_regs,
-> >  			.hsw.idx =3D ICL_PW_CTL_IDX_PW_3,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > index 601e000ffd0d..da64a5edae7a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > @@ -100,6 +100,7 @@ enum i915_power_well_id {
-> >  	SKL_DISP_PW_MISC_IO,
-> >  	SKL_DISP_PW_1,
-> >  	SKL_DISP_PW_2,
-> > +	TGL_DISP_PW_3,
-> >  	SKL_DISP_DC_OFF,
-> >  };
-> >  =
+> 
+> Thanks
+> --
+> The following changes since commit e24bcd34c1dd7dabde4a8546920537f7137e3c5f:
+> 
+>   drm/i915/dp: Add all tiled and port sync conns to modeset (2020-02-20 13:55:02 +0530)
+> 
+> are available in the Git repository at:
+> 
+>   https://github.com/intel/gvt-linux tags/gvt-next-2020-02-26
+> 
+> for you to fetch changes up to a8bb49b64c4f4284fb36169bdd9fc6efd62eb26a:
+> 
+>   drm/i915/gvt: Fix drm_WARN issue where vgpu ptr is unavailable (2020-02-25 16:13:04 +0800)
+> 
+> ----------------------------------------------------------------
+> gvt-next-2020-02-26
+> 
+> - Enable VFIO edid for all platform (Zhenyu)
+> - Code cleanup for attr group and unused vblank complete (Zhenyu, Julian)
+> - Make gvt oblivious of kvmgt data structures (Julian)
+> - Make WARN* drm specific (Pankaj)
+> 
+> ----------------------------------------------------------------
+> Julian Stecklina (2):
+>       drm/i915/gvt: remove unused vblank_done completion
+>       drm/i915/gvt: make gvt oblivious of kvmgt data structures
+> 
+> Pankaj Bharadiya (2):
+>       drm/i915/gvt: Make WARN* drm specific where drm_priv ptr is available
+>       drm/i915/gvt: Make WARN* drm specific where vgpu ptr is available
+> 
+> Tina Zhang (1):
+>       drm/i915/gvt: Fix drm_WARN issue where vgpu ptr is unavailable
+> 
+> Zhenyu Wang (3):
+>       drm/i915/gvt: remove unused type attributes
+>       drm/i915/gvt: Enable vfio edid for all GVT supported platform
+>       Merge drm-intel-next-queued into gvt-next
+> 
+>  drivers/gpu/drm/i915/gvt/aperture_gm.c  |   6 +-
+>  drivers/gpu/drm/i915/gvt/cfg_space.c    |  23 ++-
+>  drivers/gpu/drm/i915/gvt/cmd_parser.c   |   4 +-
+>  drivers/gpu/drm/i915/gvt/display.c      |   6 +-
+>  drivers/gpu/drm/i915/gvt/dmabuf.c       |   4 +-
+>  drivers/gpu/drm/i915/gvt/edid.c         |  19 +-
+>  drivers/gpu/drm/i915/gvt/gtt.c          |  21 ++-
+>  drivers/gpu/drm/i915/gvt/gvt.c          |   8 +-
+>  drivers/gpu/drm/i915/gvt/gvt.h          |  37 +---
+>  drivers/gpu/drm/i915/gvt/handlers.c     |  22 ++-
+>  drivers/gpu/drm/i915/gvt/interrupt.c    |  15 +-
+>  drivers/gpu/drm/i915/gvt/kvmgt.c        | 303 +++++++++++++++++++-------------
+>  drivers/gpu/drm/i915/gvt/mmio.c         |  30 ++--
+>  drivers/gpu/drm/i915/gvt/mmio_context.c |   6 +-
+>  drivers/gpu/drm/i915/gvt/scheduler.c    |   6 +-
+>  drivers/gpu/drm/i915/gvt/vgpu.c         |  10 +-
+>  16 files changed, 304 insertions(+), 216 deletions(-)
+> 
+> 
+> -- 
+> Open Source Technology Center, Intel ltd.
+> 
+> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
 
 
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
