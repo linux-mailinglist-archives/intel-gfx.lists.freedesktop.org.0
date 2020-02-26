@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A36E16FBB8
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D92A16FBB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 11:11:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A23596E440;
-	Wed, 26 Feb 2020 10:11:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D424C6E450;
+	Wed, 26 Feb 2020 10:11:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
  [IPv6:2a00:1450:4864:20::344])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA9056E440
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:11:51 +0000 (UTC)
-Received: by mail-wm1-x344.google.com with SMTP id t23so2310384wmi.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:11:51 -0800 (PST)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F5C96E450
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 10:11:55 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id i10so3083150wmd.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 02:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=YRfsiAZXQdD+7zTwILCmfp/F9fMCLkFVRowwV6Po1HA=;
- b=EGUw4+1LNHgGQt4sTJFYosG9k4XoEv/IwsXJVhU2BU9UIb013hOFsGy5eIdr0U50qV
- Su6w6PF3KqKjLEzrk9dCON8dr8V3GCcEjopO3lXbHfUgWfxdd7ZI3kLLHWAfM7pWyKwW
- V7mmSTHMlOQaf5Vp4Ql5hCliruiC84H/z1NMeXbq3uHMWm0pFxVAohRwGvd1neRqiqK+
- jUK/ptFiVKOOOzpTul/B2mJloBt1EkEGbFfMpC+1/vlTy32G+7FG+rW9jJDZEsX6POJC
- vOqlz75KIL6uBD1hkIdsk4zPEHlYmapH0/eJt4eSAhYwipeEvAH3YShefoAL11D1VN0L
- nyDg==
+ bh=jl5FDZ3E6dCzbCbZDISwzrkzl19kiYK7mBc86RyC/mE=;
+ b=MdUIbT/yzM79++m9xDpLPUkJ0etq7/JgaFG57UOc9OY6XX5vTvpQQQTTivwTUwChKF
+ KiSfOyTtL68jCsiqWxIPsWwgtHqbxT95Y1XWdBF/hu2DZfiSbBPlqVTqWurNNp1YrC4k
+ Z0fMUcKDDm/TswX0nXtq/EkAfBEfpvUNmY+4CiwUgCwsDFplJPOd79jnrJbmFk5yhcRE
+ 8WcJziwcOQYV4IqGfkqv+bsYsNy718c7LuKJKHLIt29ccqWp5K+BXv80pEUlwfwXP6AI
+ TGAi2dPufrBx1XU13U+sIB5parB2AmI30GcuN9VtDrvoUBQDHDg0gLydEef+opY4HrBW
+ lgAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=YRfsiAZXQdD+7zTwILCmfp/F9fMCLkFVRowwV6Po1HA=;
- b=W5VWiDInhKmUGp5GX5mFchjmVyAGEpJXoFvIu3nJev8IDv6NU3bFXov2whiU4B2jF2
- 7rtL5oo+Ng/fO4jzAVExrK6c9gXbd5+OsANPuTLtS092LaqZS5aJdudpexKozmXPBirI
- Go3Qqe1XMCCRdPTlIjMCnFglIONO5JOkda7uNUhiXZ0mamU2JUEROtNGARM5rl6jhQtS
- rLgJM6gSUnhFUTnndx6FSHTwHdcD7pBw0ERiQeteoE64KRGU3637nl+WKAyIBI+kCkkP
- lpA6YsuIP1dvzB1ry0KySbCWzPymnzMBmbrcn5SZlziqpwXXE0F/RYTxAC70fSdTB8uX
- 7yLQ==
-X-Gm-Message-State: APjAAAWWKlNJxzReUirmIBefwvl+pWMSN2Ia8K3QgVH3Q+fgmFPQdySz
- lMNMaFrajaNj3on0BBHGd4w=
-X-Google-Smtp-Source: APXvYqzlI68p+ARJhpux4enDwFIlyF9Sy61+jKhZFcJL4kYrqNNDdmlH0x5MTJIhPxzdl/a4UCkCVA==
-X-Received: by 2002:a7b:cc88:: with SMTP id p8mr4552615wma.141.1582711910353; 
- Wed, 26 Feb 2020 02:11:50 -0800 (PST)
+ bh=jl5FDZ3E6dCzbCbZDISwzrkzl19kiYK7mBc86RyC/mE=;
+ b=cSzBd6e0TKZMf8Uw8HpIjbASc6SjKUf+6bWgrfU+C0gGIbrkS15rjDN1fKdiw46slK
+ Md94clY0VY5x1FLEvcQcxUoa07lTQteOpwnKAi1TrFJXjcyjXbvGCg8b0qVchcVjPbP2
+ F37IocATnTKHds/dA+hwRXlKJS0wfSPM3j3tvmDClU4Q1hslJ2M1MY0qLw0ODfc/meBt
+ I8j1Hz/cg7wBlEWXOsVgTSaIGfsM0ETx2UfViUcuF95/RHwKXKgZSsipny/kGA+TyZ+W
+ IvAgZLo1d41b5SD9zaBOF5t72DgPrVo+vLS11sBoZZiUiRLey4d6SUp+H87hT8LZWR31
+ t8YQ==
+X-Gm-Message-State: APjAAAURwWyQbaR2BA5Y4nzHKumapowrOiTLGJWvwtmp3/D6uOQ6ryLF
+ o7QkYG8ddyiXwKo5sFtnOEU=
+X-Google-Smtp-Source: APXvYqwb1iMPFKMmV9PUzZ4eceFRQHl9J/zvcnNDBQuQrDzMGn7gQtmOkwzI2gceR5Un04ev/HBAyQ==
+X-Received: by 2002:a1c:4383:: with SMTP id q125mr4595239wma.88.1582711913973; 
+ Wed, 26 Feb 2020 02:11:53 -0800 (PST)
 Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.11.47
+ by smtp.googlemail.com with ESMTPSA id r3sm2558190wrn.34.2020.02.26.02.11.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Feb 2020 02:11:49 -0800 (PST)
+ Wed, 26 Feb 2020 02:11:53 -0800 (PST)
 From: Wambui Karuga <wambui.karugax@gmail.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Wed, 26 Feb 2020 13:11:29 +0300
-Message-Id: <20200226101138.15435-2-wambui.karugax@gmail.com>
+Date: Wed, 26 Feb 2020 13:11:30 +0300
+Message-Id: <20200226101138.15435-3-wambui.karugax@gmail.com>
 X-Mailer: git-send-email 2.25.0
 In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
 References: <20200226101138.15435-1-wambui.karugax@gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/10] drm/i915/dsb: convert to drm_device based
+Subject: [Intel-gfx] [PATCH 02/10] drm/i915/fbc: convert to drm_device based
  logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,9 +74,11 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This converts uses of the printk based drm logging macros to the struct
-drm_device logging macros in i915/display/intel_dsb.c. This was done
-using the following coccinelle script:
+This replaces the uses of the printk based drm logging macros with the
+struct drm_device based logging macros in i915/display/intel_fbc.c.
+This transformation was done using the following coccinelle semantic
+patch that matches based on the existence of a drm_i915_private device
+pointer:
 @@
 identifier fn, T;
 @@
@@ -155,110 +157,108 @@ struct drm_i915_private *T = ...;
 ...+>
 }
 
-Checkpatch warnings were fixed manually.
+New checkpatch warnings were addressed manually.
 
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 28 ++++++++++++++----------
- 1 file changed, 16 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 28 ++++++++++++++----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 76ae01277fd6..d7a6bf2277df 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -52,7 +52,7 @@ static inline bool intel_dsb_enable_engine(struct intel_dsb *dsb)
- 
- 	dsb_ctrl = intel_de_read(dev_priv, DSB_CTRL(pipe, dsb->id));
- 	if (DSB_STATUS & dsb_ctrl) {
--		DRM_DEBUG_KMS("DSB engine is busy.\n");
-+		drm_dbg_kms(&dev_priv->drm, "DSB engine is busy.\n");
- 		return false;
- 	}
- 
-@@ -72,7 +72,7 @@ static inline bool intel_dsb_disable_engine(struct intel_dsb *dsb)
- 
- 	dsb_ctrl = intel_de_read(dev_priv, DSB_CTRL(pipe, dsb->id));
- 	if (DSB_STATUS & dsb_ctrl) {
--		DRM_DEBUG_KMS("DSB engine is busy.\n");
-+		drm_dbg_kms(&dev_priv->drm, "DSB engine is busy.\n");
- 		return false;
- 	}
- 
-@@ -115,20 +115,20 @@ intel_dsb_get(struct intel_crtc *crtc)
- 
- 	obj = i915_gem_object_create_internal(i915, DSB_BUF_SIZE);
- 	if (IS_ERR(obj)) {
--		DRM_ERROR("Gem object creation failed\n");
-+		drm_err(&i915->drm, "Gem object creation failed\n");
- 		goto out;
- 	}
- 
- 	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
--		DRM_ERROR("Vma creation failed\n");
-+		drm_err(&i915->drm, "Vma creation failed\n");
- 		i915_gem_object_put(obj);
- 		goto out;
- 	}
- 
- 	buf = i915_gem_object_pin_map(vma->obj, I915_MAP_WC);
- 	if (IS_ERR(buf)) {
--		DRM_ERROR("Command buffer creation failed\n");
-+		drm_err(&i915->drm, "Command buffer creation failed\n");
- 		goto out;
- 	}
- 
-@@ -203,7 +203,7 @@ void intel_dsb_indexed_reg_write(struct intel_dsb *dsb, i915_reg_t reg,
- 	}
- 
- 	if (drm_WARN_ON(&dev_priv->drm, dsb->free_pos >= DSB_BUF_SIZE)) {
--		DRM_DEBUG_KMS("DSB buffer overflow\n");
-+		drm_dbg_kms(&dev_priv->drm, "DSB buffer overflow\n");
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index ddf8d3bb7a7d..356680b402d9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -103,7 +103,7 @@ static void i8xx_fbc_deactivate(struct drm_i915_private *dev_priv)
+ 	/* Wait for compressing bit to clear */
+ 	if (intel_de_wait_for_clear(dev_priv, FBC_STATUS,
+ 				    FBC_STAT_COMPRESSING, 10)) {
+-		DRM_DEBUG_KMS("FBC idle timed out\n");
++		drm_dbg_kms(&dev_priv->drm, "FBC idle timed out\n");
  		return;
  	}
+ }
+@@ -484,7 +484,8 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
+ 	if (!ret)
+ 		goto err_llb;
+ 	else if (ret > 1) {
+-		DRM_INFO("Reducing the compressed framebuffer size. This may lead to less power savings than a non-reduced-size. Try to increase stolen memory size if available in BIOS.\n");
++		drm_info(&dev_priv->drm,
++			 "Reducing the compressed framebuffer size. This may lead to less power savings than a non-reduced-size. Try to increase stolen memory size if available in BIOS.\n");
  
-@@ -277,7 +277,7 @@ void intel_dsb_reg_write(struct intel_dsb *dsb, i915_reg_t reg, u32 val)
  	}
  
- 	if (drm_WARN_ON(&dev_priv->drm, dsb->free_pos >= DSB_BUF_SIZE)) {
--		DRM_DEBUG_KMS("DSB buffer overflow\n");
-+		drm_dbg_kms(&dev_priv->drm, "DSB buffer overflow\n");
- 		return;
+@@ -520,8 +521,9 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
+ 			       dev_priv->dsm.start + compressed_llb->start);
  	}
  
-@@ -310,7 +310,8 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 		goto reset;
- 
- 	if (is_dsb_busy(dsb)) {
--		DRM_ERROR("HEAD_PTR write failed - dsb engine is busy.\n");
-+		drm_err(&dev_priv->drm,
-+			"HEAD_PTR write failed - dsb engine is busy.\n");
- 		goto reset;
- 	}
- 	intel_de_write(dev_priv, DSB_HEAD(pipe, dsb->id),
-@@ -322,15 +323,18 @@ void intel_dsb_commit(struct intel_dsb *dsb)
- 		       (tail - dsb->free_pos * 4));
- 
- 	if (is_dsb_busy(dsb)) {
--		DRM_ERROR("TAIL_PTR write failed - dsb engine is busy.\n");
-+		drm_err(&dev_priv->drm,
-+			"TAIL_PTR write failed - dsb engine is busy.\n");
- 		goto reset;
- 	}
--	DRM_DEBUG_KMS("DSB execution started - head 0x%x, tail 0x%x\n",
--		      i915_ggtt_offset(dsb->vma), tail);
+-	DRM_DEBUG_KMS("reserved %llu bytes of contiguous stolen space for FBC, threshold: %d\n",
+-		      fbc->compressed_fb.size, fbc->threshold);
 +	drm_dbg_kms(&dev_priv->drm,
-+		    "DSB execution started - head 0x%x, tail 0x%x\n",
-+		    i915_ggtt_offset(dsb->vma), tail);
- 	intel_de_write(dev_priv, DSB_TAIL(pipe, dsb->id),
- 		       i915_ggtt_offset(dsb->vma) + tail);
- 	if (wait_for(!is_dsb_busy(dsb), 1)) {
--		DRM_ERROR("Timed out waiting for DSB workload completion.\n");
-+		drm_err(&dev_priv->drm,
-+			"Timed out waiting for DSB workload completion.\n");
- 		goto reset;
++		    "reserved %llu bytes of contiguous stolen space for FBC, threshold: %d\n",
++		    fbc->compressed_fb.size, fbc->threshold);
+ 
+ 	return 0;
+ 
+@@ -944,7 +946,8 @@ static void __intel_fbc_disable(struct drm_i915_private *dev_priv)
+ 	drm_WARN_ON(&dev_priv->drm, !fbc->crtc);
+ 	drm_WARN_ON(&dev_priv->drm, fbc->active);
+ 
+-	DRM_DEBUG_KMS("Disabling FBC on pipe %c\n", pipe_name(crtc->pipe));
++	drm_dbg_kms(&dev_priv->drm, "Disabling FBC on pipe %c\n",
++		    pipe_name(crtc->pipe));
+ 
+ 	__intel_fbc_cleanup_cfb(dev_priv);
+ 
+@@ -1172,7 +1175,8 @@ void intel_fbc_enable(struct intel_atomic_state *state,
+ 	else
+ 		cache->gen9_wa_cfb_stride = 0;
+ 
+-	DRM_DEBUG_KMS("Enabling FBC on pipe %c\n", pipe_name(crtc->pipe));
++	drm_dbg_kms(&dev_priv->drm, "Enabling FBC on pipe %c\n",
++		    pipe_name(crtc->pipe));
+ 	fbc->no_fbc_reason = "FBC enabled but not active yet\n";
+ 
+ 	fbc->crtc = crtc;
+@@ -1234,7 +1238,7 @@ static void intel_fbc_underrun_work_fn(struct work_struct *work)
+ 	if (fbc->underrun_detected || !fbc->crtc)
+ 		goto out;
+ 
+-	DRM_DEBUG_KMS("Disabling FBC due to FIFO underrun.\n");
++	drm_dbg_kms(&dev_priv->drm, "Disabling FBC due to FIFO underrun.\n");
+ 	fbc->underrun_detected = true;
+ 
+ 	intel_fbc_deactivate(dev_priv, "FIFO underrun");
+@@ -1260,7 +1264,8 @@ int intel_fbc_reset_underrun(struct drm_i915_private *dev_priv)
+ 		return ret;
+ 
+ 	if (dev_priv->fbc.underrun_detected) {
+-		DRM_DEBUG_KMS("Re-allowing FBC after fifo underrun\n");
++		drm_dbg_kms(&dev_priv->drm,
++			    "Re-allowing FBC after fifo underrun\n");
+ 		dev_priv->fbc.no_fbc_reason = "FIFO underrun cleared";
  	}
  
+@@ -1331,7 +1336,8 @@ static bool need_fbc_vtd_wa(struct drm_i915_private *dev_priv)
+ 	/* WaFbcTurnOffFbcWhenHyperVisorIsUsed:skl,bxt */
+ 	if (intel_vtd_active() &&
+ 	    (IS_SKYLAKE(dev_priv) || IS_BROXTON(dev_priv))) {
+-		DRM_INFO("Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
++		drm_info(&dev_priv->drm,
++			 "Disabling framebuffer compression (FBC) to prevent screen flicker with VT-d enabled\n");
+ 		return true;
+ 	}
+ 
+@@ -1359,8 +1365,8 @@ void intel_fbc_init(struct drm_i915_private *dev_priv)
+ 		mkwrite_device_info(dev_priv)->display.has_fbc = false;
+ 
+ 	i915_modparams.enable_fbc = intel_sanitize_fbc_option(dev_priv);
+-	DRM_DEBUG_KMS("Sanitized enable_fbc value: %d\n",
+-		      i915_modparams.enable_fbc);
++	drm_dbg_kms(&dev_priv->drm, "Sanitized enable_fbc value: %d\n",
++		    i915_modparams.enable_fbc);
+ 
+ 	if (!HAS_FBC(dev_priv)) {
+ 		fbc->no_fbc_reason = "unsupported by this chipset";
 -- 
 2.25.0
 
