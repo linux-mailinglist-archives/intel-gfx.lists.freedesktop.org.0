@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33BAF16FB16
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 10:43:42 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6852C16FB1C
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 10:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 405526E419;
-	Wed, 26 Feb 2020 09:43:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74F4A6E40D;
+	Wed, 26 Feb 2020 09:43:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B69446E3F9
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 09:43:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9B106E40D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 09:43:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20354709-1500050 
- for multiple; Wed, 26 Feb 2020 09:43:16 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20354710-1500050 
+ for multiple; Wed, 26 Feb 2020 09:43:17 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Feb 2020 09:43:10 +0000
-Message-Id: <20200226094314.1500667-13-chris@chris-wilson.co.uk>
+Date: Wed, 26 Feb 2020 09:43:11 +0000
+Message-Id: <20200226094314.1500667-14-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200226094314.1500667-1-chris@chris-wilson.co.uk>
 References: <20200226094314.1500667-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/17] drm/i915/gem: Check that the context
- wasn't closed during setup
+Subject: [Intel-gfx] [PATCH 14/17] drm/i915/gt: Declare when we enabled
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,40 +39,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As setup takes a long time, the user may close the context during the
-construction of the execbuf. In order to make sure we correctly track
-all outstanding work with non-persistent contexts, we need to serialise
-the submission with the context closure and mop up any leaks.
+Let userspace know if they can trust timeslicing by including it as part
+of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
 
+v2: Only declare timeslicing if we can safely preempt userspace.
+
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine.h      | 3 ++-
+ drivers/gpu/drm/i915/gt/intel_engine_user.c | 5 +++++
+ include/uapi/drm/i915_drm.h                 | 1 +
+ 3 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index fe1e50937fe2..66d45629cc0d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2736,6 +2736,12 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 		goto err_batch_unpin;
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+index 29c8c03c5caa..a32dc82a90d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+@@ -326,7 +326,8 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+ 	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+ 		return false;
+ 
+-	return intel_engine_has_semaphores(engine);
++	return (intel_engine_has_semaphores(engine) &&
++		intel_engine_has_preemption(engine));
+ }
+ 
+ #endif /* _INTEL_RINGBUFFER_H_ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index 848decee9066..b84fdd722781 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -121,6 +121,11 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+ 			else
+ 				disabled |= BIT(map[i].sched);
+ 		}
++
++		if (intel_engine_has_timeslices(engine))
++			enabled |= I915_SCHEDULER_CAP_TIMESLICING;
++		else
++			disabled |= I915_SCHEDULER_CAP_TIMESLICING;
  	}
  
-+	/* Check that the context wasn't destroyed before setup */
-+	if (!rcu_access_pointer(eb.context->gem_context)) {
-+		err = -ENOENT;
-+		goto err_request;
-+	}
-+
- 	if (in_fence) {
- 		err = i915_request_await_dma_fence(eb.request, in_fence);
- 		if (err < 0)
+ 	i915->caps.scheduler = enabled & ~disabled;
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 2813e579b480..4f903431a3fe 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
+ #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
+ #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
+ #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
++#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
+ 
+ #define I915_PARAM_HUC_STATUS		 42
+ 
 -- 
 2.25.1
 
