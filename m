@@ -1,32 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388C4170A77
-	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 22:31:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE540170AF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 26 Feb 2020 23:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21AE089F97;
-	Wed, 26 Feb 2020 21:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D60C06EBDB;
+	Wed, 26 Feb 2020 22:00:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 960A189F1B
- for <intel-gfx@lists.freedesktop.org>; Wed, 26 Feb 2020 21:31:17 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20363017-1500050 
- for multiple; Wed, 26 Feb 2020 21:30:44 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 26 Feb 2020 21:30:42 +0000
-Message-Id: <20200226213042.1708867-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200226213042.1708867-1-chris@chris-wilson.co.uk>
-References: <20200226213042.1708867-1-chris@chris-wilson.co.uk>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7406E4E3;
+ Wed, 26 Feb 2020 22:00:03 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 14:00:02 -0800
+X-IronPort-AV: E=Sophos;i="5.70,489,1574150400"; d="scan'208";a="231560983"
+Received: from talten-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.51.151])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 13:59:59 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+In-Reply-To: <20200226103016.GC10413@zhen-hp.sh.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200226103016.GC10413@zhen-hp.sh.intel.com>
+Date: Thu, 27 Feb 2020 00:00:18 +0200
+Message-ID: <87d0a1roul.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/perf: Wait for lrc_reconfigure on
- disable
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,103 +45,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wait for the last request (and so waits for all context updates) when
-disabling OA. This prevents a rather bizarre error seen on Skylake
-where the context is subsequently corrupted. Let's play safe and assume
-it may impact all.
+On Wed, 26 Feb 2020, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
+>
+> Here's gvt-fixes for 5.6-rc with two fixes. One to resolve virtual
+> display reset and another one for use-after-free in dmabuf destroy
+> function.
 
-Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 23 +++++++++++++++++------
- 1 file changed, 17 insertions(+), 6 deletions(-)
+Pulled, thanks.
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 2334c45f1d08..20c68b5dea63 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2191,7 +2191,8 @@ static int gen8_modify_context(struct intel_context *ce,
- }
- 
- static int gen8_modify_self(struct intel_context *ce,
--			    const struct flex *flex, unsigned int count)
-+			    const struct flex *flex, unsigned int count,
-+			    bool sync)
- {
- 	struct i915_request *rq;
- 	int err;
-@@ -2204,7 +2205,12 @@ static int gen8_modify_self(struct intel_context *ce,
- 
- 	err = gen8_load_flex(rq, ce, flex, count);
- 
-+	i915_request_get(rq);
- 	i915_request_add(rq);
-+	if (sync && i915_request_wait(rq, 0, HZ) < 0)
-+		err = -ETIME;
-+	i915_request_put(rq);
-+
- 	return err;
- }
- 
-@@ -2281,7 +2287,7 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream, bool ena
- 		return err;
- 
- 	/* Apply regs_lri using LRI with pinned context */
--	return gen8_modify_self(ce, regs_lri, ARRAY_SIZE(regs_lri));
-+	return gen8_modify_self(ce, regs_lri, ARRAY_SIZE(regs_lri), false);
- }
- 
- /*
-@@ -2311,7 +2317,8 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream, bool ena
-  */
- static int oa_configure_all_contexts(struct i915_perf_stream *stream,
- 				     struct flex *regs,
--				     size_t num_regs)
-+				     size_t num_regs,
-+				     bool enable)
- {
- 	struct drm_i915_private *i915 = stream->perf->i915;
- 	struct intel_engine_cs *engine;
-@@ -2368,7 +2375,7 @@ static int oa_configure_all_contexts(struct i915_perf_stream *stream,
- 
- 		regs[0].value = intel_sseu_make_rpcs(i915, &ce->sseu);
- 
--		err = gen8_modify_self(ce, regs, num_regs);
-+		err = gen8_modify_self(ce, regs, num_regs, !enable);
- 		if (err)
- 			return err;
- 	}
-@@ -2386,7 +2393,9 @@ static int gen12_configure_all_contexts(struct i915_perf_stream *stream,
- 		},
- 	};
- 
--	return oa_configure_all_contexts(stream, regs, ARRAY_SIZE(regs));
-+	return oa_configure_all_contexts(stream,
-+					 regs, ARRAY_SIZE(regs),
-+					 oa_config);
- }
- 
- static int lrc_configure_all_contexts(struct i915_perf_stream *stream,
-@@ -2423,7 +2432,9 @@ static int lrc_configure_all_contexts(struct i915_perf_stream *stream,
- 	for (i = 2; i < ARRAY_SIZE(regs); i++)
- 		regs[i].value = oa_config_flex_reg(oa_config, regs[i].reg);
- 
--	return oa_configure_all_contexts(stream, regs, ARRAY_SIZE(regs));
-+	return oa_configure_all_contexts(stream,
-+					 regs, ARRAY_SIZE(regs),
-+					 oa_config);
- }
- 
- static int gen8_enable_metric_set(struct i915_perf_stream *stream)
+BR,
+Jani.
+
+>
+> Thanks
+> --
+> The following changes since commit 0e9d7bb293f3f9c3ee376b126141407efb265f31:
+>
+>   drm/i915/gvt: more locking for ppgtt mm LRU list (2020-02-10 10:04:34 +0800)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-02-26
+>
+> for you to fetch changes up to b549c252b1292aea959cd9b83537fcb9384a6112:
+>
+>   drm/i915/gvt: Fix orphan vgpu dmabuf_objs' lifetime (2020-02-25 16:14:20 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-fixes-2020-02-26
+>
+> - Fix virtual display reset (Tina)
+> - Fix one use-after-free for dmabuf (Tina)
+>
+> ----------------------------------------------------------------
+> Tina Zhang (2):
+>       drm/i915/gvt: Separate display reset from ALL_ENGINES reset
+>       drm/i915/gvt: Fix orphan vgpu dmabuf_objs' lifetime
+>
+>  drivers/gpu/drm/i915/gvt/dmabuf.c | 2 +-
+>  drivers/gpu/drm/i915/gvt/vgpu.c   | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+
 -- 
-2.25.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
