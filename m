@@ -2,62 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0BAB1716B6
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 13:03:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7711D1717B8
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 13:44:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E1266EC95;
-	Thu, 27 Feb 2020 12:03:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21CA96E8BA;
+	Thu, 27 Feb 2020 12:44:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
- [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F54E6EC95;
- Thu, 27 Feb 2020 12:03:47 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id l5so3020739wrx.4;
- Thu, 27 Feb 2020 04:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=JDFiHtXUYpw9/7YjF6hgsTU6zXp0udoM7RVARL/tRI4=;
- b=AR7qKUbTnFZFJhUbiw2wILy8YBU7aRm24uEVrizIZeXUZNnuow1AiJSWkZHsm+ROIT
- TCuXxcqqWo/c4+PP1chfR05ZAFk0Y37cjOB+LzVCs/7Yv+GqQkguY0Qd4tmjDKPe2gmk
- 04FjLuFbkYSWXn2+Lw+RsmCYLI0MOPl9L65a6ANyK8JA06Xjdwx/x5d7Oh9P5FS5d6W4
- 99WcOdHriz+O90flwURtV17N23h0QHARXF3s1oltpvS4r7MzNcVZR2r0o1UMMaJQ1j/t
- B/BCuUaqv8/tVWdN+iOp7z+A7DftT0ZMcTEY9Eq0JYCTRHJB7WFMiI9QOQjZ5wtQnpxL
- syQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=JDFiHtXUYpw9/7YjF6hgsTU6zXp0udoM7RVARL/tRI4=;
- b=sYNmJScj1ZMfWVZyRxnyclA4ODIvliK5AG+jR/F0WpCSrQWNTdJQ+kKHwqUQHHwIKx
- iOkysgnAyPmeGikuwzzp+cpjmauEZ13/tZ/Iu81APT5s/SeKC+7bwXYiKZPD3jVkSrgv
- CX5zNtVIfa7lpKIkXZ1Y3mo1cyb0ie9oZQA5Zm81zPQR+4L1XLvQJAt/psqX0q56sWlk
- plMPel420noIxbbfDDQ4FghExWgrurP8ZGHVtAOn5iHcB9daAFQikd/O3lfSMulrDv6z
- lUfmgijfyhr0+RGqy6jiDl/kCqA0THaguq+Qvat9+8ngBJKOy+mt/y/MXPGsOTd9N5D6
- G01w==
-X-Gm-Message-State: APjAAAX5b1ut5yHHQuVMd5u3DES/csfhitK1pdUoO9+kl/vmBrYRynCD
- U9S3OVTt8zgKzDrC3J8tjYk=
-X-Google-Smtp-Source: APXvYqycfeHEVSwOmkH9aHMERPJ5uUBCwE6v7YS6/+KssWDzjjGaXBNUPLF6j1vpk0YqR5PazYwqlg==
-X-Received: by 2002:adf:a746:: with SMTP id e6mr4572634wrd.329.1582805025787; 
- Thu, 27 Feb 2020 04:03:45 -0800 (PST)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id t10sm7655017wru.59.2020.02.27.04.03.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Feb 2020 04:03:45 -0800 (PST)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: daniel@ffwll.ch, airlied@linux.ie,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 27 Feb 2020 15:02:27 +0300
-Message-Id: <20200227120232.19413-17-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200227120232.19413-1-wambui.karugax@gmail.com>
-References: <20200227120232.19413-1-wambui.karugax@gmail.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47E8B6E8BA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 12:44:00 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 04:43:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="238410643"
+Received: from rkujawa-mobl1.ger.corp.intel.com (HELO
+ delly.ger.corp.intel.com) ([10.249.137.196])
+ by orsmga003.jf.intel.com with ESMTP; 27 Feb 2020 04:43:58 -0800
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 14:43:56 +0200
+Message-Id: <20200227124356.1625616-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 16/21] drm/i915: make *_debugfs_register()
- functions return void.
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: reintroduce wait on OA
+ configuration completion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,113 +42,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since 987d65d01356 (drm: debugfs: make
-drm_debugfs_create_files() never fail), drm_debugfs_create_files() never
-fails and should return void. Therefore, remove its use as the
-return value of i915_debugfs_register() and
-intel_display_debugfs_register() and have both functions return void.
+We still need to wait for the initial OA configuration to happen
+before we enable OA report writes to the OA buffer.
 
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: 15d0ace1f876 ("drm/i915/perf: execute OA configuration from command stream")
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++----
- drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
- drivers/gpu/drm/i915/i915_debugfs.c                  | 8 ++++----
- drivers/gpu/drm/i915/i915_debugfs.h                  | 4 ++--
- 4 files changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c       | 49 +++++++++++++++++++++++---
+ drivers/gpu/drm/i915/i915_perf_types.h |  8 +++++
+ 2 files changed, 52 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 46954cc7b6c0..3b877c34c420 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1922,7 +1922,7 @@ static const struct {
- 	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
- };
- 
--int intel_display_debugfs_register(struct drm_i915_private *i915)
-+void intel_display_debugfs_register(struct drm_i915_private *i915)
- {
- 	struct drm_minor *minor = i915->drm.primary;
- 	int i;
-@@ -1935,9 +1935,9 @@ int intel_display_debugfs_register(struct drm_i915_private *i915)
- 				    intel_display_debugfs_files[i].fops);
- 	}
- 
--	return drm_debugfs_create_files(intel_display_debugfs_list,
--					ARRAY_SIZE(intel_display_debugfs_list),
--					minor->debugfs_root, minor);
-+	drm_debugfs_create_files(intel_display_debugfs_list,
-+				 ARRAY_SIZE(intel_display_debugfs_list),
-+				 minor->debugfs_root, minor);
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index f4e1dd525fa2..3883c21b13b2 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1378,6 +1378,23 @@ free_noa_wait(struct i915_perf_stream *stream)
+ 	i915_vma_unpin_and_release(&stream->noa_wait, 0);
  }
  
- static int i915_panel_show(struct seq_file *m, void *data)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-index a3bea1ce04c2..a5cf7a6d3d34 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-@@ -10,10 +10,10 @@ struct drm_connector;
- struct drm_i915_private;
- 
- #ifdef CONFIG_DEBUG_FS
--int intel_display_debugfs_register(struct drm_i915_private *i915);
-+void intel_display_debugfs_register(struct drm_i915_private *i915);
- int intel_connector_debugfs_add(struct drm_connector *connector);
- #else
--static inline int intel_display_debugfs_register(struct drm_i915_private *i915) { return 0; }
-+static inline int intel_display_debugfs_register(struct drm_i915_private *i915) {}
- static inline int intel_connector_debugfs_add(struct drm_connector *connector) { return 0; }
- #endif
- 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8f2525e4ce0f..de313199c714 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -2392,7 +2392,7 @@ static const struct i915_debugfs_files {
- 	{"i915_guc_log_relay", &i915_guc_log_relay_fops},
- };
- 
--int i915_debugfs_register(struct drm_i915_private *dev_priv)
-+void i915_debugfs_register(struct drm_i915_private *dev_priv)
++static int
++wait_and_put_configure_request(struct i915_perf_stream *stream)
++{
++	struct i915_request *rq = stream->configure_request;
++	int ret = 0;
++
++	stream->configure_request = NULL;
++	GEM_BUG_ON(rq == NULL);
++
++	if (i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT) < 0)
++		ret = -ETIME;
++
++	i915_request_put(rq);
++
++	return ret;
++}
++
+ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
  {
- 	struct drm_minor *minor = dev_priv->drm.primary;
- 	int i;
-@@ -2409,7 +2409,7 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
- 				    i915_debugfs_files[i].fops);
+ 	struct i915_perf *perf = stream->perf;
+@@ -1390,6 +1407,7 @@ static void i915_oa_stream_destroy(struct i915_perf_stream *stream)
+ 	 */
+ 	perf->exclusive_stream = NULL;
+ 	perf->ops.disable_metric_set(stream);
++	GEM_BUG_ON(stream->configure_request != NULL);
+ 
+ 	free_oa_buffer(stream);
+ 
+@@ -1954,7 +1972,8 @@ get_oa_vma(struct i915_perf_stream *stream, struct i915_oa_config *oa_config)
+ 
+ static int emit_oa_config(struct i915_perf_stream *stream,
+ 			  struct i915_oa_config *oa_config,
+-			  struct intel_context *ce)
++			  struct intel_context *ce,
++			  bool store_on_stream)
+ {
+ 	struct i915_request *rq;
+ 	struct i915_vma *vma;
+@@ -1987,6 +2006,12 @@ static int emit_oa_config(struct i915_perf_stream *stream,
+ 	err = rq->engine->emit_bb_start(rq,
+ 					vma->node.start, 0,
+ 					I915_DISPATCH_SECURE);
++
++	if (err == 0 && store_on_stream) {
++		GEM_BUG_ON(stream->configure_request != NULL);
++		stream->configure_request = i915_request_get(rq);
++	}
++
+ err_add_request:
+ 	i915_request_add(rq);
+ err_vma_unpin:
+@@ -2020,7 +2045,9 @@ static int hsw_enable_metric_set(struct i915_perf_stream *stream)
+ 	intel_uncore_rmw(uncore, GEN6_UCGCTL1,
+ 			 0, GEN6_CSUNIT_CLOCK_GATE_DISABLE);
+ 
+-	return emit_oa_config(stream, stream->oa_config, oa_context(stream));
++	return emit_oa_config(stream, stream->oa_config,
++			      oa_context(stream),
++			      true /* store_on_stream */);
+ }
+ 
+ static void hsw_disable_metric_set(struct i915_perf_stream *stream)
+@@ -2448,7 +2475,9 @@ static int gen8_enable_metric_set(struct i915_perf_stream *stream)
+ 	if (ret)
+ 		return ret;
+ 
+-	return emit_oa_config(stream, oa_config, oa_context(stream));
++	return emit_oa_config(stream, oa_config,
++			      oa_context(stream),
++			      true /* store_on_stream */);
+ }
+ 
+ static u32 oag_report_ctx_switches(const struct i915_perf_stream *stream)
+@@ -2502,7 +2531,9 @@ static int gen12_enable_metric_set(struct i915_perf_stream *stream)
+ 			return ret;
  	}
  
--	return drm_debugfs_create_files(i915_debugfs_list,
--					I915_DEBUGFS_ENTRIES,
--					minor->debugfs_root, minor);
-+	drm_debugfs_create_files(i915_debugfs_list,
-+				 I915_DEBUGFS_ENTRIES,
-+				 minor->debugfs_root, minor);
+-	return emit_oa_config(stream, oa_config, oa_context(stream));
++	return emit_oa_config(stream, oa_config,
++			      oa_context(stream),
++			      true /* store_on_stream */);
  }
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.h b/drivers/gpu/drm/i915/i915_debugfs.h
-index 6da39c76ab5e..1de2736f1248 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.h
-+++ b/drivers/gpu/drm/i915/i915_debugfs.h
-@@ -12,10 +12,10 @@ struct drm_i915_private;
- struct seq_file;
  
- #ifdef CONFIG_DEBUG_FS
--int i915_debugfs_register(struct drm_i915_private *dev_priv);
-+void i915_debugfs_register(struct drm_i915_private *dev_priv);
- void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj);
- #else
--static inline int i915_debugfs_register(struct drm_i915_private *dev_priv) { return 0; }
-+static inline void i915_debugfs_register(struct drm_i915_private *dev_priv) {}
- static inline void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj) {}
- #endif
+ static void gen8_disable_metric_set(struct i915_perf_stream *stream)
+@@ -2837,6 +2868,12 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+ 		goto err_enable;
+ 	}
  
++	ret = wait_and_put_configure_request(stream);
++	if (ret) {
++		DRM_DEBUG("Wait on OA config request timed out\n");
++		goto err_enable;
++	}
++
+ 	DRM_DEBUG("opening stream oa config uuid=%s\n",
+ 		  stream->oa_config->uuid);
+ 
+@@ -2851,6 +2888,7 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+ err_enable:
+ 	perf->exclusive_stream = NULL;
+ 	perf->ops.disable_metric_set(stream);
++	GEM_BUG_ON(stream->configure_request != NULL);
+ 
+ 	free_oa_buffer(stream);
+ 
+@@ -3160,7 +3198,8 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 		 * When set globally, we use a low priority kernel context,
+ 		 * so it will effectively take effect when idle.
+ 		 */
+-		err = emit_oa_config(stream, config, oa_context(stream));
++		err = emit_oa_config(stream, config, oa_context(stream),
++				     false /* store_on_stream */);
+ 		if (err == 0)
+ 			config = xchg(&stream->oa_config, config);
+ 		else
+diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+index d994fa6a1c5f..92fd3cf5afcc 100644
+--- a/drivers/gpu/drm/i915/i915_perf_types.h
++++ b/drivers/gpu/drm/i915/i915_perf_types.h
+@@ -309,6 +309,14 @@ struct i915_perf_stream {
+ 	 * reprogrammed.
+ 	 */
+ 	struct i915_vma *noa_wait;
++
++	/**
++	 * @configure_request: Request on which to wait for HW to complete its
++	 * initial configuration. This is required for applications caring
++	 * about system wide monitoring. We want all the data they can get
++	 * through the OA buffer to be valid.
++	 */
++	struct i915_request *configure_request;
+ };
+ 
+ /**
 -- 
-2.25.0
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
