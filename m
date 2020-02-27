@@ -1,37 +1,71 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E6721727B7
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:35:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3925D1727CB
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:41:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F001C6EC4C;
-	Thu, 27 Feb 2020 18:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9549F6EC4D;
+	Thu, 27 Feb 2020 18:41:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9BBBF6EBFF;
- Thu, 27 Feb 2020 18:35:46 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3901D1FB;
- Thu, 27 Feb 2020 10:35:46 -0800 (PST)
-Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com
- [10.121.207.14])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 190B83F73B;
- Thu, 27 Feb 2020 10:35:46 -0800 (PST)
-Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
- id CD024682F2C; Thu, 27 Feb 2020 18:35:44 +0000 (GMT)
-Date: Thu, 27 Feb 2020 18:35:44 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200227183544.GC364558@e110455-lin.cambridge.arm.com>
-References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
- <20200227181522.2711142-19-daniel.vetter@ffwll.ch>
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [205.139.110.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 859BC6EC4D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:41:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582828882;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Pf4TB8w3Z+jg5ZcPG6oreLqe5mNXEkWdlFZINTXvLg0=;
+ b=ZCSwsPW/2MRRSFy9ZQBNaTx7DGSnm/z3IL+2oeT5iveuJ7+LO9Oj94mxlzlliDx7gpDdb4
+ FQCdKIH9U6lFDNFpTR6V8PPfVNxrjywhGCw/TbXPGgvbCAIVMrYgCUwxm/P0brDXvC2v62
+ bhStqK/HqvDVyjRuTgmedwF9nV35XlM=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-310-zxpmKNOJPDqYMM6I5Ur3MA-1; Thu, 27 Feb 2020 13:41:10 -0500
+X-MC-Unique: zxpmKNOJPDqYMM6I5Ur3MA-1
+Received: by mail-qk1-f199.google.com with SMTP id e11so152985qkl.8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:41:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+ :references:organization:user-agent:mime-version
+ :content-transfer-encoding;
+ bh=Pf4TB8w3Z+jg5ZcPG6oreLqe5mNXEkWdlFZINTXvLg0=;
+ b=PVxAJCqWzAC4kzmv3cVCkQsvo7Oz1iWOTC5ADnYrKbawmY1GCS4kB6cDPIfD4kaBtX
+ scL++g+Tccxqp8uMBaY10VAnujwFf/CGpyHkXQCTiB5LFdWcFwPvvj4W/JFDafA7andb
+ 0SubhN33FsR2m/z9bzr1ko/aO7TABNWfW0AUAv0yFfPEwvuUHv6F/d7PZ6zVd2YeTiWQ
+ yDuNMXZQJyxeQK8xLL+3EH53FlUzumAU2Lj1OMyarYfZplPpSP7xIldPjVGGkapKfbGV
+ 37cFF9oBYX2dTkdHKitvzMOZ7rbIABqe9fC/06VVvou+YHU6Z4Ci7Ck9VcuE/EOrSStV
+ 9IUg==
+X-Gm-Message-State: APjAAAXQTCxoHsN8yhEpPzWNlHV7wN0d5RhrtWh5vbawbgc7v60LM5YD
+ hkTFftT+ttptZK6l5GWcBB0g6+pRIG/xZmDGYdwMmeSHzmh3Ng+M7x/oxeKTuPjiGt5DA5DJfOM
+ recrzcnOZMnh6vJBnVhD/vDhZA/4Q
+X-Received: by 2002:ae9:e40e:: with SMTP id q14mr666020qkc.419.1582828869361; 
+ Thu, 27 Feb 2020 10:41:09 -0800 (PST)
+X-Google-Smtp-Source: APXvYqzWm7FH0FqAJWftq5uTTLXkvkQ438hikCYPwQu2Qsp4785muxMC5eb0y9XsO29lkoPkxU+7lQ==
+X-Received: by 2002:ae9:e40e:: with SMTP id q14mr665995qkc.419.1582828869068; 
+ Thu, 27 Feb 2020 10:41:09 -0800 (PST)
+Received: from dhcp-10-20-1-196.bss.redhat.com ([144.121.20.162])
+ by smtp.gmail.com with ESMTPSA id m200sm3675073qke.135.2020.02.27.10.41.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Feb 2020 10:41:08 -0800 (PST)
+Message-ID: <cd775055fc4450bba045cfbde66d45502e16162c.camel@redhat.com>
+From: Lyude Paul <lyude@redhat.com>
+To: Hans de Goede <hdegoede@redhat.com>
+Date: Thu, 27 Feb 2020 13:41:07 -0500
+In-Reply-To: <99213368-5025-8435-502b-3d23b875ca60@redhat.com>
+References: <99213368-5025-8435-502b-3d23b875ca60@redhat.com>
+Organization: Red Hat
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181522.2711142-19-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 18/51] drm/<drivers>: Use
- drmm_add_final_kfree
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] 5.6 DP-MST regression: 1 of 2 monitors on TB3
+ (DP-MST) dock no longer light up
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,72 +78,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
- Russell King <linux@armlinux.org.uk>,
- "James \(Qian\) Wang" <james.qian.wang@arm.com>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Mihail Atanassov <mihail.atanassov@arm.com>, l.stach@pengutronix.de
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCBGZWIgMjcsIDIwMjAgYXQgMDc6MTQ6NDlQTSArMDEwMCwgRGFuaWVsIFZldHRlciB3
-cm90ZToKPiBUaGVzZSBhcmUgdGhlIGxlZnRvdmVyIGRyaXZlcnMgdGhhdCBkaWRuJ3QgaGF2ZSBh
-IC0+cmVsZWFzZSBob29rIHRoYXQKPiBuZWVkZWQgdG8gYmUgdXBkYXRlZC4KPiAKPiBTaWduZWQt
-b2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGludGVsLmNvbT4KPiBDYzogIkph
-bWVzIChRaWFuKSBXYW5nIiA8amFtZXMucWlhbi53YW5nQGFybS5jb20+Cj4gQ2M6IExpdml1IER1
-ZGF1IDxsaXZpdS5kdWRhdUBhcm0uY29tPgo+IENjOiBNaWhhaWwgQXRhbmFzc292IDxtaWhhaWwu
-YXRhbmFzc292QGFybS5jb20+Cj4gQ2M6IFJ1c3NlbGwgS2luZyA8bGludXhAYXJtbGludXgub3Jn
-LnVrPgo+IENjOiBIYW5zIGRlIEdvZWRlIDxoZGVnb2VkZUByZWRoYXQuY29tPgo+IC0tLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL2tvbWVkYV9rbXMuYyB8IDIgKysKPiAg
-ZHJpdmVycy9ncHUvZHJtL2FybWFkYS9hcm1hZGFfZHJ2LmMgICAgICAgICAgICAgfCAyICsrCj4g
-IGRyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8vdmJveF9kcnYuYyAgICAgICAgICAgIHwgMiArKwo+
-ICAzIGZpbGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkva29tZWRhL2tvbWVkYV9rbXMuYyBiL2RyaXZlcnMvZ3B1
-L2RybS9hcm0vZGlzcGxheS9rb21lZGEva29tZWRhX2ttcy5jCj4gaW5kZXggNDQyZDQ2NTYxNTBh
-Li4xNmRmZDVjZGI2NmMgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2FybS9kaXNwbGF5
-L2tvbWVkYS9rb21lZGFfa21zLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vYXJtL2Rpc3BsYXkv
-a29tZWRhL2tvbWVkYV9rbXMuYwo+IEBAIC0xNCw2ICsxNCw3IEBACj4gICNpbmNsdWRlIDxkcm0v
-ZHJtX2dlbV9jbWFfaGVscGVyLmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX2dlbV9mcmFtZWJ1ZmZl
-cl9oZWxwZXIuaD4KPiAgI2luY2x1ZGUgPGRybS9kcm1faXJxLmg+Cj4gKyNpbmNsdWRlIDxkcm0v
-ZHJtX21hbmFnZWQuaD4KPiAgI2luY2x1ZGUgPGRybS9kcm1fcHJvYmVfaGVscGVyLmg+Cj4gICNp
-bmNsdWRlIDxkcm0vZHJtX3ZibGFuay5oPgo+ICAKPiBAQCAtMjcxLDYgKzI3Miw3IEBAIHN0cnVj
-dCBrb21lZGFfa21zX2RldiAqa29tZWRhX2ttc19hdHRhY2goc3RydWN0IGtvbWVkYV9kZXYgKm1k
-ZXYpCj4gIAllcnIgPSBkcm1fZGV2X2luaXQoZHJtLCAma29tZWRhX2ttc19kcml2ZXIsIG1kZXYt
-PmRldik7Cj4gIAlpZiAoZXJyKQo+ICAJCWdvdG8gZnJlZV9rbXM7Cj4gKwlkcm1tX2FkZF9maW5h
-bF9rZnJlZShkcm0sIGttcyk7Cj4gIAo+ICAJZHJtLT5kZXZfcHJpdmF0ZSA9IG1kZXY7Cj4gIAoK
-Rm9yIGtvbWVkYTogQWNrZWQtYnk6IExpdml1IER1ZGF1IDxsaXZpdS5kdWRhdUBhcm0uY29tPgoK
-QmVzdCByZWdhcmRzLApMaXZpdQoKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2FybWFk
-YS9hcm1hZGFfZHJ2LmMgYi9kcml2ZXJzL2dwdS9kcm0vYXJtYWRhL2FybWFkYV9kcnYuYwo+IGlu
-ZGV4IDE5N2RjYTNmYzg0Yy4uZGQ5ZWQ3MWVkOTQyIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9hcm1hZGEvYXJtYWRhX2Rydi5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2FybWFkYS9h
-cm1hZGFfZHJ2LmMKPiBAQCAtMTIsNiArMTIsNyBAQAo+ICAjaW5jbHVkZSA8ZHJtL2RybV9hdG9t
-aWNfaGVscGVyLmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX2Rydi5oPgo+ICAjaW5jbHVkZSA8ZHJt
-L2RybV9pb2N0bC5oPgo+ICsjaW5jbHVkZSA8ZHJtL2RybV9tYW5hZ2VkLmg+Cj4gICNpbmNsdWRl
-IDxkcm0vZHJtX3ByaW1lLmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX3Byb2JlX2hlbHBlci5oPgo+
-ICAjaW5jbHVkZSA8ZHJtL2RybV9mYl9oZWxwZXIuaD4KPiBAQCAtMTAzLDYgKzEwNCw3IEBAIHN0
-YXRpYyBpbnQgYXJtYWRhX2RybV9iaW5kKHN0cnVjdCBkZXZpY2UgKmRldikKPiAgCQlrZnJlZShw
-cml2KTsKPiAgCQlyZXR1cm4gcmV0Owo+ICAJfQo+ICsJZHJtbV9hZGRfZmluYWxfa2ZyZWUoJnBy
-aXYtPmRybSwgcHJpdik7Cj4gIAo+ICAJLyogUmVtb3ZlIGVhcmx5IGZyYW1lYnVmZmVycyAqLwo+
-ICAJcmV0ID0gZHJtX2ZiX2hlbHBlcl9yZW1vdmVfY29uZmxpY3RpbmdfZnJhbWVidWZmZXJzKE5V
-TEwsCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8vdmJveF9kcnYuYyBi
-L2RyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8vdmJveF9kcnYuYwo+IGluZGV4IDg1MTJkOTcwYTA5
-Zi4uMTNlYWFlNzkyMWY1IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8v
-dmJveF9kcnYuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS92Ym94dmlkZW8vdmJveF9kcnYuYwo+
-IEBAIC0xNyw2ICsxNyw3IEBACj4gICNpbmNsdWRlIDxkcm0vZHJtX2ZiX2hlbHBlci5oPgo+ICAj
-aW5jbHVkZSA8ZHJtL2RybV9maWxlLmg+Cj4gICNpbmNsdWRlIDxkcm0vZHJtX2lvY3RsLmg+Cj4g
-KyNpbmNsdWRlIDxkcm0vZHJtX21hbmFnZWQuaD4KPiAgCj4gICNpbmNsdWRlICJ2Ym94X2Rydi5o
-Igo+ICAKPiBAQCAtNTQsNiArNTUsNyBAQCBzdGF0aWMgaW50IHZib3hfcGNpX3Byb2JlKHN0cnVj
-dCBwY2lfZGV2ICpwZGV2LCBjb25zdCBzdHJ1Y3QgcGNpX2RldmljZV9pZCAqZW50KQo+ICAJdmJv
-eC0+ZGRldi5wZGV2ID0gcGRldjsKPiAgCXZib3gtPmRkZXYuZGV2X3ByaXZhdGUgPSB2Ym94Owo+
-ICAJcGNpX3NldF9kcnZkYXRhKHBkZXYsIHZib3gpOwo+ICsJZHJtbV9hZGRfZmluYWxfa2ZyZWUo
-JnZib3gtPmRkZXYsIHZib3gpOwo+ICAJbXV0ZXhfaW5pdCgmdmJveC0+aHdfbXV0ZXgpOwo+ICAK
-PiAgCXJldCA9IHBjaV9lbmFibGVfZGV2aWNlKHBkZXYpOwo+IC0tIAo+IDIuMjQuMQo+IAoKLS0g
-Cj09PT09PT09PT09PT09PT09PT09CnwgSSB3b3VsZCBsaWtlIHRvIHwKfCBmaXggdGhlIHdvcmxk
-LCAgfAp8IGJ1dCB0aGV5J3JlIG5vdCB8CnwgZ2l2aW5nIG1lIHRoZSAgIHwKIFwgc291cmNlIGNv
-ZGUhICAvCiAgLS0tLS0tLS0tLS0tLS0tCiAgICDCr1xfKOODhClfL8KvCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+hi - I almost certainly know the solution to this, the patches that we got
+from amd to do bandwidth checking in the DP MST helpers don't actually work
+correctly in a lot of cases and I need to fix them. I've just been busy on PTO
+and only just got back today, and have been busy with fixing a lot of RHEL
+stuff at the same time. I'll take a closer look at this soonb
+
+On Wed, 2020-02-26 at 16:15 +0100, Hans de Goede wrote:
+> Hi Lyude and everyone else,
+> 
+> Lyude I'm mailing you about this because you have done a lot of
+> work on DP MST, but if this rings a bell to anyone else feel
+> free to weigh in on this.
+> 
+> I'm currently using a Lenovo X1 7th gen + a Lenovo TB3 gen 2 dock
+> as my daily rider for testing purposes. When 5.6-rc1 came out I
+> noticed that only 1 of the 2 1920x1080@60 monitors on the dock
+> lights up.
+> 
+> There are no kernel errors in the logs, but mutter/gnome-shell says:
+> 
+> gnome-shell[1316]: Failed to post KMS update: Page flip of 93 failed
+> 
+> With 93 being the crtc-id of the crtc used for the monitor which is
+> displaying black. Since then I've waited for 5.6-rc3 hoping that a
+> fix was already queued up, but 5.6-rc3 still has this problem.
+> 
+> gnome-shell does behave as if all monitors are connected, so the
+> monitor is seen, but we are failing to actually send any frames
+> to it.
+> 
+> I've put a log collected with drm.debug=0x104 here:
+> https://fedorapeople.org/~jwrdegoede/drm-debug.log
+> 
+> This message stands out as pointing to the likely cause of this problem:
+> 
+> [    3.309061] [drm:intel_dump_pipe_config [i915]] MST master transcoder:
+> <invalid>
+> 
+> Regards,
+> 
+> Hans
+> 
+-- 
+Cheers,
+	Lyude Paul (she/her)
+	Associate Software Engineer at Red Hat
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
