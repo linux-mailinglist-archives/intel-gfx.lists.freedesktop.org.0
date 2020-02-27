@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D7391729AB
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:47:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B569C1729AD
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:48:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B146E979;
-	Thu, 27 Feb 2020 20:47:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00035892C6;
+	Thu, 27 Feb 2020 20:48:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35B1D6ED39
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 20:47:36 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20377035-1500050 
- for multiple; Thu, 27 Feb 2020 20:47:27 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 20:47:27 +0000
-Message-Id: <20200227204727.2009346-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6DEDC892C6;
+ Thu, 27 Feb 2020 20:48:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 66C21A7DFA;
+ Thu, 27 Feb 2020 20:48:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Check engine-is-awake on reset
- later
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 27 Feb 2020 20:48:10 -0000
+Message-ID: <158283649041.29659.7764461107093736844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227170047.31089-1-jani.nikula@intel.com>
+In-Reply-To: <20200227170047.31089-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915=3A_add_i915=5Fioc32?=
+ =?utf-8?q?=2Eh_for_compat?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,50 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we drop the engine-pm on retiring, that may happen while there are
-still CS events in the buffer. As such we cannot assert the engine is
-still active on reset, until we know that the current request is still
-in flight.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Series: series starting with [1/3] drm/i915: add i915_ioc32.h for compat
+URL   : https://patchwork.freedesktop.org/series/74033/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 39b0125b7143..e262571fb00c 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -3637,9 +3637,6 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 	if (!rq)
- 		goto unwind;
- 
--	/* We still have requests in-flight; the engine should be active */
--	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
--
- 	ce = rq->context;
- 	GEM_BUG_ON(!i915_vma_is_pinned(ce->state));
- 
-@@ -3649,8 +3646,12 @@ static void __execlists_reset(struct intel_engine_cs *engine, bool stalled)
- 		goto out_replay;
- 	}
- 
-+	/* We still have requests in-flight; the engine should be active */
-+	GEM_BUG_ON(!intel_engine_pm_is_awake(engine));
-+
- 	/* Context has requests still in-flight; it should not be idle! */
- 	GEM_BUG_ON(i915_active_is_idle(&ce->active));
-+
- 	rq = active_request(ce->timeline, rq);
- 	head = intel_ring_wrap(ce->ring, rq->head);
- 	GEM_BUG_ON(head == ce->ring->tail);
--- 
-2.25.1
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+663fbcd4dcd6 drm/i915: add i915_ioc32.h for compat
+-:80: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#80: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+e865776ce303 drm/i915: remove unused orig_clock i915 member
+2b95b9ed29f6 drm/i915: move watermark structs more towards usage
 
 _______________________________________________
 Intel-gfx mailing list
