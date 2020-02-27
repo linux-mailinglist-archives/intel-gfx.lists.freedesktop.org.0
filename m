@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B569C1729AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:48:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8198B1729BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:53:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00035892C6;
-	Thu, 27 Feb 2020 20:48:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1631C6E0FA;
+	Thu, 27 Feb 2020 20:53:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6DEDC892C6;
- Thu, 27 Feb 2020 20:48:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 66C21A7DFA;
- Thu, 27 Feb 2020 20:48:10 +0000 (UTC)
+Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD5B6E0FA;
+ Thu, 27 Feb 2020 20:53:21 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk4.altibox.net (Postfix) with ESMTPS id D32258045F;
+ Thu, 27 Feb 2020 21:53:18 +0100 (CET)
+Date: Thu, 27 Feb 2020 21:53:17 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200227205317.GG27592@ravnborg.org>
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-52-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 27 Feb 2020 20:48:10 -0000
-Message-ID: <158283649041.29659.7764461107093736844@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200227170047.31089-1-jani.nikula@intel.com>
-In-Reply-To: <20200227170047.31089-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B1/3=5D_drm/i915=3A_add_i915=5Fioc32?=
- =?utf-8?q?=2Eh_for_compat?=
+Content-Disposition: inline
+In-Reply-To: <20200227181522.2711142-52-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+ a=XIFTehNabMFGxqJbZusA:9 a=CjuIK1q_8ugA:10 a=H9xpq_V2WxwA:10
+ a=E9Po1WZjFZOl8hwRPBS3:22 a=pHzHmUro8NiASowvMSCR:22
+ a=Ew2E2A-JSTLzCXPT_086:22
+Subject: Re: [Intel-gfx] [PATCH 51/51] drm: Add docs for managed resources
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,31 +47,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel.
 
-Series: series starting with [1/3] drm/i915: add i915_ioc32.h for compat
-URL   : https://patchwork.freedesktop.org/series/74033/
-State : warning
+Nicely written overview.
 
-== Summary ==
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-$ dim checkpatch origin/drm-tip
-663fbcd4dcd6 drm/i915: add i915_ioc32.h for compat
--:80: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#80: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 68 lines checked
-e865776ce303 drm/i915: remove unused orig_clock i915 member
-2b95b9ed29f6 drm/i915: move watermark structs more towards usage
-
+snip - detailed changelog + patch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
