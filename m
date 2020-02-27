@@ -1,36 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8FFF172AAA
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 23:00:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E49A7172AE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 23:09:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AD8B6ED6B;
-	Thu, 27 Feb 2020 22:00:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B53646E988;
+	Thu, 27 Feb 2020 22:09:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44F5E6ED4C
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 22:00:17 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 14:00:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="285467862"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.14.234])
- by FMSMGA003.fm.intel.com with ESMTP; 27 Feb 2020 14:00:16 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 14:01:01 -0800
-Message-Id: <20200227220101.321671-11-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200227220101.321671-1-jose.souza@intel.com>
-References: <20200227220101.321671-1-jose.souza@intel.com>
+Received: from us-smtp-1.mimecast.com (us-smtp-2.mimecast.com [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1ED389C03
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 22:09:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582841359;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=3gjhjVUPXNwQpqDYUVUeBbAw6akdfak24W+Lj13RneY=;
+ b=QYj3Hg1KwaTdw8Iv8tgm2j3k7VkbPwbHdrzT5ZZLXbwOSmYcrgZJNrZGA8rQFAsvKy0AWb
+ jfPyflKaLSdbRdEalYtdg33NCPWdRS2XoK+3LOQiXGo7M8B2FDYls86d2OXWeF9WpWczwR
+ MlBgmxQ1k7wDHH7CNzIQvf6gMPMzBqk=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-17-FADPfeCwPky93i4Zls6JDw-1; Thu, 27 Feb 2020 17:09:17 -0500
+X-MC-Unique: FADPfeCwPky93i4Zls6JDw-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com
+ [10.5.11.22])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2F0BE1005512;
+ Thu, 27 Feb 2020 22:09:16 +0000 (UTC)
+Received: from treble.redhat.com (ovpn-121-128.rdu2.redhat.com [10.10.121.128])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 5CDDA10001BD;
+ Thu, 27 Feb 2020 22:09:15 +0000 (UTC)
+From: Josh Poimboeuf <jpoimboe@redhat.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Date: Thu, 27 Feb 2020 16:08:26 -0600
+Message-Id: <ed52cfb852d2772bf20f48614d75f1d1b1451995.1582841072.git.jpoimboe@redhat.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 11/11] drm/i915/tgl: Implement Wa_1407901919
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Subject: [Intel-gfx] [PATCH] drm/i915: Minimize uaccess exposure in
+ i915_gem_execbuffer2_ioctl()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,55 +54,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyB3aWxsIGZpeCBhIG1lbW9yeSBjb2hlcmVuY2UgaXNzdWUuCgp2MzogdXNpbmcgd2hpdGVz
-cGFjZSB0byBtYWtlIGVhc3kgdG8gcmVhZCBXQSAoQ2hyaXMpCgpCU3BlYzogNTI4OTAKQ2M6IENo
-cmlzIFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpTaWduZWQtb2ZmLWJ5OiBKb3PD
-qSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgIDggKysrKysrKysKIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgfCAyMCArKysrKysrKysrKy0tLS0t
-LS0tLQogMiBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoK
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCmluZGV4IDNlMzc1
-YTNiNzcxNC4uYzU5ZTFhNjA0YWI4IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
-dC9pbnRlbF93b3JrYXJvdW5kcy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
-X3dvcmthcm91bmRzLmMKQEAgLTYwMSw2ICs2MDEsMTQgQEAgc3RhdGljIHZvaWQgdGdsX2N0eF93
-b3JrYXJvdW5kc19pbml0KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSwKIAkgKi8KIAl3
-YV9hZGQod2FsLCBGRl9NT0RFMiwgRkZfTU9ERTJfVERTX1RJTUVSX01BU0ssCiAJICAgICAgIEZG
-X01PREUyX1REU19USU1FUl8xMjgsIDApOworCisJLyogV2FfMTQwNzkwMTkxOTp0Z2wgKi8KKwl3
-YV9hZGQod2FsLCBJQ0xfSERDX01PREUsCisJICAgICAgIEhEQ19DT0hFUkVOVF9BQ0NFU1NfTDFf
-Q0FDSEVfRElTIHwKKwkgICAgICAgSERDX0RJU19MMV9JTlZBTF9GT1JfTk9OX0wxX0NBQ0hFQUJM
-RV9XLAorCSAgICAgICAwLAorCSAgICAgICBIRENfQ09IRVJFTlRfQUNDRVNTX0wxX0NBQ0hFX0RJ
-UyB8CisJICAgICAgIEhEQ19ESVNfTDFfSU5WQUxfRk9SX05PTl9MMV9DQUNIRUFCTEVfVyk7CiB9
-CiAKIHN0YXRpYyB2b2lkCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3Jl
-Zy5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCA4MGNmMDJhNmVlYzEu
-LjI4ODIyNTg1NTM3YiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcu
-aAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC03ODgzLDE1ICs3ODgz
-LDE3IEBAIGVudW0gewogI2RlZmluZSAgR0VOOF9MUVNDX0ZMVVNIX0NPSEVSRU5UX0xJTkVTCQko
-MSA8PCAyMSkKIAogLyogR0VOOCBjaGlja2VuICovCi0jZGVmaW5lIEhEQ19DSElDS0VOMAkJCQlf
-TU1JTygweDczMDApCi0jZGVmaW5lIENOTF9IRENfQ0hJQ0tFTjAJCQlfTU1JTygweEU1RjApCi0j
-ZGVmaW5lIElDTF9IRENfTU9ERQkJCQlfTU1JTygweEU1RjQpCi0jZGVmaW5lICBIRENfRk9SQ0Vf
-Q1NSX05PTl9DT0hFUkVOVF9PVlJfRElTQUJMRQkoMSA8PCAxNSkKLSNkZWZpbmUgIEhEQ19GRU5D
-RV9ERVNUX1NMTV9ESVNBQkxFCQkoMSA8PCAxNCkKLSNkZWZpbmUgIEhEQ19ET05PVF9GRVRDSF9N
-RU1fV0hFTl9NQVNLRUQJKDEgPDwgMTEpCi0jZGVmaW5lICBIRENfRk9SQ0VfQ09OVEVYVF9TQVZF
-X1JFU1RPUkVfTk9OX0NPSEVSRU5UCSgxIDw8IDUpCi0jZGVmaW5lICBIRENfRk9SQ0VfTk9OX0NP
-SEVSRU5UCQkJKDEgPDwgNCkKLSNkZWZpbmUgIEhEQ19CQVJSSUVSX1BFUkZPUk1BTkNFX0RJU0FC
-TEUJKDEgPDwgMTApCisjZGVmaW5lIEhEQ19DSElDS0VOMAkJCQkJX01NSU8oMHg3MzAwKQorI2Rl
-ZmluZSBDTkxfSERDX0NISUNLRU4wCQkJCV9NTUlPKDB4RTVGMCkKKyNkZWZpbmUgSUNMX0hEQ19N
-T0RFCQkJCQlfTU1JTygweEU1RjQpCisjZGVmaW5lICBIRENfRk9SQ0VfQ1NSX05PTl9DT0hFUkVO
-VF9PVlJfRElTQUJMRQkJUkVHX0JJVCgxNSkKKyNkZWZpbmUgIEhEQ19GRU5DRV9ERVNUX1NMTV9E
-SVNBQkxFCQkJUkVHX0JJVCgxNCkKKyNkZWZpbmUgIEhEQ19ESVNfTDFfSU5WQUxfRk9SX05PTl9M
-MV9DQUNIRUFCTEVfVwlSRUdfQklUKDEzKQorI2RlZmluZSAgSERDX0NPSEVSRU5UX0FDQ0VTU19M
-MV9DQUNIRV9ESVMJCVJFR19CSVQoMTIpCisjZGVmaW5lICBIRENfRE9OT1RfRkVUQ0hfTUVNX1dI
-RU5fTUFTS0VECQlSRUdfQklUKDExKQorI2RlZmluZSAgSERDX0ZPUkNFX0NPTlRFWFRfU0FWRV9S
-RVNUT1JFX05PTl9DT0hFUkVOVAlSRUdfQklUKDUpCisjZGVmaW5lICBIRENfRk9SQ0VfTk9OX0NP
-SEVSRU5UCQkJCVJFR19CSVQoNCkKKyNkZWZpbmUgIEhEQ19CQVJSSUVSX1BFUkZPUk1BTkNFX0RJ
-U0FCTEUJCVJFR19CSVQoMTApCiAKICNkZWZpbmUgR0VOOF9IRENfQ0hJQ0tFTjEJCQlfTU1JTygw
-eDczMDQpCiAKLS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+With CONFIG_CC_OPTIMIZE_FOR_SIZE, objtool reports:
+
+  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.o: warning: objtool: i915_gem_execbuffer2_ioctl()+0x5b7: call to gen8_canonical_addr() with UACCESS enabled
+
+This means i915_gem_execbuffer2_ioctl() is calling gen8_canonical_addr()
+-- and indirectly, sign_extend64() -- from the user_access_begin/end
+critical region (i.e, with SMAP disabled).
+
+While it's probably harmless in this case, in general we like to avoid
+extra function calls in SMAP-disabled regions because it can open up
+inadvertent security holes.
+
+Fix it by moving the gen8_canonical_addr() conversion to a separate loop
+before user_access_begin() is called.
+
+Note that gen8_canonical_addr() is now called *before* masking off the
+PIN_OFFSET_MASK bits.  That should be ok because it just does a sign
+extension and ignores the masked lower bits anyway.
+
+Reported-by: Randy Dunlap <rdunlap@infradead.org>
+Signed-off-by: Josh Poimboeuf <jpoimboe@redhat.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d5a0f5ae4a8b..183cab13e028 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -2947,6 +2947,13 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+ 			u64_to_user_ptr(args->buffers_ptr);
+ 		unsigned int i;
+ 
++		/*
++		 * Do the call to gen8_canonical_addr() outside the
++		 * uaccess-enabled region to minimize uaccess exposure.
++		 */
++		for (i = 0; i < args->buffer_count; i++)
++			exec2_list[i].offset = gen8_canonical_addr(exec2_list[i].offset);
++
+ 		/* Copy the new buffer offsets back to the user's exec list. */
+ 		/*
+ 		 * Note: count * sizeof(*user_exec_list) does not overflow,
+@@ -2962,9 +2969,7 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+ 			if (!(exec2_list[i].offset & UPDATE))
+ 				continue;
+ 
+-			exec2_list[i].offset =
+-				gen8_canonical_addr(exec2_list[i].offset & PIN_OFFSET_MASK);
+-			unsafe_put_user(exec2_list[i].offset,
++			unsafe_put_user(exec2_list[i].offset & PIN_OFFSET_MASK,
+ 					&user_exec_list[i].offset,
+ 					end_user);
+ 		}
+-- 
+2.21.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
