@@ -1,43 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35DEC1729C3
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:55:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBC8D1729BF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 21:54:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6780A6ED3D;
-	Thu, 27 Feb 2020 20:55:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E8286ED3C;
+	Thu, 27 Feb 2020 20:54:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420E76ED3D;
- Thu, 27 Feb 2020 20:55:37 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id E65FD804F6;
- Thu, 27 Feb 2020 21:55:33 +0100 (CET)
-Date: Thu, 27 Feb 2020 21:55:32 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200227205532.GA29498@ravnborg.org>
-References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
- <20200227181522.2711142-6-daniel.vetter@ffwll.ch>
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7DB86ED3C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 20:54:53 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 12:54:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="385287763"
+Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
+ ([10.24.14.234])
+ by orsmga004.jf.intel.com with ESMTP; 27 Feb 2020 12:54:53 -0800
+From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 12:55:40 -0800
+Message-Id: <20200227205540.126135-1-jose.souza@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <877e08shcs.fsf@intel.com>
+References: <877e08shcs.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181522.2711142-6-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=SJz97ENfAAAA:8
- a=QyXUC8HyAAAA:8 a=VwQbUJbxAAAA:8 a=-VAfIpHNAAAA:8 a=WZHNqt2aAAAA:8
- a=pGLkceISAAAA:8 a=7gkXJVJtAAAA:8 a=oc-KeUEeAPEbiV5KqdcA:9
- a=wPNLvfGTeEIA:10 a=vFet0B0WnEQeilDPIY6i:22 a=AjGcO6oz07-iQ99wixmX:22
- a=srlwD-8ojaedGGhPAyx8:22 a=PrHl9onO2p7xFKlKy1af:22
- a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH 05/51] drm/mipi_dbi: Use
- drmm_add_final_kfree in all drivers
+Subject: [Intel-gfx] [PATCH backported to v5.6-rc3] drm/i915/psr: Force PSR
+ probe only after full initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,247 +44,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>,
- Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, David Lechner <david@lechnology.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, l.stach@pengutronix.de
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Jani Nikula <jani.nikula@intel.com>, Ross Zwisler <zwisler@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 07:14:36PM +0100, Daniel Vetter wrote:
-> They all share mipi_dbi_release so we need to switch them all
-> together. With this we can drop the final kfree from the release
-> function.
-> =
-
-> Aside, I think we could perhaps have a tiny additional helper for
-> these mipi_dbi drivers, the first few lines around devm_drm_dev_init
-> are all the same (except for the drm_driver pointer).
-> =
-
-> Reviewed-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Tested-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: David Lechner <david@lechnology.com>
-> Cc: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
-> Cc: "Noralf Tr=F8nnes" <noralf@tronnes.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-
-> ---
->  drivers/gpu/drm/drm_mipi_dbi.c  | 3 ---
->  drivers/gpu/drm/tiny/hx8357d.c  | 2 ++
->  drivers/gpu/drm/tiny/ili9225.c  | 2 ++
->  drivers/gpu/drm/tiny/ili9341.c  | 2 ++
->  drivers/gpu/drm/tiny/ili9486.c  | 2 ++
->  drivers/gpu/drm/tiny/mi0283qt.c | 2 ++
->  drivers/gpu/drm/tiny/st7586.c   | 2 ++
->  drivers/gpu/drm/tiny/st7735r.c  | 2 ++
->  8 files changed, 14 insertions(+), 3 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_db=
-i.c
-> index 558baf989f5a..069603dfcd10 100644
-> --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> @@ -588,13 +588,10 @@ EXPORT_SYMBOL(mipi_dbi_dev_init);
->   */
->  void mipi_dbi_release(struct drm_device *drm)
->  {
-> -	struct mipi_dbi_dev *dbidev =3D drm_to_mipi_dbi_dev(drm);
-> -
->  	DRM_DEBUG_DRIVER("\n");
->  =
-
->  	drm_mode_config_cleanup(drm);
->  	drm_dev_fini(drm);
-> -	kfree(dbidev);
->  }
->  EXPORT_SYMBOL(mipi_dbi_release);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/hx8357d.c b/drivers/gpu/drm/tiny/hx8357=
-d.c
-> index 9af8ff84974f..42bc5dadcb1c 100644
-> --- a/drivers/gpu/drm/tiny/hx8357d.c
-> +++ b/drivers/gpu/drm/tiny/hx8357d.c
-> @@ -21,6 +21,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <video/mipi_display.h>
-> @@ -236,6 +237,7 @@ static int hx8357d_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/ili9225.c b/drivers/gpu/drm/tiny/ili922=
-5.c
-> index 802fb8dde1b6..aae88dc5b3f7 100644
-> --- a/drivers/gpu/drm/tiny/ili9225.c
-> +++ b/drivers/gpu/drm/tiny/ili9225.c
-> @@ -24,6 +24,7 @@
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_rect.h>
->  =
-
-> @@ -387,6 +388,7 @@ static int ili9225_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/ili9341.c b/drivers/gpu/drm/tiny/ili934=
-1.c
-> index 33b51dc7faa8..7d40cb4ff72b 100644
-> --- a/drivers/gpu/drm/tiny/ili9341.c
-> +++ b/drivers/gpu/drm/tiny/ili9341.c
-> @@ -20,6 +20,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <video/mipi_display.h>
-> @@ -194,6 +195,7 @@ static int ili9341_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili948=
-6.c
-> index 5084b38c1a71..7d735fc67498 100644
-> --- a/drivers/gpu/drm/tiny/ili9486.c
-> +++ b/drivers/gpu/drm/tiny/ili9486.c
-> @@ -19,6 +19,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_modeset_helper.h>
->  =
-
-> @@ -208,6 +209,7 @@ static int ili9486_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/mi0283qt.c b/drivers/gpu/drm/tiny/mi028=
-3qt.c
-> index e2cfd9a17143..8555a56bce8c 100644
-> --- a/drivers/gpu/drm/tiny/mi0283qt.c
-> +++ b/drivers/gpu/drm/tiny/mi0283qt.c
-> @@ -18,6 +18,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <video/mipi_display.h>
-> @@ -198,6 +199,7 @@ static int mi0283qt_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/st7586.c b/drivers/gpu/drm/tiny/st7586.c
-> index 9ef559dd3191..427c2561f5f4 100644
-> --- a/drivers/gpu/drm/tiny/st7586.c
-> +++ b/drivers/gpu/drm/tiny/st7586.c
-> @@ -21,6 +21,7 @@
->  #include <drm/drm_format_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  #include <drm/drm_rect.h>
->  =
-
-> @@ -328,6 +329,7 @@ static int st7586_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735=
-r.c
-> index 18b925df6e51..b447235c3d47 100644
-> --- a/drivers/gpu/drm/tiny/st7735r.c
-> +++ b/drivers/gpu/drm/tiny/st7735r.c
-> @@ -21,6 +21,7 @@
->  #include <drm/drm_fb_helper.h>
->  #include <drm/drm_gem_cma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_mipi_dbi.h>
->  =
-
->  #define ST7735R_FRMCTR1		0xb1
-> @@ -209,6 +210,7 @@ static int st7735r_probe(struct spi_device *spi)
->  		kfree(dbidev);
->  		return ret;
->  	}
-> +	drmm_add_final_kfree(drm, dbidev);
->  =
-
->  	drm_mode_config_init(drm);
->  =
-
-> -- =
-
-> 2.24.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q29tbWl0IDYwYzZhMTRiNDg5YiAoImRybS9pOTE1L2Rpc3BsYXk6IEZvcmNlIHRoZSBzdGF0ZSBj
+b21wdXRlIHBoYXNlCm9uY2UgdG8gZW5hYmxlIFBTUiIpIHdhcyBmb3JjaW5nIHRoZSBzdGF0ZSBj
+b21wdXRlIHRvbyBlYXJsaWVyCmNhdXNpbmcgZXJyb3JzIGJlY2F1c2Ugbm90IGV2ZXJ5dGhpbmcg
+d2FzIGluaXRpYWxpemVkLCBzbyBoZXJlCm1vdmluZyB0byB0aGUgZW5kIG9mIGk5MTVfZHJpdmVy
+X21vZGVzZXRfcHJvYmUoKSB3aGVuIHRoZSBkaXNwbGF5IGlzCmFsbCBpbml0aWFsaXplZC4KCkFs
+c28gZml4aW5nIHRoZSBwbGFjZSB3aGVyZSBpdCBkaXNhcm0gdGhlIGZvcmNlIHByb2JlIGFzIGR1
+cmluZyB0aGUKYXRvbWljIGNoZWNrIHBoYXNlIGVycm9ycyBjb3VsZCBoYXBwZW4gbGlrZSB0aGUg
+b25lcyBkdWUgbG9ja2luZyBhbmQKaXQgd291bGQgY2F1c2UgUFNSIHRvIG5ldmVyIGJlIGVuYWJs
+ZWQgaWYgdGhhdCBoYXBwZW5zLgpMZWF2aW5nIHRoZSBkaXNhcm0gdG8gdGhlIGF0b21pYyBjb21t
+aXQgcGhhc2UsIGludGVsX3Bzcl9lbmFibGUoKSBvcgppbnRlbF9wc3JfdXBkYXRlKCkgd2lsbCBi
+ZSBjYWxsZWQgZXZlbiBpZiB0aGUgY3VycmVudCBzdGF0ZSBkbyBub3QKYWxsb3cgUFNSIHRvIGJl
+IGVuYWJsZWQuCgp2MjogQ2hlY2sgaWYgaW50ZWxfZHAgaXMgbnVsbCBpbiBpbnRlbF9wc3JfZm9y
+Y2VfbW9kZV9jaGFuZ2VkX3NldCgpCnYzOiBDaGVjayBpbnRlbF9kcCBiZWZvcmUgZ2V0IGRldl9w
+cml2CnY0OgotIHJlbmFtZWQgaW50ZWxfcHNyX2ZvcmNlX21vZGVfY2hhbmdlZF9zZXQoKSB0bwpp
+bnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpCi0gcmVtb3ZlZCB0aGUgc2V0IHBhcmFt
+ZXRlciBmcm9tIGludGVsX3Bzcl9zZXRfZm9yY2VfbW9kZV9jaGFuZ2VkKCkKLSBub3QgY2FsbGlu
+ZyBpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpIGZyb20KaW50ZWxfcHNyX2VuYWJs
+ZS91cGRhdGUoKSwgZGlyZWN0bHkgc2V0dGluZyBpdCBhZnRlciB0aGUgc2FtZSBjaGVja3MKdGhh
+dCBpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpIGRvZXMKLSBtb3ZlZCBpbnRlbF9w
+c3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdlZCgpIGFybSBjYWxsIHRvCmk5MTVfZHJpdmVyX21vZGVz
+ZXRfcHJvYmUoKSBhcyBpdCBpcyBhIGJldHRlciBmb3IgYSBQU1IgY2FsbCwgYWxsIHRoZQpmdW5j
+dGlvbnMgY2FsbHMgaGFwcGVuaW5nIGJldHdlZW4gdGhlIG9sZCBhbmQgdGhlIG5ldyBmdW5jdGlv
+biBjYWxsCndpbGwgY2F1c2UgaXNzdWUKCltiYWNrcG9ydGVkIHRvIHY1LjYtcmMzXQoKRml4ZXM6
+IDYwYzZhMTRiNDg5YiAoImRybS9pOTE1L2Rpc3BsYXk6IEZvcmNlIHRoZSBzdGF0ZSBjb21wdXRl
+IHBoYXNlIG9uY2UgdG8gZW5hYmxlIFBTUiIpCkNsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRl
+c2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTE1MQpUZXN0ZWQtYnk6IFJvc3MgWndpc2xlciA8
+endpc2xlckBnb29nbGUuY29tPgpSZXBvcnRlZC1ieTogUm9zcyBad2lzbGVyIDx6d2lzbGVyQGdv
+b2dsZS5jb20+CkNjOiBHd2FuLWd5ZW9uZyBNdW4gPGd3YW4tZ3llb25nLm11bkBpbnRlbC5jb20+
+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwuY29tPgpDYzogQW5zaHVtYW4gR3Vw
+dGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KUmV2aWV3ZWQtYnk6IEd3YW4tZ3llb25nIE11
+biA8Z3dhbi1neWVvbmcubXVuQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogSm9zw6kgUm9iZXJ0
+byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ckxpbms6IGh0dHBzOi8vcGF0Y2h3b3Jr
+LmZyZWVkZXNrdG9wLm9yZy9wYXRjaC9tc2dpZC8yMDIwMDIyMTIxMjYzNS4xMTYxNC0xLWpvc2Uu
+c291emFAaW50ZWwuY29tCi0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
+c3IuYyB8IDI1ICsrKysrKysrKysrKysrKysrKysrLS0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+ZGlzcGxheS9pbnRlbF9wc3IuaCB8ICAxICsKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
+LmMgICAgICAgICAgfCAgMyArKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggICAg
+ICAgICAgfCAgMiArLQogNCBmaWxlcyBjaGFuZ2VkLCAyNiBpbnNlcnRpb25zKCspLCA1IGRlbGV0
+aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+cHNyLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCmluZGV4IDg5
+YzljZjVmMzhkMi4uODMwMjUwNTJjOTY1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3Bzci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfcHNyLmMKQEAgLTg1MiwxMCArODUyLDEyIEBAIHZvaWQgaW50ZWxfcHNyX2VuYWJsZShz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogewogCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
+ZXZfcHJpdiA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwogCi0JaWYgKCFjcnRjX3N0YXRlLT5oYXNf
+cHNyKQorCWlmICghQ0FOX1BTUihkZXZfcHJpdikgfHwgZGV2X3ByaXYtPnBzci5kcCAhPSBpbnRl
+bF9kcCkKIAkJcmV0dXJuOwogCi0JaWYgKFdBUk5fT04oIUNBTl9QU1IoZGV2X3ByaXYpKSkKKwlk
+ZXZfcHJpdi0+cHNyLmZvcmNlX21vZGVfY2hhbmdlZCA9IGZhbHNlOworCisJaWYgKCFjcnRjX3N0
+YXRlLT5oYXNfcHNyKQogCQlyZXR1cm47CiAKIAlXQVJOX09OKGRldl9wcml2LT5kcnJzLmRwKTsK
+QEAgLTEwMDksNiArMTAxMSw4IEBAIHZvaWQgaW50ZWxfcHNyX3VwZGF0ZShzdHJ1Y3QgaW50ZWxf
+ZHAgKmludGVsX2RwLAogCWlmICghQ0FOX1BTUihkZXZfcHJpdikgfHwgUkVBRF9PTkNFKHBzci0+
+ZHApICE9IGludGVsX2RwKQogCQlyZXR1cm47CiAKKwlkZXZfcHJpdi0+cHNyLmZvcmNlX21vZGVf
+Y2hhbmdlZCA9IGZhbHNlOworCiAJbXV0ZXhfbG9jaygmZGV2X3ByaXYtPnBzci5sb2NrKTsKIAog
+CWVuYWJsZSA9IGNydGNfc3RhdGUtPmhhc19wc3IgJiYgcHNyX2dsb2JhbF9lbmFibGVkKHBzci0+
+ZGVidWcpOwpAQCAtMTUzNCw3ICsxNTM4LDcgQEAgdm9pZCBpbnRlbF9wc3JfYXRvbWljX2NoZWNr
+KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJc3RydWN0IGRybV9jcnRjX3N0YXRl
+ICpjcnRjX3N0YXRlOwogCiAJaWYgKCFDQU5fUFNSKGRldl9wcml2KSB8fCAhbmV3X3N0YXRlLT5j
+cnRjIHx8Ci0JICAgIGRldl9wcml2LT5wc3IuaW5pdGlhbGx5X3Byb2JlZCkKKwkgICAgIWRldl9w
+cml2LT5wc3IuZm9yY2VfbW9kZV9jaGFuZ2VkKQogCQlyZXR1cm47CiAKIAlpbnRlbF9jb25uZWN0
+b3IgPSB0b19pbnRlbF9jb25uZWN0b3IoY29ubmVjdG9yKTsKQEAgLTE1NDUsNSArMTU0OSwxOCBA
+QCB2b2lkIGludGVsX3Bzcl9hdG9taWNfY2hlY2soc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm5l
+Y3RvciwKIAljcnRjX3N0YXRlID0gZHJtX2F0b21pY19nZXRfbmV3X2NydGNfc3RhdGUobmV3X3N0
+YXRlLT5zdGF0ZSwKIAkJCQkJCSAgIG5ld19zdGF0ZS0+Y3J0Yyk7CiAJY3J0Y19zdGF0ZS0+bW9k
+ZV9jaGFuZ2VkID0gdHJ1ZTsKLQlkZXZfcHJpdi0+cHNyLmluaXRpYWxseV9wcm9iZWQgPSB0cnVl
+OworfQorCit2b2lkIGludGVsX3Bzcl9zZXRfZm9yY2VfbW9kZV9jaGFuZ2VkKHN0cnVjdCBpbnRl
+bF9kcCAqaW50ZWxfZHApCit7CisJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2Owor
+CisJaWYgKCFpbnRlbF9kcCkKKwkJcmV0dXJuOworCisJZGV2X3ByaXYgPSBkcF90b19pOTE1KGlu
+dGVsX2RwKTsKKwlpZiAoIUNBTl9QU1IoZGV2X3ByaXYpIHx8IGludGVsX2RwICE9IGRldl9wcml2
+LT5wc3IuZHApCisJCXJldHVybjsKKworCWRldl9wcml2LT5wc3IuZm9yY2VfbW9kZV9jaGFuZ2Vk
+ID0gdHJ1ZTsKIH0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfcHNyLmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oCmluZGV4
+IGM1OGExZDQzODgwOC4uMjc0ZmM2YmI2MjIxIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9kaXNwbGF5L2ludGVsX3Bzci5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfcHNyLmgKQEAgLTQwLDUgKzQwLDYgQEAgYm9vbCBpbnRlbF9wc3JfZW5hYmxlZChz
+dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKTsKIHZvaWQgaW50ZWxfcHNyX2F0b21pY19jaGVjayhz
+dHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCQkJICAgIHN0cnVjdCBkcm1fY29ubmVj
+dG9yX3N0YXRlICpvbGRfc3RhdGUsCiAJCQkgICAgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUg
+Km5ld19zdGF0ZSk7Cit2b2lkIGludGVsX3Bzcl9zZXRfZm9yY2VfbW9kZV9jaGFuZ2VkKHN0cnVj
+dCBpbnRlbF9kcCAqaW50ZWxfZHApOwogCiAjZW5kaWYgLyogX19JTlRFTF9QU1JfSF9fICovCmRp
+ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5jIGIvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9kcnYuYwppbmRleCBmNzM4NWFiZGQ3NGIuLjg0MTAzMzBjZTRmMCAxMDA2
+NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuYworKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9pOTE1X2Rydi5jCkBAIC01Niw2ICs1Niw3IEBACiAjaW5jbHVkZSAiZGlzcGxh
+eS9pbnRlbF9ob3RwbHVnLmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9vdmVybGF5LmgiCiAj
+aW5jbHVkZSAiZGlzcGxheS9pbnRlbF9waXBlX2NyYy5oIgorI2luY2x1ZGUgImRpc3BsYXkvaW50
+ZWxfcHNyLmgiCiAjaW5jbHVkZSAiZGlzcGxheS9pbnRlbF9zcHJpdGUuaCIKICNpbmNsdWRlICJk
+aXNwbGF5L2ludGVsX3ZnYS5oIgogCkBAIC0zMzAsNiArMzMxLDggQEAgc3RhdGljIGludCBpOTE1
+X2RyaXZlcl9tb2Rlc2V0X3Byb2JlKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1KQogCiAJ
+aW50ZWxfaW5pdF9pcGMoaTkxNSk7CiAKKwlpbnRlbF9wc3Jfc2V0X2ZvcmNlX21vZGVfY2hhbmdl
+ZChpOTE1LT5wc3IuZHApOworCiAJcmV0dXJuIDA7CiAKIGNsZWFudXBfZ2VtOgpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfZHJ2LmgKaW5kZXggMDc3YWYyMmI4MzQwLi44MTBlM2NjZDU2ZWMgMTAwNjQ0Ci0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaTkxNV9kcnYuaApAQCAtNTA1LDcgKzUwNSw3IEBAIHN0cnVjdCBpOTE1X3BzciB7CiAJYm9v
+bCBkYzNjb19lbmFibGVkOwogCXUzMiBkYzNjb19leGl0X2RlbGF5OwogCXN0cnVjdCBkZWxheWVk
+X3dvcmsgaWRsZV93b3JrOwotCWJvb2wgaW5pdGlhbGx5X3Byb2JlZDsKKwlib29sIGZvcmNlX21v
+ZGVfY2hhbmdlZDsKIH07CiAKICNkZWZpbmUgUVVJUktfTFZEU19TU0NfRElTQUJMRSAoMTw8MSkK
+LS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
+Cmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4
+Cg==
