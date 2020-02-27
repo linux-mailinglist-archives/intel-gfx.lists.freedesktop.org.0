@@ -2,41 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3864172190
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 15:50:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B09251721A1
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 15:54:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C24736ECCB;
-	Thu, 27 Feb 2020 14:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12936ECCD;
+	Thu, 27 Feb 2020 14:54:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28EDB6ECCA
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 14:50:12 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1756ECCD
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 14:54:05 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 06:50:11 -0800
-X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="227176416"
-Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.254.210.165])
- ([10.254.210.165])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 27 Feb 2020 06:50:09 -0800
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200221153209.268712-1-michal.wajdeczko@intel.com>
- <c71b8087-9159-20ce-51c7-a862fb26b386@intel.com>
- <6515f56a-3cd0-589e-54f8-0351b1dd18cc@intel.com>
-From: "Ye, Tony" <tony.ye@intel.com>
-Message-ID: <ef0d6b49-cb93-7165-5eba-197a38d21a27@intel.com>
-Date: Thu, 27 Feb 2020 22:49:59 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 06:54:04 -0800
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="231862278"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 06:54:02 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 16:53:59 +0200
+Message-Id: <20200227145359.17543-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <6515f56a-3cd0-589e-54f8-0351b1dd18cc@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/huc: Fix error reported by
- I915_PARAM_HUC_STATUS
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH] drm/i915/dram: hide the dram structs better
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,78 +41,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: jani.nikula@intel.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAyLzI2LzIwMjAgNjowMiBBTSwgTWljaGFsIFdhamRlY3prbyB3cm90ZToKPiAKPiAKPiBP
-biAyNS4wMi4yMDIwIDA4OjQ5LCBZZSwgVG9ueSB3cm90ZToKPj4KPj4KPj4gT24gMi8yMS8yMDIw
-IDExOjMyIFBNLCBNaWNoYWwgV2FqZGVjemtvIHdyb3RlOgo+Pj4gIMKgRnJvbSBjb21taXQgODRi
-MWNhMmYwZTY4ICgiZHJtL2k5MTUvdWM6IHByZWZlciBpbnRlbF9ndCBvdmVyIGk5MTUKPj4+IGlu
-IEd1Qy9IdUMgcGF0aHMiKSB3ZSBzdG9wcGVkIHVzaW5nIEhVQ19TVEFUVVMgZXJyb3IgLUVOT0RF
-ViBvbmx5Cj4+PiB0byBpbmRpY2F0ZSBsYWNrIG9mIEh1QyBoYXJkd2FyZSBhbmQgd2Ugc3RhcnRl
-ZCB0byB1c2UgdGhpcyBlcnJvcgo+Pj4gYWxzbyBmb3IgYWxsIG90aGVyIGNhc2VzIHdoZW4gSHVD
-IHdhcyBub3QgaW4gdXNlIG9yIHN1cHBvcnRlZC4KPj4+Cj4+PiBGaXggdGhhdCBieSByZWx5aW5n
-IGFnYWluIG9uIEhBU19HVF9VQyBtYWNybywgc2luY2UgY3VycmVudGx5Cj4+PiB1c2VkIGZ1bmN0
-aW9uIGludGVsX2h1Y19pc19zdXBwb3J0ZWQoKSBpcyBiYXNlZCBvbiBIdUMgZmlybXdhcmUKPj4+
-IHN1cHBvcnQgd2hpY2ggY291bGQgYmUgdW5zdXBwb3J0ZWQgYWxzbyBkdWUgdG8gZm9yY2UgZGlz
-YWJsZWQKPj4+IEd1QyBmaXJtd2FyZS4KPj4+Cj4+PiB2MjogdXNlIDAgb25seSBmb3IgZGlzYWJs
-ZWQsIGFkZCBtb3JlIGVycm9yIGNvZGVzIGZvciBvdGhlciBmYWlsdXJlcwo+Pj4KPj4+IFNpZ25l
-ZC1vZmYtYnk6IE1pY2hhbCBXYWpkZWN6a28gPG1pY2hhbC53YWpkZWN6a29AaW50ZWwuY29tPgo+
-Pj4gQ2M6IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRl
-bC5jb20+Cj4+PiBDYzogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5j
-b20+Cj4+PiBDYzogVG9ueSBZZSA8dG9ueS55ZUBpbnRlbC5jb20+Cj4+PiBDYzogUm9iZXJ0IE0u
-IEZvc2hhIDxyb2JlcnQubS5mb3NoYUBpbnRlbC5jb20+Cj4+PiBSZXZpZXdlZC1ieTogRGFuaWVs
-ZSBDZXJhb2xvIFNwdXJpbyA8ZGFuaWVsZS5jZXJhb2xvc3B1cmlvQGludGVsLmNvbT4gI3YxCj4+
-PiAtLS0KPj4+ICDCoCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9odWMuYyB8IDI5
-ICsrKysrKysrKysrKysrKysrKysrKy0tLS0tCj4+PiAgwqAgMSBmaWxlIGNoYW5nZWQsIDI0IGlu
-c2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pCj4+Pgo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2h1Yy5jCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L3VjL2ludGVsX2h1Yy5jCj4+PiBpbmRleCBhNzRiNjU2OTQ1MTIuLjMwMWJiNWQ1ZTU5YSAx
-MDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX2h1Yy5jCj4+
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF9odWMuYwo+Pj4gQEAgLTIw
-MCw5ICsyMDAsMTMgQEAgaW50IGludGVsX2h1Y19hdXRoKHN0cnVjdCBpbnRlbF9odWMgKmh1YykK
-Pj4+ICDCoMKgICogVGhpcyBmdW5jdGlvbiByZWFkcyBzdGF0dXMgcmVnaXN0ZXIgdG8gdmVyaWZ5
-IGlmIEh1Qwo+Pj4gIMKgwqAgKiBmaXJtd2FyZSB3YXMgc3VjY2Vzc2Z1bGx5IGxvYWRlZC4KPj4+
-ICDCoMKgICoKPj4+IC0gKiBSZXR1cm5zOiAxIGlmIEh1QyBmaXJtd2FyZSBpcyBsb2FkZWQgYW5k
-IHZlcmlmaWVkLAo+Pj4gLSAqIDAgaWYgSHVDIGZpcm13YXJlIGlzIG5vdCBsb2FkZWQgYW5kIC1F
-Tk9ERVYgaWYgSHVDCj4+PiAtICogaXMgbm90IHByZXNlbnQgb24gdGhpcyBwbGF0Zm9ybS4KPj4+
-ICsgKiBSZXR1cm5zOgo+Pj4gKyAqwqAgKiAxIGlmIEh1QyBmaXJtd2FyZSBpcyBsb2FkZWQgYW5k
-IHZlcmlmaWVkLAo+Pj4gKyAqwqAgKiAwIGlmIEh1QyBmaXJtd2FyZSB3YXMgZGlzYWJsZWQsCj4+
-PiArICrCoCAqIC1FTk9ERVYgaWYgSHVDIGlzIG5vdCBwcmVzZW50IG9uIHRoaXMgcGxhdGZvcm0s
-Cj4+PiArICrCoCAqIC1FTk9QS0cgaWYgSHVDIGZpcm13YXJlIHdhcyBub3QgaW5zdGFsbGVkLAo+
-Pj4gKyAqwqAgKiAtRU5PRVhFQyBpZiBIdUMgZmlybXdhcmUgaXMgaW52YWxpZCwKPj4+ICsgKsKg
-ICogLUVBQ0NFUyBpZiBIdUMgZmlybXdhcmUgd2FzIG5vdCBhdXRoZW50aWNhdGVkLgo+Pj4gIMKg
-wqAgKi8KPj4+ICDCoCBpbnQgaW50ZWxfaHVjX2NoZWNrX3N0YXR1cyhzdHJ1Y3QgaW50ZWxfaHVj
-ICpodWMpCj4+PiAgwqAgewo+Pj4gQEAgLTIxMCwxMSArMjE0LDI2IEBAIGludCBpbnRlbF9odWNf
-Y2hlY2tfc3RhdHVzKHN0cnVjdCBpbnRlbF9odWMgKmh1YykKPj4+ICDCoMKgwqDCoMKgIGludGVs
-X3dha2VyZWZfdCB3YWtlcmVmOwo+Pj4gIMKgwqDCoMKgwqAgdTMyIHN0YXR1cyA9IDA7Cj4+PiAg
-wqAgLcKgwqDCoCBpZiAoIWludGVsX2h1Y19pc19zdXBwb3J0ZWQoaHVjKSkKPj4+ICvCoMKgwqAg
-aWYgKCFIQVNfR1RfVUMoZ3QtPmk5MTUpKQo+Pj4gIMKgwqDCoMKgwqDCoMKgwqDCoCByZXR1cm4g
-LUVOT0RFVjsKPj4+ICDCoCArwqDCoMKgIHN3aXRjaCAoX19pbnRlbF91Y19md19zdGF0dXMoJmh1
-Yy0+ZncpKSB7Cj4+PiArwqDCoMKgIGNhc2UgSU5URUxfVUNfRklSTVdBUkVfTk9UX1NVUFBPUlRF
-RDoKPj4+ICvCoMKgwqAgY2FzZSBJTlRFTF9VQ19GSVJNV0FSRV9ESVNBQkxFRDoKPj4+ICvCoMKg
-wqDCoMKgwqDCoCByZXR1cm4gMDsKPj4+ICvCoMKgwqAgY2FzZSBJTlRFTF9VQ19GSVJNV0FSRV9N
-SVNTSU5HOgo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAtRU5PUEtHOwo+Pj4gK8KgwqDCoCBj
-YXNlIElOVEVMX1VDX0ZJUk1XQVJFX0VSUk9SOgo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldHVybiAt
-RU5PRVhFQzsKPj4KPj4gV2hhdCBhYm91dCBJTlRFTF9VQ19GSVJNV0FSRV9GQUlMPwo+IAo+IEkg
-YXNzdW1lZCB0aGF0IHdlIGRvbid0IG5lZWQgdG8gaGFuZGxlIHRoYXQgY2FzZSBoZXJlLCBzaW5j
-ZSB3ZSBhcmUKPiBzdGlsbCBjaGVja2luZyBIdUMgc3RhdHVzIHJlZ2lzdGVyIGJlbG93Lgo+IAo+
-IEJ1dCBpZiB5b3Ugd2FudCB3ZSBjYW4gaW1wcm92ZToKPiAxKSByZXR1cm4gZWFybHkgaWYgRkFJ
-TCwgdGhlbiBjaGVjayByZWdpc3RlciBhbnl3YXkKPiAyKSByZXR1cm4gZWFybHkgaWYgRkFJTCwg
-dHJ1c3QgZncgc3RhdGUgYW5kIHJldHVybiAxIHdpdGhvdXQgY2hlY2tpbmcKPiByZWdpc3RlciAo
-YXMgc2FtZSByZWdpc3RlciB3YXMgYWxyZWFkeSBjaGVja2VkIHdoZW4gd2UgbWFyayBmdyBzdGF0
-ZSBhcwo+IFJVTk5JTkcpCgpUaGUgY3VycmVudCB2ZXJzaW9uIGxvb2tzIGdvb2QgdG8gbWUuIFRo
-YW5rcy4KClJldmlld2VkLWJ5OiBUb255IFllIDx0b255LnllQGludGVsLmNvbT4KCj4gCj4+Cj4+
-IFJlZ2FyZHMsCj4+IFRvbnkKPj4KPj4+ICvCoMKgwqAgZGVmYXVsdDoKPj4+ICvCoMKgwqDCoMKg
-wqDCoCBicmVhazsKPj4+ICvCoMKgwqAgfQo+Pj4gKwo+Pj4gIMKgwqDCoMKgwqAgd2l0aF9pbnRl
-bF9ydW50aW1lX3BtKGd0LT51bmNvcmUtPnJwbSwgd2FrZXJlZikKPj4+ICDCoMKgwqDCoMKgwqDC
-oMKgwqAgc3RhdHVzID0gaW50ZWxfdW5jb3JlX3JlYWQoZ3QtPnVuY29yZSwgaHVjLT5zdGF0dXMu
-cmVnKTsKPj4+ICDCoCAtwqDCoMKgIHJldHVybiAoc3RhdHVzICYgaHVjLT5zdGF0dXMubWFzaykg
-PT0gaHVjLT5zdGF0dXMudmFsdWU7Cj4+PiArwqDCoMKgIGlmICgoc3RhdHVzICYgaHVjLT5zdGF0
-dXMubWFzaykgIT0gaHVjLT5zdGF0dXMudmFsdWUpCj4+PiArwqDCoMKgwqDCoMKgwqAgcmV0dXJu
-IC1FQUNDRVM7Cj4+PiArCj4+PiArwqDCoMKgIHJldHVybiAxOwo+Pj4gIMKgIH0KPj4+Cl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Finish the job started in d28ae3b28187 ("drm/i915: split out
+intel_dram.[ch] from i915_drv.c") by moving struct dram_dimm_info and
+dram_channel_info inside intel_dram.c, the only user of the structs.
+
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_drv.h   | 10 ----------
+ drivers/gpu/drm/i915/intel_dram.c | 10 ++++++++++
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index ea13fc0b409b..c5a06f864123 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -1274,16 +1274,6 @@ struct drm_i915_private {
+ 	 */
+ };
+ 
+-struct dram_dimm_info {
+-	u8 size, width, ranks;
+-};
+-
+-struct dram_channel_info {
+-	struct dram_dimm_info dimm_l, dimm_s;
+-	u8 ranks;
+-	bool is_16gb_dimm;
+-};
+-
+ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ {
+ 	return container_of(dev, struct drm_i915_private, drm);
+diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/intel_dram.c
+index 9bb9dd724d3f..6b922efb1d7c 100644
+--- a/drivers/gpu/drm/i915/intel_dram.c
++++ b/drivers/gpu/drm/i915/intel_dram.c
+@@ -6,6 +6,16 @@
+ #include "i915_drv.h"
+ #include "intel_dram.h"
+ 
++struct dram_dimm_info {
++	u8 size, width, ranks;
++};
++
++struct dram_channel_info {
++	struct dram_dimm_info dimm_l, dimm_s;
++	u8 ranks;
++	bool is_16gb_dimm;
++};
++
+ #define DRAM_TYPE_STR(type) [INTEL_DRAM_ ## type] = #type
+ 
+ static const char *intel_dram_type_str(enum intel_dram_type type)
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
