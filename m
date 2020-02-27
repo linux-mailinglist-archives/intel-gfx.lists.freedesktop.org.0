@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EA4172650
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:15:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FA0817265C
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:16:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D9A6EC9B;
-	Thu, 27 Feb 2020 18:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0192A6ECE4;
+	Thu, 27 Feb 2020 18:15:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F086EC49
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:15:39 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id c13so4603874wrq.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:15:39 -0800 (PST)
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC4A6EC86
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:15:41 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id q9so399125wmj.5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:15:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=jGkQy6GARMrTdcko1Rer3WUnvLpzhV0C66wlxAxhWNE=;
- b=UGjp3j2m8tSpVtgqlVsaT55NLPaJ+bCVZNIyBF9xRUhtONMNz9C25aIe4AKs+mpAuI
- fPMK5fZkOxdJBP1TkttHVjsFqD+3P/nq/HjaSFpRwkSmPeNftrevjNHz9YaqdM+rUxyq
- EdjgWR4GUIZHrdJ5QqimuB/ajA7WfCZI5Ptjo=
+ bh=3MudnHwslQcv7L1AeA3nZ3vHFKZHFkyWQhBFq4SS1iU=;
+ b=kq3KFZzLQtYOYkxj1LcfbcSiIALW5gvpfMRJr7ZjsmC/LyKMc3s1je1/8yJR9q7rWa
+ y02Fm2dGY5PG9QZ/clmfLE8uoeSRgAiLYFrPJzUjYkWxqvI3bphpNF/gspyjKo3cdX2X
+ eDFHEnwpFvUIn7DKtheeFjJG1UoHJNf7DV+jk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=jGkQy6GARMrTdcko1Rer3WUnvLpzhV0C66wlxAxhWNE=;
- b=Ty5vfJydNXIwkcMeDLiTzNBaZiELejMP4pTNFAG6PdT0MWscNB0jrELVkFhTDJEd6q
- nIbbUooT88iVHXG9XsYyGwU4KLr3tlDag/nKG8lBWM4iNoqwssdJmqtoMfmekFSx7VD6
- 8OlZdII8c+7CSNUW2OseLZkqGXLO72TUXD5lvGeISf3E+daJlju+n3V14ZGOMYs2lLOb
- +TeNzJDTSwNAbgHKVv96/dnqQZKG2QjbfHiXPhH/Hov5orDBpXPHCscU0pMPyXO5p6Y5
- 3cYiXdjU15KNrsepeGpu9V96TpWsW5337Ck7AiP0JtXGKZTa2ctHFHP49G+7pjXrKR0n
- Kfmg==
-X-Gm-Message-State: APjAAAXNnXPO9hziecPxZnVhO78ZufR4RhsHmcUukOwyXfSRtglhIORC
- zrH5zvQ7/MUqG5ah/zFoM0463w==
-X-Google-Smtp-Source: APXvYqzi6pnLYSD8cXiyxKS8GvQP4s+u1dCT+w1GY+i7lVlNGRL1AhMKB3TARM9gKM0sDr2ZmPcmHQ==
-X-Received: by 2002:adf:cc8b:: with SMTP id p11mr155186wrj.8.1582827338247;
- Thu, 27 Feb 2020 10:15:38 -0800 (PST)
+ bh=3MudnHwslQcv7L1AeA3nZ3vHFKZHFkyWQhBFq4SS1iU=;
+ b=JvPX7WKjMNxyd1fj5GLmNR7UkmXiGSy5iVYFMWwQ3bySOJTUZ9tDL7ntP8IuYx+U1q
+ Gh5Zk0ifnq11j9XTE/qA9Kn+jNFhia/GM35MIcP6roGMFFirKLJemi5wO5UJehWoKKRN
+ qqgNkD7DoHp49rdERS2+s3LYDsyvi+kBI8JKUuJhjTyimtiHvKd6uFY47NRSPCwFTbYY
+ RwiSvwrsoBEWQPa111N82T6SKTxrPEZDKvIzUxk8Sw/iulaFSJKuv/InXjEDdZeQ6+7e
+ LziI/ieAQkRucyZ5Hj46tRdQbKb98Me1kVrclcNKQbISbXXthJtG5ARvo4zlISlsnUBh
+ 6urw==
+X-Gm-Message-State: APjAAAWGMSLsyw4mgUdv0yPWgpJqav7OLU8Ib6R3hCOj5SHpf8mCoP7t
+ xtRe2Rl/S0bUUSchtxsm99nhpw==
+X-Google-Smtp-Source: APXvYqzdwHTDc5ZUw0eSu4fwgFo8wHbGYI2OJHmV1CjCT4ei77jDd/38w0D9lKeE9a40SSbt+ejkpQ==
+X-Received: by 2002:a1c:1b4d:: with SMTP id b74mr23635wmb.33.1582827339667;
+ Thu, 27 Feb 2020 10:15:39 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q1sm8551152wrw.5.2020.02.27.10.15.36
+ by smtp.gmail.com with ESMTPSA id q1sm8551152wrw.5.2020.02.27.10.15.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Feb 2020 10:15:37 -0800 (PST)
+ Thu, 27 Feb 2020 10:15:38 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Thu, 27 Feb 2020 19:14:38 +0100
-Message-Id: <20200227181522.2711142-8-daniel.vetter@ffwll.ch>
+Date: Thu, 27 Feb 2020 19:14:39 +0100
+Message-Id: <20200227181522.2711142-9-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
 References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 07/51] drm/qxl: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH 08/51] drm/i915: Use drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,10 +63,9 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: spice-devel@lists.freedesktop.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, virtualization@lists.linux-foundation.org,
- Gerd Hoffmann <kraxel@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ m.felsch@pengutronix.de, Matthew Auld <matthew.auld@intel.com>,
  Daniel Vetter <daniel.vetter@intel.com>, l.stach@pengutronix.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -75,49 +74,210 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 With this we can drop the final kfree from the release function.
 
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: virtualization@lists.linux-foundation.org
-Cc: spice-devel@lists.freedesktop.org
----
- drivers/gpu/drm/qxl/qxl_drv.c | 2 --
- drivers/gpu/drm/qxl/qxl_kms.c | 2 ++
- 2 files changed, 2 insertions(+), 2 deletions(-)
+The mock device in the selftests needed it's pci_device split
+up from the drm_device. In the future we could simplify this again
+by allocating the pci_device as a managed allocation too.
 
-diff --git a/drivers/gpu/drm/qxl/qxl_drv.c b/drivers/gpu/drm/qxl/qxl_drv.c
-index 4fda3f9b29f4..09102e2efabc 100644
---- a/drivers/gpu/drm/qxl/qxl_drv.c
-+++ b/drivers/gpu/drm/qxl/qxl_drv.c
-@@ -144,8 +144,6 @@ static void qxl_drm_release(struct drm_device *dev)
- 	 */
- 	qxl_modeset_fini(qdev);
- 	qxl_device_fini(qdev);
--	dev->dev_private = NULL;
--	kfree(qdev);
- }
- 
- static void
-diff --git a/drivers/gpu/drm/qxl/qxl_kms.c b/drivers/gpu/drm/qxl/qxl_kms.c
-index 70b20ee4741a..09d7b5f6d172 100644
---- a/drivers/gpu/drm/qxl/qxl_kms.c
-+++ b/drivers/gpu/drm/qxl/qxl_kms.c
-@@ -27,6 +27,7 @@
- #include <linux/pci.h>
- 
- #include <drm/drm_drv.h>
+v2: I overlooked that i915_driver_destroy is also called in the
+unwind code of the error path. There we need a drm_dev_put.
+Similar for the mock object.
+
+Now the problem with that is that the drm_driver->release callbacks
+for both the real driver and the mock one assume everything has been
+set up. Hence going through that path for a partially set up driver
+will result in issues. Quickest fix is to disable the ->release() hook
+until the driver is fully initialized, and keep the onion unwinding.
+Long term would be cleanest to move everything over to drmm_ release
+actions, but that's a lot of work for a big driver like i915. Plus
+more core work needed first anyway.
+
+v3: Fix i915_drm pointer wrangling in mock_gem_device. Also switch
+over to start using drm_dev_put() to clean up even on the error path.
+Aside I think the current error path is leaking the allocation.
+
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+---
+ drivers/gpu/drm/i915/i915_drv.c               | 10 +++++-
+ drivers/gpu/drm/i915/i915_drv.h               |  3 ++
+ .../gpu/drm/i915/selftests/mock_gem_device.c  | 31 ++++++++++++++-----
+ 3 files changed, 36 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 0b59a9bd2581..4119e57b0c5b 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -43,6 +43,7 @@
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_irq.h>
 +#include <drm/drm_managed.h>
  #include <drm/drm_probe_helper.h>
  
- #include "qxl_drv.h"
-@@ -121,6 +122,7 @@ int qxl_device_init(struct qxl_device *qdev,
- 	qdev->ddev.pdev = pdev;
- 	pci_set_drvdata(pdev, &qdev->ddev);
- 	qdev->ddev.dev_private = qdev;
-+	drmm_add_final_kfree(&qdev->ddev, qdev);
+ #include "display/intel_acpi.h"
+@@ -894,6 +895,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 		return ERR_PTR(err);
+ 	}
  
- 	mutex_init(&qdev->gem.mutex);
- 	mutex_init(&qdev->update_area_mutex);
++	drmm_add_final_kfree(&i915->drm, i915);
++
+ 	i915->drm.pdev = pdev;
+ 	pci_set_drvdata(pdev, i915);
+ 
+@@ -912,7 +915,6 @@ static void i915_driver_destroy(struct drm_i915_private *i915)
+ 	struct pci_dev *pdev = i915->drm.pdev;
+ 
+ 	drm_dev_fini(&i915->drm);
+-	kfree(i915);
+ }
+ 
+ /**
+@@ -996,6 +998,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	i915_welcome_messages(i915);
+ 
++	i915->do_release = true;
++
+ 	return 0;
+ 
+ out_cleanup_irq:
+@@ -1016,6 +1020,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ out_fini:
+ 	i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
+ 	i915_driver_destroy(i915);
++	drm_dev_put(&i915->drm);
+ 	return ret;
+ }
+ 
+@@ -1055,6 +1060,9 @@ static void i915_driver_release(struct drm_device *dev)
+ 	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
+ 
++	if (!dev_priv->do_release)
++		return;
++
+ 	disable_rpm_wakeref_asserts(rpm);
+ 
+ 	i915_gem_driver_release(dev_priv);
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index ea13fc0b409b..31c40e35f497 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -884,6 +884,9 @@ struct i915_selftest_stash {
+ struct drm_i915_private {
+ 	struct drm_device drm;
+ 
++	/* FIXME: Device release actions should all be moved to drmm_ */
++	bool do_release;
++
+ 	const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
+ 	struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
+ 	struct intel_driver_caps caps;
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 754d0eb6beaa..c85bbc88f504 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -25,6 +25,8 @@
+ #include <linux/pm_domain.h>
+ #include <linux/pm_runtime.h>
+ 
++#include <drm/drm_managed.h>
++
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_requests.h"
+ #include "gt/mock_engine.h"
+@@ -55,6 +57,9 @@ static void mock_device_release(struct drm_device *dev)
+ {
+ 	struct drm_i915_private *i915 = to_i915(dev);
+ 
++	if (!i915->do_release)
++		goto out;
++
+ 	mock_device_flush(i915);
+ 	intel_gt_driver_remove(&i915->gt);
+ 
+@@ -72,7 +77,9 @@ static void mock_device_release(struct drm_device *dev)
+ 	drm_mode_config_cleanup(&i915->drm);
+ 
+ 	drm_dev_fini(&i915->drm);
++out:
+ 	put_device(&i915->drm.pdev->dev);
++	kfree(i915->drm.pdev);
+ }
+ 
+ static struct drm_driver mock_driver = {
+@@ -114,9 +121,14 @@ struct drm_i915_private *mock_gem_device(void)
+ 	struct pci_dev *pdev;
+ 	int err;
+ 
+-	pdev = kzalloc(sizeof(*pdev) + sizeof(*i915), GFP_KERNEL);
++	pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
+ 	if (!pdev)
+-		goto err;
++		return NULL;
++	i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
++	if (!i915) {
++		kfree(pdev);
++		return NULL;
++	}
+ 
+ 	device_initialize(&pdev->dev);
+ 	pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
+@@ -129,7 +141,6 @@ struct drm_i915_private *mock_gem_device(void)
+ 	pdev->dev.archdata.iommu = (void *)-1;
+ #endif
+ 
+-	i915 = (struct drm_i915_private *)(pdev + 1);
+ 	pci_set_drvdata(pdev, i915);
+ 
+ 	dev_pm_domain_set(&pdev->dev, &pm_domain);
+@@ -141,9 +152,14 @@ struct drm_i915_private *mock_gem_device(void)
+ 	err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
+ 	if (err) {
+ 		pr_err("Failed to initialise mock GEM device: err=%d\n", err);
+-		goto put_device;
++		put_device(&pdev->dev);
++		kfree(pdev);
++		kfree(i915);
++
++		return NULL;
+ 	}
+ 	i915->drm.pdev = pdev;
++	drmm_add_final_kfree(&i915->drm, i915);
+ 
+ 	intel_runtime_pm_init_early(&i915->runtime_pm);
+ 
+@@ -188,6 +204,8 @@ struct drm_i915_private *mock_gem_device(void)
+ 	__clear_bit(I915_WEDGED, &i915->gt.reset.flags);
+ 	intel_engines_driver_register(i915);
+ 
++	i915->do_release = true;
++
+ 	return i915;
+ 
+ err_context:
+@@ -199,8 +217,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	intel_memory_regions_driver_release(i915);
+ 	drm_mode_config_cleanup(&i915->drm);
+ 	drm_dev_fini(&i915->drm);
+-put_device:
+-	put_device(&pdev->dev);
+-err:
++	drm_dev_put(&i915->drm);
++
+ 	return NULL;
+ }
 -- 
 2.24.1
 
