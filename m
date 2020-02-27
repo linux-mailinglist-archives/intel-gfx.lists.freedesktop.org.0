@@ -2,34 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181941710C0
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 06:56:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E191710D1
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 07:04:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3166E07F;
-	Thu, 27 Feb 2020 05:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 515DB6EBE9;
+	Thu, 27 Feb 2020 06:04:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5704D6E07F
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 05:56:33 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6760B6E43B;
+ Thu, 27 Feb 2020 06:04:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 21:56:32 -0800
-X-IronPort-AV: E=Sophos;i="5.70,490,1574150400"; d="scan'208";a="231701357"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2020 22:04:14 -0800
+X-IronPort-AV: E=Sophos;i="5.70,490,1574150400"; d="scan'208";a="231703581"
 Received: from lohmeies-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.50.249])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2020 21:56:30 -0800
+ 26 Feb 2020 22:04:10 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, =?utf-8?Q?Jos=C3=A9?= Roberto de
- Souza <jose.souza@intel.com>, Chris Wilson <chris@chris-wilson.co.uk>
+To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 27 Feb 2020 07:56:51 +0200
-Message-ID: <877e08shcs.fsf@intel.com>
+Date: Thu, 27 Feb 2020 08:04:31 +0200
+Message-ID: <874kvcsh00.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] Fixes that failed to apply to v5.6-rc3
+Subject: [Intel-gfx] [PULL] drm-intel-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,35 +41,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-Hi all -
-
-The following commits have been marked as Cc: stable or fixing something
-in v5.6-rc3 or earlier, but failed to cherry-pick to
-drm-intel-fixes. Please see if they are worth backporting, and please do
-so if they are.
-
-Failed to cherry-pick:
-837b63e60878 ("drm/i915: Program MBUS with rmw during initialization")
-87e04f75928b ("drm/i915/tgl: Add Wa_22010178259:tgl")
-df1a5bfc16f3 ("drm/i915/psr: Force PSR probe only after full initialization")
-
-This one was fine to cherry-pick, but caused problematic (for me!)
-conflicts in drm-tip rebuild:
-42fb60de3129 ("drm/i915/gem: Don't leak non-persistent requests on changing engines")
-
-BR,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CkhpIERhdmUgJiBEYW5pZWwgLQoKU3dpdGNoaW5nIGdlbjcgYmFjayB0byBhbGlhc2luZy1wcGd0
+dCBzZWVtcyB0byBiZSB0aGUgbWFpbiBoaWdobGlnaHQKaGVyZS4KCkJSLApKYW5pLgoKCmRybS1p
+bnRlbC1maXhlcy0yMDIwLTAyLTI3Ogpkcm0vaTkxNSBmaXhlcyBmb3IgdjUuNi1yYzQ6Ci0gZG93
+bmdyYWRlIGdlbjcgYmFjayB0byBhbGlhc2luZy1wcGd0dCB0byBhdm9pZCBHUFUgaGFuZ3MKLSBz
+aHJpbmtlciBmaXgKLSBwbXUgbGVhayBhbmQgZG91YmxlIGZyZWUgZml4ZXMKLSBndnQgdXNlciBh
+ZnRlciBmcmVlIGFuZCB2aXJ0dWFsIGRpc3BsYXkgcmVzZXQgZml4ZXMKLSByYW5kY29uZmlnIGJ1
+aWxkIGZpeAoKQlIsCkphbmkuCgpUaGUgZm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IGY4
+Nzg4ZDg2YWIyOGY2MWY3YjQ2ZWI2YmUzNzVmOGE3MjY3ODM2MzY6CgogIExpbnV4IDUuNi1yYzMg
+KDIwMjAtMDItMjMgMTY6MTc6NDIgLTA4MDApCgphcmUgYXZhaWxhYmxlIGluIHRoZSBHaXQgcmVw
+b3NpdG9yeSBhdDoKCiAgZ2l0Oi8vYW5vbmdpdC5mcmVlZGVza3RvcC5vcmcvZHJtL2RybS1pbnRl
+bCB0YWdzL2RybS1pbnRlbC1maXhlcy0yMDIwLTAyLTI3Cgpmb3IgeW91IHRvIGZldGNoIGNoYW5n
+ZXMgdXAgdG8gOGU5YTQwMGM3MDZlZTViY2JjMDUyZDNlYzlmODdjZmRiYmQzZjVjYjoKCiAgTWVy
+Z2UgdGFnICdndnQtZml4ZXMtMjAyMC0wMi0yNicgb2YgaHR0cHM6Ly9naXRodWIuY29tL2ludGVs
+L2d2dC1saW51eCBpbnRvIGRybS1pbnRlbC1maXhlcyAoMjAyMC0wMi0yNiAyMjo1ODoyNSArMDIw
+MCkKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0KZHJtL2k5MTUgZml4ZXMgZm9yIHY1LjYtcmM0OgotIGRvd25ncmFkZSBnZW43
+IGJhY2sgdG8gYWxpYXNpbmctcHBndHQgdG8gYXZvaWQgR1BVIGhhbmdzCi0gc2hyaW5rZXIgZml4
+Ci0gcG11IGxlYWsgYW5kIGRvdWJsZSBmcmVlIGZpeGVzCi0gZ3Z0IHVzZXIgYWZ0ZXIgZnJlZSBh
+bmQgdmlydHVhbCBkaXNwbGF5IHJlc2V0IGZpeGVzCi0gcmFuZGNvbmZpZyBidWlsZCBmaXgKCi0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0KQ2hyaXMgV2lsc29uICgyKToKICAgICAgZHJtL2k5MTUvZ3R0OiBEb3duZ3JhZGUgZ2Vu
+NyAoaXZiLCBieXQsIGhzdykgYmFjayB0byBhbGlhc2luZy1wcGd0dAogICAgICBkcm0vaTkxNTog
+QXZvaWQgcmVjdXJzaW5nIG9udG8gYWN0aXZlIHZtYSBmcm9tIHRoZSBzaHJpbmtlcgoKSmFuaSBO
+aWt1bGEgKDIpOgogICAgICBkcm0vaTkxNTogZml4IGhlYWRlciB0ZXN0IHdpdGggR0NPVgogICAg
+ICBNZXJnZSB0YWcgJ2d2dC1maXhlcy0yMDIwLTAyLTI2JyBvZiBodHRwczovL2dpdGh1Yi5jb20v
+aW50ZWwvZ3Z0LWxpbnV4IGludG8gZHJtLWludGVsLWZpeGVzCgpNaWNoYcWCIFdpbmlhcnNraSAo
+Mik6CiAgICAgIGRybS9pOTE1L3BtdTogQXZvaWQgdXNpbmcgZ2xvYmFscyBmb3IgQ1BVIGhvdHBs
+dWcgc3RhdGUKICAgICAgZHJtL2k5MTUvcG11OiBBdm9pZCB1c2luZyBnbG9iYWxzIGZvciBQTVUg
+ZXZlbnRzCgpUaW5hIFpoYW5nICgyKToKICAgICAgZHJtL2k5MTUvZ3Z0OiBTZXBhcmF0ZSBkaXNw
+bGF5IHJlc2V0IGZyb20gQUxMX0VOR0lORVMgcmVzZXQKICAgICAgZHJtL2k5MTUvZ3Z0OiBGaXgg
+b3JwaGFuIHZncHUgZG1hYnVmX29ianMnIGxpZmV0aW1lCgogZHJpdmVycy9ncHUvZHJtL2k5MTUv
+TWFrZWZpbGUgICAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2Vt
+L2k5MTVfZ2VtX3Nocmlua2VyLmMgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L2Rt
+YWJ1Zi5jICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3Z0L3ZncHUu
+YyAgICAgICAgICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYyAg
+ICAgICAgICAgICAgfCAgNCArLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wbXUuYyAgICAg
+ICAgICAgICAgfCA1OSArKysrKysrKysrKysrKystLS0tLS0tLS0tLS0tCiBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3BtdS5oICAgICAgICAgICAgICB8IDExICsrKysrLQogNyBmaWxlcyBjaGFu
+Z2VkLCA0NiBpbnNlcnRpb25zKCspLCAzOCBkZWxldGlvbnMoLSkKCi0tIApKYW5pIE5pa3VsYSwg
+SW50ZWwgT3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
+bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
