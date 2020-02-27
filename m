@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32E8A172804
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:49:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D29C172811
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:50:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0656EBFA;
-	Thu, 27 Feb 2020 18:49:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5795B6EBFC;
+	Thu, 27 Feb 2020 18:50:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B5176EBFA
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:49:33 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 10:49:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="256837339"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 27 Feb 2020 10:49:30 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Feb 2020 20:49:30 +0200
-Date: Thu, 27 Feb 2020 20:49:29 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200227184929.GZ13686@intel.com>
-References: <20200226203455.23032-1-imre.deak@intel.com>
- <20200226203455.23032-12-imre.deak@intel.com>
- <20200227175741.GW13686@intel.com>
- <20200227183453.GA24796@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 14C1D6EBFC;
+ Thu, 27 Feb 2020 18:50:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0D98FA00EF;
+ Thu, 27 Feb 2020 18:50:19 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227183453.GA24796@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 11/13] drm/i915/skl,
- cnl: Split out the WRPLL/LCPLL frequency calculation
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 27 Feb 2020 18:50:19 -0000
+Message-ID: <158282941905.29657.1066956100502000002@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227145359.17543-1-jani.nikula@intel.com>
+In-Reply-To: <20200227145359.17543-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dram=3A_hide_the_dram_structs_better?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,694 +38,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 08:34:53PM +0200, Imre Deak wrote:
-> On Thu, Feb 27, 2020 at 07:57:41PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Feb 26, 2020 at 10:34:53PM +0200, Imre Deak wrote:
-> > > Split out the PLL parameter->frequency conversion logic for each type=
- of
-> > > PLL for symmetry with their corresponding inverse conversion function=
-s.
-> > > =
+== Series Details ==
 
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
-> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 269 +++++++++-------=
---
-> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   8 +-
-> > >  4 files changed, 140 insertions(+), 145 deletions(-)
-> > > =
+Series: drm/i915/dram: hide the dram structs better
+URL   : https://patchwork.freedesktop.org/series/74025/
+State : success
 
-> > > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm=
-/i915/display/icl_dsi.c
-> > > index c38addd07e42..17cee6f80d8b 100644
-> > > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> > > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> > > @@ -1350,13 +1350,15 @@ static void gen11_dsi_get_timings(struct inte=
-l_encoder *encoder,
-> > >  static void gen11_dsi_get_config(struct intel_encoder *encoder,
-> > >  				 struct intel_crtc_state *pipe_config)
-> > >  {
-> > > +	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(pipe_config->uapi.crtc);
-> > >  	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
-> > >  =
+== Summary ==
 
-> > >  	intel_dsc_get_config(encoder, pipe_config);
-> > >  =
+CI Bug Log - changes from CI_DRM_8020 -> Patchwork_16736
+====================================================
 
-> > >  	/* FIXME: adapt icl_ddi_clock_get() for DSI and use that? */
-> > > -	pipe_config->port_clock =3D intel_dpll_get_freq(encoder, pipe_confi=
-g);
-> > > +	pipe_config->port_clock =3D intel_dpll_get_freq(i915,
-> > > +						      pipe_config->shared_dpll);
-> > =
+Summary
+-------
 
-> > For this one I'm thinking it might be better to pass the pll state
-> > instead. That way we could use this function already before we've
-> > actually committed the state.
-> =
+  **SUCCESS**
 
-> Right, forgot about using this before swapping the new state into
-> pll->state. Since pll can't be deducted from the state how about:
-> =
+  No regressions found.
 
-> 	int (*get_freq)(struct drm_i915_private *i915,
-> 			const struct intel_shared_dpll *pll,
-> 			const struct intel_dpll_hw_state *hw_state);
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/index.html
 
-> ?
+Known issues
+------------
 
-I guess we'd still have the slight problem of perhaps not having
-selected the pll yet. So bit of a chicken vs. egg. But I guess
-that's not something we have to worry about right now.
+  Here are the changes found in Patchwork_16736 that come from known issues:
 
-> =
+### IGT changes ###
 
-> I can resend with that also making the change adding get_freq a separate
-> patch as I originally intended.
-> 	=
+#### Issues hit ####
 
-> =
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([fdo#111096] / [i915#323])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8020/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
-> > We can think about that later though.
-> > =
+  
+#### Possible fixes ####
 
-> > Patches 1-11 look OK to me:
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-guc:         [DMESG-FAIL][3] ([i915#730]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8020/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
 
-> Thanks.
-> =
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][5] ([i915#217]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8020/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
 
-> > =
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][7] ([fdo#109635] / [i915#262]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8020/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
 
-> > >  =
+  
+#### Warnings ####
 
-> > >  	pipe_config->hw.adjusted_mode.crtc_clock =3D intel_dsi->pclk;
-> > >  	if (intel_dsi->dual_link)
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index 5e6f81b140d4..284219da7df8 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1383,8 +1383,8 @@ static void intel_ddi_clock_get(struct intel_en=
-coder *encoder,
-> > >  		pipe_config->port_clock =3D icl_calc_tbt_pll_link(dev_priv,
-> > >  								encoder->port);
-> > >  	else
-> > > -		pipe_config->port_clock =3D intel_dpll_get_freq(encoder,
-> > > -							      pipe_config);
-> > > +		pipe_config->port_clock =3D
-> > > +			intel_dpll_get_freq(dev_priv, pipe_config->shared_dpll);
-> > >  =
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][9] ([i915#1209]) -> [FAIL][10] ([i915#192] / [i915#193] / [i915#194])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8020/fi-kbl-8809g/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/fi-kbl-8809g/igt@runner@aborted.html
 
-> > >  	ddi_dotclock_get(pipe_config);
-> > >  }
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/=
-gpu/drm/i915/display/intel_dpll_mgr.c
-> > > index ebd55fdaf4cd..b87b4ff5de52 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > > @@ -1052,23 +1052,6 @@ static bool hsw_get_dpll(struct intel_atomic_s=
-tate *state,
-> > >  	return true;
-> > >  }
-> > >  =
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-> > > -static int hsw_ddi_clock_get(struct intel_encoder *encoder,
-> > > -			     struct intel_crtc_state *pipe_config)
-> > > -{
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > > -	struct intel_shared_dpll *pll =3D pipe_config->shared_dpll;
-> > > -
-> > > -	switch (pll->info->id) {
-> > > -	case DPLL_ID_WRPLL1:
-> > > -	case DPLL_ID_WRPLL2:
-> > > -		return hsw_ddi_wrpll_get_freq(dev_priv, pll);
-> > > -	case DPLL_ID_SPLL:
-> > > -		return hsw_ddi_spll_get_freq(dev_priv, pll);
-> > > -	default:
-> > > -		return hsw_ddi_lcpll_get_freq(dev_priv, pll);
-> > > -	}
-> > > -}
-> > > -
-> > >  static void hsw_dump_hw_state(struct drm_i915_private *dev_priv,
-> > >  			      const struct intel_dpll_hw_state *hw_state)
-> > >  {
-> > > @@ -1080,12 +1063,14 @@ static const struct intel_shared_dpll_funcs h=
-sw_ddi_wrpll_funcs =3D {
-> > >  	.enable =3D hsw_ddi_wrpll_enable,
-> > >  	.disable =3D hsw_ddi_wrpll_disable,
-> > >  	.get_hw_state =3D hsw_ddi_wrpll_get_hw_state,
-> > > +	.get_freq =3D hsw_ddi_wrpll_get_freq,
-> > >  };
-> > >  =
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
 
-> > >  static const struct intel_shared_dpll_funcs hsw_ddi_spll_funcs =3D {
-> > >  	.enable =3D hsw_ddi_spll_enable,
-> > >  	.disable =3D hsw_ddi_spll_disable,
-> > >  	.get_hw_state =3D hsw_ddi_spll_get_hw_state,
-> > > +	.get_freq =3D hsw_ddi_spll_get_freq,
-> > >  };
-> > >  =
 
-> > >  static void hsw_ddi_lcpll_enable(struct drm_i915_private *dev_priv,
-> > > @@ -1109,6 +1094,7 @@ static const struct intel_shared_dpll_funcs hsw=
-_ddi_lcpll_funcs =3D {
-> > >  	.enable =3D hsw_ddi_lcpll_enable,
-> > >  	.disable =3D hsw_ddi_lcpll_disable,
-> > >  	.get_hw_state =3D hsw_ddi_lcpll_get_hw_state,
-> > > +	.get_freq =3D hsw_ddi_lcpll_get_freq,
-> > >  };
-> > >  =
+Participating hosts (46 -> 37)
+------------------------------
 
-> > >  static const struct dpll_info hsw_plls[] =3D {
-> > > @@ -1574,8 +1560,10 @@ static bool skl_ddi_hdmi_pll_dividers(struct i=
-ntel_crtc_state *crtc_state)
-> > >  	return true;
-> > >  }
-> > >  =
+  Additional (4): fi-kbl-soraka fi-blb-e6850 fi-hsw-peppy fi-snb-2600 
+  Missing    (13): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ilk-650 fi-snb-2520m fi-ctg-p8600 fi-gdg-551 fi-bdw-samus fi-byt-n2820 fi-byt-clapper fi-skl-6600u 
 
-> > > -static int skl_calc_wrpll_link(const struct intel_dpll_hw_state *pll=
-_state)
-> > > +static int skl_ddi_wrpll_get_freq(struct drm_i915_private *i915,
-> > > +				  const struct intel_shared_dpll *pll)
-> > >  {
-> > > +	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_stat=
-e;
-> > >  	int ref_clock =3D 24000;
-> > >  	u32 p0, p1, p2, dco_freq;
-> > >  =
 
-> > > @@ -1670,6 +1658,40 @@ skl_ddi_dp_set_dpll_hw_state(struct intel_crtc=
-_state *crtc_state)
-> > >  	return true;
-> > >  }
-> > >  =
+Build changes
+-------------
 
-> > > +static int skl_ddi_lcpll_get_freq(struct drm_i915_private *i915,
-> > > +				  const struct intel_shared_dpll *pll)
-> > > +{
-> > > +	int link_clock =3D 0;
-> > > +
-> > > +	switch ((pll->state.hw_state.ctrl1 &
-> > > +		 DPLL_CTRL1_LINK_RATE_MASK(0)) >>
-> > > +		DPLL_CTRL1_LINK_RATE_SHIFT(0)) {
-> > > +	case DPLL_CTRL1_LINK_RATE_810:
-> > > +		link_clock =3D 81000;
-> > > +		break;
-> > > +	case DPLL_CTRL1_LINK_RATE_1080:
-> > > +		link_clock =3D 108000;
-> > > +		break;
-> > > +	case DPLL_CTRL1_LINK_RATE_1350:
-> > > +		link_clock =3D 135000;
-> > > +		break;
-> > > +	case DPLL_CTRL1_LINK_RATE_1620:
-> > > +		link_clock =3D 162000;
-> > > +		break;
-> > > +	case DPLL_CTRL1_LINK_RATE_2160:
-> > > +		link_clock =3D 216000;
-> > > +		break;
-> > > +	case DPLL_CTRL1_LINK_RATE_2700:
-> > > +		link_clock =3D 270000;
-> > > +		break;
-> > > +	default:
-> > > +		drm_WARN(&i915->drm, 1, "Unsupported link rate\n");
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return link_clock * 2;
-> > > +}
-> > > +
-> > >  static bool skl_get_dpll(struct intel_atomic_state *state,
-> > >  			 struct intel_crtc *crtc,
-> > >  			 struct intel_encoder *encoder)
-> > > @@ -1719,50 +1741,17 @@ static bool skl_get_dpll(struct intel_atomic_=
-state *state,
-> > >  	return true;
-> > >  }
-> > >  =
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8020 -> Patchwork_16736
 
-> > > -static int skl_ddi_clock_get(struct intel_encoder *encoder,
-> > > -			     struct intel_crtc_state *crtc_state)
-> > > +static int skl_ddi_pll_get_freq(struct drm_i915_private *i915,
-> > > +				const struct intel_shared_dpll *pll)
-> > >  {
-> > > -	struct intel_dpll_hw_state *pll_state =3D &crtc_state->dpll_hw_stat=
-e;
-> > > -	int link_clock;
-> > > -
-> > >  	/*
-> > >  	 * ctrl1 register is already shifted for each pll, just use 0 to get
-> > >  	 * the internal shift for each field
-> > >  	 */
-> > > -	if (pll_state->ctrl1 & DPLL_CTRL1_HDMI_MODE(0)) {
-> > > -		link_clock =3D skl_calc_wrpll_link(pll_state);
-> > > -	} else {
-> > > -		link_clock =3D pll_state->ctrl1 & DPLL_CTRL1_LINK_RATE_MASK(0);
-> > > -		link_clock >>=3D DPLL_CTRL1_LINK_RATE_SHIFT(0);
-> > > -
-> > > -		switch (link_clock) {
-> > > -		case DPLL_CTRL1_LINK_RATE_810:
-> > > -			link_clock =3D 81000;
-> > > -			break;
-> > > -		case DPLL_CTRL1_LINK_RATE_1080:
-> > > -			link_clock =3D 108000;
-> > > -			break;
-> > > -		case DPLL_CTRL1_LINK_RATE_1350:
-> > > -			link_clock =3D 135000;
-> > > -			break;
-> > > -		case DPLL_CTRL1_LINK_RATE_1620:
-> > > -			link_clock =3D 162000;
-> > > -			break;
-> > > -		case DPLL_CTRL1_LINK_RATE_2160:
-> > > -			link_clock =3D 216000;
-> > > -			break;
-> > > -		case DPLL_CTRL1_LINK_RATE_2700:
-> > > -			link_clock =3D 270000;
-> > > -			break;
-> > > -		default:
-> > > -			drm_WARN(encoder->base.dev, 1,
-> > > -				 "Unsupported link rate\n");
-> > > -			break;
-> > > -		}
-> > > -		link_clock *=3D 2;
-> > > -	}
-> > > -
-> > > -	return link_clock;
-> > > +	if (pll->state.hw_state.ctrl1 & DPLL_CTRL1_HDMI_MODE(0))
-> > > +		return skl_ddi_wrpll_get_freq(i915, pll);
-> > > +	else
-> > > +		return skl_ddi_lcpll_get_freq(i915, pll);
-> > >  }
-> > >  =
+  CI-20190529: 20190529
+  CI_DRM_8020: c5e13e7cee422111f70ff7bb5b933bd2ca8ff9e7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5473: d22b3507ff2678a05d69d47c0ddf6f0e72ee7ffd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16736: 3bee11e221821d318444de123d76b755b914f7e1 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> > >  static void skl_dump_hw_state(struct drm_i915_private *dev_priv,
-> > > @@ -1779,12 +1768,14 @@ static const struct intel_shared_dpll_funcs s=
-kl_ddi_pll_funcs =3D {
-> > >  	.enable =3D skl_ddi_pll_enable,
-> > >  	.disable =3D skl_ddi_pll_disable,
-> > >  	.get_hw_state =3D skl_ddi_pll_get_hw_state,
-> > > +	.get_freq =3D skl_ddi_pll_get_freq,
-> > >  };
-> > >  =
 
-> > >  static const struct intel_shared_dpll_funcs skl_ddi_dpll0_funcs =3D {
-> > >  	.enable =3D skl_ddi_dpll0_enable,
-> > >  	.disable =3D skl_ddi_dpll0_disable,
-> > >  	.get_hw_state =3D skl_ddi_dpll0_get_hw_state,
-> > > +	.get_freq =3D skl_ddi_pll_get_freq,
-> > >  };
-> > >  =
+== Linux commits ==
 
-> > >  static const struct dpll_info skl_plls[] =3D {
-> > > @@ -2190,11 +2181,10 @@ bxt_ddi_hdmi_set_dpll_hw_state(struct intel_c=
-rtc_state *crtc_state)
-> > >  	return bxt_ddi_set_dpll_hw_state(crtc_state, &clk_div);
-> > >  }
-> > >  =
+3bee11e22182 drm/i915/dram: hide the dram structs better
 
-> > > -static int bxt_ddi_clock_get(struct intel_encoder *encoder,
-> > > -			     struct intel_crtc_state *crtc_state)
-> > > +static int bxt_ddi_pll_get_freq(struct drm_i915_private *i915,
-> > > +				const struct intel_shared_dpll *pll)
-> > >  {
-> > > -	struct intel_dpll_hw_state *pll_state =3D
-> > > -		&crtc_state->shared_dpll->state.hw_state;
-> > > +	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_stat=
-e;
-> > >  	struct dpll clock;
-> > >  =
+== Logs ==
 
-> > >  	clock.m1 =3D 2;
-> > > @@ -2264,6 +2254,7 @@ static const struct intel_shared_dpll_funcs bxt=
-_ddi_pll_funcs =3D {
-> > >  	.enable =3D bxt_ddi_pll_enable,
-> > >  	.disable =3D bxt_ddi_pll_disable,
-> > >  	.get_hw_state =3D bxt_ddi_pll_get_hw_state,
-> > > +	.get_freq =3D bxt_ddi_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct dpll_info bxt_plls[] =3D {
-> > > @@ -2608,9 +2599,10 @@ static bool cnl_ddi_hdmi_pll_dividers(struct i=
-ntel_crtc_state *crtc_state)
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > -static int cnl_calc_wrpll_link(struct drm_i915_private *dev_priv,
-> > > -			       struct intel_dpll_hw_state *pll_state)
-> > > +static int cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
-> > > +				  const struct intel_shared_dpll *pll)
-> > >  {
-> > > +	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_stat=
-e;
-> > >  	u32 p0, p1, p2, dco_freq, ref_clock;
-> > >  =
-
-> > >  	p0 =3D pll_state->cfgcr1 & DPLL_CFGCR1_PDIV_MASK;
-> > > @@ -2709,6 +2701,44 @@ cnl_ddi_dp_set_dpll_hw_state(struct intel_crtc=
-_state *crtc_state)
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > +static int cnl_ddi_lcpll_get_freq(struct drm_i915_private *i915,
-> > > +				  const struct intel_shared_dpll *pll)
-> > > +{
-> > > +	int link_clock =3D 0;
-> > > +
-> > > +	switch (pll->state.hw_state.cfgcr0 & DPLL_CFGCR0_LINK_RATE_MASK) {
-> > > +	case DPLL_CFGCR0_LINK_RATE_810:
-> > > +		link_clock =3D 81000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_1080:
-> > > +		link_clock =3D 108000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_1350:
-> > > +		link_clock =3D 135000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_1620:
-> > > +		link_clock =3D 162000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_2160:
-> > > +		link_clock =3D 216000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_2700:
-> > > +		link_clock =3D 270000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_3240:
-> > > +		link_clock =3D 324000;
-> > > +		break;
-> > > +	case DPLL_CFGCR0_LINK_RATE_4050:
-> > > +		link_clock =3D 405000;
-> > > +		break;
-> > > +	default:
-> > > +		drm_WARN(&i915->drm, 1, "Unsupported link rate\n");
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	return link_clock * 2;
-> > > +}
-> > > +
-> > >  static bool cnl_get_dpll(struct intel_atomic_state *state,
-> > >  			 struct intel_crtc *crtc,
-> > >  			 struct intel_encoder *encoder)
-> > > @@ -2758,51 +2788,13 @@ static bool cnl_get_dpll(struct intel_atomic_=
-state *state,
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > -static int cnl_ddi_clock_get(struct intel_encoder *encoder,
-> > > -			     struct intel_crtc_state *pipe_config)
-> > > +static int cnl_ddi_pll_get_freq(struct drm_i915_private *i915,
-> > > +				const struct intel_shared_dpll *pll)
-> > >  {
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > > -	struct intel_dpll_hw_state *pll_state =3D &pipe_config->dpll_hw_sta=
-te;
-> > > -	int link_clock;
-> > > -
-> > > -	if (pll_state->cfgcr0 & DPLL_CFGCR0_HDMI_MODE) {
-> > > -		link_clock =3D cnl_calc_wrpll_link(dev_priv, pll_state);
-> > > -	} else {
-> > > -		link_clock =3D pll_state->cfgcr0 & DPLL_CFGCR0_LINK_RATE_MASK;
-> > > -
-> > > -		switch (link_clock) {
-> > > -		case DPLL_CFGCR0_LINK_RATE_810:
-> > > -			link_clock =3D 81000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_1080:
-> > > -			link_clock =3D 108000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_1350:
-> > > -			link_clock =3D 135000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_1620:
-> > > -			link_clock =3D 162000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_2160:
-> > > -			link_clock =3D 216000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_2700:
-> > > -			link_clock =3D 270000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_3240:
-> > > -			link_clock =3D 324000;
-> > > -			break;
-> > > -		case DPLL_CFGCR0_LINK_RATE_4050:
-> > > -			link_clock =3D 405000;
-> > > -			break;
-> > > -		default:
-> > > -			drm_WARN(&dev_priv->drm, 1, "Unsupported link rate\n");
-> > > -			break;
-> > > -		}
-> > > -		link_clock *=3D 2;
-> > > -	}
-> > > -
-> > > -	return link_clock;
-> > > +	if (pll->state.hw_state.cfgcr0 & DPLL_CFGCR0_HDMI_MODE)
-> > > +		return cnl_ddi_wrpll_get_freq(i915, pll);
-> > > +	else
-> > > +		return cnl_ddi_lcpll_get_freq(i915, pll);
-> > >  }
-> > >  =
-
-> > >  static void cnl_dump_hw_state(struct drm_i915_private *dev_priv,
-> > > @@ -2818,6 +2810,7 @@ static const struct intel_shared_dpll_funcs cnl=
-_ddi_pll_funcs =3D {
-> > >  	.enable =3D cnl_ddi_pll_enable,
-> > >  	.disable =3D cnl_ddi_pll_disable,
-> > >  	.get_hw_state =3D cnl_ddi_pll_get_hw_state,
-> > > +	.get_freq =3D cnl_ddi_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct dpll_info cnl_plls[] =3D {
-> > > @@ -2979,6 +2972,18 @@ static bool icl_calc_tbt_pll(struct intel_crtc=
-_state *crtc_state,
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > +static int icl_ddi_tbt_pll_get_freq(struct drm_i915_private *i915,
-> > > +				    const struct intel_shared_dpll *pll)
-> > > +{
-> > > +	/*
-> > > +	 * The PLL outputs multiple frequencies at the same time, selection=
- is
-> > > +	 * made at DDI clock mux level.
-> > > +	 */
-> > > +	drm_WARN_ON(&i915->drm, 1);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > >  static bool icl_calc_dpll_state(struct intel_crtc_state *crtc_state,
-> > >  				struct intel_encoder *encoder,
-> > >  				struct intel_dpll_hw_state *pll_state)
-> > > @@ -3317,9 +3322,10 @@ static bool icl_calc_mg_pll_state(struct intel=
-_crtc_state *crtc_state,
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > -static int icl_calc_mg_pll_link(struct drm_i915_private *dev_priv,
-> > > -				const struct intel_dpll_hw_state *pll_state)
-> > > +static int icl_ddi_mg_pll_get_freq(struct drm_i915_private *dev_priv,
-> > > +				   const struct intel_shared_dpll *pll)
-> > >  {
-> > > +	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_stat=
-e;
-> > >  	u32 m1, m2_int, m2_frac, div1, div2, ref_clock;
-> > >  	u64 tmp;
-> > >  =
-
-> > > @@ -3388,19 +3394,6 @@ static int icl_calc_mg_pll_link(struct drm_i91=
-5_private *dev_priv,
-> > >  	return tmp;
-> > >  }
-> > >  =
-
-> > > -static int icl_ddi_clock_get(struct intel_encoder *encoder,
-> > > -			     struct intel_crtc_state *crtc_state)
-> > > -{
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > > -	struct intel_dpll_hw_state *pll_state =3D &crtc_state->dpll_hw_stat=
-e;
-> > > -	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
-> > > -
-> > > -	if (intel_phy_is_combo(dev_priv, phy))
-> > > -		return cnl_calc_wrpll_link(dev_priv, pll_state);
-> > > -	else
-> > > -		return icl_calc_mg_pll_link(dev_priv, pll_state);
-> > > -}
-> > > -
-> > >  /**
-> > >   * icl_set_active_port_dpll - select the active port DPLL for a give=
-n CRTC
-> > >   * @crtc_state: state for the CRTC to select the DPLL for
-> > > @@ -3485,6 +3478,12 @@ static bool icl_get_combo_phy_dpll(struct inte=
-l_atomic_state *state,
-> > >  	return true;
-> > >  }
-> > >  =
-
-> > > +static int icl_ddi_combo_pll_get_freq(struct drm_i915_private *i915,
-> > > +				      const struct intel_shared_dpll *pll)
-> > > +{
-> > > +	return cnl_ddi_wrpll_get_freq(i915, pll);
-> > > +}
-> > > +
-> > >  static bool icl_get_tc_phy_dplls(struct intel_atomic_state *state,
-> > >  				 struct intel_crtc *crtc,
-> > >  				 struct intel_encoder *encoder)
-> > > @@ -4141,18 +4140,21 @@ static const struct intel_shared_dpll_funcs c=
-ombo_pll_funcs =3D {
-> > >  	.enable =3D combo_pll_enable,
-> > >  	.disable =3D combo_pll_disable,
-> > >  	.get_hw_state =3D combo_pll_get_hw_state,
-> > > +	.get_freq =3D icl_ddi_combo_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct intel_shared_dpll_funcs tbt_pll_funcs =3D {
-> > >  	.enable =3D tbt_pll_enable,
-> > >  	.disable =3D tbt_pll_disable,
-> > >  	.get_hw_state =3D tbt_pll_get_hw_state,
-> > > +	.get_freq =3D icl_ddi_tbt_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct intel_shared_dpll_funcs mg_pll_funcs =3D {
-> > >  	.enable =3D mg_pll_enable,
-> > >  	.disable =3D mg_pll_disable,
-> > >  	.get_hw_state =3D mg_pll_get_hw_state,
-> > > +	.get_freq =3D icl_ddi_mg_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct dpll_info icl_plls[] =3D {
-> > > @@ -4192,6 +4194,7 @@ static const struct intel_shared_dpll_funcs dkl=
-_pll_funcs =3D {
-> > >  	.enable =3D mg_pll_enable,
-> > >  	.disable =3D mg_pll_disable,
-> > >  	.get_hw_state =3D dkl_pll_get_hw_state,
-> > > +	.get_freq =3D icl_ddi_mg_pll_get_freq,
-> > >  };
-> > >  =
-
-> > >  static const struct dpll_info tgl_plls[] =3D {
-> > > @@ -4348,27 +4351,15 @@ void intel_update_active_dpll(struct intel_at=
-omic_state *state,
-> > >  	dpll_mgr->update_active_dpll(state, crtc, encoder);
-> > >  }
-> > >  =
-
-> > > -int intel_dpll_get_freq(struct intel_encoder *encoder,
-> > > -			struct intel_crtc_state *crtc_state)
-> > > +int intel_dpll_get_freq(struct drm_i915_private *i915,
-> > > +			const struct intel_shared_dpll *pll)
-> > >  {
-> > > -	struct drm_i915_private *i915 =3D to_i915(encoder->base.dev);
-> > > -
-> > > -	if (INTEL_GEN(i915) >=3D 11)
-> > > -		return icl_ddi_clock_get(encoder, crtc_state);
-> > > -	else if (IS_CANNONLAKE(i915))
-> > > -		return cnl_ddi_clock_get(encoder, crtc_state);
-> > > -	else if (IS_GEN9_LP(i915))
-> > > -		return bxt_ddi_clock_get(encoder, crtc_state);
-> > > -	else if (IS_GEN9_BC(i915))
-> > > -		return skl_ddi_clock_get(encoder, crtc_state);
-> > > -	else if (INTEL_GEN(i915) <=3D 8)
-> > > -		hsw_ddi_clock_get(encoder, crtc_state);
-> > > +	if (drm_WARN_ON(&i915->drm, !pll->info->funcs->get_freq))
-> > > +		return 0;
-> > >  =
-
-> > > -	drm_WARN_ON(&i915->drm, 1);
-> > > -	return 0;
-> > > +	return pll->info->funcs->get_freq(i915, pll);
-> > >  }
-> > >  =
-
-> > > -
-> > >  static void readout_dpll_hw_state(struct drm_i915_private *i915,
-> > >  				  struct intel_shared_dpll *pll)
-> > >  {
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/=
-gpu/drm/i915/display/intel_dpll_mgr.h
-> > > index fadc240eccf6..c155935874d4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> > > @@ -278,6 +278,9 @@ struct intel_shared_dpll_funcs {
-> > >  	bool (*get_hw_state)(struct drm_i915_private *dev_priv,
-> > >  			     struct intel_shared_dpll *pll,
-> > >  			     struct intel_dpll_hw_state *hw_state);
-> > > +
-> > > +	int (*get_freq)(struct drm_i915_private *i915,
-> > > +			const struct intel_shared_dpll *pll);
-> > >  };
-> > >  =
-
-> > >  /**
-> > > @@ -372,8 +375,8 @@ void icl_set_active_port_dpll(struct intel_crtc_s=
-tate *crtc_state,
-> > >  void intel_update_active_dpll(struct intel_atomic_state *state,
-> > >  			      struct intel_crtc *crtc,
-> > >  			      struct intel_encoder *encoder);
-> > > -int intel_dpll_get_freq(struct intel_encoder *encoder,
-> > > -			struct intel_crtc_state *crtc_state);
-> > > +int intel_dpll_get_freq(struct drm_i915_private *,
-> > > +			const struct intel_shared_dpll *);
-> > >  void intel_prepare_shared_dpll(const struct intel_crtc_state *crtc_s=
-tate);
-> > >  void intel_enable_shared_dpll(const struct intel_crtc_state *crtc_st=
-ate);
-> > >  void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_s=
-tate);
-> > > @@ -384,7 +387,6 @@ void intel_dpll_sanitize_state(struct drm_i915_pr=
-ivate *dev_priv);
-> > >  =
-
-> > >  void intel_dpll_dump_hw_state(struct drm_i915_private *dev_priv,
-> > >  			      const struct intel_dpll_hw_state *hw_state);
-> > > -int cnl_hdmi_pll_ref_clock(struct drm_i915_private *dev_priv);
-> > >  enum intel_dpll_id icl_tc_port_to_pll_id(enum tc_port tc_port);
-> > >  bool intel_dpll_is_combophy(enum intel_dpll_id id);
-> > >  =
-
-> > > -- =
-
-> > > 2.23.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16736/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
