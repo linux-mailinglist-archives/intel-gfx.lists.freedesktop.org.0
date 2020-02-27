@@ -2,40 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F69917128D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 09:29:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3A2171378
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 09:57:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 356206EC45;
-	Thu, 27 Feb 2020 08:29:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43DB66EC58;
+	Thu, 27 Feb 2020 08:57:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 936A86EC3A;
- Thu, 27 Feb 2020 08:29:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 00:29:41 -0800
-X-IronPort-AV: E=Sophos;i="5.70,491,1574150400"; d="scan'208";a="231747674"
-Received: from lohmeies-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.50.249])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 00:29:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Laxminarayan Bharadiya\, Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <E92BA18FDE0A5B43B7B3DA7FCA03128605776BFE@BGSMSX107.gar.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200225134709.6153-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225134709.6153-2-pankaj.laxminarayan.bharadiya@intel.com>
- <158263931977.26598.171017617509031302@skylake-alporthouse-com>
- <E92BA18FDE0A5B43B7B3DA7FCA03128605776BFE@BGSMSX107.gar.corp.intel.com>
-Date: Thu, 27 Feb 2020 10:29:50 +0200
-Message-ID: <87mu94qvpd.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 327766EC52
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 08:57:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20366824-1500050 
+ for multiple; Thu, 27 Feb 2020 08:57:25 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 08:57:04 +0000
+Message-Id: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: Add i915 device based
- MISSING_CASE macro
+Subject: [Intel-gfx] [PATCH 01/20] drm/i915: Skip barriers inside waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,60 +36,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Feb 2020, "Laxminarayan Bharadiya, Pankaj"	<pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> Hi Chris,
->
->> -----Original Message-----
->> From: Chris Wilson <chris@chris-wilson.co.uk>
->> Sent: 25 February 2020 19:32
->> To: David Airlie <airlied@linux.ie>; Joonas Lahtinen
->> <joonas.lahtinen@linux.intel.com>; Laxminarayan Bharadiya, Pankaj
->> <pankaj.laxminarayan.bharadiya@intel.com>; Vivi, Rodrigo
->> <rodrigo.vivi@intel.com>; daniel@ffwll.ch; dri-devel@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org; jani.nikula@linux.intel.com
->> Cc: Laxminarayan Bharadiya, Pankaj
->> <pankaj.laxminarayan.bharadiya@intel.com>
->> Subject: Re: [Intel-gfx][PATCH 01/10] drm/i915: Add i915 device based
->> MISSING_CASE macro
->> 
->> Quoting Pankaj Bharadiya (2020-02-25 13:47:00)
->> > Now that we have struct drm_device based drm_WARN, introduce struct
->> > drm_i915_private based i915_MISSING_CASE macro which uses
->> drm_WARN so
->> > that device specific information will also get printed in backtrace.
->> >
->> > i915_MISSING_CASE macro should be preferred over MISSING_CASE,
->> > wherever possible.
->> 
->> Whatever for? MISSING_CASE() itself should be a complete picture for the
->> forgotten code.
->
-> Are you saying, no need to have a new device specific macro?
->
-> We want convert all the calls of WARN* with device specific drm_WARN* 
-> in i915, hence I introduced new i915_MISSING_CASE macro.
->
-> Jani, Will you please share your opinion on this?
+Attaching to the i915_active barrier is a two stage process, and a flush
+is only effective when the barrier is activation. Thus it is possible
+for us to see a barrier, and attempt to flush, only for our flush to
+have no effect. As such, before attempting to activate signaling on the
+fence we need to double check it is a fence!
 
-In general, many or most WARNs are device specific, and the device
-information is useful. However MISSING_CASE is about the *code*. That
-was the intent anyway. Perhaps there are cases where the device
-information might be useful, but for most cases probably not.
+Fixes: d13a31770077 ("drm/i915: Flush idle barriers when waiting")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/i915_active.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-BR,
-Jani.
-
-
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 0b12d5023800..7b3d6c12ad61 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -453,6 +453,9 @@ static void enable_signaling(struct i915_active_fence *active)
+ {
+ 	struct dma_fence *fence;
+ 
++	if (unlikely(is_barrier(active)))
++		return;
++
+ 	fence = i915_active_fence_get(active);
+ 	if (!fence)
+ 		return;
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.25.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
