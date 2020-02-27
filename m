@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B61F17231D
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 17:22:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 141F517235D
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 17:29:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B37736E05A;
-	Thu, 27 Feb 2020 16:22:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 797826E931;
+	Thu, 27 Feb 2020 16:29:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 785686E05A
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 16:22:20 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 943CF6E931
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 16:29:00 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 08:22:19 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 08:28:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="350716132"
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="256792469"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 27 Feb 2020 08:22:17 -0800
+ by orsmga002.jf.intel.com with SMTP; 27 Feb 2020 08:28:56 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Feb 2020 18:22:16 +0200
-Date: Thu, 27 Feb 2020 18:22:16 +0200
+ Thu, 27 Feb 2020 18:28:47 +0200
+Date: Thu, 27 Feb 2020 18:28:47 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200227162216.GT13686@intel.com>
-References: <20200227161253.15741-1-jani.nikula@intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200227162847.GU13686@intel.com>
+References: <20200224153240.9047-1-stanislav.lisovskiy@intel.com>
+ <20200224153240.9047-2-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200227161253.15741-1-jani.nikula@intel.com>
+In-Reply-To: <20200224153240.9047-2-stanislav.lisovskiy@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/crc: move pipe_crc from
- drm_i915_private to intel_crtc
+Subject: Re: [Intel-gfx] [PATCH v18 1/8] drm/i915: Start passing latency as
+ parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,282 +55,92 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 06:12:53PM +0200, Jani Nikula wrote:
-> Having an array pipe_crc[I915_MAX_PIPES] in struct drm_i915_private
-> should be an obvious clue this should be located in struct intel_crtc
-> instead. Make it so.
+On Mon, Feb 24, 2020 at 05:32:33PM +0200, Stanislav Lisovskiy wrote:
+> We need to start passing memory latency as a
+> parameter when calculating plane wm levels,
+> as latency can get changed in different
+> circumstances(for example with or without SAGV).
+> So we need to be more flexible on that matter.
 > =
 
-> As a side-effect, fix some errors in indexing pipe_crc with both pipe
-> and crtc index. And, of course, reduce the size of i915_drv.h.
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > =
 
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index ffac0b862ca5..d6933e382657 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4002,6 +4002,7 @@ static int skl_compute_wm_params(const struct intel=
+_crtc_state *crtc_state,
+>  				 int color_plane);
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
+te,
+>  				 int level,
+> +				 u32 latency,
 
-lgtm
+I'd make it just unsigned int or something all over. Otherwise lgtm
+
 Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c  |  2 ++
->  .../drm/i915/display/intel_display_types.h    | 30 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_pipe_crc.c | 17 +++++------
->  drivers/gpu/drm/i915/display/intel_pipe_crc.h |  4 +--
->  drivers/gpu/drm/i915/i915_drv.c               |  1 -
->  drivers/gpu/drm/i915/i915_drv.h               | 30 -------------------
->  drivers/gpu/drm/i915/i915_irq.c               |  2 +-
->  7 files changed, 42 insertions(+), 44 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index b8e57ce096a7..f388cfaf408d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16705,6 +16705,8 @@ static int intel_crtc_init(struct drm_i915_privat=
-e *dev_priv, enum pipe pipe)
+>  				 const struct skl_wm_params *wp,
+>  				 const struct skl_wm_level *result_prev,
+>  				 struct skl_wm_level *result /* out */);
+> @@ -4024,7 +4025,9 @@ skl_cursor_allocation(const struct intel_crtc_state=
+ *crtc_state,
+>  	drm_WARN_ON(&dev_priv->drm, ret);
 >  =
 
->  	intel_color_init(crtc);
->  =
-
-> +	intel_crtc_crc_init(crtc);
+>  	for (level =3D 0; level <=3D max_level; level++) {
+> -		skl_compute_plane_wm(crtc_state, level, &wp, &wm, &wm);
+> +		u32 latency =3D dev_priv->wm.skl_latency[level];
 > +
->  	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) !=3D crtc->pipe=
-);
+> +		skl_compute_plane_wm(crtc_state, level, latency, &wp, &wm, &wm);
+>  		if (wm.min_ddb_alloc =3D=3D U16_MAX)
+>  			break;
 >  =
 
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 0a06043d4d4c..ac5d066e23a0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1045,6 +1045,32 @@ struct intel_crtc_state {
->  	enum transcoder mst_master_transcoder;
->  };
+> @@ -4978,12 +4981,12 @@ static bool skl_wm_has_lines(struct drm_i915_priv=
+ate *dev_priv, int level)
 >  =
 
-> +enum intel_pipe_crc_source {
-> +	INTEL_PIPE_CRC_SOURCE_NONE,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE1,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE2,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE3,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE4,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE5,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE6,
-> +	INTEL_PIPE_CRC_SOURCE_PLANE7,
-> +	INTEL_PIPE_CRC_SOURCE_PIPE,
-> +	/* TV/DP on pre-gen5/vlv can't use the pipe source. */
-> +	INTEL_PIPE_CRC_SOURCE_TV,
-> +	INTEL_PIPE_CRC_SOURCE_DP_B,
-> +	INTEL_PIPE_CRC_SOURCE_DP_C,
-> +	INTEL_PIPE_CRC_SOURCE_DP_D,
-> +	INTEL_PIPE_CRC_SOURCE_AUTO,
-> +	INTEL_PIPE_CRC_SOURCE_MAX,
-> +};
-> +
-> +#define INTEL_PIPE_CRC_ENTRIES_NR	128
-> +struct intel_pipe_crc {
-> +	spinlock_t lock;
-> +	int skipped;
-> +	enum intel_pipe_crc_source source;
-> +};
-> +
->  struct intel_crtc {
->  	struct drm_crtc base;
->  	enum pipe pipe;
-> @@ -1088,6 +1114,10 @@ struct intel_crtc {
->  =
-
->  	/* per pipe DSB related info */
->  	struct intel_dsb dsb;
-> +
-> +#ifdef CONFIG_DEBUG_FS
-> +	struct intel_pipe_crc pipe_crc;
-> +#endif
->  };
->  =
-
->  struct intel_plane {
-> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/=
-drm/i915/display/intel_pipe_crc.c
-> index 59d7e3cb3445..a9a5df2fee4d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
-> @@ -441,15 +441,11 @@ display_crc_ctl_parse_source(const char *buf, enum =
-intel_pipe_crc_source *s)
->  	return 0;
->  }
->  =
-
-> -void intel_display_crc_init(struct drm_i915_private *dev_priv)
-> +void intel_crtc_crc_init(struct intel_crtc *crtc)
+>  static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_sta=
+te,
+>  				 int level,
+> +				 u32 latency,
+>  				 const struct skl_wm_params *wp,
+>  				 const struct skl_wm_level *result_prev,
+>  				 struct skl_wm_level *result /* out */)
 >  {
-> -	enum pipe pipe;
-> +	struct intel_pipe_crc *pipe_crc =3D &crtc->pipe_crc;
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
+v);
+> -	u32 latency =3D dev_priv->wm.skl_latency[level];
+>  	uint_fixed_16_16_t method1, method2;
+>  	uint_fixed_16_16_t selected_result;
+>  	u32 res_blocks, res_lines, min_ddb_alloc =3D 0;
+> @@ -5112,9 +5115,10 @@ skl_compute_wm_levels(const struct intel_crtc_stat=
+e *crtc_state,
 >  =
 
-> -	for_each_pipe(dev_priv, pipe) {
-> -		struct intel_pipe_crc *pipe_crc =3D &dev_priv->pipe_crc[pipe];
-> -
-> -		spin_lock_init(&pipe_crc->lock);
-> -	}
-> +	spin_lock_init(&pipe_crc->lock);
->  }
+>  	for (level =3D 0; level <=3D max_level; level++) {
+>  		struct skl_wm_level *result =3D &levels[level];
+> +		u32 latency =3D dev_priv->wm.skl_latency[level];
 >  =
 
->  static int i8xx_crc_source_valid(struct drm_i915_private *dev_priv,
-> @@ -587,7 +583,8 @@ int intel_crtc_verify_crc_source(struct drm_crtc *crt=
-c, const char *source_name,
->  int intel_crtc_set_crc_source(struct drm_crtc *crtc, const char *source_=
-name)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->dev);
-> -	struct intel_pipe_crc *pipe_crc =3D &dev_priv->pipe_crc[crtc->index];
-> +	struct intel_crtc *intel_crtc =3D to_intel_crtc(crtc);
-> +	struct intel_pipe_crc *pipe_crc =3D &intel_crtc->pipe_crc;
->  	enum intel_display_power_domain power_domain;
->  	enum intel_pipe_crc_source source;
->  	intel_wakeref_t wakeref;
-> @@ -640,7 +637,7 @@ void intel_crtc_enable_pipe_crc(struct intel_crtc *in=
-tel_crtc)
->  {
->  	struct drm_crtc *crtc =3D &intel_crtc->base;
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->dev);
-> -	struct intel_pipe_crc *pipe_crc =3D &dev_priv->pipe_crc[crtc->index];
-> +	struct intel_pipe_crc *pipe_crc =3D &intel_crtc->pipe_crc;
->  	u32 val =3D 0;
+> -		skl_compute_plane_wm(crtc_state, level, wm_params,
+> -				     result_prev, result);
+> +		skl_compute_plane_wm(crtc_state, level, latency,
+> +				     wm_params, result_prev, result);
 >  =
 
->  	if (!crtc->crc.opened)
-> @@ -660,7 +657,7 @@ void intel_crtc_disable_pipe_crc(struct intel_crtc *i=
-ntel_crtc)
->  {
->  	struct drm_crtc *crtc =3D &intel_crtc->base;
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->dev);
-> -	struct intel_pipe_crc *pipe_crc =3D &dev_priv->pipe_crc[crtc->index];
-> +	struct intel_pipe_crc *pipe_crc =3D &intel_crtc->pipe_crc;
->  =
-
->  	/* Swallow crc's until we stop generating them. */
->  	spin_lock_irq(&pipe_crc->lock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.h b/drivers/gpu/=
-drm/i915/display/intel_pipe_crc.h
-> index db258a756fc6..43012b189415 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.h
-> @@ -13,7 +13,7 @@ struct drm_i915_private;
->  struct intel_crtc;
->  =
-
->  #ifdef CONFIG_DEBUG_FS
-> -void intel_display_crc_init(struct drm_i915_private *dev_priv);
-> +void intel_crtc_crc_init(struct intel_crtc *crtc);
->  int intel_crtc_set_crc_source(struct drm_crtc *crtc, const char *source_=
-name);
->  int intel_crtc_verify_crc_source(struct drm_crtc *crtc,
->  				 const char *source_name, size_t *values_cnt);
-> @@ -22,7 +22,7 @@ const char *const *intel_crtc_get_crc_sources(struct dr=
-m_crtc *crtc,
->  void intel_crtc_disable_pipe_crc(struct intel_crtc *crtc);
->  void intel_crtc_enable_pipe_crc(struct intel_crtc *crtc);
->  #else
-> -static inline void intel_display_crc_init(struct drm_i915_private *dev_p=
-riv) {}
-> +static inline void intel_crtc_crc_init(struct intel_crtc *crtc) {}
->  #define intel_crtc_set_crc_source NULL
->  #define intel_crtc_verify_crc_source NULL
->  #define intel_crtc_get_crc_sources NULL
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index b086132df1b7..939ba864d802 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -465,7 +465,6 @@ static int i915_driver_early_probe(struct drm_i915_pr=
-ivate *dev_priv)
->  	intel_init_display_hooks(dev_priv);
->  	intel_init_clock_gating_hooks(dev_priv);
->  	intel_init_audio_hooks(dev_priv);
-> -	intel_display_crc_init(dev_priv);
->  =
-
->  	intel_detect_preproduction_hw(dev_priv);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index ea13fc0b409b..ceec27a33eec 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -822,32 +822,6 @@ struct skl_wm_params {
->  	u32 dbuf_block_size;
->  };
->  =
-
-> -enum intel_pipe_crc_source {
-> -	INTEL_PIPE_CRC_SOURCE_NONE,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE1,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE2,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE3,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE4,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE5,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE6,
-> -	INTEL_PIPE_CRC_SOURCE_PLANE7,
-> -	INTEL_PIPE_CRC_SOURCE_PIPE,
-> -	/* TV/DP on pre-gen5/vlv can't use the pipe source. */
-> -	INTEL_PIPE_CRC_SOURCE_TV,
-> -	INTEL_PIPE_CRC_SOURCE_DP_B,
-> -	INTEL_PIPE_CRC_SOURCE_DP_C,
-> -	INTEL_PIPE_CRC_SOURCE_DP_D,
-> -	INTEL_PIPE_CRC_SOURCE_AUTO,
-> -	INTEL_PIPE_CRC_SOURCE_MAX,
-> -};
-> -
-> -#define INTEL_PIPE_CRC_ENTRIES_NR	128
-> -struct intel_pipe_crc {
-> -	spinlock_t lock;
-> -	int skipped;
-> -	enum intel_pipe_crc_source source;
-> -};
-> -
->  struct i915_frontbuffer_tracking {
->  	spinlock_t lock;
->  =
-
-> @@ -1043,10 +1017,6 @@ struct drm_i915_private {
->  	struct intel_crtc *plane_to_crtc_mapping[I915_MAX_PIPES];
->  	struct intel_crtc *pipe_to_crtc_mapping[I915_MAX_PIPES];
->  =
-
-> -#ifdef CONFIG_DEBUG_FS
-> -	struct intel_pipe_crc pipe_crc[I915_MAX_PIPES];
-> -#endif
-> -
->  	/* dpll and cdclk state is protected by connection_mutex */
->  	int num_shared_dpll;
->  	struct intel_shared_dpll shared_dplls[I915_NUM_PLLS];
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_=
-irq.c
-> index fce8835ab24c..9f0653cf0510 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -1217,8 +1217,8 @@ static void display_pipe_crc_irq_handler(struct drm=
-_i915_private *dev_priv,
->  					 u32 crc2, u32 crc3,
->  					 u32 crc4)
->  {
-> -	struct intel_pipe_crc *pipe_crc =3D &dev_priv->pipe_crc[pipe];
->  	struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
-> +	struct intel_pipe_crc *pipe_crc =3D &crtc->pipe_crc;
->  	u32 crcs[5] =3D { crc0, crc1, crc2, crc3, crc4 };
->  =
-
->  	trace_intel_pipe_crc(crtc, crcs);
+>  		result_prev =3D result;
+>  	}
 > -- =
 
-> 2.20.1
+> 2.24.1.485.gad05a3d8e5
 
 -- =
 
