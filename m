@@ -2,53 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C066172C77
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 00:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C86EB172C7B
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 00:46:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC496ED9D;
-	Thu, 27 Feb 2020 23:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20D6E6ED92;
+	Thu, 27 Feb 2020 23:46:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com
- [IPv6:2607:f8b0:4864:20::d41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C95096ED91;
- Thu, 27 Feb 2020 23:45:49 +0000 (UTC)
-Received: by mail-io1-xd41.google.com with SMTP id c17so1480257ioc.4;
- Thu, 27 Feb 2020 15:45:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=1B5cN28SaJ3/7WiYYba2l3AKZHNwulNb8NyplqhuBOs=;
- b=Z3z5rt29E9KOgfeFf6qCq9MjwtZGyuIZ6WEAHMoajGLIRJ3zgmhdrxOsS7PI7d3yRS
- iyM/GaMhiIE5Q06VJ9Jns2pP+fh7gKhZKWQaZvDGfmCqQsvQOw4g6wxS2WJQ8OgZQFfZ
- NohH4T4HHs/e2cvyQ69ZC2ZFWj15HwVaZDg5bW+VytrvU5dpGCaDNh/GoiNhj+lH0zHI
- /ycO/9+++E1MkEyzCTy7Nn0MWghRqHiJbtba4oKO383QqmrjECP3+d+z1tv3IkPVbys1
- RFESaw8uF7hEeIOk46wpjmAAjewXmgXuqxVsk5o0CrkPrhf62fzW48pOFtJ7k+Ed1UNh
- G8mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=1B5cN28SaJ3/7WiYYba2l3AKZHNwulNb8NyplqhuBOs=;
- b=OFWHLDKahnE+7pvwVe6SdI1gtlsoUiQ6AaCCxbUAr7uej8yaZzDXQUZlgM4gOaDdHG
- qWyR7+4ejIosMhrfwki4nadZll/xgemIaBDzX9TUx4nk+Iok7YyMsviVbJy8gAMCkUz5
- cH8BZ3airgaUWhBxg442t1tYzEE+3Tyx6dEPkyEXdqI6if17s/vS6BCKvgYTPjDdZn7v
- 0Q/9D/J+BtoW9uhWp8Bwa3Ppswstw+uohPyBlZEN5THkJ0BNyyXnnDBOo3r7yqfVuWJe
- pBuO7deOF3gvu3Kyv1z7blaINQm19zJHLsMRmaCTomgNfAQkrHrOYfXg36LR7s4Ee2e1
- YYbw==
-X-Gm-Message-State: APjAAAVGp4YBOiWWuADbz5CNt0l06iFtkmoVFiXqnT3ZVBihAaTACnoj
- gwrLER0tkYQcb99Kl3z+2sdxTfcpH4e3+aLUiXthZEYR
-X-Google-Smtp-Source: APXvYqyxmb9tZMjLW10xOdk3YABUj+dlD635ZiB2Xt1Km3UfiQCLGbV6CEkQ4tzddFAwcsD0Xk5ZgLBH9qYQlGV9NU4=
-X-Received: by 2002:a02:856a:: with SMTP id g97mr1070308jai.97.1582847149085; 
- Thu, 27 Feb 2020 15:45:49 -0800 (PST)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C68BC6ED92
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 23:46:30 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 15:46:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="232046653"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by orsmga008.jf.intel.com with ESMTP; 27 Feb 2020 15:46:29 -0800
+Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 27 Feb 2020 15:46:29 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
+ fmsmsx156.amr.corp.intel.com ([169.254.13.233]) with mapi id 14.03.0439.000;
+ Thu, 27 Feb 2020 15:46:29 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/huc: update TGL HuC to v7.0.12
+Thread-Index: AQHV7b950ub3uYdP0k2D24yN+o5IqKgwOxyA
+Date: Thu, 27 Feb 2020 23:46:28 +0000
+Message-ID: <03f2f4885b082f25c5ed8d6ced046c63c2a4bb07.camel@intel.com>
+References: <20200227224413.19460-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20200227224413.19460-1-daniele.ceraolospurio@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.234]
+Content-ID: <EEFEC8122CF053409FA87E6B653BA256@intel.com>
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
-In-Reply-To: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
-From: Matt Turner <mattst88@gmail.com>
-Date: Thu, 27 Feb 2020 15:45:36 -0800
-Message-ID: <CAEdQ38Hr-L6rg80Gf18QNM7eK-QDK0BBU-9tChT6VxrP+T4qCw@mail.gmail.com>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
- services
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: update TGL HuC to v7.0.12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,89 +56,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, gstreamer-devel@lists.freedesktop.org,
- Mesa Dev <mesa-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 1:27 PM Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
->
-> Hi all,
->
-> You might have read the short take in the X.org board meeting minutes
-> already, here's the long version.
->
-> The good news: gitlab.fd.o has become very popular with our
-> communities, and is used extensively. This especially includes all the
-> CI integration. Modern development process and tooling, yay!
->
-> The bad news: The cost in growth has also been tremendous, and it's
-> breaking our bank account. With reasonable estimates for continued
-> growth we're expecting hosting expenses totalling 75k USD this year,
-> and 90k USD next year. With the current sponsors we've set up we can't
-> sustain that. We estimate that hosting expenses for gitlab.fd.o
-> without any of the CI features enabled would total 30k USD, which is
-> within X.org's ability to support through various sponsorships, mostly
-> through XDC.
->
-> Note that X.org does no longer sponsor any CI runners themselves,
-> we've stopped that. The huge additional expenses are all just in
-> storing and serving build artifacts and images to outside CI runners
-> sponsored by various companies. A related topic is that with the
-> growth in fd.o it's becoming infeasible to maintain it all on
-> volunteer admin time. X.org is therefore also looking for admin
-> sponsorship, at least medium term.
->
-> Assuming that we want cash flow reserves for one year of gitlab.fd.o
-> (without CI support) and a trimmed XDC and assuming no sponsor payment
-> meanwhile, we'd have to cut CI services somewhere between May and June
-> this year. The board is of course working on acquiring sponsors, but
-> filling a shortfall of this magnitude is neither easy nor quick work,
-> and we therefore decided to give an early warning as soon as possible.
-> Any help in finding sponsors for fd.o is very much appreciated.
-
-Some clarification I got from Daniel in a private conversation, since
-I was confused about what the money was paying for exactly:
-
-We're paying 75K USD for the bandwidth to transfer data from the
-GitLab cloud instance. i.e., for viewing the https site, for
-cloning/updating git repos, and for downloading CI artifacts/images to
-the testing machines (AFAIU).
-
-I was not aware that we were being charged for anything wrt GitLab
-hosting yet (and neither was anyone on my team at Intel that I've
-asked). This... kind of needs to be communicated.
-
-A consistent concern put forth when we were discussing switching to
-GitLab and building CI was... how do we pay for it. It felt like that
-concern was always handwaved away. I heard many times that if we
-needed more runners that we could just ask Google to spin up a few
-more. If we needed testing machines they'd be donated. No one
-mentioned that all the while we were paying for bandwidth... Perhaps
-people building the CI would make different decisions about its
-structure if they knew it was going to wipe out the bank account.
-
-What percentage of the bandwidth is consumed by transferring CI
-images, etc? Wouldn't 75K USD would be enough to buy all the testing
-machines we need and host them within Google or wherever so we don't
-need to pay for huge amounts of bandwidth?
-
-I understand that self-hosting was attractive so that we didn't find
-ourselves on the SourceForge-equivalent hosting platform of 2022, but
-is that risk real enough to justify spending 75K+ per year? If we were
-hosted on gitlab.com or github.com, we wouldn't be paying for
-transferring CI images to CI test machines, etc, would we?
-
-So what do we do now? Have we painted ourselves into a corner?
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTAyLTI3IGF0IDE0OjQ0IC0wODAwLCBEYW5pZWxlIENlcmFvbG8gU3B1cmlv
+IHdyb3RlOg0KPiBVcGRhdGUgdG8gdGhlIGxhdGVzdCBhdmFpbGFibGUgVEdMIEh1Qywgd2hpY2gg
+aW5jbHVkZXMgY2hhbmdlcw0KPiByZXF1aXJlZA0KPiBieSB0aGUgbWVkaWEgdGVhbS4NCj4gDQoN
+ClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
+bT4NCg0KPiBSZXF1ZXN0ZWQtYnk6IFRvbnkgWWUgPHRvbnkueWVAaW50ZWwuY29tPg0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIDwNCj4gZGFuaWVsZS5jZXJhb2xvc3B1
+cmlvQGludGVsLmNvbT4NCj4gQ2M6IFRvbnkgWWUgPHRvbnkueWVAaW50ZWwuY29tPg0KPiBDYzog
+TWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+DQo+IENjOiBBbnVz
+aGEgU3JpdmF0c2EgPGFudXNoYS5zcml2YXRzYUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvdWMvaW50ZWxfdWNfZncuYyB8IDIgKy0NCj4gIDEgZmlsZSBjaGFu
+Z2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMNCj4gYi9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9ndC91Yy9pbnRlbF91Y19mdy5jDQo+IGluZGV4IDU0MzRjMDdhZWZhMS4uMThjNzU1
+MjAzNjg4IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC91Yy9pbnRlbF91
+Y19mdy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L3VjL2ludGVsX3VjX2Z3LmMN
+Cj4gQEAgLTQzLDcgKzQzLDcgQEAgdm9pZCBpbnRlbF91Y19md19jaGFuZ2Vfc3RhdHVzKHN0cnVj
+dCBpbnRlbF91Y19mdw0KPiAqdWNfZncsDQo+ICAgKiBmZWF0dXJlcy4NCj4gICAqLw0KPiAgI2Rl
+ZmluZSBJTlRFTF9VQ19GSVJNV0FSRV9ERUZTKGZ3X2RlZiwgZ3VjX2RlZiwgaHVjX2RlZikgXA0K
+PiAtCWZ3X2RlZihUSUdFUkxBS0UsICAgMCwgZ3VjX2RlZih0Z2wsIDM1LCAyLCAwKSwgaHVjX2Rl
+Zih0Z2wsICA3LA0KPiAwLCAzKSkgXA0KPiArCWZ3X2RlZihUSUdFUkxBS0UsICAgMCwgZ3VjX2Rl
+Zih0Z2wsIDM1LCAyLCAwKSwgaHVjX2RlZih0Z2wsICA3LA0KPiAwLCAxMikpIFwNCj4gIAlmd19k
+ZWYoRUxLSEFSVExBS0UsIDAsIGd1Y19kZWYoZWhsLCAzMywgMCwgNCksIGh1Y19kZWYoZWhsLCAg
+OSwNCj4gMCwgMCkpIFwNCj4gIAlmd19kZWYoSUNFTEFLRSwgICAgIDAsIGd1Y19kZWYoaWNsLCAz
+MywgMCwgMCksIGh1Y19kZWYoaWNsLCAgOSwNCj4gMCwgMCkpIFwNCj4gIAlmd19kZWYoQ09GRkVF
+TEFLRSwgIDUsIGd1Y19kZWYoY21sLCAzMywgMCwgMCksIGh1Y19kZWYoY21sLCAgNCwNCj4gMCwg
+MCkpIFwNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
+dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
