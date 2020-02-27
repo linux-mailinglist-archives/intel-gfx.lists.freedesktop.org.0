@@ -1,64 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABA341725DF
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:03:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9901725D1
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:00:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E94C26EC78;
-	Thu, 27 Feb 2020 18:03:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB3B6E8DA;
+	Thu, 27 Feb 2020 18:00:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com
- [IPv6:2607:f8b0:4864:20::d41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED466E944
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 16:43:58 +0000 (UTC)
-Received: by mail-io1-xd41.google.com with SMTP id d15so182005iog.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 08:43:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent; bh=3YMTfEGiWskzaqg6qsYJ7kThCNQxEbbXDJbmFwYjcu4=;
- b=mOtjx1pCRhjLwReAcdsFGCASZpuxWLk1U1MgnQe3qRMnt6Fe0xYEMLkOMBjFccp1Xe
- iD7Xxd2zoxewldqPM/pG3e2d9+hUCY1D7ibUoNaJzr3q24pYM9Iw/dLb87DBf/P+8Ja8
- Yt9NNK+ISExnyGLlZ/KrYsM+8Wl4adaX3RTy1j9fcR+BI0SC7Y96Ibh8C55UL/ln2P+a
- UGgIrmflPNNwup+2SPlIUE9WH0+fp6dAlhweB5Bnrz1yP5zBg+l8K//uA91A99etOeGA
- H5JTQQhJ1z5D/ntQ2kQSmdmT67LzOQW32zxuVXruPGcPpCZNW19XTUJetyzzrdoyJxM0
- Hh4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=3YMTfEGiWskzaqg6qsYJ7kThCNQxEbbXDJbmFwYjcu4=;
- b=qatplaxZ18ep91CuL3c8rgHdS96TiOhIPO+f1j29Ki+An7FMMQqUI+kwYwBsf/MgxJ
- wmbFZZRVZNBm+VoDtkCy0EMPkAsMlIUb4D++jjIZHmxsezTIfLbrgxwZ5/8DP9hXKZsU
- rVOD1OZH/nQTjZLEDfHr4QKP0yURCEWoyplYQsRumHqmafi+Hy/vPetJwQproUoAV27l
- jU57gm14mj1GAz4aZTr2rskBBmk5HJ/UsyNIOZAn1PCkexFTQjfblltdLF1kh7yd5yxL
- 5z0WeYR+Z81cIeLIg3tSfus026FFctXDC1CrYAV2p1L6LI4ICG+iB1Drw6SHSIdYnxJf
- Rwwg==
-X-Gm-Message-State: APjAAAX9SrKvbBIxenBF4mFvFhaGiV6uXE7FxhUmRr0cp3sJPuk2tzn8
- ZDUMWlyxn5hI9z2PdIJMqKBk2A==
-X-Google-Smtp-Source: APXvYqzXfnTuGcDkMKxb1svtfZaTZPYB6VcKyNB+HuivpMr7PTni/55vVwjYwJk16pMCcvCvmF6LyQ==
-X-Received: by 2002:a5d:8143:: with SMTP id f3mr173229ioo.12.1582821837526;
- Thu, 27 Feb 2020 08:43:57 -0800 (PST)
-Received: from google.com ([2620:15c:183:200:855f:8919:84a7:4794])
- by smtp.gmail.com with ESMTPSA id b12sm2072864iln.62.2020.02.27.08.43.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Feb 2020 08:43:56 -0800 (PST)
-Date: Thu, 27 Feb 2020 09:43:55 -0700
-From: Ross Zwisler <zwisler@google.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200227164355.GA241728@google.com>
-References: <20200221212635.11614-1-jose.souza@intel.com>
- <87wo88qicd.fsf@intel.com>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D01346E8DA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:00:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 10:00:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="232271481"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga008.fm.intel.com with ESMTP; 27 Feb 2020 10:00:05 -0800
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 23:21:47 +0530
+Message-Id: <20200227175147.11362-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87wo88qicd.fsf@intel.com>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-X-Mailman-Approved-At: Thu, 27 Feb 2020 18:03:14 +0000
-Subject: Re: [Intel-gfx] [PATCH v4-CI] drm/i915/psr: Force PSR probe only
- after full initialization
+Subject: [Intel-gfx] [PATCH] drm/i915: Fix kbuild test robot build error
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,34 +40,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 03:18:26PM +0200, Jani Nikula wrote:
-> On Fri, 21 Feb 2020, Jos=E9 Roberto de Souza <jose.souza@intel.com> wrote:
-> > Commit 60c6a14b489b ("drm/i915/display: Force the state compute phase
-> > once to enable PSR") was forcing the state compute too earlier
-> > causing errors because not everything was initialized, so here
-> > moving to the end of i915_driver_modeset_probe() when the display is
-> > all initialized.
-> =
-
-> Hmph, really not happy about the placement here. These are high level
-> functions, not a dumping ground for random feature specific hacks. :(
-
-Should we just revert =
-
-
-60c6a14b489b ("drm/i915/display: Force the state compute phase once to enab=
-le PSR")
-
-and try to land a fixed-up version in the next kernel cycle?  The current
-state is that my machine is completely unable to boot because of this issue,
-and I've confirmed that the above patch reverts cleanly and fixes the issue.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Rml4ZXM6IGQ1NGMxYTUxM2M0OCAoImRybS9pOTE1OiBGaXggYnJva2VuIHRyYW5zY29kZXIgZXJy
+IHN0YXRlIikKaGFzX3RyYW5zY29kZXIoKSB3YXMgdW51c2VkIGJlY2F1c2UgZnVuY3Rpb24gd2hp
+Y2ggd2FzIHVzaW5nIGl0LAppbnRlbF9kaXNwbGF5X2NhcHR1cmVfZXJyb3Jfc3RhdGUoKSBkZWZp
+bmVkIHVuZGVyCkNPTkZJR19EUk1fSTkxNV9DQVBUVVJFX0VSUk9SLgpNb3ZpbmcgaGFzX3RyYW5z
+Y29kZXIoKSB0byB1bmRlciBDT05GSUdfRFJNX0k5MTVfQ0FQVFVSRV9FUlJPUi4KTm8gZnVuY3Rp
+b25hbCBjaGFuZ2UuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
+dGVsLmNvbT4KUmVwb3J0ZWQtYnk6IGtidWlsZCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgpS
+ZXZpZXdlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9m
+Zi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KLS0tCiBkcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDE4ICsrKysrKysrKy0t
+LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDJm
+ZDNjY2QzM2UzMC4uMjdlYzI0NWUwZGQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMjQ5LDE1ICsyNDksNiBAQCBpbnRlbF9mZGlfbGlua19m
+cmVxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJcmV0dXJuIGRldl9wcml2
+LT5mZGlfcGxsX2ZyZXE7CiB9CiAKLXN0YXRpYyBib29sCi1oYXNfdHJhbnNjb2RlcihzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2Rl
+cikKLXsKLQlpZiAoY3B1X3RyYW5zY29kZXIgPT0gVFJBTlNDT0RFUl9FRFApCi0JCXJldHVybiBI
+QVNfVFJBTlNDT0RFUl9FRFAoZGV2X3ByaXYpOwotCWVsc2UKLQkJcmV0dXJuIElOVEVMX0lORk8o
+ZGV2X3ByaXYpLT5waXBlX21hc2sgJiBCSVQoY3B1X3RyYW5zY29kZXIpOwotfQotCiBzdGF0aWMg
+Y29uc3Qgc3RydWN0IGludGVsX2xpbWl0IGludGVsX2xpbWl0c19pOHh4X2RhYyA9IHsKIAkuZG90
+ID0geyAubWluID0gMjUwMDAsIC5tYXggPSAzNTAwMDAgfSwKIAkudmNvID0geyAubWluID0gOTA4
+MDAwLCAubWF4ID0gMTUxMjAwMCB9LApAQCAtMTg4MzgsNiArMTg4MjksMTUgQEAgdm9pZCBpbnRl
+bF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5
+MTUpCiAKICNpZiBJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9DQVBUVVJFX0VSUk9SKQogCitz
+dGF0aWMgYm9vbAoraGFzX3RyYW5zY29kZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
+cml2LCBlbnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIpCit7CisJaWYgKGNwdV90cmFuc2Nv
+ZGVyID09IFRSQU5TQ09ERVJfRURQKQorCQlyZXR1cm4gSEFTX1RSQU5TQ09ERVJfRURQKGRldl9w
+cml2KTsKKwllbHNlCisJCXJldHVybiBJTlRFTF9JTkZPKGRldl9wcml2KS0+cGlwZV9tYXNrICYg
+QklUKGNwdV90cmFuc2NvZGVyKTsKK30KKwogc3RydWN0IGludGVsX2Rpc3BsYXlfZXJyb3Jfc3Rh
+dGUgewogCiAJdTMyIHBvd2VyX3dlbGxfZHJpdmVyOwotLSAKMi4yNS4xCgpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
+CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
