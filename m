@@ -1,40 +1,75 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EE1172846
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 20:02:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEC6C17284A
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 20:04:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8039A6ED1F;
-	Thu, 27 Feb 2020 19:02:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01C046ED28;
+	Thu, 27 Feb 2020 19:04:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7AE6ED09
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 19:02:08 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 11:02:07 -0800
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="231966368"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 11:02:05 -0800
-Date: Thu, 27 Feb 2020 21:01:27 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200227190127.GB24796@ideak-desk.fi.intel.com>
-References: <20200226203455.23032-1-imre.deak@intel.com>
- <20200226203455.23032-14-imre.deak@intel.com>
- <20200227181329.GY13686@intel.com>
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFEBE6ED09
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 19:04:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582830252;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mRTM0qDL7LPt32fg6hEYfZAkWRy5CSaJiXAXokjB0I4=;
+ b=UGMKKY7JuCeG9qVB3xAtEaOV7yiIC1/hpPIpGlc5oQxXZ8cTy+MFUvoRzpjSihsqZQvq49
+ QFetMqjvJQTFCefFo9omYevSAx4ZDABNvra/5wrUCDPV8Jt6ZOwdm86ZPVQkVneKE28AlT
+ D6+SsSX/6E4jR1vzv/afKr+qmziyVfQ=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-187-ghFx7vqKM0eWMQ2yoQgg-w-1; Thu, 27 Feb 2020 14:04:10 -0500
+X-MC-Unique: ghFx7vqKM0eWMQ2yoQgg-w-1
+Received: by mail-wr1-f72.google.com with SMTP id m13so237118wrw.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 11:04:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=SwU85H2GFNteJLgeoaoLzgVRM2Oe0kTxhKVNogjdc4E=;
+ b=FmxyFdVsD5If2wJHkeYVj62ZXFIhBjjeDCTKjDpno73e+4q+5OHPEo24YMIQ9290GG
+ YkjoJCzInb2ATLR0RGTEQXXFNIoZw9cXrb3mdO1+/JGMggDTb0XU4+2Hn5/XDM0GO84Q
+ MLjmGCcKPlLQ8Vhm0aZMXSpH/Ddy79aikiOHGEFs3AkYEmyGCt8/zu2/jOUyNdVCtatN
+ bEPOM1+ORA3o0KRo01W43Fe0weMIJM4nuGZ1vrdpCjq7+PfEb3LCnRQG/8P7vYIXgYKS
+ lAVrRC5uV1nmVDnwd5Vrr8Eek7u4rbasU1uPIIVTcR6IrOK4+0oqMjenVlgVENNeOIRh
+ Xevw==
+X-Gm-Message-State: APjAAAUNdXcpkChWv4qw+Hlsi/Vj72y2ij6ttfPYXeZ7EfBn7exYFls6
+ 0TrAG3rYT50sRvbsAESDal6oGGvZlXQKQIbMa8KS0X8UAFiN/UClSUoZ5rgs87Lz1AuL/Z+xrOo
+ 2EEWsrtf6ASA/SMDQOCjA4rWjzoz6
+X-Received: by 2002:adf:d4cc:: with SMTP id w12mr295317wrk.249.1582830249306; 
+ Thu, 27 Feb 2020 11:04:09 -0800 (PST)
+X-Google-Smtp-Source: APXvYqxdTXwBVcJb4ROywKMnh9S/jxuerwdYy2w3jw1mxbPimb41LkzVf2Au1b03z5O7JDG3UnelIA==
+X-Received: by 2002:adf:d4cc:: with SMTP id w12mr295275wrk.249.1582830248918; 
+ Thu, 27 Feb 2020 11:04:08 -0800 (PST)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-fc7e-fd47-85c1-1ab3.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:fc7e:fd47:85c1:1ab3])
+ by smtp.gmail.com with ESMTPSA id h71sm9957555wme.26.2020.02.27.11.04.07
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 27 Feb 2020 11:04:08 -0800 (PST)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-46-daniel.vetter@ffwll.ch>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <39a5091b-cf17-0cd9-cf43-a7a8b3cd7b78@redhat.com>
+Date: Thu, 27 Feb 2020 20:04:07 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181329.GY13686@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH 13/13] drm/i915: Unify the DPLL ref clock
- frequency tracking
+In-Reply-To: <20200227181522.2711142-46-daniel.vetter@ffwll.ch>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Subject: Re: [Intel-gfx] [PATCH 45/51] drm/gm12u320: Simplify upload work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,576 +82,203 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>, m.felsch@pengutronix.de,
+ l.stach@pengutronix.de
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 08:13:29PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Wed, Feb 26, 2020 at 10:34:55PM +0200, Imre Deak wrote:
-> > All platforms using the shared DPLL framework use 3 reference clocks for
-> > their DPLLs: SSC, non-SSC and DSI. For a more unified way across
-> > platforms store the frequency of these ref clocks as part of the DPLL
-> > global state. This also allows us to keep the HW access reading out the
-> > ref clock value separate from the DPLL frequency calculation that
-> > depends on the ref clock.
-> > =
-
-> > For now add only the SSC and non-SSC ref clocks, as the pre-ICL DSI code
-> > has its own logic for calculating DPLL parameters instead of the shared
-> > DPLL framework.
-> > =
-
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  .../drm/i915/display/intel_display_debugfs.c  |   5 +
-> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 132 +++++++++++-------
-> >  drivers/gpu/drm/i915/i915_drv.h               |   5 +
-> >  3 files changed, 95 insertions(+), 47 deletions(-)
-> > =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/dri=
-vers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index d2461d7946bf..6675b7e34f0d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -920,6 +920,11 @@ static int i915_shared_dplls_info(struct seq_file =
-*m, void *unused)
-> >  	int i;
-> >  =
-
-> >  	drm_modeset_lock_all(dev);
-> > +
-> > +	seq_printf(m, "PLL refclks: non-SSC: %d kHZ, SSC: %d kHZ\n",
-> =
-
-> nit: "kHz"
-> =
-
-> > +		   dev_priv->dpll.ref_clks.nssc,
-> > +		   dev_priv->dpll.ref_clks.ssc);
-> > +
-> >  	for (i =3D 0; i < dev_priv->dpll.num_shared_dpll; i++) {
-> >  		struct intel_shared_dpll *pll =3D &dev_priv->dpll.shared_dplls[i];
-> >  =
-
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gp=
-u/drm/i915/display/intel_dpll_mgr.c
-> > index 7e6da58a47c9..44db46782770 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> > @@ -56,6 +56,7 @@ struct intel_dpll_mgr {
-> >  	void (*update_active_dpll)(struct intel_atomic_state *state,
-> >  				   struct intel_crtc *crtc,
-> >  				   struct intel_encoder *encoder);
-> > +	void (*update_ref_clks)(struct drm_i915_private *i915);
-> >  	void (*dump_hw_state)(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state);
-> >  };
-> > @@ -886,16 +887,9 @@ static int hsw_ddi_wrpll_get_freq(struct drm_i915_=
-private *dev_priv,
-> >  =
-
-> >  	switch (wrpll & WRPLL_REF_MASK) {
-> >  	case WRPLL_REF_SPECIAL_HSW:
-> > -		/*
-> > -		 * muxed-SSC for BDW.
-> > -		 * non-SSC for non-ULT HSW. Check FUSE_STRAP3
-> > -		 * for the non-SSC reference frequency.
-> > -		 */
-> > +		/* Muxed-SSC for BDW, non-SSC for non-ULT HSW. */
-> >  		if (IS_HASWELL(dev_priv) && !IS_HSW_ULT(dev_priv)) {
-> > -			if (intel_de_read(dev_priv, FUSE_STRAP3) & HSW_REF_CLK_SELECT)
-> > -				refclk =3D 24;
-> > -			else
-> > -				refclk =3D 135;
-> > +			refclk =3D dev_priv->dpll.ref_clks.nssc;
-> >  			break;
-> >  		}
-> >  		/* fall through */
-> > @@ -905,10 +899,10 @@ static int hsw_ddi_wrpll_get_freq(struct drm_i915=
-_private *dev_priv,
-> >  		 * code only cares about 5% accuracy, and spread is a max of
-> >  		 * 0.5% downspread.
-> >  		 */
-> > -		refclk =3D 135;
-> > +		refclk =3D dev_priv->dpll.ref_clks.ssc;
-> >  		break;
-> >  	case WRPLL_REF_LCPLL:
-> > -		refclk =3D 2700;
-> > +		refclk =3D 2700000;
-> >  		break;
-> >  	default:
-> >  		MISSING_CASE(wrpll);
-> > @@ -920,7 +914,7 @@ static int hsw_ddi_wrpll_get_freq(struct drm_i915_p=
-rivate *dev_priv,
-> >  	n =3D (wrpll & WRPLL_DIVIDER_FB_MASK) >> WRPLL_DIVIDER_FB_SHIFT;
-> >  =
-
-> >  	/* Convert to KHz, p & r have a fixed point portion */
-> > -	return (refclk * n * 100) / (p * r) * 2;
-> > +	return (refclk * n / 10) / (p * r) * 2;
-> >  }
-> >  =
-
-> >  static struct intel_shared_dpll *
-> > @@ -1049,6 +1043,16 @@ static bool hsw_get_dpll(struct intel_atomic_sta=
-te *state,
-> >  	return true;
-> >  }
-> >  =
-
-> > +static void hsw_update_dpll_ref_clks(struct drm_i915_private *i915)
-> > +{
-> > +	i915->dpll.ref_clks.ssc =3D 135000;
-> > +	/* Non-SSC is only used on non-ULT HSW. */
-> > +	if (intel_de_read(i915, FUSE_STRAP3) & HSW_REF_CLK_SELECT)
-> > +		i915->dpll.ref_clks.nssc =3D 24000;
-> > +	else
-> > +		i915->dpll.ref_clks.nssc =3D 135000;
-> =
-
-> I couldn't remember whether the PCH and CPU SSC references have the same
-> frquency. But looks like they do.
-
-Yes, according to bspec for both HSW and BDW.
-
-> =
-
-> > +}
-> > +
-> >  static void hsw_dump_hw_state(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state)
-> >  {
-> > @@ -1108,6 +1112,7 @@ static const struct intel_dpll_mgr hsw_pll_mgr =
-=3D {
-> >  	.dpll_info =3D hsw_plls,
-> >  	.get_dplls =3D hsw_get_dpll,
-> >  	.put_dplls =3D intel_put_dpll,
-> > +	.update_ref_clks =3D hsw_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D hsw_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -1523,6 +1528,7 @@ skl_ddi_calculate_wrpll(int clock /* in Hz */,
-> >  =
-
-> >  static bool skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_st=
-ate)
-> >  {
-> > +	struct drm_i915_private *i915 =3D to_i915(crtc_state->uapi.crtc->dev);
-> >  	u32 ctrl1, cfgcr1, cfgcr2;
-> >  	struct skl_wrpll_params wrpll_params =3D { 0, };
-> >  =
-
-> > @@ -1534,7 +1540,8 @@ static bool skl_ddi_hdmi_pll_dividers(struct inte=
-l_crtc_state *crtc_state)
-> >  =
-
-> >  	ctrl1 |=3D DPLL_CTRL1_HDMI_MODE(0);
-> >  =
-
-> > -	if (!skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000, 24000,
-> > +	if (!skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
-> > +				     i915->dpll.ref_clks.nssc,
-> >  				     &wrpll_params))
-> >  		return false;
-> >  =
-
-> > @@ -1561,7 +1568,7 @@ static int skl_ddi_wrpll_get_freq(struct drm_i915=
-_private *i915,
-> >  				  const struct intel_shared_dpll *pll)
-> >  {
-> >  	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_state;
-> > -	int ref_clock =3D 24000;
-> > +	int ref_clock =3D i915->dpll.ref_clks.nssc;
-> >  	u32 p0, p1, p2, dco_freq;
-> >  =
-
-> >  	p0 =3D pll_state->cfgcr2 & DPLL_CFGCR2_PDIV_MASK;
-> > @@ -1751,6 +1758,12 @@ static int skl_ddi_pll_get_freq(struct drm_i915_=
-private *i915,
-> >  		return skl_ddi_lcpll_get_freq(i915, pll);
-> >  }
-> >  =
-
-> > +static void skl_update_dpll_ref_clks(struct drm_i915_private *i915)
-> > +{
-> > +	/* No SSC ref */
-> > +	i915->dpll.ref_clks.nssc =3D i915->cdclk.hw.ref;
-> > +}
-> > +
-> >  static void skl_dump_hw_state(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state)
-> >  {
-> > @@ -1787,6 +1800,7 @@ static const struct intel_dpll_mgr skl_pll_mgr =
-=3D {
-> >  	.dpll_info =3D skl_plls,
-> >  	.get_dplls =3D skl_get_dpll,
-> >  	.put_dplls =3D intel_put_dpll,
-> > +	.update_ref_clks =3D skl_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D skl_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -2192,7 +2206,7 @@ static int bxt_ddi_pll_get_freq(struct drm_i915_p=
-rivate *i915,
-> >  	clock.p1 =3D (pll_state->ebb0 & PORT_PLL_P1_MASK) >> PORT_PLL_P1_SHIF=
-T;
-> >  	clock.p2 =3D (pll_state->ebb0 & PORT_PLL_P2_MASK) >> PORT_PLL_P2_SHIF=
-T;
-> >  =
-
-> > -	return chv_calc_dpll_params(100000, &clock);
-> > +	return chv_calc_dpll_params(i915->dpll.ref_clks.nssc, &clock);
-> >  }
-> >  =
-
-> >  static bool bxt_get_dpll(struct intel_atomic_state *state,
-> > @@ -2228,6 +2242,13 @@ static bool bxt_get_dpll(struct intel_atomic_sta=
-te *state,
-> >  	return true;
-> >  }
-> >  =
-
-> > +static void bxt_update_dpll_ref_clks(struct drm_i915_private *i915)
-> > +{
-> > +	i915->dpll.ref_clks.ssc =3D 100000;
-> > +	i915->dpll.ref_clks.nssc =3D 100000;
-> > +	/* DSI non-SSC ref 19.2MHz */
-> > +}
-> > +
-> >  static void bxt_dump_hw_state(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state)
-> >  {
-> > @@ -2265,6 +2286,7 @@ static const struct intel_dpll_mgr bxt_pll_mgr =
-=3D {
-> >  	.dpll_info =3D bxt_plls,
-> >  	.get_dplls =3D bxt_get_dpll,
-> >  	.put_dplls =3D intel_put_dpll,
-> > +	.update_ref_clks =3D bxt_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D bxt_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -2508,27 +2530,13 @@ static void cnl_wrpll_params_populate(struct sk=
-l_wrpll_params *params,
-> >  	params->dco_fraction =3D dco & 0x7fff;
-> >  }
-> >  =
-
-> > -int cnl_hdmi_pll_ref_clock(struct drm_i915_private *dev_priv)
-> > -{
-> > -	int ref_clock =3D dev_priv->cdclk.hw.ref;
-> > -
-> > -	/*
-> > -	 * For ICL+, the spec states: if reference frequency is 38.4,
-> > -	 * use 19.2 because the DPLL automatically divides that by 2.
-> > -	 */
-> > -	if (INTEL_GEN(dev_priv) >=3D 11 && ref_clock =3D=3D 38400)
-> > -		ref_clock =3D 19200;
-> > -
-> > -	return ref_clock;
-> > -}
-> > -
-> >  static bool
-> >  cnl_ddi_calculate_wrpll(struct intel_crtc_state *crtc_state,
-> >  			struct skl_wrpll_params *wrpll_params)
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> >  	u32 afe_clock =3D crtc_state->port_clock * 5;
-> > -	u32 ref_clock;
-> > +	int ref_clock =3D dev_priv->dpll.ref_clks.nssc;
-> >  	u32 dco_min =3D 7998000;
-> >  	u32 dco_max =3D 10000000;
-> >  	u32 dco_mid =3D (dco_min + dco_max) / 2;
-> > @@ -2560,9 +2568,6 @@ cnl_ddi_calculate_wrpll(struct intel_crtc_state *=
-crtc_state,
-> >  		return false;
-> >  =
-
-> >  	cnl_wrpll_get_multipliers(best_div, &pdiv, &qdiv, &kdiv);
-> > -
-> > -	ref_clock =3D cnl_hdmi_pll_ref_clock(dev_priv);
-> > -
-> >  	cnl_wrpll_params_populate(wrpll_params, best_dco, ref_clock,
-> >  				  pdiv, qdiv, kdiv);
-> >  =
-
-> > @@ -2596,11 +2601,12 @@ static bool cnl_ddi_hdmi_pll_dividers(struct in=
-tel_crtc_state *crtc_state)
-> >  	return true;
-> >  }
-> >  =
-
-> > -static int cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
-> > -				  const struct intel_shared_dpll *pll)
-> > +static int __cnl_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
-> > +				    const struct intel_shared_dpll *pll,
-> > +				    int ref_clock)
-> >  {
-> >  	const struct intel_dpll_hw_state *pll_state =3D &pll->state.hw_state;
-> > -	u32 p0, p1, p2, dco_freq, ref_clock;
-> > +	u32 p0, p1, p2, dco_freq;
-> >  =
-
-> >  	p0 =3D pll_state->cfgcr1 & DPLL_CFGCR1_PDIV_MASK;
-> >  	p2 =3D pll_state->cfgcr1 & DPLL_CFGCR1_KDIV_MASK;
-> > @@ -2639,8 +2645,6 @@ static int cnl_ddi_wrpll_get_freq(struct drm_i915=
-_private *dev_priv,
-> >  		break;
-> >  	}
-> >  =
-
-> > -	ref_clock =3D cnl_hdmi_pll_ref_clock(dev_priv);
-> > -
-> >  	dco_freq =3D (pll_state->cfgcr0 & DPLL_CFGCR0_DCO_INTEGER_MASK) *
-> >  		   ref_clock;
-> >  =
-
-> > @@ -2653,6 +2657,12 @@ static int cnl_ddi_wrpll_get_freq(struct drm_i91=
-5_private *dev_priv,
-> >  	return dco_freq / (p0 * p1 * p2 * 5);
-> >  }
-> >  =
-
-> > +static int cnl_ddi_wrpll_get_freq(struct drm_i915_private *i915,
-> > +				  const struct intel_shared_dpll *pll)
-> > +{
-> > +	return __cnl_ddi_wrpll_get_freq(i915, pll, i915->dpll.ref_clks.nssc);
-> > +}
-> > +
-> >  static bool
-> >  cnl_ddi_dp_set_dpll_hw_state(struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -2794,6 +2804,12 @@ static int cnl_ddi_pll_get_freq(struct drm_i915_=
-private *i915,
-> >  		return cnl_ddi_lcpll_get_freq(i915, pll);
-> >  }
-> >  =
-
-> > +static void cnl_update_dpll_ref_clks(struct drm_i915_private *i915)
-> > +{
-> > +	/* No SSC reference */
-> > +	i915->dpll.ref_clks.nssc =3D i915->cdclk.hw.ref;
-> > +}
-> > +
-> >  static void cnl_dump_hw_state(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state)
-> >  {
-> > @@ -2821,6 +2837,7 @@ static const struct intel_dpll_mgr cnl_pll_mgr =
-=3D {
-> >  	.dpll_info =3D cnl_plls,
-> >  	.get_dplls =3D cnl_get_dpll,
-> >  	.put_dplls =3D intel_put_dpll,
-> > +	.update_ref_clks =3D cnl_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D cnl_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -2916,7 +2933,7 @@ static bool icl_calc_dp_combo_pll(struct intel_cr=
-tc_state *crtc_state,
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> >  	const struct icl_combo_pll_params *params =3D
-> > -		dev_priv->cdclk.hw.ref =3D=3D 24000 ?
-> > +		dev_priv->dpll.ref_clks.nssc =3D=3D 24000 ?
-> >  		icl_dp_combo_pll_24MHz_values :
-> >  		icl_dp_combo_pll_19_2MHz_values;
-> >  	int clock =3D crtc_state->port_clock;
-> > @@ -2939,9 +2956,9 @@ static bool icl_calc_tbt_pll(struct intel_crtc_st=
-ate *crtc_state,
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> >  =
-
-> >  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> > -		switch (dev_priv->cdclk.hw.ref) {
-> > +		switch (dev_priv->dpll.ref_clks.nssc) {
-> >  		default:
-> > -			MISSING_CASE(dev_priv->cdclk.hw.ref);
-> > +			MISSING_CASE(dev_priv->dpll.ref_clks.nssc);
-> >  			/* fall-through */
-> >  		case 19200:
-> >  		case 38400:
-> > @@ -2952,9 +2969,9 @@ static bool icl_calc_tbt_pll(struct intel_crtc_st=
-ate *crtc_state,
-> >  			break;
-> >  		}
-> >  	} else {
-> > -		switch (dev_priv->cdclk.hw.ref) {
-> > +		switch (dev_priv->dpll.ref_clks.nssc) {
-> >  		default:
-> > -			MISSING_CASE(dev_priv->cdclk.hw.ref);
-> > +			MISSING_CASE(dev_priv->dpll.ref_clks.nssc);
-> >  			/* fall-through */
-> >  		case 19200:
-> >  		case 38400:
-> > @@ -3118,7 +3135,7 @@ static bool icl_calc_mg_pll_state(struct intel_cr=
-tc_state *crtc_state,
-> >  				  struct intel_dpll_hw_state *pll_state)
-> >  {
-> >  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->=
-dev);
-> > -	int refclk_khz =3D dev_priv->cdclk.hw.ref;
-> > +	int refclk_khz =3D dev_priv->dpll.ref_clks.nssc;
-> >  	int clock =3D crtc_state->port_clock;
-> >  	u32 dco_khz, m1div, m2div_int, m2div_rem, m2div_frac;
-> >  	u32 iref_ndiv, iref_trim, iref_pulse_w;
-> > @@ -3326,7 +3343,7 @@ static int icl_ddi_mg_pll_get_freq(struct drm_i91=
-5_private *dev_priv,
-> >  	u32 m1, m2_int, m2_frac, div1, div2, ref_clock;
-> >  	u64 tmp;
-> >  =
-
-> > -	ref_clock =3D dev_priv->cdclk.hw.ref;
-> > +	ref_clock =3D dev_priv->dpll.ref_clks.nssc;
-> >  =
-
-> >  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> >  		m1 =3D pll_state->mg_pll_div0 & DKL_PLL_DIV0_FBPREDIV_MASK;
-> > @@ -3478,7 +3495,16 @@ static bool icl_get_combo_phy_dpll(struct intel_=
-atomic_state *state,
-> >  static int icl_ddi_combo_pll_get_freq(struct drm_i915_private *i915,
-> >  				      const struct intel_shared_dpll *pll)
-> >  {
-> > -	return cnl_ddi_wrpll_get_freq(i915, pll);
-> > +	int ref_clock =3D i915->dpll.ref_clks.nssc;
-> > +
-> > +	/*
-> > +	 * For ICL+, the spec states: if reference frequency is 38.4,
-> > +	 * use 19.2 because the DPLL automatically divides that by 2.
-> > +	 */
-> > +	if (ref_clock =3D=3D 38400)
-> > +		ref_clock =3D 19200;
-> =
-
-> I was pondering whether it would be better to store the divided ref,
-> but I guess we need the original value for some other things, and it's
-> really the DPLL in HDMI mode that does the extra /2 for us.
-
-Yes in case the original ref is 38.4MHz, DPLL uses 19.2MHz as reference
-both for DP and HDMI, while MG-PLLs use 38.4MHz as reference in that
-case. And we store the ref globally not per-PLL.
-
-> =
-
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
-
-> > +
-> > +	return __cnl_ddi_wrpll_get_freq(i915, pll, ref_clock);
-> >  }
-> >  =
-
-> >  static bool icl_get_tc_phy_dplls(struct intel_atomic_state *state,
-> > @@ -3629,7 +3655,7 @@ static bool mg_pll_get_hw_state(struct drm_i915_p=
-rivate *dev_priv,
-> >  	hw_state->mg_pll_tdc_coldst_bias =3D
-> >  		intel_de_read(dev_priv, MG_PLL_TDC_COLDST_BIAS(tc_port));
-> >  =
-
-> > -	if (dev_priv->cdclk.hw.ref =3D=3D 38400) {
-> > +	if (dev_priv->dpll.ref_clks.nssc =3D=3D 38400) {
-> >  		hw_state->mg_pll_tdc_coldst_bias_mask =3D MG_PLL_TDC_COLDST_COLDSTAR=
-T;
-> >  		hw_state->mg_pll_bias_mask =3D 0;
-> >  	} else {
-> > @@ -4110,6 +4136,12 @@ static void mg_pll_disable(struct drm_i915_priva=
-te *dev_priv,
-> >  	icl_pll_disable(dev_priv, pll, enable_reg);
-> >  }
-> >  =
-
-> > +static void icl_update_dpll_ref_clks(struct drm_i915_private *i915)
-> > +{
-> > +	/* No SSC ref */
-> > +	i915->dpll.ref_clks.nssc =3D i915->cdclk.hw.ref;
-> > +}
-> > +
-> >  static void icl_dump_hw_state(struct drm_i915_private *dev_priv,
-> >  			      const struct intel_dpll_hw_state *hw_state)
-> >  {
-> > @@ -4170,6 +4202,7 @@ static const struct intel_dpll_mgr icl_pll_mgr =
-=3D {
-> >  	.get_dplls =3D icl_get_dplls,
-> >  	.put_dplls =3D icl_put_dplls,
-> >  	.update_active_dpll =3D icl_update_active_dpll,
-> > +	.update_ref_clks =3D icl_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D icl_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -4184,6 +4217,7 @@ static const struct intel_dpll_mgr ehl_pll_mgr =
-=3D {
-> >  	.dpll_info =3D ehl_plls,
-> >  	.get_dplls =3D icl_get_dplls,
-> >  	.put_dplls =3D icl_put_dplls,
-> > +	.update_ref_clks =3D icl_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D icl_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -4212,6 +4246,7 @@ static const struct intel_dpll_mgr tgl_pll_mgr =
-=3D {
-> >  	.get_dplls =3D icl_get_dplls,
-> >  	.put_dplls =3D icl_put_dplls,
-> >  	.update_active_dpll =3D icl_update_active_dpll,
-> > +	.update_ref_clks =3D icl_update_dpll_ref_clks,
-> >  	.dump_hw_state =3D icl_dump_hw_state,
-> >  };
-> >  =
-
-> > @@ -4390,6 +4425,9 @@ void intel_dpll_readout_hw_state(struct drm_i915_=
-private *i915)
-> >  {
-> >  	int i;
-> >  =
-
-> > +	if (i915->dpll.mgr && i915->dpll.mgr->update_ref_clks)
-> > +		i915->dpll.mgr->update_ref_clks(i915);
-> > +
-> >  	for (i =3D 0; i < i915->dpll.num_shared_dpll; i++)
-> >  		readout_dpll_hw_state(i915, &i915->dpll.shared_dplls[i]);
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i91=
-5_drv.h
-> > index fe4eefc5e7e6..49ee3bde08f5 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -1059,6 +1059,11 @@ struct drm_i915_private {
-> >  		int num_shared_dpll;
-> >  		struct intel_shared_dpll shared_dplls[I915_NUM_PLLS];
-> >  		const struct intel_dpll_mgr *mgr;
-> > +
-> > +		struct {
-> > +			int nssc;
-> > +			int ssc;
-> > +		} ref_clks;
-> >  	} dpll;
-> >  =
-
-> >  	struct list_head global_obj_list;
-> > -- =
-
-> > 2.23.1
-> > =
-
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> -- =
-
-> Ville Syrj=E4l=E4
-> Intel
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+SGksCgpPbiAyLzI3LzIwIDc6MTUgUE0sIERhbmllbCBWZXR0ZXIgd3JvdGU6Cj4gSW5zdGVhZCBv
+ZiBoYXZpbmcgYSB3b3JrIGl0ZW0gdGhhdCBuZXZlciBzdG9wcyAod2hpY2ggcmVhbGx5IHNob3Vs
+ZCBiZQo+IGEga3RocmVhZCksIHdpdGggYSBkZWRpY2F0ZWQgd29ya3F1ZXVlIHRvIG5vdCB1cHNl
+dCBhbnlvbmUgZWxzZSwgdXNlIGEKPiBkZWxheWVkIHdvcmsuIEEgYnVuY2ggb2YgY2hhbmdlczoK
+PiAKPiAtIFdlIGNhbiB0aHJvdyBvdXQgYWxsIHRoZSBjdXN0b20gd2FrZXVwIGFuZCByZXF1ZXVl
+IGxvZ2ljIGFuZCBzdGF0ZQo+ICAgIHRyYWNraW5nLiBJZiB3ZSBzY2hlZHVsZSB0aGUgd29yayB3
+aXRoIGEgMCBkZWxheSBpdCdsbCBnZXQKPiAgICBzY2hlZHVsZWQgaW1tZWRpYXRlbHkuCj4gCj4g
+LSBQZXJzaXN0ZW50IHN0YXRlIChmcmFtZSAmIGRyYXdfc3RhdHVzX3RpbWVvdXQpIG5lZWQgdG8g
+YmUgbW92ZWQgb3V0Cj4gICAgb2YgdGhlIHdvcmsuCj4gCj4gLSBkaWZmIGlzIGJpZ2dlciB0aGFu
+IHRoZSBjaGFuZ2VzLCBiaWdnZXN0IGNodW5rIGlzIHJlaW5kZW50aW5nIHRoZQo+ICAgIHdvcmsg
+Zm4gYmVjYXVzZSBpdCBsb3N0IGl0cyB3aGlsZSBsb29wLgo+IAo+IExvdHMgb2YgY29kZSBkZWxl
+dGluZyBhcyBjb25zZXF1ZW5jZSBhbGwgb3Zlci4gU3BlY2lmaWNhbGx5IHdlIGNhbgo+IGRlbGV0
+ZSB0aGUgZHJtX2RyaXZlci5yZWxlYXNlIGNvZGUgbm93IQo+IAo+IHYyOiBSZXZpZXcgZnJvbSBI
+YW5zOgo+IC0gVXNlIG1vZF9kZWxheWVkX3dvcmsgaW4gdGhlIHBsYW5lIHVwZGF0ZSBwYXRoIHRv
+IG1ha2Ugc3VyZSB3ZSBkbwo+ICAgIGFjdHVhbGx5IHNjaGVkdWxlIGltbWVkaWF0ZWx5KS4gSW4g
+dGhlIHdvcmtlciB3ZSBzdGlsbCB3YW50Cj4gICAgcXVldWVfZGVsYXllZF93b3JrLCB3aGljaCB3
+b24ndCBtb2RpZnkgdGhlIHRpbWVvdXQgd2hlbiB0aGUgd29yayBpcwo+ICAgIGFscmVhZHkgc2No
+ZWR1bGVkLiBXaGljaCBpcyBleGFjdGx5IHdoYXQgd2Ugd2FudCBpZiB0aGUgd29yayByYWNlcwo+
+ICAgIHdpdGggYSBwbGFuZSB1cGRhdGUuCj4gLSBTd2l0Y2ggdG8gc3lzdGVtX2xvbmdfd3EsIEhh
+bnMgc2F5cyBvbiB1c2IyIGEgcGxhbmUgdXBsb2FkIGNhbiB0YWtlCj4gICAgODAgbXMuCj4gCj4g
+U2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4g
+Q2M6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Cj4gQ2M6ICJOb3JhbGYgVHLD
+uG5uZXMiIDxub3JhbGZAdHJvbm5lcy5vcmc+CgpQYXRjaCBsb29rcyBnb29kIHRvIG1lOgoKUmV2
+aWV3ZWQtYnk6IEhhbnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+CgpSZWdhcmRzLAoK
+SGFucwoKCj4gLS0tCj4gICBkcml2ZXJzL2dwdS9kcm0vdGlueS9nbTEydTMyMC5jIHwgMTcxICsr
+KysrKysrKysrKystLS0tLS0tLS0tLS0tLS0tLS0tCj4gICAxIGZpbGUgY2hhbmdlZCwgNjggaW5z
+ZXJ0aW9ucygrKSwgMTAzIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vdGlueS9nbTEydTMyMC5jIGIvZHJpdmVycy9ncHUvZHJtL3RpbnkvZ20xMnUzMjAuYwo+
+IGluZGV4IGMyMmIyZWU0NzBlYi4uYmJjNGVmNDQ1NmU2IDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS90aW55L2dtMTJ1MzIwLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vdGlueS9nbTEy
+dTMyMC5jCj4gQEAgLTg5LDEzICs4OSwxMiBAQCBzdHJ1Y3QgZ20xMnUzMjBfZGV2aWNlIHsKPiAg
+IAl1bnNpZ25lZCBjaGFyICAgICAgICAgICAgICAgICAgICpjbWRfYnVmOwo+ICAgCXVuc2lnbmVk
+IGNoYXIgICAgICAgICAgICAgICAgICAgKmRhdGFfYnVmW0dNMTJVMzIwX0JMT0NLX0NPVU5UXTsK
+PiAgIAlzdHJ1Y3Qgewo+IC0JCWJvb2wgICAgICAgICAgICAgICAgICAgICBydW47Cj4gLQkJc3Ry
+dWN0IHdvcmtxdWV1ZV9zdHJ1Y3QgKndvcmtxOwo+IC0JCXN0cnVjdCB3b3JrX3N0cnVjdCAgICAg
+ICB3b3JrOwo+IC0JCXdhaXRfcXVldWVfaGVhZF90ICAgICAgICB3YWl0cTsKPiArCQlzdHJ1Y3Qg
+ZGVsYXllZF93b3JrICAgICAgIHdvcms7Cj4gICAJCXN0cnVjdCBtdXRleCAgICAgICAgICAgICBs
+b2NrOwo+ICAgCQlzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyICAqZmI7Cj4gICAJCXN0cnVjdCBkcm1f
+cmVjdCAgICAgICAgICByZWN0Owo+ICsJCWludCBmcmFtZTsKPiArCQlpbnQgZHJhd19zdGF0dXNf
+dGltZW91dDsKPiAgIAl9IGZiX3VwZGF0ZTsKPiAgIH07Cj4gICAKPiBAQCAtMTgzLDE5ICsxODIs
+OSBAQCBzdGF0aWMgaW50IGdtMTJ1MzIwX3VzYl9hbGxvYyhzdHJ1Y3QgZ20xMnUzMjBfZGV2aWNl
+ICpnbTEydTMyMCkKPiAgIAkJICAgICAgIGRhdGFfYmxvY2tfZm9vdGVyLCBEQVRBX0JMT0NLX0ZP
+T1RFUl9TSVpFKTsKPiAgIAl9Cj4gICAKPiAtCWdtMTJ1MzIwLT5mYl91cGRhdGUud29ya3EgPSBj
+cmVhdGVfc2luZ2xldGhyZWFkX3dvcmtxdWV1ZShEUklWRVJfTkFNRSk7Cj4gLQlpZiAoIWdtMTJ1
+MzIwLT5mYl91cGRhdGUud29ya3EpCj4gLQkJcmV0dXJuIC1FTk9NRU07Cj4gLQo+ICAgCXJldHVy
+biAwOwo+ICAgfQo+ICAgCj4gLXN0YXRpYyB2b2lkIGdtMTJ1MzIwX3VzYl9mcmVlKHN0cnVjdCBn
+bTEydTMyMF9kZXZpY2UgKmdtMTJ1MzIwKQo+IC17Cj4gLQlpZiAoZ20xMnUzMjAtPmZiX3VwZGF0
+ZS53b3JrcSkKPiAtCQlkZXN0cm95X3dvcmtxdWV1ZShnbTEydTMyMC0+ZmJfdXBkYXRlLndvcmtx
+KTsKPiAtfQo+IC0KPiAgIHN0YXRpYyBpbnQgZ20xMnUzMjBfbWlzY19yZXF1ZXN0KHN0cnVjdCBn
+bTEydTMyMF9kZXZpY2UgKmdtMTJ1MzIwLAo+ICAgCQkJCSB1OCByZXFfYSwgdTggcmVxX2IsCj4g
+ICAJCQkJIHU4IGFyZ19hLCB1OCBhcmdfYiwgdTggYXJnX2MsIHU4IGFyZ19kKQo+IEBAIC0zMzgs
+ODAgKzMyNyw3NyBAQCBzdGF0aWMgdm9pZCBnbTEydTMyMF9jb3B5X2ZiX3RvX2Jsb2NrcyhzdHJ1
+Y3QgZ20xMnUzMjBfZGV2aWNlICpnbTEydTMyMCkKPiAgIHN0YXRpYyB2b2lkIGdtMTJ1MzIwX2Zi
+X3VwZGF0ZV93b3JrKHN0cnVjdCB3b3JrX3N0cnVjdCAqd29yaykKPiAgIHsKPiAgIAlzdHJ1Y3Qg
+Z20xMnUzMjBfZGV2aWNlICpnbTEydTMyMCA9Cj4gLQkJY29udGFpbmVyX29mKHdvcmssIHN0cnVj
+dCBnbTEydTMyMF9kZXZpY2UsIGZiX3VwZGF0ZS53b3JrKTsKPiAtCWludCBkcmF3X3N0YXR1c190
+aW1lb3V0ID0gRklSU1RfRlJBTUVfVElNRU9VVDsKPiArCQljb250YWluZXJfb2YodG9fZGVsYXll
+ZF93b3JrKHdvcmspLCBzdHJ1Y3QgZ20xMnUzMjBfZGV2aWNlLAo+ICsJCQkgICAgIGZiX3VwZGF0
+ZS53b3JrKTsKPiAgIAlpbnQgYmxvY2ssIGJsb2NrX3NpemUsIGxlbjsKPiAtCWludCBmcmFtZSA9
+IDA7Cj4gICAJaW50IHJldCA9IDA7Cj4gICAKPiAtCXdoaWxlIChnbTEydTMyMC0+ZmJfdXBkYXRl
+LnJ1bikgewo+IC0JCWdtMTJ1MzIwX2NvcHlfZmJfdG9fYmxvY2tzKGdtMTJ1MzIwKTsKPiAtCj4g
+LQkJZm9yIChibG9jayA9IDA7IGJsb2NrIDwgR00xMlUzMjBfQkxPQ0tfQ09VTlQ7IGJsb2NrKysp
+IHsKPiAtCQkJaWYgKGJsb2NrID09IEdNMTJVMzIwX0JMT0NLX0NPVU5UIC0gMSkKPiAtCQkJCWJs
+b2NrX3NpemUgPSBEQVRBX0xBU1RfQkxPQ0tfU0laRTsKPiAtCQkJZWxzZQo+IC0JCQkJYmxvY2tf
+c2l6ZSA9IERBVEFfQkxPQ0tfU0laRTsKPiAtCj4gLQkJCS8qIFNlbmQgZGF0YSBjb21tYW5kIHRv
+IGRldmljZSAqLwo+IC0JCQltZW1jcHkoZ20xMnUzMjAtPmNtZF9idWYsIGNtZF9kYXRhLCBDTURf
+U0laRSk7Cj4gLQkJCWdtMTJ1MzIwLT5jbWRfYnVmWzhdID0gYmxvY2tfc2l6ZSAmIDB4ZmY7Cj4g
+LQkJCWdtMTJ1MzIwLT5jbWRfYnVmWzldID0gYmxvY2tfc2l6ZSA+PiA4Owo+IC0JCQlnbTEydTMy
+MC0+Y21kX2J1ZlsyMF0gPSAweGZjIC0gYmxvY2sgKiA0Owo+IC0JCQlnbTEydTMyMC0+Y21kX2J1
+ZlsyMV0gPSBibG9jayB8IChmcmFtZSA8PCA3KTsKPiAtCj4gLQkJCXJldCA9IHVzYl9idWxrX21z
+ZyhnbTEydTMyMC0+dWRldiwKPiAtCQkJCXVzYl9zbmRidWxrcGlwZShnbTEydTMyMC0+dWRldiwg
+REFUQV9TTkRfRVBUKSwKPiAtCQkJCWdtMTJ1MzIwLT5jbWRfYnVmLCBDTURfU0laRSwgJmxlbiwK
+PiAtCQkJCUNNRF9USU1FT1VUKTsKPiAtCQkJaWYgKHJldCB8fCBsZW4gIT0gQ01EX1NJWkUpCj4g
+LQkJCQlnb3RvIGVycjsKPiAtCj4gLQkJCS8qIFNlbmQgZGF0YSBibG9jayB0byBkZXZpY2UgKi8K
+PiAtCQkJcmV0ID0gdXNiX2J1bGtfbXNnKGdtMTJ1MzIwLT51ZGV2LAo+IC0JCQkJdXNiX3NuZGJ1
+bGtwaXBlKGdtMTJ1MzIwLT51ZGV2LCBEQVRBX1NORF9FUFQpLAo+IC0JCQkJZ20xMnUzMjAtPmRh
+dGFfYnVmW2Jsb2NrXSwgYmxvY2tfc2l6ZSwKPiAtCQkJCSZsZW4sIERBVEFfVElNRU9VVCk7Cj4g
+LQkJCWlmIChyZXQgfHwgbGVuICE9IGJsb2NrX3NpemUpCj4gLQkJCQlnb3RvIGVycjsKPiAtCj4g
+LQkJCS8qIFJlYWQgc3RhdHVzICovCj4gLQkJCXJldCA9IHVzYl9idWxrX21zZyhnbTEydTMyMC0+
+dWRldiwKPiAtCQkJCXVzYl9yY3ZidWxrcGlwZShnbTEydTMyMC0+dWRldiwgREFUQV9SQ1ZfRVBU
+KSwKPiAtCQkJCWdtMTJ1MzIwLT5jbWRfYnVmLCBSRUFEX1NUQVRVU19TSVpFLCAmbGVuLAo+IC0J
+CQkJQ01EX1RJTUVPVVQpOwo+IC0JCQlpZiAocmV0IHx8IGxlbiAhPSBSRUFEX1NUQVRVU19TSVpF
+KQo+IC0JCQkJZ290byBlcnI7Cj4gLQkJfQo+ICsJZ20xMnUzMjBfY29weV9mYl90b19ibG9ja3Mo
+Z20xMnUzMjApOwo+ICsKPiArCWZvciAoYmxvY2sgPSAwOyBibG9jayA8IEdNMTJVMzIwX0JMT0NL
+X0NPVU5UOyBibG9jaysrKSB7Cj4gKwkJaWYgKGJsb2NrID09IEdNMTJVMzIwX0JMT0NLX0NPVU5U
+IC0gMSkKPiArCQkJYmxvY2tfc2l6ZSA9IERBVEFfTEFTVF9CTE9DS19TSVpFOwo+ICsJCWVsc2UK
+PiArCQkJYmxvY2tfc2l6ZSA9IERBVEFfQkxPQ0tfU0laRTsKPiArCj4gKwkJLyogU2VuZCBkYXRh
+IGNvbW1hbmQgdG8gZGV2aWNlICovCj4gKwkJbWVtY3B5KGdtMTJ1MzIwLT5jbWRfYnVmLCBjbWRf
+ZGF0YSwgQ01EX1NJWkUpOwo+ICsJCWdtMTJ1MzIwLT5jbWRfYnVmWzhdID0gYmxvY2tfc2l6ZSAm
+IDB4ZmY7Cj4gKwkJZ20xMnUzMjAtPmNtZF9idWZbOV0gPSBibG9ja19zaXplID4+IDg7Cj4gKwkJ
+Z20xMnUzMjAtPmNtZF9idWZbMjBdID0gMHhmYyAtIGJsb2NrICogNDsKPiArCQlnbTEydTMyMC0+
+Y21kX2J1ZlsyMV0gPQo+ICsJCQlibG9jayB8IChnbTEydTMyMC0+ZmJfdXBkYXRlLmZyYW1lIDw8
+IDcpOwo+ICAgCj4gLQkJLyogU2VuZCBkcmF3IGNvbW1hbmQgdG8gZGV2aWNlICovCj4gLQkJbWVt
+Y3B5KGdtMTJ1MzIwLT5jbWRfYnVmLCBjbWRfZHJhdywgQ01EX1NJWkUpOwo+ICAgCQlyZXQgPSB1
+c2JfYnVsa19tc2coZ20xMnUzMjAtPnVkZXYsCj4gICAJCQl1c2Jfc25kYnVsa3BpcGUoZ20xMnUz
+MjAtPnVkZXYsIERBVEFfU05EX0VQVCksCj4gLQkJCWdtMTJ1MzIwLT5jbWRfYnVmLCBDTURfU0la
+RSwgJmxlbiwgQ01EX1RJTUVPVVQpOwo+ICsJCQlnbTEydTMyMC0+Y21kX2J1ZiwgQ01EX1NJWkUs
+ICZsZW4sCj4gKwkJCUNNRF9USU1FT1VUKTsKPiAgIAkJaWYgKHJldCB8fCBsZW4gIT0gQ01EX1NJ
+WkUpCj4gICAJCQlnb3RvIGVycjsKPiAgIAo+ICsJCS8qIFNlbmQgZGF0YSBibG9jayB0byBkZXZp
+Y2UgKi8KPiArCQlyZXQgPSB1c2JfYnVsa19tc2coZ20xMnUzMjAtPnVkZXYsCj4gKwkJCXVzYl9z
+bmRidWxrcGlwZShnbTEydTMyMC0+dWRldiwgREFUQV9TTkRfRVBUKSwKPiArCQkJZ20xMnUzMjAt
+PmRhdGFfYnVmW2Jsb2NrXSwgYmxvY2tfc2l6ZSwKPiArCQkJJmxlbiwgREFUQV9USU1FT1VUKTsK
+PiArCQlpZiAocmV0IHx8IGxlbiAhPSBibG9ja19zaXplKQo+ICsJCQlnb3RvIGVycjsKPiArCj4g
+ICAJCS8qIFJlYWQgc3RhdHVzICovCj4gICAJCXJldCA9IHVzYl9idWxrX21zZyhnbTEydTMyMC0+
+dWRldiwKPiAgIAkJCXVzYl9yY3ZidWxrcGlwZShnbTEydTMyMC0+dWRldiwgREFUQV9SQ1ZfRVBU
+KSwKPiAgIAkJCWdtMTJ1MzIwLT5jbWRfYnVmLCBSRUFEX1NUQVRVU19TSVpFLCAmbGVuLAo+IC0J
+CQlkcmF3X3N0YXR1c190aW1lb3V0KTsKPiArCQkJQ01EX1RJTUVPVVQpOwo+ICAgCQlpZiAocmV0
+IHx8IGxlbiAhPSBSRUFEX1NUQVRVU19TSVpFKQo+ICAgCQkJZ290byBlcnI7Cj4gLQo+IC0JCWRy
+YXdfc3RhdHVzX3RpbWVvdXQgPSBDTURfVElNRU9VVDsKPiAtCQlmcmFtZSA9ICFmcmFtZTsKPiAt
+Cj4gLQkJLyoKPiAtCQkgKiBXZSBtdXN0IGRyYXcgYSBmcmFtZSBldmVyeSAycyBvdGhlcndpc2Ug
+dGhlIHByb2plY3Rvcgo+IC0JCSAqIHN3aXRjaGVzIGJhY2sgdG8gc2hvd2luZyBpdHMgbG9nby4K
+PiAtCQkgKi8KPiAtCQl3YWl0X2V2ZW50X3RpbWVvdXQoZ20xMnUzMjAtPmZiX3VwZGF0ZS53YWl0
+cSwKPiAtCQkJCSAgICFnbTEydTMyMC0+ZmJfdXBkYXRlLnJ1biB8fAo+IC0JCQkJCWdtMTJ1MzIw
+LT5mYl91cGRhdGUuZmIgIT0gTlVMTCwKPiAtCQkJCSAgIElETEVfVElNRU9VVCk7Cj4gICAJfQo+
+ICsKPiArCS8qIFNlbmQgZHJhdyBjb21tYW5kIHRvIGRldmljZSAqLwo+ICsJbWVtY3B5KGdtMTJ1
+MzIwLT5jbWRfYnVmLCBjbWRfZHJhdywgQ01EX1NJWkUpOwo+ICsJcmV0ID0gdXNiX2J1bGtfbXNn
+KGdtMTJ1MzIwLT51ZGV2LAo+ICsJCXVzYl9zbmRidWxrcGlwZShnbTEydTMyMC0+dWRldiwgREFU
+QV9TTkRfRVBUKSwKPiArCQlnbTEydTMyMC0+Y21kX2J1ZiwgQ01EX1NJWkUsICZsZW4sIENNRF9U
+SU1FT1VUKTsKPiArCWlmIChyZXQgfHwgbGVuICE9IENNRF9TSVpFKQo+ICsJCWdvdG8gZXJyOwo+
+ICsKPiArCS8qIFJlYWQgc3RhdHVzICovCj4gKwlyZXQgPSB1c2JfYnVsa19tc2coZ20xMnUzMjAt
+PnVkZXYsCj4gKwkJdXNiX3JjdmJ1bGtwaXBlKGdtMTJ1MzIwLT51ZGV2LCBEQVRBX1JDVl9FUFQp
+LAo+ICsJCWdtMTJ1MzIwLT5jbWRfYnVmLCBSRUFEX1NUQVRVU19TSVpFLCAmbGVuLAo+ICsJCWdt
+MTJ1MzIwLT5mYl91cGRhdGUuZHJhd19zdGF0dXNfdGltZW91dCk7Cj4gKwlpZiAocmV0IHx8IGxl
+biAhPSBSRUFEX1NUQVRVU19TSVpFKQo+ICsJCWdvdG8gZXJyOwo+ICsKPiArCWdtMTJ1MzIwLT5m
+Yl91cGRhdGUuZHJhd19zdGF0dXNfdGltZW91dCA9IENNRF9USU1FT1VUOwo+ICsJZ20xMnUzMjAt
+PmZiX3VwZGF0ZS5mcmFtZSA9ICFnbTEydTMyMC0+ZmJfdXBkYXRlLmZyYW1lOwo+ICsKPiArCS8q
+Cj4gKwkgKiBXZSBtdXN0IGRyYXcgYSBmcmFtZSBldmVyeSAycyBvdGhlcndpc2UgdGhlIHByb2pl
+Y3Rvcgo+ICsJICogc3dpdGNoZXMgYmFjayB0byBzaG93aW5nIGl0cyBsb2dvLgo+ICsJICovCj4g
+KwlxdWV1ZV9kZWxheWVkX3dvcmsoc3lzdGVtX2xvbmdfd3EsICZnbTEydTMyMC0+ZmJfdXBkYXRl
+LndvcmssCj4gKwkJCSAgIElETEVfVElNRU9VVCk7Cj4gKwo+ICAgCXJldHVybjsKPiAgIGVycjoK
+PiAgIAkvKiBEbyBub3QgbG9nIGVycm9ycyBjYXVzZWQgYnkgbW9kdWxlIHVubG9hZCBvciBkZXZp
+Y2UgdW5wbHVnICovCj4gQEAgLTQ0NiwzNiArNDMyLDI0IEBAIHN0YXRpYyB2b2lkIGdtMTJ1MzIw
+X2ZiX21hcmtfZGlydHkoc3RydWN0IGRybV9mcmFtZWJ1ZmZlciAqZmIsCj4gICAJbXV0ZXhfdW5s
+b2NrKCZnbTEydTMyMC0+ZmJfdXBkYXRlLmxvY2spOwo+ICAgCj4gICAJaWYgKHdha2V1cCkKPiAt
+CQl3YWtlX3VwKCZnbTEydTMyMC0+ZmJfdXBkYXRlLndhaXRxKTsKPiArCQltb2RfZGVsYXllZF93
+b3JrKHN5c3RlbV9sb25nX3dxLCAmZ20xMnUzMjAtPmZiX3VwZGF0ZS53b3JrLCAwKTsKPiAgIAo+
+ICAgCWlmIChvbGRfZmIpCj4gICAJCWRybV9mcmFtZWJ1ZmZlcl9wdXQob2xkX2ZiKTsKPiAgIH0K
+PiAgIAo+IC1zdGF0aWMgdm9pZCBnbTEydTMyMF9zdGFydF9mYl91cGRhdGUoc3RydWN0IGdtMTJ1
+MzIwX2RldmljZSAqZ20xMnUzMjApCj4gLXsKPiAtCW11dGV4X2xvY2soJmdtMTJ1MzIwLT5mYl91
+cGRhdGUubG9jayk7Cj4gLQlnbTEydTMyMC0+ZmJfdXBkYXRlLnJ1biA9IHRydWU7Cj4gLQltdXRl
+eF91bmxvY2soJmdtMTJ1MzIwLT5mYl91cGRhdGUubG9jayk7Cj4gLQo+IC0JcXVldWVfd29yayhn
+bTEydTMyMC0+ZmJfdXBkYXRlLndvcmtxLCAmZ20xMnUzMjAtPmZiX3VwZGF0ZS53b3JrKTsKPiAt
+fQo+IC0KPiAgIHN0YXRpYyB2b2lkIGdtMTJ1MzIwX3N0b3BfZmJfdXBkYXRlKHN0cnVjdCBnbTEy
+dTMyMF9kZXZpY2UgKmdtMTJ1MzIwKQo+ICAgewo+IC0JbXV0ZXhfbG9jaygmZ20xMnUzMjAtPmZi
+X3VwZGF0ZS5sb2NrKTsKPiAtCWdtMTJ1MzIwLT5mYl91cGRhdGUucnVuID0gZmFsc2U7Cj4gLQlt
+dXRleF91bmxvY2soJmdtMTJ1MzIwLT5mYl91cGRhdGUubG9jayk7Cj4gKwlzdHJ1Y3QgZHJtX2Zy
+YW1lYnVmZmVyICpvbGRfZmI7Cj4gICAKPiAtCXdha2VfdXAoJmdtMTJ1MzIwLT5mYl91cGRhdGUu
+d2FpdHEpOwo+IC0JY2FuY2VsX3dvcmtfc3luYygmZ20xMnUzMjAtPmZiX3VwZGF0ZS53b3JrKTsK
+PiArCWNhbmNlbF9kZWxheWVkX3dvcmtfc3luYygmZ20xMnUzMjAtPmZiX3VwZGF0ZS53b3JrKTsK
+PiAgIAo+ICAgCW11dGV4X2xvY2soJmdtMTJ1MzIwLT5mYl91cGRhdGUubG9jayk7Cj4gLQlpZiAo
+Z20xMnUzMjAtPmZiX3VwZGF0ZS5mYikgewo+IC0JCWRybV9mcmFtZWJ1ZmZlcl9wdXQoZ20xMnUz
+MjAtPmZiX3VwZGF0ZS5mYik7Cj4gLQkJZ20xMnUzMjAtPmZiX3VwZGF0ZS5mYiA9IE5VTEw7Cj4g
+LQl9Cj4gKwlvbGRfZmIgPSBnbTEydTMyMC0+ZmJfdXBkYXRlLmZiOwo+ICsJZ20xMnUzMjAtPmZi
+X3VwZGF0ZS5mYiA9IE5VTEw7Cj4gICAJbXV0ZXhfdW5sb2NrKCZnbTEydTMyMC0+ZmJfdXBkYXRl
+LmxvY2spOwo+ICsKPiArCWRybV9mcmFtZWJ1ZmZlcl9wdXQob2xkX2ZiKTsKPiAgIH0KPiAgIAo+
+ICAgc3RhdGljIGludCBnbTEydTMyMF9zZXRfZWNvbW9kZShzdHJ1Y3QgZ20xMnUzMjBfZGV2aWNl
+ICpnbTEydTMyMCkKPiBAQCAtNTgzLDExICs1NTcsMTEgQEAgc3RhdGljIHZvaWQgZ20xMnUzMjBf
+cGlwZV9lbmFibGUoc3RydWN0IGRybV9zaW1wbGVfZGlzcGxheV9waXBlICpwaXBlLAo+ICAgCQkJ
+CSBzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCj4gICAJCQkJIHN0cnVjdCBkcm1f
+cGxhbmVfc3RhdGUgKnBsYW5lX3N0YXRlKQo+ICAgewo+IC0Jc3RydWN0IGdtMTJ1MzIwX2Rldmlj
+ZSAqZ20xMnUzMjAgPSBwaXBlLT5jcnRjLmRldi0+ZGV2X3ByaXZhdGU7Cj4gICAJc3RydWN0IGRy
+bV9yZWN0IHJlY3QgPSB7IDAsIDAsIEdNMTJVMzIwX1VTRVJfV0lEVEgsIEdNMTJVMzIwX0hFSUdI
+VCB9Owo+ICsJc3RydWN0IGdtMTJ1MzIwX2RldmljZSAqZ20xMnUzMjAgPSBwaXBlLT5jcnRjLmRl
+di0+ZGV2X3ByaXZhdGU7Cj4gICAKPiArCWdtMTJ1MzIwLT5mYl91cGRhdGUuZHJhd19zdGF0dXNf
+dGltZW91dCA9IEZJUlNUX0ZSQU1FX1RJTUVPVVQ7Cj4gICAJZ20xMnUzMjBfZmJfbWFya19kaXJ0
+eShwbGFuZV9zdGF0ZS0+ZmIsICZyZWN0KTsKPiAtCWdtMTJ1MzIwX3N0YXJ0X2ZiX3VwZGF0ZShn
+bTEydTMyMCk7Cj4gICB9Cj4gICAKPiAgIHN0YXRpYyB2b2lkIGdtMTJ1MzIwX3BpcGVfZGlzYWJs
+ZShzdHJ1Y3QgZHJtX3NpbXBsZV9kaXNwbGF5X3BpcGUgKnBpcGUpCj4gQEAgLTYyMiwxMyArNTk2
+LDYgQEAgc3RhdGljIGNvbnN0IHVpbnQ2NF90IGdtMTJ1MzIwX3BpcGVfbW9kaWZpZXJzW10gPSB7
+Cj4gICAJRFJNX0ZPUk1BVF9NT0RfSU5WQUxJRAo+ICAgfTsKPiAgIAo+IC1zdGF0aWMgdm9pZCBn
+bTEydTMyMF9kcml2ZXJfcmVsZWFzZShzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+IC17Cj4gLQlz
+dHJ1Y3QgZ20xMnUzMjBfZGV2aWNlICpnbTEydTMyMCA9IGRldi0+ZGV2X3ByaXZhdGU7Cj4gLQo+
+IC0JZ20xMnUzMjBfdXNiX2ZyZWUoZ20xMnUzMjApOwo+IC19Cj4gLQo+ICAgREVGSU5FX0RSTV9H
+RU1fRk9QUyhnbTEydTMyMF9mb3BzKTsKPiAgIAo+ICAgc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVy
+IGdtMTJ1MzIwX2RybV9kcml2ZXIgPSB7Cj4gQEAgLTY0MCw3ICs2MDcsNiBAQCBzdGF0aWMgc3Ry
+dWN0IGRybV9kcml2ZXIgZ20xMnUzMjBfZHJtX2RyaXZlciA9IHsKPiAgIAkubWFqb3IJCSA9IERS
+SVZFUl9NQUpPUiwKPiAgIAkubWlub3IJCSA9IERSSVZFUl9NSU5PUiwKPiAgIAo+IC0JLnJlbGVh
+c2UJID0gZ20xMnUzMjBfZHJpdmVyX3JlbGVhc2UsCj4gICAJLmZvcHMJCSA9ICZnbTEydTMyMF9m
+b3BzLAo+ICAgCURSTV9HRU1fU0hNRU1fRFJJVkVSX09QUywKPiAgIH07Cj4gQEAgLTY3MCw5ICs2
+MzYsOCBAQCBzdGF0aWMgaW50IGdtMTJ1MzIwX3VzYl9wcm9iZShzdHJ1Y3QgdXNiX2ludGVyZmFj
+ZSAqaW50ZXJmYWNlLAo+ICAgCQlyZXR1cm4gLUVOT01FTTsKPiAgIAo+ICAgCWdtMTJ1MzIwLT51
+ZGV2ID0gaW50ZXJmYWNlX3RvX3VzYmRldihpbnRlcmZhY2UpOwo+IC0JSU5JVF9XT1JLKCZnbTEy
+dTMyMC0+ZmJfdXBkYXRlLndvcmssIGdtMTJ1MzIwX2ZiX3VwZGF0ZV93b3JrKTsKPiArCUlOSVRf
+REVMQVlFRF9XT1JLKCZnbTEydTMyMC0+ZmJfdXBkYXRlLndvcmssIGdtMTJ1MzIwX2ZiX3VwZGF0
+ZV93b3JrKTsKPiAgIAltdXRleF9pbml0KCZnbTEydTMyMC0+ZmJfdXBkYXRlLmxvY2spOwo+IC0J
+aW5pdF93YWl0cXVldWVfaGVhZCgmZ20xMnUzMjAtPmZiX3VwZGF0ZS53YWl0cSk7Cj4gICAKPiAg
+IAlkZXYgPSAmZ20xMnUzMjAtPmRldjsKPiAgIAlyZXQgPSBkZXZtX2RybV9kZXZfaW5pdCgmaW50
+ZXJmYWNlLT5kZXYsIGRldiwgJmdtMTJ1MzIwX2RybV9kcml2ZXIpOwo+IAoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
+dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
