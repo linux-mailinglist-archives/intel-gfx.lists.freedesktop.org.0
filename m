@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06AF41715D3
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 12:17:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7349171632
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 12:43:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB70F6E193;
-	Thu, 27 Feb 2020 11:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2D0E6E855;
+	Thu, 27 Feb 2020 11:43:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0BE86E193
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 11:17:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20368956-1500050 
- for multiple; Thu, 27 Feb 2020 11:17:36 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 11:17:35 +0000
-Message-Id: <20200227111735.1975396-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200227085723.1961649-4-chris@chris-wilson.co.uk>
-References: <20200227085723.1961649-4-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E3E56E84F;
+ Thu, 27 Feb 2020 11:43:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 271E7A3ECB;
+ Thu, 27 Feb 2020 11:43:42 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/perf: Wait for lrc_reconfigure on
- disable
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 27 Feb 2020 11:43:42 -0000
+Message-ID: <158280382212.29657.1149100996970072387@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200226163054.9509-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200226163054.9509-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Set_up_PIPE=5FMISC_truncate_bit_on_tgl+?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,105 +38,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Wait for the last request (and so waits for all context updates) when
-disabling OA. This prevents a rather bizarre error seen on Skylake
-where the context is subsequently corrupted. Let's play safe and assume
-it may impact all.
+== Series Details ==
 
-Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
-Drop the notion of timeout, waiting appears critical.
----
- drivers/gpu/drm/i915/i915_perf.c | 23 +++++++++++++++++------
- 1 file changed, 17 insertions(+), 6 deletions(-)
+Series: drm/i915: Set up PIPE_MISC truncate bit on tgl+
+URL   : https://patchwork.freedesktop.org/series/73960/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 2334c45f1d08..bb380b0c4501 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2191,7 +2191,8 @@ static int gen8_modify_context(struct intel_context *ce,
- }
- 
- static int gen8_modify_self(struct intel_context *ce,
--			    const struct flex *flex, unsigned int count)
-+			    const struct flex *flex, unsigned int count,
-+			    bool sync)
- {
- 	struct i915_request *rq;
- 	int err;
-@@ -2204,7 +2205,12 @@ static int gen8_modify_self(struct intel_context *ce,
- 
- 	err = gen8_load_flex(rq, ce, flex, count);
- 
-+	i915_request_get(rq);
- 	i915_request_add(rq);
-+	if (sync && i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT) < 0)
-+		err = -ETIME;
-+	i915_request_put(rq);
-+
- 	return err;
- }
- 
-@@ -2281,7 +2287,7 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream, bool ena
- 		return err;
- 
- 	/* Apply regs_lri using LRI with pinned context */
--	return gen8_modify_self(ce, regs_lri, ARRAY_SIZE(regs_lri));
-+	return gen8_modify_self(ce, regs_lri, ARRAY_SIZE(regs_lri), false);
- }
- 
- /*
-@@ -2311,7 +2317,8 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream, bool ena
-  */
- static int oa_configure_all_contexts(struct i915_perf_stream *stream,
- 				     struct flex *regs,
--				     size_t num_regs)
-+				     size_t num_regs,
-+				     bool enable)
- {
- 	struct drm_i915_private *i915 = stream->perf->i915;
- 	struct intel_engine_cs *engine;
-@@ -2368,7 +2375,7 @@ static int oa_configure_all_contexts(struct i915_perf_stream *stream,
- 
- 		regs[0].value = intel_sseu_make_rpcs(i915, &ce->sseu);
- 
--		err = gen8_modify_self(ce, regs, num_regs);
-+		err = gen8_modify_self(ce, regs, num_regs, !enable);
- 		if (err)
- 			return err;
- 	}
-@@ -2386,7 +2393,9 @@ static int gen12_configure_all_contexts(struct i915_perf_stream *stream,
- 		},
- 	};
- 
--	return oa_configure_all_contexts(stream, regs, ARRAY_SIZE(regs));
-+	return oa_configure_all_contexts(stream,
-+					 regs, ARRAY_SIZE(regs),
-+					 oa_config);
- }
- 
- static int lrc_configure_all_contexts(struct i915_perf_stream *stream,
-@@ -2423,7 +2432,9 @@ static int lrc_configure_all_contexts(struct i915_perf_stream *stream,
- 	for (i = 2; i < ARRAY_SIZE(regs); i++)
- 		regs[i].value = oa_config_flex_reg(oa_config, regs[i].reg);
- 
--	return oa_configure_all_contexts(stream, regs, ARRAY_SIZE(regs));
-+	return oa_configure_all_contexts(stream,
-+					 regs, ARRAY_SIZE(regs),
-+					 oa_config);
- }
- 
- static int gen8_enable_metric_set(struct i915_perf_stream *stream)
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8010 -> Patchwork_16719
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16719 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#261])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8010/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_active:
+    - {fi-ehl-1}:         [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8010/fi-ehl-1/igt@i915_selftest@live_active.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/fi-ehl-1/igt@i915_selftest@live_active.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#261]: https://gitlab.freedesktop.org/drm/intel/issues/261
+
+
+Participating hosts (51 -> 42)
+------------------------------
+
+  Missing    (9): fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-tgl-y fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8010 -> Patchwork_16719
+
+  CI-20190529: 20190529
+  CI_DRM_8010: 97bbec4d80df1c6573fc7063ad830e8beefe07c8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5471: 668afe52887a164ee6a12fd1c898bc1c9086cf3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16719: c992e861fa194162dd6ed4add0b11e5eab3b47e5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c992e861fa19 drm/i915: Set up PIPE_MISC truncate bit on tgl+
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
