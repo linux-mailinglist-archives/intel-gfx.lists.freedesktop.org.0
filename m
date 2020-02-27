@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A412D1729E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 22:02:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677FE1729EE
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 22:11:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD89B6ED40;
-	Thu, 27 Feb 2020 21:02:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0E0E6E97B;
+	Thu, 27 Feb 2020 21:11:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 096266E97E;
- Thu, 27 Feb 2020 21:02:46 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id 4835680441;
- Thu, 27 Feb 2020 22:02:43 +0100 (CET)
-Date: Thu, 27 Feb 2020 22:02:42 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200227210242.GD29498@ravnborg.org>
-References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
- <20200227181522.2711142-14-daniel.vetter@ffwll.ch>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 31DDA6E0FC;
+ Thu, 27 Feb 2020 21:11:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2AF10A00FD;
+ Thu, 27 Feb 2020 21:11:16 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181522.2711142-14-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=QyXUC8HyAAAA:8
- a=QX4gbG5DAAAA:8 a=taGs_qngAAAA:8 a=cm27Pg_UAAAA:8 a=-VAfIpHNAAAA:8
- a=7gkXJVJtAAAA:8 a=0FZN23qlbBZI_fe2_qcA:9 a=CjuIK1q_8ugA:10
- a=AbAUZ8qAyYyZVLSsDulk:22 a=DM_PlaNYpjARcMQr2apF:22
- a=xmb-EsYY8bH0VWELuYED:22 a=srlwD-8ojaedGGhPAyx8:22
- a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH 13/51] drm/vgem: Use drmm_add_final_kfree
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Thu, 27 Feb 2020 21:11:16 -0000
+Message-ID: <158283787614.29659.15529127066091820494@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227170047.31089-1-jani.nikula@intel.com>
+In-Reply-To: <20200227170047.31089-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_add_i915=5Fioc32=2Eh_fo?=
+ =?utf-8?q?r_compat?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,86 +39,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Clark <robdclark@chromium.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>, Sean Paul <seanpaul@chromium.org>,
- Daniel Vetter <daniel.vetter@intel.com>, l.stach@pengutronix.de,
- Emil Velikov <emil.velikov@collabora.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 07:14:44PM +0100, Daniel Vetter wrote:
-> With this we can drop the final kfree from the release function.
-> 
-> v2: After drm_dev_init/drmm_add_final_kfree we need to clean up
-> everything through a drm_dev_put. Rework the unwind code to match
-> that.
-> 
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Emil Velikov <emil.velikov@collabora.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Sean Paul <seanpaul@chromium.org>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: Rob Clark <robdclark@chromium.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> ---
+== Series Details ==
 
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Series: series starting with [1/3] drm/i915: add i915_ioc32.h for compat
+URL   : https://patchwork.freedesktop.org/series/74033/
+State : failure
 
->  drivers/gpu/drm/vgem/vgem_drv.c | 14 ++++++++------
->  1 file changed, 8 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/vgem/vgem_drv.c b/drivers/gpu/drm/vgem/vgem_drv.c
-> index 909eba43664a..7486014e9149 100644
-> --- a/drivers/gpu/drm/vgem/vgem_drv.c
-> +++ b/drivers/gpu/drm/vgem/vgem_drv.c
-> @@ -39,6 +39,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_ioctl.h>
-> +#include <drm/drm_managed.h>
->  #include <drm/drm_prime.h>
->  
->  #include "vgem_drv.h"
-> @@ -432,8 +433,6 @@ static void vgem_release(struct drm_device *dev)
->  
->  	platform_device_unregister(vgem->platform);
->  	drm_dev_fini(&vgem->drm);
-> -
-> -	kfree(vgem);
->  }
->  
->  static struct drm_driver vgem_driver = {
-> @@ -489,16 +488,19 @@ static int __init vgem_init(void)
->  			   &vgem_device->platform->dev);
->  	if (ret)
->  		goto out_unregister;
-> +	drmm_add_final_kfree(&vgem_device->drm, vgem_device);
->  
->  	/* Final step: expose the device/driver to userspace */
-> -	ret  = drm_dev_register(&vgem_device->drm, 0);
-> +	ret = drm_dev_register(&vgem_device->drm, 0);
->  	if (ret)
-> -		goto out_fini;
-> +		goto out_put;
->  
->  	return 0;
->  
-> -out_fini:
-> -	drm_dev_fini(&vgem_device->drm);
-> +out_put:
-> +	drm_dev_put(&vgem_device->drm);
-> +	return ret;
-> +
->  out_unregister:
->  	platform_device_unregister(vgem_device->platform);
->  out_free:
-> -- 
-> 2.24.1
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8021 -> Patchwork_16740
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16740 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16740, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16740:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-skl-6600u/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-skl-6600u/igt@i915_selftest@live@execlists.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-tgl-dsi}:       NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-tgl-dsi/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16740 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][4] -> [DMESG-FAIL][5] ([i915#877])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][6] -> [FAIL][7] ([fdo#111407])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (2): fi-skl-lmem fi-tgl-dsi 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8021 -> Patchwork_16740
+
+  CI-20190529: 20190529
+  CI_DRM_8021: 98e43281da271731d056080d696c143ca7e07e35 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5473: d22b3507ff2678a05d69d47c0ddf6f0e72ee7ffd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16740: 2b95b9ed29f6a8e96023252e4eb92683544d66cb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2b95b9ed29f6 drm/i915: move watermark structs more towards usage
+e865776ce303 drm/i915: remove unused orig_clock i915 member
+663fbcd4dcd6 drm/i915: add i915_ioc32.h for compat
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
