@@ -1,32 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677FE1729EE
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 22:11:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E97D172A16
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 22:27:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0E0E6E97B;
-	Thu, 27 Feb 2020 21:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 949A16E0FC;
+	Thu, 27 Feb 2020 21:27:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 31DDA6E0FC;
- Thu, 27 Feb 2020 21:11:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2AF10A00FD;
- Thu, 27 Feb 2020 21:11:16 +0000 (UTC)
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com
+ [IPv6:2607:f8b0:4864:20::231])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4EF06E976
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 21:27:16 +0000 (UTC)
+Received: by mail-oi1-x231.google.com with SMTP id i1so726280oie.8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 13:27:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:from:date:message-id:subject:to:cc;
+ bh=53gRMBJrJ+la068BpgpeS9MvOB3v8Crv2gV5zCitRF4=;
+ b=PhG78KEPgow20wemDEzeImA40/CuNsSFuDsT/XEp/QQGVqN6vIa5qNUqPIvnF2ottA
+ uNl1BdrgGnLrYDDyNxhjwQPlzpKG0GynOaJ1dva71D7BjU4oUm/DimSOy1LST81ZGK6z
+ NZNxQezRld7jYfF+RdkSDI+RuWI3WzXLHn95k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+ bh=53gRMBJrJ+la068BpgpeS9MvOB3v8Crv2gV5zCitRF4=;
+ b=lkfxBTRpLgmAC85Uksj8ofkhwxM2YRcpaQPt4rPU0ueRBt/nI+qBBqTYLtrkk1vuYL
+ VyfjKTeNDFR/FhwgJ4oN/jJ42GWJFNIW2n0U4Y+ng71UjGsrpO5li7S7dgswja4Tm7qm
+ m1kacGazJDHH/vnfav56oa0feFq9YWlNHcRhBmQ4+exnkC1N3G4RIjEfWczn3W28ozYo
+ MkwiobCuvNNEdEj2V5514GzOjCNoYLtPsSYU2QZoLwHToamg06UhqtduUJW5ixiFquBM
+ BDh+UReTmfj7mwtRchp4InYt610HKbjr3Cb76TeVk/+5sL6bpVsBZ2hZKu0/pl5+QAOX
+ tgVA==
+X-Gm-Message-State: APjAAAUT3djRzWoCSHl+ydQo9+uawn4ex5F6sZ7ENUU6ReMWu+ZO16VE
+ t4ixEV1+UjtIO4vzOpc9/okry8/iP6A/glU5Dx+aMQ==
+X-Google-Smtp-Source: APXvYqxrmwIIYpIUdfUeFAdLWb1JhkAvU4sEORizQCbTX2XxKpPE9DO4bzkdQ0PSrofOs/Ssn3ptbNPWgsoHCxXJc/U=
+X-Received: by 2002:aca:2407:: with SMTP id n7mr851548oic.14.1582838835977;
+ Thu, 27 Feb 2020 13:27:15 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 27 Feb 2020 21:11:16 -0000
-Message-ID: <158283787614.29659.15529127066091820494@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200227170047.31089-1-jani.nikula@intel.com>
-In-Reply-To: <20200227170047.31089-1-jani.nikula@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_add_i915=5Fioc32=2Eh_fo?=
- =?utf-8?q?r_compat?=
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Thu, 27 Feb 2020 22:27:04 +0100
+Message-ID: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+To: gstreamer-devel@lists.freedesktop.org, Xorg Members List <members@x.org>, 
+ Mesa Dev <mesa-dev@lists.freedesktop.org>, 
+ "X.Org development" <xorg-devel@lists.x.org>,
+ wayland <wayland-devel@lists.freedesktop.org>, 
+ dri-devel <dri-devel@lists.freedesktop.org>, 
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Subject: [Intel-gfx] gitlab.fd.o financial situation and impact on services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,118 +60,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "X.Org Foundation Board" <board@foundation.x.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi all,
 
-Series: series starting with [1/3] drm/i915: add i915_ioc32.h for compat
-URL   : https://patchwork.freedesktop.org/series/74033/
-State : failure
+You might have read the short take in the X.org board meeting minutes
+already, here's the long version.
 
-== Summary ==
+The good news: gitlab.fd.o has become very popular with our
+communities, and is used extensively. This especially includes all the
+CI integration. Modern development process and tooling, yay!
 
-CI Bug Log - changes from CI_DRM_8021 -> Patchwork_16740
-====================================================
+The bad news: The cost in growth has also been tremendous, and it's
+breaking our bank account. With reasonable estimates for continued
+growth we're expecting hosting expenses totalling 75k USD this year,
+and 90k USD next year. With the current sponsors we've set up we can't
+sustain that. We estimate that hosting expenses for gitlab.fd.o
+without any of the CI features enabled would total 30k USD, which is
+within X.org's ability to support through various sponsorships, mostly
+through XDC.
 
-Summary
--------
+Note that X.org does no longer sponsor any CI runners themselves,
+we've stopped that. The huge additional expenses are all just in
+storing and serving build artifacts and images to outside CI runners
+sponsored by various companies. A related topic is that with the
+growth in fd.o it's becoming infeasible to maintain it all on
+volunteer admin time. X.org is therefore also looking for admin
+sponsorship, at least medium term.
 
-  **FAILURE**
+Assuming that we want cash flow reserves for one year of gitlab.fd.o
+(without CI support) and a trimmed XDC and assuming no sponsor payment
+meanwhile, we'd have to cut CI services somewhere between May and June
+this year. The board is of course working on acquiring sponsors, but
+filling a shortfall of this magnitude is neither easy nor quick work,
+and we therefore decided to give an early warning as soon as possible.
+Any help in finding sponsors for fd.o is very much appreciated.
 
-  Serious unknown changes coming with Patchwork_16740 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16740, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16740:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-skl-6600u/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-skl-6600u/igt@i915_selftest@live@execlists.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-tgl-dsi}:       NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-tgl-dsi/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16740 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][4] -> [DMESG-FAIL][5] ([i915#877])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][6] -> [FAIL][7] ([fdo#111407])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8021/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (49 -> 43)
-------------------------------
-
-  Additional (2): fi-skl-lmem fi-tgl-dsi 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8021 -> Patchwork_16740
-
-  CI-20190529: 20190529
-  CI_DRM_8021: 98e43281da271731d056080d696c143ca7e07e35 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5473: d22b3507ff2678a05d69d47c0ddf6f0e72ee7ffd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16740: 2b95b9ed29f6a8e96023252e4eb92683544d66cb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-2b95b9ed29f6 drm/i915: move watermark structs more towards usage
-e865776ce303 drm/i915: remove unused orig_clock i915 member
-663fbcd4dcd6 drm/i915: add i915_ioc32.h for compat
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16740/index.html
+Thanks, Daniel
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
