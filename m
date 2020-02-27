@@ -2,41 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708EA1725C7
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 18:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABA341725DF
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:03:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2F596E859;
-	Thu, 27 Feb 2020 17:58:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E94C26EC78;
+	Thu, 27 Feb 2020 18:03:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C9F86E859
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 17:58:11 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 09:58:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="350731714"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 27 Feb 2020 09:58:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 27 Feb 2020 19:58:07 +0200
-Date: Thu, 27 Feb 2020 19:58:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Message-ID: <20200227175807.GX13686@intel.com>
-References: <20200226203455.23032-1-imre.deak@intel.com>
- <20200226203455.23032-13-imre.deak@intel.com>
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com
+ [IPv6:2607:f8b0:4864:20::d41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED466E944
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 16:43:58 +0000 (UTC)
+Received: by mail-io1-xd41.google.com with SMTP id d15so182005iog.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 08:43:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=3YMTfEGiWskzaqg6qsYJ7kThCNQxEbbXDJbmFwYjcu4=;
+ b=mOtjx1pCRhjLwReAcdsFGCASZpuxWLk1U1MgnQe3qRMnt6Fe0xYEMLkOMBjFccp1Xe
+ iD7Xxd2zoxewldqPM/pG3e2d9+hUCY1D7ibUoNaJzr3q24pYM9Iw/dLb87DBf/P+8Ja8
+ Yt9NNK+ISExnyGLlZ/KrYsM+8Wl4adaX3RTy1j9fcR+BI0SC7Y96Ibh8C55UL/ln2P+a
+ UGgIrmflPNNwup+2SPlIUE9WH0+fp6dAlhweB5Bnrz1yP5zBg+l8K//uA91A99etOeGA
+ H5JTQQhJ1z5D/ntQ2kQSmdmT67LzOQW32zxuVXruPGcPpCZNW19XTUJetyzzrdoyJxM0
+ Hh4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=3YMTfEGiWskzaqg6qsYJ7kThCNQxEbbXDJbmFwYjcu4=;
+ b=qatplaxZ18ep91CuL3c8rgHdS96TiOhIPO+f1j29Ki+An7FMMQqUI+kwYwBsf/MgxJ
+ wmbFZZRVZNBm+VoDtkCy0EMPkAsMlIUb4D++jjIZHmxsezTIfLbrgxwZ5/8DP9hXKZsU
+ rVOD1OZH/nQTjZLEDfHr4QKP0yURCEWoyplYQsRumHqmafi+Hy/vPetJwQproUoAV27l
+ jU57gm14mj1GAz4aZTr2rskBBmk5HJ/UsyNIOZAn1PCkexFTQjfblltdLF1kh7yd5yxL
+ 5z0WeYR+Z81cIeLIg3tSfus026FFctXDC1CrYAV2p1L6LI4ICG+iB1Drw6SHSIdYnxJf
+ Rwwg==
+X-Gm-Message-State: APjAAAX9SrKvbBIxenBF4mFvFhaGiV6uXE7FxhUmRr0cp3sJPuk2tzn8
+ ZDUMWlyxn5hI9z2PdIJMqKBk2A==
+X-Google-Smtp-Source: APXvYqzXfnTuGcDkMKxb1svtfZaTZPYB6VcKyNB+HuivpMr7PTni/55vVwjYwJk16pMCcvCvmF6LyQ==
+X-Received: by 2002:a5d:8143:: with SMTP id f3mr173229ioo.12.1582821837526;
+ Thu, 27 Feb 2020 08:43:57 -0800 (PST)
+Received: from google.com ([2620:15c:183:200:855f:8919:84a7:4794])
+ by smtp.gmail.com with ESMTPSA id b12sm2072864iln.62.2020.02.27.08.43.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Feb 2020 08:43:56 -0800 (PST)
+Date: Thu, 27 Feb 2020 09:43:55 -0700
+From: Ross Zwisler <zwisler@google.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200227164355.GA241728@google.com>
+References: <20200221212635.11614-1-jose.souza@intel.com>
+ <87wo88qicd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200226203455.23032-13-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 12/13] drm/i915/hsw: Use the read-out
- WRPLL/SPLL state instead of reading out again
+In-Reply-To: <87wo88qicd.fsf@intel.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Mailman-Approved-At: Thu, 27 Feb 2020 18:03:14 +0000
+Subject: Re: [Intel-gfx] [PATCH v4-CI] drm/i915/psr: Force PSR probe only
+ after full initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,67 +77,27 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 26, 2020 at 10:34:54PM +0200, Imre Deak wrote:
-> Instead of reading out the WRPLL/SPLL control values from HW, we can use
-> the DPLL state that was already read out, or swapped-to.
+On Thu, Feb 27, 2020 at 03:18:26PM +0200, Jani Nikula wrote:
+> On Fri, 21 Feb 2020, Jos=E9 Roberto de Souza <jose.souza@intel.com> wrote:
+> > Commit 60c6a14b489b ("drm/i915/display: Force the state compute phase
+> > once to enable PSR") was forcing the state compute too earlier
+> > causing errors because not everything was initialized, so here
+> > moving to the end of i915_driver_modeset_probe() when the display is
+> > all initialized.
 > =
 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> Hmph, really not happy about the placement here. These are high level
+> functions, not a dumping ground for random feature specific hacks. :(
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Should we just revert =
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 7 ++-----
->  1 file changed, 2 insertions(+), 5 deletions(-)
-> =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index b87b4ff5de52..7e6da58a47c9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -880,13 +880,10 @@ hsw_ddi_wrpll_get_dpll(struct intel_atomic_state *s=
-tate,
->  static int hsw_ddi_wrpll_get_freq(struct drm_i915_private *dev_priv,
->  				  const struct intel_shared_dpll *pll)
->  {
-> -	i915_reg_t reg =3D pll->info->id =3D=3D DPLL_ID_WRPLL1 ?
-> -					  WRPLL_CTL(0) : WRPLL_CTL(1);
->  	int refclk;
->  	int n, p, r;
-> -	u32 wrpll;
-> +	u32 wrpll =3D pll->state.hw_state.wrpll;
->  =
+60c6a14b489b ("drm/i915/display: Force the state compute phase once to enab=
+le PSR")
 
-> -	wrpll =3D intel_de_read(dev_priv, reg);
->  	switch (wrpll & WRPLL_REF_MASK) {
->  	case WRPLL_REF_SPECIAL_HSW:
->  		/*
-> @@ -1003,7 +1000,7 @@ static int hsw_ddi_spll_get_freq(struct drm_i915_pr=
-ivate *i915,
->  {
->  	int link_clock =3D 0;
->  =
-
-> -	switch (intel_de_read(i915, SPLL_CTL) & SPLL_FREQ_MASK) {
-> +	switch (pll->state.hw_state.spll & SPLL_FREQ_MASK) {
->  	case SPLL_FREQ_810MHz:
->  		link_clock =3D 81000;
->  		break;
-> -- =
-
-> 2.23.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+and try to land a fixed-up version in the next kernel cycle?  The current
+state is that my machine is completely unable to boot because of this issue,
+and I've confirmed that the above patch reverts cleanly and fixes the issue.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
