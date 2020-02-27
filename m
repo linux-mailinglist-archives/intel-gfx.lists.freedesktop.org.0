@@ -1,33 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9901725D1
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:00:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0031725E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:03:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DB3B6E8DA;
-	Thu, 27 Feb 2020 18:00:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B63D6ECDC;
+	Thu, 27 Feb 2020 18:03:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01346E8DA
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:00:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 10:00:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="232271481"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by fmsmga008.fm.intel.com with ESMTP; 27 Feb 2020 10:00:05 -0800
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 23:21:47 +0530
-Message-Id: <20200227175147.11362-1-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com
+ [IPv6:2607:f8b0:4864:20::142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DC416E506
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 17:54:21 +0000 (UTC)
+Received: by mail-il1-x142.google.com with SMTP id x7so311920ilq.11
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 09:54:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=weS2TP9Gh86IfYFaOQsRr+sV2ahg+AjPbnfPPKDS+fc=;
+ b=rQVzg1ZHmNVIZ67Vu/sbXgK5Ed0+esjTebWRqqlntXBX9qd4ylJ+14P1HEkggV1r1Z
+ 8PHgYJ9/Er+gjNh0bVU1u+eCbBjTAF9sqiwVj/5dnnarL6dzm6FfZE1hzf+v3Qa+xZtW
+ T5mNpT4YvseScuo7b9UMEO5pqVqbt8aAENupBqT6T0/Xe+C+kbAfvBS7PKmRONvwj6QK
+ MGz0b6NA/aGyhzgHczv+OCh+7QFCJzBpr266bZ37uoYZITJeGbs3zKhVklOxmefH6/wr
+ MHn6jTuFHj2Mv2J9JngSgZRy83+Z+X6eRHxxe5UVKewu4o/d5wqGdNlxVYapT5bIwCxy
+ LVQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=weS2TP9Gh86IfYFaOQsRr+sV2ahg+AjPbnfPPKDS+fc=;
+ b=TEHUNXnJI7+tAuN3YQotvGFaobB5CWMga/A4aVak2cqhgC+CxLQIVJl/ayTQWbaxcJ
+ IyMkYKayN9AG+fcRJnwBGKlhR4FXhQ6cAQUrlKTZouaiCfRRpZ0YGvR0vu00G52YEOl2
+ GfD/CNKef1WefFjCDnxvV5KWKP6XUsxy9VJwA270Ma1+rjcPQA3OJNWBU0sfdKhvp7OV
+ xYWVXxCdy7dNG47Wpl60IYGz4gE3pfSYGM430k/KNQksY5gomUFzQoCoicCeDzoSk4Vc
+ 9zJZLakP/Q1aCBC47FhUJHlYfxDHVdYC2MPCdfI15gQjw8KjtQvUhs7PzzKP9S6ysyYN
+ tyiQ==
+X-Gm-Message-State: APjAAAVOdyaUpi1Cw7dsg7y1p44CC5UoQBWc3s7hwkjVEsis0loJ8knr
+ Ypj6vUrXsd0l1BsN4h3sFq6Yrw==
+X-Google-Smtp-Source: APXvYqwNITAoGM687vy4sIwjillt8MmPDDRFBoIta6/iSZsjPJwGXJWSNC6aKSfw9nV7uCNCUBeKkA==
+X-Received: by 2002:a92:c986:: with SMTP id y6mr478197iln.186.1582826060146;
+ Thu, 27 Feb 2020 09:54:20 -0800 (PST)
+Received: from google.com ([2620:15c:183:200:855f:8919:84a7:4794])
+ by smtp.gmail.com with ESMTPSA id y3sm2061664ila.78.2020.02.27.09.54.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Feb 2020 09:54:19 -0800 (PST)
+Date: Thu, 27 Feb 2020 10:54:17 -0700
+From: Ross Zwisler <zwisler@google.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200227175417.GA8007@google.com>
+References: <20200221212635.11614-1-jose.souza@intel.com>
+ <87wo88qicd.fsf@intel.com> <20200227164355.GA241728@google.com>
+ <87o8tkq83l.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix kbuild test robot build error
+Content-Disposition: inline
+In-Reply-To: <87o8tkq83l.fsf@intel.com>
+User-Agent: Mutt/1.12.2 (2019-09-21)
+X-Mailman-Approved-At: Thu, 27 Feb 2020 18:03:14 +0000
+Subject: Re: [Intel-gfx] [PATCH v4-CI] drm/i915/psr: Force PSR probe only
+ after full initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,45 +72,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rml4ZXM6IGQ1NGMxYTUxM2M0OCAoImRybS9pOTE1OiBGaXggYnJva2VuIHRyYW5zY29kZXIgZXJy
-IHN0YXRlIikKaGFzX3RyYW5zY29kZXIoKSB3YXMgdW51c2VkIGJlY2F1c2UgZnVuY3Rpb24gd2hp
-Y2ggd2FzIHVzaW5nIGl0LAppbnRlbF9kaXNwbGF5X2NhcHR1cmVfZXJyb3Jfc3RhdGUoKSBkZWZp
-bmVkIHVuZGVyCkNPTkZJR19EUk1fSTkxNV9DQVBUVVJFX0VSUk9SLgpNb3ZpbmcgaGFzX3RyYW5z
-Y29kZXIoKSB0byB1bmRlciBDT05GSUdfRFJNX0k5MTVfQ0FQVFVSRV9FUlJPUi4KTm8gZnVuY3Rp
-b25hbCBjaGFuZ2UuCgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbT4KUmVwb3J0ZWQtYnk6IGtidWlsZCB0ZXN0IHJvYm90IDxsa3BAaW50ZWwuY29tPgpS
-ZXZpZXdlZC1ieTogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KU2lnbmVkLW9m
-Zi1ieTogQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1cHRhQGludGVsLmNvbT4KLS0tCiBkcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDE4ICsrKysrKysrKy0t
-LS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IDJm
-ZDNjY2QzM2UzMC4uMjdlYzI0NWUwZGQyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYwpAQCAtMjQ5LDE1ICsyNDksNiBAQCBpbnRlbF9mZGlfbGlua19m
-cmVxKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKIAkJcmV0dXJuIGRldl9wcml2
-LT5mZGlfcGxsX2ZyZXE7CiB9CiAKLXN0YXRpYyBib29sCi1oYXNfdHJhbnNjb2RlcihzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2Rl
-cikKLXsKLQlpZiAoY3B1X3RyYW5zY29kZXIgPT0gVFJBTlNDT0RFUl9FRFApCi0JCXJldHVybiBI
-QVNfVFJBTlNDT0RFUl9FRFAoZGV2X3ByaXYpOwotCWVsc2UKLQkJcmV0dXJuIElOVEVMX0lORk8o
-ZGV2X3ByaXYpLT5waXBlX21hc2sgJiBCSVQoY3B1X3RyYW5zY29kZXIpOwotfQotCiBzdGF0aWMg
-Y29uc3Qgc3RydWN0IGludGVsX2xpbWl0IGludGVsX2xpbWl0c19pOHh4X2RhYyA9IHsKIAkuZG90
-ID0geyAubWluID0gMjUwMDAsIC5tYXggPSAzNTAwMDAgfSwKIAkudmNvID0geyAubWluID0gOTA4
-MDAwLCAubWF4ID0gMTUxMjAwMCB9LApAQCAtMTg4MzgsNiArMTg4MjksMTUgQEAgdm9pZCBpbnRl
-bF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmVfbm9pcnEoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5
-MTUpCiAKICNpZiBJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9DQVBUVVJFX0VSUk9SKQogCitz
-dGF0aWMgYm9vbAoraGFzX3RyYW5zY29kZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9w
-cml2LCBlbnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIpCit7CisJaWYgKGNwdV90cmFuc2Nv
-ZGVyID09IFRSQU5TQ09ERVJfRURQKQorCQlyZXR1cm4gSEFTX1RSQU5TQ09ERVJfRURQKGRldl9w
-cml2KTsKKwllbHNlCisJCXJldHVybiBJTlRFTF9JTkZPKGRldl9wcml2KS0+cGlwZV9tYXNrICYg
-QklUKGNwdV90cmFuc2NvZGVyKTsKK30KKwogc3RydWN0IGludGVsX2Rpc3BsYXlfZXJyb3Jfc3Rh
-dGUgewogCiAJdTMyIHBvd2VyX3dlbGxfZHJpdmVyOwotLSAKMi4yNS4xCgpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0
-CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
-cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Thu, Feb 27, 2020 at 06:59:42PM +0200, Jani Nikula wrote:
+> On Thu, 27 Feb 2020, Ross Zwisler <zwisler@google.com> wrote:
+> > On Thu, Feb 27, 2020 at 03:18:26PM +0200, Jani Nikula wrote:
+> >> On Fri, 21 Feb 2020, Jos=E9 Roberto de Souza <jose.souza@intel.com> wr=
+ote:
+> >> > Commit 60c6a14b489b ("drm/i915/display: Force the state compute phase
+> >> > once to enable PSR") was forcing the state compute too earlier
+> >> > causing errors because not everything was initialized, so here
+> >> > moving to the end of i915_driver_modeset_probe() when the display is
+> >> > all initialized.
+> >> =
+
+> >> Hmph, really not happy about the placement here. These are high level
+> >> functions, not a dumping ground for random feature specific hacks. :(
+> >
+> > Should we just revert =
+
+> >
+> > 60c6a14b489b ("drm/i915/display: Force the state compute phase once to =
+enable PSR")
+> >
+> > and try to land a fixed-up version in the next kernel cycle?  The curre=
+nt
+> > state is that my machine is completely unable to boot because of this i=
+ssue,
+> > and I've confirmed that the above patch reverts cleanly and fixes the i=
+ssue.
+> =
+
+> IIUC this patch, already committed as df1a5bfc16f3 ("drm/i915/psr: Force
+> PSR probe only after full initialization"), fixes the issue for you. At
+> least the Tested-by says so. ;) So we should just go with that.
+> =
+
+> I'm just being grumpy about the aesthetics of the implementation. I've
+> already incorporated some cleanup to this in an existing refactoring I
+> had [1].
+
+Ah, sounds good.   Sorry, I thought the fix hadn't been committed yet. :)
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
