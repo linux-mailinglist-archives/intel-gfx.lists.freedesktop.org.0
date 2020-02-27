@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C1B171552
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 11:53:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE553171573
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 11:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C8D96E7D0;
-	Thu, 27 Feb 2020 10:53:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51AC86E7E2;
+	Thu, 27 Feb 2020 10:58:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B8C06E7D0
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:53:00 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 02:53:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,491,1574150400"; d="scan'208";a="261440860"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga004.fm.intel.com with ESMTP; 27 Feb 2020 02:52:58 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 001715C08BA; Thu, 27 Feb 2020 12:51:46 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200226185657.26445-1-daniele.ceraolospurio@intel.com>
-References: <20200226185657.26445-1-daniele.ceraolospurio@intel.com>
-Date: Thu, 27 Feb 2020 12:51:46 +0200
-Message-ID: <87h7zc8fr1.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 662C06E7E2;
+ Thu, 27 Feb 2020 10:57:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6D730A47E9;
+ Thu, 27 Feb 2020 10:57:58 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ggtt: do not set bits 1-11 in
- gen12 ptes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wambui Karuga" <wambui.karugax@gmail.com>
+Date: Thu, 27 Feb 2020 10:57:58 -0000
+Message-ID: <158280107844.29659.8877685192880024154@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200226101138.15435-1-wambui.karugax@gmail.com>
+In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_conversion_to_drm=5Fdevice_based_logging_macro?=
+ =?utf-8?q?s_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,209 +39,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, "Sodhi,
- Vunny" <vunny.sodhi@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> writes:
+== Series Details ==
 
-> On TGL, bits 2-4 in the GGTT PTE are not ignored anymore and are
-> instead used for some extra VT-d capabilities. We don't (yet?) have
-> support for those capabilities, but, given that we shared the pte_encode
-> function betweed GGTT and PPGTT, we still set those bits to the PPGTT
-> PPAT values. The DMA engine gets very confused when those bits are
-> set while the iommu is enabled, leading to errors. E.g. when loading
-> the GuC we get:
->
-> [    9.796218] DMAR: DRHD: handling fault status reg 2
-> [    9.796235] DMAR: [DMA Write] Request device [00:02.0] PASID ffffffff fault addr 0 [fault reason 02] Present bit in context entry is clear
-> [    9.899215] [drm:intel_guc_fw_upload [i915]] *ERROR* GuC firmware signature verification failed
->
-> To fix this, just have dedicated gen8_pte_encode function per type of
-> gtt. Also, explicitly set vm->pte_encode for gen8_ppgtt, even if we
-> don't use it, to make sure we don't accidentally assign it to the GGTT
-> one, like we do for gen6_ppgtt, in case we need it in the future.
+Series: drm/i915/display: conversion to drm_device based logging macros (rev4)
+URL   : https://patchwork.freedesktop.org/series/72760/
+State : failure
 
-Nice find. Tho I feel that the subject and commit message needs
-a bit massaging for future archeologists.
+== Summary ==
 
-We are changing the gen8+ ggtt encoding and not only gen12 and
-it should be noted.
+CI Bug Log - changes from CI_DRM_8013 -> Patchwork_16730
+====================================================
 
->
-> Reported-by: "Sodhi, Vunny" <vunny.sodhi@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/gen8_ppgtt.c | 26 ++++++++++++++++++++++++++
->  drivers/gpu/drm/i915/gt/intel_ggtt.c | 13 ++++++++++---
->  drivers/gpu/drm/i915/gt/intel_gtt.c  | 24 ------------------------
->  drivers/gpu/drm/i915/gt/intel_gtt.h  |  4 ----
->  4 files changed, 36 insertions(+), 31 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> index 4d1de2d97d5c..9aabc5815d38 100644
-> --- a/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> +++ b/drivers/gpu/drm/i915/gt/gen8_ppgtt.c
-> @@ -25,6 +25,30 @@ static u64 gen8_pde_encode(const dma_addr_t addr,
->  	return pde;
->  }
->  
-> +static u64 gen8_pte_encode(dma_addr_t addr,
-> +			   enum i915_cache_level level,
-> +			   u32 flags)
-> +{
-> +	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
-> +
-> +	if (unlikely(flags & PTE_READ_ONLY))
-> +		pte &= ~_PAGE_RW;
-> +
-> +	switch (level) {
-> +	case I915_CACHE_NONE:
-> +		pte |= PPAT_UNCACHED;
-> +		break;
-> +	case I915_CACHE_WT:
-> +		pte |= PPAT_DISPLAY_ELLC;
-> +		break;
-> +	default:
-> +		pte |= PPAT_CACHED;
-> +		break;
-> +	}
-> +
-> +	return pte;
-> +}
-> +
->  static void gen8_ppgtt_notify_vgt(struct i915_ppgtt *ppgtt, bool create)
->  {
->  	struct drm_i915_private *i915 = ppgtt->vm.i915;
-> @@ -706,6 +730,8 @@ struct i915_ppgtt *gen8_ppgtt_create(struct intel_gt *gt)
->  	ppgtt->vm.allocate_va_range = gen8_ppgtt_alloc;
->  	ppgtt->vm.clear_range = gen8_ppgtt_clear;
->  
-> +	ppgtt->vm.pte_encode = gen8_pte_encode;
-> +
->  	if (intel_vgpu_active(gt->i915))
->  		gen8_ppgtt_notify_vgt(ppgtt, true);
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> index 41a00281f364..e45eca985b14 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-> @@ -157,6 +157,13 @@ static void gmch_ggtt_invalidate(struct i915_ggtt *ggtt)
->  	intel_gtt_chipset_flush();
->  }
->  
-> +static u64 gen8_ggtt_pte_encode(dma_addr_t addr,
-> +				enum i915_cache_level level,
-> +				u32 flags)
-> +{
-> +	return addr | _PAGE_PRESENT;
+Summary
+-------
 
-The bspec is bit ambivalent in here. First it says R/W is ignored but
-further ahead it states that bit0 and bit1 defines the validity
-and rest are ignored for aperture/display.
+  **FAILURE**
 
-This said, I am leaning to give a minimal set a try first :)
+  Serious unknown changes coming with Patchwork_16730 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16730, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> +}
-> +
->  static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte)
->  {
->  	writeq(pte, addr);
-> @@ -172,7 +179,7 @@ static void gen8_ggtt_insert_page(struct i915_address_space *vm,
->  	gen8_pte_t __iomem *pte =
->  		(gen8_pte_t __iomem *)ggtt->gsm + offset / I915_GTT_PAGE_SIZE;
->  
-> -	gen8_set_pte(pte, gen8_pte_encode(addr, level, 0));
-> +	gen8_set_pte(pte, gen8_ggtt_pte_encode(addr, level, 0));
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/index.html
 
-Make me ponder why we don't use the vm->pte_encode all the way
-as we have it :P
+Possible new issues
+-------------------
 
-Nevertheless, with s/gen12/gen8 ggtt encoding in subject/
-commit msg and this is,
+  Here are the unknown changes that may have been introduced in Patchwork_16730:
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+### IGT changes ###
 
->  
->  	ggtt->invalidate(ggtt);
->  }
-> @@ -185,7 +192,7 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
->  	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
->  	struct sgt_iter sgt_iter;
->  	gen8_pte_t __iomem *gtt_entries;
-> -	const gen8_pte_t pte_encode = gen8_pte_encode(0, level, 0);
-> +	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, 0);
->  	dma_addr_t addr;
->  
->  	/*
-> @@ -857,7 +864,7 @@ static int gen8_gmch_probe(struct i915_ggtt *ggtt)
->  	ggtt->vm.vma_ops.set_pages   = ggtt_set_pages;
->  	ggtt->vm.vma_ops.clear_pages = clear_pages;
->  
-> -	ggtt->vm.pte_encode = gen8_pte_encode;
-> +	ggtt->vm.pte_encode = gen8_ggtt_pte_encode;
->  
->  	setup_private_pat(ggtt->vm.gt->uncore);
->  
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.c b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> index bb9a6e638175..c8db4f95c1b7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.c
-> @@ -484,30 +484,6 @@ void gtt_write_workarounds(struct intel_gt *gt)
->  	}
->  }
->  
-> -u64 gen8_pte_encode(dma_addr_t addr,
-> -		    enum i915_cache_level level,
-> -		    u32 flags)
-> -{
-> -	gen8_pte_t pte = addr | _PAGE_PRESENT | _PAGE_RW;
-> -
-> -	if (unlikely(flags & PTE_READ_ONLY))
-> -		pte &= ~_PAGE_RW;
-> -
-> -	switch (level) {
-> -	case I915_CACHE_NONE:
-> -		pte |= PPAT_UNCACHED;
-> -		break;
-> -	case I915_CACHE_WT:
-> -		pte |= PPAT_DISPLAY_ELLC;
-> -		break;
-> -	default:
-> -		pte |= PPAT_CACHED;
-> -		break;
-> -	}
-> -
-> -	return pte;
-> -}
-> -
->  static void tgl_setup_private_ppat(struct intel_uncore *uncore)
->  {
->  	/* TGL doesn't support LLC or AGE settings */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index 23004445806a..9a185f4537e1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -515,10 +515,6 @@ struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt);
->  void i915_ggtt_suspend(struct i915_ggtt *gtt);
->  void i915_ggtt_resume(struct i915_ggtt *ggtt);
->  
-> -u64 gen8_pte_encode(dma_addr_t addr,
-> -		    enum i915_cache_level level,
-> -		    u32 flags);
-> -
->  int setup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p);
->  void cleanup_page_dma(struct i915_address_space *vm, struct i915_page_dma *p);
->  
-> -- 
-> 2.24.1
+#### Possible regressions ####
+
+  * igt@i915_selftest@live_gem_contexts:
+    - fi-cfl-8700k:       [PASS][1] -> [TIMEOUT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-cfl-8700k/igt@i915_selftest@live_gem_contexts.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16730 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-cfl-8109u:       [PASS][3] -> [INCOMPLETE][4] ([i915#1242])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-cfl-8109u/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][5] -> [FAIL][6] ([CI#94])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111407])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [DMESG-WARN][9] ([i915#44]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@prime_self_import@basic-llseek-size:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live_gt_lrc:
+    - fi-tgl-y:           [INCOMPLETE][13] ([CI#94] / [i915#1233]) -> [DMESG-FAIL][14] ([CI#94] / [i915#1233])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-y/igt@i915_selftest@live_gt_lrc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/fi-tgl-y/igt@i915_selftest@live_gt_lrc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+
+
+Participating hosts (51 -> 41)
+------------------------------
+
+  Missing    (10): fi-hsw-4770r fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8013 -> Patchwork_16730
+
+  CI-20190529: 20190529
+  CI_DRM_8013: ddbaa8ebcf171da63385dccb8a6b4d0209c2f6fb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5471: 668afe52887a164ee6a12fd1c898bc1c9086cf3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16730: 0b7851f0573c7eeb936a533f4be35d7fde434734 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0b7851f0573c drm/i915/overlay: convert to drm_device based logging.
+7dfa3b5fa559 drm/i915/lvds: convert to drm_device based logging macros.
+23085b0407ab drm/i915/lpe_audio: convert to drm_device based logging macros.
+79f92fa059cb drm/i915/hotplug: convert to drm_device based logging.
+d6b8e1e05480 drm/i915/hdcp: convert to struct drm_device based logging.
+b67c2a76b9a9 drm/i915/gmbus: convert to drm_device based logging,
+52091797541d drm/i915/fifo_underrun: convert to drm_device based logging.
+e85eca106b1e drm/i915/fbdev: convert to drm_device based logging.
+86a7f80aaa81 drm/i915/fbc: convert to drm_device based logging macros.
+c1ef2220a44e drm/i915/dsb: convert to drm_device based logging macros.
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16730/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
