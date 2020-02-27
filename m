@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A640172658
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:15:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5BA172655
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 19:15:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02F126ECDD;
-	Thu, 27 Feb 2020 18:15:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61ECB6EC86;
+	Thu, 27 Feb 2020 18:15:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 969A86ECD8
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:15:43 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id f19so444283wmh.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:15:43 -0800 (PST)
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF2F46EC86
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 18:15:44 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id c13so4604283wrq.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 10:15:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=brPCmIadkTZ+bQfVRXqFXig+w/FJgebw71meXPTl8/s=;
- b=IFFxyu3FVu8qLwCB0H0d3MiTsnYI6fcbb6lfp/geLymMfA5MSXqjRRWey09Q1aDAoP
- bUmb0KUMYspU3FYsnJq1MhSZhL4Cbs9NjRdUaPVGaGGzEFUidQHZ0cHz5+Drn3jIdM++
- wUp2TogvFob2ScgObD4sOdItFUZJPxit2WTWg=
+ bh=bRN0Ui5XqXN6WR6xH13puNc6QlAOJCfKGqyHvTJoDZw=;
+ b=XkVFjRt/hUcUKrwl6FeIYixEodqeHIXOjqmqyURpdugMFnV7VzjT5khoP+ms7YSh26
+ fBl/LdBPoIyJcNwfc4mLyZU/JrvW3ViLhyFq8RVLNrEcdxhOFQByixIDMag53qHKRJPj
+ voSDi2qcZjA+w59tp7nK5Yog/qEcMPjud7ORY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=brPCmIadkTZ+bQfVRXqFXig+w/FJgebw71meXPTl8/s=;
- b=CHojiueau595G0eYZQ+2b/x5uRXELd4dKvpFOvHQBY97kgJhMt0X1kw+2QoP/wnJKv
- v0LKGU3Xte61gNDVgSfhOD4wdCPsWKhVKtrfuamwUb50g4X2iqRN1BRID0gRrTtAgu/k
- bo2xpVGwRzIYCtCjTh0Mo5rq9JoHYW0D54Eh8ITySOLy3ccHA+RiY+L1EC0TEjSx6DPT
- HoDRhGma46rH8dmyEelV4E9ccQX1cfFy55Z4XGbtwHhSuVR71JkrZtgnpg3QYz3wUpEt
- wVIhth6cDc6+9/p9LRQ/cPvPjBR5XUGJD4J7Orbq8+BX/6VJDjTlxOclrvnzJajhp3AM
- 7rJw==
-X-Gm-Message-State: APjAAAV4KEdfjRxuoqX+9+hkXui751Mrrwz5g7RW2QHptNRtmhO2QT/4
- 23UrV0P4yJGTfetdggjzYvVWKg==
-X-Google-Smtp-Source: APXvYqxDuAUPBteAVv67t6ulwso8DUwJzbuIs5rmsEK6YtAXFn/kW4ZYqutMbWo4Huoyycb8F2LU7g==
-X-Received: by 2002:a1c:4008:: with SMTP id n8mr73561wma.34.1582827342172;
- Thu, 27 Feb 2020 10:15:42 -0800 (PST)
+ bh=bRN0Ui5XqXN6WR6xH13puNc6QlAOJCfKGqyHvTJoDZw=;
+ b=K8IAx2axh90rhRk9z+aGcRB5KM3zG69S4VB3QbRMHaxGLJTZ7Xs5MFbjQ2m3L0C+G0
+ t8McFnF3+FvsYQHSeBZnQSI0Rpt3oZm7jaUdbZEHs3sh7MFTrNqAn1R5IBBDxiBlLcis
+ W/M/Yv/AW43CgdFtQ4NmHvIxe8fdRVH7GZw4ezzC+Nto9dCabB7nU5TQA1ZRHTkn6yjM
+ 8Lam15+A+67DQSUVImgEqnrssZ39M7H4xrq96X/mHIxQAvMJT83T8NYDoUGS/9eqxq2e
+ cLnSFdckG1lIshtzTfIGrwdahgXxCklo8GC7PpQaP4AlSo/8oI6uEg3gnPEWtuXpnB9c
+ 68zA==
+X-Gm-Message-State: APjAAAX1bFjlKGATd2KO56l9V+7m5GyBgmhwEhvneaVLwK5WD2Z6iZNX
+ NxPC16zvj8b0U3QuYUtyPoREyw==
+X-Google-Smtp-Source: APXvYqx5aC0MwkKG940K/KpyZx0VsNQRFBswo10JJPR48+amFS2Jqa6+l45UduwDaeYv2FCyuT629A==
+X-Received: by 2002:a5d:4b50:: with SMTP id w16mr136665wrs.230.1582827343450; 
+ Thu, 27 Feb 2020 10:15:43 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id q1sm8551152wrw.5.2020.02.27.10.15.40
+ by smtp.gmail.com with ESMTPSA id q1sm8551152wrw.5.2020.02.27.10.15.42
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 27 Feb 2020 10:15:41 -0800 (PST)
+ Thu, 27 Feb 2020 10:15:42 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Thu, 27 Feb 2020 19:14:41 +0100
-Message-Id: <20200227181522.2711142-11-daniel.vetter@ffwll.ch>
+Date: Thu, 27 Feb 2020 19:14:42 +0100
+Message-Id: <20200227181522.2711142-12-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
 References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 10/51] drm/v3d: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH 11/51] drm/tidss: Use drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,7 +65,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, Eric Anholt <eric@anholt.net>,
+ m.felsch@pengutronix.de, Jyri Sarha <jsarha@ti.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>,
  Daniel Vetter <daniel.vetter@intel.com>, l.stach@pengutronix.de
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -74,124 +75,43 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 With this we can drop the final kfree from the release function.
 
-I also noticed that the unwind code is wrong, after drm_dev_init the
-drm_device owns the v3d allocation, so the kfree(v3d) is a double-free.
-Reorder the setup to fix this issue.
-
-After a bit more prep in drivers and drm core v3d should be able to
-switch over to devm_drm_dev_init, which should clean this up further.
-
-Acked-by: Eric Anholt <eric@anholt.net>
+Acked-by: Jyri Sarha <jsarha@ti.com>
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Eric Anholt <eric@anholt.net>
+Cc: Jyri Sarha <jsarha@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
 ---
- drivers/gpu/drm/v3d/v3d_drv.c | 38 ++++++++++++++++++-----------------
- 1 file changed, 20 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/tidss/tidss_drv.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/v3d/v3d_drv.c b/drivers/gpu/drm/v3d/v3d_drv.c
-index eaa8e9682373..8d0c0daaac81 100644
---- a/drivers/gpu/drm/v3d/v3d_drv.c
-+++ b/drivers/gpu/drm/v3d/v3d_drv.c
-@@ -25,6 +25,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_fb_cma_helper.h>
+diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+index d95e4be2c7b9..32a85628dbec 100644
+--- a/drivers/gpu/drm/tidss/tidss_drv.c
++++ b/drivers/gpu/drm/tidss/tidss_drv.c
+@@ -17,6 +17,7 @@
  #include <drm/drm_fb_helper.h>
+ #include <drm/drm_gem_cma_helper.h>
+ #include <drm/drm_irq.h>
 +#include <drm/drm_managed.h>
- #include <uapi/drm/v3d_drm.h>
+ #include <drm/drm_probe_helper.h>
  
- #include "v3d_drv.h"
-@@ -257,13 +258,23 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 	v3d->pdev = pdev;
- 	drm = &v3d->drm;
+ #include "tidss_dispc.h"
+@@ -109,8 +110,6 @@ static void tidss_release(struct drm_device *ddev)
+ 	tidss_modeset_cleanup(tidss);
  
-+	ret = drm_dev_init(&v3d->drm, &v3d_drm_driver, dev);
-+	if (ret) {
-+		kfree(v3d);
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, drm);
-+	drm->dev_private = v3d;
-+	drmm_add_final_kfree(drm, v3d);
-+
- 	ret = map_regs(v3d, &v3d->hub_regs, "hub");
- 	if (ret)
--		goto dev_free;
-+		goto dev_destroy;
- 
- 	ret = map_regs(v3d, &v3d->core_regs[0], "core0");
- 	if (ret)
--		goto dev_free;
-+		goto dev_destroy;
- 
- 	mmu_debug = V3D_READ(V3D_MMU_DEBUG_INFO);
- 	dev->coherent_dma_mask =
-@@ -281,21 +292,21 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 		ret = PTR_ERR(v3d->reset);
- 
- 		if (ret == -EPROBE_DEFER)
--			goto dev_free;
-+			goto dev_destroy;
- 
- 		v3d->reset = NULL;
- 		ret = map_regs(v3d, &v3d->bridge_regs, "bridge");
- 		if (ret) {
- 			dev_err(dev,
- 				"Failed to get reset control or bridge regs\n");
--			goto dev_free;
-+			goto dev_destroy;
- 		}
- 	}
- 
- 	if (v3d->ver < 41) {
- 		ret = map_regs(v3d, &v3d->gca_regs, "gca");
- 		if (ret)
--			goto dev_free;
-+			goto dev_destroy;
- 	}
- 
- 	v3d->mmu_scratch = dma_alloc_wc(dev, 4096, &v3d->mmu_scratch_paddr,
-@@ -303,23 +314,16 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 	if (!v3d->mmu_scratch) {
- 		dev_err(dev, "Failed to allocate MMU scratch page\n");
- 		ret = -ENOMEM;
--		goto dev_free;
-+		goto dev_destroy;
- 	}
- 
- 	pm_runtime_use_autosuspend(dev);
- 	pm_runtime_set_autosuspend_delay(dev, 50);
- 	pm_runtime_enable(dev);
- 
--	ret = drm_dev_init(&v3d->drm, &v3d_drm_driver, dev);
--	if (ret)
--		goto dma_free;
+ 	drm_dev_fini(ddev);
 -
--	platform_set_drvdata(pdev, drm);
--	drm->dev_private = v3d;
--
- 	ret = v3d_gem_init(drm);
- 	if (ret)
--		goto dev_destroy;
-+		goto dma_free;
- 
- 	ret = v3d_irq_init(v3d);
- 	if (ret)
-@@ -335,12 +339,10 @@ static int v3d_platform_drm_probe(struct platform_device *pdev)
- 	v3d_irq_disable(v3d);
- gem_destroy:
- 	v3d_gem_destroy(drm);
--dev_destroy:
--	drm_dev_put(drm);
- dma_free:
- 	dma_free_wc(dev, 4096, v3d->mmu_scratch, v3d->mmu_scratch_paddr);
--dev_free:
--	kfree(v3d);
-+dev_destroy:
-+	drm_dev_put(drm);
- 	return ret;
+-	kfree(tidss);
  }
  
+ DEFINE_DRM_GEM_CMA_FOPS(tidss_fops);
+@@ -154,6 +153,7 @@ static int tidss_probe(struct platform_device *pdev)
+ 		kfree(ddev);
+ 		return ret;
+ 	}
++	drmm_add_final_kfree(ddev, tidss);
+ 
+ 	tidss->dev = dev;
+ 	tidss->feat = of_device_get_match_data(dev);
 -- 
 2.24.1
 
