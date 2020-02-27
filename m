@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE76D17144A
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 10:45:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0C6F171460
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 10:52:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17D266EC77;
-	Thu, 27 Feb 2020 09:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F189B6EC7D;
+	Thu, 27 Feb 2020 09:52:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B8DD96EC75;
- Thu, 27 Feb 2020 09:45:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A63B7A0099;
- Thu, 27 Feb 2020 09:45:09 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8FB66EC7D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 09:52:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20367571-1500050 
+ for multiple; Thu, 27 Feb 2020 09:51:34 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 27 Feb 2020 09:51:33 +0000
+Message-Id: <20200227095133.1974455-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200227085723.1961649-5-chris@chris-wilson.co.uk>
+References: <20200227085723.1961649-5-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 27 Feb 2020 09:45:09 -0000
-Message-ID: <158279670965.29657.7285672513879059156@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/20=5D_drm/i915=3A_Skip_barriers_inside_?=
- =?utf-8?q?waits?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Consolidate ctx->engines[] release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,261 +38,351 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Use the same engine_idle_release() routine for cleaning all old
+ctx->engine[] state, closing any potential races with concurrent execbuf
+submission.
 
-Series: series starting with [01/20] drm/i915: Skip barriers inside waits
-URL   : https://patchwork.freedesktop.org/series/73999/
-State : failure
+v2ish: Use the ce->pin_count to close the execbuf gap.
 
-== Summary ==
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1241
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+Put the pin_if_active check back!
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 193 +++++++++++---------
+ drivers/gpu/drm/i915/gem/i915_gem_context.h |   1 -
+ 2 files changed, 102 insertions(+), 92 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8013 -> Patchwork_16729
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index e525ead073f7..8e2f8ab8ce6e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -242,7 +242,6 @@ static void __free_engines(struct i915_gem_engines *e, unsigned int count)
+ 		if (!e->engines[count])
+ 			continue;
+ 
+-		RCU_INIT_POINTER(e->engines[count]->gem_context, NULL);
+ 		intel_context_put(e->engines[count]);
+ 	}
+ 	kfree(e);
+@@ -255,7 +254,11 @@ static void free_engines(struct i915_gem_engines *e)
+ 
+ static void free_engines_rcu(struct rcu_head *rcu)
+ {
+-	free_engines(container_of(rcu, struct i915_gem_engines, rcu));
++	struct i915_gem_engines *engines =
++		container_of(rcu, struct i915_gem_engines, rcu);
++
++	i915_sw_fence_fini(&engines->fence);
++	free_engines(engines);
+ }
+ 
+ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+@@ -269,8 +272,6 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	e->ctx = ctx;
+-
+ 	for_each_engine(engine, gt, id) {
+ 		struct intel_context *ce;
+ 
+@@ -304,7 +305,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	list_del(&ctx->link);
+ 	spin_unlock(&ctx->i915->gem.contexts.lock);
+ 
+-	free_engines(rcu_access_pointer(ctx->engines));
+ 	mutex_destroy(&ctx->engines_mutex);
+ 
+ 	if (ctx->timeline)
+@@ -491,30 +491,104 @@ static void kill_engines(struct i915_gem_engines *engines)
+ static void kill_stale_engines(struct i915_gem_context *ctx)
+ {
+ 	struct i915_gem_engines *pos, *next;
+-	unsigned long flags;
+ 
+-	spin_lock_irqsave(&ctx->stale.lock, flags);
++	spin_lock_irq(&ctx->stale.lock);
++	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 	list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
+-		if (!i915_sw_fence_await(&pos->fence))
++		if (!i915_sw_fence_await(&pos->fence)) {
++			list_del_init(&pos->link);
+ 			continue;
++		}
+ 
+-		spin_unlock_irqrestore(&ctx->stale.lock, flags);
++		spin_unlock_irq(&ctx->stale.lock);
+ 
+ 		kill_engines(pos);
+ 
+-		spin_lock_irqsave(&ctx->stale.lock, flags);
++		spin_lock_irq(&ctx->stale.lock);
++		GEM_BUG_ON(i915_sw_fence_signaled(&pos->fence));
+ 		list_safe_reset_next(pos, next, link);
+ 		list_del_init(&pos->link); /* decouple from FENCE_COMPLETE */
+ 
+ 		i915_sw_fence_complete(&pos->fence);
+ 	}
+-	spin_unlock_irqrestore(&ctx->stale.lock, flags);
++	spin_unlock_irq(&ctx->stale.lock);
+ }
+ 
+ static void kill_context(struct i915_gem_context *ctx)
+ {
+ 	kill_stale_engines(ctx);
+-	kill_engines(__context_engines_static(ctx));
++}
++
++static int engines_notify(struct i915_sw_fence *fence,
++			  enum i915_sw_fence_notify state)
++{
++	struct i915_gem_engines *engines =
++		container_of(fence, typeof(*engines), fence);
++
++	switch (state) {
++	case FENCE_COMPLETE:
++		if (!list_empty(&engines->link)) {
++			struct i915_gem_context *ctx = engines->ctx;
++			unsigned long flags;
++
++			spin_lock_irqsave(&ctx->stale.lock, flags);
++			list_del(&engines->link);
++			spin_unlock_irqrestore(&ctx->stale.lock, flags);
++		}
++		i915_gem_context_put(engines->ctx);
++		break;
++
++	case FENCE_FREE:
++		init_rcu_head(&engines->rcu);
++		call_rcu(&engines->rcu, free_engines_rcu);
++		break;
++	}
++
++	return NOTIFY_DONE;
++}
++
++static void engines_idle_release(struct i915_gem_context *ctx,
++				 struct i915_gem_engines *engines)
++{
++	struct i915_gem_engines_iter it;
++	struct intel_context *ce;
++
++	i915_sw_fence_init(&engines->fence, engines_notify);
++	INIT_LIST_HEAD(&engines->link);
++
++	engines->ctx = i915_gem_context_get(ctx);
++
++	for_each_gem_engine(ce, engines, it) {
++		struct dma_fence *fence;
++		int err = 0;
++
++		/* serialises with execbuf */
++		RCU_INIT_POINTER(ce->gem_context, NULL);
++		if (!intel_context_pin_if_active(ce))
++			continue;
++
++		fence = i915_active_fence_get(&ce->timeline->last_request);
++		if (fence) {
++			err = i915_sw_fence_await_dma_fence(&engines->fence,
++							    fence, 0,
++							    GFP_KERNEL);
++			dma_fence_put(fence);
++		}
++		intel_context_unpin(ce);
++		if (err < 0)
++			goto kill;
++	}
++
++	spin_lock_irq(&engines->ctx->stale.lock);
++	if (!i915_gem_context_is_closed(engines->ctx))
++		list_add_tail(&engines->link, &engines->ctx->stale.engines);
++	spin_unlock_irq(&engines->ctx->stale.lock);
++
++kill:
++	if (list_empty(&engines->link)) /* raced, already closed */
++		kill_engines(engines);
++
++	i915_sw_fence_commit(&engines->fence);
+ }
+ 
+ static void set_closed_name(struct i915_gem_context *ctx)
+@@ -538,11 +612,16 @@ static void context_close(struct i915_gem_context *ctx)
+ {
+ 	struct i915_address_space *vm;
+ 
++	/* Flush any concurrent set_engines() */
++	mutex_lock(&ctx->engines_mutex);
++	engines_idle_release(ctx, rcu_replace_pointer(ctx->engines, NULL, 1));
+ 	i915_gem_context_set_closed(ctx);
+-	set_closed_name(ctx);
++	mutex_unlock(&ctx->engines_mutex);
+ 
+ 	mutex_lock(&ctx->mutex);
+ 
++	set_closed_name(ctx);
++
+ 	vm = i915_gem_context_vm(ctx);
+ 	if (vm)
+ 		i915_vm_close(vm);
+@@ -1626,77 +1705,6 @@ static const i915_user_extension_fn set_engines__extensions[] = {
+ 	[I915_CONTEXT_ENGINES_EXT_BOND] = set_engines__bond,
+ };
+ 
+-static int engines_notify(struct i915_sw_fence *fence,
+-			  enum i915_sw_fence_notify state)
+-{
+-	struct i915_gem_engines *engines =
+-		container_of(fence, typeof(*engines), fence);
+-
+-	switch (state) {
+-	case FENCE_COMPLETE:
+-		if (!list_empty(&engines->link)) {
+-			struct i915_gem_context *ctx = engines->ctx;
+-			unsigned long flags;
+-
+-			spin_lock_irqsave(&ctx->stale.lock, flags);
+-			list_del(&engines->link);
+-			spin_unlock_irqrestore(&ctx->stale.lock, flags);
+-		}
+-		break;
+-
+-	case FENCE_FREE:
+-		init_rcu_head(&engines->rcu);
+-		call_rcu(&engines->rcu, free_engines_rcu);
+-		break;
+-	}
+-
+-	return NOTIFY_DONE;
+-}
+-
+-static void engines_idle_release(struct i915_gem_engines *engines)
+-{
+-	struct i915_gem_engines_iter it;
+-	struct intel_context *ce;
+-	unsigned long flags;
+-
+-	GEM_BUG_ON(!engines);
+-	i915_sw_fence_init(&engines->fence, engines_notify);
+-
+-	INIT_LIST_HEAD(&engines->link);
+-	spin_lock_irqsave(&engines->ctx->stale.lock, flags);
+-	if (!i915_gem_context_is_closed(engines->ctx))
+-		list_add(&engines->link, &engines->ctx->stale.engines);
+-	spin_unlock_irqrestore(&engines->ctx->stale.lock, flags);
+-	if (list_empty(&engines->link)) /* raced, already closed */
+-		goto kill;
+-
+-	for_each_gem_engine(ce, engines, it) {
+-		struct dma_fence *fence;
+-		int err;
+-
+-		if (!ce->timeline)
+-			continue;
+-
+-		fence = i915_active_fence_get(&ce->timeline->last_request);
+-		if (!fence)
+-			continue;
+-
+-		err = i915_sw_fence_await_dma_fence(&engines->fence,
+-						    fence, 0,
+-						    GFP_KERNEL);
+-
+-		dma_fence_put(fence);
+-		if (err < 0)
+-			goto kill;
+-	}
+-	goto out;
+-
+-kill:
+-	kill_engines(engines);
+-out:
+-	i915_sw_fence_commit(&engines->fence);
+-}
+-
+ static int
+ set_engines(struct i915_gem_context *ctx,
+ 	    const struct drm_i915_gem_context_param *args)
+@@ -1739,8 +1747,6 @@ set_engines(struct i915_gem_context *ctx,
+ 	if (!set.engines)
+ 		return -ENOMEM;
+ 
+-	set.engines->ctx = ctx;
+-
+ 	for (n = 0; n < num_engines; n++) {
+ 		struct i915_engine_class_instance ci;
+ 		struct intel_engine_cs *engine;
+@@ -1793,6 +1799,11 @@ set_engines(struct i915_gem_context *ctx,
+ 
+ replace:
+ 	mutex_lock(&ctx->engines_mutex);
++	if (i915_gem_context_is_closed(ctx)) {
++		mutex_unlock(&ctx->engines_mutex);
++		free_engines(set.engines);
++		return -ENOENT;
++	}
+ 	if (args->size)
+ 		i915_gem_context_set_user_engines(ctx);
+ 	else
+@@ -1801,7 +1812,7 @@ set_engines(struct i915_gem_context *ctx,
+ 	mutex_unlock(&ctx->engines_mutex);
+ 
+ 	/* Keep track of old engine sets for kill_context() */
+-	engines_idle_release(set.engines);
++	engines_idle_release(ctx, set.engines);
+ 
+ 	return 0;
+ }
+@@ -2077,8 +2088,6 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	if (!clone)
+ 		goto err_unlock;
+ 
+-	clone->ctx = dst;
+-
+ 	for (n = 0; n < e->num_engines; n++) {
+ 		struct intel_engine_cs *engine;
+ 
+@@ -2121,8 +2130,7 @@ static int clone_engines(struct i915_gem_context *dst,
+ 	i915_gem_context_unlock_engines(src);
+ 
+ 	/* Serialised by constructor */
+-	free_engines(__context_engines_static(dst));
+-	RCU_INIT_POINTER(dst->engines, clone);
++	engines_idle_release(dst, rcu_replace_pointer(dst->engines, clone, 1));
+ 	if (user_engines)
+ 		i915_gem_context_set_user_engines(dst);
+ 	else
+@@ -2553,6 +2561,9 @@ i915_gem_engines_iter_next(struct i915_gem_engines_iter *it)
+ 	const struct i915_gem_engines *e = it->engines;
+ 	struct intel_context *ctx;
+ 
++	if (unlikely(!e))
++		return NULL;
++
+ 	do {
+ 		if (it->idx >= e->num_engines)
+ 			return NULL;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index 3ae61a355d87..57b7ae2893e1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -207,7 +207,6 @@ static inline void
+ i915_gem_engines_iter_init(struct i915_gem_engines_iter *it,
+ 			   struct i915_gem_engines *engines)
+ {
+-	GEM_BUG_ON(!engines);
+ 	it->engines = engines;
+ 	it->idx = 0;
+ }
+-- 
+2.25.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16729 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16729, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16729:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_auth@basic-auth:
-    - fi-kbl-r:           [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-r/igt@core_auth@basic-auth.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-r/igt@core_auth@basic-auth.html
-    - fi-bwr-2160:        [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-bwr-2160/igt@core_auth@basic-auth.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-bwr-2160/igt@core_auth@basic-auth.html
-    - fi-bdw-5557u:       [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-bdw-5557u/igt@core_auth@basic-auth.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-bdw-5557u/igt@core_auth@basic-auth.html
-    - fi-skl-guc:         [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-skl-guc/igt@core_auth@basic-auth.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-skl-guc/igt@core_auth@basic-auth.html
-    - fi-kbl-8809g:       [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-8809g/igt@core_auth@basic-auth.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-8809g/igt@core_auth@basic-auth.html
-    - fi-kbl-guc:         [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-guc/igt@core_auth@basic-auth.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-guc/igt@core_auth@basic-auth.html
-    - fi-icl-dsi:         [PASS][13] -> [INCOMPLETE][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-icl-dsi/igt@core_auth@basic-auth.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-icl-dsi/igt@core_auth@basic-auth.html
-    - fi-kbl-7500u:       [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-7500u/igt@core_auth@basic-auth.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-7500u/igt@core_auth@basic-auth.html
-    - fi-skl-6600u:       [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-skl-6600u/igt@core_auth@basic-auth.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-skl-6600u/igt@core_auth@basic-auth.html
-    - fi-icl-u2:          [PASS][19] -> [INCOMPLETE][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-icl-u2/igt@core_auth@basic-auth.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-icl-u2/igt@core_auth@basic-auth.html
-    - fi-hsw-4770:        [PASS][21] -> [INCOMPLETE][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-hsw-4770/igt@core_auth@basic-auth.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-hsw-4770/igt@core_auth@basic-auth.html
-    - fi-cfl-8700k:       [PASS][23] -> [INCOMPLETE][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cfl-8700k/igt@core_auth@basic-auth.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-cfl-8700k/igt@core_auth@basic-auth.html
-    - fi-snb-2520m:       [PASS][25] -> [INCOMPLETE][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-snb-2520m/igt@core_auth@basic-auth.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-snb-2520m/igt@core_auth@basic-auth.html
-    - fi-skl-lmem:        [PASS][27] -> [INCOMPLETE][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-skl-lmem/igt@core_auth@basic-auth.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-skl-lmem/igt@core_auth@basic-auth.html
-    - fi-skl-6700k2:      [PASS][29] -> [INCOMPLETE][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-skl-6700k2/igt@core_auth@basic-auth.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-skl-6700k2/igt@core_auth@basic-auth.html
-    - fi-ivb-3770:        [PASS][31] -> [INCOMPLETE][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-ivb-3770/igt@core_auth@basic-auth.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-ivb-3770/igt@core_auth@basic-auth.html
-    - fi-cfl-guc:         [PASS][33] -> [INCOMPLETE][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cfl-guc/igt@core_auth@basic-auth.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-cfl-guc/igt@core_auth@basic-auth.html
-    - fi-icl-guc:         [PASS][35] -> [INCOMPLETE][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-icl-guc/igt@core_auth@basic-auth.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-icl-guc/igt@core_auth@basic-auth.html
-    - fi-ilk-650:         [PASS][37] -> [INCOMPLETE][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-ilk-650/igt@core_auth@basic-auth.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-ilk-650/igt@core_auth@basic-auth.html
-    - fi-kbl-soraka:      [PASS][39] -> [INCOMPLETE][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-soraka/igt@core_auth@basic-auth.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-soraka/igt@core_auth@basic-auth.html
-    - fi-bsw-n3050:       [PASS][41] -> [INCOMPLETE][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-bsw-n3050/igt@core_auth@basic-auth.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-bsw-n3050/igt@core_auth@basic-auth.html
-    - fi-hsw-peppy:       [PASS][43] -> [INCOMPLETE][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-hsw-peppy/igt@core_auth@basic-auth.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-hsw-peppy/igt@core_auth@basic-auth.html
-    - fi-hsw-4770r:       [PASS][45] -> [INCOMPLETE][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-hsw-4770r/igt@core_auth@basic-auth.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-hsw-4770r/igt@core_auth@basic-auth.html
-    - fi-kbl-x1275:       [PASS][47] -> [INCOMPLETE][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-kbl-x1275/igt@core_auth@basic-auth.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-x1275/igt@core_auth@basic-auth.html
-    - fi-icl-y:           [PASS][49] -> [INCOMPLETE][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-icl-y/igt@core_auth@basic-auth.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-icl-y/igt@core_auth@basic-auth.html
-    - fi-bsw-nick:        [PASS][51] -> [INCOMPLETE][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-bsw-nick/igt@core_auth@basic-auth.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-bsw-nick/igt@core_auth@basic-auth.html
-    - fi-cfl-8109u:       [PASS][53] -> [INCOMPLETE][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cfl-8109u/igt@core_auth@basic-auth.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-cfl-8109u/igt@core_auth@basic-auth.html
-    - fi-blb-e6850:       [PASS][55] -> [INCOMPLETE][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-blb-e6850/igt@core_auth@basic-auth.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-blb-e6850/igt@core_auth@basic-auth.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@core_auth@basic-auth:
-    - {fi-kbl-7560u}:     NOTRUN -> [INCOMPLETE][57]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-kbl-7560u/igt@core_auth@basic-auth.html
-    - {fi-tgl-dsi}:       [PASS][58] -> [INCOMPLETE][59]
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-dsi/igt@core_auth@basic-auth.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-tgl-dsi/igt@core_auth@basic-auth.html
-    - {fi-tgl-u}:         [PASS][60] -> [INCOMPLETE][61]
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-u/igt@core_auth@basic-auth.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-tgl-u/igt@core_auth@basic-auth.html
-    - {fi-ehl-1}:         [PASS][62] -> [INCOMPLETE][63]
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-ehl-1/igt@core_auth@basic-auth.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-ehl-1/igt@core_auth@basic-auth.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16729 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_auth@basic-auth:
-    - fi-byt-j1900:       [PASS][64] -> [INCOMPLETE][65] ([i915#45])
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-byt-j1900/igt@core_auth@basic-auth.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-byt-j1900/igt@core_auth@basic-auth.html
-    - fi-pnv-d510:        [PASS][66] -> [INCOMPLETE][67] ([i915#299])
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-pnv-d510/igt@core_auth@basic-auth.html
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-pnv-d510/igt@core_auth@basic-auth.html
-    - fi-apl-guc:         [PASS][68] -> [INCOMPLETE][69] ([fdo#103927])
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-apl-guc/igt@core_auth@basic-auth.html
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-apl-guc/igt@core_auth@basic-auth.html
-    - fi-cml-u2:          [PASS][70] -> [INCOMPLETE][71] ([i915#283])
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cml-u2/igt@core_auth@basic-auth.html
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-cml-u2/igt@core_auth@basic-auth.html
-    - fi-bxt-dsi:         [PASS][72] -> [INCOMPLETE][73] ([fdo#103927])
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-bxt-dsi/igt@core_auth@basic-auth.html
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-bxt-dsi/igt@core_auth@basic-auth.html
-    - fi-byt-n2820:       [PASS][74] -> [INCOMPLETE][75] ([i915#45])
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-byt-n2820/igt@core_auth@basic-auth.html
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-byt-n2820/igt@core_auth@basic-auth.html
-    - fi-elk-e7500:       [PASS][76] -> [INCOMPLETE][77] ([i915#66])
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-elk-e7500/igt@core_auth@basic-auth.html
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-elk-e7500/igt@core_auth@basic-auth.html
-    - fi-cml-s:           [PASS][78] -> [INCOMPLETE][79] ([i915#283])
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-cml-s/igt@core_auth@basic-auth.html
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-cml-s/igt@core_auth@basic-auth.html
-    - fi-snb-2600:        [PASS][80] -> [INCOMPLETE][81] ([i915#82])
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-snb-2600/igt@core_auth@basic-auth.html
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-snb-2600/igt@core_auth@basic-auth.html
-    - fi-tgl-y:           [PASS][82] -> [INCOMPLETE][83] ([CI#94])
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-tgl-y/igt@core_auth@basic-auth.html
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-tgl-y/igt@core_auth@basic-auth.html
-    - fi-gdg-551:         [PASS][84] -> [INCOMPLETE][85] ([i915#172])
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-gdg-551/igt@core_auth@basic-auth.html
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-gdg-551/igt@core_auth@basic-auth.html
-    - fi-glk-dsi:         [PASS][86] -> [INCOMPLETE][87] ([i915#58] / [k.org#198133])
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8013/fi-glk-dsi/igt@core_auth@basic-auth.html
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/fi-glk-dsi/igt@core_auth@basic-auth.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [i915#172]: https://gitlab.freedesktop.org/drm/intel/issues/172
-  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
-  [i915#299]: https://gitlab.freedesktop.org/drm/intel/issues/299
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#66]: https://gitlab.freedesktop.org/drm/intel/issues/66
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (51 -> 45)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8013 -> Patchwork_16729
-
-  CI-20190529: 20190529
-  CI_DRM_8013: ddbaa8ebcf171da63385dccb8a6b4d0209c2f6fb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5471: 668afe52887a164ee6a12fd1c898bc1c9086cf3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16729: 1091026375756085f64dd88c011703d2b020be68 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-109102637575 drm/i915/execlists: Reduce preempt-to-busy roundtrip delay
-fff3931b5bef drm/i915/execlists: Check the sentinel is alone in the ELSP
-462b6fb118f9 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
-6dded72da559 drm/i915/gt: Declare when we enabled timeslicing
-e88a1a284017 drm/i915/selftests: Add request throughput measurement to perf
-558c7595b054 drm/i915/selftests: Be a little more lenient for reset workers
-481fd56c20dc drm/i915/selftests: Wait for the kernel context switch
-7c5ae8cee59f drm/i915/selftests: Check recovery from corrupted LRC
-37b9d01ab40f drm/i915/selftests: Verify LRC isolation
-b4dae8ef2ab9 drm/i915: Protect i915_request_await_start from early waits
-eb47d53f2699 drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
-1e35652986b0 drm/i915/gt: Reset queue_priority_hint after wedging
-ea172d1def13 drm/i915/selftests: Disable heartbeat around manual pulse tests
-8139afa5553c drm/i915/gem: Check that the context wasn't closed during setup
-645f9d790e24 drm/i915/gt: Prevent allocation on a banned context
-6ea5a0b4ac2e drm/i915/gem: Consolidate ctx->engines[] release
-620ed478d877 drm/i915/perf: Wait for lrc_reconfigure on disable
-99d09399016d drm/i915/perf: Manually acquire engine-wakeref around use of kernel_context
-c38fa802dbde drm/i915/perf: Mark up the racy use of perf->exclusive_stream
-7e51c69c481c drm/i915: Skip barriers inside waits
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16729/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
