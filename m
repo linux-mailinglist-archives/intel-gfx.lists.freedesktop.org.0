@@ -2,31 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA27E17236C
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 17:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98DFF1723B6
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 17:42:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 090196E936;
-	Thu, 27 Feb 2020 16:32:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAE1F89354;
+	Thu, 27 Feb 2020 16:42:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 923246E93E;
- Thu, 27 Feb 2020 16:32:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8AE09A7DFA;
- Thu, 27 Feb 2020 16:32:31 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53F3C89354
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 16:42:05 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 08:42:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="230827057"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 27 Feb 2020 08:42:02 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 27 Feb 2020 18:42:02 +0200
+Date: Thu, 27 Feb 2020 18:42:02 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200227164202.GV13686@intel.com>
+References: <20200227145359.17543-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Thu, 27 Feb 2020 16:32:31 -0000
-Message-ID: <158282115154.29656.15054408751643294409@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200227124356.1625616-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200227124356.1625616-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/perf=3A_reintroduce_wait_on_OA_configuration_compl?=
- =?utf-8?q?etion?=
+Content-Disposition: inline
+In-Reply-To: <20200227145359.17543-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dram: hide the dram structs better
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,41 +47,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Feb 27, 2020 at 04:53:59PM +0200, Jani Nikula wrote:
+> Finish the job started in d28ae3b28187 ("drm/i915: split out
+> intel_dram.[ch] from i915_drv.c") by moving struct dram_dimm_info and
+> dram_channel_info inside intel_dram.c, the only user of the structs.
+> =
 
-Series: drm/i915/perf: reintroduce wait on OA configuration completion
-URL   : https://patchwork.freedesktop.org/series/74014/
-State : warning
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-$ dim checkpatch origin/drm-tip
-9c67fa7e5fe9 drm/i915/perf: reintroduce wait on OA configuration completion
--:28: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!rq"
-#28: FILE: drivers/gpu/drm/i915/i915_perf.c:1406:
-+	GEM_BUG_ON(rq == NULL);
+> ---
+>  drivers/gpu/drm/i915/i915_drv.h   | 10 ----------
+>  drivers/gpu/drm/i915/intel_dram.c | 10 ++++++++++
+>  2 files changed, 10 insertions(+), 10 deletions(-)
+> =
 
--:45: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "stream->configure_request"
-#45: FILE: drivers/gpu/drm/i915/i915_perf.c:1428:
-+	GEM_BUG_ON(stream->configure_request != NULL);
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index ea13fc0b409b..c5a06f864123 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1274,16 +1274,6 @@ struct drm_i915_private {
+>  	 */
+>  };
+>  =
 
--:65: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "stream->configure_request"
-#65: FILE: drivers/gpu/drm/i915/i915_perf.c:2029:
-+		GEM_BUG_ON(stream->configure_request != NULL);
+> -struct dram_dimm_info {
+> -	u8 size, width, ranks;
+> -};
+> -
+> -struct dram_channel_info {
+> -	struct dram_dimm_info dimm_l, dimm_s;
+> -	u8 ranks;
+> -	bool is_16gb_dimm;
+> -};
+> -
+>  static inline struct drm_i915_private *to_i915(const struct drm_device *=
+dev)
+>  {
+>  	return container_of(dev, struct drm_i915_private, drm);
+> diff --git a/drivers/gpu/drm/i915/intel_dram.c b/drivers/gpu/drm/i915/int=
+el_dram.c
+> index 9bb9dd724d3f..6b922efb1d7c 100644
+> --- a/drivers/gpu/drm/i915/intel_dram.c
+> +++ b/drivers/gpu/drm/i915/intel_dram.c
+> @@ -6,6 +6,16 @@
+>  #include "i915_drv.h"
+>  #include "intel_dram.h"
+>  =
 
--:122: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "stream->configure_request"
-#122: FILE: drivers/gpu/drm/i915/i915_perf.c:2909:
-+	GEM_BUG_ON(stream->configure_request != NULL);
+> +struct dram_dimm_info {
+> +	u8 size, width, ranks;
+> +};
+> +
+> +struct dram_channel_info {
+> +	struct dram_dimm_info dimm_l, dimm_s;
+> +	u8 ranks;
+> +	bool is_16gb_dimm;
+> +};
+> +
+>  #define DRAM_TYPE_STR(type) [INTEL_DRAM_ ## type] =3D #type
+>  =
 
-total: 0 errors, 0 warnings, 4 checks, 123 lines checked
+>  static const char *intel_dram_type_str(enum intel_dram_type type)
+> -- =
 
+> 2.20.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
