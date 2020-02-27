@@ -1,39 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B3F217183E
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 14:09:14 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD7117187B
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 14:18:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1A7A6E057;
-	Thu, 27 Feb 2020 13:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D2B6E87C;
+	Thu, 27 Feb 2020 13:18:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE6BA8914C;
- Thu, 27 Feb 2020 13:09:05 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3226E87C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 13:18:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 05:09:05 -0800
-X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="227136570"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 05:18:32 -0800
+X-IronPort-AV: E=Sophos;i="5.70,492,1574150400"; d="scan'208";a="385154172"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 05:09:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Wambui Karuga <wambui.karugax@gmail.com>, daniel@ffwll.ch, airlied@linux.ie,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <20200227120232.19413-17-wambui.karugax@gmail.com>
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2020 05:18:29 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Jos=C3=A9?= Roberto de Souza <jose.souza@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200221212635.11614-1-jose.souza@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200227120232.19413-1-wambui.karugax@gmail.com>
- <20200227120232.19413-17-wambui.karugax@gmail.com>
-Date: Thu, 27 Feb 2020 15:08:58 +0200
-Message-ID: <87zhd4qis5.fsf@intel.com>
+References: <20200221212635.11614-1-jose.souza@intel.com>
+Date: Thu, 27 Feb 2020 15:18:26 +0200
+Message-ID: <87wo88qicd.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 16/21] drm/i915: make *_debugfs_register()
- functions return void.
+Subject: Re: [Intel-gfx] [PATCH v4-CI] drm/i915/psr: Force PSR probe only
+ after full initialization
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,123 +44,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Ross Zwisler <zwisler@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Feb 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
-> Since 987d65d01356 (drm: debugfs: make
-> drm_debugfs_create_files() never fail), drm_debugfs_create_files() never
-> fails and should return void. Therefore, remove its use as the
-> return value of i915_debugfs_register() and
-> intel_display_debugfs_register() and have both functions return void.
->
-> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++----
->  drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
->  drivers/gpu/drm/i915/i915_debugfs.c                  | 8 ++++----
->  drivers/gpu/drm/i915/i915_debugfs.h                  | 4 ++--
->  4 files changed, 12 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> index 46954cc7b6c0..3b877c34c420 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -1922,7 +1922,7 @@ static const struct {
->  	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
->  };
->  
-> -int intel_display_debugfs_register(struct drm_i915_private *i915)
-> +void intel_display_debugfs_register(struct drm_i915_private *i915)
->  {
->  	struct drm_minor *minor = i915->drm.primary;
->  	int i;
-> @@ -1935,9 +1935,9 @@ int intel_display_debugfs_register(struct drm_i915_private *i915)
->  				    intel_display_debugfs_files[i].fops);
->  	}
->  
-> -	return drm_debugfs_create_files(intel_display_debugfs_list,
-> -					ARRAY_SIZE(intel_display_debugfs_list),
-> -					minor->debugfs_root, minor);
-> +	drm_debugfs_create_files(intel_display_debugfs_list,
-> +				 ARRAY_SIZE(intel_display_debugfs_list),
-> +				 minor->debugfs_root, minor);
->  }
->  
->  static int i915_panel_show(struct seq_file *m, void *data)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> index a3bea1ce04c2..a5cf7a6d3d34 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-> @@ -10,10 +10,10 @@ struct drm_connector;
->  struct drm_i915_private;
->  
->  #ifdef CONFIG_DEBUG_FS
-> -int intel_display_debugfs_register(struct drm_i915_private *i915);
-> +void intel_display_debugfs_register(struct drm_i915_private *i915);
->  int intel_connector_debugfs_add(struct drm_connector *connector);
->  #else
-> -static inline int intel_display_debugfs_register(struct drm_i915_private *i915) { return 0; }
-> +static inline int intel_display_debugfs_register(struct drm_i915_private *i915) {}
-
-You don't actually change the return type.
-
-Otherwise, LGTM.
-
-BR,
-Jani.
-
->  static inline int intel_connector_debugfs_add(struct drm_connector *connector) { return 0; }
->  #endif
->  
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 8f2525e4ce0f..de313199c714 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -2392,7 +2392,7 @@ static const struct i915_debugfs_files {
->  	{"i915_guc_log_relay", &i915_guc_log_relay_fops},
->  };
->  
-> -int i915_debugfs_register(struct drm_i915_private *dev_priv)
-> +void i915_debugfs_register(struct drm_i915_private *dev_priv)
->  {
->  	struct drm_minor *minor = dev_priv->drm.primary;
->  	int i;
-> @@ -2409,7 +2409,7 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
->  				    i915_debugfs_files[i].fops);
->  	}
->  
-> -	return drm_debugfs_create_files(i915_debugfs_list,
-> -					I915_DEBUGFS_ENTRIES,
-> -					minor->debugfs_root, minor);
-> +	drm_debugfs_create_files(i915_debugfs_list,
-> +				 I915_DEBUGFS_ENTRIES,
-> +				 minor->debugfs_root, minor);
->  }
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.h b/drivers/gpu/drm/i915/i915_debugfs.h
-> index 6da39c76ab5e..1de2736f1248 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.h
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.h
-> @@ -12,10 +12,10 @@ struct drm_i915_private;
->  struct seq_file;
->  
->  #ifdef CONFIG_DEBUG_FS
-> -int i915_debugfs_register(struct drm_i915_private *dev_priv);
-> +void i915_debugfs_register(struct drm_i915_private *dev_priv);
->  void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj);
->  #else
-> -static inline int i915_debugfs_register(struct drm_i915_private *dev_priv) { return 0; }
-> +static inline void i915_debugfs_register(struct drm_i915_private *dev_priv) {}
->  static inline void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj) {}
->  #endif
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMSBGZWIgMjAyMCwgSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBp
+bnRlbC5jb20+IHdyb3RlOgo+IENvbW1pdCA2MGM2YTE0YjQ4OWIgKCJkcm0vaTkxNS9kaXNwbGF5
+OiBGb3JjZSB0aGUgc3RhdGUgY29tcHV0ZSBwaGFzZQo+IG9uY2UgdG8gZW5hYmxlIFBTUiIpIHdh
+cyBmb3JjaW5nIHRoZSBzdGF0ZSBjb21wdXRlIHRvbyBlYXJsaWVyCj4gY2F1c2luZyBlcnJvcnMg
+YmVjYXVzZSBub3QgZXZlcnl0aGluZyB3YXMgaW5pdGlhbGl6ZWQsIHNvIGhlcmUKPiBtb3Zpbmcg
+dG8gdGhlIGVuZCBvZiBpOTE1X2RyaXZlcl9tb2Rlc2V0X3Byb2JlKCkgd2hlbiB0aGUgZGlzcGxh
+eSBpcwo+IGFsbCBpbml0aWFsaXplZC4KCkhtcGgsIHJlYWxseSBub3QgaGFwcHkgYWJvdXQgdGhl
+IHBsYWNlbWVudCBoZXJlLiBUaGVzZSBhcmUgaGlnaCBsZXZlbApmdW5jdGlvbnMsIG5vdCBhIGR1
+bXBpbmcgZ3JvdW5kIGZvciByYW5kb20gZmVhdHVyZSBzcGVjaWZpYyBoYWNrcy4gOigKCkJSLApK
+YW5pLgoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
