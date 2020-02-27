@@ -1,32 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84563170DF2
-	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 02:37:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB17170E07
+	for <lists+intel-gfx@lfdr.de>; Thu, 27 Feb 2020 02:51:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3506E044;
-	Thu, 27 Feb 2020 01:37:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD0D26E4AD;
+	Thu, 27 Feb 2020 01:51:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5D54D6E044;
- Thu, 27 Feb 2020 01:37:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9F9956E4A2;
+ Thu, 27 Feb 2020 01:51:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 56063A47E6;
- Thu, 27 Feb 2020 01:37:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95B81A00EF;
+ Thu, 27 Feb 2020 01:51:31 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Oliver Barta" <o.barta89@gmail.com>
-Date: Thu, 27 Feb 2020 01:37:20 -0000
-Message-ID: <158276744032.29658.11832572781258997033@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Thu, 27 Feb 2020 01:51:31 -0000
+Message-ID: <158276829158.29658.3861598707454483186@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200226080645.7421-1-oliver.barta@aptiv.com>
-In-Reply-To: <20200226080645.7421-1-oliver.barta@aptiv.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBz?=
- =?utf-8?q?eries_starting_with_=5B1/3=5D_drm/i915=3A_HDCP=3A_fix_Ri_prime_?=
- =?utf-8?q?check_done_during_link_check?=
+References: <20200226163054.9509-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200226163054.9509-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Set_up_PIPE=5FMISC_truncate_bit_on_tgl+?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,25 +47,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/3] drm/i915: HDCP: fix Ri prime check done during link check
-URL   : https://patchwork.freedesktop.org/series/73961/
+Series: drm/i915: Set up PIPE_MISC truncate bit on tgl+
+URL   : https://patchwork.freedesktop.org/series/73960/
 State : failure
 
 == Summary ==
 
-Applying: drm/i915: HDCP: fix Ri prime check done during link check
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_hdmi.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_hdmi.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_hdmi.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 drm/i915: HDCP: fix Ri prime check done during link check
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+CI Bug Log - changes from CI_DRM_8010 -> Patchwork_16719
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16719 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16719, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16719:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8010/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/fi-icl-dsi/igt@kms_flip@basic-flip-vs-dpms.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16719 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live_active:
+    - {fi-ehl-1}:         [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8010/fi-ehl-1/igt@i915_selftest@live_active.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/fi-ehl-1/igt@i915_selftest@live_active.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+
+
+Participating hosts (51 -> 42)
+------------------------------
+
+  Missing    (9): fi-hsw-4200u fi-glk-dsi fi-byt-squawks fi-tgl-y fi-bsw-cyan fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8010 -> Patchwork_16719
+
+  CI-20190529: 20190529
+  CI_DRM_8010: 97bbec4d80df1c6573fc7063ad830e8beefe07c8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5471: 668afe52887a164ee6a12fd1c898bc1c9086cf3e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16719: c992e861fa194162dd6ed4add0b11e5eab3b47e5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c992e861fa19 drm/i915: Set up PIPE_MISC truncate bit on tgl+
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16719/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
