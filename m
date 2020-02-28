@@ -1,33 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96A281732E6
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:28:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 766FC1732FD
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:34:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFC3D6EE65;
-	Fri, 28 Feb 2020 08:28:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69AFB6EE6C;
+	Fri, 28 Feb 2020 08:34:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85EEC6EE65
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:28:41 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20380967-1500050 for multiple; Fri, 28 Feb 2020 08:28:39 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E8D446EE6B;
+ Fri, 28 Feb 2020 08:34:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E310FA00FD;
+ Fri, 28 Feb 2020 08:34:06 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
-Message-ID: <158287851663.19174.2013462831358055362@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 08:28:36 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
- changing cdclk
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 28 Feb 2020 08:34:06 -0000
+Message-ID: <158287884690.7477.9739716327601323727@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/24=5D_drm/i915/gt=3A_Check_engin?=
+ =?utf-8?q?e-is-awake_on_reset_later?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,46 +39,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAyLTI3IDE5OjM5OjU0KQo+IEZyb206IFZpbGxl
-IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gZ21idXMvYXV4
-IG1heSBiZSBjbG9ja2VkIGJ5IGNkY2xrLCB0aHVzIHdlIHNob3VsZCBtYWtlIHN1cmUgbm8KPiB0
-cmFuc2ZlcnMgYXJlIG9uZ29pbmcgd2hpbGUgdGhlIGNkY2xrIGZyZXF1ZW5jeSBpcyBiZWluZyBj
-aGFuZ2VkLgo+IFdlIGRvIHRoYXQgYnkgc2ltcGx5IGdyYWJiaW5nIGFsbCB0aGUgZ21idXMvYXV4
-IG11dGV4ZXMuIE5vIG9uZQo+IGVsc2Ugc2hvdWxkIGJlIGhvbGRpbmcgYW55IG1vcmUgdGhhbiBv
-bmUgb2YgdGhvc2UgYXQgYSB0aW1lIHNvCj4gdGhlIGxvY2sgb3JkZXJpbmcgaGVyZSBzaG91bGRu
-J3QgbWF0dGVyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
-amFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfY2RjbGsuYyB8IDIzICsrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNo
-YW5nZWQsIDIzIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9jZGNsay5jCj4gaW5kZXggMDc0MWQ2NDM0NTViLi5mNjliZjRhNGViMWMgMTAwNjQ0
-Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCj4gQEAgLTE4Njgs
-NiArMTg2OCw5IEBAIHN0YXRpYyB2b2lkIGludGVsX3NldF9jZGNsayhzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0
-cnVjdCBpbnRlbF9jZGNsa19jb25maWcgKmNkY2xrX2NvbmZpZywKPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgZW51bSBwaXBlIHBpcGUpCj4gIHsKPiArICAgICAgIHN0cnVjdCBpbnRlbF9l
-bmNvZGVyICplbmNvZGVyOwo+ICsgICAgICAgdW5zaWduZWQgaW50IGF1eF9tdXRleF9sb2NrY2xh
-c3MgPSAwOwo+ICsKPiAgICAgICAgIGlmICghaW50ZWxfY2RjbGtfY2hhbmdlZCgmZGV2X3ByaXYt
-PmNkY2xrLmh3LCBjZGNsa19jb25maWcpKQo+ICAgICAgICAgICAgICAgICByZXR1cm47Cj4gIAo+
-IEBAIC0xODc2LDggKzE4NzksMjggQEAgc3RhdGljIHZvaWQgaW50ZWxfc2V0X2NkY2xrKHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiAgCj4gICAgICAgICBpbnRlbF9kdW1wX2Nk
-Y2xrX2NvbmZpZyhjZGNsa19jb25maWcsICJDaGFuZ2luZyBDRENMSyB0byIpOwo+ICAKPiArICAg
-ICAgIC8qCj4gKyAgICAgICAgKiBMb2NrIGF1eC9nbWJ1cyB3aGlsZSB3ZSBjaGFuZ2UgY2RjbGsg
-aW4gY2FzZSB0aG9zZQo+ICsgICAgICAgICogZnVuY3Rpb25zIHVzZSBjZGNsay4gTm90IGFsbCBw
-bGF0Zm9ybXMvcG9ydHMgZG8sCj4gKyAgICAgICAgKiBidXQgd2UnbGwgbG9jayB0aGVtIGFsbCBm
-b3Igc2ltcGxpY2l0eS4KPiArICAgICAgICAqLwo+ICsgICAgICAgbXV0ZXhfbG9jaygmZGV2X3By
-aXYtPmdtYnVzX211dGV4KTsKPiArICAgICAgIGZvcl9lYWNoX2ludGVsX2RwKCZkZXZfcHJpdi0+
-ZHJtLCBlbmNvZGVyKSB7Cj4gKyAgICAgICAgICAgICAgIHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
-ZHAgPSBlbmNfdG9faW50ZWxfZHAoZW5jb2Rlcik7Cj4gKwo+ICsgICAgICAgICAgICAgICBtdXRl
-eF9sb2NrX25lc3RlZCgmaW50ZWxfZHAtPmF1eC5od19tdXRleCwKPiArICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgYXV4X211dGV4X2xvY2tjbGFzcysrKTsKCm11dGV4X2xvY2tfbmVz
-dF9sb2NrKCZpbnRlbF9kcC0+YXV4Lmh3X211dGV4LCAmZGV2X3ByaXYtPmdtYnVzX211dGV4KTsK
-PwotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
-SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
-dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: series starting with [01/24] drm/i915/gt: Check engine-is-awake on reset later
+URL   : https://patchwork.freedesktop.org/series/74064/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+cf35476aba26 drm/i915/gt: Check engine-is-awake on reset later
+2d9cb5454fb9 drm/i915: Skip barriers inside waits
+eee7935e8b02 drm/i915/perf: Mark up the racy use of perf->exclusive_stream
+2595bf7a20cf drm/i915/perf: Manually acquire engine-wakeref around use of kernel_context
+970d94f49328 drm/i915/perf: Reintroduce wait on OA configuration completion
+7f853a24cf81 drm/i915: Wrap i915_active in a simple kreffed struct
+-:44: WARNING:LINE_SPACING: Missing a blank line after declarations
+#44: FILE: drivers/gpu/drm/i915/i915_active.c:908:
++	struct auto_active *aa = container_of(ref, typeof(*aa), base);
++	kref_put(&aa->ref, auto_release);
+
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+3866ade4b94e drm/i915: Extend i915_request_await_active to use all timelines
+effe03fbfc33 drm/i915/perf: Schedule oa_config after modifying the contexts
+ae1f01773370 drm/i915/gem: Consolidate ctx->engines[] release
+79cc4030dfde drm/i915/gt: Prevent allocation on a banned context
+2ad577382daf drm/i915/gem: Check that the context wasn't closed during setup
+54c591ceb43f drm/i915/selftests: Disable heartbeat around manual pulse tests
+10c7bfb49474 drm/i915/gt: Reset queue_priority_hint after wedging
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+<0> [574.303565] i915_sel-6278    2.... 481822445us : __i915_subtests: Running intel_execlists_live_selftests/live_error_interrupt
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+d6a1ba655f2a drm/i915/gt: Pull marking vm as closed underneath the vm->mutex
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#12: 
+References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
+
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")'
+#12: 
+References: 00de702c6c6f ("drm/i915: Check that the vma hasn't been closed before we insert it")
+
+total: 1 errors, 1 warnings, 0 checks, 26 lines checked
+82df6afb9ed9 drm/i915: Protect i915_request_await_start from early waits
+76c4b1fb4c01 drm/i915/selftests: Verify LRC isolation
+-:449: WARNING:MEMORY_BARRIER: memory barrier without comment
+#449: FILE: drivers/gpu/drm/i915/gt/selftest_lrc.c:5179:
++	wmb();
+
+total: 0 errors, 1 warnings, 0 checks, 557 lines checked
+1df5e762e382 drm/i915/selftests: Check recovery from corrupted LRC
+4dfb2ecef5a8 drm/i915/selftests: Wait for the kernel context switch
+8082262f522d drm/i915/selftests: Be a little more lenient for reset workers
+03d66544ebb8 drm/i915/selftests: Add request throughput measurement to perf
+-:90: WARNING:LINE_SPACING: Missing a blank line after declarations
+#90: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1515:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
+
+-:157: WARNING:LINE_SPACING: Missing a blank line after declarations
+#157: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1582:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
+
+-:213: WARNING:LINE_SPACING: Missing a blank line after declarations
+#213: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1638:
++	struct drm_i915_private *i915 = arg;
++	static int (* const func[])(void *arg) = {
+
+-:221: WARNING:LINE_SPACING: Missing a blank line after declarations
+#221: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1646:
++	struct intel_engine_cs *engine;
++	int (* const *fn)(void *arg);
+
+-:263: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
+#263: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1688:
++		yield(); /* start all threads before we kthread_stop() */
+
+total: 0 errors, 5 warnings, 0 checks, 301 lines checked
+9d4f288874ad drm/i915/gt: Declare when we enabled timeslicing
+6dfe74ecc377 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+79f714f11f81 drm/i915/execlists: Check the sentinel is alone in the ELSP
+750fb757725b drm/i915/execlists: Reduce preempt-to-busy roundtrip delay
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
