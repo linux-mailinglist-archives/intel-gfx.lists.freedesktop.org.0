@@ -2,41 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D4D173983
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 15:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D61F8173996
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 15:15:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53AC36E19B;
-	Fri, 28 Feb 2020 14:10:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD006EE33;
+	Fri, 28 Feb 2020 14:15:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D016E19B
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 14:10:45 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 06:10:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232541201"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 28 Feb 2020 06:10:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2020 16:10:42 +0200
-Date: Fri, 28 Feb 2020 16:10:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200228141042.GE13686@intel.com>
-References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
- <87a753qdwe.fsf@intel.com> <20200228111045.GA13686@intel.com>
+Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A77F16EE33
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 14:15:01 +0000 (UTC)
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+ by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01SEEIBJ103833;
+ Fri, 28 Feb 2020 14:14:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type; s=corp-2020-01-29;
+ bh=6dxZTwffd0c+ZSsPkurZdTLE/IdiL/nikLAWgC2Ltek=;
+ b=IwH749i5Y5keay9Q6cnOvT7Shy2HCjgSZb4cidO2vpbWyv06lE9IuXG+BHh52ZWoHlyo
+ IGhHMuhYUMiKx1Qc6TrtG8DMcK4mzDR0iej3kDsehKVFY9LpV3WghgqseeRWP0pmQmWm
+ 4Tj2YvcWLsw3DTtlZ81lZwKrTcNRP88ipAbHiy+/QS19bOILms6JX5jQLwA6YElot8ND
+ K86qxHnR8VFCzPn/I+UQF/MhEt0EmGtB9gxlraDKtTrsJ89u8QhHnSPQBuug/bSwqqDM
+ euKzrZTuzmgie/gegnL80IL/tTBcptVVHUg0yp/EF5gC3ykuLCfKNyxCPWT6DyYRyvJR Cg== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+ by aserp2120.oracle.com with ESMTP id 2yf0dm9d4w-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 28 Feb 2020 14:14:49 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+ by userp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 01SEEOi6029407;
+ Fri, 28 Feb 2020 14:14:48 GMT
+Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
+ by userp3020.oracle.com with ESMTP id 2ydj4qw29m-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Fri, 28 Feb 2020 14:14:48 +0000
+Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
+ by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 01SEEipk003917;
+ Fri, 28 Feb 2020 14:14:44 GMT
+Received: from kili.mountain (/129.205.23.165)
+ by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Fri, 28 Feb 2020 06:14:43 -0800
+Date: Fri, 28 Feb 2020 17:14:13 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200228141413.qfjf4abr323drlo4@kili.mountain>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200228111045.GA13686@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
- changing cdclk
+X-Mailer: git-send-email haha only kidding
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9544
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ phishscore=0 suspectscore=0
+ spamscore=0 adultscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002280112
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9544
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 clxscore=1011
+ bulkscore=0 impostorscore=0 mlxscore=0 priorityscore=1501 phishscore=0
+ spamscore=0 malwarescore=0 mlxlogscore=999 adultscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002280112
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Fix return in
+ assert_mmap_offset()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,104 +79,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David Airlie <airlied@linux.ie>, kernel-janitors@vger.kernel.org,
+ Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 01:10:45PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Feb 28, 2020 at 11:06:41AM +0200, Jani Nikula wrote:
-> > On Thu, 27 Feb 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wrot=
-e:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > >
-> > > gmbus/aux may be clocked by cdclk, thus we should make sure no
-> > > transfers are ongoing while the cdclk frequency is being changed.
-> > > We do that by simply grabbing all the gmbus/aux mutexes. No one
-> > > else should be holding any more than one of those at a time so
-> > > the lock ordering here shouldn't matter.
-> > >
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++++++++++++++++++++=
-++
-> > >  1 file changed, 23 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu=
-/drm/i915/display/intel_cdclk.c
-> > > index 0741d643455b..f69bf4a4eb1c 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > @@ -1868,6 +1868,9 @@ static void intel_set_cdclk(struct drm_i915_pri=
-vate *dev_priv,
-> > >  			    const struct intel_cdclk_config *cdclk_config,
-> > >  			    enum pipe pipe)
-> > >  {
-> > > +	struct intel_encoder *encoder;
-> > > +	unsigned int aux_mutex_lockclass =3D 0;
-> > > +
-> > >  	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
-> > >  		return;
-> > >  =
+The assert_mmap_offset() returns type bool so if we return an error
+pointer that is "return true;" or success.  If we have an error, then
+we should return false.
 
-> > > @@ -1876,8 +1879,28 @@ static void intel_set_cdclk(struct drm_i915_pr=
-ivate *dev_priv,
-> > >  =
+Fixes: 3d81d589d6e3 ("drm/i915: Test exhaustion of the mmap space")
+Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+---
+Not tested.  In theory it's correct, but when you're adding new error
+paths it's always good to test.
 
-> > >  	intel_dump_cdclk_config(cdclk_config, "Changing CDCLK to");
-> > >  =
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> > > +	/*
-> > > +	 * Lock aux/gmbus while we change cdclk in case those
-> > > +	 * functions use cdclk. Not all platforms/ports do,
-> > > +	 * but we'll lock them all for simplicity.
-> > > +	 */
-> > > +	mutex_lock(&dev_priv->gmbus_mutex);
-> > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
-> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > +
-> > > +		mutex_lock_nested(&intel_dp->aux.hw_mutex,
-> > > +				  aux_mutex_lockclass++);
-> > > +	}
-> > > +
-> > >  	dev_priv->display.set_cdclk(dev_priv, cdclk_config, pipe);
-> > >  =
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index ef7c74cff28a..43912e9b683d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -570,7 +570,7 @@ static bool assert_mmap_offset(struct drm_i915_private *i915,
+ 
+ 	obj = i915_gem_object_create_internal(i915, size);
+ 	if (IS_ERR(obj))
+-		return PTR_ERR(obj);
++		return false;
+ 
+ 	mmo = mmap_offset_attach(obj, I915_MMAP_OFFSET_GTT, NULL);
+ 	i915_gem_object_put(obj);
+-- 
+2.11.0
 
-> > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
-> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > +
-> > > +		mutex_unlock(&intel_dp->aux.hw_mutex);
-> > > +	}
-> > > +	mutex_unlock(&dev_priv->gmbus_mutex);
-> > > +
-> > =
-
-> > I'm becoming increasingly sensitive to directly touching the private
-> > parts of other modules... gmbus_mutex is really for intel_gmbus.c and
-> > aux.hw_mutex for drm_dp_helper.c.
-> > =
-
-> > One could also argue that the cdclk is a lower level function used by
-> > higher level functions aux/gmbus, and it seems like the higher level
-> > function should lock the cdclk while it depends on it, not the other way
-> > around.
-> =
-
-> That would require a rwsem. Otherwise it all gets serialized needlessly.
-> Not sure what's the state of rwsems these days, but IIRC at some point
-> the rt patches converted them all to normal mutexes.
-
-Some googling suggests that my infromation may be out of date. So we
-could introduce an rwsem for this I guess. Would add a bit more cost
-to the common codepaths though (not that they're really performance
-critical) whereas this version only adds extra cost to the much more
-rare .set_cdclk() path.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
