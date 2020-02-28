@@ -1,38 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF53173BAC
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:39:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3E59173C13
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:47:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E58936E067;
-	Fri, 28 Feb 2020 15:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41DAE6E090;
+	Fri, 28 Feb 2020 15:47:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6256E067
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 15:39:57 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 07:39:56 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232275235"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 28 Feb 2020 07:39:55 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id C41725C1DAA; Fri, 28 Feb 2020 17:38:42 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200228082330.2411941-19-chris@chris-wilson.co.uk>
-References: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
- <20200228082330.2411941-19-chris@chris-wilson.co.uk>
-Date: Fri, 28 Feb 2020 17:38:42 +0200
-Message-ID: <87wo867md9.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 69D846E086;
+ Fri, 28 Feb 2020 15:47:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62D49A0071;
+ Fri, 28 Feb 2020 15:47:05 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 19/24] drm/i915/selftests: Be a little more
- lenient for reset workers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Fri, 28 Feb 2020 15:47:05 -0000
+Message-ID: <158290482537.7474.35327087451215131@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228114110.187792-1-hdegoede@redhat.com>
+In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Some_upside-down_panel_handling_fixes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,141 +38,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Give the reset worker a kick before losing help when waiting for hang
-> recovery, as the CPU scheduler is a little unreliable.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Series: drm/i915: Some upside-down panel handling fixes
+URL   : https://patchwork.freedesktop.org/series/74076/
+State : success
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/selftest_lrc.c | 74 ++++++++++++++++++--------
->  1 file changed, 52 insertions(+), 22 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> index 95da6b880e3f..af5b3da6d894 100644
-> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> @@ -90,6 +90,48 @@ static int wait_for_submit(struct intel_engine_cs *engine,
->  	return -ETIME;
->  }
->  
-> +static int wait_for_reset(struct intel_engine_cs *engine,
-> +			  struct i915_request *rq,
-> +			  unsigned long timeout)
-> +{
-> +	timeout += jiffies;
-> +	do {
-> +		cond_resched();
-> +		intel_engine_flush_submission(engine);
-> +
-> +		if (READ_ONCE(engine->execlists.pending[0]))
-> +			continue;
-> +
-> +		if (i915_request_completed(rq))
-> +			break;
-> +
-> +		if (READ_ONCE(rq->fence.error))
-> +			break;
-> +	} while (time_before(jiffies, timeout));
-> +
-> +	flush_scheduled_work();
-> +
-> +	if (rq->fence.error != -EIO) {
-> +		pr_err("%s: hanging request %llx:%lld not reset\n",
-> +		       engine->name,
-> +		       rq->fence.context,
-> +		       rq->fence.seqno);
-> +		return -EINVAL;
-> +	}
-> +
-> +	/* Give the request a jiffie to complete after flushing the worker */
-> +	if (i915_request_wait(rq, 0,
-> +			      max(0l, (long)(timeout - jiffies)) + 1) < 0) {
-> +		pr_err("%s: hanging request %llx:%lld did not complete\n",
-> +		       engine->name,
-> +		       rq->fence.context,
-> +		       rq->fence.seqno);
-> +		return -ETIME;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int live_sanitycheck(void *arg)
->  {
->  	struct intel_gt *gt = arg;
-> @@ -1805,14 +1847,9 @@ static int __cancel_active0(struct live_preempt_cancel *arg)
->  	if (err)
->  		goto out;
->  
-> -	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-> -		err = -EIO;
-> -		goto out;
-> -	}
-> -
-> -	if (rq->fence.error != -EIO) {
-> -		pr_err("Cancelled inflight0 request did not report -EIO\n");
-> -		err = -EINVAL;
-> +	err = wait_for_reset(arg->engine, rq, HZ / 2);
-> +	if (err) {
-> +		pr_err("Cancelled inflight0 request did not reset\n");
->  		goto out;
->  	}
->  
-> @@ -1870,10 +1907,9 @@ static int __cancel_active1(struct live_preempt_cancel *arg)
->  		goto out;
->  
->  	igt_spinner_end(&arg->a.spin);
-> -	if (i915_request_wait(rq[1], 0, HZ / 5) < 0) {
-> -		err = -EIO;
-> +	err = wait_for_reset(arg->engine, rq[1], HZ / 2);
-> +	if (err)
->  		goto out;
-> -	}
->  
->  	if (rq[0]->fence.error != 0) {
->  		pr_err("Normal inflight0 request did not complete\n");
-> @@ -1953,10 +1989,9 @@ static int __cancel_queued(struct live_preempt_cancel *arg)
->  	if (err)
->  		goto out;
->  
-> -	if (i915_request_wait(rq[2], 0, HZ / 5) < 0) {
-> -		err = -EIO;
-> +	err = wait_for_reset(arg->engine, rq[2], HZ / 2);
-> +	if (err)
->  		goto out;
-> -	}
->  
->  	if (rq[0]->fence.error != -EIO) {
->  		pr_err("Cancelled inflight0 request did not report -EIO\n");
-> @@ -2014,14 +2049,9 @@ static int __cancel_hostile(struct live_preempt_cancel *arg)
->  	if (err)
->  		goto out;
->  
-> -	if (i915_request_wait(rq, 0, HZ / 5) < 0) {
-> -		err = -EIO;
-> -		goto out;
-> -	}
-> -
-> -	if (rq->fence.error != -EIO) {
-> -		pr_err("Cancelled inflight0 request did not report -EIO\n");
-> -		err = -EINVAL;
-> +	err = wait_for_reset(arg->engine, rq, HZ / 2);
-> +	if (err) {
-> +		pr_err("Cancelled inflight0 request did not reset\n");
->  		goto out;
->  	}
->  
-> -- 
-> 2.25.1
+CI Bug Log - changes from CI_DRM_8030 -> Patchwork_16761
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16761 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#730])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/fi-tgl-y/igt@kms_addfb_basic@addfb25-y-tiled.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111096] / [i915#323])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@prime_self_import@basic-llseek-size:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/fi-tgl-y/igt@prime_self_import@basic-llseek-size.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
+
+
+Participating hosts (50 -> 43)
+------------------------------
+
+  Additional (2): fi-glk-dsi fi-ilk-650 
+  Missing    (9): fi-kbl-soraka fi-ilk-m540 fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8030 -> Patchwork_16761
+
+  CI-20190529: 20190529
+  CI_DRM_8030: dbdc956c90598337bef46cede52b082954651c0e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5476: 6628336d5699e3fda2c3b64b1c9fc5426b6de29a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16761: 91740cf1d41cdc75321a68067c5bdd0d5e55b297 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+91740cf1d41c drm/i915/dp: Use BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
+3da5c24d3382 drm/i915/dsi: Remove readback of panel orientation on BYT / CHT
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
