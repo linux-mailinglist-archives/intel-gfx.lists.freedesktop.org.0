@@ -1,31 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24D0D172DC6
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 02:01:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C6F3172DEB
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 02:03:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 681136EDAA;
-	Fri, 28 Feb 2020 01:01:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E4296EDA9;
+	Fri, 28 Feb 2020 01:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4EB6A6EDAA;
- Fri, 28 Feb 2020 01:01:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4765EA7525;
- Fri, 28 Feb 2020 01:01:41 +0000 (UTC)
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [205.139.110.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E532C6EDA9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 01:03:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582851833;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=hRN8eHua6qZxJSEBJTd7eqSNMS3wRQFEAkDzQ0pIXII=;
+ b=IljFkvXXSkouOnSujVksJSeu1kqWwcFzwXOS0CDEhTfSSDqoZy5GEy+OABHUiABxw9xFyG
+ oIuV04lN98mtIYWhA/9ybxB9ZCOTBZmo1axueC3ZAmdP/v4Tj+dxfxpUd+j5khvOlr2IMQ
+ foCsOhIZoAdN0OLHP33cuuF+zBNMdEg=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-26-CaWvg9btMe-Ck7SyAYdSsw-1; Thu, 27 Feb 2020 20:03:47 -0500
+X-MC-Unique: CaWvg9btMe-Ck7SyAYdSsw-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id ECF09107ACC7;
+ Fri, 28 Feb 2020 01:03:45 +0000 (UTC)
+Received: from treble (ovpn-121-128.rdu2.redhat.com [10.10.121.128])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id DCABD60C18;
+ Fri, 28 Feb 2020 01:03:44 +0000 (UTC)
+Date: Thu, 27 Feb 2020 19:03:42 -0600
+From: Josh Poimboeuf <jpoimboe@redhat.com>
+To: Al Viro <viro@zeniv.linux.org.uk>
+Message-ID: <20200228010342.3j3awgvvgvitif7z@treble>
+References: <ed52cfb852d2772bf20f48614d75f1d1b1451995.1582841072.git.jpoimboe@redhat.com>
+ <20200227223542.GE23230@ZenIV.linux.org.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bob Paauwe" <bob.j.paauwe@intel.com>
-Date: Fri, 28 Feb 2020 01:01:41 -0000
-Message-ID: <158285170128.7477.1860915947859143935@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200219211551.20125-1-bob.j.paauwe@intel.com>
-In-Reply-To: <20200219211551.20125-1-bob.j.paauwe@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
- =?utf-8?q?ing_YUV444_packed_format_support_for_skl+_=28rev4=29?=
+Content-Disposition: inline
+In-Reply-To: <20200227223542.GE23230@ZenIV.linux.org.uk>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Minimize uaccess exposure in
+ i915_gem_execbuffer2_ioctl()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,117 +59,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Feb 27, 2020 at 10:35:42PM +0000, Al Viro wrote:
+> On Thu, Feb 27, 2020 at 04:08:26PM -0600, Josh Poimboeuf wrote:
+> > With CONFIG_CC_OPTIMIZE_FOR_SIZE, objtool reports:
+> > 
+> >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.o: warning: objtool: i915_gem_execbuffer2_ioctl()+0x5b7: call to gen8_canonical_addr() with UACCESS enabled
+> > 
+> > This means i915_gem_execbuffer2_ioctl() is calling gen8_canonical_addr()
+> > -- and indirectly, sign_extend64() -- from the user_access_begin/end
+> > critical region (i.e, with SMAP disabled).
+> > 
+> > While it's probably harmless in this case, in general we like to avoid
+> > extra function calls in SMAP-disabled regions because it can open up
+> > inadvertent security holes.
+> > 
+> > Fix it by moving the gen8_canonical_addr() conversion to a separate loop
+> > before user_access_begin() is called.
+> > 
+> > Note that gen8_canonical_addr() is now called *before* masking off the
+> > PIN_OFFSET_MASK bits.  That should be ok because it just does a sign
+> > extension and ignores the masked lower bits anyway.
+> 
+> How painful would it be to inline the damn thing?
+> <looks>
+> static inline u64 gen8_canonical_addr(u64 address)
+> {
+>         return sign_extend64(address, GEN8_HIGH_ADDRESS_BIT);
+> }
+> static inline __s64 sign_extend64(__u64 value, int index)
+> {
+>         __u8 shift = 63 - index;
+>         return (__s64)(value << shift) >> shift;
+> }
+> 
+> What the hell?  Josh, what kind of .config do you have that these are
+> _not_ inlined?
 
-Series: Adding YUV444 packed format support for skl+ (rev4)
-URL   : https://patchwork.freedesktop.org/series/73020/
-State : success
+I think this was seen with CONFIG_CC_OPTIMIZE_FOR_SIZE, which tends to
+ignore inline.
 
-== Summary ==
+> And why not mark gen8_canonical_addr() __always_inline?
 
-CI Bug Log - changes from CI_DRM_8023 -> Patchwork_16744
-====================================================
+Right, marking those two functions as __always_inline is the other
+option.  The problem is, if you keep doing it, eventually you end up
+with __always_inline-itis spreading all over the place.  And it affects
+all the other callers, at least in the CONFIG_CC_OPTIMIZE_FOR_SIZE case.
+At least this fix is localized.
 
-Summary
--------
+But I agree my patch isn't ideal either.
 
-  **SUCCESS**
+-- 
+Josh
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16744:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@runner@aborted:
-    - {fi-tgl-u}:         NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-tgl-u/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16744 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [PASS][2] -> [FAIL][3] ([fdo#109635] / [i915#217])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [FAIL][4] ([i915#217] / [i915#976]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][6] ([fdo#111096] / [i915#323]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (46 -> 43)
-------------------------------
-
-  Additional (4): fi-blb-e6850 fi-bdw-5557u fi-ivb-3770 fi-snb-2600 
-  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_5474 -> IGTPW_4011
-  * Linux: CI_DRM_8023 -> Patchwork_16744
-
-  CI-20190529: 20190529
-  CI_DRM_8023: fa9a02bbdfd6553ee633171f23183a115d0da577 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_4011: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4011/index.html
-  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16744: 8e8ab83649cddfd4640699468df891986565b31b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8e8ab83649cd drm/i915: Adding YUV444 packed format support for skl+ (V15)
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
