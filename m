@@ -1,43 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F1E174109
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 21:34:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E32017410D
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 21:35:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFF3A6F4C8;
-	Fri, 28 Feb 2020 20:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA230897C8;
+	Fri, 28 Feb 2020 20:35:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk4.altibox.net (asavdk4.altibox.net [109.247.116.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3EAA6F4C7;
- Fri, 28 Feb 2020 20:34:55 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk4.altibox.net (Postfix) with ESMTPS id D0F8C8046E;
- Fri, 28 Feb 2020 21:34:51 +0100 (CET)
-Date: Fri, 28 Feb 2020 21:34:50 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200228203450.GD22966@ravnborg.org>
-References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
- <20200227181522.2711142-48-daniel.vetter@ffwll.ch>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 066976F4C6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 20:35:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 12:35:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="350993567"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 28 Feb 2020 12:35:52 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Feb 2020 22:35:52 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Feb 2020 22:35:49 +0200
+Message-Id: <20200228203552.30273-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181522.2711142-48-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=XpTUx2N9 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=SJz97ENfAAAA:8
- a=QyXUC8HyAAAA:8 a=VwQbUJbxAAAA:8 a=-VAfIpHNAAAA:8 a=WZHNqt2aAAAA:8
- a=pGLkceISAAAA:8 a=7gkXJVJtAAAA:8 a=0xE26-vk7-I09ZJC9B0A:9
- a=wPNLvfGTeEIA:10 a=vFet0B0WnEQeilDPIY6i:22 a=AjGcO6oz07-iQ99wixmX:22
- a=srlwD-8ojaedGGhPAyx8:22 a=PrHl9onO2p7xFKlKy1af:22
- a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH 47/51] drm/mipi-dbi: Move
- drm_mode_config_init into mipi library
+Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Don't check uv_wm in
+ skl_plane_wm_equals()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,182 +43,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
- Eric Anholt <eric@anholt.net>,
- Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, David Lechner <david@lechnology.com>,
- Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>, l.stach@pengutronix.de
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 07:15:18PM +0100, Daniel Vetter wrote:
-> 7/7 drivers agree that's the right choice, let's do this.
-> =
-
-> This avoids duplicating the same old error checking code over all 7
-> drivers, which is the motivation here.
-> =
-
-> Reviewed-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Tested-by: Noralf Tr=F8nnes <noralf@tronnes.org>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Eric Anholt <eric@anholt.net>
-> Cc: David Lechner <david@lechnology.com>
-> Cc: Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>
-> Cc: "Noralf Tr=F8nnes" <noralf@tronnes.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-
-> ---
->  drivers/gpu/drm/drm_mipi_dbi.c  | 4 ++++
->  drivers/gpu/drm/tiny/hx8357d.c  | 2 --
->  drivers/gpu/drm/tiny/ili9225.c  | 2 --
->  drivers/gpu/drm/tiny/ili9341.c  | 2 --
->  drivers/gpu/drm/tiny/ili9486.c  | 2 --
->  drivers/gpu/drm/tiny/mi0283qt.c | 2 --
->  drivers/gpu/drm/tiny/st7586.c   | 2 --
->  drivers/gpu/drm/tiny/st7735r.c  | 2 --
->  8 files changed, 4 insertions(+), 14 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/drm_mipi_dbi.c b/drivers/gpu/drm/drm_mipi_db=
-i.c
-> index a678e07508d4..9de1586659be 100644
-> --- a/drivers/gpu/drm/drm_mipi_dbi.c
-> +++ b/drivers/gpu/drm/drm_mipi_dbi.c
-> @@ -510,6 +510,10 @@ int mipi_dbi_dev_init_with_formats(struct mipi_dbi_d=
-ev *dbidev,
->  	if (!dbidev->dbi.command)
->  		return -EINVAL;
->  =
-
-> +	ret =3D drm_mode_config_init(drm);
-> +	if (ret)
-> +		return ret;
-> +
->  	dbidev->tx_buf =3D devm_kmalloc(drm->dev, tx_buf_size, GFP_KERNEL);
->  	if (!dbidev->tx_buf)
->  		return -ENOMEM;
-> diff --git a/drivers/gpu/drm/tiny/hx8357d.c b/drivers/gpu/drm/tiny/hx8357=
-d.c
-> index 42bc5dadcb1c..c88b84366dc5 100644
-> --- a/drivers/gpu/drm/tiny/hx8357d.c
-> +++ b/drivers/gpu/drm/tiny/hx8357d.c
-> @@ -239,8 +239,6 @@ static int hx8357d_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dc =3D devm_gpiod_get(dev, "dc", GPIOD_OUT_LOW);
->  	if (IS_ERR(dc)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'dc'\n");
-> diff --git a/drivers/gpu/drm/tiny/ili9225.c b/drivers/gpu/drm/tiny/ili922=
-5.c
-> index aae88dc5b3f7..fa998a16026c 100644
-> --- a/drivers/gpu/drm/tiny/ili9225.c
-> +++ b/drivers/gpu/drm/tiny/ili9225.c
-> @@ -390,8 +390,6 @@ static int ili9225_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dbi->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(dbi->reset)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
-> diff --git a/drivers/gpu/drm/tiny/ili9341.c b/drivers/gpu/drm/tiny/ili934=
-1.c
-> index 7d40cb4ff72b..945e15169866 100644
-> --- a/drivers/gpu/drm/tiny/ili9341.c
-> +++ b/drivers/gpu/drm/tiny/ili9341.c
-> @@ -197,8 +197,6 @@ static int ili9341_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dbi->reset =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(dbi->reset)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
-> diff --git a/drivers/gpu/drm/tiny/ili9486.c b/drivers/gpu/drm/tiny/ili948=
-6.c
-> index 7d735fc67498..38d293cf5377 100644
-> --- a/drivers/gpu/drm/tiny/ili9486.c
-> +++ b/drivers/gpu/drm/tiny/ili9486.c
-> @@ -211,8 +211,6 @@ static int ili9486_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dbi->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(dbi->reset)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
-> diff --git a/drivers/gpu/drm/tiny/mi0283qt.c b/drivers/gpu/drm/tiny/mi028=
-3qt.c
-> index 8555a56bce8c..b8c973bc2347 100644
-> --- a/drivers/gpu/drm/tiny/mi0283qt.c
-> +++ b/drivers/gpu/drm/tiny/mi0283qt.c
-> @@ -201,8 +201,6 @@ static int mi0283qt_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dbi->reset =3D devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(dbi->reset)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
-> diff --git a/drivers/gpu/drm/tiny/st7586.c b/drivers/gpu/drm/tiny/st7586.c
-> index 427c2561f5f4..1f1a576be93c 100644
-> --- a/drivers/gpu/drm/tiny/st7586.c
-> +++ b/drivers/gpu/drm/tiny/st7586.c
-> @@ -331,8 +331,6 @@ static int st7586_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	bufsize =3D (st7586_mode.vdisplay + 2) / 3 * st7586_mode.hdisplay;
->  =
-
->  	dbi->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> diff --git a/drivers/gpu/drm/tiny/st7735r.c b/drivers/gpu/drm/tiny/st7735=
-r.c
-> index b447235c3d47..0f48a5a2d3d7 100644
-> --- a/drivers/gpu/drm/tiny/st7735r.c
-> +++ b/drivers/gpu/drm/tiny/st7735r.c
-> @@ -212,8 +212,6 @@ static int st7735r_probe(struct spi_device *spi)
->  	}
->  	drmm_add_final_kfree(drm, dbidev);
->  =
-
-> -	drm_mode_config_init(drm);
-> -
->  	dbi->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->  	if (IS_ERR(dbi->reset)) {
->  		DRM_DEV_ERROR(dev, "Failed to get gpio 'reset'\n");
-> -- =
-
-> 2.24.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
+ZSBoYXJkd2FyZSBuZXZlciBzZWVzIHRoZSB1dl93bSB2YWx1ZXMgKGFwYXJ0IGZyb20KdXZfd20u
+bWluX2RkYl9hbGxvYyBhZmZlY3RpbmcgdGhlIGRkYiBhbGxvY2F0aW9uKS4gVGh1cyB0aGVyZQpp
+cyBubyBwb2ludCBpbiBjb21wYXJpbmcgdXZfd20gdG8gZGV0ZXJtaW5lIGlmIHdlIG5lZWQgdG8K
+cmVwcm9ncmFtIHRoZSB3YXRlcm1hcmsgcmVnaXN0ZXJzLiBTbyBsZXQncyBjaGVjayBvbmx5IHRo
+ZQpyZ2IveSB3YXRlcm1hcmsgaW4gc2tsX3BsYW5lX3dtX2VxdWFscygpLiBCdXQgbGV0J3MgbGVh
+dmUKYSBjb21tZW50IGJlaGluZCBzbyB0aGF0IHRoZSBuZXh0IHBlcnNvbiByZWFkaW5nIHRoaXMg
+ZG9lc24ndApnZXQgYXMgY29uZnVzZWQgYXMgSSBkaWQgd2hlbiBJIGFkZGVkIHRoaXMgY2hlY2su
+CgpJZiB0aGUgZGRiIGFsbG9jYXRpb24gZW5kcyB1cCBjaGFuZ2luZyBkdWUgdG8gdXZfd20Kc2ts
+X2RkYl9hZGRfYWZmZWN0ZWRfcGxhbmVzKCkgdGFrZXMgY2FyZSBvZiBhZGRpbmcgdGhlIHBsYW5l
+CnRvIHRoZSBzdGF0ZS4KClRPRE86IHdlIHNob3VsZCBwZXJoYXBzIGp1c3QgZWxpbWluYXRlIHV2
+X3dtIGZyb20gdGhlIHN0YXRlCmFuZCBzaW1wbHkgdHJhY2sgdGhlIG1pbl9kZGJfYWxsb2MgZm9y
+IHV2IGluc3RlYWQuCgpDYzogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4K
+U2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
+LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIHwgOCArKysrKystLQog
+MSBmaWxlIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9wbS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvaW50ZWxfcG0uYwppbmRleCAzNDU0MjllNWFkNDUuLjM5Mjk5ODExYjY1MCAxMDA2NDQKLS0t
+IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
+aTkxNS9pbnRlbF9wbS5jCkBAIC01NDAwLDggKzU0MDAsMTIgQEAgc3RhdGljIGJvb2wgc2tsX3Bs
+YW5lX3dtX2VxdWFscyhzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCiAJaW50IGxl
+dmVsLCBtYXhfbGV2ZWwgPSBpbGtfd21fbWF4X2xldmVsKGRldl9wcml2KTsKIAogCWZvciAobGV2
+ZWwgPSAwOyBsZXZlbCA8PSBtYXhfbGV2ZWw7IGxldmVsKyspIHsKLQkJaWYgKCFza2xfd21fbGV2
+ZWxfZXF1YWxzKCZ3bTEtPndtW2xldmVsXSwgJndtMi0+d21bbGV2ZWxdKSB8fAotCQkgICAgIXNr
+bF93bV9sZXZlbF9lcXVhbHMoJndtMS0+dXZfd21bbGV2ZWxdLCAmd20yLT51dl93bVtsZXZlbF0p
+KQorCQkvKgorCQkgKiBXZSBkb24ndCBjaGVjayB1dl93bSBhcyB0aGUgaGFyZHdhcmUgZG9lc24n
+dCBhY3R1YWxseQorCQkgKiB1c2UgaXQuIEl0IG9ubHkgZ2V0cyB1c2VkIGZvciBjYWxjdWxhdGlu
+ZyB0aGUgcmVxdWlyZWQKKwkJICogZGRiIGFsbG9jYXRpb24uCisJCSAqLworCQlpZiAoIXNrbF93
+bV9sZXZlbF9lcXVhbHMoJndtMS0+d21bbGV2ZWxdLCAmd20yLT53bVtsZXZlbF0pKQogCQkJcmV0
+dXJuIGZhbHNlOwogCX0KIAotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0
+cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9s
+aXN0aW5mby9pbnRlbC1nZngK
