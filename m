@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77FB01738E1
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:50:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D4D173983
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 15:10:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC39B6F403;
-	Fri, 28 Feb 2020 13:50:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53AC36E19B;
+	Fri, 28 Feb 2020 14:10:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAAF96F403
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:50:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48D016E19B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 14:10:45 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 05:50:17 -0800
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 06:10:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232536487"
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232541201"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 28 Feb 2020 05:50:15 -0800
+ by fmsmga008.fm.intel.com with SMTP; 28 Feb 2020 06:10:42 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2020 15:50:14 +0200
-Date: Fri, 28 Feb 2020 15:50:14 +0200
+ Fri, 28 Feb 2020 16:10:42 +0200
+Date: Fri, 28 Feb 2020 16:10:42 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-Message-ID: <20200228135014.GD13686@intel.com>
-References: <20200224124004.26712-5-anshuman.gupta@intel.com>
- <20200226163517.31234-1-anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200228141042.GE13686@intel.com>
+References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
+ <87a753qdwe.fsf@intel.com> <20200228111045.GA13686@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200226163517.31234-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200228111045.GA13686@intel.com>
 X-Patchwork-Hint: comment
 User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4 4/7] drm/i915: Fix wrongly populated
- plane possible_crtcs bit mask
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
+ changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,189 +49,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Feb 26, 2020 at 10:05:17PM +0530, Anshuman Gupta wrote:
-> As a disabled pipe in pipe_mask is not having a valid intel crtc,
-> driver wrongly populates the possible_crtcs mask while initializing
-> the plane for a CRTC. Fixing up the plane possible_crtcs mask.
+On Fri, Feb 28, 2020 at 01:10:45PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Feb 28, 2020 at 11:06:41AM +0200, Jani Nikula wrote:
+> > On Thu, 27 Feb 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wrot=
+e:
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > >
+> > > gmbus/aux may be clocked by cdclk, thus we should make sure no
+> > > transfers are ongoing while the cdclk frequency is being changed.
+> > > We do that by simply grabbing all the gmbus/aux mutexes. No one
+> > > else should be holding any more than one of those at a time so
+> > > the lock ordering here shouldn't matter.
+> > >
+> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++++++++++++++++++++=
+++
+> > >  1 file changed, 23 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu=
+/drm/i915/display/intel_cdclk.c
+> > > index 0741d643455b..f69bf4a4eb1c 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > @@ -1868,6 +1868,9 @@ static void intel_set_cdclk(struct drm_i915_pri=
+vate *dev_priv,
+> > >  			    const struct intel_cdclk_config *cdclk_config,
+> > >  			    enum pipe pipe)
+> > >  {
+> > > +	struct intel_encoder *encoder;
+> > > +	unsigned int aux_mutex_lockclass =3D 0;
+> > > +
+> > >  	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
+> > >  		return;
+> > >  =
+
+> > > @@ -1876,8 +1879,28 @@ static void intel_set_cdclk(struct drm_i915_pr=
+ivate *dev_priv,
+> > >  =
+
+> > >  	intel_dump_cdclk_config(cdclk_config, "Changing CDCLK to");
+> > >  =
+
+> > > +	/*
+> > > +	 * Lock aux/gmbus while we change cdclk in case those
+> > > +	 * functions use cdclk. Not all platforms/ports do,
+> > > +	 * but we'll lock them all for simplicity.
+> > > +	 */
+> > > +	mutex_lock(&dev_priv->gmbus_mutex);
+> > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
+> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > +
+> > > +		mutex_lock_nested(&intel_dp->aux.hw_mutex,
+> > > +				  aux_mutex_lockclass++);
+> > > +	}
+> > > +
+> > >  	dev_priv->display.set_cdclk(dev_priv, cdclk_config, pipe);
+> > >  =
+
+> > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
+> > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > > +
+> > > +		mutex_unlock(&intel_dp->aux.hw_mutex);
+> > > +	}
+> > > +	mutex_unlock(&dev_priv->gmbus_mutex);
+> > > +
+> > =
+
+> > I'm becoming increasingly sensitive to directly touching the private
+> > parts of other modules... gmbus_mutex is really for intel_gmbus.c and
+> > aux.hw_mutex for drm_dp_helper.c.
+> > =
+
+> > One could also argue that the cdclk is a lower level function used by
+> > higher level functions aux/gmbus, and it seems like the higher level
+> > function should lock the cdclk while it depends on it, not the other way
+> > around.
 > =
 
-> changes since RFC:
-> - Simplify the possible_crtcs initialization. [Ville]
-> v2:
-> - Removed the unnecessary stack garbage possible_crtcs to
->   drm_universal_plane_init. [Ville]
-> v3:
-> - Combine the intel_crtc assignment and declaration. [Ville]
-> v4:
-> - Fix possible_crtcs abused bits from
->   intel_{primary,curosr,sprite}_plane_create(). [Ville]
-> =
+> That would require a rwsem. Otherwise it all gets serialized needlessly.
+> Not sure what's the state of rwsems these days, but IIRC at some point
+> the rt patches converted them all to normal mutexes.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
-
-Thanks. Pushed to dinq.
-
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 25 +++++++++++++-------
->  drivers/gpu/drm/i915/display/intel_sprite.c  | 10 ++------
->  2 files changed, 18 insertions(+), 17 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index aacbdc47fcea..071fda408116 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -16329,7 +16329,6 @@ intel_primary_plane_create(struct drm_i915_privat=
-e *dev_priv, enum pipe pipe)
->  	struct intel_plane *plane;
->  	const struct drm_plane_funcs *plane_funcs;
->  	unsigned int supported_rotations;
-> -	unsigned int possible_crtcs;
->  	const u32 *formats;
->  	int num_formats;
->  	int ret, zpos;
-> @@ -16410,18 +16409,16 @@ intel_primary_plane_create(struct drm_i915_priv=
-ate *dev_priv, enum pipe pipe)
->  	plane->get_hw_state =3D i9xx_plane_get_hw_state;
->  	plane->check_plane =3D i9xx_plane_check;
->  =
-
-> -	possible_crtcs =3D BIT(pipe);
-> -
->  	if (INTEL_GEN(dev_priv) >=3D 5 || IS_G4X(dev_priv))
->  		ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> -					       possible_crtcs, plane_funcs,
-> +					       0, plane_funcs,
->  					       formats, num_formats,
->  					       i9xx_format_modifiers,
->  					       DRM_PLANE_TYPE_PRIMARY,
->  					       "primary %c", pipe_name(pipe));
->  	else
->  		ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> -					       possible_crtcs, plane_funcs,
-> +					       0, plane_funcs,
->  					       formats, num_formats,
->  					       i9xx_format_modifiers,
->  					       DRM_PLANE_TYPE_PRIMARY,
-> @@ -16463,7 +16460,6 @@ static struct intel_plane *
->  intel_cursor_plane_create(struct drm_i915_private *dev_priv,
->  			  enum pipe pipe)
->  {
-> -	unsigned int possible_crtcs;
->  	struct intel_plane *cursor;
->  	int ret, zpos;
->  =
-
-> @@ -16496,10 +16492,8 @@ intel_cursor_plane_create(struct drm_i915_privat=
-e *dev_priv,
->  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
->  		cursor->cursor.size =3D ~0;
->  =
-
-> -	possible_crtcs =3D BIT(pipe);
-> -
->  	ret =3D drm_universal_plane_init(&dev_priv->drm, &cursor->base,
-> -				       possible_crtcs, &intel_cursor_plane_funcs,
-> +				       0, &intel_cursor_plane_funcs,
->  				       intel_cursor_formats,
->  				       ARRAY_SIZE(intel_cursor_formats),
->  				       cursor_format_modifiers,
-> @@ -16628,6 +16622,18 @@ static void intel_crtc_free(struct intel_crtc *c=
-rtc)
->  	kfree(crtc);
->  }
->  =
-
-> +static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev=
-_priv)
-> +{
-> +	struct intel_plane *plane;
-> +
-> +	for_each_intel_plane(&dev_priv->drm, plane) {
-> +		struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv,
-> +								  plane->pipe);
-> +
-> +		plane->base.possible_crtcs =3D drm_crtc_mask(&crtc->base);
-> +	}
-> +}
-> +
->  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe =
-pipe)
->  {
->  	struct intel_plane *primary, *cursor;
-> @@ -17843,6 +17849,7 @@ int intel_modeset_init(struct drm_i915_private *i=
-915)
->  		}
->  	}
->  =
-
-> +	intel_plane_possible_crtcs_init(i915);
->  	intel_shared_dpll_init(dev);
->  	intel_update_fdi_pll_freq(i915);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
-m/i915/display/intel_sprite.c
-> index 7abeefe8dce5..53bb65666587 100644
-> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> @@ -3011,7 +3011,6 @@ skl_universal_plane_create(struct drm_i915_private =
-*dev_priv,
->  	struct intel_plane *plane;
->  	enum drm_plane_type plane_type;
->  	unsigned int supported_rotations;
-> -	unsigned int possible_crtcs;
->  	const u64 *modifiers;
->  	const u32 *formats;
->  	int num_formats;
-> @@ -3066,10 +3065,8 @@ skl_universal_plane_create(struct drm_i915_private=
- *dev_priv,
->  	else
->  		plane_type =3D DRM_PLANE_TYPE_OVERLAY;
->  =
-
-> -	possible_crtcs =3D BIT(pipe);
-> -
->  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> -				       possible_crtcs, plane_funcs,
-> +				       0, plane_funcs,
->  				       formats, num_formats, modifiers,
->  				       plane_type,
->  				       "plane %d%c", plane_id + 1,
-> @@ -3120,7 +3117,6 @@ intel_sprite_plane_create(struct drm_i915_private *=
-dev_priv,
->  {
->  	struct intel_plane *plane;
->  	const struct drm_plane_funcs *plane_funcs;
-> -	unsigned long possible_crtcs;
->  	unsigned int supported_rotations;
->  	const u64 *modifiers;
->  	const u32 *formats;
-> @@ -3205,10 +3201,8 @@ intel_sprite_plane_create(struct drm_i915_private =
-*dev_priv,
->  	plane->id =3D PLANE_SPRITE0 + sprite;
->  	plane->frontbuffer_bit =3D INTEL_FRONTBUFFER(pipe, plane->id);
->  =
-
-> -	possible_crtcs =3D BIT(pipe);
-> -
->  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
-> -				       possible_crtcs, plane_funcs,
-> +				       0, plane_funcs,
->  				       formats, num_formats, modifiers,
->  				       DRM_PLANE_TYPE_OVERLAY,
->  				       "sprite %c", sprite_name(pipe, sprite));
-> -- =
-
-> 2.24.0
+Some googling suggests that my infromation may be out of date. So we
+could introduce an rwsem for this I guess. Would add a bit more cost
+to the common codepaths though (not that they're really performance
+critical) whereas this version only adds extra cost to the much more
+rare .set_cdclk() path.
 
 -- =
 
