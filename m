@@ -1,34 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C875172C81
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 00:49:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB25F172CFA
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 01:21:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 245C36ED7C;
-	Thu, 27 Feb 2020 23:49:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 106FC6ED9C;
+	Fri, 28 Feb 2020 00:21:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98EF76ED7C
- for <intel-gfx@lists.freedesktop.org>; Thu, 27 Feb 2020 23:49:18 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 15:49:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227347013"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.14.234])
- by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 15:49:17 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 15:50:05 -0800
-Message-Id: <20200227235005.18706-1-jose.souza@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from mailbnc111.isp.belgacom.be (mailbnc111.isp.belgacom.be
+ [195.238.20.245])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D9836ED9C;
+ Fri, 28 Feb 2020 00:21:26 +0000 (UTC)
+IronPort-SDR: JPow1+KEiQYaKfpguQ0Bp1vQUQ8b/vL6U5+Bmn+V74P4po3QIXY6svr7NPDtPwyFFcjcZARiWg
+ leGnU9HPI7Q37JhH/750IHePhjkpQthl3mnYtSIFtIY8g2Cl3/KGURmmvMZcFAC5yjrtEAS3Kv
+ XR0JApVGCixra1o71DIgHhJhUCdcw/XA//zPUN6NZrBhMUieB0dxZJcpYLZ5HYzBDYe80v52pp
+ fw2ez+3CHy9vruZwgrH+A3/p6Mz/K54fgQmG16WqMNGS0Z2JuGHejC0f6c1yU5rvt50nETHQLL
+ Jt4=
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2CBBgBNXFhe/37G9C5QFhwBAQEBAQc?=
+ =?us-ascii?q?BAREBBAQBAYF7gX0sKAU/BU8hEiqDTIlLhjYPCQUBgTMEiXGPZYFnCQEBAQE?=
+ =?us-ascii?q?BAQEBAQgbEQECBAEBhDoEAgIIgX0nOBMCAwEBAQMCBQEBBgEBAQEBAQQEbQQ?=
+ =?us-ascii?q?BAQcKhFECAQMBAQUKATcMhWQBBTocGgkQCAMYCQoCGQ8FKCEtgw2CVimxBYk?=
+ =?us-ascii?q?HgT4igRaGBIY7eYEHhCQ+hAQCgQSDBIIsBJAmn3CCRpZZDByCSYw9LIt8ngy?=
+ =?us-ascii?q?MU4FpIoFYTSAYgycJRyWPRAEIh1eFQkMwgQIBHggTBQUBAY1sAQE?=
+X-IPAS-Result: =?us-ascii?q?A2CBBgBNXFhe/37G9C5QFhwBAQEBAQcBAREBBAQBAYF7g?=
+ =?us-ascii?q?X0sKAU/BU8hEiqDTIlLhjYPCQUBgTMEiXGPZYFnCQEBAQEBAQEBAQgbEQECB?=
+ =?us-ascii?q?AEBhDoEAgIIgX0nOBMCAwEBAQMCBQEBBgEBAQEBAQQEbQQBAQcKhFECAQMBA?=
+ =?us-ascii?q?QUKATcMhWQBBTocGgkQCAMYCQoCGQ8FKCEtgw2CVimxBYkHgT4igRaGBIY7e?=
+ =?us-ascii?q?YEHhCQ+hAQCgQSDBIIsBJAmn3CCRpZZDByCSYw9LIt8ngyMU4FpIoFYTSAYg?=
+ =?us-ascii?q?ycJRyWPRAEIh1eFQkMwgQIBHggTBQUBAY1sAQE?=
+Received: from ppp-46-244-198-126.dynamic.mnet-online.de (HELO albert)
+ ([46.244.198.126])
+ by relay.proximus.be with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256;
+ 28 Feb 2020 01:21:23 +0100
+Received: from libv by albert with local (Exim 4.84_2)
+ (envelope-from <libv@skynet.be>)
+ id 1j7TP8-0007yR-JM; Fri, 28 Feb 2020 01:21:22 +0100
+Date: Fri, 28 Feb 2020 01:21:22 +0100
+From: Luc Verhaegen <libv@skynet.be>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200228002122.GB24271@skynet.be>
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dmc: Use firmware v2.06 for TGL
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
+ services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,26 +61,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>, gstreamer-devel@lists.freedesktop.org,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TmV3IGZpcm13YXJlIGNvbnRhaW5zIG1pbm9yIGZpeGVzIGFyb3VuZCBjb250ZXh0IHJlc3RvcmUu
-CgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVs
-LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jIHwgNCAr
-Ky0tCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQoKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCmluZGV4IDU3MzIwYzEyODM5Zi4u
-MzExMjU3MmNmYjdkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Nzci5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMK
-QEAgLTQwLDggKzQwLDggQEAKIAogI2RlZmluZSBHRU4xMl9DU1JfTUFYX0ZXX1NJWkUJCUlDTF9D
-U1JfTUFYX0ZXX1NJWkUKIAotI2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90Z2xfZG1jX3Zl
-cjJfMDQuYmluIgotI2RlZmluZSBUR0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04o
-MiwgNCkKKyNkZWZpbmUgVEdMX0NTUl9QQVRICQkJImk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbiIK
-KyNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDYpCiAjZGVm
-aW5lIFRHTF9DU1JfTUFYX0ZXX1NJWkUJCTB4NjAwMAogTU9EVUxFX0ZJUk1XQVJFKFRHTF9DU1Jf
-UEFUSCk7CiAKLS0gCjIuMjUuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRl
-c2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8v
-aW50ZWwtZ2Z4Cg==
+On Thu, Feb 27, 2020 at 10:27:04PM +0100, Daniel Vetter wrote:
+> Hi all,
+> 
+> You might have read the short take in the X.org board meeting minutes
+> already, here's the long version.
+> 
+> The good news: gitlab.fd.o has become very popular with our
+> communities, and is used extensively. This especially includes all the
+> CI integration. Modern development process and tooling, yay!
+> 
+> The bad news: The cost in growth has also been tremendous, and it's
+> breaking our bank account. With reasonable estimates for continued
+> growth we're expecting hosting expenses totalling 75k USD this year,
+> and 90k USD next year. With the current sponsors we've set up we can't
+> sustain that. We estimate that hosting expenses for gitlab.fd.o
+> without any of the CI features enabled would total 30k USD, which is
+> within X.org's ability to support through various sponsorships, mostly
+> through XDC.
+> 
+> Note that X.org does no longer sponsor any CI runners themselves,
+> we've stopped that. The huge additional expenses are all just in
+> storing and serving build artifacts and images to outside CI runners
+> sponsored by various companies. A related topic is that with the
+> growth in fd.o it's becoming infeasible to maintain it all on
+> volunteer admin time. X.org is therefore also looking for admin
+> sponsorship, at least medium term.
+> 
+> Assuming that we want cash flow reserves for one year of gitlab.fd.o
+> (without CI support) and a trimmed XDC and assuming no sponsor payment
+> meanwhile, we'd have to cut CI services somewhere between May and June
+> this year. The board is of course working on acquiring sponsors, but
+> filling a shortfall of this magnitude is neither easy nor quick work,
+> and we therefore decided to give an early warning as soon as possible.
+> Any help in finding sponsors for fd.o is very much appreciated.
+> 
+> Thanks, Daniel
+
+So this cost is all about fd.o?
+
+I feel that this was not communicated to x.org members at all, when fd.o 
+"merging" was suggested. In as far as this was a merge.
+
+Luc Verhaegen.
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
