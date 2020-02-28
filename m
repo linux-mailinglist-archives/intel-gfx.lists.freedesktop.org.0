@@ -2,33 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FAB31738A3
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77FB01738E1
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7482F6E199;
-	Fri, 28 Feb 2020 13:45:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC39B6F403;
+	Fri, 28 Feb 2020 13:50:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62C2B6E199
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:45:20 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20385637-1500050 for multiple; Fri, 28 Feb 2020 13:45:18 +0000
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAAF96F403
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:50:17 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 05:50:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232536487"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga008.fm.intel.com with SMTP; 28 Feb 2020 05:50:15 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Feb 2020 15:50:14 +0200
+Date: Fri, 28 Feb 2020 15:50:14 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200228135014.GD13686@intel.com>
+References: <20200224124004.26712-5-anshuman.gupta@intel.com>
+ <20200226163517.31234-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200228133756.GC13686@intel.com>
-References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
- <158287851663.19174.2013462831358055362@skylake-alporthouse-com>
- <20200228133756.GC13686@intel.com>
-Message-ID: <158289751567.24106.12746889432360821674@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 28 Feb 2020 13:45:15 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
- changing cdclk
+Content-Disposition: inline
+In-Reply-To: <20200226163517.31234-1-anshuman.gupta@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 4/7] drm/i915: Fix wrongly populated
+ plane possible_crtcs bit mask
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,56 +49,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMjAtMDItMjggMTM6Mzc6NTYpCj4gT24gRnJpLCBG
-ZWIgMjgsIDIwMjAgYXQgMDg6Mjg6MzZBTSArMDAwMCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+ID4g
-UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAyLTI3IDE5OjM5OjU0KQo+ID4gPiBGcm9tOiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gPiAKPiA+
-ID4gZ21idXMvYXV4IG1heSBiZSBjbG9ja2VkIGJ5IGNkY2xrLCB0aHVzIHdlIHNob3VsZCBtYWtl
-IHN1cmUgbm8KPiA+ID4gdHJhbnNmZXJzIGFyZSBvbmdvaW5nIHdoaWxlIHRoZSBjZGNsayBmcmVx
-dWVuY3kgaXMgYmVpbmcgY2hhbmdlZC4KPiA+ID4gV2UgZG8gdGhhdCBieSBzaW1wbHkgZ3JhYmJp
-bmcgYWxsIHRoZSBnbWJ1cy9hdXggbXV0ZXhlcy4gTm8gb25lCj4gPiA+IGVsc2Ugc2hvdWxkIGJl
-IGhvbGRpbmcgYW55IG1vcmUgdGhhbiBvbmUgb2YgdGhvc2UgYXQgYSB0aW1lIHNvCj4gPiA+IHRo
-ZSBsb2NrIG9yZGVyaW5nIGhlcmUgc2hvdWxkbid0IG1hdHRlci4KPiA+ID4gCj4gPiA+IFNpZ25l
-ZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
-Cj4gPiA+IC0tLQo+ID4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNs
-ay5jIHwgMjMgKysrKysrKysrKysrKysrKysrKysrKwo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDIz
-IGluc2VydGlvbnMoKykKPiA+ID4gCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2NkY2xrLmMKPiA+ID4gaW5kZXggMDc0MWQ2NDM0NTViLi5mNjliZjRhNGViMWMgMTAw
-NjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY2RjbGsu
-Ywo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NkY2xrLmMK
-PiA+ID4gQEAgLTE4NjgsNiArMTg2OCw5IEBAIHN0YXRpYyB2b2lkIGludGVsX3NldF9jZGNsayhz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gPiA+ICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICBjb25zdCBzdHJ1Y3QgaW50ZWxfY2RjbGtfY29uZmlnICpjZGNsa19jb25maWcs
-Cj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnVtIHBpcGUgcGlwZSkKPiA+ID4g
-IHsKPiA+ID4gKyAgICAgICBzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlcjsKPiA+ID4gKyAg
-ICAgICB1bnNpZ25lZCBpbnQgYXV4X211dGV4X2xvY2tjbGFzcyA9IDA7Cj4gPiA+ICsKPiA+ID4g
-ICAgICAgICBpZiAoIWludGVsX2NkY2xrX2NoYW5nZWQoJmRldl9wcml2LT5jZGNsay5odywgY2Rj
-bGtfY29uZmlnKSkKPiA+ID4gICAgICAgICAgICAgICAgIHJldHVybjsKPiA+ID4gIAo+ID4gPiBA
-QCAtMTg3Niw4ICsxODc5LDI4IEBAIHN0YXRpYyB2b2lkIGludGVsX3NldF9jZGNsayhzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsCj4gPiA+ICAKPiA+ID4gICAgICAgICBpbnRlbF9k
-dW1wX2NkY2xrX2NvbmZpZyhjZGNsa19jb25maWcsICJDaGFuZ2luZyBDRENMSyB0byIpOwo+ID4g
-PiAgCj4gPiA+ICsgICAgICAgLyoKPiA+ID4gKyAgICAgICAgKiBMb2NrIGF1eC9nbWJ1cyB3aGls
-ZSB3ZSBjaGFuZ2UgY2RjbGsgaW4gY2FzZSB0aG9zZQo+ID4gPiArICAgICAgICAqIGZ1bmN0aW9u
-cyB1c2UgY2RjbGsuIE5vdCBhbGwgcGxhdGZvcm1zL3BvcnRzIGRvLAo+ID4gPiArICAgICAgICAq
-IGJ1dCB3ZSdsbCBsb2NrIHRoZW0gYWxsIGZvciBzaW1wbGljaXR5Lgo+ID4gPiArICAgICAgICAq
-Lwo+ID4gPiArICAgICAgIG11dGV4X2xvY2soJmRldl9wcml2LT5nbWJ1c19tdXRleCk7Cj4gPiA+
-ICsgICAgICAgZm9yX2VhY2hfaW50ZWxfZHAoJmRldl9wcml2LT5kcm0sIGVuY29kZXIpIHsKPiA+
-ID4gKyAgICAgICAgICAgICAgIHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPSBlbmNfdG9faW50
-ZWxfZHAoZW5jb2Rlcik7Cj4gPiA+ICsKPiA+ID4gKyAgICAgICAgICAgICAgIG11dGV4X2xvY2tf
-bmVzdGVkKCZpbnRlbF9kcC0+YXV4Lmh3X211dGV4LAo+ID4gPiArICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgYXV4X211dGV4X2xvY2tjbGFzcysrKTsKPiA+IAo+ID4gbXV0ZXhfbG9j
-a19uZXN0X2xvY2soJmludGVsX2RwLT5hdXguaHdfbXV0ZXgsICZkZXZfcHJpdi0+Z21idXNfbXV0
-ZXgpOwo+ID4gPwo+IAo+IFRoYXQgZG9lcyBzZWVtcyB0byB3b3JrLiBOb3Qgc3VyZSB3aGF0IGl0
-IG1lYW5zIHRob3VnaCBzaW5jZSBubyBkb2NzCj4gYW5kIEkgd2FzIHRvbyBsYXp5IHRvIHJlYWQg
-dGhlIGNvZGUuIERvZXMgaXQgc2F5ICJhcyBsb25nIGFzIHdlIGhvbGQKPiBuZXN0X2xvY2sgdGhl
-IG9yZGVyIGRvZXNuJ3QgbWF0dGVyIj8KClllcywgdGhhdCdzIGV4YWN0bHkgd2hhdCBpdCBtZWFu
-cy4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, Feb 26, 2020 at 10:05:17PM +0530, Anshuman Gupta wrote:
+> As a disabled pipe in pipe_mask is not having a valid intel crtc,
+> driver wrongly populates the possible_crtcs mask while initializing
+> the plane for a CRTC. Fixing up the plane possible_crtcs mask.
+> =
+
+> changes since RFC:
+> - Simplify the possible_crtcs initialization. [Ville]
+> v2:
+> - Removed the unnecessary stack garbage possible_crtcs to
+>   drm_universal_plane_init. [Ville]
+> v3:
+> - Combine the intel_crtc assignment and declaration. [Ville]
+> v4:
+> - Fix possible_crtcs abused bits from
+>   intel_{primary,curosr,sprite}_plane_create(). [Ville]
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+
+Thanks. Pushed to dinq.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 25 +++++++++++++-------
+>  drivers/gpu/drm/i915/display/intel_sprite.c  | 10 ++------
+>  2 files changed, 18 insertions(+), 17 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index aacbdc47fcea..071fda408116 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -16329,7 +16329,6 @@ intel_primary_plane_create(struct drm_i915_privat=
+e *dev_priv, enum pipe pipe)
+>  	struct intel_plane *plane;
+>  	const struct drm_plane_funcs *plane_funcs;
+>  	unsigned int supported_rotations;
+> -	unsigned int possible_crtcs;
+>  	const u32 *formats;
+>  	int num_formats;
+>  	int ret, zpos;
+> @@ -16410,18 +16409,16 @@ intel_primary_plane_create(struct drm_i915_priv=
+ate *dev_priv, enum pipe pipe)
+>  	plane->get_hw_state =3D i9xx_plane_get_hw_state;
+>  	plane->check_plane =3D i9xx_plane_check;
+>  =
+
+> -	possible_crtcs =3D BIT(pipe);
+> -
+>  	if (INTEL_GEN(dev_priv) >=3D 5 || IS_G4X(dev_priv))
+>  		ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> -					       possible_crtcs, plane_funcs,
+> +					       0, plane_funcs,
+>  					       formats, num_formats,
+>  					       i9xx_format_modifiers,
+>  					       DRM_PLANE_TYPE_PRIMARY,
+>  					       "primary %c", pipe_name(pipe));
+>  	else
+>  		ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> -					       possible_crtcs, plane_funcs,
+> +					       0, plane_funcs,
+>  					       formats, num_formats,
+>  					       i9xx_format_modifiers,
+>  					       DRM_PLANE_TYPE_PRIMARY,
+> @@ -16463,7 +16460,6 @@ static struct intel_plane *
+>  intel_cursor_plane_create(struct drm_i915_private *dev_priv,
+>  			  enum pipe pipe)
+>  {
+> -	unsigned int possible_crtcs;
+>  	struct intel_plane *cursor;
+>  	int ret, zpos;
+>  =
+
+> @@ -16496,10 +16492,8 @@ intel_cursor_plane_create(struct drm_i915_privat=
+e *dev_priv,
+>  	if (IS_I845G(dev_priv) || IS_I865G(dev_priv) || HAS_CUR_FBC(dev_priv))
+>  		cursor->cursor.size =3D ~0;
+>  =
+
+> -	possible_crtcs =3D BIT(pipe);
+> -
+>  	ret =3D drm_universal_plane_init(&dev_priv->drm, &cursor->base,
+> -				       possible_crtcs, &intel_cursor_plane_funcs,
+> +				       0, &intel_cursor_plane_funcs,
+>  				       intel_cursor_formats,
+>  				       ARRAY_SIZE(intel_cursor_formats),
+>  				       cursor_format_modifiers,
+> @@ -16628,6 +16622,18 @@ static void intel_crtc_free(struct intel_crtc *c=
+rtc)
+>  	kfree(crtc);
+>  }
+>  =
+
+> +static void intel_plane_possible_crtcs_init(struct drm_i915_private *dev=
+_priv)
+> +{
+> +	struct intel_plane *plane;
+> +
+> +	for_each_intel_plane(&dev_priv->drm, plane) {
+> +		struct intel_crtc *crtc =3D intel_get_crtc_for_pipe(dev_priv,
+> +								  plane->pipe);
+> +
+> +		plane->base.possible_crtcs =3D drm_crtc_mask(&crtc->base);
+> +	}
+> +}
+> +
+>  static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe =
+pipe)
+>  {
+>  	struct intel_plane *primary, *cursor;
+> @@ -17843,6 +17849,7 @@ int intel_modeset_init(struct drm_i915_private *i=
+915)
+>  		}
+>  	}
+>  =
+
+> +	intel_plane_possible_crtcs_init(i915);
+>  	intel_shared_dpll_init(dev);
+>  	intel_update_fdi_pll_freq(i915);
+>  =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/dr=
+m/i915/display/intel_sprite.c
+> index 7abeefe8dce5..53bb65666587 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -3011,7 +3011,6 @@ skl_universal_plane_create(struct drm_i915_private =
+*dev_priv,
+>  	struct intel_plane *plane;
+>  	enum drm_plane_type plane_type;
+>  	unsigned int supported_rotations;
+> -	unsigned int possible_crtcs;
+>  	const u64 *modifiers;
+>  	const u32 *formats;
+>  	int num_formats;
+> @@ -3066,10 +3065,8 @@ skl_universal_plane_create(struct drm_i915_private=
+ *dev_priv,
+>  	else
+>  		plane_type =3D DRM_PLANE_TYPE_OVERLAY;
+>  =
+
+> -	possible_crtcs =3D BIT(pipe);
+> -
+>  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> -				       possible_crtcs, plane_funcs,
+> +				       0, plane_funcs,
+>  				       formats, num_formats, modifiers,
+>  				       plane_type,
+>  				       "plane %d%c", plane_id + 1,
+> @@ -3120,7 +3117,6 @@ intel_sprite_plane_create(struct drm_i915_private *=
+dev_priv,
+>  {
+>  	struct intel_plane *plane;
+>  	const struct drm_plane_funcs *plane_funcs;
+> -	unsigned long possible_crtcs;
+>  	unsigned int supported_rotations;
+>  	const u64 *modifiers;
+>  	const u32 *formats;
+> @@ -3205,10 +3201,8 @@ intel_sprite_plane_create(struct drm_i915_private =
+*dev_priv,
+>  	plane->id =3D PLANE_SPRITE0 + sprite;
+>  	plane->frontbuffer_bit =3D INTEL_FRONTBUFFER(pipe, plane->id);
+>  =
+
+> -	possible_crtcs =3D BIT(pipe);
+> -
+>  	ret =3D drm_universal_plane_init(&dev_priv->drm, &plane->base,
+> -				       possible_crtcs, plane_funcs,
+> +				       0, plane_funcs,
+>  				       formats, num_formats, modifiers,
+>  				       DRM_PLANE_TYPE_OVERLAY,
+>  				       "sprite %c", sprite_name(pipe, sprite));
+> -- =
+
+> 2.24.0
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
