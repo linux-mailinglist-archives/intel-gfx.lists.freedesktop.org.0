@@ -1,42 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07273174118
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 21:37:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231F917413F
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:02:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CA576F4CE;
-	Fri, 28 Feb 2020 20:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5657F6F4D0;
+	Fri, 28 Feb 2020 21:02:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 274EC6F4CD;
- Fri, 28 Feb 2020 20:37:48 +0000 (UTC)
-Received: from ravnborg.org (unknown [158.248.194.18])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by asavdk3.altibox.net (Postfix) with ESMTPS id 745E42003C;
- Fri, 28 Feb 2020 21:37:45 +0100 (CET)
-Date: Fri, 28 Feb 2020 21:37:44 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200228203744.GF22966@ravnborg.org>
-References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
- <20200227181522.2711142-50-daniel.vetter@ffwll.ch>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2916F4D0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:02:10 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 13:02:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="238874306"
+Received: from hauptmaj-mobl.ger.corp.intel.com (HELO [10.252.51.176])
+ ([10.252.51.176])
+ by orsmga003.jf.intel.com with ESMTP; 28 Feb 2020 13:02:08 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200228160229.1683087-1-lionel.g.landwerlin@intel.com>
+ <158290829314.24106.1112142885915634527@skylake-alporthouse-com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <cb3c1e78-2303-55cd-6496-c2afe42036c9@intel.com>
+Date: Fri, 28 Feb 2020 23:02:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227181522.2711142-50-daniel.vetter@ffwll.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
- a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
- a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=P1BnusSwAAAA:8
- a=QyXUC8HyAAAA:8 a=20KFwNOVAAAA:8 a=pGLkceISAAAA:8 a=SJz97ENfAAAA:8
- a=7gkXJVJtAAAA:8 a=_3mJ8jWSVA0NoDjyCeQA:9 a=wPNLvfGTeEIA:10
- a=D0XLA9XvdZm18NrgonBM:22 a=vFet0B0WnEQeilDPIY6i:22
- a=E9Po1WZjFZOl8hwRPBS3:22
-Subject: Re: [Intel-gfx] [PATCH 49/51] drm/udl: Drop explicit
- drm_mode_config_cleanup call
+In-Reply-To: <158290829314.24106.1112142885915634527@skylake-alporthouse-com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: introduce global sseu pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,144 +48,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Gerd Hoffmann <kraxel@redhat.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- m.felsch@pengutronix.de, DRI Development <dri-devel@lists.freedesktop.org>,
- Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Thomas Gleixner <tglx@linutronix.de>,
- l.stach@pengutronix.de
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 07:15:20PM +0100, Daniel Vetter wrote:
-> It's right above the drm_dev_put().
-> =
-
-> This allows us to delete a bit of onion unwinding in
-> udl_modeset_init().
-> =
-
-> This is made possible by a preceeding patch which added a drmm_
-> cleanup action to drm_mode_config_init(), hence all we need to do to
-> ensure that drm_mode_config_cleanup() is run on final drm_device
-> cleanup is check the new error code for _init().
-> =
-
-> v2: Explain why this cleanup is possible (Laurent).
-> =
-
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Emil Velikov <emil.l.velikov@gmail.com>
-> Cc: Gerd Hoffmann <kraxel@redhat.com>
-> Cc: "Noralf Tr=F8nnes" <noralf@tronnes.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-
-> ---
->  drivers/gpu/drm/udl/udl_drv.c     |  1 -
->  drivers/gpu/drm/udl/udl_drv.h     |  1 -
->  drivers/gpu/drm/udl/udl_modeset.c | 21 ++++++---------------
->  3 files changed, 6 insertions(+), 17 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
-> index 8b78c356beb5..b447fb053e78 100644
-> --- a/drivers/gpu/drm/udl/udl_drv.c
-> +++ b/drivers/gpu/drm/udl/udl_drv.c
-> @@ -37,7 +37,6 @@ DEFINE_DRM_GEM_FOPS(udl_driver_fops);
->  static void udl_driver_release(struct drm_device *dev)
->  {
->  	udl_fini(dev);
-> -	udl_modeset_cleanup(dev);
->  }
->  =
-
->  static struct drm_driver driver =3D {
-> diff --git a/drivers/gpu/drm/udl/udl_drv.h b/drivers/gpu/drm/udl/udl_drv.h
-> index e67227c44cc4..1de7eb1b6aac 100644
-> --- a/drivers/gpu/drm/udl/udl_drv.h
-> +++ b/drivers/gpu/drm/udl/udl_drv.h
-> @@ -68,7 +68,6 @@ struct udl_device {
->  =
-
->  /* modeset */
->  int udl_modeset_init(struct drm_device *dev);
-> -void udl_modeset_cleanup(struct drm_device *dev);
->  struct drm_connector *udl_connector_init(struct drm_device *dev);
->  =
-
->  struct urb *udl_get_urb(struct drm_device *dev);
-> diff --git a/drivers/gpu/drm/udl/udl_modeset.c b/drivers/gpu/drm/udl/udl_=
-modeset.c
-> index d59ebac70b15..cad0c87f8de6 100644
-> --- a/drivers/gpu/drm/udl/udl_modeset.c
-> +++ b/drivers/gpu/drm/udl/udl_modeset.c
-> @@ -468,7 +468,9 @@ int udl_modeset_init(struct drm_device *dev)
->  	struct drm_connector *connector;
->  	int ret;
->  =
-
-> -	drm_mode_config_init(dev);
-> +	ret =3D drm_mode_config_init(dev);
-> +	if (ret)
-> +		return ret;
->  =
-
->  	dev->mode_config.min_width =3D 640;
->  	dev->mode_config.min_height =3D 480;
-> @@ -482,10 +484,8 @@ int udl_modeset_init(struct drm_device *dev)
->  	dev->mode_config.funcs =3D &udl_mode_funcs;
->  =
-
->  	connector =3D udl_connector_init(dev);
-> -	if (IS_ERR(connector)) {
-> -		ret =3D PTR_ERR(connector);
-> -		goto err_drm_mode_config_cleanup;
-> -	}
-> +	if (IS_ERR(connector))
-> +		return PTR_ERR(connector);
->  =
-
->  	format_count =3D ARRAY_SIZE(udl_simple_display_pipe_formats);
->  =
-
-> @@ -494,18 +494,9 @@ int udl_modeset_init(struct drm_device *dev)
->  					   udl_simple_display_pipe_formats,
->  					   format_count, NULL, connector);
->  	if (ret)
-> -		goto err_drm_mode_config_cleanup;
-> +		return ret;
->  =
-
->  	drm_mode_config_reset(dev);
->  =
-
->  	return 0;
-> -
-> -err_drm_mode_config_cleanup:
-> -	drm_mode_config_cleanup(dev);
-> -	return ret;
-> -}
-> -
-> -void udl_modeset_cleanup(struct drm_device *dev)
-> -{
-> -	drm_mode_config_cleanup(dev);
->  }
-> -- =
-
-> 2.24.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjgvMDIvMjAyMCAxODo0NCwgQ2hyaXMgV2lsc29uIHdyb3RlOgo+IFF1b3RpbmcgTGlvbmVs
+IExhbmR3ZXJsaW4gKDIwMjAtMDItMjggMTY6MDI6MjkpCj4+IE9uIEdlbjExIHBvd2VyZ2F0aW5n
+IGhhbGYgdGhlIGV4ZWN1dGlvbiB1bml0cyBpcyBhIGZ1bmN0aW9uYWwKPj4gcmVxdWlyZW1lbnQg
+d2hlbiB1c2luZyB0aGUgVk1FIHNhbXBsZXJzLiBOb3QgZnVsbGZpbGxpbmcgdGhpcwo+PiByZXF1
+aXJlbWVudCBjYW4gbGVhZCB0byBoYW5ncy4KPj4KPj4gVGhpcyB1bmZvcnR1bmF0ZWx5IHBsYXlz
+IGZhaXJseSBwb29ybHkgd2l0aCB0aGUgTk9BIHJlcXVpcmVtZW50cy4gTk9BCj4+IHJlcXVpcmVz
+IGEgc3RhYmxlIHBvd2VyIGNvbmZpZ3VyYXRpb24gdG8gbWFpbnRhaW4gaXRzIGNvbmZpZ3VyYXRp
+b24uCj4+Cj4+IEFzIGEgcmVzdWx0IHVzaW5nIE9BIChhbmQgTk9BIGZlZWRpbmcgaW50byBpdCkg
+c28gZmFyIGhhcyByZXF1aXJlZCB1cwo+PiB0byB1c2UgYSBwb3dlciBjb25maWd1cmF0aW9uIHRo
+YXQgY2FuIHdvcmsgZm9yIGFsbCBjb250ZXh0cy4gVGhlIG9ubHkKPj4gcG93ZXIgY29uZmlndXJh
+dGlvbiBmdWxsZmlsbGluZyB0aGlzIGlzIHBvd2VyZ2F0aW5nIGhhbGYgdGhlIGV4ZWN1dGlvbgo+
+PiB1bml0cy4KPj4KPj4gVGhpcyBtYWtlcyBwZXJmb3JtYW5jZSBhbmFseXNpcyBmb3IgM0Qgd29y
+a2xvYWRzIHNvbWV3aGF0IHBvaW50bGVzcy4KPj4KPj4gRmFpbGluZyB0byBmaW5kIGEgc29sdXRp
+b24gdGhhdCB3b3VsZCB3b3JrIGZvciBldmVyeWJvZHksIHRoaXMgY2hhbmdlCj4+IGludHJvZHVj
+ZXMgYSBuZXcgaTkxNS1wZXJmIHN0cmVhbSBvcGVuIHBhcmFtZXRlciB0aGF0IHB1bnRzIHRoZQo+
+PiBkZWNpc2lvbiBvZmYgdG8gdXNlcnNwYWNlLiBJZiB0aGlzIHBhcmFtZXRlciBpcyBvbWl0dGVk
+LCB0aGUgZXhpc3RpbmcKPj4gR2VuMTEgYmVoYXZpb3IgcmVtYWlucyAoaGFsZiBFVSBhcnJheSBw
+b3dlcmdhdGluZykuCj4+Cj4+IFRoaXMgY2hhbmdlIHRha2VzIHRoZSBpbml0aWF0aXZlIHRvIG1v
+dmUgYWxsIHBlcmYgcmVsYXRlZCBzc2V1Cj4+IGNvbmZpZ3VyYXRpb24gaW50byBpOTE1X3BlcmYu
+Ywo+IFRoZSBjb2RlIGxvb2tzIGZpbmUsIHlvdXIgYXJndW1lbnQgaXMgc291bmQuIE15IG9ubHkg
+cmVzZXJ2YXRpb24gaXMgdGhlCj4gZGFuZ2VyIG9mIHRoaXMgYmVjb21pbmcgdGhlIGRlZmFjdG8g
+ZGVmYXVsdCBhbmQgc28gY2F0Y2hpbmcgdXNlcnMncwo+IHByb2ZpbGluZyB0aGVpciBzeXN0ZW0g
+Ynkgc3VycHJpc2UuCgoKQXMgZmFyIGFzIEkgY2FuIHNlZSwgdGhpcyB3aWxsIG9ubHkgYmUgdXNp
+bmcgbm9uIGRlZmF1bHQgKGRlZmF1bHQgPSBmdWxsIApFVSBhcnJheSBvbiAhZ2VuMTEsIGRlZmF1
+bHQgPSBoYWxmIEVVIGFycmF5IG9uIGdlbjExKSBvbiBHZW4xMS4KCkV4Y2VwdCBHZW4xMSB3ZSBk
+b24ndCBoYXZlIHRob3NlIGFzeW1ldHJpYyBzdWJzbGljZXMgKHJlbWVtYmVyIGdlbjEyIGhhcyAK
+ZHVhbCBzbGljZXMgb2YgMTYgRVVzKS4KCgpJdCBhbGwgYmFkIGNob2ljZXMgOgoKIMKgwqAgLSBs
+ZXQgZXZlcnlib2R5IGRvIHdoYXQgdGhleSB3YW50IGJ1dCByaXNrIGludmFsaWQgT0EgZGF0YSB3
+aXRoIG5vIAp3YXJuaW5nCgogwqDCoCAtIGZvcmNlIGV2ZXJ5Ym9keSB0byB0aGUgc2FtZSBjb25m
+aWcgYW5kIG9ubHkgb24gZ2VuMTEgcmlzayBhIGhhbmcgCmlmIFZNRSBzYW1wbGVycyBlbmQgdXAg
+YmVpbmcgdXNlZCAod2hpY2ggaXMgYSBzdWJzZXQgb2YgYWxsIG1lZGlhIHdvcmtsb2FkcykKCgo+
+Cj4+IEBAIC0zNjI4LDYgKzM2NzgsMTYgQEAgc3RhdGljIGludCByZWFkX3Byb3BlcnRpZXNfdW5s
+b2NrZWQoc3RydWN0IGk5MTVfcGVyZiAqcGVyZiwKPj4gICAgICAgICAgICAgICAgICBjYXNlIERS
+TV9JOTE1X1BFUkZfUFJPUF9IT0xEX1BSRUVNUFRJT046Cj4+ICAgICAgICAgICAgICAgICAgICAg
+ICAgICBwcm9wcy0+aG9sZF9wcmVlbXB0aW9uID0gISF2YWx1ZTsKPj4gICAgICAgICAgICAgICAg
+ICAgICAgICAgIGJyZWFrOwo+PiArICAgICAgICAgICAgICAgY2FzZSBEUk1fSTkxNV9QRVJGX1BS
+T1BfR0xPQkFMX1NTRVU6IHsKPj4gKyAgICAgICAgICAgICAgICAgICAgICAgaWYgKGNvcHlfZnJv
+bV91c2VyKCZwcm9wcy0+dXNlcl9zc2V1LAo+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgdTY0X3RvX3VzZXJfcHRyKHZhbHVlKSwKPj4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNpemVvZihwcm9wcy0+dXNlcl9zc2V1KSkpIHsK
+Pj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBEUk1fREVCVUcoIlVuYWJsZSB0byBj
+b3B5IGdsb2JhbCBzc2V1IHBhcmFtZXRlclxuIik7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgcmV0dXJuIC1FRkFVTFQ7Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgIH0KPiBT
+aW5jZSB0aGlzIGFmZmVjdHMgc3lzdGVtIHN0YXRlIGZvciBvdGhlciB1c2VycywgSSB3b3VsZCBz
+dWdnZXN0IHRoaXMKPiBoYXMgYSBwcml2aWxlZ2UgY2hlY2sKPgo+PiArICAgICAgICAgICAgICAg
+ICAgICAgICBwcm9wcy0+dXNlcl9zc2V1X3ByZXNlbnQgPSB0cnVlOwo+PiArICAgICAgICAgICAg
+ICAgICAgICAgICBicmVhazsKPiBpOTE1X3BlcmZfaW9jdGxfb3Blbl9sb2NrZWQ6Cj4gCWlmIChw
+cm9wcy0+dXNlcl9zc2V1X3ByZXNlbnQgJiYgSVNfR0VOKDExKSkKPiAJCXByaXZpbGVnZWRfb3Ag
+PSB0cnVlOwo+ID8KCgpJJ20gZ29pbmcgdG8gZ28gd2l0aCBwcml2aWxpZ2VkIGZvciBhbGwgZ2Vu
+cyBleGNlcHQgaWYgdXNlciByZXF1ZXN0ID09IApkZWZhdWx0LgoKClRoYW5rcyBhIGxvdCwKCgot
+TGlvbmVsCgoKPiAtQ2hyaXMKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
