@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8301D1730EB
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 07:17:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82ABD1730EF
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 07:20:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D91F6EDF0;
-	Fri, 28 Feb 2020 06:17:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A23C46EDF6;
+	Fri, 28 Feb 2020 06:20:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3043B6EDF0
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 06:17:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 22:17:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="437327404"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.66.115.214])
- ([10.66.115.214])
- by fmsmga005.fm.intel.com with ESMTP; 27 Feb 2020 22:17:03 -0800
-To: =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200227235005.18706-1-jose.souza@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <d1a413c8-317d-c55d-8c0e-8f3d192f7edb@intel.com>
-Date: Fri, 28 Feb 2020 11:47:02 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AAD776EDF6;
+ Fri, 28 Feb 2020 06:20:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9BA44A363D;
+ Fri, 28 Feb 2020 06:20:16 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200227235005.18706-1-jose.souza@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Use firmware v2.06 for TGL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Fri, 28 Feb 2020 06:20:16 -0000
+Message-ID: <158287081660.7476.14937311052182810341@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmUt?=
+ =?utf-8?q?org_uC_debugfs_files_and_move_them_under_GT?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,31 +38,116 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBETUMgRlcgc2hvdWxkIGZpeCAKaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2Ry
-bS9pbnRlbC9pc3N1ZXMvNDUzID0+IERTQiBidXN5IGlzc3VlCgpSZXZpZXdlZC1ieTogU3dhdGkg
-U2hhcm1hIDxzd2F0aTIuc2hhcm1hQGludGVsLmNvbT4KCk9uIDI4LUZlYi0yMCA1OjIwIEFNLCBK
-b3PDqSBSb2JlcnRvIGRlIFNvdXphIHdyb3RlOgo+IE5ldyBmaXJtd2FyZSBjb250YWlucyBtaW5v
-ciBmaXhlcyBhcm91bmQgY29udGV4dCByZXN0b3JlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IEpvc8Op
-IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPgo+IC0tLQo+ICAgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyB8IDQgKystLQo+ICAgMSBmaWxlIGNo
-YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMKPiBpbmRleCA1NzMyMGMxMjgzOWYuLjMxMTI1NzJj
-ZmI3ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nz
-ci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwo+IEBA
-IC00MCw4ICs0MCw4IEBACj4gICAKPiAgICNkZWZpbmUgR0VOMTJfQ1NSX01BWF9GV19TSVpFCQlJ
-Q0xfQ1NSX01BWF9GV19TSVpFCj4gICAKPiAtI2RlZmluZSBUR0xfQ1NSX1BBVEgJCQkiaTkxNS90
-Z2xfZG1jX3ZlcjJfMDQuYmluIgo+IC0jZGVmaW5lIFRHTF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlD
-U1JfVkVSU0lPTigyLCA0KQo+ICsjZGVmaW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNf
-dmVyMl8wNi5iaW4iCj4gKyNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJT
-SU9OKDIsIDYpCj4gICAjZGVmaW5lIFRHTF9DU1JfTUFYX0ZXX1NJWkUJCTB4NjAwMAo+ICAgTU9E
-VUxFX0ZJUk1XQVJFKFRHTF9DU1JfUEFUSCk7Cj4gICAKPiAKCi0tIAp+U3dhdGkgU2hhcm1hCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBt
-YWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3Rz
-LmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: Re-org uC debugfs files and move them under GT
+URL   : https://patchwork.freedesktop.org/series/74051/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8024 -> Patchwork_16755
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16755/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16755:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-tgl-u}:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16755/fi-tgl-u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16755 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [FAIL][2] ([i915#262]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16755/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][4] ([i915#192] / [i915#193] / [i915#194]) -> [FAIL][5] ([i915#1209])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-kbl-8809g/igt@runner@aborted.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16755/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Additional (4): fi-hsw-peppy fi-gdg-551 fi-bwr-2160 fi-bsw-n3050 
+  Missing    (6): fi-ilk-650 fi-ctg-p8600 fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8024 -> Patchwork_16755
+
+  CI-20190529: 20190529
+  CI_DRM_8024: 3290680f9735978238a1d3df1efa83326a843327 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16755: 2919c449e528a523e408e4c810f274d023dae2de @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2919c449e528 drm/i915/uc: do not free err log on uc_fini
+a4b27a2cdac1 drm/i915/uc: Move uC debugfs to its own folder under GT
+930ae359ffad drm/i915/debugfs: move uC printers and update debugfs file names
+4d8f194b0199 drm/i915/huc: make "support huc" reflect HW capabilities
+dfe41cbafaee drm/i915/uc: mark structure passed to checker functions as const
+342d7bf407c2 drm/i915/guc: drop stage_pool debugfs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16755/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
