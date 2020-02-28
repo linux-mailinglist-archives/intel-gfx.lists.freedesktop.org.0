@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CB9173D59
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0F6B173D8C
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:50:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65A196F47E;
-	Fri, 28 Feb 2020 16:45:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B82C16F482;
+	Fri, 28 Feb 2020 16:50:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 265AD6F47E
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:44:58 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20388052-1500050 for multiple; Fri, 28 Feb 2020 16:44:55 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DCE736F481;
+ Fri, 28 Feb 2020 16:50:26 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C5373A47E2;
+ Fri, 28 Feb 2020 16:50:26 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200228160229.1683087-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200228160229.1683087-1-lionel.g.landwerlin@intel.com>
-Message-ID: <158290829314.24106.1112142885915634527@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 16:44:53 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: introduce global sseu pinning
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 28 Feb 2020 16:50:26 -0000
+Message-ID: <158290862677.7477.3139092781568374884@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228131716.3243616-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200228131716.3243616-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/7=5D_drm/i915/gt=3A_Expose_engine?=
+ =?utf-8?q?_properties_via_sysfs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,61 +39,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Lionel Landwerlin (2020-02-28 16:02:29)
-> On Gen11 powergating half the execution units is a functional
-> requirement when using the VME samplers. Not fullfilling this
-> requirement can lead to hangs.
-> 
-> This unfortunately plays fairly poorly with the NOA requirements. NOA
-> requires a stable power configuration to maintain its configuration.
-> 
-> As a result using OA (and NOA feeding into it) so far has required us
-> to use a power configuration that can work for all contexts. The only
-> power configuration fullfilling this is powergating half the execution
-> units.
-> 
-> This makes performance analysis for 3D workloads somewhat pointless.
-> 
-> Failing to find a solution that would work for everybody, this change
-> introduces a new i915-perf stream open parameter that punts the
-> decision off to userspace. If this parameter is omitted, the existing
-> Gen11 behavior remains (half EU array powergating).
-> 
-> This change takes the initiative to move all perf related sseu
-> configuration into i915_perf.c
+== Series Details ==
 
-The code looks fine, your argument is sound. My only reservation is the
-danger of this becoming the defacto default and so catching users's
-profiling their system by surprise.
+Series: series starting with [1/7] drm/i915/gt: Expose engine properties via sysfs
+URL   : https://patchwork.freedesktop.org/series/74080/
+State : warning
 
-> @@ -3628,6 +3678,16 @@ static int read_properties_unlocked(struct i915_perf *perf,
->                 case DRM_I915_PERF_PROP_HOLD_PREEMPTION:
->                         props->hold_preemption = !!value;
->                         break;
-> +               case DRM_I915_PERF_PROP_GLOBAL_SSEU: {
-> +                       if (copy_from_user(&props->user_sseu,
-> +                                          u64_to_user_ptr(value),
-> +                                          sizeof(props->user_sseu))) {
-> +                               DRM_DEBUG("Unable to copy global sseu parameter\n");
-> +                               return -EFAULT;
-> +                       }
+== Summary ==
 
-Since this affects system state for other users, I would suggest this
-has a privilege check
+$ dim checkpatch origin/drm-tip
+d3b9bcf44547 drm/i915/gt: Expose engine properties via sysfs
+-:76: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#76: 
+new file mode 100644
 
-> +                       props->user_sseu_present = true;
-> +                       break;
+-:181: CHECK:SPACING: No space is necessary after a cast
+#181: FILE: drivers/gpu/drm/i915/gt/sysfs_engines.c:101:
++			 show_unknown ? BITS_PER_TYPE(typeof(caps)) : count) {
 
-i915_perf_ioctl_open_locked:
-	if (props->user_sseu_present && IS_GEN(11))
-		privileged_op = true;
-?
--Chris
+total: 0 errors, 1 warnings, 1 checks, 242 lines checked
+25aedca1dd0a drm/i915/gt: Expose engine->mmio_base via sysfs
+ac66efa1d295 drm/i915/gt: Expose timeslice duration to sysfs
+e01f8abc4a64 drm/i915/gt: Expose busywait duration to sysfs
+6e9daee1bf88 drm/i915/gt: Expose reset stop timeout via sysfs
+60fac5998627 drm/i915/gt: Expose preempt reset timeout via sysfs
+5d649480e8d6 drm/i915/gt: Expose heartbeat interval via sysfs
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
