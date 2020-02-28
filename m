@@ -1,39 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334B4173C8E
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:08:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF8A173C95
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:10:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844946EE83;
-	Fri, 28 Feb 2020 16:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31D776F466;
+	Fri, 28 Feb 2020 16:10:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 037666EE83
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:07:57 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 08:07:57 -0800
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="227587636"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 08:07:56 -0800
-Date: Fri, 28 Feb 2020 18:07:17 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200228160717.GA30328@ideak-desk.fi.intel.com>
-References: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
- <20200128155152.21977-4-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
+ [207.211.31.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B40236F466
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:10:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1582906250;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=TJIuVNRW5GZyI5ESRQqaE219pUI93KEK2zERenrB4AE=;
+ b=C2y4pH0+x8nVIq5OLrZ+SXf469zwTIE/xeLFmfMjNURbScA/J73IkrwJKZ3B+aoTGBvIzF
+ NP5gMgp6pto7PtLv+22yZdy9oCyPjnZ/5hMOuwaqX2mFOLH7iZxlWaRw9Y4GyAhXu9TnUe
+ h2EIjSh4dl90+nvmCNNGIgRUv+Yle6E=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-123-W0Pkfu7KMp2rwgHvaJxNmQ-1; Fri, 28 Feb 2020 11:10:46 -0500
+X-MC-Unique: W0Pkfu7KMp2rwgHvaJxNmQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A884C100550E;
+ Fri, 28 Feb 2020 16:10:44 +0000 (UTC)
+Received: from treble (ovpn-121-128.rdu2.redhat.com [10.10.121.128])
+ by smtp.corp.redhat.com (Postfix) with ESMTPS id D20735DA2C;
+ Fri, 28 Feb 2020 16:10:43 +0000 (UTC)
+Date: Fri, 28 Feb 2020 10:10:41 -0600
+From: Josh Poimboeuf <jpoimboe@redhat.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200228161041.ov7d5ox7myrnr4gi@treble>
+References: <ed52cfb852d2772bf20f48614d75f1d1b1451995.1582841072.git.jpoimboe@redhat.com>
+ <158284236096.19174.6917853940060252533@skylake-alporthouse-com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200128155152.21977-4-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915: Add glk to
- intel_detect_preproduction_hw()
+In-Reply-To: <158284236096.19174.6917853940060252533@skylake-alporthouse-com>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Minimize uaccess exposure in
+ i915_gem_execbuffer2_ioctl()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,73 +59,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Jan 28, 2020 at 05:51:52PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+On Thu, Feb 27, 2020 at 10:26:00PM +0000, Chris Wilson wrote:
+> > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> > @@ -2947,6 +2947,13 @@ i915_gem_execbuffer2_ioctl(struct drm_device *dev, void *data,
+> >                         u64_to_user_ptr(args->buffers_ptr);
+> >                 unsigned int i;
+> >  
+> > +               /*
+> > +                * Do the call to gen8_canonical_addr() outside the
+> > +                * uaccess-enabled region to minimize uaccess exposure.
+> > +                */
+> > +               for (i = 0; i < args->buffer_count; i++)
+> > +                       exec2_list[i].offset = gen8_canonical_addr(exec2_list[i].offset);
+> 
+> 
+> Another loop over all the objects, where we intentionally try and skip
+> unmodified entries? To save 2 instructions from inside the second loop?
+> 
+> Colour me skeptical.
 
-> Detect GLK pre-production steppings. Not 100% of A2 being pre-prod
-> since the spec is a bit of a mess but feels more or less correct.
-> =
+So are you're saying these arrays can be large and that you have
+performance concerns?
 
-> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+-- 
+Josh
 
-On the series:
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/i915_drv.c | 1 +
->  drivers/gpu/drm/i915/i915_drv.h | 2 ++
->  2 files changed, 3 insertions(+)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
-drv.c
-> index 5a5846d892f4..d89d54f5593c 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.c
-> +++ b/drivers/gpu/drm/i915/i915_drv.c
-> @@ -438,6 +438,7 @@ static void intel_detect_preproduction_hw(struct drm_=
-i915_private *dev_priv)
->  	pre |=3D IS_SKL_REVID(dev_priv, 0, SKL_REVID_F0);
->  	pre |=3D IS_BXT_REVID(dev_priv, 0, BXT_REVID_B_LAST);
->  	pre |=3D IS_KBL_REVID(dev_priv, 0, KBL_REVID_A0);
-> +	pre |=3D IS_GLK_REVID(dev_priv, 0, GLK_REVID_A2);
->  =
-
->  	if (pre) {
->  		DRM_ERROR("This is a pre-production stepping. "
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
-drv.h
-> index a8a08c63278e..d62b57ba0ced 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -1578,6 +1578,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  =
-
->  #define GLK_REVID_A0		0x0
->  #define GLK_REVID_A1		0x1
-> +#define GLK_REVID_A2		0x2
-> +#define GLK_REVID_B0		0x3
->  =
-
->  #define IS_GLK_REVID(dev_priv, since, until) \
->  	(IS_GEMINILAKE(dev_priv) && IS_REVID(dev_priv, since, until))
-> -- =
-
-> 2.24.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
