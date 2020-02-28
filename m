@@ -1,57 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F73C17363F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:41:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2510173648
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:43:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30D8D6F418;
-	Fri, 28 Feb 2020 11:41:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2CFD6F41B;
+	Fri, 28 Feb 2020 11:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9105E6F414
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:41:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582890082;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=rpjPL9jqeyRVwMqMh1jhx1Zp0mgurSsoUQwzX5GX6lI=;
- b=Mz9b2MLkz3CJxBkvM9gLc3rWlnIBvuKH/QFFMjm4EYqtPcjTShR3Ebu+dSMnZdhKW3vs42
- fKCFJT2O3XaOPpkTV8aE/dA4rI2DBsuUP1KyPmn/jr7qWtMqI4yN2bl7rXPsi9icUyk3Fh
- G8DInaodq/JGeUWoEwNa2c2QtOHUhaY=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-163-CvNtpvaUPyKkMq86xVwOxg-1; Fri, 28 Feb 2020 06:41:18 -0500
-X-MC-Unique: CvNtpvaUPyKkMq86xVwOxg-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7B34BA0CDD;
- Fri, 28 Feb 2020 11:41:17 +0000 (UTC)
-Received: from shalem.localdomain.com (ovpn-117-193.ams2.redhat.com
- [10.36.117.193])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 1121E1CB;
- Fri, 28 Feb 2020 11:41:15 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Fri, 28 Feb 2020 12:41:10 +0100
-Message-Id: <20200228114110.187792-3-hdegoede@redhat.com>
-In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
-References: <20200228114110.187792-1-hdegoede@redhat.com>
+Received: from netline-mail3.netline.ch (mail.netline.ch [148.251.143.178])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 979426F41E;
+ Fri, 28 Feb 2020 11:43:35 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by netline-mail3.netline.ch (Postfix) with ESMTP id C26B02A6046;
+ Fri, 28 Feb 2020 12:43:34 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
+Received: from netline-mail3.netline.ch ([127.0.0.1])
+ by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
+ with LMTP id G_Sddc70SOPf; Fri, 28 Feb 2020 12:43:34 +0100 (CET)
+Received: from thor (252.80.76.83.dynamic.wline.res.cust.swisscom.ch
+ [83.76.80.252])
+ by netline-mail3.netline.ch (Postfix) with ESMTPSA id 6977A2A6016;
+ Fri, 28 Feb 2020 12:43:34 +0100 (CET)
+Received: from localhost ([::1]) by thor with esmtp (Exim 4.93)
+ (envelope-from <michel@daenzer.net>)
+ id 1j7e3I-000A50-IZ; Fri, 28 Feb 2020 12:43:32 +0100
+To: Erik Faye-Lund <erik.faye-lund@collabora.com>,
+ Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+ <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
+From: =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
+Message-ID: <a7727f84-ba85-f19d-9823-c7ba04fd1bb8@daenzer.net>
+Date: Fri, 28 Feb 2020 12:43:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [PATCH resend 2/2] drm/i915/dp: Use
- BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
+In-Reply-To: <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
+Content-Language: en-CA
+Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
+ impact on services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,46 +54,32 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ gstreamer-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some devices with a builtin panel have the panel mounted upside down,
-this is indicated by the rotate_180 bit in the BDB_GENERAL_FEATURES VBT
-block.
-
-We store this info in dev_priv->vbt.orientation, use this to set the
-connector's orientation property so that fbcon and userspace will show
-the image the right way up on devices with an upside-down mounted panel.
-
-This fixes the image being upside-down on a Teclast X89 tablet.
-
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2db8d46f61a1..c31f5233941c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7608,9 +7608,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	intel_panel_setup_backlight(connector, pipe);
- 
- 	if (fixed_mode) {
--		/* We do not know the orientation, but their might be a quirk */
- 		drm_connector_set_panel_orientation_with_quirk(connector,
--				DRM_MODE_PANEL_ORIENTATION_UNKNOWN,
-+				dev_priv->vbt.orientation,
- 				fixed_mode->hdisplay, fixed_mode->vdisplay);
- 	}
- 
--- 
-2.24.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMjAyMC0wMi0yOCAxMDoyOCBhLm0uLCBFcmlrIEZheWUtTHVuZCB3cm90ZToKPiAKPiBXZSBj
+b3VsZCBhbHNvIGRvIHN0dWZmIGxpa2UgcmVkdWNpbmcgdGhlIGFtb3VudCBvZiB0ZXN0cyB3ZSBy
+dW4gb24gZWFjaAo+IGNvbW1pdCwgYW5kIHB1bnQgc29tZSB0ZXN0aW5nIHRvIGEgcGVyLXdlZWtl
+bmQgdGVzdC1ydW4gb3Igc29tZXRpbmcKPiBsaWtlIHRoYXQuIFdlIGRvbid0ICpuZWVkKiB0byBr
+bm93IGFib3V0IGV2ZXJ5IHByb2JsZW0gdXAgZnJvbnQsIGp1c3QKPiB0aGUgc3R1ZmYgdGhhdCdz
+IGFib3V0IHRvIGJlIHJlbGVhc2VkLCByZWFsbHkuIFRoZSBvdGhlciBzdHVmZiBpcyBqdXN0Cj4g
+bmljZSB0byBoYXZlLiBJZiBpdCdzIHRvbyBleHBlbnNpdmUsIEkgd291bGQgc2F5IGRyb3AgaXQu
+CgpJIGRvbid0IGFncmVlIHRoYXQgcHJlLW1lcmdlIHRlc3RpbmcgaXMganVzdCBuaWNlIHRvIGhh
+dmUuIEEgcHJvYmxlbQp3aGljaCBpcyBvbmx5IGNhdWdodCBhZnRlciBpdCBsYW5kcyBpbiBtYWlu
+bGluZSBoYXMgYSBtdWNoIGJpZ2dlciBpbXBhY3QKdGhhbiBvbmUgd2hpY2ggaXMgYWxyZWFkeSBj
+YXVnaHQgZWFybGllci4KCgotLSAKRWFydGhsaW5nIE1pY2hlbCBEw6RuemVyICAgICAgICAgICAg
+ICAgfCAgICAgICAgICAgICAgIGh0dHBzOi8vcmVkaGF0LmNvbQpMaWJyZSBzb2Z0d2FyZSBlbnRo
+dXNpYXN0ICAgICAgICAgICAgIHwgICAgICAgICAgICAgTWVzYSBhbmQgWCBkZXZlbG9wZXIKX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
