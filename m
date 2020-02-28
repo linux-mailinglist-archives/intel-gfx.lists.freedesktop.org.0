@@ -2,41 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE36B173A7C
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 15:58:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D582B173B0C
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:10:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE6016E05D;
-	Fri, 28 Feb 2020 14:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B62016E063;
+	Fri, 28 Feb 2020 15:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25C56E02C;
- Fri, 28 Feb 2020 14:58:10 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51BAD6E063
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 15:10:42 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 06:58:10 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 07:10:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="350934320"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 28 Feb 2020 06:58:07 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2020 16:58:06 +0200
-Date: Fri, 28 Feb 2020 16:58:06 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <20200228145806.GG13686@intel.com>
-References: <20200228114110.187792-1-hdegoede@redhat.com>
- <20200228114110.187792-3-hdegoede@redhat.com>
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="257137245"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga002.jf.intel.com with ESMTP; 28 Feb 2020 07:10:40 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 1AA3C5C1DAA; Fri, 28 Feb 2020 17:09:28 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200228082330.2411941-18-chris@chris-wilson.co.uk>
+References: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
+ <20200228082330.2411941-18-chris@chris-wilson.co.uk>
+Date: Fri, 28 Feb 2020 17:09:28 +0200
+Message-ID: <87zhd27npz.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200228114110.187792-3-hdegoede@redhat.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH resend 2/2] drm/i915/dp: Use
- BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
+Subject: Re: [Intel-gfx] [PATCH 18/24] drm/i915/selftests: Wait for the
+ kernel context switch
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,65 +45,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 12:41:10PM +0100, Hans de Goede wrote:
-> Some devices with a builtin panel have the panel mounted upside down,
-> this is indicated by the rotate_180 bit in the BDB_GENERAL_FEATURES VBT
-> block.
-> =
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> We store this info in dev_priv->vbt.orientation, use this to set the
-> connector's orientation property so that fbcon and userspace will show
-> the image the right way up on devices with an upside-down mounted panel.
-> =
+> As we require a context switch to ensure that the current context is
+> switched out and saved to memory, perform an explicit switch to the
+> kernel context and wait for it.
 
-> This fixes the image being upside-down on a Teclast X89 tablet.
-> =
+The patch subject is not incorrect. Just feels that the kernel
+context is a patsy in here.
 
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+So I would s/kernel// on subject but keep in commit msg
+
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 2db8d46f61a1..c31f5233941c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -7608,9 +7608,8 @@ static bool intel_edp_init_connector(struct intel_d=
-p *intel_dp,
->  	intel_panel_setup_backlight(connector, pipe);
->  =
-
->  	if (fixed_mode) {
-> -		/* We do not know the orientation, but their might be a quirk */
->  		drm_connector_set_panel_orientation_with_quirk(connector,
-> -				DRM_MODE_PANEL_ORIENTATION_UNKNOWN,
-> +				dev_priv->vbt.orientation,
-
-That's the non-DSI specific one I presume... yes.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
->  				fixed_mode->hdisplay, fixed_mode->vdisplay);
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 37 +++++++++++++++++++-------
+>  1 file changed, 28 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index d7f98aada626..95da6b880e3f 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -4015,6 +4015,31 @@ static int emit_semaphore_signal(struct intel_context *ce, void *slot)
+>  	return 0;
+>  }
+>  
+> +static int context_sync(struct intel_context *ce)
+> +{
+> +	struct i915_request *rq;
+> +	struct dma_fence *fence;
+> +	int err = 0;
+> +
+> +	rq = intel_engine_create_kernel_request(ce->engine);
+> +	if (IS_ERR(rq))
+> +		return PTR_ERR(rq);
+> +
+> +	fence = i915_active_fence_get(&ce->timeline->last_request);
+> +	if (fence) {
+> +		i915_request_await_dma_fence(rq, fence);
+> +		dma_fence_put(fence);
+> +	}
+> +
+> +	rq = i915_request_get(rq);
+> +	i915_request_add(rq);
+> +	if (i915_request_wait(rq, 0, HZ / 2) < 0)
+> +		err = -ETIME;
+> +	i915_request_put(rq);
+> +
+> +	return err;
+> +}
+> +
+>  static int live_lrc_layout(void *arg)
+>  {
+>  	struct intel_gt *gt = arg;
+> @@ -4638,16 +4663,10 @@ static int __lrc_timestamp(const struct lrc_timestamp *arg, bool preempt)
+>  		wmb();
 >  	}
->  =
+>  
+> -	if (i915_request_wait(rq, 0, HZ / 2) < 0) {
+> -		err = -ETIME;
+> -		goto err;
+> -	}
+> -
+> -	/* and wait for switch to kernel */
+> -	if (igt_flush_test(arg->engine->i915)) {
+> -		err = -EIO;
+> +	/* and wait for switch to kernel (to save our context to memory) */
+> +	err = context_sync(arg->ce[0]);
+> +	if (err)
+>  		goto err;
+> -	}
+>  
+>  	rmb();
 
-> -- =
+For me the context_sync could be context_flush and it would
+allow the rmb() to be snuck inside.
 
-> 2.24.1
+But I seem to gravitate towards lower resolution and
+apparently you prefer to be more fine grained and
+explicit on callsites so,
 
--- =
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Ville Syrj=E4l=E4
-Intel
+>  
+> -- 
+> 2.25.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
