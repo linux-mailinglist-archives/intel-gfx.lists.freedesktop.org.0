@@ -2,55 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89AFD174166
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1642B17416A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:25:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23A036F4DD;
-	Fri, 28 Feb 2020 21:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9006F4D4;
+	Fri, 28 Feb 2020 21:25:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com
- [IPv6:2607:f8b0:4864:20::332])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E5996F4DD
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:22:29 +0000 (UTC)
-Received: by mail-ot1-x332.google.com with SMTP id 59so3899837otp.12
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:22:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=pvAFayIp+hFiq4OYzgyDZqTgk8u4sJMbapTf8GoDZe0=;
- b=c9oW3yClIYqyEUBfQq2yDWWEyamFL387Lm/8Io+SAc+NmCdt/RT1vt+BOZ1QVv9f7O
- dY5SKS6LbJFlEzPoE+QHgC69uamnAZWgNjU5G70mXnLpgSCsxqkkUVFKUrSUm9X0Zv3A
- sFeiaT/1t1KDfei0K4tl/WJ+cWwL4bTDF/Irk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=pvAFayIp+hFiq4OYzgyDZqTgk8u4sJMbapTf8GoDZe0=;
- b=gtDY3zaSCJdbBaFMVFPMgwGMqpzvm95fr/dV/H2Ixui0YuS9m8WabOQFooiQbZC4bK
- z67ayru0QUqv+9E5211tUF1RLxwvSqK+0JRzHZ2Fw5IndMdn+FIOwsRx/vsevhBe7TMc
- zEoyutMKysNXQcTcugUUvR9KegMKw2NM0maiWEKsJO6ExQ0w4ykUYSwV+ui28ypyYBGh
- co4DIS8J4MxDI8hDUM9JEsEH6zfT5ANJxjpkUK2IdJaiwPS2AH7goiVruidjuQX7GoWT
- VAb+TGLB1tRcEzxUsidFddjFzfvv/qauiDJN0uuGkdrqSiINU3eBmIRtXnmsR09BBBxi
- laSg==
-X-Gm-Message-State: APjAAAUnaIN8nKsY+Mj8nRlG26yUM+SHn3+GPLU5TglEUlb9wLj5/ljv
- FAq7WFus9IaUhzLuS4hT6zzf+gQDrxhMJ2p/8IvZuA==
-X-Google-Smtp-Source: APXvYqyhJpdAR5D0XSfdUrW7vJsBeDuOzXg3j3bFg63cXbYS166tXEcnfEkOQyA9ELZOIDYV+FneMoZSYAfmAlQNppQ=
-X-Received: by 2002:a9d:7696:: with SMTP id j22mr5172332otl.188.1582924948464; 
- Fri, 28 Feb 2020 13:22:28 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26A1C6F4D4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:25:12 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 13:25:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="227668571"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga007.jf.intel.com with ESMTP; 28 Feb 2020 13:25:11 -0800
+Date: Fri, 28 Feb 2020 13:25:11 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200228212511.GD174531@mdroper-desk1.amr.corp.intel.com>
+References: <20200227220101.321671-1-jose.souza@intel.com>
+ <20200227220101.321671-9-jose.souza@intel.com>
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
- <CAPM=9txN-RKGwinzsSPrmT_xFjS2J_XUhXVsRQ2pSSe529wpEA@mail.gmail.com>
- <CADaigPUjYZ-Mqd91eyR3Luo=PxLHratUhvodJmCJHf__MnPozA@mail.gmail.com>
- <CAPM=9tyhoagJmzMtwDKU-rjsCUPjokUp2ECOV0FdbkO5CQdZ2w@mail.gmail.com>
-In-Reply-To: <CAPM=9tyhoagJmzMtwDKU-rjsCUPjokUp2ECOV0FdbkO5CQdZ2w@mail.gmail.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 28 Feb 2020 22:22:16 +0100
-Message-ID: <CAKMK7uG-HwYX4M8sSAU6Qee_hUTFZZNHngsR+_K+Ewrqu8=ZDg@mail.gmail.com>
-To: Dave Airlie <airlied@gmail.com>
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+Content-Disposition: inline
+In-Reply-To: <20200227220101.321671-9-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 09/11] drm/i915/tgl: Restrict
+ Wa_1408615072 to A0 stepping
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,188 +46,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>, Eric Anholt <eric@anholt.net>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 9:31 PM Dave Airlie <airlied@gmail.com> wrote:
->
-> On Sat, 29 Feb 2020 at 05:34, Eric Anholt <eric@anholt.net> wrote:
-> >
-> > On Fri, Feb 28, 2020 at 12:48 AM Dave Airlie <airlied@gmail.com> wrote:
-> > >
-> > > On Fri, 28 Feb 2020 at 18:18, Daniel Stone <daniel@fooishbar.org> wrote:
-> > > >
-> > > > On Fri, 28 Feb 2020 at 03:38, Dave Airlie <airlied@gmail.com> wrote:
-> > > > > b) we probably need to take a large step back here.
-> > > > >
-> > > > > Look at this from a sponsor POV, why would I give X.org/fd.o
-> > > > > sponsorship money that they are just giving straight to google to pay
-> > > > > for hosting credits? Google are profiting in some minor way from these
-> > > > > hosting credits being bought by us, and I assume we aren't getting any
-> > > > > sort of discounts here. Having google sponsor the credits costs google
-> > > > > substantially less than having any other company give us money to do
-> > > > > it.
-> > > >
-> > > > The last I looked, Google GCP / Amazon AWS / Azure were all pretty
-> > > > comparable in terms of what you get and what you pay for them.
-> > > > Obviously providers like Packet and Digital Ocean who offer bare-metal
-> > > > services are cheaper, but then you need to find someone who is going
-> > > > to properly administer the various machines, install decent
-> > > > monitoring, make sure that more storage is provisioned when we need
-> > > > more storage (which is basically all the time), make sure that the
-> > > > hardware is maintained in decent shape (pretty sure one of the fd.o
-> > > > machines has had a drive in imminent-failure state for the last few
-> > > > months), etc.
-> > > >
-> > > > Given the size of our service, that's a much better plan (IMO) than
-> > > > relying on someone who a) isn't an admin by trade, b) has a million
-> > > > other things to do, and c) hasn't wanted to do it for the past several
-> > > > years. But as long as that's the resources we have, then we're paying
-> > > > the cloud tradeoff, where we pay more money in exchange for fewer
-> > > > problems.
-> > >
-> > > Admin for gitlab and CI is a full time role anyways. The system is
-> > > definitely not self sustaining without time being put in by you and
-> > > anholt still. If we have $75k to burn on credits, and it was diverted
-> > > to just pay an admin to admin the real hw + gitlab/CI would that not
-> > > be a better use of the money? I didn't know if we can afford $75k for
-> > > an admin, but suddenly we can afford it for gitlab credits?
-> >
-> > As I think about the time that I've spent at google in less than a
-> > year on trying to keep the lights on for CI and optimize our
-> > infrastructure in the current cloud environment, that's more than the
-> > entire yearly budget you're talking about here.  Saying "let's just
-> > pay for people to do more work instead of paying for full-service
-> > cloud" is not a cost optimization.
-> >
-> >
-> > > > Yes, we could federate everything back out so everyone runs their own
-> > > > builds and executes those. Tinderbox did something really similar to
-> > > > that IIRC; not sure if Buildbot does as well. Probably rules out
-> > > > pre-merge testing, mind.
-> > >
-> > > Why? does gitlab not support the model? having builds done in parallel
-> > > on runners closer to the test runners seems like it should be a thing.
-> > > I guess artifact transfer would cost less then as a result.
-> >
-> > Let's do some napkin math.  The biggest artifacts cost we have in Mesa
-> > is probably meson-arm64/meson-arm (60MB zipped from meson-arm64,
-> > downloaded by 4 freedreno and 6ish lava, about 100 pipelines/day,
-> > makes ~1.8TB/month ($180 or so).  We could build a local storage next
-> > to the lava dispatcher so that the artifacts didn't have to contain
-> > the rootfs that came from the container (~2/3 of the insides of the
-> > zip file), but that's another service to build and maintain.  Building
-> > the drivers once locally and storing it would save downloading the
-> > other ~1/3 of the inside of the zip file, but that requires a big
-> > enough system to do builds in time.
-> >
-> > I'm planning on doing a local filestore for google's lava lab, since I
-> > need to be able to move our xml files off of the lava DUTs to get the
-> > xml results we've become accustomed to, but this would not bubble up
-> > to being a priority for my time if I wasn't doing it anyway.  If it
-> > takes me a single day to set all this up (I estimate a couple of
-> > weeks), that costs my employer a lot more than sponsoring the costs of
-> > the inefficiencies of the system that has accumulated.
->
-> I'm not trying to knock the engineering works the CI contributors have
-> done at all, but I've never seen a real discussion about costs until
-> now. Engineers aren't accountants.
->
-> The thing we seem to be missing here is fiscal responsibility. I know
-> this email is us being fiscally responsible, but it's kinda after the
-> fact.
->
-> I cannot commit my employer to spending a large amount of money (> 0
-> actually) without a long and lengthy process with checks and bounds.
-> Can you?
->
-> The X.org board has budgets and procedures as well. I as a developer
-> of Mesa should not be able to commit the X.org foundation to spending
-> large amounts of money without checks and bounds.
->
-> The CI infrastructure lacks any checks and bounds. There is no link
-> between editing .gitlab-ci/* and cashflow. There is no link to me
-> adding support for a new feature to llvmpipe that blows out test times
-> (granted it won't affect CI budget but just an example).
+On Thu, Feb 27, 2020 at 02:00:59PM -0800, Jos=E9 Roberto de Souza wrote:
+> It is fixed in B0 stepping.
+> =
 
-We're working to get the logging in place to know which projects
-exactly burn down the money so that we can take specific actions. If
-needed. So pretty soon you wont be able to just burn down endless
-amounts of cash with a few gitlab-ci commits. Or at least not for long
-until we catch you and you either fix things up or CI is gone for your
-project.
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> =
 
-> The fact that clouds run on credit means that it's not possible to say
-> budget 30K and say when that runs out it runs out, you end up getting
-> bills for ever increasing amounts that you have to cover, with nobody
-> "responsible" for ever reducing those bills. Higher Faster Further
-> baby comes to mind.
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 22aa205793e5..a101d8072b5b 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -6838,8 +6838,9 @@ static void tgl_init_clock_gating(struct drm_i915_p=
+rivate *dev_priv)
+>  	unsigned int i;
+>  =
 
-We're working on this, since it's the boards responsibility to be on
-top of stuff. It's simply that we didn't expect a massive growth of
-this scale and this quickly, so we're a bit behind on the controlling
-aspect.
+>  	/* Wa_1408615072:tgl */
+> -	intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> -			 0, VSUNIT_CLKGATE_DIS_TGL);
+> +	if (IS_TGL_REVID(dev_priv, TGL_REVID_A0, TGL_REVID_A0))
+> +		intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> +				 0, VSUNIT_CLKGATE_DIS_TGL);
 
-Also I guess it wasnt clear, but the board decision yesterday was the
-stop loss order where we cut the cord (for CI at least). So yeah the
-short term budget is firmly in place now.
+I think this workaround is also implemented in the wrong location.  This
+is a render engine register (part of the 94D0-951C render forcewake
+range on bspec 52078) and part of the MCR range (bspec 52079), so we
+should program this in the engine_wa_init rather than the clock gating
+function.
 
-> Has X.org actually allocated the remaining cash in it's bank account
-> to this task previously? Was there plans for this money that can't be
-> executed now because we have to pay the cloud fees? If we continue to
-> May and the X.org bank account hits 0, can XDC happen?
+The ICL/EHL version (which we based the TGL WA on) is also in the wrong
+place for the same reasons.
 
-There's numbers elsewhere in this thread, but if you'd read the
-original announcement it states that the stop loss would still
-guarantee that we can pay for everything for at least one year. We're
-not going to get even close to 0 in the bank account.
-
-So yeah XDC happens, and it'll also still happen next year. Also fd.o
-servers will keep running. The only thing we might need to switch off
-is the CI support.
-
-> Budgeting and cloud is hard, the feedback loops are messy. In the old
-> system the feedback loop was simple, we don't have admin time or money
-> for servers we don't get the features, cloud allows us to get the
-> features and enjoy them and at some point in the future the bill gets
-> paid by someone else. Credit cards lifestyles all the way.
-
-Uh ... where exactly do you get the credit card approach from? SPI is
-legally not allowed to extend us a credit (we're not a legal org
-anymore), so if we hit 0 it's out real quick. No credit for us. If SPI
-isnt on top of that it's their loss (but they're getting pretty good
-at tracking stuff with the contractor they now have and all that).
-
-Which is not going to happen btw, if you've read the announcement mail
-and all that.
-
-Cheers, Daniel
-
-> Like maybe we can grow up here and find sponsors to cover all of this,
-> but it still feels a bit backwards from a fiscal pov.
->
-> Again I'm not knocking the work people have done at all, CI is very
-> valuable to the projects involved, but that doesn't absolve us from
-> costs.
->
-> Dave.
+At some point we should probably audit all the other GT/engine/MCR
+registers we're dealing with in the init_clock_gating functions and move
+them out to more appropriate places.
 
 
+Matt
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+>  =
+
+>  	/* This is not a WA. Enable VD HCP & MFX_ENC powergate */
+>  	for (i =3D 0; i < I915_MAX_VCS; i++) {
+> -- =
+
+> 2.25.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- =
+
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
