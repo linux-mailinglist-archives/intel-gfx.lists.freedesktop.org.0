@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6855F172ED3
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:29:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8C63172ED4
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:29:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB9BB6EDC3;
-	Fri, 28 Feb 2020 02:29:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E49B6EDC8;
+	Fri, 28 Feb 2020 02:29:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3266EDBF
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 02:29:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3D646EDC6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 02:29:41 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 18:29:39 -0800
+ 27 Feb 2020 18:29:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227392667"
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227392676"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 18:29:39 -0800
+ by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 18:29:41 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 18:28:40 -0800
-Message-Id: <20200228022843.1936-4-daniele.ceraolospurio@intel.com>
+Date: Thu, 27 Feb 2020 18:28:41 -0800
+Message-Id: <20200228022843.1936-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
 References: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/6] drm/i915/huc: make "support huc" reflect HW
- capabilities
+Subject: [Intel-gfx] [PATCH 4/6] drm/i915/debugfs: move uC printers and
+ update debugfs file names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,210 +48,439 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We currently initialize HuC support based on GuC being enabled in
-modparam; this means that huc_is_supported() can return false on HW that
-does have a HuC when enable_guc=0. The rationale for this behavior is
-that HuC requires GuC for authentication and therefore is not supported
-by itself. However, we do not allow defining HuC fw wthout GuC fw and
-selecting HuC in modparam implicitly selects GuC as well, so we can't
-actually hit a scenario where HuC is selected alone. Therefore, we can
-flip the support check to reflect the HW capabilities and fw
-availability, which is more intuitive and will make it cleaner to log
-HuC the difference between not supported in HW and not selected.
+Move the printers to the respective files for clarity. The
+guc_load_status debugfs has been squashed in the guc_info one, has
+having separate ones wasn't very useful. The HuC debugfs has been
+renamed huc_info to match.
 
-Removing the difference between GuC and HuC also allows us to simplify
-the init_early, since we don't need to differentiate the support based
-on the type of uC.
+While at it, fix the register printed in the HuC debugfs for gen11+.
 
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Tony Ye <tony.ye@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 14 -------------
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h |  1 -
- drivers/gpu/drm/i915/gt/uc/intel_huc.c    |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c | 17 ---------------
- drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h |  1 -
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 25 +++++++++++++++--------
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h  |  3 +--
- 8 files changed, 20 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c     |  44 +++++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h     |   2 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.c |  94 ++++++++++++++-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_log.h |   4 +
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c     |  29 +++++
+ drivers/gpu/drm/i915/gt/uc/intel_huc.h     |   2 +
+ drivers/gpu/drm/i915/i915_debugfs.c        | 131 +++------------------
+ 7 files changed, 190 insertions(+), 116 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 819f09ef51fc..827d75073879 100644
+index 827d75073879..9647002b0e2f 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -169,7 +169,7 @@ void intel_guc_init_early(struct intel_guc *guc)
- {
- 	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+@@ -723,3 +723,47 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
  
--	intel_guc_fw_init_early(guc);
-+	intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC);
- 	intel_guc_ct_init_early(&guc->ct);
- 	intel_guc_log_init_early(&guc->log);
- 	intel_guc_submission_init_early(guc);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-index 3a1c47d600ea..d4a87f4c9421 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-@@ -13,20 +13,6 @@
- #include "intel_guc_fw.h"
- #include "i915_drv.h"
+ 	return 0;
+ }
++
++/**
++ * intel_guc_load_status - dump information about GuC load status
++ * @guc: the GuC
++ * @p: the &drm_printer
++ *
++ * Pretty printer for GuC load status.
++ */
++void intel_guc_load_status(const struct intel_guc *guc, struct drm_printer *p)
++{
++	struct intel_gt *gt = guc_to_gt(guc);
++	struct intel_uncore *uncore = gt->uncore;
++	intel_wakeref_t wakeref;
++
++	if (!intel_guc_is_supported(guc)) {
++		drm_printf(p, "GuC not supported\n");
++		return;
++	}
++
++	if (!intel_guc_is_wanted(guc)) {
++		drm_printf(p, "GuC disabled\n");
++		return;
++	}
++
++	intel_uc_fw_dump(&guc->fw, p);
++
++	with_intel_runtime_pm(uncore->rpm, wakeref) {
++		u32 status = intel_uncore_read(uncore, GUC_STATUS);
++		u32 i;
++
++		drm_printf(p, "\nGuC status 0x%08x:\n", status);
++		drm_printf(p, "\tBootrom status = 0x%x\n",
++			   (status & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT);
++		drm_printf(p, "\tuKernel status = 0x%x\n",
++			   (status & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT);
++		drm_printf(p, "\tMIA Core status = 0x%x\n",
++			   (status & GS_MIA_MASK) >> GS_MIA_SHIFT);
++		drm_puts(p, "\nScratch registers:\n");
++		for (i = 0; i < 16; i++) {
++			drm_printf(p, "\t%2d: \t0x%x\n",
++				   i, intel_uncore_read(uncore, SOFT_SCRATCH(i)));
++		}
++	}
++}
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 969147bd9973..7d1ae9879b94 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -190,4 +190,6 @@ static inline void intel_guc_disable_msg(struct intel_guc *guc, u32 mask)
+ int intel_guc_reset_engine(struct intel_guc *guc,
+ 			   struct intel_engine_cs *engine);
  
--/**
-- * intel_guc_fw_init_early() - initializes GuC firmware struct
-- * @guc: intel_guc struct
-- *
-- * On platforms with GuC selects firmware for uploading
-- */
--void intel_guc_fw_init_early(struct intel_guc *guc)
--{
--	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
--
--	intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC, HAS_GT_UC(i915),
--			       INTEL_INFO(i915)->platform, INTEL_REVID(i915));
--}
--
- static void guc_prepare_xfer(struct intel_uncore *uncore)
- {
- 	u32 shim_flags = GUC_DISABLE_SRAM_INIT_TO_ZEROES |
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
-index b5ab639d7259..0b4d2a9c9435 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
-@@ -8,7 +8,6 @@
- 
- struct intel_guc;
- 
--void intel_guc_fw_init_early(struct intel_guc *guc);
- int intel_guc_fw_upload(struct intel_guc *guc);
- 
++void intel_guc_load_status(const struct intel_guc *guc, struct drm_printer *p);
++
  #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index a74b65694512..d73dc21686e7 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -41,7 +41,7 @@ void intel_huc_init_early(struct intel_huc *huc)
- {
- 	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
- 
--	intel_huc_fw_init_early(huc);
-+	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC);
- 
- 	if (INTEL_GEN(i915) >= 11) {
- 		huc->status.reg = GEN11_HUC_KERNEL_LOAD_INFO;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-index 9cdf4cbe691c..e5ef509c70e8 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
-@@ -7,23 +7,6 @@
- #include "intel_huc_fw.h"
- #include "i915_drv.h"
- 
--/**
-- * intel_huc_fw_init_early() - initializes HuC firmware struct
-- * @huc: intel_huc struct
-- *
-- * On platforms with HuC selects firmware for uploading
-- */
--void intel_huc_fw_init_early(struct intel_huc *huc)
--{
--	struct intel_gt *gt = huc_to_gt(huc);
--	struct intel_uc *uc = &gt->uc;
--	struct drm_i915_private *i915 = gt->i915;
--
--	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC,
--			       intel_uc_wants_guc(uc),
--			       INTEL_INFO(i915)->platform, INTEL_REVID(i915));
--}
--
- /**
-  * intel_huc_fw_upload() - load HuC uCode to device
-  * @huc: intel_huc structure
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-index b791269ce923..12f264ee3e0b 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
-@@ -8,7 +8,6 @@
- 
- struct intel_huc;
- 
--void intel_huc_fw_init_early(struct intel_huc *huc);
- int intel_huc_fw_upload(struct intel_huc *huc);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-index 5434c07aefa1..1e689e2fe089 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
-@@ -11,16 +11,22 @@
- #include "intel_uc_fw_abi.h"
- #include "i915_drv.h"
- 
--static inline struct intel_gt *__uc_fw_to_gt(struct intel_uc_fw *uc_fw)
-+static inline struct intel_gt *
-+____uc_fw_to_gt(struct intel_uc_fw *uc_fw, enum intel_uc_fw_type type)
- {
--	GEM_BUG_ON(uc_fw->status == INTEL_UC_FIRMWARE_UNINITIALIZED);
--	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
-+	if (type == INTEL_UC_FW_TYPE_GUC)
- 		return container_of(uc_fw, struct intel_gt, uc.guc.fw);
- 
--	GEM_BUG_ON(uc_fw->type != INTEL_UC_FW_TYPE_HUC);
-+	GEM_BUG_ON(type != INTEL_UC_FW_TYPE_HUC);
- 	return container_of(uc_fw, struct intel_gt, uc.huc.fw);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+index caed0d57e704..fbb73b8d9178 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
+@@ -55,7 +55,7 @@ static int guc_action_control_log(struct intel_guc *guc, bool enable,
+ 	return intel_guc_send(guc, action, ARRAY_SIZE(action));
  }
  
-+static inline struct intel_gt *__uc_fw_to_gt(struct intel_uc_fw *uc_fw)
+-static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
++static inline struct intel_guc *log_to_guc(const struct intel_guc_log *log)
+ {
+ 	return container_of(log, struct intel_guc, log);
+ }
+@@ -672,3 +672,95 @@ void intel_guc_log_handle_flush_event(struct intel_guc_log *log)
+ {
+ 	queue_work(system_highpri_wq, &log->relay.flush_work);
+ }
++
++static const char *
++stringify_guc_log_type(enum guc_log_buffer_type type)
 +{
-+	GEM_BUG_ON(uc_fw->status == INTEL_UC_FIRMWARE_UNINITIALIZED);
-+	return ____uc_fw_to_gt(uc_fw, uc_fw->type);
++	switch (type) {
++	case GUC_ISR_LOG_BUFFER:
++		return "ISR";
++	case GUC_DPC_LOG_BUFFER:
++		return "DPC";
++	case GUC_CRASH_DUMP_LOG_BUFFER:
++		return "CRASH";
++	default:
++		MISSING_CASE(type);
++	}
++
++	return "";
 +}
 +
- #ifdef CONFIG_DRM_I915_DEBUG_GUC
- void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
- 			       enum intel_uc_fw_status status)
-@@ -195,9 +201,10 @@ static void __uc_fw_user_override(struct intel_uc_fw *uc_fw)
-  * firmware to fetch and load.
-  */
- void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
--			    enum intel_uc_fw_type type, bool supported,
--			    enum intel_platform platform, u8 rev)
-+			    enum intel_uc_fw_type type)
- {
-+	struct drm_i915_private *i915 = ____uc_fw_to_gt(uc_fw, type)->i915;
++/**
++ * intel_guc_log_info - dump information about GuC log relay
++ * @guc: the GuC
++ * @p: the &drm_printer
++ *
++ * Pretty printer for GuC log info
++ */
++void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
++{
++	enum guc_log_buffer_type type;
 +
- 	/*
- 	 * we use FIRMWARE_UNINITIALIZED to detect checks against uc_fw->status
- 	 * before we're looked at the HW caps to see if we have uc support
-@@ -208,8 +215,10 @@ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
- 
- 	uc_fw->type = type;
- 
--	if (supported) {
--		__uc_fw_auto_select(uc_fw, platform, rev);
-+	if (HAS_GT_UC(i915)) {
-+		__uc_fw_auto_select(uc_fw,
-+				    INTEL_INFO(i915)->platform,
-+				    INTEL_REVID(i915));
- 		__uc_fw_user_override(uc_fw);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-index 704b7b0fd710..9f66c058fd23 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-@@ -239,8 +239,7 @@ static inline u32 intel_uc_fw_get_upload_size(const struct intel_uc_fw *uc_fw)
++	if (!intel_guc_log_relay_created(log)) {
++		drm_puts(p, "GuC log relay not created\n");
++		return;
++	}
++
++	drm_puts(p, "GuC logging stats:\n");
++
++	drm_printf(p, "\tRelay full count: %u\n", log->relay.full_count);
++
++	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
++		drm_printf(p, "\t%s:\tflush count %10u, overflow count %10u\n",
++			   stringify_guc_log_type(type),
++			   log->stats[type].flush,
++			   log->stats[type].sampled_overflow);
++	}
++}
++
++/**
++ * intel_guc_log_dump - dump the contents of the GuC log
++ * @log: the GuC log
++ * @p: the &drm_printer
++ * @dump_load_err: dump the log saved on GuC load error
++ *
++ * Pretty printer for the GuC log
++ */
++int intel_guc_log_dump(const struct intel_guc_log *log, struct drm_printer *p,
++		       bool dump_load_err)
++{
++	struct intel_guc *guc = log_to_guc(log);
++	struct intel_uc *uc = container_of(guc, struct intel_uc, guc);
++	struct drm_i915_gem_object *obj = NULL;
++	u32 *map;
++	int i = 0;
++
++	if (!intel_guc_is_supported(guc))
++		return -ENODEV;
++
++	if (dump_load_err)
++		obj = uc->load_err_log;
++	else if (guc->log.vma)
++		obj = guc->log.vma->obj;
++
++	if (!obj)
++		return 0;
++
++	map = i915_gem_object_pin_map(obj, I915_MAP_WC);
++	if (IS_ERR(map)) {
++		DRM_DEBUG("Failed to pin object\n");
++		drm_puts(p, "(log data unaccessible)\n");
++		return PTR_ERR(map);
++	}
++
++	for (i = 0; i < obj->base.size / sizeof(u32); i += 4)
++		drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
++			   *(map + i), *(map + i + 1),
++			   *(map + i + 2), *(map + i + 3));
++
++	drm_puts(p, "\n");
++
++	i915_gem_object_unpin_map(obj);
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+index c252c022c5fc..e57b94a1badd 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
+@@ -79,4 +79,8 @@ static inline u32 intel_guc_log_get_level(struct intel_guc_log *log)
+ 	return log->level;
  }
  
- void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
--			    enum intel_uc_fw_type type, bool supported,
--			    enum intel_platform platform, u8 rev);
-+			    enum intel_uc_fw_type type);
- int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw);
- void intel_uc_fw_cleanup_fetch(struct intel_uc_fw *uc_fw);
- int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 offset, u32 dma_flags);
++void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p);
++int intel_guc_log_dump(const struct intel_guc_log *log, struct drm_printer *p,
++		       bool dump_load_err);
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index d73dc21686e7..093d6988cfb1 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -218,3 +218,32 @@ int intel_huc_check_status(struct intel_huc *huc)
+ 
+ 	return (status & huc->status.mask) == huc->status.value;
+ }
++
++/**
++ * intel_huc_load_status - dump information about HuC load status
++ * @huc: the HuC
++ * @p: the &drm_printer
++ *
++ * Pretty printer for HuC load status.
++ */
++void intel_huc_load_status(const struct intel_huc *huc, struct drm_printer *p)
++{
++	struct intel_gt *gt = huc_to_gt(huc);
++	intel_wakeref_t wakeref;
++
++	if (!intel_huc_is_supported(huc)) {
++		drm_printf(p, "HuC not supported\n");
++		return;
++	}
++
++	if (!intel_huc_is_wanted(huc)) {
++		drm_printf(p, "HuC disabled\n");
++		return;
++	}
++
++	intel_uc_fw_dump(&huc->fw, p);
++
++	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
++		drm_printf(p, "\nHuC status 0x%08x:\n",
++			   intel_uncore_read(gt->uncore, huc->status.reg));
++}
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+index 19651b46d6a4..f1299c0138e5 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
+@@ -57,4 +57,6 @@ static inline bool intel_huc_is_authenticated(const struct intel_huc *huc)
+ 	return intel_uc_fw_is_running(&huc->fw);
+ }
+ 
++void intel_huc_load_status(const struct intel_huc *huc, struct drm_printer *p);
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 37cb8b4bf4dc..1bec4cdeb92f 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -1465,105 +1465,32 @@ static int i915_llc(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
+-static int i915_huc_load_status_info(struct seq_file *m, void *data)
++static int i915_huc_info(struct seq_file *m, void *data)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+-	intel_wakeref_t wakeref;
+-	struct drm_printer p;
+-
+-	if (!HAS_GT_UC(dev_priv))
+-		return -ENODEV;
+-
+-	p = drm_seq_file_printer(m);
+-	intel_uc_fw_dump(&dev_priv->gt.uc.huc.fw, &p);
+-
+-	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
+-		seq_printf(m, "\nHuC status 0x%08x:\n", I915_READ(HUC_STATUS2));
+-
+-	return 0;
+-}
+-
+-static int i915_guc_load_status_info(struct seq_file *m, void *data)
+-{
+-	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+-	intel_wakeref_t wakeref;
+-	struct drm_printer p;
++	struct intel_huc *huc = &dev_priv->gt.uc.huc;
++	struct drm_printer p = drm_seq_file_printer(m);
+ 
+-	if (!HAS_GT_UC(dev_priv))
++	if (!intel_huc_is_supported(huc))
+ 		return -ENODEV;
+ 
+-	p = drm_seq_file_printer(m);
+-	intel_uc_fw_dump(&dev_priv->gt.uc.guc.fw, &p);
+-
+-	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
+-		u32 tmp = I915_READ(GUC_STATUS);
+-		u32 i;
+-
+-		seq_printf(m, "\nGuC status 0x%08x:\n", tmp);
+-		seq_printf(m, "\tBootrom status = 0x%x\n",
+-			   (tmp & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT);
+-		seq_printf(m, "\tuKernel status = 0x%x\n",
+-			   (tmp & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT);
+-		seq_printf(m, "\tMIA Core status = 0x%x\n",
+-			   (tmp & GS_MIA_MASK) >> GS_MIA_SHIFT);
+-		seq_puts(m, "\nScratch registers:\n");
+-		for (i = 0; i < 16; i++) {
+-			seq_printf(m, "\t%2d: \t0x%x\n",
+-				   i, I915_READ(SOFT_SCRATCH(i)));
+-		}
+-	}
++	intel_huc_load_status(huc, &p);
+ 
+ 	return 0;
+ }
+ 
+-static const char *
+-stringify_guc_log_type(enum guc_log_buffer_type type)
+-{
+-	switch (type) {
+-	case GUC_ISR_LOG_BUFFER:
+-		return "ISR";
+-	case GUC_DPC_LOG_BUFFER:
+-		return "DPC";
+-	case GUC_CRASH_DUMP_LOG_BUFFER:
+-		return "CRASH";
+-	default:
+-		MISSING_CASE(type);
+-	}
+-
+-	return "";
+-}
+-
+-static void i915_guc_log_info(struct seq_file *m, struct intel_guc_log *log)
+-{
+-	enum guc_log_buffer_type type;
+-
+-	if (!intel_guc_log_relay_created(log)) {
+-		seq_puts(m, "GuC log relay not created\n");
+-		return;
+-	}
+-
+-	seq_puts(m, "GuC logging stats:\n");
+-
+-	seq_printf(m, "\tRelay full count: %u\n",
+-		   log->relay.full_count);
+-
+-	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
+-		seq_printf(m, "\t%s:\tflush count %10u, overflow count %10u\n",
+-			   stringify_guc_log_type(type),
+-			   log->stats[type].flush,
+-			   log->stats[type].sampled_overflow);
+-	}
+-}
+-
+ static int i915_guc_info(struct seq_file *m, void *data)
+ {
+ 	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+-	struct intel_uc *uc = &dev_priv->gt.uc;
++	struct intel_guc *guc = &dev_priv->gt.uc.guc;
++	struct drm_printer p = drm_seq_file_printer(m);
+ 
+-	if (!intel_uc_uses_guc(uc))
++	if (!intel_guc_is_supported(guc))
+ 		return -ENODEV;
+ 
+-	i915_guc_log_info(m, &uc->guc.log);
++	intel_guc_load_status(guc, &p);
++	drm_puts(&p, "\n");
++	intel_guc_log_info(&guc->log, &p);
+ 
+ 	/* Add more as required ... */
+ 
+@@ -1574,39 +1501,14 @@ static int i915_guc_log_dump(struct seq_file *m, void *data)
+ {
+ 	struct drm_info_node *node = m->private;
+ 	struct drm_i915_private *dev_priv = node_to_i915(node);
++	struct intel_guc *guc = &dev_priv->gt.uc.guc;
+ 	bool dump_load_err = !!node->info_ent->data;
+-	struct drm_i915_gem_object *obj = NULL;
+-	u32 *log;
+-	int i = 0;
++	struct drm_printer p = drm_seq_file_printer(m);
+ 
+-	if (!HAS_GT_UC(dev_priv))
++	if (!intel_guc_is_supported(guc))
+ 		return -ENODEV;
+ 
+-	if (dump_load_err)
+-		obj = dev_priv->gt.uc.load_err_log;
+-	else if (dev_priv->gt.uc.guc.log.vma)
+-		obj = dev_priv->gt.uc.guc.log.vma->obj;
+-
+-	if (!obj)
+-		return 0;
+-
+-	log = i915_gem_object_pin_map(obj, I915_MAP_WC);
+-	if (IS_ERR(log)) {
+-		DRM_DEBUG("Failed to pin object\n");
+-		seq_puts(m, "(log data unaccessible)\n");
+-		return PTR_ERR(log);
+-	}
+-
+-	for (i = 0; i < obj->base.size / sizeof(u32); i += 4)
+-		seq_printf(m, "0x%08x 0x%08x 0x%08x 0x%08x\n",
+-			   *(log + i), *(log + i + 1),
+-			   *(log + i + 2), *(log + i + 3));
+-
+-	seq_putc(m, '\n');
+-
+-	i915_gem_object_unpin_map(obj);
+-
+-	return 0;
++	return intel_guc_log_dump(&guc->log, &p, dump_load_err);
+ }
+ 
+ static int i915_guc_log_level_get(void *data, u64 *val)
+@@ -2302,10 +2204,9 @@ static const struct drm_info_list i915_debugfs_list[] = {
+ 	{"i915_gem_fence_regs", i915_gem_fence_regs_info, 0},
+ 	{"i915_gem_interrupt", i915_interrupt_info, 0},
+ 	{"i915_guc_info", i915_guc_info, 0},
+-	{"i915_guc_load_status", i915_guc_load_status_info, 0},
+ 	{"i915_guc_log_dump", i915_guc_log_dump, 0},
+ 	{"i915_guc_load_err_log_dump", i915_guc_log_dump, 0, (void *)1},
+-	{"i915_huc_load_status", i915_huc_load_status_info, 0},
++	{"i915_huc_info", i915_huc_info, 0},
+ 	{"i915_frequency_info", i915_frequency_info, 0},
+ 	{"i915_drpc_info", i915_drpc_info, 0},
+ 	{"i915_ring_freq_table", i915_ring_freq_table, 0},
 -- 
 2.24.1
 
