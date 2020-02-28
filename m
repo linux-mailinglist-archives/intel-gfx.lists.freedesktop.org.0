@@ -1,38 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E62F1173685
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:54:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DD817367A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:53:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FE666F432;
-	Fri, 28 Feb 2020 11:54:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7646C6F431;
+	Fri, 28 Feb 2020 11:53:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42DE16F432
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:54:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86D296F431
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:53:24 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 03:54:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,495,1574150400"; d="scan'208";a="231076644"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 28 Feb 2020 03:54:17 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 906725C1D9C; Fri, 28 Feb 2020 13:53:06 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+ 28 Feb 2020 03:53:24 -0800
+X-IronPort-AV: E=Sophos;i="5.70,495,1574150400"; d="scan'208";a="232221906"
+Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
+ ([10.251.85.135])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 28 Feb 2020 03:53:23 -0800
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200227085723.1961649-3-chris@chris-wilson.co.uk>
 References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
- <20200227085723.1961649-3-chris@chris-wilson.co.uk>
-Date: Fri, 28 Feb 2020 13:53:06 +0200
-Message-ID: <878skn7wt9.fsf@gaia.fi.intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <aec3d15f-e094-20d7-9aa3-40d532b2af5b@linux.intel.com>
+Date: Fri, 28 Feb 2020 11:53:19 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 03/20] drm/i915/perf: Manually acquire
- engine-wakeref around use of kernel_context
+In-Reply-To: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 01/20] drm/i915: Skip barriers inside waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,51 +46,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> The engine->kernel_context is a special case for request emission. Since
-> it is used as the barrier within the engine's wakeref, we must acquire the
-> wakeref before submitting a request to the kernel_context.
-
-I am a bit surprised that the kernel ctx is used in this capacity...
-
->
-> Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+On 27/02/2020 08:57, Chris Wilson wrote:
+> Attaching to the i915_active barrier is a two stage process, and a flush
+> is only effective when the barrier is activation. Thus it is possible
+> for us to see a barrier, and attempt to flush, only for our flush to
+> have no effect. As such, before attempting to activate signaling on the
+> fence we need to double check it is a fence!
+> 
+> Fixes: d13a31770077 ("drm/i915: Flush idle barriers when waiting")
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_perf.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 0838a12e2dc5..2334c45f1d08 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2196,7 +2196,9 @@ static int gen8_modify_self(struct intel_context *ce,
->  	struct i915_request *rq;
->  	int err;
->  
-> +	intel_engine_pm_get(ce->engine);
->  	rq = i915_request_create(ce);
-> +	intel_engine_pm_put(ce->engine);
->  	if (IS_ERR(rq))
->  		return PTR_ERR(rq);
->  
-> -- 
-> 2.25.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>   drivers/gpu/drm/i915/i915_active.c | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 0b12d5023800..7b3d6c12ad61 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -453,6 +453,9 @@ static void enable_signaling(struct i915_active_fence *active)
+>   {
+>   	struct dma_fence *fence;
+>   
+> +	if (unlikely(is_barrier(active)))
+> +		return;
+> +
+>   	fence = i915_active_fence_get(active);
+>   	if (!fence)
+>   		return;
+> 
+
+So that smp_rmb() is not really effective, I mean the race is wider than 
+that. I was worried about that.. now I need to figure out where it 
+starts and where it ends (the race).
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
