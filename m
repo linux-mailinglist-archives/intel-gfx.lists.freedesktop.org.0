@@ -1,54 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CC117347C
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 10:48:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F281734A1
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 10:56:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF1796EEAF;
-	Fri, 28 Feb 2020 09:48:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18FD96EEBD;
+	Fri, 28 Feb 2020 09:56:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com
- [IPv6:2607:f8b0:4864:20::32c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 175B16EEB7
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 09:48:03 +0000 (UTC)
-Received: by mail-ot1-x32c.google.com with SMTP id x97so2011600ota.6
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 01:48:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=X4r4zSKBHI0cJ08ddMSukz7csjMHwcKdfw/isq8n7P0=;
- b=AmODh+jYpbD8RC8Uwhjc/WS1AT4K9hhNaoTg0U5o1qLzfDPSshFI+JUbsfrepjS2YY
- 9gl6JRMZJB9/f2rZM2v/pI15lTO0jcsPvGnnpXynkmKaCbmZDvNl9ZQo4c+M1q6744QY
- 0WL+Rm+HfjJmby1N1v39N7a+MTEeYJAnNgdJQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=X4r4zSKBHI0cJ08ddMSukz7csjMHwcKdfw/isq8n7P0=;
- b=gp9TpsYK2q2GCOgXK3gniHVPbaRRaOJk9yfIhuey9qi8zN1HC0bYseGANlqcPUgGlu
- ysDcvW69TIEKl/dKqvWJr2i6eFWhhkDjvpaiwZf8B6+sc1Ilrpobwc8n9w5s4S/fkq/G
- 0IUs/+98khVhums8hh15Qrdc3a57Snkr8hFz6W014o6696FGUN4YBeFBCRg6Vp35yDfi
- LrcF0Of+HMfzxWwnDSNzIlIlwMoTxxhOUPmsv8QV6vZH0pq8G/NulC91xatiXL55yZdN
- D+msB7X3TRYgLaW21zONQgvME29f5jPjlvW1B5CqOZ8zYnuugG6SLSSKTuXJbK+yanC1
- RHtA==
-X-Gm-Message-State: APjAAAX8ZJrRq+TEKM8srW/7wM51saDhg0kjHSvnAtKjxYV6Z+GS9E2b
- aPvYcHoZBZ2GnvvXf/x77m/p3U07wZ5tkPCML6xe1Q==
-X-Google-Smtp-Source: APXvYqxAGPdLIguePuT3BWwg9sZlg2ujinfSISfCup60cla1bY4ruO5I45fs6yLaUDjHz0RAw+Dmc59BFTxje96NTso=
-X-Received: by 2002:a05:6830:2015:: with SMTP id
- e21mr2516888otp.106.1582883282144; 
- Fri, 28 Feb 2020 01:48:02 -0800 (PST)
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0154A6EEBD;
+ Fri, 28 Feb 2020 09:56:17 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 735C6B2A5;
+ Fri, 28 Feb 2020 09:56:16 +0000 (UTC)
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-27-daniel.vetter@ffwll.ch>
+ <895afc5f-e8a2-8698-f90b-8a00906988e6@suse.de>
+ <CAKMK7uHr8X+2+AZOtTNv4Pm0sdncZz3iEOUYUpx_t_ethZSF0w@mail.gmail.com>
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
+ BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
+ Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
+ irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
+ clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
+ mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
+ KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
+ Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
+ UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
+ RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
+ dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
+ ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
+ 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
+ wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
+ h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
+ n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
+ aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
+ HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
+ 3H26qrE=
+Message-ID: <11182dcf-698a-7bb5-bf37-a59a585a42a6@suse.de>
+Date: Fri, 28 Feb 2020 10:56:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
-In-Reply-To: <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Fri, 28 Feb 2020 10:47:50 +0100
-Message-ID: <CAKMK7uEnE0HaB2Hs0opw5LO9YEkbJAOp3h5dvESHKFLvnzgfhQ@mail.gmail.com>
-To: Erik Faye-Lund <erik.faye-lund@collabora.com>
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+In-Reply-To: <CAKMK7uHr8X+2+AZOtTNv4Pm0sdncZz3iEOUYUpx_t_ethZSF0w@mail.gmail.com>
+Subject: Re: [Intel-gfx] [PATCH 26/51] drm: Manage drm_mode_config_init with
+ drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,143 +67,372 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
+Content-Type: multipart/mixed; boundary="===============0279862562=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 10:29 AM Erik Faye-Lund
-<erik.faye-lund@collabora.com> wrote:
->
-> On Fri, 2020-02-28 at 13:37 +1000, Dave Airlie wrote:
-> > On Fri, 28 Feb 2020 at 07:27, Daniel Vetter <daniel.vetter@ffwll.ch>
-> > wrote:
-> > > Hi all,
-> > >
-> > > You might have read the short take in the X.org board meeting
-> > > minutes
-> > > already, here's the long version.
-> > >
-> > > The good news: gitlab.fd.o has become very popular with our
-> > > communities, and is used extensively. This especially includes all
-> > > the
-> > > CI integration. Modern development process and tooling, yay!
-> > >
-> > > The bad news: The cost in growth has also been tremendous, and it's
-> > > breaking our bank account. With reasonable estimates for continued
-> > > growth we're expecting hosting expenses totalling 75k USD this
-> > > year,
-> > > and 90k USD next year. With the current sponsors we've set up we
-> > > can't
-> > > sustain that. We estimate that hosting expenses for gitlab.fd.o
-> > > without any of the CI features enabled would total 30k USD, which
-> > > is
-> > > within X.org's ability to support through various sponsorships,
-> > > mostly
-> > > through XDC.
-> > >
-> > > Note that X.org does no longer sponsor any CI runners themselves,
-> > > we've stopped that. The huge additional expenses are all just in
-> > > storing and serving build artifacts and images to outside CI
-> > > runners
-> > > sponsored by various companies. A related topic is that with the
-> > > growth in fd.o it's becoming infeasible to maintain it all on
-> > > volunteer admin time. X.org is therefore also looking for admin
-> > > sponsorship, at least medium term.
-> > >
-> > > Assuming that we want cash flow reserves for one year of
-> > > gitlab.fd.o
-> > > (without CI support) and a trimmed XDC and assuming no sponsor
-> > > payment
-> > > meanwhile, we'd have to cut CI services somewhere between May and
-> > > June
-> > > this year. The board is of course working on acquiring sponsors,
-> > > but
-> > > filling a shortfall of this magnitude is neither easy nor quick
-> > > work,
-> > > and we therefore decided to give an early warning as soon as
-> > > possible.
-> > > Any help in finding sponsors for fd.o is very much appreciated.
-> >
-> > a) Ouch.
-> >
-> > b) we probably need to take a large step back here.
-> >
->
-> I kinda agree, but maybe the step doesn't have to be *too* large?
->
-> I wonder if we could solve this by restructuring the project a bit. I'm
-> talking purely from a Mesa point of view here, so it might not solve
-> the full problem, but:
->
-> 1. It feels silly that we need to test changes to e.g the i965 driver
-> on dragonboards. We only have a big "do not run CI at all" escape-
-> hatch.
->
-> 2. A lot of us are working for a company that can probably pay for
-> their own needs in terms of CI. Perhaps moving some costs "up front" to
-> the company that needs it can make the future of CI for those who can't
-> do this
->
-> 3. I think we need a much more detailed break-down of the cost to make
-> educated changes. For instance, how expensive is Docker image
-> uploads/downloads (e.g intermediary artifacts) compared to build logs
-> and final test-results? What kind of artifacts?
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--===============0279862562==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="Trh4ymYG3hCIKxAHZRBeviwXNuuBMRw49"
 
-We have logs somewhere, but no one yet got around to analyzing that.
-Which will be quite a bit of work to do since the cloud storage is
-totally disconnected from the gitlab front-end, making the connection
-to which project or CI job caused something is going to require
-scripting. Volunteers definitely very much welcome I think.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--Trh4ymYG3hCIKxAHZRBeviwXNuuBMRw49
+Content-Type: multipart/mixed; boundary="4Zobp0vZpfDw9xQeyZo3dYg1Nc2lmA62r";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Cc: DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
+Message-ID: <11182dcf-698a-7bb5-bf37-a59a585a42a6@suse.de>
+Subject: Re: [PATCH 26/51] drm: Manage drm_mode_config_init with drmm_
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-27-daniel.vetter@ffwll.ch>
+ <895afc5f-e8a2-8698-f90b-8a00906988e6@suse.de>
+ <CAKMK7uHr8X+2+AZOtTNv4Pm0sdncZz3iEOUYUpx_t_ethZSF0w@mail.gmail.com>
+In-Reply-To: <CAKMK7uHr8X+2+AZOtTNv4Pm0sdncZz3iEOUYUpx_t_ethZSF0w@mail.gmail.com>
 
-> One suggestion would be to do something more similar to what the kernel
-> does, and separate into different repos for different subsystems. This
-> could allow us to have separate testing-pipelines for these repos,
-> which would mean that for instance a change to RADV didn't trigger a
-> full Panfrost test-run.
+--4Zobp0vZpfDw9xQeyZo3dYg1Nc2lmA62r
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Uh as someone who lives the kernel multi-tree model daily, there's a
-_lot_ of pain involved. I think much better to look at filtering out
-CI targets for when nothing relevant happened. But that gets somewhat
-tricky, since "nothing relevant" is always only relative to some
-baseline, so bit of scripting and all involved to make sure you don't
-run stuff too often or (probably worse) not often enough.
--Daniel
+Hi
 
-> This would probably require us to accept using a more branch-heavy
-> work-flow. I don't personally think that would be a bad thing.
->
-> But this is all kinda based on an assumption that running hardware-
-> testing is the expensive part. I think that's quite possibly the case,
-> but some more numbers would be helpful. I mean, it might turn out that
-> just throwing up a Docker cache inside the organizations that host
-> runners might be sufficient for all I know...
->
-> We could also do stuff like reducing the amount of tests we run on each
-> commit, and punt some testing to a per-weekend test-run or someting
-> like that. We don't *need* to know about every problem up front, just
-> the stuff that's about to be released, really. The other stuff is just
-> nice to have. If it's too expensive, I would say drop it.
->
-> I would really hope that we can consider approaches like this before we
-> throw out the baby with the bathwater...
->
+Am 28.02.20 um 09:43 schrieb Daniel Vetter:
+> On Fri, Feb 28, 2020 at 8:30 AM Thomas Zimmermann <tzimmermann@suse.de>=
+ wrote:
+>>
+>> Hi Daniel
+>>
+>> Am 27.02.20 um 19:14 schrieb Daniel Vetter:
+>>> drm_mode_config_cleanup is idempotent, so no harm in calling this
+>>> twice. This allows us to gradually switch drivers over by removing
+>>> explicit drm_mode_config_cleanup calls.
+>>>
+>>> With this step it's not also possible that (at least for simple
+>>> drivers) automatic resource cleanup can be done correctly without a
+>>> drm_driver->release hook. Therefore allow this now in
+>>> devm_drm_dev_init().
+>>>
+>>> Also with drmm_ explicit drm_driver->release hooks are kinda not the
+>>> best option, so deprecate that hook to discourage future users.
+>>>
+>>> v2: Fixup the example in the kerneldoc too.
+>>>
+>>> v3:
+>>> - For paranoia, double check that minor->dev =3D=3D dev in the releas=
+e
+>>>   hook, because I botched the pointer math in the drmm library.
+>>> - Call drm_mode_config_cleanup when drmm_add_action fails, we'd be
+>>>   missing some mutex_destroy and ida_cleanup otherwise (Laurent)
+>>>
+>>> v4: Add a drmm_add_action_or_reset (like devm_ has) to encapsulate th=
+is
+>>> pattern (Noralf).
+>>>
+>>> v5: Fix oversight in the new add_action_or_reset macro (Noralf)
+>>>
+>>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>> Cc: "Noralf Tr=C3=B8nnes" <noralf@tronnes.org>
+>>> Cc: Sam Ravnborg <sam@ravnborg.org>
+>>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>>> Acked-by: Noralf Tr=C3=B8nnes <noralf@tronnes.org>
+>>> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/drm_drv.c         | 23 +++++++----------------
+>>>  drivers/gpu/drm/drm_managed.c     | 14 ++++++++++++++
+>>>  drivers/gpu/drm/drm_mode_config.c | 13 ++++++++++++-
+>>>  include/drm/drm_managed.h         |  7 +++++++
+>>>  include/drm/drm_mode_config.h     |  2 +-
+>>>  5 files changed, 41 insertions(+), 18 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>>> index 3cf40864d4a6..bb326b9bcde0 100644
+>>> --- a/drivers/gpu/drm/drm_drv.c
+>>> +++ b/drivers/gpu/drm/drm_drv.c
+>>> @@ -98,6 +98,8 @@ static void drm_minor_alloc_release(struct drm_devi=
+ce *dev, void *data)
+>>>       struct drm_minor *minor =3D data;
+>>>       unsigned long flags;
+>>>
+>>> +     WARN_ON(dev !=3D minor->dev);
+>>> +
+>>>       put_device(minor->kdev);
+>>>
+>>>       spin_lock_irqsave(&drm_minor_lock, flags);
+>>> @@ -267,8 +269,7 @@ void drm_minor_release(struct drm_minor *minor)
+>>>   *
+>>>   * The following example shows a typical structure of a DRM display =
+driver.
+>>>   * The example focus on the probe() function and the other functions=
+ that is
+>>> - * almost always present and serves as a demonstration of devm_drm_d=
+ev_init()
+>>> - * usage with its accompanying drm_driver->release callback.
+>>> + * almost always present and serves as a demonstration of devm_drm_d=
+ev_init().
+>>>   *
+>>>   * .. code-block:: c
+>>>   *
+>>> @@ -278,16 +279,8 @@ void drm_minor_release(struct drm_minor *minor)
+>>>   *           struct clk *pclk;
+>>>   *   };
+>>>   *
+>>> - *   static void driver_drm_release(struct drm_device *drm)
+>>> - *   {
+>>> - *           struct driver_device *priv =3D container_of(...);
+>>> - *
+>>> - *           drm_mode_config_cleanup(drm);
+>>> - *   }
+>>> - *
+>>>   *   static struct drm_driver driver_drm_driver =3D {
+>>>   *           [...]
+>>> - *           .release =3D driver_drm_release,
+>>>   *   };
+>>>   *
+>>>   *   static int driver_probe(struct platform_device *pdev)
+>>> @@ -312,7 +305,9 @@ void drm_minor_release(struct drm_minor *minor)
+>>>   *           }
+>>>   *           drmm_add_final_kfree(drm, priv);
+>>>   *
+>>> - *           drm_mode_config_init(drm);
+>>> + *           ret =3D drm_mode_config_init(drm);
+>>> + *           if (ret)
+>>> + *                   return ret;
+>>>   *
+>>>   *           priv->userspace_facing =3D drmm_kzalloc(..., GFP_KERNEL=
+);
+>>>   *           if (!priv->userspace_facing)
+>>> @@ -710,8 +705,7 @@ static void devm_drm_dev_init_release(void *data)=
+
+>>>   * @driver: DRM driver
+>>>   *
+>>>   * Managed drm_dev_init(). The DRM device initialized with this func=
+tion is
+>>> - * automatically put on driver detach using drm_dev_put(). You must =
+supply a
+>>> - * &drm_driver.release callback to control the finalization explicit=
+ly.
+>>> + * automatically put on driver detach using drm_dev_put().
+>>>   *
+>>>   * RETURNS:
+>>>   * 0 on success, or error code on failure.
+>>> @@ -722,9 +716,6 @@ int devm_drm_dev_init(struct device *parent,
+>>>  {
+>>>       int ret;
+>>>
+>>> -     if (WARN_ON(!driver->release))
+>>> -             return -EINVAL;
+>>> -
+>>>       ret =3D drm_dev_init(dev, driver, parent);
+>>>       if (ret)
+>>>               return ret;
+>>> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_mana=
+ged.c
+>>> index 626656369f0b..6376be01bbc8 100644
+>>> --- a/drivers/gpu/drm/drm_managed.c
+>>> +++ b/drivers/gpu/drm/drm_managed.c
+>>> @@ -134,6 +134,20 @@ int __drmm_add_action(struct drm_device *dev,
+>>>  }
+>>>  EXPORT_SYMBOL(__drmm_add_action);
+>>>
+>>> +int __drmm_add_action_or_reset(struct drm_device *dev,
+>>> +                            drmres_release_t action,
+>>> +                            void *data, const char *name)
+>>> +{
+>>> +     int ret;
+>>> +
+>>> +     ret =3D __drmm_add_action(dev, action, data, name);
+>>> +     if (ret)
+>>> +             action(dev, data);
+>>> +
+>>> +     return ret;
+>>> +}
+>>> +EXPORT_SYMBOL(__drmm_add_action_or_reset);
+>>> +
+>>>  void drmm_remove_action(struct drm_device *dev,
+>>>                       drmres_release_t action,
+>>>                       void *data)
+>>> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_=
+mode_config.c
+>>> index 08e6eff6a179..6f7005bc597f 100644
+>>> --- a/drivers/gpu/drm/drm_mode_config.c
+>>> +++ b/drivers/gpu/drm/drm_mode_config.c
+>>> @@ -25,6 +25,7 @@
+>>>  #include <drm/drm_drv.h>
+>>>  #include <drm/drm_encoder.h>
+>>>  #include <drm/drm_file.h>
+>>> +#include <drm/drm_managed.h>
+>>>  #include <drm/drm_mode_config.h>
+>>>  #include <drm/drm_print.h>
+>>>  #include <linux/dma-resv.h>
+>>> @@ -373,6 +374,11 @@ static int drm_mode_create_standard_properties(s=
+truct drm_device *dev)
+>>>       return 0;
+>>>  }
+>>>
+>>> +static void drm_mode_config_init_release(struct drm_device *dev, voi=
+d *ptr)
+>>> +{
+>>> +     drm_mode_config_cleanup(dev);
+>>> +}
+>>> +
+>>>  /**
+>>>   * drm_mode_config_init - initialize DRM mode_configuration structur=
+e
+>>>   * @dev: DRM device
+>>> @@ -384,8 +390,10 @@ static int drm_mode_create_standard_properties(s=
+truct drm_device *dev)
+>>>   * problem, since this should happen single threaded at init time. I=
+t is the
+>>>   * driver's problem to ensure this guarantee.
+>>>   *
+>>> + * Cleanup is automatically handled through registering drm_mode_con=
+fig_cleanup
+>>> + * with drmm_add_action().
+>>>   */
+>>> -void drm_mode_config_init(struct drm_device *dev)
+>>> +int drm_mode_config_init(struct drm_device *dev)
+>>>  {
+>>>       mutex_init(&dev->mode_config.mutex);
+>>>       drm_modeset_lock_init(&dev->mode_config.connection_mutex);
+>>> @@ -443,6 +451,9 @@ void drm_mode_config_init(struct drm_device *dev)=
+
+>>>               drm_modeset_acquire_fini(&modeset_ctx);
+>>>               dma_resv_fini(&resv);
+>>>       }
+>>> +
+>>> +     return drmm_add_action_or_reset(dev, drm_mode_config_init_relea=
+se,
+>>> +                                     NULL);
+>>>  }
+>>>  EXPORT_SYMBOL(drm_mode_config_init);
+>>
+>> It might be a bit late in the review cycle, but could this function be=
+
+>> renamed to drmm_mode_config_init() to reflect the garbage-collected
+>> implementation?
+>=20
+> I think that makes sense, at least as a wrapper with a __must_check
+> annotation (and keeping the old one). I tried to avoid the rename
+> because it'd be a flag day patch.
+>=20
+> If you think this would be a great improvement then I can do that -
+> I'm positive enough to bother with the rebase to touch up all the
+> driver patches, but only if there's someone else who's enthusiastic
+> about it :-)
+
+When reading the patches, I thought that it's now non-obvious why some
+drivers cleanup drm_mode_config_init() manually and some don't. So you
+may not need a big flag-day patch. A simple wrapper with the drmm_
+prefix should do. At some point the old interface will hopefully be gone.=
 
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+Best regards
+Thomas
+
+> -Daniel
+>=20
+>> Best regards
+>> Thomas
+>>
+>>>
+>>> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+>>> index 2b1ba2ad5582..1e6291407586 100644
+>>> --- a/include/drm/drm_managed.h
+>>> +++ b/include/drm/drm_managed.h
+>>> @@ -18,6 +18,13 @@ int __must_check __drmm_add_action(struct drm_devi=
+ce *dev,
+>>>                                  drmres_release_t action,
+>>>                                  void *data, const char *name);
+>>>
+>>> +#define drmm_add_action_or_reset(dev, action, data) \
+>>> +     __drmm_add_action_or_reset(dev, action, data, #action)
+>>> +
+>>> +int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
+>>> +                                         drmres_release_t action,
+>>> +                                         void *data, const char *nam=
+e);
+>>> +
+>>>  void drmm_remove_action(struct drm_device *dev,
+>>>                       drmres_release_t action,
+>>>                       void *data);
+>>> diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_con=
+fig.h
+>>> index 3bcbe30339f0..160a3e4b51c3 100644
+>>> --- a/include/drm/drm_mode_config.h
+>>> +++ b/include/drm/drm_mode_config.h
+>>> @@ -929,7 +929,7 @@ struct drm_mode_config {
+>>>       const struct drm_mode_config_helper_funcs *helper_private;
+>>>  };
+>>>
+>>> -void drm_mode_config_init(struct drm_device *dev);
+>>> +int drm_mode_config_init(struct drm_device *dev);
+>>>  void drm_mode_config_reset(struct drm_device *dev);
+>>>  void drm_mode_config_cleanup(struct drm_device *dev);
+>>>
+>>>
+>>
+>> --
+>> Thomas Zimmermann
+>> Graphics Driver Developer
+>> SUSE Software Solutions Germany GmbH
+>> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+>> (HRB 36809, AG N=C3=BCrnberg)
+>> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+>>
+>=20
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--4Zobp0vZpfDw9xQeyZo3dYg1Nc2lmA62r--
+
+--Trh4ymYG3hCIKxAHZRBeviwXNuuBMRw49
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5Y47wACgkQaA3BHVML
+eiOLZgf9FLVZY8IIUdBjd/qpSZuaLNpxEuyaXss1WNxR+HW9WAnfXnhIe4GLDvqt
+jpNEfkEp+BFZeDTxf1dXC07Zcbc7hTu4xr2/WmkLqSJdoheTCHMPg+h2/t5Wklyq
+3z+dffuBTo4tdyq+2mEDAPr8WJH4S6H99tsiKA+5VVjnzMKxwO32tZ+fM2DWpcNl
+oIvoScGgjzI3n6BFLI8cYry5E3PmHHAA8kq0zrYyoaiMfhPsqpmnV+kBd+dxiiOZ
+GRt3q8LJjFfKsXGVDNqW9IerDbX5yK4177UQ3sRX5Yhktuppn0oyKJNUO+V2fjq3
+gj/etolOGG5awSDbzVGNmUKQxhxBKA==
+=FJiU
+-----END PGP SIGNATURE-----
+
+--Trh4ymYG3hCIKxAHZRBeviwXNuuBMRw49--
+
+--===============0279862562==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0279862562==--
