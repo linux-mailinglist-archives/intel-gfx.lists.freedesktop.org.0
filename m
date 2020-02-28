@@ -2,42 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7271217358C
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 11:45:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5F0F17357F
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 11:43:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAB9B6EF32;
-	Fri, 28 Feb 2020 10:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C01F6EF2E;
+	Fri, 28 Feb 2020 10:43:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1081 seconds by postgrey-1.36 at gabe;
- Fri, 28 Feb 2020 10:45:29 UTC
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
- [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B300D6EF32
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 10:45:29 +0000 (UTC)
-Received: from kresse.hi.pengutronix.de ([2001:67c:670:100:1d::2a])
- by metis.ext.pengutronix.de with esmtp (Exim 4.92)
- (envelope-from <l.stach@pengutronix.de>)
- id 1j7cre-0003UL-7U; Fri, 28 Feb 2020 11:27:26 +0100
-Message-ID: <b34dfe8f624c0e1bc1a69cde74eb0d621cd52caa.camel@pengutronix.de>
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>, Erik Faye-Lund
- <erik.faye-lund@collabora.com>
-Date: Fri, 28 Feb 2020 11:27:25 +0100
-In-Reply-To: <CAKMK7uEnE0HaB2Hs0opw5LO9YEkbJAOp3h5dvESHKFLvnzgfhQ@mail.gmail.com>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <CAKMK7uEnE0HaB2Hs0opw5LO9YEkbJAOp3h5dvESHKFLvnzgfhQ@mail.gmail.com>
-User-Agent: Evolution 3.30.5-1.1 
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 725BD6EF29;
+ Fri, 28 Feb 2020 10:43:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20382875-1500050 
+ for multiple; Fri, 28 Feb 2020 10:43:42 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Feb 2020 10:43:36 +0000
+Message-Id: <20200228104340.2895082-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::2a
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
- SAEximRunCond expanded to false
-X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+Subject: [Intel-gfx] [PATCH i-g-t 1/5] i915: Start putting the mmio_base to
+ wider use
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,123 +37,285 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fr, 2020-02-28 at 10:47 +0100, Daniel Vetter wrote:
-> On Fri, Feb 28, 2020 at 10:29 AM Erik Faye-Lund
-> <erik.faye-lund@collabora.com> wrote:
-> > On Fri, 2020-02-28 at 13:37 +1000, Dave Airlie wrote:
-> > > On Fri, 28 Feb 2020 at 07:27, Daniel Vetter <daniel.vetter@ffwll.ch>
-> > > wrote:
-> > > > Hi all,
-> > > > 
-> > > > You might have read the short take in the X.org board meeting
-> > > > minutes
-> > > > already, here's the long version.
-> > > > 
-> > > > The good news: gitlab.fd.o has become very popular with our
-> > > > communities, and is used extensively. This especially includes all
-> > > > the
-> > > > CI integration. Modern development process and tooling, yay!
-> > > > 
-> > > > The bad news: The cost in growth has also been tremendous, and it's
-> > > > breaking our bank account. With reasonable estimates for continued
-> > > > growth we're expecting hosting expenses totalling 75k USD this
-> > > > year,
-> > > > and 90k USD next year. With the current sponsors we've set up we
-> > > > can't
-> > > > sustain that. We estimate that hosting expenses for gitlab.fd.o
-> > > > without any of the CI features enabled would total 30k USD, which
-> > > > is
-> > > > within X.org's ability to support through various sponsorships,
-> > > > mostly
-> > > > through XDC.
-> > > > 
-> > > > Note that X.org does no longer sponsor any CI runners themselves,
-> > > > we've stopped that. The huge additional expenses are all just in
-> > > > storing and serving build artifacts and images to outside CI
-> > > > runners
-> > > > sponsored by various companies. A related topic is that with the
-> > > > growth in fd.o it's becoming infeasible to maintain it all on
-> > > > volunteer admin time. X.org is therefore also looking for admin
-> > > > sponsorship, at least medium term.
-> > > > 
-> > > > Assuming that we want cash flow reserves for one year of
-> > > > gitlab.fd.o
-> > > > (without CI support) and a trimmed XDC and assuming no sponsor
-> > > > payment
-> > > > meanwhile, we'd have to cut CI services somewhere between May and
-> > > > June
-> > > > this year. The board is of course working on acquiring sponsors,
-> > > > but
-> > > > filling a shortfall of this magnitude is neither easy nor quick
-> > > > work,
-> > > > and we therefore decided to give an early warning as soon as
-> > > > possible.
-> > > > Any help in finding sponsors for fd.o is very much appreciated.
-> > > 
-> > > a) Ouch.
-> > > 
-> > > b) we probably need to take a large step back here.
-> > > 
-> > 
-> > I kinda agree, but maybe the step doesn't have to be *too* large?
-> > 
-> > I wonder if we could solve this by restructuring the project a bit. I'm
-> > talking purely from a Mesa point of view here, so it might not solve
-> > the full problem, but:
-> > 
-> > 1. It feels silly that we need to test changes to e.g the i965 driver
-> > on dragonboards. We only have a big "do not run CI at all" escape-
-> > hatch.
-> > 
-> > 2. A lot of us are working for a company that can probably pay for
-> > their own needs in terms of CI. Perhaps moving some costs "up front" to
-> > the company that needs it can make the future of CI for those who can't
-> > do this
-> > 
-> > 3. I think we need a much more detailed break-down of the cost to make
-> > educated changes. For instance, how expensive is Docker image
-> > uploads/downloads (e.g intermediary artifacts) compared to build logs
-> > and final test-results? What kind of artifacts?
-> 
-> We have logs somewhere, but no one yet got around to analyzing that.
-> Which will be quite a bit of work to do since the cloud storage is
-> totally disconnected from the gitlab front-end, making the connection
-> to which project or CI job caused something is going to require
-> scripting. Volunteers definitely very much welcome I think.
+Several tests depend upon the implicit engine->mmio_base but have no
+means of determining the physical layout. Since the kernel has started
+providing this information, start putting it to use.
 
-It's very surprising to me that this kind of cost monitoring is treated
-as an afterthought, especially since one of the main jobs of the X.Org
-board is to keep spending under control and transparent.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ lib/i915/gem_engine_topology.c | 84 ++++++++++++++++++++++++++++++++++
+ lib/i915/gem_engine_topology.h |  5 ++
+ tests/i915/gem_ctx_shared.c    | 38 +++++----------
+ tests/i915/gem_exec_latency.c  | 17 ++++---
+ 4 files changed, 111 insertions(+), 33 deletions(-)
 
-Also from all the conversations it's still unclear to me if the google
-hosting costs are already over the sponsored credits (so is burning a
-hole into X.org bank account right now) or if this is only going to
-happen at a later point in time.
-
-Even with CI disabled it seems that the board estimates a cost of 30k
-annually for the plain gitlab hosting. Is this covered by the credits
-sponsored by google? If not, why wasn't there a board voting on this
-spending? All other spending seem to require pre-approval by the board.
-Why wasn't gitlab hosting cost discussed much earlier in the public
-board meetings, especially if it's going to be such an big chunk of the
-overall spending of the X.Org foundation?
-
-Regards,
-Lucas
+diff --git a/lib/i915/gem_engine_topology.c b/lib/i915/gem_engine_topology.c
+index 58dff3208..640777ae4 100644
+--- a/lib/i915/gem_engine_topology.c
++++ b/lib/i915/gem_engine_topology.c
+@@ -21,7 +21,12 @@
+  * IN THE SOFTWARE.
+  */
+ 
++#include <fcntl.h>
++#include <unistd.h>
++
+ #include "drmtest.h"
++#include "igt_sysfs.h"
++#include "intel_chipset.h"
+ #include "ioctl_wrappers.h"
+ 
+ #include "i915/gem_engine_topology.h"
+@@ -327,3 +332,82 @@ bool gem_engine_is_equal(const struct intel_execution_engine2 *e1,
+ {
+ 	return e1->class == e2->class && e1->instance == e2->instance;
+ }
++
++static int descend(int dir, const char *path)
++{
++	int fd;
++
++	fd = openat(dir, path, O_RDONLY);
++	close(dir);
++
++	return fd;
++}
++
++int gem_engine_property_scanf(int i915, const char *engine, const char *attr,
++			      const char *fmt, ...)
++{
++	FILE *file;
++	va_list ap;
++	int ret;
++	int fd;
++
++	fd = igt_sysfs_open(i915);
++	if (fd < 0)
++		return fd;
++
++	fd = descend(fd, "engine");
++	if (fd < 0)
++		return fd;
++
++	fd = descend(fd, engine);
++	if (fd < 0)
++		return fd;
++
++	fd = descend(fd, attr);
++	if (fd < 0)
++		return fd;
++
++	file = fdopen(fd, "r");
++	if (!file) {
++		close(fd);
++		return -1;
++	}
++
++	va_start(ap, fmt);
++	ret = vfscanf(file, fmt, ap);
++	va_end(ap);
++
++	fclose(file);
++	return ret;
++}
++
++uint32_t gem_engine_mmio_base(int i915, const char *engine)
++{
++	unsigned int mmio = 0;
++
++	if (gem_engine_property_scanf(i915, engine, "mmio_base",
++				      "%x", &mmio) < 0) {
++		int gen = intel_gen(intel_get_drm_devid(i915));
++
++		/* The layout of xcs1+ is unreliable -- hence the property! */
++		if (!strcmp(engine, "rcs0")) {
++			mmio = 0x2000;
++		} else if (!strcmp(engine, "bcs0")) {
++			mmio = 0x22000;
++		} else if (!strcmp(engine, "vcs0")) {
++			if (gen < 6)
++				mmio = 0x4000;
++			else if (gen < 11)
++				mmio = 0x12000;
++			else
++				mmio = 0x1c0000;
++		} else if (!strcmp(engine, "vecs0")) {
++			if (gen < 11)
++				mmio = 0x1a000;
++			else
++				mmio = 0x1c8000;
++		}
++	}
++
++	return mmio;
++}
+diff --git a/lib/i915/gem_engine_topology.h b/lib/i915/gem_engine_topology.h
+index 027d86be2..219c84b72 100644
+--- a/lib/i915/gem_engine_topology.h
++++ b/lib/i915/gem_engine_topology.h
+@@ -75,4 +75,9 @@ struct intel_execution_engine2 gem_eb_flags_to_engine(unsigned int flags);
+ #define __for_each_physical_engine(fd__, e__) \
+ 	____for_each_physical_engine(fd__, 0, e__)
+ 
++__attribute__((format(scanf, 4, 5)))
++int gem_engine_property_scanf(int i915, const char *engine, const char *attr,
++			      const char *fmt, ...);
++uint32_t gem_engine_mmio_base(int i915, const char *engine);
++
+ #endif /* GEM_ENGINE_TOPOLOGY_H */
+diff --git a/tests/i915/gem_ctx_shared.c b/tests/i915/gem_ctx_shared.c
+index 820b96c1a..9ea020d7b 100644
+--- a/tests/i915/gem_ctx_shared.c
++++ b/tests/i915/gem_ctx_shared.c
+@@ -38,6 +38,7 @@
+ 
+ #include <drm.h>
+ 
++#include "i915/gem_engine_topology.h"
+ #include "igt_rand.h"
+ #include "igt_vgem.h"
+ #include "sync_file.h"
+@@ -548,6 +549,14 @@ static uint32_t store_timestamp(int i915,
+ 	return obj.handle;
+ }
+ 
++static uint32_t ring_base(int i915, unsigned ring)
++{
++	if (ring == I915_EXEC_DEFAULT)
++		ring = I915_EXEC_RENDER; /* XXX */
++
++	return gem_engine_mmio_base(i915, gem_eb_flags_to_engine(ring).name);
++}
++
+ static void independent(int i915, unsigned ring, unsigned flags)
+ {
+ 	const int TIMESTAMP = 1023;
+@@ -555,33 +564,8 @@ static void independent(int i915, unsigned ring, unsigned flags)
+ 	igt_spin_t *spin[MAX_ELSP_QLEN];
+ 	unsigned int mmio_base;
+ 
+-	/* XXX i915_query()! */
+-	switch (ring) {
+-	case I915_EXEC_DEFAULT:
+-	case I915_EXEC_RENDER:
+-		mmio_base = 0x2000;
+-		break;
+-#if 0
+-	case I915_EXEC_BSD:
+-		mmio_base = 0x12000;
+-		break;
+-#endif
+-	case I915_EXEC_BLT:
+-		mmio_base = 0x22000;
+-		break;
+-
+-#define GEN11_VECS0_BASE 0x1c8000
+-#define GEN11_VECS1_BASE 0x1d8000
+-	case I915_EXEC_VEBOX:
+-		if (intel_gen(intel_get_drm_devid(i915)) >= 11)
+-			mmio_base = GEN11_VECS0_BASE;
+-		else
+-			mmio_base = 0x1a000;
+-		break;
+-
+-	default:
+-		igt_skip("mmio base not known\n");
+-	}
++	mmio_base = ring_base(i915, ring);
++	igt_require_f(mmio_base, "mmio base not known\n");
+ 
+ 	for (int n = 0; n < ARRAY_SIZE(spin); n++) {
+ 		const struct igt_spin_factory opts = {
+diff --git a/tests/i915/gem_exec_latency.c b/tests/i915/gem_exec_latency.c
+index 3d99182a0..d2159f317 100644
+--- a/tests/i915/gem_exec_latency.c
++++ b/tests/i915/gem_exec_latency.c
+@@ -109,7 +109,7 @@ poll_ring(int fd, unsigned ring, const char *name)
+ 	igt_spin_free(fd, spin[0]);
+ }
+ 
+-#define RCS_TIMESTAMP (0x2000 + 0x358)
++#define TIMESTAMP (0x358)
+ static void latency_on_ring(int fd,
+ 			    unsigned ring, const char *name,
+ 			    unsigned flags)
+@@ -119,6 +119,7 @@ static void latency_on_ring(int fd,
+ 	struct drm_i915_gem_exec_object2 obj[3];
+ 	struct drm_i915_gem_relocation_entry reloc;
+ 	struct drm_i915_gem_execbuffer2 execbuf;
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, name);
+ 	igt_spin_t *spin = NULL;
+ 	IGT_CORK_HANDLE(c);
+ 	volatile uint32_t *reg;
+@@ -128,7 +129,8 @@ static void latency_on_ring(int fd,
+ 	double gpu_latency;
+ 	int i, j;
+ 
+-	reg = (volatile uint32_t *)((volatile char *)igt_global_mmio + RCS_TIMESTAMP);
++	igt_require(mmio_base);
++	reg = (volatile uint32_t *)((volatile char *)igt_global_mmio + mmio_base + TIMESTAMP);
+ 
+ 	memset(&execbuf, 0, sizeof(execbuf));
+ 	execbuf.buffers_ptr = to_user_pointer(&obj[1]);
+@@ -176,7 +178,7 @@ static void latency_on_ring(int fd,
+ 		map[i++] = 0x24 << 23 | 1;
+ 		if (has_64bit_reloc)
+ 			map[i-1]++;
+-		map[i++] = RCS_TIMESTAMP; /* ring local! */
++		map[i++] = mmio_base + TIMESTAMP;
+ 		map[i++] = offset;
+ 		if (has_64bit_reloc)
+ 			map[i++] = offset >> 32;
+@@ -266,11 +268,14 @@ static void latency_from_ring(int fd,
+ 	struct drm_i915_gem_exec_object2 obj[3];
+ 	struct drm_i915_gem_relocation_entry reloc;
+ 	struct drm_i915_gem_execbuffer2 execbuf;
++	const uint32_t mmio_base = gem_engine_mmio_base(fd, name);
+ 	const unsigned int repeats = ring_size / 2;
+ 	uint32_t *map, *results;
+ 	uint32_t ctx[2] = {};
+ 	int i, j;
+ 
++	igt_require(mmio_base);
++
+ 	if (flags & PREEMPT) {
+ 		ctx[0] = gem_context_create(fd);
+ 		gem_context_set_priority(fd, ctx[0], -1023);
+@@ -351,7 +356,7 @@ static void latency_from_ring(int fd,
+ 			map[i++] = 0x24 << 23 | 1;
+ 			if (has_64bit_reloc)
+ 				map[i-1]++;
+-			map[i++] = RCS_TIMESTAMP; /* ring local! */
++			map[i++] = mmio_base + TIMESTAMP;
+ 			map[i++] = offset;
+ 			if (has_64bit_reloc)
+ 				map[i++] = offset >> 32;
+@@ -376,7 +381,7 @@ static void latency_from_ring(int fd,
+ 			map[i++] = 0x24 << 23 | 1;
+ 			if (has_64bit_reloc)
+ 				map[i-1]++;
+-			map[i++] = RCS_TIMESTAMP; /* ring local! */
++			map[i++] = mmio_base + TIMESTAMP;
+ 			map[i++] = offset;
+ 			if (has_64bit_reloc)
+ 				map[i++] = offset >> 32;
+@@ -669,7 +674,7 @@ igt_main
+ 			ring_size = 1024;
+ 
+ 		intel_register_access_init(&mmio_data, intel_get_pci_device(), false, device);
+-		rcs_clock = clockrate(device, RCS_TIMESTAMP);
++		rcs_clock = clockrate(device, 0x2000 + TIMESTAMP);
+ 		igt_info("RCS timestamp clock: %.0fKHz, %.1fns\n",
+ 			 rcs_clock / 1e3, 1e9 / rcs_clock);
+ 		rcs_clock = 1e9 / rcs_clock;
+-- 
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
