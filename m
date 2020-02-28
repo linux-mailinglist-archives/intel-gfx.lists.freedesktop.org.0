@@ -1,39 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C403174147
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:07:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7919017414F
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:11:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DC196E102;
-	Fri, 28 Feb 2020 21:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE406F4D1;
+	Fri, 28 Feb 2020 21:11:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2D596E102
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:07:05 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D161B6F4D1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:11:00 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 13:07:05 -0800
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 13:11:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="257239578"
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="318232101"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga002.jf.intel.com with ESMTP; 28 Feb 2020 13:07:04 -0800
-Date: Fri, 28 Feb 2020 13:07:04 -0800
+ by orsmga001.jf.intel.com with ESMTP; 28 Feb 2020 13:10:59 -0800
+Date: Fri, 28 Feb 2020 13:10:59 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200228210704.GA174531@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20200228211059.GB174531@mdroper-desk1.amr.corp.intel.com>
 References: <20200227220101.321671-1-jose.souza@intel.com>
- <20200227220101.321671-2-jose.souza@intel.com>
+ <20200227220101.321671-7-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200227220101.321671-2-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 02/11] drm/i915/tgl: Implement
- Wa_1806527549
+In-Reply-To: <20200227220101.321671-7-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v3 07/11] drm/i915/tgl: Fix the Wa number of
+ a fix
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,48 +52,46 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 02:00:52PM -0800, Jos=E9 Roberto de Souza wrote:
-> This will whitelist the HIZ_CHICKEN register so mesa can disable the
-> optimizations and avoid hang when using D16_UNORM.
+On Thu, Feb 27, 2020 at 02:00:57PM -0800, Jos=E9 Roberto de Souza wrote:
+> The Wa number for this fix is Wa_1607087056 the BSpec bug id is
+> 1607087056, just updating to match BSpec.
 > =
 
-> v2: moved to the right place and used the right function() (Chris)
-> =
-
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> BSpec: 52890
 > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > =
 
 > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
 m/i915/gt/intel_workarounds.c
-> index d402b8ebc780..5d85b7531f76 100644
+> index 80411e408039..0cdd3c50e0ae 100644
 > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
 > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1259,6 +1259,9 @@ static void tgl_whitelist_build(struct intel_engine=
-_cs *engine)
+> @@ -931,7 +931,7 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915=
+, struct i915_wa_list *wal)
+>  			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
+>  			    CPSSUNIT_CLKGATE_DIS);
 >  =
 
->  		/* Wa_1808121037:tgl */
->  		whitelist_reg(w, GEN7_COMMON_SLICE_CHICKEN1);
-> +
-> +		/* Wa_1806527549:tgl */
-> +		whitelist_reg(w, HIZ_CHICKEN);
->  		break;
->  	default:
->  		break;
+> -	/* Wa_1409180338:tgl */
+> +	/* Wa_1607087056:tgl also know as BUG:1409180338 */
+>  	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
+>  		wa_write_or(wal,
+>  			    SLICE_UNIT_LEVEL_CLKGATE,
 > -- =
 
 > 2.25.1
 > =
 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
 -- =
 
