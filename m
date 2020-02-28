@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C026E173C9B
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B07D0173CFE
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FBD66F469;
-	Fri, 28 Feb 2020 16:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 895F56F47D;
+	Fri, 28 Feb 2020 16:33:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 354076F469
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:12:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 08:12:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232284197"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 28 Feb 2020 08:12:36 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2020 18:12:36 +0200
-Date: Fri, 28 Feb 2020 18:12:36 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200228161236.GH13686@intel.com>
-References: <20200224153240.9047-5-stanislav.lisovskiy@intel.com>
- <20200225145733.32043-1-stanislav.lisovskiy@intel.com>
- <20200227161243.GR13686@intel.com>
- <e5fbc6ec99cc32a123f90f48954b0ebc6c2061fc.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 791D26F478;
+ Fri, 28 Feb 2020 16:33:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 72700A0088;
+ Fri, 28 Feb 2020 16:33:54 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <e5fbc6ec99cc32a123f90f48954b0ebc6c2061fc.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v18 4/8] drm/i915: Introduce more
- *_state_changed indicators
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 28 Feb 2020 16:33:54 -0000
+Message-ID: <158290763444.7475.6697081242295509403@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/20=5D_drm/i915=3A_Skip_barriers_inside_?=
+ =?utf-8?q?waits_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,447 +39,354 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 08:56:58AM +0000, Lisovskiy, Stanislav wrote:
-> On Thu, 2020-02-27 at 18:12 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Feb 25, 2020 at 04:57:33PM +0200, Stanislav Lisovskiy wrote:
-> > > The reasoning behind this is such that current dependencies
-> > > in the code are rather implicit in a sense, we have to constantly
-> > > check a bunch of different bits like state->modeset,
-> > > state->active_pipe_changes, which sometimes can indicate counter
-> > > intuitive changes.
-> > > =
+== Series Details ==
 
-> > > By introducing more fine grained state change tracking we achieve
-> > > better readability and dependency maintenance for the code.
-> > > =
+Series: series starting with [01/20] drm/i915: Skip barriers inside waits (rev4)
+URL   : https://patchwork.freedesktop.org/series/73999/
+State : failure
 
-> > > For example it is no longer needed to evaluate active_pipe_changes
-> > > to understand if there were changes for wm/ddb - lets just have
-> > > a correspondent bit in a state, called ddb_state_changed.
-> > > =
+== Summary ==
 
-> > > active_pipe_changes just indicate whether there was some pipe added
-> > > or removed. Then we evaluate if wm/ddb had been changed.
-> > > Same for sagv/bw state. ddb changes may or may not affect if out
-> > > bandwidth constraints have been changed.
-> > > =
+CI Bug Log - changes from CI_DRM_8018_full -> Patchwork_16731_full
+====================================================
 
-> > > v2: Add support for older Gens in order not to introduce
-> > > regressions
-> > > =
+Summary
+-------
 
-> > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_atomic.c   |  2 ++
-> > >  drivers/gpu/drm/i915/display/intel_bw.c       | 28 ++++++++++++++-
-> > > -
-> > >  drivers/gpu/drm/i915/display/intel_display.c  | 16 ++++++----
-> > >  .../drm/i915/display/intel_display_types.h    | 32 ++++++++++++---
-> > > ----
-> > >  drivers/gpu/drm/i915/intel_pm.c               |  5 ++-
-> > >  5 files changed, 62 insertions(+), 21 deletions(-)
-> > > =
+  **FAILURE**
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > index d043057d2fa0..0db9c66d3c0f 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-> > > @@ -525,6 +525,8 @@ void intel_atomic_state_clear(struct
-> > > drm_atomic_state *s)
-> > >  	state->dpll_set =3D state->modeset =3D false;
-> > >  	state->global_state_changed =3D false;
-> > >  	state->active_pipes =3D 0;
-> > > +	state->ddb_state_changed =3D false;
-> > > +	state->bw_state_changed =3D false;
-> > =
+  Serious unknown changes coming with Patchwork_16731_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16731_full, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> > Not really liking these.
-> > =
+  
 
-> > After some pondering I was thinking along the lines of something
-> > simple
-> > like this:
-> > =
+Possible new issues
+-------------------
 
-> > struct bw_state {
-> > 	u8 sagv_reject;
-> > };
-> > =
+  Here are the unknown changes that may have been introduced in Patchwork_16731_full:
 
-> > bw_check()
-> > {
-> > 	for_each_crtc_in_state() {
-> > 		if (sagv_possible(crtc_state))
-> > 			new->sagv_reject &=3D ~BIT(pipe);
-> > 		else
-> > 			new->sagv_reject |=3D BIT(pipe);
-> > 	}
-> > =
+### IGT changes ###
 
-> > 	calculate new->qgv_mask
-> > }
-> =
+#### Possible regressions ####
 
-> This is exactly what's done in the next patch, except =
+  * {igt@i915_selftest@perf@request} (NEW):
+    - shard-iclb:         NOTRUN -> [INCOMPLETE][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb2/igt@i915_selftest@perf@request.html
+    - shard-skl:          NOTRUN -> [INCOMPLETE][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl1/igt@i915_selftest@perf@request.html
+    - shard-tglb:         NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb7/igt@i915_selftest@perf@request.html
 
-> that I store pipe, which are allowed to have SAGV, i.e:
+  * {igt@i915_selftest@perf_request} (NEW):
+    - shard-iclb:         NOTRUN -> [SKIP][4]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@i915_selftest@perf_request.html
 
-I think inverted mask idea leads to neater code because then we
-don't have to care which pipes are actually present in the hw
-and which are fused off/not present:
+  * igt@runner@aborted:
+    - shard-tglb:         NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb7/igt@runner@aborted.html
 
-sagv_reject =3D=3D 0 -> SAGV possible
-sagv_reject !=3D 0 -> SAGV not possible
+  
+#### Warnings ####
 
-> =
+  * igt@i915_selftest@live@gt_lrc:
+    - shard-tglb:         [DMESG-FAIL][6] ([i915#1233]) -> [DMESG-FAIL][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-tglb1/igt@i915_selftest@live@gt_lrc.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb3/igt@i915_selftest@live@gt_lrc.html
 
->  struct intel_bw_state {
->  	struct intel_global_state base;
->  =
+  
+New tests
+---------
 
-> +	/*
-> +	 * Contains a bit mask, used to determine, whether
-> correspondent
-> +	 * pipe allows SAGV or not.
-> +	 */
-> +	u8 pipe_sagv_mask;
-> +
-> +	/*
-> +	 * Used to determine if we already had calculated
-> +	 * SAGV mask for this state once.
-> +	 */
-> +	bool sagv_calculated;
-> +
-> +	/*
-> +	 * Contains final SAGV decision based on current mask,
-> +	 * to prevent doing the same job over and over again.
-> +	 */
-> +	bool can_sagv;
-> +
-> =
+  New tests have been introduced between CI_DRM_8018_full and Patchwork_16731_full:
 
-> Also the mask is calculated almost exactly same way:
-> =
+### New IGT tests (6) ###
 
-> static void icl_compute_sagv_mask(struct intel_atomic_state *state)
-> +{
-> +	struct intel_crtc *crtc;
-> +	struct intel_crtc_state *new_crtc_state;
-> +	int i;
-> +	struct intel_bw_state *new_bw_state =3D
-> intel_bw_get_state(state);
-> +
-> +	if (IS_ERR(new_bw_state)) {
-> +		WARN(1, "Could not get bw_state\n");
-> +		return;
-> +	}
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc,
-> +					 new_crtc_state, i) {
-> +		if (skl_can_enable_sagv_on_pipe(state, crtc->pipe))
-> +			new_bw_state->pipe_sagv_mask |=3D BIT(crtc-
-> >pipe);
-> +		else
-> +			new_bw_state->pipe_sagv_mask &=3D ~BIT(crtc-
-> >pipe);
-> +	}
-> +}
-> =
+  * igt@drm_mm@all:
+    - Statuses :
+    - Exec time: [None] s
 
-> But this patch is not about that - it is about how we signal/determine
-> that some change has to be written at commit stage.
-> As you remember when we were discussed offline, I just wanted to have
-> some expicit way to mark if some global state subsystem had changed,
-> without having to do any additional checks, because imho all the checks
-> we should do during atomic check, while commit simply applies what has
-> to be applied.
-> =
+  * igt@i915_selftest@mock:
+    - Statuses :
+    - Exec time: [None] s
 
-> If you are really against having those boolean or any other way to be
-> able so simply mark some stage object "dirty" (just like mem pages
-> analogy) then would vote at least to have some helper functions to do
-> that. =
+  * igt@i915_selftest@perf:
+    - Statuses :
+    - Exec time: [None] s
 
-> i.e smth like:
-> =
+  * igt@i915_selftest@perf@request:
+    - Statuses : 7 incomplete(s)
+    - Exec time: [0.0] s
 
-> bool pipe_sagv_mask_changed(..)
+  * igt@i915_selftest@perf_request:
+    - Statuses : 4 skip(s)
+    - Exec time: [0.0] s
 
-This is just a !=3D, no? Don't see a function really making it any more cle=
-ar.
+  * igt@kms_selftest@all:
+    - Statuses :
+    - Exec time: [None] s
 
-> =
+  
 
-> bool ddb_state_changed(...)
+Known issues
+------------
 
-So far I don't see any real need to check for that.
+  Here are the changes found in Patchwork_16731_full that come from known issues:
 
->  =
+### IGT changes ###
 
-> Stan
-> =
+#### Issues hit ####
 
-> > =
+  * igt@gem_ctx_exec@basic-nohangcheck:
+    - shard-snb:          [PASS][8] -> [FAIL][9] ([i915#1148])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-snb2/igt@gem_ctx_exec@basic-nohangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-snb2/igt@gem_ctx_exec@basic-nohangcheck.html
 
-> > >  }
-> > >  =
+  * igt@gem_ctx_persistence@close-replace-race:
+    - shard-kbl:          [PASS][10] -> [INCOMPLETE][11] ([fdo#103665] / [i915#1291])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl4/igt@gem_ctx_persistence@close-replace-race.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl4/igt@gem_ctx_persistence@close-replace-race.html
 
-> > >  struct intel_crtc_state *
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c
-> > > b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > index bdad7476dc7b..d5be603b8b03 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > > @@ -424,9 +424,27 @@ int intel_bw_atomic_check(struct
-> > > intel_atomic_state *state)
-> > >  	struct intel_crtc *crtc;
-> > >  	int i, ret;
-> > >  =
+  * igt@gem_ctx_shared@exec-shared-gtt-bsd1:
+    - shard-tglb:         [PASS][12] -> [FAIL][13] ([i915#616])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-tglb6/igt@gem_ctx_shared@exec-shared-gtt-bsd1.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb1/igt@gem_ctx_shared@exec-shared-gtt-bsd1.html
 
-> > > -	/* FIXME earlier gens need some checks too */
-> > > -	if (INTEL_GEN(dev_priv) < 11)
-> > > +	/*
-> > > +	 * For earlier Gens let's consider bandwidth changed if ddb
-> > > requirements,
-> > > +	 * has been changed.
-> > > +	 */
-> > > +	if (INTEL_GEN(dev_priv) < 11) {
-> > > +		if (state->ddb_state_changed) {
-> > > +			bw_state =3D intel_bw_get_state(state);
-> > > +			if (IS_ERR(bw_state))
-> > > +				return PTR_ERR(bw_state);
-> > > +
-> > > +			ret =3D intel_atomic_lock_global_state(&bw_state-
-> > > >base);
-> > > +			if (ret)
-> > > +				return ret;
-> > > +
-> > > +			DRM_DEBUG_KMS("Marking bw state changed for
-> > > atomic state %p\n",
-> > > +				      state);
-> > > +
-> > > +			state->bw_state_changed =3D true;
-> > > +		}
-> > >  		return 0;
-> > > +	}
-> > >  =
+  * igt@gem_exec_schedule@implicit-read-write-bsd:
+    - shard-iclb:         [PASS][14] -> [SKIP][15] ([i915#677])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb6/igt@gem_exec_schedule@implicit-read-write-bsd.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@gem_exec_schedule@implicit-read-write-bsd.html
 
-> > >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
-> > > old_crtc_state,
-> > >  					    new_crtc_state, i) {
-> > > @@ -447,7 +465,7 @@ int intel_bw_atomic_check(struct
-> > > intel_atomic_state *state)
-> > >  		    old_active_planes =3D=3D new_active_planes)
-> > >  			continue;
-> > >  =
+  * igt@gem_exec_schedule@in-order-bsd:
+    - shard-iclb:         [PASS][16] -> [SKIP][17] ([fdo#112146])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb6/igt@gem_exec_schedule@in-order-bsd.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@gem_exec_schedule@in-order-bsd.html
 
-> > > -		bw_state  =3D intel_bw_get_state(state);
-> > > +		bw_state =3D intel_bw_get_state(state);
-> > >  		if (IS_ERR(bw_state))
-> > >  			return PTR_ERR(bw_state);
-> > >  =
+  * igt@i915_pm_rps@waitboost:
+    - shard-iclb:         [PASS][18] -> [FAIL][19] ([i915#413])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@i915_pm_rps@waitboost.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb6/igt@i915_pm_rps@waitboost.html
 
-> > > @@ -468,6 +486,10 @@ int intel_bw_atomic_check(struct
-> > > intel_atomic_state *state)
-> > >  	if (ret)
-> > >  		return ret;
-> > >  =
+  * igt@i915_selftest@live@hangcheck:
+    - shard-apl:          [PASS][20] -> [INCOMPLETE][21] ([fdo#103927])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-apl7/igt@i915_selftest@live@hangcheck.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-apl3/igt@i915_selftest@live@hangcheck.html
 
-> > > +	DRM_DEBUG_KMS("Marking bw state changed for atomic state %p\n",
-> > > state);
-> > > +
-> > > +	state->bw_state_changed =3D true;
-> > > +
-> > >  	data_rate =3D intel_bw_data_rate(dev_priv, bw_state);
-> > >  	num_active_planes =3D intel_bw_num_active_planes(dev_priv,
-> > > bw_state);
-> > >  =
+  * igt@i915_suspend@fence-restore-tiled2untiled:
+    - shard-apl:          [PASS][22] -> [DMESG-WARN][23] ([i915#180])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-apl4/igt@i915_suspend@fence-restore-tiled2untiled.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-apl2/igt@i915_suspend@fence-restore-tiled2untiled.html
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 3031e64ee518..137fb645097a 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -15540,8 +15540,10 @@ static void
-> > > intel_atomic_commit_tail(struct intel_atomic_state *state)
-> > >  		 * SKL workaround: bspec recommends we disable the SAGV
-> > > when we
-> > >  		 * have more then one pipe enabled
-> > >  		 */
-> > > -		if (!intel_can_enable_sagv(state))
-> > > -			intel_disable_sagv(dev_priv);
-> > > +		if (state->bw_state_changed) {
-> > > +			if (!intel_can_enable_sagv(state))
-> > > +				intel_disable_sagv(dev_priv);
-> > > +		}
-> > >  =
+  * igt@i915_suspend@forcewake:
+    - shard-kbl:          [PASS][24] -> [DMESG-WARN][25] ([i915#180]) +1 similar issue
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl3/igt@i915_suspend@forcewake.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl2/igt@i915_suspend@forcewake.html
 
-> > >  		intel_modeset_verify_disabled(dev_priv, state);
-> > >  	}
-> > > @@ -15565,7 +15567,7 @@ static void intel_atomic_commit_tail(struct
-> > > intel_atomic_state *state)
-> > >  		intel_encoders_update_prepare(state);
-> > >  =
+  * igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled:
+    - shard-skl:          [PASS][26] -> [FAIL][27] ([i915#52] / [i915#54])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl8/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl9/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled.html
 
-> > >  	/* Enable all new slices, we might need */
-> > > -	if (state->modeset)
-> > > +	if (state->ddb_state_changed)
-> > >  		icl_dbuf_slice_pre_update(state);
-> > >  =
+  * igt@kms_fbcon_fbt@psr-suspend:
+    - shard-skl:          [PASS][28] -> [INCOMPLETE][29] ([i915#69])
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl7/igt@kms_fbcon_fbt@psr-suspend.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl5/igt@kms_fbcon_fbt@psr-suspend.html
 
-> > >  	/* Now enable the clocks, plane, pipe, and connectors that we
-> > > set up. */
-> > > @@ -15622,7 +15624,7 @@ static void intel_atomic_commit_tail(struct
-> > > intel_atomic_state *state)
-> > >  	}
-> > >  =
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][30] -> [FAIL][31] ([i915#1188]) +1 similar issue
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl10/igt@kms_hdr@bpc-switch-dpms.html
 
-> > >  	/* Disable all slices, we don't need */
-> > > -	if (state->modeset)
-> > > +	if (state->ddb_state_changed)
-> > >  		icl_dbuf_slice_post_update(state);
-> > >  =
+  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
+    - shard-skl:          [PASS][32] -> [FAIL][33] ([fdo#108145])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
 
-> > >  	for_each_oldnew_intel_crtc_in_state(state, crtc,
-> > > old_crtc_state, new_crtc_state, i) {
-> > > @@ -15641,8 +15643,10 @@ static void
-> > > intel_atomic_commit_tail(struct intel_atomic_state *state)
-> > >  	if (state->modeset)
-> > >  		intel_verify_planes(state);
-> > >  =
+  * igt@kms_psr@psr2_primary_page_flip:
+    - shard-iclb:         [PASS][34] -> [SKIP][35] ([fdo#109441]) +2 similar issues
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb6/igt@kms_psr@psr2_primary_page_flip.html
 
-> > > -	if (state->modeset && intel_can_enable_sagv(state))
-> > > -		intel_enable_sagv(dev_priv);
-> > > +	if (state->bw_state_changed) {
-> > > +		if (intel_can_enable_sagv(state)
-> > > +			intel_enable_sagv(dev_priv);
-> > > +	}
-> > >  =
+  * igt@kms_setmode@basic:
+    - shard-apl:          [PASS][36] -> [FAIL][37] ([i915#31])
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-apl2/igt@kms_setmode@basic.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-apl6/igt@kms_setmode@basic.html
+    - shard-kbl:          [PASS][38] -> [FAIL][39] ([i915#31])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl2/igt@kms_setmode@basic.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl3/igt@kms_setmode@basic.html
 
-> > >  	drm_atomic_helper_commit_hw_done(&state->base);
-> > >  =
+  * igt@kms_vblank@pipe-b-query-forked-hang:
+    - shard-kbl:          [PASS][40] -> [DMESG-WARN][41] ([i915#62] / [i915#92]) +5 similar issues
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl7/igt@kms_vblank@pipe-b-query-forked-hang.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl6/igt@kms_vblank@pipe-b-query-forked-hang.html
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > index 0d8a64305464..12b47ba3c68d 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -471,16 +471,6 @@ struct intel_atomic_state {
-> > >  =
+  * igt@perf_pmu@busy-accuracy-2-vcs1:
+    - shard-iclb:         [PASS][42] -> [SKIP][43] ([fdo#112080]) +10 similar issues
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@perf_pmu@busy-accuracy-2-vcs1.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb6/igt@perf_pmu@busy-accuracy-2-vcs1.html
 
-> > >  	bool dpll_set, modeset;
-> > >  =
+  * igt@prime_vgem@fence-wait-bsd2:
+    - shard-iclb:         [PASS][44] -> [SKIP][45] ([fdo#109276]) +23 similar issues
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@prime_vgem@fence-wait-bsd2.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb6/igt@prime_vgem@fence-wait-bsd2.html
 
-> > > -	/*
-> > > -	 * Does this transaction change the pipes that are
-> > > active?  This mask
-> > > -	 * tracks which CRTC's have changed their active state at the
-> > > end of
-> > > -	 * the transaction (not counting the temporary disable during
-> > > modesets).
-> > > -	 * This mask should only be non-zero when intel_state->modeset
-> > > is true,
-> > > -	 * but the converse is not necessarily true; simply changing a
-> > > mode may
-> > > -	 * not flip the final active status of any CRTC's
-> > > -	 */
-> > > -	u8 active_pipe_changes;
-> > > -
-> > >  	u8 active_pipes;
-> > >  =
+  
+#### Possible fixes ####
 
-> > >  	struct intel_shared_dpll_state shared_dpll[I915_NUM_PLLS];
-> > > @@ -494,10 +484,30 @@ struct intel_atomic_state {
-> > >  	bool rps_interactive;
-> > >  =
+  * igt@gem_ctx_shared@exec-single-timeline-bsd:
+    - shard-iclb:         [SKIP][46] ([fdo#110841]) -> [PASS][47]
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb8/igt@gem_ctx_shared@exec-single-timeline-bsd.html
 
-> > >  	/*
-> > > -	 * active_pipes
-> > > +	 * active pipes
-> > >  	 */
-> > >  	bool global_state_changed;
-> > >  =
+  * igt@gem_ctx_shared@q-independent-blt:
+    - shard-tglb:         [FAIL][48] -> [PASS][49]
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-tglb7/igt@gem_ctx_shared@q-independent-blt.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb6/igt@gem_ctx_shared@q-independent-blt.html
 
-> > > +	/*
-> > > +	 * Does this transaction change the pipes that are
-> > > active?  This mask
-> > > +	 * tracks which CRTC's have changed their active state at the
-> > > end of
-> > > +	 * the transaction (not counting the temporary disable during
-> > > modesets).
-> > > +	 * This mask should only be non-zero when intel_state->modeset
-> > > is true,
-> > > +	 * but the converse is not necessarily true; simply changing a
-> > > mode may
-> > > +	 * not flip the final active status of any CRTC's
-> > > +	 */
-> > > +	u8 active_pipe_changes;
-> > > +
-> > > +	/*
-> > > +	 * More granular change indicator for ddb changes
-> > > +	 */
-> > > +	bool ddb_state_changed;
-> > > +
-> > > +	/*
-> > > +	 * More granular change indicator for bandwidth state changes
-> > > +	 */
-> > > +	bool bw_state_changed;
-> > > +
-> > >  	/* Number of enabled DBuf slices */
-> > >  	u8 enabled_dbuf_slices_mask;
-> > >  =
+  * igt@gem_exec_balancer@hang:
+    - shard-tglb:         [FAIL][50] ([i915#1277]) -> [PASS][51]
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-tglb1/igt@gem_exec_balancer@hang.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-tglb3/igt@gem_exec_balancer@hang.html
 
-> > > diff --git a/drivers/gpu/drm/i915/intel_pm.c
-> > > b/drivers/gpu/drm/i915/intel_pm.c
-> > > index 409b91c17a7f..ac4b317ea1bf 100644
-> > > --- a/drivers/gpu/drm/i915/intel_pm.c
-> > > +++ b/drivers/gpu/drm/i915/intel_pm.c
-> > > @@ -3894,7 +3894,7 @@ skl_ddb_get_pipe_allocation_limits(struct
-> > > drm_i915_private *dev_priv,
-> > >  	 * that changes the active CRTC list or do modeset would need
-> > > to
-> > >  	 * grab _all_ crtc locks, including the one we currently hold.
-> > >  	 */
-> > > -	if (!intel_state->active_pipe_changes && !intel_state->modeset) =
+  * igt@gem_exec_parallel@vcs1-fds:
+    - shard-iclb:         [SKIP][52] ([fdo#112080]) -> [PASS][53] +10 similar issues
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb6/igt@gem_exec_parallel@vcs1-fds.html
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@gem_exec_parallel@vcs1-fds.html
 
-> > > {
-> > > +	if (!intel_state->ddb_state_changed) {
-> > >  		/*
-> > >  		 * alloc may be cleared by clear_intel_crtc_state,
-> > >  		 * copy from old state to be sure
-> > > @@ -5787,6 +5787,9 @@ static int skl_wm_add_affected_planes(struct
-> > > intel_atomic_state *state,
-> > >  			return PTR_ERR(plane_state);
-> > >  =
+  * igt@gem_exec_schedule@implicit-both-bsd1:
+    - shard-iclb:         [SKIP][54] ([fdo#109276] / [i915#677]) -> [PASS][55] +2 similar issues
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb6/igt@gem_exec_schedule@implicit-both-bsd1.html
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@gem_exec_schedule@implicit-both-bsd1.html
 
-> > >  		new_crtc_state->update_planes |=3D BIT(plane_id);
-> > > +
-> > > +		DRM_DEBUG_KMS("Marking ddb state changed for atomic
-> > > state %p\n", state);
-> > > +		state->ddb_state_changed =3D true;
-> > >  	}
-> > >  =
+  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
+    - shard-iclb:         [SKIP][56] ([i915#677]) -> [PASS][57] +2 similar issues
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb8/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
 
-> > >  	return 0;
-> > > -- =
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [SKIP][58] ([fdo#112146]) -> [PASS][59] +6 similar issues
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb2/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb6/igt@gem_exec_schedule@preempt-other-chain-bsd.html
 
-> > > 2.24.1.485.gad05a3d8e5
-> > =
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-apl:          [FAIL][60] ([i915#644]) -> [PASS][61]
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-apl6/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-apl8/igt@gem_ppgtt@flink-and-close-vma-leak.html
 
-> > =
+  * igt@i915_suspend@fence-restore-untiled:
+    - shard-kbl:          [DMESG-WARN][62] ([i915#180]) -> [PASS][63] +1 similar issue
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl3/igt@i915_suspend@fence-restore-untiled.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl1/igt@i915_suspend@fence-restore-untiled.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen:
+    - shard-skl:          [FAIL][64] ([i915#54]) -> [PASS][65]
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl3/igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl8/igt@kms_cursor_crc@pipe-c-cursor-256x85-offscreen.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
+    - shard-skl:          [FAIL][66] ([fdo#108145]) -> [PASS][67]
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-skl9/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
+
+  * igt@kms_psr@psr2_no_drrs:
+    - shard-iclb:         [SKIP][68] ([fdo#109441]) -> [PASS][69] +4 similar issues
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb4/igt@kms_psr@psr2_no_drrs.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb2/igt@kms_psr@psr2_no_drrs.html
+
+  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
+    - shard-apl:          [DMESG-WARN][70] ([i915#180]) -> [PASS][71] +2 similar issues
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-apl4/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-apl2/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+
+  * igt@prime_busy@hang-bsd2:
+    - shard-iclb:         [SKIP][72] ([fdo#109276]) -> [PASS][73] +15 similar issues
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb6/igt@prime_busy@hang-bsd2.html
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb1/igt@prime_busy@hang-bsd2.html
+
+  
+#### Warnings ####
+
+  * igt@gen9_exec_parse@allowed-all:
+    - shard-glk:          [DMESG-WARN][74] ([i915#716]) -> [INCOMPLETE][75] ([i915#58] / [k.org#198133])
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-glk9/igt@gen9_exec_parse@allowed-all.html
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-glk3/igt@gen9_exec_parse@allowed-all.html
+
+  * igt@kms_dp_dsc@basic-dsc-enable-edp:
+    - shard-iclb:         [SKIP][76] ([fdo#109349]) -> [DMESG-WARN][77] ([i915#1226])
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-iclb4/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-iclb2/igt@kms_dp_dsc@basic-dsc-enable-edp.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-kbl:          [DMESG-WARN][78] ([i915#180]) -> [DMESG-WARN][79] ([i915#62] / [i915#92])
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8018/shard-kbl2/igt@kms_flip@flip-vs-suspend.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/shard-kbl6/igt@kms_flip@flip-vs-suspend.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103665]: https://bugs.freedesktop.org/show_bug.cgi?id=103665
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109349]: https://bugs.freedesktop.org/show_bug.cgi?id=109349
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#1148]: https://gitlab.freedesktop.org/drm/intel/issues/1148
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1226]: https://gitlab.freedesktop.org/drm/intel/issues/1226
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#1277]: https://gitlab.freedesktop.org/drm/intel/issues/1277
+  [i915#1291]: https://gitlab.freedesktop.org/drm/intel/issues/1291
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
+  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
+  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#616]: https://gitlab.freedesktop.org/drm/intel/issues/616
+  [i915#62]: https://gitlab.freedesktop.org/drm/intel/issues/62
+  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
 
 
--- =
+Participating hosts (10 -> 10)
+------------------------------
 
-Ville Syrj=E4l=E4
-Intel
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8018 -> Patchwork_16731
+
+  CI-20190529: 20190529
+  CI_DRM_8018: d2d7fd43fafd159b7d9d957340e4ed9775ab20b0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5473: d22b3507ff2678a05d69d47c0ddf6f0e72ee7ffd @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16731: 720aff89c6c8efa0deb0c662afc100e8a713db0a @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16731/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
