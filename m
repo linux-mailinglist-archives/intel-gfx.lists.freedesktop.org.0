@@ -2,38 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7919017414F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:11:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CC59174153
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 22:16:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE406F4D1;
-	Fri, 28 Feb 2020 21:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F236E111;
+	Fri, 28 Feb 2020 21:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D161B6F4D1
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:11:00 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC3B6E111
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 21:16:20 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 13:11:00 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 13:16:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="318232101"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga001.jf.intel.com with ESMTP; 28 Feb 2020 13:10:59 -0800
-Date: Fri, 28 Feb 2020 13:10:59 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200228211059.GB174531@mdroper-desk1.amr.corp.intel.com>
-References: <20200227220101.321671-1-jose.souza@intel.com>
- <20200227220101.321671-7-jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="238878339"
+Received: from ldmartin1-desk.jf.intel.com ([10.165.21.151])
+ by orsmga003.jf.intel.com with ESMTP; 28 Feb 2020 13:16:17 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 28 Feb 2020 13:16:05 -0800
+Message-Id: <20200228211605.25109-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.24.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227220101.321671-7-jose.souza@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 07/11] drm/i915/tgl: Fix the Wa number of
- a fix
+Subject: [Intel-gfx] [PATCH v2] drm/i915/display: nuke skl workaround for
+ pre-production hw
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,60 +41,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 02:00:57PM -0800, Jos=E9 Roberto de Souza wrote:
-> The Wa number for this fix is Wa_1607087056 the BSpec bug id is
-> 1607087056, just updating to match BSpec.
-> =
+According to intel_detect_preproduction_hw(), the SKL stepping D0 is
+still pre-preproduction so we can nuke the additional workaround.
+WA database says it applies to all steppings, but bspec disagrees.
+After talking to HW people they said it was fixed either on B0 or D0.
 
-> BSpec: 52890
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+While at it, nuke dangling new line.
 
+v2: fix typo in commit message (Michael) and note that W/A db disagrees
+    with the steppings this is applicable (Ville).
+
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> =
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ab2e2454f038..c33eb4f8aa70 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -16887,14 +16887,8 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		if (intel_ddi_crt_present(dev_priv))
+ 			intel_crt_init(dev_priv);
+ 
+-		/*
+-		 * Haswell uses DDI functions to detect digital outputs.
+-		 * On SKL pre-D0 the strap isn't connected, so we assume
+-		 * it's there.
+-		 */
+ 		found = intel_de_read(dev_priv, DDI_BUF_CTL(PORT_A)) & DDI_INIT_DISPLAY_DETECTED;
+-		/* WaIgnoreDDIAStrap: skl */
+-		if (found || IS_GEN9_BC(dev_priv))
++		if (found)
+ 			intel_ddi_init(dev_priv, PORT_A);
+ 
+ 		/* DDI B, C, D, and F detection is indicated by the SFUSE_STRAP
+@@ -16915,7 +16909,6 @@ static void intel_setup_outputs(struct drm_i915_private *dev_priv)
+ 		if (IS_GEN9_BC(dev_priv) &&
+ 		    intel_bios_is_port_present(dev_priv, PORT_E))
+ 			intel_ddi_init(dev_priv, PORT_E);
+-
+ 	} else if (HAS_PCH_SPLIT(dev_priv)) {
+ 		int found;
+ 
+-- 
+2.24.0
 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
-m/i915/gt/intel_workarounds.c
-> index 80411e408039..0cdd3c50e0ae 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -931,7 +931,7 @@ tgl_gt_workarounds_init(struct drm_i915_private *i915=
-, struct i915_wa_list *wal)
->  			    SUBSLICE_UNIT_LEVEL_CLKGATE2,
->  			    CPSSUNIT_CLKGATE_DIS);
->  =
-
-> -	/* Wa_1409180338:tgl */
-> +	/* Wa_1607087056:tgl also know as BUG:1409180338 */
->  	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0))
->  		wa_write_or(wal,
->  			    SLICE_UNIT_LEVEL_CLKGATE,
-> -- =
-
-> 2.25.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
