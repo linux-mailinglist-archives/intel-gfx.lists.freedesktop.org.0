@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBF8E173F3F
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 19:13:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2097F173F5A
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 19:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAD476E0E7;
-	Fri, 28 Feb 2020 18:13:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC4A6F4AD;
+	Fri, 28 Feb 2020 18:20:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2D8D66E0E7;
- Fri, 28 Feb 2020 18:13:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 22E746F4AD;
+ Fri, 28 Feb 2020 18:20:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2691EA47E8;
- Fri, 28 Feb 2020 18:13:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0FC02A011C;
+ Fri, 28 Feb 2020 18:20:03 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Date: Fri, 28 Feb 2020 18:13:41 -0000
-Message-ID: <158291362112.7475.1444371985912604520@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 28 Feb 2020 18:20:03 -0000
+Message-ID: <158291400303.7474.5649272348665126869@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200228160229.1683087-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20200228160229.1683087-1-lionel.g.landwerlin@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/perf=3A_introduce_global_sseu_pinning?=
+References: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Fix_90/270_degree_rotated_RGB565_src_coord_chec?=
+ =?utf-8?b?a3MgKHJldjMp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,20 +48,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/perf: introduce global sseu pinning
-URL   : https://patchwork.freedesktop.org/series/74086/
-State : failure
+Series: drm/i915: Fix 90/270 degree rotated RGB565 src coord checks (rev3)
+URL   : https://patchwork.freedesktop.org/series/59956/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915/perf: introduce global sseu pinning
-error: sha1 information is lacking or useless (drivers/gpu/drm/i915/i915_perf.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 drm/i915/perf: introduce global sseu pinning
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+f854cfdc461f drm/i915: Fix 90/270 degree rotated RGB565 src coord checks
+-:65: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#65: FILE: drivers/gpu/drm/i915/display/intel_sprite.c:318:
++		hsub = vsub = max(hsub, vsub);
+
+total: 0 errors, 0 warnings, 1 checks, 53 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
