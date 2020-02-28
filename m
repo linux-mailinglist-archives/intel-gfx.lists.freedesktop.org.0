@@ -1,56 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76DCD17325A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:00:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3CC1173261
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:01:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A3E06EE2D;
-	Fri, 28 Feb 2020 08:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0EC36EE25;
+	Fri, 28 Feb 2020 08:01:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD0546EE39
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:00:15 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id m3so2192439wmi.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 00:00:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UuBs2+Hd3ZijsIUd+4BFI9Nm7vJa4nyEbzAyJbBYI6g=;
- b=2HG/oIGlOwAr2Mm+dznW7fE6KJkApAZXTtYKqmeibq0CfLyJ3zGpxBwxlh5Qms0yK6
- xAMkorM5TllA6zg7P5MJrBqeHQ4o9xu4oUQKixgs+hBcTOII/1oI8qQgRp6Acfr8FAuY
- uSMbrspJ/WGYwvYae6ZcQQOGtgmvUu3ZLf53M7CY1Z+Y6p0LHwoqU0dG9nFRYPtnO6tS
- LgewjWjGl24xwXu5X9RZJbklmawIJbrbWQ0bCMx2WNPvmTmMRInw6GhZaJZdRPwZpUiz
- wHsltb2fG42V0fFCjPOkt+cO+VOm/Vy9MPLTcYleb5qrLHkRLvx9FzM2qYmDlfGcaJeZ
- qBgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UuBs2+Hd3ZijsIUd+4BFI9Nm7vJa4nyEbzAyJbBYI6g=;
- b=naVwblTNLdUxPVckZqAiLFDQyd7RPe3CcRZgLxjw6WRYr/oeXOS8ZUR3hKub+BH7YA
- g/op66m1iw6QrTM237/HUBbN/GrUbWsuG2+KKntIlKpulIrP+171eNBwuJTOjs4LPObF
- bSiDRxFs+7q/poKBdPUaZOhGb20CCrXqsojBk1L0YLmoWddOYvBSIAt4Sr5EG6R20mu+
- BD+xNRBFFcRgQnwswijCMnN2UbqME+ym6y5ZjBU5Z4Vbvj8xf14//UYFB9CQeCRnzR+d
- u6pJreOzfnFHydb6uqAvMK4P5Mt+sqNNU/Vtp+MSToHnOl1dTFDCADg2T9bW8FRLt1vM
- Ch7w==
-X-Gm-Message-State: APjAAAWO7NQmdPq48oFui/NuhE/2mAKOtZmY+7f+Y4///zaEPltfk7Ma
- vNA12/fu3ahorhYNb157pb5qagld9MWgCpjKNUKPJw==
-X-Google-Smtp-Source: APXvYqxg+wHrxOqZlt348pf0cVqzRt3fiT4J5hZpwrt6+4iK40Av6zWOyMBPZrOaPIy+xhyASlWJYzcKeu8Qj5qDb0g=
-X-Received: by 2002:a7b:c08d:: with SMTP id r13mr3541794wmh.84.1582876814250; 
- Fri, 28 Feb 2020 00:00:14 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 771596EE23;
+ Fri, 28 Feb 2020 08:01:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 73E24A0088;
+ Fri, 28 Feb 2020 08:01:19 +0000 (UTC)
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAEdQ38Hr-L6rg80Gf18QNM7eK-QDK0BBU-9tChT6VxrP+T4qCw@mail.gmail.com>
-In-Reply-To: <CAEdQ38Hr-L6rg80Gf18QNM7eK-QDK0BBU-9tChT6VxrP+T4qCw@mail.gmail.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Fri, 28 Feb 2020 07:59:33 +0000
-Message-ID: <CAPj87rOhwLPGHaHvPrZ6j8zufO8VqiwNFoBGFjx95yHr3cBm3Q@mail.gmail.com>
-To: Matt Turner <mattst88@gmail.com>
-Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
- services
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Fri, 28 Feb 2020 08:01:19 -0000
+Message-ID: <158287687947.7474.17683671380360942496@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227235005.18706-1-jose.souza@intel.com>
+In-Reply-To: <20200227235005.18706-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dmc=3A_Use_firmware_v2=2E06_for_TGL_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,72 +38,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- gstreamer-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+== Series Details ==
 
-On Thu, 27 Feb 2020 at 23:45, Matt Turner <mattst88@gmail.com> wrote:
-> We're paying 75K USD for the bandwidth to transfer data from the
-> GitLab cloud instance. i.e., for viewing the https site, for
-> cloning/updating git repos, and for downloading CI artifacts/images to
-> the testing machines (AFAIU).
+Series: drm/i915/dmc: Use firmware v2.06 for TGL (rev2)
+URL   : https://patchwork.freedesktop.org/series/74048/
+State : success
 
-I believe that in January, we had $2082 of network cost (almost
-entirely egress; ingress is basically free) and $1750 of cloud-storage
-cost (almost all of which was download). That's based on 16TB of
-cloud-storage (CI artifacts, container images, file uploads, Git LFS)
-egress and 17.9TB of other egress (the web service itself, repo
-activity). Projecting that out gives us roughly $45k of network
-activity alone, so it looks like this figure is based on a projected
-increase of ~50%.
+== Summary ==
 
-The actual compute capacity is closer to $1150/month.
+CI Bug Log - changes from CI_DRM_8024 -> Patchwork_16757
+====================================================
 
-> I was not aware that we were being charged for anything wrt GitLab
-> hosting yet (and neither was anyone on my team at Intel that I've
-> asked). This... kind of needs to be communicated.
->
-> A consistent concern put forth when we were discussing switching to
-> GitLab and building CI was... how do we pay for it. It felt like that
-> concern was always handwaved away. I heard many times that if we
-> needed more runners that we could just ask Google to spin up a few
-> more. If we needed testing machines they'd be donated. No one
-> mentioned that all the while we were paying for bandwidth... Perhaps
-> people building the CI would make different decisions about its
-> structure if they knew it was going to wipe out the bank account.
+Summary
+-------
 
-The original answer is that GitLab themselves offered to sponsor
-enough credit on Google Cloud to get us started. They used GCP
-themselves so they could assist us (me) in getting bootstrapped, which
-was invaluable. After that, Google's open-source program office
-offered to sponsor us for $30k/year, which was I believe last April.
-Since then the service usage has increased roughly by a factor of 10,
-so our 12-month sponsorship is no longer enough to cover 12 months.
+  **SUCCESS**
 
-> What percentage of the bandwidth is consumed by transferring CI
-> images, etc? Wouldn't 75K USD would be enough to buy all the testing
-> machines we need and host them within Google or wherever so we don't
-> need to pay for huge amounts of bandwidth?
+  No regressions found.
 
-Unless the Google Cloud Platform starts offering DragonBoards, it
-wouldn't reduce our bandwidth usage as the corporate network is
-treated separately for egress.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/index.html
 
-Cheers,
-Daniel
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16757:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@i915_pm_rpm@basic-rte:
+    - {fi-tgl-u}:         [PASS][1] -> [SKIP][2] +2 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-tgl-u/igt@i915_pm_rpm@basic-rte.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-tgl-u/igt@i915_pm_rpm@basic-rte.html
+    - {fi-tgl-dsi}:       [PASS][3] -> [SKIP][4] +2 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-tgl-dsi/igt@i915_pm_rpm@basic-rte.html
+
+  * igt@runner@aborted:
+    - {fi-tgl-u}:         NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-tgl-u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16757 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-bxt-dsi:         [PASS][6] -> [DMESG-FAIL][7] ([i915#541])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-bxt-dsi/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-bsw-kefka:       [PASS][8] -> [INCOMPLETE][9] ([fdo#105876])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-bsw-kefka/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [FAIL][10] ([i915#262]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][12] ([i915#192] / [i915#193] / [i915#194]) -> [FAIL][13] ([i915#1209])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8024/fi-kbl-8809g/igt@runner@aborted.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#105876]: https://bugs.freedesktop.org/show_bug.cgi?id=105876
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (41 -> 42)
+------------------------------
+
+  Additional (6): fi-bsw-n3050 fi-hsw-peppy fi-glk-dsi fi-bwr-2160 fi-snb-2520m fi-gdg-551 
+  Missing    (5): fi-ehl-1 fi-ctg-p8600 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8024 -> Patchwork_16757
+
+  CI-20190529: 20190529
+  CI_DRM_8024: 3290680f9735978238a1d3df1efa83326a843327 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16757: 799027936fd0de5ce21a678d6cc34a38961ae8d0 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+799027936fd0 drm/i915/dmc: Use firmware v2.06 for TGL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16757/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
