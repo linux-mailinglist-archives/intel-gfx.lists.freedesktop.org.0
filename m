@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231AE173B30
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:18:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C08B173BA3
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:39:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEF46F467;
-	Fri, 28 Feb 2020 15:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FED96E062;
+	Fri, 28 Feb 2020 15:39:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C4836F466;
- Fri, 28 Feb 2020 15:18:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 44F80A47E9;
- Fri, 28 Feb 2020 15:18:30 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hans de Goede" <hdegoede@redhat.com>
-Date: Fri, 28 Feb 2020 15:18:30 -0000
-Message-ID: <158290311025.7475.13103057760419840115@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200228114110.187792-1-hdegoede@redhat.com>
-In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Some_upside-down_panel_handling_fixes?=
+Received: from kirsty.vergenet.net (kirsty.vergenet.net [202.4.237.240])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CE07D6EDA0;
+ Fri, 28 Feb 2020 00:33:14 +0000 (UTC)
+Received: by kirsty.vergenet.net (Postfix, from userid 1001)
+ id A566125B7C9; Fri, 28 Feb 2020 11:33:13 +1100 (AEDT)
+Date: Fri, 28 Feb 2020 00:33:09 +0000
+From: Carsten Haitzler (The Rasterman) <raster@rasterman.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-Id: <20200228003309.04491fcd60febda4870b5cbd@rasterman.com>
+In-Reply-To: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+Organization: You expect me to be organized?
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+Mime-Version: 1.0
+X-Mailman-Approved-At: Fri, 28 Feb 2020 15:38:53 +0000
+Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
+ services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +38,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>, gstreamer-devel@lists.freedesktop.org,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 27 Feb 2020 22:27:04 +0100 Daniel Vetter <daniel.vetter@ffwll.ch> said:
 
-Series: drm/i915: Some upside-down panel handling fixes
-URL   : https://patchwork.freedesktop.org/series/74076/
-State : warning
+Might I suggest that given the kind of expenses detailed here, literally buying
+1 - 4 reasonably specced boxes and hosting them at OSUOSL would be incredibly
+cheaper? (we (enlightenment.org) have been doing so for years on a single
+box). We farm out CI to travis via gihub mirrors as it's not considered
+an essential core service (unlike mailing lists, git, phabricator whch nwe
+still run - we can live without CI for a while and find other ways).
 
-== Summary ==
+The cost is the odd HDD replacement every few years and maybe every 10y or so a
+new box. That's a massively lower cost than you are quoting below.
 
-$ dim checkpatch origin/drm-tip
-3da5c24d3382 drm/i915/dsi: Remove readback of panel orientation on BYT / CHT
--:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'Commit 82daca297506 ("drm/i915: Add "panel orientation" property to the panel connector, v6.")'
-#10: 
-Commit 82daca297506 ("drm/i915: Add "panel orientation" property to the
+OSUOSL provide bandwidth, power, rack space etc. for free. They have been
+fantastic IMHO and the whole "no fat bills" is awesome and you get a full
+system to set up any way you like. You just bring the box. That should drop cost
+through the floor. It will require some setup and admin though.
 
-total: 1 errors, 0 warnings, 0 checks, 67 lines checked
-91740cf1d41c drm/i915/dp: Use BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
+> Hi all,
+> 
+> You might have read the short take in the X.org board meeting minutes
+> already, here's the long version.
+> 
+> The good news: gitlab.fd.o has become very popular with our
+> communities, and is used extensively. This especially includes all the
+> CI integration. Modern development process and tooling, yay!
+> 
+> The bad news: The cost in growth has also been tremendous, and it's
+> breaking our bank account. With reasonable estimates for continued
+> growth we're expecting hosting expenses totalling 75k USD this year,
+> and 90k USD next year. With the current sponsors we've set up we can't
+> sustain that. We estimate that hosting expenses for gitlab.fd.o
+> without any of the CI features enabled would total 30k USD, which is
+> within X.org's ability to support through various sponsorships, mostly
+> through XDC.
+> 
+> Note that X.org does no longer sponsor any CI runners themselves,
+> we've stopped that. The huge additional expenses are all just in
+> storing and serving build artifacts and images to outside CI runners
+> sponsored by various companies. A related topic is that with the
+> growth in fd.o it's becoming infeasible to maintain it all on
+> volunteer admin time. X.org is therefore also looking for admin
+> sponsorship, at least medium term.
+> 
+> Assuming that we want cash flow reserves for one year of gitlab.fd.o
+> (without CI support) and a trimmed XDC and assuming no sponsor payment
+> meanwhile, we'd have to cut CI services somewhere between May and June
+> this year. The board is of course working on acquiring sponsors, but
+> filling a shortfall of this magnitude is neither easy nor quick work,
+> and we therefore decided to give an early warning as soon as possible.
+> Any help in finding sponsors for fd.o is very much appreciated.
+> 
+> Thanks, Daniel
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+> _______________________________________________
+> xorg-devel@lists.x.org: X.Org development
+> Archives: http://lists.x.org/archives/xorg-devel
+> Info: https://lists.x.org/mailman/listinfo/xorg-devel
+> 
+
+
+-- 
+------------- Codito, ergo sum - "I code, therefore I am" --------------
+Carsten Haitzler - raster@rasterman.com
 
 _______________________________________________
 Intel-gfx mailing list
