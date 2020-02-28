@@ -2,41 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80AE517353A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 11:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7271217358C
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 11:45:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B95A46EF22;
-	Fri, 28 Feb 2020 10:25:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB9B6EF32;
+	Fri, 28 Feb 2020 10:45:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF16B6EF22;
- Fri, 28 Feb 2020 10:25:43 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 02:25:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,495,1574150400"; d="scan'208";a="437381470"
-Received: from thrakatuluk.fi.intel.com (HELO thrakatuluk) ([10.237.68.154])
- by fmsmga005.fm.intel.com with ESMTP; 28 Feb 2020 02:25:41 -0800
-Received: from platvala by thrakatuluk with local (Exim 4.92)
- (envelope-from <petri.latvala@intel.com>)
- id 1j7cpw-00089V-Id; Fri, 28 Feb 2020 12:25:40 +0200
-Date: Fri, 28 Feb 2020 12:25:40 +0200
-From: Petri Latvala <petri.latvala@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200228102540.GM3839@platvala-desk.ger.corp.intel.com>
-References: <20200228101236.2707161-1-chris@chris-wilson.co.uk>
+X-Greylist: delayed 1081 seconds by postgrey-1.36 at gabe;
+ Fri, 28 Feb 2020 10:45:29 UTC
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de
+ [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B300D6EF32
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 10:45:29 +0000 (UTC)
+Received: from kresse.hi.pengutronix.de ([2001:67c:670:100:1d::2a])
+ by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+ (envelope-from <l.stach@pengutronix.de>)
+ id 1j7cre-0003UL-7U; Fri, 28 Feb 2020 11:27:26 +0100
+Message-ID: <b34dfe8f624c0e1bc1a69cde74eb0d621cd52caa.camel@pengutronix.de>
+From: Lucas Stach <l.stach@pengutronix.de>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Erik Faye-Lund
+ <erik.faye-lund@collabora.com>
+Date: Fri, 28 Feb 2020 11:27:25 +0100
+In-Reply-To: <CAKMK7uEnE0HaB2Hs0opw5LO9YEkbJAOp3h5dvESHKFLvnzgfhQ@mail.gmail.com>
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+ <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
+ <CAKMK7uEnE0HaB2Hs0opw5LO9YEkbJAOp3h5dvESHKFLvnzgfhQ@mail.gmail.com>
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200228101236.2707161-1-chris@chris-wilson.co.uk>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_softpin: Limit the
- noreloc test runtime
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::2a
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de);
+ SAEximRunCond expanded to false
+X-PTX-Original-Recipient: intel-gfx@lists.freedesktop.org
+Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
+ impact on services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,59 +50,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ gstreamer-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 10:12:36AM +0000, Chris Wilson wrote:
-> Use a fixed duration rather than a fixed amount of work.
+On Fr, 2020-02-28 at 10:47 +0100, Daniel Vetter wrote:
+> On Fri, Feb 28, 2020 at 10:29 AM Erik Faye-Lund
+> <erik.faye-lund@collabora.com> wrote:
+> > On Fri, 2020-02-28 at 13:37 +1000, Dave Airlie wrote:
+> > > On Fri, 28 Feb 2020 at 07:27, Daniel Vetter <daniel.vetter@ffwll.ch>
+> > > wrote:
+> > > > Hi all,
+> > > > 
+> > > > You might have read the short take in the X.org board meeting
+> > > > minutes
+> > > > already, here's the long version.
+> > > > 
+> > > > The good news: gitlab.fd.o has become very popular with our
+> > > > communities, and is used extensively. This especially includes all
+> > > > the
+> > > > CI integration. Modern development process and tooling, yay!
+> > > > 
+> > > > The bad news: The cost in growth has also been tremendous, and it's
+> > > > breaking our bank account. With reasonable estimates for continued
+> > > > growth we're expecting hosting expenses totalling 75k USD this
+> > > > year,
+> > > > and 90k USD next year. With the current sponsors we've set up we
+> > > > can't
+> > > > sustain that. We estimate that hosting expenses for gitlab.fd.o
+> > > > without any of the CI features enabled would total 30k USD, which
+> > > > is
+> > > > within X.org's ability to support through various sponsorships,
+> > > > mostly
+> > > > through XDC.
+> > > > 
+> > > > Note that X.org does no longer sponsor any CI runners themselves,
+> > > > we've stopped that. The huge additional expenses are all just in
+> > > > storing and serving build artifacts and images to outside CI
+> > > > runners
+> > > > sponsored by various companies. A related topic is that with the
+> > > > growth in fd.o it's becoming infeasible to maintain it all on
+> > > > volunteer admin time. X.org is therefore also looking for admin
+> > > > sponsorship, at least medium term.
+> > > > 
+> > > > Assuming that we want cash flow reserves for one year of
+> > > > gitlab.fd.o
+> > > > (without CI support) and a trimmed XDC and assuming no sponsor
+> > > > payment
+> > > > meanwhile, we'd have to cut CI services somewhere between May and
+> > > > June
+> > > > this year. The board is of course working on acquiring sponsors,
+> > > > but
+> > > > filling a shortfall of this magnitude is neither easy nor quick
+> > > > work,
+> > > > and we therefore decided to give an early warning as soon as
+> > > > possible.
+> > > > Any help in finding sponsors for fd.o is very much appreciated.
+> > > 
+> > > a) Ouch.
+> > > 
+> > > b) we probably need to take a large step back here.
+> > > 
+> > 
+> > I kinda agree, but maybe the step doesn't have to be *too* large?
+> > 
+> > I wonder if we could solve this by restructuring the project a bit. I'm
+> > talking purely from a Mesa point of view here, so it might not solve
+> > the full problem, but:
+> > 
+> > 1. It feels silly that we need to test changes to e.g the i965 driver
+> > on dragonboards. We only have a big "do not run CI at all" escape-
+> > hatch.
+> > 
+> > 2. A lot of us are working for a company that can probably pay for
+> > their own needs in terms of CI. Perhaps moving some costs "up front" to
+> > the company that needs it can make the future of CI for those who can't
+> > do this
+> > 
+> > 3. I think we need a much more detailed break-down of the cost to make
+> > educated changes. For instance, how expensive is Docker image
+> > uploads/downloads (e.g intermediary artifacts) compared to build logs
+> > and final test-results? What kind of artifacts?
 > 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1325
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> We have logs somewhere, but no one yet got around to analyzing that.
+> Which will be quite a bit of work to do since the cloud storage is
+> totally disconnected from the gitlab front-end, making the connection
+> to which project or CI job caused something is going to require
+> scripting. Volunteers definitely very much welcome I think.
 
+It's very surprising to me that this kind of cost monitoring is treated
+as an afterthought, especially since one of the main jobs of the X.Org
+board is to keep spending under control and transparent.
 
-Reviewed-by: Petri Latvala <petri.latvala@intel.com>
+Also from all the conversations it's still unclear to me if the google
+hosting costs are already over the sponsored credits (so is burning a
+hole into X.org bank account right now) or if this is only going to
+happen at a later point in time.
 
-> ---
->  tests/i915/gem_softpin.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/tests/i915/gem_softpin.c b/tests/i915/gem_softpin.c
-> index 2c258f443..98c7ab63b 100644
-> --- a/tests/i915/gem_softpin.c
-> +++ b/tests/i915/gem_softpin.c
-> @@ -442,7 +442,7 @@ static void test_noreloc(int fd, enum sleep sleep)
->  	uint64_t offset;
->  	uint32_t handle;
->  	uint32_t *batch, *b;
-> -	int i, loop;
-> +	int i, loop = 0;
->  
->  	handle = gem_create(fd, (ARRAY_SIZE(object)+1)*size);
->  	gem_write(fd, handle, 0, &bbe, sizeof(bbe));
-> @@ -494,11 +494,11 @@ static void test_noreloc(int fd, enum sleep sleep)
->  	munmap(batch, size);
->  
->  	execbuf.buffer_count = ARRAY_SIZE(object);
-> -	for (loop = 0; loop < 1024; loop++) {
-> +	igt_until_timeout(5) {
->  		igt_permute_array(object, ARRAY_SIZE(object)-1, xchg_offset);
->  		gem_execbuf(fd, &execbuf);
->  
-> -		if ((loop & 127) == 0) {
-> +		if ((loop++ & 127) == 0) {
->  			switch (sleep) {
->  			case NOSLEEP:
->  				break;
-> -- 
-> 2.25.1
-> 
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
+Even with CI disabled it seems that the board estimates a cost of 30k
+annually for the plain gitlab hosting. Is this covered by the credits
+sponsored by google? If not, why wasn't there a board voting on this
+spending? All other spending seem to require pre-approval by the board.
+Why wasn't gitlab hosting cost discussed much earlier in the public
+board meetings, especially if it's going to be such an big chunk of the
+overall spending of the X.Org foundation?
+
+Regards,
+Lucas
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
