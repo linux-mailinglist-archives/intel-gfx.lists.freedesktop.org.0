@@ -1,66 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6594172DC5
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 02:01:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24D0D172DC6
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 02:01:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD96E6EDAC;
-	Fri, 28 Feb 2020 01:00:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 681136EDAA;
+	Fri, 28 Feb 2020 01:01:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B801C6EDAD
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 01:00:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582851652;
- h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=LQhInN/+fDfVG2QYCiT8kgUkr5XH+I4Rhxk+RUHmJOs=;
- b=ZrBR3MItkYO8g3+MXdhrC6wX9wIipM4+NDataVETkrujq5LmN4t7QRNy9YcBXoEaAOlVwX
- NttfGc1A4kMCv7AwI98vGJOHAhF+Rk04WbYGuvzzbZxU6pMan2GH8AV7tIu4vXcRzRq3D/
- 5825RfnuFlNG4C9BYwJcOrHuIU0+ZJ8=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-491-0_fjoB25NmqFt-StItVqwQ-1; Thu, 27 Feb 2020 20:00:42 -0500
-X-MC-Unique: 0_fjoB25NmqFt-StItVqwQ-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com
- [10.5.11.16])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id AF5BBDB78;
- Fri, 28 Feb 2020 01:00:40 +0000 (UTC)
-Received: from tstellar.remote.csb (ovpn-117-123.phx2.redhat.com
- [10.3.117.123])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4B0135C54A;
- Fri, 28 Feb 2020 01:00:39 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- gstreamer-devel@lists.freedesktop.org, Xorg Members List <members@x.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- intel-gfx <intel-gfx@lists.freedesktop.org>
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
-From: Tom Stellard <tstellar@redhat.com>
-Organization: Red Hat
-Message-ID: <662b8d0c-d96b-13cd-d3a1-718550f84e4d@redhat.com>
-Date: Thu, 27 Feb 2020 17:00:38 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4EB6A6EDAA;
+ Fri, 28 Feb 2020 01:01:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4765EA7525;
+ Fri, 28 Feb 2020 01:01:41 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
-Content-Language: en-US
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bob Paauwe" <bob.j.paauwe@intel.com>
+Date: Fri, 28 Feb 2020 01:01:41 -0000
+Message-ID: <158285170128.7477.1860915947859143935@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200219211551.20125-1-bob.j.paauwe@intel.com>
+In-Reply-To: <20200219211551.20125-1-bob.j.paauwe@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgQWRk?=
+ =?utf-8?q?ing_YUV444_packed_format_support_for_skl+_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,58 +38,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: tstellar@redhat.com
-Cc: "X.Org Foundation Board" <board@foundation.x.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 02/27/2020 01:27 PM, Daniel Vetter wrote:
-> Hi all,
-> 
-> You might have read the short take in the X.org board meeting minutes
-> already, here's the long version.
-> 
-> The good news: gitlab.fd.o has become very popular with our
-> communities, and is used extensively. This especially includes all the
-> CI integration. Modern development process and tooling, yay!
-> 
-> The bad news: The cost in growth has also been tremendous, and it's
-> breaking our bank account. With reasonable estimates for continued
-> growth we're expecting hosting expenses totalling 75k USD this year,
-> and 90k USD next year. With the current sponsors we've set up we can't
-> sustain that. We estimate that hosting expenses for gitlab.fd.o
-> without any of the CI features enabled would total 30k USD, which is
-> within X.org's ability to support through various sponsorships, mostly
-> through XDC.
-> 
+== Series Details ==
 
-Have you looked into applying for free credits from amazon:
+Series: Adding YUV444 packed format support for skl+ (rev4)
+URL   : https://patchwork.freedesktop.org/series/73020/
+State : success
 
-https://aws.amazon.com/blogs/opensource/aws-promotional-credits-open-source-projects/
+== Summary ==
 
--Tom
+CI Bug Log - changes from CI_DRM_8023 -> Patchwork_16744
+====================================================
 
-> Note that X.org does no longer sponsor any CI runners themselves,
-> we've stopped that. The huge additional expenses are all just in
-> storing and serving build artifacts and images to outside CI runners
-> sponsored by various companies. A related topic is that with the
-> growth in fd.o it's becoming infeasible to maintain it all on
-> volunteer admin time. X.org is therefore also looking for admin
-> sponsorship, at least medium term.
-> 
-> Assuming that we want cash flow reserves for one year of gitlab.fd.o
-> (without CI support) and a trimmed XDC and assuming no sponsor payment
-> meanwhile, we'd have to cut CI services somewhere between May and June
-> this year. The board is of course working on acquiring sponsors, but
-> filling a shortfall of this magnitude is neither easy nor quick work,
-> and we therefore decided to give an early warning as soon as possible.
-> Any help in finding sponsors for fd.o is very much appreciated.
-> 
-> Thanks, Daniel
-> 
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16744:
+
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-tgl-u}:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-tgl-u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16744 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-icl-u2:          [PASS][2] -> [FAIL][3] ([fdo#109635] / [i915#217])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [FAIL][4] ([i915#217] / [i915#976]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][6] ([fdo#111096] / [i915#323]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#1233]: https://gitlab.freedesktop.org/drm/intel/issues/1233
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (46 -> 43)
+------------------------------
+
+  Additional (4): fi-blb-e6850 fi-bdw-5557u fi-ivb-3770 fi-snb-2600 
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * IGT: IGT_5474 -> IGTPW_4011
+  * Linux: CI_DRM_8023 -> Patchwork_16744
+
+  CI-20190529: 20190529
+  CI_DRM_8023: fa9a02bbdfd6553ee633171f23183a115d0da577 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_4011: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4011/index.html
+  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16744: 8e8ab83649cddfd4640699468df891986565b31b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+8e8ab83649cd drm/i915: Adding YUV444 packed format support for skl+ (V15)
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16744/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
