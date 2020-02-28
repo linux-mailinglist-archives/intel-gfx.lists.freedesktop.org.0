@@ -2,34 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB88173B21
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:15:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 231AE173B30
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 16:18:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 542A36F406;
-	Fri, 28 Feb 2020 15:15:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEF46F467;
+	Fri, 28 Feb 2020 15:18:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 214626E065
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 15:15:02 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20386914-1500050 for multiple; Fri, 28 Feb 2020 15:15:00 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4C4836F466;
+ Fri, 28 Feb 2020 15:18:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44F80A47E9;
+ Fri, 28 Feb 2020 15:18:30 +0000 (UTC)
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
- <20200228082330.2411941-18-chris@chris-wilson.co.uk>
- <87zhd27npz.fsf@gaia.fi.intel.com>
-In-Reply-To: <87zhd27npz.fsf@gaia.fi.intel.com>
-Message-ID: <158290289819.24106.3163488755084337083@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 15:14:58 +0000
-Subject: Re: [Intel-gfx] [PATCH 18/24] drm/i915/selftests: Wait for the
- kernel context switch
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Fri, 28 Feb 2020 15:18:30 -0000
+Message-ID: <158290311025.7475.13103057760419840115@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228114110.187792-1-hdegoede@redhat.com>
+In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Some_upside-down_panel_handling_fixes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,94 +38,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-02-28 15:09:28)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > As we require a context switch to ensure that the current context is
-> > switched out and saved to memory, perform an explicit switch to the
-> > kernel context and wait for it.
-> 
-> The patch subject is not incorrect. Just feels that the kernel
-> context is a patsy in here.
-> 
-> So I would s/kernel// on subject but keep in commit msg
-> 
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >  drivers/gpu/drm/i915/gt/selftest_lrc.c | 37 +++++++++++++++++++-------
-> >  1 file changed, 28 insertions(+), 9 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > index d7f98aada626..95da6b880e3f 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-> > @@ -4015,6 +4015,31 @@ static int emit_semaphore_signal(struct intel_context *ce, void *slot)
-> >       return 0;
-> >  }
-> >  
-> > +static int context_sync(struct intel_context *ce)
-> > +{
-> > +     struct i915_request *rq;
-> > +     struct dma_fence *fence;
-> > +     int err = 0;
-> > +
-> > +     rq = intel_engine_create_kernel_request(ce->engine);
-> > +     if (IS_ERR(rq))
-> > +             return PTR_ERR(rq);
-> > +
-> > +     fence = i915_active_fence_get(&ce->timeline->last_request);
-> > +     if (fence) {
-> > +             i915_request_await_dma_fence(rq, fence);
-> > +             dma_fence_put(fence);
-> > +     }
-> > +
-> > +     rq = i915_request_get(rq);
-> > +     i915_request_add(rq);
-> > +     if (i915_request_wait(rq, 0, HZ / 2) < 0)
-> > +             err = -ETIME;
-> > +     i915_request_put(rq);
-> > +
-> > +     return err;
-> > +}
-> > +
-> >  static int live_lrc_layout(void *arg)
-> >  {
-> >       struct intel_gt *gt = arg;
-> > @@ -4638,16 +4663,10 @@ static int __lrc_timestamp(const struct lrc_timestamp *arg, bool preempt)
-> >               wmb();
-> >       }
-> >  
-> > -     if (i915_request_wait(rq, 0, HZ / 2) < 0) {
-> > -             err = -ETIME;
-> > -             goto err;
-> > -     }
-> > -
-> > -     /* and wait for switch to kernel */
-> > -     if (igt_flush_test(arg->engine->i915)) {
-> > -             err = -EIO;
-> > +     /* and wait for switch to kernel (to save our context to memory) */
-> > +     err = context_sync(arg->ce[0]);
-> > +     if (err)
-> >               goto err;
-> > -     }
-> >  
-> >       rmb();
-> 
-> For me the context_sync could be context_flush and it would
-> allow the rmb() to be snuck inside.
+== Series Details ==
 
-I hear you. The rmb() is really associated with the action of confirming
-the switch and can justifiably be inside the context_sync/flush.
+Series: drm/i915: Some upside-down panel handling fixes
+URL   : https://patchwork.freedesktop.org/series/74076/
+State : warning
 
-The rmb is just there to placate inner daemons, so I didn't think about
-it when forcing the emission of the kernel request.
--Chris
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+3da5c24d3382 drm/i915/dsi: Remove readback of panel orientation on BYT / CHT
+-:10: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'Commit 82daca297506 ("drm/i915: Add "panel orientation" property to the panel connector, v6.")'
+#10: 
+Commit 82daca297506 ("drm/i915: Add "panel orientation" property to the
+
+total: 1 errors, 0 warnings, 0 checks, 67 lines checked
+91740cf1d41c drm/i915/dp: Use BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
