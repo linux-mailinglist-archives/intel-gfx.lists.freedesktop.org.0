@@ -1,35 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B01817373A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 13:31:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32237173755
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 13:41:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E39F6E176;
-	Fri, 28 Feb 2020 12:31:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 993566E178;
+	Fri, 28 Feb 2020 12:41:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244016E176
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 12:31:44 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20384655-1500050 for multiple; Fri, 28 Feb 2020 12:31:42 +0000
-MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 250926E178
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 12:41:36 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 04:41:35 -0800
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232234240"
+Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
+ ([10.251.85.135])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 28 Feb 2020 04:41:33 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
- <20200227085723.1961649-9-chris@chris-wilson.co.uk>
- <de7be74c-1bc0-6081-2788-be3f5f30afae@linux.intel.com>
-In-Reply-To: <de7be74c-1bc0-6081-2788-be3f5f30afae@linux.intel.com>
-Message-ID: <158289309991.24106.11560132712313715212@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 12:31:39 +0000
-Subject: Re: [Intel-gfx] [PATCH 09/20] drm/i915/gt: Reset
- queue_priority_hint after wedging
+ <20200227085723.1961649-11-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <745f6ae1-d9c5-dc82-8fbd-02496884f104@linux.intel.com>
+Date: Fri, 28 Feb 2020 12:41:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+In-Reply-To: <20200227085723.1961649-11-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 11/20] drm/i915: Protect
+ i915_request_await_start from early waits
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,114 +48,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-28 12:10:23)
-> 
-> On 27/02/2020 08:57, Chris Wilson wrote:
-> > An odd and highly unlikely path caught us out. On delayed submission
-> > (due to an asynchronous reset handler), we poked the priority_hint and
-> > kicked the tasklet. However, we had already marked the device as wedged
-> > and swapped out the tasklet for a no-op. The result was that we never
-> > cleared the priority hint and became upset when we later checked.
-> > 
-> > <0> [574.303565] i915_sel-6278    2.... 481822445us : __i915_subtests: Running intel_execlists_live_selftests/live_error_interrupt
-> > <0> [574.303565] i915_sel-6278    2.... 481822472us : __engine_unpark: 0000:00:02.0 rcs0:
-> > <0> [574.303565] i915_sel-6278    2.... 481822491us : __gt_unpark: 0000:00:02.0
-> > <0> [574.303565] i915_sel-6278    2.... 481823220us : execlists_context_reset: 0000:00:02.0 rcs0: context:f4ee reset
-> > <0> [574.303565] i915_sel-6278    2.... 481824830us : __intel_context_active: 0000:00:02.0 rcs0: context:f51b active
-> > <0> [574.303565] i915_sel-6278    2.... 481825258us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51b pin ring:{start:00006000, head:0000, tail:0000}
-> > <0> [574.303565] i915_sel-6278    2.... 481825311us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> > <0> [574.303565] i915_sel-6278    2d..1 481825347us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> > <0> [574.303565] i915_sel-6278    2d..1 481825363us : trace_ports: 0000:00:02.0 rcs0: submit { f51b:2, 0:0 }
-> > <0> [574.303565] i915_sel-6278    2.... 481826809us : __intel_context_active: 0000:00:02.0 rcs0: context:f51c active
-> > <0> [574.303565]   <idle>-0       7d.h2 481827326us : cs_irq_handler: 0000:00:02.0 rcs0: CS error: 1
-> > <0> [574.303565]   <idle>-0       7..s1 481827377us : process_csb: 0000:00:02.0 rcs0: cs-irq head=3, tail=4
-> > <0> [574.303565]   <idle>-0       7..s1 481827379us : process_csb: 0000:00:02.0 rcs0: csb[4]: status=0x10000001:0x00000000
-> > <0> [574.305593]   <idle>-0       7..s1 481827385us : trace_ports: 0000:00:02.0 rcs0: promote { f51b:2*, 0:0 }
-> > <0> [574.305611]   <idle>-0       7..s1 481828179us : execlists_reset: 0000:00:02.0 rcs0: reset for CS error
-> > <0> [574.305611] i915_sel-6278    2.... 481828284us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51c pin ring:{start:00007000, head:0000, tail:0000}
-> > <0> [574.305611] i915_sel-6278    2.... 481828345us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> > <0> [574.305611]   <idle>-0       7dNs2 481847823us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence f51b:2, current 1
-> > <0> [574.305611]   <idle>-0       7dNs2 481847857us : execlists_hold: 0000:00:02.0 rcs0: fence f51b:2, current 1 on hold
-> > <0> [574.305611]   <idle>-0       7.Ns1 481847863us : intel_engine_reset: 0000:00:02.0 rcs0: flags=4
-> > <0> [574.305611]   <idle>-0       7.Ns1 481847945us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-1
-> > <0> [574.305611]   <idle>-0       7.Ns1 481847946us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> > <0> [574.305611]   <idle>-0       7.Ns1 538584284us : intel_engine_stop_cs: 0000:00:02.0 rcs0: timed out on STOP_RING -> IDLE
-> > <0> [574.305611]   <idle>-0       7.Ns1 538584347us : __intel_gt_reset: 0000:00:02.0 engine_mask=1
-> > <0> [574.305611]   <idle>-0       7.Ns1 538584406us : execlists_reset_rewind: 0000:00:02.0 rcs0:
-> > <0> [574.305611]   <idle>-0       7dNs2 538585050us : __i915_request_reset: 0000:00:02.0 rcs0: fence f51b:2, current 1 guilty? yes
-> > <0> [574.305611]   <idle>-0       7dNs2 538585063us : __execlists_reset: 0000:00:02.0 rcs0: replay {head:0000, tail:0068}
-> > <0> [574.306565]   <idle>-0       7.Ns1 538588457us : intel_engine_cancel_stop_cs: 0000:00:02.0 rcs0:
-> > <0> [574.306565]   <idle>-0       7dNs2 538588462us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> > <0> [574.306565]   <idle>-0       7dNs2 538588471us : trace_ports: 0000:00:02.0 rcs0: submit { f51c:2, 0:0 }
-> > <0> [574.306565]   <idle>-0       7.Ns1 538588474us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->1
-> > <0> [574.306565] kworker/-202     2.... 538588755us : i915_request_retire: 0000:00:02.0 rcs0: fence f51c:2, current 2
-> > <0> [574.306565] ksoftirq-46      7..s. 538588773us : process_csb: 0000:00:02.0 rcs0: cs-irq head=11, tail=1
-> > <0> [574.306565] ksoftirq-46      7..s. 538588774us : process_csb: 0000:00:02.0 rcs0: csb[0]: status=0x10000001:0x00000000
-> > <0> [574.306565] ksoftirq-46      7..s. 538588776us : trace_ports: 0000:00:02.0 rcs0: promote { f51c:2!, 0:0 }
-> > <0> [574.306565] ksoftirq-46      7..s. 538588778us : process_csb: 0000:00:02.0 rcs0: csb[1]: status=0x10000018:0x00000020
-> > <0> [574.306565] ksoftirq-46      7..s. 538588779us : trace_ports: 0000:00:02.0 rcs0: completed { f51c:2!, 0:0 }
-> > <0> [574.306565] kworker/-202     2.... 538588826us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51c unpin
-> > <0> [574.306565] i915_sel-6278    6.... 538589663us : __intel_gt_set_wedged.part.32: 0000:00:02.0 start
-> > <0> [574.306565] i915_sel-6278    6.... 538589667us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-0
-> > <0> [574.306565] i915_sel-6278    6.... 538589710us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> > <0> [574.306565] i915_sel-6278    6.... 538589732us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-0
-> > <0> [574.307591] i915_sel-6278    6.... 538589733us : intel_engine_stop_cs: 0000:00:02.0 bcs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538589757us : execlists_reset_prepare: 0000:00:02.0 vcs0: depth<-0
-> > <0> [574.307591] i915_sel-6278    6.... 538589758us : intel_engine_stop_cs: 0000:00:02.0 vcs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538589771us : execlists_reset_prepare: 0000:00:02.0 vcs1: depth<-0
-> > <0> [574.307591] i915_sel-6278    6.... 538589772us : intel_engine_stop_cs: 0000:00:02.0 vcs1:
-> > <0> [574.307591] i915_sel-6278    6.... 538589778us : execlists_reset_prepare: 0000:00:02.0 vecs0: depth<-0
-> > <0> [574.307591] i915_sel-6278    6.... 538589780us : intel_engine_stop_cs: 0000:00:02.0 vecs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538589786us : __intel_gt_reset: 0000:00:02.0 engine_mask=ff
-> > <0> [574.307591] i915_sel-6278    6.... 538591175us : execlists_reset_cancel: 0000:00:02.0 rcs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538591970us : execlists_reset_cancel: 0000:00:02.0 bcs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538591982us : execlists_reset_cancel: 0000:00:02.0 vcs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538591996us : execlists_reset_cancel: 0000:00:02.0 vcs1:
-> > <0> [574.307591] i915_sel-6278    6.... 538592759us : execlists_reset_cancel: 0000:00:02.0 vecs0:
-> > <0> [574.307591] i915_sel-6278    6.... 538592977us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->0
-> > <0> [574.307591] i915_sel-6278    6.N.. 538592996us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->0
-> > <0> [574.307591] i915_sel-6278    6.N.. 538593023us : execlists_reset_finish: 0000:00:02.0 vcs0: depth->0
-> > <0> [574.307591] i915_sel-6278    6.N.. 538593037us : execlists_reset_finish: 0000:00:02.0 vcs1: depth->0
-> > <0> [574.307591] i915_sel-6278    6.N.. 538593051us : execlists_reset_finish: 0000:00:02.0 vecs0: depth->0
-> > <0> [574.307591] i915_sel-6278    6.... 538593407us : __intel_gt_set_wedged.part.32: 0000:00:02.0 end
-> > <0> [574.307591] kworker/-210     7d..1 551958381us : execlists_unhold: 0000:00:02.0 rcs0: fence f51b:2, current 2 hold release
-> > <0> [574.307591] i915_sel-6278    0.... 559490788us : i915_request_retire: 0000:00:02.0 rcs0: fence f51b:2, current 2
-> > <0> [574.307591] i915_sel-6278    0.... 559490793us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51b unpin
-> > <0> [574.307591] i915_sel-6278    0.... 559490798us : __engine_park: 0000:00:02.0 rcs0: parked
-> > <0> [574.307591] i915_sel-6278    0.... 559490982us : __intel_context_retire: 0000:00:02.0 rcs0: context:f51c retire runtime: { total:30004ns, avg:30004ns }
-> > <0> [574.307591] i915_sel-6278    0.... 559491372us : __engine_park: __engine_park:261 GEM_BUG_ON(engine->execlists.queue_priority_hint != (-((int)(~0U >> 1)) - 1))
-> > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >   drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
-> >   1 file changed, 3 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index 39b0125b7143..35c5cf786726 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -3724,7 +3724,10 @@ static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
-> >   
-> >   static void nop_submission_tasklet(unsigned long data)
-> >   {
-> > +     struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-> > +
-> >       /* The driver is wedged; don't process any more events. */
-> > +     WRITE_ONCE(engine->execlists.queue_priority_hint, INT_MIN);
-> 
-> Why from the tasklet and not the place which clears the queue?
 
-That would be the list_move within nop_submit_request()
-[i915_request_submit]
+On 27/02/2020 08:57, Chris Wilson wrote:
+> We need to be extremely careful inside i915_request_await_start() as it
+> needs to walk the list of requests in the foreign timeline with very
+> little protection. As we hold our own timeline mutex, we can not nest
+> inside the signaler's timeline mutex, so all that remains is our RCU
+> protection. However, to be safe we need to tell the compiler that we may
+> be traversing the list only under RCU protection, and furthermore we
+> need to start declaring requests as elements of the timeline from their
+> construction.
+> 
+> Fixes: 9ddc8ec027a3 ("drm/i915: Eliminate the trylock for awaiting an earlier request")
+> Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 41 ++++++++++++++++++++---------
+>   1 file changed, 28 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index d53af93b919b..e5a55801f753 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -290,7 +290,7 @@ bool i915_request_retire(struct i915_request *rq)
+>   	spin_unlock_irq(&rq->lock);
+>   
+>   	remove_from_client(rq);
+> -	list_del(&rq->link);
+> +	list_del_rcu(&rq->link);
+>   
+>   	intel_context_exit(rq->context);
+>   	intel_context_unpin(rq->context);
+> @@ -736,6 +736,8 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp)
+>   	rq->infix = rq->ring->emit; /* end of header; start of user payload */
+>   
+>   	intel_context_mark_active(ce);
+> +	list_add_tail_rcu(&rq->link, &tl->requests);
+> +
+>   	return rq;
+>   
+>   err_unwind:
+> @@ -792,13 +794,23 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+>   	GEM_BUG_ON(i915_request_timeline(rq) ==
+>   		   rcu_access_pointer(signal->timeline));
+>   
+> +	if (i915_request_started(signal))
+> +		return 0;
+> +
+>   	fence = NULL;
+>   	rcu_read_lock();
+>   	spin_lock_irq(&signal->lock);
+> -	if (!i915_request_started(signal) &&
+> -	    !list_is_first(&signal->link,
+> -			   &rcu_dereference(signal->timeline)->requests)) {
+> -		struct i915_request *prev = list_prev_entry(signal, link);
+> +	do {
+> +		struct list_head *pos = READ_ONCE(signal->link.prev);
+> +		struct i915_request *prev;
+> +
+> +		/* Confirm signal has not been retired, the link is valid */
+> +		if (unlikely(i915_request_started(signal)))
+> +			break;
+> +
+> +		/* Is signal the earliest request on its timeline? */
+> +		if (pos == &rcu_dereference(signal->timeline)->requests)
+> +			break;
+>   
+>   		/*
+>   		 * Peek at the request before us in the timeline. That
+> @@ -806,13 +818,18 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
+>   		 * after acquiring a reference to it, confirm that it is
+>   		 * still part of the signaler's timeline.
+>   		 */
+> -		if (i915_request_get_rcu(prev)) {
+> -			if (list_next_entry(prev, link) == signal)
+> -				fence = &prev->fence;
+> -			else
+> -				i915_request_put(prev);
+> +		prev = list_entry(pos, typeof(*prev), link);
+> +		if (!i915_request_get_rcu(prev))
+> +			break;
+> +
+> +		/* After the strong barrier, confirm prev is still attached */
+> +		if (unlikely(READ_ONCE(prev->link.next) != &signal->link)) {
+> +			i915_request_put(prev);
+> +			break;
+>   		}
+> -	}
+> +
+> +		fence = &prev->fence;
+> +	} while (0);
+>   	spin_unlock_irq(&signal->lock);
+>   	rcu_read_unlock();
+>   	if (!fence)
+> @@ -1253,8 +1270,6 @@ __i915_request_add_to_timeline(struct i915_request *rq)
+>   							 0);
+>   	}
+>   
+> -	list_add_tail(&rq->link, &timeline->requests);
+> -
+>   	/*
+>   	 * Make sure that no request gazumped us - if it was allocated after
+>   	 * our i915_request_alloc() and called __i915_request_add() before
+> 
 
-I chose this tasklet as we do the reset in execlists_submission_tasklet()
-on clearing the queue there, and so thought this was analogous.
--Chris
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
