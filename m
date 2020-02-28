@@ -2,38 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C120A17386A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A43617387C
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:38:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A34C6F402;
-	Fri, 28 Feb 2020 13:34:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83C4A6E197;
+	Fri, 28 Feb 2020 13:38:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C01E6F402
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:34:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20385526-1500050 for multiple; Fri, 28 Feb 2020 13:34:29 +0000
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 110A56E197
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:37:59 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 05:37:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="227546594"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 28 Feb 2020 05:37:57 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 28 Feb 2020 15:37:56 +0200
+Date: Fri, 28 Feb 2020 15:37:56 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200228133756.GC13686@intel.com>
+References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
+ <158287851663.19174.2013462831358055362@skylake-alporthouse-com>
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
- <20200227085723.1961649-9-chris@chris-wilson.co.uk>
- <de7be74c-1bc0-6081-2788-be3f5f30afae@linux.intel.com>
- <158289309991.24106.11560132712313715212@skylake-alporthouse-com>
- <c36f4167-f06a-1b59-b5f9-e1efee20d634@linux.intel.com>
- <158289541748.24106.14903286456113120245@skylake-alporthouse-com>
- <ca644d94-bace-4cca-a6da-a6ac6d8221a8@linux.intel.com>
-In-Reply-To: <ca644d94-bace-4cca-a6da-a6ac6d8221a8@linux.intel.com>
-Message-ID: <158289686714.24106.5257888211971651218@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 13:34:27 +0000
-Subject: Re: [Intel-gfx] [PATCH 09/20] drm/i915/gt: Reset
- queue_priority_hint after wedging
+Content-Disposition: inline
+In-Reply-To: <158287851663.19174.2013462831358055362@skylake-alporthouse-com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
+ changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,168 +49,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-28 13:20:24)
-> 
-> On 28/02/2020 13:10, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-02-28 12:59:37)
-> >>
-> >> On 28/02/2020 12:31, Chris Wilson wrote:
-> >>> Quoting Tvrtko Ursulin (2020-02-28 12:10:23)
-> >>>>
-> >>>> On 27/02/2020 08:57, Chris Wilson wrote:
-> >>>>> An odd and highly unlikely path caught us out. On delayed submission
-> >>>>> (due to an asynchronous reset handler), we poked the priority_hint and
-> >>>>> kicked the tasklet. However, we had already marked the device as wedged
-> >>>>> and swapped out the tasklet for a no-op. The result was that we never
-> >>>>> cleared the priority hint and became upset when we later checked.
-> >>>>>
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481822445us : __i915_subtests: Running intel_execlists_live_selftests/live_error_interrupt
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481822472us : __engine_unpark: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481822491us : __gt_unpark: 0000:00:02.0
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481823220us : execlists_context_reset: 0000:00:02.0 rcs0: context:f4ee reset
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481824830us : __intel_context_active: 0000:00:02.0 rcs0: context:f51b active
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481825258us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51b pin ring:{start:00006000, head:0000, tail:0000}
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481825311us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> >>>>> <0> [574.303565] i915_sel-6278    2d..1 481825347us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> >>>>> <0> [574.303565] i915_sel-6278    2d..1 481825363us : trace_ports: 0000:00:02.0 rcs0: submit { f51b:2, 0:0 }
-> >>>>> <0> [574.303565] i915_sel-6278    2.... 481826809us : __intel_context_active: 0000:00:02.0 rcs0: context:f51c active
-> >>>>> <0> [574.303565]   <idle>-0       7d.h2 481827326us : cs_irq_handler: 0000:00:02.0 rcs0: CS error: 1
-> >>>>> <0> [574.303565]   <idle>-0       7..s1 481827377us : process_csb: 0000:00:02.0 rcs0: cs-irq head=3, tail=4
-> >>>>> <0> [574.303565]   <idle>-0       7..s1 481827379us : process_csb: 0000:00:02.0 rcs0: csb[4]: status=0x10000001:0x00000000
-> >>>>> <0> [574.305593]   <idle>-0       7..s1 481827385us : trace_ports: 0000:00:02.0 rcs0: promote { f51b:2*, 0:0 }
-> >>>>> <0> [574.305611]   <idle>-0       7..s1 481828179us : execlists_reset: 0000:00:02.0 rcs0: reset for CS error
-> >>>>> <0> [574.305611] i915_sel-6278    2.... 481828284us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51c pin ring:{start:00007000, head:0000, tail:0000}
-> >>>>> <0> [574.305611] i915_sel-6278    2.... 481828345us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> >>>>> <0> [574.305611]   <idle>-0       7dNs2 481847823us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence f51b:2, current 1
-> >>>>> <0> [574.305611]   <idle>-0       7dNs2 481847857us : execlists_hold: 0000:00:02.0 rcs0: fence f51b:2, current 1 on hold
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 481847863us : intel_engine_reset: 0000:00:02.0 rcs0: flags=4
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 481847945us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-1
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 481847946us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 538584284us : intel_engine_stop_cs: 0000:00:02.0 rcs0: timed out on STOP_RING -> IDLE
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 538584347us : __intel_gt_reset: 0000:00:02.0 engine_mask=1
-> >>>>> <0> [574.305611]   <idle>-0       7.Ns1 538584406us : execlists_reset_rewind: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.305611]   <idle>-0       7dNs2 538585050us : __i915_request_reset: 0000:00:02.0 rcs0: fence f51b:2, current 1 guilty? yes
-> >>>>> <0> [574.305611]   <idle>-0       7dNs2 538585063us : __execlists_reset: 0000:00:02.0 rcs0: replay {head:0000, tail:0068}
-> >>>>> <0> [574.306565]   <idle>-0       7.Ns1 538588457us : intel_engine_cancel_stop_cs: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.306565]   <idle>-0       7dNs2 538588462us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> >>>>> <0> [574.306565]   <idle>-0       7dNs2 538588471us : trace_ports: 0000:00:02.0 rcs0: submit { f51c:2, 0:0 }
-> >>>>> <0> [574.306565]   <idle>-0       7.Ns1 538588474us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->1
-> >>>>> <0> [574.306565] kworker/-202     2.... 538588755us : i915_request_retire: 0000:00:02.0 rcs0: fence f51c:2, current 2
-> >>>>> <0> [574.306565] ksoftirq-46      7..s. 538588773us : process_csb: 0000:00:02.0 rcs0: cs-irq head=11, tail=1
-> >>>>> <0> [574.306565] ksoftirq-46      7..s. 538588774us : process_csb: 0000:00:02.0 rcs0: csb[0]: status=0x10000001:0x00000000
-> >>>>> <0> [574.306565] ksoftirq-46      7..s. 538588776us : trace_ports: 0000:00:02.0 rcs0: promote { f51c:2!, 0:0 }
-> >>>>> <0> [574.306565] ksoftirq-46      7..s. 538588778us : process_csb: 0000:00:02.0 rcs0: csb[1]: status=0x10000018:0x00000020
-> >>>>> <0> [574.306565] ksoftirq-46      7..s. 538588779us : trace_ports: 0000:00:02.0 rcs0: completed { f51c:2!, 0:0 }
-> >>>>> <0> [574.306565] kworker/-202     2.... 538588826us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51c unpin
-> >>>>> <0> [574.306565] i915_sel-6278    6.... 538589663us : __intel_gt_set_wedged.part.32: 0000:00:02.0 start
-> >>>>> <0> [574.306565] i915_sel-6278    6.... 538589667us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-0
-> >>>>> <0> [574.306565] i915_sel-6278    6.... 538589710us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.306565] i915_sel-6278    6.... 538589732us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-0
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589733us : intel_engine_stop_cs: 0000:00:02.0 bcs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589757us : execlists_reset_prepare: 0000:00:02.0 vcs0: depth<-0
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589758us : intel_engine_stop_cs: 0000:00:02.0 vcs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589771us : execlists_reset_prepare: 0000:00:02.0 vcs1: depth<-0
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589772us : intel_engine_stop_cs: 0000:00:02.0 vcs1:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589778us : execlists_reset_prepare: 0000:00:02.0 vecs0: depth<-0
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589780us : intel_engine_stop_cs: 0000:00:02.0 vecs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538589786us : __intel_gt_reset: 0000:00:02.0 engine_mask=ff
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538591175us : execlists_reset_cancel: 0000:00:02.0 rcs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538591970us : execlists_reset_cancel: 0000:00:02.0 bcs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538591982us : execlists_reset_cancel: 0000:00:02.0 vcs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538591996us : execlists_reset_cancel: 0000:00:02.0 vcs1:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538592759us : execlists_reset_cancel: 0000:00:02.0 vecs0:
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538592977us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->0
-> >>>>> <0> [574.307591] i915_sel-6278    6.N.. 538592996us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->0
-> >>>>> <0> [574.307591] i915_sel-6278    6.N.. 538593023us : execlists_reset_finish: 0000:00:02.0 vcs0: depth->0
-> >>>>> <0> [574.307591] i915_sel-6278    6.N.. 538593037us : execlists_reset_finish: 0000:00:02.0 vcs1: depth->0
-> >>>>> <0> [574.307591] i915_sel-6278    6.N.. 538593051us : execlists_reset_finish: 0000:00:02.0 vecs0: depth->0
-> >>>>> <0> [574.307591] i915_sel-6278    6.... 538593407us : __intel_gt_set_wedged.part.32: 0000:00:02.0 end
-> >>>>> <0> [574.307591] kworker/-210     7d..1 551958381us : execlists_unhold: 0000:00:02.0 rcs0: fence f51b:2, current 2 hold release
-> >>>>> <0> [574.307591] i915_sel-6278    0.... 559490788us : i915_request_retire: 0000:00:02.0 rcs0: fence f51b:2, current 2
-> >>>>> <0> [574.307591] i915_sel-6278    0.... 559490793us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51b unpin
-> >>>>> <0> [574.307591] i915_sel-6278    0.... 559490798us : __engine_park: 0000:00:02.0 rcs0: parked
-> >>>>> <0> [574.307591] i915_sel-6278    0.... 559490982us : __intel_context_retire: 0000:00:02.0 rcs0: context:f51c retire runtime: { total:30004ns, avg:30004ns }
-> >>>>> <0> [574.307591] i915_sel-6278    0.... 559491372us : __engine_park: __engine_park:261 GEM_BUG_ON(engine->execlists.queue_priority_hint != (-((int)(~0U >> 1)) - 1))
-> >>>>>
-> >>>>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>>>> ---
-> >>>>>     drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
-> >>>>>     1 file changed, 3 insertions(+)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> index 39b0125b7143..35c5cf786726 100644
-> >>>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>>>> @@ -3724,7 +3724,10 @@ static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
-> >>>>>     
-> >>>>>     static void nop_submission_tasklet(unsigned long data)
-> >>>>>     {
-> >>>>> +     struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-> >>>>> +
-> >>>>>         /* The driver is wedged; don't process any more events. */
-> >>>>> +     WRITE_ONCE(engine->execlists.queue_priority_hint, INT_MIN);
-> >>>>
-> >>>> Why from the tasklet and not the place which clears the queue?
-> >>>
-> >>> That would be the list_move within nop_submit_request()
-> >>> [i915_request_submit]
-> >>>
-> >>> I chose this tasklet as we do the reset in execlists_submission_tasklet()
-> >>> on clearing the queue there, and so thought this was analogous.
-> >>
-> >> It actually looks to me it is unhold which is causing this, so it is not
-> >> true we never reset the hint, it was probably overwritten:
-> >>
-> >> execlists_reset_cancel, at the end of it:
-> >>
-> >>          /* Remaining _unready_ requests will be nop'ed when submitted */
-> >>
-> >>          execlists->queue_priority_hint = INT_MIN;
-> >>
-> >> Just who overwrote it.. someone called unhold after
-> >> execlists_reset_cancel finished.
-> >>
-> >> Should unhold not restore the priority hint if the requests on the hold
-> >> list are -EIO?
-> > 
-> > It is the unhold callback, it does
-> > 
-> >          if (rq_prio(rq) > engine->execlists.queue_priority_hint) {
-> >                  engine->execlists.queue_priority_hint = rq_prio(rq);
-> >                  tasklet_hi_schedule(&engine->execlists.tasklet);
-> >          }
-> > 
-> > and queues the [now] nop_submission_tasklet. Which would be fine if it
-> > behaved similarly.
-> 
-> That I found, but who calls it?
+On Fri, Feb 28, 2020 at 08:28:36AM +0000, Chris Wilson wrote:
+> Quoting Ville Syrjala (2020-02-27 19:39:54)
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Currently, a reset worker. Intention is that any path that first called
-execlists_hold(). (E.g. holding requests across suspend is one
-possible idea I have. No concrete second use case yet, just more of a
-feeling this might be useful again.)
- 
-> I was thinking that since execlists_reset_cancel bothers to mark held 
-> requests with -EIO then unhold could be smarter and not consider them 
-> when setting the priority hint.
+> > gmbus/aux may be clocked by cdclk, thus we should make sure no
+> > transfers are ongoing while the cdclk frequency is being changed.
+> > We do that by simply grabbing all the gmbus/aux mutexes. No one
+> > else should be holding any more than one of those at a time so
+> > the lock ordering here shouldn't matter.
+> > =
 
-Could do, trying to keep it simple :) My preference is to push the
-complexity to the edge case of wedge handling; and I'm not keen on
-having to worry about -EIO here. The intent is remove from queue, place
-in holding area, put back onto queue. Trying to do that correctly is
-hard enough [apparently] :)
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++++++++++++++++++++++
+> >  1 file changed, 23 insertions(+)
+> > =
 
-> That way the hint is immediately true, not only after tasklet is 
-> flushed. But okay, no big deal either way.
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/d=
+rm/i915/display/intel_cdclk.c
+> > index 0741d643455b..f69bf4a4eb1c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -1868,6 +1868,9 @@ static void intel_set_cdclk(struct drm_i915_priva=
+te *dev_priv,
+> >                             const struct intel_cdclk_config *cdclk_conf=
+ig,
+> >                             enum pipe pipe)
+> >  {
+> > +       struct intel_encoder *encoder;
+> > +       unsigned int aux_mutex_lockclass =3D 0;
+> > +
+> >         if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
+> >                 return;
+> >  =
 
-On the other hand, if the assertion is more troublesome than it's worth,
-we just set the hint = INT_MIN on resume.
--Chris
+> > @@ -1876,8 +1879,28 @@ static void intel_set_cdclk(struct drm_i915_priv=
+ate *dev_priv,
+> >  =
+
+> >         intel_dump_cdclk_config(cdclk_config, "Changing CDCLK to");
+> >  =
+
+> > +       /*
+> > +        * Lock aux/gmbus while we change cdclk in case those
+> > +        * functions use cdclk. Not all platforms/ports do,
+> > +        * but we'll lock them all for simplicity.
+> > +        */
+> > +       mutex_lock(&dev_priv->gmbus_mutex);
+> > +       for_each_intel_dp(&dev_priv->drm, encoder) {
+> > +               struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> > +
+> > +               mutex_lock_nested(&intel_dp->aux.hw_mutex,
+> > +                                 aux_mutex_lockclass++);
+> =
+
+> mutex_lock_nest_lock(&intel_dp->aux.hw_mutex, &dev_priv->gmbus_mutex);
+> ?
+
+That does seems to work. Not sure what it means though since no docs
+and I was too lazy to read the code. Does it say "as long as we hold
+nest_lock the order doesn't matter"?
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
