@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF38172ED2
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:29:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6855F172ED3
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:29:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD606EDBF;
-	Fri, 28 Feb 2020 02:29:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB9BB6EDC3;
+	Fri, 28 Feb 2020 02:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 196456EDC3
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 02:29:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA3266EDBF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 02:29:39 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 18:29:38 -0800
+ 27 Feb 2020 18:29:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227392659"
+X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227392667"
 Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 18:29:37 -0800
+ by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 18:29:39 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 18:28:39 -0800
-Message-Id: <20200228022843.1936-3-daniele.ceraolospurio@intel.com>
+Date: Thu, 27 Feb 2020 18:28:40 -0800
+Message-Id: <20200228022843.1936-4-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
 References: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/6] drm/i915/uc: mark structure passed to
- checker functions as const
+Subject: [Intel-gfx] [PATCH 3/6] drm/i915/huc: make "support huc" reflect HW
+ capabilities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,239 +48,210 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow-up patches will pass const objects from debugfs to some those
-functions, so we need to be ready.
+We currently initialize HuC support based on GuC being enabled in
+modparam; this means that huc_is_supported() can return false on HW that
+does have a HuC when enable_guc=0. The rationale for this behavior is
+that HuC requires GuC for authentication and therefore is not supported
+by itself. However, we do not allow defining HuC fw wthout GuC fw and
+selecting HuC in modparam implicitly selects GuC as well, so we can't
+actually hit a scenario where HuC is selected alone. Therefore, we can
+flip the support check to reflect the HW capabilities and fw
+availability, which is more intuitive and will make it cleaner to log
+HuC the difference between not supported in HW and not selected.
+
+Removing the difference between GuC and HuC also allows us to simplify
+the init_early, since we don't need to differentiate the support based
+on the type of uC.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.h             |  6 +++---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h         | 10 +++++-----
- drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h      |  2 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.h  |  6 +++---
- drivers/gpu/drm/i915/gt/uc/intel_huc.h         |  8 ++++----
- drivers/gpu/drm/i915/gt/uc/intel_uc.h          |  2 +-
- drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h       | 18 +++++++++---------
- 7 files changed, 26 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 14 -------------
+ drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h |  1 -
+ drivers/gpu/drm/i915/gt/uc/intel_huc.c    |  2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c | 17 ---------------
+ drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h |  1 -
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c  | 25 +++++++++++++++--------
+ drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h  |  3 +--
+ 8 files changed, 20 insertions(+), 45 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 4fac043750aa..f9fbe645478d 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -18,17 +18,17 @@ struct drm_i915_private;
- 		  ##__VA_ARGS__);					\
- } while (0)
- 
--static inline struct intel_gt *uc_to_gt(struct intel_uc *uc)
-+static inline struct intel_gt *uc_to_gt(const struct intel_uc *uc)
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+index 819f09ef51fc..827d75073879 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
+@@ -169,7 +169,7 @@ void intel_guc_init_early(struct intel_guc *guc)
  {
- 	return container_of(uc, struct intel_gt, uc);
- }
+ 	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
  
--static inline struct intel_gt *guc_to_gt(struct intel_guc *guc)
-+static inline struct intel_gt *guc_to_gt(const struct intel_guc *guc)
- {
- 	return container_of(guc, struct intel_gt, uc.guc);
- }
+-	intel_guc_fw_init_early(guc);
++	intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC);
+ 	intel_guc_ct_init_early(&guc->ct);
+ 	intel_guc_log_init_early(&guc->log);
+ 	intel_guc_submission_init_early(guc);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+index 3a1c47d600ea..d4a87f4c9421 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
+@@ -13,20 +13,6 @@
+ #include "intel_guc_fw.h"
+ #include "i915_drv.h"
  
--static inline struct intel_gt *huc_to_gt(struct intel_huc *huc)
-+static inline struct intel_gt *huc_to_gt(const struct intel_huc *huc)
+-/**
+- * intel_guc_fw_init_early() - initializes GuC firmware struct
+- * @guc: intel_guc struct
+- *
+- * On platforms with GuC selects firmware for uploading
+- */
+-void intel_guc_fw_init_early(struct intel_guc *guc)
+-{
+-	struct drm_i915_private *i915 = guc_to_gt(guc)->i915;
+-
+-	intel_uc_fw_init_early(&guc->fw, INTEL_UC_FW_TYPE_GUC, HAS_GT_UC(i915),
+-			       INTEL_INFO(i915)->platform, INTEL_REVID(i915));
+-}
+-
+ static void guc_prepare_xfer(struct intel_uncore *uncore)
  {
- 	return container_of(huc, struct intel_gt, uc.huc);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 4594ccbeaa34..969147bd9973 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -138,28 +138,28 @@ struct i915_vma *intel_guc_allocate_vma(struct intel_guc *guc, u32 size);
- int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
- 				   struct i915_vma **out_vma, void **out_vaddr);
+ 	u32 shim_flags = GUC_DISABLE_SRAM_INIT_TO_ZEROES |
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
+index b5ab639d7259..0b4d2a9c9435 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.h
+@@ -8,7 +8,6 @@
  
--static inline bool intel_guc_is_supported(struct intel_guc *guc)
-+static inline bool intel_guc_is_supported(const struct intel_guc *guc)
- {
- 	return intel_uc_fw_is_supported(&guc->fw);
- }
+ struct intel_guc;
  
--static inline bool intel_guc_is_wanted(struct intel_guc *guc)
-+static inline bool intel_guc_is_wanted(const struct intel_guc *guc)
- {
- 	return intel_uc_fw_is_enabled(&guc->fw);
- }
+-void intel_guc_fw_init_early(struct intel_guc *guc);
+ int intel_guc_fw_upload(struct intel_guc *guc);
  
--static inline bool intel_guc_is_used(struct intel_guc *guc)
-+static inline bool intel_guc_is_used(const struct intel_guc *guc)
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+index a74b65694512..d73dc21686e7 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
+@@ -41,7 +41,7 @@ void intel_huc_init_early(struct intel_huc *huc)
  {
- 	GEM_BUG_ON(__intel_uc_fw_status(&guc->fw) == INTEL_UC_FIRMWARE_SELECTED);
- 	return intel_uc_fw_is_available(&guc->fw);
- }
+ 	struct drm_i915_private *i915 = huc_to_gt(huc)->i915;
  
--static inline bool intel_guc_is_fw_running(struct intel_guc *guc)
-+static inline bool intel_guc_is_fw_running(const struct intel_guc *guc)
- {
- 	return intel_uc_fw_is_running(&guc->fw);
- }
+-	intel_huc_fw_init_early(huc);
++	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC);
  
--static inline bool intel_guc_is_ready(struct intel_guc *guc)
-+static inline bool intel_guc_is_ready(const struct intel_guc *guc)
- {
- 	return intel_guc_is_fw_running(guc) && intel_guc_ct_enabled(&guc->ct);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-index 494a51a5200f..15e41a194544 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.h
-@@ -70,7 +70,7 @@ static inline void intel_guc_ct_sanitize(struct intel_guc_ct *ct)
- 	ct->enabled = false;
- }
+ 	if (INTEL_GEN(i915) >= 11) {
+ 		huc->status.reg = GEN11_HUC_KERNEL_LOAD_INFO;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+index 9cdf4cbe691c..e5ef509c70e8 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.c
+@@ -7,23 +7,6 @@
+ #include "intel_huc_fw.h"
+ #include "i915_drv.h"
  
--static inline bool intel_guc_ct_enabled(struct intel_guc_ct *ct)
-+static inline bool intel_guc_ct_enabled(const struct intel_guc_ct *ct)
- {
- 	return ct->enabled;
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-index 4cf9d3e50263..be96a476550b 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.h
-@@ -21,18 +21,18 @@ int intel_guc_preempt_work_create(struct intel_guc *guc);
- void intel_guc_preempt_work_destroy(struct intel_guc *guc);
- bool intel_engine_in_guc_submission_mode(const struct intel_engine_cs *engine);
+-/**
+- * intel_huc_fw_init_early() - initializes HuC firmware struct
+- * @huc: intel_huc struct
+- *
+- * On platforms with HuC selects firmware for uploading
+- */
+-void intel_huc_fw_init_early(struct intel_huc *huc)
+-{
+-	struct intel_gt *gt = huc_to_gt(huc);
+-	struct intel_uc *uc = &gt->uc;
+-	struct drm_i915_private *i915 = gt->i915;
+-
+-	intel_uc_fw_init_early(&huc->fw, INTEL_UC_FW_TYPE_HUC,
+-			       intel_uc_wants_guc(uc),
+-			       INTEL_INFO(i915)->platform, INTEL_REVID(i915));
+-}
+-
+ /**
+  * intel_huc_fw_upload() - load HuC uCode to device
+  * @huc: intel_huc structure
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
+index b791269ce923..12f264ee3e0b 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_huc_fw.h
+@@ -8,7 +8,6 @@
  
--static inline bool intel_guc_submission_is_supported(struct intel_guc *guc)
-+static inline bool intel_guc_submission_is_supported(const struct intel_guc *guc)
- {
- 	/* XXX: GuC submission is unavailable for now */
- 	return false;
- }
+ struct intel_huc;
  
--static inline bool intel_guc_submission_is_wanted(struct intel_guc *guc)
-+static inline bool intel_guc_submission_is_wanted(const struct intel_guc *guc)
- {
- 	return guc->submission_selected;
- }
+-void intel_huc_fw_init_early(struct intel_huc *huc);
+ int intel_huc_fw_upload(struct intel_huc *huc);
  
--static inline bool intel_guc_submission_is_used(struct intel_guc *guc)
-+static inline bool intel_guc_submission_is_used(const struct intel_guc *guc)
- {
- 	return intel_guc_is_used(guc) && intel_guc_submission_is_wanted(guc);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-index a40b9cfc6c22..19651b46d6a4 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-@@ -36,23 +36,23 @@ static inline int intel_huc_sanitize(struct intel_huc *huc)
- 	return 0;
- }
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+index 5434c07aefa1..1e689e2fe089 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.c
+@@ -11,16 +11,22 @@
+ #include "intel_uc_fw_abi.h"
+ #include "i915_drv.h"
  
--static inline bool intel_huc_is_supported(struct intel_huc *huc)
-+static inline bool intel_huc_is_supported(const struct intel_huc *huc)
+-static inline struct intel_gt *__uc_fw_to_gt(struct intel_uc_fw *uc_fw)
++static inline struct intel_gt *
++____uc_fw_to_gt(struct intel_uc_fw *uc_fw, enum intel_uc_fw_type type)
  {
- 	return intel_uc_fw_is_supported(&huc->fw);
- }
+-	GEM_BUG_ON(uc_fw->status == INTEL_UC_FIRMWARE_UNINITIALIZED);
+-	if (uc_fw->type == INTEL_UC_FW_TYPE_GUC)
++	if (type == INTEL_UC_FW_TYPE_GUC)
+ 		return container_of(uc_fw, struct intel_gt, uc.guc.fw);
  
--static inline bool intel_huc_is_wanted(struct intel_huc *huc)
-+static inline bool intel_huc_is_wanted(const struct intel_huc *huc)
- {
- 	return intel_uc_fw_is_enabled(&huc->fw);
- }
- 
--static inline bool intel_huc_is_used(struct intel_huc *huc)
-+static inline bool intel_huc_is_used(const struct intel_huc *huc)
- {
- 	GEM_BUG_ON(__intel_uc_fw_status(&huc->fw) == INTEL_UC_FIRMWARE_SELECTED);
- 	return intel_uc_fw_is_available(&huc->fw);
+-	GEM_BUG_ON(uc_fw->type != INTEL_UC_FW_TYPE_HUC);
++	GEM_BUG_ON(type != INTEL_UC_FW_TYPE_HUC);
+ 	return container_of(uc_fw, struct intel_gt, uc.huc.fw);
  }
  
--static inline bool intel_huc_is_authenticated(struct intel_huc *huc)
-+static inline bool intel_huc_is_authenticated(const struct intel_huc *huc)
- {
- 	return intel_uc_fw_is_running(&huc->fw);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-index 5ae7b50b7dc1..2f7d3028af08 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-@@ -63,7 +63,7 @@ int intel_uc_runtime_resume(struct intel_uc *uc);
++static inline struct intel_gt *__uc_fw_to_gt(struct intel_uc_fw *uc_fw)
++{
++	GEM_BUG_ON(uc_fw->status == INTEL_UC_FIRMWARE_UNINITIALIZED);
++	return ____uc_fw_to_gt(uc_fw, uc_fw->type);
++}
++
+ #ifdef CONFIG_DRM_I915_DEBUG_GUC
+ void intel_uc_fw_change_status(struct intel_uc_fw *uc_fw,
+ 			       enum intel_uc_fw_status status)
+@@ -195,9 +201,10 @@ static void __uc_fw_user_override(struct intel_uc_fw *uc_fw)
+  * firmware to fetch and load.
   */
+ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+-			    enum intel_uc_fw_type type, bool supported,
+-			    enum intel_platform platform, u8 rev)
++			    enum intel_uc_fw_type type)
+ {
++	struct drm_i915_private *i915 = ____uc_fw_to_gt(uc_fw, type)->i915;
++
+ 	/*
+ 	 * we use FIRMWARE_UNINITIALIZED to detect checks against uc_fw->status
+ 	 * before we're looked at the HW caps to see if we have uc support
+@@ -208,8 +215,10 @@ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
  
- #define __uc_state_checker(x, func, state, required) \
--static inline bool intel_uc_##state##_##func(struct intel_uc *uc) \
-+static inline bool intel_uc_##state##_##func(const struct intel_uc *uc) \
- { \
- 	return intel_##func##_is_##required(&uc->x); \
- }
+ 	uc_fw->type = type;
+ 
+-	if (supported) {
+-		__uc_fw_auto_select(uc_fw, platform, rev);
++	if (HAS_GT_UC(i915)) {
++		__uc_fw_auto_select(uc_fw,
++				    INTEL_INFO(i915)->platform,
++				    INTEL_REVID(i915));
+ 		__uc_fw_user_override(uc_fw);
+ 	}
+ 
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-index 888ff0de0244..704b7b0fd710 100644
+index 704b7b0fd710..9f66c058fd23 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc_fw.h
-@@ -169,39 +169,39 @@ static inline const char *intel_uc_fw_type_repr(enum intel_uc_fw_type type)
+@@ -239,8 +239,7 @@ static inline u32 intel_uc_fw_get_upload_size(const struct intel_uc_fw *uc_fw)
  }
  
- static inline enum intel_uc_fw_status
--__intel_uc_fw_status(struct intel_uc_fw *uc_fw)
-+__intel_uc_fw_status(const struct intel_uc_fw *uc_fw)
- {
- 	/* shouldn't call this before checking hw/blob availability */
- 	GEM_BUG_ON(uc_fw->status == INTEL_UC_FIRMWARE_UNINITIALIZED);
- 	return uc_fw->status;
- }
- 
--static inline bool intel_uc_fw_is_supported(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_supported(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) != INTEL_UC_FIRMWARE_NOT_SUPPORTED;
- }
- 
--static inline bool intel_uc_fw_is_enabled(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_enabled(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) > INTEL_UC_FIRMWARE_DISABLED;
- }
- 
--static inline bool intel_uc_fw_is_available(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_available(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_AVAILABLE;
- }
- 
--static inline bool intel_uc_fw_is_loadable(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_loadable(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_LOADABLE;
- }
- 
--static inline bool intel_uc_fw_is_loaded(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_loaded(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) >= INTEL_UC_FIRMWARE_TRANSFERRED;
- }
- 
--static inline bool intel_uc_fw_is_running(struct intel_uc_fw *uc_fw)
-+static inline bool intel_uc_fw_is_running(const struct intel_uc_fw *uc_fw)
- {
- 	return __intel_uc_fw_status(uc_fw) == INTEL_UC_FIRMWARE_RUNNING;
- }
-@@ -217,7 +217,7 @@ static inline void intel_uc_fw_sanitize(struct intel_uc_fw *uc_fw)
- 		intel_uc_fw_change_status(uc_fw, INTEL_UC_FIRMWARE_LOADABLE);
- }
- 
--static inline u32 __intel_uc_fw_get_upload_size(struct intel_uc_fw *uc_fw)
-+static inline u32 __intel_uc_fw_get_upload_size(const struct intel_uc_fw *uc_fw)
- {
- 	return sizeof(struct uc_css_header) + uc_fw->ucode_size;
- }
-@@ -230,7 +230,7 @@ static inline u32 __intel_uc_fw_get_upload_size(struct intel_uc_fw *uc_fw)
-  *
-  * Return: Upload firmware size, or zero on firmware fetch failure.
-  */
--static inline u32 intel_uc_fw_get_upload_size(struct intel_uc_fw *uc_fw)
-+static inline u32 intel_uc_fw_get_upload_size(const struct intel_uc_fw *uc_fw)
- {
- 	if (!intel_uc_fw_is_available(uc_fw))
- 		return 0;
+ void intel_uc_fw_init_early(struct intel_uc_fw *uc_fw,
+-			    enum intel_uc_fw_type type, bool supported,
+-			    enum intel_platform platform, u8 rev);
++			    enum intel_uc_fw_type type);
+ int intel_uc_fw_fetch(struct intel_uc_fw *uc_fw);
+ void intel_uc_fw_cleanup_fetch(struct intel_uc_fw *uc_fw);
+ int intel_uc_fw_upload(struct intel_uc_fw *uc_fw, u32 offset, u32 dma_flags);
 -- 
 2.24.1
 
