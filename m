@@ -1,32 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 775AD173FE2
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 19:44:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6463C173FF2
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 19:52:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A86F26F4B1;
-	Fri, 28 Feb 2020 18:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F23F6E0E2;
+	Fri, 28 Feb 2020 18:52:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0A9026F4B1;
- Fri, 28 Feb 2020 18:44:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 037DBA47E6;
- Fri, 28 Feb 2020 18:44:41 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 143596F4B2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 18:52:05 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 10:52:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="232335851"
+Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
+ by orsmga008.jf.intel.com with ESMTP; 28 Feb 2020 10:52:02 -0800
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+ fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 28 Feb 2020 10:52:02 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
+ fmsmsx115.amr.corp.intel.com ([169.254.4.81]) with mapi id 14.03.0439.000;
+ Fri, 28 Feb 2020 10:52:02 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Latvala, Petri" <petri.latvala@intel.com>
+Thread-Topic: [Intel-gfx] [CI] PR for TGL DMC v2.06
+Thread-Index: AQHV7ceD+u/NqFasl0qvyvvmoHsAkKgw7B0AgACPAIA=
+Date: Fri, 28 Feb 2020 18:52:01 +0000
+Message-ID: <9ea33015bcb07c479660cde754e8d2e3fcee709d.camel@intel.com>
+References: <dece9669d6a9c03c1c14f4a33e1d817a7a78d78b.camel@intel.com>
+ <20200228102104.GL3839@platvala-desk.ger.corp.intel.com>
+In-Reply-To: <20200228102104.GL3839@platvala-desk.ger.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.234]
+Content-ID: <8B04B3B7B10DE4478BEFF2D7966FCB69@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Fri, 28 Feb 2020 18:44:40 -0000
-Message-ID: <158291548098.7475.8530682425333264874@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Fix_90/270_degree_rotated_RGB565_src_coord_checks_=28r?=
- =?utf-8?q?ev3=29?=
+Subject: Re: [Intel-gfx] [CI] PR for TGL DMC v2.06
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,109 +56,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915: Fix 90/270 degree rotated RGB565 src coord checks (rev3)
-URL   : https://patchwork.freedesktop.org/series/59956/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8032 -> Patchwork_16766
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16766 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-x-tiled:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8032/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][3] ([CI#94]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8032/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([fdo#111096] / [i915#323]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8032/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8032/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [FAIL][9] ([i915#704]) -> [SKIP][10] ([fdo#109271])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8032/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#704]: https://gitlab.freedesktop.org/drm/intel/issues/704
-
-
-Participating hosts (47 -> 43)
-------------------------------
-
-  Additional (3): fi-byt-j1900 fi-bsw-kefka fi-kbl-r 
-  Missing    (7): fi-ilk-m540 fi-kbl-7560u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8032 -> Patchwork_16766
-
-  CI-20190529: 20190529
-  CI_DRM_8032: e61f34133ad908d4b455344daa7b4edb9fcf680c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5477: 3fe5828f45fc533ba4d9ee84dbb5aea320ce61bc @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16766: f854cfdc461f875018564763c6981da8fae31b09 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-f854cfdc461f drm/i915: Fix 90/270 degree rotated RGB565 src coord checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16766/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyMDIwLTAyLTI4IGF0IDEyOjIxICswMjAwLCBQZXRyaSBMYXR2YWxhIHdyb3RlOg0K
+PiBPbiBUaHUsIEZlYiAyNywgMjAyMCBhdCAxMTo0MjowM1BNICswMDAwLCBTb3V6YSwgSm9zZSB3
+cm90ZToNCj4gPiBUaGUgZm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0DQo+ID4gZWZjZmEw
+M2FlNjEwMGRmZTUyM2ViZjYxMmUwM2MzYTkwZmM0Yzc5NDoNCj4gPiANCj4gPiAgIGxpbnV4LWZp
+cm13YXJlOiBVcGRhdGUgZmlybXdhcmUgZmlsZSBmb3IgSW50ZWwgQmx1ZXRvb3RoIEFYMjAxDQo+
+ID4gKDIwMjAtDQo+ID4gMDItMjQgMDc6NDM6NDIgLTA1MDApDQo+ID4gDQo+ID4gYXJlIGF2YWls
+YWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6DQo+ID4gDQo+ID4gICBnaXQ6Ly9hbm9uZ2l0
+LmZyZWVkZXNrdG9wLm9yZy9kcm0vZHJtLWZpcm13YXJlIHRnbF9kbWNfMi4wNg0KPiA+IA0KPiA+
+IGZvciB5b3UgdG8gZmV0Y2ggY2hhbmdlcyB1cCB0bw0KPiA+IGUyMzk2MzE5MTY3NzI0ZTlmZmRk
+YzM3N2YzMDA0Njk5MjNmY2NkY2I6DQo+ID4gDQo+ID4gICBpOTE1OiBBZGQgRE1DIGZpcm13YXJl
+IHYyLjA2IGZvciBUR0wgKDIwMjAtMDItMjcgMTU6MjQ6NTYgMjAyMA0KPiA+IC0wODAwKQ0KPiA+
+IA0KPiA+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0NCj4gPiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphICgxKToNCj4gPiAgICAg
+ICBpOTE1OiBBZGQgRE1DIGZpcm13YXJlIHYyLjA2IGZvciBUR0wNCj4gPiANCj4gPiAgV0hFTkNF
+ICAgICAgICAgICAgICAgICAgfCAgIDMgKysrDQo+ID4gIGk5MTUvdGdsX2RtY192ZXIyXzA2LmJp
+biB8IEJpbiAwIC0+IDE4NjYwIGJ5dGVzDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMyBpbnNlcnRp
+b25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpOTE1L3RnbF9kbWNfdmVyMl8wNi5iaW4N
+Cj4gDQo+IFBhdGNod29yayBkaWRuJ3QgcGljayB1cCB0aGlzIFBSLCBJIHN1c3BlY3QgdGhlIGV4
+dHJhIG5ld2xpbmVzIHRvIGJlDQo+IHRoZSBpc3N1ZS4gQ2FuIHlvdSB0cnkgcmVzZW5kaW5nIHRo
+aXMgd2l0aG91dCB0aGUgYXV0b21hdGljIG5ld2xpbmVzDQo+IGJlZm9yZSB0aGUgY29tbWl0IHNo
+YXM/DQo+IA0KPiBJZiBwYXRjaHdvcmsgcmVjb2duaXplcyBpdCBhcyBhIHB1bGwgcmVxdWVzdCwg
+aXQgd2lsbCBhcHBlYXIgaW4gaGVyZToNCj4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Au
+b3JnL2FwaS8xLjAvcHJvamVjdHMvaW50ZWwtZ2Z4L2V2ZW50cy8/cGFnZT0xJnNpbmNlPTIwMjAt
+MDItMjAmbmFtZT1wdWxsLXJlcXVlc3QtbmV3DQo+IA0KDQpIaSBQZXRyaQ0KDQpTdGlsbCBuZWVk
+ZWQ/IEFjY29yZGluZyB0byANCmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRj
+aC8zNTU2MjQvP3Nlcmllcz03NDA0OCZyZXY9MiBpdA0Kd2FzIG1hbnVhbGx5IHBpY2tlZC4NCg0K
+PiANCj4gLS0NCj4gUGV0cmkgTGF0dmFsYQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlz
+dGluZm8vaW50ZWwtZ2Z4Cg==
