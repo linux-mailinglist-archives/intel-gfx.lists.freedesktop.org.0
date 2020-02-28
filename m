@@ -2,65 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6C8173020
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 06:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55885173048
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 06:23:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4C0B6EDD0;
-	Fri, 28 Feb 2020 05:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B36646EDE3;
+	Fri, 28 Feb 2020 05:23:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A68316EDD0;
- Fri, 28 Feb 2020 05:02:31 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 21:02:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="257001294"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by orsmga002.jf.intel.com with ESMTP; 27 Feb 2020 21:02:30 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 27 Feb 2020 21:02:29 -0800
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 27 Feb 2020 21:02:29 -0800
-Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 27 Feb 2020 21:02:28 -0800
-Received: from BGSMSX107.gar.corp.intel.com ([169.254.9.58]) by
- BGSMSX153.gar.corp.intel.com ([169.254.2.145]) with mapi id 14.03.0439.000;
- Fri, 28 Feb 2020 10:32:25 +0530
-From: "Laxminarayan Bharadiya, Pankaj"
- <pankaj.laxminarayan.bharadiya@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Chris Wilson
- <chris@chris-wilson.co.uk>
-Thread-Topic: [Intel-gfx][PATCH 01/10] drm/i915: Add i915 device based
- MISSING_CASE macro
-Thread-Index: AQHV6+ORF98y/9Y/3EqxiyZJG7rk3agrlFCAgAL+ieD//8lTAIABtD/g
-Date: Fri, 28 Feb 2020 05:02:25 +0000
-Message-ID: <E92BA18FDE0A5B43B7B3DA7FCA03128605778994@BGSMSX107.gar.corp.intel.com>
-References: <20200225134709.6153-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225134709.6153-2-pankaj.laxminarayan.bharadiya@intel.com>
- <158263931977.26598.171017617509031302@skylake-alporthouse-com>
- <E92BA18FDE0A5B43B7B3DA7FCA03128605776BFE@BGSMSX107.gar.corp.intel.com>
- <87mu94qvpd.fsf@intel.com>
-In-Reply-To: <87mu94qvpd.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 536266EDE0;
+ Fri, 28 Feb 2020 05:23:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4BDF8A47E9;
+ Fri, 28 Feb 2020 05:23:51 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 01/10] drm/i915: Add i915 device based
- MISSING_CASE macro
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 28 Feb 2020 05:23:51 -0000
+Message-ID: <158286743130.7475.15801299555513218203@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228003958.2347965-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200228003958.2347965-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/perf=3A_Reintroduce?=
+ =?utf-8?q?_wait_on_OA_configuration_completion_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,81 +39,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: series starting with [1/4] drm/i915/perf: Reintroduce wait on OA configuration completion (rev2)
+URL   : https://patchwork.freedesktop.org/series/74049/
+State : warning
 
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: 27 February 2020 14:00
-> To: Laxminarayan Bharadiya, Pankaj
-> <pankaj.laxminarayan.bharadiya@intel.com>; Chris Wilson <chris@chris-
-> wilson.co.uk>
-> Cc: intel-gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; David Airlie
-> <airlied@linux.ie>; Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Vivi,
-> Rodrigo <rodrigo.vivi@intel.com>; daniel@ffwll.ch
-> Subject: RE: [Intel-gfx][PATCH 01/10] drm/i915: Add i915 device based
-> MISSING_CASE macro
-> 
-> On Thu, 27 Feb 2020, "Laxminarayan Bharadiya, Pankaj"
-> 	<pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> > Hi Chris,
-> >
-> >> -----Original Message-----
-> >> From: Chris Wilson <chris@chris-wilson.co.uk>
-> >> Sent: 25 February 2020 19:32
-> >> To: David Airlie <airlied@linux.ie>; Joonas Lahtinen
-> >> <joonas.lahtinen@linux.intel.com>; Laxminarayan Bharadiya, Pankaj
-> >> <pankaj.laxminarayan.bharadiya@intel.com>; Vivi, Rodrigo
-> >> <rodrigo.vivi@intel.com>; daniel@ffwll.ch;
-> >> dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org;
-> >> jani.nikula@linux.intel.com
-> >> Cc: Laxminarayan Bharadiya, Pankaj
-> >> <pankaj.laxminarayan.bharadiya@intel.com>
-> >> Subject: Re: [Intel-gfx][PATCH 01/10] drm/i915: Add i915 device based
-> >> MISSING_CASE macro
-> >>
-> >> Quoting Pankaj Bharadiya (2020-02-25 13:47:00)
-> >> > Now that we have struct drm_device based drm_WARN, introduce struct
-> >> > drm_i915_private based i915_MISSING_CASE macro which uses
-> >> drm_WARN so
-> >> > that device specific information will also get printed in backtrace.
-> >> >
-> >> > i915_MISSING_CASE macro should be preferred over MISSING_CASE,
-> >> > wherever possible.
-> >>
-> >> Whatever for? MISSING_CASE() itself should be a complete picture for
-> >> the forgotten code.
-> >
-> > Are you saying, no need to have a new device specific macro?
-> >
-> > We want convert all the calls of WARN* with device specific drm_WARN*
-> > in i915, hence I introduced new i915_MISSING_CASE macro.
-> >
-> > Jani, Will you please share your opinion on this?
-> 
-> In general, many or most WARNs are device specific, and the device information
-> is useful. However MISSING_CASE is about the *code*. That was the intent
-> anyway. Perhaps there are cases where the device information might be useful,
-> but for most cases probably not.
+== Summary ==
 
-Thanks for clarification. Please ignore this patch series then.
+$ dim checkpatch origin/drm-tip
+8416743fda17 drm/i915/perf: Reintroduce wait on OA configuration completion
+fb0cb9bf8248 drm/i915: Wrap i915_active in a simple kreffed struct
+-:44: WARNING:LINE_SPACING: Missing a blank line after declarations
+#44: FILE: drivers/gpu/drm/i915/i915_active.c:905:
++	struct auto_active *aa = container_of(ref, typeof(*aa), base);
++	kref_put(&aa->ref, auto_release);
 
-Thanks,
-Pankaj 
-> 
-> BR,
-> Jani.
-> 
-> 
-> --
-> Jani Nikula, Intel Open Source Graphics Center
+total: 0 errors, 1 warnings, 0 checks, 66 lines checked
+890f0c78eaaa drm/i915: Extend i915_request_await_active to use all timelines
+4c067902672a drm/i915/perf: Schedule oa_config after modifying the contexts
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
