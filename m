@@ -2,30 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC3C172F50
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 04:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42019172F6E
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 04:38:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571846E9A2;
-	Fri, 28 Feb 2020 03:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F097D6E9A7;
+	Fri, 28 Feb 2020 03:38:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DC8016E11A;
- Fri, 28 Feb 2020 03:28:49 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D46ABA3C0D;
- Fri, 28 Feb 2020 03:28:49 +0000 (UTC)
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com
+ [IPv6:2607:f8b0:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 462C16E11A;
+ Fri, 28 Feb 2020 03:38:11 +0000 (UTC)
+Received: by mail-oi1-x22c.google.com with SMTP id q84so1570943oic.4;
+ Thu, 27 Feb 2020 19:38:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=MOGVYl0JiKEEseZ89TMjcjrll5qFG/jTKhgHEWQPkpc=;
+ b=J8ATT3+9r2tl5tPUk47eknwKXzqIPXtzQZkx4jUV0w9sG8serBAUB4oLM2bAoVFxkE
+ 710swdy70mvVrM52QTuq8x4BORWKPVhXF7HSP0uEbbFwD8ZqBWOuNVaPCSEzB4j7wRRM
+ r5k6O/So6AilgSEH6ZznlOhOVKRpVR5PEM9LCq7GNTn0v+NeJqTZR6iNxtePEHfiuIT3
+ u3x4gAaG18htL0H/z4uf12qUHS+Aue2JsfwZ7/3afOEYBxnuOwkTYqbYjamn+YzEaPOy
+ 3ha8PFSgDkCw7Q2KJ7ako0D6mUUOwI7Z4AS/47VqohvKzFYe5LhqOqVbEFOSBX/URoBI
+ IWbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=MOGVYl0JiKEEseZ89TMjcjrll5qFG/jTKhgHEWQPkpc=;
+ b=Wz2Dzyz7P1y+XlP+0DExZr0W71GCeDKmHwGnPhDZ0Af6CicXnGzuDMkI0a8EZ3ZscA
+ ijOu6Df3F+7CHisMtDd7as4KnlDe670BaWcBJ+WgOKkOWL6SvOy9kt9MeEvrD5A5ogki
+ 7heK0HKEgLuikew3I6v/j7YOykj8bG7uW+MxQTq28rjCwi5YtT9R5uNEI6felMXyiQ00
+ vJk7R02eEHcVmcuvPH+h6WyHCowSxRVyDHdCmBRYEHez/KE6VD7PLS8BsjpmjNpiqgNG
+ 5Dbmjnj9+7otQx/O+j2OTukBVEIH3Mq1b+96Es1XagLi1gsNNnb9B8QVZuAt2VdWNEQP
+ uuKQ==
+X-Gm-Message-State: APjAAAX5ofhnmUW4dcsr4sJdykO98Qr7HBwsj6zfM+Ibqonptp9tfB0k
+ 9ftTT9yKp7JfwTE/Z9yUpM30vQHUaStICABLHZCXc27W
+X-Google-Smtp-Source: APXvYqwpbwgHSiERR0+GiALBszLvfkpc7GvTh+wQG4QqsWDKdsEUGqd00n58Q4FHAO7dqcYN7bFx15SSsW/CTm89I/Q=
+X-Received: by 2002:aca:bb54:: with SMTP id l81mr1648517oif.175.1582861090266; 
+ Thu, 27 Feb 2020 19:38:10 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Fri, 28 Feb 2020 03:28:49 -0000
-Message-ID: <158286052984.7475.3100478399835893153@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200227224413.19460-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20200227224413.19460-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/huc=3A_update_TGL_HuC_to_v7=2E0=2E12?=
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+In-Reply-To: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 28 Feb 2020 13:37:57 +1000
+Message-ID: <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
+ services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,78 +61,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>, gstreamer-devel@lists.freedesktop.org,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, 28 Feb 2020 at 07:27, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+>
+> Hi all,
+>
+> You might have read the short take in the X.org board meeting minutes
+> already, here's the long version.
+>
+> The good news: gitlab.fd.o has become very popular with our
+> communities, and is used extensively. This especially includes all the
+> CI integration. Modern development process and tooling, yay!
+>
+> The bad news: The cost in growth has also been tremendous, and it's
+> breaking our bank account. With reasonable estimates for continued
+> growth we're expecting hosting expenses totalling 75k USD this year,
+> and 90k USD next year. With the current sponsors we've set up we can't
+> sustain that. We estimate that hosting expenses for gitlab.fd.o
+> without any of the CI features enabled would total 30k USD, which is
+> within X.org's ability to support through various sponsorships, mostly
+> through XDC.
+>
+> Note that X.org does no longer sponsor any CI runners themselves,
+> we've stopped that. The huge additional expenses are all just in
+> storing and serving build artifacts and images to outside CI runners
+> sponsored by various companies. A related topic is that with the
+> growth in fd.o it's becoming infeasible to maintain it all on
+> volunteer admin time. X.org is therefore also looking for admin
+> sponsorship, at least medium term.
+>
+> Assuming that we want cash flow reserves for one year of gitlab.fd.o
+> (without CI support) and a trimmed XDC and assuming no sponsor payment
+> meanwhile, we'd have to cut CI services somewhere between May and June
+> this year. The board is of course working on acquiring sponsors, but
+> filling a shortfall of this magnitude is neither easy nor quick work,
+> and we therefore decided to give an early warning as soon as possible.
+> Any help in finding sponsors for fd.o is very much appreciated.
 
-Series: drm/i915/huc: update TGL HuC to v7.0.12
-URL   : https://patchwork.freedesktop.org/series/74046/
-State : success
+a) Ouch.
 
-== Summary ==
+b) we probably need to take a large step back here.
 
-CI Bug Log - changes from CI_DRM_8023 -> Patchwork_16750
-====================================================
+Look at this from a sponsor POV, why would I give X.org/fd.o
+sponsorship money that they are just giving straight to google to pay
+for hosting credits? Google are profiting in some minor way from these
+hosting credits being bought by us, and I assume we aren't getting any
+sort of discounts here. Having google sponsor the credits costs google
+substantially less than having any other company give us money to do
+it.
 
-Summary
--------
+If our current CI architecture is going to burn this amount of money a
+year and we hadn't worked this out in advance of deploying it then I
+suggest the system should be taken offline until we work out what a
+sustainable system would look like within the budget we have, whether
+that be never transferring containers and build artifacts from the
+google network, just having local runner/build combos etc.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16750/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16750 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [FAIL][1] ([i915#217] / [i915#976]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16750/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (46 -> 39)
-------------------------------
-
-  Additional (4): fi-blb-e6850 fi-kbl-7560u fi-bdw-5557u fi-ivb-3770 
-  Missing    (11): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-gdg-551 fi-cfl-8109u fi-bdw-samus fi-byt-clapper fi-skl-6700k2 fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8023 -> Patchwork_16750
-
-  CI-20190529: 20190529
-  CI_DRM_8023: fa9a02bbdfd6553ee633171f23183a115d0da577 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16750: ac34e02f4c488f2b9b3f184da925f30fc350c230 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-ac34e02f4c48 drm/i915/huc: update TGL HuC to v7.0.12
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16750/index.html
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
