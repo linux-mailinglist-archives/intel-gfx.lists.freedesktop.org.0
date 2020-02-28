@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5111732D5
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:24:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96A281732E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:28:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAF506EE64;
-	Fri, 28 Feb 2020 08:24:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC3D6EE65;
+	Fri, 28 Feb 2020 08:28:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80A026EE76
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:24:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85EEC6EE65
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 08:28:41 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20380892-1500050 
- for multiple; Fri, 28 Feb 2020 08:23:37 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Feb 2020 08:23:30 +0000
-Message-Id: <20200228082330.2411941-24-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
-References: <20200228082330.2411941-1-chris@chris-wilson.co.uk>
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20380967-1500050 for multiple; Fri, 28 Feb 2020 08:28:39 +0000
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 24/24] drm/i915/execlists: Reduce
- preempt-to-busy roundtrip delay
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
+Message-ID: <158287851663.19174.2013462831358055362@skylake-alporthouse-com>
+Date: Fri, 28 Feb 2020 08:28:36 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
+ changing cdclk
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,233 +40,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To prevent the context from proceeding past the end of the request as we
-unwind, we embed a semaphore into the footer of each request. (If the
-context were to skip past the end of the request as we perform the
-preemption, next time we reload the context it's RING_HEAD would be past
-the RING_TAIL and instead of replaying the commands it would read the
-read of the uninitialised ringbuffer.)
-
-However, this requires us to keep the ring paused at the end of the
-request until we have a change to process the preemption ack and remove
-the semaphore. Our processing of acks is at the whim of ksoftirqd, and
-so it is entirely possible that the GPU has to wait for the tasklet
-before it can proceed with the next request.
-
-It was suggested that we could also embed a MI_LOAD_REGISTER_MEM into
-the footer to read the current RING_TAIL from the context, which would
-allow us to not only avoid this round trip (and so release the context
-as soon as we had submitted the preemption request to in ELSP), but also
-skip using ELSP for lite-restores entirely. That has the nice benefit of
-dramatically reducing contention and the frequency of interrupts when a
-client submits two or more execbufs in rapid succession.
-
-* This did not work out quite as well as anticipated due to us reloading
-the new RING_TAIL from the context image moments before the HW acted
-upon the ELSP. With the calamitous effect that we would submit a
-preemption request with an identical RING_TAIL as the current RING_HEAD,
-causing us to fail WaIdleLiteRestore and the HW stop working.
-
-However, mmio access to RING_TAIL was defeatured in gen11 so we can only
-employ this handy trick for gen8/gen9.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_engine_types.h | 23 +++--
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 93 +++++++++++++++++++-
- 2 files changed, 106 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 24cff658e6e5..ae8724915320 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -488,14 +488,15 @@ struct intel_engine_cs {
- 	/* status_notifier: list of callbacks for context-switch changes */
- 	struct atomic_notifier_head context_status_notifier;
- 
--#define I915_ENGINE_USING_CMD_PARSER BIT(0)
--#define I915_ENGINE_SUPPORTS_STATS   BIT(1)
--#define I915_ENGINE_HAS_PREEMPTION   BIT(2)
--#define I915_ENGINE_HAS_SEMAPHORES   BIT(3)
--#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET BIT(4)
--#define I915_ENGINE_IS_VIRTUAL       BIT(5)
--#define I915_ENGINE_HAS_RELATIVE_MMIO BIT(6)
--#define I915_ENGINE_REQUIRES_CMD_PARSER BIT(7)
-+#define I915_ENGINE_REQUIRES_CMD_PARSER		BIT(0)
-+#define I915_ENGINE_USING_CMD_PARSER		BIT(1)
-+#define I915_ENGINE_SUPPORTS_STATS		BIT(2)
-+#define I915_ENGINE_HAS_PREEMPTION		BIT(3)
-+#define I915_ENGINE_HAS_SEMAPHORES		BIT(4)
-+#define I915_ENGINE_HAS_TAIL_LRM		BIT(5)
-+#define I915_ENGINE_NEEDS_BREADCRUMB_TASKLET	BIT(6)
-+#define I915_ENGINE_IS_VIRTUAL			BIT(7)
-+#define I915_ENGINE_HAS_RELATIVE_MMIO		BIT(8)
- 	unsigned int flags;
- 
- 	/*
-@@ -592,6 +593,12 @@ intel_engine_has_semaphores(const struct intel_engine_cs *engine)
- 	return engine->flags & I915_ENGINE_HAS_SEMAPHORES;
- }
- 
-+static inline bool
-+intel_engine_has_tail_lrm(const struct intel_engine_cs *engine)
-+{
-+	return engine->flags & I915_ENGINE_HAS_TAIL_LRM;
-+}
-+
- static inline bool
- intel_engine_needs_breadcrumb_tasklet(const struct intel_engine_cs *engine)
- {
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c5355804ba65..e717bc644700 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1861,6 +1861,76 @@ static inline void clear_ports(struct i915_request **ports, int count)
- 	memset_p((void **)ports, NULL, count);
- }
- 
-+static struct i915_request *
-+skip_lite_restore(struct intel_engine_cs *const engine,
-+		  struct i915_request *first,
-+		  bool *submit)
-+{
-+	struct intel_engine_execlists *const execlists = &engine->execlists;
-+	struct i915_request *last = first;
-+	struct rb_node *rb;
-+
-+	if (!intel_engine_has_tail_lrm(engine))
-+		return last;
-+
-+	GEM_BUG_ON(*submit);
-+	while ((rb = rb_first_cached(&execlists->queue))) {
-+		struct i915_priolist *p = to_priolist(rb);
-+		struct i915_request *rq, *rn;
-+		int i;
-+
-+		priolist_for_each_request_consume(rq, rn, p, i) {
-+			if (!can_merge_rq(last, rq))
-+				goto out;
-+
-+			if (__i915_request_submit(rq)) {
-+				*submit = true;
-+				last = rq;
-+			}
-+		}
-+
-+		rb_erase_cached(&p->node, &execlists->queue);
-+		i915_priolist_free(p);
-+	}
-+out:
-+	if (*submit) {
-+		ring_set_paused(engine, 1);
-+
-+		/*
-+		 * If we are quick and the current context hasn't yet completed
-+		 * its request, we can just tell it to extend the RING_TAIL
-+		 * onto the next without having to submit a new ELSP.
-+		 */
-+		if (!i915_request_completed(first)) {
-+			struct i915_request **port;
-+
-+			ENGINE_TRACE(engine,
-+				     "eliding lite-restore last=%llx:%lld->%lld, current %d\n",
-+				     first->fence.context,
-+				     first->fence.seqno,
-+				     last->fence.seqno,
-+				     hwsp_seqno(last));
-+			GEM_BUG_ON(first->context != last->context);
-+
-+			for (port = (struct i915_request **)execlists->active;
-+			     *port != first;
-+			     port++)
-+				;
-+
-+			GEM_BUG_ON(first == last);
-+			WRITE_ONCE(*port, i915_request_get(last));
-+			execlists_update_context(last);
-+
-+			i915_request_put(first);
-+			*submit = false;
-+		}
-+
-+		ring_set_paused(engine, 0);
-+	}
-+
-+	return last;
-+}
-+
- static void execlists_dequeue(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -1998,6 +2068,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 				return;
- 			}
-+
-+			last = skip_lite_restore(engine, last, &submit);
- 		}
- 	}
- 
-@@ -4225,15 +4297,28 @@ static u32 *emit_preempt_busywait(struct i915_request *request, u32 *cs)
- 	return cs;
- }
- 
-+static u32 *emit_lrm_tail(struct i915_request *request, u32 *cs)
-+{
-+	*cs++ = MI_LOAD_REGISTER_MEM_GEN8 | MI_USE_GGTT;
-+	*cs++ = i915_mmio_reg_offset(RING_TAIL(request->engine->mmio_base));
-+	*cs++ = i915_ggtt_offset(request->context->state) +
-+		LRC_STATE_PN * PAGE_SIZE +
-+		CTX_RING_TAIL * sizeof(u32);
-+	*cs++ = 0;
-+
-+	return cs;
-+}
-+
- static __always_inline u32*
--gen8_emit_fini_breadcrumb_footer(struct i915_request *request,
--				 u32 *cs)
-+gen8_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
- {
- 	*cs++ = MI_USER_INTERRUPT;
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
- 	if (intel_engine_has_semaphores(request->engine))
- 		cs = emit_preempt_busywait(request, cs);
-+	if (intel_engine_has_tail_lrm(request->engine))
-+		cs = emit_lrm_tail(request, cs);
- 
- 	request->tail = intel_ring_offset(request, cs);
- 	assert_ring_tail_valid(request->ring, request->tail);
-@@ -4322,6 +4407,8 @@ static u32 *gen12_emit_preempt_busywait(struct i915_request *request, u32 *cs)
- static __always_inline u32*
- gen12_emit_fini_breadcrumb_footer(struct i915_request *request, u32 *cs)
- {
-+	GEM_BUG_ON(intel_engine_has_tail_lrm(request->engine));
-+
- 	*cs++ = MI_USER_INTERRUPT;
- 
- 	*cs++ = MI_ARB_ON_OFF | MI_ARB_ENABLE;
-@@ -4388,6 +4475,8 @@ void intel_execlists_set_default_submission(struct intel_engine_cs *engine)
- 		engine->flags |= I915_ENGINE_HAS_SEMAPHORES;
- 		if (HAS_LOGICAL_RING_PREEMPTION(engine->i915))
- 			engine->flags |= I915_ENGINE_HAS_PREEMPTION;
-+		if (INTEL_GEN(engine->i915) < 11)
-+			engine->flags |= I915_ENGINE_HAS_TAIL_LRM;
- 	}
- 
- 	if (INTEL_GEN(engine->i915) >= 12)
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBWaWxsZSBTeXJqYWxhICgyMDIwLTAyLTI3IDE5OjM5OjU0KQo+IEZyb206IFZpbGxl
+IFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gCj4gZ21idXMvYXV4
+IG1heSBiZSBjbG9ja2VkIGJ5IGNkY2xrLCB0aHVzIHdlIHNob3VsZCBtYWtlIHN1cmUgbm8KPiB0
+cmFuc2ZlcnMgYXJlIG9uZ29pbmcgd2hpbGUgdGhlIGNkY2xrIGZyZXF1ZW5jeSBpcyBiZWluZyBj
+aGFuZ2VkLgo+IFdlIGRvIHRoYXQgYnkgc2ltcGx5IGdyYWJiaW5nIGFsbCB0aGUgZ21idXMvYXV4
+IG11dGV4ZXMuIE5vIG9uZQo+IGVsc2Ugc2hvdWxkIGJlIGhvbGRpbmcgYW55IG1vcmUgdGhhbiBv
+bmUgb2YgdGhvc2UgYXQgYSB0aW1lIHNvCj4gdGhlIGxvY2sgb3JkZXJpbmcgaGVyZSBzaG91bGRu
+J3QgbWF0dGVyLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
+amFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfY2RjbGsuYyB8IDIzICsrKysrKysrKysrKysrKysrKysrKysKPiAgMSBmaWxlIGNo
+YW5nZWQsIDIzIGluc2VydGlvbnMoKykKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
+eS9pbnRlbF9jZGNsay5jCj4gaW5kZXggMDc0MWQ2NDM0NTViLi5mNjliZjRhNGViMWMgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCj4gKysr
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jZGNsay5jCj4gQEAgLTE4Njgs
+NiArMTg2OCw5IEBAIHN0YXRpYyB2b2lkIGludGVsX3NldF9jZGNsayhzdHJ1Y3QgZHJtX2k5MTVf
+cHJpdmF0ZSAqZGV2X3ByaXYsCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0
+cnVjdCBpbnRlbF9jZGNsa19jb25maWcgKmNkY2xrX2NvbmZpZywKPiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgZW51bSBwaXBlIHBpcGUpCj4gIHsKPiArICAgICAgIHN0cnVjdCBpbnRlbF9l
+bmNvZGVyICplbmNvZGVyOwo+ICsgICAgICAgdW5zaWduZWQgaW50IGF1eF9tdXRleF9sb2NrY2xh
+c3MgPSAwOwo+ICsKPiAgICAgICAgIGlmICghaW50ZWxfY2RjbGtfY2hhbmdlZCgmZGV2X3ByaXYt
+PmNkY2xrLmh3LCBjZGNsa19jb25maWcpKQo+ICAgICAgICAgICAgICAgICByZXR1cm47Cj4gIAo+
+IEBAIC0xODc2LDggKzE4NzksMjggQEAgc3RhdGljIHZvaWQgaW50ZWxfc2V0X2NkY2xrKHN0cnVj
+dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwKPiAgCj4gICAgICAgICBpbnRlbF9kdW1wX2Nk
+Y2xrX2NvbmZpZyhjZGNsa19jb25maWcsICJDaGFuZ2luZyBDRENMSyB0byIpOwo+ICAKPiArICAg
+ICAgIC8qCj4gKyAgICAgICAgKiBMb2NrIGF1eC9nbWJ1cyB3aGlsZSB3ZSBjaGFuZ2UgY2RjbGsg
+aW4gY2FzZSB0aG9zZQo+ICsgICAgICAgICogZnVuY3Rpb25zIHVzZSBjZGNsay4gTm90IGFsbCBw
+bGF0Zm9ybXMvcG9ydHMgZG8sCj4gKyAgICAgICAgKiBidXQgd2UnbGwgbG9jayB0aGVtIGFsbCBm
+b3Igc2ltcGxpY2l0eS4KPiArICAgICAgICAqLwo+ICsgICAgICAgbXV0ZXhfbG9jaygmZGV2X3By
+aXYtPmdtYnVzX211dGV4KTsKPiArICAgICAgIGZvcl9lYWNoX2ludGVsX2RwKCZkZXZfcHJpdi0+
+ZHJtLCBlbmNvZGVyKSB7Cj4gKyAgICAgICAgICAgICAgIHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxf
+ZHAgPSBlbmNfdG9faW50ZWxfZHAoZW5jb2Rlcik7Cj4gKwo+ICsgICAgICAgICAgICAgICBtdXRl
+eF9sb2NrX25lc3RlZCgmaW50ZWxfZHAtPmF1eC5od19tdXRleCwKPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgYXV4X211dGV4X2xvY2tjbGFzcysrKTsKCm11dGV4X2xvY2tfbmVz
+dF9sb2NrKCZpbnRlbF9kcC0+YXV4Lmh3X211dGV4LCAmZGV2X3ByaXYtPmdtYnVzX211dGV4KTsK
+PwotQ2hyaXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
