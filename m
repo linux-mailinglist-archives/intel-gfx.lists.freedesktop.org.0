@@ -2,35 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169A517333A
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C615173341
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 09:48:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D9566EE78;
-	Fri, 28 Feb 2020 08:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8910A6EE80;
+	Fri, 28 Feb 2020 08:48:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E94D76EE79;
- Fri, 28 Feb 2020 08:47:29 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 00:47:29 -0800
-X-IronPort-AV: E=Sophos;i="5.70,495,1574150400"; d="scan'208";a="232171848"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 00:47:27 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Fri, 28 Feb 2020 09:46:36 +0100
-Message-Id: <20200228084636.30045-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200228084636.30045-1-janusz.krzysztofik@linux.intel.com>
-References: <20200228084636.30045-1-janusz.krzysztofik@linux.intel.com>
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com
+ [IPv6:2607:f8b0:4864:20::32d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF5D6EE7F;
+ Fri, 28 Feb 2020 08:48:46 +0000 (UTC)
+Received: by mail-ot1-x32d.google.com with SMTP id b3so1895204otp.4;
+ Fri, 28 Feb 2020 00:48:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=qlqcbHzLGRHY3M4I1/OUYzXJJe8cppDvyu4IteJROqQ=;
+ b=Lm7qN7/0eapEKsVQo4dBy0J3g+JvL9toKdHY+NB0p7EaBrv2u/DeLJbo4xH1BjQKDS
+ RlCbMDgJlAHpcbrxFFC4PYA00Yh06QM8Hb4QFyQVyiIS8fK+XPqDb/xy1Nnpi3RZh/k/
+ pMRRswxuFDA93GE87Yhs4WzutlLSFyraIjRiYnzB/QiVUclwvdiTwLLI0uJKzn25jaNi
+ a77898dsNuz8wXYum2aKRwAdO5mcA5qlXPyEsCrGBEz3D+94OhZuqnXLE8FaQFZRYarI
+ 4KucFL9/S0oQFu4gUfBT07ES0+Zb0mPgT6hhA9VDkyEfAlScK0M6DwRTuCY2FJ60VBSF
+ Y5wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=qlqcbHzLGRHY3M4I1/OUYzXJJe8cppDvyu4IteJROqQ=;
+ b=SoMeTrsL3aaPFBljIPcbWLNWfDATDCjX8HEdhGlG3TD5vhqlBnmUaAZblVkdJpgkxY
+ hHR4pU1Rc9wu/uKTx7av+b81Exc+g/BXQe64eZeZP1utI1uEqBWDUQpGtBzIQqLm2yCC
+ MqZZNDv07+D8dqlC+zJzOnQvr4fXzd2t3Kw/9kC7RcehjPStfhWFOJfk2wcveRxbaav8
+ e80RtFg87uTOTY/7re6yvfUI5GoaMKXNkG+IORu2Y4CX5ocZJnWa/RG2Q9iAxHkkTJuZ
+ P72PA+TPfwDZusv7/wy6brU300+3EwLadMsF7h5cLt3Bk/kJjnqkmoStOllve9+g0iib
+ 12SA==
+X-Gm-Message-State: APjAAAWEPpxVl/kG5h2W8HOH7C8uMs86VFo7lQe+MzukILUKgbYVsaGL
+ Fn7a9WbCb77633gBuKfrI/0KrdjdFkn6VSsQj0Q=
+X-Google-Smtp-Source: APXvYqwVBOFl1TpJXZXKtDtiipbMYTeXRYob7LKHbziFADEK5HywFJjm/VMF4PIRai0Dygxg+py8tsbGUJWf6XL1OHE=
+X-Received: by 2002:a9d:3bc4:: with SMTP id k62mr2497597otc.186.1582879725260; 
+ Fri, 28 Feb 2020 00:48:45 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t v4 2/2] tests/gem_userptr_blits: Try
- to anger lockdep with invalid mappings
+References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
+ <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
+ <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
+In-Reply-To: <CAPj87rM76W9y_76WUHR35NS3V4_-RFi9ZM3GA=aED3dD3hWYkg@mail.gmail.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 28 Feb 2020 18:48:33 +1000
+Message-ID: <CAPM=9txN-RKGwinzsSPrmT_xFjS2J_XUhXVsRQ2pSSe529wpEA@mail.gmail.com>
+To: Daniel Stone <daniel@fooishbar.org>
+Subject: Re: [Intel-gfx] gitlab.fd.o financial situation and impact on
+ services
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,153 +63,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ "X.Org development" <xorg-devel@lists.x.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ wayland <wayland-devel@lists.freedesktop.org>,
+ "X.Org Foundation Board" <board@foundation.x.org>,
+ Xorg Members List <members@x.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ gstreamer-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A currently unavoidable lockdep loop related to userptr MMU notifier
-exists inside the i915 driver.  For as long as that issue is not
-resolved, operations which are believed to potentially result in the
-loop being triggered are expected to fail early to prevent from that
-badness to happen.
+On Fri, 28 Feb 2020 at 18:18, Daniel Stone <daniel@fooishbar.org> wrote:
+>
+> On Fri, 28 Feb 2020 at 03:38, Dave Airlie <airlied@gmail.com> wrote:
+> > b) we probably need to take a large step back here.
+> >
+> > Look at this from a sponsor POV, why would I give X.org/fd.o
+> > sponsorship money that they are just giving straight to google to pay
+> > for hosting credits? Google are profiting in some minor way from these
+> > hosting credits being bought by us, and I assume we aren't getting any
+> > sort of discounts here. Having google sponsor the credits costs google
+> > substantially less than having any other company give us money to do
+> > it.
+>
+> The last I looked, Google GCP / Amazon AWS / Azure were all pretty
+> comparable in terms of what you get and what you pay for them.
+> Obviously providers like Packet and Digital Ocean who offer bare-metal
+> services are cheaper, but then you need to find someone who is going
+> to properly administer the various machines, install decent
+> monitoring, make sure that more storage is provisioned when we need
+> more storage (which is basically all the time), make sure that the
+> hardware is maintained in decent shape (pretty sure one of the fd.o
+> machines has had a drive in imminent-failure state for the last few
+> months), etc.
+>
+> Given the size of our service, that's a much better plan (IMO) than
+> relying on someone who a) isn't an admin by trade, b) has a million
+> other things to do, and c) hasn't wanted to do it for the past several
+> years. But as long as that's the resources we have, then we're paying
+> the cloud tradeoff, where we pay more money in exchange for fewer
+> problems.
 
-The lockdep loop occurrence is believed to be possible for a userptr
-object created on top of any type of mmap-offset mapping.  For that to
-happen, userptr MMU notifier, which is the source of the lockdep issue,
-must be activated for the object.  That is possible only if the object
-has been created without I915_USERPTR_UNSYNCHRONIZED flag.
+Admin for gitlab and CI is a full time role anyways. The system is
+definitely not self sustaining without time being put in by you and
+anholt still. If we have $75k to burn on credits, and it was diverted
+to just pay an admin to admin the real hw + gitlab/CI would that not
+be a better use of the money? I didn't know if we can afford $75k for
+an admin, but suddenly we can afford it for gitlab credits?
 
-Attempts to create a userptr object on top of a mmap-offset mapping to
-another GEM object currently always succeed.  However, the very first
-operation which tries to set the object pages fails with -EAGAIN.  If
-I915_USERPTR_UNSYNCHRONIZED flag has been used by object creation, MMU
-notifier is activated for the object.  Consecutive attempts may also
-fail with -EAGAIN while the driver tries to acquire the pages in
-background, with the MMU notifier still possibly active, but meanwhile,
-the background attempt to pin the pages in memory finally fails, the
-notifier is deactivated, and all following set pages operations fail
-with -EFAULT.
+> Yes, we could federate everything back out so everyone runs their own
+> builds and executes those. Tinderbox did something really similar to
+> that IIRC; not sure if Buildbot does as well. Probably rules out
+> pre-merge testing, mind.
 
-There is a subtests which already exercises the driver behavior for
-userptr objects created on top of mmap-offset mappings.  However, the
-exercise is performed on userptr objects created only with the
-I915_USERPTR_UNSYNCHRONIZED flag set, then, the MMU notifier is never
-activated.
+Why? does gitlab not support the model? having builds done in parallel
+on runners closer to the test runners seems like it should be a thing.
+I guess artifact transfer would cost less then as a result.
 
-Clone the subtest to a "-sync" variant so objects created without the
-I915_USERPTR_UNSYNCHRONIZED flag are also exercised.  In that case, try
-to anger lockdep, but since that seems hardly possible, also display a
-warning for as long as we believe the lockdep splat is possible in that
-scenario.  Also, don't fail but skip should the driver ever refuse to
-create synchronized userptr objects on top of invalid mappings.
+> The reason we hadn't worked everything out in advance of deploying is
+> because Mesa has had 3993 MRs in the not long over a year since
+> moving, and a similar number in GStreamer, just taking the two biggest
+> users. At the start it was 'maybe let's use MRs if you want to but
+> make sure everything still goes through the list', and now it's
+> something different. Similarly the CI architecture hasn't been
+> 'designed', so much as that people want to run dEQP and Piglit on
+> their hardware pre-merge in an open fashion that's actually accessible
+> to people, and have just done it.
+>
+> Again, if you want everything to be centrally
+> designed/approved/monitored/controlled, that's a fine enough idea, and
+> I'd be happy to support whoever it was who was doing that for all of
+> fd.o.
 
-v2: For as long as the lockdep loop issue is not fixed, don't succeed
-    if a preventive failure occurs but skip (Chris),
-  - otherwise, warn about possible risk,
-  - put a FIXME placeholder until we learn how to anger lockdep.
-v3: Use dynamic subtests, with skips handled at mmap-offset attempt
-    performed by the test anyway (Chris),
-  - for better clarity of the patch, drop cosmetic only changes,
-  - use more concise wording in subtest description.
-v4: Limit the scope to lockdep loop trigger attempts, separate from
-    changes aimed at extending subtest coverage over new mapping types,
-  - as lockdep loop can happen only for userptr objects created without
-    I915_USERPTR_UNSYNCHRONIZED flag, introduce a new "-sync" variant
-    of the subtest which examines userptr objects created with the flag
-    not set,
-  - move lockdep loop trigger attempt to a separate function and call
-    it only when the I915_USERPTR_UNSYNCHRONIZED flag is not set,
-  - actually try to anger lockdep using gem_set_tiling() (Chris).
+I don't think we have any choice but to have someone centrally
+controlling it, You can't have a system in place that lets CI users
+burn largs sums of money without authorisation, and that is what we
+have now.
 
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/i915/gem_userptr_blits.c | 53 ++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
-
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index 08015586a..c1496f245 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -577,6 +577,49 @@ static int test_invalid_null_pointer(int fd)
- 	return 0;
- }
- 
-+static void anger_lockdep(int fd, uint32_t parent_handle,
-+			  uint64_t parent_offset, const struct mmap_offset *t)
-+{
-+	struct drm_i915_gem_set_domain set_domain;
-+	void *ptr;
-+	uint32_t handle;
-+
-+	/* create the map */
-+	ptr = mmap(NULL, PAGE_SIZE, PROT_READ | PROT_WRITE,
-+		   MAP_SHARED | MAP_FIXED, fd, parent_offset);
-+	igt_assert(ptr != MAP_FAILED);
-+	igt_assert(((unsigned long)ptr & (PAGE_SIZE - 1)) == 0);
-+
-+	/* create userptr */
-+	igt_skip_on_f(__gem_userptr(fd, ptr, PAGE_SIZE, 0, userptr_flags,
-+				    &handle),
-+		      "userptr on mmap-offset(%s) banned, lockdep loop prevention\n",
-+		      t->name);
-+
-+	/* FIXME: learn how to actually anger lockdep reproducibly */
-+	igt_warn("userptr on mmap_offset(%s) succeeded, risk of lockdep loop exists\n",
-+		 t->name);
-+
-+	memset(&set_domain, 0, sizeof(set_domain));
-+	set_domain.handle = handle;
-+	set_domain.read_domains = I915_GEM_DOMAIN_GTT;
-+	set_domain.write_domain = I915_GEM_DOMAIN_GTT;
-+
-+	if (gem_available_fences(fd)) {
-+		/* set object pages once so the MMU notifier is activated */
-+		igt_assert(ioctl(fd, DRM_IOCTL_I915_GEM_SET_DOMAIN, &set_domain)
-+			   && errno == EAGAIN);
-+		/* immediately try to trigger the notifier (likely too late) */
-+		gem_set_tiling(fd, parent_handle, I915_TILING_Y, 512 * 4);
-+	} else {
-+		; /* FIXME: find another way to invalidate parent pages */
-+	}
-+
-+	/* cleanup */
-+	gem_close(fd, handle);
-+	munmap(ptr, sizeof(linear));
-+}
-+
- static int test_invalid_mapping(int fd, const struct mmap_offset *t)
- {
- 	struct drm_i915_gem_mmap_offset arg;
-@@ -608,6 +651,10 @@ static int test_invalid_mapping(int fd, const struct mmap_offset *t)
- 	arg.flags = t->type;
- 	igt_skip_on_f(igt_ioctl(fd, DRM_IOCTL_I915_GEM_MMAP_OFFSET, &arg),
- 		      "HW & kernel support for mmap_offset(%s)\n", t->name);
-+
-+	if (!(userptr_flags & LOCAL_I915_USERPTR_UNSYNCHRONIZED))
-+		anger_lockdep(fd, arg.handle, arg.offset, t);
-+
- 	ptr = mmap(map + PAGE_SIZE, sizeof(linear), PROT_READ | PROT_WRITE,
- 		   MAP_SHARED | MAP_FIXED, fd, arg.offset);
- 	igt_assert(ptr == map + PAGE_SIZE);
-@@ -2161,6 +2208,12 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 				count = intel_get_total_ram_mb() * 3 / 4;
- 		}
- 
-+		igt_describe("Verify synchronized userptr on mmap-offset mappings fails");
-+		igt_subtest_with_dynamic("invalid-mmap-offset-sync")
-+			for_each_mmap_offset_type(fd, t)
-+				igt_dynamic_f("%s", t->name)
-+					test_invalid_mapping(fd, t);
-+
- 		igt_subtest("process-exit")
- 			test_process_exit(fd, 0);
- 
--- 
-2.21.1
-
+Dave.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
