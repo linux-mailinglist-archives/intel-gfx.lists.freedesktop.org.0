@@ -2,34 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFA27172ED5
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8F3172ED8
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 03:31:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E67F96EDCA;
-	Fri, 28 Feb 2020 02:29:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F35D76EDC6;
+	Fri, 28 Feb 2020 02:31:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19CEA6EDCE
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 02:29:46 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2020 18:29:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,493,1574150400"; d="scan'208";a="227392689"
-Received: from dceraolo-linux.fm.intel.com ([10.1.27.145])
- by orsmga007.jf.intel.com with ESMTP; 27 Feb 2020 18:29:45 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 27 Feb 2020 18:28:43 -0800
-Message-Id: <20200228022843.1936-7-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
-References: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 088DA6EDC6;
+ Fri, 28 Feb 2020 02:31:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01A6AA47E9;
+ Fri, 28 Feb 2020 02:31:23 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/uc: do not free err log on uc_fini
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Fri, 28 Feb 2020 02:31:23 -0000
+Message-ID: <158285708300.7477.18229204499795038663@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227220101.321671-1-jose.souza@intel.com>
+In-Reply-To: <20200227220101.321671-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C01/11=5D_drm/i915/tgl=3A_Implement_Wa?=
+ =?utf-8?q?=5F1409804808?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,80 +39,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-we do call uc_fini if there is an issue while loading the GuC, so we
-can't delete in there the logs we need to debug the load failure.
-Moving the log free to driver remove ensures the logs stick around ong
-enough for us to dump them.
+== Series Details ==
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt.c    | 3 +--
- drivers/gpu/drm/i915/gt/uc/intel_uc.c | 9 +++++++--
- drivers/gpu/drm/i915/gt/uc/intel_uc.h | 1 +
- 3 files changed, 9 insertions(+), 4 deletions(-)
+Series: series starting with [v3,01/11] drm/i915/tgl: Implement Wa_1409804808
+URL   : https://patchwork.freedesktop.org/series/74044/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 3dea8881e915..eda66b0d44bd 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -635,8 +635,7 @@ void intel_gt_driver_remove(struct intel_gt *gt)
- {
- 	__intel_gt_disable(gt);
- 
--	intel_uc_fini_hw(&gt->uc);
--	intel_uc_fini(&gt->uc);
-+	intel_uc_driver_remove(&gt->uc);
- 
- 	intel_engines_release(gt);
- }
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index a4cbe06e06bd..b11e564ef22e 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -131,6 +131,13 @@ static void __uc_free_load_err_log(struct intel_uc *uc)
- 		i915_gem_object_put(log);
- }
- 
-+void intel_uc_driver_remove(struct intel_uc *uc)
-+{
-+	intel_uc_fini_hw(uc);
-+	intel_uc_fini(uc);
-+	__uc_free_load_err_log(uc);
-+}
-+
- static inline bool guc_communication_enabled(struct intel_guc *guc)
- {
- 	return intel_guc_ct_enabled(&guc->ct);
-@@ -311,8 +318,6 @@ static void __uc_fini(struct intel_uc *uc)
- {
- 	intel_huc_fini(&uc->huc);
- 	intel_guc_fini(&uc->guc);
--
--	__uc_free_load_err_log(uc);
- }
- 
- static int __uc_sanitize(struct intel_uc *uc)
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-index 2f7d3028af08..52b6e4e64ced 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
-@@ -34,6 +34,7 @@ struct intel_uc {
- 
- void intel_uc_init_early(struct intel_uc *uc);
- void intel_uc_driver_late_release(struct intel_uc *uc);
-+void intel_uc_driver_remove(struct intel_uc *uc);
- void intel_uc_init_mmio(struct intel_uc *uc);
- void intel_uc_reset_prepare(struct intel_uc *uc);
- void intel_uc_suspend(struct intel_uc *uc);
--- 
-2.24.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8023 -> Patchwork_16748
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16748 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([fdo#108569])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [FAIL][5] ([i915#217] / [i915#976]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][7] ([fdo#111096] / [i915#323]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8023/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (46 -> 44)
+------------------------------
+
+  Additional (4): fi-blb-e6850 fi-bdw-5557u fi-ivb-3770 fi-snb-2600 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8023 -> Patchwork_16748
+
+  CI-20190529: 20190529
+  CI_DRM_8023: fa9a02bbdfd6553ee633171f23183a115d0da577 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16748: 3f9899a578a87f633e207f2c7fa80bdc04309132 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+3f9899a578a8 drm/i915/tgl: Implement Wa_1407901919
+e5a4d51c5ebf drm/i915/tgl: Add Wa number to WaAllowPMDepthAndInvocationCountAccessFromUMD
+84bd1383141d drm/i915/tgl: Restrict Wa_1408615072 to A0 stepping
+46cf911d9366 drm/i915/tgl: Add note about Wa_1409142259
+915fab948609 drm/i915/tgl: Fix the Wa number of a fix
+6a0c4bdfb024 drm/i915/tgl: Add note about Wa_1607063988
+7d1dc53cd0c8 drm/i915/tgl: Add note to Wa_1607297627
+989dada4baef drm/i915/tgl: Extend Wa_1606931601 for all steppings
+af32679a4a7a drm/i915/tgl: Add Wa_1409085225, Wa_14010229206
+cdbe2acc573b drm/i915/tgl: Implement Wa_1806527549
+c11d2385411c drm/i915/tgl: Implement Wa_1409804808
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16748/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
