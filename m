@@ -1,17 +1,17 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54FE417363C
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:41:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F73C17363F
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:41:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 053A26F417;
-	Fri, 28 Feb 2020 11:41:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30D8D6F418;
+	Fri, 28 Feb 2020 11:41:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 260C56F414
+Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
+ [207.211.31.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9105E6F414
  for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:41:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  s=mimecast20190719; t=1582890082;
@@ -19,39 +19,39 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=PQ6YE3J+SWkZkUcMVcHwLBYJzaxJi0rm45haNUMOGis=;
- b=b4nNA74mnwXwB6XB38B7bZR7dPy9r3zTJ2+BO4YN7gpc4zqIeJEyVXlo5kZKimqHwcxHxA
- dU96gd3iDihUkyEkSrxylmkD+MJRuhPwhOKvIP0MK14VCWj7YPqakzeQiUf5g2H9mgW9BT
- B90MU89ud+Sj/gksFiWAMoZYUdStZB8=
+ bh=rpjPL9jqeyRVwMqMh1jhx1Zp0mgurSsoUQwzX5GX6lI=;
+ b=Mz9b2MLkz3CJxBkvM9gLc3rWlnIBvuKH/QFFMjm4EYqtPcjTShR3Ebu+dSMnZdhKW3vs42
+ fKCFJT2O3XaOPpkTV8aE/dA4rI2DBsuUP1KyPmn/jr7qWtMqI4yN2bl7rXPsi9icUyk3Fh
+ G8DInaodq/JGeUWoEwNa2c2QtOHUhaY=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-156-8BW-4Vi1NG-pLfxnxGHs4Q-1; Fri, 28 Feb 2020 06:41:17 -0500
-X-MC-Unique: 8BW-4Vi1NG-pLfxnxGHs4Q-1
+ us-mta-163-CvNtpvaUPyKkMq86xVwOxg-1; Fri, 28 Feb 2020 06:41:18 -0500
+X-MC-Unique: CvNtpvaUPyKkMq86xVwOxg-1
 Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
  [10.5.11.11])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id BEFA1107ACC7;
- Fri, 28 Feb 2020 11:41:15 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 7B34BA0CDD;
+ Fri, 28 Feb 2020 11:41:17 +0000 (UTC)
 Received: from shalem.localdomain.com (ovpn-117-193.ams2.redhat.com
  [10.36.117.193])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5CCE51CB;
- Fri, 28 Feb 2020 11:41:14 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 1121E1CB;
+ Fri, 28 Feb 2020 11:41:15 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Fri, 28 Feb 2020 12:41:09 +0100
-Message-Id: <20200228114110.187792-2-hdegoede@redhat.com>
+Date: Fri, 28 Feb 2020 12:41:10 +0100
+Message-Id: <20200228114110.187792-3-hdegoede@redhat.com>
 In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
 References: <20200228114110.187792-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Subject: [Intel-gfx] [PATCH resend 1/2] drm/i915/dsi: Remove readback of
- panel orientation on BYT / CHT
+Subject: [Intel-gfx] [PATCH resend 2/2] drm/i915/dp: Use
+ BDB_GENERAL_FEATURES VBT block info for builtin panel-orientation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,82 +66,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
  dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29tbWl0IDgyZGFjYTI5NzUwNiAoImRybS9pOTE1OiBBZGQgInBhbmVsIG9yaWVudGF0aW9uIiBw
-cm9wZXJ0eSB0byB0aGUKcGFuZWwgY29ubmVjdG9yLCB2Ni4iKSB1c2VzIGhhcmR3YXJlIHN0YXRl
-IHJlYWRiYWNrIHRvIGRldGVybWluZSBpZiB0aGUKR09QIGlzIHJvdGF0aW5nIHRoZSBpbWFnZSBi
-eSAxODAgZGVncmVlcyB0byBjb21wZW5zYXRlIGZvciB1cHNpZGUtZG93bgptb3VudGVkIHBhbmVs
-cy4KCldoZW4gSSB3cm90ZSB0aGF0IGNvbW1pdCBJIHRyaWVkIHRvIGZpbmQgdGhlIFZCVCBiaXRz
-IHRoZSBHT1AgdXNlZCB0bwpkZWNpZGUgdG8gcm90YXRlIHRoZSBpbWFnZSwgYnV0IEkgY291bGQg
-bm90IGZpbmQgdGhlbS4gQmFjayB0aGVuIEkgb25seQpsb29rZWQgYXQgdGhlIHJvdGF0aW9uIGJp
-dHMgaW4gc3RydWN0IG1pcGlfY29uZmlnIGFuZCB0aGVzZSByZWFkIDAgb24KdGhlIDEgQllUIGRl
-dmljZSBJIGhhdmUgd2l0aCBhbiB1cHNpZGUtZG93biBtb3VudGVkIHBhbmVsCihhIEdQLWVsZWN0
-cm9uaWMgVDcwMSB0YWJsZXQpLiBXaGlsZSB3b3JraW5nIG9uIGEgc2ltaWxhciBwcm9ibGVtIG9u
-IGEKQllUIGRldmljZSB3aXRoIGFuIGVEUCBwYW5lbCBJIG5vdGljZWQgdGhhdCB0aGUgbmV3Cmlu
-dGVsX2RzaV9nZXRfcGFuZWxfb3JpZW50YXRpb24oKSBoZWxwZXIgd2hpY2ggZ2V0cyB1c2VkIG9u
-IG5ld2VyClNvQ3MgKEFwb2xsby1MYWtlLCBldGMuKSBjaGVja3MgdGhlIHJvdGF0ZV8xODAgYml0
-IGluIHRoZQpCREJfR0VORVJBTF9GRUFUVVJFUyBWQlQgYmxvY2suCgpJJ3ZlIGNoZWNrZWQgYW5k
-IHRoaXMgYml0IGluZGVlZCBpcyBzZXQgb24gdGhlIEdQLWVsZWN0cm9uaWMgVDcwMSB0YWJsZXQs
-CnNvIHVzaW5nIHRoZSBnZW5lcmljIGludGVsX2RzaV9nZXRfcGFuZWxfb3JpZW50YXRpb24oKSBo
-ZWxwZXIgdGhlcmUgZG9lcwp0aGUgcmlnaHQgdGhpbmcgd2l0aG91dCBuZWVkaW5nIGFueSBleHRy
-YSByZWFkYmFjayBvZiBodyBzdGF0ZS4KClRoaXMgY29tbWl0IHJlbW92ZXMgdGhlIHNwZWNpYWwg
-aGFuZGxpbmcgb2YgdGhlIHBhbmVsIG9yaWVudGF0aW9uIGZvcgpEU0kgcGFuZWxzIG9uIEJZVC9D
-SFQgZGV2aWNlcywgYnJpbmdpbmcgdGhlIGhhbmRsaW5nIGluIGxpbmUgd2l0aCB0aGUKaGFuZGxp
-bmcgb2YgRFNJIHBhbmVscyBvbiBvdGhlciBkZXZpY2VzLgoKUmV2aWV3ZWQtYnk6IFZpbGxlIFN5
-cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IEhh
-bnMgZGUgR29lZGUgPGhkZWdvZWRlQHJlZGhhdC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS92bHZfZHNpLmMgfCA1NSArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQogMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCA1NCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Zsdl9kc2kuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvdmx2X2RzaS5jCmluZGV4IGQwN2NmYWQ4Y2U2Zi4uZjRjMzYyZGM2ZTE1
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Zsdl9kc2kuYworKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Zsdl9kc2kuYwpAQCAtMTU5MSw1OSArMTU5
-MSw2IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9mdW5jcyBpbnRlbF9kc2lf
-Y29ubmVjdG9yX2Z1bmNzID0gewogCS5hdG9taWNfZHVwbGljYXRlX3N0YXRlID0gaW50ZWxfZGln
-aXRhbF9jb25uZWN0b3JfZHVwbGljYXRlX3N0YXRlLAogfTsKIAotc3RhdGljIGVudW0gZHJtX3Bh
-bmVsX29yaWVudGF0aW9uCi12bHZfZHNpX2dldF9od19wYW5lbF9vcmllbnRhdGlvbihzdHJ1Y3Qg
-aW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCi17Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUg
-KmRldl9wcml2ID0gdG9faTkxNShjb25uZWN0b3ItPmJhc2UuZGV2KTsKLQlzdHJ1Y3QgaW50ZWxf
-ZW5jb2RlciAqZW5jb2RlciA9IGludGVsX2F0dGFjaGVkX2VuY29kZXIoY29ubmVjdG9yKTsKLQll
-bnVtIGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIHBvd2VyX2RvbWFpbjsKLQllbnVtIGRybV9w
-YW5lbF9vcmllbnRhdGlvbiBvcmllbnRhdGlvbjsKLQlzdHJ1Y3QgaW50ZWxfcGxhbmUgKnBsYW5l
-OwotCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOwotCWludGVsX3dha2VyZWZfdCB3YWtlcmVmOwot
-CWVudW0gcGlwZSBwaXBlOwotCXUzMiB2YWw7Ci0KLQlpZiAoIWVuY29kZXItPmdldF9od19zdGF0
-ZShlbmNvZGVyLCAmcGlwZSkpCi0JCXJldHVybiBEUk1fTU9ERV9QQU5FTF9PUklFTlRBVElPTl9V
-TktOT1dOOwotCi0JY3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9wcml2LCBwaXBl
-KTsKLQlwbGFuZSA9IHRvX2ludGVsX3BsYW5lKGNydGMtPmJhc2UucHJpbWFyeSk7Ci0KLQlwb3dl
-cl9kb21haW4gPSBQT1dFUl9ET01BSU5fUElQRShwaXBlKTsKLQl3YWtlcmVmID0gaW50ZWxfZGlz
-cGxheV9wb3dlcl9nZXRfaWZfZW5hYmxlZChkZXZfcHJpdiwgcG93ZXJfZG9tYWluKTsKLQlpZiAo
-IXdha2VyZWYpCi0JCXJldHVybiBEUk1fTU9ERV9QQU5FTF9PUklFTlRBVElPTl9VTktOT1dOOwot
-Ci0JdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgRFNQQ05UUihwbGFuZS0+aTl4eF9wbGFu
-ZSkpOwotCi0JaWYgKCEodmFsICYgRElTUExBWV9QTEFORV9FTkFCTEUpKQotCQlvcmllbnRhdGlv
-biA9IERSTV9NT0RFX1BBTkVMX09SSUVOVEFUSU9OX1VOS05PV047Ci0JZWxzZSBpZiAodmFsICYg
-RElTUFBMQU5FX1JPVEFURV8xODApCi0JCW9yaWVudGF0aW9uID0gRFJNX01PREVfUEFORUxfT1JJ
-RU5UQVRJT05fQk9UVE9NX1VQOwotCWVsc2UKLQkJb3JpZW50YXRpb24gPSBEUk1fTU9ERV9QQU5F
-TF9PUklFTlRBVElPTl9OT1JNQUw7Ci0KLQlpbnRlbF9kaXNwbGF5X3Bvd2VyX3B1dChkZXZfcHJp
-diwgcG93ZXJfZG9tYWluLCB3YWtlcmVmKTsKLQotCXJldHVybiBvcmllbnRhdGlvbjsKLX0KLQot
-c3RhdGljIGVudW0gZHJtX3BhbmVsX29yaWVudGF0aW9uCi12bHZfZHNpX2dldF9wYW5lbF9vcmll
-bnRhdGlvbihzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0b3IpCi17Ci0Jc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjb25uZWN0b3ItPmJhc2UuZGV2KTsK
-LQllbnVtIGRybV9wYW5lbF9vcmllbnRhdGlvbiBvcmllbnRhdGlvbjsKLQotCWlmIChJU19WQUxM
-RVlWSUVXKGRldl9wcml2KSB8fCBJU19DSEVSUllWSUVXKGRldl9wcml2KSkgewotCQlvcmllbnRh
-dGlvbiA9IHZsdl9kc2lfZ2V0X2h3X3BhbmVsX29yaWVudGF0aW9uKGNvbm5lY3Rvcik7Ci0JCWlm
-IChvcmllbnRhdGlvbiAhPSBEUk1fTU9ERV9QQU5FTF9PUklFTlRBVElPTl9VTktOT1dOKQotCQkJ
-cmV0dXJuIG9yaWVudGF0aW9uOwotCX0KLQotCXJldHVybiBpbnRlbF9kc2lfZ2V0X3BhbmVsX29y
-aWVudGF0aW9uKGNvbm5lY3Rvcik7Ci19Ci0KIHN0YXRpYyB2b2lkIHZsdl9kc2lfYWRkX3Byb3Bl
-cnRpZXMoc3RydWN0IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yKQogewogCXN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY29ubmVjdG9yLT5iYXNlLmRldik7CkBA
-IC0xNjYyLDcgKzE2MDksNyBAQCBzdGF0aWMgdm9pZCB2bHZfZHNpX2FkZF9wcm9wZXJ0aWVzKHN0
-cnVjdCBpbnRlbF9jb25uZWN0b3IgKmNvbm5lY3RvcikKIAogCQlkcm1fY29ubmVjdG9yX3NldF9w
-YW5lbF9vcmllbnRhdGlvbl93aXRoX3F1aXJrKAogCQkJCSZjb25uZWN0b3ItPmJhc2UsCi0JCQkJ
-dmx2X2RzaV9nZXRfcGFuZWxfb3JpZW50YXRpb24oY29ubmVjdG9yKSwKKwkJCQlpbnRlbF9kc2lf
-Z2V0X3BhbmVsX29yaWVudGF0aW9uKGNvbm5lY3RvciksCiAJCQkJY29ubmVjdG9yLT5wYW5lbC5m
-aXhlZF9tb2RlLT5oZGlzcGxheSwKIAkJCQljb25uZWN0b3ItPnBhbmVsLmZpeGVkX21vZGUtPnZk
-aXNwbGF5KTsKIAl9Ci0tIAoyLjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+Some devices with a builtin panel have the panel mounted upside down,
+this is indicated by the rotate_180 bit in the BDB_GENERAL_FEATURES VBT
+block.
+
+We store this info in dev_priv->vbt.orientation, use this to set the
+connector's orientation property so that fbcon and userspace will show
+the image the right way up on devices with an upside-down mounted panel.
+
+This fixes the image being upside-down on a Teclast X89 tablet.
+
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 2db8d46f61a1..c31f5233941c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -7608,9 +7608,8 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	intel_panel_setup_backlight(connector, pipe);
+ 
+ 	if (fixed_mode) {
+-		/* We do not know the orientation, but their might be a quirk */
+ 		drm_connector_set_panel_orientation_with_quirk(connector,
+-				DRM_MODE_PANEL_ORIENTATION_UNKNOWN,
++				dev_priv->vbt.orientation,
+ 				fixed_mode->hdisplay, fixed_mode->vdisplay);
+ 	}
+ 
+-- 
+2.24.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
