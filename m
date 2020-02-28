@@ -2,33 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B91C0174341
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Feb 2020 00:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4EBA17439E
+	for <lists+intel-gfx@lfdr.de>; Sat, 29 Feb 2020 00:57:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D426F532;
-	Fri, 28 Feb 2020 23:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 171476E030;
+	Fri, 28 Feb 2020 23:57:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2747C6F537;
- Fri, 28 Feb 2020 23:37:27 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20391406-1500050 for multiple; Fri, 28 Feb 2020 23:37:24 +0000
-MIME-Version: 1.0
-To: Andi Shyti <andi@etezian.org>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <20200228233448.GE11891@jack.zhora.eu>
+Received: from 19.mo7.mail-out.ovh.net (19.mo7.mail-out.ovh.net
+ [178.33.251.118])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3656E030
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 23:57:27 +0000 (UTC)
+Received: from player731.ha.ovh.net (unknown [10.108.57.141])
+ by mo7.mail-out.ovh.net (Postfix) with ESMTP id 283021554B9
+ for <intel-gfx@lists.freedesktop.org>; Sat, 29 Feb 2020 00:51:33 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player731.ha.ovh.net (Postfix) with ESMTPSA id 959A1FB21390;
+ Fri, 28 Feb 2020 23:51:25 +0000 (UTC)
+Date: Sat, 29 Feb 2020 01:51:24 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200228235124.GF11891@jack.zhora.eu>
 References: <20200228104340.2895082-1-chris@chris-wilson.co.uk>
- <20200228104340.2895082-4-chris@chris-wilson.co.uk>
- <20200228233448.GE11891@jack.zhora.eu>
-Message-ID: <158293304248.29794.5765520201928001036@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Fri, 28 Feb 2020 23:37:22 +0000
-Subject: Re: [Intel-gfx] [PATCH i-g-t 4/5] i915: Exercise sysfs heartbeat
- controls
+ <20200228104340.2895082-3-chris@chris-wilson.co.uk>
+ <20200228232704.GD11891@jack.zhora.eu>
+ <158293277426.29794.2343133378704199477@skylake-alporthouse-com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <158293277426.29794.2343133378704199477@skylake-alporthouse-com>
+X-Ovh-Tracer-Id: 12070772901745312265
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrleelgddutdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH i-g-t 3/5] i915: Exercise preemption timeout
+ controls in sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +55,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-02-28 23:34:48)
-> On Fri, Feb 28, 2020 at 10:43:39AM +0000, Chris Wilson wrote:
-> > We [will] expose various per-engine scheduling controls. One of which,
-> > 'heartbeat_duration_ms', defines how often we send a heartbeat down the
-> > engine to check upon the health of the engine. If a heartbeat does not
-> > complete within the interval (or two), the engine is declared hung.
+> > > +void dyn_sysfs_engines(int i915, int engines, const char *file,
+> > > +                    void (*test)(int, int))
+> > > +{
+> > > +     char buf[512];
+> > > +     int len;
+> > > +
+> > > +     lseek(engines, 0, SEEK_SET);
+> > > +     while ((len = syscall(SYS_getdents64, engines, buf, sizeof(buf))) > 0) {
+> > > +             void *ptr = buf;
+> > > +
+> > > +             while (len) {
+> > > +                     struct linux_dirent64 {
+> > > +                             ino64_t        d_ino;
+> > > +                             off64_t        d_off;
+> > > +                             unsigned short d_reclen;
+> > > +                             unsigned char  d_type;
+> > > +                             char           d_name[];
+> > > +                     } *de = ptr;
 > > 
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > what is the need for having your own linux_dirent64?
 > 
-> Someone with not a good eye might swear to have read this patch
-> once, and at patch 5/5 he will ask again the same question.
-> 
-> Why don't we put together in a library the things that patch
-> 3/4/5 have in common?
+> fdopendir() takes ownership of the fd, preventing reuse. And
+> fdopendir(dup()) is getting ridiculous.
 
-They are. It's basically a repeating pattern of testing with local
-assumptions. For the sole reason that I'm not very inventive.
--Chris
+why not using dirent64?
+
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
