@@ -1,42 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 618BE173668
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:49:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C05DE173672
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 12:53:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7BB56F429;
-	Fri, 28 Feb 2020 11:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C9A6F430;
+	Fri, 28 Feb 2020 11:53:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6476F429
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:49:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 03:49:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,495,1574150400"; d="scan'208";a="238741376"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.66.115.214])
- ([10.66.115.214])
- by orsmga003.jf.intel.com with ESMTP; 28 Feb 2020 03:49:28 -0800
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- =?UTF-8?Q?Jos=c3=a9_Roberto_de_Souza?= <jose.souza@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200227235005.18706-1-jose.souza@intel.com>
- <87lfonqive.fsf@intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <aae242f3-3730-f9fd-0adf-85805c9bb0e4@intel.com>
-Date: Fri, 28 Feb 2020 17:19:27 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C47F16F431
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 11:52:58 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20383967-1500050 for multiple; Fri, 28 Feb 2020 11:52:55 +0000
 MIME-Version: 1.0
-In-Reply-To: <87lfonqive.fsf@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Use firmware v2.06 for TGL
+From: Chris Wilson <chris@chris-wilson.co.uk>
+User-Agent: alot/0.6
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
+ <20200227085723.1961649-12-chris@chris-wilson.co.uk>
+ <87blpj7xv6.fsf@gaia.fi.intel.com>
+In-Reply-To: <87blpj7xv6.fsf@gaia.fi.intel.com>
+Message-ID: <158289077278.24106.12975460776411775775@skylake-alporthouse-com>
+Date: Fri, 28 Feb 2020 11:52:52 +0000
+Subject: Re: [Intel-gfx] [PATCH 12/20] drm/i915/selftests: Verify LRC
+ isolation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,42 +42,185 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAyOC1GZWItMjAgMTI6NDkgUE0sIEphbmkgTmlrdWxhIHdyb3RlOgo+IE9uIFRodSwgMjcg
-RmViIDIwMjAsIEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPiB3
-cm90ZToKPj4gTmV3IGZpcm13YXJlIGNvbnRhaW5zIG1pbm9yIGZpeGVzIGFyb3VuZCBjb250ZXh0
-IHJlc3RvcmUuCj4gCj4gUGxlYXNlIGdldCB0aGUgZmlybXdhcmUgaW4gbGludXgtZmlybXdhcmUg
-YW5kIENJIGZpcnN0Ogo+IAo+IDw3PlsgICAgNi4zMjg4ODRdIGk5MTUgMDAwMDowMDowMi4wOiBb
-ZHJtOmludGVsX2Nzcl91Y29kZV9pbml0IFtpOTE1XV0gTG9hZGluZyBpOTE1L3RnbF9kbWNfdmVy
-Ml8wNi5iaW4KPiA8ND5bICAgIDYuMzMwNjEyXSBpOTE1IDAwMDA6MDA6MDIuMDogRGlyZWN0IGZp
-cm13YXJlIGxvYWQgZm9yIGk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbiBmYWlsZWQgd2l0aCBlcnJv
-ciAtMgo+IDw1PlsgICAgNi4zMzA2NDVdIGk5MTUgMDAwMDowMDowMi4wOiBbZHJtXSBGYWlsZWQg
-dG8gbG9hZCBETUMgZmlybXdhcmUgaTkxNS90Z2xfZG1jX3ZlcjJfMDYuYmluLiBEaXNhYmxpbmcg
-cnVudGltZSBwb3dlciBtYW5hZ2VtZW50Lgo+IDw1PlsgICAgNi4zMzA2NDhdIGk5MTUgMDAwMDow
-MDowMi4wOiBbZHJtXSBETUMgZmlybXdhcmUgaG9tZXBhZ2U6IGh0dHBzOi8vZ2l0Lmtlcm5lbC5v
-cmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L2Zpcm13YXJlL2xpbnV4LWZpcm13YXJlLmdpdC90
-cmVlL2k5MTUKPiAKPiBCUiwKPiBKYW5pLgo+IApVcGRhdGUgZnJvbSBDSSB0ZWFtOiBsaW51eC1m
-aXJtd2FyZSB1cGRhdGVkIChtYW51YWxseSkgd2l0aCAKaTkxNS90Z2xfZG1jX3ZlcjJfMDYuYmlu
-LiBSZXJ1biBpbml0aWF0ZWQuIE5leHQgcnVuLCB2Ml8wNiBzaG91bGQgYmUgbG9hZGVkLgo+IAo+
-Pgo+PiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGlu
-dGVsLmNvbT4KPj4gLS0tCj4+ICAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9j
-c3IuYyB8IDQgKystLQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVs
-ZXRpb25zKC0pCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX2Nzci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwo+
-PiBpbmRleCA1NzMyMGMxMjgzOWYuLjMxMTI1NzJjZmI3ZCAxMDA2NDQKPj4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jc3IuYwo+PiArKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCj4+IEBAIC00MCw4ICs0MCw4IEBACj4+ICAgCj4+
-ICAgI2RlZmluZSBHRU4xMl9DU1JfTUFYX0ZXX1NJWkUJCUlDTF9DU1JfTUFYX0ZXX1NJWkUKPj4g
-ICAKPj4gLSNkZWZpbmUgVEdMX0NTUl9QQVRICQkJImk5MTUvdGdsX2RtY192ZXIyXzA0LmJpbiIK
-Pj4gLSNkZWZpbmUgVEdMX0NTUl9WRVJTSU9OX1JFUVVJUkVECUNTUl9WRVJTSU9OKDIsIDQpCj4+
-ICsjZGVmaW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNfdmVyMl8wNi5iaW4iCj4+ICsj
-ZGVmaW5lIFRHTF9DU1JfVkVSU0lPTl9SRVFVSVJFRAlDU1JfVkVSU0lPTigyLCA2KQo+PiAgICNk
-ZWZpbmUgVEdMX0NTUl9NQVhfRldfU0laRQkJMHg2MDAwCj4+ICAgTU9EVUxFX0ZJUk1XQVJFKFRH
-TF9DU1JfUEFUSCk7Cj4gCgotLSAKflN3YXRpIFNoYXJtYQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Quoting Mika Kuoppala (2020-02-28 11:30:21)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> > +     x = 0;
+> > +     dw = 0;
+> > +     hw = engine->pinned_default_state;
+> > +     hw += LRC_STATE_PN * PAGE_SIZE / sizeof(*hw);
+> > +     do {
+> > +             u32 lri = hw[dw];
+> > +
+> > +             if (lri == 0) {
+> > +                     dw++;
+> > +                     continue;
+> > +             }
+> > +
+> > +             if ((lri & GENMASK(31, 23)) != MI_INSTR(0x22, 0)) {
+> > +                     lri &= 0x7f;
+> > +                     dw += lri + 2;
+> > +                     continue;
+> > +             }
+> > +
+> > +             lri &= 0x7f;
+> > +             lri++;
+> > +             dw++;
+> 
+> The pattern for weeding out everything except lris starts
+> to stand out as a boilerplate. 
+
+Ssh. Just do a visual replacement with for_each_register()
+
+> 
+> > +
+> > +             while (lri) {
+> > +                     if (!is_moving(A[0][x], A[1][x]) &&
+> > +                         (A[0][x] != B[0][x] || A[1][x] != B[1][x])) {
+> > +                             switch (hw[dw] & 4095) {
+> > +                             case 0x30: /* RING_HEAD */
+> > +                             case 0x34: /* RING_TAIL */
+> > +                                     break;
+> > +
+> > +                             default:
+> > +                                     pr_err("%s[%d]: Mismatch for register %4x, default %08x, reference %08x, result (%08x, %08x), poison %08x, context %08x\n",
+> 
+> 0x left out on all for compactness or by accident?
+
+I tend not to use 0x, unless it looks odd or we need machine parsing :) 
+Here the compactness helps with a very long line.
+
+> > +                                            engine->name, x,
+> > +                                            hw[dw], hw[dw + 1],
+> > +                                            A[0][x], B[0][x], B[1][x],
+> > +                                            poison, lrc[dw + 1]);
+> > +                                     err = -EINVAL;
+> > +                                     break;
+> > +                             }
+> > +                     }
+> > +                     dw += 2;
+> > +                     lri -= 2;
+> > +                     x++;
+> > +             }
+> > +     } while (dw < PAGE_SIZE / sizeof(u32) &&
+> > +              (hw[dw] & ~BIT(0)) != MI_BATCH_BUFFER_END);
+> > +
+> > +     i915_gem_object_unpin_map(ce->state->obj);
+> > +err_B1:
+> > +     i915_gem_object_unpin_map(result[1]->obj);
+> > +err_B0:
+> > +     i915_gem_object_unpin_map(result[0]->obj);
+> > +err_A1:
+> > +     i915_gem_object_unpin_map(ref[1]->obj);
+> > +err_A0:
+> > +     i915_gem_object_unpin_map(ref[0]->obj);
+> > +     return err;
+> > +}
+> > +
+> > +static int __lrc_isolation(struct intel_engine_cs *engine, u32 poison)
+> > +{
+> > +     u32 *sema = memset32(engine->status_page.addr + 1000, 0, 1);
+> > +     struct i915_vma *ref[2], *result[2];
+> > +     struct intel_context *A, *B;
+> > +     struct i915_request *rq;
+> > +     int err;
+> > +
+> > +     A = intel_context_create(engine);
+> > +     if (IS_ERR(A))
+> > +             return PTR_ERR(A);
+> > +
+> > +     B = intel_context_create(engine);
+> > +     if (IS_ERR(B)) {
+> > +             err = PTR_ERR(B);
+> > +             goto err_A;
+> > +     }
+> > +
+> > +     ref[0] = create_user_vma(A->vm, SZ_64K);
+> > +     if (IS_ERR(ref[0])) {
+> > +             err = PTR_ERR(ref[0]);
+> > +             goto err_B;
+> > +     }
+> > +
+> > +     ref[1] = create_user_vma(A->vm, SZ_64K);
+> > +     if (IS_ERR(ref[1])) {
+> > +             err = PTR_ERR(ref[1]);
+> > +             goto err_ref0;
+> > +     }
+> > +
+> > +     rq = record_registers(A, ref[0], ref[1], sema);
+> > +     if (IS_ERR(rq)) {
+> > +             err = PTR_ERR(rq);
+> > +             goto err_ref1;
+> > +     }
+> > +
+> > +     WRITE_ONCE(*sema, 1);
+> > +     wmb();
+> 
+> So with this you get reference base for before and after...
+> 
+> > +
+> > +     if (i915_request_wait(rq, 0, HZ / 2) < 0) {
+> > +             i915_request_put(rq);
+> > +             err = -ETIME;
+> > +             goto err_ref1;
+> > +     }
+> > +     i915_request_put(rq);
+> > +
+> > +     result[0] = create_user_vma(A->vm, SZ_64K);
+> > +     if (IS_ERR(result[0])) {
+> > +             err = PTR_ERR(result[0]);
+> > +             goto err_ref1;
+> > +     }
+> > +
+> > +     result[1] = create_user_vma(A->vm, SZ_64K);
+> > +     if (IS_ERR(result[1])) {
+> > +             err = PTR_ERR(result[1]);
+> > +             goto err_result0;
+> > +     }
+> > +
+> > +     rq = record_registers(A, result[0], result[1], sema);
+> > +     if (IS_ERR(rq)) {
+> > +             err = PTR_ERR(rq);
+> > +             goto err_result1;
+> > +     }
+> > +
+> > +     err = poison_registers(B, poison, sema);
+> 
+> ..and apparently the poisoning releases the semaphore
+> triggering the preemption?
+
+Correct.
+
+> How can you make preempt happen deterministically with this?
+
+We use MI_ARB_ONOFF to ensure that we can only be preempted within the
+semaphore.
+
+> Released semaphore generates interrupt and you have it ready
+> with maximum prio?
+
+On submission of the I915_PRIORITY_BARRIER request, we will immediately
+submit it to ELSP, and so queue the preemption request to HW. Since we
+disable preemption in record_registers() until it hits the semaphore, we
+know that the second batch must run only when the first is waiting on
+that semaphore.
+ 
+> I am also puzzled why there is a need for two set of reference
+> values?
+
+One is without preemption from a second context (so just one context
+running on the HW). This reference should match the context image
+before/after. The other is after having been preempted between the
+two reads. This /should/ also match its context image...
+
+The first checks our mechanism for reading back the registers and
+comparing them to the context, the second is the actual test.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
