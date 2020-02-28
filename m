@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B47B173770
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 13:45:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E725F173772
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 13:45:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 158D06E17C;
-	Fri, 28 Feb 2020 12:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E9796E17E;
+	Fri, 28 Feb 2020 12:45:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 392F46E17C
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 12:45:47 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 04:45:46 -0800
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="232234913"
-Received: from pmulhall-mobl.ger.corp.intel.com (HELO [10.251.85.135])
- ([10.251.85.135])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 28 Feb 2020 04:45:44 -0800
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
- <20200227085723.1961649-17-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <eae19a92-c807-4663-4509-f47e33f1209c@linux.intel.com>
-Date: Fri, 28 Feb 2020 12:45:42 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB53E6E17E;
+ Fri, 28 Feb 2020 12:45:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E449DA00FD;
+ Fri, 28 Feb 2020 12:45:50 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200227085723.1961649-17-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 17/20] drm/i915/gt: Declare when we enabled
- timeslicing
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Fri, 28 Feb 2020 12:45:50 -0000
+Message-ID: <158289395093.7477.18228907371768217745@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200227235005.18706-1-jose.souza@intel.com>
+In-Reply-To: <20200227235005.18706-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/dmc=3A_Use_firmware_v2=2E06_for_TGL_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,87 +38,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 27/02/2020 08:57, Chris Wilson wrote:
-> Let userspace know if they can trust timeslicing by including it as part
-> of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
-> 
-> v2: Only declare timeslicing if we can safely preempt userspace.
-> 
-> Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Kenneth Graunke <kenneth@whitecape.org>
-> ---
->   drivers/gpu/drm/i915/gt/intel_engine.h      | 3 ++-
->   drivers/gpu/drm/i915/gt/intel_engine_user.c | 5 +++++
->   include/uapi/drm/i915_drm.h                 | 1 +
->   3 files changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 29c8c03c5caa..a32dc82a90d4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -326,7 +326,8 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
->   	if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
->   		return false;
->   
-> -	return intel_engine_has_semaphores(engine);
-> +	return (intel_engine_has_semaphores(engine) &&
-> +		intel_engine_has_preemption(engine));
+Series: drm/i915/dmc: Use firmware v2.06 for TGL (rev3)
+URL   : https://patchwork.freedesktop.org/series/74048/
+State : success
 
-This could be the fixes bit.
+== Summary ==
 
-AFAIR has_semaphores is can we preempt between batches and 
-has_preemption is can we preempt inside them. What was the consequence 
-of not considering this in has_timeslices?
+CI Bug Log - changes from CI_DRM_8026 -> Patchwork_16760
+====================================================
 
->   }
->   
->   #endif /* _INTEL_RINGBUFFER_H_ */
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> index 848decee9066..b84fdd722781 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
-> @@ -121,6 +121,11 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
->   			else
->   				disabled |= BIT(map[i].sched);
->   		}
-> +
-> +		if (intel_engine_has_timeslices(engine))
-> +			enabled |= I915_SCHEDULER_CAP_TIMESLICING;
-> +		else
-> +			disabled |= I915_SCHEDULER_CAP_TIMESLICING;
->   	}
->   
->   	i915->caps.scheduler = enabled & ~disabled;
-> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-> index 2813e579b480..4f903431a3fe 100644
-> --- a/include/uapi/drm/i915_drm.h
-> +++ b/include/uapi/drm/i915_drm.h
-> @@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
->   #define   I915_SCHEDULER_CAP_PREEMPTION	(1ul << 2)
->   #define   I915_SCHEDULER_CAP_SEMAPHORES	(1ul << 3)
->   #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS	(1ul << 4)
-> +#define   I915_SCHEDULER_CAP_TIMESLICING	(1ul << 5)
+Summary
+-------
 
-And this would be the new uapi bit.
+  **SUCCESS**
 
-Split into two patches?
+  No regressions found.
 
-Regards,
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/index.html
 
-Tvrtko
+Known issues
+------------
 
->   
->   #define I915_PARAM_HUC_STATUS		 42
->   
-> 
+  Here are the changes found in Patchwork_16760 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([i915#217])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8026/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111096] / [i915#323])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8026/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][5] -> [DMESG-WARN][6] ([i915#44])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8026/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [FAIL][7] ([i915#579]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8026/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Additional (1): fi-tgl-dsi 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8026 -> Patchwork_16760
+
+  CI-20190529: 20190529
+  CI_DRM_8026: 6ce18c241dde9ee20b19ff42f8198552a57ab259 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5474: 1be610f852de155cd915e7cda65cb2737adf04d4 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16760: 2503c44a4e485772157374779168d97826bf4800 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2503c44a4e48 drm/i915/dmc: Use firmware v2.06 for TGL
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16760/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
