@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D6F1737FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:10:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5540C173808
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 14:14:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 752876F443;
-	Fri, 28 Feb 2020 13:10:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 382F96F44A;
+	Fri, 28 Feb 2020 13:14:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE49D6F443
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:10:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8B4A6F445
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 13:14:45 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20385259-1500050 for multiple; Fri, 28 Feb 2020 13:10:19 +0000
+ 20385304-1500050 for multiple; Fri, 28 Feb 2020 13:14:39 +0000
 MIME-Version: 1.0
-From: Chris Wilson <chris@chris-wilson.co.uk>
-User-Agent: alot/0.6
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <eae19a92-c807-4663-4509-f47e33f1209c@linux.intel.com>
 References: <20200227085723.1961649-1-chris@chris-wilson.co.uk>
- <20200227085723.1961649-9-chris@chris-wilson.co.uk>
- <de7be74c-1bc0-6081-2788-be3f5f30afae@linux.intel.com>
- <158289309991.24106.11560132712313715212@skylake-alporthouse-com>
- <c36f4167-f06a-1b59-b5f9-e1efee20d634@linux.intel.com>
-In-Reply-To: <c36f4167-f06a-1b59-b5f9-e1efee20d634@linux.intel.com>
-Message-ID: <158289541748.24106.14903286456113120245@skylake-alporthouse-com>
-Date: Fri, 28 Feb 2020 13:10:17 +0000
-Subject: Re: [Intel-gfx] [PATCH 09/20] drm/i915/gt: Reset
- queue_priority_hint after wedging
+ <20200227085723.1961649-17-chris@chris-wilson.co.uk>
+ <eae19a92-c807-4663-4509-f47e33f1209c@linux.intel.com>
+Message-ID: <158289567706.24106.4022755688554979855@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Fri, 28 Feb 2020 13:14:37 +0000
+Subject: Re: [Intel-gfx] [PATCH 17/20] drm/i915/gt: Declare when we enabled
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,141 +42,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Kenneth Graunke <kenneth@whitecape.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-02-28 12:59:37)
+Quoting Tvrtko Ursulin (2020-02-28 12:45:42)
 > 
-> On 28/02/2020 12:31, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-02-28 12:10:23)
-> >>
-> >> On 27/02/2020 08:57, Chris Wilson wrote:
-> >>> An odd and highly unlikely path caught us out. On delayed submission
-> >>> (due to an asynchronous reset handler), we poked the priority_hint and
-> >>> kicked the tasklet. However, we had already marked the device as wedged
-> >>> and swapped out the tasklet for a no-op. The result was that we never
-> >>> cleared the priority hint and became upset when we later checked.
-> >>>
-> >>> <0> [574.303565] i915_sel-6278    2.... 481822445us : __i915_subtests: Running intel_execlists_live_selftests/live_error_interrupt
-> >>> <0> [574.303565] i915_sel-6278    2.... 481822472us : __engine_unpark: 0000:00:02.0 rcs0:
-> >>> <0> [574.303565] i915_sel-6278    2.... 481822491us : __gt_unpark: 0000:00:02.0
-> >>> <0> [574.303565] i915_sel-6278    2.... 481823220us : execlists_context_reset: 0000:00:02.0 rcs0: context:f4ee reset
-> >>> <0> [574.303565] i915_sel-6278    2.... 481824830us : __intel_context_active: 0000:00:02.0 rcs0: context:f51b active
-> >>> <0> [574.303565] i915_sel-6278    2.... 481825258us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51b pin ring:{start:00006000, head:0000, tail:0000}
-> >>> <0> [574.303565] i915_sel-6278    2.... 481825311us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> >>> <0> [574.303565] i915_sel-6278    2d..1 481825347us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51b:2, current 0
-> >>> <0> [574.303565] i915_sel-6278    2d..1 481825363us : trace_ports: 0000:00:02.0 rcs0: submit { f51b:2, 0:0 }
-> >>> <0> [574.303565] i915_sel-6278    2.... 481826809us : __intel_context_active: 0000:00:02.0 rcs0: context:f51c active
-> >>> <0> [574.303565]   <idle>-0       7d.h2 481827326us : cs_irq_handler: 0000:00:02.0 rcs0: CS error: 1
-> >>> <0> [574.303565]   <idle>-0       7..s1 481827377us : process_csb: 0000:00:02.0 rcs0: cs-irq head=3, tail=4
-> >>> <0> [574.303565]   <idle>-0       7..s1 481827379us : process_csb: 0000:00:02.0 rcs0: csb[4]: status=0x10000001:0x00000000
-> >>> <0> [574.305593]   <idle>-0       7..s1 481827385us : trace_ports: 0000:00:02.0 rcs0: promote { f51b:2*, 0:0 }
-> >>> <0> [574.305611]   <idle>-0       7..s1 481828179us : execlists_reset: 0000:00:02.0 rcs0: reset for CS error
-> >>> <0> [574.305611] i915_sel-6278    2.... 481828284us : __intel_context_do_pin: 0000:00:02.0 rcs0: context:f51c pin ring:{start:00007000, head:0000, tail:0000}
-> >>> <0> [574.305611] i915_sel-6278    2.... 481828345us : __i915_request_commit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> >>> <0> [574.305611]   <idle>-0       7dNs2 481847823us : __i915_request_unsubmit: 0000:00:02.0 rcs0: fence f51b:2, current 1
-> >>> <0> [574.305611]   <idle>-0       7dNs2 481847857us : execlists_hold: 0000:00:02.0 rcs0: fence f51b:2, current 1 on hold
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 481847863us : intel_engine_reset: 0000:00:02.0 rcs0: flags=4
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 481847945us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-1
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 481847946us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 538584284us : intel_engine_stop_cs: 0000:00:02.0 rcs0: timed out on STOP_RING -> IDLE
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 538584347us : __intel_gt_reset: 0000:00:02.0 engine_mask=1
-> >>> <0> [574.305611]   <idle>-0       7.Ns1 538584406us : execlists_reset_rewind: 0000:00:02.0 rcs0:
-> >>> <0> [574.305611]   <idle>-0       7dNs2 538585050us : __i915_request_reset: 0000:00:02.0 rcs0: fence f51b:2, current 1 guilty? yes
-> >>> <0> [574.305611]   <idle>-0       7dNs2 538585063us : __execlists_reset: 0000:00:02.0 rcs0: replay {head:0000, tail:0068}
-> >>> <0> [574.306565]   <idle>-0       7.Ns1 538588457us : intel_engine_cancel_stop_cs: 0000:00:02.0 rcs0:
-> >>> <0> [574.306565]   <idle>-0       7dNs2 538588462us : __i915_request_submit: 0000:00:02.0 rcs0: fence f51c:2, current 0
-> >>> <0> [574.306565]   <idle>-0       7dNs2 538588471us : trace_ports: 0000:00:02.0 rcs0: submit { f51c:2, 0:0 }
-> >>> <0> [574.306565]   <idle>-0       7.Ns1 538588474us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->1
-> >>> <0> [574.306565] kworker/-202     2.... 538588755us : i915_request_retire: 0000:00:02.0 rcs0: fence f51c:2, current 2
-> >>> <0> [574.306565] ksoftirq-46      7..s. 538588773us : process_csb: 0000:00:02.0 rcs0: cs-irq head=11, tail=1
-> >>> <0> [574.306565] ksoftirq-46      7..s. 538588774us : process_csb: 0000:00:02.0 rcs0: csb[0]: status=0x10000001:0x00000000
-> >>> <0> [574.306565] ksoftirq-46      7..s. 538588776us : trace_ports: 0000:00:02.0 rcs0: promote { f51c:2!, 0:0 }
-> >>> <0> [574.306565] ksoftirq-46      7..s. 538588778us : process_csb: 0000:00:02.0 rcs0: csb[1]: status=0x10000018:0x00000020
-> >>> <0> [574.306565] ksoftirq-46      7..s. 538588779us : trace_ports: 0000:00:02.0 rcs0: completed { f51c:2!, 0:0 }
-> >>> <0> [574.306565] kworker/-202     2.... 538588826us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51c unpin
-> >>> <0> [574.306565] i915_sel-6278    6.... 538589663us : __intel_gt_set_wedged.part.32: 0000:00:02.0 start
-> >>> <0> [574.306565] i915_sel-6278    6.... 538589667us : execlists_reset_prepare: 0000:00:02.0 rcs0: depth<-0
-> >>> <0> [574.306565] i915_sel-6278    6.... 538589710us : intel_engine_stop_cs: 0000:00:02.0 rcs0:
-> >>> <0> [574.306565] i915_sel-6278    6.... 538589732us : execlists_reset_prepare: 0000:00:02.0 bcs0: depth<-0
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589733us : intel_engine_stop_cs: 0000:00:02.0 bcs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589757us : execlists_reset_prepare: 0000:00:02.0 vcs0: depth<-0
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589758us : intel_engine_stop_cs: 0000:00:02.0 vcs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589771us : execlists_reset_prepare: 0000:00:02.0 vcs1: depth<-0
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589772us : intel_engine_stop_cs: 0000:00:02.0 vcs1:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589778us : execlists_reset_prepare: 0000:00:02.0 vecs0: depth<-0
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589780us : intel_engine_stop_cs: 0000:00:02.0 vecs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538589786us : __intel_gt_reset: 0000:00:02.0 engine_mask=ff
-> >>> <0> [574.307591] i915_sel-6278    6.... 538591175us : execlists_reset_cancel: 0000:00:02.0 rcs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538591970us : execlists_reset_cancel: 0000:00:02.0 bcs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538591982us : execlists_reset_cancel: 0000:00:02.0 vcs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538591996us : execlists_reset_cancel: 0000:00:02.0 vcs1:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538592759us : execlists_reset_cancel: 0000:00:02.0 vecs0:
-> >>> <0> [574.307591] i915_sel-6278    6.... 538592977us : execlists_reset_finish: 0000:00:02.0 rcs0: depth->0
-> >>> <0> [574.307591] i915_sel-6278    6.N.. 538592996us : execlists_reset_finish: 0000:00:02.0 bcs0: depth->0
-> >>> <0> [574.307591] i915_sel-6278    6.N.. 538593023us : execlists_reset_finish: 0000:00:02.0 vcs0: depth->0
-> >>> <0> [574.307591] i915_sel-6278    6.N.. 538593037us : execlists_reset_finish: 0000:00:02.0 vcs1: depth->0
-> >>> <0> [574.307591] i915_sel-6278    6.N.. 538593051us : execlists_reset_finish: 0000:00:02.0 vecs0: depth->0
-> >>> <0> [574.307591] i915_sel-6278    6.... 538593407us : __intel_gt_set_wedged.part.32: 0000:00:02.0 end
-> >>> <0> [574.307591] kworker/-210     7d..1 551958381us : execlists_unhold: 0000:00:02.0 rcs0: fence f51b:2, current 2 hold release
-> >>> <0> [574.307591] i915_sel-6278    0.... 559490788us : i915_request_retire: 0000:00:02.0 rcs0: fence f51b:2, current 2
-> >>> <0> [574.307591] i915_sel-6278    0.... 559490793us : intel_context_unpin: 0000:00:02.0 rcs0: context:f51b unpin
-> >>> <0> [574.307591] i915_sel-6278    0.... 559490798us : __engine_park: 0000:00:02.0 rcs0: parked
-> >>> <0> [574.307591] i915_sel-6278    0.... 559490982us : __intel_context_retire: 0000:00:02.0 rcs0: context:f51c retire runtime: { total:30004ns, avg:30004ns }
-> >>> <0> [574.307591] i915_sel-6278    0.... 559491372us : __engine_park: __engine_park:261 GEM_BUG_ON(engine->execlists.queue_priority_hint != (-((int)(~0U >> 1)) - 1))
-> >>>
-> >>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> >>> ---
-> >>>    drivers/gpu/drm/i915/gt/intel_lrc.c | 3 +++
-> >>>    1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> index 39b0125b7143..35c5cf786726 100644
-> >>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> >>> @@ -3724,7 +3724,10 @@ static void execlists_reset_rewind(struct intel_engine_cs *engine, bool stalled)
-> >>>    
-> >>>    static void nop_submission_tasklet(unsigned long data)
-> >>>    {
-> >>> +     struct intel_engine_cs * const engine = (struct intel_engine_cs *)data;
-> >>> +
-> >>>        /* The driver is wedged; don't process any more events. */
-> >>> +     WRITE_ONCE(engine->execlists.queue_priority_hint, INT_MIN);
-> >>
-> >> Why from the tasklet and not the place which clears the queue?
+> On 27/02/2020 08:57, Chris Wilson wrote:
+> > Let userspace know if they can trust timeslicing by including it as part
+> > of the I915_PARAM_HAS_SCHEDULER::I915_SCHEDULER_CAP_TIMESLICING
 > > 
-> > That would be the list_move within nop_submit_request()
-> > [i915_request_submit]
+> > v2: Only declare timeslicing if we can safely preempt userspace.
 > > 
-> > I chose this tasklet as we do the reset in execlists_submission_tasklet()
-> > on clearing the queue there, and so thought this was analogous.
+> > Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Kenneth Graunke <kenneth@whitecape.org>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_engine.h      | 3 ++-
+> >   drivers/gpu/drm/i915/gt/intel_engine_user.c | 5 +++++
+> >   include/uapi/drm/i915_drm.h                 | 1 +
+> >   3 files changed, 8 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > index 29c8c03c5caa..a32dc82a90d4 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine.h
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
+> > @@ -326,7 +326,8 @@ intel_engine_has_timeslices(const struct intel_engine_cs *engine)
+> >       if (!IS_ACTIVE(CONFIG_DRM_I915_TIMESLICE_DURATION))
+> >               return false;
+> >   
+> > -     return intel_engine_has_semaphores(engine);
+> > +     return (intel_engine_has_semaphores(engine) &&
+> > +             intel_engine_has_preemption(engine));
 > 
-> It actually looks to me it is unhold which is causing this, so it is not 
-> true we never reset the hint, it was probably overwritten:
-> 
-> execlists_reset_cancel, at the end of it:
-> 
->         /* Remaining _unready_ requests will be nop'ed when submitted */
-> 
->         execlists->queue_priority_hint = INT_MIN;
-> 
-> Just who overwrote it.. someone called unhold after 
-> execlists_reset_cancel finished.
-> 
-> Should unhold not restore the priority hint if the requests on the hold 
-> list are -EIO?
+> This could be the fixes bit.
 
-It is the unhold callback, it does
+Nah, I quite liked timeslicing between requests -- but I decided that if
+we are to make a statement userspace can rely on, it has to be
+timeslicing works inside userspace batches.
+ 
+> AFAIR has_semaphores is can we preempt between batches and 
+> has_preemption is can we preempt inside them. What was the consequence 
+> of not considering this in has_timeslices?
 
-        if (rq_prio(rq) > engine->execlists.queue_priority_hint) {
-                engine->execlists.queue_priority_hint = rq_prio(rq);
-                tasklet_hi_schedule(&engine->execlists.tasklet);
-        }
+Right. It meant the timeslice could only take effect in the
+MI_ARB_ENABLE window in between requests. That is we could break up long
+amalgamations of contexts, but not the user.
 
-and queues the [now] nop_submission_tasklet. Which would be fine if it
-behaved similarly.
+So I don't think this bit is the fixes.
+
+> >   #endif /* _INTEL_RINGBUFFER_H_ */
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > index 848decee9066..b84fdd722781 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+> > @@ -121,6 +121,11 @@ static void set_scheduler_caps(struct drm_i915_private *i915)
+> >                       else
+> >                               disabled |= BIT(map[i].sched);
+> >               }
+> > +
+> > +             if (intel_engine_has_timeslices(engine))
+> > +                     enabled |= I915_SCHEDULER_CAP_TIMESLICING;
+> > +             else
+> > +                     disabled |= I915_SCHEDULER_CAP_TIMESLICING;
+> >       }
+> >   
+> >       i915->caps.scheduler = enabled & ~disabled;
+> > diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> > index 2813e579b480..4f903431a3fe 100644
+> > --- a/include/uapi/drm/i915_drm.h
+> > +++ b/include/uapi/drm/i915_drm.h
+> > @@ -523,6 +523,7 @@ typedef struct drm_i915_irq_wait {
+> >   #define   I915_SCHEDULER_CAP_PREEMPTION     (1ul << 2)
+> >   #define   I915_SCHEDULER_CAP_SEMAPHORES     (1ul << 3)
+> >   #define   I915_SCHEDULER_CAP_ENGINE_BUSY_STATS      (1ul << 4)
+> > +#define   I915_SCHEDULER_CAP_TIMESLICING     (1ul << 5)
+> 
+> And this would be the new uapi bit.
+> 
+> Split into two patches?
+
+Nah. This is the Fixes: that I need to use semaphores in iris :)
+And I think CAP_TIMESLICING has to mean userspace is timesliced (to the
+granularity of objects at least) for it to mean anything userspace can
+take advantage of.
 -Chris
 _______________________________________________
 Intel-gfx mailing list
