@@ -1,37 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822EB1741CD
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 23:07:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91C601741D1
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 23:11:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B096F4EE;
-	Fri, 28 Feb 2020 22:07:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D8FB6F4E9;
+	Fri, 28 Feb 2020 22:10:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 120886F4EE
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 22:07:15 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE6C6F4F9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 22:10:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 14:07:14 -0800
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 14:10:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="232387412"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 28 Feb 2020 14:07:14 -0800
-Date: Fri, 28 Feb 2020 14:07:14 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200228220714.GE174531@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,497,1574150400"; d="scan'208";a="385622204"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga004.jf.intel.com with ESMTP; 28 Feb 2020 14:10:57 -0800
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
+ FMSMSX106.amr.corp.intel.com ([169.254.5.97]) with mapi id 14.03.0439.000;
+ Fri, 28 Feb 2020 14:10:51 -0800
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Justen, Jordan L" <jordan.l.justen@intel.com>, "Antognolli, Rafael"
+ <rafael.antognolli@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH v3 11/11] drm/i915/tgl: Implement
+ Wa_1407901919
+Thread-Index: AQHV7blYPRhy2+4t2E+Cfi/X2eTYfqgxsYYAgAABQAA=
+Date: Fri, 28 Feb 2020 22:10:50 +0000
+Message-ID: <455053abb36e70f33755d32701611b49f8c8f770.camel@intel.com>
 References: <20200227220101.321671-1-jose.souza@intel.com>
  <20200227220101.321671-11-jose.souza@intel.com>
+ <20200228220714.GE174531@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20200228220714.GE174531@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.14.234]
+Content-ID: <5BE1145683B7454280C3778533A810AE@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200227220101.321671-11-jose.souza@intel.com>
 Subject: Re: [Intel-gfx] [PATCH v3 11/11] drm/i915/tgl: Implement
  Wa_1407901919
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -46,125 +57,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Feb 27, 2020 at 02:01:01PM -0800, Jos=E9 Roberto de Souza wrote:
-> This will fix a memory coherence issue.
-> =
-
-> v3: using whitespace to make easy to read WA (Chris)
-> =
-
-> BSpec: 52890
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c |  8 ++++++++
->  drivers/gpu/drm/i915/i915_reg.h             | 20 +++++++++++---------
->  2 files changed, 19 insertions(+), 9 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
-m/i915/gt/intel_workarounds.c
-> index 3e375a3b7714..c59e1a604ab8 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -601,6 +601,14 @@ static void tgl_ctx_workarounds_init(struct intel_en=
-gine_cs *engine,
->  	 */
->  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK,
->  	       FF_MODE2_TDS_TIMER_128, 0);
-> +
-> +	/* Wa_1407901919:tgl */
-> +	wa_add(wal, ICL_HDC_MODE,
-> +	       HDC_COHERENT_ACCESS_L1_CACHE_DIS |
-> +	       HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W,
-
-I'm not sure if this is what the workaround is asking for.  The way I
-understood the workaround, the 2-dword STATE_COMPUTE_MODE instruction
-has a couple bits that must be left at 0.  STATE_COMPUTE_MODE is
-basically how we ultimately load the HDC_MODE registers (rather than
-using a simple LRI like we do for a bunch of other registers), but the
-workaround isn't asking us to worry about bits 13+14 in the HDC_MODE
-register itself, but rather those flags bits on the instruction that
-manipulates the register.
-
-Every time there's a context switch, the hardware will generate a copy
-of this instruction as part of the context image in writes to RAM; I'm
-assuming these bits aren't set on those hardware-created instructions?
-Assuming that's true, then I think this workaround would just be
-userspace's responsibility --- if they submit an explicit
-STATE_COMPUTE_MODE instruction that isn't just part of the context
-image, they need to follow the workaround guidance here and leave two of
-those bits set to 0.
-
-
-Matt
-
-> +	       0,
-> +	       HDC_COHERENT_ACCESS_L1_CACHE_DIS |
-> +	       HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W);
->  }
->  =
-
->  static void
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 80cf02a6eec1..28822585537b 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7883,15 +7883,17 @@ enum {
->  #define  GEN8_LQSC_FLUSH_COHERENT_LINES		(1 << 21)
->  =
-
->  /* GEN8 chicken */
-> -#define HDC_CHICKEN0				_MMIO(0x7300)
-> -#define CNL_HDC_CHICKEN0			_MMIO(0xE5F0)
-> -#define ICL_HDC_MODE				_MMIO(0xE5F4)
-> -#define  HDC_FORCE_CSR_NON_COHERENT_OVR_DISABLE	(1 << 15)
-> -#define  HDC_FENCE_DEST_SLM_DISABLE		(1 << 14)
-> -#define  HDC_DONOT_FETCH_MEM_WHEN_MASKED	(1 << 11)
-> -#define  HDC_FORCE_CONTEXT_SAVE_RESTORE_NON_COHERENT	(1 << 5)
-> -#define  HDC_FORCE_NON_COHERENT			(1 << 4)
-> -#define  HDC_BARRIER_PERFORMANCE_DISABLE	(1 << 10)
-> +#define HDC_CHICKEN0					_MMIO(0x7300)
-> +#define CNL_HDC_CHICKEN0				_MMIO(0xE5F0)
-> +#define ICL_HDC_MODE					_MMIO(0xE5F4)
-> +#define  HDC_FORCE_CSR_NON_COHERENT_OVR_DISABLE		REG_BIT(15)
-> +#define  HDC_FENCE_DEST_SLM_DISABLE			REG_BIT(14)
-> +#define  HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W	REG_BIT(13)
-> +#define  HDC_COHERENT_ACCESS_L1_CACHE_DIS		REG_BIT(12)
-> +#define  HDC_DONOT_FETCH_MEM_WHEN_MASKED		REG_BIT(11)
-> +#define  HDC_FORCE_CONTEXT_SAVE_RESTORE_NON_COHERENT	REG_BIT(5)
-> +#define  HDC_FORCE_NON_COHERENT				REG_BIT(4)
-> +#define  HDC_BARRIER_PERFORMANCE_DISABLE		REG_BIT(10)
->  =
-
->  #define GEN8_HDC_CHICKEN1			_MMIO(0x7304)
->  =
-
-> -- =
-
-> 2.25.1
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Q2FuIHlvdSBndXlzIGhlbHAgaW4gdGhpcyBvbmU/IENoZWNrIE1hdHQgY29tbWVudCBiZWxsb3cu
+DQoNCk9uIEZyaSwgMjAyMC0wMi0yOCBhdCAxNDowNyAtMDgwMCwgTWF0dCBSb3BlciB3cm90ZToN
+Cj4gT24gVGh1LCBGZWIgMjcsIDIwMjAgYXQgMDI6MDE6MDFQTSAtMDgwMCwgSm9zw6kgUm9iZXJ0
+byBkZSBTb3V6YQ0KPiB3cm90ZToNCj4gPiBUaGlzIHdpbGwgZml4IGEgbWVtb3J5IGNvaGVyZW5j
+ZSBpc3N1ZS4NCj4gPiANCj4gPiB2MzogdXNpbmcgd2hpdGVzcGFjZSB0byBtYWtlIGVhc3kgdG8g
+cmVhZCBXQSAoQ2hyaXMpDQo+ID4gDQo+ID4gQlNwZWM6IDUyODkwDQo+ID4gQ2M6IENocmlzIFdp
+bHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvc8Op
+IFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+ICBk
+cml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgIDggKysrKysrKysN
+Cj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCAgICAgICAgICAgICB8IDIwICsr
+KysrKysrKysrLS0tLQ0KPiA+IC0tLS0tDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTkgaW5zZXJ0
+aW9ucygrKSwgOSBkZWxldGlvbnMoLSkNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYw0KPiA+IGluZGV4IDNlMzc1YTNiNzcxNC4uYzU5
+ZTFhNjA0YWI4IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVs
+X3dvcmthcm91bmRzLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93
+b3JrYXJvdW5kcy5jDQo+ID4gQEAgLTYwMSw2ICs2MDEsMTQgQEAgc3RhdGljIHZvaWQgdGdsX2N0
+eF93b3JrYXJvdW5kc19pbml0KHN0cnVjdA0KPiA+IGludGVsX2VuZ2luZV9jcyAqZW5naW5lLA0K
+PiA+ICAJICovDQo+ID4gIAl3YV9hZGQod2FsLCBGRl9NT0RFMiwgRkZfTU9ERTJfVERTX1RJTUVS
+X01BU0ssDQo+ID4gIAkgICAgICAgRkZfTU9ERTJfVERTX1RJTUVSXzEyOCwgMCk7DQo+ID4gKw0K
+PiA+ICsJLyogV2FfMTQwNzkwMTkxOTp0Z2wgKi8NCj4gPiArCXdhX2FkZCh3YWwsIElDTF9IRENf
+TU9ERSwNCj4gPiArCSAgICAgICBIRENfQ09IRVJFTlRfQUNDRVNTX0wxX0NBQ0hFX0RJUyB8DQo+
+ID4gKwkgICAgICAgSERDX0RJU19MMV9JTlZBTF9GT1JfTk9OX0wxX0NBQ0hFQUJMRV9XLA0KPiAN
+Cj4gSSdtIG5vdCBzdXJlIGlmIHRoaXMgaXMgd2hhdCB0aGUgd29ya2Fyb3VuZCBpcyBhc2tpbmcg
+Zm9yLiAgVGhlIHdheSBJDQo+IHVuZGVyc3Rvb2QgdGhlIHdvcmthcm91bmQsIHRoZSAyLWR3b3Jk
+IFNUQVRFX0NPTVBVVEVfTU9ERSBpbnN0cnVjdGlvbg0KPiBoYXMgYSBjb3VwbGUgYml0cyB0aGF0
+IG11c3QgYmUgbGVmdCBhdCAwLiAgU1RBVEVfQ09NUFVURV9NT0RFIGlzDQo+IGJhc2ljYWxseSBo
+b3cgd2UgdWx0aW1hdGVseSBsb2FkIHRoZSBIRENfTU9ERSByZWdpc3RlcnMgKHJhdGhlciB0aGFu
+DQo+IHVzaW5nIGEgc2ltcGxlIExSSSBsaWtlIHdlIGRvIGZvciBhIGJ1bmNoIG9mIG90aGVyIHJl
+Z2lzdGVycyksIGJ1dA0KPiB0aGUNCj4gd29ya2Fyb3VuZCBpc24ndCBhc2tpbmcgdXMgdG8gd29y
+cnkgYWJvdXQgYml0cyAxMysxNCBpbiB0aGUgSERDX01PREUNCj4gcmVnaXN0ZXIgaXRzZWxmLCBi
+dXQgcmF0aGVyIHRob3NlIGZsYWdzIGJpdHMgb24gdGhlIGluc3RydWN0aW9uIHRoYXQNCj4gbWFu
+aXB1bGF0ZXMgdGhlIHJlZ2lzdGVyLg0KPiANCj4gRXZlcnkgdGltZSB0aGVyZSdzIGEgY29udGV4
+dCBzd2l0Y2gsIHRoZSBoYXJkd2FyZSB3aWxsIGdlbmVyYXRlIGENCj4gY29weQ0KPiBvZiB0aGlz
+IGluc3RydWN0aW9uIGFzIHBhcnQgb2YgdGhlIGNvbnRleHQgaW1hZ2UgaW4gd3JpdGVzIHRvIFJB
+TTsNCj4gSSdtDQo+IGFzc3VtaW5nIHRoZXNlIGJpdHMgYXJlbid0IHNldCBvbiB0aG9zZSBoYXJk
+d2FyZS1jcmVhdGVkDQo+IGluc3RydWN0aW9ucz8NCj4gQXNzdW1pbmcgdGhhdCdzIHRydWUsIHRo
+ZW4gSSB0aGluayB0aGlzIHdvcmthcm91bmQgd291bGQganVzdCBiZQ0KPiB1c2Vyc3BhY2UncyBy
+ZXNwb25zaWJpbGl0eSAtLS0gaWYgdGhleSBzdWJtaXQgYW4gZXhwbGljaXQNCj4gU1RBVEVfQ09N
+UFVURV9NT0RFIGluc3RydWN0aW9uIHRoYXQgaXNuJ3QganVzdCBwYXJ0IG9mIHRoZSBjb250ZXh0
+DQo+IGltYWdlLCB0aGV5IG5lZWQgdG8gZm9sbG93IHRoZSB3b3JrYXJvdW5kIGd1aWRhbmNlIGhl
+cmUgYW5kIGxlYXZlIHR3bw0KPiBvZg0KPiB0aG9zZSBiaXRzIHNldCB0byAwLg0KPiANCj4gDQo+
+IE1hdHQNCj4gDQo+ID4gKwkgICAgICAgMCwNCj4gPiArCSAgICAgICBIRENfQ09IRVJFTlRfQUND
+RVNTX0wxX0NBQ0hFX0RJUyB8DQo+ID4gKwkgICAgICAgSERDX0RJU19MMV9JTlZBTF9GT1JfTk9O
+X0wxX0NBQ0hFQUJMRV9XKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgc3RhdGljIHZvaWQNCj4gPiBk
+aWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiA+IGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiA+IGluZGV4IDgwY2YwMmE2ZWVjMS4uMjg4MjI1
+ODU1MzdiIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgN
+Cj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4gQEAgLTc4ODMs
+MTUgKzc4ODMsMTcgQEAgZW51bSB7DQo+ID4gICNkZWZpbmUgIEdFTjhfTFFTQ19GTFVTSF9DT0hF
+UkVOVF9MSU5FUwkJKDEgPDwgMjEpDQo+ID4gIA0KPiA+ICAvKiBHRU44IGNoaWNrZW4gKi8NCj4g
+PiAtI2RlZmluZSBIRENfQ0hJQ0tFTjAJCQkJX01NSU8oMHg3MzAwKQ0KPiA+IC0jZGVmaW5lIENO
+TF9IRENfQ0hJQ0tFTjAJCQlfTU1JTygweEU1RjApDQo+ID4gLSNkZWZpbmUgSUNMX0hEQ19NT0RF
+CQkJCV9NTUlPKDB4RTVGNCkNCj4gPiAtI2RlZmluZSAgSERDX0ZPUkNFX0NTUl9OT05fQ09IRVJF
+TlRfT1ZSX0RJU0FCTEUJKDEgPDwgMTUpDQo+ID4gLSNkZWZpbmUgIEhEQ19GRU5DRV9ERVNUX1NM
+TV9ESVNBQkxFCQkoMSA8PCAxNCkNCj4gPiAtI2RlZmluZSAgSERDX0RPTk9UX0ZFVENIX01FTV9X
+SEVOX01BU0tFRAkoMSA8PCAxMSkNCj4gPiAtI2RlZmluZSAgSERDX0ZPUkNFX0NPTlRFWFRfU0FW
+RV9SRVNUT1JFX05PTl9DT0hFUkVOVAkoMSA8PA0KPiA+IDUpDQo+ID4gLSNkZWZpbmUgIEhEQ19G
+T1JDRV9OT05fQ09IRVJFTlQJCQkoMSA8PCA0KQ0KPiA+IC0jZGVmaW5lICBIRENfQkFSUklFUl9Q
+RVJGT1JNQU5DRV9ESVNBQkxFCSgxIDw8IDEwKQ0KPiA+ICsjZGVmaW5lIEhEQ19DSElDS0VOMAkJ
+CQkJX01NSU8oMA0KPiA+IHg3MzAwKQ0KPiA+ICsjZGVmaW5lIENOTF9IRENfQ0hJQ0tFTjAJCQkJ
+X01NSU8oMHhFNUYwKQ0KPiA+ICsjZGVmaW5lIElDTF9IRENfTU9ERQkJCQkJX01NSU8oMA0KPiA+
+IHhFNUY0KQ0KPiA+ICsjZGVmaW5lICBIRENfRk9SQ0VfQ1NSX05PTl9DT0hFUkVOVF9PVlJfRElT
+QUJMRQkJUkVHX0JJVA0KPiA+ICgxNSkNCj4gPiArI2RlZmluZSAgSERDX0ZFTkNFX0RFU1RfU0xN
+X0RJU0FCTEUJCQlSRUdfQklUDQo+ID4gKDE0KQ0KPiA+ICsjZGVmaW5lICBIRENfRElTX0wxX0lO
+VkFMX0ZPUl9OT05fTDFfQ0FDSEVBQkxFX1cJUkVHX0JJVCgxMykNCj4gPiArI2RlZmluZSAgSERD
+X0NPSEVSRU5UX0FDQ0VTU19MMV9DQUNIRV9ESVMJCVJFR19CSVQoMTIpDQo+ID4gKyNkZWZpbmUg
+IEhEQ19ET05PVF9GRVRDSF9NRU1fV0hFTl9NQVNLRUQJCVJFR19CSVQoMTEpDQo+ID4gKyNkZWZp
+bmUgIEhEQ19GT1JDRV9DT05URVhUX1NBVkVfUkVTVE9SRV9OT05fQ09IRVJFTlQJUkVHX0JJVA0K
+PiA+ICg1KQ0KPiA+ICsjZGVmaW5lICBIRENfRk9SQ0VfTk9OX0NPSEVSRU5UCQkJCVJFR19CSVQN
+Cj4gPiAoNCkNCj4gPiArI2RlZmluZSAgSERDX0JBUlJJRVJfUEVSRk9STUFOQ0VfRElTQUJMRQkJ
+UkVHX0JJVCgxMCkNCj4gPiAgDQo+ID4gICNkZWZpbmUgR0VOOF9IRENfQ0hJQ0tFTjEJCQlfTU1J
+TygweDczMDQpDQo+ID4gIA0KPiA+IC0tIA0KPiA+IDIuMjUuMQ0KPiA+IA0KPiA+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdA0KPiA+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gPiBodHRw
+czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeA0KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
+aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
