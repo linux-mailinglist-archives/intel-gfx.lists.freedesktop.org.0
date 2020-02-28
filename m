@@ -2,37 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A92173C88
-	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 334B4173C8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 28 Feb 2020 17:08:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F466E94F;
-	Fri, 28 Feb 2020 16:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 844946EE83;
+	Fri, 28 Feb 2020 16:07:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391146E94F
- for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:05:32 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037666EE83
+ for <intel-gfx@lists.freedesktop.org>; Fri, 28 Feb 2020 16:07:57 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 28 Feb 2020 08:05:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="272683380"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga002.fm.intel.com with SMTP; 28 Feb 2020 08:05:23 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 28 Feb 2020 18:05:23 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 28 Feb 2020 18:05:23 +0200
-Message-Id: <20200228160523.1064-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
-References: <20190425203759.16342-1-ville.syrjala@linux.intel.com>
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 08:07:57 -0800
+X-IronPort-AV: E=Sophos;i="5.70,496,1574150400"; d="scan'208";a="227587636"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 28 Feb 2020 08:07:56 -0800
+Date: Fri, 28 Feb 2020 18:07:17 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200228160717.GA30328@ideak-desk.fi.intel.com>
+References: <20200128155152.21977-1-ville.syrjala@linux.intel.com>
+ <20200128155152.21977-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3] drm/i915: Fix 90/270 degree rotated RGB565
- src coord checks
+Content-Disposition: inline
+In-Reply-To: <20200128155152.21977-4-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v2 4/4] drm/i915: Add glk to
+ intel_detect_preproduction_hw()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,62 +46,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClN1
-cHBvc2VkbHkgYm90aCBzcmMgY29vcmRpbmF0ZXMgaGF2ZSB0byBldmVuIHdoZW4gZG9pbmcgOTAv
-MjcwCmRlZ3JlZSByb3RhdGlvbiB3aXRoIFJHQjU2NS4gVGhpcyBpcyBkZWZpbml0ZWx5IHRydWUg
-Zm9yIHRoZQpYIGNvb3JkaW5hdGUgKHdlIGp1c3QgZ2V0IGEgYmxhY2sgc2NyZWVuIHdoZW4gaXQg
-aXMgb2RkKS4gTXkKZXhwZXJpbWVudHMgZGlkbid0IHNob3cgYW55IG1pc2JlaGF2aW91ciB3aXRo
-IGFuIG9kZApZIGNvb3JkaW5hdGUsIGJ1dCBsZXQncyB0cnVzdCB0aGUgc3BlYyBhbmQgcmVqZWN0
-IHRoYXQgb25lCmFzIHdlbGwuCgp2MjogSWdub3JlIGNjcyBoc3ViL3ZzdWIKdjM6IENsYXJpZnkg
-dGhlIENDUyBzcGVjaWFsIChNYWFydGVuKQogICAgRGVhbCB3aXRoIHRnbCsgQ0NTIG1vZGlmaWVy
-cyB3aGVyZSB3ZQogICAgZG8gbmVlZCB0byBsb29rIGF0IGhzdWIvdnN1YgoKUmV2aWV3ZWQtYnk6
-IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+ICN2
-MgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMg
-fCAzMiArKysrKysrKysrKysrKy0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyMSBpbnNlcnRpb25z
-KCspLCAxMSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX3Nwcml0ZS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRl
-bF9zcHJpdGUuYwppbmRleCAyMmFkNmRkZTQ2Y2UuLjFlYzUwMjVjOTBmMCAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9zcHJpdGUuYworKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Nwcml0ZS5jCkBAIC0yODIsNiArMjgyLDE2IEBA
-IGludCBpbnRlbF9wbGFuZV9jaGVja19zcmNfY29vcmRpbmF0ZXMoc3RydWN0IGludGVsX3BsYW5l
-X3N0YXRlICpwbGFuZV9zdGF0ZSkKIAl1MzIgc3JjX3gsIHNyY195LCBzcmNfdywgc3JjX2gsIGhz
-dWIsIHZzdWI7CiAJYm9vbCByb3RhdGVkID0gZHJtX3JvdGF0aW9uXzkwX29yXzI3MChwbGFuZV9z
-dGF0ZS0+aHcucm90YXRpb24pOwogCisJLyoKKwkgKiBGSVhNRSBoc3ViL3ZzdWIgdnMuIGJsb2Nr
-IHNpemUgaXMgYSBtZXNzLiBQcmUtdGdsIENDUworCSAqIGFidXNlcyBoc3ViL3ZzdWIgc28gd2Ug
-Y2FuJ3QgdXNlIHRoZW0gaGVyZS4gQnV0IGFzIHRoZXkKKwkgKiBhcmUgbGltaXRlZCB0byAzMmJw
-cCBSR0IgZm9ybWF0cyB3ZSBkb24ndCBhY3R1YWxseSBuZWVkCisJICogdG8gY2hlY2sgYW55dGhp
-bmcuCisJICovCisJaWYgKGZiLT5tb2RpZmllciA9PSBJOTE1X0ZPUk1BVF9NT0RfWV9USUxFRF9D
-Q1MgfHwKKwkgICAgZmItPm1vZGlmaWVyID09IEk5MTVfRk9STUFUX01PRF9ZZl9USUxFRF9DQ1Mp
-CisJCXJldHVybiAwOworCiAJLyoKIAkgKiBIYXJkd2FyZSBkb2Vzbid0IGhhbmRsZSBzdWJwaXhl
-bCBjb29yZGluYXRlcy4KIAkgKiBBZGp1c3QgdG8gKG1hY3JvKXBpeGVsIGJvdW5kYXJ5LCBidXQg
-YmUgY2FyZWZ1bCBub3QgdG8KQEAgLTI5NiwyNiArMzA2LDI2IEBAIGludCBpbnRlbF9wbGFuZV9j
-aGVja19zcmNfY29vcmRpbmF0ZXMoc3RydWN0IGludGVsX3BsYW5lX3N0YXRlICpwbGFuZV9zdGF0
-ZSkKIAlkcm1fcmVjdF9pbml0KHNyYywgc3JjX3ggPDwgMTYsIHNyY195IDw8IDE2LAogCQkgICAg
-ICBzcmNfdyA8PCAxNiwgc3JjX2ggPDwgMTYpOwogCi0JaWYgKCFmYi0+Zm9ybWF0LT5pc195dXYp
-Ci0JCXJldHVybiAwOwotCi0JLyogWVVWIHNwZWNpZmljIGNoZWNrcyAqLwotCWlmICghcm90YXRl
-ZCkgeworCWlmIChmYi0+Zm9ybWF0LT5mb3JtYXQgPT0gRFJNX0ZPUk1BVF9SR0I1NjUgJiYgcm90
-YXRlZCkgeworCQloc3ViID0gMjsKKwkJdnN1YiA9IDI7CisJfSBlbHNlIHsKIAkJaHN1YiA9IGZi
-LT5mb3JtYXQtPmhzdWI7CiAJCXZzdWIgPSBmYi0+Zm9ybWF0LT52c3ViOwotCX0gZWxzZSB7Ci0J
-CWhzdWIgPSB2c3ViID0gbWF4KGZiLT5mb3JtYXQtPmhzdWIsIGZiLT5mb3JtYXQtPnZzdWIpOwog
-CX0KIAorCWlmIChyb3RhdGVkKQorCQloc3ViID0gdnN1YiA9IG1heChoc3ViLCB2c3ViKTsKKwog
-CWlmIChzcmNfeCAlIGhzdWIgfHwgc3JjX3cgJSBoc3ViKSB7Ci0JCURSTV9ERUJVR19LTVMoInNy
-YyB4L3cgKCV1LCAldSkgbXVzdCBiZSBhIG11bHRpcGxlIG9mICV1IGZvciAlc1lVViBwbGFuZXNc
-biIsCi0JCQkgICAgICBzcmNfeCwgc3JjX3csIGhzdWIsIHJvdGF0ZWQgPyAicm90YXRlZCAiIDog
-IiIpOworCQlEUk1fREVCVUdfS01TKCJzcmMgeC93ICgldSwgJXUpIG11c3QgYmUgYSBtdWx0aXBs
-ZSBvZiAldSAocm90YXRlZDogJXMpXG4iLAorCQkJICAgICAgc3JjX3gsIHNyY193LCBoc3ViLCB5
-ZXNubyhyb3RhdGVkKSk7CiAJCXJldHVybiAtRUlOVkFMOwogCX0KIAogCWlmIChzcmNfeSAlIHZz
-dWIgfHwgc3JjX2ggJSB2c3ViKSB7Ci0JCURSTV9ERUJVR19LTVMoInNyYyB5L2ggKCV1LCAldSkg
-bXVzdCBiZSBhIG11bHRpcGxlIG9mICV1IGZvciAlc1lVViBwbGFuZXNcbiIsCi0JCQkgICAgICBz
-cmNfeSwgc3JjX2gsIHZzdWIsIHJvdGF0ZWQgPyAicm90YXRlZCAiIDogIiIpOworCQlEUk1fREVC
-VUdfS01TKCJzcmMgeS9oICgldSwgJXUpIG11c3QgYmUgYSBtdWx0aXBsZSBvZiAldSAocm90YXRl
-ZDogJXMpXG4iLAorCQkJICAgICAgc3JjX3ksIHNyY19oLCB2c3ViLCB5ZXNubyhyb3RhdGVkKSk7
-CiAJCXJldHVybiAtRUlOVkFMOwogCX0KIAotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
-LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Jan 28, 2020 at 05:51:52PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Detect GLK pre-production steppings. Not 100% of A2 being pre-prod
+> since the spec is a bit of a mess but feels more or less correct.
+> =
+
+> Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+On the series:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 1 +
+>  drivers/gpu/drm/i915/i915_drv.h | 2 ++
+>  2 files changed, 3 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_=
+drv.c
+> index 5a5846d892f4..d89d54f5593c 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -438,6 +438,7 @@ static void intel_detect_preproduction_hw(struct drm_=
+i915_private *dev_priv)
+>  	pre |=3D IS_SKL_REVID(dev_priv, 0, SKL_REVID_F0);
+>  	pre |=3D IS_BXT_REVID(dev_priv, 0, BXT_REVID_B_LAST);
+>  	pre |=3D IS_KBL_REVID(dev_priv, 0, KBL_REVID_A0);
+> +	pre |=3D IS_GLK_REVID(dev_priv, 0, GLK_REVID_A2);
+>  =
+
+>  	if (pre) {
+>  		DRM_ERROR("This is a pre-production stepping. "
+> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_=
+drv.h
+> index a8a08c63278e..d62b57ba0ced 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.h
+> +++ b/drivers/gpu/drm/i915/i915_drv.h
+> @@ -1578,6 +1578,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+>  =
+
+>  #define GLK_REVID_A0		0x0
+>  #define GLK_REVID_A1		0x1
+> +#define GLK_REVID_A2		0x2
+> +#define GLK_REVID_B0		0x3
+>  =
+
+>  #define IS_GLK_REVID(dev_priv, since, until) \
+>  	(IS_GEMINILAKE(dev_priv) && IS_REVID(dev_priv, since, until))
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
