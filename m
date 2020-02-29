@@ -2,60 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (unknown [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C29174543
-	for <lists+intel-gfx@lfdr.de>; Sat, 29 Feb 2020 06:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72563174545
+	for <lists+intel-gfx@lfdr.de>; Sat, 29 Feb 2020 06:49:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF3E6E069;
-	Sat, 29 Feb 2020 05:42:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A266E06E;
+	Sat, 29 Feb 2020 05:49:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F7C26E069;
- Sat, 29 Feb 2020 05:42:01 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id x7so5771447wrr.0;
- Fri, 28 Feb 2020 21:42:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YuOVGNypQMql+jSAKLP8qQUYQA/QyE7yGHxy4q4E/l8=;
- b=u3lSnIqCHBFyWiZIIekqVGfo6955kUAPMSsfbwUDnb98PBEwD3DgQQ8VyQEiCccoVU
- U6z4n0VCE81aEhfOn5YfH27/IXiwrVBI78HlhyL/v8U/+ZP0L0miQjCQvP7JWSeFbNYR
- UxnPrZLbs2vetHKxP0/XdTTOdZFFDRnXjswAluuZ36TYUFntg/9W78LUEgpqlJb1ytwR
- rQLiPMeE3IH6BejGb1M4BB8aiWiTdv4Xk8Qu5VfQY5eb/o1pG3FlTqTnT7KVVMRidQjo
- vtyG+hnfZYsJCPFJ6yb1Oxcz99fR52ImKKlT+CeTTkJTCRyh5dCHnQSfzl1QJd8XOWTF
- 5+GA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=YuOVGNypQMql+jSAKLP8qQUYQA/QyE7yGHxy4q4E/l8=;
- b=gM6jPLg9v1QpI8bqcdScrlvGRwkWg6LvKj3XVU9c0SCjCqgXsTr/ZGprTg5Y5VwpFZ
- hLow+4g5DhK5jJsko0N2L4QoL9CdjwowEBefA9CdDTH3MGjAi7ND2AP2lkuKaaPqeeT/
- 5CZidKuYQzzLzMMzB91HTDHWpsxXW97+pwBJKdPKhVG7L1G449kes7Y+unDXAC061wai
- 5XHuepNE7HF7pgkfTRcyCBDcS1fFRE44ndsxXdjn9vyirLt5iBr6LImacS/zdsbdQ3tf
- xoyzo/VFnLcwHloZyJ0SCX6aoV1Qoan/voiAsBVnRX6Xth6GVZO8xpHdrh26y7+Tz07x
- SXrg==
-X-Gm-Message-State: APjAAAX100q4Ge9UXHCeDjhIuOqW8Hj7tEatIVaG3BCFXtUVOdM6jfUj
- xql6sHNIZdqX4UHbG0QznhFwpVh2
-X-Google-Smtp-Source: APXvYqwchuzQwbP0HG53EpYW+c6/T19uSdF1Ksjsuhi6XWVPxV17jAwAAJfkIJeQ1+/JbGVLGDwgCA==
-X-Received: by 2002:a5d:568f:: with SMTP id f15mr8817507wrv.202.1582954919608; 
- Fri, 28 Feb 2020 21:41:59 -0800 (PST)
-Received: from groovy.localdomain
- (dynamic-2a01-0c22-c836-dd00-74aa-9e10-e4ef-a81b.c22.pool.telefonica.de.
- [2a01:c22:c836:dd00:74aa:9e10:e4ef:a81b])
- by smtp.gmail.com with ESMTPSA id b10sm15671093wrw.61.2020.02.28.21.41.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 28 Feb 2020 21:41:59 -0800 (PST)
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Sat, 29 Feb 2020 06:41:08 +0100
-Message-Id: <20200229054108.2781-1-mario.kleiner.de@gmail.com>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 957596E06E;
+ Sat, 29 Feb 2020 05:49:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8D7B6A00FD;
+ Sat, 29 Feb 2020 05:49:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: Add dpcd link_rate quirk for Apple
- 15" MBP 2017
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mario Kleiner" <mario.kleiner.de@gmail.com>
+Date: Sat, 29 Feb 2020 05:49:43 -0000
+Message-ID: <158295538355.19636.3443767343550208668@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200229054108.2781-1-mario.kleiner.de@gmail.com>
+In-Reply-To: <20200229054108.2781-1-mario.kleiner.de@gmail.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/dp=3A_Add_dpcd_link=5Frate_quirk_for_Apple_15=22_M?=
+ =?utf-8?q?BP_2017?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBmaXhlcyBhIHByb2JsZW0gZm91bmQgb24gdGhlIE1hY0Jvb2tQcm8gMjAxNyBSZXRpbmEg
-cGFuZWwuCgpUaGUgcGFuZWwgcmVwb3J0cyAxMCBicGMgY29sb3IgZGVwdGggaW4gaXRzIEVESUQs
-IGFuZCB0aGUKZmlybXdhcmUgY2hvb3NlcyBsaW5rIHNldHRpbmdzIGF0IGJvb3Qgd2hpY2ggc3Vw
-cG9ydCBlbm91Z2gKYmFuZHdpZHRoIGZvciAxMCBicGMgKDMyNDAwMCBrYml0L3NlYyA9IG11bHRp
-cGxpZXIgMHhjKSwKYnV0IHRoZSBEUF9NQVhfTElOS19SQVRFIGRwY2QgcmVnaXN0ZXIgb25seSBy
-ZXBvcnRzCjIuNyBHYnBzIChtdWx0aXBsaWVyIHZhbHVlIDB4YSkgYXMgcG9zc2libGUsIGluIGRp
-cmVjdApjb250cmFkaWN0aW9uIG9mIHdoYXQgdGhlIGZpcm13YXJlIHN1Y2Nlc3NmdWxseSBzZXQg
-dXAuCgpUaGlzIHJlc3RyaWN0cyB0aGUgcGFuZWwgdG8gOCBicGMsIG5vdCBwcm92aWRpbmcgdGhl
-IGZ1bGwKY29sb3IgZGVwdGggb2YgdGhlIHBhbmVsLgoKVGhpcyBwYXRjaCBhZGRzIGEgcXVpcmsg
-c3BlY2lmaWMgdG8gdGhlIE1CUCAyMDE3IDE1IiBSZXRpbmEKcGFuZWwgdG8gYWRkIHRoZSBhZGRp
-dGlpb25hbCAzMjQwMDAga2JwcyBsaW5rIHJhdGUgZHVyaW5nCmVkcCBzZXR1cC4KCkxpbmsgdG8g
-cHJldmlvdXMgZGlzY3Vzc2lvbiBvZiBhIGRpZmZlcmVudCBhdHRlbXB0ZWQgZml4CndpdGggVmls
-bGUgYW5kIEphbmk6CgpodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3BhdGNoLzExMzI1OTM1
-LwoKU2lnbmVkLW9mZi1ieTogTWFyaW8gS2xlaW5lciA8bWFyaW8ua2xlaW5lci5kZUBnbWFpbC5j
-b20+CkNjOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpD
-YzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9k
-cm0vZHJtX2RwX2hlbHBlci5jICAgICAgICAgfCAyICsrCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RwLmMgfCA3ICsrKysrKysKIGluY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIu
-aCAgICAgICAgICAgICB8IDcgKysrKysrKwogMyBmaWxlcyBjaGFuZ2VkLCAxNiBpbnNlcnRpb25z
-KCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYyBiL2RyaXZl
-cnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMKaW5kZXggNWExMDNlOWIzYzg2Li4zNmEzNzFjMDE2
-Y2IgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHBfaGVscGVyLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2RybV9kcF9oZWxwZXIuYwpAQCAtMTE3OSw2ICsxMTc5LDggQEAgc3RhdGlj
-IGNvbnN0IHN0cnVjdCBkcGNkX3F1aXJrIGRwY2RfcXVpcmtfbGlzdFtdID0gewogCXsgT1VJKDB4
-MDAsIDB4MDAsIDB4MDApLCBERVZJQ0VfSUQoJ0MnLCAnSCcsICc3JywgJzUnLCAnMScsICcxJyks
-IGZhbHNlLCBCSVQoRFBfRFBDRF9RVUlSS19OT19TSU5LX0NPVU5UKSB9LAogCS8qIFN5bmFwdGlj
-cyBEUDEuNCBNU1QgaHVicyBjYW4gc3VwcG9ydCBEU0Mgd2l0aG91dCB2aXJ0dWFsIERQQ0QgKi8K
-IAl7IE9VSSgweDkwLCAweENDLCAweDI0KSwgREVWSUNFX0lEX0FOWSwgdHJ1ZSwgQklUKERQX0RQ
-Q0RfUVVJUktfRFNDX1dJVEhPVVRfVklSVFVBTF9EUENEKSB9LAorCS8qIEFwcGxlIE1hY0Jvb2tQ
-cm8gMjAxNyAxNSBpbmNoIGVEUCBSZXRpbmEgcGFuZWwgcmVwb3J0cyB0b28gbG93IERQX01BWF9M
-SU5LX1JBVEUgKi8KKwl7IE9VSSgweDAwLCAweDEwLCAweGZhKSwgREVWSUNFX0lEKDEwMSwgNjgs
-IDIxLCAxMDEsIDk4LCA5NyksIGZhbHNlLCBCSVQoRFBfRFBDRF9RVUlSS19DQU5fRE9fTUFYX0xJ
-TktfUkFURV8zXzI0X0dCUFMpIH0sCiB9OwogCiAjdW5kZWYgT1VJCmRpZmYgLS1naXQgYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2RwLmMKaW5kZXggNDA3NGQ4M2IxYTVmLi4xZjZiZDY1OWFkNDEgMTAw
-NjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYworKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKQEAgLTE3OCw2ICsxNzgsMTMg
-QEAgc3RhdGljIHZvaWQgaW50ZWxfZHBfc2V0X3NpbmtfcmF0ZXMoc3RydWN0IGludGVsX2RwICpp
-bnRlbF9kcCkKIAl9CiAKIAlpbnRlbF9kcC0+bnVtX3NpbmtfcmF0ZXMgPSBpOworCisJaWYgKGRy
-bV9kcF9oYXNfcXVpcmsoJmludGVsX2RwLT5kZXNjLAorCSAgICBEUF9EUENEX1FVSVJLX0NBTl9E
-T19NQVhfTElOS19SQVRFXzNfMjRfR0JQUykpIHsKKwkJLyogTmVlZGVkIGZvciBBcHBsZSBNQlAg
-MjAxNywgMTUgaW5jaCBlRFAgUmV0aW5hIHBhbmVsICovCisJCWludGVsX2RwLT5zaW5rX3JhdGVz
-W2ldID0gMzI0MDAwOworCQlpbnRlbF9kcC0+bnVtX3NpbmtfcmF0ZXMrKzsKKwl9CiB9CiAKIC8q
-IEdldCBsZW5ndGggb2YgcmF0ZXMgYXJyYXkgcG90ZW50aWFsbHkgbGltaXRlZCBieSBtYXhfcmF0
-ZS4gKi8KZGlmZiAtLWdpdCBhL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaCBiL2luY2x1ZGUv
-ZHJtL2RybV9kcF9oZWxwZXIuaAppbmRleCAyNjJmYWY5ZTVlOTQuLjRiODZhMWYyYTU1OSAxMDA2
-NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oCisrKyBiL2luY2x1ZGUvZHJtL2Ry
-bV9kcF9oZWxwZXIuaApAQCAtMTUzMiw2ICsxNTMyLDEzIEBAIGVudW0gZHJtX2RwX3F1aXJrIHsK
-IAkgKiBUaGUgRFNDIGNhcHMgY2FuIGJlIHJlYWQgZnJvbSB0aGUgcGh5c2ljYWwgYXV4IGluc3Rl
-YWQuCiAJICovCiAJRFBfRFBDRF9RVUlSS19EU0NfV0lUSE9VVF9WSVJUVUFMX0RQQ0QsCisJLyoq
-CisJICogQERQX0RQQ0RfUVVJUktfQ0FOX0RPX01BWF9MSU5LX1JBVEVfM18yNF9HQlBTOgorCSAq
-CisJICogVGhlIGRldmljZSBzdXBwb3J0cyBhIGxpbmsgcmF0ZSBvZiAzLjI0IEdicHMgKG11bHRp
-cGxpZXIgMHhjKSBkZXNwaXRlCisJICogdGhlIERQX01BWF9MSU5LX1JBVEUgcmVnaXN0ZXIgcmVw
-b3J0aW5nIGEgbG93ZXIgbWF4IG11bHRpcGxpZXIuCisJICovCisJRFBfRFBDRF9RVUlSS19DQU5f
-RE9fTUFYX0xJTktfUkFURV8zXzI0X0dCUFMsCiB9OwogCiAvKioKLS0gCjIuMjAuMQoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxp
-bmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJl
-ZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+== Series Details ==
+
+Series: drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017
+URL   : https://patchwork.freedesktop.org/series/74100/
+State : warning
+
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+983ed114d770 drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017
+-:43: WARNING:LONG_LINE: line over 100 characters
+#43: FILE: drivers/gpu/drm/drm_dp_helper.c:1242:
++	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
+
+-:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#57: FILE: drivers/gpu/drm/i915/display/intel_dp.c:178:
++	if (drm_dp_has_quirk(&intel_dp->desc,
++	    DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
+
+total: 0 errors, 1 warnings, 1 checks, 34 lines checked
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
