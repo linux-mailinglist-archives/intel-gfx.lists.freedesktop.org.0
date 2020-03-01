@@ -2,64 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A0B174BA3
-	for <lists+intel-gfx@lfdr.de>; Sun,  1 Mar 2020 06:46:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B60F4174C64
+	for <lists+intel-gfx@lfdr.de>; Sun,  1 Mar 2020 10:24:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E80C26E0DB;
-	Sun,  1 Mar 2020 05:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D98EC6E0E5;
+	Sun,  1 Mar 2020 09:24:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
- [IPv6:2607:f8b0:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6986E420;
- Sun,  1 Mar 2020 05:46:13 +0000 (UTC)
-Received: by mail-pl1-x62d.google.com with SMTP id g6so2890502plt.2;
- Sat, 29 Feb 2020 21:46:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=BMFva8+eOa5vh3fnHy/a9L8r9X1WjtrkhhfpiOzrz5c=;
- b=s4JEFEt05s6mpcwTrB3V/VPGd65ZgRxP7oWGdoMf+o1IznVj/+DarhDC9YPj2ZhUrc
- A54Td41jsBwVNJ+vsOY/8s9H5D/Wys38MGEhrU5A3WNNzDSMGKKKxhbyyIYgA8OC7jjR
- Og7LalY/Wv7jFjQEi5iVR+9uysUtyYesUnrGSPoA9zdXNnR7Ci0efXRx8YpMfwQ74NjG
- R5VQiQU271N7l4dhga3PQPlTixjm62NiKM7h2Ye76aPJUGVIW8dSwYqlKD/FbpkEudgd
- 1Dezu+GyAw1dkYWpf81u9A4zgxXikonV2AvKpuDjOWzkOddbwNXb8Rf7bpaLJ08J5uFC
- N5tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=BMFva8+eOa5vh3fnHy/a9L8r9X1WjtrkhhfpiOzrz5c=;
- b=bm26AUOz5AcYXzHT94Xo6RBEuNoDzt8SvT6zUxl7jtywtPudWVehHVM3SZKiH+Qsip
- NfCnag2NvD4sJz74vryWqqooul4q+qmK75AzXHXQD4UICG+TRAuI3g8uOhXsVE45Qm2e
- 6fJKSEi3RDlP/PIr5eJg5HkwwgBpxIcmZFM8LD6vKS2xNiaM5rAXFvEn8bEZ883B3ItP
- YWVIUWa0pqbTVuu3CH2HsT7XgrfmlHaDXQFzbW63s8KGRKeoX6ywKPwc7jVAzrTDJzR6
- YtJ+2D508bL6DDKA4OjqeQn89v9B4vm0zLFtadZUWR6hiAi7KooIgDnt6Ls7v1h0mGjB
- DfoA==
-X-Gm-Message-State: APjAAAW6Hy5BGH0HxShZKht48lMkuiGGF4RZRZqF+QdU7NvHfq2BOx/8
- WDXgOetqLQYvPFOlp8jpj2KMAInI3l9EhJY/BPs=
-X-Google-Smtp-Source: APXvYqxDzPK1Bfz4mrHH3OesFTKhwvaemtm2OM0JFb07CjQ328g4kuHTaUK+kPzJ6RiqsRsjRARYH7P8aUrBu3C3PMI=
-X-Received: by 2002:a17:902:7898:: with SMTP id
- q24mr11203695pll.164.1583041572643; 
- Sat, 29 Feb 2020 21:46:12 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 713056E0DD;
+ Sun,  1 Mar 2020 09:24:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B190A363D;
+ Sun,  1 Mar 2020 09:24:23 +0000 (UTC)
 MIME-Version: 1.0
-References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
- <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
- <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
- <ece8ebe3-40ec-2457-02da-4fef19cbe8f6@intel.com>
- <6d2ec570f957b4504fb70e0b1f0632712a99dc0c.camel@collabora.com>
- <CAPj87rO7BuKQj2Kei3T7RdkFq5=TiuShBvtrPU2sn0iqMfXSTg@mail.gmail.com>
- <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
- <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
- <d9dca12759fd6a549dc4cd71b5f210a4dced01cd.camel@gmail.com>
- <CAOFGe96WqRTagf=Lhp6j9aMnB6hxwog7t93t=4r6QE_4f+HpeQ@mail.gmail.com>
- <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
-In-Reply-To: <5551426acf99f73d3ce8234c14c176c1c7a1fe44.camel@ndufresne.ca>
-From: =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>
-Date: Sun, 1 Mar 2020 00:46:00 -0500
-Message-ID: <CAAxE2A5zSy7Rh6xyPW8NCqj3q0_8F7yw8tAXx=_z8+mJ-u2uWw@mail.gmail.com>
-To: Nicolas Dufresne <nicolas@ndufresne.ca>
-Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
- impact on services
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Date: Sun, 01 Mar 2020 09:24:23 -0000
+Message-ID: <158305466334.22448.6429680309658439844@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200228114110.187792-1-hdegoede@redhat.com>
+In-Reply-To: <20200228114110.187792-1-hdegoede@redhat.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Some_upside-down_panel_handling_fixes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,257 +38,287 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Erik Faye-Lund <erik.faye-lund@collabora.com>,
- =?UTF-8?Q?Timur_Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- wayland <wayland-devel@lists.freedesktop.org>,
- "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>,
- amd-gfx list <amd-gfx@lists.freedesktop.org>,
- Mesa Dev <mesa-dev@lists.freedesktop.org>,
- Discussion of the development of and with GStreamer
- <gstreamer-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1243308345=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1243308345==
-Content-Type: multipart/alternative; boundary="0000000000009a29a5059fc49643"
+== Series Details ==
 
---0000000000009a29a5059fc49643
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Series: drm/i915: Some upside-down panel handling fixes
+URL   : https://patchwork.freedesktop.org/series/74076/
+State : success
 
-For Mesa, we could run CI only when Marge pushes, so that it's a strictly
-pre-merge CI.
+== Summary ==
 
-Marek
+CI Bug Log - changes from CI_DRM_8030_full -> Patchwork_16761_full
+====================================================
 
-On Sat., Feb. 29, 2020, 17:20 Nicolas Dufresne, <nicolas@ndufresne.ca>
-wrote:
+Summary
+-------
 
-> Le samedi 29 f=C3=A9vrier 2020 =C3=A0 15:54 -0600, Jason Ekstrand a =C3=
-=A9crit :
-> > On Sat, Feb 29, 2020 at 3:47 PM Timur Krist=C3=B3f <timur.kristof@gmail=
-.com>
-> wrote:
-> > > On Sat, 2020-02-29 at 14:46 -0500, Nicolas Dufresne wrote:
-> > > > > 1. I think we should completely disable running the CI on MRs whi=
-ch
-> > > > > are
-> > > > > marked WIP. Speaking from personal experience, I usually make a l=
-ot
-> > > > > of
-> > > > > changes to my MRs before they are merged, so it is a waste of CI
-> > > > > resources.
-> > > >
-> > > > In the mean time, you can help by taking the habit to use:
-> > > >
-> > > >   git push -o ci.skip
-> > >
-> > > Thanks for the advice, I wasn't aware such an option exists. Does thi=
-s
-> > > also work on the mesa gitlab or is this a GStreamer only thing?
-> >
-> > Mesa is already set up so that it only runs on MRs and branches named
-> > ci-* (or maybe it's ci/*; I can't remember).
-> >
-> > > How hard would it be to make this the default?
-> >
-> > I strongly suggest looking at how Mesa does it and doing that in
-> > GStreamer if you can.  It seems to work pretty well in Mesa.
->
-> You are right, they added CI_MERGE_REQUEST_SOURCE_BRANCH_NAME in 11.6
-> (we started our CI a while ago). But there is even better now, ou can
-> do:
->
->   only:
->     refs:
->       - merge_requests
->
-> Thanks for the hint, I'll suggest that. I've lookup some of the backend
-> of mesa, I think it's really nice, though there is a lot of concept
-> that won't work in a multi-repo CI. Again, I need to refresh on what
-> was moved from the enterprise to the community version in this regard,
->
-> >
-> > --Jason
-> >
-> >
-> > > > That's a much more difficult goal then it looks like. Let each
-> > > > projects
-> > > > manage their CI graph and content, as each case is unique. Running
-> > > > more
-> > > > tests, or building more code isn't the main issue as the CPU time i=
-s
-> > > > mostly sponsored. The data transfers between the cloud of gitlab an=
-d
-> > > > the runners (which are external), along to sending OS image to Lava
-> > > > labs is what is likely the most expensive.
-> > > >
-> > > > As it was already mention in the thread, what we are missing now, a=
-nd
-> > > > being worked on, is per group/project statistics that give us the
-> > > > hotspot so we can better target the optimization work.
-> > >
-> > > Yes, would be nice to know what the hotspot is, indeed.
-> > >
-> > > As far as I understand, the problem is not CI itself, but the bandwid=
-th
-> > > needed by the build artifacts, right? Would it be possible to not hos=
-t
-> > > the build artifacts on the gitlab, but rather only the place where th=
-e
-> > > build actually happened? Or at least, only transfer the build artifac=
-ts
-> > > on-demand?
-> > >
-> > > I'm not exactly familiar with how the system works, so sorry if this =
-is
-> > > a silly question.
-> > >
-> > > _______________________________________________
-> > > mesa-dev mailing list
-> > > mesa-dev@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/mesa-dev
->
-> _______________________________________________
-> mesa-dev mailing list
-> mesa-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/mesa-dev
->
+  **SUCCESS**
 
---0000000000009a29a5059fc49643
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+  No regressions found.
 
-<div dir=3D"auto">For Mesa, we could run CI only when Marge pushes, so that=
- it&#39;s a strictly pre-merge CI.<div dir=3D"auto"><br></div><div dir=3D"a=
-uto">Marek</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Sat., Feb. 29, 2020, 17:20 Nicolas Dufresne, &lt;<a href=
-=3D"mailto:nicolas@ndufresne.ca">nicolas@ndufresne.ca</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex">Le samedi 29 f=C3=A9vrier 2020 =C3=A0 15:=
-54 -0600, Jason Ekstrand a =C3=A9crit :<br>
-&gt; On Sat, Feb 29, 2020 at 3:47 PM Timur Krist=C3=B3f &lt;<a href=3D"mail=
-to:timur.kristof@gmail.com" target=3D"_blank" rel=3D"noreferrer">timur.kris=
-tof@gmail.com</a>&gt; wrote:<br>
-&gt; &gt; On Sat, 2020-02-29 at 14:46 -0500, Nicolas Dufresne wrote:<br>
-&gt; &gt; &gt; &gt; 1. I think we should completely disable running the CI =
-on MRs which<br>
-&gt; &gt; &gt; &gt; are<br>
-&gt; &gt; &gt; &gt; marked WIP. Speaking from personal experience, I usuall=
-y make a lot<br>
-&gt; &gt; &gt; &gt; of<br>
-&gt; &gt; &gt; &gt; changes to my MRs before they are merged, so it is a wa=
-ste of CI<br>
-&gt; &gt; &gt; &gt; resources.<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; In the mean time, you can help by taking the habit to use:<b=
-r>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt;=C2=A0 =C2=A0git push -o ci.skip<br>
-&gt; &gt; <br>
-&gt; &gt; Thanks for the advice, I wasn&#39;t aware such an option exists. =
-Does this<br>
-&gt; &gt; also work on the mesa gitlab or is this a GStreamer only thing?<b=
-r>
-&gt; <br>
-&gt; Mesa is already set up so that it only runs on MRs and branches named<=
-br>
-&gt; ci-* (or maybe it&#39;s ci/*; I can&#39;t remember).<br>
-&gt; <br>
-&gt; &gt; How hard would it be to make this the default?<br>
-&gt; <br>
-&gt; I strongly suggest looking at how Mesa does it and doing that in<br>
-&gt; GStreamer if you can.=C2=A0 It seems to work pretty well in Mesa.<br>
-<br>
-You are right, they added CI_MERGE_REQUEST_SOURCE_BRANCH_NAME in 11.6<br>
-(we started our CI a while ago). But there is even better now, ou can<br>
-do:<br>
-<br>
-=C2=A0 only:<br>
-=C2=A0 =C2=A0 refs:<br>
-=C2=A0 =C2=A0 =C2=A0 - merge_requests<br>
-<br>
-Thanks for the hint, I&#39;ll suggest that. I&#39;ve lookup some of the bac=
-kend<br>
-of mesa, I think it&#39;s really nice, though there is a lot of concept<br>
-that won&#39;t work in a multi-repo CI. Again, I need to refresh on what<br=
->
-was moved from the enterprise to the community version in this regard,<br>
-<br>
-&gt; <br>
-&gt; --Jason<br>
-&gt; <br>
-&gt; <br>
-&gt; &gt; &gt; That&#39;s a much more difficult goal then it looks like. Le=
-t each<br>
-&gt; &gt; &gt; projects<br>
-&gt; &gt; &gt; manage their CI graph and content, as each case is unique. R=
-unning<br>
-&gt; &gt; &gt; more<br>
-&gt; &gt; &gt; tests, or building more code isn&#39;t the main issue as the=
- CPU time is<br>
-&gt; &gt; &gt; mostly sponsored. The data transfers between the cloud of gi=
-tlab and<br>
-&gt; &gt; &gt; the runners (which are external), along to sending OS image =
-to Lava<br>
-&gt; &gt; &gt; labs is what is likely the most expensive.<br>
-&gt; &gt; &gt; <br>
-&gt; &gt; &gt; As it was already mention in the thread, what we are missing=
- now, and<br>
-&gt; &gt; &gt; being worked on, is per group/project statistics that give u=
-s the<br>
-&gt; &gt; &gt; hotspot so we can better target the optimization work.<br>
-&gt; &gt; <br>
-&gt; &gt; Yes, would be nice to know what the hotspot is, indeed.<br>
-&gt; &gt; <br>
-&gt; &gt; As far as I understand, the problem is not CI itself, but the ban=
-dwidth<br>
-&gt; &gt; needed by the build artifacts, right? Would it be possible to not=
- host<br>
-&gt; &gt; the build artifacts on the gitlab, but rather only the place wher=
-e the<br>
-&gt; &gt; build actually happened? Or at least, only transfer the build art=
-ifacts<br>
-&gt; &gt; on-demand?<br>
-&gt; &gt; <br>
-&gt; &gt; I&#39;m not exactly familiar with how the system works, so sorry =
-if this is<br>
-&gt; &gt; a silly question.<br>
-&gt; &gt; <br>
-&gt; &gt; _______________________________________________<br>
-&gt; &gt; mesa-dev mailing list<br>
-&gt; &gt; <a href=3D"mailto:mesa-dev@lists.freedesktop.org" target=3D"_blan=
-k" rel=3D"noreferrer">mesa-dev@lists.freedesktop.org</a><br>
-&gt; &gt; <a href=3D"https://lists.freedesktop.org/mailman/listinfo/mesa-de=
-v" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.freedeskto=
-p.org/mailman/listinfo/mesa-dev</a><br>
-<br>
-_______________________________________________<br>
-mesa-dev mailing list<br>
-<a href=3D"mailto:mesa-dev@lists.freedesktop.org" target=3D"_blank" rel=3D"=
-noreferrer">mesa-dev@lists.freedesktop.org</a><br>
-<a href=3D"https://lists.freedesktop.org/mailman/listinfo/mesa-dev" rel=3D"=
-noreferrer noreferrer" target=3D"_blank">https://lists.freedesktop.org/mail=
-man/listinfo/mesa-dev</a><br>
-</blockquote></div>
+  
 
---0000000000009a29a5059fc49643--
+Possible new issues
+-------------------
 
---===============1243308345==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  Here are the unknown changes that may have been introduced in Patchwork_16761_full:
 
+### IGT changes ###
+
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * {igt@perf@stress-open-close}:
+    - shard-skl:          [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl5/igt@perf@stress-open-close.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl6/igt@perf@stress-open-close.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16761_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_busy@busy-vcs1:
+    - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#112080]) +8 similar issues
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb2/igt@gem_busy@busy-vcs1.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb8/igt@gem_busy@busy-vcs1.html
+
+  * igt@gem_exec_async@concurrent-writes-bsd:
+    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#112146]) +3 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb5/igt@gem_exec_async@concurrent-writes-bsd.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb1/igt@gem_exec_async@concurrent-writes-bsd.html
+
+  * igt@gem_exec_schedule@implicit-both-bsd:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([i915#677]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb3/igt@gem_exec_schedule@implicit-both-bsd.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb4/igt@gem_exec_schedule@implicit-both-bsd.html
+
+  * igt@gem_exec_schedule@implicit-write-read-bsd2:
+    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109276] / [i915#677])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb1/igt@gem_exec_schedule@implicit-write-read-bsd2.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb8/igt@gem_exec_schedule@implicit-write-read-bsd2.html
+
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-apl:          [PASS][11] -> [FAIL][12] ([i915#644])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-apl7/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-apl1/igt@gem_ppgtt@flink-and-close-vma-leak.html
+    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#644])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl6/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl10/igt@gem_ppgtt@flink-and-close-vma-leak.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-kbl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180]) +7 similar issues
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-kbl2/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-kbl4/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-iclb:         [PASS][17] -> [INCOMPLETE][18] ([i915#221])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb3/igt@kms_flip@flip-vs-suspend.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb3/igt@kms_flip@flip-vs-suspend.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-apl:          [PASS][19] -> [DMESG-WARN][20] ([i915#180]) +4 similar issues
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-apl7/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-apl1/igt@kms_flip@flip-vs-suspend-interruptible.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][21] -> [FAIL][22] ([i915#1188]) +1 similar issue
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - shard-kbl:          [PASS][23] -> [INCOMPLETE][24] ([fdo#103665])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-kbl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  * igt@kms_psr@no_drrs:
+    - shard-iclb:         [PASS][25] -> [FAIL][26] ([i915#173])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb8/igt@kms_psr@no_drrs.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb1/igt@kms_psr@no_drrs.html
+
+  * igt@kms_psr@psr2_sprite_mmap_gtt:
+    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#109441]) +2 similar issues
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb2/igt@kms_psr@psr2_sprite_mmap_gtt.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb8/igt@kms_psr@psr2_sprite_mmap_gtt.html
+
+  * igt@kms_setmode@basic:
+    - shard-apl:          [PASS][29] -> [FAIL][30] ([i915#31])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-apl1/igt@kms_setmode@basic.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-apl3/igt@kms_setmode@basic.html
+
+  * igt@prime_busy@hang-bsd2:
+    - shard-iclb:         [PASS][31] -> [SKIP][32] ([fdo#109276]) +19 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb4/igt@prime_busy@hang-bsd2.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb5/igt@prime_busy@hang-bsd2.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_blits@basic:
+    - shard-skl:          [DMESG-WARN][33] ([i915#836]) -> [PASS][34]
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl5/igt@gem_blits@basic.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl3/igt@gem_blits@basic.html
+
+  * igt@gem_exec_balancer@hang:
+    - shard-tglb:         [FAIL][35] ([i915#1277]) -> [PASS][36]
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-tglb2/igt@gem_exec_balancer@hang.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-tglb1/igt@gem_exec_balancer@hang.html
+
+  * igt@gem_exec_balancer@smoke:
+    - shard-iclb:         [SKIP][37] ([fdo#110854]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb5/igt@gem_exec_balancer@smoke.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb4/igt@gem_exec_balancer@smoke.html
+
+  * igt@gem_exec_schedule@implicit-both-bsd1:
+    - shard-iclb:         [SKIP][39] ([fdo#109276] / [i915#677]) -> [PASS][40] +1 similar issue
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb6/igt@gem_exec_schedule@implicit-both-bsd1.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb4/igt@gem_exec_schedule@implicit-both-bsd1.html
+
+  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
+    - shard-iclb:         [SKIP][41] ([i915#677]) -> [PASS][42] +1 similar issue
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb1/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb6/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
+
+  * igt@gem_exec_schedule@preempt-contexts-bsd2:
+    - shard-iclb:         [SKIP][43] ([fdo#109276]) -> [PASS][44] +16 similar issues
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb6/igt@gem_exec_schedule@preempt-contexts-bsd2.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb4/igt@gem_exec_schedule@preempt-contexts-bsd2.html
+
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [SKIP][45] ([fdo#112146]) -> [PASS][46] +7 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb4/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb5/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+
+  * igt@gem_ppgtt@flink-and-close-vma-leak:
+    - shard-glk:          [FAIL][47] ([i915#644]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-glk8/igt@gem_ppgtt@flink-and-close-vma-leak.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-glk3/igt@gem_ppgtt@flink-and-close-vma-leak.html
+
+  * igt@gen9_exec_parse@allowed-single:
+    - shard-skl:          [DMESG-WARN][49] ([i915#716]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl7/igt@gen9_exec_parse@allowed-single.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl8/igt@gen9_exec_parse@allowed-single.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
+    - shard-glk:          [FAIL][51] ([i915#79]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-glk6/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-glk9/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-pwrite:
+    - shard-glk:          [FAIL][53] ([i915#49]) -> [PASS][54]
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-glk7/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-pwrite.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-glk5/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-spr-indfb-draw-pwrite.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
+    - shard-kbl:          [DMESG-WARN][55] ([i915#180]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-kbl7/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-kbl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
+    - shard-skl:          [FAIL][57] ([fdo#108145]) -> [PASS][58] +1 similar issue
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-skl10/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
+
+  * igt@kms_plane_lowres@pipe-a-tiling-x:
+    - shard-glk:          [FAIL][59] ([i915#899]) -> [PASS][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-glk7/igt@kms_plane_lowres@pipe-a-tiling-x.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-glk5/igt@kms_plane_lowres@pipe-a-tiling-x.html
+
+  * igt@kms_psr@psr2_primary_page_flip:
+    - shard-iclb:         [SKIP][61] ([fdo#109441]) -> [PASS][62] +3 similar issues
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb3/igt@kms_psr@psr2_primary_page_flip.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb2/igt@kms_psr@psr2_primary_page_flip.html
+
+  * igt@perf_pmu@busy-check-all-vcs1:
+    - shard-iclb:         [SKIP][63] ([fdo#112080]) -> [PASS][64] +8 similar issues
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb8/igt@perf_pmu@busy-check-all-vcs1.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb1/igt@perf_pmu@busy-check-all-vcs1.html
+
+  
+#### Warnings ####
+
+  * igt@gem_ctx_isolation@vcs1-nonpriv:
+    - shard-iclb:         [FAIL][65] ([IGT#28]) -> [SKIP][66] ([fdo#112080])
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-iclb1/igt@gem_ctx_isolation@vcs1-nonpriv.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-iclb6/igt@gem_ctx_isolation@vcs1-nonpriv.html
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-tglb:         [FAIL][67] ([i915#454]) -> [SKIP][68] ([i915#468])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-tglb1/igt@i915_pm_dc@dc6-dpms.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-tglb2/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@i915_pm_rpm@legacy-planes:
+    - shard-snb:          [SKIP][69] ([fdo#109271]) -> [INCOMPLETE][70] ([i915#82])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8030/shard-snb5/igt@i915_pm_rpm@legacy-planes.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/shard-snb6/igt@i915_pm_rpm@legacy-planes.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#28]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/28
+  [fdo#103665]: https://bugs.freedesktop.org/show_bug.cgi?id=103665
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1277]: https://gitlab.freedesktop.org/drm/intel/issues/1277
+  [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
+  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
+  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+  [i915#836]: https://gitlab.freedesktop.org/drm/intel/issues/836
+  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8030 -> Patchwork_16761
+
+  CI-20190529: 20190529
+  CI_DRM_8030: dbdc956c90598337bef46cede52b082954651c0e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5476: 6628336d5699e3fda2c3b64b1c9fc5426b6de29a @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16761: 91740cf1d41cdc75321a68067c5bdd0d5e55b297 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16761/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1243308345==--
