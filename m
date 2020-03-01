@@ -1,59 +1,50 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFFD91760D0
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:13:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9511760D2
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:13:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75EF46E5BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B70206E5C6;
 	Mon,  2 Mar 2020 17:13:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com
- [IPv6:2607:f8b0:4864:20::72f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC7256E20B
- for <intel-gfx@lists.freedesktop.org>; Sun,  1 Mar 2020 14:27:29 +0000 (UTC)
-Received: by mail-qk1-x72f.google.com with SMTP id u124so7595045qkh.13
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2020 06:27:29 -0800 (PST)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2071.outbound.protection.outlook.com [40.107.92.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81FFE6E50E;
+ Sun,  1 Mar 2020 20:30:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KbaUebOgKjDWvuFwVVQSFOnUcNN64/YRuzP0+vryQHxTXXSyDjbPBxcn3BbWwx3ClYcffEbmxyp362CwQasjxD+TuK10BOE7kSHK11ZXu5dHWtSC+njAZIe8HDmgpbWt+JH7+gGTJodNn7kFgxckxhcGcQofonT55ep4E8cfJT8pL2wM7nEssejoQ76buAES5ASSlyLzujLsSwCvt6vTlXuLwyVOqVEHsLmbnbiikzfuAL3NDLWYVj3uW0p1B3bzLY1DJQxxXhhIxZfPTguvpf0gehI2/NId4s0ih+1yvjAByeROlXbn5nsHuYHkMH9lcZmIbqR4SNqXX8MPHsKZsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jwcW4sOl4oXKFrtBIrJkr9jv0R7H3GGPQSqdIwDnKeA=;
+ b=DPmM0MC05fz4L7XPZIZmE/yZ9G03ERQxZ4GwYYqAuBfGstMi+udTicxfyFmyfNc/FEMrDxwY6kkFlsxix3FESvXzL+qA5vSzHxLcbLKsVkdh6CykXRiLw3n5w4N7LQvOC+EbA4Dy9AWF/tXbTeeY8PtVNJYovSyMeV0oUXhACPviM3YEbDUgZKhOG3eOx9jWiovM2o3saj6g55hRiFJRijqm23Aqy4NFIK4Q+CMQe4rPQtFW0FXlPHYF4ZdckMECt7eEpYwMOUMLeV7HfwykoZKOpEE/lIHcBlIfQvZFZTaHvH1lxZdirdshk6Z+EyUhgNWq6GO3x+AIsnvAQ1mTPw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ndufresne-ca.20150623.gappssmtp.com; s=20150623;
- h=message-id:subject:from:to:cc:date:in-reply-to:references
- :user-agent:mime-version:content-transfer-encoding;
- bh=Vt75wDU9UMss0WdpIsnKwFhGF1GAn+eY03d4jfucIdg=;
- b=13LsT36RJ7ELQXJScaSSfK1ouXiVJ3UU9w+Nt2QBoloGLZRp0FO6JCbLQ8X8m/f11o
- R/2y6E1dSKg21xSySE9ogPGt2B/v3aUv6cYaiur4w5/6BIfnrYPFbHmUOf8GmCbK6q1z
- LkfCEDtcdeAXm/g0fctYGNus52crxoxG6O46yX2Rpsxry1KQapz5hTxVVGvB71omSJ8N
- 0yR5Bvl6dl+Xioj1YeQJ8NCIwP7Pu3rsilzSnHsiG8dBnlEZ4FuVglR3sDs/tIVl50eR
- V25v+SAeS3n4GPf2BJzmUWZA7eUNlk4/wK/RYCq8DY0rv5UoAYWLAn3dmlQYIBr4ad+5
- 01VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=Vt75wDU9UMss0WdpIsnKwFhGF1GAn+eY03d4jfucIdg=;
- b=Rnz7j0S29wuz/J8+BBrxr7oLRqXoa7xYNLaYG6k2nsfTvZ20aKVralAMAle+6kC6EF
- 31v3ML+U+C8qicaSyJrmFkqKVcl6L3J30Jsqs/2G+hewPJ2SO0ysoH3LtVigTXJgDzSf
- h6zAn6V6lwnIVvMd0AozYwvnv4qhV/Nrc+g9ihS2ZRY+Blyhc47FwtoOftpZYP6BYelb
- 4ByZKMhyjjcsHJaUH4/rTjozML4LcMdWi7dSWFIR7Yxng/uytAZ3LMOZVDIOJ35LXFYj
- 9tR4aQh8mP9W5nAGungbOOuV+OKwzeQkn9hqcxdap4NVDnoKSthYIfQ4SOJYKRob00Q8
- Hs3w==
-X-Gm-Message-State: ANhLgQ2npie5tkvbe973oEe6PmLO97cVRFZDdRIir46uiuogH/Lc9UAo
- C4nvm4AVDFUTRgKj5WpnCdCCOQ==
-X-Google-Smtp-Source: ADFU+vtSf1Uui+5btU9rAtQco9nPOF5mxYM0Wx4y9v2x1kr27+gTscbEJ0KOjioQ+M1uvDTMH3a6og==
-X-Received: by 2002:a37:47d3:: with SMTP id u202mr1372407qka.264.1583072848717; 
- Sun, 01 Mar 2020 06:27:28 -0800 (PST)
-Received: from skullcanyon ([192.222.193.21])
- by smtp.gmail.com with ESMTPSA id k13sm3418451qkk.113.2020.03.01.06.27.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2020 06:27:27 -0800 (PST)
-Message-ID: <93d7158b1ab49e51d14d991d5bdb2dba38ad6025.camel@ndufresne.ca>
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Michel =?ISO-8859-1?Q?D=E4nzer?= <michel@daenzer.net>, Discussion of the
- development of and with GStreamer <gstreamer-devel@lists.freedesktop.org>,
- Daniel Stone <daniel@fooishbar.org>,  Erik Faye-Lund
- <erik.faye-lund@collabora.com>
-Date: Sun, 01 Mar 2020 09:27:26 -0500
-In-Reply-To: <9b0b31b8-7610-d5c5-790a-617178cc8c1e@daenzer.net>
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jwcW4sOl4oXKFrtBIrJkr9jv0R7H3GGPQSqdIwDnKeA=;
+ b=c4m1u7AtdDHvTfwkcjf30MEo6yoadliTsX1oYorAobqtN+nOXdlAC1aQv1cyVq+HBk2FVKhTZZ1dK6OdwYNdn5iRSruVoZkxyR6xK0EPfhPVWgTN3QYY401Yk7JxILmlo9FAJZ5GQG7rdnMWfYRHteXGi/t/Nocti21MiVKAxE4=
+Received: from DM6PR12MB3097.namprd12.prod.outlook.com (2603:10b6:5:11d::25)
+ by DM6PR12MB4401.namprd12.prod.outlook.com (2603:10b6:5:2a9::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.15; Sun, 1 Mar
+ 2020 20:30:08 +0000
+Received: from DM6PR12MB3097.namprd12.prod.outlook.com
+ ([fe80::c90d:ccf4:5717:9b46]) by DM6PR12MB3097.namprd12.prod.outlook.com
+ ([fe80::c90d:ccf4:5717:9b46%5]) with mapi id 15.20.2772.019; Sun, 1 Mar 2020
+ 20:30:08 +0000
+From: "Bridgman, John" <John.Bridgman@amd.com>
+To: Jason Ekstrand <jason@jlekstrand.net>, Jacob Lifshay
+ <programmerjake@gmail.com>, Nicolas Dufresne <nicolas@ndufresne.ca>
+Thread-Topic: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
+ impact on services
+Thread-Index: AQHV8AahoZ9tljiROEiDQxFa1oB9xqg0L61O
+Date: Sun, 1 Mar 2020 20:30:07 +0000
+Message-ID: <DM6PR12MB3097EF3558FFD11BF7975BD6E8E60@DM6PR12MB3097.namprd12.prod.outlook.com>
 References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
  <CAPM=9txcGPvFdSzMtYZXyqLKnWyacSMuHdoXdV63M53fLFVFpw@mail.gmail.com>
  <b398161ff7d0268454413058dc6c194cf93f5990.camel@collabora.com>
@@ -63,8 +54,52 @@ References: <CAKMK7uHHK2SsCfpmZwEUyTJJHsoccKoadoko3cEBOoYDFkmeAw@mail.gmail.com>
  <59f4ea1f13a9a9d37f7801b93061b4ae7dd595e2.camel@gmail.com>
  <d0ef47e45c83b342494e6781b808b4831a008836.camel@ndufresne.ca>
  <9b0b31b8-7610-d5c5-790a-617178cc8c1e@daenzer.net>
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+ <93d7158b1ab49e51d14d991d5bdb2dba38ad6025.camel@ndufresne.ca>
+ <CAC2bXD5OzDYtAcWAhpM_7Wwkbp2hpRszejjA7d0rqoypVdyDvA@mail.gmail.com>,
+ <17097bfa848.27ad.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+In-Reply-To: <17097bfa848.27ad.c6988b7ea6112e3e892765a0d4287e0c@jlekstrand.net>
+Accept-Language: en-CA, en-US
+Content-Language: en-CA
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Enabled=True;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_SetDate=2020-03-01T20:30:06.295Z;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Name=Internal
+ Distribution
+ Only; MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_ContentBits=0;
+ MSIP_Label_76546daa-41b6-470c-bb85-f6f40f044d7f_Method=Standard; 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=John.Bridgman@amd.com; 
+x-originating-ip: [72.139.206.139]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 56a0b550-09d2-43b9-849c-08d7be1f5544
+x-ms-traffictypediagnostic: DM6PR12MB4401:
+x-microsoft-antispam-prvs: <DM6PR12MB4401256CCC33327AFC92FCA3E8E60@DM6PR12MB4401.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0329B15C8A
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10009020)(4636009)(39860400002)(376002)(366004)(346002)(136003)(396003)(199004)(189003)(53546011)(6506007)(7696005)(8936002)(81166006)(81156014)(8676002)(19627405001)(4326008)(54906003)(110136005)(5660300002)(316002)(2906002)(7416002)(478600001)(55016002)(966005)(66946007)(76116006)(52536014)(66476007)(26005)(86362001)(186003)(9686003)(66446008)(64756008)(71200400001)(66556008)(33656002);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM6PR12MB4401;
+ H:DM6PR12MB3097.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: rhGYvkKjwviki8vhAl04wUN2AE71EwM8AxZICx6cSEuYRITP2f+cgTTm/pOgs26owPs3lYvw9cX1bWU4YqvsCOc5sgk7sKvrDt+6EBxe/vKmWPsKxagOVMJaBUf0rSLI5Jhtdei4j4fyCNx3lmfz5mXaDkdmvFSVRVy8mxllJNrXR6iP6ykEts261X31aAlrp4Vwk/SHHtuXWSk+k+T+ZObFMyYUZ8hyBwui+mGCnzhDbql5KNeZQu0C8T7dIiiKxAxqMaPCFV3ndwYBKrJlD/Fpt+OChoHC3oatPeUeXGaYQJ4gbaR0JATXi7yz/FOe89E8PnH6DFwxpoBr24KR7iV11gyXvIJUM9hf9R7wXltKgdersCGTCgwdEKDnboTBO9vQXZEFDFfsCXJMzo+is+DAS6uI/bkk5+yDKz3xwUDNRTlaHmh4LpcV0IsOo7ChVD275QOyf873fiClu+WkbHRV6IB22z/zcYJZRlYUr0A=
+x-ms-exchange-antispam-messagedata: 1W3yCHwofeIY0WN6i+AiS4iv4obrXClKKvPixscl8DXqVUPmZnyy5udiwcJTccfkgYsTnuqSTh4wB+m6qXp8xs/cM6EXGEaRC9L4qXoXwpENF1FOmdlKMX/UYillXDnna7AQjws/fzllYmO9vKQTFg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56a0b550-09d2-43b9-849c-08d7be1f5544
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2020 20:30:07.8132 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VYzFy7n9tSXu+j8TryFkk14RENIhwufd9WRizQaud6pXUjCp87TJfr6HyFfKlFVapoVSbkkVXSt7ezlzJl9SZA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4401
 X-Mailman-Approved-At: Mon, 02 Mar 2020 17:13:41 +0000
 Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and
  impact on services
@@ -80,59 +115,266 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: amd-gfx list <amd-gfx@lists.freedesktop.org>,
+Cc: Erik Faye-Lund <erik.faye-lund@collabora.com>,
  Daniel Vetter <daniel.vetter@ffwll.ch>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
+ =?iso-8859-1?Q?Michel_D=E4nzer?= <michel@daenzer.net>,
  "X.Org development" <xorg-devel@lists.x.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>,
  wayland <wayland-devel@lists.freedesktop.org>,
  "X.Org Foundation Board" <board@foundation.x.org>,
- Xorg Members List <members@x.org>, Mesa Dev <mesa-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Xorg Members List <members@x.org>, dri-devel <dri-devel@lists.freedesktop.org>,
+ Mesa Dev <mesa-dev@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ Discussion of the development of and with GStreamer
+ <gstreamer-devel@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1379623095=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-TGUgZGltYW5jaGUgMDEgbWFycyAyMDIwIMOgIDE1OjE0ICswMTAwLCBNaWNoZWwgRMOkbnplciBh
-IMOpY3JpdCA6Cj4gT24gMjAyMC0wMi0yOSA4OjQ2IHAubS4sIE5pY29sYXMgRHVmcmVzbmUgd3Jv
-dGU6Cj4gPiBMZSBzYW1lZGkgMjkgZsOpdnJpZXIgMjAyMCDDoCAxOToxNCArMDEwMCwgVGltdXIg
-S3Jpc3TDs2YgYSDDqWNyaXQgOgo+ID4gPiAxLiBJIHRoaW5rIHdlIHNob3VsZCBjb21wbGV0ZWx5
-IGRpc2FibGUgcnVubmluZyB0aGUgQ0kgb24gTVJzIHdoaWNoIGFyZQo+ID4gPiBtYXJrZWQgV0lQ
-LiBTcGVha2luZyBmcm9tIHBlcnNvbmFsIGV4cGVyaWVuY2UsIEkgdXN1YWxseSBtYWtlIGEgbG90
-IG9mCj4gPiA+IGNoYW5nZXMgdG8gbXkgTVJzIGJlZm9yZSB0aGV5IGFyZSBtZXJnZWQsIHNvIGl0
-IGlzIGEgd2FzdGUgb2YgQ0kKPiA+ID4gcmVzb3VyY2VzLgo+IAo+IEludGVyZXN0aW5nIGlkZWEs
-IGRvIHlvdSB3YW50IHRvIGNyZWF0ZSBhbiBNUiBpbXBsZW1lbnRpbmcgaXQ/Cj4gCj4gCj4gPiBJ
-biB0aGUgbWVhbiB0aW1lLCB5b3UgY2FuIGhlbHAgYnkgdGFraW5nIHRoZSBoYWJpdCB0byB1c2U6
-Cj4gPiAKPiA+ICAgZ2l0IHB1c2ggLW8gY2kuc2tpcAo+IAo+IFRoYXQgYnJlYWtzIE1hcmdlIEJv
-dC4KPiAKPiAKPiA+IE5vdGFibHksIHdlIHdvdWxkIGxpa2UgdG8gZ2V0IHJpZCBvZiB0aGUgcG9z
-dCBtZXJnZSBDSSwgYXMgaW4gYSByZWJhc2UKPiA+IGZsb3cgbGlrZSB3ZSBoYXZlIGluIEdTdHJl
-YW1lciwgaXQncyBhIHJlYWxseSBtaW5vciByaXNrLgo+IAo+IFRoYXQgc2hvdWxkIGJlIHByZXR0
-eSBlYXN5LCBzZWUgTWVzYSBhbmQKPiBodHRwczovL2RvY3MuZ2l0bGFiLmNvbS9jZS9jaS92YXJp
-YWJsZXMvcHJlZGVmaW5lZF92YXJpYWJsZXMuaHRtbC4KPiBTb21ldGhpbmcgbGlrZSB0aGlzIHNo
-b3VsZCB3b3JrOgo+IAo+ICAgcnVsZXM6Cj4gICAgIC0gaWY6ICckQ0lfUFJPSkVDVF9OQU1FU1BB
-Q0UgIT0gImdzdHJlYW1lciInCj4gICAgICAgd2hlbjogbmV2ZXIKPiAKPiBUaGlzIGlzIGFub3Ro
-ZXIgaW50ZXJlc3RpbmcgaWRlYSB3ZSBjb3VsZCBjb25zaWRlciBmb3IgTWVzYSBhcyB3ZWxsLiBJ
-dAo+IHdvdWxkIGhvd2V2ZXIgcmVxdWlyZSAobW9zdGx5KSBiYW5uaW5nIGRpcmVjdCBwdXNoZXMg
-dG8gdGhlIG1haW4gcmVwb3NpdG9yeS4KCldlIGFscmVhZHkgaGF2ZSB0aGlzIHBvbGljeSBpbiBH
-U3RyZWFtZXIgZ3JvdXAuIFdlIHJlbHkgb24gbWFpbnRhaW5lcnMKdG8gbWFrZSB0aGUgcmlnaHQg
-Y2FsbCB0aG91Z2gsIGFzIHdlIGhhdmUgZmV3IGNhc2VzIGluIG11bHRpLXJlcG8gdXNhZ2UKd2hl
-cmUgcHVzaGluZyBtYW51YWxseSBpcyB0aGUgb25seSB3YXkgdG8gcmVkdWNlIHRoZSBicmVha2Fn
-ZSB0aW1lCihlLmcuIHdoZW4gd2UgdW5kbyBhIG5ldyBBUEkgaW4gZGV2ZWxvcG1lbnQgYnJhbmNo
-KS4gKFdlIGhhdmUKaW1wbGVtZW50ZWQgc3VwcG9ydCBzbyB0aGF0IENJIGlzIHJ1biBhY3Jvc3Mg
-dXNlcnMgcmVwb3NpdG9yeSB3aXRoIHRoZQpzYW1lIGJyYW5jaCBuYW1lLCBzbyB0aGF0IGFsbG93
-IGRvaW5nIENJIHdpdGggYWxsIHRoZSBjaGFuZ2VzLCBidXQgdGhlCm1lcmdlIHJlbWFpbnMgbm9u
-LWF0b21pYy4pCgo+IAo+IAo+ID4gPiAyLiBNYXliZSB3ZSBjb3VsZCB0YWtlIHRoaXMgb25lIHN0
-ZXAgZnVydGhlciBhbmQgb25seSBhbGxvdyB0aGUgQ0kgdG8KPiA+ID4gYmUgb25seSB0cmlnZ2Vy
-ZWQgbWFudWFsbHkgaW5zdGVhZCBvZiBhdXRvbWF0aWNhbGx5IG9uIGV2ZXJ5IHB1c2guCj4gCj4g
-VGhhdCB3b3VsZCBhZ2FpbiBicmVhayBNYXJnZSBCb3QuCgpNYXJnZSBpcyBqdXN0IGEgc29mdHdh
-cmUsIHdlIGNhbiB1cGRhdGUgaXQgdG8gdHJpZ2dlciBDSSBvbiByZWJhc2VzLCBvcgppZiB0aGUg
-Q0kgaGF2ZW4ndCBiZWVuIHJ1bi4gVGhlcmUgd2FzIHByb3Bvc2FsIHRvIGFjdHVhbGx5IGRvIHRo
-YXQgYW5kCmxldCBtYXJnZSB0cmlnZ2VyIENJIG9uIG1lcmdlIGZyb20gbWFpbnRhaW5lcnMuIFRo
-b3VnaCwgZnJvbSBteSBwb2ludAp2aWV3LCBoYXZpbmcgYSBsb25nZXIgZGVsYXkgYmV0d2VlbiBz
-dWJtaXNzaW9uIGFuZCB0aGUgYXV0aG9yIGJlaW5nCmF3YXJlIG9mIENJIGJyZWFrYWdlIGhhdmUg
-c29tZSBzaWRlIGVmZmVjdHMuIEF1dGhvcnMgYXJlIG9mdGVuIGxlc3MKYXZhaWxhYmxlIGEgd2Vl
-ayBsYXRlciwgd2hlbiBzb21lb25lIHJldmlldyBhbmQgdHJ5IHRvIG1lcmdlLCB3aGljaAptYWtl
-IG1lcmdpbmcgcGF0Y2hlcyBhIGxvdCBsb25nZXIuCgo+IAo+IAoKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-L21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+--===============1379623095==
+Content-Language: en-CA
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR12MB3097EF3558FFD11BF7975BD6E8E60DM6PR12MB3097namp_"
+
+--_000_DM6PR12MB3097EF3558FFD11BF7975BD6E8E60DM6PR12MB3097namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+[AMD Official Use Only - Internal Distribution Only]
+
+The one suggestion I saw that definitely seemed worth looking at was adding=
+ download caches if the larger CI systems didn't already have them.
+
+Then again do we know that CI traffic is generating the bulk of the costs ?=
+ My guess would have been that individual developers and users would be gen=
+erating as much traffic as the CI rigs.
+
+________________________________
+From: amd-gfx <amd-gfx-bounces@lists.freedesktop.org> on behalf of Jason Ek=
+strand <jason@jlekstrand.net>
+Sent: March 1, 2020 3:18 PM
+To: Jacob Lifshay <programmerjake@gmail.com>; Nicolas Dufresne <nicolas@ndu=
+fresne.ca>
+Cc: Erik Faye-Lund <erik.faye-lund@collabora.com>; Daniel Vetter <daniel.ve=
+tter@ffwll.ch>; Michel D=E4nzer <michel@daenzer.net>; X.Org development <xo=
+rg-devel@lists.x.org>; amd-gfx list <amd-gfx@lists.freedesktop.org>; waylan=
+d <wayland-devel@lists.freedesktop.org>; X.Org Foundation Board <board@foun=
+dation.x.org>; Xorg Members List <members@x.org>; dri-devel <dri-devel@list=
+s.freedesktop.org>; Mesa Dev <mesa-dev@lists.freedesktop.org>; intel-gfx <i=
+ntel-gfx@lists.freedesktop.org>; Discussion of the development of and with =
+GStreamer <gstreamer-devel@lists.freedesktop.org>
+Subject: Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation and imp=
+act on services
+
+I don't think we need to worry so much about the cost of CI that we need to=
+ micro-optimize to to get the minimal number of CI runs. We especially shou=
+ldn't if it begins to impact coffee quality, people's ability to merge patc=
+hes in a timely manner, or visibility into what went wrong when CI fails. I=
+'ve seen a number of suggestions which will do one or both of those things =
+including:
+
+ - Batching merge requests
+ - Not running CI on the master branch
+ - Shutting off CI
+ - Preventing CI on other non-MR branches
+ - Disabling CI on WIP MRs
+ - I'm sure there are more...
+
+I think there are things we can do to make CI runs more efficient with some=
+ sort of end-point caching and we can probably find some truly wasteful CI =
+to remove. Most of the things in the list above, I've seen presented by peo=
+ple who are only lightly involved the project to my knowledge (no offense t=
+o anyone intended).  Developers depend on the CI system for their day-to-da=
+y work and hampering it will only show down development, reduce code qualit=
+y, and ultimately hurt our customers and community. If we're so desperate a=
+s to be considering painful solutions which will have a negative impact on =
+development, we're better off trying to find more money.
+
+--Jason
+
+
+On March 1, 2020 13:51:32 Jacob Lifshay <programmerjake@gmail.com> wrote:
+
+One idea for Marge-bot (don't know if you already do this):
+Rust-lang has their bot (bors) automatically group together a few merge req=
+uests into a single merge commit, which it then tests, then, then the tests=
+ pass, it merges. This could help reduce CI runs to once a day (or some oth=
+er rate). If the tests fail, then it could automatically deduce which one f=
+ailed, by recursive subdivision or similar. There's also a mechanism to adj=
+ust priority and grouping behavior when the defaults aren't sufficient.
+
+Jacob
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org<mailto:Intel-gfx%40lists.freedesktop.org>
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx<https://nam11.safe=
+links.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fm=
+ailman%2Flistinfo%2Fintel-gfx&data=3D02%7C01%7Cjohn.bridgman%40amd.com%7C96=
+fa507073f24b02f4b808d7be1daf8a%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C0%7=
+C637186907338419170&sdata=3DeT%2FUHbHaS1bZdvQOPjJ6wm0pqZSj2YE8k54%2FZHurRgA=
+%3D&reserved=3D0>
+
+
+
+--_000_DM6PR12MB3097EF3558FFD11BF7975BD6E8E60DM6PR12MB3097namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<p style=3D"font-family:Arial;font-size:10pt;color:#0078D7;margin:15pt;" al=
+ign=3D"Left">
+[AMD Official Use Only - Internal Distribution Only]<br>
+</p>
+<br>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+The one suggestion I saw that definitely seemed worth looking at was adding=
+ download caches if the larger CI systems didn't already have them.
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Then again do we know that CI traffic is generating the bulk of the costs ?=
+ My guess would have been that individual developers and users would be gen=
+erating as much traffic as the CI rigs.
+<br>
+</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> amd-gfx &lt;amd-gfx=
+-bounces@lists.freedesktop.org&gt; on behalf of Jason Ekstrand &lt;jason@jl=
+ekstrand.net&gt;<br>
+<b>Sent:</b> March 1, 2020 3:18 PM<br>
+<b>To:</b> Jacob Lifshay &lt;programmerjake@gmail.com&gt;; Nicolas Dufresne=
+ &lt;nicolas@ndufresne.ca&gt;<br>
+<b>Cc:</b> Erik Faye-Lund &lt;erik.faye-lund@collabora.com&gt;; Daniel Vett=
+er &lt;daniel.vetter@ffwll.ch&gt;; Michel D=E4nzer &lt;michel@daenzer.net&g=
+t;; X.Org development &lt;xorg-devel@lists.x.org&gt;; amd-gfx list &lt;amd-=
+gfx@lists.freedesktop.org&gt;; wayland &lt;wayland-devel@lists.freedesktop.=
+org&gt;;
+ X.Org Foundation Board &lt;board@foundation.x.org&gt;; Xorg Members List &=
+lt;members@x.org&gt;; dri-devel &lt;dri-devel@lists.freedesktop.org&gt;; Me=
+sa Dev &lt;mesa-dev@lists.freedesktop.org&gt;; intel-gfx &lt;intel-gfx@list=
+s.freedesktop.org&gt;; Discussion of the development of and with
+ GStreamer &lt;gstreamer-devel@lists.freedesktop.org&gt;<br>
+<b>Subject:</b> Re: [Intel-gfx] [Mesa-dev] gitlab.fd.o financial situation =
+and impact on services</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"auto">
+<div dir=3D"auto">I don't think we need to worry so much about the cost of =
+CI that we need to micro-optimize to to get the minimal number of CI runs. =
+We especially shouldn't if it begins to impact coffee quality, people's abi=
+lity to merge patches in a timely
+ manner, or visibility into what went wrong when CI fails. I've seen a numb=
+er of suggestions which will do one or both of those things including:</div=
+>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">&nbsp;- Batching merge requests</div>
+<div dir=3D"auto">&nbsp;- Not running CI on the master branch</div>
+<div dir=3D"auto">&nbsp;- Shutting off CI</div>
+<div dir=3D"auto">&nbsp;- Preventing CI on other non-MR branches</div>
+<div dir=3D"auto">&nbsp;- Disabling CI on WIP MRs</div>
+<div dir=3D"auto">&nbsp;- I'm sure there are more...</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I think there are things we can do to make CI runs more e=
+fficient with some sort of end-point caching and we can probably find some =
+truly wasteful CI to remove. Most of the things in the list above, I've see=
+n presented by people who are only
+ lightly involved the project to my knowledge (no offense to anyone intende=
+d).&nbsp; Developers depend on the CI system for their day-to-day work and =
+hampering it will only show down development, reduce code quality, and ulti=
+mately hurt our customers and community.
+ If we're so desperate as to be considering painful solutions which will ha=
+ve a negative impact on development, we're better off trying to find more m=
+oney.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">--Jason</div>
+<div dir=3D"auto"><br>
+</div>
+<div id=3D"x_aqm-original" style=3D"color:black">
+<div class=3D"x_aqm-original-body">
+<div style=3D"color:black">
+<p style=3D"color:black; font-size:10pt; font-family:sans-serif; margin:8pt=
+ 0">On March 1, 2020 13:51:32 Jacob Lifshay &lt;programmerjake@gmail.com&gt=
+; wrote:</p>
+<blockquote type=3D"cite" class=3D"x_gmail_quote" style=3D"margin:0 0 0 0.7=
+5ex; border-left:1px solid #808080; padding-left:0.75ex">
+<div dir=3D"auto">One idea for Marge-bot (don't know if you already do this=
+):
+<div dir=3D"auto">Rust-lang has their bot (bors) automatically group togeth=
+er a few merge requests into a single merge commit, which it then tests, th=
+en, then the tests pass, it merges. This could help reduce CI runs to once =
+a day (or some other rate). If the
+ tests fail, then it could automatically deduce which one failed, by recurs=
+ive subdivision or similar. There's also a mechanism to adjust priority and=
+ grouping behavior when the defaults aren't sufficient.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Jacob</div>
+</div>
+<div>_______________________________________________</div>
+<div>Intel-gfx mailing list</div>
+<div><a class=3D"x_aqm-autolink x_aqm-autowrap" href=3D"mailto:Intel-gfx%40=
+lists.freedesktop.org">Intel-gfx@lists.freedesktop.org</a></div>
+<div><a class=3D"x_aqm-autolink x_aqm-autowrap" href=3D"https://nam11.safel=
+inks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flists.freedesktop.org%2Fma=
+ilman%2Flistinfo%2Fintel-gfx&amp;data=3D02%7C01%7Cjohn.bridgman%40amd.com%7=
+C96fa507073f24b02f4b808d7be1daf8a%7C3dd8961fe4884e608e11a82d994e183d%7C0%7C=
+0%7C637186907338419170&amp;sdata=3DeT%2FUHbHaS1bZdvQOPjJ6wm0pqZSj2YE8k54%2F=
+ZHurRgA%3D&amp;reserved=3D0" originalsrc=3D"https://lists.freedesktop.org/m=
+ailman/listinfo/intel-gfx" shash=3D"ktF1cEQ0POHqVykcchKCtEugYe4EbGyHOPmY/qj=
+0sk5Ennmjm7g2mePEyf/qXfXQvSZMPJVrCTC/gNnWszjsskSxZAeCeaW7i6Yy&#43;hdYU3IAic=
+UGztA&#43;RAQ6yhvgltrWmHah3Uh8ypc1YQrVADhiKZ9UC38Pk6z0FMxiz/7FWnw=3D">https=
+://lists.freedesktop.org/mailman/listinfo/intel-gfx</a></div>
+<div><br>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_DM6PR12MB3097EF3558FFD11BF7975BD6E8E60DM6PR12MB3097namp_--
+
+--===============1379623095==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1379623095==--
