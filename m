@@ -2,31 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10A9A175662
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 09:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B69CC17567F
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 10:01:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FD56E13F;
-	Mon,  2 Mar 2020 08:58:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BED336E1C4;
+	Mon,  2 Mar 2020 09:01:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6954C6E13F
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 08:58:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20409429-1500050 
- for multiple; Mon, 02 Mar 2020 08:58:25 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Mar 2020 08:58:12 +0000
-Message-Id: <20200302085812.4172450-22-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
-References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
+ [IPv6:2607:f8b0:4864:20::243])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0EA6E1CF
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:01:14 +0000 (UTC)
+Received: by mail-oi1-x243.google.com with SMTP id g6so7847873oiy.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 01:01:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc:content-transfer-encoding;
+ bh=dP/blP0IyHxLhx33baiH2DN6v9h44FDSUyjK2Du4u08=;
+ b=L26N7qgnRMx/LSzXah4R/5LddUg7EPsX+ij9NQl5YFT2FUSSawOPJ1TZHMlSQqsJwz
+ gg0I7g/TF3HovpYpXazuNo2hqJ8r1EtwQd222mRkaliIEbmmcLYt7p2hv7OwN1z6Oqfm
+ HeJ6XDstC51AxYKt7lhCz90ubXfxYn59kqMQo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc:content-transfer-encoding;
+ bh=dP/blP0IyHxLhx33baiH2DN6v9h44FDSUyjK2Du4u08=;
+ b=C6f5crGyO65o1qXPxpcrx9XTmklrj+SbKPhWoWKgzR+4Wr33sSlHpWYR6P0XZ8XFdw
+ mjALfyGd7q9xUuKJ9rLKZOX7dXlrcwSvoym1hKpITshjnwtgxoDer8NnROkmvic9lysR
+ 7apYn/kZS5eCwgcBKisuzJJg6r0AUGxj7V4JUJuF3/6LtzNO0V7fvr170e2DvcjJdw4H
+ NKm+b+xMmqDxl+RQxaMzAHrLeXHlZthVLITGT4P4RIvS2xf00mo0yoNSaCglo4UpVH2K
+ nnc9LBcRrTmxIOlQhuwCny7QFGFDUL3r+PeD1QHGRz50s6kCCPM2Y6bsR9zOeVDvvQEI
+ SAvA==
+X-Gm-Message-State: APjAAAXndnLRTgcVQiHyJsB0aW227Z876AInsXDoV+VymnZW1kWlsIWf
+ bAwDHfKv317BYMVONqgvNDW07xh+zIzlb0BjCr/O2w==
+X-Google-Smtp-Source: APXvYqxqfRCGIl/RjPBpwE+Vi+9RaB+9zTWwyUqIhxTYH6Mi77oVlZCvJ4Sjhd9qbIutP8R89i/MlF/9kWaHDTyTF88=
+X-Received: by 2002:aca:d985:: with SMTP id
+ q127mr10271179oig.132.1583139673497; 
+ Mon, 02 Mar 2020 01:01:13 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 22/22] drm/i915/gt: Yield the timeslice if
- caught waiting on a user semaphore
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-51-daniel.vetter@ffwll.ch>
+ <9e49ba2e-3d1e-98a2-9a11-725bc8a95941@suse.de>
+ <CAKMK7uGicrZxMeYmz13psgXgRYK1OrZmpHxsEKxet=qP_pRpcQ@mail.gmail.com>
+ <013a54c4-edc6-b771-478f-e3e10a1d9a83@suse.de>
+ <CAKMK7uG3MuLEhCSxP1HBoROD3FuixcRov57hTBO9BeZE+n98jg@mail.gmail.com>
+ <e9fa1b03-e4b7-d65b-8fb8-fe15c20fddc9@suse.de>
+In-Reply-To: <e9fa1b03-e4b7-d65b-8fb8-fe15c20fddc9@suse.de>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Mon, 2 Mar 2020 10:01:01 +0100
+Message-ID: <CAKMK7uGruuj-q2c+4LfJMM_weCOkkOs7R3QxnQTYfdt4SahBEQ@mail.gmail.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [Intel-gfx] [PATCH 50/51] drm/udl: drop drm_driver.release hook
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,226 +65,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>, Dave Airlie <airlied@redhat.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice, if we have
-another context to yield to!
-
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is, we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
-the interrupt and apply it to the next timeslice regardless of whether it
-was active at the time.
-
-v2: We use semaphores in preempt-to-busy, within the timeslicing
-implementation itself! Ergo, when we do insert a preemption due to an
-expired timeslice, the new context may start with the missed semaphore
-flagged by the retired context and be yielded, ad infinitum. To avoid
-this, read the context id at the time of the semaphore interrupt and
-only yield if that context is still active.
-
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 +++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 +++++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 13 ++++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 40 +++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h              |  1 +
- 5 files changed, 61 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 53ac3f00909a..c93a805eddfb 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1290,6 +1290,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 
- 	if (engine->id == RENDER_CLASS && IS_GEN_RANGE(dev_priv, 4, 7))
- 		drm_printf(m, "\tCCID: 0x%08x\n", ENGINE_READ(engine, CCID));
-+	if (HAS_EXECLISTS(dev_priv)) {
-+		drm_printf(m, "\tEL_STAT_HI: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_HI));
-+		drm_printf(m, "\tEL_STAT_LO: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_LO));
-+	}
- 	drm_printf(m, "\tRING_START: 0x%08x\n",
- 		   ENGINE_READ(engine, RING_START));
- 	drm_printf(m, "\tRING_HEAD:  0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 4dfaaaa32e32..1ace7cdf332f 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -156,6 +156,15 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_priolist default_priolist;
- 
-+	/**
-+	 * @yield: CCID at the time of the last semaphore-wait interrupt.
-+	 *
-+	 * Instead of leaving a semaphore busy-spinning on an engine, we would
-+	 * like to switch to another ready context, i.e. yielding the semaphore
-+	 * timeslice.
-+	 */
-+	u32 yield;
-+
- 	/**
- 	 * @error_interrupt: CS Master EIR
- 	 *
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f0e7fd95165a..875bd0392ffc 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -39,6 +39,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- 		}
- 	}
- 
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		WRITE_ONCE(engine->execlists.yield,
-+			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
-+	}
-+
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
- 
-@@ -228,7 +235,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -366,7 +374,8 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	const u32 gt_interrupts[] = {
- 		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
- 		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index c70dc4cfc4f3..e717bc644700 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1749,7 +1749,8 @@ static void defer_active(struct intel_engine_cs *engine)
- }
- 
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1765,6 +1766,31 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_yield(const struct intel_engine_execlists *el,
-+		const struct i915_request *rq)
-+{
-+	/*
-+	 * Once bitten, forever smitten!
-+	 *
-+	 * If the active context ever busy-waited on a semaphore,
-+	 * it will be treated as a hog until the end of its timeslice.
-+	 * The HW only sends an interrupt on the first miss, and we
-+	 * do know if that semaphore has been signaled, or even if it
-+	 * is now stuck on another semaphore. Play safe, yield if it
-+	 * might be stuck -- it will be given a fresh timeslice in
-+	 * the near future.
-+	 */
-+	return upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield);
-+}
-+
-+static bool
-+timeslice_expired(const struct intel_engine_execlists *el,
-+		  const struct i915_request *rq)
-+{
-+	return timer_expired(&el->timer) || timeslice_yield(el, rq);
-+}
-+
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1780,8 +1806,7 @@ timeslice(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.timeslice_duration_ms);
- }
- 
--static unsigned long
--active_timeslice(const struct intel_engine_cs *engine)
-+static unsigned long active_timeslice(const struct intel_engine_cs *engine)
- {
- 	const struct i915_request *rq = *engine->execlists.active;
- 
-@@ -1994,13 +2019,14 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(execlists, last)) {
- 			ENGINE_TRACE(engine,
--				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
-+				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
- 				     last->fence.seqno,
- 				     last->sched.attr.priority,
--				     execlists->queue_priority_hint);
-+				     execlists->queue_priority_hint,
-+				     yesno(timeslice_yield(execlists, last)));
- 
- 			ring_set_paused(engine, 1);
- 			defer_active(engine);
-@@ -2262,6 +2288,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		}
- 		clear_ports(port + 1, last_port - port);
- 
-+		WRITE_ONCE(execlists->yield, -1);
- 		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine);
- 	} else {
-@@ -4528,6 +4555,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
- 	engine->irq_keep_mask |= GT_CS_MASTER_ERROR_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 72de9591f77f..7677016cf18c 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3092,6 +3092,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gTW9uLCBNYXIgMiwgMjAyMCBhdCA5OjE0IEFNIFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPiB3cm90ZToKPgo+IEhpIERhbmllbAo+Cj4gQW0gMjguMDIuMjAgdW0gMTg6
+NDMgc2NocmllYiBEYW5pZWwgVmV0dGVyOgo+ID4gT24gRnJpLCBGZWIgMjgsIDIwMjAgYXQgMTI6
+NDYgUE0gVGhvbWFzIFppbW1lcm1hbm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+IHdyb3RlOgo+ID4+
+Cj4gPj4gSGkKPiA+Pgo+ID4+IEFtIDI4LjAyLjIwIHVtIDA5OjQwIHNjaHJpZWIgRGFuaWVsIFZl
+dHRlcjoKPiA+Pj4gT24gRnJpLCBGZWIgMjgsIDIwMjAgYXQgODo0NCBBTSBUaG9tYXMgWmltbWVy
+bWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4gd3JvdGU6Cj4gPj4+Pgo+ID4+Pj4gSGkgRGFuaWVs
+Cj4gPj4+Pgo+ID4+Pj4gQW0gMjcuMDIuMjAgdW0gMTk6MTUgc2NocmllYiBEYW5pZWwgVmV0dGVy
+Ogo+ID4+Pj4+IFRoZXJlJ3Mgb25seSB0d28gZnVuY3Rpb25zIGNhbGxlZCBmcm9tIHRoYXQ6Cj4g
+Pj4+Pj4gZHJtX2ttc19oZWxwZXJfcG9sbF9maW5pKCkgYW5kIHVkbF9mcmVlX3VyYl9saXN0KCku
+IEJvdGggb2YgdGhlc2UgYXJlCj4gPj4+Pj4gYWxzbyBjYWxsZWQgZnJvbSB0aGUgdWJzX2RyaXZl
+ci0+ZGlzY29ubmVjdCBob29rLCBzbyBlbnRpcmVseQo+ID4+Pj4+IHBvaW50bGVzcyB0byBkbyB0
+aGUgc2FtZSBhZ2FpbiBpbiB0aGUgLT5yZWxlYXNlIGhvb2suCj4gPj4+Pgo+ID4+Pj4gVGhlIGRp
+c2Nvbm5lY3QgaG9vayBjYWxscyBkcm1fa21zX2hlbHBlcl9wb2xsX2Rpc2FibGUoKSBpbnN0ZWFk
+IGlmCj4gPj4+PiBfZmluaSgpLiBUaGV5IGFyZSB0aGUgc2FtZSwgZXhjZXB0IHRoYXQgX2Rpc2Fi
+bGUoKSBkb2VzIG5vdCBjbGVhcgo+ID4+Pj4gZGV2LT5tb2RlX2NvbmZpZy5wb2xsX2VuYWJsZWQg
+dG8gZmFsc2UuIElzIHRoaXMgT0s/Cj4gPj4+Cj4gPj4+IG9vcHMsIEkgb3Zlcmxvb2tlZCB0aGF0
+LiBCdXQgeWVhaCBmb3IgZHJpdmVyIHNodXRkb3duIGl0J3MgdGhlIHNhbWUKPiA+Pj4gcmVhbGx5
+LCB3ZSdyZSBub3QgZ29pbmcgdG8gcmUtZW5hYmxlLiBfZGlzYWJsZSBpcyBtZWFudCBmb3Igc3Vz
+cGVuZCBzbwo+ID4+PiB5b3VjIGFuIHJlLWVuYWJsZSBhZ2FpbiBvbiByZXN1bWUuCj4gPj4+Cj4g
+Pj4+IEknbGwgYXVnbWVudCB0aGUgY29tbWl0IG1lc3NhZ2Ugb24gdGhlIG5leHQgcm91bmQgdG8g
+Y2xhcmlmeSB0aGF0Lgo+ID4+Cj4gPj4gV2VsbCwgd2UgaGF2ZSBhIG1hbmFnZWQgQVBJLiBJdCBj
+b3VsZCBzdXBwb3J0Cj4gPj4gZHJtbV9rbXNfaGVscGVyX3BvbGxfaW5pdCgpLiA6KQo+ID4KPiA+
+IFlvdSdyZSBhaGVhZCBvZiB0aGUgZ2FtZSBoZXJlLCBidXQgeWVzIHRoYXQncyB0aGUgcGxhbi4g
+QW5kIGEgbG90Cj4gPiBtb3JlLiBJZGVhbGx5IEkgcmVhbGx5IHdhbnQgdG8gZ2V0IHJpZCBvZiBi
+b3RoIGJ1c19kcml2ZXItPnJlbW92ZSBhbmQKPiA+IGRybV9kcml2ZXItPnJlbGVhc2UgY2FsbGJh
+Y2tzIGZvciBhbGwgZHJpdmVycy4KPiA+Cj4gPiBBbHNvLCBmb3IgcG9sbGluZyB5b3UgYWN0dWFs
+bHkgd2FudCBkZXZtX2ttc19wb2xsX2luaXQsIHNpbmNlIHBvbGxpbmcKPiA+IHNob3VsZCBiZSBz
+dG9wcGVkIGF0IHVucGx1Zy9yZW1vdmUgdGltZS4gTm90IGF0IGRybV9kcml2ZXIgcmVsZWFzZQo+
+ID4gdGltZSA6LSkKPgo+IFF1aXRlIGhvbmVzdGx5LCBpZiB5b3UncmUgbm90IGFkZGluZyBkZXZt
+X2ttc19wb2xsX2luaXQoKSBub3csIHdoeSBldmVuCj4gYm90aGVyIHJlbW92aW5nIHRoZSBfZmlu
+aSgpIGNhbGwgZnJvbSByZWxlYXNlKCk/IEl0IGhhc24ndCBiZWVuIGEKPiBwcm9ibGVtIHNvIGZh
+ciBhbmQgaXQgd29uJ3QgYmVjb21lIG9uZS4gRG9pbmcgYSBoYWxmLWJha2VkIGNoYW5nZSBub3cK
+PiByZXN1bHRzIGluIGEgcG90ZW50aWFsIFdURiBtb21lbnQgZm9yIG90aGVyIGRldmVsb3BlcnMu
+Cj4KPiBSYXRoZXIgY2xlYW4gdXAgcmVsZWFzZSgpIHdoZW4geW91IGFkZCB0aGUgbWFuYWdlZCBk
+ZXZtX2ttc19wb2xsX2luaXQoKQo+IGFuZCBoYXZlIGEgbmljZSwgY2xlYXIgcGF0Y2guCgpTbyB0
+aGUgdGhpbmcgaXMsIHlvdSBuZWVkIHRvIHN0b3AgeW91ciBwb2xsIHdvcmtlciBpbiAtPnVucGx1
+Zywgbm90Ci0+cmVsZWFzZS4gVGhhdCdzIHRoZSBwYXJ0IEknbSBmaXhpbmcgaGVyZSAocGx1cyBz
+dG9wcGluZyBpdCB0d2ljZSBpcwpvdmVya2lsbCkuIEknbSBub3Qgc2VlaW5nIGFueSBjb25uZWN0
+aW9uIHRvIG1ha2luZyB0aGUgLT51bnBsdWcgcGFydApoZXJlIGF1dG9tYXRpYywgdGhhdCB3YXMg
+anVzdCBhIGZ1dHVyZSBpZGVhLiBCdXQgdGhpcyBwYXRjaCBzZXJpZXMKaGVyZSBpcyBhbGwgYWJv
+dXQgLT5yZWxlYXNlIHN0dWZmLiBJIGd1ZXNzIEkgY2FuIGRvIGEgcmVzcGluIGFuZApjaGFuZ2Ug
+dGhlIG9uZSBpbiAtPnVucGx1ZyBmcm9tIF9kaXNhYmxlIHRvIF9maW5pLCB3aGljaCB3b3VsZCBi
+ZQpjbGVhcmVyLgoKQnV0IG5vdCBkb2luZyB0aGlzIHBhdGNoIGhlcmUganVzdCBiZWNhdXNlIHdl
+IHdhbnQgdG8gY2xlYW4gdGhpbmdzIHVwCmV2ZW4gbW9yZSBkb2Vzbid0IG1ha2Ugc2Vuc2UgdG8g
+bWUuCi1EYW5pZWwKCj4gQmVzdCByZWdhcmRzCj4gVGhvbWFzCj4KPgo+ID4gLURhbmllbAo+ID4K
+PiA+Pgo+ID4+IEJlc3QgcmVnYXJkcwo+ID4+IFRob21hcwo+ID4+Cj4gPj4+IC1EYW5pZWwKPiA+
+Pj4KPiA+Pj4KPiA+Pj4+IEJlc3QgcmVnYXJkcwo+ID4+Pj4gVGhvbWFzCj4gPj4+Pgo+ID4+Pj4+
+Cj4gPj4+Pj4gRnVydGhlcm1vcmUgYnkgdGhlIHRpbWUgd2UgY2xlYW4gdXAgdGhlIGRybV9kcml2
+ZXIgd2UgcmVhbGx5IHNob3VsZG4ndAo+ID4+Pj4+IGJlIHRvdWNoaW5nIGhhcmR3YXJlIGFueW1v
+cmUsIHNvIHN0b3BwaW5nIHRoZSBwb2xsIHdvcmtlciBhbmQgZnJlZWluZwo+ID4+Pj4+IHRoZSB1
+cmIgYWxsb2NhdGlvbnMgaW4gLT5kaXNjb25uZWN0IGlzIHRoZSByaWdodCB0aGluZyB0byBkby4K
+PiA+Pj4+Pgo+ID4+Pj4+IE5vdyBkaXNjb25uZWN0IHN0aWxsIGNsZWFucyB0aGluZ3MgdXAgYmVm
+b3JlIHVucmVnaXN0ZXJpbmcgdGhlIGRyaXZlciwKPiA+Pj4+PiBidXQgdGhhdCdzIGEgZGlmZmVy
+ZW50IGlzc3VlLgo+ID4+Pj4+Cj4gPj4+Pj4gU2lnbmVkLW9mZi1ieTogRGFuaWVsIFZldHRlciA8
+ZGFuaWVsLnZldHRlckBpbnRlbC5jb20+Cj4gPj4+Pj4gQ2M6IERhdmUgQWlybGllIDxhaXJsaWVk
+QHJlZGhhdC5jb20+Cj4gPj4+Pj4gQ2M6IFNlYW4gUGF1bCA8c2VhbkBwb29ybHkucnVuPgo+ID4+
+Pj4+IENjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVyQGZmd2xsLmNoPgo+ID4+Pj4+IENj
+OiBUaG9tYXMgWmltbWVybWFubiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4KPiA+Pj4+PiBDYzogRW1p
+bCBWZWxpa292IDxlbWlsLmwudmVsaWtvdkBnbWFpbC5jb20+Cj4gPj4+Pj4gQ2M6IEdlcmQgSG9m
+Zm1hbm4gPGtyYXhlbEByZWRoYXQuY29tPgo+ID4+Pj4+IENjOiAiTm9yYWxmIFRyw7hubmVzIiA8
+bm9yYWxmQHRyb25uZXMub3JnPgo+ID4+Pj4+IENjOiBTYW0gUmF2bmJvcmcgPHNhbUByYXZuYm9y
+Zy5vcmc+Cj4gPj4+Pj4gQ2M6IFRob21hcyBHbGVpeG5lciA8dGdseEBsaW51dHJvbml4LmRlPgo+
+ID4+Pj4+IENjOiBBbGV4IERldWNoZXIgPGFsZXhhbmRlci5kZXVjaGVyQGFtZC5jb20+Cj4gPj4+
+Pj4gLS0tCj4gPj4+Pj4gIGRyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX2Rydi5jICB8ICA2IC0tLS0t
+LQo+ID4+Pj4+ICBkcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYuaCAgfCAgMSAtCj4gPj4+Pj4g
+IGRyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX21haW4uYyB8IDEwIC0tLS0tLS0tLS0KPiA+Pj4+PiAg
+MyBmaWxlcyBjaGFuZ2VkLCAxNyBkZWxldGlvbnMoLSkKPiA+Pj4+Pgo+ID4+Pj4+IGRpZmYgLS1n
+aXQgYS9kcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYuYyBiL2RyaXZlcnMvZ3B1L2RybS91ZGwv
+dWRsX2Rydi5jCj4gPj4+Pj4gaW5kZXggYjQ0N2ZiMDUzZTc4Li43ZjE0MDg5OGRmM2UgMTAwNjQ0
+Cj4gPj4+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfZHJ2LmMKPiA+Pj4+PiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0vdWRsL3VkbF9kcnYuYwo+ID4+Pj4+IEBAIC0zNCwxNCArMzQsOCBA
+QCBzdGF0aWMgaW50IHVkbF91c2JfcmVzdW1lKHN0cnVjdCB1c2JfaW50ZXJmYWNlICppbnRlcmZh
+Y2UpCj4gPj4+Pj4KPiA+Pj4+PiAgREVGSU5FX0RSTV9HRU1fRk9QUyh1ZGxfZHJpdmVyX2ZvcHMp
+Owo+ID4+Pj4+Cj4gPj4+Pj4gLXN0YXRpYyB2b2lkIHVkbF9kcml2ZXJfcmVsZWFzZShzdHJ1Y3Qg
+ZHJtX2RldmljZSAqZGV2KQo+ID4+Pj4+IC17Cj4gPj4+Pj4gLSAgICAgdWRsX2ZpbmkoZGV2KTsK
+PiA+Pj4+PiAtfQo+ID4+Pj4+IC0KPiA+Pj4+PiAgc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGRy
+aXZlciA9IHsKPiA+Pj4+PiAgICAgICAuZHJpdmVyX2ZlYXR1cmVzID0gRFJJVkVSX0FUT01JQyB8
+IERSSVZFUl9HRU0gfCBEUklWRVJfTU9ERVNFVCwKPiA+Pj4+PiAtICAgICAucmVsZWFzZSA9IHVk
+bF9kcml2ZXJfcmVsZWFzZSwKPiA+Pj4+Pgo+ID4+Pj4+ICAgICAgIC8qIGdlbSBob29rcyAqLwo+
+ID4+Pj4+ICAgICAgIC5nZW1fY3JlYXRlX29iamVjdCA9IHVkbF9kcml2ZXJfZ2VtX2NyZWF0ZV9v
+YmplY3QsCj4gPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX2Rydi5o
+IGIvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfZHJ2LmgKPiA+Pj4+PiBpbmRleCAxZGU3ZWIxYjZh
+YWMuLjI2NDJmOTRhNjNmYyAxMDA2NDQKPiA+Pj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vdWRs
+L3VkbF9kcnYuaAo+ID4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS91ZGwvdWRsX2Rydi5oCj4g
+Pj4+Pj4gQEAgLTc2LDcgKzc2LDYgQEAgaW50IHVkbF9zdWJtaXRfdXJiKHN0cnVjdCBkcm1fZGV2
+aWNlICpkZXYsIHN0cnVjdCB1cmIgKnVyYiwgc2l6ZV90IGxlbik7Cj4gPj4+Pj4gIHZvaWQgdWRs
+X3VyYl9jb21wbGV0aW9uKHN0cnVjdCB1cmIgKnVyYik7Cj4gPj4+Pj4KPiA+Pj4+PiAgaW50IHVk
+bF9pbml0KHN0cnVjdCB1ZGxfZGV2aWNlICp1ZGwpOwo+ID4+Pj4+IC12b2lkIHVkbF9maW5pKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYpOwo+ID4+Pj4+Cj4gPj4+Pj4gIGludCB1ZGxfcmVuZGVyX2hs
+aW5lKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIGludCBsb2dfYnBwLCBzdHJ1Y3QgdXJiICoqdXJi
+X3B0ciwKPiA+Pj4+PiAgICAgICAgICAgICAgICAgICAgY29uc3QgY2hhciAqZnJvbnQsIGNoYXIg
+Kip1cmJfYnVmX3B0ciwKPiA+Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3VkbC91
+ZGxfbWFpbi5jIGIvZHJpdmVycy9ncHUvZHJtL3VkbC91ZGxfbWFpbi5jCj4gPj4+Pj4gaW5kZXgg
+NTM4NzE4OTE5OTE2Li5mNWQyN2YyYTU2NTQgMTAwNjQ0Cj4gPj4+Pj4gLS0tIGEvZHJpdmVycy9n
+cHUvZHJtL3VkbC91ZGxfbWFpbi5jCj4gPj4+Pj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3VkbC91
+ZGxfbWFpbi5jCj4gPj4+Pj4gQEAgLTM1MSwxMyArMzUxLDMgQEAgaW50IHVkbF9kcm9wX3VzYihz
+dHJ1Y3QgZHJtX2RldmljZSAqZGV2KQo+ID4+Pj4+ICAgICAgIHVkbF9mcmVlX3VyYl9saXN0KGRl
+dik7Cj4gPj4+Pj4gICAgICAgcmV0dXJuIDA7Cj4gPj4+Pj4gIH0KPiA+Pj4+PiAtCj4gPj4+Pj4g
+LXZvaWQgdWRsX2Zpbmkoc3RydWN0IGRybV9kZXZpY2UgKmRldikKPiA+Pj4+PiAtewo+ID4+Pj4+
+IC0gICAgIHN0cnVjdCB1ZGxfZGV2aWNlICp1ZGwgPSB0b191ZGwoZGV2KTsKPiA+Pj4+PiAtCj4g
+Pj4+Pj4gLSAgICAgZHJtX2ttc19oZWxwZXJfcG9sbF9maW5pKGRldik7Cj4gPj4+Pj4gLQo+ID4+
+Pj4+IC0gICAgIGlmICh1ZGwtPnVyYnMuY291bnQpCj4gPj4+Pj4gLSAgICAgICAgICAgICB1ZGxf
+ZnJlZV91cmJfbGlzdChkZXYpOwo+ID4+Pj4+IC19Cj4gPj4+Pj4KPiA+Pj4+Cj4gPj4+PiAtLQo+
+ID4+Pj4gVGhvbWFzIFppbW1lcm1hbm4KPiA+Pj4+IEdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIK
+PiA+Pj4+IFNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSAo+ID4+Pj4gTWF4ZmVs
+ZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55Cj4gPj4+PiAoSFJCIDM2ODA5LCBBRyBO
+w7xybmJlcmcpCj4gPj4+PiBHZXNjaMOkZnRzZsO8aHJlcjogRmVsaXggSW1lbmTDtnJmZmVyCj4g
+Pj4+Pgo+ID4+Pgo+ID4+Pgo+ID4+Cj4gPj4gLS0KPiA+PiBUaG9tYXMgWmltbWVybWFubgo+ID4+
+IEdyYXBoaWNzIERyaXZlciBEZXZlbG9wZXIKPiA+PiBTVVNFIFNvZnR3YXJlIFNvbHV0aW9ucyBH
+ZXJtYW55IEdtYkgKPiA+PiBNYXhmZWxkc3RyLiA1LCA5MDQwOSBOw7xybmJlcmcsIEdlcm1hbnkK
+PiA+PiAoSFJCIDM2ODA5LCBBRyBOw7xybmJlcmcpCj4gPj4gR2VzY2jDpGZ0c2bDvGhyZXI6IEZl
+bGl4IEltZW5kw7ZyZmZlcgo+ID4+Cj4gPgo+ID4KPgo+IC0tCj4gVGhvbWFzIFppbW1lcm1hbm4K
+PiBHcmFwaGljcyBEcml2ZXIgRGV2ZWxvcGVyCj4gU1VTRSBTb2Z0d2FyZSBTb2x1dGlvbnMgR2Vy
+bWFueSBHbWJICj4gTWF4ZmVsZHN0ci4gNSwgOTA0MDkgTsO8cm5iZXJnLCBHZXJtYW55Cj4gKEhS
+QiAzNjgwOSwgQUcgTsO8cm5iZXJnKQo+IEdlc2Now6RmdHNmw7xocmVyOiBGZWxpeCBJbWVuZMO2
+cmZmZXIKPgoKCi0tIApEYW5pZWwgVmV0dGVyClNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jw
+b3JhdGlvbgorNDEgKDApIDc5IDM2NSA1NyA0OCAtIGh0dHA6Ly9ibG9nLmZmd2xsLmNoCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
