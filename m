@@ -1,44 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0694C1757A9
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 10:49:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4B99175852
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 11:29:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FFA36E247;
-	Mon,  2 Mar 2020 09:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 319506E258;
+	Mon,  2 Mar 2020 10:29:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343BF6E23D
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:49:53 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EECB86E258
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 10:29:31 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 01:49:52 -0800
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 02:29:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,506,1574150400"; d="scan'208";a="438227698"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
- by fmsmga005.fm.intel.com with ESMTP; 02 Mar 2020 01:49:52 -0800
-Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
- IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 2 Mar 2020 09:49:51 +0000
-Date: Mon, 2 Mar 2020 11:49:48 +0200
-From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200302094948.u3vy642qgy3belxf@ahiler-desk1.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Patchwork-Hint: comment
-References: <dece9669d6a9c03c1c14f4a33e1d817a7a78d78b.camel@intel.com>
- <20200228102104.GL3839@platvala-desk.ger.corp.intel.com>
- <9ea33015bcb07c479660cde754e8d2e3fcee709d.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,506,1574150400"; d="scan'208";a="286586516"
+Received: from hschroed-mobl.ger.corp.intel.com (HELO [10.249.38.113])
+ ([10.249.38.113])
+ by FMSMGA003.fm.intel.com with ESMTP; 02 Mar 2020 02:29:29 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
+ <20200302085812.4172450-7-chris@chris-wilson.co.uk>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <4d9f976d-b1f1-d079-9cd0-e511e407a508@intel.com>
+Date: Mon, 2 Mar 2020 12:29:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9ea33015bcb07c479660cde754e8d2e3fcee709d.camel@intel.com>
-X-Originating-IP: [10.237.68.143]
-Subject: Re: [Intel-gfx] [CI] PR for TGL DMC v2.06
+In-Reply-To: <20200302085812.4172450-7-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 07/22] drm/i915/perf: Reintroduce wait on OA
+ configuration completion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,50 +49,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gRnJpLCBGZWIgMjgsIDIwMjAgYXQgMDY6NTI6MDFQTSArMDAwMCwgU291emEsIEpvc2Ugd3Jv
-dGU6Cj4gT24gRnJpLCAyMDIwLTAyLTI4IGF0IDEyOjIxICswMjAwLCBQZXRyaSBMYXR2YWxhIHdy
-b3RlOgo+ID4gT24gVGh1LCBGZWIgMjcsIDIwMjAgYXQgMTE6NDI6MDNQTSArMDAwMCwgU291emEs
-IEpvc2Ugd3JvdGU6Cj4gPiA+IFRoZSBmb2xsb3dpbmcgY2hhbmdlcyBzaW5jZSBjb21taXQKPiA+
-ID4gZWZjZmEwM2FlNjEwMGRmZTUyM2ViZjYxMmUwM2MzYTkwZmM0Yzc5NDoKPiA+ID4gCj4gPiA+
-ICAgbGludXgtZmlybXdhcmU6IFVwZGF0ZSBmaXJtd2FyZSBmaWxlIGZvciBJbnRlbCBCbHVldG9v
-dGggQVgyMDEKPiA+ID4gKDIwMjAtCj4gPiA+IDAyLTI0IDA3OjQzOjQyIC0wNTAwKQo+ID4gPiAK
-PiA+ID4gYXJlIGF2YWlsYWJsZSBpbiB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6Cj4gPiA+IAo+ID4g
-PiAgIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Aub3JnL2RybS9kcm0tZmlybXdhcmUgdGdsX2Rt
-Y18yLjA2Cj4gPiA+IAo+ID4gPiBmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8KPiA+ID4g
-ZTIzOTYzMTkxNjc3MjRlOWZmZGRjMzc3ZjMwMDQ2OTkyM2ZjY2RjYjoKPiA+ID4gCj4gPiA+ICAg
-aTkxNTogQWRkIERNQyBmaXJtd2FyZSB2Mi4wNiBmb3IgVEdMICgyMDIwLTAyLTI3IDE1OjI0OjU2
-IDIwMjAKPiA+ID4gLTA4MDApCj4gPiA+IAo+ID4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gPiA+IEpvc8OpIFJvYmVy
-dG8gZGUgU291emEgKDEpOgo+ID4gPiAgICAgICBpOTE1OiBBZGQgRE1DIGZpcm13YXJlIHYyLjA2
-IGZvciBUR0wKPiA+ID4gCj4gPiA+ICBXSEVOQ0UgICAgICAgICAgICAgICAgICB8ICAgMyArKysK
-PiA+ID4gIGk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbiB8IEJpbiAwIC0+IDE4NjYwIGJ5dGVzCj4g
-PiA+ICAyIGZpbGVzIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQo+ID4gPiAgY3JlYXRlIG1vZGUg
-MTAwNjQ0IGk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbgo+ID4gCj4gPiBQYXRjaHdvcmsgZGlkbid0
-IHBpY2sgdXAgdGhpcyBQUiwgSSBzdXNwZWN0IHRoZSBleHRyYSBuZXdsaW5lcyB0byBiZQo+ID4g
-dGhlIGlzc3VlLiBDYW4geW91IHRyeSByZXNlbmRpbmcgdGhpcyB3aXRob3V0IHRoZSBhdXRvbWF0
-aWMgbmV3bGluZXMKPiA+IGJlZm9yZSB0aGUgY29tbWl0IHNoYXM/Cj4gPiAKPiA+IElmIHBhdGNo
-d29yayByZWNvZ25pemVzIGl0IGFzIGEgcHVsbCByZXF1ZXN0LCBpdCB3aWxsIGFwcGVhciBpbiBo
-ZXJlOgo+ID4gaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL2FwaS8xLjAvcHJvamVj
-dHMvaW50ZWwtZ2Z4L2V2ZW50cy8/cGFnZT0xJnNpbmNlPTIwMjAtMDItMjAmbmFtZT1wdWxsLXJl
-cXVlc3QtbmV3Cj4gPiAKPiAKPiBIaSBQZXRyaQo+IAo+IFN0aWxsIG5lZWRlZD8gQWNjb3JkaW5n
-IHRvIAo+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9wYXRjaC8zNTU2MjQvP3Nl
-cmllcz03NDA0OCZyZXY9MiBpdAo+IHdhcyBtYW51YWxseSBwaWNrZWQuCgpIZXksCgpQYXRjaHdv
-cmsgZ290IGRlZmVhdGVkIGJ5IHRoZSBjYXJyaWFnZSByZXR1cm4gdGhpcyB0aW1lOgoKMDAwMDAw
-ZDA6IDczNjkgNzQ2ZiA3Mjc5IDIwNjEgNzQzYSAwZDBhIDBkMGEgMjAyMCAgc2l0b3J5IGF0Oi4u
-Li4KCldoaWNoIGRvZXNuJ3QgbWF0Y2ggdGhpcyByZWdleHA6CgogIGdpdF9yZSA9IHJlLmNvbXBp
-bGUocideVGhlIGZvbGxvd2luZyBjaGFuZ2VzIHNpbmNlIGNvbW1pdC4qJyArCiAgCQlyJ15hcmUg
-YXZhaWxhYmxlIGluIHRoZSBHaXQgcmVwb3NpdG9yeSBhdDpcbicKICAJCXInXlxzKihbXFNdKzov
-L1teXG5dKykkJywKICAJCXJlLkRPVEFMTCB8IHJlLk1VTFRJTElORSB8IHJlLklHTk9SRUNBU0Up
-CgpJJ2xsIHR1cm4gdGhhdCBcbiBpbnRvIFxzKyBvciAkIGJ1dCB5b3UgbWF5IGFsc28gd2FudCB0
-byBkb3VibGUgY2hlY2sKeW91IG1haWxpbmcgc2V0dXAuIFBhcnNpbmcgbWFpbHMgaXMgbm90b3Jp
-b3VzbHkgaGFyZCBhbmQgZXJyb3IgcHJvbmUgLQp0aG9zZSBjYXJyaWFnZSByZXR1cm5zIG1heSBi
-cmVhayBzb21ldGhpbmcgZWxzZXdoZXJlIGZvciB5b3UuCgotLSAKQ2hlZXJzLApBcmVrCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
-aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
-ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On 02/03/2020 10:57, Chris Wilson wrote:
+> We still need to wait for the initial OA configuration to happen
+> before we enable OA report writes to the OA buffer.
+>
+> Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Fixes: 15d0ace1f876 ("drm/i915/perf: execute OA configuration from command stream")
+> Testcase: igt/perf/stream-open-close
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+
+
+Works for me.
+
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+
+
+Thanks,
+
+
+-Lione
+
+
+> ---
+> This is simply an alternative to storing the request inside the stream.
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c       | 58 ++++++++++++++++++--------
+>   drivers/gpu/drm/i915/i915_perf_types.h |  3 +-
+>   2 files changed, 43 insertions(+), 18 deletions(-)
+>
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
