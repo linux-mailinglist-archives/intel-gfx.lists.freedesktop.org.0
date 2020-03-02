@@ -2,40 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 861DC1760C2
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C69D31760D5
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:14:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C19186E046;
-	Mon,  2 Mar 2020 17:11:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 182416E5BF;
+	Mon,  2 Mar 2020 17:14:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AFCB6E046
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:11:13 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 552F26E5BF
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:14:12 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 09:11:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="233234951"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 02 Mar 2020 09:11:10 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 02 Mar 2020 19:11:09 +0200
-Date: Mon, 2 Mar 2020 19:11:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200302171109.GN13686@intel.com>
-References: <20200302170218.16496-1-jani.nikula@intel.com>
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 09:14:11 -0800
+X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="233235825"
+Received: from unknown (HELO localhost) ([10.252.41.44])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 09:14:10 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200302145254.520447-1-chris@chris-wilson.co.uk>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200302145254.520447-1-chris@chris-wilson.co.uk>
+Date: Mon, 02 Mar 2020 19:14:07 +0200
+Message-ID: <87pnduptls.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200302170218.16496-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix documentation build after
- rename
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix doclinks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,55 +42,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 02, 2020 at 07:02:18PM +0200, Jani Nikula wrote:
-> intel_csr.c was moved under display.
-> =
+On Mon, 02 Mar 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> Update locations for
+>
+> ./drivers/gpu/drm/i915/i915_vma.h:1: warning: 'Virtual Memory Address' not found
+> ./drivers/gpu/drm/i915/i915_gem_gtt.c:1: warning: 'Global GTT views' not found
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-> Fixes: 06d3ff6e7451 ("drm/i915: move intel_csr.[ch] under display/")
-> Reported-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
 >  Documentation/gpu/i915.rst | 4 ++--
 >  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
-
+>
 > diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
-> index e539c42a3e78..cc74e24ca3b5 100644
+> index e539c42a3e78..becb648bd958 100644
 > --- a/Documentation/gpu/i915.rst
 > +++ b/Documentation/gpu/i915.rst
-> @@ -207,10 +207,10 @@ DPIO
->  CSR firmware support for DMC
->  ----------------------------
->  =
+> @@ -332,7 +332,7 @@ This process is dubbed relocation.
+>  GEM BO Management Implementation Details
+>  ----------------------------------------
+>  
+> -.. kernel-doc:: drivers/gpu/drm/i915/i915_vma.h
+> +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma_types.h
+>     :doc: Virtual Memory Address
+>  
+>  Buffer Object Eviction
+> @@ -382,7 +382,7 @@ Logical Rings, Logical Ring Contexts and Execlists
+>  Global GTT views
+>  ----------------
+>  
+> -.. kernel-doc:: drivers/gpu/drm/i915/i915_gem_gtt.c
+> +.. kernel-doc:: drivers/gpu/drm/i915/i915_vma_types.h
+>     :doc: Global GTT views
+>  
+>  .. kernel-doc:: drivers/gpu/drm/i915/i915_gem_gtt.c
 
-> -.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
->     :doc: csr support for dmc
->  =
-
-> -.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
-> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
->     :internal:
->  =
-
->  Video BIOS Table (VBT)
-> -- =
-
-> 2.20.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
