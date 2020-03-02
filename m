@@ -2,52 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 677D0175F01
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 16:59:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 286A9175F32
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 17:07:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C48F989E65;
-	Mon,  2 Mar 2020 15:59:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D3E6E339;
+	Mon,  2 Mar 2020 16:07:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
- [IPv6:2607:f8b0:4864:20::e42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE5F89E65;
- Mon,  2 Mar 2020 15:59:22 +0000 (UTC)
-Received: by mail-vs1-xe42.google.com with SMTP id r18so251842vso.5;
- Mon, 02 Mar 2020 07:59:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=WH58ny7aXuxsvw6YgV8ScOHhdjPS9+weIiZQCBBEH5I=;
- b=Mf9zJqK0WohGSW2D4DX37f95oFvl2aL8nUBqIhisMSiry4psQijIVPI0SI+hBbIo1S
- k9Sxw/gAVeoWl0cd9BE90qcfX6/G3SeCEgl5DriQuIc5dOHKFSwegvydrMZaWDCgeWSu
- WQS1Bk6JWWHRD0w/D71cyp2fpJluUhblChNN+CAvqekmalpWTcoOLT3hto5ORoi8eTqo
- IjWUCtBMsz9a7/wJHQKrbvWeO6X9tBEm0qBd2V2f6kbvI6JB8gWa056nrEECQ861j9g7
- EhMkiq0YwievM1bd1wW0motoW2z0eYfbHXS7wm5OjBfFLR75Pvl6Pm1yEIhnQYnBPlMD
- vVnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=WH58ny7aXuxsvw6YgV8ScOHhdjPS9+weIiZQCBBEH5I=;
- b=DTD5CmNUUj5nQhGyHq7esHX/jJrb93kSeFqQYwa640syVXZOctO/it+73Wqi4IX3YB
- 8mF6cj3O9dkKo7TTnoRnbywAWvfa1W1KlBii2tX1VHbrEThlPFTxNiz2IcVeiugkwiar
- HA7RvI2dgRLugQo3zeqfTHzazN3omlBoIFLogrBpSLyfZmZOCdrJ8OR6ekRr0r340wEF
- Uv/8rrLnCE8i8tZW6WerHkPQOzjeVb/D1bdhJab3TwY6nedlpVBINLv47li1lhfvUExo
- faxuP0ZGIUtxU3iPZMEMxpN/RBTRZ6eV87eCvX3wCBLBHzsVLEAjMusIeqC/pNQoCZ4S
- Gqcw==
-X-Gm-Message-State: ANhLgQ2y/bHdjF8yxQJS4rA7ZiWLSo582Vr9vTSnwRGT4poseoqM8LnJ
- MX8e05RSfq3zMilOcT4P4L34W8yDOm2SFp31r1g=
-X-Google-Smtp-Source: ADFU+vsYtoy0RewAodRd3a/iEhmKuSXuEK33faWkm6Ag7s3G+91+q7geEOeW+ZnwHscVTwE9SShPloM7Nfxpb8yoicM=
-X-Received: by 2002:a67:8d43:: with SMTP id p64mr2370534vsd.37.1583164761213; 
- Mon, 02 Mar 2020 07:59:21 -0800 (PST)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E0296E536;
+ Mon,  2 Mar 2020 16:07:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1FBC0A0071;
+ Mon,  2 Mar 2020 16:07:53 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 2 Mar 2020 15:58:49 +0000
-Message-ID: <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm: drm_fb_helper cleanup.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 02 Mar 2020 16:07:53 -0000
+Message-ID: <158316527310.30646.6579797019330010210@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200302145254.520447-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200302145254.520447-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_doclinks?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +38,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2 Mar 2020 at 13:08, Pankaj Bharadiya
-<pankaj.laxminarayan.bharadiya@intel.com> wrote:
->
-> This series addresses below drm_fb_helper tasks from
-> Documentation/gpu/todo.rst.
->
-> - The max connector argument for drm_fb_helper_init() isn't used
->   anymore and can be removed.
->
-> - The helper doesn't keep an array of connectors anymore so these can
->   be removed: drm_fb_helper_single_add_all_connectors(),
->   drm_fb_helper_add_one_connector() and
->   drm_fb_helper_remove_one_connector().
->
-> Pankaj Bharadiya (9):
->   drm: Remove unused arg from drm_fb_helper_init
->   drm/radeon: remove radeon_fb_{add,remove}_connector functions
->   drm/amdgpu: Remove drm_fb_helper_{add,remove}_one_connector calls
->   drm/i915/display: Remove drm_fb_helper_{add,remove}_one_connector calls
->   drm: Remove drm_fb_helper add, add all and remove connector calls
->   drm/nouveau: Fix unused variable warning
->   drm/bridge: remove unused variable warning in tc358764_detach
->   drm/fb-helper: Remove drm_fb_helper add, add_all and remove connector functions
->   drm/todo: Update drm_fb_helper tasks
->
-With 6/9 and 7/9 squashed into 1/9, as suggested by Laurent + the
-wrapping retained as-is, the series is:
-Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
+== Series Details ==
 
--Emil
-P.S. I'm loving the diff stat :-)
+Series: drm/i915: Fix doclinks
+URL   : https://patchwork.freedesktop.org/series/74146/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8043 -> Patchwork_16781
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16781 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_wait@basic-await-all:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-tgl-y/igt@gem_wait@basic-await-all.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-tgl-y/igt@gem_wait@basic-await-all.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111407])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][5] -> [DMESG-WARN][6] ([i915#44])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [DMESG-FAIL][9] ([fdo#108569]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_addfb_basic@bad-pitch-999:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8043/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-999.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-999.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+
+
+Participating hosts (48 -> 41)
+------------------------------
+
+  Additional (3): fi-glk-dsi fi-byt-n2820 fi-elk-e7500 
+  Missing    (10): fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-skl-lmem fi-bsw-nick fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8043 -> Patchwork_16781
+
+  CI-20190529: 20190529
+  CI_DRM_8043: 7e5119254441cdf0764418bbf3f43f6547d30a8a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5483: 1707153df224ffb6333c6c660a792b7f334eb3d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16781: 4da38358da4a06a48b027dcc77f317504279ae71 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4da38358da4a drm/i915: Fix doclinks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16781/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
