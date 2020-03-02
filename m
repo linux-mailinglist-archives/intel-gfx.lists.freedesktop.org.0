@@ -2,37 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E1F177D91
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 18:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E7E2177E46
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 19:10:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 956E96E931;
-	Tue,  3 Mar 2020 17:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD00A6E936;
+	Tue,  3 Mar 2020 18:10:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 738836E930
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 17:33:49 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 09:33:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="287054419"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 03 Mar 2020 09:33:42 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Mar 2020 19:33:41 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Mar 2020 19:33:13 +0200
-Message-Id: <20200303173313.28117-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
-References: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
+Received: from namei.org (namei.org [65.99.196.166])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD096E47E
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 19:46:17 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by namei.org (8.14.4/8.14.4) with ESMTP id 022JiQle012020;
+ Mon, 2 Mar 2020 19:44:26 GMT
+Date: Mon, 2 Mar 2020 11:44:26 -0800 (PST)
+From: James Morris <jmorris@namei.org>
+To: Serge Hallyn <serge@hallyn.com>
+In-Reply-To: <20200302001913.GA21145@sl>
+Message-ID: <alpine.LRH.2.21.2003021144060.11016@namei.org>
+References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
+ <3ae0bed5-204e-de81-7647-5f0d8106cd67@linux.intel.com>
+ <20200302001913.GA21145@sl>
+User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 9/9] drm/i915: Pass the crtc to the low level
- read_lut() funcs
+X-Mailman-Approved-At: Tue, 03 Mar 2020 18:10:33 +0000
+Subject: Re: [Intel-gfx] [PATCH v7 00/12] Introduce CAP_PERFMON to secure
+ system performance monitoring and observability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,116 +40,277 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: linux-man@vger.kernel.org,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, Paul Mackerras <paulus@samba.org>,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ Andi Kleen <ak@linux.intel.com>, Jiri Olsa <jolsa@redhat.com>,
+ Igor Lubashev <ilubashe@akamai.com>, oprofile-list@lists.sf.net,
+ Stephen Smalley <sds@tycho.nsa.gov>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ Helge Deller <deller@gmx.de>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KClRo
-ZSBsb3cgbGV2ZWwgcmVhZF9sdXQoKSBmdW5jdGlvbnMgZG9uJ3QgbmVlZCB0aGUgZW50aXJlIGNy
-dGMgc3RhdGUKYXMgdGhleSBrbm93IGV4YWN0bHkgd2hhdCB0aGV5J3JlIHJlYWRpbmcuIEp1c3Qg
-bmVlZCB0byBwYXNzIGluIHRoZQpjcnRjIHRvIGdldCBhdCB0aGUgcGlwZS4gVGhpcyBub3cgbmVh
-dGx5IG1pcnJvcnMgdGhlIGxvYWRfbHV0KCkKZGlyZWN0aW9uLgoKU2lnbmVkLW9mZi1ieTogVmls
-bGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMgfCA1MSArKysrKysrKysrKy0tLS0t
-LS0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMjUgaW5zZXJ0aW9ucygrKSwgMjYgZGVsZXRpb25zKC0p
-CgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jCmluZGV4IGVkOTk5
-NmFhY2FmZC4uYzFjY2U5M2ExYzI1IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2NvbG9yLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9jb2xvci5jCkBAIC0xNzIyLDEwICsxNzIyLDggQEAgYm9vbCBpbnRlbF9jb2xvcl9sdXRf
-ZXF1YWwoc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpibG9iMSwKIAlyZXR1cm4gdHJ1ZTsKIH0K
-IAotc3RhdGljIHN0cnVjdCBkcm1fcHJvcGVydHlfYmxvYiAqCi1pOXh4X3JlYWRfbHV0XzgoY29u
-c3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCitzdGF0aWMgc3RydWN0IGRy
-bV9wcm9wZXJ0eV9ibG9iICppOXh4X3JlYWRfbHV0Xzgoc3RydWN0IGludGVsX2NydGMgKmNydGMp
-CiB7Ci0Jc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUt
-PnVhcGkuY3J0Yyk7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkx
-NShjcnRjLT5iYXNlLmRldik7CiAJZW51bSBwaXBlIHBpcGUgPSBjcnRjLT5waXBlOwogCXN0cnVj
-dCBkcm1fcHJvcGVydHlfYmxvYiAqYmxvYjsKQEAgLTE3NTEsMTYgKzE3NDksMTYgQEAgaTl4eF9y
-ZWFkX2x1dF84KGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogCiBz
-dGF0aWMgdm9pZCBpOXh4X3JlYWRfbHV0cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19z
-dGF0ZSkKIHsKKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19z
-dGF0ZS0+dWFwaS5jcnRjKTsKKwogCWlmICghY3J0Y19zdGF0ZS0+Z2FtbWFfZW5hYmxlKQogCQly
-ZXR1cm47CiAKLQljcnRjX3N0YXRlLT5ody5nYW1tYV9sdXQgPSBpOXh4X3JlYWRfbHV0XzgoY3J0
-Y19zdGF0ZSk7CisJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0gaTl4eF9yZWFkX2x1dF84KGNy
-dGMpOwogfQogCi1zdGF0aWMgc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICoKLWk5NjVfcmVhZF9s
-dXRfMTBwNihjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3N0YXRp
-YyBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmk5NjVfcmVhZF9sdXRfMTBwNihzdHJ1Y3QgaW50
-ZWxfY3J0YyAqY3J0YykKIHsKLQlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2Ny
-dGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKIAlpbnQgaSwgbHV0X3NpemUgPSBJTlRF
-TF9JTkZPKGRldl9wcml2KS0+Y29sb3IuZ2FtbWFfbHV0X3NpemU7CiAJZW51bSBwaXBlIHBpcGUg
-PSBjcnRjLT5waXBlOwpAQCAtMTc5MSwxOSArMTc4OSwxOSBAQCBpOTY1X3JlYWRfbHV0XzEwcDYo
-Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAKIHN0YXRpYyB2b2lk
-IGk5NjVfcmVhZF9sdXRzKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQogewor
-CXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0YyhjcnRjX3N0YXRlLT51YXBp
-LmNydGMpOworCiAJaWYgKCFjcnRjX3N0YXRlLT5nYW1tYV9lbmFibGUpCiAJCXJldHVybjsKIAog
-CWlmIChjcnRjX3N0YXRlLT5nYW1tYV9tb2RlID09IEdBTU1BX01PREVfTU9ERV84QklUKQotCQlj
-cnRjX3N0YXRlLT5ody5nYW1tYV9sdXQgPSBpOXh4X3JlYWRfbHV0XzgoY3J0Y19zdGF0ZSk7CisJ
-CWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGk5eHhfcmVhZF9sdXRfOChjcnRjKTsKIAllbHNl
-Ci0JCWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGk5NjVfcmVhZF9sdXRfMTBwNihjcnRjX3N0
-YXRlKTsKKwkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0gaTk2NV9yZWFkX2x1dF8xMHA2KGNy
-dGMpOwogfQogCi1zdGF0aWMgc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICoKLWNodl9yZWFkX2Nn
-bV9nYW1tYShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3N0YXRp
-YyBzdHJ1Y3QgZHJtX3Byb3BlcnR5X2Jsb2IgKmNodl9yZWFkX2NnbV9nYW1tYShzdHJ1Y3QgaW50
-ZWxfY3J0YyAqY3J0YykKIHsKLQlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2Ny
-dGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2
-X3ByaXYgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKIAlpbnQgaSwgbHV0X3NpemUgPSBJTlRF
-TF9JTkZPKGRldl9wcml2KS0+Y29sb3IuZ2FtbWFfbHV0X3NpemU7CiAJZW51bSBwaXBlIHBpcGUg
-PSBjcnRjLT5waXBlOwpAQCAtMTgzMCwxNiArMTgyOCwxNiBAQCBjaHZfcmVhZF9jZ21fZ2FtbWEo
-Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiAKIHN0YXRpYyB2b2lk
-IGNodl9yZWFkX2x1dHMoc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCiB7CisJ
-c3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGku
-Y3J0Yyk7CisKIAlpZiAoY3J0Y19zdGF0ZS0+Y2dtX21vZGUgJiBDR01fUElQRV9NT0RFX0dBTU1B
-KQotCQljcnRjX3N0YXRlLT5ody5nYW1tYV9sdXQgPSBjaHZfcmVhZF9jZ21fZ2FtbWEoY3J0Y19z
-dGF0ZSk7CisJCWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGNodl9yZWFkX2NnbV9nYW1tYShj
-cnRjKTsKIAllbHNlCiAJCWk5NjVfcmVhZF9sdXRzKGNydGNfc3RhdGUpOwogfQogCi1zdGF0aWMg
-c3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICoKLWlsa19yZWFkX2x1dF84KGNvbnN0IHN0cnVjdCBp
-bnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQorc3RhdGljIHN0cnVjdCBkcm1fcHJvcGVydHlf
-YmxvYiAqaWxrX3JlYWRfbHV0Xzgoc3RydWN0IGludGVsX2NydGMgKmNydGMpCiB7Ci0Jc3RydWN0
-IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUtPnVhcGkuY3J0Yyk7
-CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShjcnRjLT5iYXNl
-LmRldik7CiAJZW51bSBwaXBlIHBpcGUgPSBjcnRjLT5waXBlOwogCXN0cnVjdCBkcm1fcHJvcGVy
-dHlfYmxvYiAqYmxvYjsKQEAgLTE4NjMsMTAgKzE4NjEsOCBAQCBpbGtfcmVhZF9sdXRfOChjb25z
-dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIAlyZXR1cm4gYmxvYjsKIH0K
-IAotc3RhdGljIHN0cnVjdCBkcm1fcHJvcGVydHlfYmxvYiAqCi1pbGtfcmVhZF9sdXRfMTAoY29u
-c3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCitzdGF0aWMgc3RydWN0IGRy
-bV9wcm9wZXJ0eV9ibG9iICppbGtfcmVhZF9sdXRfMTAoc3RydWN0IGludGVsX2NydGMgKmNydGMp
-CiB7Ci0Jc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNfc3RhdGUt
-PnVhcGkuY3J0Yyk7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkx
-NShjcnRjLT5iYXNlLmRldik7CiAJaW50IGksIGx1dF9zaXplID0gSU5URUxfSU5GTyhkZXZfcHJp
-diktPmNvbG9yLmdhbW1hX2x1dF9zaXplOwogCWVudW0gcGlwZSBwaXBlID0gY3J0Yy0+cGlwZTsK
-QEAgLTE4OTIsNiArMTg4OCw4IEBAIGlsa19yZWFkX2x1dF8xMChjb25zdCBzdHJ1Y3QgaW50ZWxf
-Y3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIAogc3RhdGljIHZvaWQgaWxrX3JlYWRfbHV0cyhzdHJ1
-Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsKKwlzdHJ1Y3QgaW50ZWxfY3J0YyAq
-Y3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsKKwogCWlmICghY3J0
-Y19zdGF0ZS0+Z2FtbWFfZW5hYmxlKQogCQlyZXR1cm47CiAKQEAgLTE4OTksMTUgKzE4OTcsMTQg
-QEAgc3RhdGljIHZvaWQgaWxrX3JlYWRfbHV0cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
-Y19zdGF0ZSkKIAkJcmV0dXJuOwogCiAJaWYgKGNydGNfc3RhdGUtPmdhbW1hX21vZGUgPT0gR0FN
-TUFfTU9ERV9NT0RFXzhCSVQpCi0JCWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGlsa19yZWFk
-X2x1dF84KGNydGNfc3RhdGUpOworCQljcnRjX3N0YXRlLT5ody5nYW1tYV9sdXQgPSBpbGtfcmVh
-ZF9sdXRfOChjcnRjKTsKIAllbHNlCi0JCWNydGNfc3RhdGUtPmh3LmdhbW1hX2x1dCA9IGlsa19y
-ZWFkX2x1dF8xMChjcnRjX3N0YXRlKTsKKwkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0gaWxr
-X3JlYWRfbHV0XzEwKGNydGMpOwogfQogCi1zdGF0aWMgc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9i
-ICoKLWdsa19yZWFkX2x1dF8xMChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19z
-dGF0ZSwgdTMyIHByZWNfaW5kZXgpCitzdGF0aWMgc3RydWN0IGRybV9wcm9wZXJ0eV9ibG9iICpn
-bGtfcmVhZF9sdXRfMTAoc3RydWN0IGludGVsX2NydGMgKmNydGMsCisJCQkJCQkgdTMyIHByZWNf
-aW5kZXgpCiB7Ci0Jc3RydWN0IGludGVsX2NydGMgKmNydGMgPSB0b19pbnRlbF9jcnRjKGNydGNf
-c3RhdGUtPnVhcGkuY3J0Yyk7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0g
-dG9faTkxNShjcnRjLT5iYXNlLmRldik7CiAJaW50IGksIGh3X2x1dF9zaXplID0gaXZiX2x1dF8x
-MF9zaXplKHByZWNfaW5kZXgpOwogCWVudW0gcGlwZSBwaXBlID0gY3J0Yy0+cGlwZTsKQEAgLTE5
-MzgsMTMgKzE5MzUsMTUgQEAgZ2xrX3JlYWRfbHV0XzEwKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRj
-X3N0YXRlICpjcnRjX3N0YXRlLCB1MzIgcHJlY19pbmRleCkKIAogc3RhdGljIHZvaWQgZ2xrX3Jl
-YWRfbHV0cyhzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsKKwlzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjKTsK
-KwogCWlmICghY3J0Y19zdGF0ZS0+Z2FtbWFfZW5hYmxlKQogCQlyZXR1cm47CiAKIAlpZiAoY3J0
-Y19zdGF0ZS0+Z2FtbWFfbW9kZSA9PSBHQU1NQV9NT0RFX01PREVfOEJJVCkKLQkJY3J0Y19zdGF0
-ZS0+aHcuZ2FtbWFfbHV0ID0gaWxrX3JlYWRfbHV0XzgoY3J0Y19zdGF0ZSk7CisJCWNydGNfc3Rh
-dGUtPmh3LmdhbW1hX2x1dCA9IGlsa19yZWFkX2x1dF84KGNydGMpOwogCWVsc2UKLQkJY3J0Y19z
-dGF0ZS0+aHcuZ2FtbWFfbHV0ID0gZ2xrX3JlYWRfbHV0XzEwKGNydGNfc3RhdGUsIFBBTF9QUkVD
-X0lOREVYX1ZBTFVFKDApKTsKKwkJY3J0Y19zdGF0ZS0+aHcuZ2FtbWFfbHV0ID0gZ2xrX3JlYWRf
-bHV0XzEwKGNydGMsIFBBTF9QUkVDX0lOREVYX1ZBTFVFKDApKTsKIH0KIAogdm9pZCBpbnRlbF9j
-b2xvcl9pbml0KHN0cnVjdCBpbnRlbF9jcnRjICpjcnRjKQotLSAKMi4yNC4xCgpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Sun, 1 Mar 2020, Serge Hallyn wrote:
+
+> Thanks, this looks good to me, in keeping with the CAP_SYSLOG break.
+> 
+> Acked-by: Serge E. Hallyn <serge@hallyn.com>
+> 
+> for the set.
+> 
+> James/Ingo/Peter, if noone has remaining objections, whose branch
+> should these go in through?
+> 
+> thanks,
+
+I was assuming via the perf tree, but I am happy to take them.
+
+
+> -serge
+> 
+> On Tue, Feb 25, 2020 at 12:55:54PM +0300, Alexey Budankov wrote:
+> > 
+> > Hi,
+> > 
+> > Is there anything else I could do in order to move the changes forward
+> > or is something still missing from this patch set?
+> > Could you please share you mind?
+> > 
+> > Thanks,
+> > Alexey
+> > 
+> > On 17.02.2020 11:02, Alexey Budankov wrote:
+> > > 
+> > > Currently access to perf_events, i915_perf and other performance
+> > > monitoring and observability subsystems of the kernel is open only for
+> > > a privileged process [1] with CAP_SYS_ADMIN capability enabled in the
+> > > process effective set [2].
+> > > 
+> > > This patch set introduces CAP_PERFMON capability designed to secure
+> > > system performance monitoring and observability operations so that
+> > > CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing role
+> > > for performance monitoring and observability subsystems of the kernel.
+> > > 
+> > > CAP_PERFMON intends to harden system security and integrity during
+> > > performance monitoring and observability operations by decreasing attack
+> > > surface that is available to a CAP_SYS_ADMIN privileged process [2].
+> > > Providing the access to performance monitoring and observability
+> > > operations under CAP_PERFMON capability singly, without the rest of
+> > > CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials
+> > > and makes the operation more secure. Thus, CAP_PERFMON implements the
+> > > principal of least privilege for performance monitoring and
+> > > observability operations (POSIX IEEE 1003.1e: 2.2.2.39 principle of
+> > > least privilege: A security design principle that states that a process
+> > > or program be granted only those privileges (e.g., capabilities)
+> > > necessary to accomplish its legitimate function, and only for the time
+> > > that such privileges are actually required)
+> > > 
+> > > CAP_PERFMON intends to meet the demand to secure system performance
+> > > monitoring and observability operations for adoption in security
+> > > sensitive, restricted, multiuser production environments (e.g. HPC
+> > > clusters, cloud and virtual compute environments), where root or
+> > > CAP_SYS_ADMIN credentials are not available to mass users of a system,
+> > > and securely unblock accessibility of system performance monitoring and
+> > > observability operations beyond root and CAP_SYS_ADMIN use cases.
+> > > 
+> > > CAP_PERFMON intends to take over CAP_SYS_ADMIN credentials related to
+> > > system performance monitoring and observability operations and balance
+> > > amount of CAP_SYS_ADMIN credentials following the recommendations in
+> > > the capabilities man page [2] for CAP_SYS_ADMIN: "Note: this capability
+> > > is overloaded; see Notes to kernel developers, below." For backward
+> > > compatibility reasons access to system performance monitoring and
+> > > observability subsystems of the kernel remains open for CAP_SYS_ADMIN
+> > > privileged processes but CAP_SYS_ADMIN capability usage for secure
+> > > system performance monitoring and observability operations is
+> > > discouraged with respect to the designed CAP_PERFMON capability.
+> > > 
+> > > Possible alternative solution to this system security hardening,
+> > > capabilities balancing task of making performance monitoring and
+> > > observability operations more secure and accessible could be to use
+> > > the existing CAP_SYS_PTRACE capability to govern system performance
+> > > monitoring and observability subsystems. However CAP_SYS_PTRACE
+> > > capability still provides users with more credentials than are
+> > > required for secure performance monitoring and observability
+> > > operations and this excess is avoided by the designed CAP_PERFMON.
+> > > 
+> > > Although software running under CAP_PERFMON can not ensure avoidance of
+> > > related hardware issues, the software can still mitigate those issues
+> > > following the official hardware issues mitigation procedure [3]. The
+> > > bugs in the software itself can be fixed following the standard kernel
+> > > development process [4] to maintain and harden security of system
+> > > performance monitoring and observability operations. Finally, the patch
+> > > set is shaped in the way that simplifies backtracking procedure of
+> > > possible induced issues [5] as much as possible.
+> > > 
+> > > The patch set is for tip perf/core repository:
+> > > git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip perf/core
+> > > sha1: fdb64822443ec9fb8c3a74b598a74790ae8d2e22
+> > > 
+> > > ---
+> > > Changes in v7:
+> > > - updated and extended kernel.rst and perf-security.rst documentation 
+> > >   files with the information about CAP_PERFMON capability and its use cases
+> > > - documented the case of double audit logging of CAP_PERFMON and CAP_SYS_ADMIN
+> > >   capabilities on a SELinux enabled system
+> > > Changes in v6:
+> > > - avoided noaudit checks in perfmon_capable() to explicitly advertise
+> > >   CAP_PERFMON usage thru audit logs to secure system performance
+> > >   monitoring and observability
+> > > Changes in v5:
+> > > - renamed CAP_SYS_PERFMON to CAP_PERFMON
+> > > - extended perfmon_capable() with noaudit checks
+> > > Changes in v4:
+> > > - converted perfmon_capable() into an inline function
+> > > - made perf_events kprobes, uprobes, hw breakpoints and namespaces data
+> > >   available to CAP_SYS_PERFMON privileged processes
+> > > - applied perfmon_capable() to drivers/perf and drivers/oprofile
+> > > - extended __cmd_ftrace() with support of CAP_SYS_PERFMON
+> > > Changes in v3:
+> > > - implemented perfmon_capable() macros aggregating required capabilities
+> > >   checks
+> > > Changes in v2:
+> > > - made perf_events trace points available to CAP_SYS_PERFMON privileged
+> > >   processes
+> > > - made perf_event_paranoid_check() treat CAP_SYS_PERFMON equally to
+> > >   CAP_SYS_ADMIN
+> > > - applied CAP_SYS_PERFMON to i915_perf, bpf_trace, powerpc and parisc
+> > >   system performance monitoring and observability related subsystems
+> > > 
+> > > ---
+> > > Alexey Budankov (12):
+> > >   capabilities: introduce CAP_PERFMON to kernel and user space
+> > >   perf/core: open access to the core for CAP_PERFMON privileged process
+> > >   perf/core: open access to probes for CAP_PERFMON privileged process
+> > >   perf tool: extend Perf tool with CAP_PERFMON capability support
+> > >   drm/i915/perf: open access for CAP_PERFMON privileged process
+> > >   trace/bpf_trace: open access for CAP_PERFMON privileged process
+> > >   powerpc/perf: open access for CAP_PERFMON privileged process
+> > >   parisc/perf: open access for CAP_PERFMON privileged process
+> > >   drivers/perf: open access for CAP_PERFMON privileged process
+> > >   drivers/oprofile: open access for CAP_PERFMON privileged process
+> > >   doc/admin-guide: update perf-security.rst with CAP_PERFMON information
+> > >   doc/admin-guide: update kernel.rst with CAP_PERFMON information
+> > > 
+> > >  Documentation/admin-guide/perf-security.rst | 65 +++++++++++++--------
+> > >  Documentation/admin-guide/sysctl/kernel.rst | 16 +++--
+> > >  arch/parisc/kernel/perf.c                   |  2 +-
+> > >  arch/powerpc/perf/imc-pmu.c                 |  4 +-
+> > >  drivers/gpu/drm/i915/i915_perf.c            | 13 ++---
+> > >  drivers/oprofile/event_buffer.c             |  2 +-
+> > >  drivers/perf/arm_spe_pmu.c                  |  4 +-
+> > >  include/linux/capability.h                  |  4 ++
+> > >  include/linux/perf_event.h                  |  6 +-
+> > >  include/uapi/linux/capability.h             |  8 ++-
+> > >  kernel/events/core.c                        |  6 +-
+> > >  kernel/trace/bpf_trace.c                    |  2 +-
+> > >  security/selinux/include/classmap.h         |  4 +-
+> > >  tools/perf/builtin-ftrace.c                 |  5 +-
+> > >  tools/perf/design.txt                       |  3 +-
+> > >  tools/perf/util/cap.h                       |  4 ++
+> > >  tools/perf/util/evsel.c                     | 10 ++--
+> > >  tools/perf/util/util.c                      |  1 +
+> > >  18 files changed, 98 insertions(+), 61 deletions(-)
+> > > 
+> > > ---
+> > > Validation (Intel Skylake, 8 cores, Fedora 29, 5.5.0-rc3+, x86_64):
+> > > 
+> > > libcap library [6], [7], [8] and Perf tool can be used to apply
+> > > CAP_PERFMON capability for secure system performance monitoring and
+> > > observability beyond the scope permitted by the system wide
+> > > perf_event_paranoid kernel setting [9] and below are the steps for
+> > > evaluation:
+> > > 
+> > >   - patch, build and boot the kernel
+> > >   - patch, build Perf tool e.g. to /home/user/perf
+> > >   ...
+> > >   # git clone git://git.kernel.org/pub/scm/libs/libcap/libcap.git libcap
+> > >   # pushd libcap
+> > >   # patch libcap/include/uapi/linux/capabilities.h with [PATCH 1]
+> > >   # make
+> > >   # pushd progs
+> > >   # ./setcap "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" /home/user/perf
+> > >   # ./setcap -v "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" /home/user/perf
+> > >   /home/user/perf: OK
+> > >   # ./getcap /home/user/perf
+> > >   /home/user/perf = cap_sys_ptrace,cap_syslog,cap_perfmon+ep
+> > >   # echo 2 > /proc/sys/kernel/perf_event_paranoid
+> > >   # cat /proc/sys/kernel/perf_event_paranoid 
+> > >   2
+> > >   ...
+> > >   $ /home/user/perf top
+> > >     ... works as expected ...
+> > >   $ cat /proc/`pidof perf`/status
+> > >   Name:	perf
+> > >   Umask:	0002
+> > >   State:	S (sleeping)
+> > >   Tgid:	2958
+> > >   Ngid:	0
+> > >   Pid:	2958
+> > >   PPid:	9847
+> > >   TracerPid:	0
+> > >   Uid:	500	500	500	500
+> > >   Gid:	500	500	500	500
+> > >   FDSize:	256
+> > >   ...
+> > >   CapInh:	0000000000000000
+> > >   CapPrm:	0000004400080000
+> > >   CapEff:	0000004400080000 => 01000100 00000000 00001000 00000000 00000000
+> > >                                      cap_perfmon,cap_sys_ptrace,cap_syslog
+> > >   CapBnd:	0000007fffffffff
+> > >   CapAmb:	0000000000000000
+> > >   NoNewPrivs:	0
+> > >   Seccomp:	0
+> > >   Speculation_Store_Bypass:	thread vulnerable
+> > >   Cpus_allowed:	ff
+> > >   Cpus_allowed_list:	0-7
+> > >   ...
+> > > 
+> > > Usage of cap_perfmon effectively avoids unused credentials excess:
+> > > 
+> > > - with cap_sys_admin:
+> > >   CapEff:	0000007fffffffff => 01111111 11111111 11111111 11111111 11111111
+> > > 
+> > > - with cap_perfmon:
+> > >   CapEff:	0000004400080000 => 01000100 00000000 00001000 00000000 00000000
+> > >                                     38   34               19
+> > >                                perfmon   syslog           sys_ptrace
+> > > 
+> > > ---
+> > > [1] https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
+> > > [2] http://man7.org/linux/man-pages/man7/capabilities.7.html
+> > > [3] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
+> > > [4] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
+> > > [5] https://www.kernel.org/doc/html/latest/process/management-style.html#decisions
+> > > [6] http://man7.org/linux/man-pages/man8/setcap.8.html
+> > > [7] https://git.kernel.org/pub/scm/libs/libcap/libcap.git
+> > > [8] https://sites.google.com/site/fullycapable/, posix_1003.1e-990310.pdf
+> > > [9] http://man7.org/linux/man-pages/man2/perf_event_open.2.html
+> > > 
+> > _______________________________________________
+> > Intel-gfx mailing list
+> > Intel-gfx@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+> 
+
+-- 
+James Morris
+<jmorris@namei.org>
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
