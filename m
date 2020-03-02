@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0FF175661
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 09:58:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6860E17566B
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 09:59:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EA186E151;
-	Mon,  2 Mar 2020 08:58:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73A9C6E175;
+	Mon,  2 Mar 2020 08:58:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 776F16E14E
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 08:58:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 314166E154
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 08:58:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20409414-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20409415-1500050 
  for multiple; Mon, 02 Mar 2020 08:58:23 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Mar 2020 08:57:58 +0000
-Message-Id: <20200302085812.4172450-8-chris@chris-wilson.co.uk>
+Date: Mon,  2 Mar 2020 08:57:59 +0000
+Message-Id: <20200302085812.4172450-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
 References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/22] drm/i915: Wrap i915_active in a simple
- kreffed struct
+Subject: [Intel-gfx] [PATCH 09/22] drm/i915: Extend
+ i915_request_await_active to use all timelines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,93 +44,113 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For conveniences of callers that just want to use an i915_active to
-track a wide array of concurrent timelines, wrap the base i915_active
-struct inside a kref. This i915_active will self-destruct after use.
+Extend i915_request_await_active() to be able to asynchronously wait on
+all the tracked timelines simultaneously.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_active.c | 53 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_active.h |  4 +++
- 2 files changed, 57 insertions(+)
+ drivers/gpu/drm/i915/i915_active.c | 51 +++++++++++++++++++++++-------
+ drivers/gpu/drm/i915/i915_active.h |  5 ++-
+ drivers/gpu/drm/i915/i915_vma.c    |  2 +-
+ 3 files changed, 45 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index 7b3d6c12ad61..1826de14d2da 100644
+index 1826de14d2da..e659688db043 100644
 --- a/drivers/gpu/drm/i915/i915_active.c
 +++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -881,6 +881,59 @@ void i915_active_noop(struct dma_fence *fence, struct dma_fence_cb *cb)
- 	active_fence_cb(fence, cb);
+@@ -518,23 +518,52 @@ int i915_active_wait(struct i915_active *ref)
+ 	return 0;
  }
  
-+struct auto_active {
-+	struct i915_active base;
-+	struct kref ref;
-+};
-+
-+struct i915_active *i915_active_get(struct i915_active *ref)
+-int i915_request_await_active(struct i915_request *rq, struct i915_active *ref)
++static int await_active(struct i915_request *rq,
++			struct i915_active_fence *active)
 +{
-+	struct auto_active *aa = container_of(ref, typeof(*aa), base);
++	struct dma_fence *fence;
 +
-+	kref_get(&aa->ref);
-+	return &aa->base;
-+}
++	if (is_barrier(active))
++		return 0;
 +
-+static void auto_release(struct kref *ref)
-+{
-+	struct auto_active *aa = container_of(ref, typeof(*aa), ref);
++	fence = i915_active_fence_get(active);
++	if (fence) {
++		int err;
 +
-+	i915_active_fini(&aa->base);
-+	kfree(aa);
-+}
++		err = i915_request_await_dma_fence(rq, fence);
++		dma_fence_put(fence);
++		if (err < 0)
++			return err;
++	}
 +
-+void i915_active_put(struct i915_active *ref)
-+{
-+	struct auto_active *aa = container_of(ref, typeof(*aa), base);
-+
-+	kref_put(&aa->ref, auto_release);
-+}
-+
-+static int auto_active(struct i915_active *ref)
-+{
-+	i915_active_get(ref);
 +	return 0;
 +}
 +
-+static void auto_retire(struct i915_active *ref)
-+{
-+	i915_active_put(ref);
-+}
++int i915_request_await_active(struct i915_request *rq,
++			      struct i915_active *ref,
++			      unsigned int flags)
+ {
+ 	int err = 0;
+ 
++	/* We must always wait for the exclusive fence! */
+ 	if (rcu_access_pointer(ref->excl.fence)) {
+-		struct dma_fence *fence;
+-
+-		rcu_read_lock();
+-		fence = dma_fence_get_rcu_safe(&ref->excl.fence);
+-		rcu_read_unlock();
+-		if (fence) {
+-			err = i915_request_await_dma_fence(rq, fence);
+-			dma_fence_put(fence);
+-		}
++		err = await_active(rq, &ref->excl);
++		if (err)
++			return err;
+ 	}
+ 
+-	/* In the future we may choose to await on all fences */
++	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
++		struct active_node *it, *n;
 +
-+struct i915_active *i915_active_create(void)
-+{
-+	struct auto_active *aa;
-+
-+	aa = kmalloc(sizeof(*aa), GFP_KERNEL);
-+	if (!aa)
-+		return NULL;
-+
-+	kref_init(&aa->ref);
-+	i915_active_init(&aa->base, auto_active, auto_retire);
-+
-+	return &aa->base;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/i915_active.c"
- #endif
++		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
++			err = await_active(rq, &it->base);
++			if (err)
++				break;
++		}
++		i915_active_release(ref);
++		if (err)
++			return err;
++	}
+ 
+ 	return err;
+ }
 diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-index 973ff0447c6c..7e438501333e 100644
+index 7e438501333e..e3c13060c4c7 100644
 --- a/drivers/gpu/drm/i915/i915_active.h
 +++ b/drivers/gpu/drm/i915/i915_active.h
-@@ -215,4 +215,8 @@ void i915_request_add_active_barriers(struct i915_request *rq);
- void i915_active_print(struct i915_active *ref, struct drm_printer *m);
- void i915_active_unlock_wait(struct i915_active *ref);
+@@ -183,7 +183,10 @@ static inline bool i915_active_has_exclusive(struct i915_active *ref)
  
-+struct i915_active *i915_active_create(void);
-+struct i915_active *i915_active_get(struct i915_active *ref);
-+void i915_active_put(struct i915_active *ref);
-+
- #endif /* _I915_ACTIVE_H_ */
+ int i915_active_wait(struct i915_active *ref);
+ 
+-int i915_request_await_active(struct i915_request *rq, struct i915_active *ref);
++int i915_request_await_active(struct i915_request *rq,
++			      struct i915_active *ref,
++			      unsigned int flags);
++#define I915_ACTIVE_AWAIT_ALL BIT(0)
+ 
+ int i915_active_acquire(struct i915_active *ref);
+ bool i915_active_acquire_if_busy(struct i915_active *ref);
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 298ca4316e65..ce23c452e6ac 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -1174,7 +1174,7 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
+ 	GEM_BUG_ON(!i915_vma_is_pinned(vma));
+ 
+ 	/* Wait for the vma to be bound before we start! */
+-	err = i915_request_await_active(rq, &vma->active);
++	err = i915_request_await_active(rq, &vma->active, 0);
+ 	if (err)
+ 		return err;
+ 
 -- 
 2.25.1
 
