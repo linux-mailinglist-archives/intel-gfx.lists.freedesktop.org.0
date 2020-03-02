@@ -1,41 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B831764F7
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 21:31:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9266C17660F
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:35:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F40789C1C;
-	Mon,  2 Mar 2020 20:31:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D17836E848;
+	Mon,  2 Mar 2020 21:35:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6A589C1C
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 20:31:14 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 12:31:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,508,1574150400"; d="scan'208";a="319194553"
-Received: from rantogno-mobl4.jf.intel.com (HELO
- rantogno-mobl4.amr.corp.intel.com) ([10.54.72.142])
- by orsmga001.jf.intel.com with ESMTP; 02 Mar 2020 12:31:13 -0800
-Date: Mon, 2 Mar 2020 12:31:13 -0800
-From: Rafael Antognolli <rafael.antognolli@intel.com>
-To: "Souza, Jose" <jose.souza@intel.com>
-Message-ID: <20200302203113.x5kjityqzrnveyag@rantogno-mobl4.amr.corp.intel.com>
-References: <20200227220101.321671-1-jose.souza@intel.com>
- <20200227220101.321671-11-jose.souza@intel.com>
- <20200228220714.GE174531@mdroper-desk1.amr.corp.intel.com>
- <455053abb36e70f33755d32701611b49f8c8f770.camel@intel.com>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91D306E85B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 21:35:34 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id u9so673895wml.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 13:35:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=WUQGRzbOHf3VUrH8ttxlXPHEBOJBRceFYwAE9zxsQoE=;
+ b=e+InrO0ShFw4Fi6dowfj9CC9fTB3PjHUUZI9vDjKvKVqep0/+0VXBv5wcQ+uouDZMc
+ L//YME084f01YdviIdRyGKdAnLhO6fReNMlzHyKaLgH1E7MiXr3Xg+wnAfZkWbDDseKq
+ TxmEMMUG9bp1kQqC/yk60/Dj9C6B7QLdd+5U4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=WUQGRzbOHf3VUrH8ttxlXPHEBOJBRceFYwAE9zxsQoE=;
+ b=Yqg2WqjyGbMt2k7d37oAtXYwKXQd6z/kzbnbPqYiIy9rwZYwiSyUcQlT3v9MkItkCV
+ IoDnlUrQ11TyGhXvffrUltb0tRtxtIpQDDQxf01rCf2TU6FBmfL4xtevwbP8Qwva3CPP
+ uzYBH26Fn9n1B1A6VWJ+b75Swkj4epvp4k05JEd3ckjkrFhb+r/k9HWpk6i2jxSm+T3t
+ iKUjGUV4kWx8Ecxp01fG0JY3nA41SCA7LN6k4FHXYoJFDDufWRkWJPPG1CTOqjDJ4s4O
+ aFkHOpVayh6Bw9dzbSpheN5bsSxTts/OYkkMiABDtGDEWBGEe86NqJGoNoU2DKhza000
+ 6WnQ==
+X-Gm-Message-State: ANhLgQ2QPNDXtgRRF/44yaw50jwGu9t17RPm8NyVouqO8X4pmI5PI3F+
+ a54FOnrMQ0W/tOMTmr+3hs96Bw==
+X-Google-Smtp-Source: ADFU+vslzRs314WLgyeFmSc0ln3uIf3xu+Gk4gsqhAG9vtNlZp4HrssymFGNmmhaSIyvZhYLxBQNZA==
+X-Received: by 2002:a1c:7419:: with SMTP id p25mr373942wmc.159.1583184932934; 
+ Mon, 02 Mar 2020 13:35:32 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id i1sm7902468wrs.18.2020.03.02.13.35.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Mar 2020 13:35:32 -0800 (PST)
+Date: Mon, 2 Mar 2020 22:35:30 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Message-ID: <20200302213530.GH2363188@phenom.ffwll.local>
+References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200302125649.61443-10-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200302132942.GP11960@pendragon.ideasonboard.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <455053abb36e70f33755d32701611b49f8c8f770.camel@intel.com>
-Subject: Re: [Intel-gfx] [PATCH v3 11/11] drm/i915/tgl: Implement
- Wa_1407901919
+In-Reply-To: <20200302132942.GP11960@pendragon.ideasonboard.com>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 9/9] drm/todo: Update drm_fb_helper tasks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,151 +66,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 02:10:50PM -0800, Souza, Jose wrote:
-> Can you guys help in this one? Check Matt comment bellow.
-> =
+On Mon, Mar 02, 2020 at 03:29:42PM +0200, Laurent Pinchart wrote:
+> Hi Pankaj,
+> 
+> Thank you for the patch.
+> 
+> On Mon, Mar 02, 2020 at 06:26:49PM +0530, Pankaj Bharadiya wrote:
+> > Remove completed drm_fb_helper tasks from todo list.
+> > 
+> > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+> > ---
+> >  Documentation/gpu/todo.rst | 15 ++++-----------
+> >  1 file changed, 4 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
+> > index ccf5e8e34222..98d8782e1440 100644
+> > --- a/Documentation/gpu/todo.rst
+> > +++ b/Documentation/gpu/todo.rst
+> > @@ -362,17 +362,10 @@ Level: Starter
+> >  drm_fb_helper tasks
+> >  -------------------
+> >  
+> > -- drm_fb_helper_restore_fbdev_mode_unlocked() should call restore_fbdev_mode()
+> > -  not the _force variant so it can bail out if there is a master. But first
+> > -  these igt tests need to be fixed: kms_fbcon_fbt@psr and
+> > -  kms_fbcon_fbt@psr-suspend.
+> > -
+> > -- The max connector argument for drm_fb_helper_init() isn't used anymore and
+> > -  can be removed.
+> > -
+> > -- The helper doesn't keep an array of connectors anymore so these can be
+> > -  removed: drm_fb_helper_single_add_all_connectors(),
+> > -  drm_fb_helper_add_one_connector() and drm_fb_helper_remove_one_connector().
+> > +drm_fb_helper_restore_fbdev_mode_unlocked() should call restore_fbdev_mode()
+> > +not the _force variant so it can bail out if there is a master. But first
+> > +these igt tests need to be fixed: kms_fbcon_fbt@psr and
+> > +kms_fbcon_fbt@psr-suspend.
 
-> On Fri, 2020-02-28 at 14:07 -0800, Matt Roper wrote:
-> > On Thu, Feb 27, 2020 at 02:01:01PM -0800, Jos=E9 Roberto de Souza
-> > wrote:
-> > > This will fix a memory coherence issue.
-> > > =
+This one here is also done already, see 
 
-> > > v3: using whitespace to make easy to read WA (Chris)
-> > > =
+commit 64914da24ea95d2b2f7017d014d74c26005d8780
+Author: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date:   Tue Feb 4 16:01:43 2020 +0100
 
-> > > BSpec: 52890
-> > > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_workarounds.c |  8 ++++++++
-> > >  drivers/gpu/drm/i915/i915_reg.h             | 20 +++++++++++----
-> > > -----
-> > >  2 files changed, 19 insertions(+), 9 deletions(-)
-> > > =
+    drm/fbdev-helper: don't force restores
 
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > index 3e375a3b7714..c59e1a604ab8 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > @@ -601,6 +601,14 @@ static void tgl_ctx_workarounds_init(struct
-> > > intel_engine_cs *engine,
-> > >  	 */
-> > >  	wa_add(wal, FF_MODE2, FF_MODE2_TDS_TIMER_MASK,
-> > >  	       FF_MODE2_TDS_TIMER_128, 0);
-> > > +
-> > > +	/* Wa_1407901919:tgl */
-> > > +	wa_add(wal, ICL_HDC_MODE,
-> > > +	       HDC_COHERENT_ACCESS_L1_CACHE_DIS |
-> > > +	       HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W,
-> > =
+So you can delet the entire todo entry completely.
 
-> > I'm not sure if this is what the workaround is asking for.  The way I
-> > understood the workaround, the 2-dword STATE_COMPUTE_MODE instruction
-> > has a couple bits that must be left at 0.  STATE_COMPUTE_MODE is
-> > basically how we ultimately load the HDC_MODE registers (rather than
-> > using a simple LRI like we do for a bunch of other registers), but
-> > the
-> > workaround isn't asking us to worry about bits 13+14 in the HDC_MODE
-> > register itself, but rather those flags bits on the instruction that
-> > manipulates the register.
-> > =
+btw would be good to list the patches that fixed the other ones too, if
+you can find them quickly in the logfiles.
+-Daniel
+    
+> 
+> No need to reflow, you can keep the first list entry as-is and just
+> remove the next two. With this fixed,
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> >  Level: Intermediate
+> >  
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
 
-> > Every time there's a context switch, the hardware will generate a
-> > copy
-> > of this instruction as part of the context image in writes to RAM;
-> > I'm
-> > assuming these bits aren't set on those hardware-created
-> > instructions?
-> > Assuming that's true, then I think this workaround would just be
-> > userspace's responsibility --- if they submit an explicit
-> > STATE_COMPUTE_MODE instruction that isn't just part of the context
-> > image, they need to follow the workaround guidance here and leave two
-> > of
-> > those bits set to 0.
-
-Hmmm... IMHO the workaround description doesn't make it very clear if
-it's talking about the register itself, or the STATE_COMPUTE_MODE
-instruction to set it. But the comment in the bug about it seems to
-suggest what Matt described.
-
-In any case, it should just be left as 0, and as Matt said, userspace
-shouldn't set it to 1. So I agree, there's nothing to be done in the
-kernel.
-
---
-Rafael
-
-> > =
-
-> > Matt
-> > =
-
-> > > +	       0,
-> > > +	       HDC_COHERENT_ACCESS_L1_CACHE_DIS |
-> > > +	       HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W);
-> > >  }
-> > >  =
-
-> > >  static void
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > > b/drivers/gpu/drm/i915/i915_reg.h
-> > > index 80cf02a6eec1..28822585537b 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -7883,15 +7883,17 @@ enum {
-> > >  #define  GEN8_LQSC_FLUSH_COHERENT_LINES		(1 << 21)
-> > >  =
-
-> > >  /* GEN8 chicken */
-> > > -#define HDC_CHICKEN0				_MMIO(0x7300)
-> > > -#define CNL_HDC_CHICKEN0			_MMIO(0xE5F0)
-> > > -#define ICL_HDC_MODE				_MMIO(0xE5F4)
-> > > -#define  HDC_FORCE_CSR_NON_COHERENT_OVR_DISABLE	(1 << 15)
-> > > -#define  HDC_FENCE_DEST_SLM_DISABLE		(1 << 14)
-> > > -#define  HDC_DONOT_FETCH_MEM_WHEN_MASKED	(1 << 11)
-> > > -#define  HDC_FORCE_CONTEXT_SAVE_RESTORE_NON_COHERENT	(1 <<
-> > > 5)
-> > > -#define  HDC_FORCE_NON_COHERENT			(1 << 4)
-> > > -#define  HDC_BARRIER_PERFORMANCE_DISABLE	(1 << 10)
-> > > +#define HDC_CHICKEN0					_MMIO(0
-> > > x7300)
-> > > +#define CNL_HDC_CHICKEN0				_MMIO(0xE5F0)
-> > > +#define ICL_HDC_MODE					_MMIO(0
-> > > xE5F4)
-> > > +#define  HDC_FORCE_CSR_NON_COHERENT_OVR_DISABLE		REG_BIT
-> > > (15)
-> > > +#define  HDC_FENCE_DEST_SLM_DISABLE			REG_BIT
-> > > (14)
-> > > +#define  HDC_DIS_L1_INVAL_FOR_NON_L1_CACHEABLE_W	REG_BIT(13)
-> > > +#define  HDC_COHERENT_ACCESS_L1_CACHE_DIS		REG_BIT(12)
-> > > +#define  HDC_DONOT_FETCH_MEM_WHEN_MASKED		REG_BIT(11)
-> > > +#define  HDC_FORCE_CONTEXT_SAVE_RESTORE_NON_COHERENT	REG_BIT
-> > > (5)
-> > > +#define  HDC_FORCE_NON_COHERENT				REG_BIT
-> > > (4)
-> > > +#define  HDC_BARRIER_PERFORMANCE_DISABLE		REG_BIT(10)
-> > >  =
-
-> > >  #define GEN8_HDC_CHICKEN1			_MMIO(0x7304)
-> > >  =
-
-> > > -- =
-
-> > > 2.25.1
-> > > =
-
-> > > _______________________________________________
-> > > Intel-gfx mailing list
-> > > Intel-gfx@lists.freedesktop.org
-> > > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
