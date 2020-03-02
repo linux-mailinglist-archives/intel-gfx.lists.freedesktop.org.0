@@ -1,34 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E95417663E
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:44:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90CF9176642
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:44:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC8589E8C;
-	Mon,  2 Mar 2020 21:44:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD266E851;
+	Mon,  2 Mar 2020 21:44:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5882E89E8C
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 21:44:00 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20419175-1500050 for multiple; Mon, 02 Mar 2020 21:43:28 +0000
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 345B46E851;
+ Mon,  2 Mar 2020 21:44:08 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id a141so702799wme.2;
+ Mon, 02 Mar 2020 13:44:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=PrJTCSNcxXBv5AjgrAAq+GU2eRV/Oq/u5bkyvGbgT7U=;
+ b=Uza2nYPbbtdkm1XtG1ZlBqbh88mGs/G7xD9vuJtoccvbx++YOkNhBGqCKV8A++aKQV
+ hLGEH6OLPItsFT64YE4rS7+poMcjijIidwyFjAMqacAZU+NQP9MROhoRiHpCU0o335fx
+ zkGf1gz5X2TnlAfBtnIfU3pRvt0l5F/kFZYq1BuQFY3MSHguZ4hBS+EaLHjOsqjFX6+S
+ JwmuH/cyz9Sc2/+QhP1iYvJKo313SQf7lFiEd6cxRPrUD0vTXnouJpEcX+2OUKRoduoL
+ JvfgucUgBp6931KQZq0DpIbwZiAt/Oj2DISndc180eioA2ui3/zTQuLbXCNHDettjGGX
+ wDjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=PrJTCSNcxXBv5AjgrAAq+GU2eRV/Oq/u5bkyvGbgT7U=;
+ b=pbyXMUS1F+XCF+sFgfI9AAd3nOdAY5FDMQAs1GmHSCS+WtQ8IlPqDR1EtHIAzbC/BN
+ QBD/fTxQUavzSbgnUJIFrk4xgG/R549vxmNi8lHmtFIB2r640fgsDpbp/DJQCi5SF/mX
+ +eAyomOWeYVd67vssmbqfm9xgCWEoPnD/n5TPIdPhmjT/I8ky0lqBBqnyxce3my74dnu
+ WYZp6FwM0dEqr2cn/JAlGjMv0DOEb+2Z6uwd7E7vWf7tgDdzopDG1KU3PGG6NRsVPshF
+ EociACP9WlUWSt9uZtHIgMtx22qY05P1d9ilawcCOhnMmabm+mYBtx/9zlNTqA6igf1I
+ aQUA==
+X-Gm-Message-State: ANhLgQ2AoeGU+A4VnZD8d6KSTrk9JIPdve0TsBOX2SyzjIO/oYKyN7g+
+ 47AoBmJKN/npCph0Bq+vPCjojvPgIvSDt/4JB0M=
+X-Google-Smtp-Source: ADFU+vvT51rjJfngvusWKrdls1cOVu9XWxKZKDAtSPfECTeXUgbny4fNyTDWDs/kmXhCTSmllFGCjj8ZN+ckXRcFUY4=
+X-Received: by 2002:a7b:c257:: with SMTP id b23mr409291wmj.70.1583185446850;
+ Mon, 02 Mar 2020 13:44:06 -0800 (PST)
 MIME-Version: 1.0
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <87d09u7gqy.fsf@gaia.fi.intel.com>
-References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
- <87d09u7gqy.fsf@gaia.fi.intel.com>
-Message-ID: <158318540669.2606.6808036946872147044@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Mon, 02 Mar 2020 21:43:26 +0000
-Subject: Re: [Intel-gfx] [PATCH 01/22] drm/i915/gem: Consolidate
- ctx->engines[] release
+References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200302125649.61443-9-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200302125649.61443-9-pankaj.laxminarayan.bharadiya@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 2 Mar 2020 16:43:55 -0500
+Message-ID: <CADnq5_OhSObA9P3gYCRJX-tRAWR5MxeHqwp-6Q-uB4zN1cSt7Q@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 8/9] drm/fb-helper: Remove drm_fb_helper add,
+ add_all and remove connector functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,76 +62,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@linux.ie>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-03-02 18:29:09)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> > @@ -491,30 +491,104 @@ static void kill_engines(struct i915_gem_engines *engines)
-> >  static void kill_stale_engines(struct i915_gem_context *ctx)
-> >  {
-> >       struct i915_gem_engines *pos, *next;
-> > -     unsigned long flags;
-> >  
-> > -     spin_lock_irqsave(&ctx->stale.lock, flags);
-> > +     spin_lock_irq(&ctx->stale.lock);
-> 
-> Reader ponders why it was with flags on the first place.
+On Mon, Mar 2, 2020 at 8:09 AM Pankaj Bharadiya
+<pankaj.laxminarayan.bharadiya@intel.com> wrote:
+>
+> drm_fb_helper_single_add_all_connectors(), drm_fb_helper_add_one_connector()
+> and drm_fb_helper_remove_one_connector() doesn't keep an array of
+> connectors anymore and are just dummy. Now we have no callers to these
+> functions hence remove them.
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
 
-Hindsight is 20/20.
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
 
-> > +     GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
-> >       list_for_each_entry_safe(pos, next, &ctx->stale.engines, link) {
-> > -             if (!i915_sw_fence_await(&pos->fence))
-> > +             if (!i915_sw_fence_await(&pos->fence)) {
-> > +                     list_del_init(&pos->link);
-> 
-> Is this for making the bed for kill path list_empty?
-
-It's acknowledging that if we are racing in FENCE_COMPLETE, we don't
-need to kill it.
-
-> > +static void engines_idle_release(struct i915_gem_context *ctx,
-> > +                              struct i915_gem_engines *engines)
-> > +{
-> > +     struct i915_gem_engines_iter it;
-> > +     struct intel_context *ce;
-> > +
-> > +     i915_sw_fence_init(&engines->fence, engines_notify);
-> > +     INIT_LIST_HEAD(&engines->link);
-> > +
-> > +     engines->ctx = i915_gem_context_get(ctx);
-> > +
-> > +     for_each_gem_engine(ce, engines, it) {
-> > +             struct dma_fence *fence;
-> > +             int err = 0;
-> > +
-> > +             /* serialises with execbuf */
-> > +             RCU_INIT_POINTER(ce->gem_context, NULL);
-> > +             if (!intel_context_pin_if_active(ce))
-> > +                     continue;
-> 
-> Ok so this should ensure the lifetime past the execbufs.
-> 
-> > +
-> > +             fence = i915_active_fence_get(&ce->timeline->last_request);
-
-Note it's this fence_get + ce->gem_context that combine to give us the
-execbuf closure guard.
-
-> > +             if (fence) {
-> > +                     err = i915_sw_fence_await_dma_fence(&engines->fence,
-> > +                                                         fence, 0,
-> > +                                                         GFP_KERNEL);
-> > +                     dma_fence_put(fence);
-> > +             }
-> > +             intel_context_unpin(ce);
-> > +             if (err < 0)
-> > +                     goto kill;
-> > +     }
--Chris
+> ---
+>  include/drm/drm_fb_helper.h | 21 ---------------------
+>  1 file changed, 21 deletions(-)
+>
+> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+> index 62e8dda6d1d1..208dbf87afa3 100644
+> --- a/include/drm/drm_fb_helper.h
+> +++ b/include/drm/drm_fb_helper.h
+> @@ -451,27 +451,6 @@ drm_fbdev_generic_setup(struct drm_device *dev, unsigned int preferred_bpp)
+>
+>  #endif
+>
+> -/* TODO: There's a todo entry to remove these three */
+> -static inline int
+> -drm_fb_helper_single_add_all_connectors(struct drm_fb_helper *fb_helper)
+> -{
+> -       return 0;
+> -}
+> -
+> -static inline int
+> -drm_fb_helper_add_one_connector(struct drm_fb_helper *fb_helper,
+> -                               struct drm_connector *connector)
+> -{
+> -       return 0;
+> -}
+> -
+> -static inline int
+> -drm_fb_helper_remove_one_connector(struct drm_fb_helper *fb_helper,
+> -                                  struct drm_connector *connector)
+> -{
+> -       return 0;
+> -}
+> -
+>  /**
+>   * drm_fb_helper_remove_conflicting_framebuffers - remove firmware-configured framebuffers
+>   * @a: memory range, users of which are to be removed
+> --
+> 2.20.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
