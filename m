@@ -1,55 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CF9176642
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:44:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838F4176652
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:45:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD266E851;
-	Mon,  2 Mar 2020 21:44:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD5C66E85A;
+	Mon,  2 Mar 2020 21:45:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 345B46E851;
- Mon,  2 Mar 2020 21:44:08 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id a141so702799wme.2;
- Mon, 02 Mar 2020 13:44:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=PrJTCSNcxXBv5AjgrAAq+GU2eRV/Oq/u5bkyvGbgT7U=;
- b=Uza2nYPbbtdkm1XtG1ZlBqbh88mGs/G7xD9vuJtoccvbx++YOkNhBGqCKV8A++aKQV
- hLGEH6OLPItsFT64YE4rS7+poMcjijIidwyFjAMqacAZU+NQP9MROhoRiHpCU0o335fx
- zkGf1gz5X2TnlAfBtnIfU3pRvt0l5F/kFZYq1BuQFY3MSHguZ4hBS+EaLHjOsqjFX6+S
- JwmuH/cyz9Sc2/+QhP1iYvJKo313SQf7lFiEd6cxRPrUD0vTXnouJpEcX+2OUKRoduoL
- JvfgucUgBp6931KQZq0DpIbwZiAt/Oj2DISndc180eioA2ui3/zTQuLbXCNHDettjGGX
- wDjQ==
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
+ [IPv6:2a00:1450:4864:20::441])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 859B26E856
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 21:45:12 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id n7so1690432wrt.11
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 13:45:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=AJQB0QHCpUPfr5+6enhxEVjXwTxv09kszw7xzCnQZuM=;
+ b=J+GnPzeCS4i3vfS9/B1vULV9xDevC9Ae2BlX38wnJnGyLm7/u/Hxy33kLVlJa+Y4gb
+ W3TP2mEf6npZba0bZhcBEbvV6P+7zi0XKwVbPCCsLwRqUsY5XtUmvRGF64w28LOIqyU0
+ FpT44OiKbb3DjbY5wt/vLZkrYf6fvmAzV6u+k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=PrJTCSNcxXBv5AjgrAAq+GU2eRV/Oq/u5bkyvGbgT7U=;
- b=pbyXMUS1F+XCF+sFgfI9AAd3nOdAY5FDMQAs1GmHSCS+WtQ8IlPqDR1EtHIAzbC/BN
- QBD/fTxQUavzSbgnUJIFrk4xgG/R549vxmNi8lHmtFIB2r640fgsDpbp/DJQCi5SF/mX
- +eAyomOWeYVd67vssmbqfm9xgCWEoPnD/n5TPIdPhmjT/I8ky0lqBBqnyxce3my74dnu
- WYZp6FwM0dEqr2cn/JAlGjMv0DOEb+2Z6uwd7E7vWf7tgDdzopDG1KU3PGG6NRsVPshF
- EociACP9WlUWSt9uZtHIgMtx22qY05P1d9ilawcCOhnMmabm+mYBtx/9zlNTqA6igf1I
- aQUA==
-X-Gm-Message-State: ANhLgQ2AoeGU+A4VnZD8d6KSTrk9JIPdve0TsBOX2SyzjIO/oYKyN7g+
- 47AoBmJKN/npCph0Bq+vPCjojvPgIvSDt/4JB0M=
-X-Google-Smtp-Source: ADFU+vvT51rjJfngvusWKrdls1cOVu9XWxKZKDAtSPfECTeXUgbny4fNyTDWDs/kmXhCTSmllFGCjj8ZN+ckXRcFUY4=
-X-Received: by 2002:a7b:c257:: with SMTP id b23mr409291wmj.70.1583185446850;
- Mon, 02 Mar 2020 13:44:06 -0800 (PST)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=AJQB0QHCpUPfr5+6enhxEVjXwTxv09kszw7xzCnQZuM=;
+ b=B3kr8ob9U6E5blW80FR1WBgz8AJZEehzFucNRftkqAhYnuR2gdJcOqdyei6c8ksy6L
+ 67RSOW5AO21ryEm+dhHQ1wWaGlOG9isJIj+d71eSEh5Ot83x+U63QNCdvML5Ry8/d/3p
+ VAGSE5YHgxCAGwl3L/cLwk1wiZBy6sDnrLyPoSfv6A/4oPHmXLGSk//C2bq9j0hE6Fxx
+ FWL7K6fbAtfRzljILhfY6GG1CyYxOHtBRWBwKOFW9uluMQzOcPtdUDDI2Q2zhT2d08HW
+ xmdtS5nIVgz2lenItQdFwnmWL4+7qFuikl6+EPB0a8tMQK0Ac0Gtjq1K84ddNilg0Gww
+ 5CWw==
+X-Gm-Message-State: ANhLgQ1HMDDIyz0g4Q4Yvey+G1oG2cRylATkL4UGJnfdT5lwPMympcn8
+ dYw3/6VEjelziCbaZIZbp8AGGg==
+X-Google-Smtp-Source: ADFU+vtqHCv2/u4ld9Dt/lOn4btJwcJhR29LdtJ6cq8JcRIlQ3y5RtuJzpud4fR8AQb394+wdbl2TA==
+X-Received: by 2002:adf:dd4d:: with SMTP id u13mr1494983wrm.70.1583185511188; 
+ Mon, 02 Mar 2020 13:45:11 -0800 (PST)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id u8sm411264wmm.15.2020.03.02.13.45.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Mar 2020 13:45:10 -0800 (PST)
+Date: Mon, 2 Mar 2020 22:45:08 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Emil Velikov <emil.l.velikov@gmail.com>
+Message-ID: <20200302214508.GJ2363188@phenom.ffwll.local>
+References: <20200302162151.52349-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <CACvgo50_0ZE3dxbwwv2g6937F3mA15thM_qXv=BBVodYy=mbxg@mail.gmail.com>
+ <20200302214319.GI2363188@phenom.ffwll.local>
 MIME-Version: 1.0
-References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200302125649.61443-9-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200302125649.61443-9-pankaj.laxminarayan.bharadiya@intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 2 Mar 2020 16:43:55 -0500
-Message-ID: <CADnq5_OhSObA9P3gYCRJX-tRAWR5MxeHqwp-6Q-uB4zN1cSt7Q@mail.gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 8/9] drm/fb-helper: Remove drm_fb_helper add,
- add_all and remove connector functions
+Content-Disposition: inline
+In-Reply-To: <20200302214319.GI2363188@phenom.ffwll.local>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH v2 0/7] drm: drm_fb_helper cleanup.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,70 +66,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 2, 2020 at 8:09 AM Pankaj Bharadiya
-<pankaj.laxminarayan.bharadiya@intel.com> wrote:
->
-> drm_fb_helper_single_add_all_connectors(), drm_fb_helper_add_one_connector()
-> and drm_fb_helper_remove_one_connector() doesn't keep an array of
-> connectors anymore and are just dummy. Now we have no callers to these
-> functions hence remove them.
->
-> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+On Mon, Mar 02, 2020 at 10:43:19PM +0100, Daniel Vetter wrote:
+> On Mon, Mar 02, 2020 at 06:21:23PM +0000, Emil Velikov wrote:
+> > Hi Pankaj,
+> > 
+> > On Mon, 2 Mar 2020 at 16:33, Pankaj Bharadiya
+> > <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> > >
+> > > This series addresses below drm_fb_helper tasks from
+> > > Documentation/gpu/todo.rst.
+> > >
+> > > - The max connector argument for drm_fb_helper_init() isn't used
+> > >   anymore and can be removed.
+> > >
+> > > - The helper doesn't keep an array of connectors anymore so these can
+> > >   be removed: drm_fb_helper_single_add_all_connectors(),
+> > >   drm_fb_helper_add_one_connector() and
+> > >   drm_fb_helper_remove_one_connector().
+> > >
+> > > Changes since v1:
+> > >    - Squashed warning fixes into the patch that introduced the
+> > >      warnings (into 5/7) (Laurent)
+> > >    - Fixed reflow in in 9/9 (Laurent)
+> > >
+> > For the future, include the changelog in the respective patches. This
+> > makes it easier for reviewers...
+> > Plus you're already changing the commit - might as well mention what/why :-)
+> > 
+> > Also do include the R-B, Acked-by, other tags accumulated up-to that
+> > point, when sending new revision.
+> 
+> Yup, can you pls resend that entire pile with all the ack/review tags from
+> the earlier versions included? If you don't do that you waste reviewers
+> time. Another one is that resend right away also kinda wastes peoples
+> time, because there's a much bigger chance that someone will review the
+> old version, instead of your new one. Better wait of at least 1-2 days or
+> so.
 
-Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Hm just noticed that people are still reviewing v1. I'd say lets forget
+about this v2 here, wait 1-2 days, and then resend with everything
+combined. Hopefully not too many will re-review v2 here and waste time on
+stuff that's reviewed already. Resending within hours is really not good
+on mailing lists (with merge requests or whatever it doesn't matter,
+because everyone always looks at the latest version).
+-Daniel
 
-> ---
->  include/drm/drm_fb_helper.h | 21 ---------------------
->  1 file changed, 21 deletions(-)
->
-> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
-> index 62e8dda6d1d1..208dbf87afa3 100644
-> --- a/include/drm/drm_fb_helper.h
-> +++ b/include/drm/drm_fb_helper.h
-> @@ -451,27 +451,6 @@ drm_fbdev_generic_setup(struct drm_device *dev, unsigned int preferred_bpp)
->
->  #endif
->
-> -/* TODO: There's a todo entry to remove these three */
-> -static inline int
-> -drm_fb_helper_single_add_all_connectors(struct drm_fb_helper *fb_helper)
-> -{
-> -       return 0;
-> -}
-> -
-> -static inline int
-> -drm_fb_helper_add_one_connector(struct drm_fb_helper *fb_helper,
-> -                               struct drm_connector *connector)
-> -{
-> -       return 0;
-> -}
-> -
-> -static inline int
-> -drm_fb_helper_remove_one_connector(struct drm_fb_helper *fb_helper,
-> -                                  struct drm_connector *connector)
-> -{
-> -       return 0;
-> -}
-> -
->  /**
->   * drm_fb_helper_remove_conflicting_framebuffers - remove firmware-configured framebuffers
->   * @a: memory range, users of which are to be removed
-> --
-> 2.20.1
->
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
+> > That said, if you're interested in further cleaning this up, one can
+> > cleanup the drm_dp_mst_topology_cbs hooks.
+> > In particular ::register_connector is identical across the board -
+> > create a helper function using it directly in core, killing the hook.
+> > 
+> > While for ::destroy_connector - there's some amdgpu specific code in
+> > there... which I'm not sure if it should stay or not.
+> > To be on the save side - create a helper which will be called for
+> > drivers where the hook is !=NULL (aka everyone but amdgpu).
+> 
+> Yeah that stuff looks fishy. Smells a bit like old mst code developed
+> before Lyude fixed the refcounting for real, it seems to manually shut
+> down stuff that should be cleaned up with normal code paths (modeset
+> and/or final kref_put on the connector).
+> -Daniel
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
