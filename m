@@ -1,54 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27866175F58
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 17:17:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F39B7175F6A
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 17:20:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 591226E542;
-	Mon,  2 Mar 2020 16:17:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3EA6E560;
+	Mon,  2 Mar 2020 16:20:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
- [IPv6:2607:f8b0:4864:20::e41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D00D06E536;
- Mon,  2 Mar 2020 16:17:41 +0000 (UTC)
-Received: by mail-vs1-xe41.google.com with SMTP id k188so281149vsc.8;
- Mon, 02 Mar 2020 08:17:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=UdToZ4xf99rijFZ30jxvOOFm2SNaAmw0HrSZJF10syo=;
- b=evp+zsYKrsG2MIku/3qm623YqFGLXsOeglNeuPIDCk8wpjoxPFmdwNJ3EPzc0J395U
- xDtcPxuUBirujzfLePTn/fzlhU88KFO6RfST9p2HDAD7bz3SviVnWEPRUdyCl2DP/QPY
- Z/XXAGvy9ulBD8ZbvqJDuZKU64ERT7xKHUedc5K9pYFJtuvUuwfvGRl5PyB2FgAKwnPS
- hzAkA3h2FjNFx5Cb/PbbPbAeYuYyF1WL0glE5Vk6Fy8ulCBHi0Ak1d4wlzyv1Zq8yjml
- XOvAe4OwE82/USff0Sr3FfiHo+QPloAPU0WconGwZ4tq7fnzvqRLGLw9+2kHVk/B/8/D
- 7k1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=UdToZ4xf99rijFZ30jxvOOFm2SNaAmw0HrSZJF10syo=;
- b=EnzhsqvYWj5ctUox0YdOcnIs2LnKz7UU8WQbTgH2sjOwJc2bzgRvmD4fpJ2zwHIT9f
- NNHWs3thaSLoYkM/aNqsqmuJQB0zkwItWnN+rPCmLoFh9kdFyIrnsy3DdBZh4g1S3ley
- suGm7Ay+2KOLFn2g/zzqbakMLraMaRjTnnEZFaADa+ylv9Dv3AoWNpWrOh461mBYB69N
- XhbGRB5sZGv6b+Sfbx3NqEsrahqeBBpkBoThEZKubbfNcs1wTDv7InAE8LDqFyN8WJMq
- mfEIokduVqwN1Cz5br8AF4jlSMzqWAbL+IfH67Px0Kkh7SXEbDeY6RDJgphwe8G1Z6gT
- 4vDw==
-X-Gm-Message-State: ANhLgQ0ZpFXBfu1LjP/hpmsLBN+6nvEcacB1mebPSAJmvxETVtnCwX3n
- mXluqww5+4O1G6QiH9HdSvU/Ll1DWdBTVOl04pcexOZvn7U=
-X-Google-Smtp-Source: ADFU+vuTyTVEK3G2BCRXxukZorh+OE6MzDXazl81ZTwv3D6V8b8GegKn+hr7CeIeYqu+8VFakjCNAGGA0CJkCH9Q8sg=
-X-Received: by 2002:a67:c50d:: with SMTP id e13mr9955628vsk.118.1583165860686; 
- Mon, 02 Mar 2020 08:17:40 -0800 (PST)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D8936E554
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:20:04 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 08:20:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="286662535"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by FMSMGA003.fm.intel.com with ESMTP; 02 Mar 2020 08:20:03 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 5BD0C5C1DA2; Mon,  2 Mar 2020 18:18:48 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200302085812.4172450-8-chris@chris-wilson.co.uk>
+References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
+ <20200302085812.4172450-8-chris@chris-wilson.co.uk>
+Date: Mon, 02 Mar 2020 18:18:48 +0200
+Message-ID: <87lfoi7ms7.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
- <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
-In-Reply-To: <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
-From: Emil Velikov <emil.l.velikov@gmail.com>
-Date: Mon, 2 Mar 2020 16:17:09 +0000
-Message-ID: <CACvgo51CS=Fvb_rZatzSzyJVK5DbuEfhU8kq9VhQb2cosow0+w@mail.gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Subject: Re: [Intel-gfx] [PATCH 0/9] drm: drm_fb_helper cleanup.
+Subject: Re: [Intel-gfx] [PATCH 08/22] drm/i915: Wrap i915_active in a
+ simple kreffed struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,44 +45,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2 Mar 2020 at 15:58, Emil Velikov <emil.l.velikov@gmail.com> wrote:
->
-> On Mon, 2 Mar 2020 at 13:08, Pankaj Bharadiya
-> <pankaj.laxminarayan.bharadiya@intel.com> wrote:
-> >
-> > This series addresses below drm_fb_helper tasks from
-> > Documentation/gpu/todo.rst.
-> >
-> > - The max connector argument for drm_fb_helper_init() isn't used
-> >   anymore and can be removed.
-> >
-> > - The helper doesn't keep an array of connectors anymore so these can
-> >   be removed: drm_fb_helper_single_add_all_connectors(),
-> >   drm_fb_helper_add_one_connector() and
-> >   drm_fb_helper_remove_one_connector().
-> >
-> > Pankaj Bharadiya (9):
-> >   drm: Remove unused arg from drm_fb_helper_init
-> >   drm/radeon: remove radeon_fb_{add,remove}_connector functions
-> >   drm/amdgpu: Remove drm_fb_helper_{add,remove}_one_connector calls
-> >   drm/i915/display: Remove drm_fb_helper_{add,remove}_one_connector calls
-> >   drm: Remove drm_fb_helper add, add all and remove connector calls
-> >   drm/nouveau: Fix unused variable warning
-> >   drm/bridge: remove unused variable warning in tc358764_detach
-> >   drm/fb-helper: Remove drm_fb_helper add, add_all and remove connector functions
-> >   drm/todo: Update drm_fb_helper tasks
-> >
-> With 6/9 and 7/9 squashed into 1/9, as suggested by Laurent + the
-Oops s;into 1/9;respective the patches;g
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
--Emil
+> For conveniences of callers that just want to use an i915_active to
+> track a wide array of concurrent timelines, wrap the base i915_active
+> struct inside a kref. This i915_active will self-destruct after use.
+>
+
+I looks ok and I would buy this. However I didn't manage to
+find user.
+-Mika
+
+
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/i915_active.c | 53 ++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_active.h |  4 +++
+>  2 files changed, 57 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 7b3d6c12ad61..1826de14d2da 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -881,6 +881,59 @@ void i915_active_noop(struct dma_fence *fence, struct dma_fence_cb *cb)
+>  	active_fence_cb(fence, cb);
+>  }
+>  
+> +struct auto_active {
+> +	struct i915_active base;
+> +	struct kref ref;
+> +};
+> +
+> +struct i915_active *i915_active_get(struct i915_active *ref)
+> +{
+> +	struct auto_active *aa = container_of(ref, typeof(*aa), base);
+> +
+> +	kref_get(&aa->ref);
+> +	return &aa->base;
+> +}
+> +
+> +static void auto_release(struct kref *ref)
+> +{
+> +	struct auto_active *aa = container_of(ref, typeof(*aa), ref);
+> +
+> +	i915_active_fini(&aa->base);
+> +	kfree(aa);
+> +}
+> +
+> +void i915_active_put(struct i915_active *ref)
+> +{
+> +	struct auto_active *aa = container_of(ref, typeof(*aa), base);
+> +
+> +	kref_put(&aa->ref, auto_release);
+> +}
+> +
+> +static int auto_active(struct i915_active *ref)
+> +{
+> +	i915_active_get(ref);
+> +	return 0;
+> +}
+> +
+> +static void auto_retire(struct i915_active *ref)
+> +{
+> +	i915_active_put(ref);
+> +}
+> +
+> +struct i915_active *i915_active_create(void)
+> +{
+> +	struct auto_active *aa;
+> +
+> +	aa = kmalloc(sizeof(*aa), GFP_KERNEL);
+> +	if (!aa)
+> +		return NULL;
+> +
+> +	kref_init(&aa->ref);
+> +	i915_active_init(&aa->base, auto_active, auto_retire);
+> +
+> +	return &aa->base;
+> +}
+> +
+>  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+>  #include "selftests/i915_active.c"
+>  #endif
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index 973ff0447c6c..7e438501333e 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -215,4 +215,8 @@ void i915_request_add_active_barriers(struct i915_request *rq);
+>  void i915_active_print(struct i915_active *ref, struct drm_printer *m);
+>  void i915_active_unlock_wait(struct i915_active *ref);
+>  
+> +struct i915_active *i915_active_create(void);
+> +struct i915_active *i915_active_get(struct i915_active *ref);
+> +void i915_active_put(struct i915_active *ref);
+> +
+>  #endif /* _I915_ACTIVE_H_ */
+> -- 
+> 2.25.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
