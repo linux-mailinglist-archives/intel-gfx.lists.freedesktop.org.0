@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C479175666
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 09:59:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A3D175664
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 09:59:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05C616E14E;
-	Mon,  2 Mar 2020 08:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6546E14C;
+	Mon,  2 Mar 2020 08:58:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52EC56E151
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 08:58:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0518A6E13B
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 08:58:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20409412-1500050 
- for multiple; Mon, 02 Mar 2020 08:58:22 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20409413-1500050 
+ for multiple; Mon, 02 Mar 2020 08:58:23 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  2 Mar 2020 08:57:56 +0000
-Message-Id: <20200302085812.4172450-6-chris@chris-wilson.co.uk>
+Date: Mon,  2 Mar 2020 08:57:57 +0000
+Message-Id: <20200302085812.4172450-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
 References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/22] drm/i915/gem: Only call eb_lookup_vma
- once during execbuf ioctl
+Subject: [Intel-gfx] [PATCH 07/22] drm/i915/perf: Reintroduce wait on OA
+ configuration completion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,279 +44,195 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we no longer stash anything inside i915_vma under the exclusive
-protection of struct_mutex, we do not need to revoke the i915_vma
-stashes before dropping struct_mutex to handle pagefaults. Knowing that
-we must drop the struct_mutex while keeping the eb->vma around, means
-that we are required to hold onto to the object reference until we have
-marked the vma as active.
+We still need to wait for the initial OA configuration to happen
+before we enable OA report writes to the OA buffer.
 
-Fixes: 155ab8836caa ("drm/i915: Move object close under its own lock")
+Reported-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Fixes: 15d0ace1f876 ("drm/i915/perf: execute OA configuration from command stream")
+Testcase: igt/perf/stream-open-close
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 107 +++++++-----------
- 1 file changed, 42 insertions(+), 65 deletions(-)
+This is simply an alternative to storing the request inside the stream.
+---
+ drivers/gpu/drm/i915/i915_perf.c       | 58 ++++++++++++++++++--------
+ drivers/gpu/drm/i915/i915_perf_types.h |  3 +-
+ 2 files changed, 43 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 9c888561a636..577c84872acc 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -47,17 +47,15 @@ enum {
- #define DBG_FORCE_RELOC 0 /* choose one of the above! */
- };
- 
--#define __EXEC_OBJECT_HAS_REF		BIT(31)
--#define __EXEC_OBJECT_HAS_PIN		BIT(30)
--#define __EXEC_OBJECT_HAS_FENCE		BIT(29)
--#define __EXEC_OBJECT_NEEDS_MAP		BIT(28)
--#define __EXEC_OBJECT_NEEDS_BIAS	BIT(27)
--#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 27) /* all of the above */
-+#define __EXEC_OBJECT_HAS_PIN		BIT(31)
-+#define __EXEC_OBJECT_HAS_FENCE		BIT(30)
-+#define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
-+#define __EXEC_OBJECT_NEEDS_BIAS	BIT(28)
-+#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 28) /* all of the above */
- #define __EXEC_OBJECT_RESERVED (__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_FENCE)
- 
- #define __EXEC_HAS_RELOC	BIT(31)
--#define __EXEC_VALIDATED	BIT(30)
--#define __EXEC_INTERNAL_FLAGS	(~0u << 30)
-+#define __EXEC_INTERNAL_FLAGS	(~0u << 31)
- #define UPDATE			PIN_OFFSET_FIXED
- 
- #define BATCH_OFFSET_BIAS (256*1024)
-@@ -472,24 +470,17 @@ eb_validate_vma(struct i915_execbuffer *eb,
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 2334c45f1d08..1b074bb4a7fe 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -1972,9 +1972,10 @@ get_oa_vma(struct i915_perf_stream *stream, struct i915_oa_config *oa_config)
+ 	return i915_vma_get(oa_bo->vma);
  }
  
--static int
-+static void
- eb_add_vma(struct i915_execbuffer *eb,
- 	   unsigned int i, unsigned batch_idx,
- 	   struct i915_vma *vma)
+-static int emit_oa_config(struct i915_perf_stream *stream,
+-			  struct i915_oa_config *oa_config,
+-			  struct intel_context *ce)
++static struct i915_request *
++emit_oa_config(struct i915_perf_stream *stream,
++	       struct i915_oa_config *oa_config,
++	       struct intel_context *ce)
  {
- 	struct drm_i915_gem_exec_object2 *entry = &eb->exec[i];
- 	struct eb_vma *ev = &eb->vma[i];
--	int err;
+ 	struct i915_request *rq;
+ 	struct i915_vma *vma;
+@@ -1982,7 +1983,7 @@ static int emit_oa_config(struct i915_perf_stream *stream,
  
- 	GEM_BUG_ON(i915_vma_is_closed(vma));
+ 	vma = get_oa_vma(stream, oa_config);
+ 	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
++		return ERR_CAST(vma);
  
--	if (!(eb->args->flags & __EXEC_VALIDATED)) {
--		err = eb_validate_vma(eb, entry, vma);
--		if (unlikely(err))
--			return err;
--	}
--
--	ev->vma = vma;
-+	ev->vma = i915_vma_get(vma);
- 	ev->exec = entry;
- 	ev->flags = entry->flags;
- 
-@@ -522,7 +513,6 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		eb->batch = ev;
- 	}
- 
--	err = 0;
- 	if (eb_pin_vma(eb, entry, ev)) {
- 		if (entry->offset != vma->node.start) {
- 			entry->offset = vma->node.start | UPDATE;
-@@ -530,12 +520,8 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		}
- 	} else {
- 		eb_unreserve_vma(ev);
--
- 		list_add_tail(&ev->bind_link, &eb->unbound);
--		if (drm_mm_node_allocated(&vma->node))
--			err = i915_vma_unbind(vma);
- 	}
+ 	err = i915_vma_pin(vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
+ 	if (err)
+@@ -2007,13 +2008,17 @@ static int emit_oa_config(struct i915_perf_stream *stream,
+ 	err = rq->engine->emit_bb_start(rq,
+ 					vma->node.start, 0,
+ 					I915_DISPATCH_SECURE);
++	if (err)
++		goto err_add_request;
++
++	i915_request_get(rq);
+ err_add_request:
+ 	i915_request_add(rq);
+ err_vma_unpin:
+ 	i915_vma_unpin(vma);
+ err_vma_put:
+ 	i915_vma_put(vma);
 -	return err;
++	return err ? ERR_PTR(err) : rq;
  }
  
- static inline int use_cpu_reloc(const struct reloc_cache *cache,
-@@ -582,6 +568,13 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
- 	else if (exec_flags & __EXEC_OBJECT_NEEDS_BIAS)
- 		pin_flags |= BATCH_OFFSET_BIAS | PIN_OFFSET_BIAS;
- 
-+	if (drm_mm_node_allocated(&vma->node) &&
-+	    eb_vma_misplaced(entry, vma, ev->flags)) {
-+		err = i915_vma_unbind(vma);
-+		if (err)
-+			return err;
-+	}
-+
- 	err = i915_vma_pin(vma,
- 			   entry->pad_to_size, entry->alignment,
- 			   pin_flags);
-@@ -641,7 +634,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 			if (err)
- 				break;
- 		}
--		if (err != -ENOSPC)
-+		if (!(err == -ENOSPC || err == -EAGAIN))
- 			return err;
- 
- 		/* Resort *all* the objects into priority order */
-@@ -672,6 +665,11 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 		}
- 		list_splice_tail(&last, &eb->unbound);
- 
-+		if (err == -EAGAIN) {
-+			flush_workqueue(eb->i915->mm.userptr_wq);
-+			continue;
-+		}
-+
- 		switch (pass++) {
- 		case 0:
- 			break;
-@@ -727,17 +725,14 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 	unsigned int i, batch;
- 	int err;
- 
-+	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
-+		return -ENOENT;
-+
- 	INIT_LIST_HEAD(&eb->relocs);
- 	INIT_LIST_HEAD(&eb->unbound);
- 
- 	batch = eb_batch_index(eb);
- 
--	mutex_lock(&eb->gem_context->mutex);
--	if (unlikely(i915_gem_context_is_closed(eb->gem_context))) {
--		err = -ENOENT;
--		goto err_ctx;
--	}
--
- 	for (i = 0; i < eb->buffer_count; i++) {
- 		u32 handle = eb->exec[i].handle;
- 		struct i915_lut_handle *lut;
-@@ -782,25 +777,19 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 		i915_gem_object_unlock(obj);
- 
- add_vma:
--		err = eb_add_vma(eb, i, batch, vma);
-+		err = eb_validate_vma(eb, &eb->exec[i], vma);
- 		if (unlikely(err))
- 			goto err_vma;
- 
--		GEM_BUG_ON(drm_mm_node_allocated(&vma->node) &&
--			   eb_vma_misplaced(&eb->exec[i], vma, eb->vma[i].flags));
-+		eb_add_vma(eb, i, batch, vma);
- 	}
- 
--	mutex_unlock(&eb->gem_context->mutex);
--
--	eb->args->flags |= __EXEC_VALIDATED;
--	return eb_reserve(eb);
-+	return 0;
- 
- err_obj:
- 	i915_gem_object_put(obj);
- err_vma:
- 	eb->vma[i].vma = NULL;
--err_ctx:
--	mutex_unlock(&eb->gem_context->mutex);
- 	return err;
+ static struct intel_context *oa_context(struct i915_perf_stream *stream)
+@@ -2021,7 +2026,8 @@ static struct intel_context *oa_context(struct i915_perf_stream *stream)
+ 	return stream->pinned_ctx ?: stream->engine->kernel_context;
  }
  
-@@ -841,19 +830,10 @@ static void eb_release_vmas(const struct i915_execbuffer *eb)
- 		if (ev->flags & __EXEC_OBJECT_HAS_PIN)
- 			__eb_unreserve_vma(vma, ev->flags);
- 
--		if (ev->flags & __EXEC_OBJECT_HAS_REF)
--			i915_vma_put(vma);
-+		i915_vma_put(vma);
- 	}
- }
- 
--static void eb_reset_vmas(const struct i915_execbuffer *eb)
--{
--	eb_release_vmas(eb);
--	if (eb->lut_size > 0)
--		memset(eb->buckets, 0,
--		       sizeof(struct hlist_head) << eb->lut_size);
--}
--
- static void eb_destroy(const struct i915_execbuffer *eb)
+-static int hsw_enable_metric_set(struct i915_perf_stream *stream)
++static struct i915_request *
++hsw_enable_metric_set(struct i915_perf_stream *stream)
  {
- 	GEM_BUG_ON(eb->reloc_cache.rq);
-@@ -1662,8 +1642,6 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 		goto out;
- 	}
+ 	struct intel_uncore *uncore = stream->uncore;
  
--	/* We may process another execbuffer during the unlock... */
--	eb_reset_vmas(eb);
- 	mutex_unlock(&dev->struct_mutex);
+@@ -2426,7 +2432,8 @@ static int lrc_configure_all_contexts(struct i915_perf_stream *stream,
+ 	return oa_configure_all_contexts(stream, regs, ARRAY_SIZE(regs));
+ }
+ 
+-static int gen8_enable_metric_set(struct i915_perf_stream *stream)
++static struct i915_request *
++gen8_enable_metric_set(struct i915_perf_stream *stream)
+ {
+ 	struct intel_uncore *uncore = stream->uncore;
+ 	struct i915_oa_config *oa_config = stream->oa_config;
+@@ -2468,7 +2475,7 @@ static int gen8_enable_metric_set(struct i915_perf_stream *stream)
+ 	 */
+ 	ret = lrc_configure_all_contexts(stream, oa_config);
+ 	if (ret)
+-		return ret;
++		return ERR_PTR(ret);
+ 
+ 	return emit_oa_config(stream, oa_config, oa_context(stream));
+ }
+@@ -2480,7 +2487,8 @@ static u32 oag_report_ctx_switches(const struct i915_perf_stream *stream)
+ 			     0 : GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
+ }
+ 
+-static int gen12_enable_metric_set(struct i915_perf_stream *stream)
++static struct i915_request *
++gen12_enable_metric_set(struct i915_perf_stream *stream)
+ {
+ 	struct intel_uncore *uncore = stream->uncore;
+ 	struct i915_oa_config *oa_config = stream->oa_config;
+@@ -2511,7 +2519,7 @@ static int gen12_enable_metric_set(struct i915_perf_stream *stream)
+ 	 */
+ 	ret = gen12_configure_all_contexts(stream, oa_config);
+ 	if (ret)
+-		return ret;
++		return ERR_PTR(ret);
  
  	/*
-@@ -1702,11 +1680,6 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 		goto out;
+ 	 * For Gen12, performance counters are context
+@@ -2521,7 +2529,7 @@ static int gen12_enable_metric_set(struct i915_perf_stream *stream)
+ 	if (stream->ctx) {
+ 		ret = gen12_configure_oar_context(stream, true);
+ 		if (ret)
+-			return ret;
++			return ERR_PTR(ret);
  	}
  
--	/* reacquire the objects */
--	err = eb_lookup_vmas(eb);
--	if (err)
--		goto err;
--
- 	GEM_BUG_ON(!eb->batch);
+ 	return emit_oa_config(stream, oa_config, oa_context(stream));
+@@ -2719,6 +2727,20 @@ static const struct i915_perf_stream_ops i915_oa_stream_ops = {
+ 	.read = i915_oa_read,
+ };
  
- 	list_for_each_entry(ev, &eb->relocs, reloc_link) {
-@@ -1757,8 +1730,17 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 
- static int eb_relocate(struct i915_execbuffer *eb)
- {
--	if (eb_lookup_vmas(eb))
--		goto slow;
-+	int err;
++static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
++{
++	struct i915_request *rq;
 +
-+	mutex_lock(&eb->gem_context->mutex);
-+	err = eb_lookup_vmas(eb);
-+	mutex_unlock(&eb->gem_context->mutex);
-+	if (err)
-+		return err;
++	rq = stream->perf->ops.enable_metric_set(stream);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
 +
-+	err = eb_reserve(eb);
-+	if (err)
-+		return err;
++	i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT);
++	i915_request_put(rq);
++
++	return 0;
++}
++
+ /**
+  * i915_oa_stream_init - validate combined props for OA stream and init
+  * @stream: An i915 perf stream
+@@ -2853,7 +2875,7 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+ 	stream->ops = &i915_oa_stream_ops;
+ 	WRITE_ONCE(perf->exclusive_stream, stream);
  
- 	/* The objects are in their final locations, apply the relocations. */
- 	if (eb->args->flags & __EXEC_HAS_RELOC) {
-@@ -1766,14 +1748,11 @@ static int eb_relocate(struct i915_execbuffer *eb)
+-	ret = perf->ops.enable_metric_set(stream);
++	ret = i915_perf_stream_enable_sync(stream);
+ 	if (ret) {
+ 		DRM_DEBUG("Unable to enable metric set\n");
+ 		goto err_enable;
+@@ -3170,7 +3192,7 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 		return -EINVAL;
  
- 		list_for_each_entry(ev, &eb->relocs, reloc_link) {
- 			if (eb_relocate_vma(eb, ev))
--				goto slow;
-+				return eb_relocate_slow(eb);
- 		}
+ 	if (config != stream->oa_config) {
+-		int err;
++		struct i915_request *rq;
+ 
+ 		/*
+ 		 * If OA is bound to a specific context, emit the
+@@ -3181,11 +3203,13 @@ static long i915_perf_config_locked(struct i915_perf_stream *stream,
+ 		 * When set globally, we use a low priority kernel context,
+ 		 * so it will effectively take effect when idle.
+ 		 */
+-		err = emit_oa_config(stream, config, oa_context(stream));
+-		if (err == 0)
++		rq = emit_oa_config(stream, config, oa_context(stream));
++		if (!IS_ERR(rq)) {
+ 			config = xchg(&stream->oa_config, config);
+-		else
+-			ret = err;
++			i915_request_put(rq);
++		} else {
++			ret = PTR_ERR(rq);
++		}
  	}
  
- 	return 0;
--
--slow:
--	return eb_relocate_slow(eb);
- }
+ 	i915_oa_config_put(config);
+diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+index 45e581455f5d..a0e22f00f6cf 100644
+--- a/drivers/gpu/drm/i915/i915_perf_types.h
++++ b/drivers/gpu/drm/i915/i915_perf_types.h
+@@ -339,7 +339,8 @@ struct i915_oa_ops {
+ 	 * counter reports being sampled. May apply system constraints such as
+ 	 * disabling EU clock gating as required.
+ 	 */
+-	int (*enable_metric_set)(struct i915_perf_stream *stream);
++	struct i915_request *
++		(*enable_metric_set)(struct i915_perf_stream *stream);
  
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
-@@ -1855,8 +1834,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 		i915_vma_unlock(vma);
- 
- 		__eb_unreserve_vma(vma, flags);
--		if (unlikely(flags & __EXEC_OBJECT_HAS_REF))
--			i915_vma_put(vma);
-+		i915_vma_put(vma);
- 
- 		ev->vma = NULL;
- 	}
-@@ -2116,8 +2094,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 		goto err_trampoline;
- 
- 	eb->vma[eb->buffer_count].vma = i915_vma_get(shadow);
--	eb->vma[eb->buffer_count].flags =
--		__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_REF;
-+	eb->vma[eb->buffer_count].flags = __EXEC_OBJECT_HAS_PIN;
- 	eb->batch = &eb->vma[eb->buffer_count++];
- 
- 	eb->trampoline = trampoline;
+ 	/**
+ 	 * @disable_metric_set: Remove system constraints associated with using
 -- 
 2.25.1
 
