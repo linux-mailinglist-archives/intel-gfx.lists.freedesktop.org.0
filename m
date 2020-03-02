@@ -2,33 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E31176670
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:51:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8163C176615
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 22:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7B736E85B;
-	Mon,  2 Mar 2020 21:51:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D62AF6E84A;
+	Mon,  2 Mar 2020 21:39:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C733D6E85B
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 21:51:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 13:51:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,508,1574150400"; d="scan'208";a="412469508"
-Received: from unknown (HELO
- genxfsim-Shark-Bay-Client-platform.iind.intel.com) ([10.223.74.73])
- by orsmga005.jf.intel.com with ESMTP; 02 Mar 2020 13:51:52 -0800
-From: Swati Sharma <swati2.sharma@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Mar 2020 03:08:07 +0530
-Message-Id: <20200302213807.6488-1-swati2.sharma@intel.com>
-X-Mailer: git-send-email 2.24.1
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 481C06E84A;
+ Mon,  2 Mar 2020 21:39:01 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id p9so717317wmc.2;
+ Mon, 02 Mar 2020 13:39:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=eRmKRgeq5RrL/YX3wXt3HhOi1y2OvmpmJNaGpl6Gh3E=;
+ b=MEdeehyWXvURmQt4/PC9NgiclEAz0tesz9jBlCzE25aDlrJPmJw3uS6ZYiY1+YOyok
+ uqWHJGl9V5K/PpWLOTO8owRENL4rIs0/6JPl0rRdrNigi8Jfcr2A2C63TUFnVXp8T+5W
+ E6KNtL2zwi041soBw92hbnC5GbMNMp1uUjTtjdxN8qjeQLcBjrOeQD1uA2UQelbAVr/B
+ eJDYhxrGovuICaFGq8w80sV9u5lMnycFHCZXcOHDmukNWUrlptMYGogcBAp1IaUk7qtS
+ /IrtPBPPHHpFl1hrqiUIyRv1BLs6Vz0om7/5vWivw5IZ6YpFtL9/063lJq17LNIEDcg8
+ QFCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=eRmKRgeq5RrL/YX3wXt3HhOi1y2OvmpmJNaGpl6Gh3E=;
+ b=Y8n7vd2Orgg8KtNoQ2R/bwFH/m28eCXP2/q1pA2wztzvLBoZXtLzPHsY3umtV08fKB
+ e6vvGxcnQeXM+i+zuCxK0MsOh7e18rsSsGDpykVOiYU2wxQaUnVgI+sV+O1zq6ox0qNE
+ MndfAmoLSrNkzbGl+fC/b+WLNbN5GhgqtoO9bgBuMe+RipMKizqE+e53+IZa8CVoteWv
+ 4+U9T1Vwb3JZVlKklT7YbSqoA0e255PSaGVKvblsCw7NnPRT9vQHc82nhIOqHN9GqhCE
+ 5NVbqycA8AGDiRX84cSZPxx6XIdtr4WyCgcmhCM3dtQKv54+Ab8MkQdYt59+P9Qeaady
+ nfUA==
+X-Gm-Message-State: ANhLgQ2W3KFKiwNfIkbjmh1/Xs5gXBNlRLJBCDJ6glXB6vxoL4ZwXFsd
+ qD0WNuxpSGSqle9ArYVPFSfaX2Shb8lXZdY11o0=
+X-Google-Smtp-Source: ADFU+vsUgElHC/ke6vIch/HfSHsQzte1vFX20JnkuCblP9J37Nl1X642I4ykSi9oyqjyeZOh/NWMuLKwwINF8t6zBmw=
+X-Received: by 2002:a1c:f009:: with SMTP id a9mr375754wmb.73.1583185138949;
+ Mon, 02 Mar 2020 13:38:58 -0800 (PST)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/display: Decrease log level
+References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200302125649.61443-2-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200302125649.61443-2-pankaj.laxminarayan.bharadiya@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Mon, 2 Mar 2020 16:38:47 -0500
+Message-ID: <CADnq5_PLMbcGc+gd-HmtSkJm+WdX+o8YX4+k2cVseazojrP6dA@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/9] drm: Remove unused arg from
+ drm_fb_helper_init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,36 +62,272 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andrey Grodzovsky <andrey.grodzovsky@amd.com>, David Airlie <airlied@linux.ie>,
+ Maling list - DRI developers <dri-devel@lists.freedesktop.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Emil Velikov <emil.velikov@collabora.com>,
+ "David \(ChunMing\) Zhou" <David1.Zhou@amd.com>,
+ Joonyoung Shim <jy0922.shim@samsung.com>,
+ Tomi Valkeinen <tomi.valkeinen@ti.com>, Russell King <linux@armlinux.org.uk>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Kukjin Kim <kgene@kernel.org>, Ben Skeggs <bskeggs@redhat.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Maxime Ripard <mripard@kernel.org>, Inki Dae <inki.dae@samsung.com>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, Sandy Huang <hjc@rock-chips.com>,
+ Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Q29udmVydGluZyBlcnJvciB0byBkZWJ1ZyBwcmludCBpZiBzaW5rIGZhaWxzIHRvIGNvbmZpZ3Vy
-ZSBzY3JhbWJsaW5nIG9yClRNRFMgYml0IGNsb2NrIHJhdGlvLiBJbiB0aGlzIGNhc2UsIHdlIGFy
-ZSB0aW1pbmcgb3V0IHdoaWxlIGRpc2FibGluZwp0aGUgc2NyYW1ibGluZyBhbmQgc2V0dGluZyB0
-aGUgU0NEQyByYXRpbywgYXMgdGhlcmUgaXMgbm8gcmVzcG9uc2UKdG8gdGhlIEkyQyBTQ0RDIHdy
-aXRlIGZyb20gdGhlIHNpbmsgZGV2aWNlLiBFcnJvciBpc24ndCBkdWUgdG8gc29tZXRoaW5nCndy
-b25nIGRvbmUgZnJvbSBkcml2ZXIgc2lkZS4KClNpZ25lZC1vZmYtYnk6IFN3YXRpIFNoYXJtYSA8
-c3dhdGkyLnNoYXJtYUBpbnRlbC5jb20+ClN1Z2dlc3RlZC1ieTogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jIHwgNSArKystLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9u
-cygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
-ZGkuYwppbmRleCAyODQyMTlkYTdkZjguLjQ1N2NhODhjZDI3NyAxMDA2NDQKLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0zNTY0LDggKzM1NjQsOSBAQCBzdGF0aWMgdm9p
-ZCBpbnRlbF9lbmFibGVfZGRpX2hkbWkoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIsCiAJ
-aWYgKCFpbnRlbF9oZG1pX2hhbmRsZV9zaW5rX3NjcmFtYmxpbmcoZW5jb2RlciwgY29ubmVjdG9y
-LAogCQkJCQkgICAgICAgY3J0Y19zdGF0ZS0+aGRtaV9oaWdoX3RtZHNfY2xvY2tfcmF0aW8sCiAJ
-CQkJCSAgICAgICBjcnRjX3N0YXRlLT5oZG1pX3NjcmFtYmxpbmcpKQotCQlEUk1fRVJST1IoIltD
-T05ORUNUT1I6JWQ6JXNdIEZhaWxlZCB0byBjb25maWd1cmUgc2luayBzY3JhbWJsaW5nL1RNRFMg
-Yml0IGNsb2NrIHJhdGlvXG4iLAotCQkJICBjb25uZWN0b3ItPmJhc2UuaWQsIGNvbm5lY3Rvci0+
-bmFtZSk7CisJCURSTV9ERUJVR19LTVMoIltDT05ORUNUT1I6JWQ6JXNdIEZhaWxlZCB0byBjb25m
-aWd1cmUgc2luayAiCisJCQkgICAgICAic2NyYW1ibGluZy9UTURTIGJpdCBjbG9jayByYXRpb1xu
-IiwKKwkJCSAgICAgICBjb25uZWN0b3ItPmJhc2UuaWQsIGNvbm5lY3Rvci0+bmFtZSk7CiAKIAkv
-KiBEaXNwbGF5IFdBICMxMTQzOiBza2wsa2JsLGNmbCAqLwogCWlmIChJU19HRU45X0JDKGRldl9w
-cml2KSkgewotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+On Mon, Mar 2, 2020 at 8:08 AM Pankaj Bharadiya
+<pankaj.laxminarayan.bharadiya@intel.com> wrote:
+>
+> The max connector argument for drm_fb_helper_init() isn't used anymore
+> hence remove it.
+>
+> All the drm_fb_helper_init() calls are modified with below sementic
+> patch.
+>
+> @@
+> expression E1, E2, E3;
+> @@
+> -  drm_fb_helper_init(E1,E2, E3)
+> +  drm_fb_helper_init(E1,E2)
+>
+> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+
+Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c        | 3 +--
+>  drivers/gpu/drm/armada/armada_fbdev.c         | 2 +-
+>  drivers/gpu/drm/drm_fb_helper.c               | 6 ++----
+>  drivers/gpu/drm/exynos/exynos_drm_fbdev.c     | 2 +-
+>  drivers/gpu/drm/gma500/framebuffer.c          | 2 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 2 +-
+>  drivers/gpu/drm/msm/msm_fbdev.c               | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_fbcon.c       | 2 +-
+>  drivers/gpu/drm/omapdrm/omap_fbdev.c          | 2 +-
+>  drivers/gpu/drm/radeon/radeon_fb.c            | 3 +--
+>  drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c | 2 +-
+>  drivers/gpu/drm/tegra/fb.c                    | 2 +-
+>  include/drm/drm_fb_helper.h                   | 6 ++----
+>  13 files changed, 15 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+> index 2672dc64a310..579d614c7b70 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fb.c
+> @@ -336,8 +336,7 @@ int amdgpu_fbdev_init(struct amdgpu_device *adev)
+>         drm_fb_helper_prepare(adev->ddev, &rfbdev->helper,
+>                         &amdgpu_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(adev->ddev, &rfbdev->helper,
+> -                                AMDGPUFB_CONN_LIMIT);
+> +       ret = drm_fb_helper_init(adev->ddev, &rfbdev->helper);
+>         if (ret) {
+>                 kfree(rfbdev);
+>                 return ret;
+> diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
+> index ac8a78bfda03..6254353c00ae 100644
+> --- a/drivers/gpu/drm/armada/armada_fbdev.c
+> +++ b/drivers/gpu/drm/armada/armada_fbdev.c
+> @@ -129,7 +129,7 @@ int armada_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, fbh, &armada_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, fbh, 1);
+> +       ret = drm_fb_helper_init(dev, fbh);
+>         if (ret) {
+>                 DRM_ERROR("failed to initialize drm fb helper\n");
+>                 goto err_fb_helper;
+> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+> index 490a99de6ec1..a9771de4d17e 100644
+> --- a/drivers/gpu/drm/drm_fb_helper.c
+> +++ b/drivers/gpu/drm/drm_fb_helper.c
+> @@ -450,7 +450,6 @@ EXPORT_SYMBOL(drm_fb_helper_prepare);
+>   * drm_fb_helper_init - initialize a &struct drm_fb_helper
+>   * @dev: drm device
+>   * @fb_helper: driver-allocated fbdev helper structure to initialize
+> - * @max_conn_count: max connector count (not used)
+>   *
+>   * This allocates the structures for the fbdev helper with the given limits.
+>   * Note that this won't yet touch the hardware (through the driver interfaces)
+> @@ -463,8 +462,7 @@ EXPORT_SYMBOL(drm_fb_helper_prepare);
+>   * Zero if everything went ok, nonzero otherwise.
+>   */
+>  int drm_fb_helper_init(struct drm_device *dev,
+> -                      struct drm_fb_helper *fb_helper,
+> -                      int max_conn_count)
+> +                      struct drm_fb_helper *fb_helper)
+>  {
+>         int ret;
+>
+> @@ -2125,7 +2123,7 @@ static int drm_fbdev_client_hotplug(struct drm_client_dev *client)
+>
+>         drm_fb_helper_prepare(dev, fb_helper, &drm_fb_helper_generic_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, fb_helper, 0);
+> +       ret = drm_fb_helper_init(dev, fb_helper);
+>         if (ret)
+>                 goto err;
+>
+> diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> index 647a1fd1d815..5afecb6a30ad 100644
+> --- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> +++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+> @@ -200,7 +200,7 @@ int exynos_drm_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, helper, &exynos_drm_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, helper, MAX_CONNECTOR);
+> +       ret = drm_fb_helper_init(dev, helper);
+>         if (ret < 0) {
+>                 DRM_DEV_ERROR(dev->dev,
+>                               "failed to initialize drm fb helper.\n");
+> diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
+> index 1459076d1980..fe892e1243db 100644
+> --- a/drivers/gpu/drm/gma500/framebuffer.c
+> +++ b/drivers/gpu/drm/gma500/framebuffer.c
+> @@ -513,7 +513,7 @@ int psb_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, fb_helper, &psb_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, fb_helper, INTELFB_CONN_LIMIT);
+> +       ret = drm_fb_helper_init(dev, fb_helper);
+>         if (ret)
+>                 goto free;
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index b6ee0d902003..8f65963266a3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -452,7 +452,7 @@ int intel_fbdev_init(struct drm_device *dev)
+>         if (!intel_fbdev_init_bios(dev, ifbdev))
+>                 ifbdev->preferred_bpp = 32;
+>
+> -       ret = drm_fb_helper_init(dev, &ifbdev->helper, 4);
+> +       ret = drm_fb_helper_init(dev, &ifbdev->helper);
+>         if (ret) {
+>                 kfree(ifbdev);
+>                 return ret;
+> diff --git a/drivers/gpu/drm/msm/msm_fbdev.c b/drivers/gpu/drm/msm/msm_fbdev.c
+> index db48867df47d..b4f44146d9de 100644
+> --- a/drivers/gpu/drm/msm/msm_fbdev.c
+> +++ b/drivers/gpu/drm/msm/msm_fbdev.c
+> @@ -160,7 +160,7 @@ struct drm_fb_helper *msm_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, helper, &msm_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, helper, priv->num_connectors);
+> +       ret = drm_fb_helper_init(dev, helper);
+>         if (ret) {
+>                 DRM_DEV_ERROR(dev->dev, "could not init fbdev: ret=%d\n", ret);
+>                 goto fail;
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_fbcon.c b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> index 0c5cdda3c336..21fc7c63e2f7 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_fbcon.c
+> @@ -558,7 +558,7 @@ nouveau_fbcon_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, &fbcon->helper, &nouveau_fbcon_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, &fbcon->helper, 4);
+> +       ret = drm_fb_helper_init(dev, &fbcon->helper);
+>         if (ret)
+>                 goto free;
+>
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> index b06e5cbfd03a..eba57ac31cc6 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> @@ -242,7 +242,7 @@ void omap_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, helper, &omap_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, helper, priv->num_pipes);
+> +       ret = drm_fb_helper_init(dev, helper);
+>         if (ret)
+>                 goto fail;
+>
+> diff --git a/drivers/gpu/drm/radeon/radeon_fb.c b/drivers/gpu/drm/radeon/radeon_fb.c
+> index ec0b7d6c994d..85548cf2529a 100644
+> --- a/drivers/gpu/drm/radeon/radeon_fb.c
+> +++ b/drivers/gpu/drm/radeon/radeon_fb.c
+> @@ -354,8 +354,7 @@ int radeon_fbdev_init(struct radeon_device *rdev)
+>         drm_fb_helper_prepare(rdev->ddev, &rfbdev->helper,
+>                               &radeon_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(rdev->ddev, &rfbdev->helper,
+> -                                RADEONFB_CONN_LIMIT);
+> +       ret = drm_fb_helper_init(rdev->ddev, &rfbdev->helper);
+>         if (ret)
+>                 goto free;
+>
+> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c b/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c
+> index 521fe42ac5e2..6ad4cce17089 100644
+> --- a/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c
+> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_fbdev.c
+> @@ -124,7 +124,7 @@ int rockchip_drm_fbdev_init(struct drm_device *dev)
+>
+>         drm_fb_helper_prepare(dev, helper, &rockchip_drm_fb_helper_funcs);
+>
+> -       ret = drm_fb_helper_init(dev, helper, ROCKCHIP_MAX_CONNECTOR);
+> +       ret = drm_fb_helper_init(dev, helper);
+>         if (ret < 0) {
+>                 DRM_DEV_ERROR(dev->dev,
+>                               "Failed to initialize drm fb helper - %d.\n",
+> diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
+> index 84f0e01e3428..feefe62be8dd 100644
+> --- a/drivers/gpu/drm/tegra/fb.c
+> +++ b/drivers/gpu/drm/tegra/fb.c
+> @@ -314,7 +314,7 @@ static int tegra_fbdev_init(struct tegra_fbdev *fbdev,
+>         struct drm_device *drm = fbdev->base.dev;
+>         int err;
+>
+> -       err = drm_fb_helper_init(drm, &fbdev->base, max_connectors);
+> +       err = drm_fb_helper_init(drm, &fbdev->base);
+>         if (err < 0) {
+>                 dev_err(drm->dev, "failed to initialize DRM FB helper: %d\n",
+>                         err);
+> diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
+> index 1c6633da0f91..62e8dda6d1d1 100644
+> --- a/include/drm/drm_fb_helper.h
+> +++ b/include/drm/drm_fb_helper.h
+> @@ -213,8 +213,7 @@ drm_fb_helper_from_client(struct drm_client_dev *client)
+>  #ifdef CONFIG_DRM_FBDEV_EMULATION
+>  void drm_fb_helper_prepare(struct drm_device *dev, struct drm_fb_helper *helper,
+>                            const struct drm_fb_helper_funcs *funcs);
+> -int drm_fb_helper_init(struct drm_device *dev,
+> -                      struct drm_fb_helper *helper, int max_conn);
+> +int drm_fb_helper_init(struct drm_device *dev, struct drm_fb_helper *helper);
+>  void drm_fb_helper_fini(struct drm_fb_helper *helper);
+>  int drm_fb_helper_blank(int blank, struct fb_info *info);
+>  int drm_fb_helper_pan_display(struct fb_var_screeninfo *var,
+> @@ -279,8 +278,7 @@ static inline void drm_fb_helper_prepare(struct drm_device *dev,
+>  }
+>
+>  static inline int drm_fb_helper_init(struct drm_device *dev,
+> -                      struct drm_fb_helper *helper,
+> -                      int max_conn)
+> +                      struct drm_fb_helper *helper)
+>  {
+>         /* So drivers can use it to free the struct */
+>         helper->dev = dev;
+> --
+> 2.20.1
+>
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
