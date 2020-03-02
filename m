@@ -2,37 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89DE175F44
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 17:12:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27866175F58
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 17:17:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EEDC6E530;
-	Mon,  2 Mar 2020 16:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 591226E542;
+	Mon,  2 Mar 2020 16:17:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 568836E530
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:12:45 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 08:12:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="257994463"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga002.jf.intel.com with ESMTP; 02 Mar 2020 08:12:43 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 0FA545C1DA2; Mon,  2 Mar 2020 18:11:28 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200302085812.4172450-14-chris@chris-wilson.co.uk>
-References: <20200302085812.4172450-1-chris@chris-wilson.co.uk>
- <20200302085812.4172450-14-chris@chris-wilson.co.uk>
-Date: Mon, 02 Mar 2020 18:11:28 +0200
-Message-ID: <87o8te7n4f.fsf@gaia.fi.intel.com>
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
+ [IPv6:2607:f8b0:4864:20::e41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D00D06E536;
+ Mon,  2 Mar 2020 16:17:41 +0000 (UTC)
+Received: by mail-vs1-xe41.google.com with SMTP id k188so281149vsc.8;
+ Mon, 02 Mar 2020 08:17:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=UdToZ4xf99rijFZ30jxvOOFm2SNaAmw0HrSZJF10syo=;
+ b=evp+zsYKrsG2MIku/3qm623YqFGLXsOeglNeuPIDCk8wpjoxPFmdwNJ3EPzc0J395U
+ xDtcPxuUBirujzfLePTn/fzlhU88KFO6RfST9p2HDAD7bz3SviVnWEPRUdyCl2DP/QPY
+ Z/XXAGvy9ulBD8ZbvqJDuZKU64ERT7xKHUedc5K9pYFJtuvUuwfvGRl5PyB2FgAKwnPS
+ hzAkA3h2FjNFx5Cb/PbbPbAeYuYyF1WL0glE5Vk6Fy8ulCBHi0Ak1d4wlzyv1Zq8yjml
+ XOvAe4OwE82/USff0Sr3FfiHo+QPloAPU0WconGwZ4tq7fnzvqRLGLw9+2kHVk/B/8/D
+ 7k1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=UdToZ4xf99rijFZ30jxvOOFm2SNaAmw0HrSZJF10syo=;
+ b=EnzhsqvYWj5ctUox0YdOcnIs2LnKz7UU8WQbTgH2sjOwJc2bzgRvmD4fpJ2zwHIT9f
+ NNHWs3thaSLoYkM/aNqsqmuJQB0zkwItWnN+rPCmLoFh9kdFyIrnsy3DdBZh4g1S3ley
+ suGm7Ay+2KOLFn2g/zzqbakMLraMaRjTnnEZFaADa+ylv9Dv3AoWNpWrOh461mBYB69N
+ XhbGRB5sZGv6b+Sfbx3NqEsrahqeBBpkBoThEZKubbfNcs1wTDv7InAE8LDqFyN8WJMq
+ mfEIokduVqwN1Cz5br8AF4jlSMzqWAbL+IfH67Px0Kkh7SXEbDeY6RDJgphwe8G1Z6gT
+ 4vDw==
+X-Gm-Message-State: ANhLgQ0ZpFXBfu1LjP/hpmsLBN+6nvEcacB1mebPSAJmvxETVtnCwX3n
+ mXluqww5+4O1G6QiH9HdSvU/Ll1DWdBTVOl04pcexOZvn7U=
+X-Google-Smtp-Source: ADFU+vuTyTVEK3G2BCRXxukZorh+OE6MzDXazl81ZTwv3D6V8b8GegKn+hr7CeIeYqu+8VFakjCNAGGA0CJkCH9Q8sg=
+X-Received: by 2002:a67:c50d:: with SMTP id e13mr9955628vsk.118.1583165860686; 
+ Mon, 02 Mar 2020 08:17:40 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 14/22] dma-buf: Prettify typecasts for
- dma-fence-chain
+References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
+In-Reply-To: <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Mon, 2 Mar 2020 16:17:09 +0000
+Message-ID: <CACvgo51CS=Fvb_rZatzSzyJVK5DbuEfhU8kq9VhQb2cosow0+w@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/9] drm: drm_fb_helper cleanup.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,45 +61,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> Inside dma-fence-chain, we use a cmpxchg on an RCU-protected pointer. To
-> avoid the sparse warning for using the RCU pointer directly, we have to
-> cast away the __rcu annotation. However, we don't need to use void*
-> everywhere and can stick to the dma_fence*.
-
-Prolly just my english but
-s/everywhere/anywhere.
-
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
+On Mon, 2 Mar 2020 at 15:58, Emil Velikov <emil.l.velikov@gmail.com> wrote:
 >
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/dma-buf/dma-fence-chain.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
-> index 44a741677d25..3d123502ff12 100644
-> --- a/drivers/dma-buf/dma-fence-chain.c
-> +++ b/drivers/dma-buf/dma-fence-chain.c
-> @@ -62,7 +62,8 @@ struct dma_fence *dma_fence_chain_walk(struct dma_fence *fence)
->  			replacement = NULL;
->  		}
->  
-> -		tmp = cmpxchg((void **)&chain->prev, (void *)prev, (void *)replacement);
-> +		tmp = cmpxchg((struct dma_fence __force **)&chain->prev,
-> +			      prev, replacement);
->  		if (tmp == prev)
->  			dma_fence_put(tmp);
->  		else
-> -- 
-> 2.25.1
+> On Mon, 2 Mar 2020 at 13:08, Pankaj Bharadiya
+> <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> >
+> > This series addresses below drm_fb_helper tasks from
+> > Documentation/gpu/todo.rst.
+> >
+> > - The max connector argument for drm_fb_helper_init() isn't used
+> >   anymore and can be removed.
+> >
+> > - The helper doesn't keep an array of connectors anymore so these can
+> >   be removed: drm_fb_helper_single_add_all_connectors(),
+> >   drm_fb_helper_add_one_connector() and
+> >   drm_fb_helper_remove_one_connector().
+> >
+> > Pankaj Bharadiya (9):
+> >   drm: Remove unused arg from drm_fb_helper_init
+> >   drm/radeon: remove radeon_fb_{add,remove}_connector functions
+> >   drm/amdgpu: Remove drm_fb_helper_{add,remove}_one_connector calls
+> >   drm/i915/display: Remove drm_fb_helper_{add,remove}_one_connector calls
+> >   drm: Remove drm_fb_helper add, add all and remove connector calls
+> >   drm/nouveau: Fix unused variable warning
+> >   drm/bridge: remove unused variable warning in tc358764_detach
+> >   drm/fb-helper: Remove drm_fb_helper add, add_all and remove connector functions
+> >   drm/todo: Update drm_fb_helper tasks
+> >
+> With 6/9 and 7/9 squashed into 1/9, as suggested by Laurent + the
+Oops s;into 1/9;respective the patches;g
+
+-Emil
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
