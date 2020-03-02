@@ -2,36 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A6F1760D3
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B22B1760D4
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:13:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A094E6E5C1;
-	Mon,  2 Mar 2020 17:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95ECB6E5D3;
+	Mon,  2 Mar 2020 17:13:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 594 seconds by postgrey-1.36 at gabe;
- Mon, 02 Mar 2020 00:29:20 UTC
-Received: from mail.hallyn.com (mail.hallyn.com [178.63.66.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 424126E237
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 00:29:20 +0000 (UTC)
-Received: from sl (122.sub-174-235-8.myvzw.com [174.235.8.122])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
- (No client certificate requested) (Authenticated sender: serge)
- by mail.hallyn.com (Postfix) with ESMTPSA id 4C54066E;
- Sun,  1 Mar 2020 18:19:19 -0600 (CST)
-Date: Sun, 1 Mar 2020 18:19:13 -0600
-From: Serge Hallyn <serge@hallyn.com>
-To: Alexey Budankov <alexey.budankov@linux.intel.com>
-Message-ID: <20200302001913.GA21145@sl>
-References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
- <3ae0bed5-204e-de81-7647-5f0d8106cd67@linux.intel.com>
+Received: from amazon.4net.rs (amazon.4net.rs [159.69.148.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08D176E037
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 16:39:12 +0000 (UTC)
+Received: from localhost (amazon.4net.co.rs [127.0.0.1])
+ by amazon.4net.rs (Postfix) with ESMTP id DF7686308DA1;
+ Mon,  2 Mar 2020 17:39:10 +0100 (CET)
+X-Virus-Scanned: amavisd-new at 4net.rs
+Received: from amazon.4net.rs ([127.0.0.1])
+ by localhost (amazon.dyn.4net.co.rs [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id bNRkM5pBqOYQ; Mon,  2 Mar 2020 17:39:08 +0100 (CET)
+Received: from mail.4net.rs (green.4net.rs [10.188.221.8])
+ by amazon.4net.rs (Postfix) with ESMTP id A467E6308DA0;
+ Mon,  2 Mar 2020 17:39:08 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+ by mail.4net.rs (Postfix) with ESMTP id 60483C9A6A00F;
+ Mon,  2 Mar 2020 17:39:08 +0100 (CET)
+X-Virus-Scanned: amavisd-new at 4net.rs
+Received: from mail.4net.rs ([127.0.0.1])
+ by localhost (green.4net.rs [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id mEct_TNr_LOD; Mon,  2 Mar 2020 17:39:08 +0100 (CET)
+Received: from mail.4net.rs (localhost [127.0.0.1])
+ by mail.4net.rs (Postfix) with ESMTP id 2CCB2C810AF2D;
+ Mon,  2 Mar 2020 17:39:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=4net.rs; h=mime-version
+ :content-type:content-transfer-encoding:date:from:to:cc:subject
+ :in-reply-to:references:message-id; s=4netrs; bh=lgY4uSkdG0Ugv7V
+ DbOaValPtkEk=; b=KT0O/uhX8UhDTMZcpbkURRqle3Hm6h2YbCM4GuzgfgcXpaA
+ zdgOHmylWTm4HjErqFbwB8zUbhVOUae62Lu33XWtJBH1pmWNv+NCOwa8Tye/iBsi
+ OsXYEv5aY3Z57kwLTv9DoNZYVepVj3HPpIvWZBFnV08kbEEvXKVo42QZlWd0=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=4net.rs; h=mime-version
+ :content-type:content-transfer-encoding:date:from:to:cc:subject
+ :in-reply-to:references:message-id; q=dns; s=4netrs; b=NaZZJG/Qu
+ A7MtXzSAcJNtgtr0jBBYudE21ACmAaeEeG3CyRmYroanXoZY3eGrAGAtu3fuJ4W9
+ S4nP1957K2dwsIq33hpIJ4PDaTx/ZORbQzhTAH7DicYFD39QIZq49lBawK7/kKOZ
+ fgaGkgQ+yVEXChim8bxKMcx2JPMVw6XAFI=
+Received: from 4net.co.rs (localhost [127.0.0.1])
+ by mail.4net.rs (Postfix) with ESMTPSA id EC1FFC9A6A00F;
+ Mon,  2 Mar 2020 17:39:07 +0100 (CET)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <3ae0bed5-204e-de81-7647-5f0d8106cd67@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Date: Mon, 02 Mar 2020 17:39:07 +0100
+From: =?UTF-8?Q?Sini=C5=A1a_Bandin?= <sinisa@4net.rs>
+To: "Souza, Jose" <jose.souza@intel.com>
+In-Reply-To: <f9081410ef1135003720fa29d27aa10b9d12d509.camel@intel.com>
+References: <CAHk-=wgqwiBLGvwTqU2kJEPNmafPpPe_K0XgBU-A58M+mkwpgQ@mail.gmail.com>
+ <99fb887f-4a1b-6c15-64a6-9d089773cdd4@4net.rs>
+ <CAPM=9ty3NuSHBd+StNGxVCE9jkmppQ_VTr+jMRgB07qW3dRwrA@mail.gmail.com>
+ <f9081410ef1135003720fa29d27aa10b9d12d509.camel@intel.com>
+User-Agent: Roundcube Webmail/1.4-beta
+Message-ID: <a1c918b663805e8213a1229edb87883c@4net.rs>
+X-Sender: sinisa@4net.rs
 X-Mailman-Approved-At: Mon, 02 Mar 2020 17:13:41 +0000
-Subject: Re: [Intel-gfx] [PATCH v7 00/12] Introduce CAP_PERFMON to secure
- system performance monitoring and observability
+Subject: Re: [Intel-gfx] Linux 5.6-rc2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,265 +73,263 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-man@vger.kernel.org,
- "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Alexei Starovoitov <ast@kernel.org>,
- Stephane Eranian <eranian@google.com>, Paul Mackerras <paulus@samba.org>,
- Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
- Andi Kleen <ak@linux.intel.com>, Jiri Olsa <jolsa@redhat.com>,
- Helge Deller <deller@gmx.de>, Igor Lubashev <ilubashe@akamai.com>,
- James Morris <jmorris@namei.org>, oprofile-list@lists.sf.net,
- Stephen Smalley <sds@tycho.nsa.gov>,
- "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "linux-security-module@vger.kernel.org"
- <linux-security-module@vger.kernel.org>,
- "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks, this looks good to me, in keeping with the CAP_SYSLOG break.
-
-Acked-by: Serge E. Hallyn <serge@hallyn.com>
-
-for the set.
-
-James/Ingo/Peter, if noone has remaining objections, whose branch
-should these go in through?
-
-thanks,
--serge
-
-On Tue, Feb 25, 2020 at 12:55:54PM +0300, Alexey Budankov wrote:
-> 
-> Hi,
-> 
-> Is there anything else I could do in order to move the changes forward
-> or is something still missing from this patch set?
-> Could you please share you mind?
-> 
-> Thanks,
-> Alexey
-> 
-> On 17.02.2020 11:02, Alexey Budankov wrote:
-> > 
-> > Currently access to perf_events, i915_perf and other performance
-> > monitoring and observability subsystems of the kernel is open only for
-> > a privileged process [1] with CAP_SYS_ADMIN capability enabled in the
-> > process effective set [2].
-> > 
-> > This patch set introduces CAP_PERFMON capability designed to secure
-> > system performance monitoring and observability operations so that
-> > CAP_PERFMON would assist CAP_SYS_ADMIN capability in its governing role
-> > for performance monitoring and observability subsystems of the kernel.
-> > 
-> > CAP_PERFMON intends to harden system security and integrity during
-> > performance monitoring and observability operations by decreasing attack
-> > surface that is available to a CAP_SYS_ADMIN privileged process [2].
-> > Providing the access to performance monitoring and observability
-> > operations under CAP_PERFMON capability singly, without the rest of
-> > CAP_SYS_ADMIN credentials, excludes chances to misuse the credentials
-> > and makes the operation more secure. Thus, CAP_PERFMON implements the
-> > principal of least privilege for performance monitoring and
-> > observability operations (POSIX IEEE 1003.1e: 2.2.2.39 principle of
-> > least privilege: A security design principle that states that a process
-> > or program be granted only those privileges (e.g., capabilities)
-> > necessary to accomplish its legitimate function, and only for the time
-> > that such privileges are actually required)
-> > 
-> > CAP_PERFMON intends to meet the demand to secure system performance
-> > monitoring and observability operations for adoption in security
-> > sensitive, restricted, multiuser production environments (e.g. HPC
-> > clusters, cloud and virtual compute environments), where root or
-> > CAP_SYS_ADMIN credentials are not available to mass users of a system,
-> > and securely unblock accessibility of system performance monitoring and
-> > observability operations beyond root and CAP_SYS_ADMIN use cases.
-> > 
-> > CAP_PERFMON intends to take over CAP_SYS_ADMIN credentials related to
-> > system performance monitoring and observability operations and balance
-> > amount of CAP_SYS_ADMIN credentials following the recommendations in
-> > the capabilities man page [2] for CAP_SYS_ADMIN: "Note: this capability
-> > is overloaded; see Notes to kernel developers, below." For backward
-> > compatibility reasons access to system performance monitoring and
-> > observability subsystems of the kernel remains open for CAP_SYS_ADMIN
-> > privileged processes but CAP_SYS_ADMIN capability usage for secure
-> > system performance monitoring and observability operations is
-> > discouraged with respect to the designed CAP_PERFMON capability.
-> > 
-> > Possible alternative solution to this system security hardening,
-> > capabilities balancing task of making performance monitoring and
-> > observability operations more secure and accessible could be to use
-> > the existing CAP_SYS_PTRACE capability to govern system performance
-> > monitoring and observability subsystems. However CAP_SYS_PTRACE
-> > capability still provides users with more credentials than are
-> > required for secure performance monitoring and observability
-> > operations and this excess is avoided by the designed CAP_PERFMON.
-> > 
-> > Although software running under CAP_PERFMON can not ensure avoidance of
-> > related hardware issues, the software can still mitigate those issues
-> > following the official hardware issues mitigation procedure [3]. The
-> > bugs in the software itself can be fixed following the standard kernel
-> > development process [4] to maintain and harden security of system
-> > performance monitoring and observability operations. Finally, the patch
-> > set is shaped in the way that simplifies backtracking procedure of
-> > possible induced issues [5] as much as possible.
-> > 
-> > The patch set is for tip perf/core repository:
-> > git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip perf/core
-> > sha1: fdb64822443ec9fb8c3a74b598a74790ae8d2e22
-> > 
-> > ---
-> > Changes in v7:
-> > - updated and extended kernel.rst and perf-security.rst documentation 
-> >   files with the information about CAP_PERFMON capability and its use cases
-> > - documented the case of double audit logging of CAP_PERFMON and CAP_SYS_ADMIN
-> >   capabilities on a SELinux enabled system
-> > Changes in v6:
-> > - avoided noaudit checks in perfmon_capable() to explicitly advertise
-> >   CAP_PERFMON usage thru audit logs to secure system performance
-> >   monitoring and observability
-> > Changes in v5:
-> > - renamed CAP_SYS_PERFMON to CAP_PERFMON
-> > - extended perfmon_capable() with noaudit checks
-> > Changes in v4:
-> > - converted perfmon_capable() into an inline function
-> > - made perf_events kprobes, uprobes, hw breakpoints and namespaces data
-> >   available to CAP_SYS_PERFMON privileged processes
-> > - applied perfmon_capable() to drivers/perf and drivers/oprofile
-> > - extended __cmd_ftrace() with support of CAP_SYS_PERFMON
-> > Changes in v3:
-> > - implemented perfmon_capable() macros aggregating required capabilities
-> >   checks
-> > Changes in v2:
-> > - made perf_events trace points available to CAP_SYS_PERFMON privileged
-> >   processes
-> > - made perf_event_paranoid_check() treat CAP_SYS_PERFMON equally to
-> >   CAP_SYS_ADMIN
-> > - applied CAP_SYS_PERFMON to i915_perf, bpf_trace, powerpc and parisc
-> >   system performance monitoring and observability related subsystems
-> > 
-> > ---
-> > Alexey Budankov (12):
-> >   capabilities: introduce CAP_PERFMON to kernel and user space
-> >   perf/core: open access to the core for CAP_PERFMON privileged process
-> >   perf/core: open access to probes for CAP_PERFMON privileged process
-> >   perf tool: extend Perf tool with CAP_PERFMON capability support
-> >   drm/i915/perf: open access for CAP_PERFMON privileged process
-> >   trace/bpf_trace: open access for CAP_PERFMON privileged process
-> >   powerpc/perf: open access for CAP_PERFMON privileged process
-> >   parisc/perf: open access for CAP_PERFMON privileged process
-> >   drivers/perf: open access for CAP_PERFMON privileged process
-> >   drivers/oprofile: open access for CAP_PERFMON privileged process
-> >   doc/admin-guide: update perf-security.rst with CAP_PERFMON information
-> >   doc/admin-guide: update kernel.rst with CAP_PERFMON information
-> > 
-> >  Documentation/admin-guide/perf-security.rst | 65 +++++++++++++--------
-> >  Documentation/admin-guide/sysctl/kernel.rst | 16 +++--
-> >  arch/parisc/kernel/perf.c                   |  2 +-
-> >  arch/powerpc/perf/imc-pmu.c                 |  4 +-
-> >  drivers/gpu/drm/i915/i915_perf.c            | 13 ++---
-> >  drivers/oprofile/event_buffer.c             |  2 +-
-> >  drivers/perf/arm_spe_pmu.c                  |  4 +-
-> >  include/linux/capability.h                  |  4 ++
-> >  include/linux/perf_event.h                  |  6 +-
-> >  include/uapi/linux/capability.h             |  8 ++-
-> >  kernel/events/core.c                        |  6 +-
-> >  kernel/trace/bpf_trace.c                    |  2 +-
-> >  security/selinux/include/classmap.h         |  4 +-
-> >  tools/perf/builtin-ftrace.c                 |  5 +-
-> >  tools/perf/design.txt                       |  3 +-
-> >  tools/perf/util/cap.h                       |  4 ++
-> >  tools/perf/util/evsel.c                     | 10 ++--
-> >  tools/perf/util/util.c                      |  1 +
-> >  18 files changed, 98 insertions(+), 61 deletions(-)
-> > 
-> > ---
-> > Validation (Intel Skylake, 8 cores, Fedora 29, 5.5.0-rc3+, x86_64):
-> > 
-> > libcap library [6], [7], [8] and Perf tool can be used to apply
-> > CAP_PERFMON capability for secure system performance monitoring and
-> > observability beyond the scope permitted by the system wide
-> > perf_event_paranoid kernel setting [9] and below are the steps for
-> > evaluation:
-> > 
-> >   - patch, build and boot the kernel
-> >   - patch, build Perf tool e.g. to /home/user/perf
-> >   ...
-> >   # git clone git://git.kernel.org/pub/scm/libs/libcap/libcap.git libcap
-> >   # pushd libcap
-> >   # patch libcap/include/uapi/linux/capabilities.h with [PATCH 1]
-> >   # make
-> >   # pushd progs
-> >   # ./setcap "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" /home/user/perf
-> >   # ./setcap -v "cap_perfmon,cap_sys_ptrace,cap_syslog=ep" /home/user/perf
-> >   /home/user/perf: OK
-> >   # ./getcap /home/user/perf
-> >   /home/user/perf = cap_sys_ptrace,cap_syslog,cap_perfmon+ep
-> >   # echo 2 > /proc/sys/kernel/perf_event_paranoid
-> >   # cat /proc/sys/kernel/perf_event_paranoid 
-> >   2
-> >   ...
-> >   $ /home/user/perf top
-> >     ... works as expected ...
-> >   $ cat /proc/`pidof perf`/status
-> >   Name:	perf
-> >   Umask:	0002
-> >   State:	S (sleeping)
-> >   Tgid:	2958
-> >   Ngid:	0
-> >   Pid:	2958
-> >   PPid:	9847
-> >   TracerPid:	0
-> >   Uid:	500	500	500	500
-> >   Gid:	500	500	500	500
-> >   FDSize:	256
-> >   ...
-> >   CapInh:	0000000000000000
-> >   CapPrm:	0000004400080000
-> >   CapEff:	0000004400080000 => 01000100 00000000 00001000 00000000 00000000
-> >                                      cap_perfmon,cap_sys_ptrace,cap_syslog
-> >   CapBnd:	0000007fffffffff
-> >   CapAmb:	0000000000000000
-> >   NoNewPrivs:	0
-> >   Seccomp:	0
-> >   Speculation_Store_Bypass:	thread vulnerable
-> >   Cpus_allowed:	ff
-> >   Cpus_allowed_list:	0-7
-> >   ...
-> > 
-> > Usage of cap_perfmon effectively avoids unused credentials excess:
-> > 
-> > - with cap_sys_admin:
-> >   CapEff:	0000007fffffffff => 01111111 11111111 11111111 11111111 11111111
-> > 
-> > - with cap_perfmon:
-> >   CapEff:	0000004400080000 => 01000100 00000000 00001000 00000000 00000000
-> >                                     38   34               19
-> >                                perfmon   syslog           sys_ptrace
-> > 
-> > ---
-> > [1] https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html
-> > [2] http://man7.org/linux/man-pages/man7/capabilities.7.html
-> > [3] https://www.kernel.org/doc/html/latest/process/embargoed-hardware-issues.html
-> > [4] https://www.kernel.org/doc/html/latest/admin-guide/security-bugs.html
-> > [5] https://www.kernel.org/doc/html/latest/process/management-style.html#decisions
-> > [6] http://man7.org/linux/man-pages/man8/setcap.8.html
-> > [7] https://git.kernel.org/pub/scm/libs/libcap/libcap.git
-> > [8] https://sites.google.com/site/fullycapable/, posix_1003.1e-990310.pdf
-> > [9] http://man7.org/linux/man-pages/man2/perf_event_open.2.html
-> > 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+U29ycnkgdG8gYm90aGVyLCBidXQgc3RpbGwgYSAibm8gZ28iIGluIHJjNCAoYXQgdGhlIHNhbWUg
+dGltZSwgNS41LjcgCndvcmtzIE9LKS4KCklzIHRoZXJlIGFueXRoaW5nIGVsc2UgSSBjb3VsZCBk
+byB0byBoZWxwIGZpeCB0aGlzPwoKSGVyZSBpcyB0aGUgZG1lc2cgb3V0cHV0IGZyb20gbXkgNS42
+LXJjNDoKClsgICAgMC4wMDAwMDBdIExpbnV4IHZlcnNpb24gNS42LjAtcmM0LTEuZzhhMDRhZmMt
+ZGVmYXVsdCAKKGdlZWtvQGJ1aWxkaG9zdCkgKGdjYyB2ZXJzaW9uIDkuMi4xIDIwMjAwMTI4IFty
+ZXZpc2lvbiAKODNmNjU2NzRlNzhkOTdkMjc1MzczNjFkZTFhOWQ3NDA2N2ZmMjI4ZF0gKFNVU0Ug
+TGludXgpKSAjMSBTTVAgTW9uIE1hciAyIAowNDoxNzozNyBVVEMgMjAyMCAoOGEwNGFmYykKWyAg
+ICAwLjAwMDAwMF0gQ29tbWFuZCBsaW5lOiAKQk9PVF9JTUFHRT0vYm9vdC92bWxpbnV6LTUuNi4w
+LXJjNC0xLmc4YTA0YWZjLWRlZmF1bHQgCnJvb3Q9VVVJRD05ZDQ4YWE3Yi1hODYwLTRjM2MtODVj
+MS00OGJjNDYxYWRiOGUgc3lzcnFfYWx3YXlzX2VuYWJsZWQ9MSAKZWxldmF0b3I9bm9uZSBuZXQu
+aWZuYW1lcz0wIG1pdGlnYXRpb25zPW9mZiBhcHBhcm1vcj0wIGF1ZGl0PTAgCm5vX2NvbnNvbGVf
+c3VzcGVuZD0xIGxvZ19idWZfbGVuPTRNIHpzd2FwLmVuYWJsZWQ9MQouLi4KWyAgICA0LjkyOTAy
+NV0gaTkxNSAwMDAwOjAwOjAyLjA6IHZnYWFyYjogZGVhY3RpdmF0ZSB2Z2EgY29uc29sZQpbICAg
+IDQuOTMwNDQ4XSBDb25zb2xlOiBzd2l0Y2hpbmcgdG8gY29sb3VyIGR1bW15IGRldmljZSA4MHgy
+NQpbICAgIDQuOTMxNDQ4XSBbZHJtXSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcg
+UmV2IDIgCigyMS4xMC4yMDEzKS4KWyAgICA0LjkzMTQ1NV0gW2RybV0gRHJpdmVyIHN1cHBvcnRz
+IHByZWNpc2UgdmJsYW5rIHRpbWVzdGFtcCBxdWVyeS4KWyAgICA0LjkzMTgyMl0gaTkxNSAwMDAw
+OjAwOjAyLjA6IHZnYWFyYjogY2hhbmdlZCBWR0EgZGVjb2RlczogCm9sZGRlY29kZXM9aW8rbWVt
+LGRlY29kZXM9aW8rbWVtOm93bnM9aW8rbWVtClsgICAgNC45NDEzNjZdIEJsdWV0b290aDogaGNp
+MDogcmVhZCBJbnRlbCB2ZXJzaW9uOiAzNzA3MTAwMTAwMDIwMzBkMDAKWyAgICA0Ljk0NzI2MF0g
+Qmx1ZXRvb3RoOiBoY2kwOiBJbnRlbCBCbHVldG9vdGggZmlybXdhcmUgZmlsZTogCmludGVsL2li
+dC1ody0zNy43LjEwLWZ3LTEuMC4yLjMuZC5ic2VxClsgICAgNC45NzM4ODRdIC0tLS0tLS0tLS0t
+LVsgY3V0IGhlcmUgXS0tLS0tLS0tLS0tLQpbICAgIDQuOTczOTIwXSBXQVJOSU5HOiBDUFU6IDEg
+UElEOiA0NTcgYXQgCmRyaXZlcnMvZ3B1L2RybS9kcm1fYXRvbWljLmM6Mjk2IGRybV9hdG9taWNf
+Z2V0X2NydGNfc3RhdGUrMHhmOC8weDExMCAKW2RybV0KWyAgICA0Ljk3MzkyNV0gTW9kdWxlcyBs
+aW5rZWQgaW46IGNyY3QxMGRpZl9wY2xtdWwoKykgYnR1c2IgYnRydGwgYnRiY20gCmJ0aW50ZWwg
+Y3JjMzJfcGNsbXVsIGk5MTUoKykgYmx1ZXRvb3RoIGdoYXNoX2NsbXVsbmlfaW50ZWwgaXdsbXZt
+IApubHNfaXNvODg1OV8xIHNuZF9oZGFfY29kZWNfcmVhbHRlayBlY2RoX2dlbmVyaWMgZWNjIApz
+bmRfaGRhX2NvZGVjX2dlbmVyaWMgaVRDT193ZHQgbWFjODAyMTEgbGVkdHJpZ19hdWRpbyAKaVRD
+T192ZW5kb3Jfc3VwcG9ydCBmdXNlIG5sc19jcDQzNyBzbmRfaGRhX2ludGVsIHZmYXQgc25kX2lu
+dGVsX2RzcGNmZyAKZmF0IHNuZF9oZGFfY29kZWMgdXZjdmlkZW8gZHJtX2ttc19oZWxwZXIgYWVz
+bmlfaW50ZWwgdmlkZW9idWYyX3ZtYWxsb2MgCnNuZF9oZGFfY29yZSB2aWRlb2J1ZjJfbWVtb3Bz
+IGNyeXB0b19zaW1kIGNlYyBzbmRfaHdkZXAgdmlkZW9idWYyX3Y0bDIgCmNyeXB0ZCBnbHVlX2hl
+bHBlciBpd2x3aWZpIHJjX2NvcmUgdmlkZW9idWYyX2NvbW1vbiB0b3NoaWJhX2FjcGkgc25kX3Bj
+bSAKcGNzcGtyIHNwYXJzZV9rZXltYXAgY2ZnODAyMTEgdmlkZW9kZXYgZHJtIGpveWRldiBpbmR1
+c3RyaWFsaW8gd21pX2Jtb2YgCnNuZF90aW1lciBtYyBscGNfaWNoIGZiX3N5c19mb3BzIHRvc2hp
+YmFfYmx1ZXRvb3RoIGUxMDAwZSBzeXNjb3B5YXJlYSAKc25kIHN5c2ZpbGxyZWN0IHN5c2ltZ2Js
+dCBpMmNfYWxnb19iaXQgcnRzeF9wY2kgc291bmRjb3JlIHJma2lsbCB0aGVybWFsIAphYyBpbnRl
+bF9zbWFydGNvbm5lY3QgYnV0dG9uIHhmcyBsaWJjcmMzMmMgZWhjaV9wY2kgZWhjaV9oY2QgeGhj
+aV9wY2kgCnhoY2lfaGNkIHVzYmNvcmUgY3JjMzJjX2ludGVsIHNlcmlvX3JhdyBiYXR0ZXJ5IHdt
+aSB2aWRlbyBsMnRwX3BwcCAKbDJ0cF9uZXRsaW5rIGwydHBfY29yZSBpcDZfdWRwX3R1bm5lbCB1
+ZHBfdHVubmVsIHBwcG94IHNnIHBwcF9tcHBlIApwcHBfZ2VuZXJpYyBzbGhjIGxpYmFyYzQgZG1f
+bXVsdGlwYXRoIGRtX21vZApbICAgIDQuOTczOTY2XSAgc2NzaV9kaF9yZGFjIHNjc2lfZGhfZW1j
+IHNjc2lfZGhfYWx1YQpbICAgIDQuOTczOTk0XSBDUFU6IDEgUElEOiA0NTcgQ29tbTogc3lzdGVt
+ZC11ZGV2ZCBOb3QgdGFpbnRlZCAKNS42LjAtcmM0LTEuZzhhMDRhZmMtZGVmYXVsdCAjMSBvcGVu
+U1VTRSBUdW1ibGV3ZWVkICh1bnJlbGVhc2VkKQpbICAgIDQuOTczOTk4XSBIYXJkd2FyZSBuYW1l
+OiBUT1NISUJBIFBPUlRFR0UgWjMwLUEvUE9SVEVHRSBaMzAtQSwgQklPUyAKVmVyc2lvbiA0LjMw
+ICAgMDQvMjYvMjAxOApbICAgIDQuOTc0MDIxXSBSSVA6IDAwMTA6ZHJtX2F0b21pY19nZXRfY3J0
+Y19zdGF0ZSsweGY4LzB4MTEwIFtkcm1dClsgICAgNC45NzQwMjVdIENvZGU6IDg5IDJjIDExIDQ4
+IDg5IDk4IGYwIDAxIDAwIDAwIDQ4IDhiIDRkIDIwIDhiIDU1IDYwIAplOCAyYyBhYSAwMCAwMCA0
+OCA4YiAwNCAyNCA0OCA4MyBjNCAwOCA1YiA1ZCA0MSA1YyBjMyA0OCA5OCBlOSA0ZSBmZiBmZiAK
+ZmYgPDBmPiAwYiBlOSAyOCBmZiBmZiBmZiA0OCBjNyBjMCBmNCBmZiBmZiBmZiBlOSAzYiBmZiBm
+ZiBmZiAwZiAxZiA0NApbICAgIDQuOTc0MDMyXSBSU1A6IDAwMTg6ZmZmZmI2NWNjMDQzNzhiMCBF
+RkxBR1M6IDAwMDEwMjQ2ClsgICAgNC45NzQwMzZdIFJBWDogMDAwMDAwMDAwMDAwMDAwMCBSQlg6
+IGZmZmY5ZDRhYzMzYzM4MDAgUkNYOiAKZmZmZjlkNGFjZWRhMWY2MApbICAgIDQuOTc0MDM5XSBS
+RFg6IDAwMDAwMDAwMDAwMDAwMmQgUlNJOiAwMDAwMDAwMDAwMDAwMDAwIFJESTogCmZmZmY5ZDRh
+YzMzYzM4MDAKWyAgICA0Ljk3NDA0M10gUkJQOiBmZmZmOWQ0YWMzM2MzMDAwIFIwODogMDAwMDAw
+MDAwMDAwMDA3OSBSMDk6IAowMDAwMDAwMDAwMDAwMDc5ClsgICAgNC45NzQwNDZdIFIxMDogMDAw
+MDAwMDAwMDAwMDAyZCBSMTE6IDAwMDAwMDAwMDAwMDAwMDUgUjEyOiAKMDAwMDAwMDAwMDAwMDAw
+MApbICAgIDQuOTc0MDUwXSBSMTM6IGZmZmY5ZDRhYzMzYzMwMDAgUjE0OiBmZmZmOWQ0YWMzM2M3
+MDAwIFIxNTogCmZmZmZmZmZmYzExOGNmODAKWyAgICA0Ljk3NDA1NF0gRlM6ICAwMDAwN2YxYmM1
+MTkxZGMwKDAwMDApIEdTOmZmZmY5ZDRhZDJlNDAwMDAoMDAwMCkgCmtubEdTOjAwMDAwMDAwMDAw
+MDAwMDAKWyAgICA0Ljk3NDA1OF0gQ1M6ICAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDogMDAw
+MDAwMDA4MDA1MDAzMwpbICAgIDQuOTc0MDYxXSBDUjI6IDAwMDA3ZmJhYmJjODQwZmMgQ1IzOiAw
+MDAwMDAwMzBmNjMwMDA1IENSNDogCjAwMDAwMDAwMDAxNjA2ZTAKWyAgICA0Ljk3NDA2NV0gQ2Fs
+bCBUcmFjZToKWyAgICA0Ljk3NDA4OV0gIGRybV9hdG9taWNfYWRkX2FmZmVjdGVkX2Nvbm5lY3Rv
+cnMrMHgyZS8weDExMCBbZHJtXQpbICAgIDQuOTc0MTA2XSAgZHJtX2F0b21pY19oZWxwZXJfY2hl
+Y2tfbW9kZXNldCsweDQ5Mi8weDc3MCAKW2RybV9rbXNfaGVscGVyXQpbICAgIDQuOTc0MTgwXSAg
+aW50ZWxfYXRvbWljX2NoZWNrKzB4OTMvMHhjYzAgW2k5MTVdClsgICAgNC45NzQxOTRdICA/IGRy
+bV9hdG9taWNfaGVscGVyX2R1cGxpY2F0ZV9zdGF0ZSsweDE0OC8weDE3MCAKW2RybV9rbXNfaGVs
+cGVyXQpbICAgIDQuOTc0MjU2XSAgaW50ZWxfbW9kZXNldF9pbml0KzB4ZTcxLzB4MTFiMCBbaTkx
+NV0KWyAgICA0Ljk3NDMwOF0gIGk5MTVfZHJpdmVyX3Byb2JlKzB4NDhlLzB4NTgwIFtpOTE1XQpb
+ICAgIDQuOTc0MzE1XSAgPyBfY29uZF9yZXNjaGVkKzB4MTUvMHgzMApbICAgIDQuOTc0MzE5XSAg
+PyBtdXRleF9sb2NrKzB4ZS8weDMwClsgICAgNC45NzQzNjhdICBpOTE1X3BjaV9wcm9iZSsweDU0
+LzB4MTQwIFtpOTE1XQpbICAgIDQuOTc0Mzc1XSAgbG9jYWxfcGNpX3Byb2JlKzB4NDIvMHg4MApb
+ICAgIDQuOTc0Mzc5XSAgcGNpX2RldmljZV9wcm9iZSsweDEwNy8weDFiMApbICAgIDQuOTc0Mzg1
+XSAgcmVhbGx5X3Byb2JlKzB4MTQ3LzB4M2MwClsgICAgNC45NzQzODhdICBkcml2ZXJfcHJvYmVf
+ZGV2aWNlKzB4YjYvMHgxMDAKWyAgICA0Ljk3NDM5M10gIGRldmljZV9kcml2ZXJfYXR0YWNoKzB4
+NTMvMHg2MApbICAgIDQuOTc0Mzk2XSAgX19kcml2ZXJfYXR0YWNoKzB4OGEvMHgxNTAKWyAgICA0
+Ljk3NDQwMF0gID8gZGV2aWNlX2RyaXZlcl9hdHRhY2grMHg2MC8weDYwClsgICAgNC45NzQ0MDNd
+ICA/IGRldmljZV9kcml2ZXJfYXR0YWNoKzB4NjAvMHg2MApbICAgIDQuOTc0NDA4XSAgYnVzX2Zv
+cl9lYWNoX2RldisweDc4LzB4YzAKWyAgICA0Ljk3NDQxM10gIGJ1c19hZGRfZHJpdmVyKzB4MTRk
+LzB4MWYwClsgICAgNC45NzQ0MThdICBkcml2ZXJfcmVnaXN0ZXIrMHg2Yy8weGMwClsgICAgNC45
+NzQ0MjJdICA/IDB4ZmZmZmZmZmZjMTJhMTAwMApbICAgIDQuOTc0NDc2XSAgaTkxNV9pbml0KzB4
+NWQvMHg3MCBbaTkxNV0KWyAgICA0Ljk3NDQ4M10gIGRvX29uZV9pbml0Y2FsbCsweDQ2LzB4MjAw
+ClsgICAgNC45NzQ0ODZdICA/IF9jb25kX3Jlc2NoZWQrMHgxNS8weDMwClsgICAgNC45NzQ0OTFd
+ICA/IGttZW1fY2FjaGVfYWxsb2NfdHJhY2UrMHgxODkvMHgyODAKWyAgICA0Ljk3NDQ5NV0gID8g
+ZG9faW5pdF9tb2R1bGUrMHgyMy8weDIzMApbICAgIDQuOTc0NDk5XSAgZG9faW5pdF9tb2R1bGUr
+MHg1Yy8weDIzMApbICAgIDQuOTc0NTAzXSAgbG9hZF9tb2R1bGUrMHgxNGIyLzB4MTY1MApbICAg
+IDQuOTc0NTExXSAgPyBfX2RvX3N5c19pbml0X21vZHVsZSsweDE2ZS8weDFhMApbICAgIDQuOTc0
+NTE0XSAgX19kb19zeXNfaW5pdF9tb2R1bGUrMHgxNmUvMHgxYTAKWyAgICA0Ljk3NDUyMV0gIGRv
+X3N5c2NhbGxfNjQrMHg2NC8weDI0MApbICAgIDQuOTc0NTI2XSAgZW50cnlfU1lTQ0FMTF82NF9h
+ZnRlcl9od2ZyYW1lKzB4NDkvMHhiZQpbICAgIDQuOTc0NTMxXSBSSVA6IDAwMzM6MHg3ZjFiYzVk
+YWJkOWEKWyAgICA0Ljk3NDUzNV0gQ29kZTogNDggOGIgMGQgZjkgZjAgMGIgMDAgZjcgZDggNjQg
+ODkgMDEgNDggODMgYzggZmYgYzMgCjY2IDJlIDBmIDFmIDg0IDAwIDAwIDAwIDAwIDAwIDBmIDFm
+IDQ0IDAwIDAwIDQ5IDg5IGNhIGI4IGFmIDAwIDAwIDAwIDBmIAowNSA8NDg+IDNkIDAxIGYwIGZm
+IGZmIDczIDAxIGMzIDQ4IDhiIDBkIGM2IGYwIDBiIDAwIGY3IGQ4IDY0IDg5IDAxIDQ4ClsgICAg
+NC45NzQ1NDFdIFJTUDogMDAyYjowMDAwN2ZmZTc4ZGU4Njk4IEVGTEFHUzogMDAwMDAyNDYgT1JJ
+R19SQVg6IAowMDAwMDAwMDAwMDAwMGFmClsgICAgNC45NzQ1NDZdIFJBWDogZmZmZmZmZmZmZmZm
+ZmZkYSBSQlg6IDAwMDA1NWFkM2YwNDE0MDAgUkNYOiAKMDAwMDdmMWJjNWRhYmQ5YQpbICAgIDQu
+OTc0NTQ5XSBSRFg6IDAwMDA3ZjFiYzVhNjg4OWQgUlNJOiAwMDAwMDAwMDAwNGJkZjA3IFJESTog
+CjAwMDA3ZjFiYmZiMGQwMTAKWyAgICA0Ljk3NDU1M10gUkJQOiAwMDAwN2YxYmJmYjBkMDEwIFIw
+ODogMDAwMDAwMDAwMDAwMDAwMSBSMDk6IAowMDAwN2YxYmM1NzY1OWUwClsgICAgNC45NzQ1NTZd
+IFIxMDogMDAwMDAwMDAwMDAwMDAwMiBSMTE6IDAwMDAwMDAwMDAwMDAyNDYgUjEyOiAKMDAwMDdm
+MWJjNWE2ODg5ZApbICAgIDQuOTc0NTU4XSBSMTM6IDAwMDAwMDAwMDAwMDAwMDAgUjE0OiAwMDAw
+NTVhZDNmMDNmYjcwIFIxNTogCjAwMDA1NWFkM2YwNDE0MDAKWyAgICA0Ljk3NDU2M10gLS0tWyBl
+bmQgdHJhY2UgYzk5NjM2MzhjNThlOGJhOCBdLS0tCgoKLS0tClNyZGHEjWFuIHBvemRyYXYvQmVz
+dCByZWdhcmRzL0ZyZXVuZGxpY2hlIEdyw7zDn2UvQ29yZGlhbGVtZW50LApTaW5pxaFhIEJhbmRp
+bgoKCgpPbiAyMS4wMi4yMDIwIDAzOjIzLCBTb3V6YSwgSm9zZSB3cm90ZToKPiBXZSBoYXZlIGEg
+Zml4IGZvciB0aGlzIGlzc3VlLCBzdGlsbCBnb2luZyB0aHJvdWdoIHJldmlldy4KPiAKPiBodHRw
+czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2ludGVsL2lzc3Vlcy8xMTUxCj4gCj4gT24g
+RnJpLCAyMDIwLTAyLTIxIGF0IDExOjM4ICsxMDAwLCBEYXZlIEFpcmxpZSB3cm90ZToKPj4gbG9v
+cGluZyBpbiBpbnRlbC1nZnggKyBKYW5pLgo+PiAKPj4gT24gVHVlLCAxOCBGZWIgMjAyMCBhdCAw
+NToyMCwgc2luaXNhIDxzaW5pc2FANG5ldC5ycz4gd3JvdGU6Cj4+ID4KPj4gPiBPbiAyMDIwLTAy
+LTE2IDIyOjMyLCBMaW51cyBUb3J2YWxkcyB3cm90ZToKPj4gPiAgPiAuLi4KPj4gPiAgPiBDaHJp
+cyBXaWxzb24gKDE5KToKPj4gPiAgPiAgICAgICBkcm0vaTkxNS9wbXU6IENvcnJlY3QgdGhlIHJj
+NiBvZmZzZXQgdXBvbiBlbmFibGluZwo+PiA+ICA+ICAgICAgIGRybS9pOTE1L2dlbTogVGFrZSBs
+b2NhbCB2bWEgcmVmZXJlbmNlcyBmb3IgdGhlIHBhcnNlcgo+PiA+ICA+ICAgICAgIGRybS9pOTE1
+L3NlbGZ0ZXN0czogQWRkIGEgbW9jayBpOTE1X3ZtYSB0byB0aGUgbW9ja19yaW5nCj4+ID4gID4g
+ICAgICAgZHJtL2k5MTUvZ3Q6IFVzZSB0aGUgQklUIHdoZW4gY2hlY2tpbmcgdGhlIGZsYWdzLCBu
+b3QgdGhlCj4+ID4gaW5kZXgKPj4gPiAgPiAgICAgICBkcm0vaTkxNS9leGVjbGlzdHM6IExlYXZl
+IHJlc2V0dGluZyByaW5nIHRvIGludGVsX3JpbmcKPj4gPiAgPiAgICAgICBkcm0vaTkxNS9nZW06
+IFN0b3JlIG1tYXBfb2Zmc2V0cyBpbiBhbiByYnRyZWUgcmF0aGVyIHRoYW4KPj4gPiBhCj4+ID4g
+cGxhaW4gbGlzdAo+PiA+ICA+ICAgICAgIGRybS9pOTE1OiBEb24ndCBzaG93IHRoZSBibGFuayBw
+cm9jZXNzIG5hbWUgZm9yCj4+ID4gaW50ZXJuYWwvc2ltdWxhdGVkIGVycm9ycwo+PiA+ICA+ICAg
+ICAgIGRybS9pOTE1L2dlbTogRGV0ZWN0IG92ZXJmbG93IGluIGNhbGN1bGF0aW5nIGR1bWIgYnVm
+ZmVyCj4+ID4gc2l6ZQo+PiA+ICA+ICAgICAgIGRybS9pOTE1OiBDaGVjayBhY3Rpdml0eSBvbiBp
+OTE1X3ZtYSBhZnRlciBjb25maXJtaW5nCj4+ID4gcGluX2NvdW50PT0wCj4+ID4gID4gICAgICAg
+ZHJtL2k5MTU6IFN0dWIgb3V0IGk5MTVfZ3B1X2NvcmVkdW1wX3B1dAo+PiA+ICA+ICAgICAgIGRy
+bS9pOTE1OiBUaWdodGVuIGF0b21pY2l0eSBvZiBpOTE1X2FjdGl2ZV9hY3F1aXJlIHZzCj4+ID4g
+aTkxNV9hY3RpdmVfcmVsZWFzZQo+PiA+ICA+ICAgICAgIGRybS9pOTE1L2d0OiBBY3F1aXJlIGNl
+LT5hY3RpdmUgYmVmb3JlIGNlLT5waW5fY291bnQvY2UtCj4+ID4gPnBpbl9tdXRleAo+PiA+ICA+
+ICAgICAgIGRybS9pOTE1L2dlbTogVGlnaHRlbiBjaGVja3MgYW5kIGFjcXVpcmluZyB0aGUgbW1h
+cCBvYmplY3QKPj4gPiAgPiAgICAgICBkcm0vaTkxNTogS2VlcCB0cmFjayBvZiByZXF1ZXN0IGFt
+b25nIHRoZSBzY2hlZHVsaW5nIGxpc3RzCj4+ID4gID4gICAgICAgZHJtL2k5MTUvZ3Q6IEFsbG93
+IHRlbXBvcmFyeSBzdXNwZW5zaW9uIG9mIGluZmxpZ2h0Cj4+ID4gcmVxdWVzdHMKPj4gPiAgPiAg
+ICAgICBkcm0vaTkxNS9leGVjbGlzdHM6IE9mZmxpbmUgZXJyb3IgY2FwdHVyZQo+PiA+ICA+ICAg
+ICAgIGRybS9pOTE1L2V4ZWNsaXN0czogVGFrZSBhIHJlZmVyZW5jZSB3aGlsZSBjYXB0dXJpbmcg
+dGhlCj4+ID4gZ3VpbHR5Cj4+ID4gcmVxdWVzdAo+PiA+ICA+ICAgICAgIGRybS9pOTE1L2V4ZWNs
+aXN0czogUmVjbGFpbSB0aGUgaGFuZ2luZyB2aXJ0dWFsIHJlcXVlc3QKPj4gPiAgPiAgICAgICBk
+cm0vaTkxNTogTWFyayB0aGUgcmVtb3ZhbCBvZiB0aGUgaTkxNV9yZXF1ZXN0IGZyb20gdGhlCj4+
+ID4gc2NoZWQubGluawo+PiA+ICA+IC4uLgo+PiA+Cj4+ID4gU29tZXRoaW5nIGZyb20gaGVyZSBt
+YWtlcyBteSBUb3NoaWJhIFBvcnRlZ2UgWjMwLUEgKENQVSBpcyBpNS00MjEwVQo+PiA+IHdpdGgK
+Pj4gPiBpbnRlZ3JhdGVkIGdyYXBoaWNzKSB0byB0byBvbmx5IGdldCBibGFjayBzY3JlZW4gd2hl
+biBsb2FkaW5nIGk5MTUKPj4gPiBkcml2ZXIuCj4+ID4KPj4gPiBIYXBwZW5zIHRoZSBzYW1lIGlu
+IHJjMSBhbmQgcmMyLCB3b3JrcyBPSyB3aXRoIGFsbCBwcmV2aW91cwo+PiA+IGtlcm5lbHMuCj4+
+ID4KPj4gPgo+PiA+IEhlcmUgaXMgcmVsZXZhbnQgcGFydCBvZiB0aGUgZG1lc2cgb3V0cHV0Ogo+
+PiA+Cj4+ID4KPj4gPiBbICAgIDQuNjQzODQ4XSBpOTE1IDAwMDA6MDA6MDIuMDogdmdhYXJiOiBk
+ZWFjdGl2YXRlIHZnYSBjb25zb2xlCj4+ID4gWyAgICA0LjY0NTM2M10gQ29uc29sZTogc3dpdGNo
+aW5nIHRvIGNvbG91ciBkdW1teSBkZXZpY2UgODB4MjUKPj4gPiBbICAgIDQuNjY3MzcyXSBbZHJt
+XSBTdXBwb3J0cyB2YmxhbmsgdGltZXN0YW1wIGNhY2hpbmcgUmV2IDIKPj4gPiAoMjEuMTAuMjAx
+MykuCj4+ID4gWyAgICA0LjY2NzM3OV0gW2RybV0gRHJpdmVyIHN1cHBvcnRzIHByZWNpc2UgdmJs
+YW5rIHRpbWVzdGFtcAo+PiA+IHF1ZXJ5Lgo+PiA+IFsgICAgNC42Njc3NDNdIGk5MTUgMDAwMDow
+MDowMi4wOiB2Z2FhcmI6IGNoYW5nZWQgVkdBIGRlY29kZXM6Cj4+ID4gb2xkZGVjb2Rlcz1pbytt
+ZW0sZGVjb2Rlcz1pbyttZW06b3ducz1pbyttZW0KPj4gPiBbICAgIDQuNjgyMzU1XSAtLS0tLS0t
+LS0tLS1bIGN1dCBoZXJlIF0tLS0tLS0tLS0tLS0KPj4gPiBbICAgIDQuNjgyMzg5XSBXQVJOSU5H
+OiBDUFU6IDMgUElEOiA0NTkgYXQKPj4gPiBkcml2ZXJzL2dwdS9kcm0vZHJtX2F0b21pYy5jOjI5
+Ngo+PiA+IGRybV9hdG9taWNfZ2V0X2NydGNfc3RhdGUrMHhmOC8weDExMCBbZHJtXQo+PiA+IFsg
+ICAgNC42ODIzOTRdIE1vZHVsZXMgbGlua2VkIGluOiBpVENPX3dkdCBpVENPX3ZlbmRvcl9zdXBw
+b3J0Cj4+ID4gbmxzX2lzbzg4NTlfMSBzbmRfaGRhX2NvZGVjX3JlYWx0ZWsgaTkxNSgrKSBmdXNl
+IG5sc19jcDQzNwo+PiA+IHNuZF9oZGFfY29kZWNfZ2VuZXJpYyB2ZmF0IGZhdCBpd2x3aWZpIHV2
+Y3ZpZGVvIGxlZHRyaWdfYXVkaW8KPj4gPiBhZXNuaV9pbnRlbCgrKSBkcm1fa21zX2hlbHBlciB2
+aWRlb2J1ZjJfdm1hbGxvYyBjcnlwdG9fc2ltZAo+PiA+IHNuZF9oZGFfaW50ZWwgdmlkZW9idWYy
+X21lbW9wcyBjZWMgc25kX2ludGVsX2RzcGNmZyByY19jb3JlCj4+ID4gdmlkZW9idWYyX3Y0bDIg
+Y3J5cHRkIHNuZF9oZGFfY29kZWMgZ2x1ZV9oZWxwZXIgdmlkZW9idWYyX2NvbW1vbgo+PiA+IGNm
+ZzgwMjExIGRybSBwY3Nwa3IgdmlkZW9kZXYgc25kX2hkYV9jb3JlIHdtaV9ibW9mIHNuZF9od2Rl
+cAo+PiA+IHNuZF9wY20KPj4gPiB0b3NoaWJhX2FjcGkgbWMgZTEwMDBlIHNuZF90aW1lciBzcGFy
+c2Vfa2V5bWFwIGZiX3N5c19mb3BzCj4+ID4gc3lzY29weWFyZWEKPj4gPiBzeXNmaWxscmVjdCBp
+bmR1c3RyaWFsaW8gbHBjX2ljaCBzbmQgc3lzaW1nYmx0IGkyY19hbGdvX2JpdAo+PiA+IHRvc2hp
+YmFfYmx1ZXRvb3RoIHNvdW5kY29yZSB0aGVybWFsIHJma2lsbCBpbnRlbF9zbWFydGNvbm5lY3Qg
+YWMKPj4gPiBidXR0b24KPj4gPiB4ZnMgbGliY3JjMzJjIHhoY2lfcGNpIHhoY2lfaGNkIHJ0c3hf
+cGNpX3NkbW1jIG1tY19jb3JlIGVoY2lfcGNpCj4+ID4gZWhjaV9oY2QgdXNiY29yZSBjcmMzMmNf
+aW50ZWwgcnRzeF9wY2kgc2VyaW9fcmF3IGJhdHRlcnkgd21pIHZpZGVvCj4+ID4gbDJ0cF9wcHAg
+bDJ0cF9uZXRsaW5rIGwydHBfY29yZSBpcDZfdWRwX3R1bm5lbCB1ZHBfdHVubmVsIHBwcG94IHNn
+Cj4+ID4gcHBwX21wcGUgcHBwX2dlbmVyaWMgc2xoYyBsaWJhcmM0IGRtX211bHRpcGF0aCBkbV9t
+b2Qgc2NzaV9kaF9yZGFjCj4+ID4gc2NzaV9kaF9lbWMgc2NzaV9kaF9hbHVhCj4+ID4gWyAgICA0
+LjY4MjQ1NV0gQ1BVOiAzIFBJRDogNDU5IENvbW06IHN5c3RlbWQtdWRldmQgTm90IHRhaW50ZWQK
+Pj4gPiA1LjYuMC1yYzItMS5nMzI3YWJjOS1kZWZhdWx0ICMxIG9wZW5TVVNFIFR1bWJsZXdlZWQg
+KHVucmVsZWFzZWQpCj4+ID4gWyAgICA0LjY4MjQ2MF0gSGFyZHdhcmUgbmFtZTogVE9TSElCQSBQ
+T1JURUdFIFozMC1BL1BPUlRFR0UgWjMwLUEsCj4+ID4gQklPUwo+PiA+IFZlcnNpb24gNC4zMCAg
+IDA0LzI2LzIwMTgKPj4gPiBbICAgIDQuNjgyNDg2XSBSSVA6IDAwMTA6ZHJtX2F0b21pY19nZXRf
+Y3J0Y19zdGF0ZSsweGY4LzB4MTEwIFtkcm1dCj4+ID4gWyAgICA0LjY4MjQ5MF0gQ29kZTogODkg
+MmMgMTEgNDggODkgOTggZjAgMDEgMDAgMDAgNDggOGIgNGQgMjAgOGIKPj4gPiA1NSA2MAo+PiA+
+IGU4IDJjIGFhIDAwIDAwIDQ4IDhiIDA0IDI0IDQ4IDgzIGM0IDA4IDViIDVkIDQxIDVjIGMzIDQ4
+IDk4IGU5IDRlCj4+ID4gZmYgZmYKPj4gPiBmZiA8MGY+IDBiIGU5IDI4IGZmIGZmIGZmIDQ4IGM3
+IGMwIGY0IGZmIGZmIGZmIGU5IDNiIGZmIGZmIGZmIDBmIDFmCj4+ID4gNDQKPj4gPiBbICAgIDQu
+NjgyNDk3XSBSU1A6IDAwMDA6ZmZmZmFhNWJjMDQzMzhhOCBFRkxBR1M6IDAwMDEwMjQ2Cj4+ID4g
+WyAgICA0LjY4MjUwMF0gUkFYOiAwMDAwMDAwMDAwMDAwMDAwIFJCWDogZmZmZjljOTc4NjJjMTAw
+MCBSQ1g6Cj4+ID4gZmZmZjljOTc5MTAxZWQwOAo+PiA+IFsgICAgNC42ODI1MDRdIFJEWDogMDAw
+MDAwMDAwMDAwMDAyZCBSU0k6IDAwMDAwMDAwMDAwMDAwMDAgUkRJOgo+PiA+IGZmZmY5Yzk3ODYy
+YzEwMDAKPj4gPiBbICAgIDQuNjgyNTA3XSBSQlA6IGZmZmY5Yzk3ODYyYzc4MDAgUjA4OiAwMDAw
+MDAwMDAwMDAwMDc5IFIwOToKPj4gPiAwMDAwMDAwMDAwMDAwMDc5Cj4+ID4gWyAgICA0LjY4MjUx
+MF0gUjEwOiAwMDAwMDAwMDAwMDAwMDJkIFIxMTogMDAwMDAwMDAwMDAwMDAwNSBSMTI6Cj4+ID4g
+MDAwMDAwMDAwMDAwMDAwMAo+PiA+IFsgICAgNC42ODI1MTNdIFIxMzogZmZmZjljOTc4NjJjNzgw
+MCBSMTQ6IGZmZmY5Yzk3ODYyYzA4MDAgUjE1Ogo+PiA+IGZmZmZmZmZmYzBlZTBmODAKPj4gPiBb
+ICAgIDQuNjgyNTE3XSBGUzogIDAwMDA3ZjY1ZDJjOTJkYzAoMDAwMCkKPj4gPiBHUzpmZmZmOWM5
+NzkyZWMwMDAwKDAwMDApCj4+ID4ga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+PiA+IFsgICAgNC42
+ODI1MjFdIENTOiAgMDAxMCBEUzogMDAwMCBFUzogMDAwMCBDUjA6IDAwMDAwMDAwODAwNTAwMzMK
+Pj4gPiBbICAgIDQuNjgyNTI0XSBDUjI6IDAwMDA3ZjAxNmQyNWI2MTAgQ1IzOiAwMDAwMDAwMzBm
+NjM0MDA0IENSNDoKPj4gPiAwMDAwMDAwMDAwMTYwNmUwCj4+ID4gWyAgICA0LjY4MjUyN10gQ2Fs
+bCBUcmFjZToKPj4gPiBbICAgIDQuNjgyNTUxXSAgZHJtX2F0b21pY19hZGRfYWZmZWN0ZWRfY29u
+bmVjdG9ycysweDJlLzB4MTEwIFtkcm1dCj4+ID4gWyAgICA0LjY4MjU2OV0gIGRybV9hdG9taWNf
+aGVscGVyX2NoZWNrX21vZGVzZXQrMHg0OTIvMHg3NzAKPj4gPiBbZHJtX2ttc19oZWxwZXJdCj4+
+ID4gWyAgICA0LjY4MjY0MV0gIGludGVsX2F0b21pY19jaGVjaysweDkzLzB4Y2MwIFtpOTE1XQo+
+PiA+IFsgICAgNC42ODI2NTddICA/IGRybV9hdG9taWNfaGVscGVyX2R1cGxpY2F0ZV9zdGF0ZSsw
+eDE0OC8weDE3MAo+PiA+IFtkcm1fa21zX2hlbHBlcl0KPj4gPiBbICAgIDQuNjgyNzIzXSAgaW50
+ZWxfbW9kZXNldF9pbml0KzB4ZTU1LzB4MTE4MCBbaTkxNV0KPj4gPiBbICAgIDQuNjgyNzc3XSAg
+aTkxNV9kcml2ZXJfcHJvYmUrMHg0OGUvMHg1ODAgW2k5MTVdCj4+ID4gWyAgICA0LjY4Mjc4NF0g
+ID8gX2NvbmRfcmVzY2hlZCsweDE1LzB4MzAKPj4gPiBbICAgIDQuNjgyNzg4XSAgPyBtdXRleF9s
+b2NrKzB4ZS8weDMwCj4+ID4gWyAgICA0LjY4MjgzOV0gIGk5MTVfcGNpX3Byb2JlKzB4NTQvMHgx
+NDAgW2k5MTVdCj4+ID4gWyAgICA0LjY4Mjg0NV0gIGxvY2FsX3BjaV9wcm9iZSsweDQyLzB4ODAK
+Pj4gPiBbICAgIDQuNjgyODUxXSAgcGNpX2RldmljZV9wcm9iZSsweDEwNy8weDFiMAo+PiA+IFsg
+ICAgNC42ODI4NTZdICByZWFsbHlfcHJvYmUrMHgxNDcvMHgzYzAKPj4gPiBbICAgIDQuNjgyODYw
+XSAgZHJpdmVyX3Byb2JlX2RldmljZSsweGI2LzB4MTAwCj4+ID4gWyAgICA0LjY4Mjg2NF0gIGRl
+dmljZV9kcml2ZXJfYXR0YWNoKzB4NTMvMHg2MAo+PiA+IFsgICAgNC42ODI4NjddICBfX2RyaXZl
+cl9hdHRhY2grMHg4YS8weDE1MAo+PiA+IFsgICAgNC42ODI4NzBdICA/IGRldmljZV9kcml2ZXJf
+YXR0YWNoKzB4NjAvMHg2MAo+PiA+IFsgICAgNC42ODI4NzRdICA/IGRldmljZV9kcml2ZXJfYXR0
+YWNoKzB4NjAvMHg2MAo+PiA+IFsgICAgNC42ODI4NzhdICBidXNfZm9yX2VhY2hfZGV2KzB4Nzgv
+MHhjMAo+PiA+IFsgICAgNC42ODI4ODNdICBidXNfYWRkX2RyaXZlcisweDE0ZC8weDFmMAo+PiA+
+IFsgICAgNC42ODI4ODddICBkcml2ZXJfcmVnaXN0ZXIrMHg2Yy8weGMwCj4+ID4gWyAgICA0LjY4
+Mjg5MV0gID8gMHhmZmZmZmZmZmMwZmY1MDAwCj4+ID4gWyAgICA0LjY4Mjk0Nl0gIGk5MTVfaW5p
+dCsweDVkLzB4NzAgW2k5MTVdCj4+ID4gWyAgICA0LjY4Mjk1Ml0gIGRvX29uZV9pbml0Y2FsbCsw
+eDQ2LzB4MjAwCj4+ID4gWyAgICA0LjY4Mjk1N10gID8gX2NvbmRfcmVzY2hlZCsweDE1LzB4MzAK
+Pj4gPiBbICAgIDQuNjgyOTYxXSAgPyBrbWVtX2NhY2hlX2FsbG9jX3RyYWNlKzB4MTg5LzB4Mjgw
+Cj4+ID4gWyAgICA0LjY4Mjk2Nl0gID8gZG9faW5pdF9tb2R1bGUrMHgyMy8weDIzMAo+PiA+IFsg
+ICAgNC42ODI5NzBdICBkb19pbml0X21vZHVsZSsweDVjLzB4MjMwCj4+ID4gWyAgICA0LjY4Mjk3
+M10gIGxvYWRfbW9kdWxlKzB4MTRiMi8weDE2NTAKPj4gPiBbICAgIDQuNjgyOTgwXSAgPyBfX2Rv
+X3N5c19pbml0X21vZHVsZSsweDE2ZS8weDFhMAo+PiA+IFsgICAgNC42ODI5ODNdICBfX2RvX3N5
+c19pbml0X21vZHVsZSsweDE2ZS8weDFhMAo+PiA+IFsgICAgNC42ODI5ODldICBkb19zeXNjYWxs
+XzY0KzB4NjQvMHgyNDAKPj4gPiBbICAgIDQuNjgyOTk0XSAgZW50cnlfU1lTQ0FMTF82NF9hZnRl
+cl9od2ZyYW1lKzB4NDkvMHhiZQo+PiA+IFsgICAgNC42ODI5OThdIFJJUDogMDAzMzoweDdmNjVk
+MzhhOWQ5YQo+PiA+IFsgICAgNC42ODMwMDFdIENvZGU6IDQ4IDhiIDBkIGU5IDAwIDBjIDAwIGY3
+IGQ4IDY0IDg5IDAxIDQ4IDgzIGM4Cj4+ID4gZmYgYzMKPj4gPiA2NiAyZSAwZiAxZiA4NCAwMCAw
+MCAwMCAwMCAwMCAwZiAxZiA0NCAwMCAwMCA0OSA4OSBjYSBiOCBhZiAwMCAwMAo+PiA+IDAwIDBm
+Cj4+ID4gMDUgPDQ4PiAzZCAwMSBmMCBmZiBmZiA3MyAwMSBjMyA0OCA4YiAwZCBiNiAwMCAwYyAw
+MCBmNyBkOCA2NCA4OSAwMQo+PiA+IDQ4Cj4+ID4gWyAgICA0LjY4MzAwN10gUlNQOiAwMDJiOjAw
+MDA3ZmZmYWUzNDEwMDggRUZMQUdTOiAwMDAwMDI0Ngo+PiA+IE9SSUdfUkFYOgo+PiA+IDAwMDAw
+MDAwMDAwMDAwYWYKPj4gPiBbICAgIDQuNjgzMDEyXSBSQVg6IGZmZmZmZmZmZmZmZmZmZGEgUkJY
+OiAwMDAwNTYzYzFkNGNiOTMwIFJDWDoKPj4gPiAwMDAwN2Y2NWQzOGE5ZDlhCj4+ID4gWyAgICA0
+LjY4MzAxNV0gUkRYOiAwMDAwN2Y2NWQzNTY2ODlkIFJTSTogMDAwMDAwMDAwMDRiZGRlNyBSREk6
+Cj4+ID4gMDAwMDdmNjVjZDYwYzAxMAo+PiA+IFsgICAgNC42ODMwMThdIFJCUDogMDAwMDdmNjVj
+ZDYwYzAxMCBSMDg6IDAwMDAwMDAwMDAwMDAwMDAgUjA5Ogo+PiA+IDAwMDA3ZjY1ZDMyNjQ5ZTAK
+Pj4gPiBbICAgIDQuNjgzMDIyXSBSMTA6IDAwMDAwMDAwMDAwMDAwMDEgUjExOiAwMDAwMDAwMDAw
+MDAwMjQ2IFIxMjoKPj4gPiAwMDAwN2Y2NWQzNTY2ODlkCj4+ID4gWyAgICA0LjY4MzAyNV0gUjEz
+OiAwMDAwMDAwMDAwMDAwMDAwIFIxNDogMDAwMDU2M2MxZDIyZjBjMCBSMTU6Cj4+ID4gMDAwMDU2
+M2MxZDRjYjkzMAo+PiA+IFsgICAgNC42ODMwMzBdIC0tLVsgZW5kIHRyYWNlIDJiNTY5YTg4Nzhj
+ZDViOTkgXS0tLQo+PiA+Cj4+ID4KPj4gPgo+PiA+IC0tCj4+ID4gU3JkYcSNYW4gcG96ZHJhdi9C
+ZXN0IHJlZ2FyZHMvRnJldW5kbGljaGUgR3LDvMOfZS9Db3JkaWFsZW1lbnQKPj4gPiBTaW5pxaFh
+IEJhbmRpbgo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xwo+PiBJbnRlbC1nZnggbWFpbGluZyBsaXN0Cj4+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPj4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
