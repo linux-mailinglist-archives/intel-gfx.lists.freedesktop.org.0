@@ -2,53 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A54D41756CA
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 10:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EC21756D9
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 10:22:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5769F6E17B;
-	Mon,  2 Mar 2020 09:18:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBDF6E192;
+	Mon,  2 Mar 2020 09:22:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCE86E17B
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 09:18:49 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id A6A1EAF10;
- Mon,  2 Mar 2020 09:18:47 +0000 (UTC)
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <6f9e9efd-3eeb-ccaf-eca9-7afef12abaf4@suse.de>
-Date: Mon, 2 Mar 2020 10:18:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAF76E192;
+ Mon,  2 Mar 2020 09:22:07 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 01:22:06 -0800
+X-IronPort-AV: E=Sophos;i="5.70,506,1574150400"; d="scan'208";a="233098829"
+Received: from unknown (HELO localhost) ([10.252.41.100])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 01:22:03 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Sam Ravnborg <sam@ravnborg.org>
+In-Reply-To: <CAKMK7uEYxM8BAsp+DHUxw+qdE_B3J+ePAxC-j0V+v+J6trffgw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200227181522.2711142-1-daniel.vetter@ffwll.ch>
+ <20200227181522.2711142-4-daniel.vetter@ffwll.ch>
+ <20200228224504.GA23961@ravnborg.org>
+ <CAKMK7uHPWZ=F2EyqnM7x1GpXY_SGu3e_jGXX4cg0OGyx_+C8ig@mail.gmail.com>
+ <20200229111710.GB3674@ravnborg.org>
+ <CAKMK7uEYxM8BAsp+DHUxw+qdE_B3J+ePAxC-j0V+v+J6trffgw@mail.gmail.com>
+Date: Mon, 02 Mar 2020 11:22:34 +0200
+Message-ID: <87blpfqffp.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] Merge conflict between drm-next and drm-tip
+Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
+ drm_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,97 +48,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>
-Content-Type: multipart/mixed; boundary="===============0392426324=="
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Marco Felsch <m.felsch@pengutronix.de>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Daniel Vetter <daniel.vetter@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0392426324==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="OBEQiGpPN6fc63PmH5zRrGcR3QVgePci5"
+On Sat, 29 Feb 2020, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> On Sat, Feb 29, 2020 at 12:17 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>> The header-check infrastructure was dropped again - see:
+>> fcbb8461fd2376ba3782b5b8bd440c929b8e4980
+>
+> Uh I'm disappoint :-/
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---OBEQiGpPN6fc63PmH5zRrGcR3QVgePci5
-Content-Type: multipart/mixed; boundary="jWJqxjWx3rroRWoNSPWCALafT8uMJYo2p";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <6f9e9efd-3eeb-ccaf-eca9-7afef12abaf4@suse.de>
-Subject: Merge conflict between drm-next and drm-tip
+To say the least. I thought it was a good *opt-in* feature for whoever
+wanted it. But the part that got the backlash was applying it to
+absolutely everything under include/. And then it got removed
+altogether. From one extreme to the other. Nuts.
 
---jWJqxjWx3rroRWoNSPWCALafT8uMJYo2p
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+> Adding Jani in case he missed this too. I guess maybe we should
+> resurrect it for drm again (and with a file pattern starting in a
+> .dot).
 
-Hi!
+We have a local implementation in i915/Makefile again. It uses 'find' to
+find the headers which is fine in i915, but the parameters need to be
+adjusted for drm to not be recursive. -maxdepth 1 or something. Also
+need to add another local config option. Sad trombone.
 
-I get a conflict when merging drm-next into drm-tip as part of 'dim
-push-branch'.
+>> > > > +     /**
+>> > > > +      * @managed:
+>> > > > +      *
+>> > > > +      * Managed resources linked to the lifetime of this &drm_device as
+>> > > > +      * tracked by @ref.
+>> > > > +      */
+>> > > > +     struct {
+>> > > > +             struct list_head resources;
+>> > > > +             void *final_kfree;
+>> > > > +             spinlock_t lock;
+>> > > > +     } managed;
+>> > >
+>> > > I am missing kernel-doc here.
+>> > > At least document that lock is used to guard access to resources.
+>> > > (s/lock/lock_resources/ ?)
+>> >
+>> > Dunno why, but the support for name sub-structures seems to have
+>> > broken in kerneldoc. So I can type it, but it's not showing up, so I
+>> > didn't bother. Well I had it, but deleted it again. It's still
+>> > documented to work, but I have no idea what I'm doing wrong.
+>>
+>> Most readers prefer the .c files as the source.
+>> I personally read the generated kernel doc when I google
+>> and when I check that my own stuff looks good in kernel-doc format.
+>> So comments are still valueable despite not being picked up by
+>> kernel-doc.
+>> You know this - but I just wanted to encourage you to write the few
+>> lines that may help me and others :-)
+>
+> Hm I thought way back this actually worked. Again ping for Jani, he's
+> better on top of what's happening in kernel-doc land.
 
-The conflicting patches appear to be
+I haven't really been all that active lately, but I think the syntax
+here would be e.g. "@managed.resources:".
 
-  commit 1c4d821db919366034dc9ff4c01b4b0da0b8e30f
-  Author: Anshuman Gupta <anshuman.gupta@intel.com>
-  Date:   Thu Oct 3 13:47:37 2019 +0530
+BR,
+Jani.
 
-    drm/i915/tgl: Switch between dc3co and dc5 based on display idleness
-
-and
-
-  commit ceaaf5300f881e54bba4221a710a40b48423f610
-  Author: Jos=C3=A9 Roberto de Souza <jose.souza@intel.com>
-  Date:   Wed Feb 5 13:49:45 2020 -0800
-
-    drm/i915/dc3co: Add description of how it works
-
-Best regards
-Thomas
-
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---jWJqxjWx3rroRWoNSPWCALafT8uMJYo2p--
-
---OBEQiGpPN6fc63PmH5zRrGcR3QVgePci5
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5cz3QACgkQaA3BHVML
-eiMD2gf9H2nLay+pYDyA/VBL7xfxuSyAzjzbp6ptwSeiraM2roW/IR8mDWQQHUuL
-vT2I4cYYEQ1sXj0MJGGcMXqpLyf79z0R2rePeXGSlFGsItVFto8daPoZlzn0/Gn3
-tJwziVpH1RyQ3BPXZUQgVEcpGnfu2bhS1tMsUtdieHNgZCTUUaYaph5h1/dtzJpd
-m9RR8+0PE1mNtWT0byjjasM0au5Hyh5+ng5AFGmXNCudzXkBC/DAYXZAwUm+A/zE
-SkBDGhN7ya8yvqkJA5vbGX5MsAtliGPtTVrbXvQc6dEuXnvhX293P8L9blcBLlf6
-LMfnCm6EmtIxTebAPueb9Ea1QsOjcA==
-=bw+L
------END PGP SIGNATURE-----
-
---OBEQiGpPN6fc63PmH5zRrGcR3QVgePci5--
-
---===============0392426324==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0392426324==--
