@@ -1,56 +1,56 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA04317671C
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 23:27:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B96B3176725
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 23:27:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76AFB6E89D;
-	Mon,  2 Mar 2020 22:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D5F86E8A0;
+	Mon,  2 Mar 2020 22:27:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
- [IPv6:2a00:1450:4864:20::342])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F5C6E895
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 22:27:10 +0000 (UTC)
-Received: by mail-wm1-x342.google.com with SMTP id m3so815354wmi.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 14:27:10 -0800 (PST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F9256E89D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 22:27:12 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id t11so1865418wrw.5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 14:27:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=AOFcFFVfD56/3n2kJLd0TP562Jha+3bNGKGGPICL9+0=;
- b=gFCMh1It45LZ4infhs1Jl3bzNgwxhpGY2XOTRB2+yBlCMvH+enx8y2SS2FPJ+Pjk2k
- ykcOWXQ22Xa84TF5AMu+bTCGUTJuk7QolLI0SGOcrNRmMPCZRALbIAryKgkBX/Ihwfva
- CiqzbfmXzkIhDgfQEhFWD/t819a9/AJi3YpbE=
+ bh=Rk9iTrN8/Bv4mQt4SyS/7jsoLVRCP0eELsXRpTf0WzU=;
+ b=fm3/pwHsWUA9uRxtp6ZUAHQDNT9+xlAOPlZT7hj1QMwSx9KyE4+GCuu782v/XbHXRF
+ BKuvFP89yTwsv0pNzB7dILGP5EJO5E7sPZkw4Mcx9PR2By9ZoKIvY6YzLO9a8J6l/Tl/
+ sdz0XeQ11sVzEGnLO3lVQGxGTkBHzDECsY96M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=AOFcFFVfD56/3n2kJLd0TP562Jha+3bNGKGGPICL9+0=;
- b=BB+k5ElB6LQAZxn1cNPWiA3J8U9zf+3CBR6kCISy3dNHkHdbBG1kZdhnqtoJ9v9ZAW
- hlprK/ejlnF33MzQfQ+Wk7qIKRj1P9E/X/xpBJkFZP+AXnPo5fMzZAfNX148+56QbNv7
- +CkJZsJF04rAAFLXdsiPqRiB6b4n19fbQeufIblbskKuZNvYgHY2KI5S7DHqv0WJvyre
- Mr1q1dlKj/3IQHqs+rADy+8sDVlVrwz13FiD6G2iA+kD1WZFmOjEt/1yVKsI1cVPKmyx
- kHWYRgEXOAu+zBlwyoinfmZ6d7YuWcBaVwBcl9G307AxiDwnsMBnkh7gdyPwVOD6FV2Z
- CA1g==
-X-Gm-Message-State: ANhLgQ0ivrlj+fTkeBrJeuOjznl2FEUQIbiHbg2tl0y4x8sZBQzzXp6G
- eCA/HgPkqjAT0VkAuR+xr7LDww==
-X-Google-Smtp-Source: ADFU+vuf2gHOfN4aEzPNZMPXclrHd4YA6JGKcSvwSG8lLrnhrLxEFfiJOvixA5eFsSIaaWe8JBhlWg==
-X-Received: by 2002:a1c:1fca:: with SMTP id f193mr521591wmf.160.1583188029512; 
- Mon, 02 Mar 2020 14:27:09 -0800 (PST)
+ bh=Rk9iTrN8/Bv4mQt4SyS/7jsoLVRCP0eELsXRpTf0WzU=;
+ b=eIxgYwKT51sLEv37Oyq9i0ME4i8KQJANe5awuAygUu9oPCSXlyniT6cXk62JKHPfYU
+ ZHlB6/vEOUiK+S9wVBFTJP4IafwxhAGMsxiIJy1OEkYzhZuzOdfXM7KPEiExfftiTFyK
+ 9VT3MNc1t0qEMMkdv964i4zfaa6aOzXZ5fHQ7YtyPnK3rUtHXJy/Ynv7Fs0oP9aTc7AB
+ onbia8guiU29ula/5eC0ueRpNU1IvAAJhxae7tz4Vow9q1KIDX20v1me8W6lTCZzspva
+ /unOr335hi/3RfAUBmjiXaJQ0+TjKmUbXleiPARVNNj65/IppOzTYC4U+84NR49qVbHx
+ l/rQ==
+X-Gm-Message-State: ANhLgQ3KKRQnazSqev3KJuxRRArnDKn0+jAz/wJJcxRyVy55W4O7F0J8
+ zHTMlp4Kxc8tpec9jFPc6rewKw==
+X-Google-Smtp-Source: ADFU+vuPCe+vcsMpit+SB85uR4pFwwErb3S2ZhLIkGVVIl3k77d2tGNJcDC2dqBWJ580VnczVAuiow==
+X-Received: by 2002:adf:f349:: with SMTP id e9mr1755379wrp.56.1583188030880;
+ Mon, 02 Mar 2020 14:27:10 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o18sm26114589wrv.60.2020.03.02.14.27.08
+ by smtp.gmail.com with ESMTPSA id o18sm26114589wrv.60.2020.03.02.14.27.09
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Mar 2020 14:27:08 -0800 (PST)
+ Mon, 02 Mar 2020 14:27:09 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon,  2 Mar 2020 23:26:03 +0100
-Message-Id: <20200302222631.3861340-24-daniel.vetter@ffwll.ch>
+Date: Mon,  2 Mar 2020 23:26:04 +0100
+Message-Id: <20200302222631.3861340-25-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
 References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 23/51] drm: Manage drm_gem_init with drmm_
+Subject: [Intel-gfx] [PATCH 24/51] drm: Manage drm_vblank_cleanup with drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,111 +71,168 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We might want to look into pushing this down into drm_mm_init, but
-that would mean rolling out return codes to a pile of functions
-unfortunately. So let's leave that for now.
+Nothing special here, except that this is the first time that we
+automatically clean up something that's initialized with an explicit
+driver call. But the cleanup was done at the very of the release
+sequence for all drivers, and that's still the case. At least without
+more uses of drmm_ through explicit driver calls.
+
+Also for this one we need drmm_kcalloc, so lets add those
+
+v2: Sort includes (Laurent)
 
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 ---
- drivers/gpu/drm/drm_drv.c      |  8 +-------
- drivers/gpu/drm/drm_gem.c      | 21 ++++++++++-----------
+ drivers/gpu/drm/drm_drv.c      |  1 -
  drivers/gpu/drm/drm_internal.h |  1 -
- 3 files changed, 11 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/drm_vblank.c   | 31 ++++++++++++-------------------
+ include/drm/drm_managed.h      | 16 ++++++++++++++++
+ 4 files changed, 28 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 29d106195ab3..9a646155dfc6 100644
+index 9a646155dfc6..90b6ae81d431 100644
 --- a/drivers/gpu/drm/drm_drv.c
 +++ b/drivers/gpu/drm/drm_drv.c
-@@ -688,13 +688,10 @@ int drm_dev_init(struct drm_device *dev,
- 
- 	ret = drm_dev_set_unique(dev, dev_name(parent));
- 	if (ret)
--		goto err_setunique;
-+		goto err;
- 
- 	return 0;
- 
--err_setunique:
--	if (drm_core_check_feature(dev, DRIVER_GEM))
--		drm_gem_destroy(dev);
- err:
- 	drm_managed_release(dev);
- 
-@@ -756,9 +753,6 @@ EXPORT_SYMBOL(devm_drm_dev_init);
+@@ -752,7 +752,6 @@ EXPORT_SYMBOL(devm_drm_dev_init);
+  */
  void drm_dev_fini(struct drm_device *dev)
  {
- 	drm_vblank_cleanup(dev);
--
--	if (drm_core_check_feature(dev, DRIVER_GEM))
--		drm_gem_destroy(dev);
+-	drm_vblank_cleanup(dev);
  }
  EXPORT_SYMBOL(drm_dev_fini);
  
-diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-index 0b6e6623735e..31095e0f6b9f 100644
---- a/drivers/gpu/drm/drm_gem.c
-+++ b/drivers/gpu/drm/drm_gem.c
-@@ -44,6 +44,7 @@
+diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
+index cb09e95a795e..e67015d07c4c 100644
+--- a/drivers/gpu/drm/drm_internal.h
++++ b/drivers/gpu/drm/drm_internal.h
+@@ -94,7 +94,6 @@ void drm_managed_release(struct drm_device *dev);
+ 
+ /* drm_vblank.c */
+ void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int pipe);
+-void drm_vblank_cleanup(struct drm_device *dev);
+ 
+ /* IOCTLS */
+ int drm_wait_vblank_ioctl(struct drm_device *dev, void *data,
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 47fc4339ec7f..5a6ec8aa0873 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -30,6 +30,7 @@
+ #include <drm/drm_crtc.h>
  #include <drm/drm_drv.h>
- #include <drm/drm_file.h>
- #include <drm/drm_gem.h>
+ #include <drm/drm_framebuffer.h>
 +#include <drm/drm_managed.h>
+ #include <drm/drm_modeset_helper_vtables.h>
  #include <drm/drm_print.h>
- #include <drm/drm_vma_manager.h>
+ #include <drm/drm_vblank.h>
+@@ -425,14 +426,10 @@ static void vblank_disable_fn(struct timer_list *t)
+ 	spin_unlock_irqrestore(&dev->vbl_lock, irqflags);
+ }
  
-@@ -77,6 +78,12 @@
-  * up at a later date, and as our interface with shmfs for memory allocation.
-  */
+-void drm_vblank_cleanup(struct drm_device *dev)
++static void drm_vblank_init_release(struct drm_device *dev, void *ptr)
+ {
+ 	unsigned int pipe;
  
-+static void
-+drm_gem_init_release(struct drm_device *dev, void *ptr)
-+{
-+	drm_vma_offset_manager_destroy(dev->vma_offset_manager);
-+}
-+
- /**
-  * drm_gem_init - Initialize the GEM device fields
-  * @dev: drm_devic structure to initialize
-@@ -89,7 +96,8 @@ drm_gem_init(struct drm_device *dev)
- 	mutex_init(&dev->object_name_lock);
- 	idr_init_base(&dev->object_name_idr, 1);
- 
--	vma_offset_manager = kzalloc(sizeof(*vma_offset_manager), GFP_KERNEL);
-+	vma_offset_manager = drmm_kzalloc(dev, sizeof(*vma_offset_manager),
-+					  GFP_KERNEL);
- 	if (!vma_offset_manager) {
- 		DRM_ERROR("out of memory\n");
- 		return -ENOMEM;
-@@ -100,16 +108,7 @@ drm_gem_init(struct drm_device *dev)
- 				    DRM_FILE_PAGE_OFFSET_START,
- 				    DRM_FILE_PAGE_OFFSET_SIZE);
- 
--	return 0;
--}
+-	/* Bail if the driver didn't call drm_vblank_init() */
+-	if (dev->num_crtcs == 0)
+-		return;
 -
--void
--drm_gem_destroy(struct drm_device *dev)
--{
+ 	for (pipe = 0; pipe < dev->num_crtcs; pipe++) {
+ 		struct drm_vblank_crtc *vblank = &dev->vblank[pipe];
+ 
+@@ -441,10 +438,6 @@ void drm_vblank_cleanup(struct drm_device *dev)
+ 
+ 		del_timer_sync(&vblank->disable_timer);
+ 	}
 -
--	drm_vma_offset_manager_destroy(dev->vma_offset_manager);
--	kfree(dev->vma_offset_manager);
--	dev->vma_offset_manager = NULL;
-+	return drmm_add_action(dev, drm_gem_init_release, NULL);
+-	kfree(dev->vblank);
+-
+-	dev->num_crtcs = 0;
  }
  
  /**
-diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_internal.h
-index 8c2628dfc6c7..cb09e95a795e 100644
---- a/drivers/gpu/drm/drm_internal.h
-+++ b/drivers/gpu/drm/drm_internal.h
-@@ -144,7 +144,6 @@ void drm_sysfs_lease_event(struct drm_device *dev);
- /* drm_gem.c */
- struct drm_gem_object;
- int drm_gem_init(struct drm_device *dev);
--void drm_gem_destroy(struct drm_device *dev);
- int drm_gem_handle_create_tail(struct drm_file *file_priv,
- 			       struct drm_gem_object *obj,
- 			       u32 *handlep);
+@@ -453,25 +446,29 @@ void drm_vblank_cleanup(struct drm_device *dev)
+  * @num_crtcs: number of CRTCs supported by @dev
+  *
+  * This function initializes vblank support for @num_crtcs display pipelines.
+- * Cleanup is handled by the DRM core, or through calling drm_dev_fini() for
+- * drivers with a &drm_driver.release callback.
++ * Cleanup is handled automatically through a cleanup function added with
++ * drmm_add_action().
+  *
+  * Returns:
+  * Zero on success or a negative error code on failure.
+  */
+ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+ {
+-	int ret = -ENOMEM;
++	int ret;
+ 	unsigned int i;
+ 
+ 	spin_lock_init(&dev->vbl_lock);
+ 	spin_lock_init(&dev->vblank_time_lock);
+ 
++	dev->vblank = drmm_kcalloc(dev, num_crtcs, sizeof(*dev->vblank), GFP_KERNEL);
++	if (!dev->vblank)
++		return -ENOMEM;
++
+ 	dev->num_crtcs = num_crtcs;
+ 
+-	dev->vblank = kcalloc(num_crtcs, sizeof(*dev->vblank), GFP_KERNEL);
+-	if (!dev->vblank)
+-		goto err;
++	ret = drmm_add_action(dev, drm_vblank_init_release, NULL);
++	if (ret)
++		return ret;
+ 
+ 	for (i = 0; i < num_crtcs; i++) {
+ 		struct drm_vblank_crtc *vblank = &dev->vblank[i];
+@@ -486,10 +483,6 @@ int drm_vblank_init(struct drm_device *dev, unsigned int num_crtcs)
+ 	DRM_INFO("Supports vblank timestamp caching Rev 2 (21.10.2013).\n");
+ 
+ 	return 0;
+-
+-err:
+-	dev->num_crtcs = 0;
+-	return ret;
+ }
+ EXPORT_SYMBOL(drm_vblank_init);
+ 
+diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+index 5280209dff92..2b1ba2ad5582 100644
+--- a/include/drm/drm_managed.h
++++ b/include/drm/drm_managed.h
+@@ -4,6 +4,7 @@
+ #define _DRM_MANAGED_H_
+ 
+ #include <linux/gfp.h>
++#include <linux/overflow.h>
+ #include <linux/types.h>
+ 
+ struct drm_device;
+@@ -28,6 +29,21 @@ static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+ {
+ 	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
+ }
++static inline void *drmm_kmalloc_array(struct drm_device *dev,
++				       size_t n, size_t size, gfp_t flags)
++{
++	size_t bytes;
++
++	if (unlikely(check_mul_overflow(n, size, &bytes)))
++		return NULL;
++
++	return drmm_kmalloc(dev, bytes, flags);
++}
++static inline void *drmm_kcalloc(struct drm_device *dev,
++				 size_t n, size_t size, gfp_t flags)
++{
++	return drmm_kmalloc_array(dev, n, size, flags | __GFP_ZERO);
++}
+ char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
+ 
+ void drmm_kfree(struct drm_device *dev, void *data);
 -- 
 2.24.1
 
