@@ -2,40 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7850B175EBA
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 16:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 677D0175F01
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 16:59:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7325C6E51B;
-	Mon,  2 Mar 2020 15:53:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C48F989E65;
+	Mon,  2 Mar 2020 15:59:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D57606E51B
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 15:53:30 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 07:53:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="351567182"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 02 Mar 2020 07:53:27 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 02 Mar 2020 17:53:26 +0200
-Date: Mon, 2 Mar 2020 17:53:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200302155326.GM13686@intel.com>
-References: <20200211161451.6867-1-jani.nikula@intel.com>
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com
+ [IPv6:2607:f8b0:4864:20::e42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE5F89E65;
+ Mon,  2 Mar 2020 15:59:22 +0000 (UTC)
+Received: by mail-vs1-xe42.google.com with SMTP id r18so251842vso.5;
+ Mon, 02 Mar 2020 07:59:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=WH58ny7aXuxsvw6YgV8ScOHhdjPS9+weIiZQCBBEH5I=;
+ b=Mf9zJqK0WohGSW2D4DX37f95oFvl2aL8nUBqIhisMSiry4psQijIVPI0SI+hBbIo1S
+ k9Sxw/gAVeoWl0cd9BE90qcfX6/G3SeCEgl5DriQuIc5dOHKFSwegvydrMZaWDCgeWSu
+ WQS1Bk6JWWHRD0w/D71cyp2fpJluUhblChNN+CAvqekmalpWTcoOLT3hto5ORoi8eTqo
+ IjWUCtBMsz9a7/wJHQKrbvWeO6X9tBEm0qBd2V2f6kbvI6JB8gWa056nrEECQ861j9g7
+ EhMkiq0YwievM1bd1wW0motoW2z0eYfbHXS7wm5OjBfFLR75Pvl6Pm1yEIhnQYnBPlMD
+ vVnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=WH58ny7aXuxsvw6YgV8ScOHhdjPS9+weIiZQCBBEH5I=;
+ b=DTD5CmNUUj5nQhGyHq7esHX/jJrb93kSeFqQYwa640syVXZOctO/it+73Wqi4IX3YB
+ 8mF6cj3O9dkKo7TTnoRnbywAWvfa1W1KlBii2tX1VHbrEThlPFTxNiz2IcVeiugkwiar
+ HA7RvI2dgRLugQo3zeqfTHzazN3omlBoIFLogrBpSLyfZmZOCdrJ8OR6ekRr0r340wEF
+ Uv/8rrLnCE8i8tZW6WerHkPQOzjeVb/D1bdhJab3TwY6nedlpVBINLv47li1lhfvUExo
+ faxuP0ZGIUtxU3iPZMEMxpN/RBTRZ6eV87eCvX3wCBLBHzsVLEAjMusIeqC/pNQoCZ4S
+ Gqcw==
+X-Gm-Message-State: ANhLgQ2y/bHdjF8yxQJS4rA7ZiWLSo582Vr9vTSnwRGT4poseoqM8LnJ
+ MX8e05RSfq3zMilOcT4P4L34W8yDOm2SFp31r1g=
+X-Google-Smtp-Source: ADFU+vsYtoy0RewAodRd3a/iEhmKuSXuEK33faWkm6Ag7s3G+91+q7geEOeW+ZnwHscVTwE9SShPloM7Nfxpb8yoicM=
+X-Received: by 2002:a67:8d43:: with SMTP id p64mr2370534vsd.37.1583164761213; 
+ Mon, 02 Mar 2020 07:59:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200211161451.6867-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 1/2] drm/i915: move intel_csr.[ch] under
- display/
+References: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200302125649.61443-1-pankaj.laxminarayan.bharadiya@intel.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Mon, 2 Mar 2020 15:58:49 +0000
+Message-ID: <CACvgo52+LRrLkyRdbGOXGzUWdakHOJfps9PJp78x-N6ZXT-SWQ@mail.gmail.com>
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 0/9] drm: drm_fb_helper cleanup.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,58 +60,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 11, 2020 at 06:14:50PM +0200, Jani Nikula wrote:
-> The DMC firmware is about display. Move the handling under display. No
-> functional changes.
-> =
+On Mon, 2 Mar 2020 at 13:08, Pankaj Bharadiya
+<pankaj.laxminarayan.bharadiya@intel.com> wrote:
+>
+> This series addresses below drm_fb_helper tasks from
+> Documentation/gpu/todo.rst.
+>
+> - The max connector argument for drm_fb_helper_init() isn't used
+>   anymore and can be removed.
+>
+> - The helper doesn't keep an array of connectors anymore so these can
+>   be removed: drm_fb_helper_single_add_all_connectors(),
+>   drm_fb_helper_add_one_connector() and
+>   drm_fb_helper_remove_one_connector().
+>
+> Pankaj Bharadiya (9):
+>   drm: Remove unused arg from drm_fb_helper_init
+>   drm/radeon: remove radeon_fb_{add,remove}_connector functions
+>   drm/amdgpu: Remove drm_fb_helper_{add,remove}_one_connector calls
+>   drm/i915/display: Remove drm_fb_helper_{add,remove}_one_connector calls
+>   drm: Remove drm_fb_helper add, add all and remove connector calls
+>   drm/nouveau: Fix unused variable warning
+>   drm/bridge: remove unused variable warning in tc358764_detach
+>   drm/fb-helper: Remove drm_fb_helper add, add_all and remove connector functions
+>   drm/todo: Update drm_fb_helper tasks
+>
+With 6/9 and 7/9 squashed into 1/9, as suggested by Laurent + the
+wrapping retained as-is, the series is:
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                  | 2 +-
->  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c | 0
->  drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h | 0
->  drivers/gpu/drm/i915/i915_debugfs.c            | 2 +-
->  drivers/gpu/drm/i915/i915_drv.c                | 2 +-
->  drivers/gpu/drm/i915/i915_gpu_error.c          | 2 +-
->  6 files changed, 4 insertions(+), 4 deletions(-)
->  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.c (100%)
->  rename drivers/gpu/drm/i915/{ =3D> display}/intel_csr.h (100%)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index 49eed50ef0a4..a2fab3c43563 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -46,7 +46,6 @@ i915-y +=3D i915_drv.o \
->  	  i915_switcheroo.o \
->  	  i915_sysfs.o \
->  	  i915_utils.o \
-> -	  intel_csr.o \
->  	  intel_device_info.o \
->  	  intel_memory_region.o \
->  	  intel_pch.o \
-> @@ -183,6 +182,7 @@ i915-y +=3D \
->  	display/intel_color.o \
->  	display/intel_combo_phy.o \
->  	display/intel_connector.o \
-> +	display/intel_csr.o \
->  	display/intel_display.o \
->  	display/intel_display_power.o \
->  	display/intel_dpio_phy.o \
-
-This seems to have broken some doc stuff.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+-Emil
+P.S. I'm loving the diff stat :-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
