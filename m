@@ -1,54 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD961766E5
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 23:26:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A66F1766E6
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 23:26:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 923AF6E153;
-	Mon,  2 Mar 2020 22:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52CA86E489;
+	Mon,  2 Mar 2020 22:26:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FA766E152
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 22:26:42 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id g83so806449wme.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 14:26:42 -0800 (PST)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68C8F6E153
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 22:26:43 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id r17so1855056wrj.7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2020 14:26:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Mo0WKFcTPqzM5GCiKelCgN6rPSNekfksp+Zo+oF6zVU=;
- b=JluWbLJxy1/vXYXZ0emARiZ5THJ2KBcou6csEPWKkQzoG0hbBzOFoOYZ51OJ7aR4K5
- 3yye2WrPAaZz2aMNaaWyh/tgpuxMDGM9uYdOJiexzYxJnOcEVf/62N04KOHppsZWrh3K
- yJgfy2a71Q5V2yOTgfnJAV8LuPzJ5EyCXp97Y=
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=s9Dt4ZAHYBWy2uNMICh4RsHo7p4PctnYq6F5Xys1W4s=;
+ b=axmB575g6/zkObum059v2q22BdYyNmVKduWj0jUdHrwBi6I6QBxULBBwvKOAPDVF0F
+ ynlCpl5cL5YYdXdVnW7y1C6GV7Zp5eeuKEinsK4JVU2bw3gA3UShHustrxBxC4Eibr6w
+ 50vlUFqWYkKfcKaT8kni/LQ12bAnHzJFdc9EI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=Mo0WKFcTPqzM5GCiKelCgN6rPSNekfksp+Zo+oF6zVU=;
- b=QGVBM6oS9wgKn9WMdEkPSQ/VSu/XgnGndbAwtm3HeifPq9WOPtK9vyfm5leK6s5NW9
- iSDGskiSD2phuoQwb9bCSZIYrZ227bYzxSfSp0/fOScNIRBHb2g+j/D/lDp8lbfrJwth
- cBrm0alVUwkBwwo6rU4iEmzrygGvqvexWGuE6bgB9M5/SqecZ8INyJn6+rE1LMOlqEQJ
- 4sNQtSwz+pskdzNvp9C/TxgKqNQUBYrcXxgRWzFtUMwrlTXx0X2hPNCMCcL5r0YBbS5I
- nceUImnCCkq9fcA9MMnc5EClmCyfMAX/U3HuCnayFBlWGw06hqmu5tA/In7rJk4Y0RAY
- 4JPg==
-X-Gm-Message-State: ANhLgQ3xK/TqKETdJRgOYpQaUZHyrF3Aior/FAOXV1vhrvLYaUXzRZj8
- pzHxI/M5e+8N7URb3HCiPvOT+w==
-X-Google-Smtp-Source: ADFU+vsJVfxn4KXvaijfuzuwxpSg15n2K1OeQO5y7slFQ8bBKttZkB+c96r6BFtKHpOPIewaNBg4Lg==
-X-Received: by 2002:a7b:ce99:: with SMTP id q25mr532360wmj.34.1583188000634;
- Mon, 02 Mar 2020 14:26:40 -0800 (PST)
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=s9Dt4ZAHYBWy2uNMICh4RsHo7p4PctnYq6F5Xys1W4s=;
+ b=ZaQ3uf1LPFw605+z5vv0YsSU6YNSuKdvCGBdfm5RgzDDic6FoWFAQcPZSs7PxhjLyv
+ sCh9F7aFHbOV2aF4jE9PnV0loHCrqQhtvaDCw+e2JKEWfvchZ5VDe7+2U/WJuYw5g1So
+ T9Vyw0tcfc7P4hEfKNEdPGziICgYNuLEme6i2Se/Zw12yk4zuHlocfTrMwlkWObVP53n
+ FiDy5XJjQEg6bOyrRSJfXBgnJBzMkL/IbnGuWFs4A6prSogFOnreNbEBAD3DBrEFC6Bd
+ /arxDt3VZAR7I6/2eKSvNIQV+beAn/KO88kNMhLj7xK4CFg/4xdr9WgyutEZlk5abSTc
+ eyhw==
+X-Gm-Message-State: ANhLgQ2vixPfeQEiahjikWp7nKpL64SuWNkAmK+HzJcCFwFXSrb6k3v2
+ 2hFnnrqxr3uVNHeEox5zkoutbQ==
+X-Google-Smtp-Source: ADFU+vvoLh3Wsjn6JeoEhXLn14K8OJVwfkHDIumxe5Sg0X1KCKW9a5JdnvmTNxfHumu1ZYpZJebjdw==
+X-Received: by 2002:adf:f0cd:: with SMTP id x13mr1535430wro.69.1583188002191; 
+ Mon, 02 Mar 2020 14:26:42 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id o18sm26114589wrv.60.2020.03.02.14.26.39
+ by smtp.gmail.com with ESMTPSA id o18sm26114589wrv.60.2020.03.02.14.26.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Mar 2020 14:26:40 -0800 (PST)
+ Mon, 02 Mar 2020 14:26:41 -0800 (PST)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon,  2 Mar 2020 23:25:40 +0100
-Message-Id: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
+Date: Mon,  2 Mar 2020 23:25:41 +0100
+Message-Id: <20200302222631.3861340-2-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
+References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 00/51] drm_device managed resources, v4
+Subject: [Intel-gfx] [PATCH 01/51] mm/sl[uo]b: export
+ __kmalloc_track(_node)_caller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,140 +64,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Cc: linux-mm@kvack.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Pekka Enberg <penberg@kernel.org>, Joonsoo Kim <iamjoonsoo.kim@lge.com>,
+ David Rientjes <rientjes@google.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Christoph Lameter <cl@linux.com>, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi all,
+slab does this already, and I want to use this in a memory allocation
+tracker in drm for stuff that's tied to the lifetime of a drm_device,
+not the underlying struct device. Kinda like devres, but for drm.
 
-Another round, another attempt at fixing the intel-gfx-ci issues in the
-selftests. Plus a pile of polish all over, and a bunch more acks/reviews
-added.
+Acked-by: Andrew Morton <akpm@linux-foundation.org>
+Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Christoph Lameter <cl@linux.com>
+Cc: Pekka Enberg <penberg@kernel.org>
+Cc: David Rientjes <rientjes@google.com>
+Cc: Joonsoo Kim <iamjoonsoo.kim@lge.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: linux-mm@kvack.org
+--
+I plan to merge this through drm-misc-next (with Andrew's ack) once
+the remainder of the drm series is in shape.
+-Daniel
+---
+ mm/slob.c | 2 ++
+ mm/slub.c | 2 ++
+ 2 files changed, 4 insertions(+)
 
-We're still missing quite a bit of review, so feedback very much welcome.
-
-Thanks, Daniel
-
-Daniel Vetter (51):
-  mm/sl[uo]b: export __kmalloc_track(_node)_caller
-  drm/i915: Don't clear drvdata in ->release
-  drm: add managed resources tied to drm_device
-  drm: Set final_kfree in drm_dev_alloc
-  drm/mipi_dbi: Use drmm_add_final_kfree in all drivers
-  drm/udl: Use drmm_add_final_kfree
-  drm/qxl: Use drmm_add_final_kfree
-  drm/i915: Use drmm_add_final_kfree
-  drm/cirrus: Use drmm_add_final_kfree
-  drm/v3d: Use drmm_add_final_kfree
-  drm/tidss: Use drmm_add_final_kfree
-  drm/mcde: Use drmm_add_final_kfree
-  drm/vgem: Use drmm_add_final_kfree
-  drm/vkms: Use drmm_add_final_kfree
-  drm/repaper: Use drmm_add_final_kfree
-  drm/ingenic: Use drmm_add_final_kfree
-  drm/gm12u320: Use drmm_add_final_kfree
-  drm/<drivers>: Use drmm_add_final_kfree
-  drm: Cleanups after drmm_add_final_kfree rollout
-  drm: Handle dev->unique with drmm_
-  drm: Use drmm_ for drm_dev_init cleanup
-  drm: manage drm_minor cleanup with drmm_
-  drm: Manage drm_gem_init with drmm_
-  drm: Manage drm_vblank_cleanup with drmm_
-  drm: Garbage collect drm_dev_fini
-  drm: Manage drm_mode_config_init with drmm_
-  drm/bochs: Remove leftover drm_atomic_helper_shutdown
-  drm/bochs: Drop explicit drm_mode_config_cleanup
-  drm/cirrus: Drop explicit drm_mode_config_cleanup call
-  drm/cirrus: Fully embrace devm_
-  drm/ingenic: Drop explicit drm_mode_config_cleanup call
-  drm/mcde: Drop explicit drm_mode_config_cleanup call
-  drm/mcde: More devm_drm_dev_init
-  drm/meson: Drop explicit drm_mode_config_cleanup call
-  drm/pl111: Drop explicit drm_mode_config_cleanup call
-  drm/rcar-du: Drop explicit drm_mode_config_cleanup call
-  drm/rockchip: Drop explicit drm_mode_config_cleanup call
-  drm/stm: Drop explicit drm_mode_config_cleanup call
-  drm/shmob: Drop explicit drm_mode_config_cleanup call
-  drm/mtk: Drop explicit drm_mode_config_cleanup call
-  drm/tidss: Drop explicit drm_mode_config_cleanup call
-  drm/gm12u320: More drmm_
-  drm/gm12u320: Use devm_drm_dev_init
-  drm/gm12u320: Use helpers for shutdown/suspend/resume
-  drm/gm12u320: Simplify upload work
-  drm/repaper: Drop explicit drm_mode_config_cleanup call
-  drm/mipi-dbi: Move drm_mode_config_init into mipi library
-  drm/mipi-dbi: Drop explicit drm_mode_config_cleanup call
-  drm/udl: Drop explicit drm_mode_config_cleanup call
-  drm/udl: drop drm_driver.release hook
-  drm: Add docs for managed resources
-
- Documentation/gpu/drm-internals.rst           |  12 +
- drivers/gpu/drm/Makefile                      |   3 +-
- .../gpu/drm/arm/display/komeda/komeda_kms.c   |   2 +
- drivers/gpu/drm/armada/armada_drv.c           |   2 +
- drivers/gpu/drm/bochs/bochs.h                 |   1 -
- drivers/gpu/drm/bochs/bochs_drv.c             |   6 +-
- drivers/gpu/drm/bochs/bochs_kms.c             |  15 +-
- drivers/gpu/drm/cirrus/cirrus.c               |  74 ++---
- drivers/gpu/drm/drm_drv.c                     | 220 ++++++-------
- drivers/gpu/drm/drm_gem.c                     |  21 +-
- drivers/gpu/drm/drm_internal.h                |   5 +-
- drivers/gpu/drm/drm_managed.c                 | 305 ++++++++++++++++++
- drivers/gpu/drm/drm_mipi_dbi.c                |  24 +-
- drivers/gpu/drm/drm_mode_config.c             |  13 +-
- drivers/gpu/drm/drm_vblank.c                  |  31 +-
- drivers/gpu/drm/i915/i915_drv.c               |  22 +-
- drivers/gpu/drm/i915/i915_drv.h               |   3 +
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  32 +-
- drivers/gpu/drm/ingenic/ingenic-drm.c         |  17 +-
- drivers/gpu/drm/mcde/mcde_drv.c               |  35 +-
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   9 +-
- drivers/gpu/drm/meson/meson_drv.c             |   5 +-
- drivers/gpu/drm/pl111/pl111_drv.c             |  12 +-
- drivers/gpu/drm/qxl/qxl_drv.c                 |   2 -
- drivers/gpu/drm/qxl/qxl_kms.c                 |   2 +
- drivers/gpu/drm/rcar-du/rcar_du_drv.c         |   1 -
- drivers/gpu/drm/rcar-du/rcar_du_kms.c         |   4 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |  14 +-
- drivers/gpu/drm/shmobile/shmob_drm_drv.c      |   2 -
- drivers/gpu/drm/shmobile/shmob_drm_kms.c      |   6 +-
- drivers/gpu/drm/stm/drv.c                     |  10 +-
- drivers/gpu/drm/tidss/tidss_drv.c             |  10 +-
- drivers/gpu/drm/tidss/tidss_kms.c             |  19 +-
- drivers/gpu/drm/tidss/tidss_kms.h             |   1 -
- drivers/gpu/drm/tiny/gm12u320.c               | 226 +++++--------
- drivers/gpu/drm/tiny/hx8357d.c                |   5 +-
- drivers/gpu/drm/tiny/ili9225.c                |   5 +-
- drivers/gpu/drm/tiny/ili9341.c                |   5 +-
- drivers/gpu/drm/tiny/ili9486.c                |   5 +-
- drivers/gpu/drm/tiny/mi0283qt.c               |   5 +-
- drivers/gpu/drm/tiny/repaper.c                |  18 +-
- drivers/gpu/drm/tiny/st7586.c                 |   5 +-
- drivers/gpu/drm/tiny/st7735r.c                |   5 +-
- drivers/gpu/drm/udl/udl_drv.c                 |  16 +-
- drivers/gpu/drm/udl/udl_drv.h                 |   2 -
- drivers/gpu/drm/udl/udl_main.c                |  10 -
- drivers/gpu/drm/udl/udl_modeset.c             |  21 +-
- drivers/gpu/drm/v3d/v3d_drv.c                 |  38 +--
- drivers/gpu/drm/vboxvideo/vbox_drv.c          |   2 +
- drivers/gpu/drm/vgem/vgem_drv.c               |  15 +-
- drivers/gpu/drm/vkms/vkms_drv.c               |  19 +-
- drivers/gpu/drm/xen/xen_drm_front.c           |   4 +-
- include/drm/drm_device.h                      |  15 +
- include/drm/drm_drv.h                         |   9 +-
- include/drm/drm_managed.h                     | 116 +++++++
- include/drm/drm_mipi_dbi.h                    |   1 -
- include/drm/drm_mode_config.h                 |  19 +-
- include/drm/drm_print.h                       |   6 +
- mm/slob.c                                     |   2 +
- mm/slub.c                                     |   2 +
- 60 files changed, 906 insertions(+), 610 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_managed.c
- create mode 100644 include/drm/drm_managed.h
-
+diff --git a/mm/slob.c b/mm/slob.c
+index fa53e9f73893..ac2aecfbc7a8 100644
+--- a/mm/slob.c
++++ b/mm/slob.c
+@@ -524,6 +524,7 @@ void *__kmalloc_track_caller(size_t size, gfp_t gfp, unsigned long caller)
+ {
+ 	return __do_kmalloc_node(size, gfp, NUMA_NO_NODE, caller);
+ }
++EXPORT_SYMBOL(__kmalloc_track_caller);
+ 
+ #ifdef CONFIG_NUMA
+ void *__kmalloc_node_track_caller(size_t size, gfp_t gfp,
+@@ -531,6 +532,7 @@ void *__kmalloc_node_track_caller(size_t size, gfp_t gfp,
+ {
+ 	return __do_kmalloc_node(size, gfp, node, caller);
+ }
++EXPORT_SYMBOL(__kmalloc_node_track_caller);
+ #endif
+ 
+ void kfree(const void *block)
+diff --git a/mm/slub.c b/mm/slub.c
+index be2854b5b1c9..7271fb235ed8 100644
+--- a/mm/slub.c
++++ b/mm/slub.c
+@@ -4358,6 +4358,7 @@ void *__kmalloc_track_caller(size_t size, gfp_t gfpflags, unsigned long caller)
+ 
+ 	return ret;
+ }
++EXPORT_SYMBOL(__kmalloc_track_caller);
+ 
+ #ifdef CONFIG_NUMA
+ void *__kmalloc_node_track_caller(size_t size, gfp_t gfpflags,
+@@ -4388,6 +4389,7 @@ void *__kmalloc_node_track_caller(size_t size, gfp_t gfpflags,
+ 
+ 	return ret;
+ }
++EXPORT_SYMBOL(__kmalloc_node_track_caller);
+ #endif
+ 
+ #ifdef CONFIG_SYSFS
 -- 
 2.24.1
 
