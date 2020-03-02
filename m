@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7EB17610B
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:30:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B49F17611F
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:35:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA8AD6E402;
-	Mon,  2 Mar 2020 17:30:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FACC6E37C;
+	Mon,  2 Mar 2020 17:34:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7C3286E402;
- Mon,  2 Mar 2020 17:30:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75D11A0071;
- Mon,  2 Mar 2020 17:30:48 +0000 (UTC)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F1146E37C
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:34:58 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 09:34:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="228534553"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga007.jf.intel.com with SMTP; 02 Mar 2020 09:34:54 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 02 Mar 2020 19:34:53 +0200
+Date: Mon, 2 Mar 2020 19:34:53 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Message-ID: <20200302173453.GO13686@intel.com>
+References: <20200227150935.2107-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Mon, 02 Mar 2020 17:30:48 -0000
-Message-ID: <158317024846.30644.12784682529027157025@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200302162151.52349-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200302162151.52349-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_drm=5Ffb=5Fhelper_cleanup=2E_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200227150935.2107-1-stanislav.lisovskiy@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v6] drm/i915: Use intel_plane_data_rate for
+ min_cdclk calculation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,104 +48,75 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Feb 27, 2020 at 05:09:35PM +0200, Stanislav Lisovskiy wrote:
+> There seems to be a bit of confusing redundancy in a way, how
+> plane data rate/min cdclk are calculated.
+> In fact both min cdclk, pixel rate and plane data rate are all
+> part of the same formula as per BSpec.
+> =
 
-Series: drm: drm_fb_helper cleanup. (rev2)
-URL   : https://patchwork.freedesktop.org/series/74140/
-State : success
+> However currently we have intel_plane_data_rate, which is used
+> to calculate plane data rate and which is also used in bandwidth
+> calculations. However for calculating min_cdclk we have another
+> piece of code, doing almost same calculation, but a bit differently
+> and in a different place. However as both are actually part of same
+> formula, probably would be wise to use plane data rate calculations
+> as a basis anyway, thus avoiding code duplication and possible bugs
+> related to this.
+> =
 
-== Summary ==
+> Another thing is that I've noticed that during min_cdclk calculations
+> we account for plane scaling, while for plane data rate, we don't.
+> crtc->pixel_rate seems to account only for pipe ratio, however it is
+> clearly stated in BSpec that plane data rate also need to account
+> plane ratio as well.
+> =
 
-CI Bug Log - changes from CI_DRM_8045 -> Patchwork_16782
-====================================================
+> So what this commit does is:
+> - Adds a plane ratio calculation to intel_plane_data_rate
+> - Removes redundant calculations from skl_plane_min_cdclk which is
+>   used for gen9+ and now uses intel_plane_data_rate as a basis from
+>   there as well.
+> =
 
-Summary
--------
+> v2: - Don't use 64 division if not needed(Ville Syrj=E4l=E4)
+>     - Now use intel_plane_pixel_rate as a basis for calculations both
+>       at intel_plane_data_rate and skl_plane_min_cdclk(Ville Syrj=E4l=E4)
+> =
 
-  **SUCCESS**
+> v3: - Again fix the division macro
+>     - Fix plane_pixel_rate to pixel_rate at intel_plane_pixel_rate
+>       callsites
+> =
 
-  No regressions found.
+> v4: - Renamed skl_plane_ratio function back(Ville Syrj=E4l=E4)
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/index.html
+> v5: - Don't precalculate plane pixel rate for invisible plane,
+>       check for visibility first, as in invisible case it will
+>       have dst_w and dst_h equal to zero, causing divide error.
+> =
 
-Known issues
-------------
+> v6: - Removed useless warn in intel_plane_pixel_rate(Ville Syrj=E4l=E4)
+>     - Fixed alignment in intel_plane_data_rate(Ville Syrj=E4l=E4)
+>     - Changed pixel_rate type to be unsigned int in
+>       skl_plane_min_cdclk(Ville Syrj=E4l=E4)
+> =
 
-  Here are the changes found in Patchwork_16782 that come from known issues:
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-### IGT changes ###
+Thanks. Pushed to dinq.
 
-#### Issues hit ####
+-- =
 
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([fdo#108569])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/fi-icl-y/igt@i915_selftest@live@hangcheck.html
-
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [FAIL][5] ([i915#217]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  * igt@vgem_basic@debugfs:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-tgl-y/igt@vgem_basic@debugfs.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/fi-tgl-y/igt@vgem_basic@debugfs.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (50 -> 40)
-------------------------------
-
-  Additional (1): fi-kbl-soraka 
-  Missing    (11): fi-bdw-samus fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-ivb-3770 fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8045 -> Patchwork_16782
-
-  CI-20190529: 20190529
-  CI_DRM_8045: 20933db717e6e793af836173de3d3011171e19b5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5483: 1707153df224ffb6333c6c660a792b7f334eb3d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16782: a62d3601c88e9446ada152e3d9f82bd1f3813ad7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a62d3601c88e drm/todo: Update drm_fb_helper tasks
-cc31536d1ca3 drm/fb-helper: Remove drm_fb_helper add, add_all and remove connector functions
-ead9b7648007 drm: Remove drm_fb_helper add, add all and remove connector calls
-cd18ce952086 drm/i915/display: Remove drm_fb_helper_{add, remove}_one_connector calls
-aae0dc36478f drm/amdgpu: Remove drm_fb_helper_{add, remove}_one_connector calls
-fb6218caebe9 drm/radeon: remove radeon_fb_{add, remove}_connector functions
-b2d10e50a2fc drm: Remove unused arg from drm_fb_helper_init
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16782/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
