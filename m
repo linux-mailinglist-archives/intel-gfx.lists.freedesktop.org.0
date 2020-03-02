@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76896176183
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:47:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 656C51761A8
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:56:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E38936E5CF;
-	Mon,  2 Mar 2020 17:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A14296E5D1;
+	Mon,  2 Mar 2020 17:56:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B156E5CF
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:47:22 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 09:47:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="286687247"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 02 Mar 2020 09:47:19 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 02 Mar 2020 19:47:18 +0200
-Date: Mon, 2 Mar 2020 19:47:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200302174718.GP13686@intel.com>
-References: <20200227193954.5585-1-ville.syrjala@linux.intel.com>
- <87a753qdwe.fsf@intel.com> <20200228111045.GA13686@intel.com>
- <20200228141042.GE13686@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BDEF86E5D1;
+ Mon,  2 Mar 2020 17:56:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B6735A363D;
+ Mon,  2 Mar 2020 17:56:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200228141042.GE13686@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Lock gmbus/aux mutexes while
- changing cdclk
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Mon, 02 Mar 2020 17:56:36 -0000
+Message-ID: <158317179671.30645.13875996472419313619@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200302170218.16496-1-jani.nikula@intel.com>
+In-Reply-To: <20200302170218.16496-1-jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_fix_documentation_build_after_rename?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,110 +38,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 28, 2020 at 04:10:42PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Fri, Feb 28, 2020 at 01:10:45PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Fri, Feb 28, 2020 at 11:06:41AM +0200, Jani Nikula wrote:
-> > > On Thu, 27 Feb 2020, Ville Syrjala <ville.syrjala@linux.intel.com> wr=
-ote:
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > >
-> > > > gmbus/aux may be clocked by cdclk, thus we should make sure no
-> > > > transfers are ongoing while the cdclk frequency is being changed.
-> > > > We do that by simply grabbing all the gmbus/aux mutexes. No one
-> > > > else should be holding any more than one of those at a time so
-> > > > the lock ordering here shouldn't matter.
-> > > >
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++++++++++++++++++=
-++++
-> > > >  1 file changed, 23 insertions(+)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/g=
-pu/drm/i915/display/intel_cdclk.c
-> > > > index 0741d643455b..f69bf4a4eb1c 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > > > @@ -1868,6 +1868,9 @@ static void intel_set_cdclk(struct drm_i915_p=
-rivate *dev_priv,
-> > > >  			    const struct intel_cdclk_config *cdclk_config,
-> > > >  			    enum pipe pipe)
-> > > >  {
-> > > > +	struct intel_encoder *encoder;
-> > > > +	unsigned int aux_mutex_lockclass =3D 0;
-> > > > +
-> > > >  	if (!intel_cdclk_changed(&dev_priv->cdclk.hw, cdclk_config))
-> > > >  		return;
-> > > >  =
+== Series Details ==
 
-> > > > @@ -1876,8 +1879,28 @@ static void intel_set_cdclk(struct drm_i915_=
-private *dev_priv,
-> > > >  =
+Series: drm/i915: fix documentation build after rename
+URL   : https://patchwork.freedesktop.org/series/74151/
+State : success
 
-> > > >  	intel_dump_cdclk_config(cdclk_config, "Changing CDCLK to");
-> > > >  =
+== Summary ==
 
-> > > > +	/*
-> > > > +	 * Lock aux/gmbus while we change cdclk in case those
-> > > > +	 * functions use cdclk. Not all platforms/ports do,
-> > > > +	 * but we'll lock them all for simplicity.
-> > > > +	 */
-> > > > +	mutex_lock(&dev_priv->gmbus_mutex);
-> > > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
-> > > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > > +
-> > > > +		mutex_lock_nested(&intel_dp->aux.hw_mutex,
-> > > > +				  aux_mutex_lockclass++);
-> > > > +	}
-> > > > +
-> > > >  	dev_priv->display.set_cdclk(dev_priv, cdclk_config, pipe);
-> > > >  =
+CI Bug Log - changes from CI_DRM_8045 -> Patchwork_16783
+====================================================
 
-> > > > +	for_each_intel_dp(&dev_priv->drm, encoder) {
-> > > > +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> > > > +
-> > > > +		mutex_unlock(&intel_dp->aux.hw_mutex);
-> > > > +	}
-> > > > +	mutex_unlock(&dev_priv->gmbus_mutex);
-> > > > +
-> > > =
+Summary
+-------
 
-> > > I'm becoming increasingly sensitive to directly touching the private
-> > > parts of other modules... gmbus_mutex is really for intel_gmbus.c and
-> > > aux.hw_mutex for drm_dp_helper.c.
-> > > =
+  **SUCCESS**
 
-> > > One could also argue that the cdclk is a lower level function used by
-> > > higher level functions aux/gmbus, and it seems like the higher level
-> > > function should lock the cdclk while it depends on it, not the other =
-way
-> > > around.
-> > =
+  No regressions found.
 
-> > That would require a rwsem. Otherwise it all gets serialized needlessly.
-> > Not sure what's the state of rwsems these days, but IIRC at some point
-> > the rt patches converted them all to normal mutexes.
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/index.html
 
-> Some googling suggests that my infromation may be out of date. So we
-> could introduce an rwsem for this I guess. Would add a bit more cost
-> to the common codepaths though (not that they're really performance
-> critical) whereas this version only adds extra cost to the much more
-> rare .set_cdclk() path.
+Known issues
+------------
 
-Decided to not bother with the rwsem and just sent a v2 with
-the mutex_lock_nest_lock().
+  Here are the changes found in Patchwork_16783 that come from known issues:
 
--- =
+### IGT changes ###
 
-Ville Syrj=E4l=E4
-Intel
+#### Issues hit ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][1] -> [DMESG-WARN][2] ([i915#44])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@addfb25-bad-modifier:
+    - fi-tgl-y:           [DMESG-WARN][5] ([CI#94] / [i915#402]) -> [PASS][6] +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/fi-tgl-y/igt@kms_addfb_basic@addfb25-bad-modifier.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-icl-u2:          [FAIL][7] ([i915#217]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8045/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+
+
+Participating hosts (50 -> 42)
+------------------------------
+
+  Additional (1): fi-byt-n2820 
+  Missing    (9): fi-bdw-samus fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8045 -> Patchwork_16783
+
+  CI-20190529: 20190529
+  CI_DRM_8045: 20933db717e6e793af836173de3d3011171e19b5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5483: 1707153df224ffb6333c6c660a792b7f334eb3d3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16783: 7cc5baf860ff948b55a94c9b1bab958ee08106aa @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7cc5baf860ff drm/i915: fix documentation build after rename
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16783/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
