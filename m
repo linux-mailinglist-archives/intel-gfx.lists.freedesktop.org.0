@@ -2,39 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A9A1760AE
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 861DC1760C2
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Mar 2020 18:11:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E8D06E356;
-	Mon,  2 Mar 2020 17:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C19186E046;
+	Mon,  2 Mar 2020 17:11:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FC2B6E356
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:04:36 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AFCB6E046
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2020 17:11:13 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 09:04:35 -0800
-X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="233232650"
-Received: from unknown (HELO localhost) ([10.252.41.44])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 09:04:33 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: =?utf-8?Q?Sini=C5=A1a?= Bandin <sinisa@4net.rs>, "Souza\, Jose"
- <jose.souza@intel.com>
-In-Reply-To: <a1c918b663805e8213a1229edb87883c@4net.rs>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <CAHk-=wgqwiBLGvwTqU2kJEPNmafPpPe_K0XgBU-A58M+mkwpgQ@mail.gmail.com>
- <99fb887f-4a1b-6c15-64a6-9d089773cdd4@4net.rs>
- <CAPM=9ty3NuSHBd+StNGxVCE9jkmppQ_VTr+jMRgB07qW3dRwrA@mail.gmail.com>
- <f9081410ef1135003720fa29d27aa10b9d12d509.camel@intel.com>
- <a1c918b663805e8213a1229edb87883c@4net.rs>
-Date: Mon, 02 Mar 2020 19:04:31 +0200
-Message-ID: <87sgiqpu1s.fsf@intel.com>
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 09:11:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,507,1574150400"; d="scan'208";a="233234951"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 02 Mar 2020 09:11:10 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 02 Mar 2020 19:11:09 +0200
+Date: Mon, 2 Mar 2020 19:11:09 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200302171109.GN13686@intel.com>
+References: <20200302170218.16496-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] Linux 5.6-rc2
+Content-Disposition: inline
+In-Reply-To: <20200302170218.16496-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: fix documentation build after
+ rename
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,19 +48,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAwMiBNYXIgMjAyMCwgU2luacWhYSBCYW5kaW4gPHNpbmlzYUA0bmV0LnJzPiB3cm90
-ZToKPiBTb3JyeSB0byBib3RoZXIsIGJ1dCBzdGlsbCBhICJubyBnbyIgaW4gcmM0IChhdCB0aGUg
-c2FtZSB0aW1lLCA1LjUuNyAKPiB3b3JrcyBPSykuCj4KPiBJcyB0aGVyZSBhbnl0aGluZyBlbHNl
-IEkgY291bGQgZG8gdG8gaGVscCBmaXggdGhpcz8KClBsZWFzZSB3YWl0IGZvciB0aGUgcGF0Y2gg
-dG8gYmUgYWN0dWFsbHkgbWVyZ2VkIHRvIExpbnVzJyB0cmVlLiBJIGFzc3VtZQppdCdsbCBtYWtl
-IGl0IHRvIHY1LjYtcmM1LgoKVGhhbmtzLApKYW5pLgoKCi0tIApKYW5pIE5pa3VsYSwgSW50ZWwg
-T3BlbiBTb3VyY2UgR3JhcGhpY3MgQ2VudGVyCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xp
-c3RpbmZvL2ludGVsLWdmeAo=
+On Mon, Mar 02, 2020 at 07:02:18PM +0200, Jani Nikula wrote:
+> intel_csr.c was moved under display.
+> =
+
+> Fixes: 06d3ff6e7451 ("drm/i915: move intel_csr.[ch] under display/")
+> Reported-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> ---
+>  Documentation/gpu/i915.rst | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+> index e539c42a3e78..cc74e24ca3b5 100644
+> --- a/Documentation/gpu/i915.rst
+> +++ b/Documentation/gpu/i915.rst
+> @@ -207,10 +207,10 @@ DPIO
+>  CSR firmware support for DMC
+>  ----------------------------
+>  =
+
+> -.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
+> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+>     :doc: csr support for dmc
+>  =
+
+> -.. kernel-doc:: drivers/gpu/drm/i915/intel_csr.c
+> +.. kernel-doc:: drivers/gpu/drm/i915/display/intel_csr.c
+>     :internal:
+>  =
+
+>  Video BIOS Table (VBT)
+> -- =
+
+> 2.20.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
