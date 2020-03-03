@@ -1,47 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A45176E1A
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 05:38:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 476B0176E1E
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 05:40:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BA566E40A;
-	Tue,  3 Mar 2020 04:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B7A96E974;
+	Tue,  3 Mar 2020 04:40:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47AD46E3DF;
- Tue,  3 Mar 2020 04:38:13 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C2216E4BA;
+ Tue,  3 Mar 2020 04:40:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2020 20:38:12 -0800
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 20:40:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,510,1574150400"; d="scan'208";a="233630998"
-Received: from fmsmsx107.amr.corp.intel.com ([10.18.124.205])
- by fmsmga008.fm.intel.com with ESMTP; 02 Mar 2020 20:38:12 -0800
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
- fmsmsx107.amr.corp.intel.com (10.18.124.205) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 2 Mar 2020 20:38:12 -0800
-Received: from bgsmsx154.gar.corp.intel.com (10.224.48.47) by
- fmsmsx109.amr.corp.intel.com (10.18.116.9) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 2 Mar 2020 20:38:11 -0800
+X-IronPort-AV: E=Sophos;i="5.70,510,1574150400"; d="scan'208";a="412607362"
+Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
+ by orsmga005.jf.intel.com with ESMTP; 02 Mar 2020 20:40:13 -0800
+Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
+ FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 2 Mar 2020 20:40:13 -0800
+Received: from bgsmsx151.gar.corp.intel.com (10.224.48.42) by
+ FMSMSX152.amr.corp.intel.com (10.18.125.5) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 2 Mar 2020 20:40:12 -0800
 Received: from BGSMSX107.gar.corp.intel.com ([169.254.9.58]) by
- BGSMSX154.gar.corp.intel.com ([169.254.7.245]) with mapi id 14.03.0439.000;
- Tue, 3 Mar 2020 10:08:08 +0530
+ BGSMSX151.gar.corp.intel.com ([169.254.3.26]) with mapi id 14.03.0439.000;
+ Tue, 3 Mar 2020 10:10:09 +0530
 From: "Laxminarayan Bharadiya, Pankaj"
  <pankaj.laxminarayan.bharadiya@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>, Emil Velikov <emil.l.velikov@gmail.com>
+To: Emil Velikov <emil.l.velikov@gmail.com>
 Thread-Topic: [Intel-gfx] [PATCH v2 0/7] drm: drm_fb_helper cleanup.
-Thread-Index: AQHV8LBL8+V2W+0rDEejJ760teGdoag1QS2AgAA4a4CAAACCAIAAzpkw
-Date: Tue, 3 Mar 2020 04:38:07 +0000
-Message-ID: <E92BA18FDE0A5B43B7B3DA7FCA0312860577DFAA@BGSMSX107.gar.corp.intel.com>
+Thread-Index: AQHV8LBL8+V2W+0rDEejJ760teGdoag1QS2AgAEIjNA=
+Date: Tue, 3 Mar 2020 04:40:09 +0000
+Message-ID: <E92BA18FDE0A5B43B7B3DA7FCA0312860577DFC2@BGSMSX107.gar.corp.intel.com>
 References: <20200302162151.52349-1-pankaj.laxminarayan.bharadiya@intel.com>
  <CACvgo50_0ZE3dxbwwv2g6937F3mA15thM_qXv=BBVodYy=mbxg@mail.gmail.com>
- <20200302214319.GI2363188@phenom.ffwll.local>
- <20200302214508.GJ2363188@phenom.ffwll.local>
-In-Reply-To: <20200302214508.GJ2363188@phenom.ffwll.local>
+In-Reply-To: <CACvgo50_0ZE3dxbwwv2g6937F3mA15thM_qXv=BBVodYy=mbxg@mail.gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -64,80 +62,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogRGFuaWVsIFZldHRlciA8
-ZGFuaWVsQGZmd2xsLmNoPg0KPiBTZW50OiAwMyBNYXJjaCAyMDIwIDAzOjE1DQo+IFRvOiBFbWls
-IFZlbGlrb3YgPGVtaWwubC52ZWxpa292QGdtYWlsLmNvbT4NCj4gQ2M6IExheG1pbmFyYXlhbiBC
-aGFyYWRpeWEsIFBhbmthag0KPiA8cGFua2FqLmxheG1pbmFyYXlhbi5iaGFyYWRpeWFAaW50ZWwu
-Y29tPjsgSmFuaSBOaWt1bGENCj4gPGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbT47IERhbmll
-bCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD47IEludGVsDQo+IEdyYXBoaWNzIERldmVsb3BtZW50
-IDxpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPjsgTUwgZHJpLWRldmVsIDxkcmktDQo+
-IGRldmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4NCj4gU3ViamVjdDogUmU6IFtJbnRlbC1nZnhd
-IFtQQVRDSCB2MiAwLzddIGRybTogZHJtX2ZiX2hlbHBlciBjbGVhbnVwLg0KPiANCj4gT24gTW9u
-LCBNYXIgMDIsIDIwMjAgYXQgMTA6NDM6MTlQTSArMDEwMCwgRGFuaWVsIFZldHRlciB3cm90ZToN
-Cj4gPiBPbiBNb24sIE1hciAwMiwgMjAyMCBhdCAwNjoyMToyM1BNICswMDAwLCBFbWlsIFZlbGlr
-b3Ygd3JvdGU6DQo+ID4gPiBIaSBQYW5rYWosDQo+ID4gPg0KPiA+ID4gT24gTW9uLCAyIE1hciAy
-MDIwIGF0IDE2OjMzLCBQYW5rYWogQmhhcmFkaXlhDQo+ID4gPiA8cGFua2FqLmxheG1pbmFyYXlh
-bi5iaGFyYWRpeWFAaW50ZWwuY29tPiB3cm90ZToNCj4gPiA+ID4NCj4gPiA+ID4gVGhpcyBzZXJp
-ZXMgYWRkcmVzc2VzIGJlbG93IGRybV9mYl9oZWxwZXIgdGFza3MgZnJvbQ0KPiA+ID4gPiBEb2N1
-bWVudGF0aW9uL2dwdS90b2RvLnJzdC4NCj4gPiA+ID4NCj4gPiA+ID4gLSBUaGUgbWF4IGNvbm5l
-Y3RvciBhcmd1bWVudCBmb3IgZHJtX2ZiX2hlbHBlcl9pbml0KCkgaXNuJ3QgdXNlZA0KPiA+ID4g
-PiAgIGFueW1vcmUgYW5kIGNhbiBiZSByZW1vdmVkLg0KPiA+ID4gPg0KPiA+ID4gPiAtIFRoZSBo
-ZWxwZXIgZG9lc24ndCBrZWVwIGFuIGFycmF5IG9mIGNvbm5lY3RvcnMgYW55bW9yZSBzbyB0aGVz
-ZSBjYW4NCj4gPiA+ID4gICBiZSByZW1vdmVkOiBkcm1fZmJfaGVscGVyX3NpbmdsZV9hZGRfYWxs
-X2Nvbm5lY3RvcnMoKSwNCj4gPiA+ID4gICBkcm1fZmJfaGVscGVyX2FkZF9vbmVfY29ubmVjdG9y
-KCkgYW5kDQo+ID4gPiA+ICAgZHJtX2ZiX2hlbHBlcl9yZW1vdmVfb25lX2Nvbm5lY3RvcigpLg0K
-PiA+ID4gPg0KPiA+ID4gPiBDaGFuZ2VzIHNpbmNlIHYxOg0KPiA+ID4gPiAgICAtIFNxdWFzaGVk
-IHdhcm5pbmcgZml4ZXMgaW50byB0aGUgcGF0Y2ggdGhhdCBpbnRyb2R1Y2VkIHRoZQ0KPiA+ID4g
-PiAgICAgIHdhcm5pbmdzIChpbnRvIDUvNykgKExhdXJlbnQpDQo+ID4gPiA+ICAgIC0gRml4ZWQg
-cmVmbG93IGluIGluIDkvOSAoTGF1cmVudCkNCj4gPiA+ID4NCj4gPiA+IEZvciB0aGUgZnV0dXJl
-LCBpbmNsdWRlIHRoZSBjaGFuZ2Vsb2cgaW4gdGhlIHJlc3BlY3RpdmUgcGF0Y2hlcy4NCj4gPiA+
-IFRoaXMgbWFrZXMgaXQgZWFzaWVyIGZvciByZXZpZXdlcnMuLi4NCj4gPiA+IFBsdXMgeW91J3Jl
-IGFscmVhZHkgY2hhbmdpbmcgdGhlIGNvbW1pdCAtIG1pZ2h0IGFzIHdlbGwgbWVudGlvbg0KPiA+
-ID4gd2hhdC93aHkgOi0pDQo+ID4gPg0KPiA+ID4gQWxzbyBkbyBpbmNsdWRlIHRoZSBSLUIsIEFj
-a2VkLWJ5LCBvdGhlciB0YWdzIGFjY3VtdWxhdGVkIHVwLXRvIHRoYXQNCj4gPiA+IHBvaW50LCB3
-aGVuIHNlbmRpbmcgbmV3IHJldmlzaW9uLg0KPiA+DQo+ID4gWXVwLCBjYW4geW91IHBscyByZXNl
-bmQgdGhhdCBlbnRpcmUgcGlsZSB3aXRoIGFsbCB0aGUgYWNrL3JldmlldyB0YWdzDQo+ID4gZnJv
-bSB0aGUgZWFybGllciB2ZXJzaW9ucyBpbmNsdWRlZD8gSWYgeW91IGRvbid0IGRvIHRoYXQgeW91
-IHdhc3RlDQo+ID4gcmV2aWV3ZXJzIHRpbWUuIEFub3RoZXIgb25lIGlzIHRoYXQgcmVzZW5kIHJp
-Z2h0IGF3YXkgYWxzbyBraW5kYQ0KPiA+IHdhc3RlcyBwZW9wbGVzIHRpbWUsIGJlY2F1c2UgdGhl
-cmUncyBhIG11Y2ggYmlnZ2VyIGNoYW5jZSB0aGF0IHNvbWVvbmUNCj4gPiB3aWxsIHJldmlldyB0
-aGUgb2xkIHZlcnNpb24sIGluc3RlYWQgb2YgeW91ciBuZXcgb25lLiBCZXR0ZXIgd2FpdCBvZg0K
-PiA+IGF0IGxlYXN0IDEtMiBkYXlzIG9yIHNvLg0KPiANCj4gSG0ganVzdCBub3RpY2VkIHRoYXQg
-cGVvcGxlIGFyZSBzdGlsbCByZXZpZXdpbmcgdjEuIEknZCBzYXkgbGV0cyBmb3JnZXQgYWJvdXQN
-Cj4gdGhpcyB2MiBoZXJlLCB3YWl0IDEtMiBkYXlzLCBhbmQgdGhlbiByZXNlbmQgd2l0aCBldmVy
-eXRoaW5nIGNvbWJpbmVkLg0KPiBIb3BlZnVsbHkgbm90IHRvbyBtYW55IHdpbGwgcmUtcmV2aWV3
-IHYyIGhlcmUgYW5kIHdhc3RlIHRpbWUgb24gc3R1ZmYgdGhhdCdzDQo+IHJldmlld2VkIGFscmVh
-ZHkuIFJlc2VuZGluZyB3aXRoaW4gaG91cnMgaXMgcmVhbGx5IG5vdCBnb29kIG9uIG1haWxpbmcg
-bGlzdHMNCj4gKHdpdGggbWVyZ2UgcmVxdWVzdHMgb3Igd2hhdGV2ZXIgaXQgZG9lc24ndCBtYXR0
-ZXIsIGJlY2F1c2UgZXZlcnlvbmUNCj4gYWx3YXlzIGxvb2tzIGF0IHRoZSBsYXRlc3QgdmVyc2lv
-bikuDQoNCk5vdGVkIPCfmIouIFRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLiANCldpbGwgc2VuZCB0
-aGUgbmV3IHNlcmllcyB3aXRoIHRhZ3MgYWNjdW11bGF0ZWQgYWZ0ZXIgMS0yIGRheXMuDQoNClRo
-YW5rcywNClBhbmthag0KPiAtRGFuaWVsDQo+IA0KPiA+DQo+ID4gPiBUaGF0IHNhaWQsIGlmIHlv
-dSdyZSBpbnRlcmVzdGVkIGluIGZ1cnRoZXIgY2xlYW5pbmcgdGhpcyB1cCwgb25lIGNhbg0KPiA+
-ID4gY2xlYW51cCB0aGUgZHJtX2RwX21zdF90b3BvbG9neV9jYnMgaG9va3MuDQo+ID4gPiBJbiBw
-YXJ0aWN1bGFyIDo6cmVnaXN0ZXJfY29ubmVjdG9yIGlzIGlkZW50aWNhbCBhY3Jvc3MgdGhlIGJv
-YXJkIC0NCj4gPiA+IGNyZWF0ZSBhIGhlbHBlciBmdW5jdGlvbiB1c2luZyBpdCBkaXJlY3RseSBp
-biBjb3JlLCBraWxsaW5nIHRoZSBob29rLg0KPiA+ID4NCj4gPiA+IFdoaWxlIGZvciA6OmRlc3Ry
-b3lfY29ubmVjdG9yIC0gdGhlcmUncyBzb21lIGFtZGdwdSBzcGVjaWZpYyBjb2RlIGluDQo+ID4g
-PiB0aGVyZS4uLiB3aGljaCBJJ20gbm90IHN1cmUgaWYgaXQgc2hvdWxkIHN0YXkgb3Igbm90Lg0K
-PiA+ID4gVG8gYmUgb24gdGhlIHNhdmUgc2lkZSAtIGNyZWF0ZSBhIGhlbHBlciB3aGljaCB3aWxs
-IGJlIGNhbGxlZCBmb3INCj4gPiA+IGRyaXZlcnMgd2hlcmUgdGhlIGhvb2sgaXMgIT1OVUxMIChh
-a2EgZXZlcnlvbmUgYnV0IGFtZGdwdSkuDQo+ID4NCj4gPiBZZWFoIHRoYXQgc3R1ZmYgbG9va3Mg
-ZmlzaHkuIFNtZWxscyBhIGJpdCBsaWtlIG9sZCBtc3QgY29kZSBkZXZlbG9wZWQNCj4gPiBiZWZv
-cmUgTHl1ZGUgZml4ZWQgdGhlIHJlZmNvdW50aW5nIGZvciByZWFsLCBpdCBzZWVtcyB0byBtYW51
-YWxseSBzaHV0DQo+ID4gZG93biBzdHVmZiB0aGF0IHNob3VsZCBiZSBjbGVhbmVkIHVwIHdpdGgg
-bm9ybWFsIGNvZGUgcGF0aHMgKG1vZGVzZXQNCj4gPiBhbmQvb3IgZmluYWwga3JlZl9wdXQgb24g
-dGhlIGNvbm5lY3RvcikuDQo+ID4gLURhbmllbA0KPiA+IC0tDQo+ID4gRGFuaWVsIFZldHRlcg0K
-PiA+IFNvZnR3YXJlIEVuZ2luZWVyLCBJbnRlbCBDb3Jwb3JhdGlvbg0KPiA+IGh0dHA6Ly9ibG9n
-LmZmd2xsLmNoDQo+IA0KPiAtLQ0KPiBEYW5pZWwgVmV0dGVyDQo+IFNvZnR3YXJlIEVuZ2luZWVy
-LCBJbnRlbCBDb3Jwb3JhdGlvbg0KPiBodHRwOi8vYmxvZy5mZndsbC5jaA0KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+
+> -----Original Message-----
+> From: Emil Velikov <emil.l.velikov@gmail.com>
+> Sent: 02 March 2020 23:51
+> To: Laxminarayan Bharadiya, Pankaj
+> <pankaj.laxminarayan.bharadiya@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>; Daniel Vetter
+> <daniel@ffwll.ch>; Intel Graphics Development <intel-
+> gfx@lists.freedesktop.org>; ML dri-devel <dri-devel@lists.freedesktop.org>
+> Subject: Re: [Intel-gfx] [PATCH v2 0/7] drm: drm_fb_helper cleanup.
+> 
+> Hi Pankaj,
+> 
+> On Mon, 2 Mar 2020 at 16:33, Pankaj Bharadiya
+> <pankaj.laxminarayan.bharadiya@intel.com> wrote:
+> >
+> > This series addresses below drm_fb_helper tasks from
+> > Documentation/gpu/todo.rst.
+> >
+> > - The max connector argument for drm_fb_helper_init() isn't used
+> >   anymore and can be removed.
+> >
+> > - The helper doesn't keep an array of connectors anymore so these can
+> >   be removed: drm_fb_helper_single_add_all_connectors(),
+> >   drm_fb_helper_add_one_connector() and
+> >   drm_fb_helper_remove_one_connector().
+> >
+> > Changes since v1:
+> >    - Squashed warning fixes into the patch that introduced the
+> >      warnings (into 5/7) (Laurent)
+> >    - Fixed reflow in in 9/9 (Laurent)
+> >
+> For the future, include the changelog in the respective patches. This makes it
+> easier for reviewers...
+> Plus you're already changing the commit - might as well mention what/why :-
+> )
+> 
+> Also do include the R-B, Acked-by, other tags accumulated up-to that point,
+> when sending new revision.
+
+Noted, Thank you for the feedback. Will send new series with tags accumulated
+after 1-2 days. 
+
+> 
+> 
+> That said, if you're interested in further cleaning this up, one can cleanup the
+> drm_dp_mst_topology_cbs hooks.
+> In particular ::register_connector is identical across the board - create a
+> helper function using it directly in core, killing the hook.
+> 
+> While for ::destroy_connector - there's some amdgpu specific code in
+> there... which I'm not sure if it should stay or not.
+> To be on the save side - create a helper which will be called for drivers where
+> the hook is !=NULL (aka everyone but amdgpu).
+
+Will take a look.
+
+Thanks,
+Pankaj
+
+> 
+> HTH
+> Emil
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
