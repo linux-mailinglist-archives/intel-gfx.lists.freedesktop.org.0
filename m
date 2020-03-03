@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAFE17843E
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DC75178453
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:52:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53A7D6E94E;
-	Tue,  3 Mar 2020 20:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5666E0C9;
+	Tue,  3 Mar 2020 20:52:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8426E054
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 20:43:50 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20433724-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 20:43:45 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Mar 2020 20:43:45 +0000
-Message-Id: <20200303204345.1859734-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200303204345.1859734-1-chris@chris-wilson.co.uk>
-References: <20200303204345.1859734-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 661836E0C9;
+ Tue,  3 Mar 2020 20:52:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5FA0EA363D;
+ Tue,  3 Mar 2020 20:52:22 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 3/3] drm/i915/gem: Only call eb_lookup_vma once
- during execbuf ioctl
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 03 Mar 2020 20:52:22 -0000
+Message-ID: <158326874236.15380.12875466078783145609@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200303182904.952445-1-matthew.d.roper@intel.com>
+In-Reply-To: <20200303182904.952445-1-matthew.d.roper@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/ehl=3A_Check_PHY_type_before_reading_DPLL_frequency_=28re?=
+ =?utf-8?b?djIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,288 +39,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we no longer stash anything inside i915_vma under the exclusive
-protection of struct_mutex, we do not need to revoke the i915_vma
-stashes before dropping struct_mutex to handle pagefaults. Knowing that
-we must drop the struct_mutex while keeping the eb->vma around, means
-that we are required to hold onto to the object reference until we have
-marked the vma as active.
+== Series Details ==
 
-Fixes: 155ab8836caa ("drm/i915: Move object close under its own lock")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 107 +++++++-----------
- 1 file changed, 42 insertions(+), 65 deletions(-)
+Series: drm/i915/ehl: Check PHY type before reading DPLL frequency (rev2)
+URL   : https://patchwork.freedesktop.org/series/74214/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d59926857cbd..a1636c168e1f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -47,17 +47,15 @@ enum {
- #define DBG_FORCE_RELOC 0 /* choose one of the above! */
- };
- 
--#define __EXEC_OBJECT_HAS_REF		BIT(31)
--#define __EXEC_OBJECT_HAS_PIN		BIT(30)
--#define __EXEC_OBJECT_HAS_FENCE		BIT(29)
--#define __EXEC_OBJECT_NEEDS_MAP		BIT(28)
--#define __EXEC_OBJECT_NEEDS_BIAS	BIT(27)
--#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 27) /* all of the above */
-+#define __EXEC_OBJECT_HAS_PIN		BIT(31)
-+#define __EXEC_OBJECT_HAS_FENCE		BIT(30)
-+#define __EXEC_OBJECT_NEEDS_MAP		BIT(29)
-+#define __EXEC_OBJECT_NEEDS_BIAS	BIT(28)
-+#define __EXEC_OBJECT_INTERNAL_FLAGS	(~0u << 28) /* all of the above */
- #define __EXEC_OBJECT_RESERVED (__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_FENCE)
- 
- #define __EXEC_HAS_RELOC	BIT(31)
--#define __EXEC_VALIDATED	BIT(30)
--#define __EXEC_INTERNAL_FLAGS	(~0u << 30)
-+#define __EXEC_INTERNAL_FLAGS	(~0u << 31)
- #define UPDATE			PIN_OFFSET_FIXED
- 
- #define BATCH_OFFSET_BIAS (256*1024)
-@@ -472,24 +470,17 @@ eb_validate_vma(struct i915_execbuffer *eb,
- 	return 0;
- }
- 
--static int
-+static void
- eb_add_vma(struct i915_execbuffer *eb,
- 	   unsigned int i, unsigned batch_idx,
- 	   struct i915_vma *vma)
- {
- 	struct drm_i915_gem_exec_object2 *entry = &eb->exec[i];
- 	struct eb_vma *ev = &eb->vma[i];
--	int err;
- 
- 	GEM_BUG_ON(i915_vma_is_closed(vma));
- 
--	if (!(eb->args->flags & __EXEC_VALIDATED)) {
--		err = eb_validate_vma(eb, entry, vma);
--		if (unlikely(err))
--			return err;
--	}
--
--	ev->vma = vma;
-+	ev->vma = i915_vma_get(vma);
- 	ev->exec = entry;
- 	ev->flags = entry->flags;
- 
-@@ -522,7 +513,6 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		eb->batch = ev;
- 	}
- 
--	err = 0;
- 	if (eb_pin_vma(eb, entry, ev)) {
- 		if (entry->offset != vma->node.start) {
- 			entry->offset = vma->node.start | UPDATE;
-@@ -530,12 +520,8 @@ eb_add_vma(struct i915_execbuffer *eb,
- 		}
- 	} else {
- 		eb_unreserve_vma(ev);
--
- 		list_add_tail(&ev->bind_link, &eb->unbound);
--		if (drm_mm_node_allocated(&vma->node))
--			err = i915_vma_unbind(vma);
- 	}
--	return err;
- }
- 
- static inline int use_cpu_reloc(const struct reloc_cache *cache,
-@@ -582,6 +568,13 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
- 	else if (exec_flags & __EXEC_OBJECT_NEEDS_BIAS)
- 		pin_flags |= BATCH_OFFSET_BIAS | PIN_OFFSET_BIAS;
- 
-+	if (drm_mm_node_allocated(&vma->node) &&
-+	    eb_vma_misplaced(entry, vma, ev->flags)) {
-+		err = i915_vma_unbind(vma);
-+		if (err)
-+			return err;
-+	}
-+
- 	err = i915_vma_pin(vma,
- 			   entry->pad_to_size, entry->alignment,
- 			   pin_flags);
-@@ -641,7 +634,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 			if (err)
- 				break;
- 		}
--		if (err != -ENOSPC)
-+		if (!(err == -ENOSPC || err == -EAGAIN))
- 			return err;
- 
- 		/* Resort *all* the objects into priority order */
-@@ -672,6 +665,11 @@ static int eb_reserve(struct i915_execbuffer *eb)
- 		}
- 		list_splice_tail(&last, &eb->unbound);
- 
-+		if (err == -EAGAIN) {
-+			flush_workqueue(eb->i915->mm.userptr_wq);
-+			continue;
-+		}
-+
- 		switch (pass++) {
- 		case 0:
- 			break;
-@@ -727,17 +725,14 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 	unsigned int i, batch;
- 	int err;
- 
-+	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
-+		return -ENOENT;
-+
- 	INIT_LIST_HEAD(&eb->relocs);
- 	INIT_LIST_HEAD(&eb->unbound);
- 
- 	batch = eb_batch_index(eb);
- 
--	mutex_lock(&eb->gem_context->mutex);
--	if (unlikely(i915_gem_context_is_closed(eb->gem_context))) {
--		err = -ENOENT;
--		goto err_ctx;
--	}
--
- 	for (i = 0; i < eb->buffer_count; i++) {
- 		u32 handle = eb->exec[i].handle;
- 		struct i915_lut_handle *lut;
-@@ -782,25 +777,19 @@ static int eb_lookup_vmas(struct i915_execbuffer *eb)
- 		i915_gem_object_unlock(obj);
- 
- add_vma:
--		err = eb_add_vma(eb, i, batch, vma);
-+		err = eb_validate_vma(eb, &eb->exec[i], vma);
- 		if (unlikely(err))
- 			goto err_vma;
- 
--		GEM_BUG_ON(drm_mm_node_allocated(&vma->node) &&
--			   eb_vma_misplaced(&eb->exec[i], vma, eb->vma[i].flags));
-+		eb_add_vma(eb, i, batch, vma);
- 	}
- 
--	mutex_unlock(&eb->gem_context->mutex);
--
--	eb->args->flags |= __EXEC_VALIDATED;
--	return eb_reserve(eb);
-+	return 0;
- 
- err_obj:
- 	i915_gem_object_put(obj);
- err_vma:
- 	eb->vma[i].vma = NULL;
--err_ctx:
--	mutex_unlock(&eb->gem_context->mutex);
- 	return err;
- }
- 
-@@ -841,19 +830,10 @@ static void eb_release_vmas(const struct i915_execbuffer *eb)
- 		if (ev->flags & __EXEC_OBJECT_HAS_PIN)
- 			__eb_unreserve_vma(vma, ev->flags);
- 
--		if (ev->flags & __EXEC_OBJECT_HAS_REF)
--			i915_vma_put(vma);
-+		i915_vma_put(vma);
- 	}
- }
- 
--static void eb_reset_vmas(const struct i915_execbuffer *eb)
--{
--	eb_release_vmas(eb);
--	if (eb->lut_size > 0)
--		memset(eb->buckets, 0,
--		       sizeof(struct hlist_head) << eb->lut_size);
--}
--
- static void eb_destroy(const struct i915_execbuffer *eb)
- {
- 	GEM_BUG_ON(eb->reloc_cache.rq);
-@@ -1662,8 +1642,6 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 		goto out;
- 	}
- 
--	/* We may process another execbuffer during the unlock... */
--	eb_reset_vmas(eb);
- 	mutex_unlock(&dev->struct_mutex);
- 
- 	/*
-@@ -1702,11 +1680,6 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 		goto out;
- 	}
- 
--	/* reacquire the objects */
--	err = eb_lookup_vmas(eb);
--	if (err)
--		goto err;
--
- 	GEM_BUG_ON(!eb->batch);
- 
- 	list_for_each_entry(ev, &eb->relocs, reloc_link) {
-@@ -1757,8 +1730,17 @@ static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
- 
- static int eb_relocate(struct i915_execbuffer *eb)
- {
--	if (eb_lookup_vmas(eb))
--		goto slow;
-+	int err;
-+
-+	mutex_lock(&eb->gem_context->mutex);
-+	err = eb_lookup_vmas(eb);
-+	mutex_unlock(&eb->gem_context->mutex);
-+	if (err)
-+		return err;
-+
-+	err = eb_reserve(eb);
-+	if (err)
-+		return err;
- 
- 	/* The objects are in their final locations, apply the relocations. */
- 	if (eb->args->flags & __EXEC_HAS_RELOC) {
-@@ -1766,14 +1748,11 @@ static int eb_relocate(struct i915_execbuffer *eb)
- 
- 		list_for_each_entry(ev, &eb->relocs, reloc_link) {
- 			if (eb_relocate_vma(eb, ev))
--				goto slow;
-+				return eb_relocate_slow(eb);
- 		}
- 	}
- 
- 	return 0;
--
--slow:
--	return eb_relocate_slow(eb);
- }
- 
- static int eb_move_to_gpu(struct i915_execbuffer *eb)
-@@ -1855,8 +1834,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 		i915_vma_unlock(vma);
- 
- 		__eb_unreserve_vma(vma, flags);
--		if (unlikely(flags & __EXEC_OBJECT_HAS_REF))
--			i915_vma_put(vma);
-+		i915_vma_put(vma);
- 
- 		ev->vma = NULL;
- 	}
-@@ -2116,8 +2094,7 @@ static int eb_parse(struct i915_execbuffer *eb)
- 		goto err_trampoline;
- 
- 	eb->vma[eb->buffer_count].vma = i915_vma_get(shadow);
--	eb->vma[eb->buffer_count].flags =
--		__EXEC_OBJECT_HAS_PIN | __EXEC_OBJECT_HAS_REF;
-+	eb->vma[eb->buffer_count].flags = __EXEC_OBJECT_HAS_PIN;
- 	eb->batch = &eb->vma[eb->buffer_count++];
- 
- 	eb->trampoline = trampoline;
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8057 -> Patchwork_16803
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16803 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@addfb25-x-tiled:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-soraka:      [PASS][3] -> [DMESG-WARN][4] ([i915#95])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/fi-kbl-soraka/igt@kms_busy@basic@flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - {fi-kbl-7560u}:     [FAIL][5] ([i915#998]) -> [PASS][6] +5 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-7560u/igt@kms_flip@basic-flip-vs-dpms.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/fi-kbl-7560u/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@vgem_basic@mmap:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@vgem_basic@mmap.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/fi-tgl-y/igt@vgem_basic@mmap.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+
+
+Participating hosts (43 -> 43)
+------------------------------
+
+  Additional (5): fi-bsw-n3050 fi-glk-dsi fi-kbl-7500u fi-skl-6600u fi-snb-2600 
+  Missing    (5): fi-byt-squawks fi-bsw-cyan fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8057 -> Patchwork_16803
+
+  CI-20190529: 20190529
+  CI_DRM_8057: 45ca41e870e508bf9040b308d9ff1ccf7ab779e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5488: 5b6930b4d267f7002c2e9442262e21a725941db5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16803: dbc12455194ce386ea9b31544ed305500d4e094d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+dbc12455194c drm/i915/ehl: Check PHY type before reading DPLL frequency
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
