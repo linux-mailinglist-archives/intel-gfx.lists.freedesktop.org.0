@@ -2,33 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0C41779A3
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:54:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F28A177945
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:41:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5D76EA86;
-	Tue,  3 Mar 2020 14:54:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 893C66EA78;
+	Tue,  3 Mar 2020 14:41:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE1A36EA86;
- Tue,  3 Mar 2020 14:54:38 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20428052-1500050 for multiple; Tue, 03 Mar 2020 14:37:27 +0000
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 445046EA7D;
+ Tue,  3 Mar 2020 14:41:47 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 06:40:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="274221383"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga002.fm.intel.com with ESMTP; 03 Mar 2020 06:40:44 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id C84B25C1D7C; Tue,  3 Mar 2020 16:39:28 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200303143137.1615349-1-chris@chris-wilson.co.uk>
+References: <20200303143137.1615349-1-chris@chris-wilson.co.uk>
+Date: Tue, 03 Mar 2020 16:39:28 +0200
+Message-ID: <87lfoh5wpr.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-In-Reply-To: <87r1y95x0f.fsf@gaia.fi.intel.com>
-References: <20200303140327.1535286-1-chris@chris-wilson.co.uk>
- <87r1y95x0f.fsf@gaia.fi.intel.com>
-Message-ID: <158324624580.6031.4377056183773987481@skylake-alporthouse-com>
-User-Agent: alot/0.6
-Date: Tue, 03 Mar 2020 14:37:25 +0000
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH i-g-t] i915/gem_exec_parallel: Try
- to trim runtime
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_ctx_create: Fix 'files'
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,52 +49,76 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-03-03 14:33:04)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > In all likelihood the runtime is consumed by the thread setup, but just
-> > in case it is dominated by the execbuf, make sure that is bounded.
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > ---
-> >  tests/i915/gem_exec_parallel.c | 28 ++++++++++++++++------------
-> >  1 file changed, 16 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
-> > index 0d4d6c628..586f85080 100644
-> > --- a/tests/i915/gem_exec_parallel.c
-> > +++ b/tests/i915/gem_exec_parallel.c
-> > @@ -42,22 +42,26 @@
-> >  
-> >  #define VERIFY 0
-> >  
-> > +static inline uint32_t hash32(uint32_t val)
-> > +{
-> > +#define GOLDEN_RATIO_32 0x61C88647
-> > +     return val * GOLDEN_RATIO_32;
-> > +}
-> > +
-> >  static void check_bo(int fd, uint32_t handle, int pass)
-> >  {
-> > -     uint32_t *map;
-> > -     int i;
-> > +     uint32_t x = hash32(handle * pass) % 1024;
-> >  
-> >       igt_debug("Verifying result (pass=%d, handle=%d)\n", pass, handle);
-> > -     map = gem_mmap__cpu(fd, handle, 0, 4096, PROT_READ);
-> > -     gem_set_domain(fd, handle, I915_GEM_DOMAIN_CPU, 0);
-> > -     for (i = 0; i < 1024; i++)
-> > -             igt_assert_eq(map[i], i);
-> > -     munmap(map, 4096);
-> > +     gem_read(fd, handle, x * sizeof(x), &x, sizeof(x));
-> > +     igt_assert_eq_u32(x, x);
-> 
-> This caught my eye.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Fine, I'll read it into a second var.
+> The test is supposed to create a context for each execution, so do so.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  tests/i915/gem_ctx_create.c | 20 +++++++++++---------
+>  1 file changed, 11 insertions(+), 9 deletions(-)
+>
+> diff --git a/tests/i915/gem_ctx_create.c b/tests/i915/gem_ctx_create.c
+> index 2c44a3e3e..d9192fbab 100644
+> --- a/tests/i915/gem_ctx_create.c
+> +++ b/tests/i915/gem_ctx_create.c
+> @@ -178,7 +178,7 @@ static void active(int fd, const struct intel_execution_engine2 *e,
+>  
+>  			execbuf.flags = ppgtt_engines[child];
+>  
+> -			while (!*(volatile unsigned *)shared) {
+> +			while (!READ_ONCE(*shared)) {
 
-I thought it looked odd :)
--Chris
+Pleasing.
+
+>  				obj.handle = gem_create(fd, 4096 << 10);
+>  				gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
+>  
+> @@ -209,17 +209,19 @@ static void active(int fd, const struct intel_execution_engine2 *e,
+>  
+>  		clock_gettime(CLOCK_MONOTONIC, &start);
+>  		do {
+> -			do {
+> -				execbuf.rsvd1 = ctx;
+> -				for (unsigned n = 0; n < nengine; n++) {
+> -					execbuf.flags = engines[n];
+> -					gem_execbuf(fd, &execbuf);
+> -				}
+> -				gem_context_destroy(fd, execbuf.rsvd1);
+> -			} while (++count & 1023);
+> +			execbuf.rsvd1 = gem_context_clone_with_engines(fd, ctx);
+> +			for (unsigned n = 0; n < nengine; n++) {
+> +				execbuf.flags = engines[n];
+> +				gem_execbuf(fd, &execbuf);
+> +			}
+> +			gem_context_destroy(fd, execbuf.rsvd1);
+> +			count++;
+> +
+>  			clock_gettime(CLOCK_MONOTONIC, &end);
+>  		} while (elapsed(&start, &end) < timeout);
+>  
+> +		gem_context_destroy(fd, ctx);
+
+Tidy.
+
+Well as the test name is terse as 'active' I can't argue that it should or
+should not create a context.
+
+But tossing the same ctx for each execbuf looks fruitless enough.
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+> +
+>  		gem_sync(fd, obj.handle);
+>  		clock_gettime(CLOCK_MONOTONIC, &end);
+>  		igt_info("[%d] Context creation + execution: %.3f us\n",
+> -- 
+> 2.25.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
