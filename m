@@ -2,38 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF831177479
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 11:46:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AC58177525
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 12:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7735E89FFD;
-	Tue,  3 Mar 2020 10:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF766E7D0;
+	Tue,  3 Mar 2020 11:13:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36CA989FFD
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 10:46:22 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 02:46:21 -0800
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="233580918"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 02:46:20 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <87v9nnosw3.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200227170047.31089-1-jani.nikula@intel.com>
- <20200227170047.31089-3-jani.nikula@intel.com>
- <158287816601.19174.1174685946100420568@skylake-alporthouse-com>
- <87v9nnosw3.fsf@intel.com>
-Date: Tue, 03 Mar 2020 12:46:16 +0200
-Message-ID: <87imjlpvgn.fsf@intel.com>
+X-Greylist: delayed 11314 seconds by postgrey-1.36 at gabe;
+ Tue, 03 Mar 2020 11:13:09 UTC
+Received: from userp2130.oracle.com (userp2130.oracle.com [156.151.31.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EEA6E7D0
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 11:13:09 +0000 (UTC)
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+ by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02383s6Z043529;
+ Tue, 3 Mar 2020 08:04:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type : in-reply-to;
+ s=corp-2020-01-29; bh=qO4CCvDH3LQqqaia42lNfgTGpB0rLmvxXhDjVASIaN0=;
+ b=mq2+hICT6DlA5btf/qBrMOY4HOtf8sMTh48fkkm3jaUTwjGLCqb4d4ZXuwmqc9aUY/7a
+ WiIpwwoTlPPsMfKQh8cqZQB+6xSbwSyd13Y8fMyoN2zfRKMnphxcBbivQaPh0jDA/i8N
+ mytqRwMl99rP7Ea7NWmw462tyMiEnjDgtxzN8JjOi+twYhhcfuHXBDHKHH+dgujxl3lF
+ OSkBCjsn5uWjKA4+MSqwwAsH22YkybiWbdUTOESpzFw9l3pKwd5M4efNia84QI4yIdh4
+ GDExsu53vJ5wpUBqXCZqGqwmIocTkjMgFUCyjwnSO+fVLe3SLKkGTQX5eNBEJ1H6VW9U Kg== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by userp2130.oracle.com with ESMTP id 2yffcudb3x-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 03 Mar 2020 08:04:24 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0237v7uX017106;
+ Tue, 3 Mar 2020 08:04:24 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by aserp3030.oracle.com with ESMTP id 2yg1gwvhxp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 03 Mar 2020 08:04:23 +0000
+Received: from abhmp0008.oracle.com (abhmp0008.oracle.com [141.146.116.14])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 02384IGF019279;
+ Tue, 3 Mar 2020 08:04:19 GMT
+Received: from kadam (/129.205.23.165) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 03 Mar 2020 00:04:17 -0800
+Date: Tue, 3 Mar 2020 11:04:06 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: kbuild@lists.01.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200303080406.GC24372@kadam>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 3/3] drm/i915: move watermark structs more
- towards usage
+Content-Disposition: inline
+In-Reply-To: <20200302222631.3861340-4-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9548
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ phishscore=0
+ suspectscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0 spamscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2001150001 definitions=main-2003030061
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9548
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ mlxscore=0 bulkscore=0
+ adultscore=0 suspectscore=0 spamscore=0 malwarescore=0 impostorscore=0
+ priorityscore=1501 mlxlogscore=999 lowpriorityscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2003030062
+Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
+ drm_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +79,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: kbuild-all@lists.01.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 02 Mar 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Fri, 28 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->> Quoting Jani Nikula (2020-02-27 17:00:47)
->>> Shrink i915_drv.h a bit by moving watermark structs where they are
->>> needed.
->>> 
->>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>
->> Series is
->> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
->
-> Thanks, pushed 1-2 to dinq, will need to rebase 3.
+Hi Daniel,
 
-Actually, patch 3 also applied with fewer context lines.
+I love your patch! Perhaps something to improve:
 
-BR,
-Jani.
+url:    https://github.com/0day-ci/linux/commits/Daniel-Vetter/drm_device-managed-resources-v4/20200303-071023
+base:   git://anongit.freedesktop.org/drm/drm-tip drm-tip
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+
+smatch warnings:
+drivers/gpu/drm/drm_drv.c:843 drm_dev_release() error: dereferencing freed memory 'dev'
+
+# https://github.com/0day-ci/linux/commit/5aba700d4c32ae5722a9931c959b13a6217a86e2
+git remote add linux-review https://github.com/0day-ci/linux
+git remote update linux-review
+git checkout 5aba700d4c32ae5722a9931c959b13a6217a86e2
+vim +/dev +843 drivers/gpu/drm/drm_drv.c
+
+099d1c290e2ebc drivers/gpu/drm/drm_stub.c David Herrmann 2014-01-29  826  static void drm_dev_release(struct kref *ref)
+0dc8fe5985e01f drivers/gpu/drm/drm_stub.c David Herrmann 2013-10-02  827  {
+099d1c290e2ebc drivers/gpu/drm/drm_stub.c David Herrmann 2014-01-29  828  	struct drm_device *dev = container_of(ref, struct drm_device, ref);
+8f6599da8e772f drivers/gpu/drm/drm_stub.c David Herrmann 2013-10-20  829  
+f30c92576af4bb drivers/gpu/drm/drm_drv.c  Chris Wilson   2017-02-02  830  	if (dev->driver->release) {
+f30c92576af4bb drivers/gpu/drm/drm_drv.c  Chris Wilson   2017-02-02  831  		dev->driver->release(dev);
+f30c92576af4bb drivers/gpu/drm/drm_drv.c  Chris Wilson   2017-02-02  832  	} else {
+f30c92576af4bb drivers/gpu/drm/drm_drv.c  Chris Wilson   2017-02-02  833  		drm_dev_fini(dev);
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  834  	}
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  835  
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  836  	drm_managed_release(dev);
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  837  
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  838  	if (!dev->driver->release && !dev->managed.final_kfree) {
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  839  		WARN_ON(!list_empty(&dev->managed.resources));
+0dc8fe5985e01f drivers/gpu/drm/drm_stub.c David Herrmann 2013-10-02  840  		kfree(dev);
+                                                                                        ^^^^^^^^^^
+Free
+
+0dc8fe5985e01f drivers/gpu/drm/drm_stub.c David Herrmann 2013-10-02  841  	}
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  842  
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02 @843  	if (dev->managed.final_kfree)
+                                                                                    ^^^^^
+Dereference
+
+5aba700d4c32ae drivers/gpu/drm/drm_drv.c  Daniel Vetter  2020-03-02  844  		kfree(dev->managed.final_kfree);
+f30c92576af4bb drivers/gpu/drm/drm_drv.c  Chris Wilson   2017-02-02  845  }
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
