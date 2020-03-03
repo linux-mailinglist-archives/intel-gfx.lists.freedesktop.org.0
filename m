@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08797178427
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:38:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4A6A17843C
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914256E94D;
-	Tue,  3 Mar 2020 20:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA726E054;
+	Tue,  3 Mar 2020 20:43:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 997C76E054
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 20:38:46 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 12:38:46 -0800
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="386914677"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 12:38:45 -0800
-Date: Tue, 3 Mar 2020 12:39:35 -0800
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Lucas De Marchi <lucas.de.marchi@gmail.com>,
- Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200303203935.GF645250@intel.com>
-References: <20200218230822.66801-1-jose.souza@intel.com>
- <CAKi4VAL-f=p18JtZQjgc9J+KsSGFZ5VQXB3Cb1AYXMC9G-1-qA@mail.gmail.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AD656E0C2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 20:43:50 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20433722-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 20:43:45 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Mar 2020 20:43:43 +0000
+Message-Id: <20200303204345.1859734-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKi4VAL-f=p18JtZQjgc9J+KsSGFZ5VQXB3Cb1AYXMC9G-1-qA@mail.gmail.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Remove require_force_probe
- protection
+Subject: [Intel-gfx] [CI 1/3] drm/i915: Drop inspection of execbuf flags
+ during evict
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,98 +37,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 03, 2020 at 12:26:34PM -0800, Lucas De Marchi wrote:
-> On Tue, Feb 18, 2020 at 3:07 PM Jos=E9 Roberto de Souza
-> <jose.souza@intel.com> wrote:
-> >
-> > We have a few TGL machines in our CI and it is mostly green with
-> > failures in tests that will not impact future Linux installations.
-> > Also there is no warnings, errors, flickering or any visual defects
-> > while doing ordinary tasks like browsing and editing documents in a
-> > dual monitor setup.
-> >
-> > As a reminder i915.require_force_probe was created to protect
-> > future Linux installation's iso images that might contain a
-> > kernel from the enabling time of the new platform. Without this
-> > protection most of linux installation was recommending
-> > nomodeset option during installation that was getting stick
-> > there after installation.
-> >
-> > Reference: https://intel-gfx-ci.01.org/tree/drm-tip/fi-tgl-u.html
-> > Reference: https://intel-gfx-ci.01.org/tree/drm-tip/shard-tglb.html
-> > Cc: James Ausmus <james.ausmus@intel.com>
-> > Cc: Jani Saarinen <jani.saarinen@intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> =
+With the goal of removing the serialisation from around execbuf, we will
+no longer have the privilege of there being a single execbuf in flight
+at any time and so will only be able to inspect the user's flags within
+the carefully controlled execbuf context. i915_gem_evict_for_node() is
+the only user outside of execbuf that currently peeks at the flag to
+convert an overlapping softpinned request from ENOSPC to EINVAL. Retract
+this nicety and only report ENOSPC if the location is in current use,
+either due to this execbuf or another.
 
-> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> =
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Reviewed-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 16 ++++++++--------
+ drivers/gpu/drm/i915/i915_gem_evict.c          | 15 ++++++---------
+ 2 files changed, 14 insertions(+), 17 deletions(-)
 
-> Also, I think it would be good to have this in 5.6 rather than 5.7.
-> Yes, it's late in the merge window, but it falls in the case of "New
-> device IDs and quirks are also accepted." of the stable kernel rules,
-> so could as well just go directly to this kernel. Rodrigo, is it
-> possible?
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d73be2c28098..3ea73d246745 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -562,14 +562,13 @@ static inline int use_cpu_reloc(const struct reloc_cache *cache,
+ }
+ 
+ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+-			  struct i915_vma *vma)
++			  struct i915_vma *vma,
++			  u64 pin_flags)
+ {
+ 	struct drm_i915_gem_exec_object2 *entry = exec_entry(eb, vma);
+ 	unsigned int exec_flags = *vma->exec_flags;
+-	u64 pin_flags;
+ 	int err;
+ 
+-	pin_flags = PIN_USER | PIN_NONBLOCK;
+ 	if (exec_flags & EXEC_OBJECT_NEEDS_GTT)
+ 		pin_flags |= PIN_GLOBAL;
+ 
+@@ -583,12 +582,10 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+ 	if (exec_flags & __EXEC_OBJECT_NEEDS_MAP)
+ 		pin_flags |= PIN_MAPPABLE;
+ 
+-	if (exec_flags & EXEC_OBJECT_PINNED) {
++	if (exec_flags & EXEC_OBJECT_PINNED)
+ 		pin_flags |= entry->offset | PIN_OFFSET_FIXED;
+-		pin_flags &= ~PIN_NONBLOCK; /* force overlapping checks */
+-	} else if (exec_flags & __EXEC_OBJECT_NEEDS_BIAS) {
++	else if (exec_flags & __EXEC_OBJECT_NEEDS_BIAS)
+ 		pin_flags |= BATCH_OFFSET_BIAS | PIN_OFFSET_BIAS;
+-	}
+ 
+ 	err = i915_vma_pin(vma,
+ 			   entry->pad_to_size, entry->alignment,
+@@ -621,6 +618,7 @@ static int eb_reserve_vma(const struct i915_execbuffer *eb,
+ static int eb_reserve(struct i915_execbuffer *eb)
+ {
+ 	const unsigned int count = eb->buffer_count;
++	unsigned int pin_flags = PIN_USER | PIN_NONBLOCK;
+ 	struct list_head last;
+ 	struct i915_vma *vma;
+ 	unsigned int i, pass;
+@@ -644,7 +642,7 @@ static int eb_reserve(struct i915_execbuffer *eb)
+ 	err = 0;
+ 	do {
+ 		list_for_each_entry(vma, &eb->unbound, exec_link) {
+-			err = eb_reserve_vma(eb, vma);
++			err = eb_reserve_vma(eb, vma, pin_flags);
+ 			if (err)
+ 				break;
+ 		}
+@@ -694,6 +692,8 @@ static int eb_reserve(struct i915_execbuffer *eb)
+ 		default:
+ 			return -ENOSPC;
+ 		}
++
++		pin_flags = PIN_USER;
+ 	} while (1);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem_evict.c b/drivers/gpu/drm/i915/i915_gem_evict.c
+index 1f53cac7271b..4518b9b35c3d 100644
+--- a/drivers/gpu/drm/i915/i915_gem_evict.c
++++ b/drivers/gpu/drm/i915/i915_gem_evict.c
+@@ -290,7 +290,8 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 		GEM_BUG_ON(!drm_mm_node_allocated(node));
+ 		vma = container_of(node, typeof(*vma), node);
+ 
+-		/* If we are using coloring to insert guard pages between
++		/*
++		 * If we are using coloring to insert guard pages between
+ 		 * different cache domains within the address space, we have
+ 		 * to check whether the objects on either side of our range
+ 		 * abutt and conflict. If they are in conflict, then we evict
+@@ -307,22 +308,18 @@ int i915_gem_evict_for_node(struct i915_address_space *vm,
+ 			}
+ 		}
+ 
+-		if (flags & PIN_NONBLOCK &&
+-		    (i915_vma_is_pinned(vma) || i915_vma_is_active(vma))) {
++		if (i915_vma_is_pinned(vma)) {
+ 			ret = -ENOSPC;
+ 			break;
+ 		}
+ 
+-		/* Overlap of objects in the same batch? */
+-		if (i915_vma_is_pinned(vma)) {
++		if (flags & PIN_NONBLOCK && i915_vma_is_active(vma)) {
+ 			ret = -ENOSPC;
+-			if (vma->exec_flags &&
+-			    *vma->exec_flags & EXEC_OBJECT_PINNED)
+-				ret = -EINVAL;
+ 			break;
+ 		}
+ 
+-		/* Never show fear in the face of dragons!
++		/*
++		 * Never show fear in the face of dragons!
+ 		 *
+ 		 * We cannot directly remove this node from within this
+ 		 * iterator and as with i915_gem_evict_something() we employ
+-- 
+2.25.1
 
-Jani is on charge of the 5.6 so I will defer this decision to him.
-
-But in general we always refused to do this because this is a enabling
-kind of thing and not a fix per say. Okay, you might argue that it is
-a device ID and that would be accepted on stable so why not also on
-fixes cycle, but my fear is that we haven't properly validated that
-on 5.6 without the many changes, fixes and workarounds that are
-only going towards 5.7 and not 5.6.
-
-> =
-
-> thanks
-> Lucas De Marchi
-> =
-
-> > ---
-> >  drivers/gpu/drm/i915/i915_pci.c | 1 -
-> >  1 file changed, 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i91=
-5_pci.c
-> > index 24b1f0ce8743..2146b9a865ba 100644
-> > --- a/drivers/gpu/drm/i915/i915_pci.c
-> > +++ b/drivers/gpu/drm/i915/i915_pci.c
-> > @@ -822,7 +822,6 @@ static const struct intel_device_info tgl_info =3D {
-> >         GEN12_FEATURES,
-> >         PLATFORM(INTEL_TIGERLAKE),
-> >         .pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PI=
-PE_D),
-> > -       .require_force_probe =3D 1,
-> >         .display.has_modular_fia =3D 1,
-> >         .engine_mask =3D
-> >                 BIT(RCS0) | BIT(BCS0) | BIT(VECS0) | BIT(VCS0) | BIT(VC=
-S2),
-> > --
-> > 2.25.1
-> >
-> > _______________________________________________
-> > Intel-gfx mailing list
-> > Intel-gfx@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> =
-
-> =
-
-> =
-
-> -- =
-
-> Lucas De Marchi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
