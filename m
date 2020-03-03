@@ -1,40 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 580DB1782CE
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:07:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4AE1782F2
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:16:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB006E942;
-	Tue,  3 Mar 2020 19:07:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 958C36E920;
+	Tue,  3 Mar 2020 19:16:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE8276E941
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 19:07:33 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 11:07:33 -0800
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="233737454"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 11:07:31 -0800
-Date: Tue, 3 Mar 2020 21:06:48 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200303190648.GA20591@ideak-desk.fi.intel.com>
-References: <20200303182904.952445-1-matthew.d.roper@intel.com>
- <20200303183447.GN174531@mdroper-desk1.amr.corp.intel.com>
- <20200303185021.GB30299@ideak-desk.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BCA116E8C9;
+ Tue,  3 Mar 2020 19:16:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B5671A00EF;
+ Tue,  3 Mar 2020 19:16:22 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200303185021.GB30299@ideak-desk.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Check PHY type before reading
- DPLL frequency
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 03 Mar 2020 19:16:22 -0000
+Message-ID: <158326298271.15379.12233506318293816659@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200303171808.7247-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200303171808.7247-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Init_LCPLL_on_HSW/BDW_if_the_BIOS_did_not?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,96 +38,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 03, 2020 at 08:50:21PM +0200, Imre Deak wrote:
-> On Tue, Mar 03, 2020 at 10:34:47AM -0800, Matt Roper wrote:
-> > On Tue, Mar 03, 2020 at 10:29:04AM -0800, Matt Roper wrote:
-> > > intel_ddi_clock_get() tests the DPLL ID against DPLL_ID_ICL_TBTPLL (2)
-> > > to determine whether to try to descend into a TBT-specific handler.
-> > > However this test will also be true when DPLL4 on EHL is used since t=
-hat
-> > > shares the same DPLL ID (2).
-> > > =
+== Series Details ==
 
-> > > Add an extra check to ensure the PHY is actually a Type-C PHY before
-> > > descending into the TBT handling.  This should ensure EHL still takes
-> > > the correct code path and somewhat future-proof the code as well.
-> > > =
+Series: drm/i915: Init LCPLL on HSW/BDW if the BIOS did not
+URL   : https://patchwork.freedesktop.org/series/74211/
+State : success
 
-> > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1369
-> > =
+== Summary ==
 
-> > Fixes: 45e4728b87ad ("drm/i915: Move DPLL frequency calculation to inte=
-l_dpll_mgr.c")
-> =
+CI Bug Log - changes from CI_DRM_8057 -> Patchwork_16800
+====================================================
 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-> =
+Summary
+-------
 
-> > Cc: Imre Deak <imre.deak@intel.com>
-> > =
+  **SUCCESS**
 
-> > I think.
-> > =
+  No regressions found.
 
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/index.html
 
-> > Matt
-> > =
+Known issues
+------------
 
-> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 3 ++-
-> > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > > =
+  Here are the changes found in Patchwork_16800 that come from known issues:
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index 284219da7df8..aa3cc42b0eb9 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1376,8 +1376,9 @@ static void intel_ddi_clock_get(struct intel_en=
-coder *encoder,
-> > >  				struct intel_crtc_state *pipe_config)
-> > >  {
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
-> > > +	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
-> > >  =
+### IGT changes ###
 
-> > > -	if (INTEL_GEN(dev_priv) >=3D 11 &&
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && intel_phy_is_tc(dev_priv, phy) &&
+#### Issues hit ####
 
-Nit: could be just if (intel_phy_is_tc(dev_priv, phy) && ...
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([i915#623])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
 
-> > >  	    intel_get_shared_dpll_id(dev_priv, pipe_config->shared_dpll) =
-=3D=3D
-> > >  	    DPLL_ID_ICL_TBTPLL)
-> > >  		pipe_config->port_clock =3D icl_calc_tbt_pll_link(dev_priv,
-> > > -- =
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/fi-tgl-y/igt@prime_vgem@basic-read.html
 
-> > > 2.24.1
-> > > =
+  
+#### Possible fixes ####
 
-> > =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][5] ([CI#94]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-> > -- =
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - {fi-kbl-7560u}:     [FAIL][7] ([i915#998]) -> [PASS][8] +5 similar issues
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-7560u/igt@kms_flip@basic-flip-vs-dpms.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/fi-kbl-7560u/igt@kms_flip@basic-flip-vs-dpms.html
 
-> > Matt Roper
-> > Graphics Software Engineer
-> > VTT-OSGC Platform Enablement
-> > Intel Corporation
-> > (916) 356-2795
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+  * igt@vgem_basic@mmap:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@vgem_basic@mmap.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/fi-tgl-y/igt@vgem_basic@mmap.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#623]: https://gitlab.freedesktop.org/drm/intel/issues/623
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+
+
+Participating hosts (43 -> 46)
+------------------------------
+
+  Additional (7): fi-bsw-n3050 fi-glk-dsi fi-kbl-7500u fi-bsw-kefka fi-skl-lmem fi-skl-6600u fi-snb-2600 
+  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8057 -> Patchwork_16800
+
+  CI-20190529: 20190529
+  CI_DRM_8057: 45ca41e870e508bf9040b308d9ff1ccf7ab779e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5488: 5b6930b4d267f7002c2e9442262e21a725941db5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16800: 08c4ff472a8f52af446572bb02ae435284760c96 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+08c4ff472a8f drm/i915: Init LCPLL on HSW/BDW if the BIOS did not
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16800/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
