@@ -2,29 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0910177820
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:03:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D122177835
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:05:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1768F6EA6B;
-	Tue,  3 Mar 2020 14:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DCB6EA6C;
+	Tue,  3 Mar 2020 14:05:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C5BB6EA6B;
- Tue,  3 Mar 2020 14:03:35 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20427541-1500050 
- for multiple; Tue, 03 Mar 2020 14:03:28 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Mar 2020 14:03:27 +0000
-Message-Id: <20200303140327.1535286-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F02656EA6C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 14:05:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 06:05:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="351840166"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 03 Mar 2020 06:05:53 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 9F2785C1D7C; Tue,  3 Mar 2020 16:04:37 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <871rq97e14.fsf@gaia.fi.intel.com>
+References: <20200303130748.1416073-1-chris@chris-wilson.co.uk>
+ <871rq97e14.fsf@gaia.fi.intel.com>
+Date: Tue, 03 Mar 2020 16:04:37 +0200
+Message-ID: <87y2sh5ybu.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_parallel: Try to trim
- runtime
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Drop the timeline->mutex as we
+ wait for retirement
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,99 +45,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In all likelihood the runtime is consumed by the thread setup, but just
-in case it is dominated by the execbuf, make sure that is bounded.
+Mika Kuoppala <mika.kuoppala@linux.intel.com> writes:
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_exec_parallel.c | 28 ++++++++++++++++------------
- 1 file changed, 16 insertions(+), 12 deletions(-)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>
+>> As we have pinned the timeline (using tl->active_count), we can safely
+>> drop the tl->mutex as we wait for what we believe to be the final
+>> request on that timeline. This is useful for ensuring that we do not
+>> block the engine heartbeat by hogging the kernel_context's timeline on a
+>> dead GPU.
+>>
+>> References: https://gitlab.freedesktop.org/drm/intel/issues/1364
+>> Fixes: 058179e72e09 ("drm/i915/gt: Replace hangcheck by heartbeats")
+>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/gt/intel_gt_requests.c | 11 +++++++++--
+>>  1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>> index 8a5054f21bf8..436412d07689 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
+>> @@ -147,24 +147,31 @@ long intel_gt_retire_requests_timeout(struct intel_gt *gt, long timeout)
+>>  
+>>  			fence = i915_active_fence_get(&tl->last_request);
+>>  			if (fence) {
+>> +				mutex_unlock(&tl->mutex);
+>> +
+>>  				timeout = dma_fence_wait_timeout(fence,
+>>  								 interruptible,
+>>  								 timeout);
+>>  				dma_fence_put(fence);
+>> +
+>> +				if (!mutex_trylock(&tl->mutex)) {
+>
+> If you can't take it, it must be active and for the retirement
+> advancement we can bail out early.
+>
+> Or is there something else with a sampled try?
 
-diff --git a/tests/i915/gem_exec_parallel.c b/tests/i915/gem_exec_parallel.c
-index 0d4d6c628..586f85080 100644
---- a/tests/i915/gem_exec_parallel.c
-+++ b/tests/i915/gem_exec_parallel.c
-@@ -42,22 +42,26 @@
- 
- #define VERIFY 0
- 
-+static inline uint32_t hash32(uint32_t val)
-+{
-+#define GOLDEN_RATIO_32 0x61C88647
-+	return val * GOLDEN_RATIO_32;
-+}
-+
- static void check_bo(int fd, uint32_t handle, int pass)
- {
--	uint32_t *map;
--	int i;
-+	uint32_t x = hash32(handle * pass) % 1024;
- 
- 	igt_debug("Verifying result (pass=%d, handle=%d)\n", pass, handle);
--	map = gem_mmap__cpu(fd, handle, 0, 4096, PROT_READ);
--	gem_set_domain(fd, handle, I915_GEM_DOMAIN_CPU, 0);
--	for (i = 0; i < 1024; i++)
--		igt_assert_eq(map[i], i);
--	munmap(map, 4096);
-+	gem_read(fd, handle, x * sizeof(x), &x, sizeof(x));
-+	igt_assert_eq_u32(x, x);
- }
- 
- #define CONTEXTS 0x1
- #define FDS 0x2
- 
-+#define NUMOBJ 16
-+
- struct thread {
- 	pthread_t thread;
- 	pthread_mutex_t *mutex;
-@@ -132,8 +136,8 @@ static void *thread(void *data)
- 		execbuf.rsvd1 = gem_context_clone_with_engines(fd, 0);
- 	}
- 
--	for (i = 0; i < 16; i++) {
--		obj[0].handle = t->scratch[i];
-+	igt_until_timeout(1) {
-+		obj[0].handle = t->scratch[i++ % NUMOBJ];
- 		if (t->flags & FDS)
- 			obj[0].handle = gem_open(fd, obj[0].handle);
- 
-@@ -160,7 +164,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 	struct thread *threads;
- 	unsigned engines[16];
- 	unsigned nengine;
--	uint32_t scratch[16], handle[16];
-+	uint32_t scratch[NUMOBJ], handle[NUMOBJ];
- 	int go;
- 	int i;
- 
-@@ -185,7 +189,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 	}
- 	igt_require(nengine);
- 
--	for (i = 0; i < 16; i++) {
-+	for (i = 0; i < NUMOBJ; i++) {
- 		scratch[i] = handle[i] = gem_create(fd, 4096);
- 		if (flags & FDS)
- 			scratch[i] = gem_flink(fd, handle[i]);
-@@ -221,7 +225,7 @@ static void all(int fd, struct intel_execution_engine2 *engine, unsigned flags)
- 	for (i = 0; i < 1024; i++)
- 		pthread_join(threads[i].thread, NULL);
- 
--	for (i = 0; i < 16; i++) {
-+	for (i = 0; i < NUMOBJ; i++) {
- 		check_bo(fd, handle[i], i);
- 		gem_close(fd, handle[i]);
- 	}
--- 
-2.25.1
+Got some answers in irc: this is best effort so yes,
+if it is active it is used and we can bail out and
+retire later.
 
+>
+>> +					active_count++;
+>> +					goto out_active;
+>> +				}
+>>  			}
+>>  		}
+>>  
+>>  		if (!retire_requests(tl) || flush_submission(gt))
+>>  			active_count++;
+>> +		mutex_unlock(&tl->mutex);
+>>  
+>> -		spin_lock(&timelines->lock);
+>> +out_active:	spin_lock(&timelines->lock);
+>>  
+>>  		/* Resume iteration after dropping lock */
+>
+> You either fixed this comment with this patch.
+> Or that the comment remains a highly confusing.
+>
+
+This is for the timeline spinlock.
+Still, it is very confusing as we only drop it for the wait,
+rather deep in iteration.
+
+After discussing with Chris on irc, we agreed that
+massaging it to a proper form is warranted.
+
+With the comment bended to match the lock acquisition,
+
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+
+>>  		list_safe_reset_next(tl, tn, link);
+>>  		if (atomic_dec_and_test(&tl->active_count))
+>>  			list_del(&tl->link);
+>
+> We have the timelines lock and the above seems safe
+> wtithout the actual mutex.
+>
+> But the comment is still hauting me.
+> -Mika
+>
+>>  
+>> -		mutex_unlock(&tl->mutex);
+>>  
+>>  		/* Defer the final release to after the spinlock */
+>>  		if (refcount_dec_and_test(&tl->kref.refcount)) {
+>> -- 
+>> 2.25.1
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
