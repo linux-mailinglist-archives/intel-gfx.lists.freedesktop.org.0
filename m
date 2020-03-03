@@ -1,71 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0FA17835E
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:50:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8770178363
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:51:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 432316E056;
-	Tue,  3 Mar 2020 19:50:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 478C689E1A;
+	Tue,  3 Mar 2020 19:50:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-1.mimecast.com (us-smtp-delivery-1.mimecast.com
- [207.211.31.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 484556E056
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 19:50:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1583265012;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vf4h5E8IkOQ4lygsPliUgjFr5XtylcraEA/u77n/sos=;
- b=LDf86eTyZN5wa4esE33NT9Ibayu2gYGGQW1hw1SY9qsavOG7sVdN/xwbuLredk9NoJB18d
- 8oqGQ4IPDAKjuXAbFJnWahbI1Wm96HgLLMIz2mRTUC1oKaRkBBxFqDArdyt1PH8kSA4Fcf
- AMPSWmfM/+QrxcAbsGqidLRw1d9k4I0=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-433-EyUc8vHFOxCk2YB7k92NOQ-1; Tue, 03 Mar 2020 14:50:07 -0500
-X-MC-Unique: EyUc8vHFOxCk2YB7k92NOQ-1
-Received: by mail-qt1-f197.google.com with SMTP id r19so3006948qtb.10
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 11:50:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=vf4h5E8IkOQ4lygsPliUgjFr5XtylcraEA/u77n/sos=;
- b=loMTKincPg/GLwtZyzUyfj9CTcPYaa/JuKRv0/UAzaziroYaB+JBHZKIgSFpbKM9kM
- 2yJIS/RTkrqbo2lrsVYLfW49vnPOXSPcK8cUfXsai459Ax1E5+/dPrmob4NFBQL8rOnM
- QKFEcDwUbnA/bl62Caia3LISVenqQ1WD3zsS6Y2JfML+TOVYvAkHqzVCfl83ALP6aXXb
- qdteSARrIHLxA/mnfgL9SKgbKQFjCDx1DKDc6w6qxzTFFbHRlGCAOjsKZV6HtGxEA2gy
- 04I3vfSse9V+rpW/x3DO5dCnDAFVVAYcuj1FH/mFyu0icyusUWI/9nGciQ98s3UmYiso
- mBqg==
-X-Gm-Message-State: ANhLgQ1EvaWNqYFGoXLPixMpFMOsq0zk8PidbPf3eTBU0zp6moGFj/mV
- k3YhoAPdOr2PSO2ZSMPph0ffavni2c5BL+mbHfnxO/CJAy8bHo2cTFuB2y6xdMO3uSJnXYuW91R
- LYHqGn6sB/n474HQrDvt9neUgBrcz
-X-Received: by 2002:ac8:357b:: with SMTP id z56mr6087800qtb.226.1583265007035; 
- Tue, 03 Mar 2020 11:50:07 -0800 (PST)
-X-Google-Smtp-Source: ADFU+vuoqlsF5Q/fYco3ByAB69bUva9hDSW7kKRqW116dyUw2Moz1OhiY2NeJtVZGwucZU1EvvG+kQ==
-X-Received: by 2002:ac8:357b:: with SMTP id z56mr6087777qtb.226.1583265006801; 
- Tue, 03 Mar 2020 11:50:06 -0800 (PST)
-Received: from desoxy ([2600:380:8e4d:1b16:f190:533c:5a8b:4a57])
- by smtp.gmail.com with ESMTPSA id f13sm8159246qkm.42.2020.03.03.11.50.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Mar 2020 11:50:06 -0800 (PST)
-Message-ID: <8560ac83111aed7b4cf74b96ae578682a764f5c8.camel@redhat.com>
-From: Adam Jackson <ajax@redhat.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Date: Tue, 03 Mar 2020 14:50:02 -0500
-In-Reply-To: <20200211183358.157448-3-lyude@redhat.com>
-References: <20200211183358.157448-3-lyude@redhat.com>
-User-Agent: Evolution 3.34.0 (3.34.0-1.fc31)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F0CF89D3E
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 19:50:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 11:50:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="240187300"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by orsmga003.jf.intel.com with ESMTP; 03 Mar 2020 11:50:57 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Mar 2020 11:50:43 -0800
+Message-Id: <20200303195043.959913-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200303190648.GA20591@ideak-desk.fi.intel.com>
+References: <20200303190648.GA20591@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [v2,
- 2/3] drm/i915: Force DPCD backlight mode on X1 Extreme 2nd Gen 4K
- AMOLED panel
+Subject: [Intel-gfx] [PATCH v2] drm/i915/ehl: Check PHY type before reading
+ DPLL frequency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,40 +43,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, David Airlie <airlied@linux.ie>,
- linux-kernel@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Maxime Ripard <mripard@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-02-11 at 13:33 -0500, Lyude Paul wrote:
-
-> -	if (!intel_dp_aux_display_control_capable(intel_connector))
-> +	/*
-> +	 * There are a lot of machines that don't advertise the backlight
-> +	 * control interface to use properly in their VBIOS, :\
-> +	 */
-> +	if (dev_priv->vbt.backlight.type !=
-> +	    INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-> +	    !drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
-> +			      DP_QUIRK_FORCE_DPCD_BACKLIGHT)) {
-> +		DRM_DEV_INFO(dev->dev,
-> +			     "Panel advertises DPCD backlight support, but "
-> +			     "VBT disagrees. If your backlight controls "
-> +			     "don't work try booting with "
-> +			     "i915.enable_dpcd_backlight=1. If your machine "
-> +			     "needs this, please file a _new_ bug report on "
-> +			     "bugs.freedesktop.org against DRI -> "
-> +			     "DRM/Intel\n");
-
-Bugzilla's been put out of our misery, probably this should point to
-gitlab instead.
-
-- ajax
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+aW50ZWxfZGRpX2Nsb2NrX2dldCgpIHRlc3RzIHRoZSBEUExMIElEIGFnYWluc3QgRFBMTF9JRF9J
+Q0xfVEJUUExMICgyKQp0byBkZXRlcm1pbmUgd2hldGhlciB0byB0cnkgdG8gZGVzY2VuZCBpbnRv
+IGEgVEJULXNwZWNpZmljIGhhbmRsZXIuCkhvd2V2ZXIgdGhpcyB0ZXN0IHdpbGwgYWxzbyBiZSB0
+cnVlIHdoZW4gRFBMTDQgb24gRUhMIGlzIHVzZWQgc2luY2UgdGhhdApzaGFyZXMgdGhlIHNhbWUg
+RFBMTCBJRCAoMikuCgpBZGQgYW4gZXh0cmEgY2hlY2sgdG8gZW5zdXJlIHRoZSBQSFkgaXMgYWN0
+dWFsbHkgYSBUeXBlLUMgUEhZIGJlZm9yZQpkZXNjZW5kaW5nIGludG8gdGhlIFRCVCBoYW5kbGlu
+Zy4gIFRoaXMgc2hvdWxkIGVuc3VyZSBFSEwgc3RpbGwgdGFrZXMKdGhlIGNvcnJlY3QgY29kZSBw
+YXRoIGFuZCBzb21ld2hhdCBmdXR1cmUtcHJvb2YgdGhlIGNvZGUgYXMgd2VsbC4KCnYyOiBEcm9w
+IHRoZSBnZW4rIGNoZWNrIHNpbmNlIG9ubHkgZ2VuMTErIHBsYXRmb3JtcyBjYW4gaGF2ZSBUeXBl
+LUMKICAgIG91dHB1dHMuICAoSW1yZSkKCkNjOiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3Nl
+LnNvdXphQGludGVsLmNvbT4KQ2xvc2VzOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcv
+ZHJtL2ludGVsL2lzc3Vlcy8xMzY5ClNpZ25lZC1vZmYtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcu
+ZC5yb3BlckBpbnRlbC5jb20+ClJldmlld2VkLWJ5OiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRl
+bC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDMg
+KystCiAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKaW5kZXggMjg0MjE5ZGE3ZGY4Li43
+M2M5ZDRmZGE2ZjggMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
+ZWxfZGRpLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpA
+QCAtMTM3Niw4ICsxMzc2LDkgQEAgc3RhdGljIHZvaWQgaW50ZWxfZGRpX2Nsb2NrX2dldChzdHJ1
+Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkJCQlzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAq
+cGlwZV9jb25maWcpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
+aTkxNShlbmNvZGVyLT5iYXNlLmRldik7CisJZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19w
+aHkoZGV2X3ByaXYsIGVuY29kZXItPnBvcnQpOwogCi0JaWYgKElOVEVMX0dFTihkZXZfcHJpdikg
+Pj0gMTEgJiYKKwlpZiAoaW50ZWxfcGh5X2lzX3RjKGRldl9wcml2LCBwaHkpICYmCiAJICAgIGlu
+dGVsX2dldF9zaGFyZWRfZHBsbF9pZChkZXZfcHJpdiwgcGlwZV9jb25maWctPnNoYXJlZF9kcGxs
+KSA9PQogCSAgICBEUExMX0lEX0lDTF9UQlRQTEwpCiAJCXBpcGVfY29uZmlnLT5wb3J0X2Nsb2Nr
+ID0gaWNsX2NhbGNfdGJ0X3BsbF9saW5rKGRldl9wcml2LAotLSAKMi4yNC4xCgpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
+aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
+a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
