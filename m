@@ -2,39 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 760B3177A41
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 16:21:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D04B177A5B
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 16:25:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E74288999A;
-	Tue,  3 Mar 2020 15:20:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75A9389C07;
+	Tue,  3 Mar 2020 15:25:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E29FD6E44F
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 15:20:57 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 714C389C07
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 15:25:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 07:20:57 -0800
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="233647223"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 07:25:26 -0800
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="228946681"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 07:20:55 -0800
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 07:25:24 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Patchwork <patchwork@emeril.freedesktop.org>,
- Wambui Karuga <wambui.karugax@gmail.com>
-In-Reply-To: <158324146545.15379.18277725887373195007@emeril.freedesktop.org>
+To: Aditya Swarup <aditya.swarup@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200303142347.15696-1-aditya.swarup@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200226101138.15435-1-wambui.karugax@gmail.com>
- <158324146545.15379.18277725887373195007@emeril.freedesktop.org>
-Date: Tue, 03 Mar 2020 17:20:52 +0200
-Message-ID: <87fteppiqz.fsf@intel.com>
+References: <20200303142347.15696-1-aditya.swarup@intel.com>
+Date: Tue, 03 Mar 2020 17:25:21 +0200
+Message-ID: <87d09tpiji.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/display=3A_conversion_to_drm=5Fdevice_based_logging_mac?=
- =?utf-8?q?ros_=28rev5=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Fix uninitialized
+ variable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,44 +43,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Mar 2020, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
+On Tue, 03 Mar 2020, Aditya Swarup <aditya.swarup@intel.com> wrote:
+> Static code analysis tool identified struct lrc_timestamp data as being
+> uninitialized and then data.ce[] is being checked for NULL/negative
+> value in the error path. Initializing data variable fixes the issue.
 >
-> Series: drm/i915/display: conversion to drm_device based logging macros (rev5)
-> URL   : https://patchwork.freedesktop.org/series/72760/
-> State : failure
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> == Summary ==
->
-> Applying: drm/i915/dsb: convert to drm_device based logging macros.
-> Applying: drm/i915/fbc: convert to drm_device based logging macros.
-> Applying: drm/i915/fbdev: convert to drm_device based logging.
-> Applying: drm/i915/fifo_underrun: convert to drm_device based logging.
-> Applying: drm/i915/gmbus: convert to drm_device based logging,
-> Applying: drm/i915/hdcp: convert to struct drm_device based logging.
-> Using index info to reconstruct a base tree...
-> M	drivers/gpu/drm/i915/display/intel_hdcp.c
-> Falling back to patching base and 3-way merge...
-> Auto-merging drivers/gpu/drm/i915/display/intel_hdcp.c
-> CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_hdcp.c
-> error: Failed to merge in the changes.
-> hint: Use 'git am --show-current-patch' to see the failed patch
-> Patch failed at 0006 drm/i915/hdcp: convert to struct drm_device based logging.
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index ccf9debacd90..9b75b3c77a5b 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -4725,7 +4725,7 @@ static int live_lrc_timestamp(void *arg)
+>  {
+>  	struct intel_gt *gt = arg;
+>  	enum intel_engine_id id;
+> -	struct lrc_timestamp data;
+> +	struct lrc_timestamp data = { 0 };
 
-Wambui, please rebase and resend the entire series. It's been a bit
-unlucky in CI, getting failures until it doesn't apply anymore. :(
+{} is preferred over {0}.
 
 BR,
 Jani.
+
+>  	const u32 poison[] = {
+>  		0,
+>  		S32_MAX,
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
