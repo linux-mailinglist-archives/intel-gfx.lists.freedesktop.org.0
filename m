@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBFB61783C1
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:14:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC8051783D3
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:19:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3EA6E07D;
-	Tue,  3 Mar 2020 20:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 135FB6E946;
+	Tue,  3 Mar 2020 20:19:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D485389C2C;
- Tue,  3 Mar 2020 20:14:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CE61AA00FD;
- Tue,  3 Mar 2020 20:14:01 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E70A36E946
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 20:19:15 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 12:19:15 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="243710209"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
+ by orsmga006.jf.intel.com with ESMTP; 03 Mar 2020 12:19:14 -0800
+Date: Tue, 3 Mar 2020 12:19:14 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200303201914.GO174531@mdroper-desk1.amr.corp.intel.com>
+References: <20200302231421.224322-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 03 Mar 2020 20:14:01 -0000
-Message-ID: <158326644181.15377.15736074204309643630@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200303182904.952445-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200303182904.952445-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/ehl=3A_Check_PHY_type_before_reading_DPLL_frequency?=
+Content-Disposition: inline
+In-Reply-To: <20200302231421.224322-1-jose.souza@intel.com>
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gen11: Moving WAs to
+ rcs_engine_wa_init()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,105 +45,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 02, 2020 at 03:14:20PM -0800, Jos=E9 Roberto de Souza wrote:
+> This are register of render engine, so after a render reset those
+> would return to the default value and init_clock_gating() is not
+> called for single engine reset.
+> So here moving it rcs_engine_wa_init() that will guarantee that this
+> WAs will not be lost.
+> =
 
-Series: drm/i915/ehl: Check PHY type before reading DPLL frequency
-URL   : https://patchwork.freedesktop.org/series/74214/
-State : success
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-== Summary ==
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-CI Bug Log - changes from CI_DRM_8057 -> Patchwork_16802
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16802 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@prime_vgem@basic-wait-default:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@prime_vgem@basic-wait-default.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/fi-tgl-y/igt@prime_vgem@basic-wait-default.html
-
-  
-#### Possible fixes ####
-
-  * igt@vgem_basic@mmap:
-    - fi-tgl-y:           [DMESG-WARN][3] ([CI#94] / [i915#402]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@vgem_basic@mmap.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/fi-tgl-y/igt@vgem_basic@mmap.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-kbl-guc:         [SKIP][5] ([fdo#109271]) -> [FAIL][6] ([i915#579])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       [FAIL][7] ([i915#1209]) -> [FAIL][8] ([i915#192] / [i915#193] / [i915#194])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-8809g/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+rcs_engine_wa_init() is starting to get pretty long (and will get even
+longer when new platforms show up).  We may want to think about breaking
+it into per-platform handlers at some point like we use for general
+gt/ctx workarounds.
 
 
-Participating hosts (43 -> 43)
-------------------------------
+Matt
 
-  Additional (6): fi-bsw-n3050 fi-glk-dsi fi-bsw-kefka fi-skl-lmem fi-skl-6600u fi-snb-2600 
-  Missing    (6): fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/intel_pm.c             | 15 ---------------
+>  2 files changed, 15 insertions(+), 15 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.c
+> index 3e375a3b7714..90e1c48dd6be 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1454,6 +1454,21 @@ rcs_engine_wa_init(struct intel_engine_cs *engine,=
+ struct i915_wa_list *wal)
+>  				   GEN11_SCRATCH2,
+>  				   GEN11_COHERENT_PARTIAL_WRITE_MERGE_ENABLE,
+>  				   0);
+> +
+> +		/* WaEnable32PlaneMode:icl */
+> +		wa_masked_en(wal, GEN9_CSFE_CHICKEN1_RCS,
+> +			     GEN11_ENABLE_32_PLANE_MODE);
+> +
+> +		/*
+> +		 * Wa_1408615072:icl,ehl  (vsunit)
+> +		 * Wa_1407596294:icl,ehl  (hsunit)
+> +		 */
+> +		wa_masked_en(wal, UNSLICE_UNIT_LEVEL_CLKGATE,
+> +			     VSUNIT_CLKGATE_DIS | HSUNIT_CLKGATE_DIS);
+> +
+> +		/* Wa_1407352427:icl,ehl */
+> +		wa_masked_en(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> +			     PSDUNIT_CLKGATE_DIS);
+>  	}
+>  =
+
+>  	if (IS_GEN_RANGE(i915, 9, 11)) {
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index 831e53c137cf..d3df00445787 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -6782,21 +6782,6 @@ static void icl_init_clock_gating(struct drm_i915_=
+private *dev_priv)
+>  	I915_WRITE(GEN10_DFR_RATIO_EN_AND_CHICKEN,
+>  		   I915_READ(GEN10_DFR_RATIO_EN_AND_CHICKEN) & ~DFR_DISABLE);
+>  =
+
+> -	/* WaEnable32PlaneMode:icl */
+> -	I915_WRITE(GEN9_CSFE_CHICKEN1_RCS,
+> -		   _MASKED_BIT_ENABLE(GEN11_ENABLE_32_PLANE_MODE));
+> -
+> -	/*
+> -	 * Wa_1408615072:icl,ehl  (vsunit)
+> -	 * Wa_1407596294:icl,ehl  (hsunit)
+> -	 */
+> -	intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE,
+> -			 0, VSUNIT_CLKGATE_DIS | HSUNIT_CLKGATE_DIS);
+> -
+> -	/* Wa_1407352427:icl,ehl */
+> -	intel_uncore_rmw(&dev_priv->uncore, UNSLICE_UNIT_LEVEL_CLKGATE2,
+> -			 0, PSDUNIT_CLKGATE_DIS);
+> -
+>  	/*Wa_14010594013:icl, ehl */
+>  	intel_uncore_rmw(&dev_priv->uncore, GEN8_CHICKEN_DCPR_1,
+>  			 0, CNL_DELAY_PMRSP);
+> -- =
+
+> 2.25.1
+> =
 
 
-Build changes
--------------
+-- =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8057 -> Patchwork_16802
-
-  CI-20190529: 20190529
-  CI_DRM_8057: 45ca41e870e508bf9040b308d9ff1ccf7ab779e2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5488: 5b6930b4d267f7002c2e9442262e21a725941db5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16802: 4e13422667e3c121335e6a403d53b14ec678707a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4e13422667e3 drm/i915/ehl: Check PHY type before reading DPLL frequency
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16802/index.html
+Matt Roper
+Graphics Software Engineer
+VTT-OSGC Platform Enablement
+Intel Corporation
+(916) 356-2795
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
