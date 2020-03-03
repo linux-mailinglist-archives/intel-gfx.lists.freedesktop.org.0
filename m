@@ -1,31 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550DC176F32
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 07:16:18 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B177176F5E
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 07:25:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 345AA6E9A0;
-	Tue,  3 Mar 2020 06:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B835F6E9A3;
+	Tue,  3 Mar 2020 06:25:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 05ABF6E99B;
- Tue,  3 Mar 2020 06:16:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F3630A0071;
- Tue,  3 Mar 2020 06:16:14 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE49C6E9A3
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 06:25:32 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2020 22:25:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,510,1574150400"; d="scan'208";a="263092304"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga004.fm.intel.com with ESMTP; 02 Mar 2020 22:25:31 -0800
+Date: Tue, 3 Mar 2020 11:55:33 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200303062533.GB20842@intel.com>
+References: <20200220123217.23635-3-anshuman.gupta@intel.com>
+ <20200303052407.25609-1-anshuman.gupta@intel.com>
+ <20200303054325.GA20842@intel.com>
+ <20200303055202.GF9735@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 03 Mar 2020 06:16:14 -0000
-Message-ID: <158321617496.15379.15523813853577654088@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200220123217.23635-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200220123217.23635-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSERD?=
- =?utf-8?q?P_2=2E2_Comp_fixes_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200303055202.GF9735@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v4 2/2] drm/i915/hdcp: Fix
+ config_stream_type() ret value
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,93 +48,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 2020-03-03 at 11:22:03 +0530, Anshuman Gupta wrote:
+> On 2020-03-03 at 11:13:25 +0530, Ramalingam C wrote:
+> > On 2020-03-03 at 10:54:07 +0530, Anshuman Gupta wrote:
+> > > DP shim's config_stream_type considered to be succeeded when
+> > > return value of intel_dp_hdcp2_write_msg() equals to size of
+> > > message to be written, it makes config_stream_type to return
+> > > a zero success value in order to succeed the HDCP auth.
+> > > 
+> > > v2:
+> > > - config_stream_type() returns 0 on success. [Ram]
+> > > 
+> > > CC: Ramalingam C <ramalingam.c@intel.com>
+> > > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+> > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > index 2db8d46f61a1..2259c2527457 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > > @@ -6448,6 +6448,7 @@ static
+> > >  int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
+> > >  				      bool is_repeater, u8 content_type)
+> > >  {
+> > > +	int ret;
+> > >  	struct hdcp2_dp_errata_stream_type stream_type_msg;
+> > >  
+> > >  	if (is_repeater)
+> > > @@ -6463,8 +6464,13 @@ int intel_dp_hdcp2_config_stream_type(struct intel_digital_port *intel_dig_port,
+> > >  	stream_type_msg.msg_id = HDCP_2_2_ERRATA_DP_STREAM_TYPE;
+> > >  	stream_type_msg.stream_type = content_type;
+> > >  
+> > > -	return intel_dp_hdcp2_write_msg(intel_dig_port, &stream_type_msg,
+> > > +	ret =  intel_dp_hdcp2_write_msg(intel_dig_port, &stream_type_msg,
+> > >  					sizeof(stream_type_msg));
+> > > +
+> > > +	if (ret == sizeof(stream_type_msg))
+> > return ret < 0 ? ret : 0;
+> > Above statement will be sufficient here?
+> IMHO if intel_dp_hdcp2_write_msg() is being abstracted,
+> it should return success only when its return value
+> is equals to size to be written.
+> yes, return ret == sizeof(stream_type_msg) ? 0 : ret
+> would make sense to reduced line of code.
+> I can change that. 
+intel_dp_hdcp2_write_msg can't return >0  and != sizeof(stream_type_msg)
+because that is error scenario hence return will be <0. So check for the
+size of msg size is not compulsary
 
-Series: HDCP 2.2 Comp fixes (rev2)
-URL   : https://patchwork.freedesktop.org/series/73708/
-State : success
+I am fine with this too.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8050 -> Patchwork_16791
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16791/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16791 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_wait@basic-await-all:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8050/fi-tgl-y/igt@gem_wait@basic-await-all.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16791/fi-tgl-y/igt@gem_wait@basic-await-all.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [DMESG-FAIL][3] ([fdo#108569]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8050/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16791/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@prime_self_import@basic-with_fd_dup:
-    - fi-tgl-y:           [DMESG-WARN][5] ([CI#94] / [i915#402]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8050/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16791/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (46 -> 38)
-------------------------------
-
-  Additional (2): fi-kbl-7560u fi-snb-2520m 
-  Missing    (10): fi-bdw-samus fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6700k2 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8050 -> Patchwork_16791
-
-  CI-20190529: 20190529
-  CI_DRM_8050: 422d76f5669ce8b7cd0c579f60628877159cbe7c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5484: 91b36b61e76901a2bd09fe93ac7bf7b8a60f258c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16791: 920a726f54f6aa58476a58513d840591b8763f9c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-920a726f54f6 drm/i915/hdcp: Fix config_stream_type() ret value
-f9be7f7e53c5 drm/i915/hdcp: Mandate (seq_num_V==0) at first RecvId msg
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16791/index.html
+-Ram
+> 
+> Thanks,
+> Anshuman.
+> > 
+> > -Ram
+> > > +		return 0;
+> > > +	else
+> > > +		return ret;
+> > >  }
+> > >  
+> > >  static
+> > > -- 
+> > > 2.25.1
+> > > 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
