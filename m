@@ -1,71 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3F6178366
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:51:36 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FA517838C
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 21:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A680A6E927;
-	Tue,  3 Mar 2020 19:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F6089CC1;
+	Tue,  3 Mar 2020 20:00:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-1.mimecast.com
- [205.139.110.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB6D6E927
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 19:51:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1583265092;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=DvNuRsgrlwxpJev5Ji+2rDTX8ckqvUS3GRbdlLRF5QE=;
- b=hMSqR4BKUgl5kkqZUJru4eKb6ewI8rLuZPCPoDYeL+iDK5zzwW6pcYz/l7CZk9yZZZ0rqe
- pV2JgMgdm2WDYOPiJpzPHQNDn4X02zbeHrtgdBM8EI2WVzXa+vsq8yIOtOBuqAygY+oAS6
- j2+Q6NXkzmVqcEnynqNQe+L8tFQKMgs=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-364-MKunLxv-P-O5KnMFsN7W0g-1; Tue, 03 Mar 2020 14:51:31 -0500
-X-MC-Unique: MKunLxv-P-O5KnMFsN7W0g-1
-Received: by mail-qv1-f69.google.com with SMTP id r9so2788225qvs.19
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Mar 2020 11:51:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=DvNuRsgrlwxpJev5Ji+2rDTX8ckqvUS3GRbdlLRF5QE=;
- b=ZmvCCU2Y1uW2cjEQzkm8ZIcLcSaLtMsGLzWi/Y6hBzQD5RCMtnaqgnoxP7YOUUd5pR
- wZYzwpvpOh1DRj5dBSU2oIC45yGryLbI7JqP9DaulRascd8VVAGrnPzxTRSObcsCPg5g
- e+fJxWBKratSskXxAQp+HgIkQCQT5J1gFDIzUm66dl88CM6zk90ZV6hfh7cwLa8yf8uv
- O50/s8ZublH8FAq2esxUj+vbF/6UC9QB/zIFRRNu9K/emh+YGbT0dfM3oDCPB3s712/q
- Yy1JMohlP/VSnEKkvKGNCF4xwQVLHn/5jIOw9nB9h4tXKxQdm5mWPMLwYerUTQy6Di93
- AKww==
-X-Gm-Message-State: ANhLgQ2N1nDUK7AcwNwr2B7GW5oukj1zEzbDXlLUGL+NnpFZ90vTvVQi
- jB6w4TGFPZv6W9IriFDQTUvQBl1xmKE6/cornr8NwfHKSQ0Rfbah9idToiCV/zVZ3r8oTfl/xto
- XlwzLN2FM0xwfaweLfIwmjgvsNQ+Q
-X-Received: by 2002:a05:6214:144b:: with SMTP id
- b11mr4110003qvy.108.1583265090610; 
- Tue, 03 Mar 2020 11:51:30 -0800 (PST)
-X-Google-Smtp-Source: ADFU+vsspg8JhI5ihzXhOt6OuWIKvJocilynLOdCC5Pvwbi3gxDK6VrQZDaw5zx7MH666d9ns8TkKg==
-X-Received: by 2002:a05:6214:144b:: with SMTP id
- b11mr4109928qvy.108.1583265089398; 
- Tue, 03 Mar 2020 11:51:29 -0800 (PST)
-Received: from desoxy ([2600:380:8e4d:1b16:f190:533c:5a8b:4a57])
- by smtp.gmail.com with ESMTPSA id h25sm2767037qtn.30.2020.03.03.11.51.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Mar 2020 11:51:28 -0800 (PST)
-Message-ID: <faad55e121f844d9b47afa603ad09641a58957b5.camel@redhat.com>
-From: Adam Jackson <ajax@redhat.com>
-To: Lyude Paul <lyude@redhat.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Date: Tue, 03 Mar 2020 14:51:27 -0500
-In-Reply-To: <20200211183358.157448-2-lyude@redhat.com>
-References: <20200211183358.157448-2-lyude@redhat.com>
-User-Agent: Evolution 3.34.0 (3.34.0-1.fc31)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6DA47888AE;
+ Tue,  3 Mar 2020 20:00:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 681CCA00E7;
+ Tue,  3 Mar 2020 20:00:57 +0000 (UTC)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Subject: Re: [Intel-gfx] [v2,1/3] drm/dp: Introduce EDID-based quirks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Tue, 03 Mar 2020 20:00:57 -0000
+Message-ID: <158326565739.15378.1303358710366379927@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Gamma_cleanups_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,35 +38,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Thomas Zimmermann <tzimmermann@suse.de>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-02-11 at 13:33 -0500, Lyude Paul wrote:
-> The whole point of using OUIs is so that we can recognize certain
-> devices and potentially apply quirks for them. Normally this should work
-> quite well, but there appears to be quite a number of laptop panels out
-> there that will fill the OUI but not the device ID. As such, for devices
-> like this I can't imagine it's a very good idea to try relying on OUIs
-> for applying quirks. As well, some laptop vendors have confirmed to us
-> that their panels have this exact issue.
-> 
-> So, let's introduce the ability to apply DP quirks based on EDID
-> identification. We reuse the same quirk bits for OUI-based quirks, so
-> that callers can simply check all possible quirks using
-> drm_dp_has_quirk().
+== Series Details ==
 
-With the bug URL fixed in 2/3, series is:
+Series: drm/i915: Gamma cleanups (rev3)
+URL   : https://patchwork.freedesktop.org/series/69136/
+State : failure
 
-Reviewed-by: Adam Jackson <ajax@redhat.com>
+== Summary ==
 
-- ajax
+CI Bug Log - changes from CI_DRM_8057 -> Patchwork_16801
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16801 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16801, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16801:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-kbl-guc:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/fi-kbl-guc/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16801 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-guc:         [PASS][2] -> [INCOMPLETE][3] ([fdo#112175] / [fdo#112259])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_addfb_basic@addfb25-x-tiled:
+    - fi-tgl-y:           [PASS][4] -> [DMESG-WARN][5] ([CI#94] / [i915#402])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled.html
+
+  
+#### Possible fixes ####
+
+  * igt@vgem_basic@mmap:
+    - fi-tgl-y:           [DMESG-WARN][6] ([CI#94] / [i915#402]) -> [PASS][7] +1 similar issue
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/fi-tgl-y/igt@vgem_basic@mmap.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/fi-tgl-y/igt@vgem_basic@mmap.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#112175]: https://bugs.freedesktop.org/show_bug.cgi?id=112175
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (43 -> 37)
+------------------------------
+
+  Additional (3): fi-bsw-kefka fi-kbl-7500u fi-snb-2600 
+  Missing    (9): fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-elk-e7500 fi-blb-e6850 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8057 -> Patchwork_16801
+
+  CI-20190529: 20190529
+  CI_DRM_8057: 45ca41e870e508bf9040b308d9ff1ccf7ab779e2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5488: 5b6930b4d267f7002c2e9442262e21a725941db5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16801: 1be5c304ba4b3c4fca354a0a55acfe648bd25a6c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+1be5c304ba4b drm/i915: Pass the crtc to the low level read_lut() funcs
+4dbbf6bed479 drm/i915: Fix readout of PIPEGCMAX
+32017c748224 drm/i915: Refactor LUT read functions
+0608422e4221 drm/i915: Clean up integer types in color code
+5d0116537847 drm/i915: s/chv_read_cgm_lut/chv_read_cgm_gamma/
+2bd70fc18de0 drm/i915: s/blob_data/lut/
+11ff682dafcd drm/i915: Split i9xx_read_lut_8() to gmch vs. ilk variants
+68f1bc86f1b8 drm/i915: Clean up i9xx_load_luts_internal()
+a80ba6cf6eef drm/i915: Polish CHV CGM CSC loading
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16801/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
