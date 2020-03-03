@@ -2,70 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00EB2178593
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 23:24:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9E0178554
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 23:12:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E62956E96E;
-	Tue,  3 Mar 2020 22:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1091C6E964;
+	Tue,  3 Mar 2020 22:12:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from gateway34.websitewelcome.com (gateway34.websitewelcome.com
- [192.185.148.140])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE0976E96E
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 22:24:47 +0000 (UTC)
-Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
- by gateway34.websitewelcome.com (Postfix) with ESMTP id 0B84C1B4290
- for <intel-gfx@lists.freedesktop.org>;
- Tue,  3 Mar 2020 16:03:35 -0600 (CST)
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with SMTP
- id 9FdWjAd8lvBMd9FdWj5GdO; Tue, 03 Mar 2020 16:03:35 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:
- Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=U0ggBFiTgW60TJFxrSK5WNiOfnjl5q1QkGFAU8aeXq0=; b=DINjrQe4CVKXar9Imfcv6H+xl9
- iCkuIAodqCseH0/fBj72n7USoWFlRXT9QjiM9RPhCWEewkg7XhVsS+st1ts5YdC3mJpuFLTc3hc2/
- 3gHwLS6ZUQvqRHN/7Uc1PrbTKtmP4ZmWhF50+Rz5gzI10bNQouQQGRrzFcZH7BrjfBEPWAWT0+LD3
- CBHz9hXeBAC2STnns/+HJMjzTpFSUhziFOqAHCibVDMzOH6l+Xv7tpPuCx1VyUzXGsB4efFx9/Vtl
- c5tQo38ZvtMQ1wpNDYrTiOnHGzKq2kgI4OL0Vl7XjKZ2inxJa6pP5P3at8Av6yCAKLM/jooIrCXm5
- 1r2wAMOQ==;
-Received: from [201.162.240.151] (port=12128 helo=embeddedor)
- by gator4166.hostgator.com with esmtpa (Exim 4.92)
- (envelope-from <gustavo@embeddedor.com>)
- id 1j9FdU-00122M-Hd; Tue, 03 Mar 2020 16:03:33 -0600
-Date: Tue, 3 Mar 2020 16:06:36 -0600
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>
-Message-ID: <20200303220636.GA2788@embeddedor>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B67C6E968
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 22:12:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20434424-1500050 
+ for multiple; Tue, 03 Mar 2020 22:12:35 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Mar 2020 22:12:35 +0000
+Message-Id: <20200303221235.1930678-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 201.162.240.151
-X-Source-L: No
-X-Exim-ID: 1j9FdU-00122M-Hd
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: (embeddedor) [201.162.240.151]:12128
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 14
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-Subject: [Intel-gfx] [PATCH][next] drm: i915_drm.h: Replace zero-length
- array with flexible-array member
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Apply a heavy handed flush
+ to i915_active
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,71 +37,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- "Gustavo A. R. Silva" <gustavo@embeddedor.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The current codebase makes use of the zero-length array language
-extension to the C90 standard, but the preferred mechanism to declare
-variable-length types such as these ones is a flexible array member[1][2],
-introduced in C99:
+Due to the ordering of cmpxchg()/dma_fence_signal() inside node_retire(),
+we must also use the xchg() as our primary memory barrier to flush the
+outstanding callbacks after expected completion of the i915_active.
 
-struct foo {
-        int stuff;
-        struct boo array[];
-};
-
-By making use of the mechanism above, we will get a compiler warning
-in case the flexible array does not occur last in the structure, which
-will help us prevent some kind of undefined behavior bugs from being
-inadvertently introduced[3] to the codebase from now on.
-
-Also, notice that, dynamic memory allocations won't be affected by
-this change:
-
-"Flexible array members have incomplete type, and so the sizeof operator
-may not be applied. As a quirk of the original implementation of
-zero-length arrays, sizeof evaluates to zero."[1]
-
-This issue was found with the help of Coccinelle.
-
-[1] https://gcc.gnu.org/onlinedocs/gcc/Zero-Length.html
-[2] https://github.com/KSPP/linux/issues/21
-[3] commit 76497732932f ("cxgb3/l2t: Fix undefined behaviour")
-
-Signed-off-by: Gustavo A. R. Silva <gustavo@embeddedor.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- include/uapi/drm/i915_drm.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/selftests/i915_active.c | 29 ++++++++++++++------
+ 1 file changed, 21 insertions(+), 8 deletions(-)
 
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index 2813e579b480..413d923b332a 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -1729,7 +1729,7 @@ struct i915_context_engines_load_balance {
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index 3a37c67ab6c4..68bbb1580162 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -311,20 +311,33 @@ static void spin_unlock_wait(spinlock_t *lock)
+ 	spin_unlock_irq(lock);
+ }
  
- 	__u64 mbz64; /* reserved for future use; must be zero */
++static void active_flush(struct i915_active *ref,
++			 struct i915_active_fence *active)
++{
++	struct dma_fence *fence;
++
++	fence = xchg(__active_fence_slot(active), NULL);
++	if (!fence)
++		return;
++
++	spin_lock_irq(fence->lock);
++	__list_del_entry(&active->cb.node);
++	spin_unlock_irq(fence->lock); /* serialise with fence->cb_list */
++	atomic_dec(&ref->count);
++
++	GEM_BUG_ON(!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
++}
++
+ void i915_active_unlock_wait(struct i915_active *ref)
+ {
+ 	if (i915_active_acquire_if_busy(ref)) {
+ 		struct active_node *it, *n;
  
--	struct i915_engine_class_instance engines[0];
-+	struct i915_engine_class_instance engines[];
- } __attribute__((packed));
++		/* Wait for all active callbacks */
+ 		rcu_read_lock();
+-		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+-			struct dma_fence *f;
+-
+-			/* Wait for all active callbacks */
+-			f = rcu_dereference(it->base.fence);
+-			if (f)
+-				spin_unlock_wait(f->lock);
+-		}
++		active_flush(ref, &ref->excl);
++		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node)
++			active_flush(ref, &it->base);
+ 		rcu_read_unlock();
  
- #define I915_DEFINE_CONTEXT_ENGINES_LOAD_BALANCE(name__, N__) struct { \
-@@ -1767,7 +1767,7 @@ struct i915_context_engines_bond {
- 	__u64 flags; /* all undefined flags must be zero */
- 	__u64 mbz64[4]; /* reserved for future use; must be zero */
- 
--	struct i915_engine_class_instance engines[0];
-+	struct i915_engine_class_instance engines[];
- } __attribute__((packed));
- 
- #define I915_DEFINE_CONTEXT_ENGINES_BOND(name__, N__) struct { \
+ 		i915_active_release(ref);
 -- 
-2.25.0
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
