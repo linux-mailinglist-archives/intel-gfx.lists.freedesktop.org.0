@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E15B177246
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 10:20:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22D58177261
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 10:29:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75DC56EA4F;
-	Tue,  3 Mar 2020 09:20:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E6736EA5D;
+	Tue,  3 Mar 2020 09:29:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E41C56EA4F
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 09:20:27 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20423568-1500050 
- for multiple; Tue, 03 Mar 2020 09:20:12 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue,  3 Mar 2020 09:20:11 +0000
-Message-Id: <20200303092011.1151535-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200303092011.1151535-1-chris@chris-wilson.co.uk>
-References: <20200303092011.1151535-1-chris@chris-wilson.co.uk>
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5776EA5D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 09:29:54 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 01:29:54 -0800
+X-IronPort-AV: E=Sophos;i="5.70,510,1574150400"; d="scan'208";a="233563088"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 01:29:52 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Sharma\, Swati2" <swati2.sharma@intel.com>, =?utf-8?Q?Jos=C3=A9?=
+ Roberto de Souza <jose.souza@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <aae242f3-3730-f9fd-0adf-85805c9bb0e4@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200227235005.18706-1-jose.souza@intel.com>
+ <87lfonqive.fsf@intel.com> <aae242f3-3730-f9fd-0adf-85805c9bb0e4@intel.com>
+Date: Tue, 03 Mar 2020 11:29:49 +0200
+Message-ID: <87o8tdpz02.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gem: Check that the context wasn't
- closed during setup
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/dmc: Use firmware v2.06 for TGL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,194 +44,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As setup takes a long time, the user may close the context during the
-construction of the execbuf. In order to make sure we correctly track
-all outstanding work with non-persistent contexts, we need to serialise
-the submission with the context closure and mop up any leaks.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 67 ++++++++++++++++++-
- drivers/gpu/drm/i915/i915_request.c           | 54 +++------------
- 2 files changed, 74 insertions(+), 47 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index ac0e5fc5675e..84bc820a4608 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2566,6 +2566,71 @@ signal_fence_array(struct i915_execbuffer *eb,
- 	}
- }
- 
-+static void retire_requests(struct intel_timeline *tl, struct i915_request *end)
-+{
-+	struct i915_request *rq, *rn;
-+
-+	list_for_each_entry_safe(rq, rn, &tl->requests, link)
-+		if (rq == end || !i915_request_retire(rq))
-+			break;
-+}
-+
-+static void eb_request_add(struct i915_execbuffer *eb)
-+{
-+	struct i915_request *rq = eb->request;
-+	struct intel_timeline * const tl = i915_request_timeline(rq);
-+	struct i915_sched_attr attr = {};
-+	struct i915_request *prev;
-+
-+	lockdep_assert_held(&tl->mutex);
-+	lockdep_unpin_lock(&tl->mutex, rq->cookie);
-+
-+	trace_i915_request_add(rq);
-+
-+	prev = __i915_request_commit(rq);
-+
-+	/* Check that the context wasn't destroyed before submission */
-+	if (likely(rcu_access_pointer(eb->context->gem_context))) {
-+		attr = eb->gem_context->sched;
-+
-+		/*
-+		 * Boost actual workloads past semaphores!
-+		 *
-+		 * With semaphores we spin on one engine waiting for another,
-+		 * simply to reduce the latency of starting our work when
-+		 * the signaler completes. However, if there is any other
-+		 * work that we could be doing on this engine instead, that
-+		 * is better utilisation and will reduce the overall duration
-+		 * of the current work. To avoid PI boosting a semaphore
-+		 * far in the distance past over useful work, we keep a history
-+		 * of any semaphore use along our dependency chain.
-+		 */
-+		if (!(rq->sched.flags & I915_SCHED_HAS_SEMAPHORE_CHAIN))
-+			attr.priority |= I915_PRIORITY_NOSEMAPHORE;
-+
-+		/*
-+		 * Boost priorities to new clients (new request flows).
-+		 *
-+		 * Allow interactive/synchronous clients to jump ahead of
-+		 * the bulk clients. (FQ_CODEL)
-+		 */
-+		if (list_empty(&rq->sched.signalers_list))
-+			attr.priority |= I915_PRIORITY_WAIT;
-+	} else {
-+		/* Serialise with context_close via the add_to_timeline */
-+		i915_request_skip(rq, -ENOENT);
-+	}
-+
-+	local_bh_disable();
-+	__i915_request_queue(rq, &attr);
-+	local_bh_enable(); /* Kick the execlists tasklet if just scheduled */
-+
-+	/* Try to clean up the client's timeline after submitting the request */
-+	retire_requests(tl, prev);
-+
-+	mutex_unlock(&tl->mutex);
-+}
-+
- static int
- i915_gem_do_execbuffer(struct drm_device *dev,
- 		       struct drm_file *file,
-@@ -2778,7 +2843,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- err_request:
- 	add_to_client(eb.request, file);
- 	i915_request_get(eb.request);
--	i915_request_add(eb.request);
-+	eb_request_add(&eb);
- 
- 	if (fences)
- 		signal_fence_array(&eb, fences);
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index feccf29381aa..d837c1380015 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -1339,39 +1339,23 @@ void i915_request_add(struct i915_request *rq)
- {
- 	struct intel_timeline * const tl = i915_request_timeline(rq);
- 	struct i915_sched_attr attr = {};
--	struct i915_request *prev;
-+	struct i915_gem_context *ctx;
- 
- 	lockdep_assert_held(&tl->mutex);
- 	lockdep_unpin_lock(&tl->mutex, rq->cookie);
- 
- 	trace_i915_request_add(rq);
-+	__i915_request_commit(rq);
- 
--	prev = __i915_request_commit(rq);
--
--	if (rcu_access_pointer(rq->context->gem_context))
--		attr = i915_request_gem_context(rq)->sched;
-+	/* XXX placeholder for selftests */
-+	rcu_read_lock();
-+	ctx = rcu_dereference(rq->context->gem_context);
-+	if (ctx)
-+		attr = ctx->sched;
-+	rcu_read_unlock();
- 
--	/*
--	 * Boost actual workloads past semaphores!
--	 *
--	 * With semaphores we spin on one engine waiting for another,
--	 * simply to reduce the latency of starting our work when
--	 * the signaler completes. However, if there is any other
--	 * work that we could be doing on this engine instead, that
--	 * is better utilisation and will reduce the overall duration
--	 * of the current work. To avoid PI boosting a semaphore
--	 * far in the distance past over useful work, we keep a history
--	 * of any semaphore use along our dependency chain.
--	 */
- 	if (!(rq->sched.flags & I915_SCHED_HAS_SEMAPHORE_CHAIN))
- 		attr.priority |= I915_PRIORITY_NOSEMAPHORE;
--
--	/*
--	 * Boost priorities to new clients (new request flows).
--	 *
--	 * Allow interactive/synchronous clients to jump ahead of
--	 * the bulk clients. (FQ_CODEL)
--	 */
- 	if (list_empty(&rq->sched.signalers_list))
- 		attr.priority |= I915_PRIORITY_WAIT;
- 
-@@ -1379,28 +1363,6 @@ void i915_request_add(struct i915_request *rq)
- 	__i915_request_queue(rq, &attr);
- 	local_bh_enable(); /* Kick the execlists tasklet if just scheduled */
- 
--	/*
--	 * In typical scenarios, we do not expect the previous request on
--	 * the timeline to be still tracked by timeline->last_request if it
--	 * has been completed. If the completed request is still here, that
--	 * implies that request retirement is a long way behind submission,
--	 * suggesting that we haven't been retiring frequently enough from
--	 * the combination of retire-before-alloc, waiters and the background
--	 * retirement worker. So if the last request on this timeline was
--	 * already completed, do a catch up pass, flushing the retirement queue
--	 * up to this client. Since we have now moved the heaviest operations
--	 * during retirement onto secondary workers, such as freeing objects
--	 * or contexts, retiring a bunch of requests is mostly list management
--	 * (and cache misses), and so we should not be overly penalizing this
--	 * client by performing excess work, though we may still performing
--	 * work on behalf of others -- but instead we should benefit from
--	 * improved resource management. (Well, that's the theory at least.)
--	 */
--	if (prev &&
--	    i915_request_completed(prev) &&
--	    rcu_access_pointer(prev->timeline) == tl)
--		i915_request_retire_upto(prev);
--
- 	mutex_unlock(&tl->mutex);
- }
- 
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gRnJpLCAyOCBGZWIgMjAyMCwgIlNoYXJtYSwgU3dhdGkyIiA8c3dhdGkyLnNoYXJtYUBpbnRl
+bC5jb20+IHdyb3RlOgo+IE9uIDI4LUZlYi0yMCAxMjo0OSBQTSwgSmFuaSBOaWt1bGEgd3JvdGU6
+Cj4+IE9uIFRodSwgMjcgRmViIDIwMjAsIEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291
+emFAaW50ZWwuY29tPiB3cm90ZToKPj4+IE5ldyBmaXJtd2FyZSBjb250YWlucyBtaW5vciBmaXhl
+cyBhcm91bmQgY29udGV4dCByZXN0b3JlLgo+PiAKPj4gUGxlYXNlIGdldCB0aGUgZmlybXdhcmUg
+aW4gbGludXgtZmlybXdhcmUgYW5kIENJIGZpcnN0Ogo+PiAKPj4gPDc+WyAgICA2LjMyODg4NF0g
+aTkxNSAwMDAwOjAwOjAyLjA6IFtkcm06aW50ZWxfY3NyX3Vjb2RlX2luaXQgW2k5MTVdXSBMb2Fk
+aW5nIGk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbgo+PiA8ND5bICAgIDYuMzMwNjEyXSBpOTE1IDAw
+MDA6MDA6MDIuMDogRGlyZWN0IGZpcm13YXJlIGxvYWQgZm9yIGk5MTUvdGdsX2RtY192ZXIyXzA2
+LmJpbiBmYWlsZWQgd2l0aCBlcnJvciAtMgo+PiA8NT5bICAgIDYuMzMwNjQ1XSBpOTE1IDAwMDA6
+MDA6MDIuMDogW2RybV0gRmFpbGVkIHRvIGxvYWQgRE1DIGZpcm13YXJlIGk5MTUvdGdsX2RtY192
+ZXIyXzA2LmJpbi4gRGlzYWJsaW5nIHJ1bnRpbWUgcG93ZXIgbWFuYWdlbWVudC4KPj4gPDU+WyAg
+ICA2LjMzMDY0OF0gaTkxNSAwMDAwOjAwOjAyLjA6IFtkcm1dIERNQyBmaXJtd2FyZSBob21lcGFn
+ZTogaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tlcm5lbC9naXQvZmlybXdh
+cmUvbGludXgtZmlybXdhcmUuZ2l0L3RyZWUvaTkxNQo+PiAKPj4gQlIsCj4+IEphbmkuCj4+IAo+
+IFVwZGF0ZSBmcm9tIENJIHRlYW06IGxpbnV4LWZpcm13YXJlIHVwZGF0ZWQgKG1hbnVhbGx5KSB3
+aXRoIAo+IGk5MTUvdGdsX2RtY192ZXIyXzA2LmJpbi4gUmVydW4gaW5pdGlhdGVkLiBOZXh0IHJ1
+biwgdjJfMDYgc2hvdWxkIGJlIGxvYWRlZC4KCkNvbmZpcm1lZCBpbiB0aGUgbG9ncy4KClBsZWFz
+ZSBlbnN1cmUgMi4wNiBpcyBpbiBsaW51eC1maXJtd2FyZSB1cHN0cmVhbSBiZWZvcmUgdjUuNiBr
+ZXJuZWwKcmVsZWFzZS4KCkJSLApKYW5pLgoKCgo+PiAKPj4+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBK
+b3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4KPj4+IC0tLQo+Pj4g
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jIHwgNCArKy0tCj4+PiAg
+IDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0pCj4+Pgo+Pj4g
+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfY3NyLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Nzci5jCj4+PiBpbmRleCA1NzMyMGMx
+MjgzOWYuLjMxMTI1NzJjZmI3ZCAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfY3NyLmMKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfY3NyLmMKPj4+IEBAIC00MCw4ICs0MCw4IEBACj4+PiAgIAo+Pj4gICAjZGVmaW5l
+IEdFTjEyX0NTUl9NQVhfRldfU0laRQkJSUNMX0NTUl9NQVhfRldfU0laRQo+Pj4gICAKPj4+IC0j
+ZGVmaW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNfdmVyMl8wNC5iaW4iCj4+PiAtI2Rl
+ZmluZSBUR0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgNCkKPj4+ICsjZGVm
+aW5lIFRHTF9DU1JfUEFUSAkJCSJpOTE1L3RnbF9kbWNfdmVyMl8wNi5iaW4iCj4+PiArI2RlZmlu
+ZSBUR0xfQ1NSX1ZFUlNJT05fUkVRVUlSRUQJQ1NSX1ZFUlNJT04oMiwgNikKPj4+ICAgI2RlZmlu
+ZSBUR0xfQ1NSX01BWF9GV19TSVpFCQkweDYwMDAKPj4+ICAgTU9EVUxFX0ZJUk1XQVJFKFRHTF9D
+U1JfUEFUSCk7Cj4+IAoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGlj
+cyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+SW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0
+dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
