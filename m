@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DAF51776C9
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 14:17:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291C01776E4
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 14:22:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524636E8B5;
-	Tue,  3 Mar 2020 13:17:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E46496E8BB;
+	Tue,  3 Mar 2020 13:21:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BE816E8B5;
- Tue,  3 Mar 2020 13:17:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75CF7A47E6;
- Tue,  3 Mar 2020 13:17:45 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233C56E8BB
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 13:21:58 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 05:21:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="386784126"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga004.jf.intel.com with ESMTP; 03 Mar 2020 05:21:56 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 0052A5C1D7C; Tue,  3 Mar 2020 15:20:40 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200303093157.1153887-1-chris@chris-wilson.co.uk>
+References: <20200303093157.1153887-1-chris@chris-wilson.co.uk>
+Date: Tue, 03 Mar 2020 15:20:40 +0200
+Message-ID: <874kv57exj.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Tue, 03 Mar 2020 13:17:45 -0000
-Message-ID: <158324146545.15379.18277725887373195007@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200226101138.15435-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200226101138.15435-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/display=3A_conversion_to_drm=5Fdevice_based_logging_mac?=
- =?utf-8?q?ros_=28rev5=29?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Drop vma is-closed assertion on
+ insert
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,39 +44,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915/display: conversion to drm_device based logging macros (rev5)
-URL   : https://patchwork.freedesktop.org/series/72760/
-State : failure
+> The is-closed flag may be added after we have acquired the vma under the
+> ctx->mutex, but will not take effect until after we release the
+> vm->mutex. i.e. the flag may be set on the vma as attempt to bind it and
+> that will cause the vma to be unbound later after we unpin it.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-== Summary ==
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-Applying: drm/i915/dsb: convert to drm_device based logging macros.
-Applying: drm/i915/fbc: convert to drm_device based logging macros.
-Applying: drm/i915/fbdev: convert to drm_device based logging.
-Applying: drm/i915/fifo_underrun: convert to drm_device based logging.
-Applying: drm/i915/gmbus: convert to drm_device based logging,
-Applying: drm/i915/hdcp: convert to struct drm_device based logging.
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_hdcp.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_hdcp.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_hdcp.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0006 drm/i915/hdcp: convert to struct drm_device based logging.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-
+> ---
+>  drivers/gpu/drm/i915/i915_vma.c | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 298ca4316e65..3dde671145f7 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -641,7 +641,6 @@ i915_vma_insert(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+>  	u64 start, end;
+>  	int ret;
+>  
+> -	GEM_BUG_ON(i915_vma_is_closed(vma));
+>  	GEM_BUG_ON(i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND | I915_VMA_LOCAL_BIND));
+>  	GEM_BUG_ON(drm_mm_node_allocated(&vma->node));
+>  
+> -- 
+> 2.25.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
