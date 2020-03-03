@@ -2,41 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE17517789E
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C4A1778A0
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 15:18:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9E986E8A4;
-	Tue,  3 Mar 2020 14:18:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3397B6E8CF;
+	Tue,  3 Mar 2020 14:18:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7524189F8B;
- Tue,  3 Mar 2020 14:18:42 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 06:18:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="440572462"
-Received: from swatish2-mobl1.gar.corp.intel.com (HELO [10.66.115.214])
- ([10.66.115.214])
- by fmsmga006.fm.intel.com with ESMTP; 03 Mar 2020 06:18:39 -0800
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20191107151725.10507-1-ville.syrjala@linux.intel.com>
- <20191107151725.10507-3-ville.syrjala@linux.intel.com>
-From: "Sharma, Swati2" <swati2.sharma@intel.com>
-Organization: Intel
-Message-ID: <47e35997-28b0-f21d-e1f8-fbcd3fab7eb5@intel.com>
-Date: Tue, 3 Mar 2020 19:48:38 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1DA66E8CF;
+ Tue,  3 Mar 2020 14:18:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20427778-1500050 
+ for multiple; Tue, 03 Mar 2020 14:18:42 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Mar 2020 14:18:42 +0000
+Message-Id: <20200303141842.1575190-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20191107151725.10507-3-ville.syrjala@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915: Polish CHV .load_luts() a
- bit
+Subject: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_create: Trim loop counters
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,42 +36,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: igt-dev@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SGkgVmlsbGUsCkNhbiB5b3UgcGxlYXNlIHJlYmFzZSB0aGUgc2VyaWVzPyBUaGVyZSBhcmUgaW50
-ZWxfZGVfd3JpdGUoKQpjaGFuZ2VzIGluIGV4aXN0aW5nIGNvZGUuCgpPbiAwNy1Ob3YtMTkgODo0
-NyBQTSwgVmlsbGUgU3lyamFsYSB3cm90ZToKPiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxl
-LnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IAo+IEl0IGlya3MgbWUgdG8gdXNlIGNydGNfc3Rh
-dGVfaXNfbGVnYWN5X2dhbW1hKCkgaW5zaWRlIHRoZSBndXRzCj4gb2YgdGhlIENIViBjb2xvciBt
-YW5hZ2VtZW50IGNvZGUuIExldCdzIGdldCByaWQgb2YgaXQgYW5kIGluc3RlYWQKPiBqdXN0IGNv
-bnN1bHQgY2dtX21vZGUgdG8gZmlndXJlIG91dCBpZiB3ZSB3YW50IHRvIGVuYWJsZSB0aGUgcGlw
-ZQo+IGdhbW1hIG9yIHRoZSBDR00gZ2FtbWEuCj4gCj4gQWxzbyBDSFYgZGlzcGxheSBlbmdpbmUg
-aXMgYmFzZWQgb24gaTk2NS9nNHggc28gd2Ugc2hvdWxkIGZhbGwgYmFjawo+IHRvIHRoZSBpOTY1
-IHBhdGggd2hlbiB0aGUgQ0dNIGdhbW1hIGlzIG5vdCB1c2VkLgo+IAo+IFNpZ25lZC1vZmYtYnk6
-IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gLS0tCj4g
-ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2NvbG9yLmMgfCAxMSArKysrLS0t
-LS0tLQo+ICAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkK
-PiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xv
-ci5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jCj4gaW5kZXgg
-Mzk4MGU4YjUwYzI4Li5kOGVlOTBiNzc3NGEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9jb2xvci5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9jb2xvci5jCj4gQEAgLTk5NiwxNiArOTk2LDEzIEBAIHN0YXRpYyB2b2lk
-IGNodl9sb2FkX2x1dHMoY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUp
-Cj4gICAKPiAgIAljaGVycnl2aWV3X2xvYWRfY3NjX21hdHJpeChjcnRjX3N0YXRlKTsKPiAgIAo+
-IC0JaWYgKGNydGNfc3RhdGVfaXNfbGVnYWN5X2dhbW1hKGNydGNfc3RhdGUpKSB7Cj4gLQkJaTl4
-eF9sb2FkX2x1dHMoY3J0Y19zdGF0ZSk7Cj4gLQkJcmV0dXJuOwo+IC0JfQo+IC0KPiAtCWlmIChk
-ZWdhbW1hX2x1dCkKPiArCWlmIChjcnRjX3N0YXRlLT5jZ21fbW9kZSAmIENHTV9QSVBFX01PREVf
-REVHQU1NQSkKPiAgIAkJY2h2X2xvYWRfY2dtX2RlZ2FtbWEoY3J0YywgZGVnYW1tYV9sdXQpOwo+
-ICAgCj4gLQlpZiAoZ2FtbWFfbHV0KQo+ICsJaWYgKGNydGNfc3RhdGUtPmNnbV9tb2RlICYgQ0dN
-X1BJUEVfTU9ERV9HQU1NQSkKPiAgIAkJY2h2X2xvYWRfY2dtX2dhbW1hKGNydGMsIGdhbW1hX2x1
-dCk7Cj4gKwllbHNlCj4gKwkJaTk2NV9sb2FkX2x1dHMoY3J0Y19zdGF0ZSk7Cj4gICB9Cj4gICAK
-PiAgIHZvaWQgaW50ZWxfY29sb3JfbG9hZF9sdXRzKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpjcnRjX3N0YXRlKQo+IApSZXZpZXdlZC1ieTogU3dhdGkgU2hhcm1hIDxzd2F0aTIuc2hh
-cm1hQGludGVsLmNvbT4KCi0tIAp+U3dhdGkgU2hhcm1hCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWls
-bWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+gem_create + gem_execbuf should be long enough that the accuracy of
+gettime is insignificant; and this is a test not a benchmark! Remove the
+1024 loop so that we check for timeout more frequently.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_create.c | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/tests/i915/gem_exec_create.c b/tests/i915/gem_exec_create.c
+index 102a161d5..e3ceb3f5c 100644
+--- a/tests/i915/gem_exec_create.c
++++ b/tests/i915/gem_exec_create.c
+@@ -93,23 +93,21 @@ static void all(int fd, unsigned flags, int timeout, int ncpus)
+ 		count = 0;
+ 		clock_gettime(CLOCK_MONOTONIC, &start);
+ 		do {
+-			for (int loop = 0; loop < 1024; loop++) {
+-				for (int n = 0; n < nengine; n++) {
+-					obj.handle =  gem_create(fd, 4096);
+-					gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
+-					execbuf.flags &= ~ENGINE_FLAGS;
+-					execbuf.flags |= engines[n];
+-					gem_execbuf(fd, &execbuf);
+-					if (flags & LEAK)
+-						gem_madvise(fd, obj.handle, I915_MADV_DONTNEED);
+-					else
+-						gem_close(fd, obj.handle);
+-				}
++			for (int n = 0; n < nengine; n++) {
++				obj.handle = gem_create(fd, 4096);
++				gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
++				execbuf.flags &= ~ENGINE_FLAGS;
++				execbuf.flags |= engines[n];
++				gem_execbuf(fd, &execbuf);
++				if (flags & LEAK)
++					gem_madvise(fd, obj.handle, I915_MADV_DONTNEED);
++				else
++					gem_close(fd, obj.handle);
+ 			}
+-			count += nengine * 1024;
++			count += nengine;
+ 			clock_gettime(CLOCK_MONOTONIC, &now);
+ 		} while (elapsed(&start, &now) < timeout); /* Hang detection ~120s */
+-		obj.handle =  gem_create(fd, 4096);
++		obj.handle = gem_create(fd, 4096);
+ 		gem_write(fd, obj.handle, 0, &bbe, sizeof(bbe));
+ 		for (int n = 0; n < nengine; n++) {
+ 			execbuf.flags &= ~ENGINE_FLAGS;
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
