@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA7D1782C8
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 580DB1782CE
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 20:07:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E7376E4F1;
-	Tue,  3 Mar 2020 19:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB006E942;
+	Tue,  3 Mar 2020 19:07:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3D6DB6E4F1;
- Tue,  3 Mar 2020 19:06:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 35F29A3ECB;
- Tue,  3 Mar 2020 19:06:37 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE8276E941
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 19:07:33 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 11:07:33 -0800
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="233737454"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 11:07:31 -0800
+Date: Tue, 3 Mar 2020 21:06:48 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <20200303190648.GA20591@ideak-desk.fi.intel.com>
+References: <20200303182904.952445-1-matthew.d.roper@intel.com>
+ <20200303183447.GN174531@mdroper-desk1.amr.corp.intel.com>
+ <20200303185021.GB30299@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Tue, 03 Mar 2020 19:06:37 -0000
-Message-ID: <158326239721.15378.15599187418533188560@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200303171808.7247-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200303171808.7247-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915=3A_Init_LCPLL_on_HSW/BDW_if_the_BIOS_did_not?=
+Content-Disposition: inline
+In-Reply-To: <20200303185021.GB30299@ideak-desk.fi.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/ehl: Check PHY type before reading
+ DPLL frequency
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,24 +47,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 03, 2020 at 08:50:21PM +0200, Imre Deak wrote:
+> On Tue, Mar 03, 2020 at 10:34:47AM -0800, Matt Roper wrote:
+> > On Tue, Mar 03, 2020 at 10:29:04AM -0800, Matt Roper wrote:
+> > > intel_ddi_clock_get() tests the DPLL ID against DPLL_ID_ICL_TBTPLL (2)
+> > > to determine whether to try to descend into a TBT-specific handler.
+> > > However this test will also be true when DPLL4 on EHL is used since t=
+hat
+> > > shares the same DPLL ID (2).
+> > > =
 
-Series: drm/i915: Init LCPLL on HSW/BDW if the BIOS did not
-URL   : https://patchwork.freedesktop.org/series/74211/
-State : warning
+> > > Add an extra check to ensure the PHY is actually a Type-C PHY before
+> > > descending into the TBT handling.  This should ensure EHL still takes
+> > > the correct code path and somewhat future-proof the code as well.
+> > > =
 
-== Summary ==
+> > > Cc: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1369
+> > =
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
+> > Fixes: 45e4728b87ad ("drm/i915: Move DPLL frequency calculation to inte=
+l_dpll_mgr.c")
+> =
 
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+> =
+
+> > Cc: Imre Deak <imre.deak@intel.com>
+> > =
+
+> > I think.
+> > =
+
+> > =
+
+> > Matt
+> > =
+
+> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_ddi.c | 3 ++-
+> > >  1 file changed, 2 insertions(+), 1 deletion(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
+rm/i915/display/intel_ddi.c
+> > > index 284219da7df8..aa3cc42b0eb9 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > @@ -1376,8 +1376,9 @@ static void intel_ddi_clock_get(struct intel_en=
+coder *encoder,
+> > >  				struct intel_crtc_state *pipe_config)
+> > >  {
+> > >  	struct drm_i915_private *dev_priv =3D to_i915(encoder->base.dev);
+> > > +	enum phy phy =3D intel_port_to_phy(dev_priv, encoder->port);
+> > >  =
+
+> > > -	if (INTEL_GEN(dev_priv) >=3D 11 &&
+> > > +	if (INTEL_GEN(dev_priv) >=3D 11 && intel_phy_is_tc(dev_priv, phy) &&
+
+Nit: could be just if (intel_phy_is_tc(dev_priv, phy) && ...
+
+> > >  	    intel_get_shared_dpll_id(dev_priv, pipe_config->shared_dpll) =
+=3D=3D
+> > >  	    DPLL_ID_ICL_TBTPLL)
+> > >  		pipe_config->port_clock =3D icl_calc_tbt_pll_link(dev_priv,
+> > > -- =
+
+> > > 2.24.1
+> > > =
+
+> > =
+
+> > -- =
+
+> > Matt Roper
+> > Graphics Software Engineer
+> > VTT-OSGC Platform Enablement
+> > Intel Corporation
+> > (916) 356-2795
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
