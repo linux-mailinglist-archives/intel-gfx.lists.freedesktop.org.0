@@ -1,36 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF5A178583
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 23:19:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B5E6178642
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 00:25:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B02286E972;
-	Tue,  3 Mar 2020 22:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C9E6E97A;
+	Tue,  3 Mar 2020 23:25:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B246E972
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 22:19:07 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 14:19:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="232413687"
-Received: from unerlige-desk.jf.intel.com ([10.165.21.208])
- by fmsmga007.fm.intel.com with ESMTP; 03 Mar 2020 14:19:06 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
-Date: Tue,  3 Mar 2020 14:19:05 -0800
-Message-Id: <20200303221905.25866-8-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
-References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E92A26E97C;
+ Tue,  3 Mar 2020 23:25:00 +0000 (UTC)
+Received: from gandalf.local.home (cpe-66-24-58-225.stny.res.rr.com
+ [66.24.58.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 369D120716;
+ Tue,  3 Mar 2020 23:25:00 +0000 (UTC)
+Date: Tue, 3 Mar 2020 18:24:58 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200303182458.1210c3bc@gandalf.local.home>
+In-Reply-To: <158310134594.5508.5362429296192213548@skylake-alporthouse-com>
+References: <20200301155248.4132645-1-chris@chris-wilson.co.uk>
+ <20200301131816.277dd398@oasis.local.home>
+ <158310134594.5508.5362429296192213548@skylake-alporthouse-com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/perf: add flushing ioctl
+Subject: Re: [Intel-gfx] [PATCH 1/2] trace: Export anonymous tracing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,114 +41,49 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+On Sun, 01 Mar 2020 22:22:25 +0000
+Chris Wilson <chris@chris-wilson.co.uk> wrote:
 
-With the currently available parameters for the i915-perf stream,
-there are still situations that are not well covered :
+> Quoting Steven Rostedt (2020-03-01 18:18:16)
+> > On Sun,  1 Mar 2020 15:52:47 +0000
+> > Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> >   
+> > > To facilitate construction of per-client event ringbuffers, in
+> > > particular for a per-client debug and error report log, it would be
+> > > extremely useful to create an anonymous file that can be handed to
+> > > userspace so that it can see its and only its events. trace already
+> > > provides a means of encapsulating the trace ringbuffer into a struct
+> > > file that can be opened via the tracefs, and so with a couple of minor
+> > > tweaks can provide the same access via an anonymous inode.  
+> > 
+> > I'm curious to why we need it to be anonymous. Why not allow them to be
+> > visible from the tracing directory. This could allow for easier
+> > debugging. Note, the trace instances have ref counters thus they can't
+> > be removed if something has a reference to it.  
+> 
+> Do you really want a few thousand (or even tens) i915-client-%d? That
+> does not particularly seem like it adds ease-of-use, and would need to be
+> restricted to the client [or root]. The intent is for the client to have
+> a private channel for detailed debug/error reporting of its own calls
+> into the kernel.
 
-If an application opens the stream with polling disable or at very low
-frequency and OA interrupt enabled, no data will be available even
-though somewhere between nothing and half of the OA buffer worth of
-data might have landed in memory.
+Fair enough,
 
-To solve this issue we have a new flush ioctl on the perf stream that
-forces the i915-perf driver to look at the state of the buffer when
-called and makes any data available through both poll() & read() type
-syscalls.
+I would still want "trace_array_create()" to take a name. If it is NULL, it
+becomes anonymous, but if you want it to appear in the tracing directory,
+you can add a name to it.
 
-v2: Version the ioctl (Joonas)
-v3: Rebase (Umesh)
+Again, adding kernel doc comments to the global functions is still
+necessary.
 
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 18 ++++++++++++++++++
- include/uapi/drm/i915_drm.h      | 21 +++++++++++++++++++++
- 2 files changed, 39 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index ab41cba85b40..b6cb47e80b86 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -3221,6 +3221,18 @@ static void i915_perf_disable_locked(struct i915_perf_stream *stream)
- 		stream->ops->disable(stream);
- }
- 
-+/**
-+ * i915_perf_flush_data - handle `I915_PERF_IOCTL_FLUSH_DATA` ioctl
-+ * @stream: An enabled i915 perf stream
-+ *
-+ * The intention is to flush all the data available for reading from the OA
-+ * buffer
-+ */
-+static void i915_perf_flush_data(struct i915_perf_stream *stream)
-+{
-+	stream->pollin = oa_buffer_check(stream, true);
-+}
-+
- static long i915_perf_config_locked(struct i915_perf_stream *stream,
- 				    unsigned long metrics_set)
- {
-@@ -3282,6 +3294,9 @@ static long i915_perf_ioctl_locked(struct i915_perf_stream *stream,
- 		return 0;
- 	case I915_PERF_IOCTL_CONFIG:
- 		return i915_perf_config_locked(stream, arg);
-+	case I915_PERF_IOCTL_FLUSH_DATA:
-+		i915_perf_flush_data(stream);
-+		return 0;
- 	}
- 
- 	return -EINVAL;
-@@ -4551,6 +4566,9 @@ int i915_perf_ioctl_version(void)
- 	 *
- 	 * 5: Add DRM_I915_PERF_PROP_OA_ENABLE_INTERRUPT paramter to
- 	 *    enable/disable interrupts in OA.
-+	 *
-+	 * 6: Add ioctl to flush OA data before reading.
-+	 *    I915_PERF_IOCTL_FLUSH_DATA
- 	 */
- 	return 5;
- }
-diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
-index f609ff4ceccb..3fd6bb189248 100644
---- a/include/uapi/drm/i915_drm.h
-+++ b/include/uapi/drm/i915_drm.h
-@@ -2044,6 +2044,27 @@ struct drm_i915_perf_open_param {
-  */
- #define I915_PERF_IOCTL_CONFIG	_IO('i', 0x2)
- 
-+/**
-+ * Actively check the availability of data from a stream.
-+ *
-+ * A stream data availability can be driven by two types of events :
-+ *
-+ *   - if enabled, the kernel's hrtimer checking the amount of available data
-+ *     in the OA buffer through head/tail registers.
-+ *
-+ *   - if enabled, the OA unit's interrupt mechanism
-+ *
-+ * The kernel hrtimer incur a cost of running callback at fixed time
-+ * intervals, while the OA interrupt might only happen rarely. In the
-+ * situation where the application has disabled the kernel's hrtimer and only
-+ * uses the OA interrupt to know about available data, the application can
-+ * request an active check of the available OA data through this ioctl. This
-+ * will make any data in the OA buffer available with either poll() or read().
-+ *
-+ * This ioctl is available in perf revision 6.
-+ */
-+#define I915_PERF_IOCTL_FLUSH_DATA _IO('i', 0x3)
-+
- /**
-  * Common to all i915 perf records
-  */
--- 
-2.20.1
-
+-- Steve
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
