@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B22177756
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 14:42:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4574D1777C1
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 14:50:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE2CF6E87C;
-	Tue,  3 Mar 2020 13:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B2086E8B0;
+	Tue,  3 Mar 2020 13:50:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB6B56E87C;
- Tue,  3 Mar 2020 13:42:16 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 05:42:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="233757411"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 03 Mar 2020 05:42:13 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Mar 2020 15:42:12 +0200
-Date: Tue, 3 Mar 2020 15:42:12 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200303134212.GR13686@intel.com>
-References: <20200303000859.29339-1-manasi.d.navare@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 714436E8B0;
+ Tue,  3 Mar 2020 13:50:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 69660A41FB;
+ Tue,  3 Mar 2020 13:50:03 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200303000859.29339-1-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/dp: Add function to parse EDID
- descriptors for adaptive sync limits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Tue, 03 Mar 2020 13:50:03 -0000
+Message-ID: <158324340339.15378.8941765667466747883@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200303091624.1838714-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200303091624.1838714-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv3=2C1/2=5D_drm/i915/perf=3A_remove_genera?=
+ =?utf-8?q?ted_code?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,181 +39,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harry Wentland <harry.wentland@amd.com>,
-	intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-	Kazlauskas@freedesktop.org, Nicholas <Nicholas.Kazlauskas@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 02, 2020 at 04:08:59PM -0800, Manasi Navare wrote:
-> Adaptive Sync is a VESA feature so add a DRM core helper to parse
-> the EDID's detailed descritors to obtain the adaptive sync monitor range.
-> Store this info as part fo drm_display_info so it can be used
-> across all drivers.
-> This part of the code is stripped out of amdgpu's function
-> amdgpu_dm_update_freesync_caps() to make it generic and be used
-> across all DRM drivers
-> =
+== Series Details ==
 
-> v3:
-> * Remove the edid parsing restriction for just DP (Nicholas)
-> * Use drm_for_each_detailed_block (Ville)
-> * Make the drm_get_adaptive_sync_range function static (Harry, Jani)
-> v2:
-> * Change vmin and vmax to use u8 (Ville)
-> * Dont store pixel clock since that is just a max dotclock
-> and not related to VRR mode (Manasi)
-> =
+Series: series starting with [v3,1/2] drm/i915/perf: remove generated code
+URL   : https://patchwork.freedesktop.org/series/74193/
+State : failure
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
-> Cc: Kazlauskas, Nicholas <Nicholas.Kazlauskas@amd.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> ---
->  drivers/gpu/drm/drm_edid.c  | 44 +++++++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h | 22 +++++++++++++++++++
->  2 files changed, 66 insertions(+)
-> =
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index ad41764a4ebe..e3f152180b6b 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4938,6 +4938,47 @@ static void drm_parse_cea_ext(struct drm_connector=
- *connector,
->  	}
->  }
->  =
+CI Bug Log - changes from CI_DRM_8055 -> Patchwork_16795
+====================================================
 
-> +static
-> +void get_adaptive_sync_range(struct detailed_timing *timing,
-> +			     void *info_adaptive_sync)
-> +{
-> +	struct drm_adaptive_sync_info *adaptive_sync =3D info_adaptive_sync;
-> +	const struct detailed_non_pixel *data =3D &timing->data.other_data;
-> +	const struct detailed_data_monitor_range *range =3D &data->data.range;
-> +
-> +	if (data->type !=3D EDID_DETAIL_MONITOR_RANGE)a
+Summary
+-------
 
-is_display_descriptor()
+  **FAILURE**
 
-> +		return;
-> +
-> +	/*
-> +	 * Check for flag range limits only. If flag =3D=3D 1 then
-> +	 * no additional timing information provided.
-> +	 * Default GTF, GTF Secondary curve and CVT are not
-> +	 * supported
-> +	 */
-> +	if (range->flags !=3D 1)
+  Serious unknown changes coming with Patchwork_16795 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16795, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Pls name the flags.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16795/index.html
 
-> +		return;
-> +
-> +	adaptive_sync->min_vfreq =3D range->min_vfreq;
-> +	adaptive_sync->max_vfreq =3D range->max_vfreq;
-> +}
-> +
-> +static
-> +void drm_get_adaptive_sync_range(struct drm_connector *connector,
-> +				 const struct edid *edid)
-> +{
-> +	struct drm_display_info *info =3D &connector->display_info;
-> +
-> +	if (!version_greater(edid, 1, 1))
-> +		return;
-> +
-> +	drm_for_each_detailed_block((u8 *)edid, get_adaptive_sync_range,
-> +				    &info->adaptive_sync);
-> +
-> +	DRM_DEBUG_KMS("Adaptive Sync refresh rate range is %d Hz - %d Hz\n",
-> +		      info->adaptive_sync.min_vfreq,
-> +		      info->adaptive_sync.max_vfreq);
-> +}
-> +
->  /* A connector has no EDID information, so we've got no EDID to compute =
-quirks from. Reset
->   * all of the values which would have been set from EDID
->   */
-> @@ -4960,6 +5001,7 @@ drm_reset_display_info(struct drm_connector *connec=
-tor)
->  	memset(&info->hdmi, 0, sizeof(info->hdmi));
->  =
+Possible new issues
+-------------------
 
->  	info->non_desktop =3D 0;
-> +	memset(&info->adaptive_sync, 0, sizeof(info->adaptive_sync));
->  }
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_16795:
 
->  u32 drm_add_display_info(struct drm_connector *connector, const struct e=
-did *edid)
-> @@ -4975,6 +5017,8 @@ u32 drm_add_display_info(struct drm_connector *conn=
-ector, const struct edid *edi
->  =
+### IGT changes ###
 
->  	info->non_desktop =3D !!(quirks & EDID_QUIRK_NON_DESKTOP);
->  =
+#### Possible regressions ####
 
-> +	drm_get_adaptive_sync_range(connector, edid);
-> +
->  	DRM_DEBUG_KMS("non_desktop set to %d\n", info->non_desktop);
->  =
+  * igt@i915_selftest@live@gt_mocs:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16795/fi-bwr-2160/igt@i915_selftest@live@gt_mocs.html
 
->  	if (edid->revision < 3)
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 0df7a95ca5d9..2b22c0fa42c4 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -254,6 +254,23 @@ enum drm_panel_orientation {
->  	DRM_MODE_PANEL_ORIENTATION_RIGHT_UP,
->  };
->  =
+  
+Known issues
+------------
 
-> +/**
-> + * struct drm_adaptive_sync_info - Panel's Adaptive Sync capabilities for
-> + * &drm_display_info
-> + *
-> + * This struct is used to store a Panel's Adaptive Sync capabilities
-> + * as parsed from EDID's detailed monitor range descriptor block.
-> + *
-> + * @min_vfreq: This is the min supported refresh rate in Hz from
-> + *             EDID's detailed monitor range.
-> + * @max_vfreq: This is the max supported refresh rate in Hz from
-> + *             EDID's detailed monitor range
-> + */
-> +struct drm_adaptive_sync_info {
-> +	u8 min_vfreq;
-> +	u8 max_vfreq;
-> +};
-> +
->  /*
->   * This is a consolidated colorimetry list supported by HDMI and
->   * DP protocol standard. The respective connectors will register
-> @@ -473,6 +490,11 @@ struct drm_display_info {
->  	 * @non_desktop: Non desktop display (HMD).
->  	 */
->  	bool non_desktop;
-> +
-> +	/**
-> +	 * @adaptive_sync: Adaptive Sync capabilities of the DP/eDP sink
-> +	 */
-> +	struct drm_adaptive_sync_info adaptive_sync;
->  };
->  =
+  Here are the changes found in Patchwork_16795 that come from known issues:
 
->  int drm_display_info_set_bus_formats(struct drm_display_info *info,
-> -- =
+### IGT changes ###
 
-> 2.19.1
+#### Issues hit ####
 
--- =
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16795/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
 
-Ville Syrj=E4l=E4
-Intel
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
+    - fi-tgl-y:           [DMESG-WARN][5] ([CI#94] / [i915#402]) -> [PASS][6] +2 similar issues
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16795/fi-tgl-y/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (46 -> 41)
+------------------------------
+
+  Additional (3): fi-bsw-kefka fi-cfl-8109u fi-elk-e7500 
+  Missing    (8): fi-hsw-4200u fi-skl-6770hq fi-glk-dsi fi-ctg-p8600 fi-ivb-3770 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8055 -> Patchwork_16795
+
+  CI-20190529: 20190529
+  CI_DRM_8055: df5c59f81df63a983b7490968e16c3255adc196b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5484: 91b36b61e76901a2bd09fe93ac7bf7b8a60f258c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16795: cdf05b1c96cf285b5c1063e7b6d15138be4ec59e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cdf05b1c96cf drm/i915/perf: introduce global sseu pinning
+749133652109 drm/i915/perf: remove generated code
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16795/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
