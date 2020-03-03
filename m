@@ -2,49 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B7B1784E0
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 22:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CDF1784F4
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Mar 2020 22:33:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DABB76E955;
-	Tue,  3 Mar 2020 21:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B47A6E958;
+	Tue,  3 Mar 2020 21:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 326E46E955
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 21:29:18 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 13:29:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="319601241"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga001.jf.intel.com with ESMTP; 03 Mar 2020 13:29:17 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- FMSMSX106.amr.corp.intel.com ([169.254.5.97]) with mapi id 14.03.0439.000;
- Tue, 3 Mar 2020 13:29:17 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "lucas.de.marchi@gmail.com" <lucas.de.marchi@gmail.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl: Remove require_force_probe
- protection
-Thread-Index: AQHV5rA+dBaiL/G+qECvpM+oYzzaIag37MsAgAADo4CAAA4mgA==
-Date: Tue, 3 Mar 2020 21:29:16 +0000
-Message-ID: <802159c000ab5c96ec2ffa4156db7428139f4677.camel@intel.com>
-References: <20200218230822.66801-1-jose.souza@intel.com>
- <CAKi4VAL-f=p18JtZQjgc9J+KsSGFZ5VQXB3Cb1AYXMC9G-1-qA@mail.gmail.com>
- <20200303203935.GF645250@intel.com>
-In-Reply-To: <20200303203935.GF645250@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.241]
-Content-ID: <3F07AAFED6152C48A53ABCC6167E46F9@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D726E959
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Mar 2020 21:33:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20434033-1500050 
+ for multiple; Tue, 03 Mar 2020 21:33:26 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue,  3 Mar 2020 21:33:25 +0000
+Message-Id: <20200303213326.1906480-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Remove require_force_probe
- protection
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915: Apply i915_request_skip() on
+ submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,74 +37,326 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Matthew Auld <matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTAzLTAzIGF0IDEyOjM5IC0wODAwLCBSb2RyaWdvIFZpdmkgd3JvdGU6DQo+
-IE9uIFR1ZSwgTWFyIDAzLCAyMDIwIGF0IDEyOjI2OjM0UE0gLTA4MDAsIEx1Y2FzIERlIE1hcmNo
-aSB3cm90ZToNCj4gPiBPbiBUdWUsIEZlYiAxOCwgMjAyMCBhdCAzOjA3IFBNIEpvc8OpIFJvYmVy
-dG8gZGUgU291emENCj4gPiA8am9zZS5zb3V6YUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+ID4gV2Ug
-aGF2ZSBhIGZldyBUR0wgbWFjaGluZXMgaW4gb3VyIENJIGFuZCBpdCBpcyBtb3N0bHkgZ3JlZW4g
-d2l0aA0KPiA+ID4gZmFpbHVyZXMgaW4gdGVzdHMgdGhhdCB3aWxsIG5vdCBpbXBhY3QgZnV0dXJl
-IExpbnV4DQo+ID4gPiBpbnN0YWxsYXRpb25zLg0KPiA+ID4gQWxzbyB0aGVyZSBpcyBubyB3YXJu
-aW5ncywgZXJyb3JzLCBmbGlja2VyaW5nIG9yIGFueSB2aXN1YWwNCj4gPiA+IGRlZmVjdHMNCj4g
-PiA+IHdoaWxlIGRvaW5nIG9yZGluYXJ5IHRhc2tzIGxpa2UgYnJvd3NpbmcgYW5kIGVkaXRpbmcg
-ZG9jdW1lbnRzIGluDQo+ID4gPiBhDQo+ID4gPiBkdWFsIG1vbml0b3Igc2V0dXAuDQo+ID4gPiAN
-Cj4gPiA+IEFzIGEgcmVtaW5kZXIgaTkxNS5yZXF1aXJlX2ZvcmNlX3Byb2JlIHdhcyBjcmVhdGVk
-IHRvIHByb3RlY3QNCj4gPiA+IGZ1dHVyZSBMaW51eCBpbnN0YWxsYXRpb24ncyBpc28gaW1hZ2Vz
-IHRoYXQgbWlnaHQgY29udGFpbiBhDQo+ID4gPiBrZXJuZWwgZnJvbSB0aGUgZW5hYmxpbmcgdGlt
-ZSBvZiB0aGUgbmV3IHBsYXRmb3JtLiBXaXRob3V0IHRoaXMNCj4gPiA+IHByb3RlY3Rpb24gbW9z
-dCBvZiBsaW51eCBpbnN0YWxsYXRpb24gd2FzIHJlY29tbWVuZGluZw0KPiA+ID4gbm9tb2Rlc2V0
-IG9wdGlvbiBkdXJpbmcgaW5zdGFsbGF0aW9uIHRoYXQgd2FzIGdldHRpbmcgc3RpY2sNCj4gPiA+
-IHRoZXJlIGFmdGVyIGluc3RhbGxhdGlvbi4NCj4gPiA+IA0KPiA+ID4gUmVmZXJlbmNlOiBodHRw
-czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL2ZpLXRnbC11Lmh0bWwNCj4gPiA+
-IFJlZmVyZW5jZTogDQo+ID4gPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
-dGlwL3NoYXJkLXRnbGIuaHRtbA0KPiA+ID4gQ2M6IEphbWVzIEF1c211cyA8amFtZXMuYXVzbXVz
-QGludGVsLmNvbT4NCj4gPiA+IENjOiBKYW5pIFNhYXJpbmVuIDxqYW5pLnNhYXJpbmVuQGludGVs
-LmNvbT4NCj4gPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+DQo+
-ID4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4NCj4gPiA+IENjOiBK
-b29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+DQo+ID4gPiBT
-aWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNv
-bT4NCj4gPiANCj4gPiBSZXZpZXdlZC1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNo
-aUBpbnRlbC5jb20+DQo+ID4gDQo+ID4gQWxzbywgSSB0aGluayBpdCB3b3VsZCBiZSBnb29kIHRv
-IGhhdmUgdGhpcyBpbiA1LjYgcmF0aGVyIHRoYW4gNS43Lg0KPiA+IFllcywgaXQncyBsYXRlIGlu
-IHRoZSBtZXJnZSB3aW5kb3csIGJ1dCBpdCBmYWxscyBpbiB0aGUgY2FzZSBvZg0KPiA+ICJOZXcN
-Cj4gPiBkZXZpY2UgSURzIGFuZCBxdWlya3MgYXJlIGFsc28gYWNjZXB0ZWQuIiBvZiB0aGUgc3Rh
-YmxlIGtlcm5lbA0KPiA+IHJ1bGVzLA0KPiA+IHNvIGNvdWxkIGFzIHdlbGwganVzdCBnbyBkaXJl
-Y3RseSB0byB0aGlzIGtlcm5lbC4gUm9kcmlnbywgaXMgaXQNCj4gPiBwb3NzaWJsZT8NCj4gDQo+
-IEphbmkgaXMgb24gY2hhcmdlIG9mIHRoZSA1LjYgc28gSSB3aWxsIGRlZmVyIHRoaXMgZGVjaXNp
-b24gdG8gaGltLg0KPiANCj4gQnV0IGluIGdlbmVyYWwgd2UgYWx3YXlzIHJlZnVzZWQgdG8gZG8g
-dGhpcyBiZWNhdXNlIHRoaXMgaXMgYQ0KPiBlbmFibGluZw0KPiBraW5kIG9mIHRoaW5nIGFuZCBu
-b3QgYSBmaXggcGVyIHNheS4gT2theSwgeW91IG1pZ2h0IGFyZ3VlIHRoYXQgaXQgaXMNCj4gYSBk
-ZXZpY2UgSUQgYW5kIHRoYXQgd291bGQgYmUgYWNjZXB0ZWQgb24gc3RhYmxlIHNvIHdoeSBub3Qg
-YWxzbyBvbg0KPiBmaXhlcyBjeWNsZSwgYnV0IG15IGZlYXIgaXMgdGhhdCB3ZSBoYXZlbid0IHBy
-b3Blcmx5IHZhbGlkYXRlZCB0aGF0DQo+IG9uIDUuNiB3aXRob3V0IHRoZSBtYW55IGNoYW5nZXMs
-IGZpeGVzIGFuZCB3b3JrYXJvdW5kcyB0aGF0IGFyZQ0KPiBvbmx5IGdvaW5nIHRvd2FyZHMgNS43
-IGFuZCBub3QgNS42Lg0KDQpBbHNvIHdlIGFyZSBibG9ja2VkIHVudGlsIA0KaHR0cHM6Ly9naXRs
-YWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pbnRlbC9pc3N1ZXMvMTIzMyBpcyBmaXhlZCwgSm9vbmFz
-DQphbmQgSm9uIEJsb29tZmllbGQgYWR2aXNlZCB0aGF0Lg0KDQo+IA0KPiA+IHRoYW5rcw0KPiA+
-IEx1Y2FzIERlIE1hcmNoaQ0KPiA+IA0KPiA+ID4gLS0tDQo+ID4gPiAgZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaTkxNV9wY2kuYyB8IDEgLQ0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9u
-KC0pDQo+ID4gPiANCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3BjaS5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMNCj4gPiA+IGlu
-ZGV4IDI0YjFmMGNlODc0My4uMjE0NmI5YTg2NWJhIDEwMDY0NA0KPiA+ID4gLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9wY2kuYw0KPiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9wY2kuYw0KPiA+ID4gQEAgLTgyMiw3ICs4MjIsNiBAQCBzdGF0aWMgY29uc3Qgc3Ry
-dWN0IGludGVsX2RldmljZV9pbmZvDQo+ID4gPiB0Z2xfaW5mbyA9IHsNCj4gPiA+ICAgICAgICAg
-R0VOMTJfRkVBVFVSRVMsDQo+ID4gPiAgICAgICAgIFBMQVRGT1JNKElOVEVMX1RJR0VSTEFLRSks
-DQo+ID4gPiAgICAgICAgIC5waXBlX21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpIHwg
-QklUKFBJUEVfQykgfA0KPiA+ID4gQklUKFBJUEVfRCksDQo+ID4gPiAtICAgICAgIC5yZXF1aXJl
-X2ZvcmNlX3Byb2JlID0gMSwNCj4gPiA+ICAgICAgICAgLmRpc3BsYXkuaGFzX21vZHVsYXJfZmlh
-ID0gMSwNCj4gPiA+ICAgICAgICAgLmVuZ2luZV9tYXNrID0NCj4gPiA+ICAgICAgICAgICAgICAg
-ICBCSVQoUkNTMCkgfCBCSVQoQkNTMCkgfCBCSVQoVkVDUzApIHwgQklUKFZDUzApIHwNCj4gPiA+
-IEJJVChWQ1MyKSwNCj4gPiA+IC0tDQo+ID4gPiAyLjI1LjENCj4gPiA+IA0KPiA+ID4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiA+IEludGVsLWdm
-eCBtYWlsaW5nIGxpc3QNCj4gPiA+IEludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4g
-PiA+IGh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
-Z2Z4DQo+ID4gDQo+ID4gDQo+ID4gLS0gDQo+ID4gTHVjYXMgRGUgTWFyY2hpDQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBs
-aXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVz
-a3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Trying to use i915_request_skip() prior to i915_request_add() causes us
+to try and fill the ring upto request->postfix, which has not yet been
+set, and so may cause us to memset() past the end of the ring.
+
+Instead of skipping the request immediately, just flag the error on the
+request (only accepting the first fatal error we see) and then clear the
+request upon submission.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_client_blt.c    |  2 +-
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  6 +--
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  4 +-
+ .../drm/i915/gem/selftests/i915_gem_context.c |  6 +--
+ .../drm/i915/gem/selftests/igt_gem_utils.c    |  2 +-
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  4 +-
+ drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  2 +-
+ drivers/gpu/drm/i915/i915_request.c           | 39 +++++++++----------
+ drivers/gpu/drm/i915/i915_request.h           | 28 ++++++++++++-
+ drivers/gpu/drm/i915/selftests/igt_spinner.c  |  2 +-
+ 11 files changed, 60 insertions(+), 37 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+index 81366aa4812b..0598e5382a1d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
+@@ -217,7 +217,7 @@ static void clear_pages_worker(struct work_struct *work)
+ 					   0);
+ out_request:
+ 	if (unlikely(err)) {
+-		i915_request_skip(rq, err);
++		i915_request_set_error_once(rq, err);
+ 		err = 0;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d73be2c28098..3aa28b43128e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1197,7 +1197,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
+ 	goto out_pool;
+ 
+ skip_request:
+-	i915_request_skip(rq, err);
++	i915_request_set_error_once(rq, err);
+ err_request:
+ 	i915_request_add(rq);
+ err_unpin:
+@@ -1886,7 +1886,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
+ 	return 0;
+ 
+ err_skip:
+-	i915_request_skip(eb->request, err);
++	i915_request_set_error_once(eb->request, err);
+ 	return err;
+ }
+ 
+@@ -2618,7 +2618,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
+ 			attr.priority |= I915_PRIORITY_WAIT;
+ 	} else {
+ 		/* Serialise with context_close via the add_to_timeline */
+-		i915_request_skip(rq, -ENOENT);
++		i915_request_set_error_once(rq, -ENOENT);
+ 	}
+ 
+ 	local_bh_disable();
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+index 70809d8897cd..39b8a055d80a 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+@@ -186,7 +186,7 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+ 					0);
+ out_request:
+ 	if (unlikely(err))
+-		i915_request_skip(rq, err);
++		i915_request_set_error_once(rq, err);
+ 
+ 	i915_request_add(rq);
+ out_batch:
+@@ -385,7 +385,7 @@ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
+ 	drm_gem_unlock_reservations(objs, ARRAY_SIZE(objs), &acquire);
+ out_request:
+ 	if (unlikely(err))
+-		i915_request_skip(rq, err);
++		i915_request_set_error_once(rq, err);
+ 
+ 	i915_request_add(rq);
+ out_batch:
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+index 375d864736f3..77c7e65de7c3 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
+@@ -1004,7 +1004,7 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
+ 	return 0;
+ 
+ skip_request:
+-	i915_request_skip(rq, err);
++	i915_request_set_error_once(rq, err);
+ err_request:
+ 	i915_request_add(rq);
+ err_batch:
+@@ -1559,7 +1559,7 @@ static int write_to_scratch(struct i915_gem_context *ctx,
+ 
+ 	goto out_vm;
+ skip_request:
+-	i915_request_skip(rq, err);
++	i915_request_set_error_once(rq, err);
+ err_request:
+ 	i915_request_add(rq);
+ err_unpin:
+@@ -1708,7 +1708,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
+ 
+ 	goto out_vm;
+ skip_request:
+-	i915_request_skip(rq, err);
++	i915_request_set_error_once(rq, err);
+ err_request:
+ 	i915_request_add(rq);
+ err_unpin:
+diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+index 6718da20f35d..772d8cba7da9 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
++++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
+@@ -159,7 +159,7 @@ int igt_gpu_fill_dw(struct intel_context *ce,
+ 	return 0;
+ 
+ skip_request:
+-	i915_request_skip(rq, err);
++	i915_request_set_error_once(rq, err);
+ err_request:
+ 	i915_request_add(rq);
+ err_batch:
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index b9b3f78f1324..8af5a4069f20 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -4903,7 +4903,7 @@ static intel_engine_mask_t virtual_submission_mask(struct virtual_engine *ve)
+ 	mask = rq->execution_mask;
+ 	if (unlikely(!mask)) {
+ 		/* Invalid selection, submit to a random engine in error */
+-		i915_request_skip(rq, -ENODEV);
++		i915_request_set_error_once(rq, -ENODEV);
+ 		mask = ve->siblings[0]->mask;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index aef6ab58d7d9..f8bcf6ac36ce 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -49,7 +49,7 @@ static void engine_skip_context(struct i915_request *rq)
+ 	lockdep_assert_held(&engine->active.lock);
+ 	list_for_each_entry_continue(rq, &engine->active.requests, sched.link)
+ 		if (rq->context == hung_ctx)
+-			i915_request_skip(rq, -EIO);
++			i915_request_set_error_once(rq, -EIO);
+ }
+ 
+ static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
+@@ -154,7 +154,7 @@ void __i915_request_reset(struct i915_request *rq, bool guilty)
+ 
+ 	rcu_read_lock(); /* protect the GEM context */
+ 	if (guilty) {
+-		i915_request_skip(rq, -EIO);
++		i915_request_set_error_once(rq, -EIO);
+ 		if (mark_guilty(rq))
+ 			engine_skip_context(rq);
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+index c3514ec7b8db..2b2efff6e19d 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
++++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
+@@ -268,7 +268,7 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
+ 
+ cancel_rq:
+ 	if (err) {
+-		i915_request_skip(rq, err);
++		i915_request_set_error_once(rq, err);
+ 		i915_request_add(rq);
+ 	}
+ unpin_hws:
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d837c1380015..abde1fea4b2b 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -363,6 +363,20 @@ __await_execution(struct i915_request *rq,
+ 	return 0;
+ }
+ 
++static void i915_request_skip(struct i915_request *rq)
++{
++	if (rq->infix == rq->postfix)
++		return;
++
++	/*
++	 * As this request likely depends on state from the lost
++	 * context, clear out all the user operations leaving the
++	 * breadcrumb at the end (so we get the fence notifications).
++	 */
++	__i915_request_fill(rq, 0);
++	rq->infix = rq->postfix;
++}
++
+ bool __i915_request_submit(struct i915_request *request)
+ {
+ 	struct intel_engine_cs *engine = request->engine;
+@@ -392,8 +406,10 @@ bool __i915_request_submit(struct i915_request *request)
+ 	if (i915_request_completed(request))
+ 		goto xfer;
+ 
+-	if (intel_context_is_banned(request->context))
+-		i915_request_skip(request, -EIO);
++	if (unlikely(intel_context_is_banned(request->context)))
++		i915_request_set_error_once(request, -EIO);
++	if (unlikely(i915_request_fatal_error(request->fence.error)))
++		i915_request_skip(request);
+ 
+ 	/*
+ 	 * Are we using semaphores when the gpu is already saturated?
+@@ -519,7 +535,7 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+ 		trace_i915_request_submit(request);
+ 
+ 		if (unlikely(fence->error))
+-			i915_request_skip(request, fence->error);
++			i915_request_set_error_once(request, fence->error);
+ 
+ 		/*
+ 		 * We need to serialize use of the submit_request() callback
+@@ -1209,23 +1225,6 @@ i915_request_await_object(struct i915_request *to,
+ 	return ret;
+ }
+ 
+-void i915_request_skip(struct i915_request *rq, int error)
+-{
+-	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
+-	dma_fence_set_error(&rq->fence, error);
+-
+-	if (rq->infix == rq->postfix)
+-		return;
+-
+-	/*
+-	 * As this request likely depends on state from the lost
+-	 * context, clear out all the user operations leaving the
+-	 * breadcrumb at the end (so we get the fence notifications).
+-	 */
+-	__i915_request_fill(rq, 0);
+-	rq->infix = rq->postfix;
+-}
+-
+ static struct i915_request *
+ __i915_request_add_to_timeline(struct i915_request *rq)
+ {
+diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+index da8420f03232..81094669682f 100644
+--- a/drivers/gpu/drm/i915/i915_request.h
++++ b/drivers/gpu/drm/i915/i915_request.h
+@@ -352,8 +352,6 @@ void i915_request_add(struct i915_request *rq);
+ bool __i915_request_submit(struct i915_request *request);
+ void i915_request_submit(struct i915_request *request);
+ 
+-void i915_request_skip(struct i915_request *request, int error);
+-
+ void __i915_request_unsubmit(struct i915_request *request);
+ void i915_request_unsubmit(struct i915_request *request);
+ 
+@@ -570,4 +568,30 @@ i915_request_active_timeline(struct i915_request *rq)
+ 					 lockdep_is_held(&rq->engine->active.lock));
+ }
+ 
++static bool i915_request_fatal_error(int err)
++{
++	switch (err) {
++	case 0: /* not an error! */
++	case -EAGAIN: /* innocent victim of a GT reset (__i915_request_reset) */
++	case -ETIMEDOUT: /* waiting for a Godot (timer_i915_sw_fence_wake) */
++		return false;
++	default:
++		return true;
++	}
++}
++
++static inline void
++i915_request_set_error_once(struct i915_request *rq, int err)
++{
++	int old;
++
++	GEM_BUG_ON(!IS_ERR_VALUE((long)err));
++
++	old = READ_ONCE(rq->fence.error);
++	do {
++		if (i915_request_fatal_error(old))
++			return;
++	} while (!try_cmpxchg(&rq->fence.error, &old, err));
++}
++
+ #endif /* I915_REQUEST_H */
+diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+index e8a58fe49c39..9ad4ab088466 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
++++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
+@@ -183,7 +183,7 @@ igt_spinner_create_request(struct igt_spinner *spin,
+ 
+ cancel_rq:
+ 	if (err) {
+-		i915_request_skip(rq, err);
++		i915_request_set_error_once(rq, err);
+ 		i915_request_add(rq);
+ 	}
+ unpin_hws:
+-- 
+2.25.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
