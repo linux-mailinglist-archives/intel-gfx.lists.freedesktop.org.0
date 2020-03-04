@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798D01796DD
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 18:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8654E1796F8
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 18:48:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B5E6EB4E;
-	Wed,  4 Mar 2020 17:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 853646EB52;
+	Wed,  4 Mar 2020 17:48:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8639C6EB4D;
- Wed,  4 Mar 2020 17:38:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D6F7C6EB52;
+ Wed,  4 Mar 2020 17:48:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7ED50A47E6;
- Wed,  4 Mar 2020 17:38:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF05DA3ECB;
+ Wed,  4 Mar 2020 17:48:04 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 04 Mar 2020 17:38:51 -0000
-Message-ID: <158334353151.429.17965456886722803759@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Wed, 04 Mar 2020 17:48:04 -0000
+Message-ID: <158334408482.430.12730454520105091344@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200304130353.2448417-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200304130353.2448417-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_Add_mechani?=
- =?utf-8?q?sm_to_submit_a_context_WA_on_ring_submission?=
+References: <20200304125118.12335-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200304125118.12335-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/edp=3A_Ignore_short_pulse_when_panel_powered_off?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,26 +47,89 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [CI,1/2] drm/i915: Add mechanism to submit a context WA on ring submission
-URL   : https://patchwork.freedesktop.org/series/74266/
-State : warning
+Series: drm/i915/edp: Ignore short pulse when panel powered off
+URL   : https://patchwork.freedesktop.org/series/74265/
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-077cea8a78dd drm/i915: Add mechanism to submit a context WA on ring submission
--:261: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#261: 
-new file mode 100644
+CI Bug Log - changes from CI_DRM_8066 -> Patchwork_16817
+====================================================
 
-total: 0 errors, 1 warnings, 0 checks, 461 lines checked
-5fd0db494c41 drm/i915/gen7: Clear all EU/L3 residual contexts
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 585 lines checked
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16817 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_getparams_basic@basic-subslice-total:
+    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/fi-tgl-y/igt@i915_getparams_basic@basic-subslice-total.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][3] -> [DMESG-WARN][4] ([i915#44])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-icl-guc:         [DMESG-FAIL][5] ([i915#922]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#922]: https://gitlab.freedesktop.org/drm/intel/issues/922
+
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (6): fi-bwr-2160 fi-kbl-7500u fi-cfl-8109u fi-skl-lmem fi-blb-e6850 fi-kbl-r 
+  Missing    (9): fi-icl-1065g7 fi-bdw-5557u fi-tgl-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8066 -> Patchwork_16817
+
+  CI-20190529: 20190529
+  CI_DRM_8066: 9e1454777a07902c85ce3febcc9648837a2224fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5491: d52794b426ae16630cc1e0354ae435ec98f6174b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16817: e394b1179ebcf458edc0cc1c9ddd081972b29021 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e394b1179ebc drm/i915/edp: Ignore short pulse when panel powered off
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16817/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
