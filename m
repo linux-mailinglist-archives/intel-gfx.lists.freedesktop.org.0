@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35A191797F0
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 19:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 175811797F7
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 19:34:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F6196EB54;
-	Wed,  4 Mar 2020 18:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 085836EB59;
+	Wed,  4 Mar 2020 18:34:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEFB36E0E7;
- Wed,  4 Mar 2020 18:31:29 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 10:31:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="229415047"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 04 Mar 2020 10:31:25 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 04 Mar 2020 20:31:23 +0200
-Date: Wed, 4 Mar 2020 20:31:23 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200304183123.GG13686@intel.com>
-References: <20200303000859.29339-1-manasi.d.navare@intel.com>
- <20200303134212.GR13686@intel.com>
- <20200304173606.GA19311@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A37F6EB59;
+ Wed,  4 Mar 2020 18:34:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 729E9A0094;
+ Wed,  4 Mar 2020 18:34:43 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200304173606.GA19311@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/dp: Add function to parse EDID
- descriptors for adaptive sync limits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Date: Wed, 04 Mar 2020 18:34:43 -0000
+Message-ID: <158334688344.431.2858602887857798670@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200304150918.25473-1-imre.deak@intel.com>
+In-Reply-To: <20200304150918.25473-1-imre.deak@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Fix_documentation_for_intel=5Fdpll=5Fget=5Ffreq=28=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,102 +38,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Kazlauskas@freedesktop.org,
- dri-devel@lists.freedesktop.org, Nicholas <Nicholas.Kazlauskas@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 04, 2020 at 09:36:06AM -0800, Manasi Navare wrote:
-> On Tue, Mar 03, 2020 at 03:42:12PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Mon, Mar 02, 2020 at 04:08:59PM -0800, Manasi Navare wrote:
-> > > Adaptive Sync is a VESA feature so add a DRM core helper to parse
-> > > the EDID's detailed descritors to obtain the adaptive sync monitor ra=
-nge.
-> > > Store this info as part fo drm_display_info so it can be used
-> > > across all drivers.
-> > > This part of the code is stripped out of amdgpu's function
-> > > amdgpu_dm_update_freesync_caps() to make it generic and be used
-> > > across all DRM drivers
-> > > =
+== Series Details ==
 
-> > > v3:
-> > > * Remove the edid parsing restriction for just DP (Nicholas)
-> > > * Use drm_for_each_detailed_block (Ville)
-> > > * Make the drm_get_adaptive_sync_range function static (Harry, Jani)
-> > > v2:
-> > > * Change vmin and vmax to use u8 (Ville)
-> > > * Dont store pixel clock since that is just a max dotclock
-> > > and not related to VRR mode (Manasi)
-> > > =
+Series: drm/i915: Fix documentation for intel_dpll_get_freq()
+URL   : https://patchwork.freedesktop.org/series/74272/
+State : success
 
-> > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > Cc: Harry Wentland <harry.wentland@amd.com>
-> > > Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
-> > > Cc: Kazlauskas, Nicholas <Nicholas.Kazlauskas@amd.com>
-> > > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_edid.c  | 44 +++++++++++++++++++++++++++++++++++=
-++
-> > >  include/drm/drm_connector.h | 22 +++++++++++++++++++
-> > >  2 files changed, 66 insertions(+)
-> > > =
+== Summary ==
 
-> > > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> > > index ad41764a4ebe..e3f152180b6b 100644
-> > > --- a/drivers/gpu/drm/drm_edid.c
-> > > +++ b/drivers/gpu/drm/drm_edid.c
-> > > @@ -4938,6 +4938,47 @@ static void drm_parse_cea_ext(struct drm_conne=
-ctor *connector,
-> > >  	}
-> > >  }
-> > >  =
+CI Bug Log - changes from CI_DRM_8066 -> Patchwork_16820
+====================================================
 
-> > > +static
-> > > +void get_adaptive_sync_range(struct detailed_timing *timing,
-> > > +			     void *info_adaptive_sync)
-> > > +{
-> > > +	struct drm_adaptive_sync_info *adaptive_sync =3D info_adaptive_sync;
-> > > +	const struct detailed_non_pixel *data =3D &timing->data.other_data;
-> > > +	const struct detailed_data_monitor_range *range =3D &data->data.ran=
-ge;
-> > > +
-> > > +	if (data->type !=3D EDID_DETAIL_MONITOR_RANGE)a
-> > =
+Summary
+-------
 
-> > is_display_descriptor()
-> =
+  **SUCCESS**
 
-> Will change to use is_display_descriptor()
-> =
+  No regressions found.
 
-> > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/index.html
 
-> > > +		return;
-> > > +
-> > > +	/*
-> > > +	 * Check for flag range limits only. If flag =3D=3D 1 then
-> > > +	 * no additional timing information provided.
-> > > +	 * Default GTF, GTF Secondary curve and CVT are not
-> > > +	 * supported
-> > > +	 */
-> > > +	if (range->flags !=3D 1)
-> > =
+Known issues
+------------
 
-> > Pls name the flags.
-> =
+  Here are the changes found in Patchwork_16820 that come from known issues:
 
-> I dont see that we have any enum with the flag names, do you want me to d=
-efine them looking
-> at EDID spec?
+### IGT changes ###
 
-What else?
+#### Issues hit ####
 
--- =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-icl-guc:         [DMESG-FAIL][5] ([i915#922]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#922]: https://gitlab.freedesktop.org/drm/intel/issues/922
+
+
+Participating hosts (45 -> 37)
+------------------------------
+
+  Additional (3): fi-blb-e6850 fi-bwr-2160 fi-kbl-7500u 
+  Missing    (11): fi-hsw-4770r fi-icl-1065g7 fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-bdw-samus fi-byt-clapper fi-skl-6700k2 fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8066 -> Patchwork_16820
+
+  CI-20190529: 20190529
+  CI_DRM_8066: 9e1454777a07902c85ce3febcc9648837a2224fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5491: d52794b426ae16630cc1e0354ae435ec98f6174b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16820: 98cd78439929389c404db55b862272c066a8a60f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+98cd78439929 drm/i915: Fix documentation for intel_dpll_get_freq()
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16820/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
