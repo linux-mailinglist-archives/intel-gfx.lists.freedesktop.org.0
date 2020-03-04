@@ -2,43 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 233BB178CE6
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 09:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC47178D29
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 10:11:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E03836EADF;
-	Wed,  4 Mar 2020 08:55:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59A276EAF0;
+	Wed,  4 Mar 2020 09:11:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9638D6EADF
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 08:55:50 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 811AB6EAF0
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 09:11:06 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 00:55:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="234048763"
-Received: from jensle-mobl.ger.corp.intel.com (HELO [10.252.41.98])
- ([10.252.41.98])
- by fmsmga008.fm.intel.com with ESMTP; 04 Mar 2020 00:55:49 -0800
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
- <20200303221905.25866-7-umesh.nerlige.ramappa@intel.com>
- <87wo80u0vn.wl-ashutosh.dixit@intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <729a2c85-3ba6-43c9-b75d-19856c270893@intel.com>
-Date: Wed, 4 Mar 2020 10:55:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 01:11:05 -0800
+X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="233964168"
+Received: from ohoehne-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.39.231])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 01:11:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.de.marchi@gmail.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <CAKi4VAJMuOwx6JEA0d6=izs4piSHqnH0Zkt_VojxM0xCVeCW+A@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200218230822.66801-1-jose.souza@intel.com>
+ <CAKi4VAL-f=p18JtZQjgc9J+KsSGFZ5VQXB3Cb1AYXMC9G-1-qA@mail.gmail.com>
+ <20200303203935.GF645250@intel.com>
+ <CAKi4VAJMuOwx6JEA0d6=izs4piSHqnH0Zkt_VojxM0xCVeCW+A@mail.gmail.com>
+Date: Wed, 04 Mar 2020 11:11:04 +0200
+Message-ID: <87mu8wpjrr.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <87wo80u0vn.wl-ashutosh.dixit@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/perf: add interrupt enabling
- parameter
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Remove require_force_probe
+ protection
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,62 +48,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 04/03/2020 07:47, Dixit, Ashutosh wrote:
-> On Tue, 03 Mar 2020 14:19:04 -0800, Umesh Nerlige Ramappa wrote:
->> From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->>
->> This let's the application choose to be driven by the interrupt
->> mechanism of the HW. In conjuction with long periods for checks for
->> the availability of data on the CPU, this can reduce the CPU load when
->> doing capture of OA data.
->>
->> v2: Version the new parameter (Joonas)
->> v3: Rebase (Umesh)
->>
->> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> [snip]
->
->> +	/**
->> +	 * Specifying this property sets up the interrupt mechanism for the OA
->> +	 * buffer in i915. This option in conjuction with a long polling delay
->> +	 * for avaibility of OA data can reduce CPU load significantly if you
->> +	 * do not care about OA data being read as soon as it's available.
->> +	 *
->> +	 * This property is available in perf revision 5.
->> +	 */
->> +	DRM_I915_PERF_PROP_OA_ENABLE_INTERRUPT,
-> What if we do not expose this parameter in the uapi at all and internally
-> decide in i915 whether to leave the interrupt either always enabled or
-> always disabled (and in that case always use the hrtimer)? This way we
-> retain flexibility in i915 if hardware evolves in the future e.g. to use
-> watermarks for the interrupt, without yielding control to userspace.
->
-> Overall I feel we should avoid exposing unnecessary details of the internal
-> implemenation to userspace, they would be neither interested in knowing
-> internal details nor know how to properly use these parameters. Shouldn't
-> the driver be able to make these kinds of decisions internally?
->
-> At this point the only parameter which implicitly exposed to userspace is
-> the hrtimer poll period, so perhaps all we need to do is to expose that in
-> the uapi? Thoughts?
-
-
-I guess I agree with you. I can't remember why I exposed it to userspace.
-
-There might be one test that checks the stream reports LOST_BUFFER with 
-no poll() wakeup, but I guess we could update it.
-
-
--Lionel
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVHVlLCAwMyBNYXIgMjAyMCwgTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZS5tYXJjaGlAZ21h
+aWwuY29tPiB3cm90ZToKPiBPbiBUdWUsIE1hciAzLCAyMDIwIGF0IDEyOjM4IFBNIFJvZHJpZ28g
+Vml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4gd3JvdGU6Cj4+Cj4+IE9uIFR1ZSwgTWFyIDAz
+LCAyMDIwIGF0IDEyOjI2OjM0UE0gLTA4MDAsIEx1Y2FzIERlIE1hcmNoaSB3cm90ZToKPj4gPiBP
+biBUdWUsIEZlYiAxOCwgMjAyMCBhdCAzOjA3IFBNIEpvc8OpIFJvYmVydG8gZGUgU291emEKPj4g
+PiA8am9zZS5zb3V6YUBpbnRlbC5jb20+IHdyb3RlOgo+PiA+ID4KPj4gPiA+IFdlIGhhdmUgYSBm
+ZXcgVEdMIG1hY2hpbmVzIGluIG91ciBDSSBhbmQgaXQgaXMgbW9zdGx5IGdyZWVuIHdpdGgKPj4g
+PiA+IGZhaWx1cmVzIGluIHRlc3RzIHRoYXQgd2lsbCBub3QgaW1wYWN0IGZ1dHVyZSBMaW51eCBp
+bnN0YWxsYXRpb25zLgo+PiA+ID4gQWxzbyB0aGVyZSBpcyBubyB3YXJuaW5ncywgZXJyb3JzLCBm
+bGlja2VyaW5nIG9yIGFueSB2aXN1YWwgZGVmZWN0cwo+PiA+ID4gd2hpbGUgZG9pbmcgb3JkaW5h
+cnkgdGFza3MgbGlrZSBicm93c2luZyBhbmQgZWRpdGluZyBkb2N1bWVudHMgaW4gYQo+PiA+ID4g
+ZHVhbCBtb25pdG9yIHNldHVwLgo+PiA+ID4KPj4gPiA+IEFzIGEgcmVtaW5kZXIgaTkxNS5yZXF1
+aXJlX2ZvcmNlX3Byb2JlIHdhcyBjcmVhdGVkIHRvIHByb3RlY3QKPj4gPiA+IGZ1dHVyZSBMaW51
+eCBpbnN0YWxsYXRpb24ncyBpc28gaW1hZ2VzIHRoYXQgbWlnaHQgY29udGFpbiBhCj4+ID4gPiBr
+ZXJuZWwgZnJvbSB0aGUgZW5hYmxpbmcgdGltZSBvZiB0aGUgbmV3IHBsYXRmb3JtLiBXaXRob3V0
+IHRoaXMKPj4gPiA+IHByb3RlY3Rpb24gbW9zdCBvZiBsaW51eCBpbnN0YWxsYXRpb24gd2FzIHJl
+Y29tbWVuZGluZwo+PiA+ID4gbm9tb2Rlc2V0IG9wdGlvbiBkdXJpbmcgaW5zdGFsbGF0aW9uIHRo
+YXQgd2FzIGdldHRpbmcgc3RpY2sKPj4gPiA+IHRoZXJlIGFmdGVyIGluc3RhbGxhdGlvbi4KPj4g
+PiA+Cj4+ID4gPiBSZWZlcmVuY2U6IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvZmktdGdsLXUuaHRtbAo+PiA+ID4gUmVmZXJlbmNlOiBodHRwczovL2ludGVsLWdmeC1j
+aS4wMS5vcmcvdHJlZS9kcm0tdGlwL3NoYXJkLXRnbGIuaHRtbAo+PiA+ID4gQ2M6IEphbWVzIEF1
+c211cyA8amFtZXMuYXVzbXVzQGludGVsLmNvbT4KPj4gPiA+IENjOiBKYW5pIFNhYXJpbmVuIDxq
+YW5pLnNhYXJpbmVuQGludGVsLmNvbT4KPj4gPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28u
+dml2aUBpbnRlbC5jb20+Cj4+ID4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVs
+LmNvbT4KPj4gPiA+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5sYWh0aW5lbkBsaW51eC5p
+bnRlbC5jb20+Cj4+ID4gPiBTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
+b3NlLnNvdXphQGludGVsLmNvbT4KPj4gPgo+PiA+IFJldmlld2VkLWJ5OiBMdWNhcyBEZSBNYXJj
+aGkgPGx1Y2FzLmRlbWFyY2hpQGludGVsLmNvbT4KPj4gPgo+PiA+IEFsc28sIEkgdGhpbmsgaXQg
+d291bGQgYmUgZ29vZCB0byBoYXZlIHRoaXMgaW4gNS42IHJhdGhlciB0aGFuIDUuNy4KPj4gPiBZ
+ZXMsIGl0J3MgbGF0ZSBpbiB0aGUgbWVyZ2Ugd2luZG93LCBidXQgaXQgZmFsbHMgaW4gdGhlIGNh
+c2Ugb2YgIk5ldwo+PiA+IGRldmljZSBJRHMgYW5kIHF1aXJrcyBhcmUgYWxzbyBhY2NlcHRlZC4i
+IG9mIHRoZSBzdGFibGUga2VybmVsIHJ1bGVzLAo+PiA+IHNvIGNvdWxkIGFzIHdlbGwganVzdCBn
+byBkaXJlY3RseSB0byB0aGlzIGtlcm5lbC4gUm9kcmlnbywgaXMgaXQKPj4gPiBwb3NzaWJsZT8K
+Pj4KPj4gSmFuaSBpcyBvbiBjaGFyZ2Ugb2YgdGhlIDUuNiBzbyBJIHdpbGwgZGVmZXIgdGhpcyBk
+ZWNpc2lvbiB0byBoaW0uCj4+Cj4+IEJ1dCBpbiBnZW5lcmFsIHdlIGFsd2F5cyByZWZ1c2VkIHRv
+IGRvIHRoaXMgYmVjYXVzZSB0aGlzIGlzIGEgZW5hYmxpbmcKPj4ga2luZCBvZiB0aGluZyBhbmQg
+bm90IGEgZml4IHBlciBzYXkuIE9rYXksIHlvdSBtaWdodCBhcmd1ZSB0aGF0IGl0IGlzCj4+IGEg
+ZGV2aWNlIElEIGFuZCB0aGF0IHdvdWxkIGJlIGFjY2VwdGVkIG9uIHN0YWJsZSBzbyB3aHkgbm90
+IGFsc28gb24KPj4gZml4ZXMgY3ljbGUsIGJ1dCBteSBmZWFyIGlzIHRoYXQgd2UgaGF2ZW4ndCBw
+cm9wZXJseSB2YWxpZGF0ZWQgdGhhdAo+PiBvbiA1LjYgd2l0aG91dCB0aGUgbWFueSBjaGFuZ2Vz
+LCBmaXhlcyBhbmQgd29ya2Fyb3VuZHMgdGhhdCBhcmUKPj4gb25seSBnb2luZyB0b3dhcmRzIDUu
+NyBhbmQgbm90IDUuNi4KPgo+IG9oLi4gbmV2ZXIgbWluZCwgY2hlY2tpbmcgbm93IHRoZSBsb2cg
+YW5kIHdlIGRpZCBoYXZlIHNldmVyYWwgZml4ZXMgZ29pbmcKPiB0byA1LjcgYW5kIG5vdCA1LjYu
+Cj4KPiBTbywgbGV0J3MgbWVyZ2UgdGhpcyBpbiBkaW5xIG9ubHkuCgpBZ3JlZWQuCgpCUiwKSmFu
+aS4KCgo+Cj4gVGhhbmtzCj4gTHVjYXMgRGUgTWFyY2hpCj4KPj4KPj4gPgo+PiA+IHRoYW5rcwo+
+PiA+IEx1Y2FzIERlIE1hcmNoaQo+PiA+Cj4+ID4gPiAtLS0KPj4gPiA+ICBkcml2ZXJzL2dwdS9k
+cm0vaTkxNS9pOTE1X3BjaS5jIHwgMSAtCj4+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDEgZGVsZXRp
+b24oLSkKPj4gPiA+Cj4+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wY2kuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKPj4gPiA+IGluZGV4IDI0
+YjFmMGNlODc0My4uMjE0NmI5YTg2NWJhIDEwMDY0NAo+PiA+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvaTkxNV9wY2kuYwo+PiA+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
+NV9wY2kuYwo+PiA+ID4gQEAgLTgyMiw3ICs4MjIsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGlu
+dGVsX2RldmljZV9pbmZvIHRnbF9pbmZvID0gewo+PiA+ID4gICAgICAgICBHRU4xMl9GRUFUVVJF
+UywKPj4gPiA+ICAgICAgICAgUExBVEZPUk0oSU5URUxfVElHRVJMQUtFKSwKPj4gPiA+ICAgICAg
+ICAgLnBpcGVfbWFzayA9IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQikgfCBCSVQoUElQRV9DKSB8
+IEJJVChQSVBFX0QpLAo+PiA+ID4gLSAgICAgICAucmVxdWlyZV9mb3JjZV9wcm9iZSA9IDEsCj4+
+ID4gPiAgICAgICAgIC5kaXNwbGF5Lmhhc19tb2R1bGFyX2ZpYSA9IDEsCj4+ID4gPiAgICAgICAg
+IC5lbmdpbmVfbWFzayA9Cj4+ID4gPiAgICAgICAgICAgICAgICAgQklUKFJDUzApIHwgQklUKEJD
+UzApIHwgQklUKFZFQ1MwKSB8IEJJVChWQ1MwKSB8IEJJVChWQ1MyKSwKPj4gPiA+IC0tCj4+ID4g
+PiAyLjI1LjEKPj4gPiA+Cj4+ID4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXwo+PiA+ID4gSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdAo+PiA+ID4gSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiA+ID4gaHR0cHM6Ly9saXN0cy5mcmVlZGVza3Rv
+cC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngKPj4gPgo+PiA+Cj4+ID4KPj4gPiAtLQo+
+PiA+IEx1Y2FzIERlIE1hcmNoaQoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBH
+cmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
