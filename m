@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8001C17897D
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 05:20:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 353971789A8
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 05:35:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844A76E9A9;
-	Wed,  4 Mar 2020 04:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E39F36E11A;
+	Wed,  4 Mar 2020 04:35:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A1E576E9A8;
- Wed,  4 Mar 2020 04:20:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id CDF126E10A;
+ Wed,  4 Mar 2020 04:35:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9A89AA0094;
- Wed,  4 Mar 2020 04:20:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AF733A011C;
+ Wed,  4 Mar 2020 04:35:03 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 04 Mar 2020 04:20:43 -0000
-Message-ID: <158329564360.431.13753726643467205602@emeril.freedesktop.org>
+Date: Wed, 04 Mar 2020 04:35:03 -0000
+Message-ID: <158329650369.430.2512475268313028357@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200304002331.2126072-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200304002331.2126072-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?drm/i915/gvt=3A_Inlcude_intel=5Fgvt=2Eh_where_needed?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/gvt=3A_Inlcude_intel=5Fgvt=2Eh_where_needed?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,12 +53,8 @@ State : warning
 
 == Summary ==
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915/gvt: Inlcude intel_gvt.h where needed
--drivers/gpu/drm/i915/gvt/gvt.c:265:6: warning: symbol 'intel_gvt_clean_device' was not declared. Should it be static?
--drivers/gpu/drm/i915/gvt/gvt.c:302:5: warning: symbol 'intel_gvt_init_device' was not declared. Should it be static?
-+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
 
 _______________________________________________
 Intel-gfx mailing list
