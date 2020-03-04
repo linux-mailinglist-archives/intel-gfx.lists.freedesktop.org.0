@@ -1,36 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02E0178DEC
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 10:58:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08388178E09
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 11:07:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F8766EB05;
-	Wed,  4 Mar 2020 09:58:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65D7C6EB03;
+	Wed,  4 Mar 2020 10:07:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0C36EB09;
- Wed,  4 Mar 2020 09:58:54 +0000 (UTC)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C44E36EB03
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 10:07:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 01:58:53 -0800
-X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="240408677"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 01:58:52 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Wed,  4 Mar 2020 10:58:41 +0100
-Message-Id: <20200304095841.8781-4-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200304095841.8781-1-janusz.krzysztofik@linux.intel.com>
-References: <20200304095841.8781-1-janusz.krzysztofik@linux.intel.com>
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 02:07:33 -0800
+X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="233981227"
+Received: from ohoehne-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.249.39.231])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 02:07:31 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+In-Reply-To: <20200303203030.GA470950@mdroper-desk1.amr.corp.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200303142347.15696-1-aditya.swarup@intel.com>
+ <87d09tpiji.fsf@intel.com>
+ <20200303203030.GA470950@mdroper-desk1.amr.corp.intel.com>
+Date: Wed, 04 Mar 2020 12:07:31 +0200
+Message-ID: <875zfkph5o.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC PATCH i-g-t 3/3] tests/gem_userptr_blits: Add
- active variant of mmap-offset-invalidate
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Fix uninitialized
+ variable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,87 +52,36 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a variant that also attaches a igt_spin_t to the userptr, waits for
-it to start executing, call igt_spin_set_timeout and then do the munmap.
+On Tue, 03 Mar 2020, Matt Roper <matthew.d.roper@intel.com> wrote:
+> On Tue, Mar 03, 2020 at 05:25:21PM +0200, Jani Nikula wrote:
+>> On Tue, 03 Mar 2020, Aditya Swarup <aditya.swarup@intel.com> wrote:
+>> > -	struct lrc_timestamp data;
+>> > +	struct lrc_timestamp data = { 0 };
+>> 
+>> {} is preferred over {0}.
+>
+> Is there a reference for this (e.g., in the kernel coding style)?  I
+> thought this came up a couple years ago and the consensus was the other
+> way, although I could be misremembering.  Unless it's changed in a
+> recent standard, I think {} is only legal in C++, so using it in C code
+> is a gcc-ism?
 
-Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/i915/gem_userptr_blits.c | 33 ++++++++++++++++++++++++++++-----
- 1 file changed, 28 insertions(+), 5 deletions(-)
+Both are widely used in the kernel. I think we've mostly converged to {}
+in i915. Yes, it's a gcc-ism in C code, but the kernel is gcc, not
+standard C.
 
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index 95e90c40a..68fc6aee4 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -797,10 +797,13 @@ static int test_map_fixed_invalidate(int fd, uint32_t flags)
- 	return 0;
- }
- 
--static void test_mmap_offset_invalidate(int fd, const struct mmap_offset *t)
-+static void test_mmap_offset_invalidate(int fd, const struct mmap_offset *t,
-+					int flags)
-+#define MMOI_ACTIVE	0x1
- {
- 	void *ptr, *map;
- 	uint32_t handle;
-+	igt_spin_t *spin;
- 
- 	/* check if mmap_offset type is supported by hardware, skip if not */
- 	handle = gem_create(fd, PAGE_SIZE);
-@@ -823,13 +826,26 @@ static void test_mmap_offset_invalidate(int fd, const struct mmap_offset *t)
- 		      t->name);
- 	igt_assert(map);
- 
--	/* set object pages in order to activate MMU notifier for it */
--	gem_set_domain(fd, handle, I915_GEM_DOMAIN_GTT, I915_GEM_DOMAIN_GTT);
-+	/* activate MMU notifier for the object */
-+	if (flags & MMOI_ACTIVE) {
-+		/* attach a time limited dummy load to the object */
-+		spin = igt_spin_new(fd, .dependency = handle);
-+		usleep(USEC_PER_SEC/MSEC_PER_SEC);
-+		igt_spin_set_timeout(spin, NSEC_PER_SEC);
-+	} else {
-+		/* just set object pages */
-+		gem_set_domain(fd, handle, I915_GEM_DOMAIN_GTT,
-+					   I915_GEM_DOMAIN_GTT);
-+	}
- 
- 	/* trigger the notifier */
-+	igt_set_timeout(3, "deadlock");
- 	munmap(ptr, PAGE_SIZE);
-+	igt_reset_timeout();
- 
- 	/* cleanup */
-+	if (flags & MMOI_ACTIVE)
-+		igt_spin_free(fd, spin);
- 	munmap(map, PAGE_SIZE);
- 	gem_close(fd, handle);
- }
-@@ -2207,11 +2223,18 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 			}
- 		}
- 
--		igt_describe("Invalidate pages of userptr with mmap-offset on top");
-+		igt_describe("Invalidate pages of idle userptr with mmap-offset on top");
- 		igt_subtest_with_dynamic("mmap-offset-invalidate")
- 			for_each_mmap_offset_type(fd, t)
- 				igt_dynamic_f("%s", t->name)
--					test_mmap_offset_invalidate(fd, t);
-+					test_mmap_offset_invalidate(fd, t, 0);
-+
-+		igt_describe("Invalidate pages of active userptr with mmap-offset on top");
-+		igt_subtest_with_dynamic("mmap-offset-invalidate-active")
-+			for_each_mmap_offset_type(fd, t)
-+				igt_dynamic_f("%s", t->name)
-+					test_mmap_offset_invalidate(fd, t,
-+								   MMOI_ACTIVE);
- 
- 		igt_subtest("coherency-sync")
- 			test_coherency(fd, count);
+I can't find a reference right now, but ISTR there are some warnings
+issued in some cases with the {0} initializer, depending on the struct
+and perhaps on the compiler.
+
+Anyway, we're 71 to 9 in favor of {} in i915, so please go with that.
+
+BR,
+Jani.
+
+
 -- 
-2.21.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
