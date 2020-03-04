@@ -2,48 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE7A6179882
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 20:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A931798B5
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 20:11:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 500E96EB5E;
-	Wed,  4 Mar 2020 19:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A725F6EB62;
+	Wed,  4 Mar 2020 19:11:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B13CB6EB5E
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 19:02:50 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 11:02:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234212333"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
- by fmsmga008.fm.intel.com with ESMTP; 04 Mar 2020 11:02:49 -0800
-Received: from fmsmsx126.amr.corp.intel.com (10.18.125.43) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 4 Mar 2020 11:02:47 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- FMSMSX126.amr.corp.intel.com ([169.254.1.129]) with mapi id 14.03.0439.000;
- Wed, 4 Mar 2020 11:02:47 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/tgl: Make wa_1606700617 permanent
-Thread-Index: AQHV8eXg+eE/djoqrkW/+O9dxQwp8Kg5UW6A
-Date: Wed, 4 Mar 2020 19:02:46 +0000
-Message-ID: <9f542335d5f52b9d240a6217103952fc6d520a61.camel@intel.com>
-References: <20200304052409.25501-1-swathi.dhanavanthri@intel.com>
-In-Reply-To: <20200304052409.25501-1-swathi.dhanavanthri@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.241]
-Content-ID: <1114949D030A2848A319F9217022A795@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 49FF26EB62;
+ Wed,  4 Mar 2020 19:11:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 40FA6A3ECB;
+ Wed,  4 Mar 2020 19:11:43 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make wa_1606700617 permanent
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Wed, 04 Mar 2020 19:11:43 -0000
+Message-ID: <158334910323.429.10712309454595338818@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/tgl=3A_WaDisableGPGPUMidThreadPreemption?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,60 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The change look good, it is just missing some commit description. I
-know that there is no much to talk about but it is kind of a rule to
-always have a description on kernel patches, something like will do:
+== Series Details ==
 
-Previously the issue that Wa_1606700617 was fixing would be fixed in B0
-hardware but hardware team decide to make the Wa permanent.
+Series: drm/i915/tgl: WaDisableGPGPUMidThreadPreemption
+URL   : https://patchwork.freedesktop.org/series/74274/
+State : success
 
-Check the HSD maybe there is some relevant information there why now it
-is permanent that you can add to the commit description.
+== Summary ==
 
-On Tue, 2020-03-03 at 21:24 -0800, Swathi Dhanavanthri wrote:
-> Bspec: 52890
-> 
-> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index cb7d85c42f13..a9d1975b5245 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1337,11 +1337,6 @@ rcs_engine_wa_init(struct intel_engine_cs
-> *engine, struct i915_wa_list *wal)
->  	struct drm_i915_private *i915 = engine->i915;
->  
->  	if (IS_TGL_REVID(i915, TGL_REVID_A0, TGL_REVID_A0)) {
-> -		/* Wa_1606700617:tgl */
-> -		wa_masked_en(wal,
-> -			     GEN9_CS_DEBUG_MODE1,
-> -			     FF_DOP_CLOCK_GATE_DISABLE);
-> -
->  		/*
->  		 * Wa_1607138336:tgl
->  		 * Wa_1607063988:tgl
-> @@ -1393,6 +1388,11 @@ rcs_engine_wa_init(struct intel_engine_cs
-> *engine, struct i915_wa_list *wal)
->  		/* Wa_1409804808:tgl */
->  		wa_masked_en(wal, GEN7_ROW_CHICKEN2,
->  			     GEN12_PUSH_CONST_DEREF_HOLD_DIS);
-> +
-> +		/* Wa_1606700617:tgl */
-> +		wa_masked_en(wal,
-> +			     GEN9_CS_DEBUG_MODE1,
-> +			     FF_DOP_CLOCK_GATE_DISABLE);
->  	}
->  
->  	if (IS_GEN(i915, 11)) {
+CI Bug Log - changes from CI_DRM_8066 -> Patchwork_16821
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16821 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@hugepages:
+    - fi-tgl-y:           [PASS][5] -> [INCOMPLETE][6] ([CI#94]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@i915_selftest@live@hugepages.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-tgl-y/igt@i915_selftest@live@hugepages.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-icl-guc:         [DMESG-FAIL][9] ([i915#922]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-icl-guc/igt@i915_selftest@live@workarounds.html
+
+  * igt@prime_self_import@basic-llseek-bad:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8066/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#922]: https://gitlab.freedesktop.org/drm/intel/issues/922
+
+
+Participating hosts (45 -> 42)
+------------------------------
+
+  Additional (7): fi-kbl-7560u fi-bwr-2160 fi-kbl-7500u fi-cfl-8109u fi-skl-lmem fi-blb-e6850 fi-kbl-r 
+  Missing    (10): fi-kbl-soraka fi-icl-1065g7 fi-bdw-gvtdvm fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8066 -> Patchwork_16821
+
+  CI-20190529: 20190529
+  CI_DRM_8066: 9e1454777a07902c85ce3febcc9648837a2224fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5491: d52794b426ae16630cc1e0354ae435ec98f6174b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16821: 770b14fbde2879037069c8ea3aa5d48a1d283fd4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+770b14fbde28 drm/i915/tgl: WaDisableGPGPUMidThreadPreemption
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16821/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
