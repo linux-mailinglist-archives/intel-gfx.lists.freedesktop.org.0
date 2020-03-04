@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DADEE178784
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 02:21:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD69B1787B4
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 02:43:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8E6C6EA98;
-	Wed,  4 Mar 2020 01:21:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C69B76EA9C;
+	Wed,  4 Mar 2020 01:43:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 154EF6EA98
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 01:21:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20435393-1500050 
- for multiple; Wed, 04 Mar 2020 01:21:00 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Mar 2020 01:20:59 +0000
-Message-Id: <20200304012059.2371206-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200304012059.2371206-1-chris@chris-wilson.co.uk>
-References: <20200304012059.2371206-1-chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 434976EA9C
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 01:43:35 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2020 17:43:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="232457640"
+Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
+ by fmsmga007.fm.intel.com with ESMTP; 03 Mar 2020 17:43:34 -0800
+Date: Wed, 4 Mar 2020 07:13:36 +0530
+From: Ramalingam C <ramalingam.c@intel.com>
+To: Anshuman Gupta <anshuman.gupta@intel.com>
+Message-ID: <20200304014336.GB16504@intel.com>
+References: <20200220123217.23635-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gt: Propagate change in error
- status to children on unhold
+Content-Disposition: inline
+In-Reply-To: <20200220123217.23635-1-anshuman.gupta@intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3 0/2] HDCP 2.2 Comp fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,40 +44,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As we release the head requests back into the queue, propagate any
-change in error status that may have occurred while the requests were
-temporarily suspended.
+On 2020-02-20 at 18:02:15 +0530, Anshuman Gupta wrote:
+> Adding ram's RB on patch1 and a new patch to fix DP HDCP Auth.
+> 
+> Anshuman Gupta (2):
+>   drm/i915/hdcp: Mandate (seq_num_V==0) at first RecvId msg
+>   drm/i915/hdcp: Return 0 on config_stream_type() +ve return
+Thanks for the patches. Submitted them to dinq.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1277
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index d123dd7fe98b..5da86a40434c 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2600,6 +2600,10 @@ static void __execlists_unhold(struct i915_request *rq)
- 			struct i915_request *w =
- 				container_of(p->waiter, typeof(*w), sched);
- 
-+			/* Propagate any change in error status */
-+			if (rq->fence.error)
-+				i915_request_set_error_once(w, rq->fence.error);
-+
- 			if (w->engine != rq->engine)
- 				continue;
- 
--- 
-2.25.1
-
+-Ram
+> 
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> -- 
+> 2.24.0
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
