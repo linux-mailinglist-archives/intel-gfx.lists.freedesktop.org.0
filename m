@@ -1,36 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B77AE178ED0
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 11:47:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C745178F69
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 12:13:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A8F16EB1F;
-	Wed,  4 Mar 2020 10:47:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2A76EB22;
+	Wed,  4 Mar 2020 11:13:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D446EB32
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 10:47:41 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 02:47:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="413107968"
-Received: from ramaling-i9x.iind.intel.com ([10.99.66.154])
- by orsmga005.jf.intel.com with ESMTP; 04 Mar 2020 02:47:39 -0800
-From: Ramalingam C <ramalingam.c@intel.com>
-To: intel-gfx <intel-gfx@lists.freedesktop.org>
-Date: Wed,  4 Mar 2020 16:17:38 +0530
-Message-Id: <20200304104738.5398-3-ramalingam.c@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200304104738.5398-1-ramalingam.c@intel.com>
-References: <20200304104738.5398-1-ramalingam.c@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B9F96EB27;
+ Wed,  4 Mar 2020 11:13:14 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20439647-1500050 
+ for multiple; Wed, 04 Mar 2020 11:13:06 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Mar 2020 11:13:06 +0000
+Message-Id: <20200304111306.2438943-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 2/2] drm/i915: dont retry stream management
- at seq_num_m roll over
+Subject: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rpm: Flush pm-idle before
+ waiting for suspend
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,73 +37,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When roll over detected for seq_num_m, we shouldn't continue with stream
-management with rolled over value.
+After we may have deliberately woken the device up for reading the
+debugfs/sysfs file, we then wait for the system to suspend again before
+trying the next. Speed up the wait by first flushing the pm-idle.
 
-So we are terminating the stream management retry, on roll over of the
-seq_num_m.
+"Slowest file + suspend: /sys/kernel/debug/dri/0/i915_forcewake_user
+took 3951.33ms!"
 
-v2:
-  using drm_dbg_kms instead of DRM_DEBUG_KMS [Anshuman]
-v3:
-  dev_priv is used as i915 [JaniN]
-v4:
-  roll over is detected at the start of the stream management.
-
-Signed-off-by: Ramalingam C <ramalingam.c@intel.com>
-Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com> [v3]
-Tested-by: Anshuman Gupta <anshuman.gupta@intel.com>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ tests/i915/i915_pm_rpm.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 85e1e8cf16c7..7b470502feaa 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1399,6 +1399,9 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
- 	const struct intel_hdcp_shim *shim = hdcp->shim;
- 	int ret;
+diff --git a/tests/i915/i915_pm_rpm.c b/tests/i915/i915_pm_rpm.c
+index 9118e8953..db035ef86 100644
+--- a/tests/i915/i915_pm_rpm.c
++++ b/tests/i915/i915_pm_rpm.c
+@@ -964,6 +964,7 @@ static int read_entry(const char *filepath,
  
-+	if (connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX)
-+		return -ERANGE;
-+
- 	/* Prepare RepeaterAuth_Stream_Manage msg */
- 	msgs.stream_manage.msg_id = HDCP_2_2_REP_STREAM_MANAGE;
- 	drm_hdcp_cpu_to_be24(msgs.stream_manage.seq_num_m, hdcp->seq_num_m);
-@@ -1427,11 +1430,6 @@ int _hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 	close(fd);
  
- out:
- 	hdcp->seq_num_m++;
--	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
--		DRM_DEBUG_KMS("seq_num_m roll over.\n");
--		ret = -ERANGE;
--	}
--
- 	return ret;
- }
++	igt_drop_caches_set(drm_fd, DROP_IDLE); /* flush pm-idle */
+ 	igt_assert_f(wait_for_suspended(), "After closing: %s (%s)\n",
+ 		     filepath + pathinfo->base, filepath);
  
-@@ -1639,6 +1637,13 @@ hdcp2_propagate_stream_management_info(struct intel_connector *connector)
- 		if (!ret)
- 			break;
- 
-+		/* Lets restart the auth incase of seq_num_m roll over */
-+		if (connector->hdcp.seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
-+			drm_dbg_kms(&i915->drm,
-+				    "seq_num_m roll over.(%d)\n", ret);
-+			break;
-+		}
-+
- 		drm_dbg_kms(&i915->drm,
- 			    "HDCP2 stream management %d of %d Failed.(%d)\n",
- 			    i + 1, tries, ret);
 -- 
-2.20.1
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
