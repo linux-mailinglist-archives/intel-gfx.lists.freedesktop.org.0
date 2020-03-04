@@ -1,44 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8EA0179678
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 18:14:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDC717969C
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 18:23:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08A1E6EB44;
-	Wed,  4 Mar 2020 17:14:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26A026EB45;
+	Wed,  4 Mar 2020 17:23:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D4476EB43
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 17:14:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16D96EB45
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 17:23:07 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 09:14:41 -0800
+ 04 Mar 2020 09:23:07 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; 
- d="scan'208,217";a="234179854"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
- by fmsmga008.fm.intel.com with ESMTP; 04 Mar 2020 09:14:40 -0800
+ d="scan'208,217";a="274745585"
+Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
+ by fmsmga002.fm.intel.com with ESMTP; 04 Mar 2020 09:23:06 -0800
 Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
- IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 4 Mar 2020 17:14:40 +0000
+ IRSMSX106.ger.corp.intel.com (163.33.3.31) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 4 Mar 2020 17:23:05 +0000
 Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
  irsmsx601.ger.corp.intel.com (163.33.146.7) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 4 Mar 2020 17:14:39 +0000
+ 15.1.1713.5; Wed, 4 Mar 2020 17:23:05 +0000
 Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
  IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
- Wed, 4 Mar 2020 17:14:39 +0000
+ Wed, 4 Mar 2020 17:23:05 +0000
 From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
 Thread-Topic: [PATCH v2 07/20] drm/i915: Unify the low level dbuf code
-Thread-Index: AQHV6/6uiGNLB8c1mE6/dzTFurMHp6g4ttgJ
-Date: Wed, 4 Mar 2020 17:14:39 +0000
-Message-ID: <bda3246008504c979c6322e7ff68e43d@intel.com>
+Thread-Index: AQHV6/6uiGNLB8c1mE6/dzTFurMHp6g4upAz
+Date: Wed, 4 Mar 2020 17:23:05 +0000
+Message-ID: <f0907e9776be49c8ab171a0a0caf900a@intel.com>
 References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>,
  <20200225171125.28885-8-ville.syrjala@linux.intel.com>
 In-Reply-To: <20200225171125.28885-8-ville.syrjala@linux.intel.com>
@@ -62,18 +62,19 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============0231376437=="
+Content-Type: multipart/mixed; boundary="===============0646986691=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0231376437==
+--===============0646986691==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_bda3246008504c979c6322e7ff68e43dintelcom_"
+	boundary="_000_f0907e9776be49c8ab171a0a0caf900aintelcom_"
 
---_000_bda3246008504c979c6322e7ff68e43dintelcom_
+--_000_f0907e9776be49c8ab171a0a0caf900aintelcom_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
 
 >-       /* If 2nd DBuf slice required, enable it here */
 >        if (INTEL_GEN(dev_priv) >=3D 11 && slices_union !=3D hw_enabled_sl=
@@ -113,6 +114,7 @@ you are now checking that gen is >=3D 11 and then OK - now let's call gen 9=
 
 
 Stan
+
 ________________________________
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 Sent: Tuesday, February 25, 2020 7:11:12 PM
@@ -309,7 +311,7 @@ index 601e000ffd0d..1a275611241e 100644
 2.24.1
 
 
---_000_bda3246008504c979c6322e7ff68e43dintelcom_
+--_000_f0907e9776be49c8ab171a0a0caf900aintelcom_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -317,28 +319,30 @@ Content-Transfer-Encoding: quoted-printable
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
 1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
 </head>
-<body>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p><br>
+</p>
 <meta content=3D"text/html; charset=3DUTF-8">
-<style type=3D"text/css" style=3D"">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
 <div dir=3D"ltr">
-<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
-or:#000000; font-family:Calibri,Helvetica,sans-serif">
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">&gt;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* If 2nd=
- DBuf slice required, enable it here */</span><br style=3D"color:rgb(33,33,=
-33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quo=
-t;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; co=
+lor: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, =
+&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, =
+&quot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* If 2nd DB=
+uf slice required, enable it here */</span><br style=3D"color:rgb(33,33,33)=
+; font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,=
+Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
 <span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
 goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
 font-size:13.3333px">&gt;&nbsp; &nbsp; &nbsp; &nbsp; if (INTEL_GEN(dev_priv=
@@ -426,41 +430,68 @@ font-size:13.3333px">&gt;&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
 sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gen9_dbuf_slices_update(dev_priv, r=
 equired_slices);</span><br>
 </p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px"><br>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px"><br>
 </span></p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">Doesn't make much sense. Just look - previously we =
-were checking if INTEL_GEN is &gt;=3D than 11(which _is_&nbsp;ICL)</span></=
-p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">and now we still _do_ check if INTEL_GEN is &gt;=3D=
- 11, but... call now function renamed to gen9</span></p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px"><br>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">Doesn't make much sense. Just look - previously we wer=
+e checking if INTEL_GEN is &gt;=3D than 11(which _is_&nbsp;ICL)</span></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">and now we still _do_ check if INTEL_GEN is &gt;=3D 11=
+, but... call now function renamed to gen9</span></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px"><br>
 </span></p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">I guess you either need to change INTEL_GEN check t=
-o be &gt;=3D9 to at least look somewhat consistent</span></p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">or leave it as is. Or at least rename icl_ prefix t=
-o gen11_ otherwise that looks inconsistent, i.e</span></p>
-<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
-;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
-t; font-size:13.3333px">you are now checking that gen is &gt;=3D 11 and the=
-n OK - now let's call gen&nbsp;9! :)</span></p>
-<p><br>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">I guess you either need to change INTEL_GEN check to b=
+e &gt;=3D9 to at least look somewhat consistent</span></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">or leave it as is. Or at least rename icl_ prefix to g=
+en11_ otherwise that looks inconsistent, i.e</span></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">you are now checking that gen is &gt;=3D 11 and then O=
+K - now let's call gen&nbsp;9! :)</span></p>
+<p style=3D"font-family:Calibri,Helvetica,sans-serif,EmojiFont,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColorEmoji,&quot;Segoe UI =
+Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; font-size:16px">
+<br>
 </p>
-<div id=3D"x_Signature">
+<div id=3D"x_Signature" style=3D"font-family:Calibri,Helvetica,sans-serif,E=
+mojiFont,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,NotoColor=
+Emoji,&quot;Segoe UI Symbol&quot;,&quot;Android Emoji&quot;,EmojiSymbols; f=
+ont-size:16px">
 <div style=3D"font-family:Tahoma; font-size:13px"><font size=3D"2"><span st=
 yle=3D"font-size:10pt">Stan</span></font></div>
 </div>
+<p></p>
 </div>
 <hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
@@ -474,7 +505,7 @@ ont>
 <div>&nbsp;</div>
 </div>
 </div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
+<font size=3D"2"><span style=3D"font-size:10pt">
 <div class=3D"PlainText">From: Ville Syrj=E4l=E4 &lt;ville.syrjala@linux.in=
 tel.com&gt;<br>
 <br>
@@ -733,13 +764,13 @@ o_phy phy,<br>
 2.24.1<br>
 <br>
 </div>
-</span></font>
+</span></font></div>
 </body>
 </html>
 
---_000_bda3246008504c979c6322e7ff68e43dintelcom_--
+--_000_f0907e9776be49c8ab171a0a0caf900aintelcom_--
 
---===============0231376437==
+--===============0646986691==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -750,4 +781,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============0231376437==--
+--===============0646986691==--
