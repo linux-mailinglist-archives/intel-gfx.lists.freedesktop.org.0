@@ -2,43 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27002178CB6
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 09:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42334178CDD
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 09:52:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9D236E12F;
-	Wed,  4 Mar 2020 08:43:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAE2A6E131;
+	Wed,  4 Mar 2020 08:52:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B948A6E12F
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 08:43:14 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C87E46E131
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 08:52:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 00:43:13 -0800
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 00:52:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="243883426"
-Received: from pedrero-mobl.ger.corp.intel.com (HELO [10.252.52.192])
- ([10.252.52.192])
- by orsmga006.jf.intel.com with ESMTP; 04 Mar 2020 00:43:11 -0800
-To: Anshuman Gupta <anshuman.gupta@intel.com>
-References: <20200128135425.14596-1-anshuman.gupta@intel.com>
- <20200128135425.14596-2-anshuman.gupta@intel.com> <87d0b3d5os.fsf@intel.com>
- <20200128154444.GE24118@intel.com> <20200128161545.GF24118@intel.com>
- <20200205050713.GH24118@intel.com>
- <f31cba28-41d7-c0cd-56b8-fb8c20d5418b@linux.intel.com>
- <20200303163537.GI9735@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <5e0296e3-3aec-e5ba-4c5f-d861d96ab891@linux.intel.com>
-Date: Wed, 4 Mar 2020 09:43:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+X-IronPort-AV: E=Sophos;i="5.70,513,1574150400"; d="scan'208";a="234047790"
+Received: from jensle-mobl.ger.corp.intel.com (HELO [10.252.41.98])
+ ([10.252.41.98])
+ by fmsmga008.fm.intel.com with ESMTP; 04 Mar 2020 00:52:35 -0800
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+ <20200303221905.25866-8-umesh.nerlige.ramappa@intel.com>
+ <87v9nku0uu.wl-ashutosh.dixit@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <bc369a53-ec87-f459-e798-2212f9a73d90@intel.com>
+Date: Wed, 4 Mar 2020 10:52:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-In-Reply-To: <20200303163537.GI9735@intel.com>
+In-Reply-To: <87v9nku0uu.wl-ashutosh.dixit@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/hdcp: Update CP as per the
- kernel internal state
+Subject: Re: [Intel-gfx] [PATCH 7/7] drm/i915/perf: add flushing ioctl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,165 +51,65 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Op 03-03-2020 om 17:35 schreef Anshuman Gupta:
-> On 2020-03-03 at 15:36:37 +0100, Maarten Lankhorst wrote:
->> Op 05-02-2020 om 06:07 schreef Anshuman Gupta:
->>> On 2020-01-28 at 21:45:45 +0530, Anshuman Gupta wrote:
->>> Hi Jani ,
->>> As per my understanding intel_hdcp_atomic_check() is not sufficient to
->>> fix the broken hdcp uapi state, as the state fixup required in case
->>> of modeset.
->>> If you do not have any concern, can we continue with the patch.
->>> Thanks,
->>> Anshuman Gupta.
->> Hey,
+On 04/03/2020 07:48, Dixit, Ashutosh wrote:
+> On Tue, 03 Mar 2020 14:19:05 -0800, Umesh Nerlige Ramappa wrote:
+>> From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 >>
-> Thanks martin for review. 
-> As full modeset DDI disable sequence  (encoder->disable()->intel_hdcp_disable()) can cause HDCP to 
-> disable without user space knowledge i.e. when Content Protetion state is not UNDESIRED, in those cases
-> we want to fix the HDCP Content Protection state.  
-You can get to crtc_state from the connector_state->crtc, should be easy to fix up this case.
->> In case of a modeset, don't we always call atomic_check() on the connector, either before or after?
-> yes it calls drm_atomic_helper_check_modeset()->intel_digital_connector_atomic_check()->intel_hdcp_atomic_check(),
-> but if we fix HDCP state in intel_hdcp_atomic_check(), there may be a case at later point that fastset 
-> check is true, which disable need_modeset and enable update_pipe due to which encoder->update_pipe()->intel_hdcp_update_pipe()
-> may endup enabling HDCP again when HDCP is already enabled, which is wrong.
-
-Seems that if you look at the crtc_state carefully, you can prevent that. :)
-
-
-~Maarten
-
->> Should be fine to fixup there then?
-> Therefore we want to fixup the HDCP state only when full modeset is required, when it is going
-> to disable DDI.
+>> With the currently available parameters for the i915-perf stream,
+>> there are still situations that are not well covered :
+>>
+>> If an application opens the stream with polling disable or at very low
+>> frequency and OA interrupt enabled, no data will be available even
+>> though somewhere between nothing and half of the OA buffer worth of
+>> data might have landed in memory.
+>>
+>> To solve this issue we have a new flush ioctl on the perf stream that
+>> forces the i915-perf driver to look at the state of the buffer when
+>> called and makes any data available through both poll() & read() type
+>> syscalls.
+>>
+>> v2: Version the ioctl (Joonas)
+>> v3: Rebase (Umesh)
+>>
+>> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> [snip]
 >
-> Thanks ,
-> Anshuman Gupta.
->>>> On 2020-01-28 at 21:14:44 +0530, Anshuman Gupta wrote:
->>>>> On 2020-01-28 at 16:19:31 +0200, Jani Nikula wrote:
->>>>>> On Tue, 28 Jan 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
->>>>>>> Content Protection property should be updated as per the kernel
->>>>>>> internal state. Let's say if Content protection is disabled
->>>>>>> by userspace, CP property should be set to UNDESIRED so that
->>>>>>> reauthentication will not happen until userspace request it again,
->>>>>>> but when kernel disables the HDCP due to any DDI disabling sequences
->>>>>>> like modeset/DPMS operation, kernel should set the property to
->>>>>>> DESIRED, so that when opportunity arises, kernel will start the
->>>>>>> HDCP authentication on its own.
->>>>>>>
->>>>>>> Somewhere in the line, state machine to set content protection to
->>>>>>> DESIRED from kernel was broken and IGT coverage was missing for it.
->>>>>>> This patch fixes it.
->>>>>>> IGT patch to catch further regression on this features is being
->>>>>>> worked upon.
->>>>>>>
->>>>>>> CC: Ramalingam C <ramalingam.c@intel.com>
->>>>>>> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
->>>>>>> ---
->>>>>>>  drivers/gpu/drm/i915/display/intel_display.c |  4 +++
->>>>>>>  drivers/gpu/drm/i915/display/intel_hdcp.c    | 26 ++++++++++++++++++++
->>>>>>>  drivers/gpu/drm/i915/display/intel_hdcp.h    |  2 ++
->>>>>>>  3 files changed, 32 insertions(+)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->>>>>>> index da5266e76738..934cdf1f1858 100644
->>>>>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
->>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->>>>>>> @@ -14595,6 +14595,10 @@ static int intel_atomic_check(struct drm_device *dev,
->>>>>>>  		goto fail;
->>>>>>>  
->>>>>>>  	if (any_ms) {
->>>>>>> +		/*
->>>>>>> +		 * When there is modeset fix the hdcp uapi CP state.
->>>>>>> +		 */
->>>>>>> +		intel_hdcp_post_need_modeset_check(state);
->>>>>>>  		ret = intel_modeset_checks(state);
->>>>>>>  		if (ret)
->>>>>>>  			goto fail;
->>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->>>>>>> index 0fdbd39f6641..be083136eee2 100644
->>>>>>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->>>>>>> @@ -2074,6 +2074,32 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
->>>>>>>  	crtc_state->mode_changed = true;
->>>>>>>  }
->>>>>>>  
->>>>>>> +/**
->>>>>>> + * intel_hdcp_post_need_modeset_check.
->>>>>>> + * @state: intel atomic state.
->>>>>>> + *
->>>>>>> + * This function fix the HDCP uapi state when hdcp disabling initiated from
->>>>>>> + * modeset DDI disabling sequence. It updates uapi CP state from ENABLED to
->>>>>>> + * DESIRED so that HDCP uapi state can be restored as per HDCP Auth state.
->>>>>>> + * This function should be called only in case of in case of modeset.
->>>>>>> + * FIXME: As per HDCP content protection property uapi doc, an uevent()
->>>>>>> + * need to be sent if there is transition from ENABLED->DESIRED.
->>>>>>> + */
->>>>>>> +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state)
->>>>>>> +{
->>>>>>> +	struct drm_connector *connector;
->>>>>>> +	struct drm_connector_state *old_state;
->>>>>>> +	struct drm_connector_state *new_state;
->>>>>>> +	int i;
->>>>>>> +
->>>>>>> +	for_each_oldnew_connector_in_state(&state->base, connector, old_state,
->>>>>>> +					   new_state, i) {
->>>>>>> +		if (old_state->content_protection == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
->>>>>>> +		    new_state->content_protection != DRM_MODE_CONTENT_PROTECTION_UNDESIRED)
->>>>>>> +			new_state->content_protection = DRM_MODE_CONTENT_PROTECTION_DESIRED;
->>>>>>> +	}
->>>>>>> +}
->>>>>>> +
->>>>>> Why does this feel like duplication of what you already have in
->>>>>> intel_hdcp_atomic_check()?
->>>>> intel_hdcp_atomic_check() have checks that for disconnected connector and it doesn't look for 
->>>> typo here, "intel_hdcp_atomic_check() checks that for disconnected connector and it doesn't check for new state shouldn't be UNDESIRED" 
->>>>> old state, that is not sufficient to fix the hdcp CP uapi state, it need to be fix only in case of
->>>>> modeset, Later on a fastset check can disable the modeset and we would endup calling intel_hdcp_enable
->>>>> while hdcp is already enabled. That is the reason i think we would require a new API to
->>>>> fix the uapi state.
->>>>> Thanks ,
->>>>> Anshuman Gupta.
->>>>>> BR,
->>>>>> Jani.
->>>>>>
->>>>>>
->>>>>>>  /* Handles the CP_IRQ raised from the DP HDCP sink */
->>>>>>>  void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
->>>>>>>  {
->>>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
->>>>>>> index f3c3272e712a..7bf46bc3c348 100644
->>>>>>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.h
->>>>>>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
->>>>>>> @@ -13,6 +13,7 @@
->>>>>>>  struct drm_connector;
->>>>>>>  struct drm_connector_state;
->>>>>>>  struct drm_i915_private;
->>>>>>> +struct intel_atomic_state;
->>>>>>>  struct intel_connector;
->>>>>>>  struct intel_hdcp_shim;
->>>>>>>  enum port;
->>>>>>> @@ -21,6 +22,7 @@ enum transcoder;
->>>>>>>  void intel_hdcp_atomic_check(struct drm_connector *connector,
->>>>>>>  			     struct drm_connector_state *old_state,
->>>>>>>  			     struct drm_connector_state *new_state);
->>>>>>> +void intel_hdcp_post_need_modeset_check(struct intel_atomic_state *state);
->>>>>>>  int intel_hdcp_init(struct intel_connector *connector,
->>>>>>>  		    const struct intel_hdcp_shim *hdcp_shim);
->>>>>>>  int intel_hdcp_enable(struct intel_connector *connector,
->>>>>> -- 
->>>>>> Jani Nikula, Intel Open Source Graphics Center
->>> _______________________________________________
->>> Intel-gfx mailing list
->>> Intel-gfx@lists.freedesktop.org
->>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->>>
+>> +/**
+>> + * i915_perf_flush_data - handle `I915_PERF_IOCTL_FLUSH_DATA` ioctl
+>> + * @stream: An enabled i915 perf stream
+>> + *
+>> + * The intention is to flush all the data available for reading from the OA
+>> + * buffer
+>> + */
+>> +static void i915_perf_flush_data(struct i915_perf_stream *stream)
+>> +{
+>> +	stream->pollin = oa_buffer_check(stream, true);
+>> +}
+> Since this function doesn't actually wake up any thread (which anyway can
+> be done by sending a signal to the blocked thread), is the only purpose of
+> this function to update OA buffer head/tail? But in that it is not clear
+> why a separate ioctl should be created for this, can't the read() call
+> itself call oa_buffer_check() to update the OA buffer head/tail?
+>
+> Again just trying to minimize uapi changes if possible.
+
+Most applications will call read() after being notified by 
+poll()/select() that some data is available.
+
+Changing that behavior will break some of the existing perf tests .
+
+
+If any data is available, this new ioctl will wake up existing waiters 
+on poll()/select().
+
+
+-Lionel
 
 _______________________________________________
 Intel-gfx mailing list
