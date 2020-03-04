@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F264178FA8
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 12:39:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2E4178FBD
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 12:46:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57CF689D52;
-	Wed,  4 Mar 2020 11:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 979B36EB27;
+	Wed,  4 Mar 2020 11:46:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1500F6EB23;
- Wed,  4 Mar 2020 11:39:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E901A00E7;
- Wed,  4 Mar 2020 11:39:29 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8D4E6EB27
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 11:46:53 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 03:46:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234007853"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 04 Mar 2020 03:46:50 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 04 Mar 2020 13:46:49 +0200
+Date: Wed, 4 Mar 2020 13:46:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200304114649.GC13686@intel.com>
+References: <20200228203552.30273-1-ville.syrjala@linux.intel.com>
+ <20200228203552.30273-2-ville.syrjala@linux.intel.com>
+ <2f65710060a20a9d0622b545ee269ab2682e75cb.camel@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ramalingam C" <ramalingam.c@intel.com>
-Date: Wed, 04 Mar 2020 11:39:29 -0000
-Message-ID: <158332196902.431.17089172749578319343@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200304104738.5398-1-ramalingam.c@intel.com>
-In-Reply-To: <20200304104738.5398-1-ramalingam.c@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgSERD?=
- =?utf-8?q?P_misc_=28rev3=29?=
+Content-Disposition: inline
+In-Reply-To: <2f65710060a20a9d0622b545ee269ab2682e75cb.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Don't check for wm changes
+ until we've compute the wms fully
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,97 +50,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Mar 04, 2020 at 12:21:01AM +0000, Souza, Jose wrote:
+> On Fri, 2020-02-28 at 22:35 +0200, Ville Syrjala wrote:
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > =
 
-Series: HDCP misc (rev3)
-URL   : https://patchwork.freedesktop.org/series/73345/
-State : success
+> > Currently we're comparing the watermarks between the old and new
+> > states
+> > before we've fully computed the new watermarks. In particular
+> > skl_build_pipe_wm() will not account for the amount of ddb space
+> > we'll
+> > have. That information is only available during skl_compute_ddb()
+> > which will proceed to zero out any watermark level exceeding the
+> > ddb allocation. If we're short on ddb space this will end up
+> > adding the plane to the state due erronously determining that the
+> > watermarks have changed. Fix the problem by deferring
+> > skl_wm_add_affected_planes() until we have the final watermarks
+> > computed.
+> > =
 
-== Summary ==
+> > Noticed this when trying enable transition watermarks on glk.
+> > We now computed the trans_wm as 28, but we only had 14 blocks
+> > of ddb, and thus skl_compute_ddb() ended up disabling the cursor
+> > trans_wm every time. Thus we ended up adding the cursor to every
+> > commit that didn't actually affect the cursor at all.
+> > =
 
-CI Bug Log - changes from CI_DRM_8063 -> Patchwork_16814
-====================================================
+> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/intel_pm.c | 16 ++++++++++++----
+> >  1 file changed, 12 insertions(+), 4 deletions(-)
+> > =
 
-Summary
--------
+> > diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> > b/drivers/gpu/drm/i915/intel_pm.c
+> > index 39299811b650..a3d76e69caae 100644
+> > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > @@ -5762,16 +5762,24 @@ skl_compute_wm(struct intel_atomic_state
+> > *state)
+> >  		ret =3D skl_build_pipe_wm(new_crtc_state);
+> >  		if (ret)
+> >  			return ret;
+> > -
+> > -		ret =3D skl_wm_add_affected_planes(state, crtc);
+> > -		if (ret)
+> > -			return ret;
+> >  	}
+> >  =
 
-  **SUCCESS**
+> >  	ret =3D skl_compute_ddb(state);
+> >  	if (ret)
+> >  		return ret;
+> >  =
 
-  No regressions found.
+> > +	/*
+> > +	 * skl_compute_ddb() will have adjusted the final watermarks
+> > +	 * based on how much ddb is available. Now we can actually
+> > +	 * check if the final watermarks changed.
+> > +	 */
+> > +	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> > old_crtc_state,
+> > +					    new_crtc_state, i) {
+> > +		ret =3D skl_wm_add_affected_planes(state, crtc);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16814/index.html
+> skl_compute_ddb() is already calling skl_wm_add_affected_planes() after
+> do the ddb allocation for each pipe, so we could remove this chunk,
 
-Known issues
-------------
+skl_compute_ddb() calls skl_*ddb*_add_affected_planes(), which is a
+different thing.
 
-  Here are the changes found in Patchwork_16814 that come from known issues:
+> with that:
+> =
 
-### IGT changes ###
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
 
-#### Issues hit ####
+> > +
+> >  	skl_print_wm_changes(state);
+> >  =
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          [PASS][1] -> [FAIL][2] ([i915#217])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8063/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16814/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+> >  	return 0;
 
-  
-#### Possible fixes ####
+-- =
 
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [DMESG-FAIL][3] ([fdo#108569]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8063/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16814/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8700k:       [INCOMPLETE][5] ([i915#424]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8063/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16814/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#647]: https://gitlab.freedesktop.org/drm/intel/issues/647
-
-
-Participating hosts (51 -> 42)
-------------------------------
-
-  Missing    (9): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8063 -> Patchwork_16814
-
-  CI-20190529: 20190529
-  CI_DRM_8063: cbce60ed8bb473eb6cdbdba9fc4e005a39a6926e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5490: f98b33cbd5b57bae52b8e2fae2039e89ac877822 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16814: 51c830e3ef77af408e1cd660f3a87ee0559c0a0e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-51c830e3ef77 drm/i915: dont retry stream management at seq_num_m roll over
-cf7c30b38e4a drm/i915: terminate reauth at stream management failure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16814/index.html
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
