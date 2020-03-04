@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3210178819
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 03:16:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C2EC1788AE
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 03:53:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 984CF6E503;
-	Wed,  4 Mar 2020 02:16:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A71EE6E118;
+	Wed,  4 Mar 2020 02:53:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BADB66E115;
- Wed,  4 Mar 2020 02:16:08 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8DD666E118;
+ Wed,  4 Mar 2020 02:53:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3237A011B;
- Wed,  4 Mar 2020 02:16:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 895F2A47DF;
+ Wed,  4 Mar 2020 02:53:39 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 04 Mar 2020 02:16:08 -0000
-Message-ID: <158328816870.431.8182765143017477367@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Wed, 04 Mar 2020 02:53:39 -0000
+Message-ID: <158329041955.429.9543782879922456113@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200303092011.1151535-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200303092011.1151535-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Fix_doclinks?=
+References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/perf=3A_add_OA_interrupt_support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,298 +47,233 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915: Fix doclinks
-URL   : https://patchwork.freedesktop.org/series/74194/
-State : failure
+Series: drm/i915/perf: add OA interrupt support (rev5)
+URL   : https://patchwork.freedesktop.org/series/54280/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8055_full -> Patchwork_16796_full
-====================================================
+$ dim checkpatch origin/drm-tip
+e9632eb2cc8a drm/i915/perf: rework aging tail workaround
+-:189: CHECK:SPACING: No space is necessary after a cast
+#189: FILE: drivers/gpu/drm/i915/i915_perf.c:527:
++			u32 *report32 = (void *) report;
 
-Summary
--------
+-:268: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#268: FILE: drivers/gpu/drm/i915/i915_perf.c:827:
++		report32[0] = report32[1] = 0;
 
-  **FAILURE**
+-:312: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#312: FILE: drivers/gpu/drm/i915/i915_perf.c:1042:
++		report32[0] = report32[1] = 0;
 
-  Serious unknown changes coming with Patchwork_16796_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16796_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:358: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#358: FILE: drivers/gpu/drm/i915/i915_perf.c:4385:
++
++
 
-  
+total: 0 errors, 0 warnings, 4 checks, 364 lines checked
+b97afa567f13 drm/i915/perf: move pollin setup to non hw specific code
+249c37e99eb0 drm/i915/perf: only append status when data is available
+b69637a72e34 drm/i915/perf: add new open param to configure polling of OA buffer
+974daa81481c drm/i915: handle interrupts from the OA unit
+-:49: ERROR:CODE_INDENT: code indent should use tabs where possible
+#49: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:110:
++ ^Iif (instance == OTHER_WDOAPERF_INSTANCE)$
 
-Possible new issues
--------------------
+-:49: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#49: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:110:
++ ^Iif (instance == OTHER_WDOAPERF_INSTANCE)$
 
-  Here are the unknown changes that may have been introduced in Patchwork_16796_full:
+-:49: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#49: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:110:
++ ^Iif (instance == OTHER_WDOAPERF_INSTANCE)$
 
-### IGT changes ###
+-:50: ERROR:CODE_INDENT: code indent should use tabs where possible
+#50: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:111:
++ ^I^Ireturn gen8_perfmon_handler(gt->i915, iir);$
 
-#### Possible regressions ####
+-:50: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#50: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:111:
++ ^I^Ireturn gen8_perfmon_handler(gt->i915, iir);$
 
-  * igt@gem_exec_schedule@pi-common-bsd:
-    - shard-skl:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl1/igt@gem_exec_schedule@pi-common-bsd.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl5/igt@gem_exec_schedule@pi-common-bsd.html
+-:50: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#50: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:111:
++ ^I^Ireturn gen8_perfmon_handler(gt->i915, iir);$
 
-  
-Known issues
-------------
+-:94: ERROR:CODE_INDENT: code indent should use tabs where possible
+#94: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:463:
++ ^I/* We only expose the i915/perf interface on HSW+. */$
 
-  Here are the changes found in Patchwork_16796_full that come from known issues:
+-:94: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#94: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:463:
++ ^I/* We only expose the i915/perf interface on HSW+. */$
 
-### IGT changes ###
+-:94: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#94: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:463:
++ ^I/* We only expose the i915/perf interface on HSW+. */$
 
-#### Issues hit ####
+-:95: ERROR:CODE_INDENT: code indent should use tabs where possible
+#95: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:464:
++ ^Iif (IS_HASWELL(gt->i915))$
 
-  * igt@gem_ctx_exec@basic-nohangcheck:
-    - shard-snb:          [PASS][3] -> [FAIL][4] ([i915#1148])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-snb2/igt@gem_ctx_exec@basic-nohangcheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-snb2/igt@gem_ctx_exec@basic-nohangcheck.html
-    - shard-hsw:          [PASS][5] -> [FAIL][6] ([i915#1148])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-hsw8/igt@gem_ctx_exec@basic-nohangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-hsw2/igt@gem_ctx_exec@basic-nohangcheck.html
+-:95: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#95: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:464:
++ ^Iif (IS_HASWELL(gt->i915))$
 
-  * igt@gem_ctx_persistence@legacy-engines-mixed-process@blt:
-    - shard-kbl:          [PASS][7] -> [INCOMPLETE][8] ([fdo#103665] / [i915#1197] / [i915#1239])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-kbl2/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-kbl7/igt@gem_ctx_persistence@legacy-engines-mixed-process@blt.html
+-:95: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#95: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:464:
++ ^Iif (IS_HASWELL(gt->i915))$
 
-  * igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd2:
-    - shard-kbl:          [PASS][9] -> [FAIL][10] ([i915#679])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-kbl2/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd2.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-kbl7/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd2.html
+-:96: ERROR:CODE_INDENT: code indent should use tabs where possible
+#96: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:465:
++ ^I^Igt_irqs |= GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT;$
 
-  * igt@gem_ctx_shared@exec-single-timeline-bsd:
-    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#110841])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb5/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb4/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+-:96: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#96: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:465:
++ ^I^Igt_irqs |= GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT;$
 
-  * igt@gem_eio@in-flight-suspend:
-    - shard-apl:          [PASS][13] -> [DMESG-WARN][14] ([i915#180])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-apl3/igt@gem_eio@in-flight-suspend.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-apl1/igt@gem_eio@in-flight-suspend.html
+-:96: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#96: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.c:465:
++ ^I^Igt_irqs |= GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT;$
 
-  * igt@gem_exec_schedule@implicit-both-bsd:
-    - shard-iclb:         [PASS][15] -> [SKIP][16] ([i915#677]) +1 similar issue
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb5/igt@gem_exec_schedule@implicit-both-bsd.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb4/igt@gem_exec_schedule@implicit-both-bsd.html
+-:109: ERROR:CODE_INDENT: code indent should use tabs where possible
+#109: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.h:18:
++ ^I^I      GEN8_GT_WDBOX_OACS_IRQ | \$
 
-  * igt@gem_exec_schedule@preemptive-hang-bsd:
-    - shard-iclb:         [PASS][17] -> [SKIP][18] ([fdo#112146]) +4 similar issues
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb8/igt@gem_exec_schedule@preemptive-hang-bsd.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb1/igt@gem_exec_schedule@preemptive-hang-bsd.html
+-:109: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#109: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.h:18:
++ ^I^I      GEN8_GT_WDBOX_OACS_IRQ | \$
 
-  * igt@kms_cursor_crc@pipe-b-cursor-128x128-random:
-    - shard-skl:          [PASS][19] -> [FAIL][20] ([i915#54])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl1/igt@kms_cursor_crc@pipe-b-cursor-128x128-random.html
+-:109: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#109: FILE: drivers/gpu/drm/i915/gt/intel_gt_irq.h:18:
++ ^I^I      GEN8_GT_WDBOX_OACS_IRQ | \$
 
-  * igt@kms_cursor_legacy@pipe-c-torture-bo:
-    - shard-glk:          [PASS][21] -> [DMESG-WARN][22] ([i915#128])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-glk9/igt@kms_cursor_legacy@pipe-c-torture-bo.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-glk3/igt@kms_cursor_legacy@pipe-c-torture-bo.html
+-:284: ERROR:CODE_INDENT: code indent should use tabs where possible
+#284: FILE: drivers/gpu/drm/i915/i915_perf.c:2680:
++ ^Iif (stream->oa_interrupt_monitor) {$
 
-  * igt@kms_draw_crc@draw-method-xrgb2101010-mmap-wc-xtiled:
-    - shard-skl:          [PASS][23] -> [FAIL][24] ([i915#52] / [i915#54])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl1/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-wc-xtiled.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl5/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-wc-xtiled.html
+-:284: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#284: FILE: drivers/gpu/drm/i915/i915_perf.c:2680:
++ ^Iif (stream->oa_interrupt_monitor) {$
 
-  * igt@kms_flip@flip-vs-suspend:
-    - shard-skl:          [PASS][25] -> [INCOMPLETE][26] ([i915#221]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl6/igt@kms_flip@flip-vs-suspend.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl1/igt@kms_flip@flip-vs-suspend.html
+-:284: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#284: FILE: drivers/gpu/drm/i915/i915_perf.c:2680:
++ ^Iif (stream->oa_interrupt_monitor) {$
 
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#109441]) +2 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb6/igt@kms_psr@psr2_cursor_render.html
+-:285: ERROR:CODE_INDENT: code indent should use tabs where possible
+#285: FILE: drivers/gpu/drm/i915/i915_perf.c:2681:
++ ^I^Ispin_lock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@kms_setmode@basic:
-    - shard-kbl:          [PASS][29] -> [FAIL][30] ([i915#31])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-kbl2/igt@kms_setmode@basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-kbl1/igt@kms_setmode@basic.html
+-:285: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#285: FILE: drivers/gpu/drm/i915/i915_perf.c:2681:
++ ^I^Ispin_lock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
-    - shard-kbl:          [PASS][31] -> [DMESG-WARN][32] ([i915#180]) +4 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-kbl4/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+-:285: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#285: FILE: drivers/gpu/drm/i915/i915_perf.c:2681:
++ ^I^Ispin_lock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@perf_pmu@busy-check-all-vcs1:
-    - shard-iclb:         [PASS][33] -> [SKIP][34] ([fdo#112080]) +12 similar issues
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb2/igt@perf_pmu@busy-check-all-vcs1.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb6/igt@perf_pmu@busy-check-all-vcs1.html
+-:286: ERROR:CODE_INDENT: code indent should use tabs where possible
+#286: FILE: drivers/gpu/drm/i915/i915_perf.c:2682:
++ ^I^Igen5_gt_disable_irq(&stream->perf->i915->gt,$
 
-  * igt@prime_busy@hang-bsd2:
-    - shard-iclb:         [PASS][35] -> [SKIP][36] ([fdo#109276]) +23 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb4/igt@prime_busy@hang-bsd2.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb8/igt@prime_busy@hang-bsd2.html
+-:286: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#286: FILE: drivers/gpu/drm/i915/i915_perf.c:2682:
++ ^I^Igen5_gt_disable_irq(&stream->perf->i915->gt,$
 
-  
-#### Possible fixes ####
+-:286: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#286: FILE: drivers/gpu/drm/i915/i915_perf.c:2682:
++ ^I^Igen5_gt_disable_irq(&stream->perf->i915->gt,$
 
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-tglb:         [INCOMPLETE][37] ([i915#1291]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-tglb7/igt@gem_ctx_persistence@close-replace-race.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-tglb3/igt@gem_ctx_persistence@close-replace-race.html
+-:287: ERROR:CODE_INDENT: code indent should use tabs where possible
+#287: FILE: drivers/gpu/drm/i915/i915_perf.c:2683:
++ ^I^I^I^I    GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT);$
 
-  * igt@gem_ctx_persistence@engines-mixed-process@bcs0:
-    - shard-apl:          [INCOMPLETE][39] ([fdo#103927] / [i915#1197] / [i915#1239]) -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-apl8/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-apl8/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+-:287: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#287: FILE: drivers/gpu/drm/i915/i915_perf.c:2683:
++ ^I^I^I^I    GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT);$
 
-  * igt@gem_ctx_persistence@engines-mixed-process@rcs0:
-    - shard-apl:          [FAIL][41] ([i915#679]) -> [PASS][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-apl8/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-apl8/igt@gem_ctx_persistence@engines-mixed-process@rcs0.html
+-:287: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#287: FILE: drivers/gpu/drm/i915/i915_perf.c:2683:
++ 		gen5_gt_disable_irq(&stream->perf->i915->gt,
++ 				    GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT);
 
-  * igt@gem_ctx_persistence@engines-mixed-process@vcs0:
-    - shard-skl:          [FAIL][43] ([i915#679]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl8/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl5/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
+-:287: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#287: FILE: drivers/gpu/drm/i915/i915_perf.c:2683:
++ ^I^I^I^I    GT_PERFMON_BUFFER_HALF_FULL_INTERRUPT);$
 
-  * igt@gem_ctx_persistence@engines-mixed-process@vecs0:
-    - shard-skl:          [INCOMPLETE][45] ([i915#1197] / [i915#1239]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl8/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl5/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
+-:288: ERROR:CODE_INDENT: code indent should use tabs where possible
+#288: FILE: drivers/gpu/drm/i915/i915_perf.c:2684:
++ ^I^Ispin_unlock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@gem_eio@in-flight-suspend:
-    - shard-skl:          [INCOMPLETE][47] ([i915#69]) -> [PASS][48] +1 similar issue
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl3/igt@gem_eio@in-flight-suspend.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl9/igt@gem_eio@in-flight-suspend.html
+-:288: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#288: FILE: drivers/gpu/drm/i915/i915_perf.c:2684:
++ ^I^Ispin_unlock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@gem_exec_balancer@smoke:
-    - shard-iclb:         [SKIP][49] ([fdo#110854]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb5/igt@gem_exec_balancer@smoke.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb4/igt@gem_exec_balancer@smoke.html
+-:288: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#288: FILE: drivers/gpu/drm/i915/i915_perf.c:2684:
++ ^I^Ispin_unlock_irq(&stream->perf->i915->irq_lock);$
 
-  * igt@gem_exec_schedule@fifo-bsd1:
-    - shard-iclb:         [SKIP][51] ([fdo#109276]) -> [PASS][52] +15 similar issues
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb8/igt@gem_exec_schedule@fifo-bsd1.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb4/igt@gem_exec_schedule@fifo-bsd1.html
+-:289: ERROR:CODE_INDENT: code indent should use tabs where possible
+#289: FILE: drivers/gpu/drm/i915/i915_perf.c:2685:
++ ^I}$
 
-  * igt@gem_exec_schedule@implicit-both-bsd1:
-    - shard-iclb:         [SKIP][53] ([fdo#109276] / [i915#677]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb3/igt@gem_exec_schedule@implicit-both-bsd1.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb1/igt@gem_exec_schedule@implicit-both-bsd1.html
+-:289: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#289: FILE: drivers/gpu/drm/i915/i915_perf.c:2685:
++ ^I}$
 
-  * igt@gem_exec_schedule@pi-common-bsd:
-    - shard-iclb:         [SKIP][55] ([i915#677]) -> [PASS][56] +2 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb4/igt@gem_exec_schedule@pi-common-bsd.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb8/igt@gem_exec_schedule@pi-common-bsd.html
+-:289: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#289: FILE: drivers/gpu/drm/i915/i915_perf.c:2685:
++ ^I}$
 
-  * igt@gem_exec_schedule@preempt-other-chain-bsd:
-    - shard-iclb:         [SKIP][57] ([fdo#112146]) -> [PASS][58] +7 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb2/igt@gem_exec_schedule@preempt-other-chain-bsd.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb3/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+-:298: ERROR:CODE_INDENT: code indent should use tabs where possible
+#298: FILE: drivers/gpu/drm/i915/i915_perf.c:2699:
++ ^Iintel_uncore_write(uncore, GEN8_OA_IMR, 0xffffffff);$
 
-  * igt@i915_pm_rps@waitboost:
-    - shard-iclb:         [FAIL][59] ([i915#413]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb8/igt@i915_pm_rps@waitboost.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb4/igt@i915_pm_rps@waitboost.html
+-:298: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#298: FILE: drivers/gpu/drm/i915/i915_perf.c:2699:
++ ^Iintel_uncore_write(uncore, GEN8_OA_IMR, 0xffffffff);$
 
-  * igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic:
-    - shard-skl:          [FAIL][61] ([IGT#5]) -> [PASS][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl2/igt@kms_cursor_legacy@flip-vs-cursor-busy-crc-atomic.html
+-:298: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#298: FILE: drivers/gpu/drm/i915/i915_perf.c:2699:
++ ^Iintel_uncore_write(uncore, GEN8_OA_IMR, 0xffffffff);$
 
-  * igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled:
-    - shard-snb:          [SKIP][63] ([fdo#109271]) -> [PASS][64] +1 similar issue
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-snb6/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-snb5/igt@kms_draw_crc@draw-method-xrgb2101010-mmap-cpu-untiled.html
+-:307: ERROR:CODE_INDENT: code indent should use tabs where possible
+#307: FILE: drivers/gpu/drm/i915/i915_perf.c:2713:
++ ^Iintel_uncore_write(uncore, GEN12_OA_IMR, 0xffffffff);$
 
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-apl:          [DMESG-WARN][65] ([i915#180]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-apl4/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-apl2/igt@kms_flip@flip-vs-suspend-interruptible.html
+-:307: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#307: FILE: drivers/gpu/drm/i915/i915_perf.c:2713:
++ ^Iintel_uncore_write(uncore, GEN12_OA_IMR, 0xffffffff);$
 
-  * igt@kms_frontbuffer_tracking@fbc-suspend:
-    - shard-kbl:          [DMESG-WARN][67] ([i915#180]) -> [PASS][68] +4 similar issues
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-kbl3/igt@kms_frontbuffer_tracking@fbc-suspend.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-kbl4/igt@kms_frontbuffer_tracking@fbc-suspend.html
+-:307: WARNING:LEADING_SPACE: please, no spaces at the start of a line
+#307: FILE: drivers/gpu/drm/i915/i915_perf.c:2713:
++ ^Iintel_uncore_write(uncore, GEN12_OA_IMR, 0xffffffff);$
 
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [FAIL][69] ([fdo#108145]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-skl6/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
+total: 14 errors, 28 warnings, 1 checks, 321 lines checked
+4f90346ada25 drm/i915/perf: add interrupt enabling parameter
+-:7: WARNING:TYPO_SPELLING: 'conjuction' may be misspelled - perhaps 'conjunction'?
+#7: 
+mechanism of the HW. In conjuction with long periods for checks for
 
-  * igt@kms_psr@psr2_basic:
-    - shard-iclb:         [SKIP][71] ([fdo#109441]) -> [PASS][72] +1 similar issue
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb1/igt@kms_psr@psr2_basic.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb2/igt@kms_psr@psr2_basic.html
+-:124: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'stream->half_full_count_last !=
+ 	     atomic64_read(&stream->half_full_count)'
+#124: FILE: drivers/gpu/drm/i915/i915_perf.c:3126:
++	if (stream->oa_interrupt_monitor &&
++	    (stream->half_full_count_last !=
++	     atomic64_read(&stream->half_full_count))) {
 
-  * igt@kms_setmode@basic:
-    - shard-apl:          [FAIL][73] ([i915#31]) -> [PASS][74]
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-apl3/igt@kms_setmode@basic.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-apl8/igt@kms_setmode@basic.html
+-:167: WARNING:TYPO_SPELLING: 'paramter' may be misspelled - perhaps 'parameter'?
+#167: FILE: drivers/gpu/drm/i915/i915_perf.c:4552:
++	 * 5: Add DRM_I915_PERF_PROP_OA_ENABLE_INTERRUPT paramter to
 
-  * igt@perf_pmu@busy-no-semaphores-vcs1:
-    - shard-iclb:         [SKIP][75] ([fdo#112080]) -> [PASS][76] +12 similar issues
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-iclb3/igt@perf_pmu@busy-no-semaphores-vcs1.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-iclb1/igt@perf_pmu@busy-no-semaphores-vcs1.html
+-:185: WARNING:TYPO_SPELLING: 'conjuction' may be misspelled - perhaps 'conjunction'?
+#185: FILE: include/uapi/drm/i915_drm.h:1984:
++	 * buffer in i915. This option in conjuction with a long polling delay
 
-  
-#### Warnings ####
+total: 0 errors, 3 warnings, 1 checks, 157 lines checked
+cd7ce8c94fd0 drm/i915/perf: add flushing ioctl
 
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-tglb:         [SKIP][77] ([i915#468]) -> [FAIL][78] ([i915#454])
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8055/shard-tglb2/igt@i915_pm_dc@dc6-psr.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/shard-tglb6/igt@i915_pm_dc@dc6-psr.html
-
-  
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#103665]: https://bugs.freedesktop.org/show_bug.cgi?id=103665
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
-  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#1148]: https://gitlab.freedesktop.org/drm/intel/issues/1148
-  [i915#1197]: https://gitlab.freedesktop.org/drm/intel/issues/1197
-  [i915#1239]: https://gitlab.freedesktop.org/drm/intel/issues/1239
-  [i915#128]: https://gitlab.freedesktop.org/drm/intel/issues/128
-  [i915#1291]: https://gitlab.freedesktop.org/drm/intel/issues/1291
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8055 -> Patchwork_16796
-
-  CI-20190529: 20190529
-  CI_DRM_8055: df5c59f81df63a983b7490968e16c3255adc196b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5484: 91b36b61e76901a2bd09fe93ac7bf7b8a60f258c @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16796: 049a64981bce33df9b0fbaf7f0be135886a27d31 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16796/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
