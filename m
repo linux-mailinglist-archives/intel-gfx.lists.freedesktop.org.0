@@ -1,39 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C1217931B
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 16:15:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB6C179368
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 16:31:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A00506E1AA;
-	Wed,  4 Mar 2020 15:15:34 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9456E1A5;
- Wed,  4 Mar 2020 15:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C03A36E05C;
+	Wed,  4 Mar 2020 15:31:53 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB276E05C
+ for <Intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 15:31:52 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 07:15:19 -0800
-X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234063946"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 07:15:16 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Hans de Goede <hdegoede@redhat.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <895e4a40-2c3f-b964-102d-13eff5b3c268@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200221172927.510027-1-hdegoede@redhat.com>
- <895e4a40-2c3f-b964-102d-13eff5b3c268@redhat.com>
-Date: Wed, 04 Mar 2020 17:15:13 +0200
-Message-ID: <874kv4p2wu.fsf@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 07:31:51 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="274707208"
+Received: from srware-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.25.112])
+ by fmsmga002.fm.intel.com with ESMTP; 04 Mar 2020 07:31:49 -0800
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Wed,  4 Mar 2020 15:31:44 +0000
+Message-Id: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH resend 1/2] drm/i915: panel: Use
- intel_panel_compute_brightness() from pwm_setup_backlight()
+Subject: [Intel-gfx] [PATCH] drm/i915/tgl: WaDisableGPGPUMidThreadPreemption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,99 +41,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: piotr.zdunowski@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Mar 2020, Hans de Goede <hdegoede@redhat.com> wrote:
-> Hi All,
->
-> On 2/21/20 6:29 PM, Hans de Goede wrote:
->> Use intel_panel_compute_brightness() from pwm_setup_backlight() so that
->> we correctly take i915_modparams.invert_brightness and/or
->> QUIRK_INVERT_BRIGHTNESS into account when setting + getting the initial
->> brightness value.
->> 
->> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->
-> ping? Any chance I can get a review from someone on this series?
->
-> Both patches are pretty trivial really...
-
-For both,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-And sad trombone, I was hoping I could nuke the whole module parameter
-one of these days. It used to be something associated with gen4 only.
-
-BR,
-Jani.
-
-
->
-> Regards,
->
-> Hans
->
->
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_panel.c | 18 +++++++++++-------
->>   1 file changed, 11 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
->> index 7b3ec6eb3382..9ebee7d93414 100644
->> --- a/drivers/gpu/drm/i915/display/intel_panel.c
->> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
->> @@ -1843,6 +1843,7 @@ static int pwm_setup_backlight(struct intel_connector *connector,
->>   	struct drm_i915_private *dev_priv = to_i915(dev);
->>   	struct intel_panel *panel = &connector->panel;
->>   	const char *desc;
->> +	u32 level, ns;
->>   	int retval;
->>   
->>   	/* Get the right PWM chip for DSI backlight according to VBT */
->> @@ -1866,8 +1867,12 @@ static int pwm_setup_backlight(struct intel_connector *connector,
->>   	 */
->>   	pwm_apply_args(panel->backlight.pwm);
->>   
->> -	retval = pwm_config(panel->backlight.pwm, CRC_PMIC_PWM_PERIOD_NS,
->> -			    CRC_PMIC_PWM_PERIOD_NS);
->> +	panel->backlight.min = 0; /* 0% */
->> +	panel->backlight.max = 100; /* 100% */
->> +	level = intel_panel_compute_brightness(connector, 100);
->> +	ns = DIV_ROUND_UP(level * CRC_PMIC_PWM_PERIOD_NS, 100);
->> +
->> +	retval = pwm_config(panel->backlight.pwm, ns, CRC_PMIC_PWM_PERIOD_NS);
->>   	if (retval < 0) {
->>   		DRM_ERROR("Failed to configure the pwm chip\n");
->>   		pwm_put(panel->backlight.pwm);
->> @@ -1875,11 +1880,10 @@ static int pwm_setup_backlight(struct intel_connector *connector,
->>   		return retval;
->>   	}
->>   
->> -	panel->backlight.min = 0; /* 0% */
->> -	panel->backlight.max = 100; /* 100% */
->> -	panel->backlight.level = DIV_ROUND_UP(
->> -				 pwm_get_duty_cycle(panel->backlight.pwm) * 100,
->> -				 CRC_PMIC_PWM_PERIOD_NS);
->> +	level = DIV_ROUND_UP(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
->> +			     CRC_PMIC_PWM_PERIOD_NS);
->> +	panel->backlight.level =
->> +		intel_panel_compute_brightness(connector, level);
->>   	panel->backlight.enabled = panel->backlight.level != 0;
->>   
->>   	DRM_INFO("Using %s PWM for LCD backlight control\n", desc);
->> 
->
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVHZydGtvIFVyc3VsaW4gPHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KCkVuYWJsZSBG
+dHJQZXJDdHh0UHJlZW1wdGlvbkdyYW51bGFyaXR5Q29udHJvbCBiaXQgYW5kIHNlbGVjdCB0aHJl
+YWQtCmdyb3VwIGFzIHRoZSBkZWZhdWx0IHByZWVtcHRpb24gbGV2ZWwuCgp2MjoKICogUmVtb3Zl
+IHJlZ2lzdGVyIHdoaXRlbGlzdGluZyAoUmFmYWVsLCBUb255KS4KClNpZ25lZC1vZmYtYnk6IFR2
+cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+CkNjOiBNaWNoYcWCIFdpbmlh
+cnNraSA8bWljaGFsLndpbmlhcnNraUBpbnRlbC5jb20+CkNjOiBKb29uYXMgTGFodGluZW4gPGpv
+b25hcy5sYWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CkNjOiBwaW90ci56ZHVub3dza2lAaW50ZWwu
+Y29tCkNjOiBtaWNoYWwubXJvemVrQGludGVsLmNvbQpDYzogVG9ueSBZZSA8dG9ueS55ZUBpbnRl
+bC5jb20+CkNjOiBSYWZhZWwgQW50b2dub2xsaSA8cmFmYWVsLmFudG9nbm9sbGlAaW50ZWwuY29t
+PgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMgfCA5ICsr
+KysrKystLQogMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkK
+CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5j
+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYwppbmRleCBjYjdk
+ODVjNDJmMTMuLjdiZTcxYTFhNTcxOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+Z3QvaW50ZWxfd29ya2Fyb3VuZHMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
+bF93b3JrYXJvdW5kcy5jCkBAIC02MDEsNiArNjAxLDExIEBAIHN0YXRpYyB2b2lkIHRnbF9jdHhf
+d29ya2Fyb3VuZHNfaW5pdChzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmUsCiAJICovCiAJ
+d2FfYWRkKHdhbCwgRkZfTU9ERTIsIEZGX01PREUyX1REU19USU1FUl9NQVNLLAogCSAgICAgICBG
+Rl9NT0RFMl9URFNfVElNRVJfMTI4LCAwKTsKKworCS8qIFdhRGlzYWJsZUdQR1BVTWlkVGhyZWFk
+UHJlZW1wdGlvbjp0Z2wgKi8KKwlXQV9TRVRfRklFTERfTUFTS0VEKEdFTjhfQ1NfQ0hJQ0tFTjEs
+CisJCQkgICAgR0VOOV9QUkVFTVBUX0dQR1BVX0xFVkVMX01BU0ssCisJCQkgICAgR0VOOV9QUkVF
+TVBUX0dQR1BVX1RIUkVBRF9HUk9VUF9MRVZFTCk7CiB9CiAKIHN0YXRpYyB2b2lkCkBAIC0xNDc1
+LDggKzE0ODAsOCBAQCByY3NfZW5naW5lX3dhX2luaXQoc3RydWN0IGludGVsX2VuZ2luZV9jcyAq
+ZW5naW5lLCBzdHJ1Y3QgaTkxNV93YV9saXN0ICp3YWwpCiAJCQkgICAgIFBTRFVOSVRfQ0xLR0FU
+RV9ESVMpOwogCX0KIAotCWlmIChJU19HRU5fUkFOR0UoaTkxNSwgOSwgMTEpKSB7Ci0JCS8qIEZ0
+clBlckN0eHRQcmVlbXB0aW9uR3JhbnVsYXJpdHlDb250cm9sOnNrbCxieHQsa2JsLGNmbCxjbmws
+aWNsICovCisJaWYgKElTX0dFTl9SQU5HRShpOTE1LCA5LCAxMikpIHsKKwkJLyogRnRyUGVyQ3R4
+dFByZWVtcHRpb25HcmFudWxhcml0eUNvbnRyb2w6c2tsLGJ4dCxrYmwsY2ZsLGNubCxpY2wsdGds
+ICovCiAJCXdhX21hc2tlZF9lbih3YWwsCiAJCQkgICAgIEdFTjdfRkZfU0xJQ0VfQ1NfQ0hJQ0tF
+TjEsCiAJCQkgICAgIEdFTjlfRkZTQ19QRVJDVFhfUFJFRU1QVF9DVFJMKTsKLS0gCjIuMjAuMQoK
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
+IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
+dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
