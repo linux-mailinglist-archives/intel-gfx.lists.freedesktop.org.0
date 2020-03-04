@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA8AC1788B1
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 03:55:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC5E1788C7
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 03:58:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75C906EAA4;
-	Wed,  4 Mar 2020 02:55:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A75616EAA5;
+	Wed,  4 Mar 2020 02:58:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5096A6EAA4
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 02:55:35 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2020 18:55:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,511,1574150400"; d="scan'208";a="258601337"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by orsmga002.jf.intel.com with ESMTP; 03 Mar 2020 18:55:33 -0800
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1j9KC3-0008Jp-SB; Wed, 04 Mar 2020 10:55:31 +0800
-Date: Wed, 4 Mar 2020 10:54:44 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <202003041049.esRUs9Lz%lkp@intel.com>
-References: <20200303173313.28117-4-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 463F26EAA5;
+ Wed,  4 Mar 2020 02:58:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F0F7A0094;
+ Wed,  4 Mar 2020 02:58:18 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200303173313.28117-4-ville.syrjala@linux.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 3/9] drm/i915: Split i9xx_read_lut_8() to
- gmch vs. ilk variants
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Wed, 04 Mar 2020 02:58:18 -0000
+Message-ID: <158329069825.431.3298930038093881811@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?drm/i915/perf=3A_add_OA_interrupt_support_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,78 +38,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+== Series Details ==
 
-Thank you for the patch! Perhaps something to improve:
+Series: drm/i915/perf: add OA interrupt support (rev5)
+URL   : https://patchwork.freedesktop.org/series/54280/
+State : warning
 
-[auto build test WARNING on drm-intel/for-linux-next]
-[also build test WARNING on drm-tip/drm-tip]
-[cannot apply to v5.6-rc4 next-20200303]
-[if your patch is applied to the wrong git tree, please drop us a note to help
-improve the system. BTW, we also suggest to use '--base' option to specify the
-base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
+== Summary ==
 
-url:    https://github.com/0day-ci/linux/commits/Ville-Syrjala/drm-i915-Gamma-cleanups/20200304-043847
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915/perf: rework aging tail workaround
+Okay!
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+Commit: drm/i915/perf: move pollin setup to non hw specific code
+-O:drivers/gpu/drm/i915/i915_perf.c:1443:15: warning: memset with byte count of 16777216
+-O:drivers/gpu/drm/i915/i915_perf.c:1499:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1443:15: warning: memset with byte count of 16777216
++drivers/gpu/drm/i915/i915_perf.c:1497:15: warning: memset with byte count of 16777216
 
-New smatch warnings:
-drivers/gpu/drm/i915/display/intel_color.c:1840 ilk_read_lut_8() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
+Commit: drm/i915/perf: only append status when data is available
+Okay!
 
-Old smatch warnings:
-drivers/gpu/drm/i915/display/intel_color.c:1706 i9xx_read_lut_8() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
-drivers/gpu/drm/i915/display/intel_color.c:1747 i965_read_lut_10p6() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
-drivers/gpu/drm/i915/display/intel_color.c:1799 chv_read_cgm_lut() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
-drivers/gpu/drm/i915/display/intel_color.c:1873 ilk_read_lut_10() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
-drivers/gpu/drm/i915/display/intel_color.c:1920 glk_read_lut_10() error: potential null dereference 'blob'.  (drm_property_create_blob returns null)
+Commit: drm/i915/perf: add new open param to configure polling of OA buffer
+Okay!
 
-vim +/blob +1840 drivers/gpu/drm/i915/display/intel_color.c
+Commit: drm/i915: handle interrupts from the OA unit
+Okay!
 
-  1823	
-  1824	static struct drm_property_blob *
-  1825	ilk_read_lut_8(const struct intel_crtc_state *crtc_state)
-  1826	{
-  1827		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-  1828		struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-  1829		enum pipe pipe = crtc->pipe;
-  1830		struct drm_property_blob *blob;
-  1831		struct drm_color_lut *blob_data;
-  1832		u32 i, val;
-  1833	
-  1834		blob = drm_property_create_blob(&dev_priv->drm,
-  1835						sizeof(struct drm_color_lut) * LEGACY_LUT_LENGTH,
-  1836						NULL);
-  1837		if (IS_ERR(blob))
-  1838			return NULL;
-  1839	
-> 1840		blob_data = blob->data;
-  1841	
-  1842		for (i = 0; i < LEGACY_LUT_LENGTH; i++) {
-  1843			val = intel_de_read(dev_priv, LGC_PALETTE(pipe, i));
-  1844	
-  1845			blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
-  1846								LGC_PALETTE_RED_MASK, val), 8);
-  1847			blob_data[i].green = intel_color_lut_pack(REG_FIELD_GET(
-  1848								  LGC_PALETTE_GREEN_MASK, val), 8);
-  1849			blob_data[i].blue = intel_color_lut_pack(REG_FIELD_GET(
-  1850								 LGC_PALETTE_BLUE_MASK, val), 8);
-  1851		}
-  1852	
-  1853		return blob;
-  1854	}
-  1855	
+Commit: drm/i915/perf: add interrupt enabling parameter
++drivers/gpu/drm/i915/i915_perf.c:569:9: warning: context imbalance in 'oa_buffer_check' - different lock contexts for basic block
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Commit: drm/i915/perf: add flushing ioctl
+Okay!
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
