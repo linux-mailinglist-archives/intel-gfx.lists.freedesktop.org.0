@@ -1,34 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD97A1792FB
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 16:10:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C1217931B
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 16:15:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108A76E19B;
-	Wed,  4 Mar 2020 15:10:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A00506E1AA;
+	Wed,  4 Mar 2020 15:15:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B906B6E19B
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 15:10:00 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9456E1A5;
+ Wed,  4 Mar 2020 15:15:33 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 07:09:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="240484870"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 04 Mar 2020 07:09:58 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Mar 2020 17:09:18 +0200
-Message-Id: <20200304150918.25473-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 07:15:19 -0800
+X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234063946"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 07:15:16 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Hans de Goede <hdegoede@redhat.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <895e4a40-2c3f-b964-102d-13eff5b3c268@redhat.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200221172927.510027-1-hdegoede@redhat.com>
+ <895e4a40-2c3f-b964-102d-13eff5b3c268@redhat.com>
+Date: Wed, 04 Mar 2020 17:15:13 +0200
+Message-ID: <874kv4p2wu.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Fix documentation for
- intel_dpll_get_freq()
+Subject: Re: [Intel-gfx] [PATCH resend 1/2] drm/i915: panel: Use
+ intel_panel_compute_brightness() from pwm_setup_backlight()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,61 +46,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix the following kerneldoc warning and while at it also the doc for the
-corresponding vfunc hook.
+On Tue, 03 Mar 2020, Hans de Goede <hdegoede@redhat.com> wrote:
+> Hi All,
+>
+> On 2/21/20 6:29 PM, Hans de Goede wrote:
+>> Use intel_panel_compute_brightness() from pwm_setup_backlight() so that
+>> we correctly take i915_modparams.invert_brightness and/or
+>> QUIRK_INVERT_BRIGHTNESS into account when setting + getting the initial
+>> brightness value.
+>> 
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+>
+> ping? Any chance I can get a review from someone on this series?
+>
+> Both patches are pretty trivial really...
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
+For both,
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 6 ++++++
- 2 files changed, 13 insertions(+)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 76d14486b3a5..2d47f1f756a2 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4408,6 +4408,13 @@ void intel_update_active_dpll(struct intel_atomic_state *state,
- 	dpll_mgr->update_active_dpll(state, crtc, encoder);
- }
- 
-+/**
-+ * intel_dpll_get_freq - calculate the DPLL's output frequency
-+ * @i915: i915 device
-+ * @pll: DPLL for which to calculate the output frequency
-+ *
-+ * Return the output frequency corresponding to @pll's current state.
-+ */
- int intel_dpll_get_freq(struct drm_i915_private *i915,
- 			const struct intel_shared_dpll *pll)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index 5c847627580a..5d9a2bc371e7 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -279,6 +279,12 @@ struct intel_shared_dpll_funcs {
- 			     struct intel_shared_dpll *pll,
- 			     struct intel_dpll_hw_state *hw_state);
- 
-+	/**
-+	 * @get_freq:
-+	 *
-+	 * Hook for calculating the pll's output frequency based on its
-+	 * current state.
-+	 */
- 	int (*get_freq)(struct drm_i915_private *i915,
- 			const struct intel_shared_dpll *pll);
- };
+And sad trombone, I was hoping I could nuke the whole module parameter
+one of these days. It used to be something associated with gen4 only.
+
+BR,
+Jani.
+
+
+>
+> Regards,
+>
+> Hans
+>
+>
+>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_panel.c | 18 +++++++++++-------
+>>   1 file changed, 11 insertions(+), 7 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+>> index 7b3ec6eb3382..9ebee7d93414 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>> @@ -1843,6 +1843,7 @@ static int pwm_setup_backlight(struct intel_connector *connector,
+>>   	struct drm_i915_private *dev_priv = to_i915(dev);
+>>   	struct intel_panel *panel = &connector->panel;
+>>   	const char *desc;
+>> +	u32 level, ns;
+>>   	int retval;
+>>   
+>>   	/* Get the right PWM chip for DSI backlight according to VBT */
+>> @@ -1866,8 +1867,12 @@ static int pwm_setup_backlight(struct intel_connector *connector,
+>>   	 */
+>>   	pwm_apply_args(panel->backlight.pwm);
+>>   
+>> -	retval = pwm_config(panel->backlight.pwm, CRC_PMIC_PWM_PERIOD_NS,
+>> -			    CRC_PMIC_PWM_PERIOD_NS);
+>> +	panel->backlight.min = 0; /* 0% */
+>> +	panel->backlight.max = 100; /* 100% */
+>> +	level = intel_panel_compute_brightness(connector, 100);
+>> +	ns = DIV_ROUND_UP(level * CRC_PMIC_PWM_PERIOD_NS, 100);
+>> +
+>> +	retval = pwm_config(panel->backlight.pwm, ns, CRC_PMIC_PWM_PERIOD_NS);
+>>   	if (retval < 0) {
+>>   		DRM_ERROR("Failed to configure the pwm chip\n");
+>>   		pwm_put(panel->backlight.pwm);
+>> @@ -1875,11 +1880,10 @@ static int pwm_setup_backlight(struct intel_connector *connector,
+>>   		return retval;
+>>   	}
+>>   
+>> -	panel->backlight.min = 0; /* 0% */
+>> -	panel->backlight.max = 100; /* 100% */
+>> -	panel->backlight.level = DIV_ROUND_UP(
+>> -				 pwm_get_duty_cycle(panel->backlight.pwm) * 100,
+>> -				 CRC_PMIC_PWM_PERIOD_NS);
+>> +	level = DIV_ROUND_UP(pwm_get_duty_cycle(panel->backlight.pwm) * 100,
+>> +			     CRC_PMIC_PWM_PERIOD_NS);
+>> +	panel->backlight.level =
+>> +		intel_panel_compute_brightness(connector, level);
+>>   	panel->backlight.enabled = panel->backlight.level != 0;
+>>   
+>>   	DRM_INFO("Using %s PWM for LCD backlight control\n", desc);
+>> 
+>
+
 -- 
-2.23.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
