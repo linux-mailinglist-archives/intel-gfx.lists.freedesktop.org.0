@@ -2,40 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FB41791E2
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 15:03:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A5217922C
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 15:20:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A37266E17F;
-	Wed,  4 Mar 2020 14:03:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 674F489F1B;
+	Wed,  4 Mar 2020 14:20:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0ACD26E17F
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 14:03:51 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41D6C89F1B
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 14:20:28 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2020 06:03:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234043554"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.27.64])
- by orsmga008.jf.intel.com with SMTP; 04 Mar 2020 06:03:51 -0800
-Date: Wed, 4 Mar 2020 06:03:51 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Message-ID: <20200304140351.GA1029999@mdroper-desk1.amr.corp.intel.com>
-References: <20200303182904.952445-1-matthew.d.roper@intel.com>
- <158331571785.430.13530161556828823690@emeril.freedesktop.org>
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2020 06:20:27 -0800
+X-IronPort-AV: E=Sophos;i="5.70,514,1574150400"; d="scan'208";a="234048209"
+Received: from srware-mobl.ger.corp.intel.com (HELO [10.252.25.112])
+ ([10.252.25.112])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 04 Mar 2020 06:20:26 -0800
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200303091624.1838714-1-lionel.g.landwerlin@intel.com>
+ <20200303091624.1838714-2-lionel.g.landwerlin@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <cbd1d89b-cdfc-74f8-24d7-9d9421ef3fa0@linux.intel.com>
+Date: Wed, 4 Mar 2020 14:20:24 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158331571785.430.13530161556828823690@emeril.freedesktop.org>
-Subject: Re: [Intel-gfx] 
- =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/ehl=3A_Check_PHY_type_before_reading_DPLL_frequency_=28re?=
- =?utf-8?b?djIp?=
+In-Reply-To: <20200303091624.1838714-2-lionel.g.landwerlin@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v3 2/2] drm/i915/perf: introduce global sseu
+ pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,295 +49,373 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 04, 2020 at 09:55:17AM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/ehl: Check PHY type before reading DPLL frequency (rev2)
-> URL   : https://patchwork.freedesktop.org/series/74214/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_8057_full -> Patchwork_16803_full
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with Patchwork_16803_full absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_16803_full, please notify your bug team to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in Patchwork_16803_full:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@gem_mmap_gtt@big-copy-xy:
->     - shard-tglb:         [PASS][1] -> [INCOMPLETE][2]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-tglb1/igt@gem_mmap_gtt@big-copy-xy.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-tglb6/igt@gem_mmap_gtt@big-copy-xy.html
 
-It seems this machine crashed or became unresponsive.  Not related to
-this patch.
-
-Applied to dinq; thanks Imre for the review.
-
-
-Matt
-
+On 03/03/2020 09:16, Lionel Landwerlin wrote:
+> On Gen11 powergating half the execution units is a functional
+> requirement when using the VME samplers. Not fullfilling this
+> requirement can lead to hangs.
 > 
+> This unfortunately plays fairly poorly with the NOA requirements. NOA
+> requires a stable power configuration to maintain its configuration.
+> 
+> As a result using OA (and NOA feeding into it) so far has required us
+> to use a power configuration that can work for all contexts. The only
+> power configuration fullfilling this is powergating half the execution
+> units.
+> 
+> This makes performance analysis for 3D workloads somewhat pointless.
+> 
+> Failing to find a solution that would work for everybody, this change
+> introduces a new i915-perf stream open parameter that punts the
+> decision off to userspace. If this parameter is omitted, the existing
+> Gen11 behavior remains (half EU array powergating).
+> 
+> This change takes the initiative to move all perf related sseu
+> configuration into i915_perf.c
+> 
+> v2: Make parameter priviliged if different from default
+> 
+> v3: Fix context modifying its sseu config while i915-perf is enabled
+> 
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 10 +--
+>   drivers/gpu/drm/i915/gem/i915_gem_context.h |  4 +
+>   drivers/gpu/drm/i915/gt/intel_sseu.c        | 13 +--
+>   drivers/gpu/drm/i915/i915_perf.c            | 90 ++++++++++++++++++---
+>   drivers/gpu/drm/i915/i915_perf_types.h      |  7 ++
+>   include/uapi/drm/i915_drm.h                 | 11 +++
+>   6 files changed, 109 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index e525ead073f7..652f84c3cc2b 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1279,10 +1279,10 @@ static int get_ringsize(struct i915_gem_context *ctx,
+>   	return 0;
+>   }
 >   
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_16803_full that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@gem_ctx_isolation@vcs1-dirty-create:
->     - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#112080]) +11 similar issues
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb1/igt@gem_ctx_isolation@vcs1-dirty-create.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb8/igt@gem_ctx_isolation@vcs1-dirty-create.html
-> 
->   * igt@gem_exec_schedule@implicit-read-write-bsd:
->     - shard-iclb:         [PASS][5] -> [SKIP][6] ([i915#677]) +1 similar issue
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb6/igt@gem_exec_schedule@implicit-read-write-bsd.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb4/igt@gem_exec_schedule@implicit-read-write-bsd.html
-> 
->   * igt@gem_exec_schedule@implicit-write-read-bsd2:
->     - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276] / [i915#677])
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb2/igt@gem_exec_schedule@implicit-write-read-bsd2.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb7/igt@gem_exec_schedule@implicit-write-read-bsd2.html
-> 
->   * igt@gem_exec_schedule@preempt-contexts-bsd2:
->     - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109276]) +12 similar issues
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb1/igt@gem_exec_schedule@preempt-contexts-bsd2.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb8/igt@gem_exec_schedule@preempt-contexts-bsd2.html
-> 
->   * igt@gem_exec_schedule@wide-bsd:
->     - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#112146]) +2 similar issues
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb7/igt@gem_exec_schedule@wide-bsd.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb4/igt@gem_exec_schedule@wide-bsd.html
-> 
->   * igt@gem_ppgtt@flink-and-close-vma-leak:
->     - shard-glk:          [PASS][13] -> [FAIL][14] ([i915#644])
->    [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-glk4/igt@gem_ppgtt@flink-and-close-vma-leak.html
->    [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-glk4/igt@gem_ppgtt@flink-and-close-vma-leak.html
->     - shard-kbl:          [PASS][15] -> [FAIL][16] ([i915#644])
->    [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-kbl6/igt@gem_ppgtt@flink-and-close-vma-leak.html
->    [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-kbl6/igt@gem_ppgtt@flink-and-close-vma-leak.html
-> 
->   * igt@gen9_exec_parse@allowed-single:
->     - shard-apl:          [PASS][17] -> [INCOMPLETE][18] ([fdo#103927])
->    [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-apl1/igt@gen9_exec_parse@allowed-single.html
->    [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-apl6/igt@gen9_exec_parse@allowed-single.html
-> 
->   * igt@kms_flip@flip-vs-expired-vblank-interruptible:
->     - shard-glk:          [PASS][19] -> [FAIL][20] ([i915#79])
->    [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-glk1/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
->    [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-glk5/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-> 
->   * igt@kms_flip@flip-vs-suspend-interruptible:
->     - shard-hsw:          [PASS][21] -> [INCOMPLETE][22] ([i915#61])
->    [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-hsw1/igt@kms_flip@flip-vs-suspend-interruptible.html
->    [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-hsw8/igt@kms_flip@flip-vs-suspend-interruptible.html
-> 
->   * igt@kms_flip_tiling@flip-changes-tiling-yf:
->     - shard-skl:          [PASS][23] -> [FAIL][24] ([i915#699])
->    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl7/igt@kms_flip_tiling@flip-changes-tiling-yf.html
->    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl8/igt@kms_flip_tiling@flip-changes-tiling-yf.html
-> 
->   * igt@kms_frontbuffer_tracking@fbc-suspend:
->     - shard-apl:          [PASS][25] -> [DMESG-WARN][26] ([i915#180]) +2 similar issues
->    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-apl7/igt@kms_frontbuffer_tracking@fbc-suspend.html
->    [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-apl1/igt@kms_frontbuffer_tracking@fbc-suspend.html
-> 
->   * igt@kms_hdr@bpc-switch-suspend:
->     - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#1188])
->    [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
->    [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl2/igt@kms_hdr@bpc-switch-suspend.html
-> 
->   * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b:
->     - shard-kbl:          [PASS][29] -> [INCOMPLETE][30] ([fdo#103665])
->    [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
->    [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-kbl2/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-b.html
-> 
->   * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
->     - shard-kbl:          [PASS][31] -> [DMESG-WARN][32] ([i915#180]) +3 similar issues
->    [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-kbl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
->    [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-kbl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
->     - shard-skl:          [PASS][33] -> [FAIL][34] ([fdo#108145])
->    [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl9/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
->    [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
->     - shard-skl:          [PASS][35] -> [FAIL][36] ([fdo#108145] / [i915#265])
->    [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
->    [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-> 
->   * igt@kms_psr@no_drrs:
->     - shard-iclb:         [PASS][37] -> [FAIL][38] ([i915#173])
->    [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb6/igt@kms_psr@no_drrs.html
->    [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb1/igt@kms_psr@no_drrs.html
-> 
->   * igt@kms_psr@psr2_cursor_render:
->     - shard-iclb:         [PASS][39] -> [SKIP][40] ([fdo#109441]) +2 similar issues
->    [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
->    [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb7/igt@kms_psr@psr2_cursor_render.html
-> 
+> -static int
+> -user_to_context_sseu(struct drm_i915_private *i915,
+> -		     const struct drm_i915_gem_context_param_sseu *user,
+> -		     struct intel_sseu *context)
+> +int
+> +i915_gem_user_to_context_sseu(struct drm_i915_private *i915,
+> +			      const struct drm_i915_gem_context_param_sseu *user,
+> +			      struct intel_sseu *context)
+>   {
+>   	const struct sseu_dev_info *device = &RUNTIME_INFO(i915)->sseu;
 >   
-> #### Possible fixes ####
-> 
->   * igt@gem_busy@busy-vcs1:
->     - shard-iclb:         [SKIP][41] ([fdo#112080]) -> [PASS][42] +7 similar issues
->    [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb7/igt@gem_busy@busy-vcs1.html
->    [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb4/igt@gem_busy@busy-vcs1.html
-> 
->   * igt@gem_exec_schedule@in-order-bsd:
->     - shard-iclb:         [SKIP][43] ([fdo#112146]) -> [PASS][44] +4 similar issues
->    [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb4/igt@gem_exec_schedule@in-order-bsd.html
->    [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb3/igt@gem_exec_schedule@in-order-bsd.html
-> 
->   * igt@gem_exec_schedule@pi-distinct-iova-bsd:
->     - shard-iclb:         [SKIP][45] ([i915#677]) -> [PASS][46] +1 similar issue
->    [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb2/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
->    [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb7/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-> 
->   * igt@gem_exec_schedule@preempt-queue-bsd1:
->     - shard-iclb:         [SKIP][47] ([fdo#109276]) -> [PASS][48] +15 similar issues
->    [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb7/igt@gem_exec_schedule@preempt-queue-bsd1.html
->    [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb4/igt@gem_exec_schedule@preempt-queue-bsd1.html
-> 
->   * igt@gem_exec_whisper@basic-contexts-forked:
->     - shard-iclb:         [INCOMPLETE][49] ([i915#1318]) -> [PASS][50]
->    [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb7/igt@gem_exec_whisper@basic-contexts-forked.html
->    [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb8/igt@gem_exec_whisper@basic-contexts-forked.html
-> 
->   * igt@kms_flip@flip-vs-expired-vblank:
->     - shard-skl:          [FAIL][51] ([i915#79]) -> [PASS][52]
->    [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl5/igt@kms_flip@flip-vs-expired-vblank.html
->    [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl9/igt@kms_flip@flip-vs-expired-vblank.html
-> 
->   * igt@kms_flip@plain-flip-ts-check:
->     - shard-skl:          [FAIL][53] ([i915#34]) -> [PASS][54]
->    [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl6/igt@kms_flip@plain-flip-ts-check.html
->    [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl7/igt@kms_flip@plain-flip-ts-check.html
-> 
->   * igt@kms_hdr@bpc-switch-dpms:
->     - shard-skl:          [FAIL][55] ([i915#1188]) -> [PASS][56]
->    [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl8/igt@kms_hdr@bpc-switch-dpms.html
->    [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl1/igt@kms_hdr@bpc-switch-dpms.html
-> 
->   * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
->     - shard-skl:          [INCOMPLETE][57] ([i915#69]) -> [PASS][58]
->    [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl8/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
->    [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl2/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-> 
->   * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
->     - shard-skl:          [FAIL][59] ([fdo#108145]) -> [PASS][60]
->    [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
->    [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-> 
->   * igt@kms_psr@psr2_primary_mmap_gtt:
->     - shard-iclb:         [SKIP][61] ([fdo#109441]) -> [PASS][62] +1 similar issue
->    [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-iclb8/igt@kms_psr@psr2_primary_mmap_gtt.html
->    [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-iclb2/igt@kms_psr@psr2_primary_mmap_gtt.html
-> 
->   * igt@kms_setmode@basic:
->     - shard-apl:          [FAIL][63] ([i915#31]) -> [PASS][64]
->    [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-apl2/igt@kms_setmode@basic.html
->    [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-apl4/igt@kms_setmode@basic.html
->     - shard-skl:          [FAIL][65] ([i915#31]) -> [PASS][66]
->    [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-skl9/igt@kms_setmode@basic.html
->    [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-skl1/igt@kms_setmode@basic.html
-> 
->   * igt@kms_vblank@pipe-a-ts-continuation-suspend:
->     - shard-kbl:          [DMESG-WARN][67] ([i915#180]) -> [PASS][68] +4 similar issues
->    [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
->    [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-kbl6/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
-> 
+> @@ -1417,7 +1417,7 @@ static int set_sseu(struct i915_gem_context *ctx,
+>   		goto out_ce;
+>   	}
 >   
-> #### Warnings ####
-> 
->   * igt@runner@aborted:
->     - shard-apl:          [FAIL][69] ([fdo#103927]) -> ([FAIL][70], [FAIL][71]) ([fdo#103927] / [i915#716])
->    [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8057/shard-apl8/igt@runner@aborted.html
->    [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-apl1/igt@runner@aborted.html
->    [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/shard-apl6/igt@runner@aborted.html
-> 
+> -	ret = user_to_context_sseu(i915, &user_sseu, &sseu);
+> +	ret = i915_gem_user_to_context_sseu(i915, &user_sseu, &sseu);
+>   	if (ret)
+>   		goto out_ce;
 >   
->   [fdo#103665]: https://bugs.freedesktop.org/show_bug.cgi?id=103665
->   [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
->   [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
->   [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
->   [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
->   [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
->   [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
->   [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
->   [i915#1318]: https://gitlab.freedesktop.org/drm/intel/issues/1318
->   [i915#173]: https://gitlab.freedesktop.org/drm/intel/issues/173
->   [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
->   [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
->   [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
->   [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
->   [i915#61]: https://gitlab.freedesktop.org/drm/intel/issues/61
->   [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
->   [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
->   [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
->   [i915#699]: https://gitlab.freedesktop.org/drm/intel/issues/699
->   [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
->   [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-> 
-> 
-> Participating hosts (10 -> 10)
-> ------------------------------
-> 
->   No changes in participating hosts
-> 
-> 
-> Build changes
-> -------------
-> 
->   * CI: CI-20190529 -> None
->   * Linux: CI_DRM_8057 -> Patchwork_16803
-> 
->   CI-20190529: 20190529
->   CI_DRM_8057: 45ca41e870e508bf9040b308d9ff1ccf7ab779e2 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_5488: 5b6930b4d267f7002c2e9442262e21a725941db5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
->   Patchwork_16803: dbc12455194ce386ea9b31544ed305500d4e094d @ git://anongit.freedesktop.org/gfx-ci/linux
->   piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16803/index.html
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> index 3ae61a355d87..dff1380373f4 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> @@ -222,4 +222,8 @@ i915_gem_engines_iter_next(struct i915_gem_engines_iter *it);
+>   struct i915_lut_handle *i915_lut_handle_alloc(void);
+>   void i915_lut_handle_free(struct i915_lut_handle *lut);
+>   
+> +int i915_gem_user_to_context_sseu(struct drm_i915_private *i915,
+> +				  const struct drm_i915_gem_context_param_sseu *user,
+> +				  struct intel_sseu *context);
+> +
+>   #endif /* !__I915_GEM_CONTEXT_H__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> index 74f793423231..08bd828d90cb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> @@ -87,18 +87,7 @@ u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
+>   	if (!i915->perf.exclusive_stream) {
+>   		ctx_sseu = *req_sseu;
+>   	} else {
+> -		ctx_sseu = intel_sseu_from_device_info(sseu);
+> -
+> -		if (IS_GEN(i915, 11)) {
+> -			/*
+> -			 * We only need subslice count so it doesn't matter
+> -			 * which ones we select - just turn off low bits in the
+> -			 * amount of half of all available subslices per slice.
+> -			 */
+> -			ctx_sseu.subslice_mask =
+> -				~(~0 << (hweight8(ctx_sseu.subslice_mask) / 2));
+> -			ctx_sseu.slice_mask = 0x1;
+> -		}
+> +		ctx_sseu = i915->perf.sseu;
 
--- 
-Matt Roper
-Graphics Software Engineer
-VTT-OSGC Platform Enablement
-Intel Corporation
-(916) 356-2795
+Since this function does not need to modify ctx_sseu any more, you could 
+just make it work on a pointer, either assigned from the passed in 
+req_sseu or from perf.
+
+>   	}
+>   
+>   	slices = hweight8(ctx_sseu.slice_mask);
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 0069f09b988c..68b45ab86303 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -344,6 +344,8 @@ static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
+>    * @oa_periodic: Whether to enable periodic OA unit sampling
+>    * @oa_period_exponent: The OA unit sampling period is derived from this
+>    * @engine: The engine (typically rcs0) being monitored by the OA unit
+> + * @sseu: Selected sseu configuration for recording
+> + * @default_sseu: Default sseu configuration for recording
+>    *
+>    * As read_properties_unlocked() enumerates and validates the properties given
+>    * to open a stream of metrics the configuration is built up in the structure
+> @@ -363,6 +365,9 @@ struct perf_open_properties {
+>   	int oa_period_exponent;
+>   
+>   	struct intel_engine_cs *engine;
+> +
+> +	struct intel_sseu default_sseu;
+
+I did not quite understand why is this stored here? It is a conversion 
+of device default sseu, right? Only purpose to check against it during 
+opening of the perf stream? It wouldn't work to just reject the property 
+in read_properties_unlocked if not privileged? (I am jumping back and 
+forth in the patch a bit, so expect possible redundancy in questions.)
+
+> +	struct intel_sseu sseu;
+>   };
+>   
+>   struct i915_oa_config_bo {
+> @@ -2098,9 +2103,6 @@ gen8_update_reg_state_unlocked(const struct intel_context *ce,
+>   	for (i = 0; i < ARRAY_SIZE(flex_regs); i++)
+>   		reg_state[ctx_flexeu0 + i * 2 + 1] =
+>   			oa_config_flex_reg(stream->oa_config, flex_regs[i]);
+> -
+> -	reg_state[CTX_R_PWR_CLK_STATE] =
+> -		intel_sseu_make_rpcs(ce->engine->i915, &ce->sseu);
+>   }
+>   
+>   struct flex {
+> @@ -2723,6 +2725,47 @@ static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
+>   	return 0;
+>   }
+>   
+> +static int
+> +get_sseu_config(struct intel_sseu *out_sseu,
+> +		struct intel_engine_cs *engine,
+> +		const struct drm_i915_gem_context_param_sseu *drm_sseu)
+> +{
+> +	struct intel_engine_cs *user_engine;
+> +
+> +	if (!drm_sseu) {
+> +		const struct sseu_dev_info *devinfo_sseu =
+> +			&RUNTIME_INFO(engine->i915)->sseu;
+> +
+> +		*out_sseu = intel_sseu_from_device_info(devinfo_sseu);
+> +
+> +		if (IS_GEN(engine->i915, 11)) {
+> +			/*
+> +			 * We only need subslice count so it doesn't matter
+> +			 * which ones we select - just turn off low bits in
+> +			 * the amount of half of all available subslices per
+> +			 * slice.
+> +			 */
+> +			out_sseu->subslice_mask =
+> +				~(~0 << (hweight8(out_sseu->subslice_mask) / 2));
+> +			out_sseu->slice_mask = 0x1;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	user_engine = intel_engine_lookup_user(
+> +		engine->i915,
+> +		drm_sseu->engine.engine_class,
+> +		drm_sseu->engine.engine_instance);
+> +	if (!user_engine)
+> +		return -EINVAL;
+> +
+> +	if (user_engine != engine)
+> +		return -EINVAL;
+> +
+> +	return i915_gem_user_to_context_sseu(engine->i915, drm_sseu, out_sseu);
+> +}
+
+This function is confusing. It appears to be doing two things, depending 
+on whether the third parameter was given. In which case it also 
+effectively does not use the second parameter at all. I think it needs 
+to be two functions, or if the prop check can be simplified maybe even 
+just one simpler one.
+
+> +
+>   /**
+>    * i915_oa_stream_init - validate combined props for OA stream and init
+>    * @stream: An i915 perf stream
+> @@ -2855,6 +2898,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   		goto err_oa_buf_alloc;
+>   
+>   	stream->ops = &i915_oa_stream_ops;
+> +
+> +	perf->sseu = props->sseu;
+>   	WRITE_ONCE(perf->exclusive_stream, stream);
+>   
+>   	ret = i915_perf_stream_enable_sync(stream);
+> @@ -2906,10 +2951,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+>   
+>   	/* perf.exclusive_stream serialised by lrc_configure_all_contexts() */
+>   	stream = READ_ONCE(engine->i915->perf.exclusive_stream);
+> -	/*
+> -	 * For gen12, only CTX_R_PWR_CLK_STATE needs update, but the caller
+> -	 * is already doing that, so nothing to be done for gen12 here.
+> -	 */
+
+Why are you removing this comment in this patch?
+
+>   	if (stream && INTEL_GEN(stream->perf->i915) < 12)
+>   		gen8_update_reg_state_unlocked(ce, stream);
+>   }
+> @@ -3404,6 +3445,13 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+>   		privileged_op = true;
+>   	}
+>   
+> +	/*
+> +	 * Asking for a SSEU configuration different than the default is a
+> +	 * priviliged operation.
+> +	 */
+> +	if (memcmp(&props->sseu, &props->default_sseu, sizeof(props->sseu)) != 0)
+> +		privileged_op = true;
+
+Why do we want to make a distinction wrt priviledged or not, between 
+asking for the device default configuration and asking for a different 
+configuration? I mean, I would have expected the very act of using the 
+sseu extension in perf open could be privileged, no?
+
+> +
+>   	/* Similar to perf's kernel.perf_paranoid_cpu sysctl option
+>   	 * we check a dev.i915.perf_stream_paranoid sysctl option
+>   	 * to determine if it's ok to access system wide OA counters
+> @@ -3499,6 +3547,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   {
+>   	u64 __user *uprop = uprops;
+>   	u32 i;
+> +	int ret;
+>   
+>   	memset(props, 0, sizeof(struct perf_open_properties));
+>   
+> @@ -3516,6 +3565,9 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   		return -EINVAL;
+>   	}
+>   
+> +	ret = get_sseu_config(&props->default_sseu, props->engine, NULL);
+> +	GEM_BUG_ON(ret != 0);
+> +
+>   	/* Considering that ID = 0 is reserved and assuming that we don't
+>   	 * (currently) expect any configurations to ever specify duplicate
+>   	 * values for a particular property ID then the last _PROP_MAX value is
+> @@ -3530,7 +3582,6 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   	for (i = 0; i < n_props; i++) {
+>   		u64 oa_period, oa_freq_hz;
+>   		u64 id, value;
+> -		int ret;
+>   
+>   		ret = get_user(id, uprop);
+>   		if (ret)
+> @@ -3616,6 +3667,23 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   		case DRM_I915_PERF_PROP_HOLD_PREEMPTION:
+>   			props->hold_preemption = !!value;
+>   			break;
+> +		case DRM_I915_PERF_PROP_GLOBAL_SSEU: {
+> +			struct drm_i915_gem_context_param_sseu user_sseu;
+> +
+> +			if (copy_from_user(&user_sseu,
+> +					   u64_to_user_ptr(value),
+> +					   sizeof(user_sseu))) {
+> +				DRM_DEBUG("Unable to copy global sseu parameter\n");
+> +				return -EFAULT;
+> +			}
+> +
+> +			ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
+> +			if (ret) {
+> +				DRM_DEBUG("Invalid global sseu parameter\n");
+> +				return ret;
+> +			}
+> +			break;
+> +		}
+>   		case DRM_I915_PERF_PROP_MAX:
+>   			MISSING_CASE(id);
+>   			return -EINVAL;
+> @@ -4389,8 +4457,12 @@ int i915_perf_ioctl_version(void)
+>   	 *    preemption on a particular context so that performance data is
+>   	 *    accessible from a delta of MI_RPC reports without looking at the
+>   	 *    OA buffer.
+> +	 *
+> +	 * 4: Add DRM_I915_PERF_PROP_ALLOWED_SSEU to limit what contexts can
+> +	 *    be run for the duration of the performance recording based on
+> +	 *    their SSEU configuration.
+>   	 */
+> -	return 3;
+> +	return 4;
+>   }
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+> index f4ccd2adfee6..32289cbda648 100644
+> --- a/drivers/gpu/drm/i915/i915_perf_types.h
+> +++ b/drivers/gpu/drm/i915/i915_perf_types.h
+> @@ -16,6 +16,7 @@
+>   #include <linux/uuid.h>
+>   #include <linux/wait.h>
+>   
+> +#include "gt/intel_sseu.h"
+>   #include "i915_reg.h"
+>   #include "intel_wakeref.h"
+>   
+> @@ -407,6 +408,12 @@ struct i915_perf {
+>   	 */
+>   	struct i915_perf_stream *exclusive_stream;
+>   
+> +	/**
+> +	 * @sseu: sseu configuration selected to run while perf is active,
+> +	 * applies to all contexts.
+> +	 */
+> +	struct intel_sseu sseu;
+> +
+>   	/**
+>   	 * For rate limiting any notifications of spurious
+>   	 * invalid OA reports
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 2813e579b480..db649d03ab52 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1969,6 +1969,17 @@ enum drm_i915_perf_property_id {
+>   	 */
+>   	DRM_I915_PERF_PROP_HOLD_PREEMPTION,
+>   
+> +	/**
+> +	 * Specifying this pins all contexts to the specified SSEU power
+> +	 * configuration for the duration of the recording.
+> +	 *
+> +	 * This parameter's value is a pointer to a struct
+> +	 * drm_i915_gem_context_param_sseu.
+> +	 *
+> +	 * This property is available in perf revision 4.
+> +	 */
+> +	DRM_I915_PERF_PROP_GLOBAL_SSEU,
+> +
+>   	DRM_I915_PERF_PROP_MAX /* non-ABI */
+>   };
+>   
+> 
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
