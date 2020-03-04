@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 874A3179022
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 13:18:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78F5F179023
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Mar 2020 13:18:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C8B6EB2C;
-	Wed,  4 Mar 2020 12:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A07696EB2E;
+	Wed,  4 Mar 2020 12:18:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 062C86EB2C
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 12:18:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E01756EB2E
+ for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2020 12:18:54 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20440555-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20440556-1500050 
  for <intel-gfx@lists.freedesktop.org>; Wed, 04 Mar 2020 12:18:49 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed,  4 Mar 2020 12:18:48 +0000
-Message-Id: <20200304121849.2448028-1-chris@chris-wilson.co.uk>
+Date: Wed,  4 Mar 2020 12:18:49 +0000
+Message-Id: <20200304121849.2448028-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200304121849.2448028-1-chris@chris-wilson.co.uk>
+References: <20200304121849.2448028-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI 1/2] drm/i915: Apply i915_request_skip() on
- submission
+Subject: [Intel-gfx] [CI 2/2] drm/i915/gt: Propagate change in error status
+ to children on unhold
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,403 +44,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Trying to use i915_request_skip() prior to i915_request_add() causes us
-to try and fill the ring upto request->postfix, which has not yet been
-set, and so may cause us to memset() past the end of the ring.
+As we release the head requests back into the queue, propagate any
+change in error status that may have occurred while the requests were
+temporarily suspended.
 
-Instead of skipping the request immediately, just flag the error on the
-request (only accepting the first fatal error we see) and then clear the
-request upon submission.
-
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1277
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_client_blt.c    |  2 +-
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  7 +-
- .../gpu/drm/i915/gem/i915_gem_object_blt.c    |  4 +-
- .../drm/i915/gem/selftests/i915_gem_context.c |  6 +-
- .../drm/i915/gem/selftests/igt_gem_utils.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_lrc.c           |  4 +-
- drivers/gpu/drm/i915/gt/intel_reset.c         | 13 ++--
- .../gpu/drm/i915/gt/intel_ring_submission.c   |  4 +-
- drivers/gpu/drm/i915/gt/mock_engine.c         |  4 +-
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c  |  2 +-
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  4 +-
- drivers/gpu/drm/i915/i915_request.c           | 69 +++++++++++++------
- drivers/gpu/drm/i915/i915_request.h           |  5 +-
- drivers/gpu/drm/i915/selftests/igt_spinner.c  |  2 +-
- 14 files changed, 78 insertions(+), 50 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-index 81366aa4812b..0598e5382a1d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_client_blt.c
-@@ -217,7 +217,7 @@ static void clear_pages_worker(struct work_struct *work)
- 					   0);
- out_request:
- 	if (unlikely(err)) {
--		i915_request_skip(rq, err);
-+		i915_request_set_error_once(rq, err);
- 		err = 0;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index a1636c168e1f..7bb27f382af7 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1169,7 +1169,7 @@ static int __reloc_gpu_alloc(struct i915_execbuffer *eb,
- 	goto out_pool;
- 
- skip_request:
--	i915_request_skip(rq, err);
-+	i915_request_set_error_once(rq, err);
- err_request:
- 	i915_request_add(rq);
- err_unpin:
-@@ -1850,7 +1850,7 @@ static int eb_move_to_gpu(struct i915_execbuffer *eb)
- 	return 0;
- 
- err_skip:
--	i915_request_skip(eb->request, err);
-+	i915_request_set_error_once(eb->request, err);
- 	return err;
- }
- 
-@@ -2579,7 +2579,8 @@ static void eb_request_add(struct i915_execbuffer *eb)
- 			attr.priority |= I915_PRIORITY_WAIT;
- 	} else {
- 		/* Serialise with context_close via the add_to_timeline */
--		i915_request_skip(rq, -ENOENT);
-+		i915_request_set_error_once(rq, -ENOENT);
-+		__i915_request_skip(rq);
- 	}
- 
- 	local_bh_disable();
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index 70809d8897cd..39b8a055d80a 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -186,7 +186,7 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
- 					0);
- out_request:
- 	if (unlikely(err))
--		i915_request_skip(rq, err);
-+		i915_request_set_error_once(rq, err);
- 
- 	i915_request_add(rq);
- out_batch:
-@@ -385,7 +385,7 @@ int i915_gem_object_copy_blt(struct drm_i915_gem_object *src,
- 	drm_gem_unlock_reservations(objs, ARRAY_SIZE(objs), &acquire);
- out_request:
- 	if (unlikely(err))
--		i915_request_skip(rq, err);
-+		i915_request_set_error_once(rq, err);
- 
- 	i915_request_add(rq);
- out_batch:
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 375d864736f3..77c7e65de7c3 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1004,7 +1004,7 @@ emit_rpcs_query(struct drm_i915_gem_object *obj,
- 	return 0;
- 
- skip_request:
--	i915_request_skip(rq, err);
-+	i915_request_set_error_once(rq, err);
- err_request:
- 	i915_request_add(rq);
- err_batch:
-@@ -1559,7 +1559,7 @@ static int write_to_scratch(struct i915_gem_context *ctx,
- 
- 	goto out_vm;
- skip_request:
--	i915_request_skip(rq, err);
-+	i915_request_set_error_once(rq, err);
- err_request:
- 	i915_request_add(rq);
- err_unpin:
-@@ -1708,7 +1708,7 @@ static int read_from_scratch(struct i915_gem_context *ctx,
- 
- 	goto out_vm;
- skip_request:
--	i915_request_skip(rq, err);
-+	i915_request_set_error_once(rq, err);
- err_request:
- 	i915_request_add(rq);
- err_unpin:
-diff --git a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-index 6718da20f35d..772d8cba7da9 100644
---- a/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/igt_gem_utils.c
-@@ -159,7 +159,7 @@ int igt_gpu_fill_dw(struct intel_context *ce,
- 	return 0;
- 
- skip_request:
--	i915_request_skip(rq, err);
-+	i915_request_set_error_once(rq, err);
- err_request:
- 	i915_request_add(rq);
- err_batch:
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index b9b3f78f1324..d123dd7fe98b 100644
+index d123dd7fe98b..5da86a40434c 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -245,7 +245,7 @@ static void mark_eio(struct i915_request *rq)
+@@ -2600,6 +2600,10 @@ static void __execlists_unhold(struct i915_request *rq)
+ 			struct i915_request *w =
+ 				container_of(p->waiter, typeof(*w), sched);
  
- 	GEM_BUG_ON(i915_request_signaled(rq));
- 
--	dma_fence_set_error(&rq->fence, -EIO);
-+	i915_request_set_error_once(rq, -EIO);
- 	i915_request_mark_complete(rq);
- }
- 
-@@ -4903,7 +4903,7 @@ static intel_engine_mask_t virtual_submission_mask(struct virtual_engine *ve)
- 	mask = rq->execution_mask;
- 	if (unlikely(!mask)) {
- 		/* Invalid selection, submit to a random engine in error */
--		i915_request_skip(rq, -ENODEV);
-+		i915_request_set_error_once(rq, -ENODEV);
- 		mask = ve->siblings[0]->mask;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index aef6ab58d7d9..10ad816b32e2 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -48,8 +48,10 @@ static void engine_skip_context(struct i915_request *rq)
- 
- 	lockdep_assert_held(&engine->active.lock);
- 	list_for_each_entry_continue(rq, &engine->active.requests, sched.link)
--		if (rq->context == hung_ctx)
--			i915_request_skip(rq, -EIO);
-+		if (rq->context == hung_ctx) {
-+			i915_request_set_error_once(rq, -EIO);
-+			__i915_request_skip(rq);
-+		}
- }
- 
- static void client_mark_guilty(struct i915_gem_context *ctx, bool banned)
-@@ -154,11 +156,12 @@ void __i915_request_reset(struct i915_request *rq, bool guilty)
- 
- 	rcu_read_lock(); /* protect the GEM context */
- 	if (guilty) {
--		i915_request_skip(rq, -EIO);
-+		i915_request_set_error_once(rq, -EIO);
-+		__i915_request_skip(rq);
- 		if (mark_guilty(rq))
- 			engine_skip_context(rq);
- 	} else {
--		dma_fence_set_error(&rq->fence, -EAGAIN);
-+		i915_request_set_error_once(rq, -EAGAIN);
- 		mark_innocent(rq);
- 	}
- 	rcu_read_unlock();
-@@ -785,7 +788,7 @@ static void nop_submit_request(struct i915_request *request)
- 	unsigned long flags;
- 
- 	RQ_TRACE(request, "-EIO\n");
--	dma_fence_set_error(&request->fence, -EIO);
-+	i915_request_set_error_once(request, -EIO);
- 
- 	spin_lock_irqsave(&engine->active.lock, flags);
- 	__i915_request_submit(request);
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index fee743626060..ee241b7eaa3b 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -895,9 +895,7 @@ static void reset_cancel(struct intel_engine_cs *engine)
- 
- 	/* Mark all submitted requests as skipped. */
- 	list_for_each_entry(request, &engine->active.requests, sched.link) {
--		if (!i915_request_signaled(request))
--			dma_fence_set_error(&request->fence, -EIO);
--
-+		i915_request_set_error_once(request, -EIO);
- 		i915_request_mark_complete(request);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/mock_engine.c b/drivers/gpu/drm/i915/gt/mock_engine.c
-index 5633515c12e9..4a53ded7c2dd 100644
---- a/drivers/gpu/drm/i915/gt/mock_engine.c
-+++ b/drivers/gpu/drm/i915/gt/mock_engine.c
-@@ -244,9 +244,7 @@ static void mock_reset_cancel(struct intel_engine_cs *engine)
- 
- 	/* Mark all submitted requests as skipped. */
- 	list_for_each_entry(request, &engine->active.requests, sched.link) {
--		if (!i915_request_signaled(request))
--			dma_fence_set_error(&request->fence, -EIO);
--
-+		i915_request_set_error_once(request, -EIO);
- 		i915_request_mark_complete(request);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index c3514ec7b8db..2b2efff6e19d 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -268,7 +268,7 @@ hang_create_request(struct hang *h, struct intel_engine_cs *engine)
- 
- cancel_rq:
- 	if (err) {
--		i915_request_skip(rq, err);
-+		i915_request_set_error_once(rq, err);
- 		i915_request_add(rq);
- 	}
- unpin_hws:
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 1beaa77f9bb6..fe7778c28d2d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -456,9 +456,7 @@ static void guc_reset_cancel(struct intel_engine_cs *engine)
- 
- 	/* Mark all executing requests as skipped. */
- 	list_for_each_entry(rq, &engine->active.requests, sched.link) {
--		if (!i915_request_signaled(rq))
--			dma_fence_set_error(&rq->fence, -EIO);
--
-+		i915_request_set_error_once(rq, -EIO);
- 		i915_request_mark_complete(rq);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index d837c1380015..fd289e837af5 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -363,6 +363,50 @@ __await_execution(struct i915_request *rq,
- 	return 0;
- }
- 
-+static bool fatal_error(int error)
-+{
-+	switch (error) {
-+	case 0: /* not an error! */
-+	case -EAGAIN: /* innocent victim of a GT reset (__i915_request_reset) */
-+	case -ETIMEDOUT: /* waiting for a Godot (timer_i915_sw_fence_wake) */
-+		return false;
-+	default:
-+		return true;
-+	}
-+}
++			/* Propagate any change in error status */
++			if (rq->fence.error)
++				i915_request_set_error_once(w, rq->fence.error);
 +
-+void __i915_request_skip(struct i915_request *rq)
-+{
-+	GEM_BUG_ON(!fatal_error(rq->fence.error));
-+
-+	if (rq->infix == rq->postfix)
-+		return;
-+
-+	/*
-+	 * As this request likely depends on state from the lost
-+	 * context, clear out all the user operations leaving the
-+	 * breadcrumb at the end (so we get the fence notifications).
-+	 */
-+	__i915_request_fill(rq, 0);
-+	rq->infix = rq->postfix;
-+}
-+
-+void i915_request_set_error_once(struct i915_request *rq, int error)
-+{
-+	int old;
-+
-+	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
-+
-+	if (i915_request_signaled(rq))
-+		return;
-+
-+	old = READ_ONCE(rq->fence.error);
-+	do {
-+		if (fatal_error(old))
-+			return;
-+	} while (!try_cmpxchg(&rq->fence.error, &old, error));
-+}
-+
- bool __i915_request_submit(struct i915_request *request)
- {
- 	struct intel_engine_cs *engine = request->engine;
-@@ -392,8 +436,10 @@ bool __i915_request_submit(struct i915_request *request)
- 	if (i915_request_completed(request))
- 		goto xfer;
+ 			if (w->engine != rq->engine)
+ 				continue;
  
--	if (intel_context_is_banned(request->context))
--		i915_request_skip(request, -EIO);
-+	if (unlikely(intel_context_is_banned(request->context)))
-+		i915_request_set_error_once(request, -EIO);
-+	if (unlikely(fatal_error(request->fence.error)))
-+		__i915_request_skip(request);
- 
- 	/*
- 	 * Are we using semaphores when the gpu is already saturated?
-@@ -519,7 +565,7 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 		trace_i915_request_submit(request);
- 
- 		if (unlikely(fence->error))
--			i915_request_skip(request, fence->error);
-+			i915_request_set_error_once(request, fence->error);
- 
- 		/*
- 		 * We need to serialize use of the submit_request() callback
-@@ -1209,23 +1255,6 @@ i915_request_await_object(struct i915_request *to,
- 	return ret;
- }
- 
--void i915_request_skip(struct i915_request *rq, int error)
--{
--	GEM_BUG_ON(!IS_ERR_VALUE((long)error));
--	dma_fence_set_error(&rq->fence, error);
--
--	if (rq->infix == rq->postfix)
--		return;
--
--	/*
--	 * As this request likely depends on state from the lost
--	 * context, clear out all the user operations leaving the
--	 * breadcrumb at the end (so we get the fence notifications).
--	 */
--	__i915_request_fill(rq, 0);
--	rq->infix = rq->postfix;
--}
--
- static struct i915_request *
- __i915_request_add_to_timeline(struct i915_request *rq)
- {
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index da8420f03232..d4bae16b4785 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -303,6 +303,9 @@ __i915_request_create(struct intel_context *ce, gfp_t gfp);
- struct i915_request * __must_check
- i915_request_create(struct intel_context *ce);
- 
-+void i915_request_set_error_once(struct i915_request *rq, int error);
-+void __i915_request_skip(struct i915_request *rq);
-+
- struct i915_request *__i915_request_commit(struct i915_request *request);
- void __i915_request_queue(struct i915_request *rq,
- 			  const struct i915_sched_attr *attr);
-@@ -352,8 +355,6 @@ void i915_request_add(struct i915_request *rq);
- bool __i915_request_submit(struct i915_request *request);
- void i915_request_submit(struct i915_request *request);
- 
--void i915_request_skip(struct i915_request *request, int error);
--
- void __i915_request_unsubmit(struct i915_request *request);
- void i915_request_unsubmit(struct i915_request *request);
- 
-diff --git a/drivers/gpu/drm/i915/selftests/igt_spinner.c b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-index e8a58fe49c39..9ad4ab088466 100644
---- a/drivers/gpu/drm/i915/selftests/igt_spinner.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_spinner.c
-@@ -183,7 +183,7 @@ igt_spinner_create_request(struct igt_spinner *spin,
- 
- cancel_rq:
- 	if (err) {
--		i915_request_skip(rq, err);
-+		i915_request_set_error_once(rq, err);
- 		i915_request_add(rq);
- 	}
- unpin_hws:
 -- 
 2.25.1
 
