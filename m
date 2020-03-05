@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F96817AE1A
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 19:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F31C17AE74
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 19:48:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A918F6E394;
-	Thu,  5 Mar 2020 18:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81B3D6E391;
+	Thu,  5 Mar 2020 18:48:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 54EB16E391;
- Thu,  5 Mar 2020 18:31:55 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4FE9F6E34E;
+ Thu,  5 Mar 2020 18:48:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 443B8A47DF;
- Thu,  5 Mar 2020 18:31:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 49677A00E7;
+ Thu,  5 Mar 2020 18:48:17 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rajat Jain" <rajatja@google.com>
-Date: Thu, 05 Mar 2020 18:31:55 -0000
-Message-ID: <158343311525.17234.5425681317422817453@emeril.freedesktop.org>
+Date: Thu, 05 Mar 2020 18:48:17 -0000
+Message-ID: <158343409727.17235.17581358769794961793@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200305011943.214146-1-rajatja@google.com>
 In-Reply-To: <20200305011943.214146-1-rajatja@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv6=2C1/3=5D_intel=5Facpi=3A_Rename_?=
- =?utf-8?q?drm=5Fdev_local_variable_to_dev?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv6=2C1/3=5D_intel=5Facpi=3A_Rename_drm=5F?=
+ =?utf-8?q?dev_local_variable_to_dev?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,20 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-c20368a27477 intel_acpi: Rename drm_dev local variable to dev
-f4a4471b5c37 drm/i915: Lookup and attach ACPI device node for connectors
--:56: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
-#56: FILE: drivers/gpu/drm/i915/display/intel_acpi.c:265:
-+		conn_dev = acpi_find_child_device(
-
-total: 0 errors, 0 warnings, 1 checks, 70 lines checked
-f9f7e4554cff drm/i915: Add support for integrated privacy screens
--:205: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#205: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 248 lines checked
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
 
 _______________________________________________
 Intel-gfx mailing list
