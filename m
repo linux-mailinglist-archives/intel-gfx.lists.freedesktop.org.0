@@ -1,54 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0620317A2D0
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 11:06:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D745D17A2DC
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 11:10:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE8C96E09C;
-	Thu,  5 Mar 2020 10:06:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34F286E1A2;
+	Thu,  5 Mar 2020 10:10:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BCFE6E09C;
- Thu,  5 Mar 2020 10:06:13 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 02:06:11 -0800
-X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="229647700"
-Received: from bennur-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.38.13])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 02:06:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rajat Jain <rajatja@google.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Daniel
- Vetter <daniel@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Chris
- Wilson
- <chris@chris-wilson.co.uk>, Imre Deak <imre.deak@intel.com>, =?utf-8?Q?Jo?=
- =?utf-8?Q?s=C3=A9?= Roberto
- de Souza <jose.souza@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- gregkh@linuxfoundation.org, mathewk@google.com, Daniel Thompson
- <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Pavel
- Machek <pavel@denx.de>, seanpaul@google.com, Duncan Laurie
- <dlaurie@google.com>, jsbarnes@google.com, Thierry Reding
- <thierry.reding@gmail.com>, mpearson@lenovo.com, Nitin Joshi1
- <njoshi1@lenovo.com>, Sugumaran Lacshiminarayanan
- <slacshiminar@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>
-In-Reply-To: <20200305011943.214146-1-rajatja@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200305011943.214146-1-rajatja@google.com>
-Date: Thu, 05 Mar 2020 12:06:01 +0200
-Message-ID: <87h7z3nmk6.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D93616E196;
+ Thu,  5 Mar 2020 10:10:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CD184A47DA;
+ Thu,  5 Mar 2020 10:10:41 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 1/3] intel_acpi: Rename drm_dev local
- variable to dev
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 05 Mar 2020 10:10:41 -0000
+Message-ID: <158340304181.17236.11646899984439588605@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200304183632.2493637-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200304183632.2493637-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_Add_mechani?=
+ =?utf-8?q?sm_to_submit_a_context_WA_on_ring_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +39,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rajatxjain@gmail.com
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 04 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
-> Change the struct drm_device * local variable from drm_dev to dev
-> per the feedback received here:
-> https://lkml.org/lkml/2020/1/24/1143
+== Series Details ==
 
-I don't know what's up with the two identical (or similar) threads here,
-but I replied in the thread starting at [1]. Please let's keep the
-discussion there.
+Series: series starting with [CI,1/2] drm/i915: Add mechanism to submit a context WA on ring submission
+URL   : https://patchwork.freedesktop.org/series/74281/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
-[1] http://patchwork.freedesktop.org/patch/msgid/20200305012338.219746-2-rajatja@google.com
+$ dim checkpatch origin/drm-tip
+efd9736ffc9a drm/i915: Add mechanism to submit a context WA on ring submission
+-:262: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#262: 
+new file mode 100644
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+-:373: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#373: FILE: drivers/gpu/drm/i915/gt/selftest_ring_submission.c:107:
++				pr_err("pass[%d] wa_bb emitted for the kernel context\n",
++						pass);
+
+-:384: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#384: FILE: drivers/gpu/drm/i915/gt/selftest_ring_submission.c:118:
++				pr_err("pass[%d] wa_bb *NOT* emitted after the kernel context\n",
++						pass);
+
+-:395: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#395: FILE: drivers/gpu/drm/i915/gt/selftest_ring_submission.c:129:
++				pr_err("pass[%d] wa_bb *NOT* emitted for the user context switch\n",
++						pass);
+
+total: 0 errors, 1 warnings, 3 checks, 499 lines checked
+3b0f0cfecfdd drm/i915/gen7: Clear all EU/L3 residual contexts
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 585 lines checked
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
