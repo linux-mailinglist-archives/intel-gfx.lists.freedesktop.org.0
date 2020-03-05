@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B07DF17A55D
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:38:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1465717A566
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:39:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D1E36E311;
-	Thu,  5 Mar 2020 12:38:24 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0827A6E0AA;
- Thu,  5 Mar 2020 12:38:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 00AC7A41FB;
- Thu,  5 Mar 2020 12:38:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7785A6E4F4;
+	Thu,  5 Mar 2020 12:39:33 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D0D6E4F4
+ for <Intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 12:39:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20453658-1500050 for multiple; Thu, 05 Mar 2020 12:38:30 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 05 Mar 2020 12:38:22 -0000
-Message-ID: <158341190299.17236.15167819704844220620@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200304212928.2557367-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200304212928.2557367-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/gem=3A_Limit_struct=5Fmutex_to_eb=5Freserve?=
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+In-Reply-To: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
+References: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
+Message-ID: <158341190974.2252.6785632547050153354@skylake-alporthouse-com>
+User-Agent: alot/0.6
+Date: Thu, 05 Mar 2020 12:38:29 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl:
+ WaDisableGPGPUMidThreadPreemption
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,25 +40,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: piotr.zdunowski@intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gem: Limit struct_mutex to eb_reserve
-URL   : https://patchwork.freedesktop.org/series/74291/
-State : warning
-
-== Summary ==
-
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+UXVvdGluZyBUdnJ0a28gVXJzdWxpbiAoMjAyMC0wMy0wNCAxNTozMTo0NCkKPiBGcm9tOiBUdnJ0
+a28gVXJzdWxpbiA8dHZydGtvLnVyc3VsaW5AaW50ZWwuY29tPgo+IAo+IEVuYWJsZSBGdHJQZXJD
+dHh0UHJlZW1wdGlvbkdyYW51bGFyaXR5Q29udHJvbCBiaXQgYW5kIHNlbGVjdCB0aHJlYWQtCj4g
+Z3JvdXAgYXMgdGhlIGRlZmF1bHQgcHJlZW1wdGlvbiBsZXZlbC4KPiAKPiB2MjoKPiAgKiBSZW1v
+dmUgcmVnaXN0ZXIgd2hpdGVsaXN0aW5nIChSYWZhZWwsIFRvbnkpLgo+IAo+IFNpZ25lZC1vZmYt
+Ynk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4gQ2M6IE1pY2hh
+xYIgV2luaWFyc2tpIDxtaWNoYWwud2luaWFyc2tpQGludGVsLmNvbT4KPiBDYzogSm9vbmFzIExh
+aHRpbmVuIDxqb29uYXMubGFodGluZW5AbGludXguaW50ZWwuY29tPgo+IENjOiBwaW90ci56ZHVu
+b3dza2lAaW50ZWwuY29tCj4gQ2M6IG1pY2hhbC5tcm96ZWtAaW50ZWwuY29tCj4gQ2M6IFRvbnkg
+WWUgPHRvbnkueWVAaW50ZWwuY29tPgo+IENjOiBSYWZhZWwgQW50b2dub2xsaSA8cmFmYWVsLmFu
+dG9nbm9sbGlAaW50ZWwuY29tPgoKL21lIG11dHRlcnMKClNvIGRvIHdlIG5lZWQgdG8gZGlzYWJs
+ZSBmb3JjZS1wcmVlbXB0aW9uIG9uIHJjcyBpZiB3ZSBjYW4ndCBkbwpmaW5lLWdyYWluZWQgcHJl
+ZW1wdGlvbj8KCkFja2VkLWJ5OiBDaHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51
+az4KLUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
+dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
