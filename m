@@ -2,29 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9CD17A6AB
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:48:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9809017A6CA
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:55:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 290186E313;
-	Thu,  5 Mar 2020 13:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FDB36E323;
+	Thu,  5 Mar 2020 13:55:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 248406E313
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 13:48:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20454530-1500050 
- for multiple; Thu, 05 Mar 2020 13:48:22 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu,  5 Mar 2020 13:48:22 +0000
-Message-Id: <20200305134822.2750496-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D396E323
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 13:55:28 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 05:55:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="244281274"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 05 Mar 2020 05:55:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 05 Mar 2020 15:55:24 +0200
+Date: Thu, 5 Mar 2020 15:55:24 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200305135524.GM13686@intel.com>
+References: <20200228203552.30273-1-ville.syrjala@linux.intel.com>
+ <20200228203552.30273-2-ville.syrjala@linux.intel.com>
+ <2f65710060a20a9d0622b545ee269ab2682e75cb.camel@intel.com>
+ <20200304114649.GC13686@intel.com>
+ <e8400308a790eb317b345a9164916c7f044a5cd9.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Return early for await_start on same
- timeline
+Content-Disposition: inline
+In-Reply-To: <e8400308a790eb317b345a9164916c7f044a5cd9.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH 2/4] drm/i915: Don't check for wm changes
+ until we've compute the wms fully
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,43 +52,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Requests within a timeline are ordered by that timeline, so awaiting for
-the start of a request within the timeline is a no-op. This used to work
-by falling out of the mutex_trylock() as the signaler and waiter had the
-same timeline and not returning an error.
+On Wed, Mar 04, 2020 at 11:25:42PM +0000, Souza, Jose wrote:
+> On Wed, 2020-03-04 at 13:46 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Mar 04, 2020 at 12:21:01AM +0000, Souza, Jose wrote:
+> > > On Fri, 2020-02-28 at 22:35 +0200, Ville Syrjala wrote:
+> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > =
 
-Fixes: 6a79d848403d ("drm/i915: Lock signaler timeline while navigating")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.5+
----
- drivers/gpu/drm/i915/i915_request.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > Currently we're comparing the watermarks between the old and new
+> > > > states
+> > > > before we've fully computed the new watermarks. In particular
+> > > > skl_build_pipe_wm() will not account for the amount of ddb space
+> > > > we'll
+> > > > have. That information is only available during skl_compute_ddb()
+> > > > which will proceed to zero out any watermark level exceeding the
+> > > > ddb allocation. If we're short on ddb space this will end up
+> > > > adding the plane to the state due erronously determining that the
+> > > > watermarks have changed. Fix the problem by deferring
+> > > > skl_wm_add_affected_planes() until we have the final watermarks
+> > > > computed.
+> > > > =
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 46dae33c1a20..ca5361eb1f0b 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -837,8 +837,8 @@ i915_request_await_start(struct i915_request *rq, struct i915_request *signal)
- 	struct dma_fence *fence;
- 	int err;
- 
--	GEM_BUG_ON(i915_request_timeline(rq) ==
--		   rcu_access_pointer(signal->timeline));
-+	if (i915_request_timeline(rq) == rcu_access_pointer(signal->timeline))
-+		return 0;
- 
- 	if (i915_request_started(signal))
- 		return 0;
--- 
-2.25.1
+> > > > Noticed this when trying enable transition watermarks on glk.
+> > > > We now computed the trans_wm as 28, but we only had 14 blocks
+> > > > of ddb, and thus skl_compute_ddb() ended up disabling the cursor
+> > > > trans_wm every time. Thus we ended up adding the cursor to every
+> > > > commit that didn't actually affect the cursor at all.
+> > > > =
 
+> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/intel_pm.c | 16 ++++++++++++----
+> > > >  1 file changed, 12 insertions(+), 4 deletions(-)
+> > > > =
+
+> > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c
+> > > > b/drivers/gpu/drm/i915/intel_pm.c
+> > > > index 39299811b650..a3d76e69caae 100644
+> > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > @@ -5762,16 +5762,24 @@ skl_compute_wm(struct intel_atomic_state
+> > > > *state)
+> > > >  		ret =3D skl_build_pipe_wm(new_crtc_state);
+> > > >  		if (ret)
+> > > >  			return ret;
+> > > > -
+> > > > -		ret =3D skl_wm_add_affected_planes(state, crtc);
+> > > > -		if (ret)
+> > > > -			return ret;
+> > > >  	}
+> > > >  =
+
+> > > >  	ret =3D skl_compute_ddb(state);
+> > > >  	if (ret)
+> > > >  		return ret;
+> > > >  =
+
+> > > > +	/*
+> > > > +	 * skl_compute_ddb() will have adjusted the final watermarks
+> > > > +	 * based on how much ddb is available. Now we can actually
+> > > > +	 * check if the final watermarks changed.
+> > > > +	 */
+> > > > +	for_each_oldnew_intel_crtc_in_state(state, crtc,
+> > > > old_crtc_state,
+> > > > +					    new_crtc_state, i) {
+> > > > +		ret =3D skl_wm_add_affected_planes(state, crtc);
+> > > > +		if (ret)
+> > > > +			return ret;
+> > > > +	}
+> > > =
+
+> > > skl_compute_ddb() is already calling skl_wm_add_affected_planes()
+> > > after
+> > > do the ddb allocation for each pipe, so we could remove this chunk,
+> > =
+
+> > skl_compute_ddb() calls skl_*ddb*_add_affected_planes(), which is a
+> > different thing..
+> =
+
+> Thanks
+
+No, thank you for the review. Series pushed to dinq.
+
+> =
+
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> =
+
+> > =
+
+> > > with that:
+> > > =
+
+> > > Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> > > =
+
+> > > > +
+> > > >  	skl_print_wm_changes(state);
+> > > >  =
+
+> > > >  	return 0;
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
