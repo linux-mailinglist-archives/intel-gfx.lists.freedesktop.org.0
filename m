@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2707317A479
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 12:43:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73DF17A486
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 12:46:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B672089A83;
-	Thu,  5 Mar 2020 11:43:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B74E46E0A1;
+	Thu,  5 Mar 2020 11:46:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8055989A83
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 11:43:13 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8046E0A1
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 11:46:15 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 03:43:12 -0800
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 03:46:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="439475878"
+X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="259160198"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga005.fm.intel.com with ESMTP; 05 Mar 2020 03:43:12 -0800
+ by orsmga002.jf.intel.com with ESMTP; 05 Mar 2020 03:46:13 -0800
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D3BE75C1DDA; Thu,  5 Mar 2020 13:41:54 +0200 (EET)
+ id 9D8DA5C1DDA; Thu,  5 Mar 2020 13:44:56 +0200 (EET)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200305073531.2594698-1-chris@chris-wilson.co.uk>
-References: <20200305073531.2594698-1-chris@chris-wilson.co.uk>
-Date: Thu, 05 Mar 2020 13:41:54 +0200
-Message-ID: <8736an58ql.fsf@gaia.fi.intel.com>
+In-Reply-To: <20200305082856.2595525-1-chris@chris-wilson.co.uk>
+References: <20200305082856.2595525-1-chris@chris-wilson.co.uk>
+Date: Thu, 05 Mar 2020 13:44:56 +0200
+Message-ID: <87zhcv3u13.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Enable timeslice on
- partial virtual engine dequeue
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Improve the start alignment of
+ bonded pairs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,70 +51,71 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> If we stop filling the ELSP due to an incompatible virtual engine
-> request, check if we should enable the timeslice on behalf of the queue.
+> Always wait on the start of the signaler request to reduce the problem
+> of dequeueing the bonded pair too early -- we want both payloads to
+> start at the same time, with no latency, and yet still allow others to
+> make full use of the slack in the system.
 >
-
-Leaves me pondering more of the why.
-
-So that on these boundaries also, the last rq gets subdued to
-a timeslice and not get a free run?
-
+> Remindme: add testcases for starting the bonded pair too early due to an
+> infinite spin before the signaler, and via a semaphore.
+>
+> Testcase: XXX
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 21 ++++++++++++++++-----
->  1 file changed, 16 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/i915_request.c | 33 ++++++++++++++++++++++++-----
+>  1 file changed, 28 insertions(+), 5 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 5da86a40434c..954bd4797482 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1802,6 +1802,20 @@ static void set_timeslice(struct intel_engine_cs *engine)
->  	set_timer_ms(&engine->execlists.timer, active_timeslice(engine));
->  }
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 4bfe68edfc81..c0a0089111a1 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -1127,14 +1127,37 @@ __i915_request_await_execution(struct i915_request *to,
+>  					  &from->fence))
+>  		return 0;
 >  
-> +static void start_timeslice(struct intel_engine_cs *engine,
-> +			    struct i915_request *last)
-> +{
-> +	struct intel_engine_execlists *execlists = &engine->execlists;
-> +
-> +	/* As we are returning early, update the hint from the queue */
-> +	execlists->switch_priority_hint =
-> +		max(execlists->queue_priority_hint,
-> +		    execlists->switch_priority_hint);
-> +
-> +	if (!execlists->timer.expires && need_timeslice(engine, last))
-> +		set_timer_ms(&execlists->timer, timeslice(engine));
-> +}
-> +
->  static void record_preemption(struct intel_engine_execlists *execlists)
->  {
->  	(void)I915_SELFTEST_ONLY(execlists->preempt_hang.count++);
-> @@ -1965,11 +1979,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->  				 * Even if ELSP[1] is occupied and not worthy
->  				 * of timeslices, our queue might be.
->  				 */
-> -				if (!execlists->timer.expires &&
-> -				    need_timeslice(engine, last))
-> -					set_timer_ms(&execlists->timer,
-> -						     timeslice(engine));
-> -
-> +				start_timeslice(engine, last);
->  				return;
->  			}
->  		}
-> @@ -2004,6 +2014,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+> -	/* Ensure both start together [after all semaphores in signal] */
+> -	if (intel_engine_has_semaphores(to->engine))
+> -		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
+> -	else
+> -		err = i915_request_await_start(to, from);
+> +	/*
+> +	 * Wait until the start of this request.
+> +	 *
+> +	 * The execution cb fires when we submit the request to HW. But in
+> +	 * many cases this may be long before the request itself is ready to
+> +	 * run (consider that we submit 2 requests for the same context, where
+> +	 * the request of interest is behind an indefinite spinner). So we hook
+> +	 * up to both to reduce our queues tidy and execution lag minimised in
+> +	 * the worst case, though we hope that the await_start is elided.
+> +	 */
+> +	err = i915_request_await_start(to, from);
+>  	if (err < 0)
+>  		return err;
 >  
->  			if (last && !can_merge_rq(last, rq)) {
->  				spin_unlock(&ve->base.active.lock);
-> +				start_timeslice(engine, last);
->  				return; /* leave this for another */
+> +	/*
+> +	 * Ensure both start together [after all semaphores in signal]
+> +	 *
+> +	 * Now that we are queued to the HW at roughly the same time (thanks
+> +	 * to the execute cb) and are ready to run at roughly the same time
+> +	 * (thanks to the await start), our signaler may still be indefinitely
+> +	 * delayed by waiting on a semaphore from a remote engine. If our
+> +	 * signaler depends on a sempahore, so indirectly do we, and we do not
 
-for another interrupt?
+s/sempahore/semaphore
 -Mika
 
->  			}
->  
+> +	 * want to start our payload until our signaler also starts theirs.
+> +	 * So we wait.
+> +	 */
+> +	if (intel_engine_has_semaphores(to->engine) && from->sched.semaphores) {
+> +		err = __emit_semaphore_wait(to, from, from->fence.seqno - 1);
+> +		if (err < 0)
+> +			return err;
+> +	}
+> +
+>  	/* Couple the dependency tree for PI on this exposed to->fence */
+>  	if (to->engine->schedule) {
+>  		err = i915_sched_node_add_dependency(&to->sched, &from->sched);
 > -- 
 > 2.25.1
 >
