@@ -2,40 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E842C17A513
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5684617A4E6
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:07:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F000F6E32A;
-	Thu,  5 Mar 2020 12:16:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 782756E2DD;
+	Thu,  5 Mar 2020 12:06:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3796E328;
- Thu,  5 Mar 2020 12:16:45 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0FF06E2DD;
+ Thu,  5 Mar 2020 12:06:58 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 04:16:45 -0800
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 04:06:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="352350075"
-Received: from pktinlab.iind.intel.com ([10.66.253.121])
- by fmsmga001.fm.intel.com with ESMTP; 05 Mar 2020 04:16:42 -0800
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>
-Date: Thu,  5 Mar 2020 17:34:34 +0530
-Message-Id: <20200305120434.111091-8-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200305120434.111091-1-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20200305120434.111091-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="441355970"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga006.fm.intel.com with ESMTP; 05 Mar 2020 04:06:56 -0800
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 8678D5C1DDA; Thu,  5 Mar 2020 14:05:39 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
+In-Reply-To: <20200304205243.106854-1-matthew.auld@intel.com>
+References: <20200304205243.106854-1-matthew.auld@intel.com>
+Date: Thu, 05 Mar 2020 14:05:39 +0200
+Message-ID: <87wo7z3t2k.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RESEND PATCH v2 7/7] drm/todo: Update drm_fb_helper
- tasks
+Subject: Re: [Intel-gfx] [igt-dev] [PATCH] i915/gem_exec_params: add
+ test_invalid_batch_start
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,59 +44,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Emil Velikov <emil.velikov@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm_fb_helper tasks are completed now hence remove them from
-todo list.
+Matthew Auld <matthew.auld@intel.com> writes:
 
-Changes since v1:
-* remove entire drm_fb_helper tasks from todo list. Daniel's
-  "64914da24ea9 drm/fbdev-helper: don't force restores" already fixes
-  first one (Daniel)
+> Sanity check that kernel rejects too large batch_start_offset.
+>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  tests/i915/gem_exec_params.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
+> index cf7ea306..afc8d2c7 100644
+> --- a/tests/i915/gem_exec_params.c
+> +++ b/tests/i915/gem_exec_params.c
+> @@ -268,6 +268,23 @@ static void mmapped(int i915)
+>  	gem_close(i915, buf);
+>  }
+>  
+> +static void test_invalid_batch_start(int fd)
+> +{
+> +	struct drm_i915_gem_exec_object2 exec = {
+> +		.handle = batch_create(fd),
+> +	};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&exec),
+> +		.buffer_count = 1,
+> +		.batch_start_offset = 4096, /* space jump */
 
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
----
- Documentation/gpu/todo.rst | 17 -----------------
- 1 file changed, 17 deletions(-)
+If we could get batch size from the handle would be
+more documentative.
 
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index ccf5e8e34222..439656f55c5d 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -359,23 +359,6 @@ Contact: Sean Paul
- 
- Level: Starter
- 
--drm_fb_helper tasks
---------------------
--
--- drm_fb_helper_restore_fbdev_mode_unlocked() should call restore_fbdev_mode()
--  not the _force variant so it can bail out if there is a master. But first
--  these igt tests need to be fixed: kms_fbcon_fbt@psr and
--  kms_fbcon_fbt@psr-suspend.
--
--- The max connector argument for drm_fb_helper_init() isn't used anymore and
--  can be removed.
--
--- The helper doesn't keep an array of connectors anymore so these can be
--  removed: drm_fb_helper_single_add_all_connectors(),
--  drm_fb_helper_add_one_connector() and drm_fb_helper_remove_one_connector().
--
--Level: Intermediate
--
- connector register/unregister fixes
- -----------------------------------
- 
--- 
-2.20.1
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
+> +	};
+> +
+> +	igt_assert_eq(__gem_execbuf(fd, &execbuf), -EINVAL);
+> +
+> +	gem_sync(fd, exec.handle);
+> +	gem_close(fd, exec.handle);
+> +}
+> +
+>  struct drm_i915_gem_execbuffer2 execbuf;
+>  struct drm_i915_gem_exec_object2 gem_exec[1];
+>  uint32_t batch[2] = {MI_BATCH_BUFFER_END};
+> @@ -507,6 +524,9 @@ igt_main
+>  	igt_subtest("batch-first")
+>  		test_batch_first(fd);
+>  
+> +	igt_subtest("invalid-batch-start-offset")
+> +		test_invalid_batch_start(fd);
+> +
+>  #define DIRT(name) \
+>  	igt_subtest(#name "-dirt") { \
+>  		execbuf.flags = 0; \
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> igt-dev mailing list
+> igt-dev@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
