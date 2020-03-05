@@ -2,31 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E5B17A637
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:18:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C632A17A6CC
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:55:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF6E6EBBE;
-	Thu,  5 Mar 2020 13:18:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C3EC6E32D;
+	Thu,  5 Mar 2020 13:55:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6A40F6EBBE;
- Thu,  5 Mar 2020 13:18:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 61E86A00FD;
- Thu,  5 Mar 2020 13:18:12 +0000 (UTC)
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com
+ [IPv6:2a00:1450:4864:20::342])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB75A6E075
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 07:44:08 +0000 (UTC)
+Received: by mail-wm1-x342.google.com with SMTP id g134so5023282wme.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 04 Mar 2020 23:44:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7BWJjqgFrWmDb6Qj/EjoiAeH7kkf/sLUiPpqqMVSVWo=;
+ b=Ia/rGrlg+EZ0nT35kqz9357T/RnU7GbQlgZs6pzlM/HyecFYnDDdvRvAVC+H72xtPU
+ ouRECFhAOiCKSMgTwzbNUAv9UlMCQBe8AsT7O629TTng/BlTDSSg4SU4JrcI5NjL+ccx
+ sRV8DHKTuzRt1w7kKaMnpfqKP2UVyTL2n6dvxO9X9IBkoo4GYGeNkOhSZtpx6YuEfPTu
+ i9uYkPaUhpccAX/PN0SAFzPX39JGcC7Tc9aN4pUw1XLXMBe4AuYrK6FPZreTSLtdAvrA
+ Qa7Ybgt2R0X7EpeaRIR8g8tL13QZyz6qHBkmHGE9KfjvtJyBdkt816qw8BTuRMb+Ruy3
+ e1yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=7BWJjqgFrWmDb6Qj/EjoiAeH7kkf/sLUiPpqqMVSVWo=;
+ b=rONBW7bNu9Xu4zqTXNYC0Wu2bDzWl84CVhyNusHTTz5j3MbyPm2BTrbWAFN5pYPVre
+ J1yqS7EQqLVib6yMm4ZgfXtaPnvQ56Kn5OrR0R9LZy0oShNFWqiOwcpgBwt+C0oftipn
+ Ai8D6wndRpvLUJHbu9oUJbtRTKYXYINZTC54YJHH5fZMupIczVxHjQYEJtw/thn9YxKE
+ cC9Wq3sgiZhi7L6ICQ2CRvyN2cjvnCwFUb3mJWBEr6Tk9BALPq9ItunpTi0uk+IveBJk
+ VVPjS6dF6ak6OlczXltNGL3dR6KSb8dfdztZZAQJASKt4SF4PjFG4GIj5tpy/8Krv30z
+ ij5A==
+X-Gm-Message-State: ANhLgQ1Tt1/mQT3H6HJTjm8g1NV1pmy/WEc2524H3bJUKwbrjMLkyoiN
+ priykIOIJRJx4pV78P1VVq0miNT6QMM=
+X-Google-Smtp-Source: ADFU+vu3QlSR8Y0A70VwEjPIe4zStV5XYfacCpVn84m18I0G7t6pVyGdoZp3JDpVHbMLMEv7VGF3lA==
+X-Received: by 2002:a1c:4b0f:: with SMTP id y15mr7963614wma.87.1583394247295; 
+ Wed, 04 Mar 2020 23:44:07 -0800 (PST)
+Received: from xyz-CELSIUS-H720.fritz.box (x5f70385c.dyn.telefonica.de.
+ [95.112.56.92])
+ by smtp.gmail.com with ESMTPSA id y10sm7750129wma.26.2020.03.04.23.44.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 04 Mar 2020 23:44:06 -0800 (PST)
+From: Oliver Barta <o.barta89@gmail.com>
+X-Google-Original-From: Oliver Barta <oliver.barta@aptiv.com>
+To: Ramalingam C <ramalingam.c@intel.com>, intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Thu,  5 Mar 2020 08:43:56 +0100
+Message-Id: <20200305074356.3777-1-oliver.barta@aptiv.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Caz Yokoyama" <Caz.Yokoyama@intel.com>
-Date: Thu, 05 Mar 2020 13:18:12 -0000
-Message-ID: <158341429237.17234.3922373311037986682@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1c751032ce79c80c5485cae315f1a9904ce07cac.1583359940.git.caz.yokoyama@intel.com>
-In-Reply-To: <1c751032ce79c80c5485cae315f1a9904ce07cac.1583359940.git.caz.yokoyama@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/1=5D_Revert_=22drm/i915/tgl=3A_Add_extra?=
- =?utf-8?q?_hdc_flush_workaround=22?=
+X-Mailman-Approved-At: Thu, 05 Mar 2020 13:55:46 +0000
+Subject: [Intel-gfx] [PATCH v2] drm/i915: HDCP: fix Ri prime and R0 checks
+ during auth
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,107 +70,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Oliver Barta <oliver.barta@aptiv.com>,
+ Ravisankar Madasamy <ravisankar.madasamy@intel.com>,
+ Sean Paul <seanpaul@chromium.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Oliver Barta <oliver.barta@aptiv.com>
 
-Series: series starting with [1/1] Revert "drm/i915/tgl: Add extra hdc flush workaround"
-URL   : https://patchwork.freedesktop.org/series/74293/
-State : success
+Including HDCP_STATUS_ENC bit in the checks is pointless.
+It is simply not set at this point.
 
-== Summary ==
+Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
+Fixes: ee5e5e7a5e0f ("drm/i915: Add HDCP framework + base implementation")
+---
+ [v2] rebased on top of latest changes
 
-CI Bug Log - changes from CI_DRM_8068 -> Patchwork_16829
-====================================================
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ee0f27ea2810..78dddbaa61d3 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -710,7 +710,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 
+ 	/* Wait for R0 ready */
+ 	if (wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+-		     (HDCP_STATUS_R0_READY | HDCP_STATUS_ENC), 1)) {
++		     HDCP_STATUS_R0_READY, 1)) {
+ 		drm_err(&dev_priv->drm, "Timed out waiting for R0 ready\n");
+ 		return -ETIMEDOUT;
+ 	}
+@@ -743,7 +743,7 @@ static int intel_hdcp_auth(struct intel_connector *connector)
+ 
+ 		/* Wait for Ri prime match */
+ 		if (!wait_for(intel_de_read(dev_priv, HDCP_STATUS(dev_priv, cpu_transcoder, port)) &
+-			      (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1))
++			      HDCP_STATUS_RI_MATCH, 1))
+ 			break;
+ 	}
+ 
+-- 
+2.20.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16829 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - fi-hsw-peppy:       [PASS][5] -> [DMESG-WARN][6] ([i915#44])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_getparams_basic@basic-eu-total:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
-  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
-
-
-Participating hosts (52 -> 45)
-------------------------------
-
-  Additional (1): fi-gdg-551 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-skl-lmem fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8068 -> Patchwork_16829
-
-  CI-20190529: 20190529
-  CI_DRM_8068: f8e69af5cca45947ebce78f677b75b0ecc4ba744 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5492: 2be153507cdd652843f6ab44cc2a52a7f30206d9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16829: 5351dfbf1590d25e7d0a74142aad1c3513bfd01e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5351dfbf1590 Revert "drm/i915/tgl: Add extra hdc flush workaround"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
