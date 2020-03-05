@@ -1,36 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C33817A2FE
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 11:19:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2043A17A30F
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 11:27:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 758BD6EBB5;
-	Thu,  5 Mar 2020 10:19:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 103EB6E1A4;
+	Thu,  5 Mar 2020 10:27:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA236EBB5;
- Thu,  5 Mar 2020 10:19:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 02:19:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="229650627"
-Received: from pedrero-mobl.ger.corp.intel.com (HELO [10.252.52.192])
- ([10.252.52.192])
- by orsmga007.jf.intel.com with ESMTP; 05 Mar 2020 02:19:22 -0800
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <56de63c7-0cdf-5805-e268-44944af7fef2@linux.intel.com>
-Date: Thu, 5 Mar 2020 11:19:20 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C37E6E08A;
+ Thu,  5 Mar 2020 10:27:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 94B27A00FD;
+ Thu,  5 Mar 2020 10:27:08 +0000 (UTC)
 MIME-Version: 1.0
-Content-Language: en-US
-Subject: [Intel-gfx] [PULL] drm-misc-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 05 Mar 2020 10:27:08 -0000
+Message-ID: <158340402857.17237.13634525942548821690@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200304183632.2493637-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200304183632.2493637-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C1/2=5D_drm/i915=3A_Add_mechanism_to_?=
+ =?utf-8?q?submit_a_context_WA_on_ring_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,84 +39,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm-misc-fixes-2020-03-05:
-Fixes for v5.6.rc5:
-- Fix memory leak
-- Fix resource id creation race in virtio.
-- Various mmap fixes.
-- Fix fence leak in ttm_buffer_object_transfer().
-- Fixes for sun4i VI layer format support.
-- kirin: Revert "Fix for hikey620 display offset problem"
-The following changes since commit dde2bb2da01e96c17f0a44b4a3cf72a30e66e3ef:
+== Series Details ==
 
-  drm/panfrost: perfcnt: Reserve/use the AS attached to the perfcnt MMU context (2020-02-12 14:27:29 -0600)
+Series: series starting with [CI,1/2] drm/i915: Add mechanism to submit a context WA on ring submission
+URL   : https://patchwork.freedesktop.org/series/74281/
+State : warning
 
-are available in the Git repository at:
+== Summary ==
 
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-fixes-2020-03-05
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
 
-for you to fetch changes up to 1b79cfd99ff5127e6a143767b51694a527b3ea38:
-
-  drm: kirin: Revert "Fix for hikey620 display offset problem" (2020-03-04 13:29:05 +0000)
-
-----------------------------------------------------------------
-Fixes for v5.6.rc5:
-- Fix memory leak
-- Fix resource id creation race in virtio.
-- Various mmap fixes.
-- Fix fence leak in ttm_buffer_object_transfer().
-- Fixes for sun4i VI layer format support.
-- kirin: Revert "Fix for hikey620 display offset problem"
-
-----------------------------------------------------------------
-Ahzo (1):
-      drm/ttm: fix leaking fences via ttm_buffer_object_transfer
-
-Cong Wang (1):
-      dma-buf: free dmabuf->name in dma_buf_release()
-
-Gerd Hoffmann (3):
-      drm/shmem: add support for per object caching flags.
-      drm/virtio: fix mmap page attributes
-      drm/shmem: drop pgprot_decrypted()
-
-Icenowy Zheng (1):
-      drm/bridge: analogix-anx6345: fix set of link bandwidth
-
-Jernej Skrabec (3):
-      drm/sun4i: de2/de3: Remove unsupported VI layer formats
-      drm/sun4i: Add separate DE3 VI layer formats
-      drm/sun4i: Fix DE2 VI layer format support
-
-John Bates (1):
-      drm/virtio: fix resource id creation race
-
-John Stultz (1):
-      drm: kirin: Revert "Fix for hikey620 display offset problem"
-
-Tomeu Vizoso (1):
-      drm/panfrost: Don't try to map on error faults
-
- drivers/dma-buf/dma-buf.c                          |   1 +
- drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |   3 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c             |  16 +++-
- drivers/gpu/drm/hisilicon/kirin/kirin_ade_reg.h    |   1 -
- drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c    |  20 ----
- drivers/gpu/drm/panfrost/panfrost_mmu.c            |  44 ++++-----
- drivers/gpu/drm/sun4i/sun8i_mixer.c                | 104 ++++++++++++++++++---
- drivers/gpu/drm/sun4i/sun8i_mixer.h                |  11 +++
- drivers/gpu/drm/sun4i/sun8i_vi_layer.c             |  66 +++++++++++--
- drivers/gpu/drm/ttm/ttm_bo_util.c                  |   1 +
- drivers/gpu/drm/virtio/virtgpu_object.c            |   5 +-
- include/drm/drm_gem_shmem_helper.h                 |   5 +
- 12 files changed, 202 insertions(+), 75 deletions(-)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
