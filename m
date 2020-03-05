@@ -1,55 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB2817A25B
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 10:40:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E21817A283
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 10:53:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6238A6E195;
-	Thu,  5 Mar 2020 09:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF30B89E5F;
+	Thu,  5 Mar 2020 09:53:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE1996E195;
- Thu,  5 Mar 2020 09:40:53 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8FE889E5F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 09:53:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 01:40:53 -0800
-X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="234361803"
-Received: from bennur-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.249.38.13])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 01:40:44 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rajat Jain <rajatja@google.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Daniel
- Vetter <daniel@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Chris
- Wilson
- <chris@chris-wilson.co.uk>, Imre Deak <imre.deak@intel.com>, =?utf-8?Q?Jo?=
- =?utf-8?Q?s=C3=A9?= Roberto
- de Souza <jose.souza@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- gregkh@linuxfoundation.org, mathewk@google.com, Daniel Thompson
- <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>, Pavel
- Machek <pavel@denx.de>, seanpaul@google.com, Duncan Laurie
- <dlaurie@google.com>, jsbarnes@google.com, Thierry Reding
- <thierry.reding@gmail.com>, mpearson@lenovo.com, Nitin Joshi1
- <njoshi1@lenovo.com>, Sugumaran Lacshiminarayanan
- <slacshiminar@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>
-In-Reply-To: <20200305012338.219746-3-rajatja@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200305012338.219746-1-rajatja@google.com>
- <20200305012338.219746-3-rajatja@google.com>
-Date: Thu, 05 Mar 2020 11:40:45 +0200
-Message-ID: <87o8tbnnqa.fsf@intel.com>
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 01:53:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="439451474"
+Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
+ by fmsmga005.fm.intel.com with ESMTP; 05 Mar 2020 01:53:35 -0800
+Received: from irsmsx603.ger.corp.intel.com (163.33.146.9) by
+ IRSMSX154.ger.corp.intel.com (163.33.192.96) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 5 Mar 2020 09:53:34 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ irsmsx603.ger.corp.intel.com (163.33.146.9) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 5 Mar 2020 09:53:34 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Thu, 5 Mar 2020 09:53:34 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v2 06/20] drm/i915: Polish some dbuf debugs
+Thread-Index: AQHV6/6sZbr7ldUUOU29PWw7N/X7gqg4q3CAgAAhjoCAAQIWgA==
+Date: Thu, 5 Mar 2020 09:53:34 +0000
+Message-ID: <9b9e7c91bf03305e85bb4c9223d5a4bda00af20d.camel@intel.com>
+References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
+ <20200225171125.28885-7-ville.syrjala@linux.intel.com>
+ <67b2f1122c23316304d0e10f57a0d356705bafc0.camel@intel.com>
+ <20200304182659.GE13686@intel.com>
+In-Reply-To: <20200304182659.GE13686@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.72.89]
+Content-ID: <194A7241AC5A82449BA4AEEC4E3A10BB@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915: Lookup and attach ACPI
- device node for connectors
+Subject: Re: [Intel-gfx] [PATCH v2 06/20] drm/i915: Polish some dbuf debugs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,167 +62,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: rajatxjain@gmail.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 04 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
-> Lookup and attach ACPI nodes for intel connectors. The lookup is done
-> in compliance with ACPI Spec 6.3
-> https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-> (Ref: Pages 1119 - 1123).
->
-> This can be useful for any connector specific platform properties. (This
-> will be used for privacy screen in next patch).
->
-> Signed-off-by: Rajat Jain <rajatja@google.com>
-> ---
-> v6: Addressed minor comments from Jani at
->     https://lkml.org/lkml/2020/1/24/1143
->      - local variable renamed.
->      - used drm_dbg_kms()
->      - used acpi_device_handle()
->      - Used opaque type acpi_handle instead of void*
-> v5: same as v4
-> v4: Same as v3
-> v3: fold the code into existing acpi_device_id_update() function
-> v2: formed by splitting the original patch into ACPI lookup, and privacy
->     screen property. Also move it into i915 now that I found existing code
->     in i915 that can be re-used.
->
->  drivers/gpu/drm/i915/display/intel_acpi.c     | 24 +++++++++++++++++++
->  .../drm/i915/display/intel_display_types.h    |  5 ++++
->  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +++
->  3 files changed, 32 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c b/drivers/gpu/drm/i915/display/intel_acpi.c
-> index 3e6831cca4ac1..870c1ad98df92 100644
-> --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> @@ -222,11 +222,22 @@ static u32 acpi_display_type(struct intel_connector *connector)
->  	return display_type;
->  }
->  
-> +/*
-> + * Ref: ACPI Spec 6.3
-> + * https://uefi.org/sites/default/files/resources/ACPI_6_3_final_Jan30.pdf
-> + * Pages 1119 - 1123 describe, what I believe, a standard way of
-> + * identifying / addressing "display panels" in the ACPI. It provides
-> + * a way for the ACPI to define devices for the display panels attached
-> + * to the system. It thus provides a way for the BIOS to export any panel
-> + * specific properties to the system via ACPI (like device trees).
-> + */
->  void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
->  {
->  	struct drm_device *dev = &dev_priv->drm;
->  	struct intel_connector *connector;
->  	struct drm_connector_list_iter conn_iter;
-> +	struct acpi_device *conn_dev;
-> +	u64 conn_addr;
->  	u8 display_index[16] = {};
->  
->  	/* Populate the ACPI IDs for all connectors for a given drm_device */
-> @@ -242,6 +253,19 @@ void intel_acpi_device_id_update(struct drm_i915_private *dev_priv)
->  		device_id |= display_index[type]++ << ACPI_DISPLAY_INDEX_SHIFT;
->  
->  		connector->acpi_device_id = device_id;
-> +
-> +		/* Build the _ADR to look for */
-> +		conn_addr = device_id | ACPI_DEVICE_ID_SCHEME |
-> +				ACPI_BIOS_CAN_DETECT;
-> +
-> +		drm_dbg_kms(dev, "Checking connector ACPI node at _ADR=%llX\n",
-> +			    conn_addr);
-> +
-> +		/* Look up the connector device, under the PCI device */
-> +		conn_dev = acpi_find_child_device(
-> +					ACPI_COMPANION(&dev->pdev->dev),
-> +					conn_addr, false);
-> +		connector->acpi_handle = acpi_device_handle(conn_dev);
->  	}
->  	drm_connector_list_iter_end(&conn_iter);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 5e00e611f077f..d70612cc1ba2a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -411,9 +411,14 @@ struct intel_connector {
->  	 */
->  	struct intel_encoder *encoder;
->  
-> +#ifdef CONFIG_ACPI
->  	/* ACPI device id for ACPI and driver cooperation */
->  	u32 acpi_device_id;
->  
-> +	/* ACPI handle corresponding to this connector display, if found */
-> +	acpi_handle acpi_handle;
-> +#endif
-> +
->  	/* Reads out the current hw, returning true if the connector is enabled
->  	 * and active (i.e. dpms ON state). */
->  	bool (*get_hw_state)(struct intel_connector *);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 0a417cd2af2bc..171821113d362 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -44,6 +44,7 @@
->  #include "i915_debugfs.h"
->  #include "i915_drv.h"
->  #include "i915_trace.h"
-> +#include "intel_acpi.h"
->  #include "intel_atomic.h"
->  #include "intel_audio.h"
->  #include "intel_connector.h"
-> @@ -6868,6 +6869,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *connect
->  
->  		connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
->  
-> +		/* Lookup the ACPI node corresponding to the connector */
-> +		intel_acpi_device_id_update(dev_priv);
-
-I find this part problematic.
-
-Normally, we call the function at probe via i915_driver_register() ->
-intel_opregion_register() -> intel_opregion_resume() ->
-intel_didl_outputs() -> intel_acpi_device_id_update(). It gets called
-*once* at probe, after we have all the outputs (and thus connectors)
-figured out.
-
-This in turn calls it for every DP connector, before we even have all
-connectors registered. But it also re-iterates the previously handled
-connectors again and again.
-
-The problem, of course, is that you'll need connector->acpi_handle to
-figure out whether the feature is present and whether the property is
-needed. Figuring out acpi_handle also requires
-connector->acpi_device_id.
-
-It's a bit of a catch-22.
-
-I think the options are:
-
-1) See if we can postpone creating and attaching properties to connector
-->late_register hook. (I didn't have the time to look into it yet, at
-all.)
-
-2) Provide a way to populate connector->acpi_device_id and
-connector->acpi_handle on a per-connector basis. At least the device id
-remains constant for the lifetime of the drm_device (why do we keep
-updating it at every resume?!) but can we be sure ->acpi_handle does
-too? (I don't really know my way around ACPI.)
-
-BR,
-Jani.
-
-
->  	}
->  }
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCAyMDIwLTAzLTA0IGF0IDIwOjI2ICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
+DQo+IE9uIFdlZCwgTWFyIDA0LCAyMDIwIGF0IDA0OjI5OjQ3UE0gKzAwMDAsIExpc292c2tpeSwg
+U3RhbmlzbGF2IHdyb3RlOg0KPiA+IE9uIFR1ZSwgMjAyMC0wMi0yNSBhdCAxOToxMSArMDIwMCwg
+VmlsbGUgU3lyamFsYSB3cm90ZToNCj4gPiA+IEZyb206IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUu
+c3lyamFsYUBsaW51eC5pbnRlbC5jb20+DQo+ID4gPiANCj4gPiA+IFBvbGlzaCBzb21lIG9mIHRo
+ZSBkYnVmIGNvZGUgdG8gZ2l2ZSBtb3JlIG1lYW5pbmdmdWwgZGVidWcNCj4gPiA+IG1lc3NhZ2Vz
+IGFuZCB3aGF0bm90LiBBbHNvIHdlIGNhbiBzd2l0Y2ggb3ZlciB0byB0aGUgcGVyLWRldmljZQ0K
+PiA+ID4gZGVidWdzL3dhcm5zIGF0IHRoZSBzYW1lIHRpbWUuDQo+ID4gPiANCj4gPiA+IENjOiBT
+dGFuaXNsYXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4NCj4gPiA+
+IFNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRl
+bC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNw
+bGF5X3Bvd2VyLmMgICAgfCA0MCArKysrKysrKystLQ0KPiA+ID4gLS0tLQ0KPiA+ID4gLS0tLQ0K
+PiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCAyMSBkZWxldGlvbnMoLSkN
+Cj4gPiA+IA0KPiA+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheV9wb3dlci5jDQo+ID4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheV9wb3dlci5jDQo+ID4gPiBpbmRleCA2ZTI1YTEzMTcxNjEuLmU4MWU1
+NjFlOGFjMCAxMDA2NDQNCj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
+aW50ZWxfZGlzcGxheV9wb3dlci5jDQo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuYw0KPiA+ID4gQEAgLTQ0MzMsMTEgKzQ0MzMsMTIg
+QEAgc3RhdGljIHZvaWQNCj4gPiA+IGludGVsX3Bvd2VyX2RvbWFpbnNfc3luY19odyhzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ID4gPiAgCW11dGV4X3VubG9jaygmcG93ZXJf
+ZG9tYWlucy0+bG9jayk7DQo+ID4gPiAgfQ0KPiA+ID4gIA0KPiA+ID4gLXN0YXRpYyBpbmxpbmUN
+Cj4gPiA+IC1ib29sIGludGVsX2RidWZfc2xpY2Vfc2V0KHN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiwNCj4gPiA+IC0JCQkgIGk5MTVfcmVnX3QgcmVnLCBib29sIGVuYWJsZSkNCj4g
+PiA+ICtzdGF0aWMgdm9pZCBpbnRlbF9kYnVmX3NsaWNlX3NldChzdHJ1Y3QgZHJtX2k5MTVfcHJp
+dmF0ZQ0KPiA+ID4gKmRldl9wcml2LA0KPiA+ID4gKwkJCQkgZW51bSBkYnVmX3NsaWNlIHNsaWNl
+LCBib29sIGVuYWJsZSkNCj4gPiA+ICB7DQo+ID4gPiAtCXUzMiB2YWwsIHN0YXR1czsNCj4gPiA+
+ICsJaTkxNV9yZWdfdCByZWcgPSBEQlVGX0NUTF9TKHNsaWNlKTsNCj4gPiA+ICsJYm9vbCBzdGF0
+ZTsNCj4gPiA+ICsJdTMyIHZhbDsNCj4gPiA+ICANCj4gPiA+ICAJdmFsID0gaW50ZWxfZGVfcmVh
+ZChkZXZfcHJpdiwgcmVnKTsNCj4gPiA+ICAJdmFsID0gZW5hYmxlID8gKHZhbCB8IERCVUZfUE9X
+RVJfUkVRVUVTVCkgOiAodmFsICYNCj4gPiA+IH5EQlVGX1BPV0VSX1JFUVVFU1QpOw0KPiA+ID4g
+QEAgLTQ0NDUsMTMgKzQ0NDYsMTAgQEAgYm9vbCBpbnRlbF9kYnVmX3NsaWNlX3NldChzdHJ1Y3QN
+Cj4gPiA+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+ID4gIAlpbnRlbF9kZV9wb3N0
+aW5nX3JlYWQoZGV2X3ByaXYsIHJlZyk7DQo+ID4gPiAgCXVkZWxheSgxMCk7DQo+ID4gPiAgDQo+
+ID4gPiAtCXN0YXR1cyA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsIHJlZykgJiBEQlVGX1BPV0VS
+X1NUQVRFOw0KPiA+ID4gLQlpZiAoKGVuYWJsZSAmJiAhc3RhdHVzKSB8fCAoIWVuYWJsZSAmJiBz
+dGF0dXMpKSB7DQo+ID4gPiAtCQlkcm1fZXJyKCZkZXZfcHJpdi0+ZHJtLCAiREJ1cyBwb3dlciAl
+cyB0aW1lb3V0IVxuIiwNCj4gPiA+IC0JCQllbmFibGUgPyAiZW5hYmxlIiA6ICJkaXNhYmxlIik7
+DQo+ID4gPiAtCQlyZXR1cm4gZmFsc2U7DQo+ID4gPiAtCX0NCj4gPiA+IC0JcmV0dXJuIHRydWU7
+DQo+ID4gPiArCXN0YXRlID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgcmVnKSAmIERCVUZfUE9X
+RVJfU1RBVEU7DQo+ID4gPiArCWRybV9XQVJOKCZkZXZfcHJpdi0+ZHJtLCBlbmFibGUgIT0gc3Rh
+dGUsDQo+ID4gPiArCQkgIkRCdWYgc2xpY2UgJWQgcG93ZXIgJXMgdGltZW91dCFcbiIsDQo+ID4g
+PiArCQkgc2xpY2UsIGVuYWJsZSA/ICJlbmFibGUiIDogImRpc2FibGUiKTsNCj4gPiA+ICB9DQo+
+ID4gPiAgDQo+ID4gPiAgc3RhdGljIHZvaWQgZ2VuOV9kYnVmX2VuYWJsZShzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqZGV2X3ByaXYpDQo+ID4gPiBAQCAtNDQ2NywxNCArNDQ2NSwxNiBAQCBzdGF0
+aWMgdm9pZCBnZW45X2RidWZfZGlzYWJsZShzdHJ1Y3QNCj4gPiA+IGRybV9pOTE1X3ByaXZhdGUg
+KmRldl9wcml2KQ0KPiA+ID4gIHZvaWQgaWNsX2RidWZfc2xpY2VzX3VwZGF0ZShzdHJ1Y3QgZHJt
+X2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+ID4gPiAgCQkJICAgIHU4IHJlcV9zbGljZXMpDQo+
+ID4gPiAgew0KPiA+ID4gLQlpbnQgaTsNCj4gPiA+IC0JaW50IG1heF9zbGljZXMgPSBJTlRFTF9J
+TkZPKGRldl9wcml2KS0NCj4gPiA+ID4gbnVtX3N1cHBvcnRlZF9kYnVmX3NsaWNlczsNCj4gPiA+
+IA0KPiA+ID4gKwlpbnQgbnVtX3NsaWNlcyA9IElOVEVMX0lORk8oZGV2X3ByaXYpLQ0KPiA+ID4g
+PiBudW1fc3VwcG9ydGVkX2RidWZfc2xpY2VzOw0KPiA+ID4gDQo+ID4gPiAgCXN0cnVjdCBpOTE1
+X3Bvd2VyX2RvbWFpbnMgKnBvd2VyX2RvbWFpbnMgPSAmZGV2X3ByaXYtDQo+ID4gPiA+IHBvd2Vy
+X2RvbWFpbnM7DQo+ID4gPiANCj4gPiA+ICsJZW51bSBkYnVmX3NsaWNlIHNsaWNlOw0KPiA+ID4g
+IA0KPiA+ID4gLQlkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwgaHdlaWdodDgocmVxX3NsaWNlcykg
+PiBtYXhfc2xpY2VzLA0KPiA+ID4gLQkJICJJbnZhbGlkIG51bWJlciBvZiBkYnVmIHNsaWNlcyBy
+ZXF1ZXN0ZWRcbiIpOw0KPiA+ID4gKwlkcm1fV0FSTigmZGV2X3ByaXYtPmRybSwgcmVxX3NsaWNl
+cyAmIH4oQklUKG51bV9zbGljZXMpIC0gMSksDQo+ID4gPiArCQkgIkludmFsaWQgc2V0IG9mIGRi
+dWYgc2xpY2VzICgweCV4KSByZXF1ZXN0ZWQgKG51bSBkYnVmDQo+ID4gPiBzbGljZXMgJWQpXG4i
+LA0KPiA+ID4gKwkJIHJlcV9zbGljZXMsIG51bV9zbGljZXMpOw0KPiA+ID4gIA0KPiA+ID4gLQlE
+Uk1fREVCVUdfS01TKCJVcGRhdGluZyBkYnVmIHNsaWNlcyB0byAweCV4XG4iLCByZXFfc2xpY2Vz
+KTsNCj4gPiA+ICsJZHJtX2RiZ19rbXMoJmRldl9wcml2LT5kcm0sDQo+ID4gPiArCQkgICAgIlVw
+ZGF0aW5nIGRidWYgc2xpY2VzIHRvIDB4JXhcbiIsIHJlcV9zbGljZXMpOw0KPiA+ID4gIA0KPiA+
+ID4gIAkvKg0KPiA+ID4gIAkgKiBNaWdodCBiZSBydW5uaW5nIHRoaXMgaW4gcGFyYWxsZWwgdG8N
+Cj4gPiA+IGdlbjlfZGNfb2ZmX3Bvd2VyX3dlbGxfZW5hYmxlDQo+ID4gPiBAQCAtNDQ4NSwxMSAr
+NDQ4NSw5IEBAIHZvaWQgaWNsX2RidWZfc2xpY2VzX3VwZGF0ZShzdHJ1Y3QNCj4gPiA+IGRybV9p
+OTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+ID4gIAkgKi8NCj4gPiA+ICAJbXV0ZXhfbG9jaygm
+cG93ZXJfZG9tYWlucy0+bG9jayk7DQo+ID4gPiAgDQo+ID4gPiAtCWZvciAoaSA9IDA7IGkgPCBt
+YXhfc2xpY2VzOyBpKyspIHsNCj4gPiA+IC0JCWludGVsX2RidWZfc2xpY2Vfc2V0KGRldl9wcml2
+LA0KPiA+ID4gLQkJCQkgICAgIERCVUZfQ1RMX1MoaSksDQo+ID4gPiAtCQkJCSAgICAgKHJlcV9z
+bGljZXMgJiBCSVQoaSkpICE9IDApOw0KPiA+ID4gLQl9DQo+ID4gPiArCWZvciAoc2xpY2UgPSBE
+QlVGX1MxOyBzbGljZSA8IG51bV9zbGljZXM7IHNsaWNlKyspDQo+ID4gPiArCQlpbnRlbF9kYnVm
+X3NsaWNlX3NldChkZXZfcHJpdiwgc2xpY2UsDQo+ID4gPiArCQkJCSAgICAgcmVxX3NsaWNlcyAm
+IEJJVChzbGljZSkpOw0KPiA+IA0KPiA+IFdvdWxkIGJlIGNvb2wgdG8gY29tcGxldGVseSBnZXQg
+cmlkIG9mIGFueSBtYWdpYyBudW1iZXJzIG9yDQo+ID4gZGVmaW5pdGlvbnMsIDAgaW4gYSBzZW5z
+ZSBpcyBtb3JlIHVuaXZlcnNhbCBoZXJlIHRoYW4gREJVRl9TMS4NCj4gPiANCj4gPiBJZiB3ZSBh
+cmUgY291bnRpbmcgc2xpY2VzIGFzIG51bWJlcnMgaXQgc2VlbXMgbG9naWNhbCB0aGF0IHdlIA0K
+PiA+IGl0ZXJhdGUgWzAuLm51bV9zbGljZXMpIHJhbmdlLiBJZiB5b3Ugd2FudCB0byBuYW1lIHRo
+ZSBmaXJzdCBzbGljZQ0KPiA+IGV4cGxpY2l0bHkgdGhlbiBpdCBwcm9iYWJseSBoYXMgdG8gYmUg
+c29tZXRoaW5nIGxpa2UgaXRlcmF0b3INCj4gPiBsb2dpYywgaS5lIGZvciAoc2xpY2UgPSBGSVJT
+VF9TTElDRTsgc2xpY2UgIT0gTEFTVF9TTElDRTsgc2xpY2UrKykuDQo+ID4gDQo+ID4gQnV0IHRy
+eWluZyB0byBuYW1lIGl0IGF0IHRoZSBzYW1lIHRpbWUgd2l0aCBjb21wYXJpbmcgdG8gdG90YWwN
+Cj4gPiBfYW1vdW50Xw0KPiA+IGxvb2tzIGEgYml0IGNvbmZ1c2luZy4NCj4gDQo+IFRoaXMgaXMg
+dGhlIHN0YW5kYXJkIHBhdHRlcm4gdXNlZCBhbGwgb3ZlciB0aGUgZHJpdmVyLg0KDQpXZWxsLCB5
+b3UgY2FuIGVudW1lcmF0ZSBvYmplY3RzIHVzaW5nIHRoZWlyIHF1YWxpdGF0aXZlIG9yIHF1YW50
+YXRpdmUNCmNoYXJhY3RlcmlzdGljcywgZm9yIGluc3RhbmNlIGlmIHlvdSB0YWtlIGFscGhhYmV0
+IHlvdSB3b3VsZCBiZQ0KZWl0aGVyIGVudW1lcmF0aW5nIGxldHRlcnMgbGlrZSBmaXJzdCBpcyBB
+IGFuZCBjb3VudCB1bnRpbCBpdCBiZWNvbWVzDQpaLCBvcg0KeW91IHRha2UgaW5kZXhlcyBhbmQg
+c2F5IHN0YXJ0IGZyb20gaW5kZXggMCBhbmQgY291bnQgdW50aWwgaXQgYmVjb21lcw0KMjYuDQoN
+CldoYXQgaGFwcGVucyBoZXJlIGlzIG1peGluZyB0aG9zZTogaS5lIHRha2UgbGV0dGVyIEEgYW5k
+IGNvdW50IHVudGlsIGl0DQpiZWNvbWVzIDI2LCBpLmUgbWl4aW5nIGEgbmFtZSBvZiBhbiBvYmpl
+Y3Qgd2l0aCBpdCdzIGluZGV4LCBzbw0KaG9wZWZ1bGx5IERCVUZfUzEgd2lsbCBhbHdheXMgYmUg
+ZGVmaW5lZCBhcyAwIDpEDQoNCkFueXdheXMsIA0KDQpSZXZpZXdlZC1ieTogU3RhbmlzbGF2IExp
+c292c2tpeSA8c3RhbmlzbGF2Lmxpc292c2tpeUBpbnRlbC5jb20+DQoNCg0KPiANCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
+IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
+ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
