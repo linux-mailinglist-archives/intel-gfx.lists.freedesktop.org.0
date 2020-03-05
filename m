@@ -1,44 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D1817A69E
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:46:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3734A17A6A3
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:47:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8BD889D7B;
-	Thu,  5 Mar 2020 13:46:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDFD6E0BF;
+	Thu,  5 Mar 2020 13:47:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10CA489D7B
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 13:46:08 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 05:46:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="320207887"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 05 Mar 2020 05:46:05 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 05 Mar 2020 15:46:04 +0200
-Date: Thu, 5 Mar 2020 15:46:04 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200305134604.GL13686@intel.com>
-References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
- <20200225171125.28885-7-ville.syrjala@linux.intel.com>
- <67b2f1122c23316304d0e10f57a0d356705bafc0.camel@intel.com>
- <20200304182659.GE13686@intel.com>
- <9b9e7c91bf03305e85bb4c9223d5a4bda00af20d.camel@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB5E16E0BF;
+ Thu,  5 Mar 2020 13:47:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E449BA00EF;
+ Thu,  5 Mar 2020 13:47:20 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9b9e7c91bf03305e85bb4c9223d5a4bda00af20d.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 06/20] drm/i915: Polish some dbuf debugs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivek Kasireddy" <vivek.kasireddy@intel.com>
+Date: Thu, 05 Mar 2020 13:47:20 -0000
+Message-ID: <158341604093.17235.18430199243694724767@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200129224729.4684-1-vivek.kasireddy@intel.com>
+In-Reply-To: <20200129224729.4684-1-vivek.kasireddy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hotplug=3A_Use_phy_to_get_the_hpd=5Fpin_instead_of_the_po?=
+ =?utf-8?b?cnQgKHJldjYp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,184 +39,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 05, 2020 at 09:53:34AM +0000, Lisovskiy, Stanislav wrote:
-> On Wed, 2020-03-04 at 20:26 +0200, Ville Syrj=E4l=E4 wrote:
-> > On Wed, Mar 04, 2020 at 04:29:47PM +0000, Lisovskiy, Stanislav wrote:
-> > > On Tue, 2020-02-25 at 19:11 +0200, Ville Syrjala wrote:
-> > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > =
+== Series Details ==
 
-> > > > Polish some of the dbuf code to give more meaningful debug
-> > > > messages and whatnot. Also we can switch over to the per-device
-> > > > debugs/warns at the same time.
-> > > > =
+Series: drm/i915/hotplug: Use phy to get the hpd_pin instead of the port (rev6)
+URL   : https://patchwork.freedesktop.org/series/72747/
+State : success
 
-> > > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > > ---
-> > > >  .../drm/i915/display/intel_display_power.c    | 40 +++++++++--
-> > > > ----
-> > > > ----
-> > > >  1 file changed, 19 insertions(+), 21 deletions(-)
-> > > > =
+== Summary ==
 
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > index 6e25a1317161..e81e561e8ac0 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > > > @@ -4433,11 +4433,12 @@ static void
-> > > > intel_power_domains_sync_hw(struct drm_i915_private *dev_priv)
-> > > >  	mutex_unlock(&power_domains->lock);
-> > > >  }
-> > > >  =
+CI Bug Log - changes from CI_DRM_8068 -> Patchwork_16830
+====================================================
 
-> > > > -static inline
-> > > > -bool intel_dbuf_slice_set(struct drm_i915_private *dev_priv,
-> > > > -			  i915_reg_t reg, bool enable)
-> > > > +static void intel_dbuf_slice_set(struct drm_i915_private
-> > > > *dev_priv,
-> > > > +				 enum dbuf_slice slice, bool enable)
-> > > >  {
-> > > > -	u32 val, status;
-> > > > +	i915_reg_t reg =3D DBUF_CTL_S(slice);
-> > > > +	bool state;
-> > > > +	u32 val;
-> > > >  =
+Summary
+-------
 
-> > > >  	val =3D intel_de_read(dev_priv, reg);
-> > > >  	val =3D enable ? (val | DBUF_POWER_REQUEST) : (val &
-> > > > ~DBUF_POWER_REQUEST);
-> > > > @@ -4445,13 +4446,10 @@ bool intel_dbuf_slice_set(struct
-> > > > drm_i915_private *dev_priv,
-> > > >  	intel_de_posting_read(dev_priv, reg);
-> > > >  	udelay(10);
-> > > >  =
+  **SUCCESS**
 
-> > > > -	status =3D intel_de_read(dev_priv, reg) & DBUF_POWER_STATE;
-> > > > -	if ((enable && !status) || (!enable && status)) {
-> > > > -		drm_err(&dev_priv->drm, "DBus power %s timeout!\n",
-> > > > -			enable ? "enable" : "disable");
-> > > > -		return false;
-> > > > -	}
-> > > > -	return true;
-> > > > +	state =3D intel_de_read(dev_priv, reg) & DBUF_POWER_STATE;
-> > > > +	drm_WARN(&dev_priv->drm, enable !=3D state,
-> > > > +		 "DBuf slice %d power %s timeout!\n",
-> > > > +		 slice, enable ? "enable" : "disable");
-> > > >  }
-> > > >  =
+  No regressions found.
 
-> > > >  static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
-> > > > @@ -4467,14 +4465,16 @@ static void gen9_dbuf_disable(struct
-> > > > drm_i915_private *dev_priv)
-> > > >  void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
-> > > >  			    u8 req_slices)
-> > > >  {
-> > > > -	int i;
-> > > > -	int max_slices =3D INTEL_INFO(dev_priv)-
-> > > > > num_supported_dbuf_slices;
-> > > > =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/index.html
 
-> > > > +	int num_slices =3D INTEL_INFO(dev_priv)-
-> > > > > num_supported_dbuf_slices;
-> > > > =
+Known issues
+------------
 
-> > > >  	struct i915_power_domains *power_domains =3D &dev_priv-
-> > > > > power_domains;
-> > > > =
+  Here are the changes found in Patchwork_16830 that come from known issues:
 
-> > > > +	enum dbuf_slice slice;
-> > > >  =
+### IGT changes ###
 
-> > > > -	drm_WARN(&dev_priv->drm, hweight8(req_slices) > max_slices,
-> > > > -		 "Invalid number of dbuf slices requested\n");
-> > > > +	drm_WARN(&dev_priv->drm, req_slices & ~(BIT(num_slices) - 1),
-> > > > +		 "Invalid set of dbuf slices (0x%x) requested (num dbuf
-> > > > slices %d)\n",
-> > > > +		 req_slices, num_slices);
-> > > >  =
+#### Issues hit ####
 
-> > > > -	DRM_DEBUG_KMS("Updating dbuf slices to 0x%x\n", req_slices);
-> > > > +	drm_dbg_kms(&dev_priv->drm,
-> > > > +		    "Updating dbuf slices to 0x%x\n", req_slices);
-> > > >  =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-> > > >  	/*
-> > > >  	 * Might be running this in parallel to
-> > > > gen9_dc_off_power_well_enable
-> > > > @@ -4485,11 +4485,9 @@ void icl_dbuf_slices_update(struct
-> > > > drm_i915_private *dev_priv,
-> > > >  	 */
-> > > >  	mutex_lock(&power_domains->lock);
-> > > >  =
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-nick:        [PASS][3] -> [INCOMPLETE][4] ([i915#1382])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-bsw-nick/igt@i915_selftest@live@late_gt_pm.html
 
-> > > > -	for (i =3D 0; i < max_slices; i++) {
-> > > > -		intel_dbuf_slice_set(dev_priv,
-> > > > -				     DBUF_CTL_S(i),
-> > > > -				     (req_slices & BIT(i)) !=3D 0);
-> > > > -	}
-> > > > +	for (slice =3D DBUF_S1; slice < num_slices; slice++)
-> > > > +		intel_dbuf_slice_set(dev_priv, slice,
-> > > > +				     req_slices & BIT(slice));
-> > > =
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217] / [i915#976])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
 
-> > > Would be cool to completely get rid of any magic numbers or
-> > > definitions, 0 in a sense is more universal here than DBUF_S1.
-> > > =
+  * igt@prime_vgem@basic-gtt:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@prime_vgem@basic-gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-tgl-y/igt@prime_vgem@basic-gtt.html
 
-> > > If we are counting slices as numbers it seems logical that we =
+  
+#### Possible fixes ####
 
-> > > iterate [0..num_slices) range. If you want to name the first slice
-> > > explicitly then it probably has to be something like iterator
-> > > logic, i.e for (slice =3D FIRST_SLICE; slice !=3D LAST_SLICE; slice++=
-).
-> > > =
+  * igt@i915_getparams_basic@basic-eu-total:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
 
-> > > But trying to name it at the same time with comparing to total
-> > > _amount_
-> > > looks a bit confusing.
-> > =
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][11] ([i915#424]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
 
-> > This is the standard pattern used all over the driver.
-> =
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#1382]: https://gitlab.freedesktop.org/drm/intel/issues/1382
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
 
-> Well, you can enumerate objects using their qualitative or quantative
-> characteristics, for instance if you take alphabet you would be
-> either enumerating letters like first is A and count until it becomes
-> Z, or
-> you take indexes and say start from index 0 and count until it becomes
-> 26.
-> =
 
-> What happens here is mixing those: i.e take letter A and count until it
-> becomes 26, i.e mixing a name of an object with it's index, so
-> hopefully DBUF_S1 will always be defined as 0 :D
+Participating hosts (52 -> 45)
+------------------------------
 
-The old code assumed DBUF_S1=3D=3D0 for the purposes of passing it to
-DBUF_CTL(), and for the purposes of the BIT(int).
+  Additional (1): fi-gdg-551 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bdw-gvtdvm fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
 
-The new code assumes DBUF_S1 =3D=3D 0 for the purposes of terminating
-the iteration.
 
-Suo siell=E4, vetel=E4 t=E4=E4ll=E4.
+Build changes
+-------------
 
-We may actually need to change the device info to contain a dbuf slice
-mask instead of just the number of slices. That's in case some hw has
-some slices fused off (not sure that's actually a thing but maybe,
-need to check the spec at some point for this). At that point we
-probably want to stash the whole thing into a for_each_dbuf_slice().
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8068 -> Patchwork_16830
 
--- =
+  CI-20190529: 20190529
+  CI_DRM_8068: f8e69af5cca45947ebce78f677b75b0ecc4ba744 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5492: 2be153507cdd652843f6ab44cc2a52a7f30206d9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16830: 5bce3620610d00ef00a407fbf3f20eee734f84f7 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Ville Syrj=E4l=E4
-Intel
+
+== Linux commits ==
+
+5bce3620610d drm/i915/hotplug: Use phy to get the hpd_pin instead of the port (v5)
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16830/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
