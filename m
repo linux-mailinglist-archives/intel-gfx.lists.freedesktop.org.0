@@ -2,36 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5684617A4E6
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54BCF17A4E7
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:07:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 782756E2DD;
-	Thu,  5 Mar 2020 12:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8046E2DF;
+	Thu,  5 Mar 2020 12:07:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0FF06E2DD;
- Thu,  5 Mar 2020 12:06:58 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 04:06:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,517,1574150400"; d="scan'208";a="441355970"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga006.fm.intel.com with ESMTP; 05 Mar 2020 04:06:56 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 8678D5C1DDA; Thu,  5 Mar 2020 14:05:39 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, igt-dev@lists.freedesktop.org
-In-Reply-To: <20200304205243.106854-1-matthew.auld@intel.com>
-References: <20200304205243.106854-1-matthew.auld@intel.com>
-Date: Thu, 05 Mar 2020 14:05:39 +0200
-Message-ID: <87wo7z3t2k.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7F2426E2DF;
+ Thu,  5 Mar 2020 12:07:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 784EAA0071;
+ Thu,  5 Mar 2020 12:07:17 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [igt-dev] [PATCH] i915/gem_exec_params: add
- test_invalid_batch_start
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 05 Mar 2020 12:07:17 -0000
+Message-ID: <158341003748.17235.14045942789467236413@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200304205143.106693-1-matthew.auld@intel.com>
+In-Reply-To: <20200304205143.106693-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915=3A_properly_sanity_check_batch=5Fstart=5Foffset?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,73 +38,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Matthew Auld <matthew.auld@intel.com> writes:
+== Series Details ==
 
-> Sanity check that kernel rejects too large batch_start_offset.
->
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  tests/i915/gem_exec_params.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->
-> diff --git a/tests/i915/gem_exec_params.c b/tests/i915/gem_exec_params.c
-> index cf7ea306..afc8d2c7 100644
-> --- a/tests/i915/gem_exec_params.c
-> +++ b/tests/i915/gem_exec_params.c
-> @@ -268,6 +268,23 @@ static void mmapped(int i915)
->  	gem_close(i915, buf);
->  }
->  
-> +static void test_invalid_batch_start(int fd)
-> +{
-> +	struct drm_i915_gem_exec_object2 exec = {
-> +		.handle = batch_create(fd),
-> +	};
-> +	struct drm_i915_gem_execbuffer2 execbuf = {
-> +		.buffers_ptr = to_user_pointer(&exec),
-> +		.buffer_count = 1,
-> +		.batch_start_offset = 4096, /* space jump */
+Series: drm/i915: properly sanity check batch_start_offset
+URL   : https://patchwork.freedesktop.org/series/74287/
+State : warning
 
-If we could get batch size from the handle would be
-more documentative.
+== Summary ==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
 
-> +	};
-> +
-> +	igt_assert_eq(__gem_execbuf(fd, &execbuf), -EINVAL);
-> +
-> +	gem_sync(fd, exec.handle);
-> +	gem_close(fd, exec.handle);
-> +}
-> +
->  struct drm_i915_gem_execbuffer2 execbuf;
->  struct drm_i915_gem_exec_object2 gem_exec[1];
->  uint32_t batch[2] = {MI_BATCH_BUFFER_END};
-> @@ -507,6 +524,9 @@ igt_main
->  	igt_subtest("batch-first")
->  		test_batch_first(fd);
->  
-> +	igt_subtest("invalid-batch-start-offset")
-> +		test_invalid_batch_start(fd);
-> +
->  #define DIRT(name) \
->  	igt_subtest(#name "-dirt") { \
->  		execbuf.flags = 0; \
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> igt-dev mailing list
-> igt-dev@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/igt-dev
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
