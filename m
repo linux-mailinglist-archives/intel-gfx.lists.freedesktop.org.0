@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE64417A628
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:14:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2E5B17A637
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64956E1E0;
-	Thu,  5 Mar 2020 13:14:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF6E6EBBE;
+	Thu,  5 Mar 2020 13:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FD426E1E0
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 13:14:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2020 05:14:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="234409698"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga008.jf.intel.com with ESMTP; 05 Mar 2020 05:14:26 -0800
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 435505C1DDA; Thu,  5 Mar 2020 15:13:09 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <8736an58ql.fsf@gaia.fi.intel.com>
-References: <20200305073531.2594698-1-chris@chris-wilson.co.uk>
- <8736an58ql.fsf@gaia.fi.intel.com>
-Date: Thu, 05 Mar 2020 15:13:09 +0200
-Message-ID: <87pndr3py2.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6A40F6EBBE;
+ Thu,  5 Mar 2020 13:18:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 61E86A00FD;
+ Thu,  5 Mar 2020 13:18:12 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Enable timeslice on
- partial virtual engine dequeue
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Caz Yokoyama" <Caz.Yokoyama@intel.com>
+Date: Thu, 05 Mar 2020 13:18:12 -0000
+Message-ID: <158341429237.17234.3922373311037986682@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <1c751032ce79c80c5485cae315f1a9904ce07cac.1583359940.git.caz.yokoyama@intel.com>
+In-Reply-To: <1c751032ce79c80c5485cae315f1a9904ce07cac.1583359940.git.caz.yokoyama@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/1=5D_Revert_=22drm/i915/tgl=3A_Add_extra?=
+ =?utf-8?q?_hdc_flush_workaround=22?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,103 +39,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Mika Kuoppala <mika.kuoppala@linux.intel.com> writes:
+== Series Details ==
 
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
->
->> If we stop filling the ELSP due to an incompatible virtual engine
->> request, check if we should enable the timeslice on behalf of the queue.
->>
->
-> Leaves me pondering more of the why.
->
-> So that on these boundaries also, the last rq gets subdued to
-> a timeslice and not get a free run?
+Series: series starting with [1/1] Revert "drm/i915/tgl: Add extra hdc flush workaround"
+URL   : https://patchwork.freedesktop.org/series/74293/
+State : success
 
-I got some confirmations on irc. Yes this for that.
-The commit message could be augmented on the why emphasis!
+== Summary ==
 
->
->> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->> ---
->>  drivers/gpu/drm/i915/gt/intel_lrc.c | 21 ++++++++++++++++-----
->>  1 file changed, 16 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> index 5da86a40434c..954bd4797482 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> @@ -1802,6 +1802,20 @@ static void set_timeslice(struct intel_engine_cs *engine)
->>  	set_timer_ms(&engine->execlists.timer, active_timeslice(engine));
->>  }
->>  
->> +static void start_timeslice(struct intel_engine_cs *engine,
->> +			    struct i915_request *last)
->> +{
->> +	struct intel_engine_execlists *execlists = &engine->execlists;
->> +
->> +	/* As we are returning early, update the hint from the queue */
->> +	execlists->switch_priority_hint =
->> +		max(execlists->queue_priority_hint,
->> +		    execlists->switch_priority_hint);
+CI Bug Log - changes from CI_DRM_8068 -> Patchwork_16829
+====================================================
 
-Still not completely unclear how the all hints play together
-but the comment holds true, we bail out early.
+Summary
+-------
 
->> +
->> +	if (!execlists->timer.expires && need_timeslice(engine, last))
->> +		set_timer_ms(&execlists->timer, timeslice(engine));
->> +}
->> +
->>  static void record_preemption(struct intel_engine_execlists *execlists)
->>  {
->>  	(void)I915_SELFTEST_ONLY(execlists->preempt_hang.count++);
->> @@ -1965,11 +1979,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->>  				 * Even if ELSP[1] is occupied and not worthy
->>  				 * of timeslices, our queue might be.
->>  				 */
->> -				if (!execlists->timer.expires &&
->> -				    need_timeslice(engine, last))
->> -					set_timer_ms(&execlists->timer,
->> -						     timeslice(engine));
->> -
->> +				start_timeslice(engine, last);
->>  				return;
->>  			}
->>  		}
->> @@ -2004,6 +2014,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
->>  
->>  			if (last && !can_merge_rq(last, rq)) {
->>  				spin_unlock(&ve->base.active.lock);
->> +				start_timeslice(engine, last);
->>  				return; /* leave this for another */
->
-> for another interrupt?
+  **SUCCESS**
 
-For another veng. The comment might have already been augmented.
+  No regressions found.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/index.html
 
-> -Mika
->
->>  			}
->>  
->> -- 
->> 2.25.1
->>
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16829 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@gem_mmap_gtt@basic:
+    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402]) +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@gem_mmap_gtt@basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - fi-hsw-peppy:       [PASS][5] -> [DMESG-WARN][6] ([i915#44])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-hsw-peppy/igt@kms_frontbuffer_tracking@basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_getparams_basic@basic-eu-total:
+    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#44]: https://gitlab.freedesktop.org/drm/intel/issues/44
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+
+
+Participating hosts (52 -> 45)
+------------------------------
+
+  Additional (1): fi-gdg-551 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-skl-lmem fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8068 -> Patchwork_16829
+
+  CI-20190529: 20190529
+  CI_DRM_8068: f8e69af5cca45947ebce78f677b75b0ecc4ba744 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5492: 2be153507cdd652843f6ab44cc2a52a7f30206d9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16829: 5351dfbf1590d25e7d0a74142aad1c3513bfd01e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5351dfbf1590 Revert "drm/i915/tgl: Add extra hdc flush workaround"
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16829/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
