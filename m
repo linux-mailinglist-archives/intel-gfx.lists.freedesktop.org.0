@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B1817A541
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:29:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C89C517A55C
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 13:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 007C76E317;
-	Thu,  5 Mar 2020 12:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492186E14D;
+	Thu,  5 Mar 2020 12:38:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4DAC56E317;
- Thu,  5 Mar 2020 12:29:48 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4632EA3C0D;
- Thu,  5 Mar 2020 12:29:48 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F516E0AA;
+ Thu,  5 Mar 2020 12:38:02 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 04:38:01 -0800
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="234402315"
+Received: from srware-mobl.ger.corp.intel.com (HELO [10.252.25.112])
+ ([10.252.25.112])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 05 Mar 2020 04:38:00 -0800
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200305111522.2674305-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <8bfe91ab-1270-d024-9754-a2382dc0b407@linux.intel.com>
+Date: Thu, 5 Mar 2020 12:37:58 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Thu, 05 Mar 2020 12:29:48 -0000
-Message-ID: <158341138825.17236.14794383579713920233@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200304205143.106693-1-matthew.auld@intel.com>
-In-Reply-To: <20200304205143.106693-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_properly_sanity_check_batch=5Fstart=5Foffset?=
+In-Reply-To: <20200305111522.2674305-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/gem_exec_balancer: Exercise
+ bonded-payload synchronisation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,129 +47,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
+Cc: igt-dev@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915: properly sanity check batch_start_offset
-URL   : https://patchwork.freedesktop.org/series/74287/
-State : success
+On 05/03/2020 11:15, Chris Wilson wrote:
+> Our goal with bonded submission is to submit the pair of user batches to
+> the HW at roughly the same time, and trying to avoid any bubbles. If we
+> submit the secondary batch too early, it will be running before the
+> first and stuck on the HW preventing others from utilising the GPU. At
+> worst, it may even appear unresponsive and trigger a GPU hang as it
+> waits for its master. If we submit the secondary too late, the reverse
+> situation may apply to the master as it has to wait to the secondaries.
+> 
+> This test tries to verify that using a submit-fence to create a bonded
+> pair does not prevent others from using the HW. By using a pair of
+> spinners, we can create a bonded hog that when set in motion will fully
+> utilize both engines [if the scheduling is incorrect]. We then use a
+> third party submitted after the bonded pair to cancel the spinner from
+> the GPU -- if it is unable to run, the spinner is never cancelled, and
+> the bonded pair will cause a GPU hang.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>   tests/i915/gem_exec_balancer.c | 91 ++++++++++++++++++++++++++++++++++
+>   1 file changed, 91 insertions(+)
+> 
+> diff --git a/tests/i915/gem_exec_balancer.c b/tests/i915/gem_exec_balancer.c
+> index 69f0100ff..e1f9ce625 100644
+> --- a/tests/i915/gem_exec_balancer.c
+> +++ b/tests/i915/gem_exec_balancer.c
+> @@ -1240,6 +1240,94 @@ static void indices(int i915)
+>   	gem_quiescent_gpu(i915);
+>   }
+>   
+> +static void __bonded_early(int i915, uint32_t ctx,
+> +			   const struct i915_engine_class_instance *siblings,
+> +			   unsigned int count)
+> +{
+> +	uint32_t handle = batch_create(i915);
+> +	struct drm_i915_gem_exec_object2 batch = {
+> +		.handle = handle,
+> +	};
+> +	struct drm_i915_gem_execbuffer2 execbuf = {
+> +		.buffers_ptr = to_user_pointer(&batch),
+> +		.buffer_count = 1,
+> +		.rsvd1 = ctx,
+> +	};
+> +	igt_spin_t *spin;
+> +
+> +	/* A: spin forever on engine 1 */
+> +	set_load_balancer(i915, ctx, siblings, count, NULL);
+> +	spin = igt_spin_new(i915,
+> +			    .ctx = ctx,
+> +			    .engine = 1,
+> +			    .flags = IGT_SPIN_NO_PREEMPTION);
+> +
+> +	/* B: runs after A on engine 1 */
+> +	execbuf.flags = I915_EXEC_FENCE_OUT;
+> +	execbuf.flags |= 1;
+> +	gem_execbuf_wr(i915, &execbuf);
+> +
+> +	/* B': run in parallel with B on engine 2, i.e. not before A! */
+> +	set_load_balancer(i915, ctx, siblings, count, NULL);
+> +	execbuf.flags = I915_EXEC_FENCE_SUBMIT | I915_EXEC_FENCE_OUT;
+> +	execbuf.flags |= 2;
+> +	execbuf.rsvd2 >>= 32;
+> +	gem_execbuf_wr(i915, &execbuf);
+> +
+> +	/* C: prevent anything running on engine 2 after B' */
+> +	spin->execbuf.flags = 2;
+> +	gem_execbuf(i915, &spin->execbuf);
+> +
+> +	igt_debugfs_dump(i915, "i915_engine_info");
+> +
+> +	/* D: cancel the spinner from engine 2 (new timeline) */
+> +	set_load_balancer(i915, ctx, siblings, count, NULL);
+> +	batch.handle = create_semaphore_to_spinner(i915, spin);
+> +	execbuf.flags = 2;
+> +	gem_execbuf(i915, &execbuf);
+> +	gem_close(i915, batch.handle);
+> +
+> +	/* If C runs before D, we never cancel the spinner and so hang */
+> +	gem_sync(i915, handle);
+> +
+> +	/* Check the bonded pair completed successfully */
+> +	igt_assert_eq(sync_fence_status(execbuf.rsvd2 & 0xffffffff), 1);
+> +	igt_assert_eq(sync_fence_status(execbuf.rsvd2 >> 32), 1);
+> +
+> +	close(execbuf.rsvd2);
+> +	close(execbuf.rsvd2 >> 32);
+> +
+> +	gem_close(i915, handle);
+> +	igt_spin_free(i915, spin);
+> +}
+> +
+> +static void bonded_early(int i915)
+> +{
+> +	uint32_t ctx;
+> +
+> +	/*
+> +	 * Our goal is to start the bonded payloads at roughly the same time.
+> +	 * We do not want to start the secondary batch too early as it will
+> +	 * do nothing but hog the GPU until the first has a chance to execute.
+> +	 * So if we were to arbitrary delay the first by running it after a
+> +	 * spinner...
+> +	 */
+> +
+> +	ctx = gem_context_create(i915);
+> +
+> +	for (int class = 0; class < 32; class++) {
+> +		struct i915_engine_class_instance *siblings;
+> +		unsigned int count;
+> +
+> +		siblings = list_engines(i915, 1u << class, &count);
+> +		if (count > 1)
+> +			__bonded_early(i915, ctx, siblings, count);
+> +		free(siblings);
+> +	}
+> +
+> +	gem_context_destroy(i915, ctx);
+> +}
+> +
+>   static void busy(int i915)
+>   {
+>   	uint32_t scratch = gem_create(i915, 4096);
+> @@ -1891,6 +1979,9 @@ igt_main
+>   	igt_subtest("bonded-semaphore")
+>   		bonded_semaphore(i915);
+>   
+> +	igt_subtest("bonded-early")
+> +		bonded_early(i915);
+> +
+>   	igt_fixture {
+>   		igt_stop_hang_detector();
+>   	}
+> 
 
-== Summary ==
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-CI Bug Log - changes from CI_DRM_8068 -> Patchwork_16826
-====================================================
+Regards,
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16826 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [PASS][1] -> [DMESG-WARN][2] ([i915#92]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-kbl-soraka:      [PASS][5] -> [DMESG-FAIL][6] ([fdo#112406])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][7] -> [FAIL][8] ([fdo#111096] / [i915#323])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [PASS][9] -> [SKIP][10] ([fdo#109271]) +5 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-b:
-    - fi-skl-6770hq:      [PASS][11] -> [DMESG-WARN][12] ([i915#106])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-b.html
-
-  * igt@prime_vgem@basic-read:
-    - fi-tgl-y:           [PASS][13] -> [DMESG-WARN][14] ([CI#94] / [i915#402]) +1 similar issue
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@prime_vgem@basic-read.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-tgl-y/igt@prime_vgem@basic-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_getparams_basic@basic-eu-total:
-    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-tgl-y/igt@i915_getparams_basic@basic-eu-total.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8700k:       [INCOMPLETE][17] ([i915#424]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8068/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [fdo#112406]: https://bugs.freedesktop.org/show_bug.cgi?id=112406
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-
-
-Participating hosts (52 -> 46)
-------------------------------
-
-  Additional (1): fi-gdg-551 
-  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8068 -> Patchwork_16826
-
-  CI-20190529: 20190529
-  CI_DRM_8068: f8e69af5cca45947ebce78f677b75b0ecc4ba744 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5492: 2be153507cdd652843f6ab44cc2a52a7f30206d9 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16826: 608e630c00a9f72450e7255dbaa2f5227c81d133 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-608e630c00a9 drm/i915: properly sanity check batch_start_offset
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16826/index.html
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
