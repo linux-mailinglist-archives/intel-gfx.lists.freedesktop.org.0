@@ -1,57 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81BDC17A6CD
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:55:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C107317A682
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Mar 2020 14:37:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6684B6E334;
-	Thu,  5 Mar 2020 13:55:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18DCB89FDE;
+	Thu,  5 Mar 2020 13:37:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A03B46EB80
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 08:14:33 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id dc19so5642842edb.10
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Mar 2020 00:14:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=SvxbEt0L5nsDATjEGW6AZuNv1DhXG8nykAuawAwlE1g=;
- b=H+8ihrQYueopu3xtNRjU8DleqGzuH4zkXa7NN5FwcYPbz46PUevhOW3WggqPM9vVog
- oR54BSOo2vUtCB28exsGC1PrnBoyB1YjRIxp/pmfWWjsq8gPwf8tm/cyzANPioMx+aer
- WMpJsp2ckqI7IujAy2PE9IUNdVDMvjpMS76hsue9hWBpdzwe4Yluv3IhnF6YMRl2CcNy
- njOVb/vrEoesR7Hieat8MvqVkYmYA3J3aqoyw+oDN2z9ZRzD+9NEU1Qz2CB56OeXCzYq
- KC0i9DvjtteBXHqSTLVJTol6EjIiUdhMxgl1/5ngdnhFL997oEM3P9MGyBrohnKJ+4nO
- XcLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=SvxbEt0L5nsDATjEGW6AZuNv1DhXG8nykAuawAwlE1g=;
- b=p7AceV246+Tl857muVWuWQRPujW0xZdKpYOwIdY4+I4t+VsUL41Gy1VjvjSYxO+y0I
- FI5emxKG9qJbQCvPUHN1O/VYmwiYOEwxWcGDH+090DM7wdNq4hy160CyxGaThWRUxWFe
- yGhJ7HCKeqy29cB7WtA7aR5sSJdfyRkcakXTF5K2NAyrJaacyn2yjyYPA/0z5gFb8jit
- pgIIY2Dw1v68BmRKGWoewjzxHcWfvGWgdZoS0uPjiUccitEV5aNEjc51dDyOYkFeU24w
- XXIgg9pN5dPr2csAQF6GwPB7bPvXUmI7ME/sV84LKbdRP3v9uRsS8lQQtzOB3ePEbaPX
- 0mdA==
-X-Gm-Message-State: ANhLgQ1hDkGdNQFp+tM1kKwlQw1vTqGKoBqQLrG4yxR9KJLSTbl6OJ2f
- xYTsJEWK80ndVTzf/8kn8L5t894amW7sIdmZVac=
-X-Google-Smtp-Source: ADFU+vu6lk8LSfOny8s4cepr+cvu6sfGVS51e/22sqf2PBUMkHSdlkciy1aZGTFs2l/EJLz1wZwqQIjj5gZi7+R2LzU=
-X-Received: by 2002:a17:906:3c5b:: with SMTP id
- i27mr6095231ejg.360.1583396071995; 
- Thu, 05 Mar 2020 00:14:31 -0800 (PST)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B03189FDE
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2020 13:37:53 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2020 05:37:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="232944699"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 05 Mar 2020 05:37:50 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 05 Mar 2020 15:37:49 +0200
+Date: Thu, 5 Mar 2020 15:37:49 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200305133749.GK13686@intel.com>
+References: <20200225171125.28885-1-ville.syrjala@linux.intel.com>
+ <20200225171125.28885-8-ville.syrjala@linux.intel.com>
+ <f0907e9776be49c8ab171a0a0caf900a@intel.com>
+ <20200304183007.GF13686@intel.com>
+ <cda5db60f51d6c46b7a3a632c0f4949fc9de156d.camel@intel.com>
 MIME-Version: 1.0
-References: <20200229103922.4432-1-oliver.barta@aptiv.com>
- <20200303093256.GC20842@intel.com>
-In-Reply-To: <20200303093256.GC20842@intel.com>
-From: Oliver Barta <o.barta89@gmail.com>
-Date: Thu, 5 Mar 2020 09:14:15 +0100
-Message-ID: <CALJK04Mhbk8L4fVfCguSkRp8G2stoMXjdn_Ur=JMTRAjDXqUUw@mail.gmail.com>
-To: Ramalingam C <ramalingam.c@intel.com>
-X-Mailman-Approved-At: Thu, 05 Mar 2020 13:55:46 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: HDCP: fix Ri prime check done
- during link check
+Content-Disposition: inline
+In-Reply-To: <cda5db60f51d6c46b7a3a632c0f4949fc9de156d.camel@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2 07/20] drm/i915: Unify the low level dbuf
+ code
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,60 +52,354 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Sean Paul <seanpaul@chromium.org>, Oliver Barta <oliver.barta@aptiv.com>,
- Ravisankar Madasamy <ravisankar.madasamy@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 3, 2020 at 10:33 AM Ramalingam C <ramalingam.c@intel.com> wrote:
->
-> On 2020-02-29 at 11:39:22 +0100, Oliver Barta wrote:
-> > From: Oliver Barta <oliver.barta@aptiv.com>
-> >
-> > The check was always succeeding even in case of a mismatch due to the
-> > HDCP_STATUS_ENC bit being set. Make sure both bits are actually set.
-> >
-> > Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
-> Looks good to me. But we need to do same on intel_hdcp_auth(), where we
-> check the R0 on authentication.
->
-> -Ram
-Thanks for review and your suggestion. I have created a separate patch as
-the problem is a little bit different in intel_hdcp_auth(). See
-https://patchwork.freedesktop.org/series/74271/
+On Thu, Mar 05, 2020 at 08:28:30AM +0000, Lisovskiy, Stanislav wrote:
+> On Wed, 2020-03-04 at 20:30 +0200, Ville Syrj=E4l=E4 wrote:
+> > On Wed, Mar 04, 2020 at 05:23:05PM +0000, Lisovskiy, Stanislav wrote:
+> > > =
 
-Oliver
-> > Fixes: 2320175feb74 ("drm/i915: Implement HDCP for HDMI")
-> > ---
-> >  Submitted before as part of patch series
-> >  https://patchwork.freedesktop.org/series/73961/
-> >  For some reason the versioning got messed up.
-> >  I marked the patch series as superseded and I'm
-> >  starting all over. Sorry for spamming you.
-> >
-> >  drivers/gpu/drm/i915/display/intel_hdmi.c | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > index 0ac9bdfbc094..ac4276157182 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> > @@ -1536,7 +1536,8 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
-> >       intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
-> >
-> >       /* Wait for Ri prime match */
-> > -     if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
-> > +     if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
-> > +                  port)) & (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
-> >                    (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
-> >               DRM_ERROR("Ri' mismatch detected, link check failed (%x)\n",
-> >                         intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)));
-> > --
-> > 2.20.1
-> >
+> > > > -       /* If 2nd DBuf slice required, enable it here */
+> > > >        if (INTEL_GEN(dev_priv) >=3D 11 && slices_union !=3D
+> > > > hw_enabled_slices)
+> > > > -               icl_dbuf_slices_update(dev_priv, slices_union);
+> > > > +               gen9_dbuf_slices_update(dev_priv, slices_union);
+> > > > }
+> > > > static void icl_dbuf_slice_post_update(struct intel_atomic_state
+> > > > *state)
+> > > > @@ -15307,9 +15306,8 @@ static void
+> > > > icl_dbuf_slice_post_update(struct intel_atomic_state *state)
+> > > >        u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
+> > > >        u8 required_slices =3D state->enabled_dbuf_slices_mask;
+> > > > -       /* If 2nd DBuf slice is no more required disable it */
+> > > >         if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
+> > > > hw_enabled_slices)
+> > > > -               icl_dbuf_slices_update(dev_priv,
+> > > > required_slices);
+> > > > +               gen9_dbuf_slices_update(dev_priv,
+> > > > required_slices);
+> > > =
+
+> > > =
+
+> > > Doesn't make much sense. Just look - previously we were checking if
+> > > INTEL_GEN is >=3D than 11(which _is_ ICL)
+> > > =
+
+> > > and now we still _do_ check if INTEL_GEN is >=3D 11, but... call now
+> > > function renamed to gen9
+> > > =
+
+> > > =
+
+> > > I guess you either need to change INTEL_GEN check to be >=3D9 to at
+> > > least look somewhat consistent
+> > > =
+
+> > > or leave it as is. Or at least rename icl_ prefix to gen11_
+> > > otherwise that looks inconsistent, i.e
+> > > =
+
+> > > you are now checking that gen is >=3D 11 and then OK - now let's call
+> > > gen 9! :)
+> > =
+
+> > The standard practice is to name things based on the oldest platform
+> > that introduced the thing.
+> =
+
+> And that is fine - but then you need to change the check above from =
+
+> INTEL_GEN >=3D 11 to INTEL_GEN >=3D 9, right - if you gen9 is the oldest
+> platform. =
+
+
+No, the function works just fine for all skl+ but no real requirement
+that it gets called on all of them.  It's just part of the standard set
+of gen9_dbuf (which should really be skl_dbuf since this is about
+display stuff).
+
+Anyways, IIRC this check is going away in a later patch, so the
+discussion is a bit moot.
+
+> =
+
+> -       /* If 2nd DBuf slice required, enable it here */
+> > > >        if (INTEL_GEN(dev_priv) >=3D 11 && slices_union !=3D
+> > > > hw_enabled_slices)
+> > > > -               icl_dbuf_slices_update(dev_priv, slices_union);
+> > > > +               gen9_dbuf_slices_update(dev_priv, slices_union);
+> > > > }
+> =
+
+> I mean previously we were checking INTEL_GEN to be at least 11 and
+> called function prefixed with icl_ - which was consistent and logical.
+> =
+
+> Now you changed this to gen9(oldest platform which introduced the
+> thing), however then the check above makes no sense - it should be
+> changed to INTEL_GEN >=3D 9 as well. Otherwise this
+> "gen9_dbuf_slices_update" function will not be actually ever called for
+> gen9.
+> =
+
+> Or do you want function prefixed as gen9_ to be only called for gen 11,
+> why we then prefix it..
+> =
+
+> Stan
+> =
+
+> > =
+
+> > > =
+
+> > > =
+
+> > > Stan
+> > > =
+
+> > > ________________________________
+> > > From: Ville Syrjala <ville.syrjala@linux.intel.com>
+> > > Sent: Tuesday, February 25, 2020 7:11:12 PM
+> > > To: intel-gfx@lists.freedesktop.org
+> > > Cc: Lisovskiy, Stanislav
+> > > Subject: [PATCH v2 07/20] drm/i915: Unify the low level dbuf code
+> > > =
+
+> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > =
+
+> > > The low level dbuf slice code is rather inconsitent with its
+> > > functiona naming and organization. Make it more consistent.
+> > > =
+
+> > > Also share the enable/disable functions between all platforms
+> > > since the same code works just fine for all of them.
+> > > =
+
+> > > Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c  |  6 +--
+> > >  .../drm/i915/display/intel_display_power.c    | 44 ++++++++-------
+> > > ----
+> > >  .../drm/i915/display/intel_display_power.h    |  6 +--
+> > >  3 files changed, 24 insertions(+), 32 deletions(-)
+> > > =
+
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index 3031e64ee518..6952c398cc43 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -15296,9 +15296,8 @@ static void
+> > > icl_dbuf_slice_pre_update(struct intel_atomic_state *state)
+> > >          u8 required_slices =3D state->enabled_dbuf_slices_mask;
+> > >          u8 slices_union =3D hw_enabled_slices | required_slices;
+> > > =
+
+> > > -       /* If 2nd DBuf slice required, enable it here */
+> > >          if (INTEL_GEN(dev_priv) >=3D 11 && slices_union !=3D
+> > > hw_enabled_slices)
+> > > -               icl_dbuf_slices_update(dev_priv, slices_union);
+> > > +               gen9_dbuf_slices_update(dev_priv, slices_union);
+> > >  }
+> > > =
+
+> > >  static void icl_dbuf_slice_post_update(struct intel_atomic_state
+> > > *state)
+> > > @@ -15307,9 +15306,8 @@ static void
+> > > icl_dbuf_slice_post_update(struct intel_atomic_state *state)
+> > >          u8 hw_enabled_slices =3D dev_priv->enabled_dbuf_slices_mask;
+> > >          u8 required_slices =3D state->enabled_dbuf_slices_mask;
+> > > =
+
+> > > -       /* If 2nd DBuf slice is no more required disable it */
+> > >          if (INTEL_GEN(dev_priv) >=3D 11 && required_slices !=3D
+> > > hw_enabled_slices)
+> > > -               icl_dbuf_slices_update(dev_priv, required_slices);
+> > > +               gen9_dbuf_slices_update(dev_priv, required_slices);
+> > >  }
+> > > =
+
+> > >  static void skl_commit_modeset_enables(struct intel_atomic_state
+> > > *state)
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > index e81e561e8ac0..ce3bbc4c7a27 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -4433,15 +4433,18 @@ static void
+> > > intel_power_domains_sync_hw(struct drm_i915_private *dev_priv)
+> > >          mutex_unlock(&power_domains->lock);
+> > >  }
+> > > =
+
+> > > -static void intel_dbuf_slice_set(struct drm_i915_private
+> > > *dev_priv,
+> > > -                                enum dbuf_slice slice, bool
+> > > enable)
+> > > +static void gen9_dbuf_slice_set(struct drm_i915_private *dev_priv,
+> > > +                               enum dbuf_slice slice, bool enable)
+> > >  {
+> > >          i915_reg_t reg =3D DBUF_CTL_S(slice);
+> > >          bool state;
+> > >          u32 val;
+> > > =
+
+> > >          val =3D intel_de_read(dev_priv, reg);
+> > > -       val =3D enable ? (val | DBUF_POWER_REQUEST) : (val &
+> > > ~DBUF_POWER_REQUEST);
+> > > +       if (enable)
+> > > +               val |=3D DBUF_POWER_REQUEST;
+> > > +       else
+> > > +               val &=3D ~DBUF_POWER_REQUEST;
+> > >          intel_de_write(dev_priv, reg, val);
+> > >          intel_de_posting_read(dev_priv, reg);
+> > >          udelay(10);
+> > > @@ -4452,18 +4455,8 @@ static void intel_dbuf_slice_set(struct
+> > > drm_i915_private *dev_priv,
+> > >                   slice, enable ? "enable" : "disable");
+> > >  }
+> > > =
+
+> > > -static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
+> > > -{
+> > > -       icl_dbuf_slices_update(dev_priv, BIT(DBUF_S1));
+> > > -}
+> > > -
+> > > -static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
+> > > -{
+> > > -       icl_dbuf_slices_update(dev_priv, 0);
+> > > -}
+> > > -
+> > > -void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> > > -                           u8 req_slices)
+> > > +void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> > > +                            u8 req_slices)
+> > >  {
+> > >          int num_slices =3D INTEL_INFO(dev_priv)-
+> > > >num_supported_dbuf_slices;
+> > >          struct i915_power_domains *power_domains =3D &dev_priv-
+> > > >power_domains;
+> > > @@ -4486,28 +4479,29 @@ void icl_dbuf_slices_update(struct
+> > > drm_i915_private *dev_priv,
+> > >          mutex_lock(&power_domains->lock);
+> > > =
+
+> > >          for (slice =3D DBUF_S1; slice < num_slices; slice++)
+> > > -               intel_dbuf_slice_set(dev_priv, slice,
+> > > -                                    req_slices & BIT(slice));
+> > > +               gen9_dbuf_slice_set(dev_priv, slice, req_slices &
+> > > BIT(slice));
+> > > =
+
+> > >          dev_priv->enabled_dbuf_slices_mask =3D req_slices;
+> > > =
+
+> > >          mutex_unlock(&power_domains->lock);
+> > >  }
+> > > =
+
+> > > -static void icl_dbuf_enable(struct drm_i915_private *dev_priv)
+> > > +static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
+> > >  {
+> > > -       skl_ddb_get_hw_state(dev_priv);
+> > > +       dev_priv->enabled_dbuf_slices_mask =3D
+> > > +               intel_enabled_dbuf_slices_mask(dev_priv);
+> > > +
+> > >          /*
+> > >           * Just power up at least 1 slice, we will
+> > >           * figure out later which slices we have and what we need.
+> > >           */
+> > > -       icl_dbuf_slices_update(dev_priv, dev_priv-
+> > > >enabled_dbuf_slices_mask |
+> > > -                              BIT(DBUF_S1));
+> > > +       gen9_dbuf_slices_update(dev_priv, BIT(DBUF_S1) |
+> > > +                               dev_priv-
+> > > >enabled_dbuf_slices_mask);
+> > >  }
+> > > =
+
+> > > -static void icl_dbuf_disable(struct drm_i915_private *dev_priv)
+> > > +static void gen9_dbuf_disable(struct drm_i915_private *dev_priv)
+> > >  {
+> > > -       icl_dbuf_slices_update(dev_priv, 0);
+> > > +       gen9_dbuf_slices_update(dev_priv, 0);
+> > >  }
+> > > =
+
+> > >  static void icl_mbus_init(struct drm_i915_private *dev_priv)
+> > > @@ -5067,7 +5061,7 @@ static void icl_display_core_init(struct
+> > > drm_i915_private *dev_priv,
+> > >          intel_cdclk_init_hw(dev_priv);
+> > > =
+
+> > >          /* 5. Enable DBUF. */
+> > > -       icl_dbuf_enable(dev_priv);
+> > > +       gen9_dbuf_enable(dev_priv);
+> > > =
+
+> > >          /* 6. Setup MBUS. */
+> > >          icl_mbus_init(dev_priv);
+> > > @@ -5090,7 +5084,7 @@ static void icl_display_core_uninit(struct
+> > > drm_i915_private *dev_priv)
+> > >          /* 1. Disable all display engine functions -> aready done
+> > > */
+> > > =
+
+> > >          /* 2. Disable DBUF */
+> > > -       icl_dbuf_disable(dev_priv);
+> > > +       gen9_dbuf_disable(dev_priv);
+> > > =
+
+> > >          /* 3. Disable CD clock */
+> > >          intel_cdclk_uninit_hw(dev_priv);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > > index 601e000ffd0d..1a275611241e 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> > > @@ -312,13 +312,13 @@ enum dbuf_slice {
+> > >          DBUF_S2,
+> > >  };
+> > > =
+
+> > > +void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> > > +                            u8 req_slices);
+> > > +
+> > >  #define with_intel_display_power(i915, domain, wf) \
+> > >          for ((wf) =3D intel_display_power_get((i915), (domain));
+> > > (wf); \
+> > >               intel_display_power_put_async((i915), (domain),
+> > > (wf)), (wf) =3D 0)
+> > > =
+
+> > > -void icl_dbuf_slices_update(struct drm_i915_private *dev_priv,
+> > > -                           u8 req_slices);
+> > > -
+> > >  void chv_phy_powergate_lanes(struct intel_encoder *encoder,
+> > >                               bool override, unsigned int mask);
+> > >  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum
+> > > dpio_phy phy,
+> > > --
+> > > 2.24.1
+> > > =
+
+> > =
+
+> > =
+
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
