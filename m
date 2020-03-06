@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD28E17BF34
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 14:39:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2532517BF69
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 14:43:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB4AD6E441;
-	Fri,  6 Mar 2020 13:39:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 768116ED1D;
+	Fri,  6 Mar 2020 13:43:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D1EC6E446
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 13:39:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60C386ED1D
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 13:43:42 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20467736-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20467737-1500050 
  for multiple; Fri, 06 Mar 2020 13:38:52 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  6 Mar 2020 13:38:36 +0000
-Message-Id: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+Date: Fri,  6 Mar 2020 13:38:37 +0000
+Message-Id: <20200306133852.3420322-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/17] drm/i915/selftests: Apply a heavy handed
- flush to i915_active
+Subject: [Intel-gfx] [PATCH 02/17] drm/i915/execlists: Enable timeslice on
+ partial virtual engine dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,66 +39,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Due to the ordering of cmpxchg()/dma_fence_signal() inside node_retire(),
-we must also use the xchg() as our primary memory barrier to flush the
-outstanding callbacks after expected completion of the i915_active.
+If we stop filling the ELSP due to an incompatible virtual engine
+request, check if we should enable the timeslice on behalf of the queue.
 
+This fixes the case where we are inspecting the last->next element when
+we know that the last element is the last request in the execution queue,
+and so decided we did not need to enable timeslicing despite the intent
+to do so!
+
+Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: <stable@vger.kernel.org> # v5.4+
 ---
- drivers/gpu/drm/i915/selftests/i915_active.c | 29 ++++++++++++++------
- 1 file changed, 21 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 29 ++++++++++++++++++-----------
+ 1 file changed, 18 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 3a37c67ab6c4..68bbb1580162 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -311,20 +311,33 @@ static void spin_unlock_wait(spinlock_t *lock)
- 	spin_unlock_irq(lock);
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 13941d1c0a4a..a1d268880cfe 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1757,11 +1757,9 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
+ 	if (!intel_engine_has_timeslices(engine))
+ 		return false;
+ 
+-	if (list_is_last(&rq->sched.link, &engine->active.requests))
+-		return false;
+-
+-	hint = max(rq_prio(list_next_entry(rq, sched.link)),
+-		   engine->execlists.queue_priority_hint);
++	hint = engine->execlists.queue_priority_hint;
++	if (!list_is_last(&rq->sched.link, &engine->active.requests))
++		hint = max(hint, rq_prio(list_next_entry(rq, sched.link)));
+ 
+ 	return hint >= effective_prio(rq);
+ }
+@@ -1803,6 +1801,18 @@ static void set_timeslice(struct intel_engine_cs *engine)
+ 	set_timer_ms(&engine->execlists.timer, active_timeslice(engine));
  }
  
-+static void active_flush(struct i915_active *ref,
-+			 struct i915_active_fence *active)
++static void start_timeslice(struct intel_engine_cs *engine)
 +{
-+	struct dma_fence *fence;
++	struct intel_engine_execlists *execlists = &engine->execlists;
 +
-+	fence = xchg(__active_fence_slot(active), NULL);
-+	if (!fence)
++	execlists->switch_priority_hint = execlists->queue_priority_hint;
++
++	if (timer_pending(&execlists->timer))
 +		return;
 +
-+	spin_lock_irq(fence->lock);
-+	__list_del_entry(&active->cb.node);
-+	spin_unlock_irq(fence->lock); /* serialise with fence->cb_list */
-+	atomic_dec(&ref->count);
-+
-+	GEM_BUG_ON(!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
++	set_timer_ms(&execlists->timer, timeslice(engine));
 +}
 +
- void i915_active_unlock_wait(struct i915_active *ref)
+ static void record_preemption(struct intel_engine_execlists *execlists)
  {
- 	if (i915_active_acquire_if_busy(ref)) {
- 		struct active_node *it, *n;
- 
-+		/* Wait for all active callbacks */
- 		rcu_read_lock();
--		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
--			struct dma_fence *f;
+ 	(void)I915_SELFTEST_ONLY(execlists->preempt_hang.count++);
+@@ -1966,11 +1976,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * Even if ELSP[1] is occupied and not worthy
+ 				 * of timeslices, our queue might be.
+ 				 */
+-				if (!execlists->timer.expires &&
+-				    need_timeslice(engine, last))
+-					set_timer_ms(&execlists->timer,
+-						     timeslice(engine));
 -
--			/* Wait for all active callbacks */
--			f = rcu_dereference(it->base.fence);
--			if (f)
--				spin_unlock_wait(f->lock);
--		}
-+		active_flush(ref, &ref->excl);
-+		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node)
-+			active_flush(ref, &it->base);
- 		rcu_read_unlock();
++				start_timeslice(engine);
+ 				return;
+ 			}
+ 		}
+@@ -2005,7 +2011,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
  
- 		i915_active_release(ref);
+ 			if (last && !can_merge_rq(last, rq)) {
+ 				spin_unlock(&ve->base.active.lock);
+-				return; /* leave this for another */
++				start_timeslice(engine);
++				return; /* leave this for another sibling */
+ 			}
+ 
+ 			ENGINE_TRACE(engine,
 -- 
 2.25.1
 
