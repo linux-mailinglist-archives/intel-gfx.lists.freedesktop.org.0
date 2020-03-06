@@ -2,42 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A477517C512
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 19:08:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4245717C586
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 19:39:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915C56E214;
-	Fri,  6 Mar 2020 18:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F686EC18;
+	Fri,  6 Mar 2020 18:39:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54BAC6E214;
- Fri,  6 Mar 2020 18:08:52 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E8AB6E4DD;
+ Fri,  6 Mar 2020 18:39:38 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 10:08:51 -0800
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2020 10:39:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,523,1574150400"; d="scan'208";a="288036825"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 06 Mar 2020 10:08:49 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 06 Mar 2020 20:08:48 +0200
-Date: Fri, 6 Mar 2020 20:08:48 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Li, Juston" <juston.li@intel.com>
-Message-ID: <20200306180848.GU13686@intel.com>
-References: <20200211212237.1269-1-juston.li@intel.com>
- <20200211212237.1269-2-juston.li@intel.com>
- <05dfb92dac8fa20616030e62f979e5862eb37835.camel@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,523,1574150400"; d="scan'208";a="241246419"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga003.jf.intel.com with ESMTP; 06 Mar 2020 10:39:37 -0800
+Date: Fri, 6 Mar 2020 10:40:48 -0800
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200306184048.GA25133@intel.com>
+References: <20200306014220.20029-1-manasi.d.navare@intel.com>
+ <87mu8tojvt.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <05dfb92dac8fa20616030e62f979e5862eb37835.camel@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v6 i-g-t 2/2] tests/kms_getfb: Add getfb2
- tests
+In-Reply-To: <87mu8tojvt.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/edid: Name the detailed monitor
+ range flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,58 +47,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "igt-dev@lists.freedesktop.org" <igt-dev@lists.freedesktop.org>,
- "daniel.vetter@ffwll.ch" <daniel.vetter@ffwll.ch>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "daniels@collabora.com" <daniels@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>,
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 06, 2020 at 05:46:45PM +0000, Li, Juston wrote:
-> On Tue, 2020-02-11 at 13:22 -0800, Juston Li wrote:
-> > From: Daniel Stone <daniels@collabora.com>
-> > =
+On Fri, Mar 06, 2020 at 12:30:46PM +0200, Jani Nikula wrote:
+> On Thu, 05 Mar 2020, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> > This patch adds defines for the detailed monitor
+> > range flags as per the EDID specification.
+> >
+> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Cc: Harry Wentland <harry.wentland@amd.com>
+> > Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
+> > Cc: Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
+> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> > ---
+> >  include/drm/drm_edid.h | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> > index f0b03d401c27..f89c97623845 100644
+> > --- a/include/drm/drm_edid.h
+> > +++ b/include/drm/drm_edid.h
+> > @@ -91,6 +91,11 @@ struct detailed_data_string {
+> >  	u8 str[13];
+> >  } __attribute__((packed));
+> >  =
 
-> > Mirroring addfb2, add tests for the new ioctl which will return us
-> > information about framebuffers containing multiple buffers, as well
-> > as
-> > modifiers.
-> > =
-
-> > Changes since v5:
-> > - Add documentation
-> > =
-
-> > Changes since v4:
-> > - Remove unnecessary bo creation for getfb2-handle-closed subtest
-> > =
-
-> > Changes since v3:
-> > - Add subtests to ensure handles aren't returned for non-root and
-> >   non-master callers
-> > =
-
-> > Changes since v1:
-> > - Add test that uses getfb2 output to call addfb2 as suggested by
-> > Ville
-> > =
-
-> > Signed-off-by: Daniel Stone <daniels@collabora.com>
-> > Signed-off-by: Juston Li <juston.li@intel.com>
-> > Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > +#define EDID_DEFAULT_GTF_SUPPORT_FLAG   0x00
+> > +#define EDID_RANGE_LIMITS_ONLY_FLAG     0x01
+> > +#define EDID_SECONDARY_GTF_SUPPORT_FLAG 0x02
+> > +#define EDID_CVT_SUPPORT_FLAG           0x04
 > =
 
-> Friendly nudge, can this be merged now?
-> Added documentation, passing BAT now.
+> Bikeshed for consideration:
+> =
 
-Pushed to master. Thanks.
+> drm_edid.h has some macros with DRM_EDID_ prefix, some with EDID_
+> prefix, and then some with no prefix at all really. Should we start
+> consolidating on something when we add more?
+>
 
--- =
+Yes Jani I did notice the same thing and didnt know which convention
+to continue to follow but I noticed that majority of the defines were
+just EDID_ so just used that for these new defines.
 
-Ville Syrj=E4l=E4
-Intel
+Is there a particular way you wish to consolidate this and use a specific
+convention for #defines?
+
+I can atleast change these new defines based on a preferred convention and =
+then
+separate patches to change the rest in .h and corresponding usages in .c fi=
+les.
+
+Regards
+Manasi
+ =
+
+> BR,
+> Jani.
+> =
+
+> =
+
+> > +
+> >  struct detailed_data_monitor_range {
+> >  	u8 min_vfreq;
+> >  	u8 max_vfreq;
+> =
+
+> -- =
+
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
