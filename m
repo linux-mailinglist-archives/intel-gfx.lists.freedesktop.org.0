@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D9DC17B6BA
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 07:29:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2AF17B6D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 07:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80D7A6E445;
-	Fri,  6 Mar 2020 06:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C13E6E4CD;
+	Fri,  6 Mar 2020 06:37:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E36BA6E445;
- Fri,  6 Mar 2020 06:29:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9D1246E4CD;
+ Fri,  6 Mar 2020 06:37:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D17CBA47E6;
- Fri,  6 Mar 2020 06:29:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 95EA1A3ECB;
+ Fri,  6 Mar 2020 06:37:37 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 06 Mar 2020 06:29:18 -0000
-Message-ID: <158347615883.3081.9131749520065489169@emeril.freedesktop.org>
+Date: Fri, 06 Mar 2020 06:37:37 -0000
+Message-ID: <158347665758.3083.9398213725460064870@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200305204711.217783-1-matthew.auld@intel.com>
-In-Reply-To: <20200305204711.217783-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
- =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/i915/buddy=3A_avoid_double_lis?=
- =?utf-8?q?t=5Fadd?=
+References: <20200305205325.218702-1-matthew.auld@intel.com>
+In-Reply-To: <20200305205325.218702-1-matthew.auld@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
+ =?utf-8?q?915/gem=5Fexec=5Fparams=3A_add_test=5Finvalid=5Fbatch?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,14 +47,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/i915/buddy: avoid double list_add
-URL   : https://patchwork.freedesktop.org/series/74355/
-State : warning
+Series: i915/gem_exec_params: add test_invalid_batch
+URL   : https://patchwork.freedesktop.org/series/74356/
+State : failure
 
 == Summary ==
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
+Applying: i915/gem_exec_params: add test_invalid_batch
+error: sha1 information is lacking or useless (tests/i915/gem_exec_params.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 i915/gem_exec_params: add test_invalid_batch
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
