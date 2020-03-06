@@ -1,37 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3982617C6C8
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 21:07:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CBD17C6CF
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 21:10:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98E626ED60;
-	Fri,  6 Mar 2020 20:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D5766ED62;
+	Fri,  6 Mar 2020 20:10:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 1.mo68.mail-out.ovh.net (1.mo68.mail-out.ovh.net
- [46.105.41.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E69306ED60
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 20:07:01 +0000 (UTC)
-Received: from player737.ha.ovh.net (unknown [10.110.103.118])
- by mo68.mail-out.ovh.net (Postfix) with ESMTP id 0F5C915E81D
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 21:06:58 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player737.ha.ovh.net (Postfix) with ESMTPSA id 8940D6B321C2;
- Fri,  6 Mar 2020 20:06:53 +0000 (UTC)
-From: Andi Shyti <andi@etezian.org>
-To: Intel GFX <intel-gfx@lists.freedesktop.org>
-Date: Fri,  6 Mar 2020 22:06:36 +0200
-Message-Id: <20200306200636.52051-1-andi@etezian.org>
-X-Mailer: git-send-email 2.25.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 666ED6ED62;
+ Fri,  6 Mar 2020 20:10:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 44397A47DA;
+ Fri,  6 Mar 2020 20:10:37 +0000 (UTC)
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 12493548317921296989
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudduvddgudefiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: [Intel-gfx] [PATCH v2] drm/i915/gt: allow setting generic data
- pointer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Karthik B S" <karthik.b.s@intel.com>
+Date: Fri, 06 Mar 2020 20:10:37 -0000
+Message-ID: <158352543725.3082.451026137838176385@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200306113927.16904-1-karthik.b.s@intel.com>
+In-Reply-To: <20200306113927.16904-1-karthik.b.s@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQXN5?=
+ =?utf-8?q?nchronous_flip_implementation_for_i915?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,140 +38,144 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Andi Shyti <andi.shyti@intel.com>
+== Series Details ==
 
-When registering debugfs files the intel gt debugfs library
-forces a 'struct *gt' private data on the caller.
+Series: Asynchronous flip implementation for i915
+URL   : https://patchwork.freedesktop.org/series/74386/
+State : failure
 
-There might be different needs, therefore make it generic by
-adding one more argument to the "debugfs_register_files()"
-function which gets the generic void private data as argument.
+== Summary ==
 
-Still keep it simple by defining a wrapper where struct *gt is
-the chosen private data to be stored.
+CI Bug Log - changes from CI_DRM_8085 -> Patchwork_16860
+====================================================
 
-I take the chance to rename the functions by using "intel_gt_" as
-prefix instead of "debugfs_".
+Summary
+-------
 
-Signed-off-by: Andi Shyti <andi.shyti@intel.com>
----
-Changelog:
-v2:
- - the eval function is made generic as suggested by Daniele.
+  **FAILURE**
 
- drivers/gpu/drm/i915/gt/debugfs_engines.c |  2 +-
- drivers/gpu/drm/i915/gt/debugfs_gt.c      | 11 +++++------
- drivers/gpu/drm/i915/gt/debugfs_gt.h      | 12 +++++++-----
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c   | 14 +++++++++-----
- 4 files changed, 22 insertions(+), 17 deletions(-)
+  Serious unknown changes coming with Patchwork_16860 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16860, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_engines.c b/drivers/gpu/drm/i915/gt/debugfs_engines.c
-index 6a5e9ab20b94..3434df10d58c 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_engines.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_engines.c
-@@ -32,5 +32,5 @@ void debugfs_engines_register(struct intel_gt *gt, struct dentry *root)
- 		{ "engines", &engines_fops },
- 	};
- 
--	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
-+	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
- }
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-index 75255aaacaed..24099fb157be 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-@@ -26,15 +26,14 @@ void debugfs_gt_register(struct intel_gt *gt)
- 	debugfs_gt_pm_register(gt, root);
- }
- 
--void debugfs_gt_register_files(struct intel_gt *gt,
--			       struct dentry *root,
--			       const struct debugfs_gt_file *files,
--			       unsigned long count)
-+void __intel_gt_debugfs_register_files(struct intel_gt *gt, struct dentry *root,
-+				       const struct debugfs_gt_file *files,
-+				       unsigned long count, void *data)
- {
- 	while (count--) {
--		if (!files->eval || files->eval(gt))
-+		if (!files->eval || files->eval(data))
- 			debugfs_create_file(files->name,
--					    0444, root, gt,
-+					    0444, root, data,
- 					    files->fops);
- 
- 		files++;
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.h b/drivers/gpu/drm/i915/gt/debugfs_gt.h
-index 4ea0f06cda8f..f498fe75c79a 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt.h
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt.h
-@@ -28,12 +28,14 @@ void debugfs_gt_register(struct intel_gt *gt);
- struct debugfs_gt_file {
- 	const char *name;
- 	const struct file_operations *fops;
--	bool (*eval)(const struct intel_gt *gt);
-+	bool (*eval)(void *data);
- };
- 
--void debugfs_gt_register_files(struct intel_gt *gt,
--			       struct dentry *root,
--			       const struct debugfs_gt_file *files,
--			       unsigned long count);
-+void __intel_gt_debugfs_register_files(struct intel_gt *gt, struct dentry *root,
-+				       const struct debugfs_gt_file *files,
-+				       unsigned long count, void *data);
-+
-+#define intel_gt_debugfs_register_file(g, r, f, c)	\
-+	__intel_gt_debugfs_register_files(g, r, f, c, g)
- 
- #endif /* DEBUGFS_GT_H */
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-index 059c9e5c002e..a233b97a9294 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-@@ -506,9 +506,11 @@ static int llc_show(struct seq_file *m, void *data)
- 	return 0;
- }
- 
--static bool llc_eval(const struct intel_gt *gt)
-+static bool llc_eval(void *data)
- {
--	return HAS_LLC(gt->i915);
-+	struct intel_gt *gt = data;
-+
-+	return !gt ? false : HAS_LLC(gt->i915);
- }
- 
- DEFINE_GT_DEBUGFS_ATTRIBUTE(llc);
-@@ -580,9 +582,11 @@ static int rps_boost_show(struct seq_file *m, void *data)
- 	return 0;
- }
- 
--static bool rps_eval(const struct intel_gt *gt)
-+static bool rps_eval(void *data)
- {
--	return HAS_RPS(gt->i915);
-+	struct intel_gt *gt = data;
-+
-+	return !gt ? false : HAS_RPS(gt->i915);
- }
- 
- DEFINE_GT_DEBUGFS_ATTRIBUTE(rps_boost);
-@@ -597,5 +601,5 @@ void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
- 		{ "rps_boost", &rps_boost_fops, rps_eval },
- 	};
- 
--	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
-+	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
- }
--- 
-2.25.0
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/index.html
 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16860:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-snb-2520m:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-snb-2520m/igt@i915_selftest@live@gt_lrc.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-snb-2520m/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-skl-6770hq:      [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-skl-6770hq/igt@kms_busy@basic@flip.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-skl-6770hq/igt@kms_busy@basic@flip.html
+
+  * igt@runner@aborted:
+    - fi-snb-2520m:       NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-snb-2520m/igt@runner@aborted.html
+    - fi-byt-j1900:       NOTRUN -> [FAIL][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-byt-j1900/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16860 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@invalid-get-prop:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-tgl-y/igt@kms_addfb_basic@invalid-get-prop.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-tgl-y/igt@kms_addfb_basic@invalid-get-prop.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][9] ([CI#94]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-snb-2520m:       [DMESG-WARN][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-snb-2520m/igt@i915_selftest@live@gt_contexts.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#109635] / [i915#262]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16] +1 similar issue
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8085/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
+
+
+Participating hosts (51 -> 42)
+------------------------------
+
+  Additional (1): fi-tgl-dsi 
+  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-gdg-551 fi-bsw-kefka fi-bdw-samus fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8085 -> Patchwork_16860
+
+  CI-20190529: 20190529
+  CI_DRM_8085: f731492964aa6510672f43292d4b2216b73eddeb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5496: 00a8e400876f2c27f62ed7d418be6b55738a4ea6 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16860: 2eafb08e7a1274550eaa97d29851803cdda31162 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+2eafb08e7a12 drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+de25734fbcdc drm/i915: Enable and handle flip done interrupt
+6d21dd58995a drm/i915: Add flip_done_handler definition
+ea0c09f4b01b drm/i915: Add checks specific to async flips
+95f6839ee4fc drm/i915: Make commit call blocking in case of async flips
+e1403132835c drm/i915: Add support for async flips in I915
+acc147186833 drm/i915: Define flip done functions and enable IER
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16860/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
