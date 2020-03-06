@@ -2,37 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4264517B97A
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 10:42:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A04C17B98E
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 10:47:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575936ECB0;
-	Fri,  6 Mar 2020 09:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADC126ECB2;
+	Fri,  6 Mar 2020 09:47:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 413856ECAA;
- Fri,  6 Mar 2020 09:42:13 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3901D6ECB2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 09:47:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 01:42:12 -0800
-X-IronPort-AV: E=Sophos;i="5.70,521,1574150400"; d="scan'208";a="234747642"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 01:42:03 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rajat Jain <rajatja@google.com>
-In-Reply-To: <CACK8Z6HRB9q1KeborGr7V-0Qp0AApHV6gBTkc6xD5NokH8gr0w@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200305012338.219746-1-rajatja@google.com>
- <20200305012338.219746-3-rajatja@google.com> <87o8tbnnqa.fsf@intel.com>
- <CACK8Z6HRB9q1KeborGr7V-0Qp0AApHV6gBTkc6xD5NokH8gr0w@mail.gmail.com>
-Date: Fri, 06 Mar 2020 11:42:00 +0200
-Message-ID: <87tv31om53.fsf@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2020 01:47:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,521,1574150400"; d="scan'208";a="275477382"
+Received: from ntitus-mobl1.ti.intel.com (HELO mwahaha-bdw.ger.corp.intel.com)
+ ([10.252.24.210])
+ by fmsmga002.fm.intel.com with ESMTP; 06 Mar 2020 01:47:36 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri,  6 Mar 2020 09:47:35 +0000
+Message-Id: <20200306094735.258285-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915: Lookup and attach ACPI
- device node for connectors
+Subject: [Intel-gfx] [PATCH v3] drm/i915: properly sanity check
+ batch_start_offset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,75 +42,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
- Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
- Mark Pearson <mpearson@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>,
- Rajat Jain <rajatxjain@gmail.com>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Mat King <mathewk@google.com>,
- Duncan Laurie <dlaurie@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Pavel Machek <pavel@denx.de>, Nitin Joshi1 <njoshi1@lenovo.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 05 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
-> On Thu, Mar 5, 2020 at 1:41 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> On Wed, 04 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
->> 1) See if we can postpone creating and attaching properties to connector
->> ->late_register hook. (I didn't have the time to look into it yet, at
->> all.)
->
-> Apparently not. The drm core doesn't like to add properties in
-> late_register() callback. I just tried it and get this warning:
+Check the edge case where batch_start_offset sits exactly on the batch
+size.
 
-I kind of had a feeling this would be the case, thanks for checking.
+v2: add new range_overflows variant to capture the special case where
+the size is permitted to be zero, like with batch_len.
 
->> 2) Provide a way to populate connector->acpi_device_id and
->> connector->acpi_handle on a per-connector basis. At least the device id
->> remains constant for the lifetime of the drm_device
->
-> Are you confirming that the connector->acpi_device_id remains constant
-> for the lifetime of the drm_device, as calculated in
-> intel_acpi_device_id_update()?  Even in the face of external displays
-> (monitors) being connected and disconnected during the lifetime of the
-> system? If so, then I think we can have a solution.
+v3: other way around. the common case is the exclusive one which should
+just be >=, with that we then just need to convert the three odd ball
+cases that don't apply to use the new inclusive _end version.
 
-First I thought so. Alas it does not hold for DP MST, where you can have
-connectors added and removed dynamically. I think we could ensure they
-stay the same for all other connectors though. I'm pretty sure this is
-already the case; they get added/removed after all others.
+Testcase: igt/gem_exec_params/invalid-batch-start-offset
+Fixes: 0b5372727be3 ("drm/i915/cmdparser: Use cached vmappings")
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 12 ++++++------
+ drivers/gpu/drm/i915/gt/intel_rc6.c      |  8 ++++----
+ drivers/gpu/drm/i915/i915_utils.h        | 14 +++++++++++++-
+ 3 files changed, 23 insertions(+), 11 deletions(-)
 
-Another thought, from the ACPI perspective, I'm not sure the dynamically
-added/removed DP MST connectors should even have acpi handles. But
-again, tying all this together with ACPI stuff is not something I am an
-expert on.
-
->> (why do we keep
->> updating it at every resume?!) but can we be sure ->acpi_handle does
->> too? (I don't really know my way around ACPI.)
->
-> I don't understand why this was being updated on every resume in that
-> case (this existed even before my patchset). I believe we do not need
-> it. Yes, the ->acpi_handle will not change if the ->acpi_device_id
-> does not change. I believe the way forward should then be to populate
-> connector->acpi_device_id and connector->acpi_handle ONE TIME at the
-> time of connector init (and not update it on every resume). Does this
-> sound ok?
-
-If a DP MST connector gets removed, should the other ACPI display
-indexes after that shift, or remain the same? I really don't know.
-
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 6cfe14393885..2d982c322be9 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -509,12 +509,12 @@ static int intel_fbc_alloc_cfb(struct drm_i915_private *dev_priv,
+ 
+ 		fbc->compressed_llb = compressed_llb;
+ 
+-		GEM_BUG_ON(range_overflows_t(u64, dev_priv->dsm.start,
+-					     fbc->compressed_fb.start,
+-					     U32_MAX));
+-		GEM_BUG_ON(range_overflows_t(u64, dev_priv->dsm.start,
+-					     fbc->compressed_llb->start,
+-					     U32_MAX));
++		GEM_BUG_ON(range_overflows_end_t(u64, dev_priv->dsm.start,
++						 fbc->compressed_fb.start,
++						 U32_MAX));
++		GEM_BUG_ON(range_overflows_end_t(u64, dev_priv->dsm.start,
++						 fbc->compressed_llb->start,
++						 U32_MAX));
+ 		intel_de_write(dev_priv, FBC_CFB_BASE,
+ 			       dev_priv->dsm.start + fbc->compressed_fb.start);
+ 		intel_de_write(dev_priv, FBC_LL_BASE,
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index 0392d2c79de9..66c07c32745c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -320,10 +320,10 @@ static int vlv_rc6_init(struct intel_rc6 *rc6)
+ 		return PTR_ERR(pctx);
+ 	}
+ 
+-	GEM_BUG_ON(range_overflows_t(u64,
+-				     i915->dsm.start,
+-				     pctx->stolen->start,
+-				     U32_MAX));
++	GEM_BUG_ON(range_overflows_end_t(u64,
++					 i915->dsm.start,
++					 pctx->stolen->start,
++					 U32_MAX));
+ 	pctx_paddr = i915->dsm.start + pctx->stolen->start;
+ 	intel_uncore_write(uncore, VLV_PCBR, pctx_paddr);
+ 
+diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
+index cae0ae520398..ec31ef6be52f 100644
+--- a/drivers/gpu/drm/i915/i915_utils.h
++++ b/drivers/gpu/drm/i915/i915_utils.h
+@@ -102,12 +102,24 @@ bool i915_error_injected(void);
+ 	typeof(max) max__ = (max); \
+ 	(void)(&start__ == &size__); \
+ 	(void)(&start__ == &max__); \
+-	start__ > max__ || size__ > max__ - start__; \
++	start__ >= max__ || size__ > max__ - start__; \
+ })
+ 
+ #define range_overflows_t(type, start, size, max) \
+ 	range_overflows((type)(start), (type)(size), (type)(max))
+ 
++#define range_overflows_end(start, size, max) ({ \
++	typeof(start) start__ = (start); \
++	typeof(size) size__ = (size); \
++	typeof(max) max__ = (max); \
++	(void)(&start__ == &size__); \
++	(void)(&start__ == &max__); \
++	start__ > max__ || size__ > max__ - start__; \
++})
++
++#define range_overflows_end_t(type, start, size, max) \
++	range_overflows_end((type)(start), (type)(size), (type)(max))
++
+ /* Note we don't consider signbits :| */
+ #define overflows_type(x, T) \
+ 	(sizeof(x) > sizeof(T) && (x) >> BITS_PER_TYPE(T))
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
