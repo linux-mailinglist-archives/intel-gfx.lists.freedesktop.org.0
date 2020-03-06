@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2AF17B6D0
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 07:37:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E3217B6F3
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 07:44:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C13E6E4CD;
-	Fri,  6 Mar 2020 06:37:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8CFD6E566;
+	Fri,  6 Mar 2020 06:44:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9D1246E4CD;
- Fri,  6 Mar 2020 06:37:37 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 497706E566;
+ Fri,  6 Mar 2020 06:44:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 95EA1A3ECB;
- Fri,  6 Mar 2020 06:37:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 428A4A011B;
+ Fri,  6 Mar 2020 06:44:02 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 06 Mar 2020 06:37:37 -0000
-Message-ID: <158347665758.3083.9398213725460064870@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@intel.com>
+Date: Fri, 06 Mar 2020 06:44:02 -0000
+Message-ID: <158347704224.3082.15746912661428450718@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200305205325.218702-1-matthew.auld@intel.com>
-In-Reply-To: <20200305205325.218702-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
- =?utf-8?q?915/gem=5Fexec=5Fparams=3A_add_test=5Finvalid=5Fbatch?=
+References: <20200305235941.1716-1-andi.shyti@intel.com>
+In-Reply-To: <20200305235941.1716-1-andi.shyti@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_allow_setting_generic_data_pointer?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,20 +47,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: i915/gem_exec_params: add test_invalid_batch
-URL   : https://patchwork.freedesktop.org/series/74356/
-State : failure
+Series: drm/i915/gt: allow setting generic data pointer
+URL   : https://patchwork.freedesktop.org/series/74360/
+State : warning
 
 == Summary ==
 
-Applying: i915/gem_exec_params: add test_invalid_batch
-error: sha1 information is lacking or useless (tests/i915/gem_exec_params.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch' to see the failed patch
-Patch failed at 0001 i915/gem_exec_params: add test_invalid_batch
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+$ dim checkpatch origin/drm-tip
+b5c27a068592 drm/i915/gt: allow setting generic data pointer
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_g' - possible side-effects?
+#72: FILE: drivers/gpu/drm/i915/gt/debugfs_gt.h:38:
++#define intel_gt_debugfs_register_file(_g, _r, _f, _c)	\
++	__intel_gt_debugfs_register_files(_g, _r, _f, _c, _g)
+
+total: 0 errors, 0 warnings, 1 checks, 46 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
