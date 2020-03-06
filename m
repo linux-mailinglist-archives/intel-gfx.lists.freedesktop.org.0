@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09CAB17BAA3
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 11:41:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001CC17BABB
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 11:48:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6572A6ECCE;
-	Fri,  6 Mar 2020 10:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D98E26E0DD;
+	Fri,  6 Mar 2020 10:48:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 786A06ECCD;
- Fri,  6 Mar 2020 10:41:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 739EEA47E6;
- Fri,  6 Mar 2020 10:41:46 +0000 (UTC)
+Received: from 9.mo69.mail-out.ovh.net (9.mo69.mail-out.ovh.net [46.105.56.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB6236E0DD
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 10:48:09 +0000 (UTC)
+Received: from player771.ha.ovh.net (unknown [10.110.171.40])
+ by mo69.mail-out.ovh.net (Postfix) with ESMTP id 6073B87BD6
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 11:48:07 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player771.ha.ovh.net (Postfix) with ESMTPSA id CAC3310355FD8;
+ Fri,  6 Mar 2020 10:48:00 +0000 (UTC)
+Date: Fri, 6 Mar 2020 12:47:58 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20200306104758.GA46547@jack.zhora.eu>
+References: <20200305235941.1716-1-andi.shyti@intel.com>
+ <fdf01ba2-57ab-d51a-7f62-27f4cc1c1168@intel.com>
+ <20200306011536.GA1530@intel.intel>
+ <40bb5d31-78bb-d72c-fe58-a82150c0697f@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 06 Mar 2020 10:41:46 -0000
-Message-ID: <158349130647.3081.16524982190663480637@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200306071614.2846708-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200306071614.2846708-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Assert_requests_within_?=
- =?utf-8?q?a_context_are_submitted_in_order?=
+Content-Disposition: inline
+In-Reply-To: <40bb5d31-78bb-d72c-fe58-a82150c0697f@intel.com>
+X-Ovh-Tracer-Id: 3055129399801397872
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudduvddgvdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpdekuddrudejhedrvddvfedruddukeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: allow setting generic data
+ pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,150 +48,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniele,
 
-Series: series starting with [1/3] drm/i915: Assert requests within a context are submitted in order
-URL   : https://patchwork.freedesktop.org/series/74369/
-State : failure
+> > > > diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+> > > > index 75255aaacaed..9112a8585caf 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+> > > > @@ -26,15 +26,14 @@ void debugfs_gt_register(struct intel_gt *gt)
+> > > >    	debugfs_gt_pm_register(gt, root);
+> > > >    }
+> > > > -void debugfs_gt_register_files(struct intel_gt *gt,
+> > > > -			       struct dentry *root,
+> > > > -			       const struct debugfs_gt_file *files,
+> > > > -			       unsigned long count)
+> > > > +void __intel_gt_debugfs_register_files(struct intel_gt *gt, struct dentry *root,
+> > > > +				       const struct debugfs_gt_file *files,
+> > > > +				       unsigned long count, void *data)
+> > > >    {
+> > > >    	while (count--) {
+> > > >    		if (!files->eval || files->eval(gt))
+> > > 
+> > > IMO the files->eval() function should also use the provided data instead of
+> > > intel_gt. This will also allow us to drop the intel_gt parameter in this
+> > > function, which in turn means we can use this function directly from all the
+> > > levels.
+> > 
+> > do you mean something like this:
+> > 
+> > -       bool (*eval)(const struct intel_gt *gt);
+> > +       bool (*eval)(void *data);
+> > 
+> > ?
+> 
+> yes
+> 
+> > 
+> > I am missing the use case, though, what is it that cannot be
+> > reached by the gt so that it needs to be more generic?
+> 
+> It's not a problem of reaching it from gt but the other way around, I don't
+> want the caller to have to retrieve a gt variable it don't needs just to
+> pass it to this function and then go back to the actual required data from
+> gt inside of the eval function. Anything you need for your evaluation should
+> be reachable from the struct used as data for the debugfs.
+> To make a concrete example, I want to avoid an unneeded guc_to_gt inside
+> intel_guc_debugfs_register that would also require a matched guc =
+> &gt->uc.guc inside the eval function, passing guc (i.e. the data) straight
+> in the eval is cleaner IMO.
 
-== Summary ==
+Thanks for the feedback, makes sense.
 
-CI Bug Log - changes from CI_DRM_8076 -> Patchwork_16856
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16856 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16856, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16856:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-cfl-8109u:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-cfl-8109u/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@i915_selftest@live@ring_submission}:
-    - fi-byt-j1900:       [PASS][2] -> [DMESG-FAIL][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-byt-j1900/igt@i915_selftest@live@ring_submission.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-byt-j1900/igt@i915_selftest@live@ring_submission.html
-
-  * igt@runner@aborted:
-    - {fi-kbl-7560u}:     NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-kbl-7560u/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16856 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_flink_basic@flink-lifetime:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-tgl-y/igt@gem_flink_basic@flink-lifetime.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8109u:       [PASS][7] -> [INCOMPLETE][8] ([i915#424])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-cfl-8109u/igt@i915_selftest@live@gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][9] ([CI#94]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-snb-2520m:       [DMESG-WARN][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-snb-2520m/igt@i915_selftest@live@gt_mocs.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-snb-2520m/igt@i915_selftest@live@gt_mocs.html
-
-  * {igt@i915_selftest@live@ring_submission}:
-    - fi-hsw-peppy:       [DMESG-FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-    - fi-snb-2520m:       [INCOMPLETE][15] -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-snb-2520m/igt@i915_selftest@live@ring_submission.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-snb-2520m/igt@i915_selftest@live@ring_submission.html
-
-  * igt@kms_addfb_basic@bad-pitch-63:
-    - fi-tgl-y:           [DMESG-WARN][17] ([CI#94] / [i915#402]) -> [PASS][18] +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8076/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-63.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#504]: https://gitlab.freedesktop.org/drm/intel/issues/504
-
-
-Participating hosts (45 -> 45)
-------------------------------
-
-  Additional (4): fi-hsw-4770r fi-skl-lmem fi-blb-e6850 fi-kbl-r 
-  Missing    (4): fi-byt-clapper fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8076 -> Patchwork_16856
-
-  CI-20190529: 20190529
-  CI_DRM_8076: bb93ee259288a580da4625a7a747bcd9bbedaf96 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5495: 22df72de8affcec22d9f354bb6148d77f60cc580 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16856: db242158bc8bf8624958f48705e4648475176312 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-db242158bc8b drm/i915/gem: Limit struct_mutex to eb_reserve
-90bd5f316117 drm/i915: Always propagate the invocation to i915_schedule
-2551a4bb7870 drm/i915: Assert requests within a context are submitted in order
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16856/index.html
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
