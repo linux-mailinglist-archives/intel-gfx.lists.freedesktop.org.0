@@ -1,38 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E0117C756
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 21:52:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7262D17C7AA
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 22:13:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9C976E4FF;
-	Fri,  6 Mar 2020 20:52:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1FE6E50E;
+	Fri,  6 Mar 2020 21:13:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19AEF6E4FF
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 20:52:34 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 12:52:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,523,1574150400"; d="scan'208";a="288070744"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by FMSMGA003.fm.intel.com with ESMTP; 06 Mar 2020 12:52:33 -0800
-To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
-References: <20200306200636.52051-1-andi@etezian.org>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <6eaad5cb-a460-b317-b7b2-6abf5c42d075@intel.com>
-Date: Fri, 6 Mar 2020 12:51:56 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CD0236E50D;
+ Fri,  6 Mar 2020 21:13:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C55ABA00C7;
+ Fri,  6 Mar 2020 21:13:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200306200636.52051-1-andi@etezian.org>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: allow setting generic data
- pointer
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 06 Mar 2020 21:13:47 -0000
+Message-ID: <158352922777.3082.2744878829079687010@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/17=5D_drm/i915/selftests=3A_Appl?=
+ =?utf-8?q?y_a_heavy_handed_flush_to_i915=5Factive?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,153 +39,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: series starting with [01/17] drm/i915/selftests: Apply a heavy handed flush to i915_active
+URL   : https://patchwork.freedesktop.org/series/74392/
+State : warning
 
-On 3/6/20 12:06 PM, Andi Shyti wrote:
-> From: Andi Shyti <andi.shyti@intel.com>
-> 
-> When registering debugfs files the intel gt debugfs library
-> forces a 'struct *gt' private data on the caller.
-> 
-> There might be different needs, therefore make it generic by
-> adding one more argument to the "debugfs_register_files()"
-> function which gets the generic void private data as argument.
-> 
-> Still keep it simple by defining a wrapper where struct *gt is
-> the chosen private data to be stored.
-> 
-> I take the chance to rename the functions by using "intel_gt_" as
-> prefix instead of "debugfs_".
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-> ---
-> Changelog:
-> v2:
->   - the eval function is made generic as suggested by Daniele.
-> 
->   drivers/gpu/drm/i915/gt/debugfs_engines.c |  2 +-
->   drivers/gpu/drm/i915/gt/debugfs_gt.c      | 11 +++++------
->   drivers/gpu/drm/i915/gt/debugfs_gt.h      | 12 +++++++-----
->   drivers/gpu/drm/i915/gt/debugfs_gt_pm.c   | 14 +++++++++-----
->   4 files changed, 22 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_engines.c b/drivers/gpu/drm/i915/gt/debugfs_engines.c
-> index 6a5e9ab20b94..3434df10d58c 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_engines.c
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_engines.c
-> @@ -32,5 +32,5 @@ void debugfs_engines_register(struct intel_gt *gt, struct dentry *root)
->   		{ "engines", &engines_fops },
->   	};
->   
-> -	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
-> +	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
->   }
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> index 75255aaacaed..24099fb157be 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> @@ -26,15 +26,14 @@ void debugfs_gt_register(struct intel_gt *gt)
->   	debugfs_gt_pm_register(gt, root);
->   }
->   
-> -void debugfs_gt_register_files(struct intel_gt *gt,
-> -			       struct dentry *root,
-> -			       const struct debugfs_gt_file *files,
-> -			       unsigned long count)
-> +void __intel_gt_debugfs_register_files(struct intel_gt *gt, struct dentry *root,
+== Summary ==
 
-The gt variable is now unused in this function, so you can get rid of 
-it, which means you can also drop the macro wrapper you have defined below.
+$ dim checkpatch origin/drm-tip
+982908c93abd drm/i915/selftests: Apply a heavy handed flush to i915_active
+031f94155df6 drm/i915/execlists: Enable timeslice on partial virtual engine dequeue
+9b61d8749081 drm/i915: Improve the start alignment of bonded pairs
+5d9fda3690f4 drm/i915: Tweak scheduler's kick_submission()
+c0d1c65cb89a drm/i915: Wrap i915_active in a simple kreffed struct
+3109c8f9d4d0 drm/i915: Extend i915_request_await_active to use all timelines
+5ae4e5feccba drm/i915/perf: Schedule oa_config after modifying the contexts
+d0db810d00b0 drm/i915/selftests: Add request throughput measurement to perf
+-:90: WARNING:LINE_SPACING: Missing a blank line after declarations
+#90: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1515:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-> +				       const struct debugfs_gt_file *files,
-> +				       unsigned long count, void *data)
->   {
->   	while (count--) {
-> -		if (!files->eval || files->eval(gt))
-> +		if (!files->eval || files->eval(data))
->   			debugfs_create_file(files->name,
-> -					    0444, root, gt,
-> +					    0444, root, data,
->   					    files->fops);
->   
->   		files++;
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.h b/drivers/gpu/drm/i915/gt/debugfs_gt.h
-> index 4ea0f06cda8f..f498fe75c79a 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_gt.h
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt.h
-> @@ -28,12 +28,14 @@ void debugfs_gt_register(struct intel_gt *gt);
->   struct debugfs_gt_file {
->   	const char *name;
->   	const struct file_operations *fops;
-> -	bool (*eval)(const struct intel_gt *gt);
-> +	bool (*eval)(void *data);
->   };
->   
-> -void debugfs_gt_register_files(struct intel_gt *gt,
-> -			       struct dentry *root,
-> -			       const struct debugfs_gt_file *files,
-> -			       unsigned long count);
-> +void __intel_gt_debugfs_register_files(struct intel_gt *gt, struct dentry *root,
-> +				       const struct debugfs_gt_file *files,
-> +				       unsigned long count, void *data);
-> +
-> +#define intel_gt_debugfs_register_file(g, r, f, c)	\
-> +	__intel_gt_debugfs_register_files(g, r, f, c, g)
->   
->   #endif /* DEBUGFS_GT_H */
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> index 059c9e5c002e..a233b97a9294 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> @@ -506,9 +506,11 @@ static int llc_show(struct seq_file *m, void *data)
->   	return 0;
->   }
->   
-> -static bool llc_eval(const struct intel_gt *gt)
-> +static bool llc_eval(void *data)
->   {
-> -	return HAS_LLC(gt->i915);
-> +	struct intel_gt *gt = data;
-> +
-> +	return !gt ? false : HAS_LLC(gt->i915);
+-:157: WARNING:LINE_SPACING: Missing a blank line after declarations
+#157: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1582:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-Is there a case where gt can be NULL?
-BTW, you can also have this condition as:
+-:213: WARNING:LINE_SPACING: Missing a blank line after declarations
+#213: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1638:
++	struct drm_i915_private *i915 = arg;
++	static int (* const func[])(void *arg) = {
 
-	return gt && HAS_LLC(gt->i915);
+-:220: WARNING:LINE_SPACING: Missing a blank line after declarations
+#220: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1645:
++	struct intel_engine_cs *engine;
++	int (* const *fn)(void *arg);
 
-Daniele
+-:265: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
+#265: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1690:
++		yield(); /* start all threads before we kthread_stop() */
 
->   }
->   
->   DEFINE_GT_DEBUGFS_ATTRIBUTE(llc);
-> @@ -580,9 +582,11 @@ static int rps_boost_show(struct seq_file *m, void *data)
->   	return 0;
->   }
->   
-> -static bool rps_eval(const struct intel_gt *gt)
-> +static bool rps_eval(void *data)
->   {
-> -	return HAS_RPS(gt->i915);
-> +	struct intel_gt *gt = data;
-> +
-> +	return !gt ? false : HAS_RPS(gt->i915);
->   }
->   
->   DEFINE_GT_DEBUGFS_ATTRIBUTE(rps_boost);
-> @@ -597,5 +601,5 @@ void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
->   		{ "rps_boost", &rps_boost_fops, rps_eval },
->   	};
->   
-> -	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
-> +	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
->   }
-> 
+total: 0 errors, 5 warnings, 0 checks, 306 lines checked
+0a74ccdc875c dma-buf: Prettify typecasts for dma-fence-chain
+3702ebf022c1 dma-buf: Report signaled links inside dma-fence-chain
+e3df6c598dbd dma-buf: Exercise dma-fence-chain under selftests
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
+
+-:61: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#61: FILE: drivers/dma-buf/st-dma-fence-chain.c:24:
++	spinlock_t lock;
+
+-:235: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#235: FILE: drivers/dma-buf/st-dma-fence-chain.c:198:
++		pr_err("Reported %d for find_seqno(0)!\n", err);
+
+-:244: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#244: FILE: drivers/dma-buf/st-dma-fence-chain.c:207:
++			pr_err("Reported %d for find_seqno(%d:%d)!\n",
+
+-:249: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#249: FILE: drivers/dma-buf/st-dma-fence-chain.c:212:
++			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
+
+-:272: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#272: FILE: drivers/dma-buf/st-dma-fence-chain.c:235:
++			pr_err("Error not reported for future fence: find_seqno(%d:%d)!\n",
+
+-:286: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#286: FILE: drivers/dma-buf/st-dma-fence-chain.c:249:
++			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
+
+-:737: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'dma_fence_chain', this function's name, in a string
+#737: FILE: drivers/dma-buf/st-dma-fence-chain.c:700:
++	pr_info("sizeof(dma_fence_chain)=%zu\n",
+
+total: 0 errors, 7 warnings, 1 checks, 725 lines checked
+dfcab52a6de6 dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
+
+-:93: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#93: FILE: drivers/dma-buf/dma-fence-proxy.c:18:
++	spinlock_t lock;
+
+-:321: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#321: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
+
+-:481: WARNING:MEMORY_BARRIER: memory barrier without comment
+#481: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
++	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
+
+total: 0 errors, 2 warnings, 2 checks, 852 lines checked
+72c5da66b118 drm/syncobj: Allow use of dma-fence-proxy
+2bf6c69d342d drm/i915/gem: Teach execbuf how to wait on future syncobj
+e7ace1917afa drm/i915/gem: Allow combining submit-fences with syncobj
+232c8948625d drm/i915/gt: Declare when we enabled timeslicing
+62e2ea9500a8 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
