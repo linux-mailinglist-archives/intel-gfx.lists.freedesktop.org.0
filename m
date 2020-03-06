@@ -1,49 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D39CF17C84B
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 23:28:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE42C17C862
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 23:32:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B29896ED7E;
-	Fri,  6 Mar 2020 22:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E9986E520;
+	Fri,  6 Mar 2020 22:32:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 302AB6ED7E
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 22:28:49 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 14:28:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,523,1574150400"; d="scan'208";a="230211820"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga007.jf.intel.com with ESMTP; 06 Mar 2020 14:28:48 -0800
-Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 6 Mar 2020 14:28:48 -0800
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.129]) by
- fmsmsx118.amr.corp.intel.com ([169.254.1.229]) with mapi id 14.03.0439.000;
- Fri, 6 Mar 2020 14:28:47 -0800
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Dhanavanthri, Swathi" <swathi.dhanavanthri@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH] drm/i915/tgl: Make wa_1606700617 permanent
-Thread-Index: AQHV8xpS7ebu4j0w80m7m+0FsUmTqqg8rWQA
-Date: Fri, 6 Mar 2020 22:28:47 +0000
-Message-ID: <2e5aa1b91d0c5aa94be067d3c0c88730df0b9897.camel@intel.com>
-References: <20200305181204.28856-1-swathi.dhanavanthri@intel.com>
-In-Reply-To: <20200305181204.28856-1-swathi.dhanavanthri@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.14.241]
-Content-ID: <1AB21664399BE840BE773B1710AEC773@intel.com>
+Received: from 9.mo177.mail-out.ovh.net (9.mo177.mail-out.ovh.net
+ [46.105.72.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0D96E520
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 22:32:48 +0000 (UTC)
+Received: from player737.ha.ovh.net (unknown [10.110.103.132])
+ by mo177.mail-out.ovh.net (Postfix) with ESMTP id 799A3125C90
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 23:14:16 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player737.ha.ovh.net (Postfix) with ESMTPSA id 408D96B37C31;
+ Fri,  6 Mar 2020 22:14:11 +0000 (UTC)
+From: Andi Shyti <andi@etezian.org>
+To: Intel GFX <intel-gfx@lists.freedesktop.org>
+Date: Sat,  7 Mar 2020 00:14:05 +0200
+Message-Id: <20200306221405.53152-1-andi@etezian.org>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make wa_1606700617 permanent
+X-Ovh-Tracer-Id: 14643454190219805277
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudduvddgudeivdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeefjedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gt: allow setting generic data
+ pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,39 +44,148 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyMDIwLTAzLTA1IGF0IDEwOjEyIC0wODAwLCBTd2F0aGkgRGhhbmF2YW50aHJpIHdy
-b3RlOg0KPiBUaGlzIHdvcmthcm91bmQgaXMgdG8gZGlzYWJsZSBGRiBET1AgQ2xvY2sgZ2F0aW5n
-LiBUaGUgZml4DQo+IGluIEIwIHdhcyBiYWNrZWQgb3V0IGR1ZSB0byB0aW1pbmcgcmVhc29ucyBh
-bmQgZGVjaWRlZCB0bw0KPiBiZSBtYWRlIHBlcm1hbmVudC4NCj4gQnNwZWM6IDUyODkwDQoNClJl
-dmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4N
-Cg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU3dhdGhpIERoYW5hdmFudGhyaSA8c3dhdGhpLmRoYW5h
-dmFudGhyaUBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50
-ZWxfd29ya2Fyb3VuZHMuYyB8IDEwICsrKysrLS0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGlu
-c2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2d0L2ludGVsX3dvcmthcm91bmRzLmMNCj4gaW5kZXggY2I3ZDg1YzQyZjEzLi5hOWQxOTc1
-YjUyNDUgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dvcmth
-cm91bmRzLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3Vu
-ZHMuYw0KPiBAQCAtMTMzNywxMSArMTMzNyw2IEBAIHJjc19lbmdpbmVfd2FfaW5pdChzdHJ1Y3Qg
-aW50ZWxfZW5naW5lX2NzDQo+ICplbmdpbmUsIHN0cnVjdCBpOTE1X3dhX2xpc3QgKndhbCkNCj4g
-IAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IGVuZ2luZS0+aTkxNTsNCj4gIA0KPiAg
-CWlmIChJU19UR0xfUkVWSUQoaTkxNSwgVEdMX1JFVklEX0EwLCBUR0xfUkVWSURfQTApKSB7DQo+
-IC0JCS8qIFdhXzE2MDY3MDA2MTc6dGdsICovDQo+IC0JCXdhX21hc2tlZF9lbih3YWwsDQo+IC0J
-CQkgICAgIEdFTjlfQ1NfREVCVUdfTU9ERTEsDQo+IC0JCQkgICAgIEZGX0RPUF9DTE9DS19HQVRF
-X0RJU0FCTEUpOw0KPiAtDQo+ICAJCS8qDQo+ICAJCSAqIFdhXzE2MDcxMzgzMzY6dGdsDQo+ICAJ
-CSAqIFdhXzE2MDcwNjM5ODg6dGdsDQo+IEBAIC0xMzkzLDYgKzEzODgsMTEgQEAgcmNzX2VuZ2lu
-ZV93YV9pbml0KHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MNCj4gKmVuZ2luZSwgc3RydWN0IGk5MTVf
-d2FfbGlzdCAqd2FsKQ0KPiAgCQkvKiBXYV8xNDA5ODA0ODA4OnRnbCAqLw0KPiAgCQl3YV9tYXNr
-ZWRfZW4od2FsLCBHRU43X1JPV19DSElDS0VOMiwNCj4gIAkJCSAgICAgR0VOMTJfUFVTSF9DT05T
-VF9ERVJFRl9IT0xEX0RJUyk7DQo+ICsNCj4gKwkJLyogV2FfMTYwNjcwMDYxNzp0Z2wgKi8NCj4g
-KwkJd2FfbWFza2VkX2VuKHdhbCwNCj4gKwkJCSAgICAgR0VOOV9DU19ERUJVR19NT0RFMSwNCj4g
-KwkJCSAgICAgRkZfRE9QX0NMT0NLX0dBVEVfRElTQUJMRSk7DQo+ICAJfQ0KPiAgDQo+ICAJaWYg
-KElTX0dFTihpOTE1LCAxMSkpIHsNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
-ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
-L2ludGVsLWdmeAo=
+From: Andi Shyti <andi.shyti@intel.com>
+
+When registering debugfs files the intel gt debugfs library
+forces a 'struct *gt' private data on the caller.
+
+There might be different needs, therefore make it generic by
+adding one more argument to the "debugfs_register_files()"
+function which gets the generic void private data as argument.
+
+Still keep it simple by defining a wrapper where struct *gt is
+the chosen private data to be stored.
+
+I take the chance to rename the functions by using "intel_gt_" as
+prefix instead of "debugfs_".
+
+Signed-off-by: Andi Shyti <andi.shyti@intel.com>
+---
+Thanks Daniele for the review.
+
+Andi
+
+Changelog:
+v3:
+ - removed unused gt parameter from the
+   __intel_gt_debugfs_register_files()
+v2:
+ - the eval function is made generic as suggested by Daniele.
+
+ drivers/gpu/drm/i915/gt/debugfs_engines.c |  2 +-
+ drivers/gpu/drm/i915/gt/debugfs_gt.c      | 11 +++++------
+ drivers/gpu/drm/i915/gt/debugfs_gt.h      | 12 +++++++-----
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c   | 14 +++++++++-----
+ 4 files changed, 22 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_engines.c b/drivers/gpu/drm/i915/gt/debugfs_engines.c
+index 6a5e9ab20b94..3434df10d58c 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_engines.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_engines.c
+@@ -32,5 +32,5 @@ void debugfs_engines_register(struct intel_gt *gt, struct dentry *root)
+ 		{ "engines", &engines_fops },
+ 	};
+ 
+-	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
++	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
+ }
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+index 75255aaacaed..344f70e475c1 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
+@@ -26,15 +26,14 @@ void debugfs_gt_register(struct intel_gt *gt)
+ 	debugfs_gt_pm_register(gt, root);
+ }
+ 
+-void debugfs_gt_register_files(struct intel_gt *gt,
+-			       struct dentry *root,
+-			       const struct debugfs_gt_file *files,
+-			       unsigned long count)
++void __intel_gt_debugfs_register_files(struct dentry *root,
++				       const struct debugfs_gt_file *files,
++				       unsigned long count, void *data)
+ {
+ 	while (count--) {
+-		if (!files->eval || files->eval(gt))
++		if (!files->eval || files->eval(data))
+ 			debugfs_create_file(files->name,
+-					    0444, root, gt,
++					    0444, root, data,
+ 					    files->fops);
+ 
+ 		files++;
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.h b/drivers/gpu/drm/i915/gt/debugfs_gt.h
+index 4ea0f06cda8f..332ea1fc72f7 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt.h
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt.h
+@@ -28,12 +28,14 @@ void debugfs_gt_register(struct intel_gt *gt);
+ struct debugfs_gt_file {
+ 	const char *name;
+ 	const struct file_operations *fops;
+-	bool (*eval)(const struct intel_gt *gt);
++	bool (*eval)(void *data);
+ };
+ 
+-void debugfs_gt_register_files(struct intel_gt *gt,
+-			       struct dentry *root,
+-			       const struct debugfs_gt_file *files,
+-			       unsigned long count);
++void __intel_gt_debugfs_register_files(struct dentry *root,
++				       const struct debugfs_gt_file *files,
++				       unsigned long count, void *data);
++
++#define intel_gt_debugfs_register_file(g, r, f, c)	\
++	__intel_gt_debugfs_register_files(r, f, c, g)
+ 
+ #endif /* DEBUGFS_GT_H */
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+index 059c9e5c002e..e2249fb49404 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+@@ -506,9 +506,11 @@ static int llc_show(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
+-static bool llc_eval(const struct intel_gt *gt)
++static bool llc_eval(void *data)
+ {
+-	return HAS_LLC(gt->i915);
++	struct intel_gt *gt = data;
++
++	return gt && HAS_LLC(gt->i915);
+ }
+ 
+ DEFINE_GT_DEBUGFS_ATTRIBUTE(llc);
+@@ -580,9 +582,11 @@ static int rps_boost_show(struct seq_file *m, void *data)
+ 	return 0;
+ }
+ 
+-static bool rps_eval(const struct intel_gt *gt)
++static bool rps_eval(void *data)
+ {
+-	return HAS_RPS(gt->i915);
++	struct intel_gt *gt = data;
++
++	return gt && HAS_RPS(gt->i915);
+ }
+ 
+ DEFINE_GT_DEBUGFS_ATTRIBUTE(rps_boost);
+@@ -597,5 +601,5 @@ void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
+ 		{ "rps_boost", &rps_boost_fops, rps_eval },
+ 	};
+ 
+-	debugfs_gt_register_files(gt, root, files, ARRAY_SIZE(files));
++	intel_gt_debugfs_register_file(gt, root, files, ARRAY_SIZE(files));
+ }
+-- 
+2.25.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
