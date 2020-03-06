@@ -1,38 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A7A17BA03
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 11:15:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AA9A17BA3B
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 11:30:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B37656ECC2;
-	Fri,  6 Mar 2020 10:15:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A58F6ECC9;
+	Fri,  6 Mar 2020 10:30:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FC036ECBD;
- Fri,  6 Mar 2020 10:15:17 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 110556ECC8;
+ Fri,  6 Mar 2020 10:30:52 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 02:15:17 -0800
-X-IronPort-AV: E=Sophos;i="5.70,521,1574150400"; d="scan'208";a="234756101"
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2020 02:30:51 -0800
+X-IronPort-AV: E=Sophos;i="5.70,521,1574150400"; d="scan'208";a="234763250"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2020 02:15:07 -0800
+ 06 Mar 2020 02:30:48 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rajat Jain <rajatja@google.com>
-In-Reply-To: <CACK8Z6ERZpZaSXsxrk_yGrRAtrgwytb5TEpyt1sX+V40U7m0sQ@mail.gmail.com>
+To: Manasi Navare <manasi.d.navare@intel.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20200306014220.20029-1-manasi.d.navare@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200305012338.219746-1-rajatja@google.com>
- <20200305012338.219746-4-rajatja@google.com> <87k13znmrc.fsf@intel.com>
- <CACK8Z6ERZpZaSXsxrk_yGrRAtrgwytb5TEpyt1sX+V40U7m0sQ@mail.gmail.com>
-Date: Fri, 06 Mar 2020 12:15:04 +0200
-Message-ID: <87pndpoklz.fsf@intel.com>
+References: <20200306014220.20029-1-manasi.d.navare@intel.com>
+Date: Fri, 06 Mar 2020 12:30:46 +0200
+Message-ID: <87mu8tojvt.fsf@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/i915: Add support for integrated
- privacy screens
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/edid: Name the detailed monitor
+ range flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,82 +44,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
- Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Daniel Thompson <daniel.thompson@linaro.org>,
- Guenter Roeck <groeck@google.com>, Jonathan Corbet <corbet@lwn.net>,
- Mark Pearson <mpearson@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>,
- Rajat Jain <rajatxjain@gmail.com>, intel-gfx@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, Mat King <mathewk@google.com>,
- Duncan Laurie <dlaurie@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Pavel Machek <pavel@denx.de>, Nitin Joshi1 <njoshi1@lenovo.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 05 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
-> OK, will do. In order to do that I may need to introduce driver level
-> hooks that i915 driver can populate and drm core can call (or may be
-> some functions to add privacy screen property that drm core exports
-> and i915 driver will call).
-
-The latter. Look at drm_connector_attach_*() functions in
-drm_connector.c. i915 (or any other driver) can create and attach the
-property as needed. drm_atomic_connector_{get,set}_property in
-drm_atomic_uapi.c need to handle the properties, but *only* to get/set
-the value in drm_connector_state, nothing more. How that value is
-actually used is up to the drivers, but the userspace interface will be
-the same instead of being driver specific.
-
->> > @@ -93,15 +97,18 @@ int intel_digital_connector_atomic_set_property(struct drm_connector *connector,
->> >       struct drm_i915_private *dev_priv = to_i915(dev);
->> >       struct intel_digital_connector_state *intel_conn_state =
->> >               to_intel_digital_connector_state(state);
->> > +     struct intel_connector *intel_connector = to_intel_connector(connector);
->> >
->> >       if (property == dev_priv->force_audio_property) {
->> >               intel_conn_state->force_audio = val;
->> >               return 0;
->> > -     }
->> > -
->> > -     if (property == dev_priv->broadcast_rgb_property) {
->> > +     } else if (property == dev_priv->broadcast_rgb_property) {
->> >               intel_conn_state->broadcast_rgb = val;
->> >               return 0;
->> > +     } else if (property == intel_connector->privacy_screen_property) {
->> > +             intel_privacy_screen_set_val(intel_connector, val);
->>
->> I think this part should only change the connector state. The driver
->> would then do the magic at commit stage according to the property value.
-
-Also, this would be the part that's done in drm core level.
-
-> Can you please point me to some code reference as to where in code
-> does the "commit stage" apply the changes?
-
-Look at, say, drm_connector_attach_scaling_mode_property(). In the
-getter/setter code it'll just read/change state->scaling_mode. You can
-use the value in encoder ->enable, ->disable, and ->update_pipe
-hooks. Enable should enable the privacy screen if desired, disable
-should probably unconditionally disable the privacy screen while
-disabling the display, and update should just change the state according
-to the value. Update is called if there isn't a full modeset. (Scaling
-mode is a bit more indirect than that, affecting other things in the
-encoder ->compute_config hook, leading to similar effects.)
-
-Ville, anything I missed?
-
-BR,
-Jani.
-
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAwNSBNYXIgMjAyMCwgTWFuYXNpIE5hdmFyZSA8bWFuYXNpLmQubmF2YXJlQGludGVs
+LmNvbT4gd3JvdGU6Cj4gVGhpcyBwYXRjaCBhZGRzIGRlZmluZXMgZm9yIHRoZSBkZXRhaWxlZCBt
+b25pdG9yCj4gcmFuZ2UgZmxhZ3MgYXMgcGVyIHRoZSBFRElEIHNwZWNpZmljYXRpb24uCj4KPiBT
+dWdnZXN0ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
+b20+Cj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+
+Cj4gQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50bGFuZEBhbWQuY29tPgo+IENjOiBDbGlu
+dG9uIEEgVGF5bG9yIDxjbGludG9uLmEudGF5bG9yQGludGVsLmNvbT4KPiBDYzogS2F6bGF1c2th
+cyBOaWNob2xhcyA8TmljaG9sYXMuS2F6bGF1c2thc0BhbWQuY29tPgo+IFNpZ25lZC1vZmYtYnk6
+IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5hdmFyZUBpbnRlbC5jb20+Cj4gLS0tCj4gIGluY2x1
+ZGUvZHJtL2RybV9lZGlkLmggfCA1ICsrKysrCj4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlv
+bnMoKykKPgo+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2RybS9kcm1fZWRpZC5oIGIvaW5jbHVkZS9k
+cm0vZHJtX2VkaWQuaAo+IGluZGV4IGYwYjAzZDQwMWMyNy4uZjg5Yzk3NjIzODQ1IDEwMDY0NAo+
+IC0tLSBhL2luY2x1ZGUvZHJtL2RybV9lZGlkLmgKPiArKysgYi9pbmNsdWRlL2RybS9kcm1fZWRp
+ZC5oCj4gQEAgLTkxLDYgKzkxLDExIEBAIHN0cnVjdCBkZXRhaWxlZF9kYXRhX3N0cmluZyB7Cj4g
+IAl1OCBzdHJbMTNdOwo+ICB9IF9fYXR0cmlidXRlX18oKHBhY2tlZCkpOwo+ICAKPiArI2RlZmlu
+ZSBFRElEX0RFRkFVTFRfR1RGX1NVUFBPUlRfRkxBRyAgIDB4MDAKPiArI2RlZmluZSBFRElEX1JB
+TkdFX0xJTUlUU19PTkxZX0ZMQUcgICAgIDB4MDEKPiArI2RlZmluZSBFRElEX1NFQ09OREFSWV9H
+VEZfU1VQUE9SVF9GTEFHIDB4MDIKPiArI2RlZmluZSBFRElEX0NWVF9TVVBQT1JUX0ZMQUcgICAg
+ICAgICAgIDB4MDQKCkJpa2VzaGVkIGZvciBjb25zaWRlcmF0aW9uOgoKZHJtX2VkaWQuaCBoYXMg
+c29tZSBtYWNyb3Mgd2l0aCBEUk1fRURJRF8gcHJlZml4LCBzb21lIHdpdGggRURJRF8KcHJlZml4
+LCBhbmQgdGhlbiBzb21lIHdpdGggbm8gcHJlZml4IGF0IGFsbCByZWFsbHkuIFNob3VsZCB3ZSBz
+dGFydApjb25zb2xpZGF0aW5nIG9uIHNvbWV0aGluZyB3aGVuIHdlIGFkZCBtb3JlPwoKQlIsCkph
+bmkuCgoKPiArCj4gIHN0cnVjdCBkZXRhaWxlZF9kYXRhX21vbml0b3JfcmFuZ2Ugewo+ICAJdTgg
+bWluX3ZmcmVxOwo+ICAJdTggbWF4X3ZmcmVxOwoKLS0gCkphbmkgTmlrdWxhLCBJbnRlbCBPcGVu
+IFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGlu
+Zm8vaW50ZWwtZ2Z4Cg==
