@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D845117BBB4
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 12:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD66B17BC05
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Mar 2020 12:46:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41C846E447;
-	Fri,  6 Mar 2020 11:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 104F76ECDD;
+	Fri,  6 Mar 2020 11:46:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 423706E42B
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 11:31:42 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20465862-1500050 
- for multiple; Fri, 06 Mar 2020 11:30:13 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 799A16ECDD
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2020 11:46:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2020 03:46:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,521,1574150400"; d="scan'208";a="241148732"
+Received: from unknown (HELO karthik-2012-Client-Platform.iind.intel.com)
+ ([10.223.74.208])
+ by orsmga003.jf.intel.com with ESMTP; 06 Mar 2020 03:46:11 -0800
+From: Karthik B S <karthik.b.s@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri,  6 Mar 2020 11:30:12 +0000
-Message-Id: <20200306113012.3184606-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200306113012.3184606-1-chris@chris-wilson.co.uk>
-References: <20200306113012.3184606-1-chris@chris-wilson.co.uk>
+Date: Fri,  6 Mar 2020 17:09:20 +0530
+Message-Id: <20200306113927.16904-1-karthik.b.s@intel.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915: Tweak scheduler's
- kick_submission()
+Subject: [Intel-gfx] [RFC 0/7] Asynchronous flip implementation for i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,59 +41,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: paulo.r.zanoni@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Skip useless priority bumping on adding a new dependency, but otherwise
-prevent tasklet scheduling until we have completed all the potential
-rescheduling.
+Without async flip support in the kernel, fullscreen apps where game
+resolution is equal to the screen resolution, must perform an extra blit
+per frame prior to flipping.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/i915_scheduler.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Asynchronous page flips will also boost the FPS of Mesa benchmarks.
 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index 52f71e83e088..603cba36d6a4 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -209,6 +209,8 @@ static void kick_submission(struct intel_engine_cs *engine,
- 	if (!inflight)
- 		goto unlock;
- 
-+	engine->execlists.queue_priority_hint = prio;
-+
- 	/*
- 	 * If we are already the currently executing context, don't
- 	 * bother evaluating if we should preempt ourselves.
-@@ -216,7 +218,6 @@ static void kick_submission(struct intel_engine_cs *engine,
- 	if (inflight->context == rq->context)
- 		goto unlock;
- 
--	engine->execlists.queue_priority_hint = prio;
- 	if (need_preempt(prio, rq_prio(inflight)))
- 		tasklet_hi_schedule(&engine->execlists.tasklet);
- 
-@@ -463,11 +464,15 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
- 	if (!dep)
- 		return -ENOMEM;
- 
-+	local_bh_disable();
-+
- 	if (!__i915_sched_node_add_dependency(node, signal, dep,
- 					      I915_DEPENDENCY_EXTERNAL |
- 					      I915_DEPENDENCY_ALLOC))
- 		i915_dependency_free(dep);
- 
-+	local_bh_enable(); /* kick submission tasklet */
-+
- 	return 0;
- }
- 
+Karthik B S (7):
+  drm/i915: Define flip done functions and enable IER
+  drm/i915: Add support for async flips in I915
+  drm/i915: Make commit call blocking in case of async flips
+  drm/i915: Add checks specific to async flips
+  drm/i915: Add flip_done_handler definition
+  drm/i915: Enable and handle flip done interrupt
+  drm/i915: Do not call drm_crtc_arm_vblank_event in async flips
+
+ drivers/gpu/drm/i915/display/intel_display.c | 55 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 12 ++--
+ drivers/gpu/drm/i915/i915_irq.c              | 58 +++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_irq.h              |  2 +
+ drivers/gpu/drm/i915/i915_reg.h              |  1 +
+ 5 files changed, 117 insertions(+), 11 deletions(-)
+
 -- 
-2.25.1
+2.22.0
 
 _______________________________________________
 Intel-gfx mailing list
