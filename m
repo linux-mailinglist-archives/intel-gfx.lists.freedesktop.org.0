@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5395A17D080
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 23:59:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC5B217D093
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Mar 2020 00:20:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F3D56E265;
-	Sat,  7 Mar 2020 22:59:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5B6E266;
+	Sat,  7 Mar 2020 23:20:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2381 seconds by postgrey-1.36 at gabe;
- Sat, 07 Mar 2020 22:59:45 UTC
-Received: from 8.mo3.mail-out.ovh.net (8.mo3.mail-out.ovh.net [87.98.172.249])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3A776E265
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 22:59:45 +0000 (UTC)
-Received: from player711.ha.ovh.net (unknown [10.108.42.174])
- by mo3.mail-out.ovh.net (Postfix) with ESMTP id 3A575241A98
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 23:20:01 +0100 (CET)
-Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
- (Authenticated sender: andi@etezian.org)
- by player711.ha.ovh.net (Postfix) with ESMTPSA id 56D6810082D06;
- Sat,  7 Mar 2020 22:19:55 +0000 (UTC)
-Date: Sun, 8 Mar 2020 00:19:55 +0200
-From: Andi Shyti <andi@etezian.org>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC686E266
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 23:20:32 +0000 (UTC)
+Received: from localhost (unknown [137.135.114.1])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 8A51D2075E;
+ Sat,  7 Mar 2020 23:20:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1583623231;
+ bh=2e9Uk9Ox7nQ3Ma8w5WA1dA9eAaWApX+Q35PkLEOPDbo=;
+ h=Date:From:To:To:To:Cc:Cc:Cc:Cc:Subject:In-Reply-To:References:
+ From;
+ b=LId5YY7p03uuE/FdbMWyh4TL6WyEZUVWyqQ63yaT0AXJnTSE4ulUeigQvG5b+LtJd
+ JNv6yl7Pz1Tr/uDUAL0e1DNa+WHAebRHSOAsx9TTPsm6b68oAfSpU3Fusu8ctREpqs
+ 1DjaWEXmNVVBwaqKCNXsNnxvmdnQN7JiN+2GScHc=
+Date: Sat, 07 Mar 2020 23:20:30 +0000
+From: Sasha Levin <sashal@kernel.org>
+To: Sasha Levin <sashal@kernel.org>
 To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200307221955.GA60782@jack.zhora.eu>
-References: <20200306230344.53559-1-andi@etezian.org>
- <158358284291.6224.14954481538219251460@build.alporthouse.com>
- <20200307125531.GA58713@jack.zhora.eu>
- <158360254703.6224.5041578469627024671@build.alporthouse.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <158360254703.6224.5041578469627024671@build.alporthouse.com>
-X-Ovh-Tracer-Id: 2166512897397735945
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedruddugedgudeifecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeduuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gt: allow setting generic data
- pointer
+To: intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200306133852.3420322-2-chris@chris-wilson.co.uk>
+References: <20200306133852.3420322-2-chris@chris-wilson.co.uk>
+Message-Id: <20200307232031.8A51D2075E@mail.kernel.org>
+Subject: Re: [Intel-gfx] [PATCH 02/17] drm/i915/execlists: Enable timeslice
+ on partial virtual engine dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,71 +47,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Cc: stable@vger.kernel.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Hi
 
-> > > Quoting Andi Shyti (2020-03-06 23:03:44)
-> > > > -void debugfs_gt_register_files(struct intel_gt *gt,
-> > > > -                              struct dentry *root,
-> > > > -                              const struct debugfs_gt_file *files,
-> > > > -                              unsigned long count)
-> > > > +void intel_gt_debugfs_register_files(struct dentry *root,
-> > > > +                                    const struct debugfs_gt_file *files,
-> > > > +                                    unsigned long count, void *data)
-> > > >  {
-> > > >         while (count--) {
-> > > > -               if (!files->eval || files->eval(gt))
-> > > > +               if (!files->eval || files->eval(data))
-> > > >                         debugfs_create_file(files->name,
-> > > > -                                           0444, root, gt,
-> > > > +                                           0444, root, data,
-> > > >                                             files->fops);
-> > > >  
-> > > 
-> > > And now we are not a intel_gt routine, you'll want to move again :)
-> > > i915_debugfs_utils.c ? :)
-> > 
-> > Actually, this is what it came to and this was the first
-> > discussion I had with Daniele and that's also why I was loyal to
-> > th "_gt_" wrappers until the end. But I had to agree that this
-> > was becoming more a limitation.
-> > 
-> > The biggest difference left, which by the way is the real
-> > distinguishing factor other than the *gt pointer, is that we
-> > create files under gt directory, instead of having the root
-> > imposed by the drm (even though the caller can eventually choose
-> > different roots).
-> > 
-> > We could perhaps store the root pointer in the intel_gt
-> > structure so that this function stays de facto an intel_gt
-> > routine and the caller doesn't need to care where the files will
-> > be generated. This is what we planned to do with sysfs as well.
-> > 
-> > What do you think?
-> 
-> I thought we were passing along the root. If not I think we should, more
-> of a debugfs constructor context?
+[This is an automated email]
 
-What do you mean with debugfs constructor context? Is it a
-gt->debugfs_root pointer like the gt->sysfs_root?
+This commit has been processed because it contains a "Fixes:" tag
+fixing commit: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing").
 
-> The main thing of course is not to overengineer and do the minimal
-> necessary for the immediate users we have. We can always extend and
-> refactor for a third user, etc, etc.
-> 
-> So if this works for gt + children, go for it and worry about tomorrow,
-> tomorrow. Trusting our good practice for "a stitch in time saves nine".
+The bot has tested the following trees: v5.5.8, v5.4.24.
 
-this came after Daniele's guc patches where he preferred to
-define his own functions instead of using this one that is meant
-to be used in that situation.
+v5.5.8: Build OK!
+v5.4.24: Failed to apply! Possible dependencies:
+    16ffe73c186b ("drm/i915/pmu: Use GT parked for estimating RC6 while asleep")
+    253a774bb08b ("drm/i915/execlists: Don't merely skip submission if maybe timeslicing")
+    3c00660db183 ("drm/i915/execlists: Assert tasklet is locked for process_csb()")
+    42014f69bb23 ("drm/i915: Hook up GT power management")
+    5d904e3c5d40 ("drm/i915: Pass in intel_gt at some for_each_engine sites")
+    61fa60ff6e6a ("drm/i915: Move GT init to intel_gt.c")
+    c113236718e8 ("drm/i915: Extract GT render sleep (rc6) management")
 
-Andi
+
+NOTE: The patch will not be queued to stable trees until it is upstream.
+
+How should we proceed with this patch?
+
+-- 
+Thanks
+Sasha
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
