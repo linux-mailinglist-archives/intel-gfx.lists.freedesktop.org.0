@@ -2,31 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E7F17CA89
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 02:37:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7F417CA8A
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 02:39:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FF26EDCC;
-	Sat,  7 Mar 2020 01:37:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3AAC6EDCE;
+	Sat,  7 Mar 2020 01:39:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3955E6EDCC;
- Sat,  7 Mar 2020 01:37:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3232FA00CC;
- Sat,  7 Mar 2020 01:37:40 +0000 (UTC)
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
+ [IPv6:2a00:1450:4864:20::242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74CDB6EDCE
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 01:39:32 +0000 (UTC)
+Received: by mail-lj1-x242.google.com with SMTP id a10so4123723ljp.11
+ for <intel-gfx@lists.freedesktop.org>; Fri, 06 Mar 2020 17:39:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=Vk7WexqGs9tKsJw0u0mXwTU3mYoTxeM70bWaTcQP0sk=;
+ b=Mr40nDBsa29tmNy/wYcVN8rJvjzzdDoxgm/e0OT/i+X5gj6oERCsq+lDLv8GhQsZvs
+ /BW/cUQyoz4S/WPxdEptsHM+GBEilpD4Nq2ZVnf1e/VdUZcP0S3oH15LeXAmHUqNpMJU
+ hc+dfOGM0+/pKDaVUcRjZuLA2ZX+8fzJpf6a2+OZhv4DoKt4FhZxKsKX+TMfoM8eV3cX
+ gdf6759jtZGcpu+05fD27i3KizcmrSWCB490SZhraUQfGXmd1xm/l2W3UJxNjhz63IlK
+ KwRoD0XOwJmlTmmjvAY3H6VoHLcfOfb/26gbr1LMAchIY5Qk65YOqoeA6kQTVQKBaRnJ
+ rxLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=Vk7WexqGs9tKsJw0u0mXwTU3mYoTxeM70bWaTcQP0sk=;
+ b=X4MF+kUe5YPGZmAV3e9JQrS9RIGpMUs8hv83Ni1RRPzZ3/Tm0sQJtbcQ/tSg6xlpls
+ eV19yJdJVT8FPwmLdXKmBxa6n33XoDtCFcylQx9eTbDJONLVZr7d+D7Tq65OeOtn5OJW
+ 2ZNY6xx4+enoiRqR8H1L1fYkG2kKeId2G9R92/IZd7inv2hUKlsGmIA6LWmtPM0jRQJ2
+ VhuGTzqfCYb65EihUtStsMQ8WmXmVh3nhASukh85x/LaPZqgieaZ1pH6SXWg1gJAgKGe
+ mD3/v0RARJIU84GzblBU8W8B/ne/c+b1hlZxMFwa1P3IJYk4VTvgCceMZj/4/3QXnQNt
+ 6AcA==
+X-Gm-Message-State: ANhLgQ1yaUOMVxLTbU3LQCtmIe0sR8uq0+VSKfML3tbsHwkvVRl9zpvX
+ 99bANDw7bdIOFCJ0+JtMjbrzXppRkb4LC2ZmyTHQhg==
+X-Google-Smtp-Source: ADFU+vsV+qVX0unqQUwWcGQVeYWEY2ubHw2+vJbqxcPBD1kNsVUvnDRy2az5R7tCqlw5INchb6uGPLZKiPuNJEV393c=
+X-Received: by 2002:a2e:b88d:: with SMTP id r13mr3359183ljp.66.1583545170498; 
+ Fri, 06 Mar 2020 17:39:30 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Sat, 07 Mar 2020 01:37:40 -0000
-Message-ID: <158354506017.20976.13613995818038790238@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200305202435.1284242-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200305202435.1284242-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/tgl=3A_Don=27t_treat_unslice_registers_as_masked_=28rev2?=
- =?utf-8?q?=29?=
+References: <20200305012338.219746-1-rajatja@google.com>
+ <20200305012338.219746-3-rajatja@google.com>
+ <87o8tbnnqa.fsf@intel.com>
+ <CACK8Z6HRB9q1KeborGr7V-0Qp0AApHV6gBTkc6xD5NokH8gr0w@mail.gmail.com>
+ <87tv31om53.fsf@intel.com>
+In-Reply-To: <87tv31om53.fsf@intel.com>
+From: Rajat Jain <rajatja@google.com>
+Date: Fri, 6 Mar 2020 17:38:53 -0800
+Message-ID: <CACK8Z6HFOpsfhHo=y9Qj_NSdiCGBHsvchZ335mU1BQ5CYQq1VQ@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v6 2/3] drm/i915: Lookup and attach ACPI
+ device node for connectors
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,148 +65,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Sean Paul <seanpaul@google.com>, David Airlie <airlied@linux.ie>,
+ Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
+ Mark Pearson <mpearson@lenovo.com>, Tomoki Maruichi <maruichit@lenovo.com>,
+ Rajat Jain <rajatxjain@gmail.com>, intel-gfx@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, Mat King <mathewk@google.com>,
+ Duncan Laurie <dlaurie@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Pavel Machek <pavel@denx.de>, Nitin Joshi1 <njoshi1@lenovo.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Mar 6, 2020 at 1:42 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+>
+> On Thu, 05 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
+> > On Thu, Mar 5, 2020 at 1:41 AM Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> >>
+> >> On Wed, 04 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
+> >> 1) See if we can postpone creating and attaching properties to connector
+> >> ->late_register hook. (I didn't have the time to look into it yet, at
+> >> all.)
+> >
+> > Apparently not. The drm core doesn't like to add properties in
+> > late_register() callback. I just tried it and get this warning:
+>
+> I kind of had a feeling this would be the case, thanks for checking.
 
-Series: drm/i915/tgl: Don't treat unslice registers as masked (rev2)
-URL   : https://patchwork.freedesktop.org/series/74351/
-State : failure
+Thinking about it again, it looks like there is a difference in
+creating a property and attaching a property. I'm wondering if drm
+would let me (unconditionally) create a property before registering,
+and attach it in late_register() only in case a privacy screen is
+detected. (If not present, I can destroy the property in
+late_register()). If this approach sound more promising, I can try it
+out.
 
-== Summary ==
+>
+> >> 2) Provide a way to populate connector->acpi_device_id and
+> >> connector->acpi_handle on a per-connector basis. At least the device id
+> >> remains constant for the lifetime of the drm_device
+> >
+> > Are you confirming that the connector->acpi_device_id remains constant
+> > for the lifetime of the drm_device, as calculated in
+> > intel_acpi_device_id_update()?  Even in the face of external displays
+> > (monitors) being connected and disconnected during the lifetime of the
+> > system? If so, then I think we can have a solution.
+>
+> First I thought so. Alas it does not hold for DP MST, where you can have
+> connectors added and removed dynamically. I think we could ensure they
+> stay the same for all other connectors though. I'm pretty sure this is
+> already the case; they get added/removed after all others.
+>
+> Another thought, from the ACPI perspective, I'm not sure the dynamically
+> added/removed DP MST connectors should even have acpi handles. But
+> again, tying all this together with ACPI stuff is not something I am an
+> expert on.
 
-CI Bug Log - changes from CI_DRM_8088 -> Patchwork_16867
-====================================================
+I propose that we:
 
-Summary
--------
+1) Maintain a display_index[] array within the drm_dev, and increment
+as connectors are added.
+2) Initialize connector->acpi_device_id and and connector->acpi_handle
+while registering (one time per connector).
+3) Remove the code to update acpi_device_id on every resume.
 
-  **FAILURE**
+It doesn't look like anyone on the DP MST side has cared for ACPI so
+far, so I doubt if we can do anything that might break MST currently.
+In other words, the above should not make things any worse for MST, if
+not better. For connectors other than MST, this should allow them to
+get ACPI handle and play with it, if they need.
 
-  Serious unknown changes coming with Patchwork_16867 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16867, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+WDYT?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/index.html
+Thanks,
 
-Possible new issues
--------------------
+Rajat
 
-  Here are the unknown changes that may have been introduced in Patchwork_16867:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-hsw-peppy/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@i915_selftest@live@ring_submission}:
-    - fi-byt-j1900:       [PASS][2] -> [DMESG-FAIL][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-byt-j1900/igt@i915_selftest@live@ring_submission.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-byt-j1900/igt@i915_selftest@live@ring_submission.html
-    - fi-hsw-peppy:       [PASS][4] -> [INCOMPLETE][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16867 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [PASS][6] -> [SKIP][7] ([fdo#109271])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@prime_vgem@basic-gtt:
-    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([CI#94] / [i915#402]) +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-tgl-y/igt@prime_vgem@basic-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [DMESG-FAIL][10] ([i915#1314]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_addfb_basic@bo-too-small-due-to-tiling:
-    - fi-tgl-y:           [DMESG-WARN][12] ([CI#94] / [i915#402]) -> [PASS][13] +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][14] ([fdo#109635] / [i915#217]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][16] ([fdo#111096] / [i915#323]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#1314]: https://gitlab.freedesktop.org/drm/intel/issues/1314
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (46 -> 37)
-------------------------------
-
-  Additional (2): fi-bwr-2160 fi-tgl-dsi 
-  Missing    (11): fi-bdw-5557u fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ilk-650 fi-ivb-3770 fi-elk-e7500 fi-blb-e6850 fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8088 -> Patchwork_16867
-
-  CI-20190529: 20190529
-  CI_DRM_8088: 91dc8b179da374160a6bbdbd6987a512a10fbc02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5498: 1bb7a25a09fe3e653d310e8bdfbdde4a1934b326 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16867: 3cf320d79e1dcf0934ef50672ef0ec8a51ee1bd0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3cf320d79e1d drm/i915/tgl: Don't treat unslice registers as masked
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16867/index.html
+>
+> >> (why do we keep
+> >> updating it at every resume?!) but can we be sure ->acpi_handle does
+> >> too? (I don't really know my way around ACPI.)
+> >
+> > I don't understand why this was being updated on every resume in that
+> > case (this existed even before my patchset). I believe we do not need
+> > it. Yes, the ->acpi_handle will not change if the ->acpi_device_id
+> > does not change. I believe the way forward should then be to populate
+> > connector->acpi_device_id and connector->acpi_handle ONE TIME at the
+> > time of connector init (and not update it on every resume). Does this
+> > sound ok?
+>
+> If a DP MST connector gets removed, should the other ACPI display
+> indexes after that shift, or remain the same? I really don't know.
+>
+> BR,
+> Jani.
+>
+> --
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
