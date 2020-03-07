@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA2E17CA8C
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 02:41:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA13D17CA95
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 02:56:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E6A0897EE;
-	Sat,  7 Mar 2020 01:41:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF8876EDD2;
+	Sat,  7 Mar 2020 01:56:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5332D897EE;
- Sat,  7 Mar 2020 01:41:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 22D2A6E532;
+ Sat,  7 Mar 2020 01:56:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4B9D0A47DF;
- Sat,  7 Mar 2020 01:41:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1A0BDA00E7;
+ Sat,  7 Mar 2020 01:56:50 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Souza, Jose" <jose.souza@intel.com>
-Date: Sat, 07 Mar 2020 01:41:51 -0000
-Message-ID: <158354531128.20975.8625732474400213669@emeril.freedesktop.org>
+Date: Sat, 07 Mar 2020 01:56:50 -0000
+Message-ID: <158354621006.20973.14849196930252599669@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200306185833.53984-1-jose.souza@intel.com>
 In-Reply-To: <20200306185833.53984-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv2=2C1/2=5D_drm/i915/display=3A_Dea?=
- =?utf-8?q?ctive_FBC_in_fastsets_when_disabled_by_parameter?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIHNl?=
+ =?utf-8?q?ries_starting_with_=5Bv2=2C1/2=5D_drm/i915/display=3A_Deactive_?=
+ =?utf-8?q?FBC_in_fastsets_when_disabled_by_parameter?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,14 +54,8 @@ State : warning
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-55685d37ef4e drm/i915/display: Deactive FBC in fastsets when disabled by parameter
--:20: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#20: 
-i915 0000:00:02.0: [drm:i915_edp_psr_debug_set [i915]] Setting PSR debug to f
-
-total: 0 errors, 1 warnings, 0 checks, 65 lines checked
-deed84b37356 drm/i915/display: Do not write in removed FBC fence registers
+$ make htmldocs 2>&1 > /dev/null | grep i915
+./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning: Function parameter or member 'get_freq' not described in 'intel_shared_dpll_funcs'
 
 _______________________________________________
 Intel-gfx mailing list
