@@ -2,30 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D902D17CD47
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 10:34:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3629D17CD72
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 11:07:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA36A6E121;
-	Sat,  7 Mar 2020 09:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 624E16E139;
+	Sat,  7 Mar 2020 10:07:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F1EBB6E121;
- Sat,  7 Mar 2020 09:34:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EACEBA0071;
- Sat,  7 Mar 2020 09:34:43 +0000 (UTC)
+Received: from asavdk3.altibox.net (asavdk3.altibox.net [109.247.116.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 409916E126;
+ Sat,  7 Mar 2020 10:07:27 +0000 (UTC)
+Received: from ravnborg.org (unknown [158.248.194.18])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by asavdk3.altibox.net (Postfix) with ESMTPS id 5139D20033;
+ Sat,  7 Mar 2020 11:07:24 +0100 (CET)
+Date: Sat, 7 Mar 2020 11:07:22 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>
+Message-ID: <20200307100722.GJ28810@ravnborg.org>
+References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
+ <20200302222631.3861340-52-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Sat, 07 Mar 2020 09:34:43 -0000
-Message-ID: <158357368393.20976.3693377113715297606@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200307083023.76498-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200307083023.76498-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ2xl?=
- =?utf-8?q?anup_drm=5Fdp=5Fmst=5Ftopology=5Fcbs_hooks?=
+Content-Disposition: inline
+In-Reply-To: <20200302222631.3861340-52-daniel.vetter@ffwll.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=eMA9ckh1 c=1 sm=1 tr=0
+ a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+ a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+ a=07d9gI8wAAAA:8 a=VwQbUJbxAAAA:8 a=P1BnusSwAAAA:8 a=ag1SF4gXAAAA:8
+ a=QyXUC8HyAAAA:8 a=e5mUnYsNAAAA:8 a=YXAK5otltNHbHWk6N1wA:9
+ a=M9JO0sF5p5IZXRxC:21 a=sjhRMFua1iregTtX:21 a=CjuIK1q_8ugA:10
+ a=E9Po1WZjFZOl8hwRPBS3:22 a=e2CUPOnPG4QKp8I52DXD:22
+ a=AjGcO6oz07-iQ99wixmX:22 a=D0XLA9XvdZm18NrgonBM:22
+ a=Yupwre4RP9_Eg_Bd0iYG:22 a=Vxmtnl_E_bksehYqCbjh:22
+Subject: Re: [Intel-gfx] [PATCH 51/51] drm: Add docs for managed resources
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,140 +50,389 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Jonathan Corbet <corbet@lwn.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ linux-doc@vger.kernel.org, DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniel.
 
-Series: Cleanup drm_dp_mst_topology_cbs hooks
-URL   : https://patchwork.freedesktop.org/series/74411/
-State : failure
+On Mon, Mar 02, 2020 at 11:26:31PM +0100, Daniel Vetter wrote:
+> All collected together to provide a consistent story in one patch,
+> instead of the somewhat bumpy refactor-evolution leading to this.
+> 
+> Also some thoughts on what the next steps could be:
+> 
+> - Create a macro called devm_drm_dev_alloc() which essentially wraps
+>   the kzalloc(); devm_drm_dev_init(); drmm_add_final_kfree() combo.
+>   Needs to be a macro since we'll have to do some typeof trickery and
+>   casting to make this fully generic for all drivers that embed struct
+>   drm_device into their own thing.
+> 
+> - A lot of the simple drivers now have essentially just
+>   drm_dev_unplug(); drm_atomic_helper_shutdown(); as their
+>   $bus_driver->remove hook. We could create a devm_mode_config_reset
+>   which sets drm_atomic_helper_shutdown as it's cleanup action, and a
+>   devm_drm_dev_register with drm_dev_unplug as it's cleanup action,
+>   and simple drivers wouldn't have a need for a ->remove function at
+>   all, and we could delete them.
+> 
+> - For more complicated drivers we need drmm_ versions of a _lot_ more
+>   things. All the userspace visible objects (crtc, plane, encoder,
+>   crtc), anything else hanging of those (maybe a drmm_get_edid, at
+>   least for panels and other built-in stuff).
 
-== Summary ==
+When this patch set is landed and the dut have setteled it would
+be good with a detailed todo entry including the above.
+But let's land this first.
 
-CI Bug Log - changes from CI_DRM_8088 -> Patchwork_16873
-====================================================
+> 
+> Also some more thoughts on why we're not reusing devm_ with maybe a
+> fake struct device embedded into the drm_device (we can't use the
+> kdev, since that's in each drm_minor).
+> 
+> - Code review gets extremely tricky, since every time you see a devm_
+>   you need to carefully check whether the fake device (with the
+>   drm_device lifetim) or the real device (with the lifetim of the
+>   underlying physical device and driver binding) are used. That's not
+>   going to help at all, and we have enormous amounts of drivers who
+>   use devm_ where they really shouldn't. Having different types makes
+>   sure the compiler type checks this for us and ensures correctness.
+> 
+> - The set of functions are very much non-overlapping. E.g.
+>   devm_ioremap makes total sense, drmm_ioremap has the wrong lifetime,
+>   since hw resources need to be cleaned out at driver unbind and wont
+>   outlive that like a drm_device. Similar, but other way round for
+>   drmm_connector_init (which is the only correct version, devm_ for
+>   drm_connector is just buggy). Simply not having the wrong version
+>   again prevents bugs.
+> 
+> Finally I guess this opens a huge todo for all the drivers. I'm
+> semi-tempted to do a tree-wide s/devm_kzalloc/drmm_kzalloc/ since most
+> likely that'll fix an enormous amount of bugs and most likely not
+> cause any issues at all (aside from maybe holding onto memory slightly
+> too long).
+> 
+> v2:
+> - Doc improvements from Laurent.
+> - Also add kerneldoc for the new drmm_add_action_or_reset.
+> 
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: linux-doc@vger.kernel.org
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
 
-Summary
--------
+Looks good - nice overview and good function descriptions.
 
-  **FAILURE**
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 
-  Serious unknown changes coming with Patchwork_16873 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16873, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16873:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@runner@aborted:
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-hsw-peppy/igt@runner@aborted.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@i915_selftest@live@ring_submission}:
-    - fi-hsw-peppy:       [PASS][2] -> [INCOMPLETE][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16873 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][4] -> [FAIL][5] ([CI#94])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-skl-6770hq:      [PASS][6] -> [SKIP][7] ([fdo#109271]) +24 similar issues
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-skl-6770hq/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@vgem_basic@mmap:
-    - fi-tgl-y:           [PASS][8] -> [DMESG-WARN][9] ([CI#94] / [i915#402]) +1 similar issue
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@vgem_basic@mmap.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-tgl-y/igt@vgem_basic@mmap.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [DMESG-FAIL][10] ([i915#1314]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_addfb_basic@bo-too-small-due-to-tiling:
-    - fi-tgl-y:           [DMESG-WARN][12] ([CI#94] / [i915#402]) -> [PASS][13] +1 similar issue
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1314]: https://gitlab.freedesktop.org/drm/intel/issues/1314
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-
-
-Participating hosts (46 -> 36)
-------------------------------
-
-  Additional (2): fi-bwr-2160 fi-tgl-dsi 
-  Missing    (12): fi-hsw-4770r fi-bdw-5557u fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-cfl-8109u fi-skl-lmem fi-blb-e6850 fi-skl-6600u fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8088 -> Patchwork_16873
-
-  CI-20190529: 20190529
-  CI_DRM_8088: 91dc8b179da374160a6bbdbd6987a512a10fbc02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5498: 1bb7a25a09fe3e653d310e8bdfbdde4a1934b326 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16873: 919c98299d50ff3dc52f94afac423bd0a5c639cd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-919c98299d50 drm: Remove drm dp mst destroy_connector callbacks
-2660c615761e drm: Add drm_dp_destroy_connector helper and use it
-e13003542ac3 drm/dp_mst: Remove register_connector callback
-8257f11b943e drm: Remove dp mst register connector callbacks
-405ed930705a drm: Register connector instead of calling register_connector callback
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16873/index.html
+> ---
+>  Documentation/gpu/drm-internals.rst |  6 +++
+>  drivers/gpu/drm/drm_drv.c           | 18 +++++++--
+>  drivers/gpu/drm/drm_managed.c       | 61 +++++++++++++++++++++++++++++
+>  include/drm/drm_drv.h               |  4 ++
+>  include/drm/drm_managed.h           | 58 +++++++++++++++++++++++++++
+>  5 files changed, 144 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/gpu/drm-internals.rst b/Documentation/gpu/drm-internals.rst
+> index a6b6145fda78..12272b168580 100644
+> --- a/Documentation/gpu/drm-internals.rst
+> +++ b/Documentation/gpu/drm-internals.rst
+> @@ -138,6 +138,12 @@ Managed Resources
+>  .. kernel-doc:: drivers/gpu/drm/drm_managed.c
+>     :doc: managed resources
+>  
+> +.. kernel-doc:: drivers/gpu/drm/drm_managed.c
+> +   :export:
+> +
+> +.. kernel-doc:: include/drm/drm_managed.h
+> +   :internal:
+> +
+>  Bus-specific Device Registration and PCI Support
+>  ------------------------------------------------
+>  
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index a82702d0c2fb..cd172080649c 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -260,9 +260,15 @@ void drm_minor_release(struct drm_minor *minor)
+>   * any other resources allocated at device initialization and drop the driver's
+>   * reference to &drm_device using drm_dev_put().
+>   *
+> - * Note that the lifetime rules for &drm_device instance has still a lot of
+> - * historical baggage. Hence use the reference counting provided by
+> - * drm_dev_get() and drm_dev_put() only carefully.
+> + * Note that any allocation or resource which is visible to userspace must be
+> + * released only when the final drm_dev_put() is called, and not when the
+> + * driver is unbound from the underlying physical struct &device. Best to use
+> + * &drm_device managed resources with drmm_add_action(), drmm_kmalloc() and
+> + * related functions.
+> + *
+> + * devres managed resources like devm_kmalloc() can only be used for resources
+> + * directly related to the underlying hardware device, and only used in code
+> + * paths fully protected by drm_dev_enter() and drm_dev_exit().
+>   *
+>   * Display driver example
+>   * ~~~~~~~~~~~~~~~~~~~~~~
+> @@ -606,6 +612,9 @@ static void drm_dev_init_release(struct drm_device *dev, void *res)
+>   * arbitrary offset, you must supply a &drm_driver.release callback and control
+>   * the finalization explicitly.
+>   *
+> + * Note that drivers must call drmm_add_final_kfree() after this function has
+> + * completed successfully.
+> + *
+>   * RETURNS:
+>   * 0 on success, or error code on failure.
+>   */
+> @@ -707,6 +716,9 @@ static void devm_drm_dev_init_release(void *data)
+>   * Managed drm_dev_init(). The DRM device initialized with this function is
+>   * automatically put on driver detach using drm_dev_put().
+>   *
+> + * Note that drivers must call drmm_add_final_kfree() after this function has
+> + * completed successfully.
+> + *
+>   * RETURNS:
+>   * 0 on success, or error code on failure.
+>   */
+> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> index 8c5f1f03c485..5148ef786c3b 100644
+> --- a/drivers/gpu/drm/drm_managed.c
+> +++ b/drivers/gpu/drm/drm_managed.c
+> @@ -20,7 +20,19 @@
+>   * Inspired by struct &device managed resources, but tied to the lifetime of
+>   * struct &drm_device, which can outlive the underlying physical device, usually
+>   * when userspace has some open files and other handles to resources still open.
+> + *
+> + * Release actions can be added with drmm_add_action(), memory allocations can
+> + * be done directly with drmm_kmalloc() and the related functions. Everything
+> + * will be released on the final drm_dev_put() in reverse order of how the
+> + * release actions have been added and memory has been allocated since driver
+> + * loading started with drm_dev_init().
+> + *
+> + * Note that release actions and managed memory can also be added and removed
+> + * during the lifetime of the driver, all the functions are fully concurrent
+> + * safe. But it is recommended to use managed resources only for resources that
+> + * change rarely, if ever, during the lifetime of the &drm_device instance.
+>   */
+> +
+>  struct drmres_node {
+>  	struct list_head	entry;
+>  	drmres_release_t	release;
+> @@ -105,6 +117,18 @@ static void add_dr(struct drm_device *dev, struct drmres *dr)
+>  		       dr, dr->node.name, (unsigned long) dr->node.size);
+>  }
+>  
+> +/**
+> + * drmm_add_final_kfree - add release action for the final kfree()
+> + * @dev: DRM device
+> + * @parent: pointer to the kmalloc allocation containing @dev
+> + *
+> + * Since the allocation containing the struct &drm_device must be allocated
+> + * before it can be initialized with drm_dev_init() there's no way to allocate
+> + * that memory with drmm_kmalloc(). To side-step this chicken-egg problem the
+> + * pointer for this final kfree() must be specified by calling this function. It
+> + * will be released in the final drm_dev_put() for @dev, after all other release
+> + * actions installed through drmm_add_action() have been processed.
+> + */
+>  void drmm_add_final_kfree(struct drm_device *dev, void *parent)
+>  {
+>  	WARN_ON(dev->managed.final_kfree);
+> @@ -156,6 +180,14 @@ int __drmm_add_action_or_reset(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(__drmm_add_action_or_reset);
+>  
+> +/**
+> + * drmm_add_action - remove a managed release action to a &drm_device
+> + * @dev: DRM device
+> + * @action: release function
+> + * @data: opaque pointer, passed to @action
+> + *
+> + * This function removes a release action added by drmm_add_action().
+> + */
+>  void drmm_remove_action(struct drm_device *dev,
+>  			drmres_release_t action,
+>  			void *data)
+> @@ -184,6 +216,16 @@ void drmm_remove_action(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(drmm_remove_action);
+>  
+> +/**
+> + * drmm_kmalloc - &drm_device managed kmalloc()
+> + * @dev: DRM device
+> + * @size: size of the memory allocation
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kmalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put(). Memory can also be freed
+> + * before the final drm_dev_put() by calling drmm_kfree().
+> + */
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  {
+>  	struct drmres *dr;
+> @@ -202,6 +244,16 @@ void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  }
+>  EXPORT_SYMBOL(drmm_kmalloc);
+>  
+> +/**
+> + * drmm_kstrdup - &drm_device managed kstrdup()
+> + * @dev: DRM device
+> + * @s: 0-terminated string to be duplicated
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kstrdup(). The allocated memory is
+> + * automatically freed on the final drm_dev_put() and works exactly like a
+> + * memory allocation obtained by drmm_kmalloc().
+> + */
+>  char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
+>  {
+>  	size_t size;
+> @@ -218,6 +270,15 @@ char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
+>  }
+>  EXPORT_SYMBOL_GPL(drmm_kstrdup);
+>  
+> +/**
+> + * drmm_kfree - &drm_device managed kfree()
+> + * @dev: DRM device
+> + * @data: memory allocation to be freed
+> + *
+> + * This is a &drm_device managed version of kfree() which can be used to
+> + * release memory allocated through drmm_kmalloc() or any of its related
+> + * functions before the final drm_dev_put() of @dev.
+> + */
+>  void drmm_kfree(struct drm_device *dev, void *data)
+>  {
+>  	struct drmres *dr_match = NULL, *dr;
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index edee40e31e4b..0fd7fc6f024e 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -266,6 +266,10 @@ struct drm_driver {
+>  	 *
+>  	 * Optional callback for destroying device data after the final
+>  	 * reference is released, i.e. the device is being destroyed.
+> +	 *
+> +	 * This is deprecated, clean up all memory allocations associated with a
+> +	 * &drm_device using drmm_add_action(), drmm_kmalloc() and related
+> +	 * managed resources functions.
+>  	 */
+>  	void (*release) (struct drm_device *);
+>  
+> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> index 1e6291407586..af152cfb173c 100644
+> --- a/include/drm/drm_managed.h
+> +++ b/include/drm/drm_managed.h
+> @@ -11,6 +11,19 @@ struct drm_device;
+>  
+>  typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
+>  
+> +/**
+> + * drmm_add_action - add a managed release action to a &drm_device
+> + * @dev: DRM device
+> + * @action: function which should be called when @dev is released
+> + * @data: opaque pointer, passed to @action
+> + *
+> + * This function adds the @release action with optional parameter @data to the
+> + * list of cleanup actions for @dev. The cleanup actions will be run in reverse
+> + * order in the final drm_dev_put() call for @dev.
+> + *
+> + * A release action can be removed before @dev is released by calling
+> + * drmm_remove_action() with matching parameters for @action and @data.
+> + */
+>  #define drmm_add_action(dev, action, data) \
+>  	__drmm_add_action(dev, action, data, #action)
+>  
+> @@ -18,6 +31,15 @@ int __must_check __drmm_add_action(struct drm_device *dev,
+>  				   drmres_release_t action,
+>  				   void *data, const char *name);
+>  
+> +/**
+> + * drmm_add_action_or_reset - add a managed release action to a &drm_device
+> + * @dev: DRM device
+> + * @action: function which should be called when @dev is released
+> + * @data: opaque pointer, passed to @action
+> + *
+> + * Similar to drmm_add_action(), with the only difference that upon failure
+> + * @action is directly called for any cleanup work necessary on failures.
+> + */
+>  #define drmm_add_action_or_reset(dev, action, data) \
+>  	__drmm_add_action_or_reset(dev, action, data, #action)
+>  
+> @@ -32,10 +54,33 @@ void drmm_remove_action(struct drm_device *dev,
+>  void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+>
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
+> +
+> +/**
+> + * drmm_kzalloc - &drm_device managed kzalloc()
+> + * @dev: DRM device
+> + * @size: size of the memory allocation
+> + * @gfp: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kzalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put(). Memory can also be freed
+> + * before the final drm_dev_put() by calling drmm_kfree().
+> + */
+>  static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  {
+>  	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
+>  }
+> +
+> +/**
+> + * drmm_kmalloc_array - &drm_device managed kmalloc_array()
+> + * @dev: DRM device
+> + * @n: number of array elements to allocate
+> + * @size: size of array member
+> + * @flags: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kmalloc_array(). The allocated
+> + * memory is automatically freed on the final drm_dev_put() and works exactly
+> + * like a memory allocation obtained by drmm_kmalloc().
+> + */
+>  static inline void *drmm_kmalloc_array(struct drm_device *dev,
+>  				       size_t n, size_t size, gfp_t flags)
+>  {
+> @@ -46,11 +91,24 @@ static inline void *drmm_kmalloc_array(struct drm_device *dev,
+>  
+>  	return drmm_kmalloc(dev, bytes, flags);
+>  }
+> +
+> +/**
+> + * drmm_kcalloc - &drm_device managed kcalloc()
+> + * @dev: DRM device
+> + * @n: number of array elements to allocate
+> + * @size: size of array member
+> + * @flags: GFP allocation flags
+> + *
+> + * This is a &drm_device managed version of kcalloc(). The allocated memory is
+> + * automatically freed on the final drm_dev_put() and works exactly like a
+> + * memory allocation obtained by drmm_kmalloc().
+> + */
+>  static inline void *drmm_kcalloc(struct drm_device *dev,
+>  				 size_t n, size_t size, gfp_t flags)
+>  {
+>  	return drmm_kmalloc_array(dev, n, size, flags | __GFP_ZERO);
+>  }
+> +
+>  char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
+>
+>  void drmm_kfree(struct drm_device *dev, void *data);
+> -- 
+> 2.24.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
