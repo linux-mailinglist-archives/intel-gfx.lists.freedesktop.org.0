@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2D5A17CB49
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 03:41:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDE7D17CB51
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 03:45:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CC8F6E038;
-	Sat,  7 Mar 2020 02:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 039816EDDA;
+	Sat,  7 Mar 2020 02:45:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F2D2E6EDDA;
- Sat,  7 Mar 2020 02:40:59 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C81AB6EDDA;
+ Sat,  7 Mar 2020 02:45:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EC1BDA3C0D;
- Sat,  7 Mar 2020 02:40:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0F13A47E1;
+ Sat,  7 Mar 2020 02:45:37 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@intel.com>
-Date: Sat, 07 Mar 2020 02:40:59 -0000
-Message-ID: <158354885996.20976.16090372462951682437@emeril.freedesktop.org>
+To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
+Date: Sat, 07 Mar 2020 02:45:37 -0000
+Message-ID: <158354913776.20976.14217035929671170976@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200306230344.53559-1-andi@etezian.org>
-In-Reply-To: <20200306230344.53559-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_allow_setting_generic_data_pointer_=28rev4=29?=
+References: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200225115024.2386811-1-daniel.vetter@ffwll.ch>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm=3A_avoid_spurious_EBUSY_due_to_nonblocking_atomic_modes?=
+ =?utf-8?q?ets_=28rev5=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,109 +48,30 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: allow setting generic data pointer (rev4)
-URL   : https://patchwork.freedesktop.org/series/74360/
-State : success
+Series: drm: avoid spurious EBUSY due to nonblocking atomic modesets (rev5)
+URL   : https://patchwork.freedesktop.org/series/45968/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8088 -> Patchwork_16869
-====================================================
+$ dim checkpatch origin/drm-tip
+bca7a2e764c5 drm: avoid spurious EBUSY due to nonblocking atomic modesets
+-:35: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#35: 
+References: https://lists.freedesktop.org/archives/dri-devel/2018-July/182281.html
 
-Summary
--------
+-:52: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#52: FILE: drivers/gpu/drm/drm_atomic.c:1365:
++	unsigned requested_crtc = 0;
 
-  **SUCCESS**
+-:53: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
+#53: FILE: drivers/gpu/drm/drm_atomic.c:1366:
++	unsigned affected_crtc = 0;
 
-  No regressions found.
+-:93: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/index.html
+total: 0 errors, 4 warnings, 0 checks, 46 lines checked
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16869 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][1] -> [DMESG-FAIL][2] ([i915#877])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-cml-u2:          [PASS][3] -> [FAIL][4] ([i915#262])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@vgem_basic@setversion:
-    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@vgem_basic@setversion.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-tgl-y/igt@vgem_basic@setversion.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bsw-kefka:       [DMESG-FAIL][7] ([i915#1314]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-bsw-kefka/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_addfb_basic@bo-too-small-due-to-tiling:
-    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-tgl-y/igt@kms_addfb_basic@bo-too-small-due-to-tiling.html
-
-  * igt@kms_chamelium@dp-crc-fast:
-    - fi-kbl-7500u:       [FAIL][11] ([fdo#109635] / [i915#217]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][13] ([fdo#111096] / [i915#323]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8088/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#1314]: https://gitlab.freedesktop.org/drm/intel/issues/1314
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (46 -> 43)
-------------------------------
-
-  Additional (1): fi-bwr-2160 
-  Missing    (4): fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-hsw-4200u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8088 -> Patchwork_16869
-
-  CI-20190529: 20190529
-  CI_DRM_8088: 91dc8b179da374160a6bbdbd6987a512a10fbc02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5498: 1bb7a25a09fe3e653d310e8bdfbdde4a1934b326 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16869: 5c203f8d2312d96d4fd0f912635ddfc455722866 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5c203f8d2312 drm/i915/gt: allow setting generic data pointer
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16869/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
