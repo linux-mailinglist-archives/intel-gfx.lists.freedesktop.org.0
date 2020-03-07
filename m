@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8568F17C961
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 01:04:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1D417C969
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 01:09:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAB656EDB3;
-	Sat,  7 Mar 2020 00:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9136E433;
+	Sat,  7 Mar 2020 00:09:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 191466E433;
- Sat,  7 Mar 2020 00:04:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BAC216E433;
+ Sat,  7 Mar 2020 00:09:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 118E1A00C7;
- Sat,  7 Mar 2020 00:04:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B3B71A41FB;
+ Sat,  7 Mar 2020 00:09:41 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 07 Mar 2020 00:04:54 -0000
-Message-ID: <158353949403.20976.5757958729060029625@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Sat, 07 Mar 2020 00:09:41 -0000
+Message-ID: <158353978170.20975.2287726801865200071@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200306154647.3528345-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200306154647.3528345-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Close_race_between_cacheline=5Fretire_and_free?=
+References: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Gamma_cleanups_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,99 +47,112 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: Close race between cacheline_retire and free
-URL   : https://patchwork.freedesktop.org/series/74397/
-State : success
+Series: drm/i915: Gamma cleanups (rev4)
+URL   : https://patchwork.freedesktop.org/series/69136/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8087 -> Patchwork_16865
-====================================================
+$ dim checkpatch origin/drm-tip
+ca6d5d42a01b drm/i915: Polish CHV CGM CSC loading
+97e95a526dd1 drm/i915: Clean up i9xx_load_luts_internal()
+cce1fed1d2dd drm/i915: Split i9xx_read_lut_8() to gmch vs. ilk variants
+-:58: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#58: FILE: drivers/gpu/drm/i915/display/intel_color.c:1845:
++		blob_data[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-Summary
--------
+-:60: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#60: FILE: drivers/gpu/drm/i915/display/intel_color.c:1847:
++		blob_data[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-  **SUCCESS**
+-:62: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#62: FILE: drivers/gpu/drm/i915/display/intel_color.c:1849:
++		blob_data[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
-  No regressions found.
+total: 0 errors, 0 warnings, 3 checks, 65 lines checked
+319ef1a13f77 drm/i915: s/blob_data/lut/
+-:40: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#40: FILE: drivers/gpu/drm/i915/display/intel_color.c:1711:
++		lut[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/index.html
+-:43: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#43: FILE: drivers/gpu/drm/i915/display/intel_color.c:1713:
++		lut[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-Known issues
-------------
+-:46: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#46: FILE: drivers/gpu/drm/i915/display/intel_color.c:1715:
++		lut[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
-  Here are the changes found in Patchwork_16865 that come from known issues:
+-:83: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#83: FILE: drivers/gpu/drm/i915/display/intel_color.c:1762:
++	lut[i].red = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+ 					 intel_de_read(dev_priv, PIPEGCMAX(pipe, 0)));
 
-### IGT changes ###
+-:86: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#86: FILE: drivers/gpu/drm/i915/display/intel_color.c:1764:
++	lut[i].green = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+ 					   intel_de_read(dev_priv, PIPEGCMAX(pipe, 1)));
 
-#### Issues hit ####
+-:89: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#89: FILE: drivers/gpu/drm/i915/display/intel_color.c:1766:
++	lut[i].blue = REG_FIELD_GET(PIPEGCMAX_RGB_MASK,
+ 					  intel_de_read(dev_priv, PIPEGCMAX(pipe, 2)));
 
-  * igt@prime_self_import@basic-llseek-bad:
-    - fi-tgl-y:           [PASS][1] -> [DMESG-WARN][2] ([CI#94] / [i915#402]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/fi-tgl-y/igt@prime_self_import@basic-llseek-bad.html
+-:111: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#111: FILE: drivers/gpu/drm/i915/display/intel_color.c:1803:
++		lut[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-  
-#### Possible fixes ####
+-:114: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#114: FILE: drivers/gpu/drm/i915/display/intel_color.c:1805:
++		lut[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][3] ([CI#94]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+-:119: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#119: FILE: drivers/gpu/drm/i915/display/intel_color.c:1809:
++		lut[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-  * {igt@i915_selftest@live@ring_submission}:
-    - fi-hsw-peppy:       [INCOMPLETE][5] -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/fi-hsw-peppy/igt@i915_selftest@live@ring_submission.html
+-:143: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#143: FILE: drivers/gpu/drm/i915/display/intel_color.c:1845:
++		lut[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-  * igt@prime_vgem@basic-sync-default:
-    - fi-tgl-y:           [DMESG-WARN][7] ([CI#94] / [i915#402]) -> [PASS][8] +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-tgl-y/igt@prime_vgem@basic-sync-default.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/fi-tgl-y/igt@prime_vgem@basic-sync-default.html
+-:146: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#146: FILE: drivers/gpu/drm/i915/display/intel_color.c:1847:
++		lut[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-  
-#### Warnings ####
+-:149: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#149: FILE: drivers/gpu/drm/i915/display/intel_color.c:1849:
++		lut[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-u2:          [TIMEOUT][9] -> [DMESG-WARN][10] ([i915#289])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
+-:173: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#173: FILE: drivers/gpu/drm/i915/display/intel_color.c:1878:
++		lut[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:176: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#176: FILE: drivers/gpu/drm/i915/display/intel_color.c:1880:
++		lut[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+-:179: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#179: FILE: drivers/gpu/drm/i915/display/intel_color.c:1882:
++		lut[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
+-:206: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#206: FILE: drivers/gpu/drm/i915/display/intel_color.c:1928:
++		lut[i].red = intel_color_lut_pack(REG_FIELD_GET(
 
-Participating hosts (49 -> 40)
-------------------------------
+-:209: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#209: FILE: drivers/gpu/drm/i915/display/intel_color.c:1930:
++		lut[i].green = intel_color_lut_pack(REG_FIELD_GET(
 
-  Additional (1): fi-icl-y 
-  Missing    (10): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-cfl-8109u fi-bsw-kefka fi-skl-lmem fi-bdw-samus fi-byt-clapper fi-skl-6600u fi-snb-2600 
+-:212: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#212: FILE: drivers/gpu/drm/i915/display/intel_color.c:1932:
++		lut[i].blue = intel_color_lut_pack(REG_FIELD_GET(
 
+total: 0 errors, 0 warnings, 18 checks, 183 lines checked
+d4f1fa52704c drm/i915: s/chv_read_cgm_lut/chv_read_cgm_gamma/
+ef770588c959 drm/i915: Clean up integer types in color code
+8973bf85659e drm/i915: Refactor LUT read functions
+406986ee9efc drm/i915: Fix readout of PIPEGCMAX
+3da0fd12387c drm/i915: Pass the crtc to the low level read_lut() funcs
 
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8087 -> Patchwork_16865
-
-  CI-20190529: 20190529
-  CI_DRM_8087: 2eecd3619f1f227c890414a0730a723f1c5a3a60 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5498: 1bb7a25a09fe3e653d310e8bdfbdde4a1934b326 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16865: bdc6f49063104b1a5038deb2bc562c5bacdef941 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-bdc6f4906310 drm/i915/gt: Close race between cacheline_retire and free
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16865/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
