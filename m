@@ -1,34 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F4E17D069
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 23:13:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5395A17D080
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Mar 2020 23:59:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C130F6E02A;
-	Sat,  7 Mar 2020 22:13:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F3D56E265;
+	Sat,  7 Mar 2020 22:59:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1A906E02A
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 22:13:15 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20482172-1500050 for multiple; Sat, 07 Mar 2020 22:13:10 +0000
+X-Greylist: delayed 2381 seconds by postgrey-1.36 at gabe;
+ Sat, 07 Mar 2020 22:59:45 UTC
+Received: from 8.mo3.mail-out.ovh.net (8.mo3.mail-out.ovh.net [87.98.172.249])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3A776E265
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 22:59:45 +0000 (UTC)
+Received: from player711.ha.ovh.net (unknown [10.108.42.174])
+ by mo3.mail-out.ovh.net (Postfix) with ESMTP id 3A575241A98
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Mar 2020 23:20:01 +0100 (CET)
+Received: from etezian.org (81-175-223-118.bb.dnainternet.fi [81.175.223.118])
+ (Authenticated sender: andi@etezian.org)
+ by player711.ha.ovh.net (Postfix) with ESMTPSA id 56D6810082D06;
+ Sat,  7 Mar 2020 22:19:55 +0000 (UTC)
+Date: Sun, 8 Mar 2020 00:19:55 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200307221955.GA60782@jack.zhora.eu>
+References: <20200306230344.53559-1-andi@etezian.org>
+ <158358284291.6224.14954481538219251460@build.alporthouse.com>
+ <20200307125531.GA58713@jack.zhora.eu>
+ <158360254703.6224.5041578469627024671@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <20191213171739.GC1208@intel.com>
-References: <20191213152823.26817-1-ville.syrjala@linux.intel.com>
- <157625247338.7535.668231195608100084@skylake-alporthouse-com>
- <20191213170601.GB1208@intel.com> <20191213171739.GC1208@intel.com>
-To: Ville Syrjälä <ville.syrjala@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158361919091.30296.10666589395477736863@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Sat, 07 Mar 2020 22:13:10 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add device name to display
- tracepoints
+Content-Disposition: inline
+In-Reply-To: <158360254703.6224.5041578469627024671@build.alporthouse.com>
+X-Ovh-Tracer-Id: 2166512897397735945
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedruddugedgudeifecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucfkpheptddrtddrtddrtddpkedurddujeehrddvvdefrdduudeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeduuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gt: allow setting generic data
+ pointer
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,57 +50,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-UXVvdGluZyBWaWxsZSBTeXJqw6Rsw6QgKDIwMTktMTItMTMgMTc6MTc6MzkpCj4gT24gRnJpLCBE
-ZWMgMTMsIDIwMTkgYXQgMDc6MDY6MDFQTSArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
-ID4gT24gRnJpLCBEZWMgMTMsIDIwMTkgYXQgMDM6NTQ6MzNQTSArMDAwMCwgQ2hyaXMgV2lsc29u
-IHdyb3RlOgo+ID4gPiBRdW90aW5nIFZpbGxlIFN5cmphbGEgKDIwMTktMTItMTMgMTU6Mjg6MjMp
-Cj4gPiA+ID4gRnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVs
-LmNvbT4KPiA+ID4gPiAKPiA+ID4gPiBJbmNsdWRlIGRldl9uYW1lKCkgaW4gdGhlIHRyYWNwb2lu
-dHMgc28gb25lIGNhbiBmaWx0ZXIgYmFzZWQgb24KPiA+ID4gPiB0aGUgZGV2aWNlLgo+ID4gPiA+
-IAo+ID4gPiA+IEV4YW1wbGU6Cj4gPiA+ID4gZWNobyAnZGV2PT0iMDAwMDowMDowMi4wIicgPiBl
-dmVudHMvaTkxNS9pbnRlbF9jcHVfZmlmb191bmRlcnJ1bi9maWx0ZXIKPiA+ID4gPiAKPiA+ID4g
-PiBUT0RPOiBtYXliZSBkb24ndCBib3RoIHNwZWNpZnlpbmcgdGhlIGZpZWxkIG5hbWUgYWx3YXlz
-IGFuZCBqdXN0Cj4gPiA+ID4gICAgICAgbWFrZSBpdCAnZGV2JyAob3Igd2hhdGV2ZXIpIGFsd2F5
-cz8KPiA+ID4gPiBUT0RPOiBhZGQgZm9yIG90aGVyIHRyYWNwb2ludHMgdG9vIGlmIHRoaXMgaXMg
-ZGVlbWVkIGdvb2QgZW5vdWdoCj4gPiA+ID4gCj4gPiA+ID4gU3VnZ2VzdGVkLWJ5OiBDaHJpcyBX
-aWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBW
-aWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+ID4gPiA+IC0t
-LQo+ID4gPiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3RyYWNlLmggfCA5NiArKysrKysr
-KysrKysrKysrKysrKystLS0tLS0tLS0tCj4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCA2NSBpbnNl
-cnRpb25zKCspLCAzMSBkZWxldGlvbnMoLSkKPiA+ID4gPiAKPiA+ID4gPiBkaWZmIC0tZ2l0IGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV90cmFjZS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV90cmFjZS5oCj4gPiA+ID4gaW5kZXggN2VmN2ExZTE2NjRjLi44OTMxYjY3NTZmNDQgMTAw
-NjQ0Cj4gPiA+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV90cmFjZS5oCj4gPiA+
-ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV90cmFjZS5oCj4gPiA+ID4gQEAgLTIw
-LDExICsyMCwxOCBAQAo+ID4gPiA+ICAKPiA+ID4gPiAgLyogd2F0ZXJtYXJrL2ZpZm8gdXBkYXRl
-cyAqLwo+ID4gPiA+ICAKPiA+ID4gPiArI2RlZmluZSBfX2Rldl9uYW1lX2k5MTUoZmllbGQsIGk5
-MTUpIF9fc3RyaW5nKGZpZWxkLCBkZXZfbmFtZSgoaTkxNSktPmRybS5kZXYpKQo+ID4gPiA+ICsj
-ZGVmaW5lIF9fZGV2X25hbWVfY3J0YyhmaWVsZCwgY3J0YykgX19zdHJpbmcoZmllbGQsIGRldl9u
-YW1lKChjcnRjKS0+YmFzZS5kZXYtPmRldikpCj4gPiA+ID4gKyNkZWZpbmUgX19hc3NpZ25fZGV2
-X25hbWVfaTkxNShmaWVsZCwgaTkxNSkgX19hc3NpZ25fc3RyKGZpZWxkLCBkZXZfbmFtZSgoaTkx
-NSktPmRybS5kZXYpKQo+ID4gPiA+ICsjZGVmaW5lIF9fYXNzaWduX2Rldl9uYW1lX2NydGMoZmll
-bGQsIGNydGMpIF9fYXNzaWduX3N0cihmaWVsZCwgZGV2X25hbWUoKGNydGMpLT5iYXNlLmRldi0+
-ZGV2KSkKPiA+ID4gPiArI2RlZmluZSBfX2dldF9kZXZfbmFtZShmaWVsZCkgX19nZXRfc3RyKGZp
-ZWxkKQo+ID4gPiAKPiA+ID4gU3RvcmluZyB0aGUgc3RyaW5nIGlzIHF1aXRlIGV4cGVuc2l2ZSwg
-SSB0aG91Z2h0LiBDYW4gd2Ugc3Rhc2ggdGhlIGk5MTUKPiA+ID4gYW5kIHN0cmluZ2lmeSBpbiB0
-aGUgVFBfcHJpbnRrPyBPciBpcyBzdGFzaGluZyB0aGUgc3RyaW5nIHRoZSBzZWNyZXQgZm9yCj4g
-PiA+IHRoZSBkZXY9PSBmaWx0ZXI/Cj4gPiAKPiA+IExhc3QgdGltZSBJIHN0YXNoZWQgYSBwb2lu
-dGVyIGluIHRoZXJlIHBlb3BsZSBjb21wbGFpbmVkIHRoYXQgaXQgY2FuCj4gPiBkaXNhcHBlYXIg
-YmVmb3JlIGJlaW5nIGNvbnN1bWVkIGFuZCBjYXVzZSBhIHZlcnkgdGhlb3JldGljYWwgb29wcy4K
-PiA+IEJ1dCBJIGd1ZXNzIHdlIGNvdWxkIHN0YXNoIGp1c3QgdGhlIHBjaSBkZXZmbiBhbmQgd2hh
-dG5vdC4KPiAKPiBJIGJlbGlldmUgJ2RvbWFpbiArIGJ1cyArIGRldmZuJyB3b3VsZCBhbW91bnQg
-dG8gNCBieXRlcy4gVGhlIGRvd25zaWRlCj4gaXMgdGhhdCBpdCdkIGJlIGp1c3QgYW4gaW50ZWdl
-ciBzbyB3ZSdkIGxvc2UgdGhlIGRldj1kb21haW46YnVzOmRldi5mbgo+IHN5bnRheCBmb3IgdGhl
-IGZpbHRlci4gU3VwcG9zZSBJIGNvdWxkIHRyeSB0byBpbXBsZW1lbnQgYSBuZXcgZmlsdGVyCj4g
-dHlwZSBmb3IgaXQsIGJ1dCBubyBndWFyYW50ZWVzIHRoYXQgd291bGQgZ2V0IGFjY2VwdGVkLiBT
-ZWVtcyBhIGJpdCB0b28KPiBwY2kgc3BlY2lmaWMgZm9yIGtlcm5lbC90cmFjZS8uCgpQdXQgdGhl
-IG5hbWUgc3RyaW5nIGluIHRoZXJlLCBpdCdzIHNpbXBsZXN0IGFuZCBtb3N0IGZvb2xwcm9vZi4K
-LUNocmlzCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Hi Chris,
+
+> > > Quoting Andi Shyti (2020-03-06 23:03:44)
+> > > > -void debugfs_gt_register_files(struct intel_gt *gt,
+> > > > -                              struct dentry *root,
+> > > > -                              const struct debugfs_gt_file *files,
+> > > > -                              unsigned long count)
+> > > > +void intel_gt_debugfs_register_files(struct dentry *root,
+> > > > +                                    const struct debugfs_gt_file *files,
+> > > > +                                    unsigned long count, void *data)
+> > > >  {
+> > > >         while (count--) {
+> > > > -               if (!files->eval || files->eval(gt))
+> > > > +               if (!files->eval || files->eval(data))
+> > > >                         debugfs_create_file(files->name,
+> > > > -                                           0444, root, gt,
+> > > > +                                           0444, root, data,
+> > > >                                             files->fops);
+> > > >  
+> > > 
+> > > And now we are not a intel_gt routine, you'll want to move again :)
+> > > i915_debugfs_utils.c ? :)
+> > 
+> > Actually, this is what it came to and this was the first
+> > discussion I had with Daniele and that's also why I was loyal to
+> > th "_gt_" wrappers until the end. But I had to agree that this
+> > was becoming more a limitation.
+> > 
+> > The biggest difference left, which by the way is the real
+> > distinguishing factor other than the *gt pointer, is that we
+> > create files under gt directory, instead of having the root
+> > imposed by the drm (even though the caller can eventually choose
+> > different roots).
+> > 
+> > We could perhaps store the root pointer in the intel_gt
+> > structure so that this function stays de facto an intel_gt
+> > routine and the caller doesn't need to care where the files will
+> > be generated. This is what we planned to do with sysfs as well.
+> > 
+> > What do you think?
+> 
+> I thought we were passing along the root. If not I think we should, more
+> of a debugfs constructor context?
+
+What do you mean with debugfs constructor context? Is it a
+gt->debugfs_root pointer like the gt->sysfs_root?
+
+> The main thing of course is not to overengineer and do the minimal
+> necessary for the immediate users we have. We can always extend and
+> refactor for a third user, etc, etc.
+> 
+> So if this works for gt + children, go for it and worry about tomorrow,
+> tomorrow. Trusting our good practice for "a stitch in time saves nine".
+
+this came after Daniele's guc patches where he preferred to
+define his own functions instead of using this one that is meant
+to be used in that situation.
+
+Andi
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
