@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A1E17E471
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:16:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD60E17E472
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:16:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE5CE89994;
-	Mon,  9 Mar 2020 16:16:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30123899A3;
+	Mon,  9 Mar 2020 16:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD8089994
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 16:16:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A927089994
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 16:16:18 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 09:16:16 -0700
+ 09 Mar 2020 09:16:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="234049304"
+X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="234049309"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2020 09:16:14 -0700
+ by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2020 09:16:16 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Mar 2020 18:12:01 +0200
-Message-Id: <20200309161204.17792-6-stanislav.lisovskiy@intel.com>
+Date: Mon,  9 Mar 2020 18:12:02 +0200
+Message-Id: <20200309161204.17792-7-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
 References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v19 5/8] drm/i915: Added required new PCode
- commands
+Subject: [Intel-gfx] [PATCH v19 6/8] drm/i915: Rename bw_state to
+ new_bw_state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,51 +44,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgbmVlZCBhIG5ldyBQQ29kZSByZXF1ZXN0IGNvbW1hbmRzIGFuZCByZXBseSBjb2Rlcwp0byBi
-ZSBhZGRlZCBhcyBhIHByZXBhcnRpb24gcGF0Y2ggZm9yIFFHViBwb2ludHMKcmVzdHJpY3Rpbmcg
-Zm9yIG5ldyBTQUdWIHN1cHBvcnQuCgp2MjogLSBFeHRyYWN0ZWQgdGhvc2UgY2hhbmdlcyBpbnRv
-IHNlcGFyYXRlIHBhdGNoCiAgICAgIChWaWxsZSBTeXJqw6Rsw6QpCgpTaWduZWQtb2ZmLWJ5OiBT
-dGFuaXNsYXYgTGlzb3Zza2l5IDxzdGFuaXNsYXYubGlzb3Zza2l5QGludGVsLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgIHwgNCArKysrCiBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9pbnRlbF9zaWRlYmFuZC5jIHwgMiArKwogMiBmaWxlcyBjaGFuZ2VkLCA2IGlu
-c2VydGlvbnMoKykKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAppbmRleCA4MGNmMDJhNmVlYzEuLmJh
-MzVmZjE5MGJiOSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaAor
-KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oCkBAIC04OTkyLDYgKzg5OTIsNyBA
-QCBlbnVtIHsKICNkZWZpbmUgICAgIEdFTjdfUENPREVfSUxMRUdBTF9EQVRBCQkweDMKICNkZWZp
-bmUgICAgIEdFTjExX1BDT0RFX0lMTEVHQUxfU1VCQ09NTUFORAkweDQKICNkZWZpbmUgICAgIEdF
-TjExX1BDT0RFX0xPQ0tFRAkJCTB4NgorI2RlZmluZSAgICAgR0VOMTFfUENPREVfUkVKRUNURUQJ
-CTB4MTEKICNkZWZpbmUgICAgIEdFTjdfUENPREVfTUlOX0ZSRVFfVEFCTEVfR1RfUkFUSU9fT1VU
-X09GX1JBTkdFIDB4MTAKICNkZWZpbmUgICBHRU42X1BDT0RFX1dSSVRFX1JDNlZJRFMJCTB4NAog
-I2RlZmluZSAgIEdFTjZfUENPREVfUkVBRF9SQzZWSURTCQkweDUKQEAgLTkwMTMsNiArOTAxNCw3
-IEBAIGVudW0gewogI2RlZmluZSAgIElDTF9QQ09ERV9NRU1fU1VCU1lTWVNURU1fSU5GTwkweGQK
-ICNkZWZpbmUgICAgIElDTF9QQ09ERV9NRU1fU1NfUkVBRF9HTE9CQUxfSU5GTwkoMHgwIDw8IDgp
-CiAjZGVmaW5lICAgICBJQ0xfUENPREVfTUVNX1NTX1JFQURfUUdWX1BPSU5UX0lORk8ocG9pbnQp
-CSgoKHBvaW50KSA8PCAxNikgfCAoMHgxIDw8IDgpKQorI2RlZmluZSAgIElDTF9QQ09ERV9TQUdW
-X0RFX01FTV9TU19DT05GSUcJMHhlCiAjZGVmaW5lICAgR0VONl9QQ09ERV9SRUFEX0RfQ09NUAkJ
-MHgxMAogI2RlZmluZSAgIEdFTjZfUENPREVfV1JJVEVfRF9DT01QCQkweDExCiAjZGVmaW5lICAg
-SFNXX1BDT0RFX0RFX1dSSVRFX0ZSRVFfUkVRCQkweDE3CkBAIC05MDI1LDYgKzkwMjcsOCBAQCBl
-bnVtIHsKICNkZWZpbmUgICAgIEdFTjlfU0FHVl9JU19ESVNBQkxFRAkJMHgxCiAjZGVmaW5lICAg
-ICBHRU45X1NBR1ZfRU5BQkxFCQkJMHgzCiAjZGVmaW5lIEdFTjEyX1BDT0RFX1JFQURfU0FHVl9C
-TE9DS19USU1FX1VTCTB4MjMKKyNkZWZpbmUgR0VOMTFfUENPREVfUE9JTlRTX1JFU1RSSUNURUQJ
-CTB4MAorI2RlZmluZSBHRU4xMV9QQ09ERV9QT0lOVFNfUkVTVFJJQ1RFRF9NQVNLCTB4MQogI2Rl
-ZmluZSBHRU42X1BDT0RFX0RBVEEJCQkJX01NSU8oMHgxMzgxMjgpCiAjZGVmaW5lICAgR0VONl9Q
-Q09ERV9GUkVRX0lBX1JBVElPX1NISUZUCTgKICNkZWZpbmUgICBHRU42X1BDT0RFX0ZSRVFfUklO
-R19SQVRJT19TSElGVAkxNgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxf
-c2lkZWJhbmQuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3NpZGViYW5kLmMKaW5kZXgg
-MTQ0N2U3NTE2Y2I3Li4xZTdkZDZiNmYxMDMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2ludGVsX3NpZGViYW5kLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfc2lk
-ZWJhbmQuYwpAQCAtMzcwLDYgKzM3MCw4IEBAIHN0YXRpYyBpbmxpbmUgaW50IGdlbjdfY2hlY2tf
-bWFpbGJveF9zdGF0dXModTMyIG1ib3gpCiAJCXJldHVybiAtRU5YSU87CiAJY2FzZSBHRU4xMV9Q
-Q09ERV9MT0NLRUQ6CiAJCXJldHVybiAtRUJVU1k7CisJY2FzZSBHRU4xMV9QQ09ERV9SRUpFQ1RF
-RDoKKwkJcmV0dXJuIC1FQUNDRVM7CiAJY2FzZSBHRU43X1BDT0RFX01JTl9GUkVRX1RBQkxFX0dU
-X1JBVElPX09VVF9PRl9SQU5HRToKIAkJcmV0dXJuIC1FT1ZFUkZMT1c7CiAJZGVmYXVsdDoKLS0g
-CjIuMjQuMS40ODUuZ2FkMDVhM2Q4ZTUKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+That is a preparation patch before next one where we
+introduce old_bw_state and a bunch of other changes
+as well.
+In a review comment it was suggested to split out
+at least that renaming into a separate patch, what
+is done here.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index bdad7476dc7b..256c9322636c 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -418,7 +418,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
+ 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+-	struct intel_bw_state *bw_state = NULL;
++	struct intel_bw_state *new_bw_state = NULL;
+ 	unsigned int data_rate, max_data_rate;
+ 	unsigned int num_active_planes;
+ 	struct intel_crtc *crtc;
+@@ -447,29 +447,29 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
+ 		    old_active_planes == new_active_planes)
+ 			continue;
+ 
+-		bw_state  = intel_bw_get_state(state);
+-		if (IS_ERR(bw_state))
+-			return PTR_ERR(bw_state);
++		new_bw_state = intel_bw_get_state(state);
++		if (IS_ERR(new_bw_state))
++			return PTR_ERR(new_bw_state);
+ 
+-		bw_state->data_rate[crtc->pipe] = new_data_rate;
+-		bw_state->num_active_planes[crtc->pipe] = new_active_planes;
++		new_bw_state->data_rate[crtc->pipe] = new_data_rate;
++		new_bw_state->num_active_planes[crtc->pipe] = new_active_planes;
+ 
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "pipe %c data rate %u num active planes %u\n",
+ 			    pipe_name(crtc->pipe),
+-			    bw_state->data_rate[crtc->pipe],
+-			    bw_state->num_active_planes[crtc->pipe]);
++			    new_bw_state->data_rate[crtc->pipe],
++			    new_bw_state->num_active_planes[crtc->pipe]);
+ 	}
+ 
+-	if (!bw_state)
++	if (!new_bw_state)
+ 		return 0;
+ 
+-	ret = intel_atomic_lock_global_state(&bw_state->base);
++	ret = intel_atomic_lock_global_state(&new_bw_state->base);
+ 	if (ret)
+ 		return ret;
+ 
+-	data_rate = intel_bw_data_rate(dev_priv, bw_state);
+-	num_active_planes = intel_bw_num_active_planes(dev_priv, bw_state);
++	data_rate = intel_bw_data_rate(dev_priv, new_bw_state);
++	num_active_planes = intel_bw_num_active_planes(dev_priv, new_bw_state);
+ 
+ 	max_data_rate = intel_max_data_rate(dev_priv, num_active_planes);
+ 
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
