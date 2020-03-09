@@ -1,36 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135BF17EC92
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 00:19:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 135E017EC9C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 00:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74B7D6E5B9;
-	Mon,  9 Mar 2020 23:19:24 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC17E6E5B9
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 23:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 158876E129;
+	Mon,  9 Mar 2020 23:26:39 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28D836E129
+ for <Intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 23:26:38 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 16:19:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="321601311"
-Received: from przanoni-mobl.jf.intel.com ([10.24.15.100])
- by orsmga001.jf.intel.com with ESMTP; 09 Mar 2020 16:19:22 -0700
-Message-ID: <6931b691b2a49878110f308ad16230a07b260842.camel@intel.com>
-From: Paulo Zanoni <paulo.r.zanoni@intel.com>
-To: Karthik B S <karthik.b.s@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 09 Mar 2020 16:19:22 -0700
-In-Reply-To: <20200306113927.16904-6-karthik.b.s@intel.com>
-References: <20200306113927.16904-1-karthik.b.s@intel.com>
- <20200306113927.16904-6-karthik.b.s@intel.com>
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 16:26:37 -0700
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="231106598"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 09 Mar 2020 16:26:36 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-2-tvrtko.ursulin@linux.intel.com>
+ <158378968022.16414.13552854522311222381@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <ee5b6168-4e0a-6bbc-731e-a7391cc96397@linux.intel.com>
+Date: Mon, 9 Mar 2020 23:26:34 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 5/7] drm/i915: Add flip_done_handler definition
+In-Reply-To: <158378968022.16414.13552854522311222381@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 01/12] drm/i915: Expose list of clients in
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,39 +49,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RW0gc2V4LCAyMDIwLTAzLTA2IMOgcyAxNzowOSArMDUzMCwgS2FydGhpayBCIFMgZXNjcmV2ZXU6
-Cj4gU2VuZCB0aGUgZmxpcCBkb25lIGV2ZW50IGluIHRoZSBoYW5kbGVyIGFuZCBkaXNhYmxlIHRo
-ZSBpbnRlcnJ1cHQuCj4gCj4gU2lnbmVkLW9mZi1ieTogS2FydGhpayBCIFMgPGthcnRoaWsuYi5z
-QGludGVsLmNvbT4KPiAtLS0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyB8IDE4
-ICsrKysrKysrKysrKysrKysrKwo+ICAxIGZpbGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKQo+
-IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IGluZGV4IDU5NTVlNzM3YTQ1ZC4uMWZlZGE5YWVj
-ZjRhIDEwMDY0NAo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jCj4gQEAgLTEyNDMsNiArMTI0MywyNCBA
-QCBkaXNwbGF5X3BpcGVfY3JjX2lycV9oYW5kbGVyKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpk
-ZXZfcHJpdiwKPiAgCQkJICAgICB1MzIgY3JjNCkge30KPiAgI2VuZGlmCj4gIAo+ICtzdGF0aWMg
-dm9pZCBmbGlwX2RvbmVfaGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYs
-Cj4gKwkJCSAgICAgIHVuc2lnbmVkIGludCBwaXBlKQoKVGhlIGNvbXBpbGVyIGlzIGdvaW5nIHRv
-IGNvbXBsYWluIHRoYXQgd2UgYWRkZWQgYSBzdGF0aWMgZnVuY3Rpb24gd2l0aApubyBjYWxsZXIu
-CgpTZWUgbXkgY29tbWVudCBvbiBjb21taXQgMTogcGxlYXNlIHNxdWFzaCB0aGlzIHBhdGNoIHdp
-dGggdGhlIG9uZSB0aGF0Cm1ha2VzIHVzZSBvZiB0aGUgbmV3IGZ1bmN0aW9uLgoKPiArewo+ICsJ
-c3RydWN0IGludGVsX2NydGMgKmNydGMgPSBpbnRlbF9nZXRfY3J0Y19mb3JfcGlwZShkZXZfcHJp
-diwgcGlwZSk7Cj4gKwlzdHJ1Y3QgZHJtX2NydGNfc3RhdGUgKmNydGNfc3RhdGUgPSBjcnRjLT5i
-YXNlLnN0YXRlOwo+ICsJc3RydWN0IGRybV9kZXZpY2UgKmRldiA9ICZkZXZfcHJpdi0+ZHJtOwo+
-ICsJdW5zaWduZWQgbG9uZyBpcnFmbGFnczsKPiArCj4gKwlzcGluX2xvY2tfaXJxc2F2ZSgmZGV2
-LT5ldmVudF9sb2NrLCBpcnFmbGFncyk7Cj4gKwo+ICsJaWYgKGNydGNfc3RhdGUtPmV2ZW50LT5i
-YXNlLmV2ZW50LT50eXBlID09IERSTV9FVkVOVF9GTElQX0NPTVBMRVRFKSB7Cj4gKwkJZHJtX2Ny
-dGNfc2VuZF92YmxhbmtfZXZlbnQoJmNydGMtPmJhc2UsIGNydGNfc3RhdGUtPmV2ZW50KTsKPiAr
-CQljcnRjX3N0YXRlLT5ldmVudCA9IE5VTEw7Cj4gKwl9Cj4gKwo+ICsJc3Bpbl91bmxvY2tfaXJx
-cmVzdG9yZSgmZGV2LT5ldmVudF9sb2NrLCBpcnFmbGFncyk7Cj4gKwlpY2xfZGlzYWJsZV9mbGlw
-X2RvbmUoJmNydGMtPmJhc2UpOwo+ICt9Cj4gIAo+ICBzdGF0aWMgdm9pZCBoc3dfcGlwZV9jcmNf
-aXJxX2hhbmRsZXIoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LAo+ICAJCQkJICAg
-ICBlbnVtIHBpcGUgcGlwZSkKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNr
-dG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2lu
-dGVsLWdmeAo=
+
+On 09/03/2020 21:34, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-03-09 18:31:18)
+>> +struct i915_drm_client *
+>> +i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+>> +{
+>> +       struct i915_drm_client *client;
+>> +       int ret;
+>> +
+>> +       client = kzalloc(sizeof(*client), GFP_KERNEL);
+>> +       if (!client)
+>> +               return ERR_PTR(-ENOMEM);
+>> +
+>> +       kref_init(&client->kref);
+>> +       client->clients = clients;
+>> +
+>> +       ret = mutex_lock_interruptible(&clients->lock);
+>> +       if (ret)
+>> +               goto err_id;
+>> +       ret = xa_alloc_cyclic(&clients->xarray, &client->id, client,
+>> +                             xa_limit_32b, &clients->next_id, GFP_KERNEL);
+> 
+> So what's next_id used for that explains having the over-arching mutex?
+
+It's to give out client id's "cyclically" - before I apparently 
+misunderstood what xa_alloc_cyclic is supposed to do - I thought after 
+giving out id 1 it would give out 2 next, even if 1 was returned to the 
+pool in the meantime. But it doesn't, I need to track the start point 
+for the next search with "next".
+
+I want this to make intel_gpu_top's life easier, so it doesn't have to 
+deal with id recycling for all practical purposes.
+
+And a peek into xa implementation told me the internal lock is not 
+protecting "next.
+
+I could stick with one lock and not use the internal one if I used it on 
+release path as well.
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
