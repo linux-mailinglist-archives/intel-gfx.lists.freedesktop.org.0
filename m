@@ -2,37 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B9C817E5E9
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 18:42:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0161B17E60A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 18:50:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D771F6E081;
-	Mon,  9 Mar 2020 17:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F2A46E0AD;
+	Mon,  9 Mar 2020 17:50:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E83746E081
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 17:42:53 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 10:42:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,534,1574150400"; d="scan'208";a="235666080"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga008.fm.intel.com with ESMTP; 09 Mar 2020 10:42:51 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 552B25C1DD1; Mon,  9 Mar 2020 19:41:31 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200309170540.10332-1-chris@chris-wilson.co.uk>
-References: <20200309112431.13903-1-chris@chris-wilson.co.uk>
- <20200309170540.10332-1-chris@chris-wilson.co.uk>
-Date: Mon, 09 Mar 2020 19:41:31 +0200
-Message-ID: <87wo7t1l4k.fsf@gaia.fi.intel.com>
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95376E0AD
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 17:50:38 +0000 (UTC)
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
+ [209.85.166.48])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id 53E71215A4
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 17:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1583776238;
+ bh=IqkP2cQ1tanWWBC7/FvJu2+USviXtwQlw8Gm+JaKeOU=;
+ h=References:In-Reply-To:From:Date:Subject:To:List-Id:Cc:From;
+ b=YUxZgi1oCvrr318keFuhUnR6Enob3OZLj7JH2eR38tcRojNNOS4wizTUMPDYrubJi
+ EumVeobF9sBGT9+kge4BiBjGgreZdQqeRY7YI81p143YugHaaXReJzhMrPyDMLLdgZ
+ 0xVWAiIKz57E2ML4ZV9bJc2UfBgR8ppzhIy7MIaE=
+Received: by mail-io1-f48.google.com with SMTP id h131so9335662iof.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Mar 2020 10:50:38 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ3xcVwVZgfJiO2Fj1ZQi8Ks1EFM1l1qpwdfnMsPWJ2Ruwuny2kq
+ gCr3YlyibcstHLOpU/Hz9yRbVBPg0lXHzBj0t2U=
+X-Google-Smtp-Source: ADFU+vsw9etjX+/B/69FRItZyc1hFZ5aZGJOpvbL3Rg6sjSGP5yWm/yGd+BKnzQRiynEp0kleRiyvFdHlWg3KIwg500=
+X-Received: by 2002:a05:6602:2098:: with SMTP id
+ a24mr12959827ioa.101.1583776237711; 
+ Mon, 09 Mar 2020 10:50:37 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: Defend against concurrent
- updates to execlists->active
+References: <20200304213513.2239-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20200304213513.2239-1-daniele.ceraolospurio@intel.com>
+From: Josh Boyer <jwboyer@kernel.org>
+Date: Mon, 9 Mar 2020 13:50:26 -0400
+X-Gmail-Original-Message-ID: <CA+5PVA5Hr0RQ5W6-fDCTUHOJoGuwebebFw8OD7Wj+1_zHYrhNQ@mail.gmail.com>
+Message-ID: <CA+5PVA5Hr0RQ5W6-fDCTUHOJoGuwebebFw8OD7Wj+1_zHYrhNQ@mail.gmail.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] PR - i915 firmware updates (TGL HuC 7.0.12 and DMC
+ 2.06)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,104 +55,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Kyle McMartin <kyle@kernel.org>, Ben Hutchings <ben@decadent.org.uk>,
+ Linux Firmware <linux-firmware@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
-
-> [  206.875637] BUG: KCSAN: data-race in __i915_schedule+0x7fc/0x930 [i915]
-> [  206.875654]
-> [  206.875666] race at unknown origin, with read to 0xffff8881f7644480 of 8 bytes by task 703 on cpu 3:
-> [  206.875901]  __i915_schedule+0x7fc/0x930 [i915]
-> [  206.876130]  __bump_priority+0x63/0x80 [i915]
-> [  206.876361]  __i915_sched_node_add_dependency+0x258/0x300 [i915]
-> [  206.876593]  i915_sched_node_add_dependency+0x50/0xa0 [i915]
-> [  206.876824]  i915_request_await_dma_fence+0x1da/0x530 [i915]
-> [  206.877057]  i915_request_await_object+0x2fe/0x470 [i915]
-> [  206.877287]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
-> [  206.877517]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-> [  206.877535]  drm_ioctl_kernel+0xe4/0x120
-> [  206.877549]  drm_ioctl+0x297/0x4c7
-> [  206.877563]  ksys_ioctl+0x89/0xb0
-> [  206.877577]  __x64_sys_ioctl+0x42/0x60
-> [  206.877591]  do_syscall_64+0x6e/0x2c0
-> [  206.877606]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
->
-> v2: Be safe and include mb
->
-> References: https://gitlab.freedesktop.org/drm/intel/issues/1318
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine.h | 15 ++++++++++++++-
->  drivers/gpu/drm/i915/gt/intel_lrc.c    | 12 +++++++-----
->  2 files changed, 21 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 29c8c03c5caa..3644fd2b8877 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -107,7 +107,20 @@ execlists_num_ports(const struct intel_engine_execlists * const execlists)
->  static inline struct i915_request *
->  execlists_active(const struct intel_engine_execlists *execlists)
->  {
-> -	return *READ_ONCE(execlists->active);
-> +	struct i915_request * const *cur, * const *old, *active;
-> +
-> +	cur = READ_ONCE(execlists->active);
-> +	smp_rmb(); /* pairs with overwrite protection in process_csb() */
-> +	do {
-> +		old = cur;
-> +
-> +		active = READ_ONCE(*cur);
-> +		cur = READ_ONCE(execlists->active);
-> +
-> +		smp_rmb(); /* and complete the seqlock retry */
-> +	} while (cur != old);
-> +
-> +	return active;
->  }
->  
->  static inline void
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 3eb7adc4e057..f4b7fdfa2d63 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -2389,6 +2389,7 @@ static void process_csb(struct intel_engine_cs *engine)
->  
->  			/* Point active to the new ELSP; prevent overwriting */
->  			WRITE_ONCE(execlists->active, execlists->pending);
-> +			smp_wmb(); /* notify execlists_active() */
->  
->  			/* cancel old inflight, prepare for switch */
->  			trace_ports(execlists, "preempted", old);
-> @@ -2396,11 +2397,12 @@ static void process_csb(struct intel_engine_cs *engine)
->  				execlists_schedule_out(*old++);
->  
->  			/* switch pending to inflight */
-> -			WRITE_ONCE(execlists->active,
-> -				   memcpy(execlists->inflight,
-> -					  execlists->pending,
-> -					  execlists_num_ports(execlists) *
-> -					  sizeof(*execlists->pending)));
-> +			memcpy(execlists->inflight,
-> +			       execlists->pending,
-> +			       execlists_num_ports(execlists) *
-> +			       sizeof(*execlists->pending));
-> +			smp_wmb(); /* complete the seqlock */
-> +			WRITE_ONCE(execlists->active, execlists->inflight);
-
-Now the memcpy bit is nicely in order,
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-
->  
->  			WRITE_ONCE(execlists->pending[0], NULL);
->  		} else {
-> -- 
-> 2.20.1
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCBNYXIgNCwgMjAyMCBhdCA0OjM2IFBNIERhbmllbGUgQ2VyYW9sbyBTcHVyaW8KPGRh
+bmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+IHdyb3RlOgo+Cj4gSGksCj4KPiBLaW5kbHkg
+YWRkIHRoZSBiZWxvdyBpOTE1IGNoYW5nZXMgdG8gbGludXgtZmlybXdhcmUuZ2l0Cj4KPiBUaGUg
+Zm9sbG93aW5nIGNoYW5nZXMgc2luY2UgY29tbWl0IDAxNDhjZmVmY2JmOTg4OThjYTY1YmIyNmQ5
+ZDdkNjM4YjMwZTIxMWQ6Cj4KPiAgIE1lcmdlIGh0dHBzOi8vZ2l0aHViLmNvbS9yamxpYW8tcWNh
+L3FjYS1idGZ3ICgyMDIwLTAzLTAyIDA4OjA4OjE1IC0wNTAwKQo+Cj4gYXJlIGF2YWlsYWJsZSBp
+biB0aGUgR2l0IHJlcG9zaXRvcnkgYXQ6Cj4KPiAgIGdpdDovL2Fub25naXQuZnJlZWRlc2t0b3Au
+b3JnL2RybS9kcm0tZmlybXdhcmUgdGdsX2h1Y183LjAuMTJfZG1jXzIuMDYKClB1bGxlZCBhbmQg
+cHVzaGVkIG91dC4KCmpvc2gKCj4KPiBmb3IgeW91IHRvIGZldGNoIGNoYW5nZXMgdXAgdG8gZmI4
+MzQwMmM3NTcwMzRmZDlhZGVmMDgzMDQ3MzkwYjNiMmY1NGNiNDoKPgo+ICAgaTkxNTogQWRkIERN
+QyBmaXJtd2FyZSB2Mi4wNiBmb3IgVEdMICgyMDIwLTAzLTA0IDEzOjE5OjA3IC0wODAwKQo+Cj4g
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQo+IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gKDEpOgo+ICAgICAgIGk5MTU6IGFkZCBI
+dUMgZmlybXdhcmUgdjcuMC4xMiBmb3IgVEdMCj4KPiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphICgx
+KToKPiAgICAgICBpOTE1OiBBZGQgRE1DIGZpcm13YXJlIHYyLjA2IGZvciBUR0wKPgo+ICBXSEVO
+Q0UgICAgICAgICAgICAgICAgICAgfCAgIDYgKysrKysrCj4gIGk5MTUvdGdsX2RtY192ZXIyXzA2
+LmJpbiB8IEJpbiAwIC0+IDE4NjYwIGJ5dGVzCj4gIGk5MTUvdGdsX2h1Y183LjAuMTIuYmluICB8
+IEJpbiAwIC0+IDUzMDM2OCBieXRlcwo+ICAzIGZpbGVzIGNoYW5nZWQsIDYgaW5zZXJ0aW9ucygr
+KQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgaTkxNS90Z2xfZG1jX3ZlcjJfMDYuYmluCj4gIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBpOTE1L3RnbF9odWNfNy4wLjEyLmJpbgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
