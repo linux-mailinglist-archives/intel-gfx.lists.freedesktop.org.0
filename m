@@ -1,38 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1643917E451
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:10:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A603717E46C
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:16:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 751D76E4A5;
-	Mon,  9 Mar 2020 16:10:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6F1898D9;
+	Mon,  9 Mar 2020 16:16:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFE436E4A5
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 16:10:37 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 364D6898D9
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 16:16:03 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 09:10:37 -0700
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 09:16:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="288726696"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by FMSMGA003.fm.intel.com with ESMTP; 09 Mar 2020 09:10:36 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 2C1C15C1DD1; Mon,  9 Mar 2020 18:09:16 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200309110934.868-2-chris@chris-wilson.co.uk>
-References: <20200309110934.868-1-chris@chris-wilson.co.uk>
- <20200309110934.868-2-chris@chris-wilson.co.uk>
-Date: Mon, 09 Mar 2020 18:09:16 +0200
-Message-ID: <87blp533yr.fsf@gaia.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="234049261"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2020 09:15:59 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  9 Mar 2020 18:11:56 +0200
+Message-Id: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 2/5] drm/i915/gt: Mark up racy check of last
- list element
+Subject: [Intel-gfx] [PATCH v19 0/8] Refactor Gen11+ SAGV support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,79 +46,42 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+For Gen11+ platforms BSpec suggests disabling specific
+QGV points separately, depending on bandwidth limitations
+and current display configuration. Thus it required adding
+a new PCode request for disabling QGV points and some
+refactoring of already existing SAGV code.
+Also had to refactor intel_can_enable_sagv function,
+as current seems to be outdated and using skl specific
+workarounds, also not following BSpec for Gen11+.
 
-> [   25.025543] BUG: KCSAN: data-race in __i915_request_create [i915] / process_csb [i915]
-> [   25.025561]
-> [   25.025573] write (marked) to 0xffff8881e85c1620 of 8 bytes by task 696 on cpu 1:
-> [   25.025789]  __i915_request_create+0x54b/0x5d0 [i915]
-> [   25.026001]  i915_request_create+0xcc/0x150 [i915]
-> [   25.026218]  i915_gem_do_execbuffer+0x2f70/0x4c20 [i915]
-> [   25.026428]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-> [   25.026445]  drm_ioctl_kernel+0xe4/0x120
-> [   25.026459]  drm_ioctl+0x297/0x4c7
-> [   25.026472]  ksys_ioctl+0x89/0xb0
-> [   25.026484]  __x64_sys_ioctl+0x42/0x60
-> [   25.026497]  do_syscall_64+0x6e/0x2c0
-> [   25.026510]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> [   25.026522]
-> [   25.026532] read to 0xffff8881e85c1620 of 8 bytes by interrupt on cpu 2:
-> [   25.026742]  process_csb+0x8d6/0x1070 [i915]
-> [   25.026949]  execlists_submission_tasklet+0x30/0x170 [i915]
-> [   25.026969]  tasklet_action_common.isra.0+0x42/0xa0
-> [   25.026984]  __do_softirq+0xd7/0x2cd
-> [   25.026997]  irq_exit+0xbe/0xe0
-> [   25.027009]  do_IRQ+0x51/0x100
-> [   25.027021]  ret_from_intr+0x0/0x1c
-> [   25.027033]  poll_idle+0x3e/0x13b
-> [   25.027047]  cpuidle_enter_state+0x189/0x5d0
-> [   25.027060]  cpuidle_enter+0x50/0x90
-> [   25.027074]  do_idle+0x1a1/0x1f0
-> [   25.027086]  cpu_startup_entry+0x14/0x16
-> [   25.027100]  start_secondary+0x120/0x180
-> [   25.027116]  secondary_startup_64+0xa4/0xb0
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+v17: Had to rebase the whole series.
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+v19: Added some new patches in between, rebased
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
->  drivers/gpu/drm/i915/i915_utils.h   | 6 ++++++
->  2 files changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index a1d268880cfe..6266ef2ae6a0 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1316,7 +1316,7 @@ __execlists_schedule_out(struct i915_request *rq,
->  	 * If we have just completed this context, the engine may now be
->  	 * idle and we want to re-enter powersaving.
->  	 */
-> -	if (list_is_last(&rq->link, &ce->timeline->requests) &&
-> +	if (list_is_last_rcu(&rq->link, &ce->timeline->requests) &&
->  	    i915_request_completed(rq))
->  		intel_engine_add_retire(engine, ce->timeline);
->  
-> diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-> index 26f3a4a50b40..03a73d2bd50d 100644
-> --- a/drivers/gpu/drm/i915/i915_utils.h
-> +++ b/drivers/gpu/drm/i915/i915_utils.h
-> @@ -260,6 +260,12 @@ static inline void __list_del_many(struct list_head *head,
->  	WRITE_ONCE(head->next, first);
->  }
->  
-> +static inline int list_is_last_rcu(const struct list_head *list,
-> +				   const struct list_head *head)
-> +{
-> +	return READ_ONCE(list->next) == head;
-> +}
-> +
->  /*
->   * Wait until the work is finally complete, even if it tries to postpone
->   * by requeueing itself. Note, that if the worker never cancels itself,
-> -- 
-> 2.20.1
+Stanislav Lisovskiy (8):
+  drm/i915: Start passing latency as parameter
+  drm/i915: Introduce skl_plane_wm_level accessor.
+  drm/i915: Add intel_bw_get_*_state helpers
+  drm/i915: Refactor intel_can_enable_sagv
+  drm/i915: Added required new PCode commands
+  drm/i915: Rename bw_state to new_bw_state
+  drm/i915: Restrict qgv points which don't have enough bandwidth.
+  drm/i915: Enable SAGV support for Gen12
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 202 +++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  36 ++
+ drivers/gpu/drm/i915/display/intel_display.c  |  33 +-
+ .../drm/i915/display/intel_display_types.h    |   6 +
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/intel_pm.c               | 516 ++++++++++++++++--
+ drivers/gpu/drm/i915/intel_pm.h               |   4 +
+ drivers/gpu/drm/i915/intel_sideband.c         |   2 +
+ 8 files changed, 689 insertions(+), 114 deletions(-)
+
+-- 
+2.24.1.485.gad05a3d8e5
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
