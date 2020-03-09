@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09BA317DE41
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 12:09:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A01E17DE47
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 12:10:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9EDB6E3F2;
-	Mon,  9 Mar 2020 11:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E54236E409;
+	Mon,  9 Mar 2020 11:10:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB9596E05D
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 11:09:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 962FB6E405
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 11:10:06 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20493825-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20493826-1500050 
  for multiple; Mon, 09 Mar 2020 11:09:36 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Mar 2020 11:09:31 +0000
-Message-Id: <20200309110934.868-2-chris@chris-wilson.co.uk>
+Date: Mon,  9 Mar 2020 11:09:32 +0000
+Message-Id: <20200309110934.868-3-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200309110934.868-1-chris@chris-wilson.co.uk>
 References: <20200309110934.868-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/5] drm/i915/gt: Mark up racy check of last
- list element
+Subject: [Intel-gfx] [PATCH 3/5] drm/i915/execlists: Track active elements
+ during dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,72 +44,72 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[   25.025543] BUG: KCSAN: data-race in __i915_request_create [i915] / process_csb [i915]
-[   25.025561]
-[   25.025573] write (marked) to 0xffff8881e85c1620 of 8 bytes by task 696 on cpu 1:
-[   25.025789]  __i915_request_create+0x54b/0x5d0 [i915]
-[   25.026001]  i915_request_create+0xcc/0x150 [i915]
-[   25.026218]  i915_gem_do_execbuffer+0x2f70/0x4c20 [i915]
-[   25.026428]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-[   25.026445]  drm_ioctl_kernel+0xe4/0x120
-[   25.026459]  drm_ioctl+0x297/0x4c7
-[   25.026472]  ksys_ioctl+0x89/0xb0
-[   25.026484]  __x64_sys_ioctl+0x42/0x60
-[   25.026497]  do_syscall_64+0x6e/0x2c0
-[   25.026510]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[   25.026522]
-[   25.026532] read to 0xffff8881e85c1620 of 8 bytes by interrupt on cpu 2:
-[   25.026742]  process_csb+0x8d6/0x1070 [i915]
-[   25.026949]  execlists_submission_tasklet+0x30/0x170 [i915]
-[   25.026969]  tasklet_action_common.isra.0+0x42/0xa0
-[   25.026984]  __do_softirq+0xd7/0x2cd
-[   25.026997]  irq_exit+0xbe/0xe0
-[   25.027009]  do_IRQ+0x51/0x100
-[   25.027021]  ret_from_intr+0x0/0x1c
-[   25.027033]  poll_idle+0x3e/0x13b
-[   25.027047]  cpuidle_enter_state+0x189/0x5d0
-[   25.027060]  cpuidle_enter+0x50/0x90
-[   25.027074]  do_idle+0x1a1/0x1f0
-[   25.027086]  cpu_startup_entry+0x14/0x16
-[   25.027100]  start_secondary+0x120/0x180
-[   25.027116]  secondary_startup_64+0xa4/0xb0
+Record the initial active element we use when building the next ELSP
+submission, so that we can compare against it latter to see if there's
+no change.
 
+Fixes: 44d0a9c05bc0 ("drm/i915/execlists: Skip redundant resubmission")
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 2 +-
- drivers/gpu/drm/i915/i915_utils.h   | 6 ++++++
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index a1d268880cfe..6266ef2ae6a0 100644
+index 6266ef2ae6a0..a9d77b0e4e27 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1316,7 +1316,7 @@ __execlists_schedule_out(struct i915_request *rq,
- 	 * If we have just completed this context, the engine may now be
- 	 * idle and we want to re-enter powersaving.
- 	 */
--	if (list_is_last(&rq->link, &ce->timeline->requests) &&
-+	if (list_is_last_rcu(&rq->link, &ce->timeline->requests) &&
- 	    i915_request_completed(rq))
- 		intel_engine_add_retire(engine, ce->timeline);
- 
-diff --git a/drivers/gpu/drm/i915/i915_utils.h b/drivers/gpu/drm/i915/i915_utils.h
-index 26f3a4a50b40..03a73d2bd50d 100644
---- a/drivers/gpu/drm/i915/i915_utils.h
-+++ b/drivers/gpu/drm/i915/i915_utils.h
-@@ -260,6 +260,12 @@ static inline void __list_del_many(struct list_head *head,
- 	WRITE_ONCE(head->next, first);
+@@ -1674,16 +1674,21 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
  }
  
-+static inline int list_is_last_rcu(const struct list_head *list,
-+				   const struct list_head *head)
+ static struct i915_request *
+-last_active(const struct intel_engine_execlists *execlists)
++__last_active(const struct intel_engine_execlists *execlists,
++	      struct i915_request * const *last)
+ {
+-	struct i915_request * const *last = READ_ONCE(execlists->active);
+-
+ 	while (*last && i915_request_completed(*last))
+ 		last++;
+ 
+ 	return *last;
+ }
+ 
++static struct i915_request *
++last_active(const struct intel_engine_execlists *execlists)
 +{
-+	return READ_ONCE(list->next) == head;
++	return __last_active(execlists, READ_ONCE(execlists->active));
 +}
 +
- /*
-  * Wait until the work is finally complete, even if it tries to postpone
-  * by requeueing itself. Note, that if the worker never cancels itself,
+ #define for_each_waiter(p__, rq__) \
+ 	list_for_each_entry_lockless(p__, \
+ 				     &(rq__)->sched.waiters_list, \
+@@ -1852,6 +1857,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+ 	struct i915_request **port = execlists->pending;
+ 	struct i915_request ** const last_port = port + execlists->port_mask;
++	struct i915_request * const *active;
+ 	struct i915_request *last;
+ 	struct rb_node *rb;
+ 	bool submit = false;
+@@ -1906,7 +1912,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * i.e. we will retrigger preemption following the ack in case
+ 	 * of trouble.
+ 	 */
+-	last = last_active(execlists);
++	active = READ_ONCE(execlists->active);
++	last = __last_active(execlists, active);
+ 	if (last) {
+ 		if (need_preempt(engine, last, rb)) {
+ 			ENGINE_TRACE(engine,
+@@ -2191,7 +2198,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		 * Skip if we ended up with exactly the same set of requests,
+ 		 * e.g. trying to timeslice a pair of ordered contexts
+ 		 */
+-		if (!memcmp(execlists->active, execlists->pending,
++		if (!memcmp(active, execlists->pending,
+ 			    (port - execlists->pending + 1) * sizeof(*port))) {
+ 			do
+ 				execlists_schedule_out(fetch_and_zero(port));
 -- 
 2.20.1
 
