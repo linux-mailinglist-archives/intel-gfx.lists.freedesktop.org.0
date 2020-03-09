@@ -1,30 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B30A117DD49
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 11:22:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8889017DDCF
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 11:43:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 027276E3EB;
-	Mon,  9 Mar 2020 10:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82BC56E149;
+	Mon,  9 Mar 2020 10:43:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A84126E3EB
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 10:21:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20493213-1500050 
- for multiple; Mon, 09 Mar 2020 10:21:39 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Mar 2020 10:21:38 +0000
-Message-Id: <20200309102138.14714-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF9306E148
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 10:43:18 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 03:43:18 -0700
+X-IronPort-AV: E=Sophos;i="5.70,532,1574150400"; d="scan'208";a="353344535"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 03:43:16 -0700
+Date: Mon, 9 Mar 2020 12:42:29 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>
+Message-ID: <20200309104229.GC15493@ideak-desk.fi.intel.com>
+References: <20200304150918.25473-1-imre.deak@intel.com>
+ <3e9e2e5a7382bfc4e64aaf51d4c845e12e535afe.camel@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Mark up unlocked update of
- i915_request.hwsp_seqno
+Content-Disposition: inline
+In-Reply-To: <3e9e2e5a7382bfc4e64aaf51d4c845e12e535afe.camel@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Fix documentation for
+ intel_dpll_get_freq()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,73 +46,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During i915_request_retire() we decouple the i915_request.hwsp_seqno
-from the intel_timeline so that it may be freed before the request is
-released. However, we need to warn the compiler that the pointer may
-update under its nose.
+On Thu, Mar 05, 2020 at 01:44:20AM +0200, Souza, Jose wrote:
+> On Wed, 2020-03-04 at 17:09 +0200, Imre Deak wrote:
+> > Fix the following kerneldoc warning and while at it also the doc for
+> > the
+> > corresponding vfunc hook.
+> > =
 
-[  171.438899] BUG: KCSAN: data-race in i915_request_await_dma_fence [i915] / i915_request_retire [i915]
-[  171.438920]
-[  171.438932] write to 0xffff8881e7e28ce0 of 8 bytes by task 148 on cpu 2:
-[  171.439174]  i915_request_retire+0x1ea/0x660 [i915]
-[  171.439408]  retire_requests+0x7a/0xd0 [i915]
-[  171.439640]  engine_retire+0xa1/0xe0 [i915]
-[  171.439657]  process_one_work+0x3b1/0x690
-[  171.439671]  worker_thread+0x80/0x670
-[  171.439685]  kthread+0x19a/0x1e0
-[  171.439701]  ret_from_fork+0x1f/0x30
-[  171.439721]
-[  171.439739] read to 0xffff8881e7e28ce0 of 8 bytes by task 696 on cpu 1:
-[  171.439990]  i915_request_await_dma_fence+0x162/0x520 [i915]
-[  171.440230]  i915_request_await_object+0x2fe/0x470 [i915]
-[  171.440467]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
-[  171.440704]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-[  171.440722]  drm_ioctl_kernel+0xe4/0x120
-[  171.440736]  drm_ioctl+0x297/0x4c7
-[  171.440750]  ksys_ioctl+0x89/0xb0
-[  171.440766]  __x64_sys_ioctl+0x42/0x60
-[  171.440788]  do_syscall_64+0x6e/0x2c0
-[  171.440802]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> > $ make htmldocs 2>&1 > /dev/null | grep i915
+> > ./drivers/gpu/drm/i915/display/intel_dpll_mgr.h:285: warning:
+> > Function parameter or member 'get_freq' not described in
+> > 'intel_shared_dpll_funcs'
+> =
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_request.h | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+> Reviewed-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index d4bae16b4785..6020d5b2a3df 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -396,7 +396,9 @@ static inline bool i915_seqno_passed(u32 seq1, u32 seq2)
- 
- static inline u32 __hwsp_seqno(const struct i915_request *rq)
- {
--	return READ_ONCE(*rq->hwsp_seqno);
-+	const u32 *hwsp = READ_ONCE(rq->hwsp_seqno);
-+
-+	return READ_ONCE(*hwsp);
- }
- 
- /**
-@@ -510,7 +512,8 @@ static inline bool i915_request_completed(const struct i915_request *rq)
- 
- static inline void i915_request_mark_complete(struct i915_request *rq)
- {
--	rq->hwsp_seqno = (u32 *)&rq->fence.seqno; /* decouple from HWSP */
-+	WRITE_ONCE(rq->hwsp_seqno, /* decouple from HWSP */
-+		   (u32 *)&rq->fence.seqno);
- }
- 
- static inline bool i915_request_has_waitboost(const struct i915_request *rq)
--- 
-2.20.1
+Thanks for the review, pushed to -dinq.
 
+> =
+
+> > =
+
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 7 +++++++
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.h | 6 ++++++
+> >  2 files changed, 13 insertions(+)
+> > =
+
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index 76d14486b3a5..2d47f1f756a2 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > @@ -4408,6 +4408,13 @@ void intel_update_active_dpll(struct
+> > intel_atomic_state *state,
+> >  	dpll_mgr->update_active_dpll(state, crtc, encoder);
+> >  }
+> >  =
+
+> > +/**
+> > + * intel_dpll_get_freq - calculate the DPLL's output frequency
+> > + * @i915: i915 device
+> > + * @pll: DPLL for which to calculate the output frequency
+> > + *
+> > + * Return the output frequency corresponding to @pll's current
+> > state.
+> > + */
+> >  int intel_dpll_get_freq(struct drm_i915_private *i915,
+> >  			const struct intel_shared_dpll *pll)
+> >  {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > index 5c847627580a..5d9a2bc371e7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > @@ -279,6 +279,12 @@ struct intel_shared_dpll_funcs {
+> >  			     struct intel_shared_dpll *pll,
+> >  			     struct intel_dpll_hw_state *hw_state);
+> >  =
+
+> > +	/**
+> > +	 * @get_freq:
+> > +	 *
+> > +	 * Hook for calculating the pll's output frequency based on its
+> > +	 * current state.
+> > +	 */
+> >  	int (*get_freq)(struct drm_i915_private *i915,
+> >  			const struct intel_shared_dpll *pll);
+> >  };
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
