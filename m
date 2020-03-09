@@ -2,30 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4469E17E1B7
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 14:54:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8748F17E223
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 15:04:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A1376E462;
-	Mon,  9 Mar 2020 13:54:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E26876E169;
+	Mon,  9 Mar 2020 14:04:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D45E16E462;
- Mon,  9 Mar 2020 13:54:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CD374A3ECB;
- Mon,  9 Mar 2020 13:54:22 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FDCF6E169
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 14:04:23 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 07:04:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="353372192"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga001.fm.intel.com with ESMTP; 09 Mar 2020 07:04:21 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 12F235C1DD1; Mon,  9 Mar 2020 16:03:01 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200309110934.868-1-chris@chris-wilson.co.uk>
+References: <20200309110934.868-1-chris@chris-wilson.co.uk>
+Date: Mon, 09 Mar 2020 16:03:01 +0200
+Message-ID: <87mu8p39t6.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Mon, 09 Mar 2020 13:54:22 -0000
-Message-ID: <158376206280.9451.6207258083393673512@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200303173313.28117-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Gamma_cleanups_=28rev4=29?=
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Mark up unlocked update of
+ i915_request.hwsp_seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,122 +44,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915: Gamma cleanups (rev4)
-URL   : https://patchwork.freedesktop.org/series/69136/
-State : success
+> During i915_request_retire() we decouple the i915_request.hwsp_seqno
+> from the intel_timeline so that it may be freed before the request is
+> released. However, we need to warn the compiler that the pointer may
+> update under its nose.
+>
+> [  171.438899] BUG: KCSAN: data-race in i915_request_await_dma_fence [i915] / i915_request_retire [i915]
+> [  171.438920]
+> [  171.438932] write to 0xffff8881e7e28ce0 of 8 bytes by task 148 on cpu 2:
+> [  171.439174]  i915_request_retire+0x1ea/0x660 [i915]
+> [  171.439408]  retire_requests+0x7a/0xd0 [i915]
+> [  171.439640]  engine_retire+0xa1/0xe0 [i915]
+> [  171.439657]  process_one_work+0x3b1/0x690
+> [  171.439671]  worker_thread+0x80/0x670
+> [  171.439685]  kthread+0x19a/0x1e0
+> [  171.439701]  ret_from_fork+0x1f/0x30
+> [  171.439721]
+> [  171.439739] read to 0xffff8881e7e28ce0 of 8 bytes by task 696 on cpu 1:
+> [  171.439990]  i915_request_await_dma_fence+0x162/0x520 [i915]
+> [  171.440230]  i915_request_await_object+0x2fe/0x470 [i915]
+> [  171.440467]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
+> [  171.440704]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
+> [  171.440722]  drm_ioctl_kernel+0xe4/0x120
+> [  171.440736]  drm_ioctl+0x297/0x4c7
+> [  171.440750]  ksys_ioctl+0x89/0xb0
+> [  171.440766]  __x64_sys_ioctl+0x42/0x60
+> [  171.440788]  do_syscall_64+0x6e/0x2c0
+> [  171.440802]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_request.h | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index d4bae16b4785..6020d5b2a3df 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -396,7 +396,9 @@ static inline bool i915_seqno_passed(u32 seq1, u32 seq2)
+>  
+>  static inline u32 __hwsp_seqno(const struct i915_request *rq)
+>  {
+> -	return READ_ONCE(*rq->hwsp_seqno);
+> +	const u32 *hwsp = READ_ONCE(rq->hwsp_seqno);
+> +
+> +	return READ_ONCE(*hwsp);
 
-== Summary ==
+This is good enough for decouple. But good enough for hardware
+might be different thing.
 
-CI Bug Log - changes from CI_DRM_8087 -> Patchwork_16866
-====================================================
+I am paranoid enough to wanting an rmb(), before the final
+read once.
 
-Summary
--------
+and clflush after.
 
-  **SUCCESS**
+If the hardware can't guarantee coherency in csb, why
+would it in the different region in hwsp.
 
-  No regressions found.
+But the patch does the what the commit message says,
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16866 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-cfl-8700k:       [PASS][1] -> [INCOMPLETE][2] ([i915#1147])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-cfl-8700k/igt@gem_exec_parallel@fds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-cfl-8700k/igt@gem_exec_parallel@fds.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [PASS][5] -> [FAIL][6] ([fdo#109635] / [i915#217])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
-
-  
-#### Possible fixes ####
-
-  * igt@prime_vgem@basic-sync-default:
-    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10] +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-tgl-y/igt@prime_vgem@basic-sync-default.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-tgl-y/igt@prime_vgem@basic-sync-default.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-u2:          [TIMEOUT][11] -> [DMESG-WARN][12] ([i915#289])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8087/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/fi-icl-u2/igt@i915_pm_rpm@module-reload.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [i915#1147]: https://gitlab.freedesktop.org/drm/intel/issues/1147
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (49 -> 40)
-------------------------------
-
-  Additional (1): fi-icl-y 
-  Missing    (10): fi-hsw-4200u fi-byt-j1900 fi-bsw-n3050 fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ivb-3770 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8087 -> Patchwork_16866
-
-  CI-20190529: 20190529
-  CI_DRM_8087: 2eecd3619f1f227c890414a0730a723f1c5a3a60 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5498: 1bb7a25a09fe3e653d310e8bdfbdde4a1934b326 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16866: 3da0fd12387c4ea1e49870f9119bd70c9e1fceb2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3da0fd12387c drm/i915: Pass the crtc to the low level read_lut() funcs
-406986ee9efc drm/i915: Fix readout of PIPEGCMAX
-8973bf85659e drm/i915: Refactor LUT read functions
-ef770588c959 drm/i915: Clean up integer types in color code
-d4f1fa52704c drm/i915: s/chv_read_cgm_lut/chv_read_cgm_gamma/
-319ef1a13f77 drm/i915: s/blob_data/lut/
-cce1fed1d2dd drm/i915: Split i9xx_read_lut_8() to gmch vs. ilk variants
-97e95a526dd1 drm/i915: Clean up i9xx_load_luts_internal()
-ca6d5d42a01b drm/i915: Polish CHV CGM CSC loading
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16866/index.html
+>  }
+>  
+>  /**
+> @@ -510,7 +512,8 @@ static inline bool i915_request_completed(const struct i915_request *rq)
+>  
+>  static inline void i915_request_mark_complete(struct i915_request *rq)
+>  {
+> -	rq->hwsp_seqno = (u32 *)&rq->fence.seqno; /* decouple from HWSP */
+> +	WRITE_ONCE(rq->hwsp_seqno, /* decouple from HWSP */
+> +		   (u32 *)&rq->fence.seqno);
+>  }
+>  
+>  static inline bool i915_request_has_waitboost(const struct i915_request *rq)
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
