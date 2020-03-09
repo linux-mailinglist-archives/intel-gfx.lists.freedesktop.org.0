@@ -2,30 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B9E17EA07
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 21:30:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C543217EA15
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 21:33:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FA8A6E578;
-	Mon,  9 Mar 2020 20:30:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E7E6E57A;
+	Mon,  9 Mar 2020 20:33:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B4A196E575;
- Mon,  9 Mar 2020 20:30:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ADA23A00E7;
- Mon,  9 Mar 2020 20:30:45 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3C7D6E57A;
+ Mon,  9 Mar 2020 20:33:38 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 13:33:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,534,1574150400"; d="scan'208";a="245457389"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga006.jf.intel.com with ESMTP; 09 Mar 2020 13:33:37 -0700
+Date: Mon, 9 Mar 2020 13:34:55 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200309203454.GA12741@intel.com>
+References: <20200306014220.20029-1-manasi.d.navare@intel.com>
+ <87mu8tojvt.fsf@intel.com> <20200306184048.GA25133@intel.com>
+ <87h7yylyc7.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 09 Mar 2020 20:30:45 -0000
-Message-ID: <158378584570.9451.18351510294174588670@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200309120151.7675-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200309120151.7675-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=3A_Mark_up_racy_check_of_drm=5Fgem=5Fobject=2Ehandle=5Fcount?=
+Content-Disposition: inline
+In-Reply-To: <87h7yylyc7.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v4 1/2] drm/edid: Name the detailed monitor
+ range flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,62 +48,114 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
+ Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 09, 2020 at 10:35:52AM +0200, Jani Nikula wrote:
+> On Fri, 06 Mar 2020, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> > On Fri, Mar 06, 2020 at 12:30:46PM +0200, Jani Nikula wrote:
+> >> On Thu, 05 Mar 2020, Manasi Navare <manasi.d.navare@intel.com> wrote:
+> >> > This patch adds defines for the detailed monitor
+> >> > range flags as per the EDID specification.
+> >> >
+> >> > Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> > Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> >> > Cc: Harry Wentland <harry.wentland@amd.com>
+> >> > Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
+> >> > Cc: Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
+> >> > Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> >> > ---
+> >> >  include/drm/drm_edid.h | 5 +++++
+> >> >  1 file changed, 5 insertions(+)
+> >> >
+> >> > diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> >> > index f0b03d401c27..f89c97623845 100644
+> >> > --- a/include/drm/drm_edid.h
+> >> > +++ b/include/drm/drm_edid.h
+> >> > @@ -91,6 +91,11 @@ struct detailed_data_string {
+> >> >  	u8 str[13];
+> >> >  } __attribute__((packed));
+> >> >  =
 
-Series: drm: Mark up racy check of drm_gem_object.handle_count
-URL   : https://patchwork.freedesktop.org/series/74450/
-State : success
+> >> > +#define EDID_DEFAULT_GTF_SUPPORT_FLAG   0x00
+> >> > +#define EDID_RANGE_LIMITS_ONLY_FLAG     0x01
+> >> > +#define EDID_SECONDARY_GTF_SUPPORT_FLAG 0x02
+> >> > +#define EDID_CVT_SUPPORT_FLAG           0x04
+> >> =
 
-== Summary ==
+> >> Bikeshed for consideration:
+> >> =
 
-CI Bug Log - changes from CI_DRM_8097_full -> Patchwork_16880_full
-====================================================
+> >> drm_edid.h has some macros with DRM_EDID_ prefix, some with EDID_
+> >> prefix, and then some with no prefix at all really. Should we start
+> >> consolidating on something when we add more?
+> >>
+> >
+> > Yes Jani I did notice the same thing and didnt know which convention
+> > to continue to follow but I noticed that majority of the defines were
+> > just EDID_ so just used that for these new defines.
+> =
 
-Summary
--------
+> Ah, look again, DRM_EDID_ trumps EDID_ 51 to 15.
+> =
 
-  **SUCCESS**
+> > Is there a particular way you wish to consolidate this and use a specif=
+ic
+> > convention for #defines?
+> >
+> > I can atleast change these new defines based on a preferred convention =
+and then
+> > separate patches to change the rest in .h and corresponding usages in .=
+c files.
+> =
 
-  No regressions found.
+> I'd suggest DRM_EDID_ for new ones, perhaps eventually rename old ones.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16880/index.html
+Okay cool, I will rename this to be DRM_EDID_ and then work on renaming oth=
+ers later
+Thanks for pointing this out.
 
+Regards
+Manasi
 
-Changes
--------
+> =
 
-  No changes found
+> BR,
+> Jani.
+> =
 
+> =
 
-Participating hosts (10 -> 8)
-------------------------------
+> >
+> > Regards
+> > Manasi
+> >  =
 
-  Missing    (2): pig-skl-6260u pig-glk-j5005 
+> >> BR,
+> >> Jani.
+> >> =
 
+> >> =
 
-Build changes
--------------
+> >> > +
+> >> >  struct detailed_data_monitor_range {
+> >> >  	u8 min_vfreq;
+> >> >  	u8 max_vfreq;
+> >> =
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8097 -> Patchwork_16880
-  * Piglit: piglit_4509 -> None
+> >> -- =
 
-  CI-20190529: 20190529
-  CI_DRM_8097: 2e46e269a2843c5d0b6c72bfb7fa9d9913c15415 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5499: 2e23cf6f63fc6ba1d9543f8327698d6f21813cec @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16880: c782f13d5ca005769575d4fc7985995da66a0f6c @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+> >> Jani Nikula, Intel Open Source Graphics Center
+> =
 
-== Logs ==
+> -- =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16880/index.html
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
