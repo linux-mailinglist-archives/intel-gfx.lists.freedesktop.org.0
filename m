@@ -1,44 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A22F717EC7B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 00:12:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B5517EC8C
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 00:17:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D88C6E5AE;
-	Mon,  9 Mar 2020 23:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 534036E5B2;
+	Mon,  9 Mar 2020 23:17:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED186E5AE
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 23:12:20 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B8736E5B2
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 23:17:43 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 16:12:19 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 16:17:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="288833671"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by FMSMGA003.fm.intel.com with ESMTP; 09 Mar 2020 16:12:19 -0700
-To: Andi Shyti <andi@etezian.org>
-References: <20200306230344.53559-1-andi@etezian.org>
- <158358284291.6224.14954481538219251460@build.alporthouse.com>
- <20200307125531.GA58713@jack.zhora.eu>
- <158360254703.6224.5041578469627024671@build.alporthouse.com>
- <20200307221955.GA60782@jack.zhora.eu>
- <f1b8da58-e74c-1133-d21a-d22c55bec2ea@intel.com>
- <20200309223812.GA76960@jack.zhora.eu>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <7d36d7f2-600c-ef14-351c-a48da229695d@intel.com>
-Date: Mon, 9 Mar 2020 16:11:44 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="231105145"
+Received: from przanoni-mobl.jf.intel.com ([10.24.15.100])
+ by orsmga007.jf.intel.com with ESMTP; 09 Mar 2020 16:17:42 -0700
+Message-ID: <3447b649f61df0eed4e12de0aea29df6df7cf423.camel@intel.com>
+From: Paulo Zanoni <paulo.r.zanoni@intel.com>
+To: Karthik B S <karthik.b.s@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Mon, 09 Mar 2020 16:17:42 -0700
+In-Reply-To: <20200306113927.16904-2-karthik.b.s@intel.com>
+References: <20200306113927.16904-1-karthik.b.s@intel.com>
+ <20200306113927.16904-2-karthik.b.s@intel.com>
+User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
 MIME-Version: 1.0
-In-Reply-To: <20200309223812.GA76960@jack.zhora.eu>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915/gt: allow setting generic data
- pointer
+Subject: Re: [Intel-gfx] [RFC 1/7] drm/i915: Define flip done functions and
+ enable IER
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,148 +44,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel GFX <intel-gfx@lists.freedesktop.org>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 3/9/20 3:38 PM, Andi Shyti wrote:
-> Hi Daniele,
-> 
->>>>>> Quoting Andi Shyti (2020-03-06 23:03:44)
->>>>>>> -void debugfs_gt_register_files(struct intel_gt *gt,
->>>>>>> -                              struct dentry *root,
->>>>>>> -                              const struct debugfs_gt_file *files,
->>>>>>> -                              unsigned long count)
->>>>>>> +void intel_gt_debugfs_register_files(struct dentry *root,
->>>>>>> +                                    const struct debugfs_gt_file *files,
->>>>>>> +                                    unsigned long count, void *data)
->>>>>>>    {
->>>>>>>           while (count--) {
->>>>>>> -               if (!files->eval || files->eval(gt))
->>>>>>> +               if (!files->eval || files->eval(data))
->>>>>>>                           debugfs_create_file(files->name,
->>>>>>> -                                           0444, root, gt,
->>>>>>> +                                           0444, root, data,
->>>>>>>                                               files->fops);
->>>>>>
->>>>>> And now we are not a intel_gt routine, you'll want to move again :)
->>>>>> i915_debugfs_utils.c ? :)
->>>>>
->>>>> Actually, this is what it came to and this was the first
->>>>> discussion I had with Daniele and that's also why I was loyal to
->>>>> th "_gt_" wrappers until the end. But I had to agree that this
->>>>> was becoming more a limitation.
->>>>>
->>>>> The biggest difference left, which by the way is the real
->>>>> distinguishing factor other than the *gt pointer, is that we
->>>>> create files under gt directory, instead of having the root
->>>>> imposed by the drm (even though the caller can eventually choose
->>>>> different roots).
->>>>>
->>>>> We could perhaps store the root pointer in the intel_gt
->>>>> structure so that this function stays de facto an intel_gt
->>>>> routine and the caller doesn't need to care where the files will
->>>>> be generated. This is what we planned to do with sysfs as well.
->>>>>
->>>>> What do you think?
->>>>
->>>> I thought we were passing along the root. If not I think we should, more
->>>> of a debugfs constructor context?
->>>
->>> What do you mean with debugfs constructor context? Is it a
->>> gt->debugfs_root pointer like the gt->sysfs_root?
->>>
-> 
->> Getting the root pointer internally from gt wouldn't work well for
->> subfolders, like the gt/uc/ folder I want to add for GuC/HuC files.
-> 
-> this was not my idea, actually I was thinking the opposite.
-> 
-> When in this case you call "intel_gt_debugfs_register_files", you
-> would provide "gt" pointer where the funcion extracts and handles
-> by its own the debugfs_root. The caller doesn't need to care
-> about it.
-> 
-> Another idea could be to use contexts, e.g. guc or pm or whatever
-> comes to mind, and the intel_gt_debugfs handles everything
-> including subdirectories.
-> 
->> I think extracting this generic helper to a common file, possibly as a follow-up
->> step, isn't a bad idea, also considering that there is at least 1 more
->> use-case in i915_debugfs_register(). Maybe we can generalize as something
->> like:
->>
->> struct i915_debugfs_files {
->> 	const char *name;
->> 	const struct file_operations *fops;
->> 	bool (*eval)(void *data);
->> }
->>
->> void i915_debugfs_register_files(struct dentry *root,
->> 				 const struct i915_debugfs_files *files,
->> 				 unsigned long count, void *data)
->> {
->>   	while (count--) {
->> 		umode_t mode = files->fops->write ? 0644 : 0444;
->> 		if (!files->eval || files->eval(data))
->>   			debugfs_create_file(files->name,
->> 					    mode, root, data,
->>   					    files->fops);
->> 	}
->> }
-> 
-> apart from the mode, isn't this the same as the latest patch you
-> actually reviewed?
-> 
-
-Yes, but by adding the mode and making the naming generic we can re-use 
-it outside the GT code, e.g. in i915_debugfs_connector_add() and to 
-replace the loop in i915_debugfs_register(). I was reconnecting to 
-Chris' proposal of having a common function in i915_debugfs_utils.c (or 
-even just in i915_debugfs.c ?).
-
->> void i915_debugfs_register_files(struct dentry *root,
-> 
-> based on my proposal, root would point, in your case, to the
-> "guc/" directory that will be created under the "gt/". NULL if
-> you want the file to be created in the main "gt/" directory.
-> 
-
-If I'm understanding correctly, you're proposing to pass both struct 
-intel_gt *gt and struct dentry *root, with the latter being set only if 
-we want a folder different that gt/ ? What would that gain us compared 
-to just passing the desired root every time like we currently do?
-
-> While if we want to go by context, we could do something like:
-> 
-> struct i915_debugfs_files {
->        const char *name;
->        const struct file_operations *fops;
->        bool (*eval)(void *data);
->        enum intel_gt_context context;
-
-This seems overkill, also because you'd have to save all the roots 
-inside of the gt struct to allow accessing them from within the 
-register_files function.
-
-> }
-> 
-> and the gt handles everything.
-
-Maybe I'm misunderstanding your proposal, but it feels like you're 
-trying to find a use for a gt variable we don't really need just to keep 
-this as a gt routine.
-
-Daniele
-
-> 
-> Andi
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RW0gc2V4LCAyMDIwLTAzLTA2IMOgcyAxNzowOSArMDUzMCwgS2FydGhpayBCIFMgZXNjcmV2ZXU6
+Cj4gQWRkIGVuYWJsZS9kaXNhYmxlIGZsaXAgZG9uZSBmdW5jdGlvbnMgYW5kIGVuYWJsZQo+IHRo
+ZSBmbGlwIGRvbmUgaW50ZXJydXB0IGluIElFUi4KPiAKPiBGbGlwIGRvbmUgaW50ZXJydXB0IGlz
+IHVzZWQgdG8gc2VuZCB0aGUgcGFnZSBmbGlwIGV2ZW50IGFzIHNvb24gYXMgdGhlCj4gc3VyZmFj
+ZSBhZGRyZXNzIGlzIHdyaXR0ZW4gYXMgcGVyIHRoZSByZXF1aXJlbWVudCBvZiBhc3luYyBmbGlw
+cy4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLYXJ0aGlrIEIgUyA8a2FydGhpay5iLnNAaW50ZWwuY29t
+Pgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIHwgMzcgKysrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJx
+LmggfCAgMiArKwo+ICAyIGZpbGVzIGNoYW5nZWQsIDM4IGluc2VydGlvbnMoKyksIDEgZGVsZXRp
+b24oLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmMKPiBpbmRleCBlY2YwN2IwZmFhZDIuLjU5
+NTVlNzM3YTQ1ZCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5j
+Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYwo+IEBAIC0yNjI2LDYgKzI2
+MjYsMjcgQEAgaW50IGJkd19lbmFibGVfdmJsYW5rKHN0cnVjdCBkcm1fY3J0YyAqY3J0YykKPiAg
+CXJldHVybiAwOwo+ICB9Cj4gIAo+ICt2b2lkIGljbF9lbmFibGVfZmxpcF9kb25lKHN0cnVjdCBk
+cm1fY3J0YyAqY3J0YykKCgpQbGF0Zm9ybSBwcmVmaXhlcyBpbmRpY2F0ZSB0aGUgZmlyc3QgcGxh
+dGZvcm0gdGhhdCBpcyBhYmxlIHRvIHJ1biB0aGlzCmZ1bmN0aW9uLiBJbiB0aGlzIGNhc2UgSSBj
+YW4ndCBldmVuIHNlZSB3aGljaCBwbGF0Zm9ybXMgd2lsbCBydW4gdGhlCmZ1bmN0aW9uIGJlY2F1
+c2UgaXQncyBvbmx5IGxhdGVyIGluIHRoZSBzZXJpZXMgdGhhdCB0aGlzIGZ1bmN0aW9uIHdpbGwK
+Z2V0IGNhbGxlZC4gSSdtIG5vdCBhIGZhbiBvZiB0aGlzIHBhdGNoIHNwbGl0dGluZyBzdHlsZSB3
+aGVyZSBhCmZ1bmN0aW9uIGdldHMgYWRkZWQgaW4gcGF0Y2ggWCBhbmQgdGhlbiB1c2VkIGluIHBh
+dGNoIFgrWS4gSU1ITwpmdW5jdGlvbnMgc2hvdWxkIG9ubHkgYmUgaW50cm9kdWNlZCBpbiBwYXRj
+aGVzIHdoZXJlIHRoZXkgYXJlIHVzZWQuClRoaXMgbWFrZXMgdGhlIGNvZGUgbXVjaCBlYXNpZXIg
+dG8gcmV2aWV3LgoKU28sIHNob3VsZG4ndCB0aGlzIGJlIHNrbF9lbmFibGVfZmxpcF9kb25lKCk/
+Cgo+ICt7Cj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGNy
+dGMtPmRldik7Cj4gKwllbnVtIHBpcGUgcGlwZSA9IHRvX2ludGVsX2NydGMoY3J0YyktPnBpcGU7
+Cj4gKwlzdHJ1Y3QgZHJtX3ZibGFua19jcnRjICp2YmxhbmsgPSAmZGV2X3ByaXYtPmRybS52Ymxh
+bmtbcGlwZV07Cj4gKwl1bnNpZ25lZCBsb25nIGlycWZsYWdzOwo+ICsKPiArCS8qIE1ha2Ugc3Vy
+ZSB0aGF0IHZibGFuayBpcyBub3QgZW5hYmxlZCwgYXMgd2UgYXJlIGFscmVhZHkgc2VuZGluZwo+
+ICsJICogdGhlIHBhZ2UgZmxpcCBldmVudCBpbiB0aGUgZmxpcF9kb25lX2hhbmRsZXIuCj4gKwkg
+Ki8KPiArCWlmIChhdG9taWNfcmVhZCgmdmJsYW5rLT5yZWZjb3VudCkgIT0gMCkKPiArCQlkcm1f
+Y3J0Y192YmxhbmtfcHV0KGNydGMpOwoKVGhpcyBpcyB0aGUga2luZCBvZiB0aGluZyB0aGF0IHdp
+bGwgYmUgbXVjaCBlYXNpZXIgdG8gcmV2aWV3IHdoZW4gdGhpcwpwYXRjaCBnZXRzIHNxdWFzaGVk
+IGluIHRoZSBvbmUgdGhhdCBtYWtlcyB1c2Ugb2YgdGhlc2UgZnVuY3Rpb25zLgoKRXZlbiBhZnRl
+ciByZWFkaW5nIHRoZSB3aG9sZSBzZXJpZXMsIHRoaXMgcHV0KCkgZG9lc24ndCBzZWVtIGNvcnJl
+Y3QgdG8KbWUuIFdoYXQgaXMgdGhlIHByb2JsZW0gd2l0aCBoYXZpbmcgdmJsYW5rcyBlbmFibGVk
+PyBJcyBpdCBiZWNhdXNlIHdlCndlcmUgc2VuZGluZyBkdXBsaWNhdGUgdmJsYW5rIGV2ZW50cyB3
+aXRob3V0IHRoZXNlIGxpbmVzPyBXaGVyZSBpcyB0aGUKZ2V0KCkgdGhhdCB0cmlnZ2VycyB0aGlz
+IHB1dCgpPyBQbGVhc2UgaGVscCBtZSB1bmRlcnN0YW5kIHRoaXMuCgoKPiArCj4gKwlzcGluX2xv
+Y2tfaXJxc2F2ZSgmZGV2X3ByaXYtPmlycV9sb2NrLCBpcnFmbGFncyk7Cj4gKwo+ICsJYmR3X2Vu
+YWJsZV9waXBlX2lycShkZXZfcHJpdiwgcGlwZSwgR0VOOV9QSVBFX1BMQU5FMV9GTElQX0RPTkUp
+Owo+ICsKPiArCXNwaW5fdW5sb2NrX2lycXJlc3RvcmUoJmRldl9wcml2LT5pcnFfbG9jaywgaXJx
+ZmxhZ3MpOwo+ICsKPiArfQo+ICsKPiAgLyogQ2FsbGVkIGZyb20gZHJtIGdlbmVyaWMgY29kZSwg
+cGFzc2VkICdjcnRjJyB3aGljaAo+ICAgKiB3ZSB1c2UgYXMgYSBwaXBlIGluZGV4Cj4gICAqLwo+
+IEBAIC0yNjg2LDYgKzI3MDcsMjAgQEAgdm9pZCBiZHdfZGlzYWJsZV92Ymxhbmsoc3RydWN0IGRy
+bV9jcnRjICpjcnRjKQo+ICAJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZGV2X3ByaXYtPmlycV9s
+b2NrLCBpcnFmbGFncyk7Cj4gIH0KPiAgCj4gKwo+ICt2b2lkIGljbF9kaXNhYmxlX2ZsaXBfZG9u
+ZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMpCj4gK3sKPiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRl
+ICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Yy0+ZGV2KTsKPiArCWVudW0gcGlwZSBwaXBlID0gdG9f
+aW50ZWxfY3J0YyhjcnRjKS0+cGlwZTsKPiArCXVuc2lnbmVkIGxvbmcgaXJxZmxhZ3M7Cj4gKwo+
+ICsJc3Bpbl9sb2NrX2lycXNhdmUoJmRldl9wcml2LT5pcnFfbG9jaywgaXJxZmxhZ3MpOwo+ICsK
+PiArCWJkd19kaXNhYmxlX3BpcGVfaXJxKGRldl9wcml2LCBwaXBlLCBHRU45X1BJUEVfUExBTkUx
+X0ZMSVBfRE9ORSk7Cj4gKwo+ICsJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZGV2X3ByaXYtPmly
+cV9sb2NrLCBpcnFmbGFncyk7Cj4gK30KPiArCj4gIHN0YXRpYyB2b2lkIGlieF9pcnFfcmVzZXQo
+c3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQo+ICB7Cj4gIAlzdHJ1Y3QgaW50ZWxf
+dW5jb3JlICp1bmNvcmUgPSAmZGV2X3ByaXYtPnVuY29yZTsKPiBAQCAtMzM3NSw3ICszNDEwLDcg
+QEAgc3RhdGljIHZvaWQgZ2VuOF9kZV9pcnFfcG9zdGluc3RhbGwoc3RydWN0IGRybV9pOTE1X3By
+aXZhdGUgKmRldl9wcml2KQo+ICAJCWRlX3BvcnRfbWFza2VkIHw9IENOTF9BVVhfQ0hBTk5FTF9G
+Owo+ICAKPiAgCWRlX3BpcGVfZW5hYmxlcyA9IGRlX3BpcGVfbWFza2VkIHwgR0VOOF9QSVBFX1ZC
+TEFOSyB8Cj4gLQkJCQkJICAgR0VOOF9QSVBFX0ZJRk9fVU5ERVJSVU47Cj4gKwkJCSAgR0VOOF9Q
+SVBFX0ZJRk9fVU5ERVJSVU4gfCBHRU45X1BJUEVfUExBTkUxX0ZMSVBfRE9ORTsKClRoaXMgaXMg
+Z29pbmcgdG8gc2V0IHRoaXMgYml0IGZvciBnZW44IHRvbywgd2hpY2ggaXMgc29tZXRoaW5nIHdl
+CnByb2JhYmx5IGRvbid0IHdhbnQgc2luY2UgaXQgZG9lc24ndCBleGlzdCB0aGVyZS4KClRoZSBw
+YXRjaCBhbHNvIGRvZXMgbm90IGFkZCB0aGUgaGFuZGxlciBmb3IgdGhlIGludGVycnVwdCwgd2hp
+Y2gKZG9lc24ndCBtYWtlIHNlbnNlIChzZWUgbXkgcG9pbnQgYWJvdmUpLgoKQWxzbywgZG9uJ3Qg
+d2Ugd2FudCB0byBkbyBsaWtlIEdFTjhfUElQRV9WQkxBTksgYW5kIGFsc28gc2V0IGl0IG9uIHRo
+ZQpwb3dlcl93ZWxsX3Bvc3RfZW5hYmxlIGhvb2s/IElmIG5vdCwgd2h5PyBUaGlzIGlzIHByb2Jh
+Ymx5IGEgY2FzZSB3ZQpzaG91bGQgd3JpdGUgYW4gSUdUIHN1YnRlc3QgZm9yLgoKPiAgCj4gIAlk
+ZV9wb3J0X2VuYWJsZXMgPSBkZV9wb3J0X21hc2tlZDsKPiAgCWlmIChJU19HRU45X0xQKGRldl9w
+cml2KSkKPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuaCBiL2Ry
+aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmgKPiBpbmRleCA4MTJjNDdhOWMyZDYuLjZmYzMx
+OTk4MGRkMyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5oCj4g
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuaAo+IEBAIC0xMTQsMTEgKzExNCwx
+MyBAQCBpbnQgaTkxNWdtX2VuYWJsZV92Ymxhbmsoc3RydWN0IGRybV9jcnRjICpjcnRjKTsKPiAg
+aW50IGk5NjVfZW5hYmxlX3ZibGFuayhzdHJ1Y3QgZHJtX2NydGMgKmNydGMpOwo+ICBpbnQgaWxr
+X2VuYWJsZV92Ymxhbmsoc3RydWN0IGRybV9jcnRjICpjcnRjKTsKPiAgaW50IGJkd19lbmFibGVf
+dmJsYW5rKHN0cnVjdCBkcm1fY3J0YyAqY3J0Yyk7Cj4gK3ZvaWQgaWNsX2VuYWJsZV9mbGlwX2Rv
+bmUoc3RydWN0IGRybV9jcnRjICpjcnRjKTsKPiAgdm9pZCBpOHh4X2Rpc2FibGVfdmJsYW5rKHN0
+cnVjdCBkcm1fY3J0YyAqY3J0Yyk7Cj4gIHZvaWQgaTkxNWdtX2Rpc2FibGVfdmJsYW5rKHN0cnVj
+dCBkcm1fY3J0YyAqY3J0Yyk7Cj4gIHZvaWQgaTk2NV9kaXNhYmxlX3ZibGFuayhzdHJ1Y3QgZHJt
+X2NydGMgKmNydGMpOwo+ICB2b2lkIGlsa19kaXNhYmxlX3ZibGFuayhzdHJ1Y3QgZHJtX2NydGMg
+KmNydGMpOwo+ICB2b2lkIGJkd19kaXNhYmxlX3ZibGFuayhzdHJ1Y3QgZHJtX2NydGMgKmNydGMp
+Owo+ICt2b2lkIGljbF9kaXNhYmxlX2ZsaXBfZG9uZShzdHJ1Y3QgZHJtX2NydGMgKmNydGMpOwo+
+ICAKPiAgdm9pZCBnZW4yX2lycV9yZXNldChzdHJ1Y3QgaW50ZWxfdW5jb3JlICp1bmNvcmUpOwo+
+ICB2b2lkIGdlbjNfaXJxX3Jlc2V0KHN0cnVjdCBpbnRlbF91bmNvcmUgKnVuY29yZSwgaTkxNV9y
+ZWdfdCBpbXIsCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
