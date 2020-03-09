@@ -1,32 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3DF817E43C
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:04:03 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7461217E43F
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 17:04:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7536D6E483;
-	Mon,  9 Mar 2020 16:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4CCC6E484;
+	Mon,  9 Mar 2020 16:04:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 777B589CE3;
- Mon,  9 Mar 2020 16:03:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6FC10A47DF;
- Mon,  9 Mar 2020 16:03:59 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5C5A6E484
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 16:04:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20497412-1500050 for multiple; Mon, 09 Mar 2020 16:04:29 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Mon, 09 Mar 2020 16:03:59 -0000
-Message-ID: <158376983943.9451.2236107112753968790@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200306123046.2797797-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200306123046.2797797-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/17=5D_drm/i915=3A_Add_an_impleme?=
- =?utf-8?q?ntation_for_i915=5Fgem=5Fww=5Fctx_locking=2C_v2=2E_=28rev2=29?=
+In-Reply-To: <87h7yx366c.fsf@gaia.fi.intel.com>
+References: <20200309110934.868-1-chris@chris-wilson.co.uk>
+ <87mu8p39t6.fsf@gaia.fi.intel.com>
+ <158376302500.4769.12751352891393708199@build.alporthouse.com>
+ <87h7yx366c.fsf@gaia.fi.intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158376986786.4769.4579441836653880293@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 09 Mar 2020 16:04:27 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Mark up unlocked update of
+ i915_request.hwsp_seqno
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,79 +43,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Mika Kuoppala (2020-03-09 15:21:31)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> 
+> > Quoting Mika Kuoppala (2020-03-09 14:03:01)
+> >> Chris Wilson <chris@chris-wilson.co.uk> writes:
+> >> 
+> >> > During i915_request_retire() we decouple the i915_request.hwsp_seqno
+> >> > from the intel_timeline so that it may be freed before the request is
+> >> > released. However, we need to warn the compiler that the pointer may
+> >> > update under its nose.
+> >> >
+> >> > [  171.438899] BUG: KCSAN: data-race in i915_request_await_dma_fence [i915] / i915_request_retire [i915]
+> >> > [  171.438920]
+> >> > [  171.438932] write to 0xffff8881e7e28ce0 of 8 bytes by task 148 on cpu 2:
+> >> > [  171.439174]  i915_request_retire+0x1ea/0x660 [i915]
+> >> > [  171.439408]  retire_requests+0x7a/0xd0 [i915]
+> >> > [  171.439640]  engine_retire+0xa1/0xe0 [i915]
+> >> > [  171.439657]  process_one_work+0x3b1/0x690
+> >> > [  171.439671]  worker_thread+0x80/0x670
+> >> > [  171.439685]  kthread+0x19a/0x1e0
+> >> > [  171.439701]  ret_from_fork+0x1f/0x30
+> >> > [  171.439721]
+> >> > [  171.439739] read to 0xffff8881e7e28ce0 of 8 bytes by task 696 on cpu 1:
+> >> > [  171.439990]  i915_request_await_dma_fence+0x162/0x520 [i915]
+> >> > [  171.440230]  i915_request_await_object+0x2fe/0x470 [i915]
+> >> > [  171.440467]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
+> >> > [  171.440704]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
+> >> > [  171.440722]  drm_ioctl_kernel+0xe4/0x120
+> >> > [  171.440736]  drm_ioctl+0x297/0x4c7
+> >> > [  171.440750]  ksys_ioctl+0x89/0xb0
+> >> > [  171.440766]  __x64_sys_ioctl+0x42/0x60
+> >> > [  171.440788]  do_syscall_64+0x6e/0x2c0
+> >> > [  171.440802]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> >> >
+> >> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> >> > ---
+> >> >  drivers/gpu/drm/i915/i915_request.h | 7 +++++--
+> >> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> >> >
+> >> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> >> > index d4bae16b4785..6020d5b2a3df 100644
+> >> > --- a/drivers/gpu/drm/i915/i915_request.h
+> >> > +++ b/drivers/gpu/drm/i915/i915_request.h
+> >> > @@ -396,7 +396,9 @@ static inline bool i915_seqno_passed(u32 seq1, u32 seq2)
+> >> >  
+> >> >  static inline u32 __hwsp_seqno(const struct i915_request *rq)
+> >> >  {
+> >> > -     return READ_ONCE(*rq->hwsp_seqno);
+> >> > +     const u32 *hwsp = READ_ONCE(rq->hwsp_seqno);
+> >> > +
+> >> > +     return READ_ONCE(*hwsp);
+> >> 
+> >> This is good enough for decouple. But good enough for hardware
+> >> might be different thing.
+> >> 
+> >> I am paranoid enough to wanting an rmb(), before the final
+> >> read once.
+> >
+> > What? [That pointer is nothing to do with HW; it's a pointer to a
+> > pointer to HW.]
+> 
+> But you do read the value through the pointer to hardware.
+> 
+> CPU:
+> rmb(); READ_ONCE(*hwsp);
+> 
+> GPU:
+> WRITE_ONCE(*hwsp, seqno), wmb(), interrupt -> cpu.
+> 
+> Thus on waking up, you would be guaranteed to see the
+> value gpu intended upon.
 
-Series: series starting with [01/17] drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2. (rev2)
-URL   : https://patchwork.freedesktop.org/series/74387/
-State : warning
-
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-a07375e972da drm/i915: Add an implementation for i915_gem_ww_ctx locking, v2.
--:506: WARNING:LONG_LINE: line over 100 characters
-#506: FILE: drivers/gpu/drm/i915/i915_gem.c:1339:
-+	while ((obj = list_first_entry_or_null(&ww->obj_list, struct drm_i915_gem_object, obj_link))) {
-
-total: 0 errors, 1 warnings, 0 checks, 481 lines checked
-fb5f8b0f4bd8 drm/i915: Remove locking from i915_gem_object_prepare_read/write
-e73c2a91b83f drm/i915: Parse command buffer earlier in eb_relocate(slow)
-4e33a47c9b1d drm/i915: Use per object locking in execbuf, v5.
-22c3999407bc drm/i915: Use ww locking in intel_renderstate.
--:10: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10: 
-Convert to using ww-waiting, and make sure we always pin intel_context_state,
-
-total: 0 errors, 1 warnings, 0 checks, 202 lines checked
-a0b296192afc drm/i915: Add ww context handling to context_barrier_task
--:19: WARNING:LONG_LINE: line over 100 characters
-#19: FILE: drivers/gpu/drm/i915/gem/i915_gem_context.c:1064:
-+				int (*pin)(struct intel_context *ce, struct i915_gem_ww_ctx *ww, void *data),
-
-total: 0 errors, 1 warnings, 0 checks, 146 lines checked
-164cef249306 drm/i915: Nuke arguments to eb_pin_engine
-8f88e8dab92d drm/i915: Pin engine before pinning all objects, v3.
-77b62e00cde5 drm/i915: Rework intel_context pinning to do everything outside of pin_mutex
--:120: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#120: FILE: drivers/gpu/drm/i915/gt/intel_context.c:176:
-+
-+
-
--:330: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#330: FILE: drivers/gpu/drm/i915/gt/intel_lrc.c:3026:
-+	*vaddr = i915_gem_object_pin_map(ce->state->obj,
-+					i915_coherent_map_type(ce->engine->i915) |
-
-total: 0 errors, 0 warnings, 2 checks, 435 lines checked
-b825cd024f91 drm/i915: Make sure execbuffer always passes ww state to i915_vma_pin.
--:80: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#80: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:573:
-+	err = i915_vma_pin_ww(vma, &eb->ww,
- 			   entry->pad_to_size, entry->alignment,
-
--:188: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#188: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2169:
-+	 * hsw should have this fixed, but bdw mucks it up again. */
-
-total: 0 errors, 1 warnings, 1 checks, 812 lines checked
-fb5317b3dbd4 drm/i915: Convert i915_gem_object/client_blt.c to use ww locking as well, v2.
-e1bf61bde5c0 drm/i915: Kill last user of intel_context_create_request outside of selftests
-0ad82c88a73a drm/i915: Convert i915_perf to ww locking as well
-feaac385addd drm/i915: Dirty hack to fix selftests locking inversion
-c8beabdebf22 drm/i915/selftests: Fix locking inversion in lrc selftest.
-69abe3bc5db6 drm/i915: Use ww pinning for intel_context_create_request()
-c72d21a3cf9c drm/i915: Move i915_vma_lock in the selftests to avoid lock inversion
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 125 lines checked
-
+The bspec gives us the guarantee that we see the correct value as the
+GPU takes care of the cacheline invalidation on writing. We haven't had
+reason not to believe that yet, all our issues so far have been the
+arrival of the interrupt vs update of the seqno. (Well the whole design
+of the request is that we don't really care how long it takes, just that
+once a request is complete it stays completed.)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
