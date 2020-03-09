@@ -1,37 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A506917E3B4
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 16:36:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 438E617E3B6
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 16:36:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC98F898A3;
-	Mon,  9 Mar 2020 15:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 974286E479;
+	Mon,  9 Mar 2020 15:36:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D62E689872
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 15:36:01 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 08:36:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,533,1574150400"; d="scan'208";a="234039115"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2020 08:36:00 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 4008A5C1DD1; Mon,  9 Mar 2020 17:34:40 +0200 (EET)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200309112431.13903-1-chris@chris-wilson.co.uk>
-References: <20200309112431.13903-1-chris@chris-wilson.co.uk>
-Date: Mon, 09 Mar 2020 17:34:40 +0200
-Message-ID: <87eeu135kf.fsf@gaia.fi.intel.com>
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50A0E6E479
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 15:36:42 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  9 Mar 2020 16:36:38 +0100
+Message-Id: <20200309153638.3287490-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200306123046.2797797-17-maarten.lankhorst@linux.intel.com>
+References: <20200306123046.2797797-17-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Defend against concurrent
- updates to execlists->active
+Subject: [Intel-gfx] [PATCH] drm/i915: Move i915_vma_lock in the selftests
+ to avoid lock inversion
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,84 +39,157 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../i915/gem/selftests/i915_gem_coherency.c   | 26 ++++++++++---------
+ drivers/gpu/drm/i915/selftests/i915_request.c | 18 ++++++++-----
+ 2 files changed, 26 insertions(+), 18 deletions(-)
 
-> [  206.875637] BUG: KCSAN: data-race in __i915_schedule+0x7fc/0x930 [i915]
-> [  206.875654]
-> [  206.875666] race at unknown origin, with read to 0xffff8881f7644480 of 8 bytes by task 703 on cpu 3:
-> [  206.875901]  __i915_schedule+0x7fc/0x930 [i915]
-> [  206.876130]  __bump_priority+0x63/0x80 [i915]
-> [  206.876361]  __i915_sched_node_add_dependency+0x258/0x300 [i915]
-> [  206.876593]  i915_sched_node_add_dependency+0x50/0xa0 [i915]
-> [  206.876824]  i915_request_await_dma_fence+0x1da/0x530 [i915]
-> [  206.877057]  i915_request_await_object+0x2fe/0x470 [i915]
-> [  206.877287]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
-> [  206.877517]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-> [  206.877535]  drm_ioctl_kernel+0xe4/0x120
-> [  206.877549]  drm_ioctl+0x297/0x4c7
-> [  206.877563]  ksys_ioctl+0x89/0xb0
-> [  206.877577]  __x64_sys_ioctl+0x42/0x60
-> [  206.877591]  do_syscall_64+0x6e/0x2c0
-> [  206.877606]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
->
-> References: https://gitlab.freedesktop.org/drm/intel/issues/1318
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine.h | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine.h b/drivers/gpu/drm/i915/gt/intel_engine.h
-> index 29c8c03c5caa..f267f51c457c 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine.h
-> @@ -107,7 +107,17 @@ execlists_num_ports(const struct intel_engine_execlists * const execlists)
->  static inline struct i915_request *
->  execlists_active(const struct intel_engine_execlists *execlists)
->  {
-> -	return *READ_ONCE(execlists->active);
-> +	struct i915_request * const *cur = READ_ONCE(execlists->active);
-> +	struct i915_request * const *old;
-> +	struct i915_request *active;
-> +
-> +	do {
-> +		old = cur;
-> +		active = READ_ONCE(*cur);
-> +		cur = READ_ONCE(execlists->active);
-> +	} while (cur != old);
-> +
-> +	return active;
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+index 99f8466a108a..d93b7d9ad174 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_coherency.c
+@@ -199,25 +199,25 @@ static int gpu_set(struct context *ctx, unsigned long offset, u32 v)
+ 
+ 	i915_gem_object_lock(ctx->obj, NULL);
+ 	err = i915_gem_object_set_to_gtt_domain(ctx->obj, true);
+-	i915_gem_object_unlock(ctx->obj);
+ 	if (err)
+-		return err;
++		goto out_unlock;
+ 
+ 	vma = i915_gem_object_ggtt_pin(ctx->obj, NULL, 0, 0, 0);
+-	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto out_unlock;
++	}
+ 
+ 	rq = intel_engine_create_kernel_request(ctx->engine);
+ 	if (IS_ERR(rq)) {
+-		i915_vma_unpin(vma);
+-		return PTR_ERR(rq);
++		err = PTR_ERR(rq);
++		goto out_unpin;
+ 	}
+ 
+ 	cs = intel_ring_begin(rq, 4);
+ 	if (IS_ERR(cs)) {
+-		i915_request_add(rq);
+-		i915_vma_unpin(vma);
+-		return PTR_ERR(cs);
++		err = PTR_ERR(cs);
++		goto out_rq;
+ 	}
+ 
+ 	if (INTEL_GEN(ctx->engine->i915) >= 8) {
+@@ -238,14 +238,16 @@ static int gpu_set(struct context *ctx, unsigned long offset, u32 v)
+ 	}
+ 	intel_ring_advance(rq, cs);
+ 
+-	i915_vma_lock(vma);
+ 	err = i915_request_await_object(rq, vma->obj, true);
+ 	if (err == 0)
+ 		err = i915_vma_move_to_active(vma, rq, EXEC_OBJECT_WRITE);
+-	i915_vma_unlock(vma);
+-	i915_vma_unpin(vma);
+ 
++out_rq:
+ 	i915_request_add(rq);
++out_unpin:
++	i915_vma_unpin(vma);
++out_unlock:
++	i915_gem_object_unlock(ctx->obj);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index f89d9c42f1fa..9a89097194ad 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -848,6 +848,8 @@ static int live_all_engines(void *arg)
+ 		goto out_free;
+ 	}
+ 
++	i915_vma_lock(batch);
++
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
+ 		request[idx] = intel_engine_create_kernel_request(engine);
+@@ -865,11 +867,9 @@ static int live_all_engines(void *arg)
+ 		GEM_BUG_ON(err);
+ 		request[idx]->batch = batch;
+ 
+-		i915_vma_lock(batch);
+ 		err = i915_request_await_object(request[idx], batch->obj, 0);
+ 		if (err == 0)
+ 			err = i915_vma_move_to_active(batch, request[idx], 0);
+-		i915_vma_unlock(batch);
+ 		GEM_BUG_ON(err);
+ 
+ 		i915_request_get(request[idx]);
+@@ -877,6 +877,8 @@ static int live_all_engines(void *arg)
+ 		idx++;
+ 	}
+ 
++	i915_vma_unlock(batch);
++
+ 	idx = 0;
+ 	for_each_uabi_engine(engine, i915) {
+ 		if (i915_request_completed(request[idx])) {
+@@ -967,12 +969,13 @@ static int live_sequential_engines(void *arg)
+ 			goto out_free;
+ 		}
+ 
++		i915_vma_lock(batch);
+ 		request[idx] = intel_engine_create_kernel_request(engine);
+ 		if (IS_ERR(request[idx])) {
+ 			err = PTR_ERR(request[idx]);
+ 			pr_err("%s: Request allocation failed for %s with err=%d\n",
+ 			       __func__, engine->name, err);
+-			goto out_request;
++			goto out_unlock;
+ 		}
+ 
+ 		if (prev) {
+@@ -982,7 +985,7 @@ static int live_sequential_engines(void *arg)
+ 				i915_request_add(request[idx]);
+ 				pr_err("%s: Request await failed for %s with err=%d\n",
+ 				       __func__, engine->name, err);
+-				goto out_request;
++				goto out_unlock;
+ 			}
+ 		}
+ 
+@@ -993,12 +996,10 @@ static int live_sequential_engines(void *arg)
+ 		GEM_BUG_ON(err);
+ 		request[idx]->batch = batch;
+ 
+-		i915_vma_lock(batch);
+ 		err = i915_request_await_object(request[idx],
+ 						batch->obj, false);
+ 		if (err == 0)
+ 			err = i915_vma_move_to_active(batch, request[idx], 0);
+-		i915_vma_unlock(batch);
+ 		GEM_BUG_ON(err);
+ 
+ 		i915_request_get(request[idx]);
+@@ -1006,6 +1007,11 @@ static int live_sequential_engines(void *arg)
+ 
+ 		prev = request[idx];
+ 		idx++;
++
++out_unlock:
++		i915_vma_unlock(batch);
++		if (err)
++			goto out_request;
+ 	}
+ 
+ 	idx = 0;
+-- 
+2.25.1
 
-The updated side is scary. We are updating the execlists->active
-in two phases and handling the array copying in between.
-
-as WRITE_ONCE only guarantees ordering inside one context, due to
-it is for compiler only, it makes me very suspicious about
-how the memcpy of pending->inflight might unravel between two cpus.
-
-smb_store_mb(execlists->active, execlists->pending);
-memcpy(inflight, pending)
-smb_wmb();
-smb_store_mb(execlists->active, execlists->inflight);
-smb_store_mb(execlists->pending[0], NULL);
-
-This in paired with:
-
-active = READ_ONCE(*cur);
-smb_rmb();
-cur = READ_ONCE(execlists->active);
-
-With this, it should not matter at which point the execlists->active
-is sampled as the pending would be guaranteed to be
-immutable if it sampled early and inflight immutable if it
-sampled late?
-
--Mika
-
->  }
->  
->  static inline void
-> -- 
-> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
