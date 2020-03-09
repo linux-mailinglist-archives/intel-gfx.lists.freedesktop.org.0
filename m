@@ -1,31 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4372617E2A5
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 15:44:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1BFA17E317
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 16:07:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 953996E17A;
-	Mon,  9 Mar 2020 14:44:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09B1B8982D;
+	Mon,  9 Mar 2020 15:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D51B66E179;
- Mon,  9 Mar 2020 14:44:37 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CE04BA0094;
- Mon,  9 Mar 2020 14:44:37 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 09 Mar 2020 14:44:37 -0000
-Message-ID: <158376507784.9449.1989426052360495157@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200309132726.28358-1-chris@chris-wilson.co.uk>
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 016268982D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 15:07:09 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 08:07:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260442545"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga002.jf.intel.com with ESMTP; 09 Mar 2020 08:07:06 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id CEA925C1DD1; Mon,  9 Mar 2020 17:05:45 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 In-Reply-To: <20200309132726.28358-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Mark_racy_read_of_intel=5Fengine=5Fcs=2Esaturated?=
+References: <20200309132726.28358-1-chris@chris-wilson.co.uk>
+Date: Mon, 09 Mar 2020 17:05:45 +0200
+Message-ID: <87k13t36wm.fsf@gaia.fi.intel.com>
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Mark racy read of
+ intel_engine_cs.saturated
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,137 +44,73 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Series: drm/i915: Mark racy read of intel_engine_cs.saturated
-URL   : https://patchwork.freedesktop.org/series/74455/
-State : success
+> [ 3783.276728] BUG: KCSAN: data-race in __i915_request_submit [i915] / i915_request_await_dma_fence [i915]
+> [ 3783.276766]
+> [ 3783.276787] write to 0xffff8881f1bc60a0 of 1 bytes by interrupt on cpu 2:
+> [ 3783.277187]  __i915_request_submit+0x47e/0x4a0 [i915]
+> [ 3783.277580]  __execlists_submission_tasklet+0x997/0x2780 [i915]
+> [ 3783.277973]  execlists_submission_tasklet+0xd3/0x170 [i915]
+> [ 3783.278006]  tasklet_action_common.isra.0+0x42/0xa0
+> [ 3783.278035]  __do_softirq+0xd7/0x2cd
+> [ 3783.278063]  irq_exit+0xbe/0xe0
+> [ 3783.278089]  do_IRQ+0x51/0x100
+> [ 3783.278114]  ret_from_intr+0x0/0x1c
+> [ 3783.278140]  finish_task_switch+0x72/0x260
+> [ 3783.278170]  __schedule+0x1e5/0x510
+> [ 3783.278198]  schedule+0x45/0xb0
+> [ 3783.278226]  smpboot_thread_fn+0x23e/0x300
+> [ 3783.278256]  kthread+0x19a/0x1e0
+> [ 3783.278283]  ret_from_fork+0x1f/0x30
+> [ 3783.278305]
+> [ 3783.278327] read to 0xffff8881f1bc60a0 of 1 bytes by task 19440 on cpu 3:
+> [ 3783.278724]  i915_request_await_dma_fence+0x2a6/0x530 [i915]
+> [ 3783.279130]  i915_request_await_object+0x2fe/0x470 [i915]
+> [ 3783.279524]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
+> [ 3783.279908]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
+> [ 3783.279940]  drm_ioctl_kernel+0xe4/0x120
+> [ 3783.279968]  drm_ioctl+0x297/0x4c7
+> [ 3783.279996]  ksys_ioctl+0x89/0xb0
+> [ 3783.280021]  __x64_sys_ioctl+0x42/0x60
+> [ 3783.280047]  do_syscall_64+0x6e/0x2c0
+> [ 3783.280074]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/i915_request.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 5de3989b6c4f..04b52bf347bf 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -907,7 +907,7 @@ already_busywaiting(struct i915_request *rq)
+>  	 *
+>  	 * See the are-we-too-late? check in __i915_request_submit().
+>  	 */
+> -	return rq->sched.semaphores | rq->engine->saturated;
+> +	return rq->sched.semaphores | READ_ONCE(rq->engine->saturated);
 
-== Summary ==
+This seem to be a one way ticket to saturation (until parking it is).
+Usually there should be the WRITE_ONCE counterpair!
 
-CI Bug Log - changes from CI_DRM_8097 -> Patchwork_16882
-====================================================
+So now the question is that does it really matter if the race happens.
 
-Summary
--------
+As there is no other party at play inside driver and looks of it
+we just emit one semaphore extra if we get it wrong,
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16882:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@i915_selftest@live@hangcheck:
-    - {fi-ehl-1}:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-ehl-1/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-ehl-1/igt@i915_selftest@live@hangcheck.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16882 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [PASS][3] -> [DMESG-WARN][4] ([i915#92]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-skl-6770hq/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8700k:       [PASS][5] -> [INCOMPLETE][6] ([i915#424])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [PASS][7] -> [FAIL][8] ([fdo#109635] / [i915#217])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence:
-    - fi-skl-6770hq:      [PASS][9] -> [SKIP][10] ([fdo#109271]) +4 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-a-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-pipe-c:
-    - fi-skl-6770hq:      [PASS][11] -> [DMESG-WARN][12] ([i915#106])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-skl-6770hq/igt@kms_pipe_crc_basic@read-crc-pipe-c.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-lmem:        [INCOMPLETE][13] ([i915#424]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][15] ([fdo#111407]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8097/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#106]: https://gitlab.freedesktop.org/drm/intel/issues/106
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-
-
-Participating hosts (46 -> 43)
-------------------------------
-
-  Additional (5): fi-glk-dsi fi-snb-2520m fi-elk-e7500 fi-bsw-kefka fi-tgl-y 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8097 -> Patchwork_16882
-
-  CI-20190529: 20190529
-  CI_DRM_8097: 2e46e269a2843c5d0b6c72bfb7fa9d9913c15415 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5499: 2e23cf6f63fc6ba1d9543f8327698d6f21813cec @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16882: 4b47cb86aa9e39ac563cf958a514f0949e63a901 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4b47cb86aa9e drm/i915: Mark racy read of intel_engine_cs.saturated
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16882/index.html
+>  }
+>  
+>  static int
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
