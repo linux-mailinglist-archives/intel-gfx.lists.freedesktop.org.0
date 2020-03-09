@@ -2,33 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B297817E243
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 15:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDA317E26C
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Mar 2020 15:21:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4D4089FC0;
-	Mon,  9 Mar 2020 14:10:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0F9B6E15F;
+	Mon,  9 Mar 2020 14:21:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF80989FC0
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 14:10:28 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20496018-1500050 for multiple; Mon, 09 Mar 2020 14:10:26 +0000
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67BF36E15F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  9 Mar 2020 14:21:24 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 07:21:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260431538"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga002.jf.intel.com with SMTP; 09 Mar 2020 07:21:21 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 09 Mar 2020 16:21:20 +0200
+Date: Mon, 9 Mar 2020 16:21:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200309142120.GX13686@intel.com>
+References: <20191213152823.26817-1-ville.syrjala@linux.intel.com>
+ <157625247338.7535.668231195608100084@skylake-alporthouse-com>
+ <20191213170601.GB1208@intel.com> <20191213171739.GC1208@intel.com>
+ <158361919091.30296.10666589395477736863@build.alporthouse.com>
 MIME-Version: 1.0
-In-Reply-To: <87mu8p39t6.fsf@gaia.fi.intel.com>
-References: <20200309110934.868-1-chris@chris-wilson.co.uk>
- <87mu8p39t6.fsf@gaia.fi.intel.com>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158376302500.4769.12751352891393708199@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 09 Mar 2020 14:10:25 +0000
-Subject: Re: [Intel-gfx] [PATCH 1/5] drm/i915: Mark up unlocked update of
- i915_request.hwsp_seqno
+Content-Disposition: inline
+In-Reply-To: <158361919091.30296.10666589395477736863@build.alporthouse.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Add device name to display
+ tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,81 +51,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-03-09 14:03:01)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > During i915_request_retire() we decouple the i915_request.hwsp_seqno
-> > from the intel_timeline so that it may be freed before the request is
-> > released. However, we need to warn the compiler that the pointer may
-> > update under its nose.
-> >
-> > [  171.438899] BUG: KCSAN: data-race in i915_request_await_dma_fence [i915] / i915_request_retire [i915]
-> > [  171.438920]
-> > [  171.438932] write to 0xffff8881e7e28ce0 of 8 bytes by task 148 on cpu 2:
-> > [  171.439174]  i915_request_retire+0x1ea/0x660 [i915]
-> > [  171.439408]  retire_requests+0x7a/0xd0 [i915]
-> > [  171.439640]  engine_retire+0xa1/0xe0 [i915]
-> > [  171.439657]  process_one_work+0x3b1/0x690
-> > [  171.439671]  worker_thread+0x80/0x670
-> > [  171.439685]  kthread+0x19a/0x1e0
-> > [  171.439701]  ret_from_fork+0x1f/0x30
-> > [  171.439721]
-> > [  171.439739] read to 0xffff8881e7e28ce0 of 8 bytes by task 696 on cpu 1:
-> > [  171.439990]  i915_request_await_dma_fence+0x162/0x520 [i915]
-> > [  171.440230]  i915_request_await_object+0x2fe/0x470 [i915]
-> > [  171.440467]  i915_gem_do_execbuffer+0x45dc/0x4c20 [i915]
-> > [  171.440704]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-> > [  171.440722]  drm_ioctl_kernel+0xe4/0x120
-> > [  171.440736]  drm_ioctl+0x297/0x4c7
-> > [  171.440750]  ksys_ioctl+0x89/0xb0
-> > [  171.440766]  __x64_sys_ioctl+0x42/0x60
-> > [  171.440788]  do_syscall_64+0x6e/0x2c0
-> > [  171.440802]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/i915_request.h | 7 +++++--
-> >  1 file changed, 5 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> > index d4bae16b4785..6020d5b2a3df 100644
-> > --- a/drivers/gpu/drm/i915/i915_request.h
-> > +++ b/drivers/gpu/drm/i915/i915_request.h
-> > @@ -396,7 +396,9 @@ static inline bool i915_seqno_passed(u32 seq1, u32 seq2)
-> >  
-> >  static inline u32 __hwsp_seqno(const struct i915_request *rq)
-> >  {
-> > -     return READ_ONCE(*rq->hwsp_seqno);
-> > +     const u32 *hwsp = READ_ONCE(rq->hwsp_seqno);
-> > +
-> > +     return READ_ONCE(*hwsp);
-> 
-> This is good enough for decouple. But good enough for hardware
-> might be different thing.
-> 
-> I am paranoid enough to wanting an rmb(), before the final
-> read once.
+On Sat, Mar 07, 2020 at 10:13:10PM +0000, Chris Wilson wrote:
+> Quoting Ville Syrj=E4l=E4 (2019-12-13 17:17:39)
+> > On Fri, Dec 13, 2019 at 07:06:01PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Fri, Dec 13, 2019 at 03:54:33PM +0000, Chris Wilson wrote:
+> > > > Quoting Ville Syrjala (2019-12-13 15:28:23)
+> > > > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > =
 
-What? [That pointer is nothing to do with HW; it's a pointer to a
-pointer to HW.]
- 
-> and clflush after.
+> > > > > Include dev_name() in the tracpoints so one can filter based on
+> > > > > the device.
+> > > > > =
 
-No. We want to keep the cached read around. If you are paranoid, you
-would put the clflush very carefully in the interrupt signalling.
+> > > > > Example:
+> > > > > echo 'dev=3D=3D"0000:00:02.0"' > events/i915/intel_cpu_fifo_under=
+run/filter
+> > > > > =
 
-> If the hardware can't guarantee coherency in csb, why
-> would it in the different region in hwsp.
+> > > > > TODO: maybe don't both specifying the field name always and just
+> > > > >       make it 'dev' (or whatever) always?
+> > > > > TODO: add for other tracpoints too if this is deemed good enough
+> > > > > =
 
-It's the order of the writes that's the problem in icl. There's no such
-sequence here.
--Chris
+> > > > > Suggested-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > > > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/i915_trace.h | 96 +++++++++++++++++++++----=
+------
+> > > > >  1 file changed, 65 insertions(+), 31 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/=
+i915/i915_trace.h
+> > > > > index 7ef7a1e1664c..8931b6756f44 100644
+> > > > > --- a/drivers/gpu/drm/i915/i915_trace.h
+> > > > > +++ b/drivers/gpu/drm/i915/i915_trace.h
+> > > > > @@ -20,11 +20,18 @@
+> > > > >  =
+
+> > > > >  /* watermark/fifo updates */
+> > > > >  =
+
+> > > > > +#define __dev_name_i915(field, i915) __string(field, dev_name((i=
+915)->drm.dev))
+> > > > > +#define __dev_name_crtc(field, crtc) __string(field, dev_name((c=
+rtc)->base.dev->dev))
+> > > > > +#define __assign_dev_name_i915(field, i915) __assign_str(field, =
+dev_name((i915)->drm.dev))
+> > > > > +#define __assign_dev_name_crtc(field, crtc) __assign_str(field, =
+dev_name((crtc)->base.dev->dev))
+> > > > > +#define __get_dev_name(field) __get_str(field)
+> > > > =
+
+> > > > Storing the string is quite expensive, I thought. Can we stash the =
+i915
+> > > > and stringify in the TP_printk? Or is stashing the string the secre=
+t for
+> > > > the dev=3D=3D filter?
+> > > =
+
+> > > Last time I stashed a pointer in there people complained that it can
+> > > disappear before being consumed and cause a very theoretical oops.
+> > > But I guess we could stash just the pci devfn and whatnot.
+> > =
+
+> > I believe 'domain + bus + devfn' would amount to 4 bytes. The downside
+> > is that it'd be just an integer so we'd lose the dev=3Ddomain:bus:dev.fn
+> > syntax for the filter. Suppose I could try to implement a new filter
+> > type for it, but no guarantees that would get accepted. Seems a bit too
+> > pci specific for kernel/trace/.
+> =
+
+> Put the name string in there, it's simplest and most foolproof.
+
+You mean just go with the original patch?
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
