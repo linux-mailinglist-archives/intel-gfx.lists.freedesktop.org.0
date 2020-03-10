@@ -2,29 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 586E317F364
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 10:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4921517F3BB
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 10:33:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABDFE6E15A;
-	Tue, 10 Mar 2020 09:22:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9551D6E171;
+	Tue, 10 Mar 2020 09:33:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88AC96E15A
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 09:21:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20505102-1500050 
- for multiple; Tue, 10 Mar 2020 09:21:20 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: linux-kernel@vger.kernel.org
-Date: Tue, 10 Mar 2020 09:21:19 +0000
-Message-Id: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 941276E171;
+ Tue, 10 Mar 2020 09:33:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 02:33:21 -0700
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="276884445"
+Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 02:33:19 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Zhenyu Wang <zhenyuw@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Vivi\,
+ Rodrigo" <rodrigo.vivi@intel.com>
+In-Reply-To: <20200310080933.GE28483@zhen-hp.sh.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200310080933.GE28483@zhen-hp.sh.intel.com>
+Date: Tue, 10 Mar 2020 11:33:17 +0200
+Message-ID: <871rq0o8pu.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside 'safe'
- list iteration
+Subject: Re: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,140 +44,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Paul E. McKenney" <paulmck@kernel.org>, intel-gfx@lists.freedesktop.org,
- Randy Dunlap <rdunlap@infradead.org>, stable@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv, 
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instruct the compiler to read the next element in the list iteration
-once, and that it is not allowed to reload the value from the stale
-element later. This is important as during the course of the safe
-iteration, the stale element may be poisoned (unbeknownst to the
-compiler).
+On Tue, 10 Mar 2020, Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+> Hi,
+>
+> Here's more gvt fixes for 5.6. Fix timer issue caused by idr destroy
+> change and VBT size error.
 
-This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
-list elements during list_for_each_entry_safe() and friends.
+Pulled and pushed to drm-intel-fixes, thanks.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: "Paul E. McKenney" <paulmck@kernel.org>
-Cc: Randy Dunlap <rdunlap@infradead.org>
-Cc: stable@vger.kernel.org
----
- include/linux/list.h | 50 +++++++++++++++++++++++++++++++-------------
- 1 file changed, 36 insertions(+), 14 deletions(-)
+BR,
+Jani.
 
-diff --git a/include/linux/list.h b/include/linux/list.h
-index 884216db3246..c4d215d02259 100644
---- a/include/linux/list.h
-+++ b/include/linux/list.h
-@@ -536,6 +536,17 @@ static inline void list_splice_tail_init(struct list_head *list,
- #define list_next_entry(pos, member) \
- 	list_entry((pos)->member.next, typeof(*(pos)), member)
- 
-+/**
-+ * list_next_entry_safe - get the next element in list [once]
-+ * @pos:	the type * to cursor
-+ * @member:	the name of the list_head within the struct.
-+ *
-+ * Like list_next_entry() but prevents the compiler from reloading the
-+ * next element.
-+ */
-+#define list_next_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.next), typeof(*(pos)), member)
-+
- /**
-  * list_prev_entry - get the prev element in list
-  * @pos:	the type * to cursor
-@@ -544,6 +555,17 @@ static inline void list_splice_tail_init(struct list_head *list,
- #define list_prev_entry(pos, member) \
- 	list_entry((pos)->member.prev, typeof(*(pos)), member)
- 
-+/**
-+ * list_prev_entry_safe - get the prev element in list [once]
-+ * @pos:	the type * to cursor
-+ * @member:	the name of the list_head within the struct.
-+ *
-+ * Like list_prev_entry() but prevents the compiler from reloading the
-+ * previous element.
-+ */
-+#define list_prev_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.prev), typeof(*(pos)), member)
-+
- /**
-  * list_for_each	-	iterate over a list
-  * @pos:	the &struct list_head to use as a loop cursor.
-@@ -686,9 +708,9 @@ static inline void list_splice_tail_init(struct list_head *list,
-  */
- #define list_for_each_entry_safe(pos, n, head, member)			\
- 	for (pos = list_first_entry(head, typeof(*pos), member),	\
--		n = list_next_entry(pos, member);			\
-+		n = list_next_entry_safe(pos, member);			\
- 	     &pos->member != (head); 					\
--	     pos = n, n = list_next_entry(n, member))
-+	     pos = n, n = list_next_entry_safe(n, member))
- 
- /**
-  * list_for_each_entry_safe_continue - continue list iteration safe against removal
-@@ -700,11 +722,11 @@ static inline void list_splice_tail_init(struct list_head *list,
-  * Iterate over list of given type, continuing after current point,
-  * safe against removal of list entry.
-  */
--#define list_for_each_entry_safe_continue(pos, n, head, member) 		\
--	for (pos = list_next_entry(pos, member), 				\
--		n = list_next_entry(pos, member);				\
--	     &pos->member != (head);						\
--	     pos = n, n = list_next_entry(n, member))
-+#define list_for_each_entry_safe_continue(pos, n, head, member) 	\
-+	for (pos = list_next_entry(pos, member), 			\
-+		n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
- 
- /**
-  * list_for_each_entry_safe_from - iterate over list from current point safe against removal
-@@ -716,10 +738,10 @@ static inline void list_splice_tail_init(struct list_head *list,
-  * Iterate over list of given type from current point, safe against
-  * removal of list entry.
-  */
--#define list_for_each_entry_safe_from(pos, n, head, member) 			\
--	for (n = list_next_entry(pos, member);					\
--	     &pos->member != (head);						\
--	     pos = n, n = list_next_entry(n, member))
-+#define list_for_each_entry_safe_from(pos, n, head, member) 		\
-+	for (n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
- 
- /**
-  * list_for_each_entry_safe_reverse - iterate backwards over list safe against removal
-@@ -733,9 +755,9 @@ static inline void list_splice_tail_init(struct list_head *list,
-  */
- #define list_for_each_entry_safe_reverse(pos, n, head, member)		\
- 	for (pos = list_last_entry(head, typeof(*pos), member),		\
--		n = list_prev_entry(pos, member);			\
-+		n = list_prev_entry_safe(pos, member);			\
- 	     &pos->member != (head); 					\
--	     pos = n, n = list_prev_entry(n, member))
-+	     pos = n, n = list_prev_entry_safe(n, member))
- 
- /**
-  * list_safe_reset_next - reset a stale list_for_each_entry_safe loop
-@@ -750,7 +772,7 @@ static inline void list_splice_tail_init(struct list_head *list,
-  * completing the current iteration of the loop body.
-  */
- #define list_safe_reset_next(pos, n, member)				\
--	n = list_next_entry(pos, member)
-+	n = list_next_entry_safe(pos, member)
- 
- /*
-  * Double linked lists with a single pointer list head.
+
+>
+> Thanks
+> --
+>
+> The following changes since commit b549c252b1292aea959cd9b83537fcb9384a6112:
+>
+>   drm/i915/gvt: Fix orphan vgpu dmabuf_objs' lifetime (2020-02-25 16:14:20 +0800)
+>
+> are available in the Git repository at:
+>
+>   https://github.com/intel/gvt-linux tags/gvt-fixes-2020-03-10
+>
+> for you to fetch changes up to 2fa7e15c5f466fdd0c0b196b1dc4a65d191efd96:
+>
+>   drm/i915/gvt: Fix emulated vbt size issue (2020-03-06 09:35:30 +0800)
+>
+> ----------------------------------------------------------------
+> gvt-fixes-2020-03-10
+>
+> - Fix vgpu idr destroy causing timer destroy failure (Zhenyu)
+> - Fix VBT size (Tina)
+>
+> ----------------------------------------------------------------
+> Tina Zhang (1):
+>       drm/i915/gvt: Fix emulated vbt size issue
+>
+> Zhenyu Wang (1):
+>       drm/i915/gvt: Fix unnecessary schedule timer when no vGPU exits
+>
+>  drivers/gpu/drm/i915/gvt/opregion.c |  5 ++---
+>  drivers/gpu/drm/i915/gvt/vgpu.c     | 12 +++++++++---
+>  2 files changed, 11 insertions(+), 6 deletions(-)
+
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
