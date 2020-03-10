@@ -1,37 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BE7B17F25A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:53:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7C817F2A8
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 10:04:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 044336E855;
-	Tue, 10 Mar 2020 08:53:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6B5F6E834;
+	Tue, 10 Mar 2020 09:03:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B56336E855
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:53:47 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F4E36E15C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 09:03:58 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:47 -0700
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="415124421"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 10:52:49 +0200
-Message-Id: <ca3c14de13e308419caf33eb4bbf274f5387f1e0.1583766715.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1583766715.git.jani.nikula@intel.com>
-References: <cover.1583766715.git.jani.nikula@intel.com>
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 02:03:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="235875445"
+Received: from unknown (HELO [10.249.40.71]) ([10.249.40.71])
+ by fmsmga008.fm.intel.com with ESMTP; 10 Mar 2020 02:03:56 -0700
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
+ Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <a1dbc0a4-a31a-24ed-6d56-691ba9d70eef@intel.com>
+Date: Tue, 10 Mar 2020 11:03:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 10/10] drm/i915/overlay: convert to drm_device
- based logging.
+In-Reply-To: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Invalidate OA TLB on when
+ closing perf stream
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,158 +48,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Wambui Karuga <wambui.karugax@gmail.com>
+On 09/03/2020 23:10, Umesh Nerlige Ramappa wrote:
+> On running several back to back perf capture sessions involving closing
+> and opening the perf stream, invalid OA reports are seen in the
+> beginning of the OA buffer in some sessions. Fix this by invalidating OA
+> TLB when the perf stream is closed or disabled on gen12.
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c | 8 ++++++++
+>   drivers/gpu/drm/i915/i915_reg.h  | 2 ++
+>   2 files changed, 10 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 1b074bb4a7fe..551be589d6f4 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -2700,6 +2700,14 @@ static void gen12_oa_disable(struct i915_perf_stream *stream)
+>   				    50))
+>   		drm_err(&stream->perf->i915->drm,
+>   			"wait for OA to be disabled timed out\n");
+> +
+> +	intel_uncore_write(uncore, GEN12_OA_TLB_INV_CR, 1);
+> +	if (intel_wait_for_register(uncore,
+> +				    GEN12_OA_TLB_INV_CR,
+> +				    1, 0,
+> +				    50))
+> +		drm_err(&stream->perf->i915->drm,
+> +			"wait for OA tlb invalidate timed out\n");
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 79ae9654dac9..95725e61d9f1 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -693,6 +693,8 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
+>   #define OABUFFER_SIZE_8M    (6 << 3)
+>   #define OABUFFER_SIZE_16M   (7 << 3)
+>   
+> +#define GEN12_OA_TLB_INV_CR _MMIO(0xceec)
+> +
+>   /* Gen12 OAR unit */
+>   #define GEN12_OAR_OACONTROL _MMIO(0x2960)
+>   #define  GEN12_OAR_OACONTROL_COUNTER_FORMAT_SHIFT 1
 
-Convert various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_overlay.c.
-This transformation was achieved using the following coccinelle script:
-@@
-identifier fn, T;
-@@
-
-fn(...,struct drm_i915_private *T,...) {
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-@@
-identifier fn, T;
-@@
-
-fn(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-Note that this converts DRM_DEBUG to drm_dbg().
-
-Checkpatch warnings were addressed manually.
-
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 3b0cb3534e2a..481187223101 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -323,7 +323,7 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
- 	/* check for underruns */
- 	tmp = intel_de_read(dev_priv, DOVSTA);
- 	if (tmp & (1 << 17))
--		DRM_DEBUG("overlay underrun, DOVSTA: %x\n", tmp);
-+		drm_dbg(&dev_priv->drm, "overlay underrun, DOVSTA: %x\n", tmp);
- 
- 	rq = alloc_request(overlay, NULL);
- 	if (IS_ERR(rq))
-@@ -1068,7 +1068,7 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 
- 	overlay = dev_priv->overlay;
- 	if (!overlay) {
--		DRM_DEBUG("userspace bug: no overlay\n");
-+		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
- 		return -ENODEV;
- 	}
- 
-@@ -1092,7 +1092,8 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 	drm_modeset_lock_all(dev);
- 
- 	if (i915_gem_object_is_tiled(new_bo)) {
--		DRM_DEBUG_KMS("buffer used for overlay image can not be tiled\n");
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "buffer used for overlay image can not be tiled\n");
- 		ret = -EINVAL;
- 		goto out_unlock;
- 	}
-@@ -1227,7 +1228,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
- 
- 	overlay = dev_priv->overlay;
- 	if (!overlay) {
--		DRM_DEBUG("userspace bug: no overlay\n");
-+		drm_dbg(&dev_priv->drm, "userspace bug: no overlay\n");
- 		return -ENODEV;
- 	}
- 
-@@ -1371,7 +1372,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
- 	update_reg_attrs(overlay, overlay->regs);
- 
- 	dev_priv->overlay = overlay;
--	DRM_INFO("Initialized overlay support.\n");
-+	drm_info(&dev_priv->drm, "Initialized overlay support.\n");
- 	return;
- 
- out_free:
--- 
-2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
