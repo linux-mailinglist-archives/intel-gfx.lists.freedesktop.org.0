@@ -1,40 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4843F17F737
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:15:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DCB617F774
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:30:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B85F76E1D8;
-	Tue, 10 Mar 2020 12:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F336E221;
+	Tue, 10 Mar 2020 12:30:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0610D6E1D8
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:15:40 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 05:15:40 -0700
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="353613264"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Mar 2020 05:15:39 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200310101720.9944-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <a34d970a-2a9f-7b82-7900-202c656a9e96@linux.intel.com>
-Date: Tue, 10 Mar 2020 12:15:37 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-MIME-Version: 1.0
-In-Reply-To: <20200310101720.9944-1-chris@chris-wilson.co.uk>
+X-Greylist: delayed 387 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Mar 2020 12:30:05 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [207.82.80.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619EA6E221
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:30:05 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-134-nZB81PfeP52EGTki-0E5KQ-1; Tue, 10 Mar 2020 12:23:34 +0000
+X-MC-Unique: nZB81PfeP52EGTki-0E5KQ-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Tue, 10 Mar 2020 12:23:34 +0000
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Tue, 10 Mar 2020 12:23:34 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Chris Wilson' <chris@chris-wilson.co.uk>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Thread-Topic: [PATCH] list: Prevent compiler reloads inside 'safe' list
+ iteration
+Thread-Index: AQHV9r1KBrT+D4Vo2U+Op9v/Nv0od6hBsdzwgAAEwQCAAAWYAA==
+Date: Tue, 10 Mar 2020 12:23:34 +0000
+Message-ID: <723d527a4ad349b78bf11d52eba97c0e@AcuMS.aculab.com>
+References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
+ <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
+ <158384100886.16414.15741589015363013386@build.alporthouse.com>
+In-Reply-To: <158384100886.16414.15741589015363013386@build.alporthouse.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Defer semaphore priority bumping
- to a workqueue
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
+ 'safe' list iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,142 +60,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Paul E. McKenney" <paulmck@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Chris Wilson
+> Sent: 10 March 2020 11:50
+> 
+> Quoting David Laight (2020-03-10 11:36:41)
+> > From: Chris Wilson
+> > > Sent: 10 March 2020 09:21
+> > > Instruct the compiler to read the next element in the list iteration
+> > > once, and that it is not allowed to reload the value from the stale
+> > > element later. This is important as during the course of the safe
+> > > iteration, the stale element may be poisoned (unbeknownst to the
+> > > compiler).
+> >
+> > Eh?
+> > I thought any function call will stop the compiler being allowed
+> > to reload the value.
+> > The 'safe' loop iterators are only 'safe' against called
+> > code removing the current item from the list.
+> >
+> > > This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
+> > > list elements during list_for_each_entry_safe() and friends.
+> >
+> > Sounds like kcsan is buggy ????
+> 
+> The warning kcsan gave made sense (a strange case where the emptying the
+> list from inside the safe iterator would allow that list to be taken
+> under a global mutex and have one extra request added to it. The
+> list_for_each_entry_safe() should be ok in this scenario, so long as the
+> next element is read before this element is dropped, and the compiler is
+> instructed not to reload the element.
 
-On 10/03/2020 10:17, Chris Wilson wrote:
-> Since the semaphore fence may be signaled from inside an interrupt
-> handler from inside a request holding its request->lock, we cannot then
-> enter into the engine->active.lock for processing the semaphore priority
-> bump as we may traverse our call tree and end up on another held
-> request.
-> 
-> CPU 0:
-> [ 2243.218864]  _raw_spin_lock_irqsave+0x9a/0xb0
-> [ 2243.218867]  i915_schedule_bump_priority+0x49/0x80 [i915]
-> [ 2243.218869]  semaphore_notify+0x6d/0x98 [i915]
-> [ 2243.218871]  __i915_sw_fence_complete+0x61/0x420 [i915]
-> [ 2243.218874]  ? kmem_cache_free+0x211/0x290
-> [ 2243.218876]  i915_sw_fence_complete+0x58/0x80 [i915]
-> [ 2243.218879]  dma_i915_sw_fence_wake+0x3e/0x80 [i915]
-> [ 2243.218881]  signal_irq_work+0x571/0x690 [i915]
-> [ 2243.218883]  irq_work_run_list+0xd7/0x120
-> [ 2243.218885]  irq_work_run+0x1d/0x50
-> [ 2243.218887]  smp_irq_work_interrupt+0x21/0x30
-> [ 2243.218889]  irq_work_interrupt+0xf/0x20
-> 
-> CPU 1:
-> [ 2242.173107]  _raw_spin_lock+0x8f/0xa0
-> [ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
-> [ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
-> [ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
-> [ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
-> [ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
-> [ 2242.173121]  __i915_sw_fence_complete+0x61/0x420 [i915]
-> [ 2242.173124]  ? _raw_spin_unlock_irqrestore+0x39/0x40
-> [ 2242.173137]  i915_sw_fence_complete+0x58/0x80 [i915]
-> [ 2242.173140]  i915_sw_fence_commit+0x16/0x20 [i915]
-> 
-> CPU 2:
-> [ 2242.173107]  _raw_spin_lock+0x8f/0xa0
-> [ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
-> [ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
-> [ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
-> [ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
-> [ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1318
-> Fixes: b7404c7ecb38 ("drm/i915: Bump ready tasks ahead of busywaits")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: <stable@vger.kernel.org> # v5.2+
-> ---
->   drivers/gpu/drm/i915/i915_request.c | 22 +++++++++++++++++-----
->   drivers/gpu/drm/i915/i915_request.h |  2 ++
->   2 files changed, 19 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-> index 04b52bf347bf..129357d4b599 100644
-> --- a/drivers/gpu/drm/i915/i915_request.c
-> +++ b/drivers/gpu/drm/i915/i915_request.c
-> @@ -588,19 +588,31 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->   	return NOTIFY_DONE;
->   }
->   
-> +static void irq_semaphore_cb(struct irq_work *wrk)
-> +{
-> +	struct i915_request *rq =
-> +		container_of(wrk, typeof(*rq), semaphore_work);
-> +
-> +	i915_schedule_bump_priority(rq, I915_PRIORITY_NOSEMAPHORE);
-> +	i915_request_put(rq);
-> +}
-> +
->   static int __i915_sw_fence_call
->   semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->   {
-> -	struct i915_request *request =
-> -		container_of(fence, typeof(*request), semaphore);
-> +	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
->   
->   	switch (state) {
->   	case FENCE_COMPLETE:
-> -		i915_schedule_bump_priority(request, I915_PRIORITY_NOSEMAPHORE);
-> +		if (!(READ_ONCE(rq->sched.attr.priority) & I915_PRIORITY_NOSEMAPHORE)) {
-> +			i915_request_get(rq);
-> +			init_irq_work(&rq->semaphore_work, irq_semaphore_cb);
-> +			irq_work_queue(&rq->semaphore_work);
-> +		}
->   		break;
->   
->   	case FENCE_FREE:
-> -		i915_request_put(request);
-> +		i915_request_put(rq);
->   		break;
->   	}
->   
-> @@ -1369,9 +1381,9 @@ void __i915_request_queue(struct i915_request *rq,
->   	 * decide whether to preempt the entire chain so that it is ready to
->   	 * run at the earliest possible convenience.
->   	 */
-> -	i915_sw_fence_commit(&rq->semaphore);
->   	if (attr && rq->engine->schedule)
->   		rq->engine->schedule(rq, attr);
-> +	i915_sw_fence_commit(&rq->semaphore);
->   	i915_sw_fence_commit(&rq->submit);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-> index 6020d5b2a3df..3c552bfea67a 100644
-> --- a/drivers/gpu/drm/i915/i915_request.h
-> +++ b/drivers/gpu/drm/i915/i915_request.h
-> @@ -26,6 +26,7 @@
->   #define I915_REQUEST_H
->   
->   #include <linux/dma-fence.h>
-> +#include <linux/irq_work.h>
->   #include <linux/lockdep.h>
->   
->   #include "gem/i915_gem_context_types.h"
-> @@ -208,6 +209,7 @@ struct i915_request {
->   	};
->   	struct list_head execute_cb;
->   	struct i915_sw_fence semaphore;
-> +	struct irq_work semaphore_work;
->   
->   	/*
->   	 * A list of everyone we wait upon, and everyone who waits upon us.
-> 
+Normally the loop iteration code has to hold the mutex.
+I guess it can be released inside the loop provided no other
+code can ever delete entries.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> kcsan is a little more insistent on having that annotation :)
+> 
+> In this instance I would say it was a false positive from kcsan, but I
+> can see why it would complain and suspect that given a sufficiently
+> aggressive compiler, we may be caught out by a late reload of the next
+> element.
 
-Regards,
+If you have:
+	for (; p; p = next) {
+		next = p->next;
+		external_function_call(void);
+	}
+the compiler must assume that the function call
+can change 'p->next' and read it before the call.
 
-Tvrtko
+Is this a list with strange locking rules?
+The only deletes are from within the loop.
+Adds and deletes are locked.
+The list traversal isn't locked.
+
+I suspect kcsan bleats because it doesn't assume the compiler
+will use a single instruction/memory operation to read p->next.
+That is just stupid.
+
+	David
+
+
+
+		
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
