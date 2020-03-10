@@ -1,50 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487E31802A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:59:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F6361802A8
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:00:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1A546E88C;
-	Tue, 10 Mar 2020 15:59:32 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15AF16E33F
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 15:47:50 +0000 (UTC)
-Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net
- [50.39.105.78])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by mail.kernel.org (Postfix) with ESMTPSA id D5C0320866;
- Tue, 10 Mar 2020 15:47:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=default; t=1583855269;
- bh=fxXBC6mLqLhF630XcKwvNoA3xYL1Mgjsv4/cnzDW8FE=;
- h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
- b=t6BwwWyfltp0cLV9XE4wIgEp201EDrtvpsCABAtdCg+fbpp7EdL6PG2iWnkxtPkQd
- Ik604FbqVyTy4wadVmpZAsXt2e7bm7XDJ3DIRBnb1ZhLVa1qlnYu0lMu71TBYTjzys
- EuahFLGqKgSz2Vm3dRqAs7NvA4Js9NZR3HqrOCFE=
-Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
- id ACDAD35226CF; Tue, 10 Mar 2020 08:47:49 -0700 (PDT)
-Date: Tue, 10 Mar 2020 08:47:49 -0700
-From: "Paul E. McKenney" <paulmck@kernel.org>
-To: David Laight <David.Laight@ACULAB.COM>
-Message-ID: <20200310154749.GZ2935@paulmck-ThinkPad-P72>
-References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
- <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
- <158384100886.16414.15741589015363013386@build.alporthouse.com>
- <723d527a4ad349b78bf11d52eba97c0e@AcuMS.aculab.com>
- <20200310125031.GY2935@paulmck-ThinkPad-P72>
- <CANpmjNNT3HY7i9TywX0cAFqBtx2J3qOGOUG5nHzxAZ4bk_qgtg@mail.gmail.com>
- <77ff4da6b0a7448c947af6de4fb43cdb@AcuMS.aculab.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA98D6E88E;
+	Tue, 10 Mar 2020 16:00:54 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA5A16E88E
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 16:00:52 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 09:00:51 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="235981119"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.21.27])
+ by fmsmga008.fm.intel.com with ESMTP; 10 Mar 2020 09:00:50 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 16:00:47 +0000
+Message-Id: <20200310160047.20748-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <77ff4da6b0a7448c947af6de4fb43cdb@AcuMS.aculab.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Mailman-Approved-At: Tue, 10 Mar 2020 15:59:27 +0000
-Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
- 'safe' list iteration
+Subject: [Intel-gfx] [PATCH] drm/i915/gen12: Disable preemption timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,39 +41,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: paulmck@kernel.org
-Cc: 'Marco Elver' <elver@google.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 03:05:57PM +0000, David Laight wrote:
-> From: Marco Elver
-> > Sent: 10 March 2020 14:10
-> ...
-> > FWIW, for writes we're already being quite generous, in that plain
-> > aligned writes up to word-size are assumed to be "atomic" with the
-> > default (conservative) config, i.e. marking such writes is optional.
-> > Although, that's a generous assumption that is not always guaranteed
-> > to hold (https://lore.kernel.org/lkml/20190821103200.kpufwtviqhpbuv2n@willie-the-truck/).
-> 
-> Remind me to start writing everything in assembler.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-Been there, done that.  :-/
+Allow super long OpenCL workloads which cannot be preempted within
+the default timeout to run out of the box.
 
-> That and to mark all structure members 'volatile'.
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-Indeed.  READ_ONCE() and WRITE_ONCE() get this same effect, but without
-pessimizing non-concurrent accesses to those same members.  Plus KCSAN
-knows about READ_ONCE(), WRITE_ONCE(), and also volatile members.
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 53ac3f00909a..3dc302038742 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -275,6 +275,7 @@ static void intel_engine_sanitize_mmio(struct intel_engine_cs *engine)
+ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ {
+ 	const struct engine_info *info = &intel_engines[id];
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_engine_cs *engine;
+ 
+ 	BUILD_BUG_ON(MAX_ENGINE_CLASS >= BIT(GEN11_ENGINE_CLASS_WIDTH));
+@@ -301,11 +302,11 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->id = id;
+ 	engine->legacy_idx = INVALID_ENGINE;
+ 	engine->mask = BIT(id);
+-	engine->i915 = gt->i915;
++	engine->i915 = i915;
+ 	engine->gt = gt;
+ 	engine->uncore = gt->uncore;
+ 	engine->hw_id = engine->guc_id = info->hw_id;
+-	engine->mmio_base = __engine_mmio_base(gt->i915, info->mmio_bases);
++	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
+ 
+ 	engine->class = info->class;
+ 	engine->instance = info->instance;
+@@ -316,7 +317,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->props.max_busywait_duration_ns =
+ 		CONFIG_DRM_I915_MAX_REQUEST_BUSYWAIT;
+ 	engine->props.preempt_timeout_ms =
+-		CONFIG_DRM_I915_PREEMPT_TIMEOUT;
++		INTEL_GEN(i915) == 12 ? 0 : CONFIG_DRM_I915_PREEMPT_TIMEOUT;
+ 	engine->props.stop_timeout_ms =
+ 		CONFIG_DRM_I915_STOP_TIMEOUT;
+ 	engine->props.timeslice_duration_ms =
+@@ -326,7 +327,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	if (WARN_ON(engine->context_size > BIT(20)))
+ 		engine->context_size = 0;
+ 	if (engine->context_size)
+-		DRIVER_CAPS(gt->i915)->has_logical_contexts = true;
++		DRIVER_CAPS(i915)->has_logical_contexts = true;
+ 
+ 	/* Nothing to do here, execute in order of dependencies */
+ 	engine->schedule = NULL;
+@@ -342,7 +343,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	gt->engine_class[info->class][info->instance] = engine;
+ 	gt->engine[id] = engine;
+ 
+-	gt->i915->engine[id] = engine;
++	i915->engine[id] = engine;
+ 
+ 	return 0;
+ }
+-- 
+2.20.1
 
-							Thanx, Paul
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
