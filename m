@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B91018021A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:43:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01965180231
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:45:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B86A6E33C;
-	Tue, 10 Mar 2020 15:43:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51CB26E33D;
+	Tue, 10 Mar 2020 15:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8F26E33C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 15:43:31 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20511439-1500050 
- for multiple; Tue, 10 Mar 2020 15:43:10 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 15:43:09 +0000
-Message-Id: <20200310154309.3759-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9B1186E33D;
+ Tue, 10 Mar 2020 15:45:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 93D05A363B;
+ Tue, 10 Mar 2020 15:45:39 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915/execlists: Track active elements
- during dequeue
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Date: Tue, 10 Mar 2020 15:45:39 -0000
+Message-ID: <158385513960.5456.18312067705924969944@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_Invalidate_OA_TLB_on_when_closing_perf_stream?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,120 +38,107 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Record the initial active element we use when building the next ELSP
-submission, so that we can compare against it latter to see if there's
-no change.
+== Series Details ==
 
-Fixes: 44d0a9c05bc0 ("drm/i915/execlists: Skip redundant resubmission")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 36 +++++++++++------------------
- 1 file changed, 13 insertions(+), 23 deletions(-)
+Series: drm/i915/perf: Invalidate OA TLB on when closing perf stream
+URL   : https://patchwork.freedesktop.org/series/74469/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 0604b11a2842..15b81be08fcc 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1678,17 +1678,6 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
- 	spin_unlock(&old->breadcrumbs.irq_lock);
- }
- 
--static struct i915_request *
--last_active(const struct intel_engine_execlists *execlists)
--{
--	struct i915_request * const *last = READ_ONCE(execlists->active);
--
--	while (*last && i915_request_completed(*last))
--		last++;
--
--	return *last;
--}
--
- #define for_each_waiter(p__, rq__) \
- 	list_for_each_entry_lockless(p__, \
- 				     &(rq__)->sched.waiters_list, \
-@@ -1827,14 +1816,9 @@ static void record_preemption(struct intel_engine_execlists *execlists)
- 	(void)I915_SELFTEST_ONLY(execlists->preempt_hang.count++);
- }
- 
--static unsigned long active_preempt_timeout(struct intel_engine_cs *engine)
-+static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
-+					    const struct i915_request *rq)
- {
--	struct i915_request *rq;
--
--	rq = last_active(&engine->execlists);
--	if (!rq)
--		return 0;
--
- 	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
- 	if (unlikely(intel_context_is_banned(rq->context)))
- 		return 1;
-@@ -1842,13 +1826,14 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.preempt_timeout_ms);
- }
- 
--static void set_preempt_timeout(struct intel_engine_cs *engine)
-+static void set_preempt_timeout(struct intel_engine_cs *engine,
-+				const struct i915_request *rq)
- {
- 	if (!intel_engine_has_preempt_reset(engine))
- 		return;
- 
- 	set_timer_ms(&engine->execlists.preempt,
--		     active_preempt_timeout(engine));
-+		     active_preempt_timeout(engine, rq));
- }
- 
- static inline void clear_ports(struct i915_request **ports, int count)
-@@ -1861,6 +1846,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
- 	struct i915_request **port = execlists->pending;
- 	struct i915_request ** const last_port = port + execlists->port_mask;
-+	struct i915_request * const *active;
- 	struct i915_request *last;
- 	struct rb_node *rb;
- 	bool submit = false;
-@@ -1915,7 +1901,11 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * i.e. we will retrigger preemption following the ack in case
- 	 * of trouble.
- 	 */
--	last = last_active(execlists);
-+	active = READ_ONCE(execlists->active);
-+	while (*active && i915_request_completed(*active))
-+		active++;
-+
-+	last = *active;
- 	if (last) {
- 		if (need_preempt(engine, last, rb)) {
- 			ENGINE_TRACE(engine,
-@@ -2200,7 +2190,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		 * Skip if we ended up with exactly the same set of requests,
- 		 * e.g. trying to timeslice a pair of ordered contexts
- 		 */
--		if (!memcmp(execlists->active, execlists->pending,
-+		if (!memcmp(active, execlists->pending,
- 			    (port - execlists->pending + 1) * sizeof(*port))) {
- 			do
- 				execlists_schedule_out(fetch_and_zero(port));
-@@ -2210,8 +2200,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		}
- 		clear_ports(port + 1, last_port - port);
- 
-+		set_preempt_timeout(engine, *execlists->pending);
- 		execlists_submit_ports(engine);
--		set_preempt_timeout(engine);
- 	} else {
- skip_submit:
- 		ring_set_paused(engine, 0);
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8106 -> Patchwork_16897
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16897 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([CI#94] / [i915#455])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@i915_selftest@live@gem_contexts.html
+    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6] ([fdo#106070] / [i915#424])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-tgl-y:           [PASS][7] -> [INCOMPLETE][8] ([CI#94])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@i915_selftest@live@gtt.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@i915_selftest@live@gtt.html
+
+  * igt@prime_self_import@basic-with_fd_dup:
+    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([CI#94] / [i915#402])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_flink_basic@bad-open:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#455]: https://gitlab.freedesktop.org/drm/intel/issues/455
+
+
+Participating hosts (44 -> 37)
+------------------------------
+
+  Additional (2): fi-cfl-8109u fi-snb-2600 
+  Missing    (9): fi-hsw-4200u fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-ivb-3770 fi-skl-lmem fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8106 -> Patchwork_16897
+
+  CI-20190529: 20190529
+  CI_DRM_8106: 5b0076e8066ea8218e7857ee1aa28b0670acde94 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16897: 021298fc7d84d7e14dc86b824a565fe6b57479fb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+021298fc7d84 drm/i915/perf: Invalidate OA TLB on when closing perf stream
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
