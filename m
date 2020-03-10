@@ -1,57 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1673D17F570
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:54:10 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3AD117F581
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:58:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1EC36E87B;
-	Tue, 10 Mar 2020 10:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08E3A89949;
+	Tue, 10 Mar 2020 10:58:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E827E6E87B
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 10:54:05 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26F9D89949;
+ Tue, 10 Mar 2020 10:58:45 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 03:54:05 -0700
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 03:58:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="231281140"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by orsmga007.jf.intel.com with ESMTP; 10 Mar 2020 03:54:05 -0700
-Received: from fmsmsx154.amr.corp.intel.com (10.18.116.70) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 10 Mar 2020 03:54:04 -0700
-Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
- FMSMSX154.amr.corp.intel.com (10.18.116.70) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 10 Mar 2020 03:54:04 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
- BGSMSX101.gar.corp.intel.com ([169.254.1.153]) with mapi id 14.03.0439.000;
- Tue, 10 Mar 2020 16:24:00 +0530
-From: "B S, Karthik" <karthik.b.s@intel.com>
-To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC 2/7] drm/i915: Add support for async flips in I915
-Thread-Index: AQHV86zisMWfr6hrQU2An+1fTwvDN6hAjoWAgAEd25A=
-Date: Tue, 10 Mar 2020 10:54:00 +0000
-Message-ID: <7138C0D2D3905F4CB0CD9B8757DFA969274B4B77@BGSMSX104.gar.corp.intel.com>
-References: <20200306113927.16904-1-karthik.b.s@intel.com>
- <20200306113927.16904-3-karthik.b.s@intel.com>
- <e5087cc40055ec596cfe195fecc06630fe4cbff6.camel@intel.com>
-In-Reply-To: <e5087cc40055ec596cfe195fecc06630fe4cbff6.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="415152424"
+Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
+ by orsmga005.jf.intel.com with ESMTP; 10 Mar 2020 03:58:42 -0700
+Received: from kbuild by lkp-server01 with local (Exim 4.89)
+ (envelope-from <lkp@intel.com>)
+ id 1jBcaw-000Dg2-77; Tue, 10 Mar 2020 18:58:42 +0800
+Date: Tue, 10 Mar 2020 18:58:05 +0800
+From: kbuild test robot <lkp@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Message-ID: <202003101855.mZzvr5AM%lkp@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 2/7] drm/i915: Add support for async flips in
- I915
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 18/20] init/Kconfig:77:
+ symbol BROKEN is selected by DRM_I915_DEBUG
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,71 +46,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBaYW5vbmksIFBhdWxvIFIgPHBh
-dWxvLnIuemFub25pQGludGVsLmNvbT4NCj4gU2VudDogVHVlc2RheSwgTWFyY2ggMTAsIDIwMjAg
-NDo0OCBBTQ0KPiBUbzogQiBTLCBLYXJ0aGlrIDxrYXJ0aGlrLmIuc0BpbnRlbC5jb20+OyBpbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiB2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbTsgS3Vsa2FybmksIFZhbmRpdGENCj4gPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29t
-PjsgU2hhbmthciwgVW1hIDx1bWEuc2hhbmthckBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
-UkZDIDIvN10gZHJtL2k5MTU6IEFkZCBzdXBwb3J0IGZvciBhc3luYyBmbGlwcyBpbiBJOTE1DQo+
-IA0KPiBFbSBzZXgsIDIwMjAtMDMtMDYgw6BzIDE3OjA5ICswNTMwLCBLYXJ0aGlrIEIgUyBlc2Ny
-ZXZldToNCj4gPiBFbmFibGUgc3VwcG9ydCBmb3IgYXN5bmMgZmxpcHMgaW4gSTkxNS4NCj4gPiBT
-ZXQgdGhlIEFzeW5jIEFkZHJlc3MgVXBkYXRlIEVuYWJsZSBiaXQgaW4gcGxhbmUgY3RsIHdoZW4g
-YXN5bmMgZmxpcA0KPiA+IGlzIHJlcXVlc3RlZC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEth
-cnRoaWsgQiBTIDxrYXJ0aGlrLmIuc0BpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIHwgNCArKysrDQo+ID4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgIHwgMSArDQo+ID4gIDIgZmls
-ZXMgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gaW5kZXggZGQ0N2ViNjViNTYz
-Li40Y2U5ODk3ZjVjNTggMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2Rpc3BsYXkuYw0KPiA+IEBAIC00NzU2LDYgKzQ3NTYsOSBAQCB1MzIgc2tsX3Bs
-YW5lX2N0bChjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiAqY3J0Y19zdGF0ZSwNCj4g
-PiAgCQkJcGxhbmVfY3RsIHw9DQo+IFBMQU5FX0NUTF9ZVVZfUkFOR0VfQ09SUkVDVElPTl9ESVNB
-QkxFOw0KPiA+ICAJfQ0KPiA+DQo+ID4gKwlpZiAoY3J0Y19zdGF0ZS0+dWFwaS5hc3luY19mbGlw
-KQ0KPiA+ICsJCXBsYW5lX2N0bCB8PSBQTEFORV9DVExfQVNZTkNfRkxJUDsNCj4gPiArDQo+ID4g
-IAlwbGFuZV9jdGwgfD0gc2tsX3BsYW5lX2N0bF9mb3JtYXQoZmItPmZvcm1hdC0+Zm9ybWF0KTsN
-Cj4gPiAgCXBsYW5lX2N0bCB8PSBza2xfcGxhbmVfY3RsX3RpbGluZyhmYi0+bW9kaWZpZXIpOw0K
-PiA+ICAJcGxhbmVfY3RsIHw9IHNrbF9wbGFuZV9jdGxfcm90YXRlKHJvdGF0aW9uICYNCj4gRFJN
-X01PREVfUk9UQVRFX01BU0spOw0KPiA+IEBAIC0xNzczOCw2ICsxNzc0MSw3IEBAIHN0YXRpYyB2
-b2lkIGludGVsX21vZGVfY29uZmlnX2luaXQoc3RydWN0DQo+ID4gZHJtX2k5MTVfcHJpdmF0ZSAq
-aTkxNSkNCj4gPg0KPiA+ICAJbW9kZV9jb25maWctPmZ1bmNzID0gJmludGVsX21vZGVfZnVuY3M7
-DQo+ID4NCj4gPiArCW1vZGVfY29uZmlnLT5hc3luY19wYWdlX2ZsaXAgPSB0cnVlOw0KPiANCj4g
-V2Ugc2hvdWxkIG9ubHkgZW5hYmxlIHRoZSBmZWF0dXJlIHRvIHVzZXIgc3BhY2UgYWZ0ZXIgaXQg
-aGFzIGJlZW4gZnVsbHkNCj4gaW1wbGVtZW50ZWQgaW5zaWRlIHRoZSBLZXJuZWwuIFRoaW5rIGFi
-b3V0IHRoZSBjYXNlIHdoZXJlIGdpdC1iaXNlY3QNCj4gZGVjaWRlcyB0byBsYW5kIGF0IGV4YWN0
-bHkgdGhpcyBjb21taXQgd2hlbiBzb21lb25lIGlzIGRlYnVnZ2luZyBhIGZhaWx1cmUNCj4gdW5y
-ZWxhdGVkIHRvIGFzeW5jIHZibGFua3MuDQo+IA0KPiBBbHNvLCB3aGVuIGZlYXR1cmVzIGhhdmUg
-dHJpdmlhbCBvbi9vZmYgc3dpdGNoZXMgbGlrZSB0aGUgbGluZSBhYm92ZSwgaXQncw0KPiBiZXR0
-ZXIgaWYgdGhlIHBhdGNoIHRoYXQgZW5hYmxlcyB0aGUgZmVhdHVyZSBvbmx5IGNvbnRhaW5zIHRo
-ZSBsaW5lIHRoYXQgdG9nZ2xlcw0KPiB0aGUgb24vb2ZmIHN3aXRjaC4gVGhpcyB3YXksIGlmIGEg
-cmV2ZXJ0IGlzIG5lZWRlZCwgd2UgY2FuIGp1c3Qgc3dpdGNoIGl0IHRvIG9mZg0KPiB3aXRob3V0
-IHJlbW92aW5nIG1vcmUgY29kZS4gQWxzbywgaXQgZW5hYmxlcyB1cyB0byBsYW5kIHRoZSByZXN0
-IG9mIHRoZSBjb2RlDQo+IHdoaWxlIGtlZXBpbmcgdGhlIGZlYXR1cmUgb2ZmIGZvciBzdGFiaWxp
-emF0aW9uLg0KPiANCj4gQWxzbywgdGhlIGxpbmUgYWJvdmUgaXMgZW5hYmxpbmcgdGhlIGZlYXR1
-cmUgZm9yIGV2ZXJ5IHBsYXRmb3JtLCB3aGljaCBpcw0KPiBwcm9iYWJseSBub3QgYSBnb2FsIG9m
-IHRoaXMgc2VyaWVzLg0KDQpBZ3JlZWQuIFdpbGwgbWFrZSB0aGUgb24vb2ZmIHBhcnQgYSBzZXBh
-cmF0ZSBwYXRjaCBhbmQgYWxzbyBhZGQgYSBnZW4gY2hlY2sgZm9yIGl0Lg0KPiANCj4gDQo+ID4g
-IAkvKg0KPiA+ICAJICogTWF4aW11bSBmcmFtZWJ1ZmZlciBkaW1lbnNpb25zLCBjaG9zZW4gdG8g
-bWF0Y2gNCj4gPiAgCSAqIHRoZSBtYXhpbXVtIHJlbmRlciBlbmdpbmUgc3VyZmFjZSBzaXplIG9u
-IGdlbjQrLg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5o
-DQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGluZGV4IDgwY2YwMmE2ZWVj
-MS4uNDIwMzdhZWU5Yjc4DQo+ID4gMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvaTkxNV9yZWcuaA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgN
-Cj4gPiBAQCAtNjc5NCw2ICs2Nzk0LDcgQEAgZW51bSB7DQo+ID4gICNkZWZpbmUgICBQTEFORV9D
-VExfVElMRURfWAkJCSgxIDw8IDEwKQ0KPiA+ICAjZGVmaW5lICAgUExBTkVfQ1RMX1RJTEVEX1kJ
-CQkoNCA8PCAxMCkNCj4gPiAgI2RlZmluZSAgIFBMQU5FX0NUTF9USUxFRF9ZRgkJCSg1IDw8IDEw
-KQ0KPiA+ICsjZGVmaW5lICAgUExBTkVfQ1RMX0FTWU5DX0ZMSVAJCQkoMSA8PCA5KQ0KPiA+ICAj
-ZGVmaW5lICAgUExBTkVfQ1RMX0ZMSVBfSE9SSVpPTlRBTAkJKDEgPDwgOCkNCj4gPiAgI2RlZmlu
-ZSAgIFBMQU5FX0NUTF9NRURJQV9ERUNPTVBSRVNTSU9OX0VOQUJMRQkoMSA8PCA0KSAvKg0KPiBU
-R0wrICovDQo+ID4gICNkZWZpbmUgICBQTEFORV9DVExfQUxQSEFfTUFTSwkJCSgweDMgPDwgNCkg
-LyogUHJlLUdMSw0KPiAqLw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
-a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
-bnRlbC1nZngK
+tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
+head:   72212a758bdd916331477e782bdad1fa3f625322
+commit: 19f102d485b9f5e03677f73133d9922e2650686f [18/20] Revert "drm/i915: Don't select BROKEN"
+config: powerpc-randconfig-a001-20200310
+compiler: powerpc-linux-gcc (GCC) 9.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        git checkout 19f102d485b9f5e03677f73133d9922e2650686f
+        GCC_VERSION=9.2.0 make.cross ARCH=powerpc  randconfig
+        GCC_VERSION=9.2.0 make.cross ARCH=powerpc 
+
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
+   arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
+>> init/Kconfig:80: symbol BROKEN_ON_SMP depends on BROKEN
+>> init/Kconfig:77: symbol BROKEN is selected by DRM_I915_DEBUG
+>> drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
+>> drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
+>> drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
+>> drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
+   drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
+>> drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
+>> drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
+   arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
+   For a resolution refer to Documentation/kbuild/kconfig-language.rst
+   subsection "Kconfig recursive dependency limitations"
+
+vim +77 init/Kconfig
+
+^1da177e4c3f41 Linus Torvalds 2005-04-16  76  
+^1da177e4c3f41 Linus Torvalds 2005-04-16 @77  config BROKEN
+^1da177e4c3f41 Linus Torvalds 2005-04-16  78  	bool
+^1da177e4c3f41 Linus Torvalds 2005-04-16  79  
+^1da177e4c3f41 Linus Torvalds 2005-04-16 @80  config BROKEN_ON_SMP
+^1da177e4c3f41 Linus Torvalds 2005-04-16  81  	bool
+^1da177e4c3f41 Linus Torvalds 2005-04-16  82  	depends on BROKEN || !SMP
+^1da177e4c3f41 Linus Torvalds 2005-04-16  83  	default y
+^1da177e4c3f41 Linus Torvalds 2005-04-16  84  
+
+:::::: The code at line 77 was first introduced by commit
+:::::: 1da177e4c3f41524e886b7f1b8a0c1fc7321cac2 Linux-2.6.12-rc2
+
+:::::: TO: Linus Torvalds <torvalds@ppc970.osdl.org>
+:::::: CC: Linus Torvalds <torvalds@ppc970.osdl.org>
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
