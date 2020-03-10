@@ -2,42 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E087817F6A2
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:47:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B835317F6B3
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:50:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08A8F6E1A7;
-	Tue, 10 Mar 2020 11:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6FD6E1BC;
+	Tue, 10 Mar 2020 11:50:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601FF6E1A7
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:47:30 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 04:47:29 -0700
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="353608125"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Mar 2020 04:47:28 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
- <20200306133852.3420322-4-chris@chris-wilson.co.uk>
- <f93b81f1-ad00-da75-92dd-dad7b4467416@linux.intel.com>
- <158383803435.16414.17798608776413585801@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <290820b3-e797-5800-619d-0f9a6af7ceb6@linux.intel.com>
-Date: Tue, 10 Mar 2020 11:47:26 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE1A6E1BC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:50:30 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20507742-1500050 for multiple; Tue, 10 Mar 2020 11:50:09 +0000
 MIME-Version: 1.0
-In-Reply-To: <158383803435.16414.17798608776413585801@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 04/17] drm/i915: Tweak scheduler's
- kick_submission()
+In-Reply-To: <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
+References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
+ <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
+To: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ David Laight <David.Laight@ACULAB.COM>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158384100886.16414.15741589015363013386@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 10 Mar 2020 11:50:08 +0000
+Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
+ 'safe' list iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,86 +41,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Paul E. McKenney" <paulmck@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/03/2020 11:00, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-03-10 10:07:33)
->>
->> On 06/03/2020 13:38, Chris Wilson wrote:
->>> Skip useless priority bumping on adding a new dependency, but otherwise
->>> prevent tasklet scheduling until we have completed all the potential
->>> rescheduling.
->>>
->>> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
->>> ---
->>>    drivers/gpu/drm/i915/i915_scheduler.c | 7 ++++++-
->>>    1 file changed, 6 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
->>> index 52f71e83e088..603cba36d6a4 100644
->>> --- a/drivers/gpu/drm/i915/i915_scheduler.c
->>> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
->>> @@ -209,6 +209,8 @@ static void kick_submission(struct intel_engine_cs *engine,
->>>        if (!inflight)
->>>                goto unlock;
->>>    
->>> +     engine->execlists.queue_priority_hint = prio;
->>> +
->>
->> What is the significance of moving this up? I couldn't correlate it to
->> the commit message.
+Quoting David Laight (2020-03-10 11:36:41)
+> From: Chris Wilson
+> > Sent: 10 March 2020 09:21
+> > Instruct the compiler to read the next element in the list iteration
+> > once, and that it is not allowed to reload the value from the stale
+> > element later. This is important as during the course of the safe
+> > iteration, the stale element may be poisoned (unbeknownst to the
+> > compiler).
 > 
-> It's correcting the priority bumping. If we have the same context as
-> active, we should not be skipping the hint update and so avoid the useless
-> bump on a later dependency.
+> Eh?
+> I thought any function call will stop the compiler being allowed
+> to reload the value.
+> The 'safe' loop iterators are only 'safe' against called
+> code removing the current item from the list.
 > 
->>>        /*
->>>         * If we are already the currently executing context, don't
->>>         * bother evaluating if we should preempt ourselves.
->>> @@ -216,7 +218,6 @@ static void kick_submission(struct intel_engine_cs *engine,
->>>        if (inflight->context == rq->context)
->>>                goto unlock;
->>>    
->>> -     engine->execlists.queue_priority_hint = prio;
->>>        if (need_preempt(prio, rq_prio(inflight)))
->>>                tasklet_hi_schedule(&engine->execlists.tasklet);
->>>    
->>> @@ -463,11 +464,15 @@ int i915_sched_node_add_dependency(struct i915_sched_node *node,
->>>        if (!dep)
->>>                return -ENOMEM;
->>>    
->>> +     local_bh_disable();
->>> +
->>>        if (!__i915_sched_node_add_dependency(node, signal, dep,
->>>                                              I915_DEPENDENCY_EXTERNAL |
->>>                                              I915_DEPENDENCY_ALLOC))
->>>                i915_dependency_free(dep);
->>>    
->>> +     local_bh_enable(); /* kick submission tasklet */
->>> +
->>
->> And this presumably postpones the tasklet until __bump_priority ->
->> __i915_schedule is finished. But then why the request submission path
->> which calls __i915_sched_node_add_dependency directly does not need this
->> treatment?
+> > This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
+> > list elements during list_for_each_entry_safe() and friends.
 > 
-> Because we haven't completed the updates by that point, and upon actual
-> request submission the tasklet is flushed. Plus on not all request
-> submission paths would it be legal.
+> Sounds like kcsan is buggy ????
 
-Okay,
+The warning kcsan gave made sense (a strange case where the emptying the
+list from inside the safe iterator would allow that list to be taken
+under a global mutex and have one extra request added to it. The
+list_for_each_entry_safe() should be ok in this scenario, so long as the
+next element is read before this element is dropped, and the compiler is
+instructed not to reload the element. kcsan is a little more insistent
+on having that annotation :)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+In this instance I would say it was a false positive from kcsan, but I
+can see why it would complain and suspect that given a sufficiently
+aggressive compiler, we may be caught out by a late reload of the next
+element.
 
-Regards,
-
-Tvrtko
-
-
+That's my conjecture, but I leave it to the lkmm experts to decide :)
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
