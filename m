@@ -2,31 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD7F18000E
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 159FA180023
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:30:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 940366E2F2;
-	Tue, 10 Mar 2020 14:24:12 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488636E2FF
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 14:24:10 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20510507-1500050 
- for multiple; Tue, 10 Mar 2020 14:24:03 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 14:24:03 +0000
-Message-Id: <20200310142403.5953-1-chris@chris-wilson.co.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7626E2FF;
+	Tue, 10 Mar 2020 14:30:04 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A16FA6E2FF
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 14:30:02 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 07:30:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260804754"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.21.27])
+ by orsmga002.jf.intel.com with ESMTP; 10 Mar 2020 07:30:00 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 14:29:58 +0000
+Message-Id: <20200310142958.12039-1-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200310141320.24149-2-chris@chris-wilson.co.uk>
-References: <20200310141320.24149-2-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/i915: Mark up racy read of active
- rq->engine
+Subject: [Intel-gfx] [PATCH] drm/i915: Consolidate forcewake status display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,82 +46,89 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As a virtual engine may change the rq->engine to point to the active
-request in flight, we need to warn the compiler that an active request's
-engine is volatile.
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-[   95.017686] write (marked) to 0xffff8881e8386b10 of 8 bytes by interrupt on cpu 2:
-[   95.018123]  execlists_dequeue+0x762/0x2150 [i915]
-[   95.018539]  __execlists_submission_tasklet+0x48/0x60 [i915]
-[   95.018955]  execlists_submission_tasklet+0xd3/0x170 [i915]
-[   95.018986]  tasklet_action_common.isra.0+0x42/0xa0
-[   95.019016]  __do_softirq+0xd7/0x2cd
-[   95.019043]  irq_exit+0xbe/0xe0
-[   95.019068]  irq_work_interrupt+0xf/0x20
-[   95.019491]  i915_request_retire+0x2c5/0x670 [i915]
-[   95.019937]  retire_requests+0xa1/0xf0 [i915]
-[   95.020348]  engine_retire+0xa1/0xe0 [i915]
-[   95.020376]  process_one_work+0x3b1/0x690
-[   95.020403]  worker_thread+0x80/0x670
-[   95.020429]  kthread+0x19a/0x1e0
-[   95.020454]  ret_from_fork+0x1f/0x30
-[   95.020476]
-[   95.020498] read to 0xffff8881e8386b10 of 8 bytes by task 8909 on cpu 3:
-[   95.020918]  __i915_request_commit+0x177/0x220 [i915]
-[   95.021329]  i915_gem_do_execbuffer+0x38c4/0x4e50 [i915]
-[   95.021750]  i915_gem_execbuffer2_ioctl+0x2c3/0x580 [i915]
-[   95.021784]  drm_ioctl_kernel+0xe4/0x120
-[   95.021809]  drm_ioctl+0x297/0x4c7
-[   95.021832]  ksys_ioctl+0x89/0xb0
-[   95.021865]  __x64_sys_ioctl+0x42/0x60
-[   95.021901]  do_syscall_64+0x6e/0x2c0
-[   95.021927]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+Use new common helper intel_gt_show_forcewake from both old and new
+debugfs code.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/debugfs_gt_pm.c |  7 +++++--
+ drivers/gpu/drm/i915/gt/intel_gt.h      |  2 ++
+ drivers/gpu/drm/i915/i915_debugfs.c     | 13 ++-----------
+ 3 files changed, 9 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 74169671afb5..c0df71d7d0ff 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -977,6 +977,8 @@ emit_semaphore_wait(struct i915_request *to,
- 		    struct i915_request *from,
- 		    gfp_t gfp)
+diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+index 059c9e5c002e..23328fd4bc91 100644
+--- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
++++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
+@@ -17,9 +17,8 @@
+ #include "intel_sideband.h"
+ #include "intel_uncore.h"
+ 
+-static int fw_domains_show(struct seq_file *m, void *data)
++void intel_gt_show_forcewake(struct intel_gt *gt, struct seq_file *m)
  {
-+	const intel_engine_mask_t mask = READ_ONCE(from->engine)->mask;
-+
- 	if (!intel_context_use_semaphores(to->context))
- 		goto await_fence;
+-	struct intel_gt *gt = m->private;
+ 	struct intel_uncore *uncore = gt->uncore;
+ 	struct intel_uncore_forcewake_domain *fw_domain;
+ 	unsigned int tmp;
+@@ -31,7 +30,11 @@ static int fw_domains_show(struct seq_file *m, void *data)
+ 		seq_printf(m, "%s.wake_count = %u\n",
+ 			   intel_uncore_forcewake_domain_to_str(fw_domain->id),
+ 			   READ_ONCE(fw_domain->wake_count));
++}
  
-@@ -984,7 +986,7 @@ emit_semaphore_wait(struct i915_request *to,
- 		goto await_fence;
- 
- 	/* Just emit the first semaphore we see as request space is limited. */
--	if (already_busywaiting(to) & from->engine->mask)
-+	if (already_busywaiting(to) & mask)
- 		goto await_fence;
- 
- 	if (i915_request_await_start(to, from) < 0)
-@@ -997,7 +999,7 @@ emit_semaphore_wait(struct i915_request *to,
- 	if (__emit_semaphore_wait(to, from, from->fence.seqno))
- 		goto await_fence;
- 
--	to->sched.semaphores |= from->engine->mask;
-+	to->sched.semaphores |= mask;
- 	to->sched.flags |= I915_SCHED_HAS_SEMAPHORE_CHAIN;
++static int fw_domains_show(struct seq_file *m, void *data)
++{
++	intel_gt_show_forcewake(m->private, m);
  	return 0;
+ }
+ DEFINE_GT_DEBUGFS_ATTRIBUTE(fw_domains);
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
+index 4fac043750aa..119d188807b7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt.h
+@@ -68,4 +68,6 @@ static inline bool intel_gt_has_init_error(const struct intel_gt *gt)
+ 	return test_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
+ }
  
-@@ -1338,7 +1340,7 @@ __i915_request_add_to_timeline(struct i915_request *rq)
- 			   i915_seqno_passed(prev->fence.seqno,
- 					     rq->fence.seqno));
++void intel_gt_show_forcewake(struct intel_gt *gt, struct seq_file *m);
++
+ #endif /* __INTEL_GT_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 8f2525e4ce0f..0ffcb5cfa9e2 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -32,6 +32,7 @@
+ #include <drm/drm_debugfs.h>
  
--		if (is_power_of_2(prev->engine->mask | rq->engine->mask))
-+		if (is_power_of_2(READ_ONCE(prev->engine)->mask | rq->engine->mask))
- 			i915_sw_fence_await_sw_fence(&rq->submit,
- 						     &prev->submit,
- 						     &rq->submitq);
+ #include "gem/i915_gem_context.h"
++#include "gt/intel_gt.h"
+ #include "gt/intel_gt_pm.h"
+ #include "gt/intel_gt_requests.h"
+ #include "gt/intel_reset.h"
+@@ -1057,18 +1058,8 @@ static int ilk_drpc_info(struct seq_file *m)
+ static int i915_forcewake_domains(struct seq_file *m, void *data)
+ {
+ 	struct drm_i915_private *i915 = node_to_i915(m->private);
+-	struct intel_uncore *uncore = &i915->uncore;
+-	struct intel_uncore_forcewake_domain *fw_domain;
+-	unsigned int tmp;
+-
+-	seq_printf(m, "user.bypass_count = %u\n",
+-		   uncore->user_forcewake_count);
+-
+-	for_each_fw_domain(fw_domain, uncore, tmp)
+-		seq_printf(m, "%s.wake_count = %u\n",
+-			   intel_uncore_forcewake_domain_to_str(fw_domain->id),
+-			   READ_ONCE(fw_domain->wake_count));
+ 
++	intel_gt_show_forcewake(&i915->gt, m);
+ 	return 0;
+ }
+ 
 -- 
 2.20.1
 
