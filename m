@@ -2,38 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD68117F079
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 07:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C55DE17F1CB
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:22:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA31F6E7DD;
-	Tue, 10 Mar 2020 06:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D506E81A;
+	Tue, 10 Mar 2020 08:22:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
- Mon, 09 Mar 2020 19:41:25 UTC
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
- [199.106.114.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D14089718;
- Mon,  9 Mar 2020 19:41:25 +0000 (UTC)
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 09 Mar 2020 12:35:21 -0700
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
- by ironmsg01-sd.qualcomm.com with ESMTP; 09 Mar 2020 12:35:20 -0700
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
- id 86E3E4973; Mon,  9 Mar 2020 12:35:20 -0700 (PDT)
-From: Guru Das Srinagesh <gurus@codeaurora.org>
-To: linux-pwm@vger.kernel.org
-Date: Mon,  9 Mar 2020 12:35:05 -0700
-Message-Id: <eef99b87cd71e8442b944d547d73079b900d24d8.1583782035.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <cover.1583782035.git.gurus@codeaurora.org>
-References: <cover.1583782035.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1583782035.git.gurus@codeaurora.org>
-References: <cover.1583782035.git.gurus@codeaurora.org>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A18C6E81A;
+ Tue, 10 Mar 2020 08:22:01 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:22:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; 
+ d="asc'?scan'208";a="415118502"
+Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
+ by orsmga005.jf.intel.com with ESMTP; 10 Mar 2020 01:21:58 -0700
+Date: Tue, 10 Mar 2020 16:09:33 +0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Message-ID: <20200310080933.GE28483@zhen-hp.sh.intel.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 10 Mar 2020 06:25:20 +0000
-Subject: [Intel-gfx] [PATCH v7 02/13] drm/i915: Use 64-bit division macros
- for period and duty cycle
+User-Agent: Mutt/1.10.0 (2018-05-17)
+Subject: [Intel-gfx] [PULL] gvt-fixes
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,52 +44,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Guru Das Srinagesh <gurus@codeaurora.org>,
- =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
+ intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
+ Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
+Content-Type: multipart/mixed; boundary="===============0428730256=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QmVjYXVzZSBwZXJpb2QgYW5kIGR1dHkgY3ljbGUgYXJlIGRlZmluZWQgaW4gdGhlIFBXTSBmcmFt
-ZXdvcmsgc3RydWN0cwphcyBpbnRzIHdpdGggdW5pdHMgb2YgbmFub3NlY29uZHMsIHRoZSBtYXhp
-bXVtIHRpbWUgZHVyYXRpb24gdGhhdCBjYW4gYmUKc2V0IGlzIGxpbWl0ZWQgdG8gfjIuMTQ3IHNl
-Y29uZHMuIFJlZGVmaW5pbmcgdGhlbSBhcyB1NjQgdmFsdWVzIHdpbGwKZW5hYmxlIGxhcmdlciB0
-aW1lIGR1cmF0aW9ucyB0byBiZSBzZXQuCgpBcyBhIGZpcnN0IHN0ZXAsIHByZXBhcmUgZHJpdmVy
-cyB0byBoYW5kbGUgdGhlIHN3aXRjaCB0byB1NjQgcGVyaW9kIGFuZApkdXR5X2N5Y2xlIGJ5IHJl
-cGxhY2luZyBkaXZpc2lvbiBvcGVyYXRpb25zIGludm9sdmluZyBwd20gcGVyaW9kIGFuZCBkdXR5
-IGN5Y2xlCndpdGggdGhlaXIgNjQtYml0IGVxdWl2YWxlbnRzIGFzIGFwcHJvcHJpYXRlLiBUaGUg
-YWN0dWFsIHN3aXRjaCB0byB1NjQgcGVyaW9kCmFuZCBkdXR5X2N5Y2xlIGZvbGxvd3MgYXMgYSBz
-ZXBhcmF0ZSBwYXRjaC4KCldoZXJlIHRoZSBkaXZpZGVuZCBpcyA2NC1iaXQgYnV0IHRoZSBkaXZp
-c29yIGlzIDMyLWJpdCwgdXNlICpfVUxMCm1hY3JvczoKLSBESVZfUk9VTkRfVVBfVUxMCi0gRElW
-X1JPVU5EX0NMT1NFU1RfVUxMCi0gZGl2X3U2NAoKV2hlcmUgdGhlIGRpdmlzb3IgaXMgNjQtYml0
-IChkaXZpZGVuZCBtYXkgYmUgMzItYml0IG9yIDY0LWJpdCksIHVzZQpESVY2NF8qIG1hY3JvczoK
-LSBESVY2NF9VNjRfUk9VTkRfQ0xPU0VTVAotIGRpdjY0X3U2NAoKQ2M6IEphbmkgTmlrdWxhIDxq
-YW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5s
-YWh0aW5lbkBsaW51eC5pbnRlbC5jb20+CkNjOiBEYXZpZCBBaXJsaWUgPGFpcmxpZWRAbGludXgu
-aWU+CkNjOiBEYW5pZWwgVmV0dGVyIDxkYW5pZWxAZmZ3bGwuY2g+CkNjOiBDaHJpcyBXaWxzb24g
-PGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5z
-eXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5v
-cmcKQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKClNpZ25lZC1vZmYtYnk6IEd1
-cnUgRGFzIFNyaW5hZ2VzaCA8Z3VydXNAY29kZWF1cm9yYS5vcmc+Ci0tLQogZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5jIHwgMiArLQogMSBmaWxlIGNoYW5nZWQsIDEg
-aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvZGlzcGxheS9pbnRlbF9wYW5lbC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9wYW5lbC5jCmluZGV4IGJjMTRlOWMuLjg0M2NhYzEgMTAwNjQ0Ci0tLSBhL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGFuZWwuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX3BhbmVsLmMKQEAgLTE4NjgsNyArMTg2OCw3IEBAIHN0YXRp
-YyBpbnQgcHdtX3NldHVwX2JhY2tsaWdodChzdHJ1Y3QgaW50ZWxfY29ubmVjdG9yICpjb25uZWN0
-b3IsCiAKIAlwYW5lbC0+YmFja2xpZ2h0Lm1pbiA9IDA7IC8qIDAlICovCiAJcGFuZWwtPmJhY2ts
-aWdodC5tYXggPSAxMDA7IC8qIDEwMCUgKi8KLQlwYW5lbC0+YmFja2xpZ2h0LmxldmVsID0gRElW
-X1JPVU5EX1VQKAorCXBhbmVsLT5iYWNrbGlnaHQubGV2ZWwgPSBESVZfUk9VTkRfVVBfVUxMKAog
-CQkJCSBwd21fZ2V0X2R1dHlfY3ljbGUocGFuZWwtPmJhY2tsaWdodC5wd20pICogMTAwLAogCQkJ
-CSBDUkNfUE1JQ19QV01fUEVSSU9EX05TKTsKIAlwYW5lbC0+YmFja2xpZ2h0LmVuYWJsZWQgPSBw
-YW5lbC0+YmFja2xpZ2h0LmxldmVsICE9IDA7Ci0tIApUaGUgUXVhbGNvbW0gSW5ub3ZhdGlvbiBD
-ZW50ZXIsIEluYy4gaXMgYSBtZW1iZXIgb2YgdGhlIENvZGUgQXVyb3JhIEZvcnVtLAphIExpbnV4
-IEZvdW5kYXRpb24gQ29sbGFib3JhdGl2ZSBQcm9qZWN0CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+
+--===============0428730256==
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="e+JRL32uBeeWnrD4"
+Content-Disposition: inline
+
+
+--e+JRL32uBeeWnrD4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi,
+
+Here's more gvt fixes for 5.6. Fix timer issue caused by idr destroy
+change and VBT size error.
+
+Thanks
+--
+
+The following changes since commit b549c252b1292aea959cd9b83537fcb9384a6112:
+
+  drm/i915/gvt: Fix orphan vgpu dmabuf_objs' lifetime (2020-02-25 16:14:20 =
++0800)
+
+are available in the Git repository at:
+
+  https://github.com/intel/gvt-linux tags/gvt-fixes-2020-03-10
+
+for you to fetch changes up to 2fa7e15c5f466fdd0c0b196b1dc4a65d191efd96:
+
+  drm/i915/gvt: Fix emulated vbt size issue (2020-03-06 09:35:30 +0800)
+
+----------------------------------------------------------------
+gvt-fixes-2020-03-10
+
+- Fix vgpu idr destroy causing timer destroy failure (Zhenyu)
+- Fix VBT size (Tina)
+
+----------------------------------------------------------------
+Tina Zhang (1):
+      drm/i915/gvt: Fix emulated vbt size issue
+
+Zhenyu Wang (1):
+      drm/i915/gvt: Fix unnecessary schedule timer when no vGPU exits
+
+ drivers/gpu/drm/i915/gvt/opregion.c |  5 ++---
+ drivers/gpu/drm/i915/gvt/vgpu.c     | 12 +++++++++---
+ 2 files changed, 11 insertions(+), 6 deletions(-)
+
+
+--=20
+Open Source Technology Center, Intel ltd.
+
+$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
+
+--e+JRL32uBeeWnrD4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXmdLPQAKCRCxBBozTXgY
+J8yaAJ4kqjDSeUIPYDweYSfTyJR9bsybEwCfS7eIi9dAgfiBTOs6v96DxBuMpMU=
+=gE+p
+-----END PGP SIGNATURE-----
+
+--e+JRL32uBeeWnrD4--
+
+--===============0428730256==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0428730256==--
