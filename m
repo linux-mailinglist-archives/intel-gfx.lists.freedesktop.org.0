@@ -1,32 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F931808A0
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 20:58:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B699C1808A6
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 21:00:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63EEA6E8D4;
-	Tue, 10 Mar 2020 19:58:00 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D5CC06E39E;
- Tue, 10 Mar 2020 19:57:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CD867A0091;
- Tue, 10 Mar 2020 19:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D906E8D5;
+	Tue, 10 Mar 2020 20:00:23 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 234476E8D5
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 20:00:22 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 13:00:21 -0700
+X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="236159618"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 10 Mar 2020 13:00:20 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-6-tvrtko.ursulin@linux.intel.com>
+ <158386474983.28297.14100791660131613004@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <11ede409-42d2-62ec-dcd7-cdb4399b0562@linux.intel.com>
+Date: Tue, 10 Mar 2020 20:00:18 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 10 Mar 2020 19:57:59 -0000
-Message-ID: <158387027981.1150.8195429485204151386@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_list=3A_Prevent_compiler_reloads_inside_=27safe=27_list_ite?=
- =?utf-8?q?ration?=
+In-Reply-To: <158386474983.28297.14100791660131613004@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 05/12] drm/i915: Track runtime spent in
+ unreachable intel_contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,112 +49,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: list: Prevent compiler reloads inside 'safe' list iteration
-URL   : https://patchwork.freedesktop.org/series/74495/
-State : warning
+On 10/03/2020 18:25, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-03-09 18:31:22)
+>> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>>
+>> As contexts are abandoned we want to remember how much GPU time they used
+>> (per class) so later we can used it for smarter purposes.
+>>
+>> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/gem/i915_gem_context.c       | 13 ++++++++++++-
+>>   drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  5 +++++
+>>   2 files changed, 17 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> index abc3a3e2fcf1..5f6861a36655 100644
+>> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+>> @@ -257,7 +257,19 @@ static void free_engines_rcu(struct rcu_head *rcu)
+>>   {
+>>          struct i915_gem_engines *engines =
+>>                  container_of(rcu, struct i915_gem_engines, rcu);
+>> +       struct i915_gem_context *ctx = engines->ctx;
+>> +       struct i915_gem_engines_iter it;
+>> +       struct intel_context *ce;
+>> +
+>> +       /* Transfer accumulated runtime to the parent GEM context. */
+>> +       for_each_gem_engine(ce, engines, it) {
+>> +               unsigned int class = ce->engine->uabi_class;
+>>   
+>> +               GEM_BUG_ON(class >= ARRAY_SIZE(ctx->past_runtime));
+>> +               atomic64_add(ce->runtime.total, &ctx->past_runtime[class]);
+>> +       }
+> 
+> -> give this its own routine.
 
-== Summary ==
+Ack.
 
-$ dim checkpatch origin/drm-tip
-d40a755ea0b3 list: Prevent compiler reloads inside 'safe' list iteration
--:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#37: FILE: include/linux/list.h:547:
-+#define list_next_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.next), typeof(*(pos)), member)
+>> +
+>> +       i915_gem_context_put(ctx);
+>>          i915_sw_fence_fini(&engines->fence);
+>>          free_engines(engines);
+>>   }
+>> @@ -540,7 +552,6 @@ static int engines_notify(struct i915_sw_fence *fence,
+>>                          list_del(&engines->link);
+>>                          spin_unlock_irqrestore(&ctx->stale.lock, flags);
+>>                  }
+>> -               i915_gem_context_put(engines->ctx);
+> 
+> Or accumulate here? Here we know the engines are idle and released,
+> albeit there is the delay in accumulating after the swap. I'm not going
+> to worry about that, live replacement of engines I don't expect anyone
+> to notice the busy stats being off for a bit. Worst case is that they
+> see a sudden jump; but typical practice will be to setup engines up
+> before they being activity. We only have to worry about is if the
+> transient misleading stats can be exploited.
 
--:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#37: FILE: include/linux/list.h:547:
-+#define list_next_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.next), typeof(*(pos)), member)
+It was even here initially but then I started fearing it may not be the 
+last unpin of intel_context, pending context save/complete so sounded 
+safer to make it really really last. And
 
--:37: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'member' may be better as '(member)' to avoid precedence issues
-#37: FILE: include/linux/list.h:547:
-+#define list_next_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.next), typeof(*(pos)), member)
+But I guess you are right in saying that small error when replacing 
+engines should not be large concern. If I move the accumulation back 
+here I don't need the intel_context->closed patch any more so that's a plus.
 
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#55: FILE: include/linux/list.h:566:
-+#define list_prev_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.prev), typeof(*(pos)), member)
+Unless it can be a large error if context ran for quite some time. Hm.. 
+I think I still prefer to be safe and accumulate latest as possible.
 
--:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#55: FILE: include/linux/list.h:566:
-+#define list_prev_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.prev), typeof(*(pos)), member)
+Regards,
 
--:55: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'member' may be better as '(member)' to avoid precedence issues
-#55: FILE: include/linux/list.h:566:
-+#define list_prev_entry_safe(pos, member) \
-+	list_entry(READ_ONCE((pos)->member.prev), typeof(*(pos)), member)
-
--:82: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#82: FILE: include/linux/list.h:725:
-+#define list_for_each_entry_safe_continue(pos, n, head, member) ^I\$
-
--:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#82: FILE: include/linux/list.h:725:
-+#define list_for_each_entry_safe_continue(pos, n, head, member) 	\
-+	for (pos = list_next_entry(pos, member), 			\
-+		n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
--:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#82: FILE: include/linux/list.h:725:
-+#define list_for_each_entry_safe_continue(pos, n, head, member) 	\
-+	for (pos = list_next_entry(pos, member), 			\
-+		n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
--:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#82: FILE: include/linux/list.h:725:
-+#define list_for_each_entry_safe_continue(pos, n, head, member) 	\
-+	for (pos = list_next_entry(pos, member), 			\
-+		n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
--:83: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#83: FILE: include/linux/list.h:726:
-+^Ifor (pos = list_next_entry(pos, member), ^I^I^I\$
-
--:98: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#98: FILE: include/linux/list.h:741:
-+#define list_for_each_entry_safe_from(pos, n, head, member) ^I^I\$
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
-#98: FILE: include/linux/list.h:741:
-+#define list_for_each_entry_safe_from(pos, n, head, member) 		\
-+	for (n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
-#98: FILE: include/linux/list.h:741:
-+#define list_for_each_entry_safe_from(pos, n, head, member) 		\
-+	for (n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
--:98: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#98: FILE: include/linux/list.h:741:
-+#define list_for_each_entry_safe_from(pos, n, head, member) 		\
-+	for (n = list_next_entry_safe(pos, member);			\
-+	     &pos->member != (head);					\
-+	     pos = n, n = list_next_entry_safe(n, member))
-
-total: 0 errors, 3 warnings, 12 checks, 94 lines checked
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
