@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DDA17FFA1
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 14:57:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E53417FFA6
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 14:58:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1C06E2CA;
-	Tue, 10 Mar 2020 13:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C446E2E2;
+	Tue, 10 Mar 2020 13:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B397F6E2CA
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 13:57:46 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 06:57:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="245708818"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 10 Mar 2020 06:57:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Mar 2020 15:57:42 +0200
-Date: Tue, 10 Mar 2020 15:57:42 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Message-ID: <20200310135742.GF13686@intel.com>
-References: <20200310133920.32705-1-kai.vehmanen@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F12366E2E2;
+ Tue, 10 Mar 2020 13:58:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EC0F8A3ECB;
+ Tue, 10 Mar 2020 13:58:15 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310133920.32705-1-kai.vehmanen@linux.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RESEND PATCH v2] drm/i915: Add missing HDMI audio
- pixel clocks for gen12
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Date: Tue, 10 Mar 2020 13:58:15 -0000
+Message-ID: <158384869596.1150.7942655594465534168@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+In-Reply-To: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgUmVm?=
+ =?utf-8?q?actor_Gen11+_SAGV_support?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,125 +38,155 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 03:39:20PM +0200, Kai Vehmanen wrote:
-> Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
-> and 593.4/594Mhz. Add the missing rates and add logic to ignore
-> them if running on older hardware.
-> =
+== Series Details ==
 
-> Bspec: 49333
-> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c | 14 +++++++++++---
->  drivers/gpu/drm/i915/i915_reg.h            |  4 ++++
->  2 files changed, 15 insertions(+), 3 deletions(-)
-> =
+Series: Refactor Gen11+ SAGV support
+URL   : https://patchwork.freedesktop.org/series/74461/
+State : failure
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
-/i915/display/intel_audio.c
-> index 3926b9b9a09f..e00608c898e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -148,6 +148,10 @@ static const struct {
->  	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
->  	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
->  	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
-> +	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
-> +	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
-> +	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
-> +	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
->  };
->  =
+== Summary ==
 
->  /* HDMI N/CTS table */
-> @@ -231,7 +235,8 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp=
-[] =3D {
->  };
->  =
+CI Bug Log - changes from CI_DRM_8106 -> Patchwork_16893
+====================================================
 
->  /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
-> -static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *=
-crtc_state)
-> +static u32 audio_config_hdmi_pixel_clock(struct drm_i915_private *dev_pr=
-iv,
-> +					 const struct intel_crtc_state *crtc_state)
->  {
+Summary
+-------
 
-No real need to pass dev_priv separately. We can dig it out locally.
+  **FAILURE**
 
-... dev_priv =3D to_i915(crtc_state->uapi.crtc->dev);
+  Serious unknown changes coming with Patchwork_16893 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16893, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Otherwise lgtm.
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/index.html
 
->  	const struct drm_display_mode *adjusted_mode =3D
->  		&crtc_state->hw.adjusted_mode;
-> @@ -242,6 +247,9 @@ static u32 audio_config_hdmi_pixel_clock(const struct=
- intel_crtc_state *crtc_sta
->  			break;
->  	}
->  =
+Possible new issues
+-------------------
 
-> +	if (INTEL_GEN(dev_priv) < 12 && adjusted_mode->crtc_clock > 148500)
-> +		i =3D ARRAY_SIZE(hdmi_audio_clock);
-> +
->  	if (i =3D=3D ARRAY_SIZE(hdmi_audio_clock)) {
->  		DRM_DEBUG_KMS("HDMI audio pixel clock setting for %d not found, fallin=
-g back to defaults\n",
->  			      adjusted_mode->crtc_clock);
-> @@ -436,7 +444,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *en=
-coder,
->  	tmp &=3D ~AUD_CONFIG_N_VALUE_INDEX;
->  	tmp &=3D ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
->  	tmp &=3D ~AUD_CONFIG_N_PROG_ENABLE;
-> -	tmp |=3D audio_config_hdmi_pixel_clock(crtc_state);
-> +	tmp |=3D audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_16893:
 
->  	n =3D audio_config_hdmi_get_n(crtc_state, rate);
->  	if (n !=3D 0) {
-> @@ -681,7 +689,7 @@ static void ilk_audio_codec_enable(struct intel_encod=
-er *encoder,
->  	if (intel_crtc_has_dp_encoder(crtc_state))
->  		tmp |=3D AUD_CONFIG_N_VALUE_INDEX;
->  	else
-> -		tmp |=3D audio_config_hdmi_pixel_clock(crtc_state);
-> +		tmp |=3D audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
->  	intel_de_write(dev_priv, aud_config, tmp);
->  }
->  =
+### IGT changes ###
 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index b93c4c18f05c..359c09bcb751 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9247,6 +9247,10 @@ enum {
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
->  #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
->  =
+#### Possible regressions ####
 
->  /* HSW Audio */
-> -- =
+  * igt@i915_selftest@live@evict:
+    - fi-bwr-2160:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-bwr-2160/igt@i915_selftest@live@evict.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-bwr-2160/igt@i915_selftest@live@evict.html
 
-> 2.17.1
+  * igt@kms_busy@basic@modeset:
+    - fi-skl-6700k2:      [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-skl-6700k2/igt@kms_busy@basic@modeset.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-skl-6700k2/igt@kms_busy@basic@modeset.html
+    - fi-skl-guc:         [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-skl-guc/igt@kms_busy@basic@modeset.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-skl-guc/igt@kms_busy@basic@modeset.html
+    - fi-kbl-7500u:       NOTRUN -> [INCOMPLETE][7]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-kbl-7500u/igt@kms_busy@basic@modeset.html
+    - fi-cfl-8109u:       NOTRUN -> [INCOMPLETE][8]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-cfl-8109u/igt@kms_busy@basic@modeset.html
 
--- =
+  * igt@kms_force_connector_basic@force-connector-state:
+    - fi-kbl-guc:         [PASS][9] -> [DMESG-WARN][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-kbl-guc/igt@kms_force_connector_basic@force-connector-state.html
 
-Ville Syrj=E4l=E4
-Intel
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16893 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-skl-6770hq:      [PASS][11] -> [INCOMPLETE][12] ([i915#1242] / [i915#198])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-skl-6770hq/igt@gem_exec_suspend@basic-s0.html
+    - fi-cfl-8700k:       [PASS][13] -> [INCOMPLETE][14] ([i915#1242])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cfl-8700k/igt@gem_exec_suspend@basic-s0.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-cfl-8700k/igt@gem_exec_suspend@basic-s0.html
+    - fi-cfl-guc:         [PASS][15] -> [INCOMPLETE][16] ([i915#1242])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cfl-guc/igt@gem_exec_suspend@basic-s0.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-cfl-guc/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@i915_selftest@live@dmabuf:
+    - fi-ivb-3770:        [PASS][17] -> [DMESG-WARN][18] ([i915#1405])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-ivb-3770/igt@i915_selftest@live@dmabuf.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-ivb-3770/igt@i915_selftest@live@dmabuf.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [PASS][19] -> [INCOMPLETE][20] ([i915#1405])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_busy@basic@modeset:
+    - fi-cml-s:           [PASS][21] -> [INCOMPLETE][22] ([i915#283])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cml-s/igt@kms_busy@basic@modeset.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-cml-s/igt@kms_busy@basic@modeset.html
+    - fi-cml-u2:          [PASS][23] -> [INCOMPLETE][24] ([i915#283])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cml-u2/igt@kms_busy@basic@modeset.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-cml-u2/igt@kms_busy@basic@modeset.html
+
+  * igt@prime_self_import@basic-with_one_bo_two_files:
+    - fi-tgl-y:           [PASS][25] -> [DMESG-WARN][26] ([CI#94] / [i915#402])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/fi-tgl-y/igt@prime_self_import@basic-with_one_bo_two_files.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#1242]: https://gitlab.freedesktop.org/drm/intel/issues/1242
+  [i915#1405]: https://gitlab.freedesktop.org/drm/intel/issues/1405
+  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Additional (4): fi-cfl-8109u fi-bdw-5557u fi-kbl-7500u fi-snb-2600 
+  Missing    (10): fi-hsw-4200u fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-kbl-x1275 fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8106 -> Patchwork_16893
+
+  CI-20190529: 20190529
+  CI_DRM_8106: 5b0076e8066ea8218e7857ee1aa28b0670acde94 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16893: 116c15e39e85e200b7eca05d90f64572400d5cbe @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+116c15e39e85 drm/i915: Enable SAGV support for Gen12
+3733daf9704b drm/i915: Restrict qgv points which don't have enough bandwidth.
+69c7f39fa5d4 drm/i915: Rename bw_state to new_bw_state
+26fec9c73c37 drm/i915: Added required new PCode commands
+e1d39e7c0310 drm/i915: Refactor intel_can_enable_sagv
+1f389ea12cba drm/i915: Add intel_bw_get_*_state helpers
+7f788a230fbe drm/i915: Introduce skl_plane_wm_level accessor.
+9c1a1e8de31f drm/i915: Start passing latency as parameter
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16893/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
