@@ -2,40 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2CEF17F236
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D69217F244
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A721E6E832;
-	Tue, 10 Mar 2020 08:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCA5E8982A;
+	Tue, 10 Mar 2020 08:50:18 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5D4D6E82A
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:45:52 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB7938982A
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:50:17 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:45:52 -0700
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="288961692"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Mar 2020 01:45:50 -0700
-To: "Mrozek, Michal" <michal.mrozek@intel.com>,
- "Antognolli, Rafael" <rafael.antognolli@intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:50:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="234280705"
+Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
+ by fmsmga007.fm.intel.com with ESMTP; 10 Mar 2020 01:50:15 -0700
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX153.ger.corp.intel.com (163.33.192.75) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 10 Mar 2020 08:50:14 +0000
+Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 10 Mar 2020 08:50:14 +0000
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7]) by
+ irsmsx601.ger.corp.intel.com ([163.33.146.7]) with mapi id 15.01.1713.004;
+ Tue, 10 Mar 2020 08:50:14 +0000
+From: "Mrozek, Michal" <michal.mrozek@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>, "Antognolli, Rafael"
+ <rafael.antognolli@intel.com>
+Thread-Topic: [PATCH] drm/i915/tgl: WaDisableGPGPUMidThreadPreemption
+Thread-Index: AQHV8joOatT4aMfviEm7rDbzx46lAag4mDuAgAfq25CAAQkNAIAAAOUg
+Date: Tue, 10 Mar 2020 08:50:14 +0000
+Message-ID: <d1584582bf694008a951e07b7c45de36@intel.com>
 References: <20200304153144.10675-1-tvrtko.ursulin@linux.intel.com>
  <20200304160245.ewy55e2iqtcey6vs@rantogno-mobl4.amr.corp.intel.com>
  <299e1f69592d48a7a4e964b6a3d2e7d1@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ba7c627f-7f3f-12a3-2323-ba068eb6176e@linux.intel.com>
-Date: Tue, 10 Mar 2020 08:45:48 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-MIME-Version: 1.0
-In-Reply-To: <299e1f69592d48a7a4e964b6a3d2e7d1@intel.com>
+ <ba7c627f-7f3f-12a3-2323-ba068eb6176e@linux.intel.com>
+In-Reply-To: <ba7c627f-7f3f-12a3-2323-ba068eb6176e@linux.intel.com>
+Accept-Language: pl-PL, en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [163.33.253.164]
+MIME-Version: 1.0
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl:
  WaDisableGPGPUMidThreadPreemption
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -53,25 +69,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Cc: "Zdunowski, Piotr" <piotr.zdunowski@intel.com>,
  "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>, "Ekstrand,
  Jason" <jason.ekstrand@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+>>With "disable it completely" you mean disable preemption completely - go lower than thread-group in granularity?
 
-On 09/03/2020 17:02, Mrozek, Michal wrote:
->>> But he asked whether it's possible for Media and OpenCL drivers to also disable mid-thread preemption through the INTERFACE_DESCRIPTOR_DATA, instead of from the >>kernel side, so we could try to experiment with it in the future.
-> 
-> Interface Descriptor setting only switches the preemption from mid thread to thread group.
-> It doesn't allow to disable it completely and there are cases where this is required  (i.e. VME).
-> For that we need mmio whitelist.
+Yes, disable it completely.
 
-With "disable it completely" you mean disable preemption completely - go 
-lower than thread-group in granularity?
-
-Regards,
-
-Tvrtko
+Michal
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
