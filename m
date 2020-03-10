@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 159FA180023
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3284518003E
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:31:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7626E2FF;
-	Tue, 10 Mar 2020 14:30:04 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A16FA6E2FF
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 14:30:02 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 07:30:01 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260804754"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.252.21.27])
- by orsmga002.jf.intel.com with ESMTP; 10 Mar 2020 07:30:00 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 14:29:58 +0000
-Message-Id: <20200310142958.12039-1-tvrtko.ursulin@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 929216E0BF;
+	Tue, 10 Mar 2020 14:31:48 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 913EA6E0BF;
+ Tue, 10 Mar 2020 14:31:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8AD3DA41FB;
+ Tue, 10 Mar 2020 14:31:47 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Consolidate forcewake status display
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Tue, 10 Mar 2020 14:31:47 -0000
+Message-ID: <158385070755.24168.10998669541198242837@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200306185833.53984-1-jose.souza@intel.com>
+In-Reply-To: <20200306185833.53984-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv2=2C1/2=5D_drm/i915/display=3A_Deactive_F?=
+ =?utf-8?q?BC_in_fastsets_when_disabled_by_parameter_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,97 +39,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Series Details ==
 
-Use new common helper intel_gt_show_forcewake from both old and new
-debugfs code.
+Series: series starting with [v2,1/2] drm/i915/display: Deactive FBC in fastsets when disabled by parameter (rev2)
+URL   : https://patchwork.freedesktop.org/series/74401/
+State : success
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/gt/debugfs_gt_pm.c |  7 +++++--
- drivers/gpu/drm/i915/gt/intel_gt.h      |  2 ++
- drivers/gpu/drm/i915/i915_debugfs.c     | 13 ++-----------
- 3 files changed, 9 insertions(+), 13 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-index 059c9e5c002e..23328fd4bc91 100644
---- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-+++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-@@ -17,9 +17,8 @@
- #include "intel_sideband.h"
- #include "intel_uncore.h"
- 
--static int fw_domains_show(struct seq_file *m, void *data)
-+void intel_gt_show_forcewake(struct intel_gt *gt, struct seq_file *m)
- {
--	struct intel_gt *gt = m->private;
- 	struct intel_uncore *uncore = gt->uncore;
- 	struct intel_uncore_forcewake_domain *fw_domain;
- 	unsigned int tmp;
-@@ -31,7 +30,11 @@ static int fw_domains_show(struct seq_file *m, void *data)
- 		seq_printf(m, "%s.wake_count = %u\n",
- 			   intel_uncore_forcewake_domain_to_str(fw_domain->id),
- 			   READ_ONCE(fw_domain->wake_count));
-+}
- 
-+static int fw_domains_show(struct seq_file *m, void *data)
-+{
-+	intel_gt_show_forcewake(m->private, m);
- 	return 0;
- }
- DEFINE_GT_DEBUGFS_ATTRIBUTE(fw_domains);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.h b/drivers/gpu/drm/i915/gt/intel_gt.h
-index 4fac043750aa..119d188807b7 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.h
-@@ -68,4 +68,6 @@ static inline bool intel_gt_has_init_error(const struct intel_gt *gt)
- 	return test_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
- }
- 
-+void intel_gt_show_forcewake(struct intel_gt *gt, struct seq_file *m);
-+
- #endif /* __INTEL_GT_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8f2525e4ce0f..0ffcb5cfa9e2 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -32,6 +32,7 @@
- #include <drm/drm_debugfs.h>
- 
- #include "gem/i915_gem_context.h"
-+#include "gt/intel_gt.h"
- #include "gt/intel_gt_pm.h"
- #include "gt/intel_gt_requests.h"
- #include "gt/intel_reset.h"
-@@ -1057,18 +1058,8 @@ static int ilk_drpc_info(struct seq_file *m)
- static int i915_forcewake_domains(struct seq_file *m, void *data)
- {
- 	struct drm_i915_private *i915 = node_to_i915(m->private);
--	struct intel_uncore *uncore = &i915->uncore;
--	struct intel_uncore_forcewake_domain *fw_domain;
--	unsigned int tmp;
--
--	seq_printf(m, "user.bypass_count = %u\n",
--		   uncore->user_forcewake_count);
--
--	for_each_fw_domain(fw_domain, uncore, tmp)
--		seq_printf(m, "%s.wake_count = %u\n",
--			   intel_uncore_forcewake_domain_to_str(fw_domain->id),
--			   READ_ONCE(fw_domain->wake_count));
- 
-+	intel_gt_show_forcewake(&i915->gt, m);
- 	return 0;
- }
- 
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_8106 -> Patchwork_16894
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16894 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-kbl-guc:         [PASS][1] -> [FAIL][2] ([i915#579])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [PASS][3] -> [INCOMPLETE][4] ([i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_flink_basic@bad-open:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (44 -> 43)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-kbl-7500u fi-cfl-8109u fi-skl-6600u fi-snb-2600 
+  Missing    (6): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8106 -> Patchwork_16894
+
+  CI-20190529: 20190529
+  CI_DRM_8106: 5b0076e8066ea8218e7857ee1aa28b0670acde94 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16894: ec28efdaa794a53a2919b550e7835fb5de78cea2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ec28efdaa794 drm/i915/display: Do not write in removed FBC fence registers
+b72d826fdc97 drm/i915/display: Deactive FBC in fastsets when disabled by parameter
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16894/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
