@@ -1,41 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 472DB18031A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:20:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1879C180327
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:24:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9441D6E8A2;
-	Tue, 10 Mar 2020 16:20:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB196E8AF;
+	Tue, 10 Mar 2020 16:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB4E76E8A0;
- Tue, 10 Mar 2020 16:20:31 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4F7C6E8AF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 16:24:03 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 09:20:31 -0700
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 09:24:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="245745806"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga006.jf.intel.com with SMTP; 10 Mar 2020 09:20:27 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Mar 2020 18:20:27 +0200
-Date: Tue, 10 Mar 2020 18:20:27 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200310162027.GL13686@intel.com>
-References: <20200309213940.27965-1-manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="265668682"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Mar 2020 09:24:02 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id C4F8C5C1DD8; Tue, 10 Mar 2020 18:22:36 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200310004911.1723239-3-matthew.d.roper@intel.com>
+References: <20200310004911.1723239-1-matthew.d.roper@intel.com>
+ <20200310004911.1723239-3-matthew.d.roper@intel.com>
+Date: Tue, 10 Mar 2020 18:22:36 +0200
+Message-ID: <87a74o5gdv.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200309213940.27965-1-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 1/2] drm/edid: Name the detailed monitor
- range flags
+Subject: Re: [Intel-gfx] [PATCH 2/7] drm/i915: Add Wa_1207131216:icl,ehl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +44,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>,
- Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 09, 2020 at 02:39:39PM -0700, Manasi Navare wrote:
-> This patch adds defines for the detailed monitor
-> range flags as per the EDID specification.
-> =
+Matt Roper <matthew.d.roper@intel.com> writes:
 
-> v2:
-> * Rename the flags with DRM_EDID_ (Jani N)
-> =
-
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
-> Cc: Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
+> On gen11 the XY_FAST_COPY_BLT command has some size restrictions on its
+> usage.  Although this instruction is mainly used by userspace, i915 also
+> uses it to copy object contents during some selftests, so let's ensure
+> the restrictions are followed.
+>
+> Bspec: 6544
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  include/drm/drm_edid.h | 5 +++++
->  1 file changed, 5 insertions(+)
-> =
-
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index f0b03d401c27..34b15e3d070c 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-> @@ -91,6 +91,11 @@ struct detailed_data_string {
->  	u8 str[13];
->  } __attribute__((packed));
->  =
-
-> +#define DRM_EDID_DEFAULT_GTF_SUPPORT_FLAG   0x00
-> +#define DRM_EDID_RANGE_LIMITS_ONLY_FLAG     0x01
-> +#define DRM_EDID_SECONDARY_GTF_SUPPORT_FLAG 0x02
-> +#define DRM_EDID_CVT_SUPPORT_FLAG           0x04
-
-No indication what flags thse are. Also missing the
-actual change to use them in drm_edid.c.
-
+>  drivers/gpu/drm/i915/gem/i915_gem_object_blt.c | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> index 39b8a055d80a..e00792158f13 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
+> @@ -196,6 +196,17 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
+>  	return err;
+>  }
+>  
+> +/* Wa_1209644611:icl,ehl */
+> +static bool wa_1209644611_applies(struct drm_i915_private *i915, u32 size)
+> +{
+> +	u32 height = size >> PAGE_SHIFT;
 > +
->  struct detailed_data_monitor_range {
->  	u8 min_vfreq;
->  	u8 max_vfreq;
-> -- =
+> +	if (!IS_GEN(i915, 11))
+> +		return false;
+> +
+> +	return height % 4 == 3 && height <= 8;
 
-> 2.19.1
+The workaround description matches with this. However the original
+sighting was only for Y-Tiled surfaces. I asked for clarification.
 
--- =
+If we won't get one, we can play it safe and use this as it is.
 
-Ville Syrj=E4l=E4
-Intel
+-Mika
+
+> +}
+> +
+>  struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+>  					 struct i915_vma *src,
+>  					 struct i915_vma *dst)
+> @@ -237,7 +248,8 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
+>  		size = min_t(u64, rem, block_size);
+>  		GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+>  
+> -		if (INTEL_GEN(i915) >= 9) {
+> +		if (INTEL_GEN(i915) >= 9 &&
+> +		    !wa_1209644611_applies(i915, size)) {
+>  			*cmd++ = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2);
+>  			*cmd++ = BLT_DEPTH_32 | PAGE_SIZE;
+>  			*cmd++ = 0;
+> -- 
+> 2.24.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
