@@ -2,42 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0922117F61A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D99C917F68A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:43:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E46706E0A2;
-	Tue, 10 Mar 2020 11:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F856E1B7;
+	Tue, 10 Mar 2020 11:43:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A3C6E0A2
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:20:30 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 04:20:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="276916265"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga002.fm.intel.com with ESMTP; 10 Mar 2020 04:20:28 -0700
-Date: Tue, 10 Mar 2020 13:20:07 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <s5h4kuxssqr.wl-tiwai@suse.de>
-Message-ID: <alpine.DEB.2.21.2003101234220.2957@eliteleevi.tm.intel.com>
-References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
- <20200102182845.GB11904@intel.com>
- <alpine.DEB.2.21.2001031703180.16459@zeliteleevi>
- <20200106164903.GA1755221@mdroper-desk1.amr.corp.intel.com>
- <alpine.DEB.2.21.2003061749190.2957@eliteleevi.tm.intel.com>
- <s5h4kuxssqr.wl-tiwai@suse.de>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-Greylist: delayed 375 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Mar 2020 11:43:02 UTC
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [146.101.78.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3523B6E1B7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:43:02 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ uk-mta-59-qJx50LcXOruXxnxninM0kQ-1; Tue, 10 Mar 2020 11:36:42 +0000
+X-MC-Unique: qJx50LcXOruXxnxninM0kQ-1
+Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
+ AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
+ Server (TLS) id 15.0.1347.2; Tue, 10 Mar 2020 11:36:41 +0000
+Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
+ AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
+ Tue, 10 Mar 2020 11:36:41 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Chris Wilson' <chris@chris-wilson.co.uk>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Thread-Topic: [PATCH] list: Prevent compiler reloads inside 'safe' list
+ iteration
+Thread-Index: AQHV9r1KBrT+D4Vo2U+Op9v/Nv0od6hBsdzw
+Date: Tue, 10 Mar 2020 11:36:41 +0000
+Message-ID: <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
+References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200310092119.14965-1-chris@chris-wilson.co.uk>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
- constraint back to GLK only
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
+ 'safe' list iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,50 +58,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Paul E. McKenney" <paulmck@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+From: Chris Wilson
+> Sent: 10 March 2020 09:21
+> Instruct the compiler to read the next element in the list iteration
+> once, and that it is not allowed to reload the value from the stale
+> element later. This is important as during the course of the safe
+> iteration, the stale element may be poisoned (unbeknownst to the
+> compiler).
 
-On Mon, 9 Mar 2020, Takashi Iwai wrote:
+Eh?
+I thought any function call will stop the compiler being allowed
+to reload the value.
+The 'safe' loop iterators are only 'safe' against called
+code removing the current item from the list.
 
-> On Fri, 06 Mar 2020 17:45:44 +0100, Kai Vehmanen wrote:
->> unfortunately it seems this fix that was done is not holding up in wider 
->> testing. It now looks we need to enforce the constraint in one form or 
-[...]
->> So how about: We move the glk_force_audio_cdclk() logic from 
->> intel_audio.c:i915_audio_component_get_power() to acomp init.
->> This has some notable implications:
-> 
-> That sounds reasonable to me.  But it's basically the i915 stuff, so
-> I'd leave the decision to you guys :)
+> This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
+> list elements during list_for_each_entry_safe() and friends.
 
-thanks Takashi --let's wait for the comments. I'll add also Ville who 
-wrote the original glk_force_audio() code diretly to the thread.
+Sounds like kcsan is buggy ????
 
-> My another quick thought after reading this mail is whether we can
-> simply remove glk_force_audio_cdclk(false) in
-> i915_audio_component_put_power().  In this way, a flicker should be
-> reduced, at most only once at boot time, and the CDCLK is lowered only
-> when the audio is really used (once).
+	David
 
-If we could really limit this to actual first-time use (i.e. only if 
-actual playback to HDMI/DP is done), that would be interesting compromise 
-indeed, but as the ALSA side probe will call get_power, this will have 
-limited benefit. I think this is in the end same as:
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 
-> Or, similarly, it can be put into *_component_bind() and *_unbind()
-> instead of *_get_power() and *_put_power().  This indicates that the
-> corresponding audio device really exists.
-
-... doing it bind. But yes, you are right, bind() and unbind() would be 
-the appropriate places. Then if audio driver is not loaded, the freq 
-constraint is not put into effect, and similarly if audio driver is 
-unloaded, cdclk constraint is released.
-
-Br, Kai
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
