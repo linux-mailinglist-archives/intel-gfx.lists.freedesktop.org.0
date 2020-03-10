@@ -2,33 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11940180616
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 19:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2C318062E
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 19:25:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4469E898F3;
-	Tue, 10 Mar 2020 18:21:02 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E54F6E379
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 18:20:59 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20513332-1500050 for multiple; Tue, 10 Mar 2020 18:20:46 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 463126E379;
+	Tue, 10 Mar 2020 18:25:29 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A236E379
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 18:25:27 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 11:25:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="245780812"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga006.jf.intel.com with SMTP; 10 Mar 2020 11:25:23 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 10 Mar 2020 20:25:22 +0200
+Date: Tue, 10 Mar 2020 20:25:22 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Message-ID: <20200310182522.GN13686@intel.com>
+References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
+ <20200102182845.GB11904@intel.com>
+ <alpine.DEB.2.21.2001031703180.16459@zeliteleevi>
+ <20200106164903.GA1755221@mdroper-desk1.amr.corp.intel.com>
+ <alpine.DEB.2.21.2003061749190.2957@eliteleevi.tm.intel.com>
+ <s5h4kuxssqr.wl-tiwai@suse.de> <20200310134114.GE13686@intel.com>
+ <alpine.DEB.2.21.2003101848170.2957@eliteleevi.tm.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200309183129.2296-4-tvrtko.ursulin@linux.intel.com>
-References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
- <20200309183129.2296-4-tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <158386444565.28297.3935899221787468940@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 10 Mar 2020 18:20:45 +0000
-Subject: Re: [Intel-gfx] [RFC 03/12] drm/i915: Make GEM contexts track DRM
- clients
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.21.2003101848170.2957@eliteleevi.tm.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
+ constraint back to GLK only
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,164 +54,133 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-09 18:31:20)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> If we make GEM contexts keep a reference to i915_drm_client for the whole
-> of their lifetime, we can consolidate the current task pid and name usage
-> by getting it from the client.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c   | 23 +++++++++++---
->  .../gpu/drm/i915/gem/i915_gem_context_types.h | 13 ++------
->  drivers/gpu/drm/i915/i915_debugfs.c           | 31 +++++++++----------
->  drivers/gpu/drm/i915/i915_gpu_error.c         | 21 +++++++------
->  4 files changed, 48 insertions(+), 40 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 2c3fd9748d39..0f4150c8d7fe 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -300,8 +300,13 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
->  
->  static void i915_gem_context_free(struct i915_gem_context *ctx)
->  {
-> +       struct i915_drm_client *client = ctx->client;
-> +
->         GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
->  
-> +       if (client)
-> +               i915_drm_client_put(client);
-> +
->         spin_lock(&ctx->i915->gem.contexts.lock);
->         list_del(&ctx->link);
->         spin_unlock(&ctx->i915->gem.contexts.lock);
-> @@ -311,7 +316,6 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
->         if (ctx->timeline)
->                 intel_timeline_put(ctx->timeline);
->  
-> -       put_pid(ctx->pid);
->         mutex_destroy(&ctx->mutex);
->  
->         kfree_rcu(ctx, rcu);
-> @@ -899,6 +903,7 @@ static int gem_context_register(struct i915_gem_context *ctx,
->                                 struct drm_i915_file_private *fpriv,
->                                 u32 *id)
->  {
-> +       struct i915_drm_client *client;
->         struct i915_address_space *vm;
->         int ret;
->  
-> @@ -910,15 +915,25 @@ static int gem_context_register(struct i915_gem_context *ctx,
->                 WRITE_ONCE(vm->file, fpriv); /* XXX */
->         mutex_unlock(&ctx->mutex);
->  
-> -       ctx->pid = get_task_pid(current, PIDTYPE_PID);
-> +       client = i915_drm_client_get(fpriv->client);
-> +
-> +       rcu_read_lock();
->         snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
-> -                current->comm, pid_nr(ctx->pid));
-> +                rcu_dereference(client->name),
-> +                pid_nr(rcu_dereference(client->pid)));
-> +       rcu_read_unlock();
->  
->         /* And finally expose ourselves to userspace via the idr */
->         ret = xa_alloc(&fpriv->context_xa, id, ctx, xa_limit_32b, GFP_KERNEL);
->         if (ret)
-> -               put_pid(fetch_and_zero(&ctx->pid));
-> +               goto err;
-> +
-> +       ctx->client = client;
->  
-> +       return 0;
-> +
-> +err:
-> +       i915_drm_client_put(client);
->         return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> index 28760bd03265..b0e03380c690 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-> @@ -96,20 +96,13 @@ struct i915_gem_context {
->          */
->         struct i915_address_space __rcu *vm;
->  
-> -       /**
-> -        * @pid: process id of creator
-> -        *
-> -        * Note that who created the context may not be the principle user,
-> -        * as the context may be shared across a local socket. However,
-> -        * that should only affect the default context, all contexts created
-> -        * explicitly by the client are expected to be isolated.
-> -        */
-> -       struct pid *pid;
-> -
->         /** link: place with &drm_i915_private.context_list */
->         struct list_head link;
->         struct llist_node free_link;
->  
-> +       /** client: struct i915_drm_client */
-> +       struct i915_drm_client *client;
-> +
->         /**
->          * @ref: reference count
->          *
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 8f2525e4ce0f..0655f1e7527d 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -330,17 +330,17 @@ static void print_context_stats(struct seq_file *m,
->                                 .vm = rcu_access_pointer(ctx->vm),
->                         };
->                         struct drm_file *file = ctx->file_priv->file;
-> -                       struct task_struct *task;
->                         char name[80];
->  
->                         rcu_read_lock();
-> +
->                         idr_for_each(&file->object_idr, per_file_stats, &stats);
-> -                       rcu_read_unlock();
->  
-> -                       rcu_read_lock();
-> -                       task = pid_task(ctx->pid ?: file->pid, PIDTYPE_PID);
->                         snprintf(name, sizeof(name), "%s",
-> -                                task ? task->comm : "<unknown>");
-> +                                I915_SELFTEST_ONLY(!ctx->client) ?
-> +                                "[kernel]" :
+On Tue, Mar 10, 2020 at 07:18:58PM +0200, Kai Vehmanen wrote:
+> Hi,
+> =
 
+> On Tue, 10 Mar 2020, Ville Syrj=E4l=E4 wrote:
+> =
 
-With selftests one can never see debugfs/, so this should be safe to
-assume ctx->client is valid.
+> >> On Fri, 06 Mar 2020 17:45:44 +0100, Kai Vehmanen wrote:
+> >>> Similarly on i915 side, it would seem pretty unlikely that we are goi=
+ng
+> >>> to get smooth changes of CDCLK. It might work better on some platform=
+s, =
 
-And the same for the next chunk,
-> @@ -1273,19 +1273,16 @@ static int i915_context_status(struct seq_file *m, void *unused)
+> > =
 
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 2a4cd0ba5464..653e1bc5050e 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1221,7 +1221,8 @@ static void record_request(const struct i915_request *request,
->         rcu_read_lock();
->         ctx = rcu_dereference(request->context->gem_context);
->         if (ctx)
-> -               erq->pid = pid_nr(ctx->pid);
-> +               erq->pid = I915_SELFTEST_ONLY(!ctx->client) ?
-> +                          0 : pid_nr(rcu_dereference(ctx->client->pid));
+> > There is new hw in the pipeline that should allow cdclk changes
+> > without a full modeset.
+> =
 
-Hmm, I think we may want to capture the i915_drm_client, but we also
-want to know the pid at the time of submission, so time of hang is a
-good guess. Could we accept the risk here of just using the client
-(accepting that a mischievous user could rename the client later)?
--Chris
+> ok great, this is good to know. Especially we should not completely remov=
+e =
+
+> the CDCLK constraints code from get_power/put_power, as this will be =
+
+> later needed.
+> =
+
+> >>> intel_audio.c:i915_audio_component_get_power() to acomp init.
+> >>> This has some notable implications:
+> [...]
+> >>> Any chance to get this through? I understand this effectively removes=
+ the =
+
+> >>> lower clocks from some systems, so this needs to be evaluated careful=
+ly.
+> > =
+
+> > If we're going to effectively force cdclk to remain high all the time
+> > then we should just nuke the whole glk_force_audio_cdclk() thing. But
+> > at least I'll have to shed a few tears for the wasted milliwatts.
+> > =
+
+> > Well, I guess we might want to keep glk_force_audio_cdclk() in its
+> > current form for the upcoming hw that doesn't need the full modeset
+> > for cdclk changes.
+> =
+
+> Yeah, we probably should keep it in any case, because later it's going to =
+
+> be needed.
+> =
+
+> > I guess we could also make i915 force the cdclk to the min required by
+> > audio at init time. And we could maybe try to remove the modeset from t=
+he
+> > put_power() so that at least if you get a blink it's just the one. I did
+> > a similarsh thing for some other cdclk stuff recently where we want cdc=
+lk
+> > to go up as needed, but it will not come back down unless someone else
+> > already asked for a full modeset.
+> =
+
+> Hmm, this is interesting and maybe a better compromise for the in-between =
+
+> generations. Could it be as simple as not setting =
+
+> "cdclk.force_min_cdclk_changed" at put_power(), and just set the =
+
+> min_cdclk...? I was trying to follow the modeset code and it seems withou=
+t =
+
+> the force set, this would avoid going to intel_modeset_checks(). If so, I =
+
+> can try this out.
+
+The logic around the cdclk computation is still a bit messy.
+
+First draft of just doing the lazy force_min_cdclk reduction in put_power():
+git://github.com/vsyrjala/linux.git no_cdclk_in_audio_put_power
+
+Very lightly smoke tested, but not sure if it achieves anything useful :P
+
+> =
+
+> One problematic scenario that this doesn't cover:
+>  - a single display is used (at low cdclk), and =
+
+>  - audio block goes to runtime suspend while display stays up. =
+
+> =
+
+> Upon resume (for e.g. UI notification sound), audio will initialize the =
+
+> HDA bus and call get_power() on i915, even if the notification goes to =
+
+> internal speaker. A modeset at this point is potentially very annoying.
+
+:( That seems much harder to deal with.
+
+> =
+
+> I just also noted if we keep the glk_force_audio function, we need to get =
+
+> rid of the hardcoded 96Mhz BCLK value that is used now, and instead dig u=
+p =
+
+> the effective used value (we do have this). This will at least offer the =
+
+> possibility to configure the HDA link to 48Mhz in BIOS and avoid the cdcl=
+k =
+
+> bump this way.
+
+I think when I last complained about the assumed 96 MHz BCLK
+people said "48 MHz never happens". But I guess it can be made
+to happen?
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
