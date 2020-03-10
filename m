@@ -1,41 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2A31808C4
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 21:08:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A6F1808DD
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 21:12:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DD266E39C;
-	Tue, 10 Mar 2020 20:08:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28F356E8D9;
+	Tue, 10 Mar 2020 20:12:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391F86E39C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 20:08:35 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA1316E8D7;
+ Tue, 10 Mar 2020 20:12:06 +0000 (UTC)
 X-Amp-Result: UNKNOWN
 X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 13:08:34 -0700
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 13:11:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="441421265"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by fmsmga005.fm.intel.com with ESMTP; 10 Mar 2020 13:08:34 -0700
-Date: Tue, 10 Mar 2020 13:08:34 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
- Lionel G Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200310200834.GE9651@orsosgc001.amr.corp.intel.com>
-References: <20200303221905.25866-1-umesh.nerlige.ramappa@intel.com>
- <20200303221905.25866-7-umesh.nerlige.ramappa@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="353700766"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 10 Mar 2020 13:11:52 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 10 Mar 2020 22:11:51 +0200
+Date: Tue, 10 Mar 2020 22:11:51 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <20200310201151.GS13686@intel.com>
+References: <20200310185417.1588984-1-lyude@redhat.com>
+ <20200310195122.1590925-1-lyude@redhat.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200303221905.25866-7-umesh.nerlige.ramappa@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH 6/7] drm/i915/perf: add interrupt enabling
- parameter
+In-Reply-To: <20200310195122.1590925-1-lyude@redhat.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/mst: Hookup DRM DP MST
+ late_register/early_unregister callbacks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,68 +49,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+ intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 03, 2020 at 02:19:04PM -0800, Umesh Nerlige Ramappa wrote:
->From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->
->This let's the application choose to be driven by the interrupt
->mechanism of the HW. In conjuction with long periods for checks for
->the availability of data on the CPU, this can reduce the CPU load when
->doing capture of OA data.
->
->v2: Version the new parameter (Joonas)
->v3: Rebase (Umesh)
->
->Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
->Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->---
-> drivers/gpu/drm/i915/i915_perf.c | 58 +++++++++++++++++++++++---------
-> include/uapi/drm/i915_drm.h      | 10 ++++++
-> 2 files changed, 53 insertions(+), 15 deletions(-)
->
->diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
->index 502961da840d..ab41cba85b40 100644
->--- a/drivers/gpu/drm/i915/i915_perf.c
->+++ b/drivers/gpu/drm/i915/i915_perf.c
->@@ -252,7 +252,7 @@
->  * oa_buffer_check().
->  *
->  * Most of the implementation details for this workaround are in
->- * oa_buffer_check_unlocked() and _append_oa_reports()
->+ * oa_buffer_check() and _append_oa_reports()
->  *
->  * Note for posterity: previously the driver used to define an effective tail
->  * pointer that lagged the real pointer by a 'tail margin' measured in bytes
->@@ -447,8 +447,9 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
-> }
->
-> /**
->- * oa_buffer_check_unlocked - check for data and update tail ptr state
->+ * oa_buffer_check - check for data and update tail ptr state
->  * @stream: i915 stream instance
->+ * @lock: whether to take the oa_buffer spin lock
->  *
->  * This is either called via fops (for blocking reads in user ctx) or the poll
->  * check hrtimer (atomic ctx) to check the OA buffer tail pointer and check
->@@ -470,8 +471,9 @@ static u32 gen7_oa_hw_tail_read(struct i915_perf_stream *stream)
->  *
->  * Returns: %true if the OA buffer contains data, else %false
->  */
->-static bool oa_buffer_check_unlocked(struct i915_perf_stream *stream)
->+static bool oa_buffer_check(struct i915_perf_stream *stream, bool lock)
+On Tue, Mar 10, 2020 at 03:51:21PM -0400, Lyude Paul wrote:
+> i915 can enable aux device nodes for DP MST by calling
+> drm_dp_mst_connector_late_register()/drm_dp_mst_connector_early_unregiste=
+r(),
+> so let's hook that up.
+> =
 
-Hi Lionel,
+> Changes since v1:
+> * Call intel_connector_register/unregister() from
+>   intel_dp_mst_connector_late_register/unregister() so we don't lose
+>   error injection - Ville Syrj=E4l=E4
+> Changes since v2:
+> * Don't forget to clean up if intel_connector_register() fails - Ville
+> =
 
-All callers seem to set the lock to true when calling oa_buffer_check().  
-Do you recall why the parameter was introduced?  If not, we probably 
-want to remove this change.
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Manasi Navare <manasi.d.navare@intel.com>
+> Cc: "Lee, Shawn C" <shawn.c.lee@intel.com>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
 
-Thanks,
-Umesh
+Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 33 +++++++++++++++++++--
+>  1 file changed, 31 insertions(+), 2 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index d53978ed3c12..e08caca658c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -548,12 +548,41 @@ static int intel_dp_mst_get_ddc_modes(struct drm_co=
+nnector *connector)
+>  	return ret;
+>  }
+>  =
+
+> +static int
+> +intel_dp_mst_connector_late_register(struct drm_connector *connector)
+> +{
+> +	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
+r);
+> +	int ret;
+> +
+> +	ret =3D drm_dp_mst_connector_late_register(connector,
+> +						 intel_connector->port);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D intel_connector_register(connector);
+> +	if (ret < 0)
+> +		drm_dp_mst_connector_early_unregister(connector,
+> +						      intel_connector->port);
+> +
+> +	return ret;
+> +}
+> +
+> +static void
+> +intel_dp_mst_connector_early_unregister(struct drm_connector *connector)
+> +{
+> +	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
+r);
+> +
+> +	intel_connector_unregister(connector);
+> +	drm_dp_mst_connector_early_unregister(connector,
+> +					      intel_connector->port);
+> +}
+> +
+>  static const struct drm_connector_funcs intel_dp_mst_connector_funcs =3D=
+ {
+>  	.fill_modes =3D drm_helper_probe_single_connector_modes,
+>  	.atomic_get_property =3D intel_digital_connector_atomic_get_property,
+>  	.atomic_set_property =3D intel_digital_connector_atomic_set_property,
+> -	.late_register =3D intel_connector_register,
+> -	.early_unregister =3D intel_connector_unregister,
+> +	.late_register =3D intel_dp_mst_connector_late_register,
+> +	.early_unregister =3D intel_dp_mst_connector_early_unregister,
+>  	.destroy =3D intel_connector_destroy,
+>  	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
+>  	.atomic_duplicate_state =3D intel_digital_connector_duplicate_state,
+> -- =
+
+> 2.24.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
