@@ -2,34 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01DC17ED0B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF0CD17ED12
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:06:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C756A89824;
-	Tue, 10 Mar 2020 00:04:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA9956E133;
+	Tue, 10 Mar 2020 00:06:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4631F89824
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:04:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 17:04:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="242132779"
-Received: from przanoni-mobl.jf.intel.com ([10.24.15.100])
- by orsmga003.jf.intel.com with ESMTP; 09 Mar 2020 17:04:37 -0700
-Message-ID: <359b05b24d5258a6bec9832060668c1e3cc27f49.camel@intel.com>
-From: Paulo Zanoni <paulo.r.zanoni@intel.com>
-To: Karthik B S <karthik.b.s@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Mon, 09 Mar 2020 17:04:36 -0700
-In-Reply-To: <20200306113927.16904-1-karthik.b.s@intel.com>
-References: <20200306113927.16904-1-karthik.b.s@intel.com>
-User-Agent: Evolution 3.32.5 (3.32.5-1.fc30) 
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 0/7] Asynchronous flip implementation for i915
+Received: from mail-pg1-x549.google.com (mail-pg1-x549.google.com
+ [IPv6:2607:f8b0:4864:20::549])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9D86E5BD
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:06:23 +0000 (UTC)
+Received: by mail-pg1-x549.google.com with SMTP id 12so7565951pgv.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Mar 2020 17:06:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
+ h=date:message-id:mime-version:subject:from:to:cc;
+ bh=bdQzhDLUPsxOm6QqZ3hLu+lvyMhDWFhXWI3PbzbhChY=;
+ b=HL3ZhDns/Fm8Dzrc17UD5zmpwurRv/Q9PXH36tRJTRSymI40PHBq6pcyslCC61Qk+o
+ NTwIxD663xAck53Xs+lfHDMiTxRI6gdxZFaCPntKL9ihkQLfJpFyS4+0HsLGlVWBH7Pg
+ 8i4CXlBg/NfTw5tHfnARzxkHFPNg2sHJsfQrWWs7eu7eS3W2q2qC4oQbG5xiX3h8x6Rn
+ gSUQuan0HxAOuJ4bky3oFQTkXOQrGde9rOVTut2edQRTTBbk//IIo/7Rvz7FbfktkYLY
+ M7wxm507BXjhQpSQg1Ma4eqvW/YaJxxCwR1xzfg1gGh2jfWtzeB+76Y1PB1cZcC4QAQ1
+ 15Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+ bh=bdQzhDLUPsxOm6QqZ3hLu+lvyMhDWFhXWI3PbzbhChY=;
+ b=LuFdxLl29itmjS9DE9M3zypEmLrolT8uzq1H2EumCXuH8Ds75plG4X//mDlSOBG+1D
+ Pgly6FX2sVpYphrxLzV0dx7F9mukvy6lprDE0/0Or3/yqyc90jDw6e9G+jcvxzR+s1QP
+ kSDc54oTjl4HEI+ylGulCQsXaPPvjW6nnuq8IqsUduaNn4WtEUvg5nkCt4lNB+0odeDs
+ 1u7ekVzWM555xyQA7Nh03oJcl3iZObgL2HYBFJc+tEYbhqJvQ9YFlvgYuOeC+74tb8G7
+ eeeKo8iVsQi+WYu6PRAkalaYZMOdz+hPFewF5q6BRD2hW9SleuhO5y62L1lPa7rABnAf
+ 99Ig==
+X-Gm-Message-State: ANhLgQ3yyXrQbuQAZ5YGC31mEsnvbUKq+X+eeh/dYHwVkU7BwCEXXbzf
+ ov1S/+pXKYx8ubkSmNMhZpkEqxcAf6Nq
+X-Google-Smtp-Source: ADFU+vuGQ8fT2JXf1JRD3wm3mul6BK5fRWp/eQfqYaAjUaKocRKkkUmdDfacVg+LSo7TqiBDGChU5mRWRnGn
+X-Received: by 2002:a63:f925:: with SMTP id h37mr18801182pgi.103.1583798782458; 
+ Mon, 09 Mar 2020 17:06:22 -0700 (PDT)
+Date: Mon,  9 Mar 2020 17:06:13 -0700
+Message-Id: <20200310000617.20662-1-rajatja@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.25.1.481.gfbce0eb801-goog
+From: Rajat Jain <rajatja@google.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ "=?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?=" <ville.syrjala@linux.intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, Imre Deak <imre.deak@intel.com>, 
+ "=?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?=" <jose.souza@intel.com>,
+ linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ gregkh@linuxfoundation.org, mathewk@google.com, 
+ Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet <corbet@lwn.net>,
+ Pavel Machek <pavel@denx.de>, seanpaul@google.com,
+ Duncan Laurie <dlaurie@google.com>, 
+ jsbarnes@google.com, Thierry Reding <thierry.reding@gmail.com>,
+ mpearson@lenovo.com, Nitin Joshi1 <njoshi1@lenovo.com>,
+ Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>, 
+ Tomoki Maruichi <maruichit@lenovo.com>
+Subject: [Intel-gfx] [PATCH v7 0/4] drm: Add support for integrated privacy
+ screen
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,45 +78,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: rajatxjain@gmail.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RW0gc2V4LCAyMDIwLTAzLTA2IMOgcyAxNzowOSArMDUzMCwgS2FydGhpayBCIFMgZXNjcmV2ZXU6
-Cj4gV2l0aG91dCBhc3luYyBmbGlwIHN1cHBvcnQgaW4gdGhlIGtlcm5lbCwgZnVsbHNjcmVlbiBh
-cHBzIHdoZXJlIGdhbWUKPiByZXNvbHV0aW9uIGlzIGVxdWFsIHRvIHRoZSBzY3JlZW4gcmVzb2x1
-dGlvbiwgbXVzdCBwZXJmb3JtIGFuIGV4dHJhIGJsaXQKPiBwZXIgZnJhbWUgcHJpb3IgdG8gZmxp
-cHBpbmcuCj4gCj4gQXN5bmNocm9ub3VzIHBhZ2UgZmxpcHMgd2lsbCBhbHNvIGJvb3N0IHRoZSBG
-UFMgb2YgTWVzYSBiZW5jaG1hcmtzLgoKClRoYW5rcyBhIGxvdCBmb3IgZG9pbmcgdGhpcyB3b3Jr
-IQoKSSBkaWQgc29tZSBxdWljayBzbW9rZSB0ZXN0cyBvbiBhIEdlbWluaSBMYWtlIGFuZCB3aGls
-ZSB0aGlzIGFwcGVhcnMgdG8KYmUgd29ya2luZyBmaW5lIHdpdGggeGY4Ni12aWRlby1tb2Rlc2V0
-dGluZywgdGhlICJwYWdlZmxpcC5jIiBwcm9ncmFtIEkKc2hhcmVkIHByZXZpb3VzbHkgYnJlYWtz
-IHdoZW4geW91IGxhdW5jaCBpdCBhcyAiLi9wYWdlZmxpcCAtbiI6IHRoaXMKYXJndW1lbnQgbWFr
-ZXMgdGhlIHByb2dyYW0gKm5vdCogcmVxdWVzdCBmb3IgcGFnZSBmbGlwIGV2ZW50cyAoYnkgbm90
-CnNldHRpbmcgRFJNX01PREVfUEFHRV9GTElQX0VWRU5UKSBhbmQganVzdCB0cnkgdG8gZmxpcCBh
-cyBmYXN0IGFzIGl0CmNhbi4gSSBkaWRuJ3QgaW52ZXN0aWdhdGUgd2h5IHRoaXMgYnJlYWtzLCBi
-dXQgaXQncyBwcm9iYWJseSBzb21lCmNvcm5lciBjYXNlIHRoZSBzZXJpZXMgaXMgZm9yZ2V0dGlu
-Zy4KCkFsc28sIGRvZXNuJ3QgYXN5bmMgcGFnZWZsaXAgaW50ZXJhY3Qgd2l0aCBzb21lIG90aGVy
-IGRpc3BsYXkgZmVhdHVyZXM/CkRvbid0IHdlIG5lZWQgdG8gZGlzYWJsZSBhdCBsZWFzdCBvbmUg
-b2YgRkJDLCBQU1IgYW5kL29yIHJlbmRlcgpjb21wcmVzc2lvbiB3aGVuIHVzaW5nIGFzeW5jIHBh
-Z2UgZmxpcHM/CgpWaWxsZSBtZW50aW9uZWQgc29tZSBwb3NzaWJsZSBpbnRlcmFjdGlvbnMgd2l0
-aCBTVVJGL09GRlNFVCB0cmFja2luZwp0b28gKGZyYW1lYnVmZmVycyBub3QgYmVpbmcgYXQgdGhl
-IHN0YXJ0IG9mIHRoZSBibyksIHdoaWNoIGRvZXNuJ3Qgc2VlbQp0byBiZSBjb3ZlcmVkIGJ5IHRo
-ZSBzZXJpZXMuCgpUaGFua3MsClBhdWxvCgo+IAo+IEthcnRoaWsgQiBTICg3KToKPiAgIGRybS9p
-OTE1OiBEZWZpbmUgZmxpcCBkb25lIGZ1bmN0aW9ucyBhbmQgZW5hYmxlIElFUgo+ICAgZHJtL2k5
-MTU6IEFkZCBzdXBwb3J0IGZvciBhc3luYyBmbGlwcyBpbiBJOTE1Cj4gICBkcm0vaTkxNTogTWFr
-ZSBjb21taXQgY2FsbCBibG9ja2luZyBpbiBjYXNlIG9mIGFzeW5jIGZsaXBzCj4gICBkcm0vaTkx
-NTogQWRkIGNoZWNrcyBzcGVjaWZpYyB0byBhc3luYyBmbGlwcwo+ICAgZHJtL2k5MTU6IEFkZCBm
-bGlwX2RvbmVfaGFuZGxlciBkZWZpbml0aW9uCj4gICBkcm0vaTkxNTogRW5hYmxlIGFuZCBoYW5k
-bGUgZmxpcCBkb25lIGludGVycnVwdAo+ICAgZHJtL2k5MTU6IERvIG5vdCBjYWxsIGRybV9jcnRj
-X2FybV92YmxhbmtfZXZlbnQgaW4gYXN5bmMgZmxpcHMKPiAKPiAgZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMgfCA1NSArKysrKysrKysrKysrKysrKy0tCj4gIGRy
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfc3ByaXRlLmMgIHwgMTIgKystLQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jICAgICAgICAgICAgICB8IDU4ICsrKysrKysr
-KysrKysrKysrKystCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfaXJxLmggICAgICAgICAg
-ICAgIHwgIDIgKwo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oICAgICAgICAgICAg
-ICB8ICAxICsKPiAgNSBmaWxlcyBjaGFuZ2VkLCAxMTcgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRp
-b25zKC0pCj4gCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
-aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+This patchset adds:
+ - (Generic) integrated privacy screen support in drm
+ - Ability in i915 to attach to ACPI nodes
+ - an implmentation for ACPI privacy screen in i915
+
+Rajat Jain (4):
+  intel_acpi: Rename drm_dev local variable to dev
+  drm/connector: Add support for privacy-screen property
+  drm/i915: Lookup and attach ACPI device node for connectors
+  drm/i915: Add support for integrated privacy screen
+
+ drivers/gpu/drm/drm_atomic_uapi.c             |   4 +
+ drivers/gpu/drm/drm_connector.c               |  56 ++++++
+ drivers/gpu/drm/i915/Makefile                 |   3 +-
+ drivers/gpu/drm/i915/display/intel_acpi.c     |  28 ++-
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   5 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  43 ++++-
+ .../drm/i915/display/intel_privacy_screen.c   | 175 ++++++++++++++++++
+ .../drm/i915/display/intel_privacy_screen.h   |  27 +++
+ drivers/gpu/drm/i915/i915_drv.h               |   2 +
+ include/drm/drm_connector.h                   |  25 +++
+ 11 files changed, 365 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_privacy_screen.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_privacy_screen.h
+
+-- 
+2.25.1.481.gfbce0eb801-goog
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
