@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4F8517ED6E
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BC4217ED6B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:49:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B99606E5D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2486E5C6;
 	Tue, 10 Mar 2020 00:49:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9E3B6E5C1
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:49:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30E096E5CF
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:49:21 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2020 17:49:19 -0700
+ 09 Mar 2020 17:49:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="235886331"
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="235886335"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
- by orsmga008.jf.intel.com with ESMTP; 09 Mar 2020 17:49:19 -0700
+ by orsmga008.jf.intel.com with ESMTP; 09 Mar 2020 17:49:20 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon,  9 Mar 2020 17:49:06 -0700
-Message-Id: <20200310004911.1723239-3-matthew.d.roper@intel.com>
+Date: Mon,  9 Mar 2020 17:49:07 -0700
+Message-Id: <20200310004911.1723239-4-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.24.1
 In-Reply-To: <20200310004911.1723239-1-matthew.d.roper@intel.com>
 References: <20200310004911.1723239-1-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/7] drm/i915: Add Wa_1207131216:icl,ehl
+Subject: [Intel-gfx] [PATCH 3/7] drm/i915: Add Wa_1604278689:icl,ehl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,49 +47,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On gen11 the XY_FAST_COPY_BLT command has some size restrictions on its
-usage.  Although this instruction is mainly used by userspace, i915 also
-uses it to copy object contents during some selftests, so let's ensure
-the restrictions are followed.
+The bspec description for this workaround tells us to program
+0xFFFF_FFFF into both FBC_RT_BASE_ADDR_REGISTER_* registers, but we've
+previously found that this leads to failures in CI.  Our suspicion is
+that the failures are caused by this valid turning on the "address valid
+bit" even though we're intentionally supplying an invalid address.
+Experimentation has shown that setting all bits _except_ for the
+RT_VALID bit seems to avoid these failures.
 
-Bspec: 6544
+v2:
+ - Mask off the RT_VALID bit.  Experimentation with CI trybot indicates
+   that this is necessary to avoid reset failures on BCS.
+
+Bspec: 11388
+Bspec: 33451
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object_blt.c | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 6 ++++++
+ drivers/gpu/drm/i915/i915_reg.h             | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-index 39b8a055d80a..e00792158f13 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_blt.c
-@@ -196,6 +196,17 @@ int i915_gem_object_fill_blt(struct drm_i915_gem_object *obj,
- 	return err;
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 3e352e2a5b79..1cf931dde0ca 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -575,6 +575,12 @@ static void icl_ctx_workarounds_init(struct intel_engine_cs *engine,
+ 	/* allow headerless messages for preemptible GPGPU context */
+ 	WA_SET_BIT_MASKED(GEN10_SAMPLER_MODE,
+ 			  GEN11_SAMPLER_ENABLE_HEADLESS_MSG);
++
++	/* Wa_1604278689:icl,ehl */
++	wa_write_masked_or(wal, IVB_FBC_RT_BASE_UPPER,
++			   0, /* write-only register; skip validation */
++			   0xFFFFFFFF);
++	wa_write(wal, IVB_FBC_RT_BASE, 0xFFFFFFFF & ~ILK_FBC_RT_VALID);
  }
  
-+/* Wa_1209644611:icl,ehl */
-+static bool wa_1209644611_applies(struct drm_i915_private *i915, u32 size)
-+{
-+	u32 height = size >> PAGE_SHIFT;
-+
-+	if (!IS_GEN(i915, 11))
-+		return false;
-+
-+	return height % 4 == 3 && height <= 8;
-+}
-+
- struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 					 struct i915_vma *src,
- 					 struct i915_vma *dst)
-@@ -237,7 +248,8 @@ struct i915_vma *intel_emit_vma_copy_blt(struct intel_context *ce,
- 		size = min_t(u64, rem, block_size);
- 		GEM_BUG_ON(size >> PAGE_SHIFT > S16_MAX);
+ static void tgl_ctx_workarounds_init(struct intel_engine_cs *engine,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 79ae9654dac9..92ae96cf5b64 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3285,6 +3285,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
  
--		if (INTEL_GEN(i915) >= 9) {
-+		if (INTEL_GEN(i915) >= 9 &&
-+		    !wa_1209644611_applies(i915, size)) {
- 			*cmd++ = GEN9_XY_FAST_COPY_BLT_CMD | (10 - 2);
- 			*cmd++ = BLT_DEPTH_32 | PAGE_SIZE;
- 			*cmd++ = 0;
+ /* Framebuffer compression for Ivybridge */
+ #define IVB_FBC_RT_BASE			_MMIO(0x7020)
++#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
+ 
+ #define IPS_CTL		_MMIO(0x43408)
+ #define   IPS_ENABLE	(1 << 31)
 -- 
 2.24.1
 
