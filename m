@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3024D17F255
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:53:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA1817F256
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:53:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 641166E54C;
-	Tue, 10 Mar 2020 08:53:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F10386E84F;
+	Tue, 10 Mar 2020 08:53:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD3F36E54C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:53:22 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECD146E84F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:53:27 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:22 -0700
-X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="235873339"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:53:27 -0700
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="321727177"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:20 -0700
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:53:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 10:52:44 +0200
-Message-Id: <5964ce0a603e2ec0e6110c927a11234e66891258.1583766715.git.jani.nikula@intel.com>
+Date: Tue, 10 Mar 2020 10:52:45 +0200
+Message-Id: <47d5e88dedc08ee48938344296ada550dedd5f90.1583766715.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1583766715.git.jani.nikula@intel.com>
 References: <cover.1583766715.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 05/10] drm/i915/gmbus: convert to drm_device
- based logging, 
+Subject: [Intel-gfx] [PATCH 06/10] drm/i915/hdcp: convert to struct
+ drm_device based logging.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,175 +52,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Wambui Karuga <wambui.karugax@gmail.com>
 
-Conversion instances of printk based drm logging macros to use the
-struct drm_device based logging macros in i915/display/intel_gmbus.c.
-This was done using the following coccinelle semantic patch that
-transforms based on the existence of an existing drm_i915_private
-device:
-@@
-identifier fn, T;
-@@
+Converts various instances of the printk based drm logging macros to the
+struct drm_device based logging macros in i915/display/intel_hdcp.c.
+This also involves extracting the drm_i915_private device from the
+intel_connector type for use in the macros.
 
-fn(...,struct drm_i915_private *T,...) {
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-@@
-identifier fn, T;
-@@
-
-fn(...) {
-...
-struct drm_i915_private *T = ...;
-<+...
-(
--DRM_INFO(
-+drm_info(&T->drm,
-...)
-|
--DRM_ERROR(
-+drm_err(&T->drm,
-...)
-|
--DRM_WARN(
-+drm_warn(&T->drm,
-...)
-|
--DRM_DEBUG(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_KMS(
-+drm_dbg_kms(&T->drm,
-...)
-|
--DRM_DEBUG_DRIVER(
-+drm_dbg(&T->drm,
-...)
-|
--DRM_DEBUG_ATOMIC(
-+drm_dbg_atomic(&T->drm,
-...)
-)
-...+>
-}
-
-New checkpatch warnings were addressed manually.
+v2 by Jani:
+- rebase
 
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 33 +++++++++++++---------
- 1 file changed, 19 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 0aaaaac44973..1fd3a5a6296b 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -631,8 +631,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * till then let it sleep.
- 	 */
- 	if (gmbus_wait_idle(dev_priv)) {
--		DRM_DEBUG_KMS("GMBUS [%s] timed out waiting for idle\n",
--			 adapter->name);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "GMBUS [%s] timed out waiting for idle\n",
-+			    adapter->name);
- 		ret = -ETIMEDOUT;
- 	}
- 	intel_de_write_fw(dev_priv, GMBUS0, 0);
-@@ -655,8 +656,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 */
- 	ret = -ENXIO;
- 	if (gmbus_wait_idle(dev_priv)) {
--		DRM_DEBUG_KMS("GMBUS [%s] timed out after NAK\n",
--			      adapter->name);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "GMBUS [%s] timed out after NAK\n",
-+			    adapter->name);
- 		ret = -ETIMEDOUT;
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ee0f27ea2810..cd3b686980b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -1391,6 +1391,7 @@ static
+ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ {
+ 	struct intel_digital_port *intel_dig_port = intel_attached_dig_port(connector);
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+ 	union {
+ 		struct hdcp2_rep_stream_manage stream_manage;
+@@ -1431,7 +1432,7 @@ int hdcp2_propagate_stream_management_info(struct intel_connector *connector)
+ 	hdcp->seq_num_m++;
+ 
+ 	if (hdcp->seq_num_m > HDCP_2_2_SEQ_NUM_MAX) {
+-		DRM_DEBUG_KMS("seq_num_m roll over.\n");
++		drm_dbg_kms(&i915->drm, "seq_num_m roll over.\n");
+ 		return -1;
  	}
  
-@@ -668,9 +670,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	intel_de_write_fw(dev_priv, GMBUS1, 0);
- 	intel_de_write_fw(dev_priv, GMBUS0, 0);
- 
--	DRM_DEBUG_KMS("GMBUS [%s] NAK for addr: %04x %c(%d)\n",
--			 adapter->name, msgs[i].addr,
--			 (msgs[i].flags & I2C_M_RD) ? 'r' : 'w', msgs[i].len);
-+	drm_dbg_kms(&dev_priv->drm, "GMBUS [%s] NAK for addr: %04x %c(%d)\n",
-+		    adapter->name, msgs[i].addr,
-+		    (msgs[i].flags & I2C_M_RD) ? 'r' : 'w', msgs[i].len);
- 
- 	/*
- 	 * Passive adapters sometimes NAK the first probe. Retry the first
-@@ -679,16 +681,18 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * drm_do_probe_ddc_edid, which bails out on the first -ENXIO.
- 	 */
- 	if (ret == -ENXIO && i == 0 && try++ == 0) {
--		DRM_DEBUG_KMS("GMBUS [%s] NAK on first message, retry\n",
--			      adapter->name);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "GMBUS [%s] NAK on first message, retry\n",
-+			    adapter->name);
- 		goto retry;
- 	}
- 
- 	goto out;
- 
- timeout:
--	DRM_DEBUG_KMS("GMBUS [%s] timed out, falling back to bit banging on pin %d\n",
--		      bus->adapter.name, bus->reg0 & 0xff);
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "GMBUS [%s] timed out, falling back to bit banging on pin %d\n",
-+		    bus->adapter.name, bus->reg0 & 0xff);
- 	intel_de_write_fw(dev_priv, GMBUS0, 0);
- 
- 	/*
-@@ -925,9 +929,10 @@ void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit)
- 	mutex_lock(&dev_priv->gmbus_mutex);
- 
- 	bus->force_bit += force_bit ? 1 : -1;
--	DRM_DEBUG_KMS("%sabling bit-banging on %s. force bit now %d\n",
--		      force_bit ? "en" : "dis", adapter->name,
--		      bus->force_bit);
-+	drm_dbg_kms(&dev_priv->drm,
-+		    "%sabling bit-banging on %s. force bit now %d\n",
-+		    force_bit ? "en" : "dis", adapter->name,
-+		    bus->force_bit);
- 
- 	mutex_unlock(&dev_priv->gmbus_mutex);
- }
 -- 
 2.20.1
 
