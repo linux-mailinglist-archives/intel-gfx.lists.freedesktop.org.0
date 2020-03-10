@@ -1,42 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A6F1808DD
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 21:12:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B4CA1808E1
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 21:12:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F356E8D9;
-	Tue, 10 Mar 2020 20:12:08 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA1316E8D7;
- Tue, 10 Mar 2020 20:12:06 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 13:11:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="353700766"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 10 Mar 2020 13:11:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Mar 2020 22:11:51 +0200
-Date: Tue, 10 Mar 2020 22:11:51 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Lyude Paul <lyude@redhat.com>
-Message-ID: <20200310201151.GS13686@intel.com>
-References: <20200310185417.1588984-1-lyude@redhat.com>
- <20200310195122.1590925-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B80AC6E8DA;
+	Tue, 10 Mar 2020 20:12:51 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 987616E8DA
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 20:12:49 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20514343-1500050 for multiple; Tue, 10 Mar 2020 20:12:12 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310195122.1590925-1-lyude@redhat.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/mst: Hookup DRM DP MST
- late_register/early_unregister callbacks
+In-Reply-To: <9f190888-77f5-a7a0-c061-3578973e261e@linux.intel.com>
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-9-tvrtko.ursulin@linux.intel.com>
+ <158386512435.28297.9321243628022207699@build.alporthouse.com>
+ <9f190888-77f5-a7a0-c061-3578973e261e@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <158387113173.28297.4263001679670929491@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 10 Mar 2020 20:12:11 +0000
+Subject: Re: [Intel-gfx] [RFC 08/12] drm/i915: Expose per-engine client
+ busyness
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,103 +43,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 03:51:21PM -0400, Lyude Paul wrote:
-> i915 can enable aux device nodes for DP MST by calling
-> drm_dp_mst_connector_late_register()/drm_dp_mst_connector_early_unregiste=
-r(),
-> so let's hook that up.
-> =
+Quoting Tvrtko Ursulin (2020-03-10 20:04:23)
+> 
+> On 10/03/2020 18:32, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2020-03-09 18:31:25)
+> >> +static ssize_t
+> >> +show_client_busy(struct device *kdev, struct device_attribute *attr, char *buf)
+> >> +{
+> >> +       struct i915_engine_busy_attribute *i915_attr =
+> >> +               container_of(attr, typeof(*i915_attr), attr);
+> >> +       unsigned int class = i915_attr->engine_class;
+> >> +       struct i915_drm_client *client = i915_attr->client;
+> >> +       u64 total = atomic64_read(&client->past_runtime[class]);
+> >> +       struct list_head *list = &client->ctx_list;
+> >> +       struct i915_gem_context *ctx;
+> >> +
+> >> +       rcu_read_lock();
+> >> +       list_for_each_entry_rcu(ctx, list, client_link) {
+> >> +               total += atomic64_read(&ctx->past_runtime[class]);
+> >> +               total += pphwsp_busy_add(ctx, class);
+> >> +       }
+> >> +       rcu_read_unlock();
+> >> +
+> >> +       total *= RUNTIME_INFO(i915_attr->i915)->cs_timestamp_period_ns;
+> > 
+> > Planning early retirement? In 600 years, they'll have forgotten how to
+> > email ;)
+> 
+> Shruggety shrug. :) I am guessing you would prefer both internal 
+> representations (sw and pphwsp runtimes) to be consistently in 
+> nanoseconds? I thought why multiply at various places when once at the 
+> readout time is enough.
 
-> Changes since v1:
-> * Call intel_connector_register/unregister() from
->   intel_dp_mst_connector_late_register/unregister() so we don't lose
->   error injection - Ville Syrj=E4l=E4
-> Changes since v2:
-> * Don't forget to clean up if intel_connector_register() fails - Ville
-> =
+It's fine. I was just double checking overflow, and then remembered the
+end result is 64b nanoseconds.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: "Lee, Shawn C" <shawn.c.lee@intel.com>
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
+Keep the internal representation convenient for accumulation, and the
+conversion at the boundary.
+ 
+> And I should mention again how I am not sure at the moment how to meld 
+> the two stats into one more "perfect" output.
 
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+One of the things that crossed my mind was wondering if it was possible
+to throw in a pulse before reading the stats (if active etc). Usual
+dilemma with non-preemptible contexts, so probably not worth it as those
+hogs will remain hogs.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 33 +++++++++++++++++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index d53978ed3c12..e08caca658c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -548,12 +548,41 @@ static int intel_dp_mst_get_ddc_modes(struct drm_co=
-nnector *connector)
->  	return ret;
->  }
->  =
-
-> +static int
-> +intel_dp_mst_connector_late_register(struct drm_connector *connector)
-> +{
-> +	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
-> +	int ret;
-> +
-> +	ret =3D drm_dp_mst_connector_late_register(connector,
-> +						 intel_connector->port);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret =3D intel_connector_register(connector);
-> +	if (ret < 0)
-> +		drm_dp_mst_connector_early_unregister(connector,
-> +						      intel_connector->port);
-> +
-> +	return ret;
-> +}
-> +
-> +static void
-> +intel_dp_mst_connector_early_unregister(struct drm_connector *connector)
-> +{
-> +	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
-r);
-> +
-> +	intel_connector_unregister(connector);
-> +	drm_dp_mst_connector_early_unregister(connector,
-> +					      intel_connector->port);
-> +}
-> +
->  static const struct drm_connector_funcs intel_dp_mst_connector_funcs =3D=
- {
->  	.fill_modes =3D drm_helper_probe_single_connector_modes,
->  	.atomic_get_property =3D intel_digital_connector_atomic_get_property,
->  	.atomic_set_property =3D intel_digital_connector_atomic_set_property,
-> -	.late_register =3D intel_connector_register,
-> -	.early_unregister =3D intel_connector_unregister,
-> +	.late_register =3D intel_dp_mst_connector_late_register,
-> +	.early_unregister =3D intel_dp_mst_connector_early_unregister,
->  	.destroy =3D intel_connector_destroy,
->  	.atomic_destroy_state =3D drm_atomic_helper_connector_destroy_state,
->  	.atomic_duplicate_state =3D intel_digital_connector_duplicate_state,
-> -- =
-
-> 2.24.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+And I worry about the disparity between sw busy and hw runtime.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
