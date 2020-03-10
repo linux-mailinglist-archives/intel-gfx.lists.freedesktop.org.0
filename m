@@ -2,35 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F331917ED51
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C632817ED69
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:49:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 377616E11E;
-	Tue, 10 Mar 2020 00:30:50 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 057DD6E11E
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:30:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20502190-1500050 for multiple; Tue, 10 Mar 2020 00:13:53 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C4F36E5CC;
+	Tue, 10 Mar 2020 00:49:20 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07DB76E5C1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:49:18 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 17:49:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="235886314"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by orsmga008.jf.intel.com with ESMTP; 09 Mar 2020 17:49:18 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon,  9 Mar 2020 17:49:04 -0700
+Message-Id: <20200310004911.1723239-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-In-Reply-To: <ee5b6168-4e0a-6bbc-731e-a7391cc96397@linux.intel.com>
-References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
- <20200309183129.2296-2-tvrtko.ursulin@linux.intel.com>
- <158378968022.16414.13552854522311222381@build.alporthouse.com>
- <ee5b6168-4e0a-6bbc-731e-a7391cc96397@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <158379923268.3232.8572720070601085988@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 10 Mar 2020 00:13:52 +0000
-Subject: Re: [Intel-gfx] [RFC 01/12] drm/i915: Expose list of clients in
- sysfs
+Subject: [Intel-gfx] [PATCH 0/7] Gen11 workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +45,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-09 23:26:34)
-> 
-> On 09/03/2020 21:34, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-03-09 18:31:18)
-> >> +struct i915_drm_client *
-> >> +i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
-> >> +{
-> >> +       struct i915_drm_client *client;
-> >> +       int ret;
-> >> +
-> >> +       client = kzalloc(sizeof(*client), GFP_KERNEL);
-> >> +       if (!client)
-> >> +               return ERR_PTR(-ENOMEM);
-> >> +
-> >> +       kref_init(&client->kref);
-> >> +       client->clients = clients;
-> >> +
-> >> +       ret = mutex_lock_interruptible(&clients->lock);
-> >> +       if (ret)
-> >> +               goto err_id;
-> >> +       ret = xa_alloc_cyclic(&clients->xarray, &client->id, client,
-> >> +                             xa_limit_32b, &clients->next_id, GFP_KERNEL);
-> > 
-> > So what's next_id used for that explains having the over-arching mutex?
-> 
-> It's to give out client id's "cyclically" - before I apparently 
-> misunderstood what xa_alloc_cyclic is supposed to do - I thought after 
-> giving out id 1 it would give out 2 next, even if 1 was returned to the 
-> pool in the meantime. But it doesn't, I need to track the start point 
-> for the next search with "next".
+The first patch here technically impacts all gen8+ platforms, but the
+rest of these are specifically for ICL and EHL.
 
-Ok. A requirement of the API for the external counter.
- 
-> I want this to make intel_gpu_top's life easier, so it doesn't have to 
-> deal with id recycling for all practical purposes.
+Matt Roper (7):
+  drm/i915: Handle all MCR ranges
+  drm/i915: Add Wa_1207131216:icl,ehl
+  drm/i915: Add Wa_1604278689:icl,ehl
+  drm/i915: Add Wa_1406306137:icl,ehl
+  drm/i915: Apply Wa_1406680159:icl,ehl as an engine workaround
+  drm/i915: Add Wa_1605460711 / Wa_1408767742 to ICL and EHL
+  drm/i915: Add Wa_1409178092:icl,ehl
 
-Fair enough. I only worry about the radix nodes and sparse ids :)
- 
-> And a peek into xa implementation told me the internal lock is not 
-> protecting "next.
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    | 14 ++++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 56 ++++++++++++++++---
+ drivers/gpu/drm/i915/i915_reg.h               |  2 +
+ 3 files changed, 63 insertions(+), 9 deletions(-)
 
-See xa_alloc_cyclic(), seems to cover __xa_alloc_cycle (where *next is
-manipulated) under the xa_lock.
--Chris
+-- 
+2.24.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
