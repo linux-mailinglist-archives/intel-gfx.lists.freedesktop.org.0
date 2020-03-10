@@ -2,29 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34EBC17F4DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 020F617F4DF
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:18:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 758DA6E85C;
-	Tue, 10 Mar 2020 10:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D9C6E862;
+	Tue, 10 Mar 2020 10:18:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 592156E85C
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 10:17:46 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20506101-1500050 
- for multiple; Tue, 10 Mar 2020 10:17:21 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 10:17:20 +0000
-Message-Id: <20200310101720.9944-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7E16E862
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 10:18:04 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 03:18:03 -0700
+X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="288994066"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 10 Mar 2020 03:18:02 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+ <20200306133852.3420322-6-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <18554e6a-722e-8496-f92f-19855c6949d9@linux.intel.com>
+Date: Tue, 10 Mar 2020 10:18:00 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Defer semaphore priority bumping to a
- workqueue
+In-Reply-To: <20200306133852.3420322-6-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 06/17] drm/i915: Extend
+ i915_request_await_active to use all timelines
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,136 +48,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: stable@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since the semaphore fence may be signaled from inside an interrupt
-handler from inside a request holding its request->lock, we cannot then
-enter into the engine->active.lock for processing the semaphore priority
-bump as we may traverse our call tree and end up on another held
-request.
 
-CPU 0:
-[ 2243.218864]  _raw_spin_lock_irqsave+0x9a/0xb0
-[ 2243.218867]  i915_schedule_bump_priority+0x49/0x80 [i915]
-[ 2243.218869]  semaphore_notify+0x6d/0x98 [i915]
-[ 2243.218871]  __i915_sw_fence_complete+0x61/0x420 [i915]
-[ 2243.218874]  ? kmem_cache_free+0x211/0x290
-[ 2243.218876]  i915_sw_fence_complete+0x58/0x80 [i915]
-[ 2243.218879]  dma_i915_sw_fence_wake+0x3e/0x80 [i915]
-[ 2243.218881]  signal_irq_work+0x571/0x690 [i915]
-[ 2243.218883]  irq_work_run_list+0xd7/0x120
-[ 2243.218885]  irq_work_run+0x1d/0x50
-[ 2243.218887]  smp_irq_work_interrupt+0x21/0x30
-[ 2243.218889]  irq_work_interrupt+0xf/0x20
+On 06/03/2020 13:38, Chris Wilson wrote:
+> Extend i915_request_await_active() to be able to asynchronously wait on
+> all the tracked timelines simultaneously.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>   drivers/gpu/drm/i915/i915_active.c | 51 +++++++++++++++++++++++-------
+>   drivers/gpu/drm/i915/i915_active.h |  5 ++-
+>   drivers/gpu/drm/i915/i915_vma.c    |  2 +-
+>   3 files changed, 45 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+> index 1826de14d2da..e659688db043 100644
+> --- a/drivers/gpu/drm/i915/i915_active.c
+> +++ b/drivers/gpu/drm/i915/i915_active.c
+> @@ -518,23 +518,52 @@ int i915_active_wait(struct i915_active *ref)
+>   	return 0;
+>   }
+>   
+> -int i915_request_await_active(struct i915_request *rq, struct i915_active *ref)
+> +static int await_active(struct i915_request *rq,
+> +			struct i915_active_fence *active)
+> +{
+> +	struct dma_fence *fence;
+> +
+> +	if (is_barrier(active))
+> +		return 0;
+> +
+> +	fence = i915_active_fence_get(active);
+> +	if (fence) {
+> +		int err;
+> +
+> +		err = i915_request_await_dma_fence(rq, fence);
+> +		dma_fence_put(fence);
+> +		if (err < 0)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +int i915_request_await_active(struct i915_request *rq,
+> +			      struct i915_active *ref,
+> +			      unsigned int flags)
+>   {
+>   	int err = 0;
+>   
+> +	/* We must always wait for the exclusive fence! */
+>   	if (rcu_access_pointer(ref->excl.fence)) {
+> -		struct dma_fence *fence;
+> -
+> -		rcu_read_lock();
+> -		fence = dma_fence_get_rcu_safe(&ref->excl.fence);
+> -		rcu_read_unlock();
+> -		if (fence) {
+> -			err = i915_request_await_dma_fence(rq, fence);
+> -			dma_fence_put(fence);
+> -		}
+> +		err = await_active(rq, &ref->excl);
+> +		if (err)
+> +			return err;
+>   	}
+>   
+> -	/* In the future we may choose to await on all fences */
+> +	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
+> +		struct active_node *it, *n;
+> +
+> +		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
+> +			err = await_active(rq, &it->base);
+> +			if (err)
+> +				break;
+> +		}
+> +		i915_active_release(ref);
+> +		if (err)
+> +			return err;
+> +	}
+>   
+>   	return err;
+>   }
+> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
+> index 7e438501333e..e3c13060c4c7 100644
+> --- a/drivers/gpu/drm/i915/i915_active.h
+> +++ b/drivers/gpu/drm/i915/i915_active.h
+> @@ -183,7 +183,10 @@ static inline bool i915_active_has_exclusive(struct i915_active *ref)
+>   
+>   int i915_active_wait(struct i915_active *ref);
+>   
+> -int i915_request_await_active(struct i915_request *rq, struct i915_active *ref);
+> +int i915_request_await_active(struct i915_request *rq,
+> +			      struct i915_active *ref,
+> +			      unsigned int flags);
+> +#define I915_ACTIVE_AWAIT_ALL BIT(0)
+>   
+>   int i915_active_acquire(struct i915_active *ref);
+>   bool i915_active_acquire_if_busy(struct i915_active *ref);
+> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+> index 3dde671145f7..5b3efb43a8ef 100644
+> --- a/drivers/gpu/drm/i915/i915_vma.c
+> +++ b/drivers/gpu/drm/i915/i915_vma.c
+> @@ -1173,7 +1173,7 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
+>   	GEM_BUG_ON(!i915_vma_is_pinned(vma));
+>   
+>   	/* Wait for the vma to be bound before we start! */
+> -	err = i915_request_await_active(rq, &vma->active);
+> +	err = i915_request_await_active(rq, &vma->active, 0);
+>   	if (err)
+>   		return err;
+>   
+> 
 
-CPU 1:
-[ 2242.173107]  _raw_spin_lock+0x8f/0xa0
-[ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
-[ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
-[ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
-[ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
-[ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
-[ 2242.173121]  __i915_sw_fence_complete+0x61/0x420 [i915]
-[ 2242.173124]  ? _raw_spin_unlock_irqrestore+0x39/0x40
-[ 2242.173137]  i915_sw_fence_complete+0x58/0x80 [i915]
-[ 2242.173140]  i915_sw_fence_commit+0x16/0x20 [i915]
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-CPU 2:
-[ 2242.173107]  _raw_spin_lock+0x8f/0xa0
-[ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
-[ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
-[ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
-[ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
-[ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
+Regards,
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1318
-Fixes: b7404c7ecb38 ("drm/i915: Bump ready tasks ahead of busywaits")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: <stable@vger.kernel.org> # v5.2+
----
- drivers/gpu/drm/i915/i915_request.c | 22 +++++++++++++++++-----
- drivers/gpu/drm/i915/i915_request.h |  2 ++
- 2 files changed, 19 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index 04b52bf347bf..129357d4b599 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -588,19 +588,31 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 	return NOTIFY_DONE;
- }
- 
-+static void irq_semaphore_cb(struct irq_work *wrk)
-+{
-+	struct i915_request *rq =
-+		container_of(wrk, typeof(*rq), semaphore_work);
-+
-+	i915_schedule_bump_priority(rq, I915_PRIORITY_NOSEMAPHORE);
-+	i915_request_put(rq);
-+}
-+
- static int __i915_sw_fence_call
- semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- {
--	struct i915_request *request =
--		container_of(fence, typeof(*request), semaphore);
-+	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
- 
- 	switch (state) {
- 	case FENCE_COMPLETE:
--		i915_schedule_bump_priority(request, I915_PRIORITY_NOSEMAPHORE);
-+		if (!(READ_ONCE(rq->sched.attr.priority) & I915_PRIORITY_NOSEMAPHORE)) {
-+			i915_request_get(rq);
-+			init_irq_work(&rq->semaphore_work, irq_semaphore_cb);
-+			irq_work_queue(&rq->semaphore_work);
-+		}
- 		break;
- 
- 	case FENCE_FREE:
--		i915_request_put(request);
-+		i915_request_put(rq);
- 		break;
- 	}
- 
-@@ -1369,9 +1381,9 @@ void __i915_request_queue(struct i915_request *rq,
- 	 * decide whether to preempt the entire chain so that it is ready to
- 	 * run at the earliest possible convenience.
- 	 */
--	i915_sw_fence_commit(&rq->semaphore);
- 	if (attr && rq->engine->schedule)
- 		rq->engine->schedule(rq, attr);
-+	i915_sw_fence_commit(&rq->semaphore);
- 	i915_sw_fence_commit(&rq->submit);
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
-index 6020d5b2a3df..3c552bfea67a 100644
---- a/drivers/gpu/drm/i915/i915_request.h
-+++ b/drivers/gpu/drm/i915/i915_request.h
-@@ -26,6 +26,7 @@
- #define I915_REQUEST_H
- 
- #include <linux/dma-fence.h>
-+#include <linux/irq_work.h>
- #include <linux/lockdep.h>
- 
- #include "gem/i915_gem_context_types.h"
-@@ -208,6 +209,7 @@ struct i915_request {
- 	};
- 	struct list_head execute_cb;
- 	struct i915_sw_fence semaphore;
-+	struct irq_work semaphore_work;
- 
- 	/*
- 	 * A list of everyone we wait upon, and everyone who waits upon us.
--- 
-2.20.1
-
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
