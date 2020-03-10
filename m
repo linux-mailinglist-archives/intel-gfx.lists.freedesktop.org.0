@@ -2,32 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F55180407
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1F018049E
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 18:18:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E237B6E8B5;
-	Tue, 10 Mar 2020 16:55:13 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D9776E369;
+	Tue, 10 Mar 2020 17:18:27 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 302EE6E8B5
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 16:55:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14CE86E369
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 17:18:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20512375-1500050 for multiple; Tue, 10 Mar 2020 16:55:03 +0000
-MIME-Version: 1.0
-In-Reply-To: <20200310164733.26487-1-tvrtko.ursulin@linux.intel.com>
-References: <20200310164733.26487-1-tvrtko.ursulin@linux.intel.com>
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20512654-1500050 
+ for multiple; Tue, 10 Mar 2020 17:18:07 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Message-ID: <158385930289.28297.11358244375709909665@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 10 Mar 2020 16:55:02 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove debugfs i915_drpc_info and
- i915_forcewake_domains
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 17:18:07 +0000
+Message-Id: <20200310171807.1122-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Mark up the racy read of the
+ mmap_singleton
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,18 +42,47 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-10 16:47:33)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> The two files have been duplicated under the gt/ subdir and since there
-> are not apparent users looking for them at the old location lets simply
-> remove them and duplicated code.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Andi Shyti <andi.shyti@intel.com>
-> Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
--Chris
+[11057.642683] BUG: KCSAN: data-race in i915_gem_mmap [i915] / singleton_release [i915]
+[11057.642717]
+[11057.642740] write (marked) to 0xffff8881f24471a0 of 8 bytes by task 44668 on cpu 2:
+[11057.643162]  singleton_release+0x38/0x60 [i915]
+[11057.643192]  __fput+0x160/0x3c0
+[11057.643217]  ____fput+0x16/0x20
+[11057.643241]  task_work_run+0xba/0x100
+[11057.643263]  exit_to_usermode_loop+0xe4/0xf0
+[11057.643286]  do_syscall_64+0x27e/0x2c0
+[11057.643314]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[11057.643339]
+[11057.643359] read to 0xffff8881f24471a0 of 8 bytes by task 44667 on cpu 3:
+[11057.643774]  i915_gem_mmap+0x295/0x670 [i915]
+[11057.643802]  mmap_region+0x62b/0xac0
+[11057.643825]  do_mmap+0x414/0x6b0
+[11057.643848]  vm_mmap_pgoff+0xa9/0xf0
+[11057.643875]  ksys_mmap_pgoff+0x1ac/0x2f0
+[11057.643900]  do_syscall_64+0x6e/0x2c0
+[11057.643924]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+index e8cccc131c40..b39c24dae64e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
+@@ -775,7 +775,7 @@ static struct file *mmap_singleton(struct drm_i915_private *i915)
+ 	struct file *file;
+ 
+ 	rcu_read_lock();
+-	file = i915->gem.mmap_singleton;
++	file = READ_ONCE(i915->gem.mmap_singleton);
+ 	if (file && !get_file_rcu(file))
+ 		file = NULL;
+ 	rcu_read_unlock();
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
