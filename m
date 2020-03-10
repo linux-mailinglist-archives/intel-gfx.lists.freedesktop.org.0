@@ -2,34 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A46AE17F357
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 10:19:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 586E317F364
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 10:22:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDDE6E15C;
-	Tue, 10 Mar 2020 09:19:33 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137116E843
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 09:19:32 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 02:19:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260718660"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.252.21.27])
- by orsmga002.jf.intel.com with ESMTP; 10 Mar 2020 02:19:29 -0700
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 09:19:27 +0000
-Message-Id: <20200310091927.27401-1-tvrtko.ursulin@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDFE6E15A;
+	Tue, 10 Mar 2020 09:22:02 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88AC96E15A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 09:21:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20505102-1500050 
+ for multiple; Tue, 10 Mar 2020 09:21:20 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: linux-kernel@vger.kernel.org
+Date: Tue, 10 Mar 2020 09:21:19 +0000
+Message-Id: <20200310092119.14965-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/tgl:
- WaEnablePreemptionGranularityControlByUMD
+Subject: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside 'safe'
+ list iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,43 +37,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Paul E. McKenney" <paulmck@kernel.org>, intel-gfx@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>, stable@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Instruct the compiler to read the next element in the list iteration
+once, and that it is not allowed to reload the value from the stale
+element later. This is important as during the course of the safe
+iteration, the stale element may be poisoned (unbeknownst to the
+compiler).
 
-Certain workloads need the ability to disable preemption completely so
-allow them to do that by whitelisting GEN8_CS_CHICKEN1.
+This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
+list elements during list_for_each_entry_safe() and friends.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Tony Ye <tony.ye@intel.com>
-Cc: Rafael Antognolli <rafael.antognolli@intel.com>
-Cc: Jason Ekstrand <jason@jlekstrand.net>
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: "Paul E. McKenney" <paulmck@kernel.org>
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: stable@vger.kernel.org
 ---
-We need confirmation and acks from all three userspace components here.
-Especially since my impression was some are for and some were against
-whitelisting this one.
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 3 +++
- 1 file changed, 3 insertions(+)
+ include/linux/list.h | 50 +++++++++++++++++++++++++++++++-------------
+ 1 file changed, 36 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 391f39b1fb26..37becdf77427 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1276,6 +1276,9 @@ static void tgl_whitelist_build(struct intel_engine_cs *engine)
+diff --git a/include/linux/list.h b/include/linux/list.h
+index 884216db3246..c4d215d02259 100644
+--- a/include/linux/list.h
++++ b/include/linux/list.h
+@@ -536,6 +536,17 @@ static inline void list_splice_tail_init(struct list_head *list,
+ #define list_next_entry(pos, member) \
+ 	list_entry((pos)->member.next, typeof(*(pos)), member)
  
- 		/* Wa_1806527549:tgl */
- 		whitelist_reg(w, HIZ_CHICKEN);
++/**
++ * list_next_entry_safe - get the next element in list [once]
++ * @pos:	the type * to cursor
++ * @member:	the name of the list_head within the struct.
++ *
++ * Like list_next_entry() but prevents the compiler from reloading the
++ * next element.
++ */
++#define list_next_entry_safe(pos, member) \
++	list_entry(READ_ONCE((pos)->member.next), typeof(*(pos)), member)
 +
-+		/* WaEnablePreemptionGranularityControlByUMD:tgl */
-+		whitelist_reg(w, GEN8_CS_CHICKEN1);
- 		break;
- 	default:
- 		break;
+ /**
+  * list_prev_entry - get the prev element in list
+  * @pos:	the type * to cursor
+@@ -544,6 +555,17 @@ static inline void list_splice_tail_init(struct list_head *list,
+ #define list_prev_entry(pos, member) \
+ 	list_entry((pos)->member.prev, typeof(*(pos)), member)
+ 
++/**
++ * list_prev_entry_safe - get the prev element in list [once]
++ * @pos:	the type * to cursor
++ * @member:	the name of the list_head within the struct.
++ *
++ * Like list_prev_entry() but prevents the compiler from reloading the
++ * previous element.
++ */
++#define list_prev_entry_safe(pos, member) \
++	list_entry(READ_ONCE((pos)->member.prev), typeof(*(pos)), member)
++
+ /**
+  * list_for_each	-	iterate over a list
+  * @pos:	the &struct list_head to use as a loop cursor.
+@@ -686,9 +708,9 @@ static inline void list_splice_tail_init(struct list_head *list,
+  */
+ #define list_for_each_entry_safe(pos, n, head, member)			\
+ 	for (pos = list_first_entry(head, typeof(*pos), member),	\
+-		n = list_next_entry(pos, member);			\
++		n = list_next_entry_safe(pos, member);			\
+ 	     &pos->member != (head); 					\
+-	     pos = n, n = list_next_entry(n, member))
++	     pos = n, n = list_next_entry_safe(n, member))
+ 
+ /**
+  * list_for_each_entry_safe_continue - continue list iteration safe against removal
+@@ -700,11 +722,11 @@ static inline void list_splice_tail_init(struct list_head *list,
+  * Iterate over list of given type, continuing after current point,
+  * safe against removal of list entry.
+  */
+-#define list_for_each_entry_safe_continue(pos, n, head, member) 		\
+-	for (pos = list_next_entry(pos, member), 				\
+-		n = list_next_entry(pos, member);				\
+-	     &pos->member != (head);						\
+-	     pos = n, n = list_next_entry(n, member))
++#define list_for_each_entry_safe_continue(pos, n, head, member) 	\
++	for (pos = list_next_entry(pos, member), 			\
++		n = list_next_entry_safe(pos, member);			\
++	     &pos->member != (head);					\
++	     pos = n, n = list_next_entry_safe(n, member))
+ 
+ /**
+  * list_for_each_entry_safe_from - iterate over list from current point safe against removal
+@@ -716,10 +738,10 @@ static inline void list_splice_tail_init(struct list_head *list,
+  * Iterate over list of given type from current point, safe against
+  * removal of list entry.
+  */
+-#define list_for_each_entry_safe_from(pos, n, head, member) 			\
+-	for (n = list_next_entry(pos, member);					\
+-	     &pos->member != (head);						\
+-	     pos = n, n = list_next_entry(n, member))
++#define list_for_each_entry_safe_from(pos, n, head, member) 		\
++	for (n = list_next_entry_safe(pos, member);			\
++	     &pos->member != (head);					\
++	     pos = n, n = list_next_entry_safe(n, member))
+ 
+ /**
+  * list_for_each_entry_safe_reverse - iterate backwards over list safe against removal
+@@ -733,9 +755,9 @@ static inline void list_splice_tail_init(struct list_head *list,
+  */
+ #define list_for_each_entry_safe_reverse(pos, n, head, member)		\
+ 	for (pos = list_last_entry(head, typeof(*pos), member),		\
+-		n = list_prev_entry(pos, member);			\
++		n = list_prev_entry_safe(pos, member);			\
+ 	     &pos->member != (head); 					\
+-	     pos = n, n = list_prev_entry(n, member))
++	     pos = n, n = list_prev_entry_safe(n, member))
+ 
+ /**
+  * list_safe_reset_next - reset a stale list_for_each_entry_safe loop
+@@ -750,7 +772,7 @@ static inline void list_splice_tail_init(struct list_head *list,
+  * completing the current iteration of the loop body.
+  */
+ #define list_safe_reset_next(pos, n, member)				\
+-	n = list_next_entry(pos, member)
++	n = list_next_entry_safe(pos, member)
+ 
+ /*
+  * Double linked lists with a single pointer list head.
 -- 
 2.20.1
 
