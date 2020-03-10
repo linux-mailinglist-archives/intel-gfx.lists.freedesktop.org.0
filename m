@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 640D41802D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:08:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 126661802ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:15:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDDCD6E89A;
-	Tue, 10 Mar 2020 16:08:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEBC26E89C;
+	Tue, 10 Mar 2020 16:15:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3EFE6E898;
- Tue, 10 Mar 2020 16:08:30 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 09:08:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="234391542"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 10 Mar 2020 09:08:26 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Mar 2020 18:08:25 +0200
-Date: Tue, 10 Mar 2020 18:08:25 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200310160825.GJ13686@intel.com>
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225070545.4482-5-pankaj.laxminarayan.bharadiya@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD65C6E89C;
+ Tue, 10 Mar 2020 16:15:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B312CA47DA;
+ Tue, 10 Mar 2020 16:15:23 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200225070545.4482-5-pankaj.laxminarayan.bharadiya@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC][PATCH 4/5] drm/i915: Introduce scaling filter
- related registers and bit fields.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Manasi Navare" <manasi.d.navare@intel.com>
+Date: Tue, 10 Mar 2020 16:15:23 -0000
+Message-ID: <158385692370.1135.17478975899292793110@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200309213940.27965-1-manasi.d.navare@intel.com>
+In-Reply-To: <20200309213940.27965-1-manasi.d.navare@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5Bv5=2C1/2=5D_drm/edid=3A_Name_the_detailed_?=
+ =?utf-8?q?monitor_range_flags?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,88 +39,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mripard@kernel.org, tzimmermann@suse.de, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- mihail.atanassov@arm.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2020 at 12:35:44PM +0530, Pankaj Bharadiya wrote:
-> Introduce scaler registers and bit fields needed to configure the
-> scaling filter in prgrammed mode and configure scaling filter
-> coefficients.
-> =
+== Series Details ==
 
-> Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> =
+Series: series starting with [v5,1/2] drm/edid: Name the detailed monitor range flags
+URL   : https://patchwork.freedesktop.org/series/74471/
+State : success
 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 34923b1c284c..bba4ad3be611 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -7289,6 +7289,18 @@ enum {
->  #define _PS_ECC_STAT_2B     0x68AD0
->  #define _PS_ECC_STAT_1C     0x691D0
->  =
+== Summary ==
 
-> +#define _PS_COEF_SET0_INDEX_1A     0x68198
-> +#define _PS_COEF_SET0_INDEX_2A     0x68298
-> +#define _PS_COEF_SET0_INDEX_1B     0x68998
-> +#define _PS_COEF_SET0_INDEX_2B     0x68A98
-> +
-> +#define _PS_COEF_SET0_DATA_1A     0x6819C
-> +#define _PS_COEF_SET0_DATA_2A     0x6829C
-> +#define _PS_COEF_SET0_DATA_1B     0x6899C
-> +#define _PS_COEF_SET0_DATA_2B     0x68A9C
-> +
+CI Bug Log - changes from CI_DRM_8106 -> Patchwork_16898
+====================================================
 
-Sourious whitespace.
+Summary
+-------
 
-> +#define _PS_COEE_INDEX_AUTO_INC (1 << 10)
+  **SUCCESS**
 
-Wrong indentation (though looks like most scaler register
-definitions get that wrong already), and the leading '_' shouldn't
-be here at all.
+  No regressions found.
 
-> +
->  #define _ID(id, a, b) _PICK_EVEN(id, a, b)
->  #define SKL_PS_CTRL(pipe, id) _MMIO_PIPE(pipe,        \
->  			_ID(id, _PS_1A_CTRL, _PS_2A_CTRL),       \
-> @@ -7318,6 +7330,14 @@ enum {
->  			_ID(id, _PS_ECC_STAT_1A, _PS_ECC_STAT_2A),   \
->  			_ID(id, _PS_ECC_STAT_1B, _PS_ECC_STAT_2B))
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/index.html
 
-> +#define SKL_PS_COEF_INDEX_SET0(pipe, id)  _MMIO_PIPE(pipe,    \
-> +			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
-> +			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
-> +
-> +#define SKL_PS_COEF_DATA_SET0(pipe, id)  _MMIO_PIPE(pipe,     \
-> +			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
-> +			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
+Known issues
+------------
 
-Please parametrize by 'set' as well.
+  Here are the changes found in Patchwork_16898 that come from known issues:
 
-> +
->  /* legacy palette */
->  #define _LGC_PALETTE_A           0x4a000
->  #define _LGC_PALETTE_B           0x4a800
-> -- =
+### IGT changes ###
 
-> 2.23.0
+#### Issues hit ####
 
--- =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [PASS][5] -> [FAIL][6] ([i915#217])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  * igt@prime_self_import@basic-with_two_bos:
+    - fi-tgl-y:           [PASS][7] -> [DMESG-WARN][8] ([CI#94] / [i915#402]) +1 similar issue
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/fi-tgl-y/igt@prime_self_import@basic-with_two_bos.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_flink_basic@bad-open:
+    - fi-tgl-y:           [DMESG-WARN][9] ([CI#94] / [i915#402]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/fi-tgl-y/igt@gem_flink_basic@bad-open.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Additional (4): fi-bdw-5557u fi-cfl-8109u fi-skl-6600u fi-kbl-7500u 
+  Missing    (9): fi-hsw-4200u fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-bsw-kefka fi-blb-e6850 fi-byt-clapper fi-bdw-samus fi-kbl-r 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8106 -> Patchwork_16898
+
+  CI-20190529: 20190529
+  CI_DRM_8106: 5b0076e8066ea8218e7857ee1aa28b0670acde94 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16898: 37b27cd7ece9cd682017cebe77b194f7948b9caf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+37b27cd7ece9 drm/edid: Add function to parse EDID descriptors for adaptive sync limits
+8422a30aaa3f drm/edid: Name the detailed monitor range flags
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16898/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
