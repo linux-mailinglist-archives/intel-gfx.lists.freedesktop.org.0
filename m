@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED2017ED89
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 02:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6C3E17EEF8
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 04:12:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 152D56E030;
-	Tue, 10 Mar 2020 01:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5C2A6E517;
+	Tue, 10 Mar 2020 03:11:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 981496E030;
- Tue, 10 Mar 2020 01:01:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8FB8BA0019;
- Tue, 10 Mar 2020 01:01:09 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 931096E517
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 03:11:57 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2020 20:11:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="234197640"
+Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
+ ([10.23.184.150])
+ by fmsmga007.fm.intel.com with ESMTP; 09 Mar 2020 20:11:56 -0700
+Date: Mon, 9 Mar 2020 20:11:56 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200310031156.GC9651@orsosgc001.amr.corp.intel.com>
+References: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
+ <158379394745.16414.17306357927869351535@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Tue, 10 Mar 2020 01:01:09 -0000
-Message-ID: <158380206955.24171.795686840784500449@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200310004911.1723239-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200310004911.1723239-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Gen11_workarounds?=
+Content-Disposition: inline
+In-Reply-To: <158379394745.16414.17306357927869351535@build.alporthouse.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Invalidate OA TLB on when
+ closing perf stream
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,38 +47,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 09, 2020 at 10:45:47PM +0000, Chris Wilson wrote:
+>Quoting Umesh Nerlige Ramappa (2020-03-09 21:10:57)
+>> On running several back to back perf capture sessions involving closing
+>> and opening the perf stream, invalid OA reports are seen in the
+>> beginning of the OA buffer in some sessions. Fix this by invalidating OA
+>> TLB when the perf stream is closed or disabled on gen12.
+>>
+>> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
+>Testcase?
 
-Series: Gen11 workarounds
-URL   : https://patchwork.freedesktop.org/series/74475/
-State : warning
+Issue occurs if all perf tests are run on TGL, but I guess a single 
+subtest should do it too. Here it is -
+https://patchwork.freedesktop.org/patch/356973/
 
-== Summary ==
+Thanks,
+Umesh
 
-$ dim checkpatch origin/drm-tip
-a627f7908723 drm/i915: Handle all MCR ranges
-0d45ae1b23d2 drm/i915: Add Wa_1207131216:icl,ehl
-ac72d609fb43 drm/i915: Add Wa_1604278689:icl,ehl
-0ae22805c1e6 drm/i915: Add Wa_1406306137:icl,ehl
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 16 lines checked
-4c3c07b8545b drm/i915: Apply Wa_1406680159:icl, ehl as an engine workaround
-e92df8bf04c0 drm/i915: Add Wa_1605460711 / Wa_1408767742 to ICL and EHL
-dff1210436d4 drm/i915: Add Wa_1409178092:icl,ehl
--:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit f545425a0145 ("drm/i915/icl: Remove Wa_1604302699")'
-#14: 
-References: f545425a0145 ("drm/i915/icl: Remove Wa_1604302699")
-
-total: 1 errors, 0 warnings, 0 checks, 10 lines checked
-
+>-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
