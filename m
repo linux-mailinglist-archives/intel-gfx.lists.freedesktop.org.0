@@ -2,28 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90FFF17F6F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF22217F6FB
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:02:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E5F6E1B9;
-	Tue, 10 Mar 2020 11:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D5DB89E2A;
+	Tue, 10 Mar 2020 12:02:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6928F6E1B9
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:59:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20507871-1500050 
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:59:47 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 11:59:47 +0000
-Message-Id: <20200310115947.6482-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 401F489E2A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:02:02 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 05:02:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="321779006"
+Received: from ceylanal-mobl1.ger.corp.intel.com (HELO [10.252.41.180])
+ ([10.252.41.180])
+ by orsmga001.jf.intel.com with ESMTP; 10 Mar 2020 05:02:00 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+ <20200306133852.3420322-7-chris@chris-wilson.co.uk>
+ <158383902154.16414.418483971502793066@build.alporthouse.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <08ed443e-08e1-c009-d0b7-c70d3020b352@intel.com>
+Date: Tue, 10 Mar 2020 14:01:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Subject: [Intel-gfx] [CI] drm/i915: Tweak scheduler's kick_submission()
+In-Reply-To: <158383902154.16414.418483971502793066@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 07/17] drm/i915/perf: Schedule oa_config
+ after modifying the contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,44 +50,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Skip useless priority bumping on adding a new dependency by making sure
-that we do update the priority if we would have rescheduled the active
-cotnext.
+On 10/03/2020 13:17, Chris Wilson wrote:
+> Quoting Chris Wilson (2020-03-06 13:38:42)
+>>   static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
+>>   {
+>> -       struct i915_request *rq;
+>> +       struct i915_active *active;
+>> +       int err;
+>>   
+>> -       rq = stream->perf->ops.enable_metric_set(stream);
+>> -       if (IS_ERR(rq))
+>> -               return PTR_ERR(rq);
+>> +       active = i915_active_create();
+>> +       if (!active)
+>> +               return -ENOMEM;
+>>   
+>> -       i915_request_wait(rq, 0, MAX_SCHEDULE_TIMEOUT);
+>> -       i915_request_put(rq);
+>> +       err = stream->perf->ops.enable_metric_set(stream, active);
+>> +       if (err == 0)
+>> +               i915_active_wait(active, TASK_UNINTERRUPTIBLE);
+> Why UNINTERRUPTIBLE you might ask?
+>
+> Because if you've demonstrated that by having scheduled the oa config
+> update that by not waiting for the change, the machine becomes unusable,
+> that seems like a risk not worth taking.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/i915_scheduler.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index af51810dc78c..68b06a7ba667 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -209,6 +209,8 @@ static void kick_submission(struct intel_engine_cs *engine,
- 	if (!inflight)
- 		goto unlock;
- 
-+	engine->execlists.queue_priority_hint = prio;
-+
- 	/*
- 	 * If we are already the currently executing context, don't
- 	 * bother evaluating if we should preempt ourselves.
-@@ -216,7 +218,6 @@ static void kick_submission(struct intel_engine_cs *engine,
- 	if (inflight->context == rq->context)
- 		goto unlock;
- 
--	engine->execlists.queue_priority_hint = prio;
- 	if (need_preempt(prio, rq_prio(inflight)))
- 		tasklet_hi_schedule(&engine->execlists.tasklet);
- 
--- 
-2.20.1
+Just to confirm, the risk would be that the task could be interrupted 
+and that we would schedule another configuration request, without any 
+way and that would bring us back to the buggy scenario we saw.
+
+
+-Lionel
+
+
+>
+> Hence why the i915_request_wait() was uninterruptible and the
+> i915_active_wait() keeps the uninterruptible nature.
+> -Chris
+
 
 _______________________________________________
 Intel-gfx mailing list
