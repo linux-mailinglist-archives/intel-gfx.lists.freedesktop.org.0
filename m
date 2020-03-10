@@ -2,50 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE489180A10
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 22:12:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58C28180ADC
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 22:52:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E976E2F8;
-	Tue, 10 Mar 2020 21:12:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D343F6E398;
+	Tue, 10 Mar 2020 21:52:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD346E2F8
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 21:12:44 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 14:12:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="389054088"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by orsmga004.jf.intel.com with ESMTP; 10 Mar 2020 14:12:44 -0700
-Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 10 Mar 2020 14:12:34 -0700
-Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.253]) by
- fmsmsx115.amr.corp.intel.com ([169.254.4.81]) with mapi id 14.03.0439.000;
- Tue, 10 Mar 2020 14:12:34 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915: Get rid of silly void* from MST
- code
-Thread-Index: AQHV9xpxlXVd7Fx4JUKhIlOZvtacUahCyK2A
-Date: Tue, 10 Mar 2020 21:12:33 +0000
-Message-ID: <5b33ac0cd4b706636ff45e4bf66f915458a05de2.camel@intel.com>
-References: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.15.8]
-Content-ID: <DF9E6D8E413D8343BAEA07B960F914E2@intel.com>
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3116E3B7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 21:52:16 +0000 (UTC)
+Received: from bell.riseup.net (unknown [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 48cTDt3K6CzFf4g;
+ Tue, 10 Mar 2020 14:46:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1583876782; bh=O5+NjN6hGYqQ8zt6klZcMvOoagUZx5TzRHwqC4TnZ+A=;
+ h=From:To:Cc:Subject:Date:From;
+ b=c4r/5+v5XyJo5L99TJH//nPYIDT9uYB5/eSgIaGslsbllbZdzHilWDFLtEwwEMNgQ
+ 9vKAh3EA71v6n3qw3R2uSOWMpHWKwoQB3aA+DfZ+qQh+SEGRXnEiNmxZGRxRPZzrgL
+ 6vXE8XjJYZxezDRoCsG49jpm/W475z0Tv7kYosXk=
+X-Riseup-User-ID: 4BCCD02C88EA505C44278F96B11C2B57C95CC107B9A24E6EB5454AFBA229E47C
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id 48cTDs6tfPzJrlc;
+ Tue, 10 Mar 2020 14:46:21 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: linux-pm@vger.kernel.org,
+	intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 14:41:53 -0700
+Message-Id: <20200310214203.26459-1-currojerez@riseup.net>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Get rid of silly void* from MST
- code
+Subject: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for the
+ intel_pstate driver (v2).
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,53 +48,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Peter Zijlstra <peterz@infradead.org>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>, "Pandruvada,
+ Srinivas" <srinivas.pandruvada@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIwLTAzLTEwIGF0IDIyOjI3ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gTm90IHN1cmUgd2h5IHRoaXMgdGhpbmcgaXMgdHJ5aW5nIHRvIGF2b2lkIGRlY2xhcmlu
-ZyB0aGUgcHJvcGVyDQo+IHR5cGUgZm9yIHRoZXNlIHBvaW50ZXJzLiBCdXQgc2luY2UgdGhlc2Ug
-YXJlIHVzZWQgb25seSBvbmNlIGxldCdzDQo+IGp1c3QgZ2V0IHJpZCBvZiB0aGUgbG9jYWwgdmFy
-aWFibGUgZW50aXJlbHkuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4NCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogVmlsbGUgU3lyasOk
-bMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgOCArKysrLS0tLQ0KPiAgMSBmaWxl
-IGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jDQo+IGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiBpbmRleCBlMDhjYWNh
-NjU4YzYuLjg4M2VhMTFiOTc3MyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcF9tc3QuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwX21zdC5jDQo+IEBAIC00OSw3ICs0OSw2IEBAIHN0YXRpYyBpbnQgaW50ZWxf
-ZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0DQo+IGludGVsX2VuY29kZXIgKmVuY29k
-ZXIsDQo+ICAJCXRvX2ludGVsX2Nvbm5lY3Rvcihjb25uX3N0YXRlLT5jb25uZWN0b3IpOw0KPiAg
-CWNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9tb2RlID0NCj4gIAkJJmNy
-dGNfc3RhdGUtPmh3LmFkanVzdGVkX21vZGU7DQo+IC0Jdm9pZCAqcG9ydCA9IGNvbm5lY3Rvci0+
-cG9ydDsNCj4gIAlib29sIGNvbnN0YW50X24gPSBkcm1fZHBfaGFzX3F1aXJrKCZpbnRlbF9kcC0+
-ZGVzYywgMCwNCj4gIAkJCQkJICAgRFBfRFBDRF9RVUlSS19DT05TVEFOVF9OKTsNCj4gIAlpbnQg
-YnBwLCBzbG90cyA9IC1FSU5WQUw7DQo+IEBAIC02NSw3ICs2NCw4IEBAIHN0YXRpYyBpbnQgaW50
-ZWxfZHBfbXN0X2NvbXB1dGVfbGlua19jb25maWcoc3RydWN0DQo+IGludGVsX2VuY29kZXIgKmVu
-Y29kZXIsDQo+ICAJCQkJCQkgICAgICAgZmFsc2UpOw0KPiAgDQo+ICAJCXNsb3RzID0gZHJtX2Rw
-X2F0b21pY19maW5kX3ZjcGlfc2xvdHMoc3RhdGUsICZpbnRlbF9kcC0NCj4gPm1zdF9tZ3IsDQo+
-IC0JCQkJCQkgICAgICBwb3J0LCBjcnRjX3N0YXRlLQ0KPiA+cGJuLCAwKTsNCj4gKwkJCQkJCSAg
-ICAgIGNvbm5lY3Rvci0+cG9ydCwNCj4gKwkJCQkJCSAgICAgIGNydGNfc3RhdGUtPnBibiwNCj4g
-MCk7DQo+ICAJCWlmIChzbG90cyA9PSAtRURFQURMSykNCj4gIAkJCXJldHVybiBzbG90czsNCj4g
-IAkJaWYgKHNsb3RzID49IDApDQo+IEBAIC0xNDcsNyArMTQ3LDYgQEAgc3RhdGljIGludCBpbnRl
-bF9kcF9tc3RfY29tcHV0ZV9jb25maWcoc3RydWN0DQo+IGludGVsX2VuY29kZXIgKmVuY29kZXIs
-DQo+ICAJCXRvX2ludGVsX2RpZ2l0YWxfY29ubmVjdG9yX3N0YXRlKGNvbm5fc3RhdGUpOw0KPiAg
-CWNvbnN0IHN0cnVjdCBkcm1fZGlzcGxheV9tb2RlICphZGp1c3RlZF9tb2RlID0NCj4gIAkJJnBp
-cGVfY29uZmlnLT5ody5hZGp1c3RlZF9tb2RlOw0KPiAtCXZvaWQgKnBvcnQgPSBjb25uZWN0b3It
-PnBvcnQ7DQo+ICAJc3RydWN0IGxpbmtfY29uZmlnX2xpbWl0cyBsaW1pdHM7DQo+ICAJaW50IHJl
-dDsNCj4gIA0KPiBAQCAtMTU5LDcgKzE1OCw4IEBAIHN0YXRpYyBpbnQgaW50ZWxfZHBfbXN0X2Nv
-bXB1dGVfY29uZmlnKHN0cnVjdA0KPiBpbnRlbF9lbmNvZGVyICplbmNvZGVyLA0KPiAgDQo+ICAJ
-aWYgKGludGVsX2Nvbm5fc3RhdGUtPmZvcmNlX2F1ZGlvID09IEhETUlfQVVESU9fQVVUTykNCj4g
-IAkJcGlwZV9jb25maWctPmhhc19hdWRpbyA9DQo+IC0JCQlkcm1fZHBfbXN0X3BvcnRfaGFzX2F1
-ZGlvKCZpbnRlbF9kcC0+bXN0X21nciwNCj4gcG9ydCk7DQo+ICsJCQlkcm1fZHBfbXN0X3BvcnRf
-aGFzX2F1ZGlvKCZpbnRlbF9kcC0+bXN0X21nciwNCj4gKwkJCQkJCSAgY29ubmVjdG9yLT5wb3J0
-KTsNCj4gIAllbHNlDQo+ICAJCXBpcGVfY29uZmlnLT5oYXNfYXVkaW8gPQ0KPiAgCQkJaW50ZWxf
-Y29ubl9zdGF0ZS0+Zm9yY2VfYXVkaW8gPT0gSERNSV9BVURJT19PTjsNCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QK
-SW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9w
-Lm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+This is my second take on improving the energy efficiency of the
+intel_pstate driver under IO-bound conditions.  The problem and
+approach to solve it are roughly the same as in my previous series [1]
+at a high level:
+
+In IO-bound scenarios (by definition) the throughput of the system
+doesn't improve with increasing CPU frequency beyond the threshold
+value at which the IO device becomes the bottleneck, however with the
+current governors (whether HWP is in use or not) the CPU frequency
+tends to oscillate with the load, often with an amplitude far into the
+turbo range, leading to severely reduced energy efficiency, which is
+particularly problematic when a limited TDP budget is shared among a
+number of cores running some multithreaded workload, or among a CPU
+core and an integrated GPU.
+
+Improving the energy efficiency of the CPU improves the throughput of
+the system in such TDP-limited conditions.  See [4] for some
+preliminary benchmark results from a Razer Blade Stealth 13 Late
+2019/LY320 laptop with an Intel ICL processor and integrated graphics,
+including throughput results that range up to a ~15% improvement and
+performance-per-watt results up to a ~43% improvement (estimated via
+RAPL).  Particularly the throughput results may vary substantially
+from one platform to another depending on the TDP budget and the
+balance of load between CPU and GPU.
+
+One of the main differences relative to my previous version is that
+the trade-off between energy efficiency and frequency ramp-up latency
+is now exposed to device drivers through a new PM QoS class [It would
+make sense to expose it to userspace too eventually but that's beyond
+the purpose of this series].  The new PM QoS class provides a latency
+target to CPUFREQ governors which gives them permission to filter out
+CPU frequency oscillations with a period significantly shorter than
+the specified target, whenever doing so leads to improved energy
+efficiency.
+
+This series takes advantage of the new PM QoS class from the i915
+driver whenever the driver determines that the GPU has become a
+bottleneck for an extended period of time.  At that point it places a
+PM QoS ramp-up latency target which causes CPUFREQ to limit the CPU to
+a reasonably energy-efficient frequency able to at least achieve the
+required amount of work in a time window approximately equal to the
+ramp-up latency target (since any longer-term energy efficiency
+optimization would potentially violate the latency target).  This
+seems more effective than clamping the CPU frequency to a fixed value
+directly from various subsystems, since the CPU is a shared resource,
+so the frequency bound needs to consider the load and latency
+requirements of all independent workloads running on the same CPU core
+in order to avoid performance degradation in a multitasking, possibly
+virtualized environment.
+
+The main limitation of this PM QoS approach is that whenever multiple
+clients request different ramp-up latency targets, only the strictest
+(lowest latency) one will apply system-wide, potentially leading to
+suboptimal energy efficiency for the less latency-sensitive clients,
+(though it won't artificially limit the CPU throughput of the most
+latency-sensitive clients as a result of the PM QoS requests placed by
+less latency-sensitive ones).  In order to address this limitation I'm
+working on a more complicated solution which integrates with the task
+scheduler in order to provide response latency control with process
+granularity (pretty much in the spirit of PELT).  One of the
+alternatives Rafael and I were discussing was to expose that through a
+third cgroup clamp on top of the MIN and MAX utilization clamps, but
+I'm open to any other possibilities regarding what the interface
+should look like.  Either way the current (scheduling-unaware) PM
+QoS-based interface should provide most of the benefit except in
+heavily multitasking environments.
+
+A branch with this series in testable form can be found here [2],
+based on linux-next from a few days ago.  Another important difference
+with respect to my previous revision is that the present one targets
+HWP systems (though for the moment it's only enabled by default on
+ICL, even though that can be overridden through the kernel command
+line).  I have WIP code that uses the same governor in order to
+provide a similar benefit on non-HWP systems (like my previous
+revision), which can be found in this branch for reference [3] -- I'm
+planning to finish that up and send it as follow-up to this series
+assuming people are happy with the overall approach.
+
+Thanks in advance for any review feed-back and test reports.
+
+[PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS limit.
+[PATCH 02/10] drm/i915: Adjust PM QoS response frequency based on GPU load.
+[PATCH 03/10] OPTIONAL: drm/i915: Expose PM QoS control parameters via debugfs.
+[PATCH 04/10] Revert "cpufreq: intel_pstate: Drop ->update_util from pstate_funcs"
+[PATCH 05/10] cpufreq: intel_pstate: Implement VLP controller statistics and status calculation.
+[PATCH 06/10] cpufreq: intel_pstate: Implement VLP controller target P-state range estimation.
+[PATCH 07/10] cpufreq: intel_pstate: Implement VLP controller for HWP parts.
+[PATCH 08/10] cpufreq: intel_pstate: Enable VLP controller based on ACPI FADT profile and CPUID.
+[PATCH 09/10] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP controller status.
+[PATCH 10/10] OPTIONAL: cpufreq: intel_pstate: Expose VLP controller parameters via debugfs.
+
+[1] https://marc.info/?l=linux-pm&m=152221943320908&w=2
+[2] https://github.com/curro/linux/commits/intel_pstate-vlp-v2-hwp-only
+[3] https://github.com/curro/linux/commits/intel_pstate-vlp-v2
+[4] http://people.freedesktop.org/~currojerez/intel_pstate-vlp-v2/benchmark-comparison-ICL.log
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
