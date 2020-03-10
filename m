@@ -2,50 +2,33 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D99C917F68A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:43:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF95017F681
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:42:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36F856E1B7;
-	Tue, 10 Mar 2020 11:43:04 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 375 seconds by postgrey-1.36 at gabe;
- Tue, 10 Mar 2020 11:43:02 UTC
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [146.101.78.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3523B6E1B7
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:43:02 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-59-qJx50LcXOruXxnxninM0kQ-1; Tue, 10 Mar 2020 11:36:42 +0000
-X-MC-Unique: qJx50LcXOruXxnxninM0kQ-1
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Tue, 10 Mar 2020 11:36:41 +0000
-Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
- AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000; 
- Tue, 10 Mar 2020 11:36:41 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Chris Wilson' <chris@chris-wilson.co.uk>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>
-Thread-Topic: [PATCH] list: Prevent compiler reloads inside 'safe' list
- iteration
-Thread-Index: AQHV9r1KBrT+D4Vo2U+Op9v/Nv0od6hBsdzw
-Date: Tue, 10 Mar 2020 11:36:41 +0000
-Message-ID: <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
-References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CDAB6E160;
+	Tue, 10 Mar 2020 11:42:13 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 769426E160
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:42:11 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20507626-1500050 for multiple; Tue, 10 Mar 2020 11:41:48 +0000
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
-Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
- 'safe' list iteration
+In-Reply-To: <20200309183129.2296-2-tvrtko.ursulin@linux.intel.com>
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-2-tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158384050785.16414.7982219438580665617@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 10 Mar 2020 11:41:47 +0000
+Subject: Re: [Intel-gfx] [RFC 01/12] drm/i915: Expose list of clients in
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +41,67 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- "Paul E. McKenney" <paulmck@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Chris Wilson
-> Sent: 10 March 2020 09:21
-> Instruct the compiler to read the next element in the list iteration
-> once, and that it is not allowed to reload the value from the stale
-> element later. This is important as during the course of the safe
-> iteration, the stale element may be poisoned (unbeknownst to the
-> compiler).
+Quoting Tvrtko Ursulin (2020-03-09 18:31:18)
+> +static int
+> +__i915_drm_client_register(struct i915_drm_client *client,
+> +                          struct task_struct *task)
+> +{
+> +       struct i915_drm_clients *clients = client->clients;
+> +       struct device_attribute *attr;
+> +       int ret = -ENOMEM;
+> +       char idstr[32];
+> +
+> +       client->pid = get_task_pid(task, PIDTYPE_PID);
+> +
+> +       client->name = kstrdup(task->comm, GFP_KERNEL);
+> +       if (!client->name)
+> +               goto err_name;
+> +
+> +       if (!clients->root)
+> +               return 0; /* intel_fbdev_init registers a client before sysfs */
+> +
+> +       snprintf(idstr, sizeof(idstr), "%u", client->id);
+> +       client->root = kobject_create_and_add(idstr, clients->root);
+> +       if (!client->root)
+> +               goto err_client;
+> +
+> +       attr = &client->attr.name;
+> +       sysfs_attr_init(&attr->attr);
+> +       attr->attr.name = "name";
+> +       attr->attr.mode = 0444;
+> +       attr->show = show_client_name;
+> +
+> +       ret = sysfs_create_file(client->root, (struct attribute *)attr);
+> +       if (ret)
+> +               goto err_attr;
+> +
+> +       attr = &client->attr.pid;
+> +       sysfs_attr_init(&attr->attr);
+> +       attr->attr.name = "pid";
+> +       attr->attr.mode = 0444;
+> +       attr->show = show_client_pid;
+> +
+> +       ret = sysfs_create_file(client->root, (struct attribute *)attr);
+> +       if (ret)
+> +               goto err_attr;
 
-Eh?
-I thought any function call will stop the compiler being allowed
-to reload the value.
-The 'safe' loop iterators are only 'safe' against called
-code removing the current item from the list.
+How do we think we will extend this (e.g. for client/1/(trace,debug))?
 
-> This helps prevent kcsan warnings over 'unsafe' conduct in releasing the
-> list elements during list_for_each_entry_safe() and friends.
+i915_drm_client_add_attr() ?
 
-Sounds like kcsan is buggy ????
+Or should we put all the attr here and make them known a priori?
 
-	David
+I think I prefer i915_drm_client_add_attr, but that will also require a
+notification chain? And that smells like overengineering.
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+At any rate we have 2 other definite users around the corner for the
+client sysfs, so we should look at what API suits us.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
