@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 020F617F4DF
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2F0F17F524
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 11:38:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59D9C6E862;
-	Tue, 10 Mar 2020 10:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBE7A6E195;
+	Tue, 10 Mar 2020 10:38:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7E16E862
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 10:18:04 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAC276E195
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 10:38:25 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 03:18:03 -0700
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="288994066"
+ by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 03:38:24 -0700
+X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="288998704"
 Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
  ([10.252.21.27])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Mar 2020 03:18:02 -0700
+ 10 Mar 2020 03:38:23 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
- <20200306133852.3420322-6-chris@chris-wilson.co.uk>
+ <20200306133852.3420322-8-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <18554e6a-722e-8496-f92f-19855c6949d9@linux.intel.com>
-Date: Tue, 10 Mar 2020 10:18:00 +0000
+Message-ID: <e5360a24-91e9-a873-5a9b-5b6e5cca59ac@linux.intel.com>
+Date: Tue, 10 Mar 2020 10:38:21 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200306133852.3420322-6-chris@chris-wilson.co.uk>
+In-Reply-To: <20200306133852.3420322-8-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 06/17] drm/i915: Extend
- i915_request_await_active to use all timelines
+Subject: Re: [Intel-gfx] [PATCH 08/17] drm/i915/selftests: Add request
+ throughput measurement to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,116 +55,348 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 06/03/2020 13:38, Chris Wilson wrote:
-> Extend i915_request_await_active() to be able to asynchronously wait on
-> all the tracked timelines simultaneously.
+> Under ideal circumstances, the driver should be able to keep the GPU
+> fully saturated with work. Measure how close to ideal we get under the
+> harshest of conditions with no user payload.
 > 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/i915_active.c | 51 +++++++++++++++++++++++-------
->   drivers/gpu/drm/i915/i915_active.h |  5 ++-
->   drivers/gpu/drm/i915/i915_vma.c    |  2 +-
->   3 files changed, 45 insertions(+), 13 deletions(-)
+>   .../drm/i915/selftests/i915_perf_selftests.h  |   1 +
+>   drivers/gpu/drm/i915/selftests/i915_request.c | 285 +++++++++++++++++-
+>   2 files changed, 285 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index 1826de14d2da..e659688db043 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -518,23 +518,52 @@ int i915_active_wait(struct i915_active *ref)
->   	return 0;
->   }
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+> index 3bf7f53e9924..d8da142985eb 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+> +++ b/drivers/gpu/drm/i915/selftests/i915_perf_selftests.h
+> @@ -16,5 +16,6 @@
+>    * Tests are executed in order by igt/i915_selftest
+>    */
+>   selftest(engine_cs, intel_engine_cs_perf_selftests)
+> +selftest(request, i915_request_perf_selftests)
+>   selftest(blt, i915_gem_object_blt_perf_selftests)
+>   selftest(region, intel_memory_region_perf_selftests)
+> diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+> index f89d9c42f1fa..d4c088cfe4e1 100644
+> --- a/drivers/gpu/drm/i915/selftests/i915_request.c
+> +++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+> @@ -23,6 +23,7 @@
+>    */
 >   
-> -int i915_request_await_active(struct i915_request *rq, struct i915_active *ref)
-> +static int await_active(struct i915_request *rq,
-> +			struct i915_active_fence *active)
+>   #include <linux/prime_numbers.h>
+> +#include <linux/pm_qos.h>
+>   
+>   #include "gem/i915_gem_pm.h"
+>   #include "gem/selftests/mock_context.h"
+> @@ -1233,7 +1234,7 @@ static int live_parallel_engines(void *arg)
+>   		struct igt_live_test t;
+>   		unsigned int idx;
+>   
+> -		snprintf(name, sizeof(name), "%pS", fn);
+> +		snprintf(name, sizeof(name), "%ps", *fn);
+>   		err = igt_live_test_begin(&t, i915, __func__, name);
+>   		if (err)
+>   			break;
+> @@ -1470,3 +1471,285 @@ int i915_request_live_selftests(struct drm_i915_private *i915)
+>   
+>   	return i915_subtests(tests, i915);
+>   }
+> +
+> +struct perf_parallel {
+> +	struct intel_engine_cs *engine;
+> +	unsigned long count;
+> +	ktime_t time;
+> +	ktime_t busy;
+> +	u64 runtime;
+> +};
+> +
+> +static int switch_to_kernel_sync(struct intel_context *ce, int err)
 > +{
+> +	struct i915_request *rq;
 > +	struct dma_fence *fence;
 > +
-> +	if (is_barrier(active))
-> +		return 0;
+> +	rq = intel_engine_create_kernel_request(ce->engine);
+> +	if (IS_ERR(rq))
+> +		return PTR_ERR(rq);
 > +
-> +	fence = i915_active_fence_get(active);
+> +	fence = i915_active_fence_get(&ce->timeline->last_request);
 > +	if (fence) {
-> +		int err;
-> +
-> +		err = i915_request_await_dma_fence(rq, fence);
+> +		i915_request_await_dma_fence(rq, fence);
 > +		dma_fence_put(fence);
-> +		if (err < 0)
-> +			return err;
 > +	}
 > +
-> +	return 0;
+> +	rq = i915_request_get(rq);
+> +	i915_request_add(rq);
+> +	if (i915_request_wait(rq, 0, HZ / 2) < 0 && !err)
+> +		err = -ETIME;
+> +	i915_request_put(rq);
+> +
+> +	while (!err && !intel_engine_is_idle(ce->engine))
+> +		intel_engine_flush_submission(ce->engine);
+> +
+> +	return err;
 > +}
 > +
-> +int i915_request_await_active(struct i915_request *rq,
-> +			      struct i915_active *ref,
-> +			      unsigned int flags)
->   {
->   	int err = 0;
->   
-> +	/* We must always wait for the exclusive fence! */
->   	if (rcu_access_pointer(ref->excl.fence)) {
-> -		struct dma_fence *fence;
-> -
-> -		rcu_read_lock();
-> -		fence = dma_fence_get_rcu_safe(&ref->excl.fence);
-> -		rcu_read_unlock();
-> -		if (fence) {
-> -			err = i915_request_await_dma_fence(rq, fence);
-> -			dma_fence_put(fence);
-> -		}
-> +		err = await_active(rq, &ref->excl);
-> +		if (err)
-> +			return err;
->   	}
->   
-> -	/* In the future we may choose to await on all fences */
-> +	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
-> +		struct active_node *it, *n;
+> +static int perf_sync(void *arg)
+> +{
+> +	struct perf_parallel *p = arg;
+> +	struct intel_engine_cs *engine = p->engine;
+> +	struct intel_context *ce;
+> +	IGT_TIMEOUT(end_time);
+> +	unsigned long count;
+> +	bool busy;
+> +	int err = 0;
 > +
-> +		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
-> +			err = await_active(rq, &it->base);
-> +			if (err)
-> +				break;
-> +		}
-> +		i915_active_release(ref);
-> +		if (err)
-> +			return err;
+> +	ce = intel_context_create(engine);
+> +	if (IS_ERR(ce))
+> +		return PTR_ERR(ce);
+> +
+> +	err = intel_context_pin(ce);
+> +	if (err) {
+> +		intel_context_put(ce);
+> +		return err;
 > +	}
->   
->   	return err;
->   }
-> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> index 7e438501333e..e3c13060c4c7 100644
-> --- a/drivers/gpu/drm/i915/i915_active.h
-> +++ b/drivers/gpu/drm/i915/i915_active.h
-> @@ -183,7 +183,10 @@ static inline bool i915_active_has_exclusive(struct i915_active *ref)
->   
->   int i915_active_wait(struct i915_active *ref);
->   
-> -int i915_request_await_active(struct i915_request *rq, struct i915_active *ref);
-> +int i915_request_await_active(struct i915_request *rq,
-> +			      struct i915_active *ref,
-> +			      unsigned int flags);
-> +#define I915_ACTIVE_AWAIT_ALL BIT(0)
->   
->   int i915_active_acquire(struct i915_active *ref);
->   bool i915_active_acquire_if_busy(struct i915_active *ref);
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 3dde671145f7..5b3efb43a8ef 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -1173,7 +1173,7 @@ int __i915_vma_move_to_active(struct i915_vma *vma, struct i915_request *rq)
->   	GEM_BUG_ON(!i915_vma_is_pinned(vma));
->   
->   	/* Wait for the vma to be bound before we start! */
-> -	err = i915_request_await_active(rq, &vma->active);
-> +	err = i915_request_await_active(rq, &vma->active, 0);
->   	if (err)
->   		return err;
->   
-> 
+> +
+> +	busy = false;
+> +	if (intel_engine_supports_stats(engine) &&
+> +	    !intel_enable_engine_stats(engine)) {
+> +		p->busy = intel_engine_get_busy_time(engine);
+> +		busy = true;
+> +	}
+> +
+> +	p->time = ktime_get();
+> +	count = 0;
+> +	do {
+> +		struct i915_request *rq;
+> +
+> +		rq = i915_request_create(ce);
+> +		if (IS_ERR(rq)) {
+> +			err = PTR_ERR(rq);
+> +			break;
+> +		}
+> +
+> +		i915_request_get(rq);
+> +		i915_request_add(rq);
+> +
+> +		err = 0;
+> +		if (i915_request_wait(rq, 0, HZ / 5) < 0)
+> +			err = -ETIME;
+> +		i915_request_put(rq);
+> +		if (err)
+> +			break;
+> +
+> +		count++;
+> +	} while (!__igt_timeout(end_time, NULL));
+> +	p->time = ktime_sub(ktime_get(), p->time);
+> +
+> +	if (busy) {
+> +		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+> +				    p->busy);
+> +		intel_disable_engine_stats(engine);
+> +	}
+> +
+> +	err = switch_to_kernel_sync(ce, err);
+> +	p->runtime = intel_context_get_total_runtime_ns(ce);
+> +	p->count = count;
+> +
+> +	intel_context_unpin(ce);
+> +	intel_context_put(ce);
+> +	return err;
+> +}
+> +
+> +static int perf_many(void *arg)
+> +{
+> +	struct perf_parallel *p = arg;
+> +	struct intel_engine_cs *engine = p->engine;
+> +	struct intel_context *ce;
+> +	IGT_TIMEOUT(end_time);
+> +	unsigned long count;
+> +	int err = 0;
+> +	bool busy;
+> +
+> +	ce = intel_context_create(engine);
+> +	if (IS_ERR(ce))
+> +		return PTR_ERR(ce);
+> +
+> +	err = intel_context_pin(ce);
+> +	if (err) {
+> +		intel_context_put(ce);
+> +		return err;
+> +	}
+> +
+> +	busy = false;
+> +	if (intel_engine_supports_stats(engine) &&
+> +	    !intel_enable_engine_stats(engine)) {
+> +		p->busy = intel_engine_get_busy_time(engine);
+> +		busy = true;
+> +	}
+> +
+> +	count = 0;
+> +	p->time = ktime_get();
+> +	do {
+> +		struct i915_request *rq;
+> +
+> +		rq = i915_request_create(ce);
+> +		if (IS_ERR(rq)) {
+> +			err = PTR_ERR(rq);
+> +			break;
+> +		}
+> +
+> +		i915_request_add(rq);
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Any concerns on ring size here and maybe managing the wait explicitly?
+
+> +		count++;
+> +	} while (!__igt_timeout(end_time, NULL));
+> +	p->time = ktime_sub(ktime_get(), p->time);
+> +
+> +	if (busy) {
+> +		p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+> +				    p->busy);
+> +		intel_disable_engine_stats(engine);
+> +	}
+> +
+> +	err = switch_to_kernel_sync(ce, err);
+> +	p->runtime = intel_context_get_total_runtime_ns(ce);
+> +	p->count = count;
+> +
+> +	intel_context_unpin(ce);
+> +	intel_context_put(ce);
+> +	return err;
+> +}
+> +
+> +static int perf_parallel_engines(void *arg)
+> +{
+> +	struct drm_i915_private *i915 = arg;
+> +	static int (* const func[])(void *arg) = {
+> +		perf_sync,
+> +		perf_many,
+> +		NULL,
+> +	};
+> +	const unsigned int nengines = num_uabi_engines(i915);
+> +	struct intel_engine_cs *engine;
+> +	int (* const *fn)(void *arg);
+> +	struct pm_qos_request *qos;
+> +	struct {
+> +		struct perf_parallel p;
+> +		struct task_struct *tsk;
+> +	} *engines;
+> +	int err = 0;
+> +
+> +	engines = kcalloc(nengines, sizeof(*engines), GFP_KERNEL);
+> +	if (!engines)
+> +		return -ENOMEM;
+> +
+> +	qos = kzalloc(sizeof(*qos), GFP_KERNEL);
+> +	if (qos)
+> +		pm_qos_add_request(qos, PM_QOS_CPU_DMA_LATENCY, 0);
+> +
+> +	for (fn = func; *fn; fn++) {
+> +		char name[KSYM_NAME_LEN];
+> +		struct igt_live_test t;
+> +		unsigned int idx;
+> +
+> +		snprintf(name, sizeof(name), "%ps", *fn);
+
+Is this any better than just storing the name in local static array?
+
+> +		err = igt_live_test_begin(&t, i915, __func__, name);
+> +		if (err)
+> +			break;
+> +
+> +		atomic_set(&i915->selftest.counter, nengines);
+> +
+> +		idx = 0;
+> +		for_each_uabi_engine(engine, i915) {
+
+For a pure driver overhead test I would suggest this to be a gt live test.
+
+> +			intel_engine_pm_get(engine);
+> +
+> +			memset(&engines[idx].p, 0, sizeof(engines[idx].p));
+> +			engines[idx].p.engine = engine;
+> +
+> +			engines[idx].tsk = kthread_run(*fn, &engines[idx].p,
+> +						       "igt:%s", engine->name);
+
+Test will get affected by the host CPU core count. How about we only 
+measure num_cpu engines? Might be even more important with discrete.
+
+> +			if (IS_ERR(engines[idx].tsk)) {
+> +				err = PTR_ERR(engines[idx].tsk);
+> +				intel_engine_pm_put(engine);
+> +				break;
+> +			}
+> +			get_task_struct(engines[idx++].tsk);
+> +		}
+> +
+> +		yield(); /* start all threads before we kthread_stop() */
+> +
+> +		idx = 0;
+> +		for_each_uabi_engine(engine, i915) {
+> +			int status;
+> +
+> +			if (IS_ERR(engines[idx].tsk))
+> +				break;
+> +
+> +			status = kthread_stop(engines[idx].tsk);
+> +			if (status && !err)
+> +				err = status;
+> +
+> +			intel_engine_pm_put(engine);
+> +			put_task_struct(engines[idx++].tsk);
+> +		}
+> +
+> +		if (igt_live_test_end(&t))
+> +			err = -EIO;
+> +		if (err)
+> +			break;
+> +
+> +		idx = 0;
+> +		for_each_uabi_engine(engine, i915) {
+> +			struct perf_parallel *p = &engines[idx].p;
+> +			u64 busy = 100 * ktime_to_ns(p->busy);
+> +			u64 dt = ktime_to_ns(p->time);
+> +			int integer, decimal;
+> +
+> +			if (dt) {
+> +				integer = div64_u64(busy, dt);
+> +				busy -= integer * dt;
+> +				decimal = div64_u64(100 * busy, dt);
+> +			} else {
+> +				integer = 0;
+> +				decimal = 0;
+> +			}
+> +
+> +			GEM_BUG_ON(engine != p->engine);
+> +			pr_info("%s %5s: { count:%lu, busy:%d.%02d%%, runtime:%lldms, walltime:%lldms }\n",
+> +				name, engine->name, p->count, integer, decimal,
+> +				div_u64(p->runtime, 1000 * 1000),
+> +				div_u64(ktime_to_ns(p->time), 1000 * 1000));
+> +			idx++;
+> +		}
+> +	}
+> +
+> +	if (qos) {
+> +		pm_qos_remove_request(qos);
+> +		kfree(qos);
+> +	}
+> +	kfree(engines);
+> +	return err;
+> +}
+> +
+> +int i915_request_perf_selftests(struct drm_i915_private *i915)
+> +{
+> +	static const struct i915_subtest tests[] = {
+> +		SUBTEST(perf_parallel_engines),
+> +	};
+> +
+> +	if (intel_gt_is_wedged(&i915->gt))
+> +		return 0;
+> +
+> +	return i915_subtests(tests, i915);
+> +}
+> 
 
 Regards,
 
