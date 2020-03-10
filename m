@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31A6C17F257
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:53:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6736617F258
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 09:53:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 804AC6E851;
-	Tue, 10 Mar 2020 08:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF8186E84D;
+	Tue, 10 Mar 2020 08:53:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEE516E84D
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:53:32 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4986E84D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 08:53:37 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:32 -0700
-X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260710182"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:53:37 -0700
+X-IronPort-AV: E=Sophos;i="5.70,535,1574150400"; d="scan'208";a="242253036"
 Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 01:53:30 -0700
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 01:53:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 10:52:46 +0200
-Message-Id: <3dfda89ab4a234f299ada77abd14163cef3f8bd4.1583766715.git.jani.nikula@intel.com>
+Date: Tue, 10 Mar 2020 10:52:47 +0200
+Message-Id: <98588d757a3729d7c8a4b1aaa0b5e7d160398b89.1583766715.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1583766715.git.jani.nikula@intel.com>
 References: <cover.1583766715.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 07/10] drm/i915/hotplug: convert to drm_device
- based logging.
+Subject: [Intel-gfx] [PATCH 08/10] drm/i915/lpe_audio: convert to drm_device
+ based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,112 +52,97 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Wambui Karuga <wambui.karugax@gmail.com>
 
-Converts various instances of the printk based drm logging macros to the
-struct drm_device based logging macros in i915/display/intel_hotplug.c.
-In some cases, this involves extracting the drm_i915_private pointer from
-the drm_device struct to be used in the logging macros.
+Convert various uses of the printk based drm logging macros to the
+struct drm_device based logging macros in
+i915/display/intel_lpe_audio.c.
 
+Note that this converts DRM_DEBUG to drm_dbg().
+
+References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
 Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hotplug.c | 40 ++++++++++++--------
- 1 file changed, 24 insertions(+), 16 deletions(-)
+ .../gpu/drm/i915/display/intel_lpe_audio.c    | 23 +++++++++++--------
+ 1 file changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index 562227d54ccc..a091442efba4 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -170,10 +170,13 @@ static bool intel_hpd_irq_storm_detect(struct drm_i915_private *dev_priv,
- 	hpd->stats[pin].count += increment;
- 	if (hpd->stats[pin].count > threshold) {
- 		hpd->stats[pin].state = HPD_MARK_DISABLED;
--		DRM_DEBUG_KMS("HPD interrupt storm detected on PIN %d\n", pin);
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "HPD interrupt storm detected on PIN %d\n", pin);
- 		storm = true;
- 	} else {
--		DRM_DEBUG_KMS("Received HPD interrupt on PIN %d - cnt: %d\n", pin,
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "Received HPD interrupt on PIN %d - cnt: %d\n",
-+			      pin,
- 			      hpd->stats[pin].count);
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 516e7179a5a4..ad5cc13037ae 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -127,7 +127,8 @@ lpe_audio_platdev_create(struct drm_i915_private *dev_priv)
+ 	kfree(pdata);
+ 
+ 	if (IS_ERR(platdev)) {
+-		DRM_ERROR("Failed to allocate LPE audio platform device\n");
++		drm_err(&dev_priv->drm,
++			"Failed to allocate LPE audio platform device\n");
+ 		return platdev;
  	}
  
-@@ -202,7 +205,8 @@ intel_hpd_irq_storm_switch_to_polling(struct drm_i915_private *dev_priv)
- 		    dev_priv->hotplug.stats[pin].state != HPD_MARK_DISABLED)
- 			continue;
+@@ -190,7 +191,8 @@ static bool lpe_audio_detect(struct drm_i915_private *dev_priv)
+ 		};
  
--		DRM_INFO("HPD interrupt storm detected on connector %s: "
-+		drm_info(&dev_priv->drm,
-+			 "HPD interrupt storm detected on connector %s: "
- 			 "switching from hotplug detection to polling\n",
- 			 connector->base.name);
- 
-@@ -244,8 +248,9 @@ static void intel_hpd_irq_storm_reenable_work(struct work_struct *work)
- 			continue;
- 
- 		if (connector->base.polled != connector->polled)
--			DRM_DEBUG_DRIVER("Reenabling HPD on connector %s\n",
--					 connector->base.name);
-+			drm_dbg(&dev_priv->drm,
-+				"Reenabling HPD on connector %s\n",
-+				connector->base.name);
- 		connector->base.polled = connector->polled;
+ 		if (!pci_dev_present(atom_hdaudio_ids)) {
+-			DRM_INFO("HDaudio controller not detected, using LPE audio instead\n");
++			drm_info(&dev_priv->drm,
++				 "HDaudio controller not detected, using LPE audio instead\n");
+ 			lpe_present = true;
+ 		}
  	}
- 	drm_connector_list_iter_end(&conn_iter);
-@@ -280,11 +285,12 @@ intel_encoder_hotplug(struct intel_encoder *encoder,
- 	if (old_status == connector->base.status)
- 		return INTEL_HOTPLUG_UNCHANGED;
+@@ -203,18 +205,19 @@ static int lpe_audio_setup(struct drm_i915_private *dev_priv)
  
--	DRM_DEBUG_KMS("[CONNECTOR:%d:%s] status updated from %s to %s\n",
--		      connector->base.base.id,
--		      connector->base.name,
--		      drm_get_connector_status_name(old_status),
--		      drm_get_connector_status_name(connector->base.status));
-+	drm_dbg_kms(&to_i915(dev)->drm,
-+		    "[CONNECTOR:%d:%s] status updated from %s to %s\n",
-+		    connector->base.base.id,
-+		    connector->base.name,
-+		    drm_get_connector_status_name(old_status),
-+		    drm_get_connector_status_name(connector->base.status));
+ 	dev_priv->lpe_audio.irq = irq_alloc_desc(0);
+ 	if (dev_priv->lpe_audio.irq < 0) {
+-		DRM_ERROR("Failed to allocate IRQ desc: %d\n",
++		drm_err(&dev_priv->drm, "Failed to allocate IRQ desc: %d\n",
+ 			dev_priv->lpe_audio.irq);
+ 		ret = dev_priv->lpe_audio.irq;
+ 		goto err;
+ 	}
  
- 	return INTEL_HOTPLUG_CHANGED;
+-	DRM_DEBUG("irq = %d\n", dev_priv->lpe_audio.irq);
++	drm_dbg(&dev_priv->drm, "irq = %d\n", dev_priv->lpe_audio.irq);
+ 
+ 	ret = lpe_audio_irq_init(dev_priv);
+ 
+ 	if (ret) {
+-		DRM_ERROR("Failed to initialize irqchip for lpe audio: %d\n",
++		drm_err(&dev_priv->drm,
++			"Failed to initialize irqchip for lpe audio: %d\n",
+ 			ret);
+ 		goto err_free_irq;
+ 	}
+@@ -223,7 +226,8 @@ static int lpe_audio_setup(struct drm_i915_private *dev_priv)
+ 
+ 	if (IS_ERR(dev_priv->lpe_audio.platdev)) {
+ 		ret = PTR_ERR(dev_priv->lpe_audio.platdev);
+-		DRM_ERROR("Failed to create lpe audio platform device: %d\n",
++		drm_err(&dev_priv->drm,
++			"Failed to create lpe audio platform device: %d\n",
+ 			ret);
+ 		goto err_free_irq;
+ 	}
+@@ -259,8 +263,8 @@ void intel_lpe_audio_irq_handler(struct drm_i915_private *dev_priv)
+ 
+ 	ret = generic_handle_irq(dev_priv->lpe_audio.irq);
+ 	if (ret)
+-		DRM_ERROR_RATELIMITED("error handling LPE audio irq: %d\n",
+-				ret);
++		drm_err_ratelimited(&dev_priv->drm,
++				    "error handling LPE audio irq: %d\n", ret);
  }
-@@ -358,7 +364,7 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 	u32 hpd_retry_bits;
  
- 	mutex_lock(&dev->mode_config.mutex);
--	DRM_DEBUG_KMS("running encoder hotplug functions\n");
-+	drm_dbg_kms(&dev_priv->drm, "running encoder hotplug functions\n");
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
- 
-@@ -386,8 +392,9 @@ static void i915_hotplug_work_func(struct work_struct *work)
- 			struct intel_encoder *encoder =
- 				intel_attached_encoder(connector);
- 
--			DRM_DEBUG_KMS("Connector %s (pin %i) received hotplug event.\n",
--				      connector->base.name, pin);
-+			drm_dbg_kms(&dev_priv->drm,
-+				    "Connector %s (pin %i) received hotplug event.\n",
-+				    connector->base.name, pin);
- 
- 			switch (encoder->hotplug(encoder, connector,
- 						 hpd_event_bits & hpd_bit)) {
-@@ -472,9 +479,10 @@ void intel_hpd_irq_handler(struct drm_i915_private *dev_priv,
- 
- 		long_hpd = long_mask & BIT(pin);
- 
--		DRM_DEBUG_DRIVER("digital hpd on [ENCODER:%d:%s] - %s\n",
--				 encoder->base.base.id, encoder->base.name,
--				 long_hpd ? "long" : "short");
-+		drm_dbg(&dev_priv->drm,
-+			"digital hpd on [ENCODER:%d:%s] - %s\n",
-+			encoder->base.base.id, encoder->base.name,
-+			long_hpd ? "long" : "short");
- 		queue_dig = true;
- 
- 		if (long_hpd) {
+ /**
+@@ -278,7 +282,8 @@ int intel_lpe_audio_init(struct drm_i915_private *dev_priv)
+ 	if (lpe_audio_detect(dev_priv)) {
+ 		ret = lpe_audio_setup(dev_priv);
+ 		if (ret < 0)
+-			DRM_ERROR("failed to setup LPE Audio bridge\n");
++			drm_err(&dev_priv->drm,
++				"failed to setup LPE Audio bridge\n");
+ 	}
+ 	return ret;
+ }
 -- 
 2.20.1
 
