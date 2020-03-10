@@ -1,63 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0211417FE03
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 14:32:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C5217FEC7
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 14:39:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B5256E2DC;
-	Tue, 10 Mar 2020 13:32:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F03E96E1E0;
+	Tue, 10 Mar 2020 13:39:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
- [IPv6:2a00:1450:4864:20::341])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5326D6E2DC;
- Tue, 10 Mar 2020 13:32:05 +0000 (UTC)
-Received: by mail-wm1-x341.google.com with SMTP id n8so1416671wmc.4;
- Tue, 10 Mar 2020 06:32:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=5yjkQehLF0f6xll/bhOaQmEiXBo2J9wKC5XShatyRos=;
- b=KTPwiJSM/qzAYzigcpA0Y2zHDa/6QW3xECg+PL0A4YQZCTKBUehAocmVanrkaYwNWB
- BVuCETrnkcveGVfYF/e/qnudD5gWQoIsuJnsLBsoxaWZhuLSYZBwjkjREQkiqrtqq9G0
- fhCbmmMxnTenEzXygKIVlt+afExuMshk7MK6YWUmt2k8/tjRFVFbSj/G6Qz6UBaAwNEb
- qX2TsekYXrUzA43wqiTWsuQXzbEcUjl5J0W+xgbvDmalnbtx7B21ot1xCWeyRq9gAGP3
- Z1OZLPEt3QWVfKaZzjGl8G+DKAz+KmsmYt3ktwom160s2BWdHITseV6u05dkv+s8XO33
- PKDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=5yjkQehLF0f6xll/bhOaQmEiXBo2J9wKC5XShatyRos=;
- b=hMZWengo3r16uMMtXBQIrszSQK9jrlR5DLQwrhVi8O2jxyMeNxSQSoNu2G5hIJ3b+a
- 4tqOPDf+3wXGr/1Mo3JkJHjD1Hg8XgcRqBT5H0L8BmHvZn9gL5/7KyxN4Y9VcjTxofg7
- tXODFq09Npe8M1E2Hsa8dl/vBmdVQSxuvUzJadp0MgbNEVaLhffBOktCGBA22jRiZUSx
- TiughBYjtKQp7mtc9psjeyf39y1wKWPV18/fb3bSmAzO0NWCHU70kAXl1ZaLGf+fflF6
- y/PZvnR8CqIOviMUv1ZMK0zUneG5nGLefqSuJNdrojVHoCkI8/s+VT38SsdP34MjnNpN
- 0VDg==
-X-Gm-Message-State: ANhLgQ2WWYo0IdaqHg0aBnSyOpd05HWmYUfo11l5taR+Jk2uZ8019Y2m
- zj7Hs9bhK0vJoSrUwksa7livanrglR2WbQ==
-X-Google-Smtp-Source: ADFU+vtTt77jHYaEAcGJY28++Hmyg5x/Jy/jKLVwSwc+9Y+5LroFS2cLeRjqKdsEIJbBuTJj2tBGag==
-X-Received: by 2002:a1c:ba42:: with SMTP id k63mr2275852wmf.71.1583847123016; 
- Tue, 10 Mar 2020 06:32:03 -0700 (PDT)
-Received: from localhost.localdomain ([197.248.222.210])
- by smtp.googlemail.com with ESMTPSA id o7sm14047141wrx.60.2020.03.10.06.32.00
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Mar 2020 06:32:02 -0700 (PDT)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: airlied@linux.ie, daniel@ffwll.ch,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Tue, 10 Mar 2020 16:31:18 +0300
-Message-Id: <20200310133121.27913-15-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200310133121.27913-1-wambui.karugax@gmail.com>
-References: <20200310133121.27913-1-wambui.karugax@gmail.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 14/17] drm/i915: have *_debugfs_init()
- functions return void.
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5896D6E1E0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 13:39:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 06:39:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="388934647"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga004.jf.intel.com with ESMTP; 10 Mar 2020 06:39:22 -0700
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 15:39:20 +0200
+Message-Id: <20200310133920.32705-1-kai.vehmanen@linux.intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [RESEND PATCH v2] drm/i915: Add missing HDMI audio
+ pixel clocks for gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,115 +40,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since commit 987d65d01356 (drm: debugfs: make
-drm_debugfs_create_files() never fail), drm_debugfs_create_files() never
-fails and should return void. Therefore, remove its use as the
-return value of debugfs_init() functions and have the functions return
-void.
+Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
+and 593.4/594Mhz. Add the missing rates and add logic to ignore
+them if running on older hardware.
 
-v2: convert intel_display_debugfs_register() stub to return void too.
-
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
+Bspec: 49333
+Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++----
- drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
- drivers/gpu/drm/i915/i915_debugfs.c                  | 8 ++++----
- drivers/gpu/drm/i915/i915_debugfs.h                  | 4 ++--
- 4 files changed, 12 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c | 14 +++++++++++---
+ drivers/gpu/drm/i915/i915_reg.h            |  4 ++++
+ 2 files changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 1e6eb7f2f72d..424f4e52f783 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1927,7 +1927,7 @@ static const struct {
- 	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 3926b9b9a09f..e00608c898e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -148,6 +148,10 @@ static const struct {
+ 	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
+ 	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
+ 	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
++	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
++	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
++	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
++	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
  };
  
--int intel_display_debugfs_register(struct drm_i915_private *i915)
-+void intel_display_debugfs_register(struct drm_i915_private *i915)
- {
- 	struct drm_minor *minor = i915->drm.primary;
- 	int i;
-@@ -1940,9 +1940,9 @@ int intel_display_debugfs_register(struct drm_i915_private *i915)
- 				    intel_display_debugfs_files[i].fops);
- 	}
- 
--	return drm_debugfs_create_files(intel_display_debugfs_list,
--					ARRAY_SIZE(intel_display_debugfs_list),
--					minor->debugfs_root, minor);
-+	drm_debugfs_create_files(intel_display_debugfs_list,
-+				 ARRAY_SIZE(intel_display_debugfs_list),
-+				 minor->debugfs_root, minor);
- }
- 
- static int i915_panel_show(struct seq_file *m, void *data)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-index a3bea1ce04c2..c922c1745bfe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
-@@ -10,10 +10,10 @@ struct drm_connector;
- struct drm_i915_private;
- 
- #ifdef CONFIG_DEBUG_FS
--int intel_display_debugfs_register(struct drm_i915_private *i915);
-+void intel_display_debugfs_register(struct drm_i915_private *i915);
- int intel_connector_debugfs_add(struct drm_connector *connector);
- #else
--static inline int intel_display_debugfs_register(struct drm_i915_private *i915) { return 0; }
-+static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
- static inline int intel_connector_debugfs_add(struct drm_connector *connector) { return 0; }
- #endif
- 
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-index 8f2525e4ce0f..de313199c714 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.c
-+++ b/drivers/gpu/drm/i915/i915_debugfs.c
-@@ -2392,7 +2392,7 @@ static const struct i915_debugfs_files {
- 	{"i915_guc_log_relay", &i915_guc_log_relay_fops},
+ /* HDMI N/CTS table */
+@@ -231,7 +235,8 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
  };
  
--int i915_debugfs_register(struct drm_i915_private *dev_priv)
-+void i915_debugfs_register(struct drm_i915_private *dev_priv)
+ /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+-static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
++static u32 audio_config_hdmi_pixel_clock(struct drm_i915_private *dev_priv,
++					 const struct intel_crtc_state *crtc_state)
  {
- 	struct drm_minor *minor = dev_priv->drm.primary;
- 	int i;
-@@ -2409,7 +2409,7 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
- 				    i915_debugfs_files[i].fops);
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+@@ -242,6 +247,9 @@ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_sta
+ 			break;
  	}
  
--	return drm_debugfs_create_files(i915_debugfs_list,
--					I915_DEBUGFS_ENTRIES,
--					minor->debugfs_root, minor);
-+	drm_debugfs_create_files(i915_debugfs_list,
-+				 I915_DEBUGFS_ENTRIES,
-+				 minor->debugfs_root, minor);
++	if (INTEL_GEN(dev_priv) < 12 && adjusted_mode->crtc_clock > 148500)
++		i = ARRAY_SIZE(hdmi_audio_clock);
++
+ 	if (i == ARRAY_SIZE(hdmi_audio_clock)) {
+ 		DRM_DEBUG_KMS("HDMI audio pixel clock setting for %d not found, falling back to defaults\n",
+ 			      adjusted_mode->crtc_clock);
+@@ -436,7 +444,7 @@ hsw_hdmi_audio_config_update(struct intel_encoder *encoder,
+ 	tmp &= ~AUD_CONFIG_N_VALUE_INDEX;
+ 	tmp &= ~AUD_CONFIG_PIXEL_CLOCK_HDMI_MASK;
+ 	tmp &= ~AUD_CONFIG_N_PROG_ENABLE;
+-	tmp |= audio_config_hdmi_pixel_clock(crtc_state);
++	tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
+ 
+ 	n = audio_config_hdmi_get_n(crtc_state, rate);
+ 	if (n != 0) {
+@@ -681,7 +689,7 @@ static void ilk_audio_codec_enable(struct intel_encoder *encoder,
+ 	if (intel_crtc_has_dp_encoder(crtc_state))
+ 		tmp |= AUD_CONFIG_N_VALUE_INDEX;
+ 	else
+-		tmp |= audio_config_hdmi_pixel_clock(crtc_state);
++		tmp |= audio_config_hdmi_pixel_clock(dev_priv, crtc_state);
+ 	intel_de_write(dev_priv, aud_config, tmp);
  }
-diff --git a/drivers/gpu/drm/i915/i915_debugfs.h b/drivers/gpu/drm/i915/i915_debugfs.h
-index 6da39c76ab5e..1de2736f1248 100644
---- a/drivers/gpu/drm/i915/i915_debugfs.h
-+++ b/drivers/gpu/drm/i915/i915_debugfs.h
-@@ -12,10 +12,10 @@ struct drm_i915_private;
- struct seq_file;
  
- #ifdef CONFIG_DEBUG_FS
--int i915_debugfs_register(struct drm_i915_private *dev_priv);
-+void i915_debugfs_register(struct drm_i915_private *dev_priv);
- void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj);
- #else
--static inline int i915_debugfs_register(struct drm_i915_private *dev_priv) { return 0; }
-+static inline void i915_debugfs_register(struct drm_i915_private *dev_priv) {}
- static inline void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj) {}
- #endif
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index b93c4c18f05c..359c09bcb751 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9247,6 +9247,10 @@ enum {
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
+ #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
++#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
+ #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
  
+ /* HSW Audio */
 -- 
-2.25.1
+2.17.1
 
 _______________________________________________
 Intel-gfx mailing list
