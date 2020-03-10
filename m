@@ -2,39 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3778517F592
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:02:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 951DD17F5BD
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 12:09:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63B536E881;
-	Tue, 10 Mar 2020 11:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCF16E09C;
+	Tue, 10 Mar 2020 11:09:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E80E899E6;
- Tue, 10 Mar 2020 11:02:49 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 04:02:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="443123635"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
- by fmsmga006.fm.intel.com with ESMTP; 10 Mar 2020 04:02:47 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
- (envelope-from <lkp@intel.com>)
- id 1jBces-0000Ci-Pd; Tue, 10 Mar 2020 19:02:46 +0800
-Date: Tue, 10 Mar 2020 19:02:26 +0800
-From: kbuild test robot <lkp@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <202003101908.mFLWJ9ce%lkp@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E4576E09C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 11:09:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20507111-1500050 for multiple; Tue, 10 Mar 2020 11:09:20 +0000
 MIME-Version: 1.0
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: [Intel-gfx] [drm-intel:topic/core-for-CI 18/20]
- arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on
- BROKEN_ON_SMP
+In-Reply-To: <e5360a24-91e9-a873-5a9b-5b6e5cca59ac@linux.intel.com>
+References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
+ <20200306133852.3420322-8-chris@chris-wilson.co.uk>
+ <e5360a24-91e9-a873-5a9b-5b6e5cca59ac@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158383855988.16414.10338993219228723247@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 10 Mar 2020 11:09:19 +0000
+Subject: Re: [Intel-gfx] [PATCH 08/17] drm/i915/selftests: Add request
+ throughput measurement to perf
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,119 +42,156 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org,
- dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-tree:   git://anongit.freedesktop.org/drm-intel topic/core-for-CI
-head:   72212a758bdd916331477e782bdad1fa3f625322
-commit: 19f102d485b9f5e03677f73133d9922e2650686f [18/20] Revert "drm/i915: Don't select BROKEN"
-config: powerpc-defconfig
-compiler: powerpc64-linux-gcc (GCC) 9.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        git checkout 19f102d485b9f5e03677f73133d9922e2650686f
-        GCC_VERSION=9.2.0 make.cross ARCH=powerpc  defconfig
-        GCC_VERSION=9.2.0 make.cross ARCH=powerpc 
+Quoting Tvrtko Ursulin (2020-03-10 10:38:21)
+> 
+> On 06/03/2020 13:38, Chris Wilson wrote:
+> > +static int perf_many(void *arg)
+> > +{
+> > +     struct perf_parallel *p = arg;
+> > +     struct intel_engine_cs *engine = p->engine;
+> > +     struct intel_context *ce;
+> > +     IGT_TIMEOUT(end_time);
+> > +     unsigned long count;
+> > +     int err = 0;
+> > +     bool busy;
+> > +
+> > +     ce = intel_context_create(engine);
+> > +     if (IS_ERR(ce))
+> > +             return PTR_ERR(ce);
+> > +
+> > +     err = intel_context_pin(ce);
+> > +     if (err) {
+> > +             intel_context_put(ce);
+> > +             return err;
+> > +     }
+> > +
+> > +     busy = false;
+> > +     if (intel_engine_supports_stats(engine) &&
+> > +         !intel_enable_engine_stats(engine)) {
+> > +             p->busy = intel_engine_get_busy_time(engine);
+> > +             busy = true;
+> > +     }
+> > +
+> > +     count = 0;
+> > +     p->time = ktime_get();
+> > +     do {
+> > +             struct i915_request *rq;
+> > +
+> > +             rq = i915_request_create(ce);
+> > +             if (IS_ERR(rq)) {
+> > +                     err = PTR_ERR(rq);
+> > +                     break;
+> > +             }
+> > +
+> > +             i915_request_add(rq);
+> 
+> Any concerns on ring size here and maybe managing the wait explicitly?
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+No concern, the intention is to flood the ring. If we are able to wait
+on the ring, we have succeeded in submitting faster than the engine can
+retire. (Which might be another issue for us to resolve, as it may be
+our own interrupt latency that is then the bottleneck.)
 
-All errors (new ones prefixed by >>):
+If we did a sync0, sync1, many; that could give us some more insight
+into the interrupt latency in comparison to engine latency.
 
-   arch/powerpc/platforms/embedded6xx/Kconfig:2:error: recursive dependency detected!
->> arch/powerpc/platforms/embedded6xx/Kconfig:2: symbol EMBEDDED6xx depends on BROKEN_ON_SMP
-   init/Kconfig:80: symbol BROKEN_ON_SMP depends on BROKEN
-   init/Kconfig:77: symbol BROKEN is selected by DRM_I915_DEBUG
-   drivers/gpu/drm/i915/Kconfig.debug:19: symbol DRM_I915_DEBUG depends on DRM_I915
-   drivers/gpu/drm/i915/Kconfig:2: symbol DRM_I915 depends on DRM
-   drivers/gpu/drm/Kconfig:8: symbol DRM depends on AGP
-   drivers/char/agp/Kconfig:2: symbol AGP depends on PCI
->> drivers/pci/Kconfig:16: symbol PCI depends on HAVE_PCI
-   drivers/pci/Kconfig:7: symbol HAVE_PCI is selected by FORCE_PCI
-   drivers/pci/Kconfig:11: symbol FORCE_PCI is selected by MVME5100
->> arch/powerpc/platforms/embedded6xx/Kconfig:51: symbol MVME5100 depends on EMBEDDED6xx
-   For a resolution refer to Documentation/kbuild/kconfig-language.rst
-   subsection "Kconfig recursive dependency limitations"
+> 
+> > +             count++;
+> > +     } while (!__igt_timeout(end_time, NULL));
+> > +     p->time = ktime_sub(ktime_get(), p->time);
+> > +
+> > +     if (busy) {
+> > +             p->busy = ktime_sub(intel_engine_get_busy_time(engine),
+> > +                                 p->busy);
+> > +             intel_disable_engine_stats(engine);
+> > +     }
+> > +
+> > +     err = switch_to_kernel_sync(ce, err);
+> > +     p->runtime = intel_context_get_total_runtime_ns(ce);
+> > +     p->count = count;
+> > +
+> > +     intel_context_unpin(ce);
+> > +     intel_context_put(ce);
+> > +     return err;
+> > +}
+> > +
+> > +static int perf_parallel_engines(void *arg)
+> > +{
+> > +     struct drm_i915_private *i915 = arg;
+> > +     static int (* const func[])(void *arg) = {
+> > +             perf_sync,
+> > +             perf_many,
+> > +             NULL,
+> > +     };
+> > +     const unsigned int nengines = num_uabi_engines(i915);
+> > +     struct intel_engine_cs *engine;
+> > +     int (* const *fn)(void *arg);
+> > +     struct pm_qos_request *qos;
+> > +     struct {
+> > +             struct perf_parallel p;
+> > +             struct task_struct *tsk;
+> > +     } *engines;
+> > +     int err = 0;
+> > +
+> > +     engines = kcalloc(nengines, sizeof(*engines), GFP_KERNEL);
+> > +     if (!engines)
+> > +             return -ENOMEM;
+> > +
+> > +     qos = kzalloc(sizeof(*qos), GFP_KERNEL);
+> > +     if (qos)
+> > +             pm_qos_add_request(qos, PM_QOS_CPU_DMA_LATENCY, 0);
+> > +
+> > +     for (fn = func; *fn; fn++) {
+> > +             char name[KSYM_NAME_LEN];
+> > +             struct igt_live_test t;
+> > +             unsigned int idx;
+> > +
+> > +             snprintf(name, sizeof(name), "%ps", *fn);
+> 
+> Is this any better than just storing the name in local static array?
 
-vim +2 arch/powerpc/platforms/embedded6xx/Kconfig
+It's easier for sure, and since the name is already in a static array,
+why not use it :)
 
-a35e370cfd2ddf Arnd Bergmann         2007-08-30  @2  config EMBEDDED6xx
-a35e370cfd2ddf Arnd Bergmann         2007-08-30   3  	bool "Embedded 6xx/7xx/7xxx-based boards"
-be34fff07c3755 Christophe Leroy      2018-11-17   4  	depends on PPC_BOOK3S_32 && BROKEN_ON_SMP
-14cf11af6cf608 Paul Mackerras        2005-09-26   5  
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01   6  config LINKSTATION
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01   7  	bool "Linkstation / Kurobox(HG) from Buffalo"
-a35e370cfd2ddf Arnd Bergmann         2007-08-30   8  	depends on EMBEDDED6xx
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01   9  	select MPIC
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  10  	select FSL_SOC
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  11  	select PPC_UDBG_16550 if SERIAL_8250
-44d7631bdb1621 Segher Boessenkool    2007-02-22  12  	select DEFAULT_UIMAGE
-3490cba56f7f8a Jon Loeliger          2008-01-23  13  	select MPC10X_BRIDGE
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  14  	help
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  15  	  Select LINKSTATION if configuring for one of PPC- (MPC8241)
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  16  	  based NAS systems from Buffalo Technology. So far only
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  17  	  KuroboxHG has been tested. In the future classical Kurobox,
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  18  	  Linkstation-I HD-HLAN and HD-HGLAN versions, and PPC-based
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  19  	  Terastation systems should be supported too.
-04d76b937bdf60 Guennadi Liakhovetski 2006-12-01  20  
-3490cba56f7f8a Jon Loeliger          2008-01-23  21  config STORCENTER
-3490cba56f7f8a Jon Loeliger          2008-01-23  22  	bool "IOMEGA StorCenter"
-3490cba56f7f8a Jon Loeliger          2008-01-23  23  	depends on EMBEDDED6xx
-3490cba56f7f8a Jon Loeliger          2008-01-23  24  	select MPIC
-3490cba56f7f8a Jon Loeliger          2008-01-23  25  	select FSL_SOC
-3490cba56f7f8a Jon Loeliger          2008-01-23  26  	select PPC_UDBG_16550 if SERIAL_8250
-3490cba56f7f8a Jon Loeliger          2008-01-23  27  	select MPC10X_BRIDGE
-3490cba56f7f8a Jon Loeliger          2008-01-23  28  	help
-3490cba56f7f8a Jon Loeliger          2008-01-23  29  	  Select STORCENTER if configuring for the iomega StorCenter
-3490cba56f7f8a Jon Loeliger          2008-01-23  30  	  with an 8241 CPU in it.
-3490cba56f7f8a Jon Loeliger          2008-01-23  31  
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  32  config MPC7448HPC2
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  33  	bool "Freescale MPC7448HPC2(Taiga)"
-a35e370cfd2ddf Arnd Bergmann         2007-08-30  34  	depends on EMBEDDED6xx
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  35  	select TSI108_BRIDGE
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  36  	select DEFAULT_UIMAGE
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  37  	select PPC_UDBG_16550
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  38  	help
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  39  	  Select MPC7448HPC2 if configuring for Freescale MPC7448HPC2 (Taiga)
-c5d56332fd6c2f Zang Roy-r61911       2006-06-13  40  	  platform
-cb9e4d10c448a3 Josh Boyer            2007-05-08  41  
-cb9e4d10c448a3 Josh Boyer            2007-05-08  42  config PPC_HOLLY
-cb9e4d10c448a3 Josh Boyer            2007-05-08  43  	bool "PPC750GX/CL with TSI10x bridge (Hickory/Holly)"
-a35e370cfd2ddf Arnd Bergmann         2007-08-30  44  	depends on EMBEDDED6xx
-cb9e4d10c448a3 Josh Boyer            2007-05-08  45  	select TSI108_BRIDGE
-cb9e4d10c448a3 Josh Boyer            2007-05-08  46  	select PPC_UDBG_16550
-cb9e4d10c448a3 Josh Boyer            2007-05-08  47  	help
-cb9e4d10c448a3 Josh Boyer            2007-05-08  48  	  Select PPC_HOLLY if configuring for an IBM 750GX/CL Eval
-cb9e4d10c448a3 Josh Boyer            2007-05-08  49  	  Board with TSI108/9 bridge (Hickory/Holly)
-fd4ba7e2b7ce9a Dale Farnsworth       2007-05-12  50  
-be2019816e4dcd Stephen Chivers       2014-01-09 @51  config MVME5100
-be2019816e4dcd Stephen Chivers       2014-01-09  52  	bool "Motorola/Emerson MVME5100"
-be2019816e4dcd Stephen Chivers       2014-01-09  53  	depends on EMBEDDED6xx
-be2019816e4dcd Stephen Chivers       2014-01-09  54  	select MPIC
-eb01d42a77785f Christoph Hellwig     2018-11-15  55  	select FORCE_PCI
-be2019816e4dcd Stephen Chivers       2014-01-09  56  	select PPC_INDIRECT_PCI
-be2019816e4dcd Stephen Chivers       2014-01-09  57  	select PPC_I8259
-be2019816e4dcd Stephen Chivers       2014-01-09  58  	select PPC_NATIVE
-13ae40370f62cd Stephen Chivers       2014-04-20  59  	select PPC_UDBG_16550
-be2019816e4dcd Stephen Chivers       2014-01-09  60  	help
-be2019816e4dcd Stephen Chivers       2014-01-09  61  	  This option enables support for the Motorola (now Emerson) MVME5100
-be2019816e4dcd Stephen Chivers       2014-01-09  62  	  board.
-be2019816e4dcd Stephen Chivers       2014-01-09  63  
+> > +             err = igt_live_test_begin(&t, i915, __func__, name);
+> > +             if (err)
+> > +                     break;
+> > +
+> > +             atomic_set(&i915->selftest.counter, nengines);
+> > +
+> > +             idx = 0;
+> > +             for_each_uabi_engine(engine, i915) {
+> 
+> For a pure driver overhead test I would suggest this to be a gt live test.
 
-:::::: The code at line 2 was first introduced by commit
-:::::: a35e370cfd2ddfb5d2f0ceae376ffeda273b357c [POWERPC] Move embedded6xx into multiplatform
+It's a request performance test, so sits above the gt. My thinking is
+that this is a more of a high level request/scheduler test than
+execlists/guc (though it depends on those backends).
+ 
+> > +                     intel_engine_pm_get(engine);
+> > +
+> > +                     memset(&engines[idx].p, 0, sizeof(engines[idx].p));
+> > +                     engines[idx].p.engine = engine;
+> > +
+> > +                     engines[idx].tsk = kthread_run(*fn, &engines[idx].p,
+> > +                                                    "igt:%s", engine->name);
+> 
+> Test will get affected by the host CPU core count. How about we only 
+> measure num_cpu engines? Might be even more important with discrete.
 
-:::::: TO: Arnd Bergmann <arnd@arndb.de>
-:::::: CC: Paul Mackerras <paulus@samba.org>
+No. We want to be able to fill the GPU with the different processors.
+Comparing glk to kbl helps highlight any inefficiencies we have -- we
+have to be efficient enough that core count is simply not a critical
+factor to offset our submission overhead.
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+So we can run the same test and see how it scaled with engines vs cpus
+just by running it on different machines and look for problems.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
