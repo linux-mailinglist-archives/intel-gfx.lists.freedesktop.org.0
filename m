@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E9C1800B6
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 700481800CB
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 15:55:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9169389FCC;
-	Tue, 10 Mar 2020 14:54:43 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id B701D6E321;
+	Tue, 10 Mar 2020 14:55:27 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 024BB89FCC
- for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 14:54:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F31A6E321
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 14:55:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 07:54:41 -0700
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="236058019"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 10 Mar 2020 07:54:40 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
-References: <20200310142958.12039-1-tvrtko.ursulin@linux.intel.com>
- <158385085872.28297.4063749064051393510@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <3289249b-9e2f-611c-d5a8-9b70514d0136@linux.intel.com>
-Date: Tue, 10 Mar 2020 14:54:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ 10 Mar 2020 07:55:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="321826890"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga001.jf.intel.com with ESMTP; 10 Mar 2020 07:55:24 -0700
+Date: Tue, 10 Mar 2020 16:55:23 +0200 (EET)
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200310135742.GF13686@intel.com>
+Message-ID: <alpine.DEB.2.21.2003101653250.2957@eliteleevi.tm.intel.com>
+References: <20200310133920.32705-1-kai.vehmanen@linux.intel.com>
+ <20200310135742.GF13686@intel.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
-In-Reply-To: <158385085872.28297.4063749064051393510@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Consolidate forcewake status
- display
+Content-Type: multipart/mixed;
+ boundary="-318106570-1556852803-1583852125=:2957"
+Subject: Re: [Intel-gfx] [RESEND PATCH v2] drm/i915: Add missing HDMI audio
+ pixel clocks for gen12
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,35 +48,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
+---318106570-1556852803-1583852125=:2957
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
 
-On 10/03/2020 14:34, Chris Wilson wrote:
-> Quoting Tvrtko Ursulin (2020-03-10 14:29:58)
->> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->>
->> Use new common helper intel_gt_show_forcewake from both old and new
->> debugfs code.
->>
->> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
->> Cc: Andi Shyti <andi.shyti@intel.com>
+Hey,
+
+On Tue, 10 Mar 2020, Ville Syrjälä wrote:
+
+> On Tue, Mar 10, 2020 at 03:39:20PM +0200, Kai Vehmanen wrote:
+>> Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
+>> and 593.4/594Mhz. Add the missing rates and add logic to ignore
+>> them if running on older hardware.
+[...]
+> No real need to pass dev_priv separately. We can dig it out locally.
 > 
-> Fair enough,
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> 
-> Though the question is why didn't we kill off the toplevel fw_domains?
+> ... dev_priv = to_i915(crtc_state->uapi.crtc->dev);
 
-Yeah, I was asking myself the same. Looks like there is no users in IGT 
-so we could just as well. Second patch to follow..
+aa, didn't realize that. But that's cleaner, let me update and send V3.
 
-Regards,
+> Otherwise lgtm.
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Tvrtko
+Thanks!
+
+Br, Kai
+
+---318106570-1556852803-1583852125=:2957
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+---318106570-1556852803-1583852125=:2957--
