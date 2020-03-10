@@ -1,31 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6DB617ED41
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:23:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id F331917ED51
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 01:30:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40A7B6E5CA;
-	Tue, 10 Mar 2020 00:23:24 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4502A6E5C1;
- Tue, 10 Mar 2020 00:23:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C399A41FB;
- Tue, 10 Mar 2020 00:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 377616E11E;
+	Tue, 10 Mar 2020 00:30:50 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 057DD6E11E
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 00:30:48 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20502190-1500050 for multiple; Tue, 10 Mar 2020 00:13:53 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rajat Jain" <rajatja@google.com>
-Date: Tue, 10 Mar 2020 00:23:23 -0000
-Message-ID: <158379980321.24168.1621517910187828723@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200310000617.20662-1-rajatja@google.com>
-In-Reply-To: <20200310000617.20662-1-rajatja@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=3A_Add_support_for_integrated_privacy_screen?=
+In-Reply-To: <ee5b6168-4e0a-6bbc-731e-a7391cc96397@linux.intel.com>
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-2-tvrtko.ursulin@linux.intel.com>
+ <158378968022.16414.13552854522311222381@build.alporthouse.com>
+ <ee5b6168-4e0a-6bbc-731e-a7391cc96397@linux.intel.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Intel-gfx@lists.freedesktop.org,
+ Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <158379923268.3232.8572720070601085988@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 10 Mar 2020 00:13:52 +0000
+Subject: Re: [Intel-gfx] [RFC 01/12] drm/i915: Expose list of clients in
+ sysfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,41 +43,55 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Tvrtko Ursulin (2020-03-09 23:26:34)
+> 
+> On 09/03/2020 21:34, Chris Wilson wrote:
+> > Quoting Tvrtko Ursulin (2020-03-09 18:31:18)
+> >> +struct i915_drm_client *
+> >> +i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+> >> +{
+> >> +       struct i915_drm_client *client;
+> >> +       int ret;
+> >> +
+> >> +       client = kzalloc(sizeof(*client), GFP_KERNEL);
+> >> +       if (!client)
+> >> +               return ERR_PTR(-ENOMEM);
+> >> +
+> >> +       kref_init(&client->kref);
+> >> +       client->clients = clients;
+> >> +
+> >> +       ret = mutex_lock_interruptible(&clients->lock);
+> >> +       if (ret)
+> >> +               goto err_id;
+> >> +       ret = xa_alloc_cyclic(&clients->xarray, &client->id, client,
+> >> +                             xa_limit_32b, &clients->next_id, GFP_KERNEL);
+> > 
+> > So what's next_id used for that explains having the over-arching mutex?
+> 
+> It's to give out client id's "cyclically" - before I apparently 
+> misunderstood what xa_alloc_cyclic is supposed to do - I thought after 
+> giving out id 1 it would give out 2 next, even if 1 was returned to the 
+> pool in the meantime. But it doesn't, I need to track the start point 
+> for the next search with "next".
 
-Series: drm: Add support for integrated privacy screen
-URL   : https://patchwork.freedesktop.org/series/74473/
-State : warning
+Ok. A requirement of the API for the external counter.
+ 
+> I want this to make intel_gpu_top's life easier, so it doesn't have to 
+> deal with id recycling for all practical purposes.
 
-== Summary ==
+Fair enough. I only worry about the radix nodes and sparse ids :)
+ 
+> And a peek into xa implementation told me the internal lock is not 
+> protecting "next.
 
-$ dim checkpatch origin/drm-tip
-4d85b0afcb69 intel_acpi: Rename drm_dev local variable to dev
-8f19bae8d1da drm/connector: Add support for privacy-screen property
-ad4ee254fd45 drm/i915: Lookup and attach ACPI device node for connectors
-4d56cad4f624 drm/i915: Add support for integrated privacy screen
--:33: WARNING:LONG_LINE: line over 100 characters
-#33: FILE: drivers/gpu/drm/i915/display/intel_atomic.c:153:
-+	    new_conn_state->base.privacy_screen_status != old_conn_state->base.privacy_screen_status ||
-
--:72: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#72: FILE: drivers/gpu/drm/i915/display/intel_dp.c:6897:
-+static void intel_dp_update_privacy_screen(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state,
-
--:103: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#103: 
-new file mode 100644
-
-total: 0 errors, 2 warnings, 1 checks, 275 lines checked
-
+See xa_alloc_cyclic(), seems to cover __xa_alloc_cycle (where *next is
+manipulated) under the xa_lock.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
