@@ -1,36 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADEA7180261
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:49:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B91018021A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:43:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 024D26E342;
-	Tue, 10 Mar 2020 15:49:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B86A6E33C;
+	Tue, 10 Mar 2020 15:43:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A1196E88A
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 15:49:28 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 08:49:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="236075995"
-Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.53])
- by orsmga008.jf.intel.com with ESMTP; 10 Mar 2020 08:49:25 -0700
-From: Animesh Manna <animesh.manna@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE8F26E33C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 15:43:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20511439-1500050 
+ for multiple; Tue, 10 Mar 2020 15:43:10 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Mar 2020 21:07:45 +0530
-Message-Id: <20200310153745.22814-8-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200310153745.22814-1-animesh.manna@intel.com>
-References: <20200310153745.22814-1-animesh.manna@intel.com>
+Date: Tue, 10 Mar 2020 15:43:09 +0000
+Message-Id: <20200310154309.3759-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v4 7/7] drm/i915/dp: Program vswing, pre-emphasis,
- test-pattern
+Subject: [Intel-gfx] [PATCH v2] drm/i915/execlists: Track active elements
+ during dequeue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,136 +37,121 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBwYXRjaCBwcm9jZXNzIHBoeSBjb21wbGlhbmNlIHJlcXVlc3QgYnkgcHJvZ3JhbW1pbmcg
-cmVxdWVzdGVkCnZzd2luZywgcHJlLWVtcGhhc2lzIGFuZCB0ZXN0IHBhdHRlcm4uCgp2MTogSW5p
-dGlhbCBwYXRjaC4KdjI6IEZpeGVzIGFkZGVkIGR1cmluZyB0ZXN0aW5nIHdpdGggdGVzdC1zY29w
-ZS4gKEtoYWxlZC9DbGludC9NYW5hc2kpCi0gcGlwZSB1c2VkIGFzIGFyZ3VtZW50IGR1cmluZyBy
-ZWdpc3RlcnMgcHJvZ3JhbW1pbmcgaW5zdGVhZCBvZiBwb3J0LgotIFRSQU5TX0NPTkYgbXVzdCBi
-ZSBkaXNhYmxlL2VuYWJsZSBhcyB3ZWxsIGR1cmluZyBkZGkgZGlzYWJsZS9lbmFibGUuCi0gaGFy
-Y29kZWQgUExUUEFUIDgwIGJpdCBjdXN0b20gcGF0dGVybiBhcyB0aGUgRFBSLTEwMCBkb2VzIG5v
-dCBzZXQgaXQKaW4gdGhlIHNpbmvigJlzIERQQ0RzCi0gVFJBTlNfRERJX0ZVTkNfQ1RMIERESV9T
-ZWxlY3QgKEJpdHMgMjc6MzApIG5lZWQgdG8gcmVzZXQvc2V0IGR1cmluZwpkaXNhYmxlL2VuYWJs
-ZS4KCkNjOiBDbGludG9uIFRheWxvciA8Q2xpbnRvbi5BLlRheWxvckBpbnRlbC5jb20+CkNjOiBN
-YW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBB
-bmltZXNoIE1hbm5hIDxhbmltZXNoLm1hbm5hQGludGVsLmNvbT4KU2lnbmVkLW9mZi1ieTogS2hh
-bGVkIEFsbWFoYWxsYXd5IDxraGFsZWQuYWxtYWhhbGxhd3lAaW50ZWwuY29tPgotLS0KIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyB8IDEzNSArKysrKysrKysrKysrKysr
-KysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCB8ICAgMSAr
-CiAyIGZpbGVzIGNoYW5nZWQsIDEzNiBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kcC5jCmluZGV4IDE2YTRhNDhjODE2OC4uMDIzOWE3MjUzN2JhIDEwMDY0
-NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5jCkBAIC01MDIwLDYgKzUwMjAsMTM5
-IEBAIHN0YXRpYyB1OCBpbnRlbF9kcF9wcmVwYXJlX3BoeXRlc3Qoc3RydWN0IGludGVsX2RwICpp
-bnRlbF9kcCkKIAlyZXR1cm4gRFBfVEVTVF9BQ0s7CiB9CiAKK3N0YXRpYyB2b2lkIGludGVsX2Rw
-X3BoeV9wYXR0ZXJuX3VwZGF0ZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQoreworCXN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9CisJCQl0b19pOTE1KGRwX3RvX2RpZ19wb3J0
-KGludGVsX2RwKS0+YmFzZS5iYXNlLmRldik7CisJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAq
-aW50ZWxfZGlnX3BvcnQgPSBkcF90b19kaWdfcG9ydChpbnRlbF9kcCk7CisJc3RydWN0IGRybV9k
-cF9waHlfdGVzdF9wYXJhbXMgKmRhdGEgPQorCQkJJmludGVsX2RwLT5jb21wbGlhbmNlLnRlc3Rf
-ZGF0YS5waHl0ZXN0OworCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjID0gdG9faW50ZWxfY3J0Yyhp
-bnRlbF9kaWdfcG9ydC0+YmFzZS5iYXNlLmNydGMpOworCWVudW0gcGlwZSBwaXBlID0gY3J0Yy0+
-cGlwZTsKKwl1MzIgdGVtcDsKKworCXN3aXRjaCAoZGF0YS0+cGh5X3BhdHRlcm4pIHsKKwljYXNl
-IERQX1BIWV9URVNUX1BBVFRFUk5fTk9ORToKKwkJRFJNX0RFQlVHX0tNUygiRGlzYWJsZSBQaHkg
-VGVzdCBQYXR0ZXJuXG4iKTsKKwkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIERESV9EUF9DT01Q
-X0NUTChwaXBlKSwgMHgwKTsKKwkJYnJlYWs7CisJY2FzZSBEUF9QSFlfVEVTVF9QQVRURVJOX0Qx
-MF8yOgorCQlEUk1fREVCVUdfS01TKCJTZXQgRDEwLjIgUGh5IFRlc3QgUGF0dGVyblxuIik7CisJ
-CWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBERElfRFBfQ09NUF9DVEwocGlwZSksCisJCQkgICAg
-ICAgRERJX0RQX0NPTVBfQ1RMX0VOQUJMRSB8IERESV9EUF9DT01QX0NUTF9EMTBfMik7CisJCWJy
-ZWFrOworCWNhc2UgRFBfUEhZX1RFU1RfUEFUVEVSTl9FUlJPUl9DT1VOVDoKKwkJRFJNX0RFQlVH
-X0tNUygiU2V0IEVycm9yIENvdW50IFBoeSBUZXN0IFBhdHRlcm5cbiIpOworCQlpbnRlbF9kZV93
-cml0ZShkZXZfcHJpdiwgRERJX0RQX0NPTVBfQ1RMKHBpcGUpLAorCQkJICAgICAgIERESV9EUF9D
-T01QX0NUTF9FTkFCTEUgfAorCQkJICAgICAgIERESV9EUF9DT01QX0NUTF9TQ1JBTUJMRURfMCk7
-CisJCWJyZWFrOworCWNhc2UgRFBfUEhZX1RFU1RfUEFUVEVSTl9QUkJTNzoKKwkJRFJNX0RFQlVH
-X0tNUygiU2V0IFBSQlM3IFBoeSBUZXN0IFBhdHRlcm5cbiIpOworCQlpbnRlbF9kZV93cml0ZShk
-ZXZfcHJpdiwgRERJX0RQX0NPTVBfQ1RMKHBpcGUpLAorCQkJICAgICAgIERESV9EUF9DT01QX0NU
-TF9FTkFCTEUgfCBERElfRFBfQ09NUF9DVExfUFJCUzcpOworCQlicmVhazsKKwljYXNlIERQX1BI
-WV9URVNUX1BBVFRFUk5fODBCSVRfQ1VTVE9NOgorCQlEUk1fREVCVUdfS01TKCJTZXQgODBCaXQg
-Q3VzdG9tIFBoeSBUZXN0IFBhdHRlcm4gMHgzZTBmODNlMCAweDBmODNlMGY4IDB4MDAwMGY4M2Vc
-biIpOworCQl0ZW1wID0gMHgzZTBmODNlMDsKKwkJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIERE
-SV9EUF9DT01QX1BBVChwaXBlLCAwKSwgdGVtcCk7CisJCXRlbXAgPSAweDBmODNlMGY4OworCQlp
-bnRlbF9kZV93cml0ZShkZXZfcHJpdiwgRERJX0RQX0NPTVBfUEFUKHBpcGUsIDEpLCB0ZW1wKTsK
-KwkJdGVtcCA9IDB4MDAwMGY4M2U7CisJCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBERElfRFBf
-Q09NUF9QQVQocGlwZSwgMiksIHRlbXApOworCQlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgRERJ
-X0RQX0NPTVBfQ1RMKHBpcGUpLAorCQkJICAgICAgIERESV9EUF9DT01QX0NUTF9FTkFCTEUgfAor
-CQkJICAgICAgIERESV9EUF9DT01QX0NUTF9DVVNUT004MCk7CisJCWJyZWFrOworCWNhc2UgRFBf
-UEhZX1RFU1RfUEFUVEVSTl9DUDI1MjA6CisJCURSTV9ERUJVR19LTVMoIlNldCBIQlIyIGNvbXBs
-aWFuY2UgUGh5IFRlc3QgUGF0dGVyblxuIik7CisJCXRlbXAgPSAweEZCOworCQlpbnRlbF9kZV93
-cml0ZShkZXZfcHJpdiwgRERJX0RQX0NPTVBfQ1RMKHBpcGUpLAorCQkJICAgICAgIERESV9EUF9D
-T01QX0NUTF9FTkFCTEUgfCBERElfRFBfQ09NUF9DVExfSEJSMiB8CisJCQkgICAgICAgdGVtcCk7
-CisJCWJyZWFrOworCWRlZmF1bHQ6CisJCVdBUk4oMSwgIkludmFsaWQgUGh5IFRlc3QgUEF0dGVy
-blxuIik7CisJfQorfQorCitzdGF0aWMgdm9pZAoraW50ZWxfZHBfYXV0b3Rlc3RfcGh5X2RkaV9k
-aXNhYmxlKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCit7CisJc3RydWN0IGludGVsX2RpZ2l0
-YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQgPSBkcF90b19kaWdfcG9ydChpbnRlbF9kcCk7CisJc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldiA9IGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuZGV2OworCXN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZGV2KTsKKwlzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YyA9IHRvX2ludGVsX2NydGMoaW50ZWxfZGlnX3BvcnQtPmJhc2UuYmFz
-ZS5jcnRjKTsKKwllbnVtIHBpcGUgcGlwZSA9IGNydGMtPnBpcGU7CisJdTMyIHRyYW5zX2RkaV9m
-dW5jX2N0bF92YWx1ZSwgdHJhbnNfY29uZl92YWx1ZSwgZHBfdHBfY3RsX3ZhbHVlOworCisJdHJh
-bnNfZGRpX2Z1bmNfY3RsX3ZhbHVlID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwKKwkJCQkJCSBU
-UkFOU19ERElfRlVOQ19DVEwocGlwZSkpOworCXRyYW5zX2NvbmZfdmFsdWUgPSBpbnRlbF9kZV9y
-ZWFkKGRldl9wcml2LCBQSVBFQ09ORihwaXBlKSk7CisJZHBfdHBfY3RsX3ZhbHVlID0gaW50ZWxf
-ZGVfcmVhZChkZXZfcHJpdiwgVEdMX0RQX1RQX0NUTChwaXBlKSk7CisKKwl0cmFuc19kZGlfZnVu
-Y19jdGxfdmFsdWUgJj0gfigweDFGIDw8IDI3KTsKKwl0cmFuc19jb25mX3ZhbHVlICY9IH5QSVBF
-Q09ORl9FTkFCTEU7CisJZHBfdHBfY3RsX3ZhbHVlICY9IH5EUF9UUF9DVExfRU5BQkxFOworCisJ
-aW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFBJUEVDT05GKHBpcGUpLCB0cmFuc19jb25mX3ZhbHVl
-KTsKKwlpbnRlbF9kZV93cml0ZShkZXZfcHJpdiwgVFJBTlNfRERJX0ZVTkNfQ1RMKHBpcGUpLAor
-CQkgICAgICAgdHJhbnNfZGRpX2Z1bmNfY3RsX3ZhbHVlKTsKKwlpbnRlbF9kZV93cml0ZShkZXZf
-cHJpdiwgVEdMX0RQX1RQX0NUTChwaXBlKSwgZHBfdHBfY3RsX3ZhbHVlKTsKK30KKworc3RhdGlj
-IHZvaWQKK2ludGVsX2RwX2F1dG90ZXN0X3BoeV9kZGlfZW5hYmxlKHN0cnVjdCBpbnRlbF9kcCAq
-aW50ZWxfZHAsIHVpbnQ4X3QgbGFuZV9jbnQpCit7CisJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9y
-dCAqaW50ZWxfZGlnX3BvcnQgPSBkcF90b19kaWdfcG9ydChpbnRlbF9kcCk7CisJc3RydWN0IGRy
-bV9kZXZpY2UgKmRldiA9IGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuZGV2OworCXN0cnVjdCBk
-cm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoZGV2KTsKKwllbnVtIHBvcnQgcG9y
-dCA9IGludGVsX2RpZ19wb3J0LT5iYXNlLnBvcnQ7CisJc3RydWN0IGludGVsX2NydGMgKmNydGMg
-PSB0b19pbnRlbF9jcnRjKGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuY3J0Yyk7CisJZW51bSBw
-aXBlIHBpcGUgPSBjcnRjLT5waXBlOworCXUzMiB0cmFuc19kZGlfZnVuY19jdGxfdmFsdWUsIHRy
-YW5zX2NvbmZfdmFsdWUsIGRwX3RwX2N0bF92YWx1ZTsKKworCXRyYW5zX2RkaV9mdW5jX2N0bF92
-YWx1ZSA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsCisJCQkJCQkgVFJBTlNfRERJX0ZVTkNfQ1RM
-KHBpcGUpKTsKKwl0cmFuc19jb25mX3ZhbHVlID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwgUElQ
-RUNPTkYocGlwZSkpOworCWRwX3RwX2N0bF92YWx1ZSA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYs
-IFRHTF9EUF9UUF9DVEwocGlwZSkpOworCisJdHJhbnNfZGRpX2Z1bmNfY3RsX3ZhbHVlIHw9IFRS
-QU5TX0RESV9GVU5DX0VOQUJMRSB8ICgocG9ydCArIDEpIDw8IDI3KTsKKwl0cmFuc19jb25mX3Zh
-bHVlIHw9IFBJUEVDT05GX0VOQUJMRTsKKwlkcF90cF9jdGxfdmFsdWUgfD0gRFBfVFBfQ1RMX0VO
-QUJMRTsKKworCWludGVsX2RlX3dyaXRlKGRldl9wcml2LCBQSVBFQ09ORihwaXBlKSwgdHJhbnNf
-Y29uZl92YWx1ZSk7CisJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFRHTF9EUF9UUF9DVEwocGlw
-ZSksIGRwX3RwX2N0bF92YWx1ZSk7CisJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIFRSQU5TX0RE
-SV9GVU5DX0NUTChwaXBlKSwKKwkJICAgICAgIHRyYW5zX2RkaV9mdW5jX2N0bF92YWx1ZSk7Cit9
-CisKK3ZvaWQgaW50ZWxfZHBfcHJvY2Vzc19waHlfcmVxdWVzdChzdHJ1Y3QgaW50ZWxfZHAgKmlu
-dGVsX2RwKQoreworCXN0cnVjdCBkcm1fZHBfcGh5X3Rlc3RfcGFyYW1zICpkYXRhID0KKwkJJmlu
-dGVsX2RwLT5jb21wbGlhbmNlLnRlc3RfZGF0YS5waHl0ZXN0OworCXU4IGxpbmtfc3RhdHVzW0RQ
-X0xJTktfU1RBVFVTX1NJWkVdOworCisJaWYgKCFpbnRlbF9kcF9nZXRfbGlua19zdGF0dXMoaW50
-ZWxfZHAsIGxpbmtfc3RhdHVzKSkgeworCQlEUk1fREVCVUdfS01TKCJmYWlsZWQgdG8gZ2V0IGxp
-bmsgc3RhdHVzXG4iKTsKKwkJcmV0dXJuOworCX0KKworCS8qIHJldHJpZXZlIHZzd2luZyAmIHBy
-ZS1lbXBoYXNpcyBzZXR0aW5nICovCisJaW50ZWxfZHBfZ2V0X2FkanVzdF90cmFpbihpbnRlbF9k
-cCwgbGlua19zdGF0dXMpOworCisJaW50ZWxfZHBfYXV0b3Rlc3RfcGh5X2RkaV9kaXNhYmxlKGlu
-dGVsX2RwKTsKKworCWludGVsX2RwX3NldF9zaWduYWxfbGV2ZWxzKGludGVsX2RwKTsKKworCWlu
-dGVsX2RwX3BoeV9wYXR0ZXJuX3VwZGF0ZShpbnRlbF9kcCk7CisKKwlpbnRlbF9kcF9hdXRvdGVz
-dF9waHlfZGRpX2VuYWJsZShpbnRlbF9kcCwgZGF0YS0+bnVtX2xhbmVzKTsKKworCWRybV9kcF9z
-ZXRfcGh5X3Rlc3RfcGF0dGVybigmaW50ZWxfZHAtPmF1eCwgZGF0YSwKKwkJCQkgICAgbGlua19z
-dGF0dXNbRFBfRFBDRF9SRVZdKTsKK30KKwogc3RhdGljIHU4IGludGVsX2RwX2F1dG90ZXN0X3Bo
-eV9wYXR0ZXJuKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApCiB7CiAJdTggdGVzdF9yZXN1bHQg
-PSBEUF9URVNUX05BSzsKQEAgLTUwMjgsNiArNTE2MSw4IEBAIHN0YXRpYyB1OCBpbnRlbF9kcF9h
-dXRvdGVzdF9waHlfcGF0dGVybihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQogCWlmICh0ZXN0
-X3Jlc3VsdCAhPSBEUF9URVNUX0FDSykKIAkJRFJNX0VSUk9SKCJQaHkgdGVzdCBwcmVwYXJhdGlv
-biBmYWlsZWRcbiIpOwogCisJaW50ZWxfZHBfcHJvY2Vzc19waHlfcmVxdWVzdChpbnRlbF9kcCk7
-CisKIAlyZXR1cm4gdGVzdF9yZXN1bHQ7CiB9CiAKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZHAuaAppbmRleCAwYzdiZThlZDE0MjMuLjBkMjJhMjMwYjMyZCAxMDA2NDQKLS0tIGEv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcC5oCisrKyBiL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuaApAQCAtMTE1LDYgKzExNSw3IEBAIHZvaWQgaW50
-ZWxfZHBfaGRyX21ldGFkYXRhX2VuYWJsZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLAogCQkJ
-CSAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJICBjb25z
-dCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZSAqY29ubl9zdGF0ZSk7CiBib29sIGludGVsX2Rp
-Z2l0YWxfcG9ydF9jb25uZWN0ZWQoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIpOwordm9p
-ZCBpbnRlbF9kcF9wcm9jZXNzX3BoeV9yZXF1ZXN0KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAp
-OwogCiBzdGF0aWMgaW5saW5lIHVuc2lnbmVkIGludCBpbnRlbF9kcF91bnVzZWRfbGFuZV9tYXNr
-KGludCBsYW5lX2NvdW50KQogewotLSAKMi4yNC4wCgpfX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBs
-aXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1h
-bi9saXN0aW5mby9pbnRlbC1nZngK
+Record the initial active element we use when building the next ELSP
+submission, so that we can compare against it latter to see if there's
+no change.
+
+Fixes: 44d0a9c05bc0 ("drm/i915/execlists: Skip redundant resubmission")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 36 +++++++++++------------------
+ 1 file changed, 13 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 0604b11a2842..15b81be08fcc 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1678,17 +1678,6 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
+ 	spin_unlock(&old->breadcrumbs.irq_lock);
+ }
+ 
+-static struct i915_request *
+-last_active(const struct intel_engine_execlists *execlists)
+-{
+-	struct i915_request * const *last = READ_ONCE(execlists->active);
+-
+-	while (*last && i915_request_completed(*last))
+-		last++;
+-
+-	return *last;
+-}
+-
+ #define for_each_waiter(p__, rq__) \
+ 	list_for_each_entry_lockless(p__, \
+ 				     &(rq__)->sched.waiters_list, \
+@@ -1827,14 +1816,9 @@ static void record_preemption(struct intel_engine_execlists *execlists)
+ 	(void)I915_SELFTEST_ONLY(execlists->preempt_hang.count++);
+ }
+ 
+-static unsigned long active_preempt_timeout(struct intel_engine_cs *engine)
++static unsigned long active_preempt_timeout(struct intel_engine_cs *engine,
++					    const struct i915_request *rq)
+ {
+-	struct i915_request *rq;
+-
+-	rq = last_active(&engine->execlists);
+-	if (!rq)
+-		return 0;
+-
+ 	/* Force a fast reset for terminated contexts (ignoring sysfs!) */
+ 	if (unlikely(intel_context_is_banned(rq->context)))
+ 		return 1;
+@@ -1842,13 +1826,14 @@ static unsigned long active_preempt_timeout(struct intel_engine_cs *engine)
+ 	return READ_ONCE(engine->props.preempt_timeout_ms);
+ }
+ 
+-static void set_preempt_timeout(struct intel_engine_cs *engine)
++static void set_preempt_timeout(struct intel_engine_cs *engine,
++				const struct i915_request *rq)
+ {
+ 	if (!intel_engine_has_preempt_reset(engine))
+ 		return;
+ 
+ 	set_timer_ms(&engine->execlists.preempt,
+-		     active_preempt_timeout(engine));
++		     active_preempt_timeout(engine, rq));
+ }
+ 
+ static inline void clear_ports(struct i915_request **ports, int count)
+@@ -1861,6 +1846,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+ 	struct i915_request **port = execlists->pending;
+ 	struct i915_request ** const last_port = port + execlists->port_mask;
++	struct i915_request * const *active;
+ 	struct i915_request *last;
+ 	struct rb_node *rb;
+ 	bool submit = false;
+@@ -1915,7 +1901,11 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * i.e. we will retrigger preemption following the ack in case
+ 	 * of trouble.
+ 	 */
+-	last = last_active(execlists);
++	active = READ_ONCE(execlists->active);
++	while (*active && i915_request_completed(*active))
++		active++;
++
++	last = *active;
+ 	if (last) {
+ 		if (need_preempt(engine, last, rb)) {
+ 			ENGINE_TRACE(engine,
+@@ -2200,7 +2190,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		 * Skip if we ended up with exactly the same set of requests,
+ 		 * e.g. trying to timeslice a pair of ordered contexts
+ 		 */
+-		if (!memcmp(execlists->active, execlists->pending,
++		if (!memcmp(active, execlists->pending,
+ 			    (port - execlists->pending + 1) * sizeof(*port))) {
+ 			do
+ 				execlists_schedule_out(fetch_and_zero(port));
+@@ -2210,8 +2200,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 		}
+ 		clear_ports(port + 1, last_port - port);
+ 
++		set_preempt_timeout(engine, *execlists->pending);
+ 		execlists_submit_ports(engine);
+-		set_preempt_timeout(engine);
+ 	} else {
+ skip_submit:
+ 		ring_set_paused(engine, 0);
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
