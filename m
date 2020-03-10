@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C1B517F8FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:52:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9160017F9B9
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:59:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9256889CE1;
-	Tue, 10 Mar 2020 12:52:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D0C6E14D;
+	Tue, 10 Mar 2020 12:59:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4271189CE1
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:52:54 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 05:52:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="441290397"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by fmsmga005.fm.intel.com with ESMTP; 10 Mar 2020 05:52:53 -0700
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 10 Mar 2020 05:52:53 -0700
-Received: from bgsmsx101.gar.corp.intel.com (10.223.4.170) by
- fmsmsx110.amr.corp.intel.com (10.18.116.10) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 10 Mar 2020 05:52:53 -0700
-Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
- BGSMSX101.gar.corp.intel.com ([169.254.1.153]) with mapi id 14.03.0439.000;
- Tue, 10 Mar 2020 18:22:49 +0530
-From: "B S, Karthik" <karthik.b.s@intel.com>
-To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC 5/7] drm/i915: Add flip_done_handler definition
-Thread-Index: AQHV86zmOD9/muZcb062AyRTySJRVKhAjscAgAE/EYA=
-Date: Tue, 10 Mar 2020 12:52:48 +0000
-Message-ID: <7138C0D2D3905F4CB0CD9B8757DFA969274B4C36@BGSMSX104.gar.corp.intel.com>
-References: <20200306113927.16904-1-karthik.b.s@intel.com>
- <20200306113927.16904-6-karthik.b.s@intel.com>
- <6931b691b2a49878110f308ad16230a07b260842.camel@intel.com>
-In-Reply-To: <6931b691b2a49878110f308ad16230a07b260842.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2516F6E14D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:59:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20508862-1500050 
+ for multiple; Tue, 10 Mar 2020 12:59:36 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 12:59:35 +0000
+Message-Id: <20200310125935.27271-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC 5/7] drm/i915: Add flip_done_handler definition
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Pull checking rps->pm_events under
+ the irq_lock
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +37,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBaYW5vbmksIFBhdWxvIFIgPHBh
-dWxvLnIuemFub25pQGludGVsLmNvbT4NCj4gU2VudDogVHVlc2RheSwgTWFyY2ggMTAsIDIwMjAg
-NDo0OSBBTQ0KPiBUbzogQiBTLCBLYXJ0aGlrIDxrYXJ0aGlrLmIuc0BpbnRlbC5jb20+OyBpbnRl
-bC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiB2aWxsZS5zeXJqYWxhQGxpbnV4Lmlu
-dGVsLmNvbTsgS3Vsa2FybmksIFZhbmRpdGENCj4gPHZhbmRpdGEua3Vsa2FybmlAaW50ZWwuY29t
-PjsgU2hhbmthciwgVW1hIDx1bWEuc2hhbmthckBpbnRlbC5jb20+DQo+IFN1YmplY3Q6IFJlOiBb
-UkZDIDUvN10gZHJtL2k5MTU6IEFkZCBmbGlwX2RvbmVfaGFuZGxlciBkZWZpbml0aW9uDQo+IA0K
-PiBFbSBzZXgsIDIwMjAtMDMtMDYgw6BzIDE3OjA5ICswNTMwLCBLYXJ0aGlrIEIgUyBlc2NyZXZl
-dToNCj4gPiBTZW5kIHRoZSBmbGlwIGRvbmUgZXZlbnQgaW4gdGhlIGhhbmRsZXIgYW5kIGRpc2Fi
-bGUgdGhlIGludGVycnVwdC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEthcnRoaWsgQiBTIDxr
-YXJ0aGlrLmIuc0BpbnRlbC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfaXJxLmMgfCAxOCArKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQs
-IDE4IGluc2VydGlvbnMoKykNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9pOTE1X2lycS5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2lycS5jIGlu
-ZGV4IDU5NTVlNzM3YTQ1ZC4uMWZlZGE5YWVjZjRhDQo+ID4gMTAwNjQ0DQo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9pcnEuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfaXJxLmMNCj4gPiBAQCAtMTI0Myw2ICsxMjQzLDI0IEBAIGRpc3BsYXlfcGlwZV9j
-cmNfaXJxX2hhbmRsZXIoc3RydWN0DQo+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+
-ICAJCQkgICAgIHUzMiBjcmM0KSB7fQ0KPiA+ICAjZW5kaWYNCj4gPg0KPiA+ICtzdGF0aWMgdm9p
-ZCBmbGlwX2RvbmVfaGFuZGxlcihzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsDQo+
-ID4gKwkJCSAgICAgIHVuc2lnbmVkIGludCBwaXBlKQ0KPiANCj4gVGhlIGNvbXBpbGVyIGlzIGdv
-aW5nIHRvIGNvbXBsYWluIHRoYXQgd2UgYWRkZWQgYSBzdGF0aWMgZnVuY3Rpb24gd2l0aCBubw0K
-PiBjYWxsZXIuDQo+IA0KPiBTZWUgbXkgY29tbWVudCBvbiBjb21taXQgMTogcGxlYXNlIHNxdWFz
-aCB0aGlzIHBhdGNoIHdpdGggdGhlIG9uZSB0aGF0DQo+IG1ha2VzIHVzZSBvZiB0aGUgbmV3IGZ1
-bmN0aW9uLg0KDQpTdXJlLiBXaWxsIHJlc3RydWN0dXJlIHRoZSBwYXRjaGVzIGFzIHBlciB5b3Vy
-IGZlZWRiYWNrLiBUaGFua3MuDQo+IA0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxfY3J0YyAq
-Y3J0YyA9IGludGVsX2dldF9jcnRjX2Zvcl9waXBlKGRldl9wcml2LCBwaXBlKTsNCj4gPiArCXN0
-cnVjdCBkcm1fY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSA9IGNydGMtPmJhc2Uuc3RhdGU7DQo+ID4g
-KwlzdHJ1Y3QgZHJtX2RldmljZSAqZGV2ID0gJmRldl9wcml2LT5kcm07DQo+ID4gKwl1bnNpZ25l
-ZCBsb25nIGlycWZsYWdzOw0KPiA+ICsNCj4gPiArCXNwaW5fbG9ja19pcnFzYXZlKCZkZXYtPmV2
-ZW50X2xvY2ssIGlycWZsYWdzKTsNCj4gPiArDQo+ID4gKwlpZiAoY3J0Y19zdGF0ZS0+ZXZlbnQt
-PmJhc2UuZXZlbnQtPnR5cGUgPT0NCj4gRFJNX0VWRU5UX0ZMSVBfQ09NUExFVEUpIHsNCj4gPiAr
-CQlkcm1fY3J0Y19zZW5kX3ZibGFua19ldmVudCgmY3J0Yy0+YmFzZSwgY3J0Y19zdGF0ZS0NCj4g
-PmV2ZW50KTsNCj4gPiArCQljcnRjX3N0YXRlLT5ldmVudCA9IE5VTEw7DQo+ID4gKwl9DQo+ID4g
-Kw0KPiA+ICsJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmZGV2LT5ldmVudF9sb2NrLCBpcnFmbGFn
-cyk7DQo+ID4gKwlpY2xfZGlzYWJsZV9mbGlwX2RvbmUoJmNydGMtPmJhc2UpOw0KPiA+ICt9DQo+
-ID4NCj4gPiAgc3RhdGljIHZvaWQgaHN3X3BpcGVfY3JjX2lycV9oYW5kbGVyKHN0cnVjdCBkcm1f
-aTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4gPiAgCQkJCSAgICAgZW51bSBwaXBlIHBpcGUpDQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdm
-eCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xp
-c3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+Avoid angering kcsan by serialising the read of the pm_events with the
+write in rps_diable_interrupts.
+
+[ 6268.713419] BUG: KCSAN: data-race in intel_rps_park [i915] / rps_work [i915]
+[ 6268.713437]
+[ 6268.713449] write to 0xffff8881eda8efac of 4 bytes by task 1127 on cpu 3:
+[ 6268.713680]  intel_rps_park+0x136/0x260 [i915]
+[ 6268.713905]  __gt_park+0x61/0xa0 [i915]
+[ 6268.714128]  ____intel_wakeref_put_last+0x42/0x90 [i915]
+[ 6268.714352]  __intel_wakeref_put_work+0xd3/0xf0 [i915]
+[ 6268.714369]  process_one_work+0x3b1/0x690
+[ 6268.714384]  worker_thread+0x80/0x670
+[ 6268.714398]  kthread+0x19a/0x1e0
+[ 6268.714412]  ret_from_fork+0x1f/0x30
+[ 6268.714423]
+[ 6268.714435] read to 0xffff8881eda8efac of 4 bytes by task 950 on cpu 2:
+[ 6268.714664]  rps_work+0xc2/0x680 [i915]
+[ 6268.714679]  process_one_work+0x3b1/0x690
+[ 6268.714693]  worker_thread+0x80/0x670
+[ 6268.714707]  kthread+0x19a/0x1e0
+[ 6268.714720]  ret_from_fork+0x1f/0x30
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_rps.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_rps.c b/drivers/gpu/drm/i915/gt/intel_rps.c
+index 506738dede16..dbecfb5a5bb1 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rps.c
++++ b/drivers/gpu/drm/i915/gt/intel_rps.c
+@@ -1459,12 +1459,12 @@ static void rps_work(struct work_struct *work)
+ 	u32 pm_iir = 0;
+ 
+ 	spin_lock_irq(&gt->irq_lock);
+-	pm_iir = fetch_and_zero(&rps->pm_iir);
++	pm_iir = fetch_and_zero(&rps->pm_iir) & rps->pm_events;
+ 	client_boost = atomic_read(&rps->num_waiters);
+ 	spin_unlock_irq(&gt->irq_lock);
+ 
+ 	/* Make sure we didn't queue anything we're not going to process. */
+-	if ((pm_iir & rps->pm_events) == 0 && !client_boost)
++	if (!pm_iir && !client_boost)
+ 		goto out;
+ 
+ 	mutex_lock(&rps->lock);
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
