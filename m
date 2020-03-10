@@ -1,37 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 855E5180BDF
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 23:50:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05054180C24
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 00:15:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A3256E8E3;
-	Tue, 10 Mar 2020 22:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 148EF88668;
+	Tue, 10 Mar 2020 23:15:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AEB26E8E3;
- Tue, 10 Mar 2020 22:50:15 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 926616E8F6;
+ Tue, 10 Mar 2020 23:15:36 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 15:50:14 -0700
-X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="415360835"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 15:50:14 -0700
-Date: Tue, 10 Mar 2020 15:50:51 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Message-ID: <20200310225051.GC3187880@intel.com>
-References: <20200310081928.GG28483@zhen-hp.sh.intel.com>
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 16:15:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="353743869"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by fmsmga001.fm.intel.com with ESMTP; 10 Mar 2020 16:15:35 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 16:16:50 -0700
+Message-Id: <20200310231651.13841-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310081928.GG28483@zhen-hp.sh.intel.com>
-Subject: Re: [Intel-gfx] [PULL] gvt-next
+Subject: [Intel-gfx] [PATCH v6 1/2] drm/edid: Name the detailed monitor
+ range flags
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,94 +42,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>, "Yuan,
- Hang" <hang.yuan@intel.com>, "Lv, Zhiyuan" <zhiyuan.lv@intel.com>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 04:19:28PM +0800, Zhenyu Wang wrote:
-> 
-> Hi,
-> 
-> Here's more gvt change for -next. Mostly rebase and fix Chris's
-> cleanup on intel engine and dev_priv usage. And also one fix for CFL
-> after VFIO edid enabled in last gvt-next pull.
-
-pulled to dinq,
-
-Thanks,
-Rodrigo.
-
-> 
-> thanks
-> --
-> The following changes since commit a8bb49b64c4f4284fb36169bdd9fc6efd62eb26a:
-> 
->   drm/i915/gvt: Fix drm_WARN issue where vgpu ptr is unavailable (2020-02-25 16:13:04 +0800)
-> 
-> are available in the Git repository at:
-> 
->   https://github.com/intel/gvt-linux tags/gvt-next-2020-03-10
-> 
-> for you to fetch changes up to a61ac1e75105a077ec1efd6923ae3c619f862304:
-> 
->   drm/i915/gvt: Wean gvt off using dev_priv (2020-03-06 10:08:10 +0800)
-> 
-> ----------------------------------------------------------------
-> gvt-next-2020-03-10
-> 
-> - Fix CFL dmabuf display after vfio edid enabling (Tina)
-> - Clean up scan non-priv batch debugfs entry (Chris)
-> - Use intel engines initialized in gvt, cleanup previous ring id (Chris)
-> - Use intel_gt instead (Chris)
-> 
-> ----------------------------------------------------------------
-> Chris Wilson (3):
->       drm/i915/gvt: cleanup debugfs scan_nonprivbb
->       drm/i915/gvt: Wean gvt off dev_priv->engine[]
->       drm/i915/gvt: Wean gvt off using dev_priv
-> 
-> Tina Zhang (1):
->       drm/i915/gvt: Fix dma-buf display blur issue on CFL
-> 
->  drivers/gpu/drm/i915/gvt/aperture_gm.c  |  84 ++++++-----
->  drivers/gpu/drm/i915/gvt/cfg_space.c    |   8 +-
->  drivers/gpu/drm/i915/gvt/cmd_parser.c   | 204 ++++++++++++--------------
->  drivers/gpu/drm/i915/gvt/debugfs.c      |  45 +-----
->  drivers/gpu/drm/i915/gvt/display.c      |  21 +--
->  drivers/gpu/drm/i915/gvt/dmabuf.c       |   4 +-
->  drivers/gpu/drm/i915/gvt/edid.c         |  16 +-
->  drivers/gpu/drm/i915/gvt/execlist.c     | 103 +++++++------
->  drivers/gpu/drm/i915/gvt/execlist.h     |   5 +-
->  drivers/gpu/drm/i915/gvt/fb_decoder.c   |   6 +-
->  drivers/gpu/drm/i915/gvt/firmware.c     |  16 +-
->  drivers/gpu/drm/i915/gvt/gtt.c          |  50 +++----
->  drivers/gpu/drm/i915/gvt/gvt.c          |  38 ++---
->  drivers/gpu/drm/i915/gvt/gvt.h          |  25 ++--
->  drivers/gpu/drm/i915/gvt/handlers.c     | 193 ++++++++++++-------------
->  drivers/gpu/drm/i915/gvt/interrupt.c    |  14 +-
->  drivers/gpu/drm/i915/gvt/kvmgt.c        |  10 +-
->  drivers/gpu/drm/i915/gvt/mmio.c         |   6 +-
->  drivers/gpu/drm/i915/gvt/mmio.h         |   4 +-
->  drivers/gpu/drm/i915/gvt/mmio_context.c | 127 ++++++++--------
->  drivers/gpu/drm/i915/gvt/mmio_context.h |   5 +-
->  drivers/gpu/drm/i915/gvt/sched_policy.c |  25 ++--
->  drivers/gpu/drm/i915/gvt/scheduler.c    | 249 +++++++++++++++-----------------
->  drivers/gpu/drm/i915/gvt/scheduler.h    |   9 +-
->  drivers/gpu/drm/i915/gvt/vgpu.c         |  12 +-
->  25 files changed, 601 insertions(+), 678 deletions(-)
-> 
-> -- 
-> Open Source Technology Center, Intel ltd.
-> 
-> $gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+VGhpcyBwYXRjaCBhZGRzIGRlZmluZXMgZm9yIHRoZSBkZXRhaWxlZCBtb25pdG9yCnJhbmdlIGZs
+YWdzIGFzIHBlciB0aGUgRURJRCBzcGVjaWZpY2F0aW9uLgoKdjI6CiogUmVuYW1lIHRoZSBmbGFn
+cyB3aXRoIERSTV9FRElEXyAoSmFuaSBOKQoKU3VnZ2VzdGVkLWJ5OiBWaWxsZSBTeXJqw6Rsw6Qg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogVmlsbGUgU3lyasOkbMOkIDx2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KQ2M6IEhhcnJ5IFdlbnRsYW5kIDxoYXJyeS53ZW50
+bGFuZEBhbWQuY29tPgpDYzogQ2xpbnRvbiBBIFRheWxvciA8Y2xpbnRvbi5hLnRheWxvckBpbnRl
+bC5jb20+CkNjOiBLYXpsYXVza2FzIE5pY2hvbGFzIDxOaWNob2xhcy5LYXpsYXVza2FzQGFtZC5j
+b20+CkNjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXguaW50ZWwuY29tPgpTaWduZWQt
+b2ZmLWJ5OiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwuY29tPgpSZXZpZXdl
+ZC1ieTogTmljaG9sYXMgS2F6bGF1c2thcyA8bmljaG9sYXMua2F6bGF1c2thc0BhbWQuY29tPgot
+LS0KIGluY2x1ZGUvZHJtL2RybV9lZGlkLmggfCA1ICsrKysrCiAxIGZpbGUgY2hhbmdlZCwgNSBp
+bnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvaW5jbHVkZS9kcm0vZHJtX2VkaWQuaCBiL2luY2x1
+ZGUvZHJtL2RybV9lZGlkLmgKaW5kZXggZjBiMDNkNDAxYzI3Li4zNGIxNWUzZDA3MGMgMTAwNjQ0
+Ci0tLSBhL2luY2x1ZGUvZHJtL2RybV9lZGlkLmgKKysrIGIvaW5jbHVkZS9kcm0vZHJtX2VkaWQu
+aApAQCAtOTEsNiArOTEsMTEgQEAgc3RydWN0IGRldGFpbGVkX2RhdGFfc3RyaW5nIHsKIAl1OCBz
+dHJbMTNdOwogfSBfX2F0dHJpYnV0ZV9fKChwYWNrZWQpKTsKIAorI2RlZmluZSBEUk1fRURJRF9E
+RUZBVUxUX0dURl9TVVBQT1JUX0ZMQUcgICAweDAwCisjZGVmaW5lIERSTV9FRElEX1JBTkdFX0xJ
+TUlUU19PTkxZX0ZMQUcgICAgIDB4MDEKKyNkZWZpbmUgRFJNX0VESURfU0VDT05EQVJZX0dURl9T
+VVBQT1JUX0ZMQUcgMHgwMgorI2RlZmluZSBEUk1fRURJRF9DVlRfU1VQUE9SVF9GTEFHICAgICAg
+ICAgICAweDA0CisKIHN0cnVjdCBkZXRhaWxlZF9kYXRhX21vbml0b3JfcmFuZ2UgewogCXU4IG1p
+bl92ZnJlcTsKIAl1OCBtYXhfdmZyZXE7Ci0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwt
+Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9t
+YWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
