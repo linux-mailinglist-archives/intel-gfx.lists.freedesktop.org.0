@@ -1,42 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DBDA18032A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:24:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4621818032B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 17:24:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CF9F6E8B0;
-	Tue, 10 Mar 2020 16:24:05 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CB136E8AC;
- Tue, 10 Mar 2020 16:24:03 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6C1B6E8B3;
+	Tue, 10 Mar 2020 16:24:35 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3006C6E8B3
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 16:24:34 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 09:24:03 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 09:24:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,537,1574150400"; d="scan'208";a="236089460"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga008.jf.intel.com with SMTP; 10 Mar 2020 09:23:58 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Mar 2020 18:23:57 +0200
-Date: Tue, 10 Mar 2020 18:23:57 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Manasi Navare <manasi.d.navare@intel.com>
-Message-ID: <20200310162357.GM13686@intel.com>
-References: <20200309213940.27965-1-manasi.d.navare@intel.com>
- <20200309213940.27965-2-manasi.d.navare@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,518,1574150400"; d="scan'208";a="260840808"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.21.27])
+ by orsmga002.jf.intel.com with ESMTP; 10 Mar 2020 09:24:31 -0700
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Mar 2020 16:24:28 +0000
+Message-Id: <20200310162428.4249-1-tvrtko.ursulin@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <158385636096.28297.16094425592161557812@build.alporthouse.com>
+References: <158385636096.28297.16094425592161557812@build.alporthouse.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200309213940.27965-2-manasi.d.navare@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v5 2/2] drm/edid: Add function to parse EDID
- descriptors for adaptive sync limits
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gen12: Disable preemption timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,190 +43,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Harry Wentland <harry.wentland@amd.com>,
- Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 09, 2020 at 02:39:40PM -0700, Manasi Navare wrote:
-> Adaptive Sync is a VESA feature so add a DRM core helper to parse
-> the EDID's detailed descritors to obtain the adaptive sync monitor range.
-> Store this info as part fo drm_display_info so it can be used
-> across all drivers.
-> This part of the code is stripped out of amdgpu's function
-> amdgpu_dm_update_freesync_caps() to make it generic and be used
-> across all DRM drivers
-> =
+From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-> v5:
-> * Use the renamed flags
-> v4:
-> * Use is_display_descriptor() (Ville)
-> * Name the monitor range flags (Ville)
-> v3:
-> * Remove the edid parsing restriction for just DP (Nicholas)
-> * Use drm_for_each_detailed_block (Ville)
-> * Make the drm_get_adaptive_sync_range function static (Harry, Jani)
-> v2:
-> * Change vmin and vmax to use u8 (Ville)
-> * Dont store pixel clock since that is just a max dotclock
-> and not related to VRR mode (Manasi)
-> =
+Allow super long OpenCL workloads which cannot be preempted within
+the default timeout to run out of the box.
 
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
-> Cc: Kazlauskas Nicholas <Nicholas.Kazlauskas@amd.com>
-> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
-> Reviewed-by: Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>
-> ---
->  drivers/gpu/drm/drm_edid.c  | 44 +++++++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h | 22 +++++++++++++++++++
->  2 files changed, 66 insertions(+)
-> =
+v2:
+ * Make it stick out more and apply only to RCS. (Chris)
 
-> diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
-> index ad41764a4ebe..24b76ae58fdd 100644
-> --- a/drivers/gpu/drm/drm_edid.c
-> +++ b/drivers/gpu/drm/drm_edid.c
-> @@ -4938,6 +4938,47 @@ static void drm_parse_cea_ext(struct drm_connector=
- *connector,
->  	}
->  }
->  =
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-> +static
-> +void get_adaptive_sync_range(struct detailed_timing *timing,
-> +			     void *info_adaptive_sync)
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 53ac3f00909a..02b1f60c0925 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -275,6 +275,7 @@ static void intel_engine_sanitize_mmio(struct intel_engine_cs *engine)
+ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ {
+ 	const struct engine_info *info = &intel_engines[id];
++	struct drm_i915_private *i915 = gt->i915;
+ 	struct intel_engine_cs *engine;
+ 
+ 	BUILD_BUG_ON(MAX_ENGINE_CLASS >= BIT(GEN11_ENGINE_CLASS_WIDTH));
+@@ -301,11 +302,11 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->id = id;
+ 	engine->legacy_idx = INVALID_ENGINE;
+ 	engine->mask = BIT(id);
+-	engine->i915 = gt->i915;
++	engine->i915 = i915;
+ 	engine->gt = gt;
+ 	engine->uncore = gt->uncore;
+ 	engine->hw_id = engine->guc_id = info->hw_id;
+-	engine->mmio_base = __engine_mmio_base(gt->i915, info->mmio_bases);
++	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
+ 
+ 	engine->class = info->class;
+ 	engine->instance = info->instance;
+@@ -322,11 +323,15 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	engine->props.timeslice_duration_ms =
+ 		CONFIG_DRM_I915_TIMESLICE_DURATION;
+ 
++	/* Override to uninterruptible for OpenCL workloads. */
++	if (INTEL_GEN(i915) == 12 && engine->class == RENDER_CLASS)
++		engine->props.preempt_timeout_ms = 0;
++
+ 	engine->context_size = intel_engine_context_size(gt, engine->class);
+ 	if (WARN_ON(engine->context_size > BIT(20)))
+ 		engine->context_size = 0;
+ 	if (engine->context_size)
+-		DRIVER_CAPS(gt->i915)->has_logical_contexts = true;
++		DRIVER_CAPS(i915)->has_logical_contexts = true;
+ 
+ 	/* Nothing to do here, execute in order of dependencies */
+ 	engine->schedule = NULL;
+@@ -342,7 +347,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+ 	gt->engine_class[info->class][info->instance] = engine;
+ 	gt->engine[id] = engine;
+ 
+-	gt->i915->engine[id] = engine;
++	i915->engine[id] = engine;
+ 
+ 	return 0;
+ }
+-- 
+2.20.1
 
-closure/data/c is what everyone else calls this. Why are we being
-different?
-
-> +{
-> +	struct drm_adaptive_sync_info *adaptive_sync =3D info_adaptive_sync;
-> +	const struct detailed_non_pixel *data =3D &timing->data.other_data;
-> +	const struct detailed_data_monitor_range *range =3D &data->data.range;
-> +
-> +	if (!is_display_descriptor((const u8 *)timing, EDID_DETAIL_MONITOR_RANG=
-E))
-> +		return;
-> +
-> +	/*
-> +	 * Check for flag range limits only. If flag =3D=3D 1 then
-> +	 * no additional timing information provided.
-> +	 * Default GTF, GTF Secondary curve and CVT are not
-> +	 * supported
-> +	 */
-> +	if (range->flags !=3D DRM_EDID_RANGE_LIMITS_ONLY_FLAG)
-> +		return;
-> +
-> +	adaptive_sync->min_vfreq =3D range->min_vfreq;
-> +	adaptive_sync->max_vfreq =3D range->max_vfreq;
-> +}
-> +
-> +static
-> +void drm_get_adaptive_sync_range(struct drm_connector *connector,
-> +				 const struct edid *edid)
-> +{
-> +	struct drm_display_info *info =3D &connector->display_info;
-> +
-> +	if (!version_greater(edid, 1, 1))
-> +		return;
-> +
-> +	drm_for_each_detailed_block((u8 *)edid, get_adaptive_sync_range,
-> +				    &info->adaptive_sync);
-> +
-> +	DRM_DEBUG_KMS("Adaptive Sync refresh rate range is %d Hz - %d Hz\n",
-> +		      info->adaptive_sync.min_vfreq,
-> +		      info->adaptive_sync.max_vfreq);
-
-This seems a bit misleading since these are just the limits from the
-range descriptor. We don't know whether adaptive is supported or not.
-
-> +}
-> +
->  /* A connector has no EDID information, so we've got no EDID to compute =
-quirks from. Reset
->   * all of the values which would have been set from EDID
->   */
-> @@ -4960,6 +5001,7 @@ drm_reset_display_info(struct drm_connector *connec=
-tor)
->  	memset(&info->hdmi, 0, sizeof(info->hdmi));
->  =
-
->  	info->non_desktop =3D 0;
-> +	memset(&info->adaptive_sync, 0, sizeof(info->adaptive_sync));
->  }
->  =
-
->  u32 drm_add_display_info(struct drm_connector *connector, const struct e=
-did *edid)
-> @@ -4975,6 +5017,8 @@ u32 drm_add_display_info(struct drm_connector *conn=
-ector, const struct edid *edi
->  =
-
->  	info->non_desktop =3D !!(quirks & EDID_QUIRK_NON_DESKTOP);
->  =
-
-> +	drm_get_adaptive_sync_range(connector, edid);
-> +
->  	DRM_DEBUG_KMS("non_desktop set to %d\n", info->non_desktop);
->  =
-
->  	if (edid->revision < 3)
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index 0df7a95ca5d9..2b22c0fa42c4 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -254,6 +254,23 @@ enum drm_panel_orientation {
->  	DRM_MODE_PANEL_ORIENTATION_RIGHT_UP,
->  };
->  =
-
-> +/**
-> + * struct drm_adaptive_sync_info - Panel's Adaptive Sync capabilities for
-> + * &drm_display_info
-> + *
-> + * This struct is used to store a Panel's Adaptive Sync capabilities
-> + * as parsed from EDID's detailed monitor range descriptor block.
-> + *
-> + * @min_vfreq: This is the min supported refresh rate in Hz from
-> + *             EDID's detailed monitor range.
-> + * @max_vfreq: This is the max supported refresh rate in Hz from
-> + *             EDID's detailed monitor range
-> + */
-> +struct drm_adaptive_sync_info {
-> +	u8 min_vfreq;
-> +	u8 max_vfreq;
-> +};
-> +
->  /*
->   * This is a consolidated colorimetry list supported by HDMI and
->   * DP protocol standard. The respective connectors will register
-> @@ -473,6 +490,11 @@ struct drm_display_info {
->  	 * @non_desktop: Non desktop display (HMD).
->  	 */
->  	bool non_desktop;
-> +
-> +	/**
-> +	 * @adaptive_sync: Adaptive Sync capabilities of the DP/eDP sink
-> +	 */
-> +	struct drm_adaptive_sync_info adaptive_sync;
->  };
->  =
-
->  int drm_display_info_set_bus_formats(struct drm_display_info *info,
-> -- =
-
-> 2.19.1
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
