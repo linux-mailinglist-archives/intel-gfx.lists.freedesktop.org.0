@@ -2,30 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01965180231
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:45:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 487E31802A2
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 16:59:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51CB26E33D;
-	Tue, 10 Mar 2020 15:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A546E88C;
+	Tue, 10 Mar 2020 15:59:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9B1186E33D;
- Tue, 10 Mar 2020 15:45:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 93D05A363B;
- Tue, 10 Mar 2020 15:45:39 +0000 (UTC)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15AF16E33F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 15:47:50 +0000 (UTC)
+Received: from paulmck-ThinkPad-P72.home (50-39-105-78.bvtn.or.frontiernet.net
+ [50.39.105.78])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mail.kernel.org (Postfix) with ESMTPSA id D5C0320866;
+ Tue, 10 Mar 2020 15:47:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1583855269;
+ bh=fxXBC6mLqLhF630XcKwvNoA3xYL1Mgjsv4/cnzDW8FE=;
+ h=Date:From:To:Cc:Subject:Reply-To:References:In-Reply-To:From;
+ b=t6BwwWyfltp0cLV9XE4wIgEp201EDrtvpsCABAtdCg+fbpp7EdL6PG2iWnkxtPkQd
+ Ik604FbqVyTy4wadVmpZAsXt2e7bm7XDJ3DIRBnb1ZhLVa1qlnYu0lMu71TBYTjzys
+ EuahFLGqKgSz2Vm3dRqAs7NvA4Js9NZR3HqrOCFE=
+Received: by paulmck-ThinkPad-P72.home (Postfix, from userid 1000)
+ id ACDAD35226CF; Tue, 10 Mar 2020 08:47:49 -0700 (PDT)
+Date: Tue, 10 Mar 2020 08:47:49 -0700
+From: "Paul E. McKenney" <paulmck@kernel.org>
+To: David Laight <David.Laight@ACULAB.COM>
+Message-ID: <20200310154749.GZ2935@paulmck-ThinkPad-P72>
+References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
+ <2e936d8fd2c445beb08e6dd3ee1f3891@AcuMS.aculab.com>
+ <158384100886.16414.15741589015363013386@build.alporthouse.com>
+ <723d527a4ad349b78bf11d52eba97c0e@AcuMS.aculab.com>
+ <20200310125031.GY2935@paulmck-ThinkPad-P72>
+ <CANpmjNNT3HY7i9TywX0cAFqBtx2J3qOGOUG5nHzxAZ4bk_qgtg@mail.gmail.com>
+ <77ff4da6b0a7448c947af6de4fb43cdb@AcuMS.aculab.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Tue, 10 Mar 2020 15:45:39 -0000
-Message-ID: <158385513960.5456.18312067705924969944@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20200309211057.38575-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Invalidate_OA_TLB_on_when_closing_perf_stream?=
+Content-Disposition: inline
+In-Reply-To: <77ff4da6b0a7448c947af6de4fb43cdb@AcuMS.aculab.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Mailman-Approved-At: Tue, 10 Mar 2020 15:59:27 +0000
+Subject: Re: [Intel-gfx] [PATCH] list: Prevent compiler reloads inside
+ 'safe' list iteration
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,107 +57,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Reply-To: paulmck@kernel.org
+Cc: 'Marco Elver' <elver@google.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Randy Dunlap <rdunlap@infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 10, 2020 at 03:05:57PM +0000, David Laight wrote:
+> From: Marco Elver
+> > Sent: 10 March 2020 14:10
+> ...
+> > FWIW, for writes we're already being quite generous, in that plain
+> > aligned writes up to word-size are assumed to be "atomic" with the
+> > default (conservative) config, i.e. marking such writes is optional.
+> > Although, that's a generous assumption that is not always guaranteed
+> > to hold (https://lore.kernel.org/lkml/20190821103200.kpufwtviqhpbuv2n@willie-the-truck/).
+> 
+> Remind me to start writing everything in assembler.
 
-Series: drm/i915/perf: Invalidate OA TLB on when closing perf stream
-URL   : https://patchwork.freedesktop.org/series/74469/
-State : success
+Been there, done that.  :-/
 
-== Summary ==
+> That and to mark all structure members 'volatile'.
 
-CI Bug Log - changes from CI_DRM_8106 -> Patchwork_16897
-====================================================
+Indeed.  READ_ONCE() and WRITE_ONCE() get this same effect, but without
+pessimizing non-concurrent accesses to those same members.  Plus KCSAN
+knows about READ_ONCE(), WRITE_ONCE(), and also volatile members.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16897 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-tgl-y:           [PASS][3] -> [INCOMPLETE][4] ([CI#94] / [i915#455])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@i915_selftest@live@gem_contexts.html
-    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6] ([fdo#106070] / [i915#424])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@gtt:
-    - fi-tgl-y:           [PASS][7] -> [INCOMPLETE][8] ([CI#94])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@i915_selftest@live@gtt.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@i915_selftest@live@gtt.html
-
-  * igt@prime_self_import@basic-with_fd_dup:
-    - fi-tgl-y:           [PASS][9] -> [DMESG-WARN][10] ([CI#94] / [i915#402])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@prime_self_import@basic-with_fd_dup.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_flink_basic@bad-open:
-    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8106/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/fi-tgl-y/igt@gem_flink_basic@bad-open.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#455]: https://gitlab.freedesktop.org/drm/intel/issues/455
-
-
-Participating hosts (44 -> 37)
-------------------------------
-
-  Additional (2): fi-cfl-8109u fi-snb-2600 
-  Missing    (9): fi-hsw-4200u fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-ivb-3770 fi-skl-lmem fi-byt-clapper fi-bdw-samus fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8106 -> Patchwork_16897
-
-  CI-20190529: 20190529
-  CI_DRM_8106: 5b0076e8066ea8218e7857ee1aa28b0670acde94 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16897: 021298fc7d84d7e14dc86b824a565fe6b57479fb @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-021298fc7d84 drm/i915/perf: Invalidate OA TLB on when closing perf stream
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16897/index.html
+							Thanx, Paul
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
