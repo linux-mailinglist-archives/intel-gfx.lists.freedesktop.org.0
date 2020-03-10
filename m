@@ -2,52 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 996EE180891
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 20:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29FEE180892
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 20:52:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4CF86E8D3;
-	Tue, 10 Mar 2020 19:51:40 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-1.mimecast.com (us-smtp-2.mimecast.com
- [207.211.31.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A81726E392
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 19:51:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1583869897;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=l3PhESK6uLexgJItbHee1HRK9XWHVAGUlhz9Vq1Mc4E=;
- b=aTt4VyNIaQhde14wlKLhuW+EykooJDZ//QAZvR8aUXRbeUSpYqquXLDpaz75VOV0E7cDDh
- YLSEXmPH+oAzazSlGquz6BmzvlwX+GcG0Z+EhWFUc5cfFKdNo/lKMFdDfKXVjHsEyP0NBl
- IU1RVK+bSWeKETMqZi96LMDO8F7Ofag=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-411-vir2D4viMvG5hbmtrcKL2Q-1; Tue, 10 Mar 2020 15:51:34 -0400
-X-MC-Unique: vir2D4viMvG5hbmtrcKL2Q-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com
- [10.5.11.11])
- (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
- (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 901FE8017CC;
- Tue, 10 Mar 2020 19:51:31 +0000 (UTC)
-Received: from Ruby.bss.redhat.com (dhcp-10-20-1-196.bss.redhat.com
- [10.20.1.196])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 870E88F366;
- Tue, 10 Mar 2020 19:51:28 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Date: Tue, 10 Mar 2020 15:51:21 -0400
-Message-Id: <20200310195122.1590925-1-lyude@redhat.com>
-In-Reply-To: <20200310185417.1588984-1-lyude@redhat.com>
-References: <20200310185417.1588984-1-lyude@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 915906E397;
+	Tue, 10 Mar 2020 19:52:36 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD3156E397
+ for <Intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 19:52:35 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 12:52:34 -0700
+X-IronPort-AV: E=Sophos;i="5.70,538,1574150400"; d="scan'208";a="236157565"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 10 Mar 2020 12:52:34 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, Intel-gfx@lists.freedesktop.org
+References: <20200309183129.2296-1-tvrtko.ursulin@linux.intel.com>
+ <20200309183129.2296-3-tvrtko.ursulin@linux.intel.com>
+ <158386390858.28297.1893347390980964464@build.alporthouse.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <08d05f00-bf49-dca2-566d-8c11765b46dc@linux.intel.com>
+Date: Tue, 10 Mar 2020 19:52:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-Subject: [Intel-gfx] [PATCH v3] drm/i915/mst: Hookup DRM DP MST
- late_register/early_unregister callbacks
+In-Reply-To: <158386390858.28297.1893347390980964464@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [RFC 02/12] drm/i915: Update client name on context
+ create
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,58 +49,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-aTkxNSBjYW4gZW5hYmxlIGF1eCBkZXZpY2Ugbm9kZXMgZm9yIERQIE1TVCBieSBjYWxsaW5nCmRy
-bV9kcF9tc3RfY29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIoKS9kcm1fZHBfbXN0X2Nvbm5lY3Rvcl9l
-YXJseV91bnJlZ2lzdGVyKCksCnNvIGxldCdzIGhvb2sgdGhhdCB1cC4KCkNoYW5nZXMgc2luY2Ug
-djE6CiogQ2FsbCBpbnRlbF9jb25uZWN0b3JfcmVnaXN0ZXIvdW5yZWdpc3RlcigpIGZyb20KICBp
-bnRlbF9kcF9tc3RfY29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIvdW5yZWdpc3RlcigpIHNvIHdlIGRv
-bid0IGxvc2UKICBlcnJvciBpbmplY3Rpb24gLSBWaWxsZSBTeXJqw6Rsw6QKQ2hhbmdlcyBzaW5j
-ZSB2MjoKKiBEb24ndCBmb3JnZXQgdG8gY2xlYW4gdXAgaWYgaW50ZWxfY29ubmVjdG9yX3JlZ2lz
-dGVyKCkgZmFpbHMgLSBWaWxsZQoKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBs
-aW51eC5pbnRlbC5jb20+CkNjOiBNYW5hc2kgTmF2YXJlIDxtYW5hc2kuZC5uYXZhcmVAaW50ZWwu
-Y29tPgpDYzogIkxlZSwgU2hhd24gQyIgPHNoYXduLmMubGVlQGludGVsLmNvbT4KU2lnbmVkLW9m
-Zi1ieTogTHl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIHwgMzMgKysrKysrKysrKysrKysrKysrKy0tCiAx
-IGZpbGUgY2hhbmdlZCwgMzEgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwX21zdC5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9tc3QuYwppbmRleCBkNTM5NzhlZDNjMTIu
-LmUwOGNhY2E2NThjNiAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kcF9tc3QuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X21zdC5jCkBAIC01NDgsMTIgKzU0OCw0MSBAQCBzdGF0aWMgaW50IGludGVsX2RwX21zdF9nZXRf
-ZGRjX21vZGVzKHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCiAJcmV0dXJuIHJldDsK
-IH0KIAorc3RhdGljIGludAoraW50ZWxfZHBfbXN0X2Nvbm5lY3Rvcl9sYXRlX3JlZ2lzdGVyKHN0
-cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IpCit7CisJc3RydWN0IGludGVsX2Nvbm5lY3Rv
-ciAqaW50ZWxfY29ubmVjdG9yID0gdG9faW50ZWxfY29ubmVjdG9yKGNvbm5lY3Rvcik7CisJaW50
-IHJldDsKKworCXJldCA9IGRybV9kcF9tc3RfY29ubmVjdG9yX2xhdGVfcmVnaXN0ZXIoY29ubmVj
-dG9yLAorCQkJCQkJIGludGVsX2Nvbm5lY3Rvci0+cG9ydCk7CisJaWYgKHJldCA8IDApCisJCXJl
-dHVybiByZXQ7CisKKwlyZXQgPSBpbnRlbF9jb25uZWN0b3JfcmVnaXN0ZXIoY29ubmVjdG9yKTsK
-KwlpZiAocmV0IDwgMCkKKwkJZHJtX2RwX21zdF9jb25uZWN0b3JfZWFybHlfdW5yZWdpc3Rlcihj
-b25uZWN0b3IsCisJCQkJCQkgICAgICBpbnRlbF9jb25uZWN0b3ItPnBvcnQpOworCisJcmV0dXJu
-IHJldDsKK30KKworc3RhdGljIHZvaWQKK2ludGVsX2RwX21zdF9jb25uZWN0b3JfZWFybHlfdW5y
-ZWdpc3RlcihzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yKQoreworCXN0cnVjdCBpbnRl
-bF9jb25uZWN0b3IgKmludGVsX2Nvbm5lY3RvciA9IHRvX2ludGVsX2Nvbm5lY3Rvcihjb25uZWN0
-b3IpOworCisJaW50ZWxfY29ubmVjdG9yX3VucmVnaXN0ZXIoY29ubmVjdG9yKTsKKwlkcm1fZHBf
-bXN0X2Nvbm5lY3Rvcl9lYXJseV91bnJlZ2lzdGVyKGNvbm5lY3RvciwKKwkJCQkJICAgICAgaW50
-ZWxfY29ubmVjdG9yLT5wb3J0KTsKK30KKwogc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fY29ubmVj
-dG9yX2Z1bmNzIGludGVsX2RwX21zdF9jb25uZWN0b3JfZnVuY3MgPSB7CiAJLmZpbGxfbW9kZXMg
-PSBkcm1faGVscGVyX3Byb2JlX3NpbmdsZV9jb25uZWN0b3JfbW9kZXMsCiAJLmF0b21pY19nZXRf
-cHJvcGVydHkgPSBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9hdG9taWNfZ2V0X3Byb3BlcnR5LAog
-CS5hdG9taWNfc2V0X3Byb3BlcnR5ID0gaW50ZWxfZGlnaXRhbF9jb25uZWN0b3JfYXRvbWljX3Nl
-dF9wcm9wZXJ0eSwKLQkubGF0ZV9yZWdpc3RlciA9IGludGVsX2Nvbm5lY3Rvcl9yZWdpc3RlciwK
-LQkuZWFybHlfdW5yZWdpc3RlciA9IGludGVsX2Nvbm5lY3Rvcl91bnJlZ2lzdGVyLAorCS5sYXRl
-X3JlZ2lzdGVyID0gaW50ZWxfZHBfbXN0X2Nvbm5lY3Rvcl9sYXRlX3JlZ2lzdGVyLAorCS5lYXJs
-eV91bnJlZ2lzdGVyID0gaW50ZWxfZHBfbXN0X2Nvbm5lY3Rvcl9lYXJseV91bnJlZ2lzdGVyLAog
-CS5kZXN0cm95ID0gaW50ZWxfY29ubmVjdG9yX2Rlc3Ryb3ksCiAJLmF0b21pY19kZXN0cm95X3N0
-YXRlID0gZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX2Rlc3Ryb3lfc3RhdGUsCiAJLmF0b21p
-Y19kdXBsaWNhdGVfc3RhdGUgPSBpbnRlbF9kaWdpdGFsX2Nvbm5lY3Rvcl9kdXBsaWNhdGVfc3Rh
-dGUsCi0tIAoyLjI0LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+
+On 10/03/2020 18:11, Chris Wilson wrote:
+> Quoting Tvrtko Ursulin (2020-03-09 18:31:19)
+>> @@ -92,8 +107,8 @@ __i915_drm_client_register(struct i915_drm_client *client,
+>>   static void
+>>   __i915_drm_client_unregister(struct i915_drm_client *client)
+>>   {
+>> -       put_pid(fetch_and_zero(&client->pid));
+>> -       kfree(fetch_and_zero(&client->name));
+>> +       put_pid(rcu_replace_pointer(client->pid, NULL, true));
+>> +       kfree(rcu_replace_pointer(client->name, NULL, true));
+> 
+> client_unregister is not after an RCU grace period, so what's the
+> protection here?
+
+Against concurrent access via sysfs? Hm.. I think kobject_put needs to 
+go first and clearing of name and pid last. Will fix this.
+
+Accesses via GEM contexts always have a reference so that should be fine.
+
+RCU business on pid and name is basically only so the two can be 
+asynchronously replaced if need to be updated on context create. So 
+anyone accessing them sees either old or new, but always valid data.
+
+Regards,
+
+Tvrtko
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
