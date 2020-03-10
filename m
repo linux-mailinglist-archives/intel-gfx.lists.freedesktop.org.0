@@ -1,37 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD0517F70F
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:06:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4843F17F737
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2020 13:15:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E168A6E1D6;
-	Tue, 10 Mar 2020 12:06:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B85F76E1D8;
+	Tue, 10 Mar 2020 12:15:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F01346E1CE
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:06:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20507989-1500050 for multiple; Tue, 10 Mar 2020 12:06:42 +0000
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0610D6E1D8
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2020 12:15:40 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2020 05:15:40 -0700
+X-IronPort-AV: E=Sophos;i="5.70,536,1574150400"; d="scan'208";a="353613264"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 10 Mar 2020 05:15:39 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200310101720.9944-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <a34d970a-2a9f-7b82-7900-202c656a9e96@linux.intel.com>
+Date: Tue, 10 Mar 2020 12:15:37 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <08d601d5-1583-61e4-113d-8208a17d3d0f@linux.intel.com>
-References: <20200306133852.3420322-1-chris@chris-wilson.co.uk>
- <20200306133852.3420322-8-chris@chris-wilson.co.uk>
- <e5360a24-91e9-a873-5a9b-5b6e5cca59ac@linux.intel.com>
- <158383855988.16414.10338993219228723247@build.alporthouse.com>
- <08d601d5-1583-61e4-113d-8208a17d3d0f@linux.intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158384200189.16414.17876359004396978057@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 10 Mar 2020 12:06:41 +0000
-Subject: Re: [Intel-gfx] [PATCH 08/17] drm/i915/selftests: Add request
- throughput measurement to perf
+In-Reply-To: <20200310101720.9944-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Defer semaphore priority bumping
+ to a workqueue
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,61 +47,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
+Cc: stable@vger.kernel.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-10 11:58:26)
-> 
-> On 10/03/2020 11:09, Chris Wilson wrote:
-> > Quoting Tvrtko Ursulin (2020-03-10 10:38:21)
-> >>
-> >> On 06/03/2020 13:38, Chris Wilson wrote:
-> >>> +                     intel_engine_pm_get(engine);
-> >>> +
-> >>> +                     memset(&engines[idx].p, 0, sizeof(engines[idx].p));
-> >>> +                     engines[idx].p.engine = engine;
-> >>> +
-> >>> +                     engines[idx].tsk = kthread_run(*fn, &engines[idx].p,
-> >>> +                                                    "igt:%s", engine->name);
-> >>
-> >> Test will get affected by the host CPU core count. How about we only
-> >> measure num_cpu engines? Might be even more important with discrete.
-> > 
-> > No. We want to be able to fill the GPU with the different processors.
-> > Comparing glk to kbl helps highlight any inefficiencies we have -- we
-> > have to be efficient enough that core count is simply not a critical
-> > factor to offset our submission overhead.
-> > 
-> > So we can run the same test and see how it scaled with engines vs cpus
-> > just by running it on different machines and look for problems.
-> 
-> Normally you would expect one core per engine is enough to saturate the 
-> engine. I am afraid adding more combinations will be confusing when 
-> reading test results. (Same GPU, same engine count, different CPU core 
-> count.) How about two subtest variants? One is 1:1 CPU core to engine, 
-> and another can be all engines like here?
 
-Each machine will have its own consistent configuration. The question I
-have in mind is "can we saturate this machine"? This machine remains
-constant for all the runs. And our goal is that the driver is not a
-bottleneck on any machine.
- 
-> Or possibly:
+On 10/03/2020 10:17, Chris Wilson wrote:
+> Since the semaphore fence may be signaled from inside an interrupt
+> handler from inside a request holding its request->lock, we cannot then
+> enter into the engine->active.lock for processing the semaphore priority
+> bump as we may traverse our call tree and end up on another held
+> request.
 > 
-> 1. 1 CPU core - 1 engine - purest latency/overhead
-> 2. 1 CPU core - N engines (N = all engines) - more
-> 3. N CPU cores - N engines (N = min(engines, cores) - global lock 
-> contention, stable setup
-> 4. M CPU cores - N engines (N, M = max) - lock contention stress
-> 5. N CPU cores - 1 engine (N = all cores) - more extreme lock contention
+> CPU 0:
+> [ 2243.218864]  _raw_spin_lock_irqsave+0x9a/0xb0
+> [ 2243.218867]  i915_schedule_bump_priority+0x49/0x80 [i915]
+> [ 2243.218869]  semaphore_notify+0x6d/0x98 [i915]
+> [ 2243.218871]  __i915_sw_fence_complete+0x61/0x420 [i915]
+> [ 2243.218874]  ? kmem_cache_free+0x211/0x290
+> [ 2243.218876]  i915_sw_fence_complete+0x58/0x80 [i915]
+> [ 2243.218879]  dma_i915_sw_fence_wake+0x3e/0x80 [i915]
+> [ 2243.218881]  signal_irq_work+0x571/0x690 [i915]
+> [ 2243.218883]  irq_work_run_list+0xd7/0x120
+> [ 2243.218885]  irq_work_run+0x1d/0x50
+> [ 2243.218887]  smp_irq_work_interrupt+0x21/0x30
+> [ 2243.218889]  irq_work_interrupt+0xf/0x20
+> 
+> CPU 1:
+> [ 2242.173107]  _raw_spin_lock+0x8f/0xa0
+> [ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
+> [ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
+> [ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
+> [ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
+> [ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
+> [ 2242.173121]  __i915_sw_fence_complete+0x61/0x420 [i915]
+> [ 2242.173124]  ? _raw_spin_unlock_irqrestore+0x39/0x40
+> [ 2242.173137]  i915_sw_fence_complete+0x58/0x80 [i915]
+> [ 2242.173140]  i915_sw_fence_commit+0x16/0x20 [i915]
+> 
+> CPU 2:
+> [ 2242.173107]  _raw_spin_lock+0x8f/0xa0
+> [ 2242.173110]  __i915_request_submit+0x64/0x4a0 [i915]
+> [ 2242.173112]  __execlists_submission_tasklet+0x8ee/0x2120 [i915]
+> [ 2242.173114]  ? i915_sched_lookup_priolist+0x1e3/0x2b0 [i915]
+> [ 2242.173117]  execlists_submit_request+0x2e8/0x2f0 [i915]
+> [ 2242.173119]  submit_notify+0x8f/0xc0 [i915]
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1318
+> Fixes: b7404c7ecb38 ("drm/i915: Bump ready tasks ahead of busywaits")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.2+
+> ---
+>   drivers/gpu/drm/i915/i915_request.c | 22 +++++++++++++++++-----
+>   drivers/gpu/drm/i915/i915_request.h |  2 ++
+>   2 files changed, 19 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+> index 04b52bf347bf..129357d4b599 100644
+> --- a/drivers/gpu/drm/i915/i915_request.c
+> +++ b/drivers/gpu/drm/i915/i915_request.c
+> @@ -588,19 +588,31 @@ submit_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+>   	return NOTIFY_DONE;
+>   }
+>   
+> +static void irq_semaphore_cb(struct irq_work *wrk)
+> +{
+> +	struct i915_request *rq =
+> +		container_of(wrk, typeof(*rq), semaphore_work);
+> +
+> +	i915_schedule_bump_priority(rq, I915_PRIORITY_NOSEMAPHORE);
+> +	i915_request_put(rq);
+> +}
+> +
+>   static int __i915_sw_fence_call
+>   semaphore_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+>   {
+> -	struct i915_request *request =
+> -		container_of(fence, typeof(*request), semaphore);
+> +	struct i915_request *rq = container_of(fence, typeof(*rq), semaphore);
+>   
+>   	switch (state) {
+>   	case FENCE_COMPLETE:
+> -		i915_schedule_bump_priority(request, I915_PRIORITY_NOSEMAPHORE);
+> +		if (!(READ_ONCE(rq->sched.attr.priority) & I915_PRIORITY_NOSEMAPHORE)) {
+> +			i915_request_get(rq);
+> +			init_irq_work(&rq->semaphore_work, irq_semaphore_cb);
+> +			irq_work_queue(&rq->semaphore_work);
+> +		}
+>   		break;
+>   
+>   	case FENCE_FREE:
+> -		i915_request_put(request);
+> +		i915_request_put(rq);
+>   		break;
+>   	}
+>   
+> @@ -1369,9 +1381,9 @@ void __i915_request_queue(struct i915_request *rq,
+>   	 * decide whether to preempt the entire chain so that it is ready to
+>   	 * run at the earliest possible convenience.
+>   	 */
+> -	i915_sw_fence_commit(&rq->semaphore);
+>   	if (attr && rq->engine->schedule)
+>   		rq->engine->schedule(rq, attr);
+> +	i915_sw_fence_commit(&rq->semaphore);
+>   	i915_sw_fence_commit(&rq->submit);
+>   }
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_request.h b/drivers/gpu/drm/i915/i915_request.h
+> index 6020d5b2a3df..3c552bfea67a 100644
+> --- a/drivers/gpu/drm/i915/i915_request.h
+> +++ b/drivers/gpu/drm/i915/i915_request.h
+> @@ -26,6 +26,7 @@
+>   #define I915_REQUEST_H
+>   
+>   #include <linux/dma-fence.h>
+> +#include <linux/irq_work.h>
+>   #include <linux/lockdep.h>
+>   
+>   #include "gem/i915_gem_context_types.h"
+> @@ -208,6 +209,7 @@ struct i915_request {
+>   	};
+>   	struct list_head execute_cb;
+>   	struct i915_sw_fence semaphore;
+> +	struct irq_work semaphore_work;
+>   
+>   	/*
+>   	 * A list of everyone we wait upon, and everyone who waits upon us.
+> 
 
-I hear you in that you would like to have a serial test as well. Where
-we just use 1 cpu thread to submit to all engines as fast as we can and
-see how close we get with just "1 core". (There will still be
-parallelism one hopes from our interrupt handler.)
--Chris
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
