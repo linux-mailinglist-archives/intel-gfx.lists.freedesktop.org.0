@@ -2,26 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC7C181541
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91EB181566
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:59:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6436E95B;
-	Wed, 11 Mar 2020 09:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5B16E967;
+	Wed, 11 Mar 2020 09:59:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7A706E95B;
- Wed, 11 Mar 2020 09:48:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B36D86E964;
+ Wed, 11 Mar 2020 09:59:20 +0000 (UTC)
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 53BF6AC5C;
- Wed, 11 Mar 2020 09:48:04 +0000 (UTC)
-From: Thomas Zimmermann <tzimmermann@suse.de>
+ by mx2.suse.de (Postfix) with ESMTP id 4AD2EAC26;
+ Wed, 11 Mar 2020 09:59:19 +0000 (UTC)
 To: Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>
 References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-4-daniel.vetter@ffwll.ch>
- <72e4842d-6657-bea2-12dc-28128308fdbc@suse.de>
+ <20200302222631.3861340-23-daniel.vetter@ffwll.ch>
+From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
  mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
  XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
@@ -47,14 +46,14 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
  HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
  3H26qrE=
-Message-ID: <c97fe1fb-f5a0-e246-d40c-6f2087e68c05@suse.de>
-Date: Wed, 11 Mar 2020 10:47:59 +0100
+Message-ID: <aa1dad07-9697-dea2-2b07-46f5ca7c0b9d@suse.de>
+Date: Wed, 11 Mar 2020 10:59:10 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.5.0
 MIME-Version: 1.0
-In-Reply-To: <72e4842d-6657-bea2-12dc-28128308fdbc@suse.de>
-Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
- drm_device
+In-Reply-To: <20200302222631.3861340-23-daniel.vetter@ffwll.ch>
+Subject: Re: [Intel-gfx] [PATCH 22/51] drm: manage drm_minor cleanup with
+ drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,584 +66,285 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: multipart/mixed; boundary="===============1982516246=="
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: multipart/mixed; boundary="===============2036321238=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1982516246==
+--===============2036321238==
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="5TgBDgzRDAcAZBrDQmr7AUnu3odj5w6A3"
+ boundary="u0MpIP7j30vNtrnyIseq8acPcxDf8y30z"
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---5TgBDgzRDAcAZBrDQmr7AUnu3odj5w6A3
-Content-Type: multipart/mixed; boundary="kYC5bvk9dXUuSdX3WxoS4avW5Kd8s92V8";
+--u0MpIP7j30vNtrnyIseq8acPcxDf8y30z
+Content-Type: multipart/mixed; boundary="Ng3YEG9np2rnqWPTOW7ndc98aEazXZk7L";
  protected-headers="v1"
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: Daniel Vetter <daniel.vetter@ffwll.ch>,
  DRI Development <dri-devel@lists.freedesktop.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Message-ID: <c97fe1fb-f5a0-e246-d40c-6f2087e68c05@suse.de>
-Subject: Re: [PATCH 03/51] drm: add managed resources tied to drm_device
+ Daniel Vetter <daniel.vetter@intel.com>
+Message-ID: <aa1dad07-9697-dea2-2b07-46f5ca7c0b9d@suse.de>
+Subject: Re: [PATCH 22/51] drm: manage drm_minor cleanup with drmm_
 References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-4-daniel.vetter@ffwll.ch>
- <72e4842d-6657-bea2-12dc-28128308fdbc@suse.de>
-In-Reply-To: <72e4842d-6657-bea2-12dc-28128308fdbc@suse.de>
+ <20200302222631.3861340-23-daniel.vetter@ffwll.ch>
+In-Reply-To: <20200302222631.3861340-23-daniel.vetter@ffwll.ch>
 
---kYC5bvk9dXUuSdX3WxoS4avW5Kd8s92V8
+--Ng3YEG9np2rnqWPTOW7ndc98aEazXZk7L
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
+Hi
 
-
-Am 11.03.20 um 10:07 schrieb Thomas Zimmermann:
-> Hi Daniel
+Am 02.03.20 um 23:26 schrieb Daniel Vetter:
+> The cleanup here is somewhat tricky, since we can't tell apart the
+> allocated minor index from 0. So register a cleanup action first, and
+> if the index allocation fails, unregister that cleanup action again to
+> avoid bad mistakes.
 >=20
-> Am 02.03.20 um 23:25 schrieb Daniel Vetter:
->> We have lots of these. And the cleanup code tends to be of dubious
->> quality. The biggest wrong pattern is that developers use devm_, which=
-
->> ties the release action to the underlying struct device, whereas
->> all the userspace visible stuff attached to a drm_device can long
->> outlive that one (e.g. after a hotunplug while userspace has open
->> files and mmap'ed buffers). Give people what they want, but with more
->> correctness.
->>
->> Mostly copied from devres.c, with types adjusted to fit drm_device and=
-
->> a few simplifications - I didn't (yet) copy over everything. Since
->> the types don't match code sharing looked like a hopeless endeavour.
->>
->> For now it's only super simplified, no groups, you can't remove
->> actions (but kfree exists, we'll need that soon). Plus all specific to=
-
->> drm_device ofc, including the logging. Which I didn't bother to make
->> compile-time optional, since none of the other drm logging is compile
->> time optional either.
->>
->> One tricky bit here is the chicken&egg between allocating your
->> drm_device structure and initiliazing it with drm_dev_init. For
->> perfect onion unwinding we'd need to have the action to kfree the
->> allocation registered before drm_dev_init registers any of its own
->> release handlers. But drm_dev_init doesn't know where exactly the
->> drm_device is emebedded into the overall structure, and by the time it=
-
->> returns it'll all be too late. And forcing drivers to be able clean up=
-
->> everything except the one kzalloc is silly.
->>
->> Work around this by having a very special final_kfree pointer. This
->> also avoids troubles with the list head possibly disappearing from
->> underneath us when we release all resources attached to the
->> drm_device.
->>
->> v2: Do all the kerneldoc at the end, to avoid lots of fairly pointless=
-
->> shuffling while getting everything into shape.
->>
->> v3: Add static to add/del_dr (Neil)
->> Move typo fix to the right patch (Neil)
->>
->> v4: Enforce contract for drmm_add_final_kfree:
->>
->> Use ksize() to check that the drm_device is indeed contained somewhere=
-
->> in the final kfree(). Because we need that or the entire managed
->> release logic blows up in a pile of use-after-frees. Motivated by a
->> discussion with Laurent.
->>
->> v5: Review from Laurent:
->> - %zu instead of casting size_t
->> - header guards
->> - sorting of includes
->> - guarding of data assignment if we didn't allocate it for a NULL
->>   pointer
->> - delete spurious newline
->> - cast void* data parameter correctly in ->release call, no idea how
->>   this even worked before
->>
->> v3: Review from Sam
->> - Add the kerneldoc for the managed sub-struct back in, even if it
->>   doesn't show up in the generated html somehow.
->> - Explain why __always_inline.
->> - Fix bisectability around the final kfree() in drm_dev_relase(). This=
-
->>   is just interim code which will disappear again.
->> - Some whitespace polish.
->> - Add debug output when drmm_add_action or drmm_kmalloc fail.
->>
->> Cc: Sam Ravnborg <sam@ravnborg.org>
->> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->> Cc: Neil Armstrong <narmstrong@baylibre.com
->> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
->> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
->> ---
->>  Documentation/gpu/drm-internals.rst |   6 +
->>  drivers/gpu/drm/Makefile            |   3 +-
->>  drivers/gpu/drm/drm_drv.c           |  12 ++
->>  drivers/gpu/drm/drm_internal.h      |   3 +
->>  drivers/gpu/drm/drm_managed.c       | 186 +++++++++++++++++++++++++++=
-+
->>  include/drm/drm_device.h            |  15 +++
->>  include/drm/drm_managed.h           |  30 +++++
->>  include/drm/drm_print.h             |   6 +
->>  8 files changed, 260 insertions(+), 1 deletion(-)
->>  create mode 100644 drivers/gpu/drm/drm_managed.c
->>  create mode 100644 include/drm/drm_managed.h
->>
->> diff --git a/Documentation/gpu/drm-internals.rst b/Documentation/gpu/d=
-rm-internals.rst
->> index a73320576ca9..a6b6145fda78 100644
->> --- a/Documentation/gpu/drm-internals.rst
->> +++ b/Documentation/gpu/drm-internals.rst
->> @@ -132,6 +132,12 @@ be unmapped; on many devices, the ROM address dec=
-oder is shared with
->>  other BARs, so leaving it mapped could cause undesired behaviour like=
-
->>  hangs or memory corruption.
->> =20
->> +Managed Resources
->> +-----------------
->> +
->> +.. kernel-doc:: drivers/gpu/drm/drm_managed.c
->> +   :doc: managed resources
->> +
->>  Bus-specific Device Registration and PCI Support
->>  ------------------------------------------------
->> =20
->> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
->> index 7f72ef5e7811..183c60048307 100644
->> --- a/drivers/gpu/drm/Makefile
->> +++ b/drivers/gpu/drm/Makefile
->> @@ -17,7 +17,8 @@ drm-y       :=3D	drm_auth.o drm_cache.o \
->>  		drm_plane.o drm_color_mgmt.o drm_print.o \
->>  		drm_dumb_buffers.o drm_mode_config.o drm_vblank.o \
->>  		drm_syncobj.o drm_lease.o drm_writeback.o drm_client.o \
->> -		drm_client_modeset.o drm_atomic_uapi.o drm_hdcp.o
->> +		drm_client_modeset.o drm_atomic_uapi.o drm_hdcp.o \
->> +		drm_managed.o
->> =20
->>  drm-$(CONFIG_DRM_LEGACY) +=3D drm_legacy_misc.o drm_bufs.o drm_contex=
-t.o drm_dma.o drm_scatter.o drm_lock.o
->>  drm-$(CONFIG_DRM_LIB_RANDOM) +=3D lib/drm_random.o
->> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
->> index 9fcd6ab3c154..153050fc926c 100644
->> --- a/drivers/gpu/drm/drm_drv.c
->> +++ b/drivers/gpu/drm/drm_drv.c
->> @@ -629,6 +629,9 @@ int drm_dev_init(struct drm_device *dev,
->>  	dev->dev =3D get_device(parent);
->>  	dev->driver =3D driver;
->> =20
->> +	INIT_LIST_HEAD(&dev->managed.resources);
->> +	spin_lock_init(&dev->managed.lock);
->> +
->>  	/* no per-device feature limits by default */
->>  	dev->driver_features =3D ~0u;
->> =20
->> @@ -828,8 +831,17 @@ static void drm_dev_release(struct kref *ref)
->>  		dev->driver->release(dev);
->>  	} else {
->>  		drm_dev_fini(dev);
->> +	}
->> +
->> +	drm_managed_release(dev);
->> +
->> +	if (!dev->driver->release && !dev->managed.final_kfree) {
->> +		WARN_ON(!list_empty(&dev->managed.resources));
->>  		kfree(dev);
->>  	}
->> +
->> +	if (dev->managed.final_kfree)
->> +		kfree(dev->managed.final_kfree);
->>  }
->> =20
->>  /**
->> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_inte=
-rnal.h
->> index aeec2e68d772..8c2628dfc6c7 100644
->> --- a/drivers/gpu/drm/drm_internal.h
->> +++ b/drivers/gpu/drm/drm_internal.h
->> @@ -89,6 +89,9 @@ void drm_prime_remove_buf_handle_locked(struct drm_p=
-rime_file_private *prime_fpr
->>  struct drm_minor *drm_minor_acquire(unsigned int minor_id);
->>  void drm_minor_release(struct drm_minor *minor);
->> =20
->> +/* drm_managed.c */
->> +void drm_managed_release(struct drm_device *dev);
->> +
->>  /* drm_vblank.c */
->>  void drm_vblank_disable_and_save(struct drm_device *dev, unsigned int=
- pipe);
->>  void drm_vblank_cleanup(struct drm_device *dev);
->> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_manag=
-ed.c
->> new file mode 100644
->> index 000000000000..57dc79fa90af
->> --- /dev/null
->> +++ b/drivers/gpu/drm/drm_managed.c
->> @@ -0,0 +1,186 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2020 Intel
->> + *
->> + * Based on drivers/base/devres.c
->> + */
->> +
->> +#include <drm/drm_managed.h>
->> +
->> +#include <linux/list.h>
->> +#include <linux/slab.h>
->> +#include <linux/spinlock.h>
->> +
->> +#include <drm/drm_device.h>
->> +#include <drm/drm_print.h>
->> +
->> +/**
->> + * DOC: managed resources
->> + *
->> + * Inspired by struct &device managed resources, but tied to the life=
-time of
->> + * struct &drm_device, which can outlive the underlying physical devi=
-ce, usually
->> + * when userspace has some open files and other handles to resources =
-still open.
->> + */
->> +struct drmres_node {
->> +	struct list_head	entry;
->> +	drmres_release_t	release;
->> +	const char		*name;
->> +	size_t			size;
->> +};
+> The kdev for the minor already handles NULL, so no problem there.
 >=20
-> At a later point, we could have debugfs for instances of this data
-> structure. There's already a name field.
+> Hence add drmm_remove_action() to the drm_managed library.
 >=20
->> +
->> +struct drmres {
->> +	struct drmres_node		node;
->> +	/*
->> +	 * Some archs want to perform DMA into kmalloc caches
->> +	 * and need a guaranteed alignment larger than
->> +	 * the alignment of a 64-bit integer.
->> +	 * Thus we use ARCH_KMALLOC_MINALIGN here and get exactly the same
->> +	 * buffer alignment as if it was allocated by plain kmalloc().
->> +	 */
->> +	u8 __aligned(ARCH_KMALLOC_MINALIGN) data[];
->> +};
->> +
->> +void drm_managed_release(struct drm_device *dev)
->> +{
->> +	struct drmres *dr, *tmp;
->> +
->> +	drm_dbg_drmres(dev, "drmres release begin\n");
->> +	list_for_each_entry_safe(dr, tmp, &dev->managed.resources, node.entr=
-y) {
->> +		drm_dbg_drmres(dev, "REL %p %s (%zu bytes)\n",
->> +			       dr, dr->node.name, dr->node.size);
->> +
->> +		if (dr->node.release)
->> +			dr->node.release(dev, dr->node.size ? *(void **)&dr->data : NULL);=
+> v2: Make pointer math around void ** consistent with what Laurent
+> suggested.
+>=20
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/drm_drv.c     | 74 +++++++++++++----------------------=
 
->> +
->> +		list_del(&dr->node.entry);
->> +		kfree(dr);
->> +	}
->> +	drm_dbg_drmres(dev, "drmres release end\n");
->> +}
->> +
->> +/*
->> + * Always inline so that kmallc_track_caller tracks the actual intere=
-sting
+>  drivers/gpu/drm/drm_managed.c | 28 +++++++++++++
+>  include/drm/drm_managed.h     |  4 ++
+>  3 files changed, 59 insertions(+), 47 deletions(-)
 >=20
-> 'kmalloc_node_track_caller'
->=20
->> + * caller outside of drm_managed.c.
->> + */
->> +static __always_inline struct drmres * alloc_dr(drmres_release_t rele=
-ase,
->> +						size_t size, gfp_t gfp, int nid)
->> +{
->> +	size_t tot_size;
->> +	struct drmres *dr;
->> +
->> +	/* We must catch any near-SIZE_MAX cases that could overflow. */
->> +	if (unlikely(check_add_overflow(sizeof(*dr), size, &tot_size)))
->> +		return NULL;
->> +
->> +	dr =3D kmalloc_node_track_caller(tot_size, gfp, nid);
->> +	if (unlikely(!dr))
->> +		return NULL;
->> +
->> +	memset(dr, 0, offsetof(struct drmres, data));
->> +
->> +	INIT_LIST_HEAD(&dr->node.entry);
->> +	dr->node.release =3D release;
->> +	dr->node.size =3D size;
->> +
->> +	return dr;
->> +}
->> +
->> +static void del_dr(struct drm_device *dev, struct drmres *dr)
->> +{
->> +	list_del_init(&dr->node.entry);
->> +
->> +	drm_dbg_drmres(dev, "DEL %p %s (%lu bytes)\n",
->> +		       dr, dr->node.name, (unsigned long) dr->node.size);
->> +}
->> +
->> +static void add_dr(struct drm_device *dev, struct drmres *dr)
->> +{
->> +	unsigned long flags;
->> +
->> +	spin_lock_irqsave(&dev->managed.lock, flags);
->> +	list_add(&dr->node.entry, &dev->managed.resources);
->> +	spin_unlock_irqrestore(&dev->managed.lock, flags);
->> +
->> +	drm_dbg_drmres(dev, "ADD %p %s (%lu bytes)\n",
->> +		       dr, dr->node.name, (unsigned long) dr->node.size);
->=20
-> If the insert code blows up, it might be helpful to have this message i=
-n
-> the log already. So should this message be located before the code for
-> inserting the entry?
->=20
->> +}
->> +
->> +void drmm_add_final_kfree(struct drm_device *dev, void *parent)
->=20
-> Can you come up with better names? 'final_kfree' sounds like a function=
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 23e5b0e7e041..29d106195ab3 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -93,19 +93,35 @@ static struct drm_minor **drm_minor_get_slot(struct=
+ drm_device *dev,
+>  	}
+>  }
+> =20
+> +static void drm_minor_alloc_release(struct drm_device *dev, void *data=
+)
+> +{
+> +	struct drm_minor *minor =3D data;
+> +	unsigned long flags;
+> +
+> +	put_device(minor->kdev);
+> +
+> +	spin_lock_irqsave(&drm_minor_lock, flags);
+> +	idr_remove(&drm_minors_idr, minor->index);
+> +	spin_unlock_irqrestore(&drm_minor_lock, flags);
+> +}
+> +
+>  static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+>  {
+>  	struct drm_minor *minor;
+>  	unsigned long flags;
+>  	int r;
+> =20
+> -	minor =3D kzalloc(sizeof(*minor), GFP_KERNEL);
+> +	minor =3D drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
+>  	if (!minor)
+>  		return -ENOMEM;
+> =20
+>  	minor->type =3D type;
+>  	minor->dev =3D dev;
+> =20
+> +	r =3D drmm_add_action(dev, drm_minor_alloc_release, minor);
+> +	if (r)
+> +		return r;
+> +
+>  	idr_preload(GFP_KERNEL);
+>  	spin_lock_irqsave(&drm_minor_lock, flags);
+>  	r =3D idr_alloc(&drm_minors_idr,
+> @@ -116,47 +132,18 @@ static int drm_minor_alloc(struct drm_device *dev=
+, unsigned int type)
+>  	spin_unlock_irqrestore(&drm_minor_lock, flags);
+>  	idr_preload_end();
+> =20
+> -	if (r < 0)
+> -		goto err_free;
+> +	if (r < 0) {
+> +		drmm_remove_action(dev, drm_minor_alloc_release, minor);
+> +		return r;
+> +	}
+> =20
+>  	minor->index =3D r;
+> -
+>  	minor->kdev =3D drm_sysfs_minor_alloc(minor);
+> -	if (IS_ERR(minor->kdev)) {
+> -		r =3D PTR_ERR(minor->kdev);
+> -		goto err_index;
+> -	}
+> +	if (IS_ERR(minor->kdev))
+> +		return PTR_ERR(minor->kdev);
+> =20
+>  	*drm_minor_get_slot(dev, type) =3D minor;
+>  	return 0;
+> -
+> -err_index:
+> -	spin_lock_irqsave(&drm_minor_lock, flags);
+> -	idr_remove(&drm_minors_idr, minor->index);
+> -	spin_unlock_irqrestore(&drm_minor_lock, flags);
+> -err_free:
+> -	kfree(minor);
+> -	return r;
+> -}
 
-> pointer to an implementation of kfree() and 'parent' sounds like the
-> parent device in a device hierarchy.
->=20
-> I suggest to rename 'parent' to 'container' and 'final_kfree'
-> 'drmm_container'. The function's name could be drmm_dev_set_container()=
-=2E
->=20
->> +{
->> +	WARN_ON(dev->managed.final_kfree);
->> +	WARN_ON(dev < (struct drm_device *) parent);
->> +	WARN_ON(dev + 1 >=3D (struct drm_device *) (parent + ksize(parent)))=
-;
->> +	dev->managed.final_kfree =3D parent;
->> +}
->> +EXPORT_SYMBOL(drmm_add_final_kfree);
->> +
->> +int __drmm_add_action(struct drm_device *dev,
->> +		      drmres_release_t action,
->> +		      void *data, const char *name)
->=20
-> Is there a reason to pass in 'void* data' instead of 'void** datap'? Th=
-e
-> latter would communicate what this parameter is for and not need void_p=
-tr.
->=20
-> In any case, there seems to be no interface to remove an added action
-> (e.g., __drmm_remove_action()). Please see my comment on drmm_kfree() b=
-elow.
+TBH, I think you're reducing code quality by removing the rollback code
+from init functions, just for the sake of it.
 
-Ah, I just saw this was added in patch 22.
+Specifically in this case here, you saved a few lines of code, but the
+overall flow is way more complicated to follow. That's typically a
+reliably source of bugs. This call to drmm_remove_action() just makes it
+worse.
 
-And patch 22 made me think that the interface name must clearly
-communicate whether the function invokes the release callback or not.
+Rather, see my remark on OOP destruction in patch 21. For now, I'd focus
+on the device cleanup and leave init functions as they are.
 
 Best regards
 Thomas
 
->=20
-> And more generally, do we really need __drmm_add_action() in it's
-> current form? I'd change it to __drmm_kmalloc(), which is drmm_kmalloc(=
-)
-> plus optional release-action and name parameters. And drm_kmalloc()
-> would be a simple wrapper in the header file, just like drmm_kcalloc().=
-
->=20
->> +{
->> +	struct drmres *dr;
->> +	void **void_ptr;
->> +
->> +	dr =3D alloc_dr(action, data ? sizeof(void*) : 0,
->> +		      GFP_KERNEL | __GFP_ZERO,
->> +		      dev_to_node(dev->dev));
->> +	if (!dr) {
->> +		drm_dbg_drmres(dev, "failed to add action %s for %p\n",
->> +			       name, data);
->> +		return -ENOMEM;
->> +	}
->> +
->> +	dr->node.name =3D name;
->> +	if (data) {
->> +		void_ptr =3D (void **)&dr->data;
->> +		*void_ptr =3D data;
->> +	}
->> +
->> +	add_dr(dev, dr);
->> +
->> +	return 0;
->> +}
->> +EXPORT_SYMBOL(__drmm_add_action);
->> +
->> +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
->> +{
->> +	struct drmres *dr;
->> +
->> +	dr =3D alloc_dr(NULL, size, gfp, dev_to_node(dev->dev));
->> +	if (!dr) {
->> +		drm_dbg_drmres(dev, "failed to allocate %zu bytes, %u flags\n",
->> +			       size, gfp);
->> +		return NULL;
->> +	}
->> +	dr->node.name =3D "kmalloc";
->> +
->> +	add_dr(dev, dr);
->> +
->> +	return dr->data;
->> +}
->> +EXPORT_SYMBOL(drmm_kmalloc);
->> +
->> +void drmm_kfree(struct drm_device *dev, void *data)
->=20
-> I suggest to wrap this function around an implementatian that calls the=
-
-> optional release action. drmm_kfree() would become a trivial wrapper in=
-
-> the header file.
->=20
-> Best regards
-> Thomas
->=20
->> +{
->> +	struct drmres *dr_match =3D NULL, *dr;
->> +	unsigned long flags;
->> +
->> +	if (!data)
->> +		return;
->> +
->> +	spin_lock_irqsave(&dev->managed.lock, flags);
->> +	list_for_each_entry(dr, &dev->managed.resources, node.entry) {
->> +		if (dr->data =3D=3D data) {
->> +			dr_match =3D dr;
->> +			del_dr(dev, dr_match);
->> +			break;
->> +		}
->> +	}
->> +	spin_unlock_irqrestore(&dev->managed.lock, flags);
->> +
->> +	if (WARN_ON(!dr_match))
->> +		return;
->> +
->> +	kfree(dr_match);
->> +}
->> +EXPORT_SYMBOL(drmm_kfree);
->> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
->> index bb60a949f416..d39132b477dd 100644
->> --- a/include/drm/drm_device.h
->> +++ b/include/drm/drm_device.h
->> @@ -67,6 +67,21 @@ struct drm_device {
->>  	/** @dev: Device structure of bus-device */
->>  	struct device *dev;
->> =20
->> +	/**
->> +	 * @managed:
->> +	 *
->> +	 * Managed resources linked to the lifetime of this &drm_device as
->> +	 * tracked by @ref.
->> +	 */
->> +	struct {
->> +		/** @managed.resources: managed resources list */
->> +		struct list_head resources;
->> +		/** @managed.final_kfree: pointer for final kfree() call */
->> +		void *final_kfree;
->> +		/** @managed.lock: protects @managed.resources */
->> +		spinlock_t lock;
->> +	} managed;
->> +
->>  	/** @driver: DRM driver managing the device */
->>  	struct drm_driver *driver;
->> =20
->> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
->> new file mode 100644
->> index 000000000000..7b5df7d09b19
->> --- /dev/null
->> +++ b/include/drm/drm_managed.h
->> @@ -0,0 +1,30 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#ifndef _DRM_MANAGED_H_
->> +#define _DRM_MANAGED_H_
->> +
->> +#include <linux/gfp.h>
->> +#include <linux/types.h>
->> +
->> +struct drm_device;
->> +
->> +typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
->> +
->> +#define drmm_add_action(dev, action, data) \
->> +	__drmm_add_action(dev, action, data, #action)
->> +
->> +int __must_check __drmm_add_action(struct drm_device *dev,
->> +				   drmres_release_t action,
->> +				   void *data, const char *name);
->> +
->> +void drmm_add_final_kfree(struct drm_device *dev, void *parent);
->> +
->> +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __=
-malloc;
->> +static inline void *drmm_kzalloc(struct drm_device *dev, size_t size,=
- gfp_t gfp)
->> +{
->> +	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
->> +}
->> +
->> +void drmm_kfree(struct drm_device *dev, void *data);
->> +
->> +#endif
->> diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
->> index ca7cee8e728a..1c9417430d08 100644
->> --- a/include/drm/drm_print.h
->> +++ b/include/drm/drm_print.h
->> @@ -313,6 +313,10 @@ enum drm_debug_category {
->>  	 * @DRM_UT_DP: Used in the DP code.
->>  	 */
->>  	DRM_UT_DP		=3D 0x100,
->> +	/**
->> +	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
->> +	 */
->> +	DRM_UT_DRMRES		=3D 0x200,
->>  };
->> =20
->>  static inline bool drm_debug_enabled(enum drm_debug_category category=
-)
->> @@ -442,6 +446,8 @@ void drm_dev_dbg(const struct device *dev, enum dr=
-m_debug_category category,
->>  	drm_dev_dbg((drm)->dev, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
->>  #define drm_dbg_dp(drm, fmt, ...)					\
->>  	drm_dev_dbg((drm)->dev, DRM_UT_DP, fmt, ##__VA_ARGS__)
->> +#define drm_dbg_drmres(drm, fmt, ...)					\
->> +	drm_dev_dbg((drm)->dev, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
->> =20
->> =20
->>  /*
->>
->=20
->=20
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> -
+> -static void drm_minor_free(struct drm_device *dev, unsigned int type)
+> -{
+> -	struct drm_minor **slot, *minor;
+> -	unsigned long flags;
+> -
+> -	slot =3D drm_minor_get_slot(dev, type);
+> -	minor =3D *slot;
+> -	if (!minor)
+> -		return;
+> -
+> -	put_device(minor->kdev);
+> -
+> -	spin_lock_irqsave(&drm_minor_lock, flags);
+> -	idr_remove(&drm_minors_idr, minor->index);
+> -	spin_unlock_irqrestore(&drm_minor_lock, flags);
+> -
+> -	kfree(minor);
+> -	*slot =3D NULL;
+>  }
+> =20
+>  static int drm_minor_register(struct drm_device *dev, unsigned int typ=
+e)
+> @@ -678,16 +665,16 @@ int drm_dev_init(struct drm_device *dev,
+>  	if (drm_core_check_feature(dev, DRIVER_RENDER)) {
+>  		ret =3D drm_minor_alloc(dev, DRM_MINOR_RENDER);
+>  		if (ret)
+> -			goto err_minors;
+> +			goto err;
+>  	}
+> =20
+>  	ret =3D drm_minor_alloc(dev, DRM_MINOR_PRIMARY);
+>  	if (ret)
+> -		goto err_minors;
+> +		goto err;
+> =20
+>  	ret =3D drm_legacy_create_map_hash(dev);
+>  	if (ret)
+> -		goto err_minors;
+> +		goto err;
+> =20
+>  	drm_legacy_ctxbitmap_init(dev);
+> =20
+> @@ -695,7 +682,7 @@ int drm_dev_init(struct drm_device *dev,
+>  		ret =3D drm_gem_init(dev);
+>  		if (ret) {
+>  			DRM_ERROR("Cannot initialize graphics execution manager (GEM)\n");
+> -			goto err_ctxbitmap;
+> +			goto err;
+>  		}
+>  	}
+> =20
+> @@ -708,10 +695,6 @@ int drm_dev_init(struct drm_device *dev,
+>  err_setunique:
+>  	if (drm_core_check_feature(dev, DRIVER_GEM))
+>  		drm_gem_destroy(dev);
+> -err_ctxbitmap:
+> -err_minors:
+> -	drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> -	drm_minor_free(dev, DRM_MINOR_RENDER);
+>  err:
+>  	drm_managed_release(dev);
+> =20
+> @@ -776,9 +759,6 @@ void drm_dev_fini(struct drm_device *dev)
+> =20
+>  	if (drm_core_check_feature(dev, DRIVER_GEM))
+>  		drm_gem_destroy(dev);
+> -
+> -	drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> -	drm_minor_free(dev, DRM_MINOR_RENDER);
+>  }
+>  EXPORT_SYMBOL(drm_dev_fini);
+> =20
+> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_manage=
+d.c
+> index 514d5bd42446..0883615c2088 100644
+> --- a/drivers/gpu/drm/drm_managed.c
+> +++ b/drivers/gpu/drm/drm_managed.c
+> @@ -142,6 +142,34 @@ int __drmm_add_action(struct drm_device *dev,
+>  }
+>  EXPORT_SYMBOL(__drmm_add_action);
+> =20
+> +void drmm_remove_action(struct drm_device *dev,
+> +			drmres_release_t action,
+> +			void *data)
+> +{
+> +	struct drmres *dr =3D NULL, *tmp;
+> +	unsigned long flags;
+> +
+> +	if (!data)
+> +		return;
+> +
+> +	spin_lock_irqsave(&dev->managed.lock, flags);
+> +	list_for_each_entry(tmp, &dev->managed.resources, node.entry) {
+> +		if (tmp->node.release =3D=3D action &&
+> +		    *(void **)&tmp->data =3D=3D data) {
+> +			dr =3D tmp;
+> +			del_dr(dev, dr);
+> +			break;
+> +		}
+> +	}
+> +	spin_unlock_irqrestore(&dev->managed.lock, flags);
+> +
+> +	if (WARN_ON(!dr))
+> +		return;
+> +
+> +	kfree(dr);
+> +}
+> +EXPORT_SYMBOL(drmm_remove_action);
+> +
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+>  {
+>  	struct drmres *dr;
+> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> index 89e6fce9f689..5280209dff92 100644
+> --- a/include/drm/drm_managed.h
+> +++ b/include/drm/drm_managed.h
+> @@ -17,6 +17,10 @@ int __must_check __drmm_add_action(struct drm_device=
+ *dev,
+>  				   drmres_release_t action,
+>  				   void *data, const char *name);
+> =20
+> +void drmm_remove_action(struct drm_device *dev,
+> +			drmres_release_t action,
+> +			void *data);
+> +
+>  void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+> =20
+>  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __m=
+alloc;
 >=20
 
 --=20
@@ -656,28 +356,28 @@ Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
 Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
 
---kYC5bvk9dXUuSdX3WxoS4avW5Kd8s92V8--
+--Ng3YEG9np2rnqWPTOW7ndc98aEazXZk7L--
 
---5TgBDgzRDAcAZBrDQmr7AUnu3odj5w6A3
+--u0MpIP7j30vNtrnyIseq8acPcxDf8y30z
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5os88ACgkQaA3BHVML
-eiNvfwf+MfNLYoLLUhyjLTehwdkiVqk7x+ievMTv+IB+Jot3Qx4T94SVMTH9MvPp
-+SKfdR218LAMIGjgos6qfhki/RyOCudvmT1fyFPZrqOmNJT8vHzgq/qWIepix8GF
-FfaLroAUEehG6Gry/CrhW/Tul1IGaY+tjp5nvp5p4jGiwyYc5cJkySqx9WTG5nuc
-DQePMQNz12Xxy11aLdt467nKT9mj6rm6iTeYGJQk9+2lT1DSI3skYxn1rc66F9CS
-wkcqg4heMDjBoXUY2sqYHZl6gGr1RihTXj/rKpg/M49xwCTF4nl+pbvXzNUslvI4
-K/e41hmkeWKA62SZd5KYbRJp0jbeLw==
-=A/3B
+iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5otm4ACgkQaA3BHVML
+eiNL8wf/QPR7d5xi9K0+7Kv7yQaVDTxZm1ymX5aQuPSxWnY9GHoSEAX5i4s84FQ+
+Bbr2p2DiDyTdhJx3PCqrwRl65qJFeCUPvkQc13ksLMbzOwZqX+bZSjBEXTAU+2An
+ddNQaH8xz1CTZpy8vF7o55IDdYvhy6HFI5SnsjJ5IGpBiWqSjz5iWYbdVy2+ApFK
+J/1FYxF9jc4yagRfYHFTjQ8KLgmi3o3cxLc5Jn4f2ClG7O9bglSsVpkoMBAJgC0w
+s7VDgkCgkPR/XqB+tYlAQG8dmyhm4GVGvJby4QdAywHGMjVfqGeAb2H9Fs8M2xPY
+9NlL2YFXvsQoLBO+wZhBEgTemH3Ejw==
+=Q4Cq
 -----END PGP SIGNATURE-----
 
---5TgBDgzRDAcAZBrDQmr7AUnu3odj5w6A3--
+--u0MpIP7j30vNtrnyIseq8acPcxDf8y30z--
 
---===============1982516246==
+--===============2036321238==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -688,4 +388,4 @@ Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 
---===============1982516246==--
+--===============2036321238==--
