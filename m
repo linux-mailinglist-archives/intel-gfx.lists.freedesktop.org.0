@@ -2,28 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DFDE18183F
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 13:39:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABBA718184C
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 13:42:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A866E146;
-	Wed, 11 Mar 2020 12:39:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C24F89DD8;
+	Wed, 11 Mar 2020 12:42:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5CA96E146
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 12:39:51 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20521261-1500050 
- for multiple; Wed, 11 Mar 2020 12:39:44 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 12:39:43 +0000
-Message-Id: <20200311123943.14044-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 952CA6E455
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 12:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
+ :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=fxPDu0DtPhrHBO4sjTCx5egaowwjZD7MLKCyF4O/ftg=; b=XXJIaa9f6NAmA/jrdcvqBwQoRg
+ 2xfWm6DxdqpzOk71I975lJY0lwrkyVt1zZcMG+wi8d+ZgQr0Id8NnhRxzgdG3h8zou1cWBT+U+rOw
+ kcXylEsvuEBVO7GdpyfAFg4/3v1oENoqEMLSsB5zOEWnWn8I4AKOo4YLjEq5JCk68Yld54xuXHn1Y
+ WSG/TYoSPAnP7aayqffyFD3J4/hBw2ncQhmQZVT8edTrz9X8VO26HPyDMV2ZzgZtEtFPAzUgLxTzb
+ uHMQHj36RoF9lSdmUkn8WPWC4cev+uPy5vLZ3V/o+z0TnK7XI9YM2a8KnjTmFGBxTF/2gqgGJlEkK
+ lVikpg1A==;
+Received: from j217100.upc-j.chello.nl ([24.132.217.100]
+ helo=noisy.programming.kicks-ass.net)
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jC0gq-0006Kh-03; Wed, 11 Mar 2020 12:42:26 +0000
+Received: from hirez.programming.kicks-ass.net
+ (hirez.programming.kicks-ass.net [192.168.1.225])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (Client did not present a certificate)
+ by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 1ACCA3006E0;
+ Wed, 11 Mar 2020 13:42:22 +0100 (CET)
+Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
+ id EFA6D20225665; Wed, 11 Mar 2020 13:42:21 +0100 (CET)
+Date: Wed, 11 Mar 2020 13:42:21 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: Francisco Jerez <currojerez@riseup.net>
+Message-ID: <20200311124221.GO12561@hirez.programming.kicks-ass.net>
+References: <20200310214203.26459-1-currojerez@riseup.net>
+ <20200310214203.26459-2-currojerez@riseup.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Prefer unlocked engine iteration
+Content-Disposition: inline
+In-Reply-To: <20200310214203.26459-2-currojerez@riseup.net>
+Subject: Re: [Intel-gfx] [PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY
+ global PM QoS limit.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,116 +58,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>,
+ linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In most cases, we can walk the array of engines underneath the context
-using plain RCU protection -- we've set a flag on the context, and just
-need to propagate that flag to the current engines, if those engines
-are replaced as we do so, the new engines will get the new flag.
+On Tue, Mar 10, 2020 at 02:41:54PM -0700, Francisco Jerez wrote:
+> +static void cpu_response_frequency_qos_apply(struct pm_qos_request *req,
+> +					     enum pm_qos_req_action action,
+> +					     s32 value)
+> +{
+> +	int ret = pm_qos_update_target(req->qos, &req->node, action, value);
+> +
+> +	if (ret > 0)
+> +		wake_up_all_idle_cpus();
+> +}
 
-However, in one case, we need to keep the existing serialisation with
-replacing the engines (set_ringsize) and that also needs to be run from
-a blocking context.
-
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 42 ++++++++++++++++-----
- 1 file changed, 32 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index cb6b6be48978..50ecc0b2b235 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -747,9 +747,31 @@ __create_context(struct drm_i915_private *i915)
- }
- 
- static int
--context_apply_all(struct i915_gem_context *ctx,
--		  int (*fn)(struct intel_context *ce, void *data),
--		  void *data)
-+context_apply_all_rcu(struct i915_gem_context *ctx,
-+		      int (*fn)(struct intel_context *ce, void *data),
-+		      void *data)
-+{
-+	struct i915_gem_engines *engines;
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+	int err = 0;
-+
-+	rcu_read_lock();
-+	engines = rcu_dereference(ctx->engines);
-+	for_each_gem_engine(ce, engines, it) {
-+		err = fn(ce, data);
-+		if (err)
-+			break;
-+	}
-+	rcu_read_unlock();
-+
-+	return err;
-+}
-+
-+static int
-+context_apply_all_locked(struct i915_gem_context *ctx,
-+			 int (*fn)(struct intel_context *ce, void *data),
-+			 void *data)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
-@@ -780,7 +802,7 @@ __set_ppgtt(struct i915_gem_context *ctx, struct i915_address_space *vm)
- 	GEM_BUG_ON(old && i915_vm_is_4lvl(vm) != i915_vm_is_4lvl(old));
- 
- 	rcu_assign_pointer(ctx->vm, i915_vm_open(vm));
--	context_apply_all(ctx, __apply_ppgtt, vm);
-+	context_apply_all_rcu(ctx, __apply_ppgtt, vm);
- 
- 	return old;
- }
-@@ -817,7 +839,7 @@ static void __assign_timeline(struct i915_gem_context *ctx,
- 			      struct intel_timeline *timeline)
- {
- 	__set_timeline(&ctx->timeline, timeline);
--	context_apply_all(ctx, __apply_timeline, timeline);
-+	context_apply_all_rcu(ctx, __apply_timeline, timeline);
- }
- 
- static struct i915_gem_context *
-@@ -1324,9 +1346,9 @@ static int set_ringsize(struct i915_gem_context *ctx,
- 	if (args->value > 128 * I915_GTT_PAGE_SIZE)
- 		return -EINVAL;
- 
--	return context_apply_all(ctx,
--				 __apply_ringsize,
--				 __intel_context_ring_size(args->value));
-+	return context_apply_all_locked(ctx,
-+					__apply_ringsize,
-+					__intel_context_ring_size(args->value));
- }
- 
- static int __get_ringsize(struct intel_context *ce, void *arg)
-@@ -1350,7 +1372,7 @@ static int get_ringsize(struct i915_gem_context *ctx,
- 	if (args->size)
- 		return -EINVAL;
- 
--	sz = context_apply_all(ctx, __get_ringsize, NULL);
-+	sz = context_apply_all_rcu(ctx, __get_ringsize, NULL);
- 	if (sz < 0)
- 		return sz;
- 
-@@ -1962,7 +1984,7 @@ static int set_priority(struct i915_gem_context *ctx,
- 		return -EPERM;
- 
- 	ctx->sched.priority = I915_USER_PRIORITY(priority);
--	context_apply_all(ctx, __apply_priority, ctx);
-+	context_apply_all_rcu(ctx, __apply_priority, ctx);
- 
- 	return 0;
- }
--- 
-2.20.1
-
+That's a pretty horrific thing to do; how often do we expect to call
+this?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
