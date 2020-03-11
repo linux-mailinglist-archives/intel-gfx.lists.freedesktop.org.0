@@ -2,28 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E181815F7
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:37:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B12DF181611
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:46:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77976E971;
-	Wed, 11 Mar 2020 10:37:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21D756E970;
+	Wed, 11 Mar 2020 10:46:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF5CB6E971
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:37:48 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20519520-1500050 
- for multiple; Wed, 11 Mar 2020 10:36:41 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 10:36:40 +0000
-Message-Id: <20200311103640.26572-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCFB56E972
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:46:48 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 03:46:48 -0700
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="236398513"
+Received: from mkuta-mobl.ger.corp.intel.com (HELO localhost) ([10.249.39.69])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Mar 2020 03:46:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Patchwork <patchwork@emeril.freedesktop.org>,
+ Mario Kleiner <mario.kleiner.de@gmail.com>
+In-Reply-To: <158343831517.17237.10748442764769008781@emeril.freedesktop.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200305081219.2900-1-mario.kleiner.de@gmail.com>
+ <158343831517.17237.10748442764769008781@emeril.freedesktop.org>
+Date: Wed, 11 Mar 2020 12:47:03 +0200
+Message-ID: <87r1xzkw2g.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Restrict gen7 w/a batch to Haswell
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
+ =?utf-8?q?rm/i915/dp=3A_Add_dpcd_link=5Frate_quirk_for_Apple_15=22_MBP_20?=
+ =?utf-8?b?MTcgKHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,43 +47,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The residual w/a batch is casing system instablity on Ivybridge and
-Baytrail under some workloads, so disable until resolved.
+On Thu, 05 Mar 2020, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017 (rev2)
+> URL   : https://patchwork.freedesktop.org/series/74100/
+> State : failure
+>
+> == Summary ==
+>
+> Applying: drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017 (v2)
+> Using index info to reconstruct a base tree...
+> M	drivers/gpu/drm/drm_dp_helper.c
+> M	drivers/gpu/drm/i915/display/intel_dp.c
+> M	include/drm/drm_dp_helper.h
+> Falling back to patching base and 3-way merge...
+> Auto-merging include/drm/drm_dp_helper.h
+> CONFLICT (content): Merge conflict in include/drm/drm_dp_helper.h
+> Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
+> Auto-merging drivers/gpu/drm/drm_dp_helper.c
+> error: Failed to merge in the changes.
+> hint: Use 'git am --show-current-patch' to see the failed patch
+> Patch failed at 0001 drm/i915/dp: Add dpcd link_rate quirk for Apple 15" MBP 2017 (v2)
+> When you have resolved this problem, run "git am --continue".
+> If you prefer to skip this patch, run "git am --skip" instead.
+> To restore the original branch and stop patching, run "git am --abort".
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1405
-Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
-Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I missed that this fails to apply, please rebase on top of current
+drm-tip and repost.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 1424582e4a9b..fdc3f10e12aa 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -2088,7 +2088,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
- 
- 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
- 
--	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
-+	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
- 		err = gen7_ctx_switch_bb_init(engine);
- 		if (err)
- 			goto err_ring_unpin;
+Thanks,
+Jani.
+
+
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
 -- 
-2.20.1
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
