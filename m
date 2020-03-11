@@ -2,36 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510E41815AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55E181815F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:37:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 737076E96C;
-	Wed, 11 Mar 2020 10:21:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A77976E971;
+	Wed, 11 Mar 2020 10:37:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 904926E96C
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:21:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF5CB6E971
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:37:48 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20519258-1500050 for multiple; Wed, 11 Mar 2020 10:21:28 +0000
-MIME-Version: 1.0
-In-Reply-To: <ac5fdd3c-bf47-60d3-edef-82d451266dcb@linux.intel.com>
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-3-currojerez@riseup.net>
- <158387916218.28297.4489489879582782488@build.alporthouse.com>
- <ac5fdd3c-bf47-60d3-edef-82d451266dcb@linux.intel.com>
-To: Francisco Jerez <currojerez@riseup.net>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, linux-pm@vger.kernel.org
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20519520-1500050 
+ for multiple; Wed, 11 Mar 2020 10:36:41 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158392208709.10732.17989242384553331109@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Wed, 11 Mar 2020 10:21:27 +0000
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915: Adjust PM QoS response
- frequency based on GPU load.
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Mar 2020 10:36:40 +0000
+Message-Id: <20200311103640.26572-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Restrict gen7 w/a batch to Haswell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,67 +36,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-11 10:00:41)
-> 
-> On 10/03/2020 22:26, Chris Wilson wrote:
-> > Quoting Francisco Jerez (2020-03-10 21:41:55)
-> >>   static inline void
-> >> @@ -2386,6 +2397,9 @@ static void process_csb(struct intel_engine_cs *engine)
-> >>                          /* port0 completed, advanced to port1 */
-> >>                          trace_ports(execlists, "completed", execlists->active);
-> >>   
-> >> +                       if (atomic_xchg(&execlists->overload, 0))
-> >> +                               intel_gt_pm_active_end(&engine->i915->gt);
-> > 
-> > So this looses track if we preempt a dual-ELSP submission with a
-> > single-ELSP submission (and never go back to dual).
-> > 
-> > If you move this to the end of the loop and check
-> > 
-> > if (!execlists->active[1] && atomic_xchg(&execlists->overload, 0))
-> >       intel_gt_pm_active_end(engine->gt);
-> > 
-> > so that it covers both preemption/promotion and completion.
-> > 
-> > However, that will fluctuate quite rapidly. (And runs the risk of
-> > exceeding the sentinel.)
-> > 
-> > An alternative approach would be to couple along
-> > schedule_in/schedule_out
-> > 
-> > atomic_set(overload, -1);
-> > 
-> > __execlists_schedule_in:
-> >       if (!atomic_fetch_inc(overload)
-> >               intel_gt_pm_active_begin(engine->gt);
-> > __execlists_schedule_out:
-> >       if (!atomic_dec_return(overload)
-> >               intel_gt_pm_active_end(engine->gt);
-> > 
-> > which would mean we are overloaded as soon as we try to submit an
-> > overlapping ELSP.
-> 
-> Putting it this low-level into submission code also would not work well 
-> with GuC.
+The residual w/a batch is casing system instablity on Ivybridge and
+Baytrail under some workloads, so disable until resolved.
 
-We can cross that bridge when it is built. [The GuC is also likely to
-not want to play with us anyway, and just use SLPC.]
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1405
+Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Now, I suspect we may want to use an engine utilisation (busy-stats or
-equivalent) metric, but honestly if we can finally land this work it
-brings huge benefit for GPU bound TDP constrained workloads. (p-state
-loves to starve the GPU even when it provides no extra benefit for the
-CPU.) We can raise the bar, establish expected behaviour and then work
-to maintain and keep on improving.
--Chris
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+index 1424582e4a9b..fdc3f10e12aa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -2088,7 +2088,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+ 
+ 	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
+ 
+-	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
++	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
+ 		err = gen7_ctx_switch_bb_init(engine);
+ 		if (err)
+ 			goto err_ring_unpin;
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
