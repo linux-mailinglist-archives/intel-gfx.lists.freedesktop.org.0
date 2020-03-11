@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE9731820D6
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 19:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A38C81820DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 19:34:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 866176E457;
-	Wed, 11 Mar 2020 18:32:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9606E9E2;
+	Wed, 11 Mar 2020 18:34:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB0846E457
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 18:32:41 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 11:32:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="289469746"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 11 Mar 2020 11:32:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Mar 2020 20:32:33 +0200
-Date: Wed, 11 Mar 2020 20:32:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Message-ID: <20200311183233.GD13686@intel.com>
-References: <20200310162338.9387-1-kai.vehmanen@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 116EA6E9E1;
+ Wed, 11 Mar 2020 18:34:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 097CAA011A;
+ Wed, 11 Mar 2020 18:34:47 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310162338.9387-1-kai.vehmanen@linux.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915: Add missing HDMI audio pixel
- clocks for gen12
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Date: Wed, 11 Mar 2020 18:34:47 -0000
+Message-ID: <158395168700.13951.3205037623122020455@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311135158.3310-1-christian.koenig@amd.com>
+In-Reply-To: <20200311135158.3310-1-christian.koenig@amd.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_lib/scatterlist=3A_add_sg=5Fset=5Fd?=
+ =?utf-8?q?ma=5Faddr=28=29_function?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,96 +39,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 06:23:38PM +0200, Kai Vehmanen wrote:
-> Gen12 hardware supports HDMI audio pixel clocks of 296.7/297Mhz
-> and 593.4/594Mhz. Add the missing rates and add logic to ignore
-> them if running on older hardware.
-> =
+== Series Details ==
 
-> Bspec: 49333
-> Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Series: series starting with [1/6] lib/scatterlist: add sg_set_dma_addr() function
+URL   : https://patchwork.freedesktop.org/series/74590/
+State : failure
 
-Thanks. Pushed to dinq.
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c | 8 ++++++++
->  drivers/gpu/drm/i915/i915_reg.h            | 4 ++++
->  2 files changed, 12 insertions(+)
-> =
+CI Bug Log - changes from CI_DRM_8120 -> Patchwork_16930
+====================================================
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
-/i915/display/intel_audio.c
-> index 19bf206037c2..62f234f641de 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -149,6 +149,10 @@ static const struct {
->  	{ 74250, AUD_CONFIG_PIXEL_CLOCK_HDMI_74250 },
->  	{ 148352, AUD_CONFIG_PIXEL_CLOCK_HDMI_148352 },
->  	{ 148500, AUD_CONFIG_PIXEL_CLOCK_HDMI_148500 },
-> +	{ 296703, AUD_CONFIG_PIXEL_CLOCK_HDMI_296703 },
-> +	{ 297000, AUD_CONFIG_PIXEL_CLOCK_HDMI_297000 },
-> +	{ 593407, AUD_CONFIG_PIXEL_CLOCK_HDMI_593407 },
-> +	{ 594000, AUD_CONFIG_PIXEL_CLOCK_HDMI_594000 },
->  };
->  =
+Summary
+-------
 
->  /* HDMI N/CTS table */
-> @@ -234,6 +238,7 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp=
-[] =3D {
->  /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
->  static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *=
-crtc_state)
->  {
-> +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
->  	const struct drm_display_mode *adjusted_mode =3D
->  		&crtc_state->hw.adjusted_mode;
->  	int i;
-> @@ -243,6 +248,9 @@ static u32 audio_config_hdmi_pixel_clock(const struct=
- intel_crtc_state *crtc_sta
->  			break;
->  	}
->  =
+  **FAILURE**
 
-> +	if (INTEL_GEN(dev_priv) < 12 && adjusted_mode->crtc_clock > 148500)
-> +		i =3D ARRAY_SIZE(hdmi_audio_clock);
-> +
->  	if (i =3D=3D ARRAY_SIZE(hdmi_audio_clock)) {
->  		DRM_DEBUG_KMS("HDMI audio pixel clock setting for %d not found, fallin=
-g back to defaults\n",
->  			      adjusted_mode->crtc_clock);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 79ae9654dac9..ee4a75ac9186 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9251,6 +9251,10 @@ enum {
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_74250	(7 << 16)
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148352	(8 << 16)
->  #define   AUD_CONFIG_PIXEL_CLOCK_HDMI_148500	(9 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_296703	(10 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_297000	(11 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_593407	(12 << 16)
-> +#define   AUD_CONFIG_PIXEL_CLOCK_HDMI_594000	(13 << 16)
->  #define   AUD_CONFIG_DISABLE_NCTS		(1 << 3)
->  =
+  Serious unknown changes coming with Patchwork_16930 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16930, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
->  /* HSW Audio */
-> -- =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/index.html
 
-> 2.17.1
+Possible new issues
+-------------------
 
--- =
+  Here are the unknown changes that may have been introduced in Patchwork_16930:
 
-Ville Syrj=E4l=E4
-Intel
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-kbl-7500u:       NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-kbl-7500u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16930 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-7500u:       [PASS][2] -> [INCOMPLETE][3] ([fdo#112259] / [i915#1430])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@hdmi-edid-read:
+    - fi-icl-u2:          [PASS][4] -> [FAIL][5] ([i915#217])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-icl-u2/igt@kms_chamelium@hdmi-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][6] ([CI#94]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][8] ([fdo#103927]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-lmem:        [INCOMPLETE][10] ([i915#424]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][12] ([i915#541]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+
+
+Participating hosts (49 -> 41)
+------------------------------
+
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8120 -> Patchwork_16930
+
+  CI-20190529: 20190529
+  CI_DRM_8120: ce66c439df71f01b018803664c4a50fc61255788 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16930: f6450c80542e34d54589e8b9a048f933f9f8f23f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+f6450c80542e drm/amdgpu: improve amdgpu_gem_info debugfs file
+d50d55f2e67e drm/amdgpu: add support for exporting VRAM using DMA-buf v2
+e9cf1c28be4f drm/amdgpu: add checks if DMA-buf P2P is supported
+cf6060d15d07 drm/amdgpu: note that we can handle peer2peer DMA-buf
+df3f51ce43ed dma-buf: add peer2peer flag
+cd419e3a5b69 lib/scatterlist: add sg_set_dma_addr() function
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16930/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
