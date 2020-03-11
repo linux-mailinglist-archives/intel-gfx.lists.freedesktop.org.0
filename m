@@ -2,43 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E7618156E
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:01:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1A2181571
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E44A989B00;
-	Wed, 11 Mar 2020 10:01:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1EC86E0E5;
+	Wed, 11 Mar 2020 10:02:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7D9A89B00
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:01:25 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 03:00:46 -0700
-X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="231643406"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 11 Mar 2020 03:00:44 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>,
- Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-3-currojerez@riseup.net>
- <158387916218.28297.4489489879582782488@build.alporthouse.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <ac5fdd3c-bf47-60d3-edef-82d451266dcb@linux.intel.com>
-Date: Wed, 11 Mar 2020 10:00:41 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CFE7D6E0E5;
+ Wed, 11 Mar 2020 10:02:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C871CA011A;
+ Wed, 11 Mar 2020 10:02:47 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <158387916218.28297.4489489879582782488@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915: Adjust PM QoS response
- frequency based on GPU load.
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Wed, 11 Mar 2020 10:02:47 -0000
+Message-ID: <158392096781.13949.427719057726996387@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311083632.3249-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200311083632.3249-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Enable_non-contiguous_pipe_fusing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,121 +38,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 10/03/2020 22:26, Chris Wilson wrote:
-> Quoting Francisco Jerez (2020-03-10 21:41:55)
->> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> index b9b3f78f1324..a5d7a80b826d 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->> @@ -1577,6 +1577,11 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
->>          /* we need to manually load the submit queue */
->>          if (execlists->ctrl_reg)
->>                  writel(EL_CTRL_LOAD, execlists->ctrl_reg);
->> +
->> +       if (execlists_num_ports(execlists) > 1 &&
-> pending[1] is always defined, the minimum submission is one slot, with
-> pending[1] as the sentinel NULL.
-> 
->> +           execlists->pending[1] &&
->> +           !atomic_xchg(&execlists->overload, 1))
->> +               intel_gt_pm_active_begin(&engine->i915->gt);
-> 
-> engine->gt
-> 
->>   }
->>   
->>   static bool ctx_single_port_submission(const struct intel_context *ce)
->> @@ -2213,6 +2218,12 @@ cancel_port_requests(struct intel_engine_execlists * const execlists)
->>          clear_ports(execlists->inflight, ARRAY_SIZE(execlists->inflight));
->>   
->>          WRITE_ONCE(execlists->active, execlists->inflight);
->> +
->> +       if (atomic_xchg(&execlists->overload, 0)) {
->> +               struct intel_engine_cs *engine =
->> +                       container_of(execlists, typeof(*engine), execlists);
->> +               intel_gt_pm_active_end(&engine->i915->gt);
->> +       }
->>   }
->>   
->>   static inline void
->> @@ -2386,6 +2397,9 @@ static void process_csb(struct intel_engine_cs *engine)
->>                          /* port0 completed, advanced to port1 */
->>                          trace_ports(execlists, "completed", execlists->active);
->>   
->> +                       if (atomic_xchg(&execlists->overload, 0))
->> +                               intel_gt_pm_active_end(&engine->i915->gt);
-> 
-> So this looses track if we preempt a dual-ELSP submission with a
-> single-ELSP submission (and never go back to dual).
-> 
-> If you move this to the end of the loop and check
-> 
-> if (!execlists->active[1] && atomic_xchg(&execlists->overload, 0))
-> 	intel_gt_pm_active_end(engine->gt);
-> 
-> so that it covers both preemption/promotion and completion.
-> 
-> However, that will fluctuate quite rapidly. (And runs the risk of
-> exceeding the sentinel.)
-> 
-> An alternative approach would be to couple along
-> schedule_in/schedule_out
-> 
-> atomic_set(overload, -1);
-> 
-> __execlists_schedule_in:
-> 	if (!atomic_fetch_inc(overload)
-> 		intel_gt_pm_active_begin(engine->gt);
-> __execlists_schedule_out:
-> 	if (!atomic_dec_return(overload)
-> 		intel_gt_pm_active_end(engine->gt);
-> 
-> which would mean we are overloaded as soon as we try to submit an
-> overlapping ELSP.
+Series: drm/i915: Enable non-contiguous pipe fusing
+URL   : https://patchwork.freedesktop.org/series/74570/
+State : failure
 
-Putting it this low-level into submission code also would not work well 
-with GuC.
+== Summary ==
 
-How about we try to keep some accounting one level higher, as the i915 
-scheduler is passing requests on to the backend for execution?
+CI Bug Log - changes from CI_DRM_8113 -> Patchwork_16920
+====================================================
 
-Or number of runnable contexts, if the distinction between contexts and 
-requests is better for this purpose.
+Summary
+-------
 
-Problematic bit in going one level higher though is that the exit point 
-is less precisely coupled to the actual state. Or maybe with aggressive 
-engine retire we have nowadays it wouldn't be a problem.
+  **FAILURE**
 
-Regards,
+  Serious unknown changes coming with Patchwork_16920 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16920, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Tvrtko
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
 
-> 
-> 
-> The metric feels very multiple client (game + display server, or
-> saturated transcode) centric. In the endless kernel world, we expect
-> 100% engine utilisation from a single context, and never a dual-ELSP
-> submission. They are also likely to want to avoid being throttled to
-> converse TDP for the CPU.
-> 
-> Should we also reduce the overload for the number of clients who are
-> waiting for interrupts from the GPU, so that their wakeup latency is not
-> impacted?
-> -Chris
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-> 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16920:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16920 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][3] -> [INCOMPLETE][4] ([fdo#103927])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+
+
+Participating hosts (47 -> 44)
+------------------------------
+
+  Additional (3): fi-skl-6770hq fi-kbl-7560u fi-gdg-551 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8113 -> Patchwork_16920
+
+  CI-20190529: 20190529
+  CI_DRM_8113: 1e2be4486f17a3f853c134097b068d000e7c6433 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16920: 0514610816580178c8b380ccfb6cb00d2ce8de55 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+051461081658 drm/i915: Enable non-contiguous pipe fusing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
