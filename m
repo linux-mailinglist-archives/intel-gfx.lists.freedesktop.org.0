@@ -2,58 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80D1B181452
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:15:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9BE18149A
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:20:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0CE66E948;
-	Wed, 11 Mar 2020 09:15:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0B96E950;
+	Wed, 11 Mar 2020 09:20:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9038C6E948;
- Wed, 11 Mar 2020 09:15:51 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 29002AC1E;
- Wed, 11 Mar 2020 09:15:50 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-20-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <c32c7240-5963-1cf2-9141-59012df562af@suse.de>
-Date: Wed, 11 Mar 2020 10:15:49 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D66A06E950
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 09:20:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 02:20:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="245979428"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by orsmga006.jf.intel.com with ESMTP; 11 Mar 2020 02:20:22 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Mar 2020 11:16:29 +0200
+Message-Id: <20200311091629.9394-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
+In-Reply-To: <20200309161204.17792-2-stanislav.lisovskiy@intel.com>
+References: <20200309161204.17792-2-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20200302222631.3861340-20-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 19/51] drm: Cleanups after
- drmm_add_final_kfree rollout
+Subject: [Intel-gfx] [PATCH v19 1/8] drm/i915: Start passing latency as
+ parameter
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,132 +44,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============0815449294=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============0815449294==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="MuuQeoWDn1LGcy2ATtla6RwKeRTtvGdnB"
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---MuuQeoWDn1LGcy2ATtla6RwKeRTtvGdnB
-Content-Type: multipart/mixed; boundary="kSbB1oygyyXotTCBOH9w9dPm5MOzYmHUv";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <c32c7240-5963-1cf2-9141-59012df562af@suse.de>
-Subject: Re: [PATCH 19/51] drm: Cleanups after drmm_add_final_kfree rollout
-References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-20-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200302222631.3861340-20-daniel.vetter@ffwll.ch>
-
---kSbB1oygyyXotTCBOH9w9dPm5MOzYmHUv
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-
-
-Am 02.03.20 um 23:25 schrieb Daniel Vetter:
-> A few things:
-> - Update the example driver in the documentation.
-> - We can drop the old kfree in drm_dev_release.
-> - Add a WARN_ON check in drm_dev_register to make sure everyone calls
->   drmm_add_final_kfree and there's no leaks.
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->  drivers/gpu/drm/drm_drv.c | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index 7b84ee8a5eb5..1a048325f30e 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -297,8 +297,6 @@ void drm_minor_release(struct drm_minor *minor)
->   *
->   *		drm_mode_config_cleanup(drm);
->   *		drm_dev_fini(drm);
-> - *		kfree(priv->userspace_facing);
-> - *		kfree(priv);
->   *	}
->   *
->   *	static struct drm_driver driver_drm_driver =3D {
-> @@ -326,10 +324,11 @@ void drm_minor_release(struct drm_minor *minor)
->   *			kfree(drm);
->   *			return ret;
->   *		}
-> + *		drmm_add_final_kfree(drm, priv);
->   *
->   *		drm_mode_config_init(drm);
->   *
-> - *		priv->userspace_facing =3D kzalloc(..., GFP_KERNEL);
-> + *		priv->userspace_facing =3D drmm_kzalloc(..., GFP_KERNEL);
->   *		if (!priv->userspace_facing)
->   *			return -ENOMEM;
->   *
-> @@ -961,6 +960,8 @@ int drm_dev_register(struct drm_device *dev, unsign=
-ed long flags)
->  	struct drm_driver *driver =3D dev->driver;
->  	int ret;
-> =20
-> +	WARN_ON(!dev->managed.final_kfree);
-> +
->  	if (drm_dev_needs_global_mutex(dev))
->  		mutex_lock(&drm_global_mutex);
-> =20
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---kSbB1oygyyXotTCBOH9w9dPm5MOzYmHUv--
-
---MuuQeoWDn1LGcy2ATtla6RwKeRTtvGdnB
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5orEUACgkQaA3BHVML
-eiPekAf/dFkylX+HYejopzANj0iwPvbq6hCbMprthlBGya+rfsQZ8OH4ybXXDxji
-Sx1suWGAXQMD5aVVOKV/duMQ1rRczCA+r8e5I0CO063LSJW+vk0K1/dIarDTafc5
-28KlhwrwXGv07cPpbHouFwT/oKCTDfFEIfaIQKvvdHied599EWUEfrHTJt8ln4Vy
-o68An7GOvE9Xp0+0GSD6dCSnH6SGP9kUij2BTs4PkFxwVgIC8VNbSPAKfesaeiyD
-YT8lJZhRiLz2V03btHv+Y73LeXachOWQTo2iCzkCtZAhglsM/js1YfS0STvFKhD8
-QlLofMhsaKOvisT7SmERpWRqZN3c1A==
-=tZmg
------END PGP SIGNATURE-----
-
---MuuQeoWDn1LGcy2ATtla6RwKeRTtvGdnB--
-
---===============0815449294==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0815449294==--
+V2UgbmVlZCB0byBzdGFydCBwYXNzaW5nIG1lbW9yeSBsYXRlbmN5IGFzIGEKcGFyYW1ldGVyIHdo
+ZW4gY2FsY3VsYXRpbmcgcGxhbmUgd20gbGV2ZWxzLAphcyBsYXRlbmN5IGNhbiBnZXQgY2hhbmdl
+ZCBpbiBkaWZmZXJlbnQKY2lyY3Vtc3RhbmNlcyhmb3IgZXhhbXBsZSB3aXRoIG9yIHdpdGhvdXQg
+U0FHVikuClNvIHdlIG5lZWQgdG8gYmUgbW9yZSBmbGV4aWJsZSBvbiB0aGF0IG1hdHRlci4KCnYy
+OiBDaGFuZ2VkIGxhdGVuY3kgdHlwZSBmcm9tIHUzMiB0byB1bnNpZ25lZCBpbnQoVmlsbGUgU3ly
+asOkbMOkKQoKUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
+eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xh
+di5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bt
+LmMgfCAxMiArKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDQg
+ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0u
+YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKaW5kZXggODM3NTA1NGJhMjdkLi5i
+NjMyYjZiYjljM2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMK
+KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwpAQCAtNDAxNiw2ICs0MDE2LDcg
+QEAgc3RhdGljIGludCBza2xfY29tcHV0ZV93bV9wYXJhbXMoY29uc3Qgc3RydWN0IGludGVsX2Ny
+dGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJIGludCBjb2xvcl9wbGFuZSk7CiBzdGF0aWMgdm9p
+ZCBza2xfY29tcHV0ZV9wbGFuZV93bShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
+Y19zdGF0ZSwKIAkJCQkgaW50IGxldmVsLAorCQkJCSB1bnNpZ25lZCBpbnQgbGF0ZW5jeSwKIAkJ
+CQkgY29uc3Qgc3RydWN0IHNrbF93bV9wYXJhbXMgKndwLAogCQkJCSBjb25zdCBzdHJ1Y3Qgc2ts
+X3dtX2xldmVsICpyZXN1bHRfcHJldiwKIAkJCQkgc3RydWN0IHNrbF93bV9sZXZlbCAqcmVzdWx0
+IC8qIG91dCAqLyk7CkBAIC00MDM4LDcgKzQwMzksOSBAQCBza2xfY3Vyc29yX2FsbG9jYXRpb24o
+Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJZHJtX1dBUk5fT04o
+JmRldl9wcml2LT5kcm0sIHJldCk7CiAKIAlmb3IgKGxldmVsID0gMDsgbGV2ZWwgPD0gbWF4X2xl
+dmVsOyBsZXZlbCsrKSB7Ci0JCXNrbF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUsIGxldmVs
+LCAmd3AsICZ3bSwgJndtKTsKKwkJdW5zaWduZWQgaW50IGxhdGVuY3kgPSBkZXZfcHJpdi0+d20u
+c2tsX2xhdGVuY3lbbGV2ZWxdOworCisJCXNrbF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUs
+IGxldmVsLCBsYXRlbmN5LCAmd3AsICZ3bSwgJndtKTsKIAkJaWYgKHdtLm1pbl9kZGJfYWxsb2Mg
+PT0gVTE2X01BWCkKIAkJCWJyZWFrOwogCkBAIC00OTcyLDEyICs0OTc1LDEyIEBAIHN0YXRpYyBi
+b29sIHNrbF93bV9oYXNfbGluZXMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBp
+bnQgbGV2ZWwpCiAKIHN0YXRpYyB2b2lkIHNrbF9jb21wdXRlX3BsYW5lX3dtKGNvbnN0IHN0cnVj
+dCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCSBpbnQgbGV2ZWwsCisJCQkJIHVu
+c2lnbmVkIGludCBsYXRlbmN5LAogCQkJCSBjb25zdCBzdHJ1Y3Qgc2tsX3dtX3BhcmFtcyAqd3As
+CiAJCQkJIGNvbnN0IHN0cnVjdCBza2xfd21fbGV2ZWwgKnJlc3VsdF9wcmV2LAogCQkJCSBzdHJ1
+Y3Qgc2tsX3dtX2xldmVsICpyZXN1bHQgLyogb3V0ICovKQogewogCXN0cnVjdCBkcm1faTkxNV9w
+cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYpOwot
+CXUzMiBsYXRlbmN5ID0gZGV2X3ByaXYtPndtLnNrbF9sYXRlbmN5W2xldmVsXTsKIAl1aW50X2Zp
+eGVkXzE2XzE2X3QgbWV0aG9kMSwgbWV0aG9kMjsKIAl1aW50X2ZpeGVkXzE2XzE2X3Qgc2VsZWN0
+ZWRfcmVzdWx0OwogCXUzMiByZXNfYmxvY2tzLCByZXNfbGluZXMsIG1pbl9kZGJfYWxsb2MgPSAw
+OwpAQCAtNTEwNiw5ICs1MTA5LDEwIEBAIHNrbF9jb21wdXRlX3dtX2xldmVscyhjb25zdCBzdHJ1
+Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAogCWZvciAobGV2ZWwgPSAwOyBsZXZl
+bCA8PSBtYXhfbGV2ZWw7IGxldmVsKyspIHsKIAkJc3RydWN0IHNrbF93bV9sZXZlbCAqcmVzdWx0
+ID0gJmxldmVsc1tsZXZlbF07CisJCXVuc2lnbmVkIGludCBsYXRlbmN5ID0gZGV2X3ByaXYtPndt
+LnNrbF9sYXRlbmN5W2xldmVsXTsKIAotCQlza2xfY29tcHV0ZV9wbGFuZV93bShjcnRjX3N0YXRl
+LCBsZXZlbCwgd21fcGFyYW1zLAotCQkJCSAgICAgcmVzdWx0X3ByZXYsIHJlc3VsdCk7CisJCXNr
+bF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUsIGxldmVsLCBsYXRlbmN5LAorCQkJCSAgICAg
+d21fcGFyYW1zLCByZXN1bHRfcHJldiwgcmVzdWx0KTsKIAogCQlyZXN1bHRfcHJldiA9IHJlc3Vs
+dDsKIAl9Ci0tIAoyLjI0LjEuNDg1LmdhZDA1YTNkOGU1CgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
+bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
