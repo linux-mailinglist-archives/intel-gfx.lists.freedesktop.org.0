@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364101819D1
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 14:31:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B5171819CF
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 14:31:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8226889E3E;
-	Wed, 11 Mar 2020 13:31:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6A4A8909C;
+	Wed, 11 Mar 2020 13:31:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E1B6E984
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 261A46E982
  for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 13:30:58 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20521929-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20521931-1500050 
  for multiple; Wed, 11 Mar 2020 13:30:50 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 13:30:43 +0000
-Message-Id: <20200311133047.30696-8-chris@chris-wilson.co.uk>
+Date: Wed, 11 Mar 2020 13:30:44 +0000
+Message-Id: <20200311133047.30696-9-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200311133047.30696-1-chris@chris-wilson.co.uk>
 References: <20200311133047.30696-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 08/12] drm/syncobj: Allow use of dma-fence-proxy
+Subject: [Intel-gfx] [PATCH 09/12] drm/i915/gem: Teach execbuf how to wait
+ on future syncobj
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,42 +44,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow the callers to supply a dma-fence-proxy for asynchronous waiting on
-future fences.
+If a syncobj has not yet been assigned, treat it as a future fence and
+install and wait upon a dma-fence-proxy. The proxy will be replace by
+the real fence later, and that fence will be responsible for signaling
+our waiter.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/drm_syncobj.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 21 +++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
-index 42d46414f767..e141db0e1eb6 100644
---- a/drivers/gpu/drm/drm_syncobj.c
-+++ b/drivers/gpu/drm/drm_syncobj.c
-@@ -184,6 +184,7 @@
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index 0893ce781a84..3c427bdfbb2d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -5,6 +5,7 @@
   */
  
- #include <linux/anon_inodes.h>
+ #include <linux/intel-iommu.h>
 +#include <linux/dma-fence-proxy.h>
- #include <linux/file.h>
- #include <linux/fs.h>
- #include <linux/sched/signal.h>
-@@ -324,14 +325,9 @@ void drm_syncobj_replace_fence(struct drm_syncobj *syncobj,
- 	struct dma_fence *old_fence;
- 	struct syncobj_wait_entry *cur, *tmp;
+ #include <linux/dma-resv.h>
+ #include <linux/sync_file.h>
+ #include <linux/uaccess.h>
+@@ -2491,8 +2492,24 @@ await_fence_array(struct i915_execbuffer *eb,
+ 			continue;
  
--	if (fence)
--		dma_fence_get(fence);
--
- 	spin_lock(&syncobj->lock);
+ 		fence = drm_syncobj_fence_get(syncobj);
+-		if (!fence)
+-			return -EINVAL;
++		if (!fence) {
++			struct dma_fence *old;
++
++			fence = dma_fence_create_proxy();
++			if (!fence)
++				return -ENOMEM;
++
++			spin_lock(&syncobj->lock);
++			old = rcu_dereference_protected(syncobj->fence, true);
++			if (unlikely(old)) {
++				dma_fence_put(fence);
++				fence = dma_fence_get(old);
++			} else {
++				rcu_assign_pointer(syncobj->fence,
++						   dma_fence_get(fence));
++			}
++			spin_unlock(&syncobj->lock);
++		}
  
--	old_fence = rcu_dereference_protected(syncobj->fence,
--					      lockdep_is_held(&syncobj->lock));
--	rcu_assign_pointer(syncobj->fence, fence);
-+	old_fence = dma_fence_replace_proxy(&syncobj->fence, fence);
- 
- 	if (fence != old_fence) {
- 		list_for_each_entry_safe(cur, tmp, &syncobj->cb_list, node)
+ 		err = i915_request_await_dma_fence(eb->request, fence);
+ 		dma_fence_put(fence);
 -- 
 2.20.1
 
