@@ -1,50 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76217180DF9
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 03:35:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 348F0180E02
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 03:37:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F7C989F5B;
-	Wed, 11 Mar 2020 02:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 877D76E3F3;
+	Wed, 11 Mar 2020 02:37:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55C8389F5B
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 02:35:20 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2020 19:35:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,539,1574150400"; d="scan'208";a="415415067"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
- by orsmga005.jf.intel.com with ESMTP; 10 Mar 2020 19:35:19 -0700
-Received: from orsmsx110.amr.corp.intel.com ([169.254.10.107]) by
- ORSMSX107.amr.corp.intel.com ([169.254.1.106]) with mapi id 14.03.0439.000;
- Tue, 10 Mar 2020 19:35:19 -0700
-From: "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>
-To: "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "currojerez@riseup.net" <currojerez@riseup.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC] GPU-bound energy efficiency improvements for the
- intel_pstate driver (v2).
-Thread-Index: AQHV9yVeF22XkZfUYkCaOD2IBrMsDqhDInMA
-Date: Wed, 11 Mar 2020 02:35:18 +0000
-Message-ID: <b8a09ef0c52dd02954b43b441dc3d1612837138c.camel@intel.com>
-References: <20200310214203.26459-1-currojerez@riseup.net>
-In-Reply-To: <20200310214203.26459-1-currojerez@riseup.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.3 (3.34.3-1.fc31) 
-x-originating-ip: [10.254.113.10]
-Content-ID: <3C1D5212DFBC1549AFB627D95300C7F3@intel.com>
+Received: from ozlabs.org (bilbo.ozlabs.org [203.11.71.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 140456E3F3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 02:37:13 +0000 (UTC)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 48cbgs1DRzz9sPF;
+ Wed, 11 Mar 2020 13:36:36 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=canb.auug.org.au;
+ s=201702; t=1583894228;
+ bh=+JH45CaJ8RQ/br5Hf0W4Xq5hn+PXWNj2y+4emeie5wI=;
+ h=Date:From:To:Cc:Subject:From;
+ b=byC3Zym4NutwqTImCcrtNlHWWJ7KK3rLjQP5yRiWg9wgwsBYwuNKh9HflAVBDQcNm
+ ocfdgkGgFozYLDZUhQrH1lPoHBuI0avdI5uD6v6NyqtbB3fUWEEhacgV/WHmUlNYU3
+ dx1y376SwRSWyIU58Yls8ihRzOMgMinuypHeIeQ+2irvEvsVT/j/ZyYZHnvnPaBp+w
+ Qu0eTtrc7NUywKnQj2OpbIut6NbOuClNq4qCf6Jvvzl4w7VojsviW1JBVzi/es0gWb
+ lN8sNUChe4zF58IA4N/LxWqa1eJzWfBraK/vqzp9R1SpZSr1n7Ta6ltldYbuasoqD7
+ bOWgfB5URtq0Q==
+Date: Wed, 11 Mar 2020 13:36:35 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>
+Message-ID: <20200311133635.7fcb422e@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2).
+Subject: [Intel-gfx] linux-next: manual merge of the drm-intel tree with the
+ drm-intel-fixes tree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +51,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "peterz@infradead.org" <peterz@infradead.org>,
- "rjw@rjwysocki.net" <rjw@rjwysocki.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: multipart/mixed; boundary="===============1607679149=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-03-10 at 14:41 -0700, Francisco Jerez wrote:
-> 
+--===============1607679149==
+Content-Type: multipart/signed; boundary="Sig_/Cm=kxNYzaFTdCCtVhbFDBzh";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 
-[...]
+--Sig_/Cm=kxNYzaFTdCCtVhbFDBzh
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-> Thanks in advance for any review feed-back and test reports.
-> 
-> [PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS
-> limit.
-> [PATCH 02/10] drm/i915: Adjust PM QoS response frequency based on GPU
-> load.
-> [PATCH 03/10] OPTIONAL: drm/i915: Expose PM QoS control parameters
-> via debugfs.
-> [PATCH 04/10] Revert "cpufreq: intel_pstate: Drop ->update_util from
-> pstate_funcs"
-> [PATCH 05/10] cpufreq: intel_pstate: Implement VLP controller
-> statistics and status calculation.
-> [PATCH 06/10] cpufreq: intel_pstate: Implement VLP controller target
-> P-state range estimation.
-> [PATCH 07/10] cpufreq: intel_pstate: Implement VLP controller for HWP
-> parts.
-> [PATCH 08/10] cpufreq: intel_pstate: Enable VLP controller based on
-> ACPI FADT profile and CPUID.
-> [PATCH 09/10] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP
-> controller status.
-> [PATCH 10/10] OPTIONAL: cpufreq: intel_pstate: Expose VLP controller
-> parameters via debugfs.
-> 
-Do you have debug patch (You don't to submit as a patch), which will
-allow me to dynamically disable/enable all these changes? I want to
-compare and do some measurements.
+Hi all,
 
-Thanks,
-Srinivas 
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
-> [1] https://marc.info/?l=linux-pm&m=152221943320908&w=2
-> [2] 
-> https://github.com/curro/linux/commits/intel_pstate-vlp-v2-hwp-only
-> [3] https://github.com/curro/linux/commits/intel_pstate-vlp-v2
-> [4] 
-> http://people.freedesktop.org/~currojerez/intel_pstate-vlp-v2/benchmark-comparison-ICL.log
-> 
+  drivers/gpu/drm/i915/gvt/vgpu.c
+
+between commit:
+
+  04d6067f1f19 ("drm/i915/gvt: Fix unnecessary schedule timer when no vGPU =
+exits")
+
+from the drm-intel-fixes tree and commit:
+
+  12d5861973c7 ("drm/i915/gvt: Make WARN* drm specific where vgpu ptr is av=
+ailable")
+
+from the drm-intel tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+--=20
+Cheers,
+Stephen Rothwell
+
+diff --cc drivers/gpu/drm/i915/gvt/vgpu.c
+index 345c2aa3b491,abcde8ce1a9a..000000000000
+--- a/drivers/gpu/drm/i915/gvt/vgpu.c
++++ b/drivers/gpu/drm/i915/gvt/vgpu.c
+@@@ -271,18 -272,12 +272,19 @@@ void intel_gvt_release_vgpu(struct inte
+  void intel_gvt_destroy_vgpu(struct intel_vgpu *vgpu)
+  {
+  	struct intel_gvt *gvt =3D vgpu->gvt;
++ 	struct drm_i915_private *i915 =3D gvt->gt->i915;
+ =20
+- 	WARN(vgpu->active, "vGPU is still active!\n");
+ -	mutex_lock(&vgpu->vgpu_lock);
+ -
++ 	drm_WARN(&i915->drm, vgpu->active, "vGPU is still active!\n");
+ =20
+ +	/*
+ +	 * remove idr first so later clean can judge if need to stop
+ +	 * service if no active vgpu.
+ +	 */
+ +	mutex_lock(&gvt->lock);
+ +	idr_remove(&gvt->vgpu_idr, vgpu->id);
+ +	mutex_unlock(&gvt->lock);
+ +
+ +	mutex_lock(&vgpu->vgpu_lock);
+  	intel_gvt_debugfs_remove_vgpu(vgpu);
+  	intel_vgpu_clean_sched_policy(vgpu);
+  	intel_vgpu_clean_submission(vgpu);
+
+--Sig_/Cm=kxNYzaFTdCCtVhbFDBzh
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAl5oTrMACgkQAVBC80lX
+0GxCfwf8DF6UZIwJBxtfb8gzkqDJvX/8pPbpOWpeUrdQTiqxjvVkMLh9wg2em+U5
+TeNW2XcAameNYoShX3Vd1m72DRtsBhkzWSlhDvvTcb/bJ26nFUAUqZmR8UouGCnw
+99Sfw5k13EFOYXN9hLocEEi63T5Stlo9Sd97XyJuky3MFObStnc+38WAAspTioyC
+FNIZwHjC6+MtY95jeuH81GlsjQcDl42GrK+/Quxc2xEi61BI5FrTFC20TskItmYp
+0beAHa0nZ42ZoMwU7QhCTzDMzcFD1O/GRhmTxEtcm0BxXnz5G+Z+oTmkkEwQWbgg
+QufOTS0DpsdJ3dogPO5z1Ew4wr3AIA==
+=H4EQ
+-----END PGP SIGNATURE-----
+
+--Sig_/Cm=kxNYzaFTdCCtVhbFDBzh--
+
+--===============1607679149==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1607679149==--
