@@ -1,45 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D3B180F41
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 06:07:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAB8181200
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 08:33:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63E526E906;
-	Wed, 11 Mar 2020 05:07:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6899B6E454;
+	Wed, 11 Mar 2020 07:33:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtprelay.hostedemail.com (smtprelay0152.hostedemail.com
- [216.40.44.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B47F96E902;
- Wed, 11 Mar 2020 05:07:40 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
- [216.40.38.60])
- by smtprelay03.hostedemail.com (Postfix) with ESMTP id E122A837F24F;
- Wed, 11 Mar 2020 05:07:39 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
- RULES_HIT:41:355:379:541:800:960:967:973:982:988:989:1260:1311:1314:1345:1359:1437:1515:1534:1540:1568:1711:1714:1730:1747:1777:1792:2393:2525:2560:2563:2682:2685:2859:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3865:3866:3867:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:6261:9025:10004:10848:11026:11473:11657:11658:11914:12043:12296:12297:12438:12555:12679:12895:12986:13069:13255:13311:13357:13894:14096:14181:14384:14394:14721:21080:21433:21627:21811:21939:21990:30054:30055,
- 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
- DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
- LFtime:1, LUA_SUMMARY:none
-X-HE-Tag: mark80_258ebdd83b35f
-X-Filterd-Recvd-Size: 2037
-Received: from joe-laptop.perches.com (unknown [47.151.143.254])
- (Authenticated sender: joe@perches.com)
- by omf16.hostedemail.com (Postfix) with ESMTPA;
- Wed, 11 Mar 2020 05:07:37 +0000 (UTC)
-From: Joe Perches <joe@perches.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>,
-	Zhi Wang <zhi.a.wang@intel.com>
-Date: Tue, 10 Mar 2020 21:51:40 -0700
-Message-Id: <c80b7545125fb7e9fd40c6d4c55d720899fc8250.1583896349.git.joe@perches.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <cover.1583896344.git.joe@perches.com>
-References: <cover.1583896344.git.joe@perches.com>
-MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH -next 026/491] INTEL GVT-g DRIVERS (Intel GPU
- Virtualization): Use fallthrough; 
+Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E912B6E444
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 07:33:00 +0000 (UTC)
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+ by mx2.suse.de (Postfix) with ESMTP id 7BF0DAED6;
+ Wed, 11 Mar 2020 07:32:59 +0000 (UTC)
+From: Takashi Iwai <tiwai@suse.de>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Wed, 11 Mar 2020 08:32:56 +0100
+Message-Id: <20200311073256.6535-1-tiwai@suse.de>
+X-Mailer: git-send-email 2.16.4
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use scnprintf() for avoiding
+ potential buffer overflow
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,39 +37,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gvt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert the various uses of fallthrough comments to fallthrough;
+Since snprintf() returns the would-be-output size instead of the
+actual output size, the succeeding calls may go beyond the given
+buffer limit.  Fix it by replacing with scnprintf().
 
-Done via script
-Link: https://lore.kernel.org/lkml/b56602fcf79f849e733e7b521bb0e17895d390fa.1582230379.git.joe.com/
-
-Signed-off-by: Joe Perches <joe@perches.com>
+Signed-off-by: Takashi Iwai <tiwai@suse.de>
 ---
- drivers/gpu/drm/i915/gvt/handlers.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 1793f69..0e792f9 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -1225,7 +1225,7 @@ static int handle_g2v_notification(struct intel_vgpu *vgpu, int notification)
- 	switch (notification) {
- 	case VGT_G2V_PPGTT_L3_PAGE_TABLE_CREATE:
- 		root_entry_type = GTT_TYPE_PPGTT_ROOT_L3_ENTRY;
--		/* fall through */
-+		fallthrough;
- 	case VGT_G2V_PPGTT_L4_PAGE_TABLE_CREATE:
- 		mm = intel_vgpu_get_ppgtt_mm(vgpu, root_entry_type, pdps);
- 		return PTR_ERR_OR_ZERO(mm);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index 53ac3f00909a..418547bfe03b 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1381,13 +1381,13 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 			char hdr[160];
+ 			int len;
+ 
+-			len = snprintf(hdr, sizeof(hdr),
++			len = scnprintf(hdr, sizeof(hdr),
+ 				       "\t\tActive[%d]: ",
+ 				       (int)(port - execlists->active));
+ 			if (!i915_request_signaled(rq)) {
+ 				struct intel_timeline *tl = get_timeline(rq);
+ 
+-				len += snprintf(hdr + len, sizeof(hdr) - len,
++				len += scnprintf(hdr + len, sizeof(hdr) - len,
+ 						"ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
+ 						i915_ggtt_offset(rq->ring->vma),
+ 						tl ? tl->hwsp_offset : 0,
+@@ -1398,7 +1398,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
+ 				if (tl)
+ 					intel_timeline_put(tl);
+ 			}
+-			snprintf(hdr + len, sizeof(hdr) - len, "rq: ");
++			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
+ 			print_request(m, rq, hdr);
+ 		}
+ 		for (port = execlists->pending; (rq = *port); port++) {
 -- 
-2.24.0
+2.16.4
 
 _______________________________________________
 Intel-gfx mailing list
