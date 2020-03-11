@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69913181DA1
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 17:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96626181DA4
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 17:23:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C9C86E9B4;
-	Wed, 11 Mar 2020 16:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32CC46E9B5;
+	Wed, 11 Mar 2020 16:23:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AD74D6E9B1;
- Wed, 11 Mar 2020 16:19:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A53E2A0094;
- Wed, 11 Mar 2020 16:19:52 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16C86E9B5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 16:23:06 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 09:23:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="389312670"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.64])
+ by orsmga004.jf.intel.com with ESMTP; 11 Mar 2020 09:23:06 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Mar 2020 09:22:54 -0700
+Message-Id: <20200311162300.1838847-1-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 11 Mar 2020 16:19:52 -0000
-Message-ID: <158394359264.13953.11950507222236719724@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200311104931.15152-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200311104931.15152-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/selftests=3A_Add_request_throughput_measurement_to?=
- =?utf-8?q?_perf_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH v2 0/6] Gen11 workarounds
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,78 +40,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Relatively minor changes from v1:
+ - Wa_1406306137:icl,ehl moves to the context workarounds rather than
+   the engine workarounds.  On gen11 the register we're updating is part
+   of the render engine context (even though it isn't on gen12).
+ - Dropped Wa_1409178092:icl,ehl again.  Even with the WA implemented in
+   the proper place and with all of the latest MCR programming updates
+   this workaround still doesn't "stick."  We'll have to seek guidance
+   from the hardware team.
+ - Swapped the order of the FBC address writes in Wa_1604278689:icl,ehl
+   to ensure the "address valid" bit is turned off during the first
+   write rather than the second.
 
-Series: drm/i915/selftests: Add request throughput measurement to perf (rev2)
-URL   : https://patchwork.freedesktop.org/series/73930/
-State : warning
+Mika noted that there's some internal evidence that we might only need
+to apply Wa_1207131216:icl,ehl when dealing with y-tiled surfaces, but
+we haven't received confirmation on that from the hardware team yet so I
+haven't changed the patch for that one at this time.
 
-== Summary ==
 
-$ dim checkpatch origin/drm-tip
-773240d23fbd drm/i915/selftests: Add request throughput measurement to perf
--:96: WARNING:LINE_SPACING: Missing a blank line after declarations
-#96: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1519:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
+Matt Roper (6):
+  drm/i915: Handle all MCR ranges
+  drm/i915: Add Wa_1207131216:icl,ehl
+  drm/i915: Add Wa_1604278689:icl,ehl
+  drm/i915: Add Wa_1406306137:icl,ehl
+  drm/i915: Apply Wa_1406680159:icl,ehl as an engine workaround
+  drm/i915: Add Wa_1605460711 / Wa_1408767742 to ICL and EHL
 
--:130: WARNING:LINE_SPACING: Missing a blank line after declarations
-#130: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1553:
-+	struct i915_request *prev = NULL;
-+	IGT_TIMEOUT(end_time);
+ .../gpu/drm/i915/gem/i915_gem_object_blt.c    | 14 ++++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 52 ++++++++++++++++---
+ drivers/gpu/drm/i915/i915_reg.h               |  2 +
+ 3 files changed, 59 insertions(+), 9 deletions(-)
 
--:165: WARNING:LINE_SPACING: Missing a blank line after declarations
-#165: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1588:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
-
--:188: WARNING:LINE_SPACING: Missing a blank line after declarations
-#188: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1611:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-
--:196: WARNING:LINE_SPACING: Missing a blank line after declarations
-#196: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1619:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-
--:324: WARNING:LINE_SPACING: Missing a blank line after declarations
-#324: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1747:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:392: WARNING:LINE_SPACING: Missing a blank line after declarations
-#392: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1815:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:461: WARNING:LINE_SPACING: Missing a blank line after declarations
-#461: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1884:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:517: WARNING:LINE_SPACING: Missing a blank line after declarations
-#517: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1940:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-
--:525: WARNING:LINE_SPACING: Missing a blank line after declarations
-#525: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1948:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-
--:570: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
-#570: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1993:
-+		yield(); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 11 warnings, 0 checks, 610 lines checked
+-- 
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
