@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D381182025
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 18:59:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42251182050
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 19:03:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 699A66E9CF;
-	Wed, 11 Mar 2020 17:59:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 950546E9D3;
+	Wed, 11 Mar 2020 18:03:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A52CA6E9CF
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 17:59:18 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20525329-1500050 
- for multiple; Wed, 11 Mar 2020 17:58:26 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 17:58:25 +0000
-Message-Id: <20200311175825.6396-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200311125903.1982-1-chris@chris-wilson.co.uk>
-References: <20200311125903.1982-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CB5496E9D2;
+ Wed, 11 Mar 2020 18:03:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3CF4A00FD;
+ Wed, 11 Mar 2020 18:03:15 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Take a copy of the engines for
- context_barrier_task
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 11 Mar 2020 18:03:15 -0000
+Message-ID: <158394979579.13950.8512599510177469974@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311133047.30696-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200311133047.30696-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_request?=
+ =?utf-8?q?_throughput_measurement_to_perf?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,220 +39,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When applying the context-barrier, we only care about the current
-engines, as the next set of engines will be naturally after the barrier.
-So we can skip holding the ctx->engines_mutex while constructing the
-request by taking a sneaky reference to the i915_gem_engines instead.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 114 +++++++++++++-------
- 1 file changed, 77 insertions(+), 37 deletions(-)
+Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
+URL   : https://patchwork.freedesktop.org/series/74586/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index cb6b6be48978..f648b2390daf 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -261,6 +261,46 @@ static void free_engines_rcu(struct rcu_head *rcu)
- 	free_engines(engines);
- }
- 
-+static int engines_notify(struct i915_sw_fence *fence,
-+			  enum i915_sw_fence_notify state)
-+{
-+	struct i915_gem_engines *engines =
-+		container_of(fence, typeof(*engines), fence);
-+
-+	switch (state) {
-+	case FENCE_COMPLETE:
-+		if (!list_empty(&engines->link)) {
-+			struct i915_gem_context *ctx = engines->ctx;
-+			unsigned long flags;
-+
-+			spin_lock_irqsave(&ctx->stale.lock, flags);
-+			list_del(&engines->link);
-+			spin_unlock_irqrestore(&ctx->stale.lock, flags);
-+		}
-+		i915_gem_context_put(engines->ctx);
-+		break;
-+
-+	case FENCE_FREE:
-+		init_rcu_head(&engines->rcu);
-+		call_rcu(&engines->rcu, free_engines_rcu);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static struct i915_gem_engines *alloc_engines(unsigned int count)
-+{
-+	struct i915_gem_engines *e;
-+
-+	e = kzalloc(struct_size(e, engines, count), GFP_KERNEL);
-+	if (!e)
-+		return NULL;
-+
-+	i915_sw_fence_init(&e->fence, engines_notify);
-+	return e;
-+}
-+
- static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
- {
- 	const struct intel_gt *gt = &ctx->i915->gt;
-@@ -268,7 +308,7 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
- 	struct i915_gem_engines *e;
- 	enum intel_engine_id id;
- 
--	e = kzalloc(struct_size(e, engines, I915_NUM_ENGINES), GFP_KERNEL);
-+	e = alloc_engines(I915_NUM_ENGINES);
- 	if (!e)
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -519,41 +559,12 @@ static void kill_context(struct i915_gem_context *ctx)
- 	kill_stale_engines(ctx);
- }
- 
--static int engines_notify(struct i915_sw_fence *fence,
--			  enum i915_sw_fence_notify state)
--{
--	struct i915_gem_engines *engines =
--		container_of(fence, typeof(*engines), fence);
--
--	switch (state) {
--	case FENCE_COMPLETE:
--		if (!list_empty(&engines->link)) {
--			struct i915_gem_context *ctx = engines->ctx;
--			unsigned long flags;
--
--			spin_lock_irqsave(&ctx->stale.lock, flags);
--			list_del(&engines->link);
--			spin_unlock_irqrestore(&ctx->stale.lock, flags);
--		}
--		i915_gem_context_put(engines->ctx);
--		break;
--
--	case FENCE_FREE:
--		init_rcu_head(&engines->rcu);
--		call_rcu(&engines->rcu, free_engines_rcu);
--		break;
--	}
--
--	return NOTIFY_DONE;
--}
--
- static void engines_idle_release(struct i915_gem_context *ctx,
- 				 struct i915_gem_engines *engines)
- {
- 	struct i915_gem_engines_iter it;
- 	struct intel_context *ce;
- 
--	i915_sw_fence_init(&engines->fence, engines_notify);
- 	INIT_LIST_HEAD(&engines->link);
- 
- 	engines->ctx = i915_gem_context_get(ctx);
-@@ -1057,6 +1068,30 @@ static void cb_retire(struct i915_active *base)
- 	kfree(cb);
- }
- 
-+static inline struct i915_gem_engines *
-+__context_engines_await(const struct i915_gem_context *ctx)
-+{
-+	struct i915_gem_engines *engines;
-+
-+	rcu_read_lock();
-+	do {
-+		engines = rcu_dereference(ctx->engines);
-+		if (unlikely(!engines))
-+			break;
-+
-+		if (unlikely(!i915_sw_fence_await(&engines->fence)))
-+			continue;
-+
-+		if (likely(engines == rcu_access_pointer(ctx->engines)))
-+			break;
-+
-+		i915_sw_fence_complete(&engines->fence);
-+	} while(1);
-+	rcu_read_unlock();
-+
-+	return engines;
-+}
-+
- I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
- static int context_barrier_task(struct i915_gem_context *ctx,
- 				intel_engine_mask_t engines,
-@@ -1067,6 +1102,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
- {
- 	struct context_barrier_task *cb;
- 	struct i915_gem_engines_iter it;
-+	struct i915_gem_engines *e;
- 	struct intel_context *ce;
- 	int err = 0;
- 
-@@ -1083,7 +1119,13 @@ static int context_barrier_task(struct i915_gem_context *ctx,
- 		return err;
- 	}
- 
--	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
-+	e = __context_engines_await(ctx);
-+	if (!e) {
-+		i915_active_release(&cb->base);
-+		return -ENOENT;
-+	}
-+
-+	for_each_gem_engine(ce, e, it) {
- 		struct i915_request *rq;
- 
- 		if (I915_SELFTEST_ONLY(context_barrier_inject_fault &
-@@ -1114,7 +1156,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
- 		if (err)
- 			break;
- 	}
--	i915_gem_context_unlock_engines(ctx);
-+	i915_sw_fence_complete(&e->fence);
- 
- 	cb->task = err ? NULL : task; /* caller needs to unwind instead */
- 	cb->data = data;
-@@ -1741,9 +1783,7 @@ set_engines(struct i915_gem_context *ctx,
- 	 * first 64 engines defined here.
- 	 */
- 	num_engines = (args->size - sizeof(*user)) / sizeof(*user->engines);
--
--	set.engines = kmalloc(struct_size(set.engines, engines, num_engines),
--			      GFP_KERNEL);
-+	set.engines = alloc_engines(num_engines);
- 	if (!set.engines)
- 		return -ENOMEM;
- 
-@@ -1823,7 +1863,7 @@ __copy_engines(struct i915_gem_engines *e)
- 	struct i915_gem_engines *copy;
- 	unsigned int n;
- 
--	copy = kmalloc(struct_size(e, engines, e->num_engines), GFP_KERNEL);
-+	copy = alloc_engines(e->num_engines);
- 	if (!copy)
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -2084,7 +2124,7 @@ static int clone_engines(struct i915_gem_context *dst,
- 	bool user_engines;
- 	unsigned long n;
- 
--	clone = kmalloc(struct_size(e, engines, e->num_engines), GFP_KERNEL);
-+	clone = alloc_engines(e->num_engines);
- 	if (!clone)
- 		goto err_unlock;
- 
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8120 -> Patchwork_16929
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/index.html
+
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_8120 and Patchwork_16929:
+
+### New IGT tests (2) ###
+
+  * igt@dmabuf@all@dma_fence_chain:
+    - Statuses : 39 pass(s)
+    - Exec time: [7.43, 70.54] s
+
+  * igt@dmabuf@all@dma_fence_proxy:
+    - Statuses : 39 pass(s)
+    - Exec time: [0.02, 0.18] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16929 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@active:
+    - fi-skl-6600u:       [PASS][1] -> [DMESG-FAIL][2] ([i915#666])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-skl-6600u/igt@i915_selftest@live@active.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-skl-6600u/igt@i915_selftest@live@active.html
+
+  * igt@i915_selftest@live@dmabuf:
+    - fi-ivb-3770:        [PASS][3] -> [DMESG-WARN][4] ([i915#1405])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-ivb-3770/igt@i915_selftest@live@dmabuf.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-ivb-3770/igt@i915_selftest@live@dmabuf.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-glk-dsi:         [PASS][5] -> [INCOMPLETE][6] ([i915#58] / [k.org#198133])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [PASS][7] -> [INCOMPLETE][8] ([i915#1405])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-icl-u2:          [PASS][9] -> [FAIL][10] ([i915#976])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([i915#323])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][13] ([CI#94]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][15] ([fdo#103927]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-lmem:        [INCOMPLETE][17] ([i915#424]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][19] ([i915#541]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [i915#1405]: https://gitlab.freedesktop.org/drm/intel/issues/1405
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#666]: https://gitlab.freedesktop.org/drm/intel/issues/666
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (49 -> 42)
+------------------------------
+
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8120 -> Patchwork_16929
+
+  CI-20190529: 20190529
+  CI_DRM_8120: ce66c439df71f01b018803664c4a50fc61255788 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16929: e88f97ca9c8b73d9957825e62a1a28b99466b56a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e88f97ca9c8b drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+09f1ab7ebc44 drm/i915/gt: Declare when we enabled timeslicing
+0e2d624783cd drm/i915/gem: Allow combining submit-fences with syncobj
+4a7e7b3c3161 drm/i915/gem: Teach execbuf how to wait on future syncobj
+ec674233ad1c drm/syncobj: Allow use of dma-fence-proxy
+1ab5e6f9c4f0 dma-buf: Proxy fence, an unsignaled fence placeholder
+5a616a23bd5c dma-buf: Exercise dma-fence-chain under selftests
+9685917a8609 dma-buf: Report signaled links inside dma-fence-chain
+95d48627060c dma-buf: Prettify typecasts for dma-fence-chain
+d9e4ce2af66c drm/i915/perf: Schedule oa_config after modifying the contexts
+0b0bbf029074 drm/i915: Wrap i915_active in a simple kreffed struct
+337d76f47d6b drm/i915/selftests: Add request throughput measurement to perf
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16929/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
