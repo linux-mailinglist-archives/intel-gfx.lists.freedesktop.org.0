@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 807B3181626
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A568418165E
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 11:58:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C52D86E974;
-	Wed, 11 Mar 2020 10:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 098F46E10E;
+	Wed, 11 Mar 2020 10:58:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1896F6E974
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:50:32 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6029D6E10E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 10:58:56 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 03:50:31 -0700
-X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="231653381"
-Received: from mkuta-mobl.ger.corp.intel.com (HELO localhost) ([10.249.39.69])
- by orsmga007-auth.jf.intel.com with
- ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Mar 2020 03:50:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-In-Reply-To: <87blp5o8yx.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1583766715.git.jani.nikula@intel.com>
- <87blp5o8yx.fsf@intel.com>
-Date: Wed, 11 Mar 2020 12:50:46 +0200
-Message-ID: <87o8t3kvw9.fsf@intel.com>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 03:58:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="234674356"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga007.fm.intel.com with ESMTP; 11 Mar 2020 03:58:54 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 147875C1DD2; Wed, 11 Mar 2020 12:57:32 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200311103640.26572-1-chris@chris-wilson.co.uk>
+References: <20200311103640.26572-1-chris@chris-wilson.co.uk>
+Date: Wed, 11 Mar 2020 12:57:32 +0200
+Message-ID: <877dzr5fc3.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 00/10] drm/i915/display: conversion to
- drm_device based logging macros
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Restrict gen7 w/a batch to
+ Haswell
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,33 +44,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 09 Mar 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> Please ignore this, I seem to have some smtp trouble which fails some of
-> tha patches. This will be incomplete.
+Chris Wilson <chris@chris-wilson.co.uk> writes:
+
+> The residual w/a batch is casing system instablity on Ivybridge and
+> Baytrail under some workloads, so disable until resolved.
 >
-> Wambui, I'll resend this later.
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1405
+> Fixes: 47f8253d2b89 ("drm/i915/gen7: Clear all EU/L3 residual contexts")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Prathap Kumar Valsan <prathap.kumar.valsan@intel.com>
+> Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Okay, I sent them with the same message-ids, so the patches amended this
-beginning of the series.
+Acked-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-I pushed all the patches that I didn't change. Please double check the
-below patches that I adjusted, so I can push them.
-
->>   drm/i915/fbc: convert to drm_device based logging macros.
->>   drm/i915/fbdev: convert to drm_device based logging.
->>   drm/i915/hdcp: convert to struct drm_device based logging.
-
-Thanks,
-Jani.
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
+> ---
+>  drivers/gpu/drm/i915/gt/intel_ring_submission.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> index 1424582e4a9b..fdc3f10e12aa 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+> @@ -2088,7 +2088,7 @@ int intel_ring_submission_setup(struct intel_engine_cs *engine)
+>  
+>  	GEM_BUG_ON(timeline->hwsp_ggtt != engine->status_page.vma);
+>  
+> -	if (IS_GEN(engine->i915, 7) && engine->class == RENDER_CLASS) {
+> +	if (IS_HASWELL(engine->i915) && engine->class == RENDER_CLASS) {
+>  		err = gen7_ctx_switch_bb_init(engine);
+>  		if (err)
+>  			goto err_ring_unpin;
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
