@@ -1,32 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0FE918126C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 08:55:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33366181279
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 08:58:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DAB6E927;
-	Wed, 11 Mar 2020 07:55:49 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8289D6E86F;
- Wed, 11 Mar 2020 07:55:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 78C5BA00E7;
- Wed, 11 Mar 2020 07:55:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A83D6E8D8;
+	Wed, 11 Mar 2020 07:58:54 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23E9E6E920
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 07:58:54 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 00:58:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="231612039"
+Received: from aquilante.fi.intel.com (HELO intel.com) ([10.237.72.158])
+ by orsmga007.jf.intel.com with ESMTP; 11 Mar 2020 00:58:50 -0700
+Date: Wed, 11 Mar 2020 09:58:53 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Message-ID: <20200311075853.GA1352@intel.intel>
+References: <20200310164733.26487-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Takashi Iwai" <tiwai@suse.de>
-Date: Wed, 11 Mar 2020 07:55:47 -0000
-Message-ID: <158391334746.13949.17735904652376154356@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200311073256.6535-1-tiwai@suse.de>
-In-Reply-To: <20200311073256.6535-1-tiwai@suse.de>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_Use_scnprintf=28=29_for_avoiding_potential_b?=
- =?utf-8?q?uffer_overflow?=
+Content-Disposition: inline
+In-Reply-To: <20200310164733.26487-1-tvrtko.ursulin@linux.intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Remove debugfs i915_drpc_info and
+ i915_forcewake_domains
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +44,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Tvrtko,
 
-Series: drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
-URL   : https://patchwork.freedesktop.org/series/74562/
-State : warning
+On Tue, Mar 10, 2020 at 04:47:33PM +0000, Tvrtko Ursulin wrote:
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> The two files have been duplicated under the gt/ subdir and since there
+> are not apparent users looking for them at the old location lets simply
+> remove them and duplicated code.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-$ dim checkpatch origin/drm-tip
-00261fad413a drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
--:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#23: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1385:
-+			len = scnprintf(hdr, sizeof(hdr),
- 				       "\t\tActive[%d]: ",
-
-total: 0 errors, 0 warnings, 1 checks, 23 lines checked
-
+Thank you!
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
