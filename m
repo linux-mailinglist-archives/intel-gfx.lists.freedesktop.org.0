@@ -1,42 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8BF181D34
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 17:09:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E02181D85
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 17:15:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A40C6E9B0;
-	Wed, 11 Mar 2020 16:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26D306E9B3;
+	Wed, 11 Mar 2020 16:15:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA6B6E9B0
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 16:08:59 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 09:08:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="234751858"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 11 Mar 2020 09:08:55 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Mar 2020 18:08:54 +0200
-Date: Wed, 11 Mar 2020 18:08:54 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200311160854.GB13686@intel.com>
-References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
- <20200309161204.17792-4-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D46D36E9B4;
+ Wed, 11 Mar 2020 16:15:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C3272A0094;
+ Wed, 11 Mar 2020 16:15:08 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200309161204.17792-4-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state
- helpers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 11 Mar 2020 16:15:08 -0000
+Message-ID: <158394330876.13953.9364685028282274493@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311103640.26572-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200311103640.26572-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Restrict_gen7_w/a_batch_to_Haswell?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,123 +38,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 09, 2020 at 06:11:59PM +0200, Stanislav Lisovskiy wrote:
-> Add correspondent helpers to be able to get old/new bandwidth
-> global state object.
-> =
+== Series Details ==
 
-> v2: - Fixed typo in function call
-> v3: - Changed new functions naming to use convention proposed
->       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
+Series: drm/i915/gt: Restrict gen7 w/a batch to Haswell
+URL   : https://patchwork.freedesktop.org/series/74577/
+State : success
 
-Still nak on the rename.
+== Summary ==
 
-> =
+CI Bug Log - changes from CI_DRM_8120 -> Patchwork_16925
+====================================================
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 33 ++++++++++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_bw.h |  9 +++++++
->  2 files changed, 39 insertions(+), 3 deletions(-)
-> =
+Summary
+-------
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
-15/display/intel_bw.c
-> index 58b264bc318d..bdad7476dc7b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -374,8 +374,35 @@ static unsigned int intel_bw_data_rate(struct drm_i9=
-15_private *dev_priv,
->  	return data_rate;
->  }
->  =
+  **SUCCESS**
 
-> -static struct intel_bw_state *
-> -intel_atomic_get_bw_state(struct intel_atomic_state *state)
-> +struct intel_bw_state *
-> +intel_bw_get_old_state(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct intel_global_state *bw_state;
-> +
-> +	bw_state =3D intel_atomic_get_old_global_obj_state(state, &dev_priv->bw=
-_obj);
-> +	if (IS_ERR(bw_state))
-> +		return ERR_CAST(bw_state);
-> +
-> +	return to_intel_bw_state(bw_state);
-> +}
-> +
-> +struct intel_bw_state *
-> +intel_bw_get_new_state(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	struct intel_global_state *bw_state;
-> +
-> +	bw_state =3D intel_atomic_get_new_global_obj_state(state, &dev_priv->bw=
-_obj);
-> +
-> +	if (IS_ERR(bw_state))
-> +		return ERR_CAST(bw_state);
-> +
-> +	return to_intel_bw_state(bw_state);
-> +}
-> +
-> +struct intel_bw_state *
-> +intel_bw_get_state(struct intel_atomic_state *state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
->  	struct intel_global_state *bw_state;
-> @@ -420,7 +447,7 @@ int intel_bw_atomic_check(struct intel_atomic_state *=
-state)
->  		    old_active_planes =3D=3D new_active_planes)
->  			continue;
->  =
+  No regressions found.
 
-> -		bw_state  =3D intel_atomic_get_bw_state(state);
-> +		bw_state  =3D intel_bw_get_state(state);
->  		if (IS_ERR(bw_state))
->  			return PTR_ERR(bw_state);
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/index.html
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
-15/display/intel_bw.h
-> index a8aa7624c5aa..b5f61463922f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> @@ -24,6 +24,15 @@ struct intel_bw_state {
->  =
+Known issues
+------------
 
->  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, ba=
-se)
->  =
+  Here are the changes found in Patchwork_16925 that come from known issues:
 
-> +struct intel_bw_state *
-> +intel_bw_get_old_state(struct intel_atomic_state *state);
-> +
-> +struct intel_bw_state *
-> +intel_bw_get_new_state(struct intel_atomic_state *state);
-> +
-> +struct intel_bw_state *
-> +intel_bw_get_state(struct intel_atomic_state *state);
-> +
->  void intel_bw_init_hw(struct drm_i915_private *dev_priv);
->  int intel_bw_init(struct drm_i915_private *dev_priv);
->  int intel_bw_atomic_check(struct intel_atomic_state *state);
-> -- =
+### IGT changes ###
 
-> 2.24.1.485.gad05a3d8e5
+#### Issues hit ####
 
--- =
+  * igt@i915_selftest@live@execlists:
+    - fi-glk-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#529] / [i915#58] / [k.org#198133])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-glk-dsi/igt@i915_selftest@live@execlists.html
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][3] -> [FAIL][4] ([fdo#111407])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][5] ([CI#94]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][7] ([fdo#103927]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-lmem:        [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - fi-kbl-soraka:      [DMESG-FAIL][11] ([i915#541]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8120/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/fi-kbl-soraka/igt@i915_selftest@live@gt_heartbeat.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
+  [i915#541]: https://gitlab.freedesktop.org/drm/intel/issues/541
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#998]: https://gitlab.freedesktop.org/drm/intel/issues/998
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (49 -> 43)
+------------------------------
+
+  Missing    (6): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8120 -> Patchwork_16925
+
+  CI-20190529: 20190529
+  CI_DRM_8120: ce66c439df71f01b018803664c4a50fc61255788 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16925: b52b0151b5e67aac24d32dccd9920e5682b86d82 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b52b0151b5e6 drm/i915/gt: Restrict gen7 w/a batch to Haswell
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16925/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
