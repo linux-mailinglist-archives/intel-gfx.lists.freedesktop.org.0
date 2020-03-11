@@ -2,30 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F67718307B
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 13:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21EBB1830F0
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 14:13:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9B406E1E6;
-	Thu, 12 Mar 2020 12:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2BA6EAB1;
+	Thu, 12 Mar 2020 13:13:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B11896E1E6;
- Thu, 12 Mar 2020 12:39:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A7CC6A47E6;
- Thu, 12 Mar 2020 12:39:43 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [IPv6:2607:7c80:54:e::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B066E6E487;
+ Wed, 11 Mar 2020 15:28:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Transfer-Encoding
+ :Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=SIqPqQL4E4jqHkpffGX9pDEDtDuqr9oIINOLiMZ97lI=; b=ENYhknSFl8/K5NlY4EPf9Auvnj
+ qUAA16q+DsyWvkT0HMYKNGi+4561WycRIwnqzsgJJdmC9/iermrLG9eGBd9QEyr3+f6v3jMFOgrpy
+ bRgs7v4vVxhl3qRg23yI8uUvzXfwIaAvjN7aiUIrSp1JH4A2ghP0lhPa+osE4j8OucHQVr7uXjbZn
+ w/76MEQXIegQl51dZ6XWBuHDMIPxt/8wZom9zWExXNSNA6/BO6FcPYEB+3CCow2/X2Zvh2+vkMLRA
+ 61WI+RVKdlxXNDgPB5a0xK3U4wzmAzm5Q1/GHuzpN5IhcZ/0Pn3YUMi8ZcM+0anqiWN5+3I67Ffd0
+ cpVtmnFA==;
+Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
+ Hat Linux)) id 1jC3Hi-0006RL-K0; Wed, 11 Mar 2020 15:28:38 +0000
+Date: Wed, 11 Mar 2020 08:28:38 -0700
+From: Christoph Hellwig <hch@infradead.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <20200311152838.GA24280@infradead.org>
+References: <20200311135158.3310-1-christian.koenig@amd.com>
+ <20200311135158.3310-2-christian.koenig@amd.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
-Date: Thu, 12 Mar 2020 12:39:43 -0000
-Message-ID: <158401678365.4949.16327514998283584134@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200312111449.21202-1-pankaj.laxminarayan.bharadiya@intel.com>
-In-Reply-To: <20200312111449.21202-1-pankaj.laxminarayan.bharadiya@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Introduce_drm_scaling_filter_property_=28rev2=29?=
+Content-Disposition: inline
+In-Reply-To: <20200311135158.3310-2-christian.koenig@amd.com>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
+ bombadil.infradead.org. See http://www.infradead.org/rpr.html
+X-Mailman-Approved-At: Thu, 12 Mar 2020 13:13:09 +0000
+Subject: Re: [Intel-gfx] [PATCH 1/6] lib/scatterlist: add sg_set_dma_addr()
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,124 +51,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: David1.Zhou@amd.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, hch@infradead.org, jgg@ziepe.ca,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Mar 11, 2020 at 02:51:53PM +0100, Christian K=F6nig wrote:
+> This can be used by drivers to setup P2P DMA between device
+> memory which is not backed by struct pages.
+> =
 
-Series: Introduce drm scaling filter property (rev2)
-URL   : https://patchwork.freedesktop.org/series/73883/
-State : warning
+> The drivers of the involved devices are responsible for
+> setting up and tearing down DMA addresses as necessary
+> using dma_map_resource().
+> =
 
-== Summary ==
+> The page pointer is set to NULL and only the DMA address,
+> length and offset values are valid.
 
-$ dim checkpatch origin/drm-tip
-38e9b95fbc63 drm: Introduce plane and CRTC scaling filter properties
--:136: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#136: FILE: drivers/gpu/drm/drm_mode_config.c:384:
-+	prop = drm_property_create_enum(dev, 0,
-+				"SCALING_FILTER",
-
--:144: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#144: FILE: drivers/gpu/drm/drm_mode_config.c:392:
-+	prop = drm_property_create_enum(dev, 0,
-+				"SCALING_FILTER",
-
-total: 0 errors, 0 warnings, 2 checks, 218 lines checked
-d310d566729e drm/drm-kms.rst: Add plane and CRTC scaling filter property documentation
--:11: WARNING:TYPO_SPELLING: 'seperate' may be misspelled - perhaps 'separate'?
-#11: 
-* Add seperate documention for plane and CRTC.
-
-total: 0 errors, 1 warnings, 0 checks, 18 lines checked
-1e2dfdf86198 drm/i915: Introduce scaling filter related registers and bit fields.
--:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#71: FILE: drivers/gpu/drm/i915/i915_reg.h:7334:
-+#define _SKL_PS_COEF_INDEX_SET0(pipe, id)  _ID(pipe,    \
-+			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
-+			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
-
--:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#75: FILE: drivers/gpu/drm/i915/i915_reg.h:7338:
-+#define _SKL_PS_COEF_INDEX_SET1(pipe, id)  _ID(pipe,    \
-+			_ID(id, _PS_COEF_SET1_INDEX_1A, _PS_COEF_SET1_INDEX_2A), \
-+			_ID(id, _PS_COEF_SET1_INDEX_1B, _PS_COEF_SET1_INDEX_2B))
-
--:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#79: FILE: drivers/gpu/drm/i915/i915_reg.h:7342:
-+#define _SKL_PS_COEF_DATA_SET0(pipe, id)  _ID(pipe,     \
-+			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
-+			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
-
--:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#83: FILE: drivers/gpu/drm/i915/i915_reg.h:7346:
-+#define _SKL_PS_COEF_DATA_SET1(pipe, id)  _ID(pipe,     \
-+			_ID(id, _PS_COEF_SET1_DATA_1A, _PS_COEF_SET1_DATA_2A), \
-+			_ID(id, _PS_COEF_SET1_DATA_1B, _PS_COEF_SET1_DATA_2B))
-
--:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#87: FILE: drivers/gpu/drm/i915/i915_reg.h:7350:
-+#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
-+			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
-+			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
-
--:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#87: FILE: drivers/gpu/drm/i915/i915_reg.h:7350:
-+#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
-+			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
-+			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
-
--:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#91: FILE: drivers/gpu/drm/i915/i915_reg.h:7354:
-+#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
-+			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
-+			    _SKL_PS_COEF_DATA_SET1(pipe, id))
-
--:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
-#91: FILE: drivers/gpu/drm/i915/i915_reg.h:7354:
-+#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
-+			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
-+			    _SKL_PS_COEF_DATA_SET1(pipe, id))
-
-total: 0 errors, 0 warnings, 8 checks, 72 lines checked
-7e25cb888423 drm/i915/display: Add Nearest-neighbor based integer scaling support
--:77: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:6279:
-+{
-+
-
--:95: WARNING:LONG_LINE: line over 100 characters
-#95: FILE: drivers/gpu/drm/i915/display/intel_display.c:6297:
-+				intel_de_write_fw(dev_priv, SKL_PS_COEF_DATA_SET(pipe, id, set), val);
-
-total: 0 errors, 1 warnings, 1 checks, 80 lines checked
-3ed10cd62efd drm/i915: Enable scaling filter for plane and CRTC
--:32: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#32: FILE: drivers/gpu/drm/i915/display/intel_display.c:6308:
-+skl_scaler_crtc_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
-+			  int id, int set, enum drm_crtc_scaling_filter filter)
-
--:45: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#45: FILE: drivers/gpu/drm/i915/display/intel_display.c:6321:
-+
-+	}
-
--:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#75: FILE: drivers/gpu/drm/i915/display/intel_display.c:6360:
-+			skl_scaler_crtc_setup_filter(dev_priv, pipe, id, 0,
-+						state->scaling_filter);
-
--:116: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#116: FILE: drivers/gpu/drm/i915/display/intel_sprite.c:414:
-+
-+	}
-
-total: 0 errors, 0 warnings, 4 checks, 124 lines checked
-
+NAK.  The only valid way to fill DMA address in scatterlists is
+dma_map_sg / dma_map_sg_attr.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
