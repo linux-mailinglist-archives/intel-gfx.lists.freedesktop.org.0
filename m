@@ -1,32 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB4E181FB1
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 18:40:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A01F3181FDD
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 18:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31FF6E9C8;
-	Wed, 11 Mar 2020 17:40:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1692D6E9CA;
+	Wed, 11 Mar 2020 17:46:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 140676E9C5;
- Wed, 11 Mar 2020 17:40:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 05AE5A0094;
- Wed, 11 Mar 2020 17:40:09 +0000 (UTC)
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com
+ [IPv6:2607:f8b0:4864:20::943])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CF806E4D7;
+ Wed, 11 Mar 2020 17:46:29 +0000 (UTC)
+Received: by mail-ua1-x943.google.com with SMTP id 8so1062671uar.3;
+ Wed, 11 Mar 2020 10:46:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=CfYOzO5+uF1CfG+RksBcaJHJ26wXRO4tUkH0iyVEBYg=;
+ b=rtMbelEy/cBAVzELTigiCWHImc1Z9n3XaFmfgNcJl2VrT+vyxlYkZ8Ju2FPK/fdCyb
+ OUlS4FEOwtin7pqZ4mSgzOgQm3DXVgdIKfGLYhFpvFzVnEsEBIroN2kHOQ7AQY7u1Yf7
+ DZ2pulvK5VCS/8pOa0GUx0SfEHDhwelNsZi4AHDlmk0cQG6+Ou7gn4uu1HeAGGcacmeB
+ vH05HIiMQdV1B9x5L786OItlIQZLlx51LJp8sJYYqry33aG4NOENkZI90MXCzGWD0++o
+ RotNUD71m7HG/r7Ln0dQIVUFWoqjcmuCF+t4ORJX/F87562vagpD8BRAZqiVfEu46J0e
+ xa0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=CfYOzO5+uF1CfG+RksBcaJHJ26wXRO4tUkH0iyVEBYg=;
+ b=DGgHnd540kdIZJXYILHAMCh0XN1iFYnhgmklsHEg2bI9kAsvtOc5RAJrDDSfl+pG/+
+ 1WVE8lkh97GduDAb6tO8CXB2I/kBRVQ1Wzg3PFxwKKD0CdUZCYwKePljZuCfnRo0VBhq
+ VcqkH95OqMGD61D2uyNpkKgj1NJdPGmdhWs6WpkypzIyo9QcEgwzXG8qDElSzBns99HK
+ HHKSf14edjqH0Rh01pvu2NrT5xqFBdjz7YGJiJiSYylS9YLmjVfYrjZzChXsNDhiifbz
+ We7/DpD37hHcaz6jghKD87IX7I/3P4JJUCoQZzjZcrSQfeUYXqX9MnmpVpFbCRI/huQx
+ m49A==
+X-Gm-Message-State: ANhLgQ0jgEoayXK6yEuFxxIjb5O6q8i/ECudj/d4i68pAb06TG58t9Db
+ MZUBkK4f/jQ6w8aTOvCtJSgouvggeRB/J2hdoXl8r2Okefs=
+X-Google-Smtp-Source: ADFU+vsqvuJSIB8B2CTqGmiLrH9JTmJN21JmF4PzOdb1d2H48ALBPeBqLu4uNXCElScPz9lM02jbya/HUEOz6GoCNfk=
+X-Received: by 2002:ab0:14a2:: with SMTP id d31mr2417380uae.106.1583948788551; 
+ Wed, 11 Mar 2020 10:46:28 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 11 Mar 2020 17:40:09 -0000
-Message-ID: <158394840901.13949.17321860000351310446@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200311133047.30696-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200311133047.30696-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_?=
- =?utf-8?q?request_throughput_measurement_to_perf?=
+References: <20200307083023.76498-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <9e5fcbcd3f7a4d74b9941a21e0407c6eef79e920.camel@redhat.com>
+In-Reply-To: <9e5fcbcd3f7a4d74b9941a21e0407c6eef79e920.camel@redhat.com>
+From: Emil Velikov <emil.l.velikov@gmail.com>
+Date: Wed, 11 Mar 2020 17:45:41 +0000
+Message-ID: <CACvgo53k3vVqrb42+nZgf=NK-Z1+=uaN30WUMF65fuLDUipyGg@mail.gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [Intel-gfx] [PATCH 0/5] Cleanup drm_dp_mst_topology_cbs hooks
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +61,43 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Emil Velikov <emil.velikov@collabora.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 9 Mar 2020 at 20:27, Lyude Paul <lyude@redhat.com> wrote:
+>
+> On Sat, 2020-03-07 at 14:00 +0530, Pankaj Bharadiya wrote:
+> > drm_dp_mst_topology_mgr_cbs.register_connector callbacks are identical
+> > amongst every driver and don't do anything other than calling
+> > drm_connector_register().
+> > drm_dp_mst_topology_mgr_cbs.destroy_connector callbacks are identical
+> > amongst every driver and don't do anything other than cleaning up the
+> > connector((drm_connector_unregister()/drm_connector_put())) except for
+> > amdgpu_dm driver where some amdgpu_dm specific code in there.
+>
+> Yeah that amdgpu destruction code kinda stinks a little bit :\. I think we can
+> just drop some of it and move the rest into their connector destruction
+> callbacks.
+>
+> For the whole series:
+>         Reviewed-by: Lyude Paul <lyude@redhat.com>
+>
+> I'm going to go ahead and let the maintainers know I'm going to push this
+> (since there's some minor changes here outside of drm-misc), and push this to
+> drm-misc-next. Then I'll go and write some patches to remove the leftover amd
+> bits and drop the callback for good (I'll cc it to you as well).
+>
+Thanks for following on these Pankaj.
 
-Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
-URL   : https://patchwork.freedesktop.org/series/74586/
-State : warning
+For the series:
+Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-337d76f47d6b drm/i915/selftests: Add request throughput measurement to perf
--:96: WARNING:LINE_SPACING: Missing a blank line after declarations
-#96: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1519:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
-
--:130: WARNING:LINE_SPACING: Missing a blank line after declarations
-#130: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1553:
-+	struct i915_request *prev = NULL;
-+	IGT_TIMEOUT(end_time);
-
--:165: WARNING:LINE_SPACING: Missing a blank line after declarations
-#165: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1588:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
-
--:188: WARNING:LINE_SPACING: Missing a blank line after declarations
-#188: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1611:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-
--:196: WARNING:LINE_SPACING: Missing a blank line after declarations
-#196: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1619:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-
--:324: WARNING:LINE_SPACING: Missing a blank line after declarations
-#324: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1747:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:392: WARNING:LINE_SPACING: Missing a blank line after declarations
-#392: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1815:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:461: WARNING:LINE_SPACING: Missing a blank line after declarations
-#461: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1884:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:517: WARNING:LINE_SPACING: Missing a blank line after declarations
-#517: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1940:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-
--:525: WARNING:LINE_SPACING: Missing a blank line after declarations
-#525: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1948:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-
--:570: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
-#570: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1993:
-+		yield(); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 11 warnings, 0 checks, 610 lines checked
-0b0bbf029074 drm/i915: Wrap i915_active in a simple kreffed struct
-d9e4ce2af66c drm/i915/perf: Schedule oa_config after modifying the contexts
-95d48627060c dma-buf: Prettify typecasts for dma-fence-chain
-9685917a8609 dma-buf: Report signaled links inside dma-fence-chain
-5a616a23bd5c dma-buf: Exercise dma-fence-chain under selftests
--:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#33: 
-new file mode 100644
-
--:61: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#61: FILE: drivers/dma-buf/st-dma-fence-chain.c:24:
-+	spinlock_t lock;
-
--:235: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#235: FILE: drivers/dma-buf/st-dma-fence-chain.c:198:
-+		pr_err("Reported %d for find_seqno(0)!\n", err);
-
--:244: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#244: FILE: drivers/dma-buf/st-dma-fence-chain.c:207:
-+			pr_err("Reported %d for find_seqno(%d:%d)!\n",
-
--:249: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#249: FILE: drivers/dma-buf/st-dma-fence-chain.c:212:
-+			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
-
--:272: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#272: FILE: drivers/dma-buf/st-dma-fence-chain.c:235:
-+			pr_err("Error not reported for future fence: find_seqno(%d:%d)!\n",
-
--:286: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#286: FILE: drivers/dma-buf/st-dma-fence-chain.c:249:
-+			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
-
--:737: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'dma_fence_chain', this function's name, in a string
-#737: FILE: drivers/dma-buf/st-dma-fence-chain.c:700:
-+	pr_info("sizeof(dma_fence_chain)=%zu\n",
-
-total: 0 errors, 7 warnings, 1 checks, 725 lines checked
-1ab5e6f9c4f0 dma-buf: Proxy fence, an unsignaled fence placeholder
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
-
--:93: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#93: FILE: drivers/dma-buf/dma-fence-proxy.c:18:
-+	spinlock_t lock;
-
--:321: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#321: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
-+	spinlock_t lock;
-
--:481: WARNING:MEMORY_BARRIER: memory barrier without comment
-#481: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
-+	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
-
-total: 0 errors, 2 warnings, 2 checks, 852 lines checked
-ec674233ad1c drm/syncobj: Allow use of dma-fence-proxy
-4a7e7b3c3161 drm/i915/gem: Teach execbuf how to wait on future syncobj
-0e2d624783cd drm/i915/gem: Allow combining submit-fences with syncobj
-09f1ab7ebc44 drm/i915/gt: Declare when we enabled timeslicing
-e88f97ca9c8b drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
-
+-Emil
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
