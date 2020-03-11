@@ -2,36 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CC7C1820C1
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 19:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C02A21820BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 19:26:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACD076E9DC;
-	Wed, 11 Mar 2020 18:26:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1E86E9D6;
+	Wed, 11 Mar 2020 18:26:32 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 670D86E9D6
- for <Intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 18:26:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 465C46E214
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 18:26:30 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 11:26:29 -0700
+ 11 Mar 2020 11:26:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="236370571"
+X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="236370591"
 Received: from pkosiack-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.21.27])
- by fmsmga008.fm.intel.com with ESMTP; 11 Mar 2020 11:26:28 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 11 Mar 2020 11:26:29 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 18:26:13 +0000
-Message-Id: <20200311182618.21513-6-tvrtko.ursulin@linux.intel.com>
+Date: Wed, 11 Mar 2020 18:26:14 +0000
+Message-Id: <20200311182618.21513-7-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
 References: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RFC 05/10] drm/i915: Track runtime spent in
- unreachable intel_contexts
+Subject: [Intel-gfx] [RFC 06/10] drm/i915: Track runtime spent in closed GEM
+ contexts
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,63 +51,65 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-As contexts are abandoned we want to remember how much GPU time they used
-(per class) so later we can used it for smarter purposes.
+As GEM contexts are closed we want to have the DRM client remember how
+much GPU time they used (per class) so later we can used it for smarter
+purposes.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c       | 13 ++++++++++++-
- drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  5 +++++
- 2 files changed, 17 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 12 +++++++++++-
+ drivers/gpu/drm/i915/i915_drm_client.h      |  7 +++++++
+ 2 files changed, 18 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index c49cfec6d616..c521155a6474 100644
+index c521155a6474..36dc577a23c4 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -257,7 +257,19 @@ static void free_engines_rcu(struct rcu_head *rcu)
- {
- 	struct i915_gem_engines *engines =
- 		container_of(rcu, struct i915_gem_engines, rcu);
-+	struct i915_gem_context *ctx = engines->ctx;
-+	struct i915_gem_engines_iter it;
-+	struct intel_context *ce;
-+
-+	/* Transfer accumulated runtime to the parent GEM context. */
-+	for_each_gem_engine(ce, engines, it) {
-+		unsigned int class = ce->engine->uabi_class;
+@@ -316,8 +316,18 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
  
-+		GEM_BUG_ON(class >= ARRAY_SIZE(ctx->past_runtime));
-+		atomic64_add(ce->runtime.total, &ctx->past_runtime[class]);
+ 	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
+ 
+-	if (client)
++	if (client) {
++		unsigned int i;
++
++		/* Transfer accumulated runtime to the parent drm client. */
++		BUILD_BUG_ON(ARRAY_SIZE(client->past_runtime) !=
++			     ARRAY_SIZE(ctx->past_runtime));
++		for (i = 0; i < ARRAY_SIZE(client->past_runtime); i++)
++			atomic64_add(atomic64_read(&ctx->past_runtime[i]),
++				     &client->past_runtime[i]);
++
+ 		i915_drm_client_put(client);
 +	}
-+
-+	i915_gem_context_put(ctx);
- 	i915_sw_fence_fini(&engines->fence);
- 	free_engines(engines);
- }
-@@ -540,7 +552,6 @@ static int engines_notify(struct i915_sw_fence *fence,
- 			list_del(&engines->link);
- 			spin_unlock_irqrestore(&ctx->stale.lock, flags);
- 		}
--		i915_gem_context_put(engines->ctx);
- 		break;
  
- 	case FENCE_FREE:
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index b0e03380c690..f0d7441aafc8 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -177,6 +177,11 @@ struct i915_gem_context {
- 		spinlock_t lock;
- 		struct list_head engines;
- 	} stale;
+ 	spin_lock(&ctx->i915->gem.contexts.lock);
+ 	list_del(&ctx->link);
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
+index b56a271737ff..72e66027e0f1 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.h
++++ b/drivers/gpu/drm/i915/i915_drm_client.h
+@@ -16,6 +16,8 @@
+ #include <linux/sched.h>
+ #include <linux/xarray.h>
+ 
++#include "gt/intel_engine_types.h"
++
+ struct i915_drm_clients {
+ 	struct xarray xarray;
+ 	u32 next_id;
+@@ -42,6 +44,11 @@ struct i915_drm_client {
+ 		struct device_attribute pid;
+ 		struct device_attribute name;
+ 	} attr;
 +
 +	/**
-+	 * @past_runtime: Accumulation of freed intel_context pphwsp runtimes.
++	 * @past_runtime: Accumulation of pphwsp runtimes from closed contexts.
 +	 */
 +	atomic64_t past_runtime[MAX_ENGINE_CLASS + 1];
  };
  
- #endif /* __I915_GEM_CONTEXT_TYPES_H__ */
+ void i915_drm_clients_init(struct i915_drm_clients *clients);
 -- 
 2.20.1
 
