@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D527418151C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:39:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85593181528
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99AA36E95E;
-	Wed, 11 Mar 2020 09:39:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDCAF6E961;
+	Wed, 11 Mar 2020 09:40:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 252316E95D;
- Wed, 11 Mar 2020 09:39:18 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id C7176AB3D;
- Wed, 11 Mar 2020 09:39:16 +0000 (UTC)
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-22-daniel.vetter@ffwll.ch>
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- mQENBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAG0J1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPokBVAQTAQgAPhYh
- BHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsDBQkDwmcABQsJCAcCBhUKCQgLAgQWAgMB
- Ah4BAheAAAoJEGgNwR1TC3ojR80H/jH+vYavwQ+TvO8ksXL9JQWc3IFSiGpuSVXLCdg62AmR
- irxW+qCwNncNQyb9rd30gzdectSkPWL3KSqEResBe24IbA5/jSkPweJasgXtfhuyoeCJ6PXo
- clQQGKIoFIAEv1s8l0ggPZswvCinegl1diyJXUXmdEJRTWYAtxn/atut1o6Giv6D2qmYbXN7
- mneMC5MzlLaJKUtoH7U/IjVw1sx2qtxAZGKVm4RZxPnMCp9E1MAr5t4dP5gJCIiqsdrVqI6i
- KupZstMxstPU//azmz7ZWWxT0JzgJqZSvPYx/SATeexTYBP47YFyri4jnsty2ErS91E6H8os
- Bv6pnSn7eAq5AQ0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRH
- UE9eosYbT6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgT
- RjP+qbU63Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+R
- dhgATnWWGKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zb
- ehDda8lvhFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r
- 12+lqdsAEQEAAYkBPAQYAQgAJhYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJbOdLgAhsMBQkD
- wmcAAAoJEGgNwR1TC3ojpfcIAInwP5OlcEKokTnHCiDTz4Ony4GnHRP2fXATQZCKxmu4AJY2
- h9ifw9Nf2TjCZ6AMvC3thAN0rFDj55N9l4s1CpaDo4J+0fkrHuyNacnT206CeJV1E7NYntxU
- n+LSiRrOdywn6erjxRi9EYTVLCHcDhBEjKmFZfg4AM4GZMWX1lg0+eHbd5oL1as28WvvI/uI
- aMyV8RbyXot1r/8QLlWldU3NrTF5p7TMU2y3ZH2mf5suSKHAMtbE4jKJ8ZHFOo3GhLgjVrBW
- HE9JXO08xKkgD+w6v83+nomsEuf6C6LYrqY/tsZvyEX6zN8CtirPdPWu/VXNRYAl/lat7lSI
- 3H26qrE=
-Message-ID: <51a1d5a5-566f-89f0-2edf-5dd557c5f81a@suse.de>
-Date: Wed, 11 Mar 2020 10:39:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 195046E95B;
+ Wed, 11 Mar 2020 09:40:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 06FABA47E6;
+ Wed, 11 Mar 2020 09:40:30 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200302222631.3861340-22-daniel.vetter@ffwll.ch>
-Subject: Re: [Intel-gfx] [PATCH 21/51] drm: Use drmm_ for drm_dev_init
- cleanup
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Takashi Iwai" <tiwai@suse.de>
+Date: Wed, 11 Mar 2020 09:40:30 -0000
+Message-ID: <158391963002.13953.14750391492414807733@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311073256.6535-1-tiwai@suse.de>
+In-Reply-To: <20200311073256.6535-1-tiwai@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Use_scnprintf=28=29_for_avoiding_potential_buffer_o?=
+ =?utf-8?q?verflow?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,211 +39,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1650323800=="
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---===============1650323800==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="X6vy4O3PnOAPQj4mERJNVpmrpdAeVogdK"
+== Series Details ==
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---X6vy4O3PnOAPQj4mERJNVpmrpdAeVogdK
-Content-Type: multipart/mixed; boundary="MDKp7WoPMnzUjYzVxBPTqJPA7ZPFMVduT";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel.vetter@ffwll.ch>,
- DRI Development <dri-devel@lists.freedesktop.org>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Daniel Vetter <daniel.vetter@intel.com>
-Message-ID: <51a1d5a5-566f-89f0-2edf-5dd557c5f81a@suse.de>
-Subject: Re: [PATCH 21/51] drm: Use drmm_ for drm_dev_init cleanup
-References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-22-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200302222631.3861340-22-daniel.vetter@ffwll.ch>
+Series: drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
+URL   : https://patchwork.freedesktop.org/series/74562/
+State : success
 
---MDKp7WoPMnzUjYzVxBPTqJPA7ZPFMVduT
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+== Summary ==
 
-Hi
+CI Bug Log - changes from CI_DRM_8112 -> Patchwork_16919
+====================================================
 
-Am 02.03.20 um 23:26 schrieb Daniel Vetter:
-> Well for the simple stuff at least, vblank, gem and minor cleanup I
-> want to further split up as a demonstration.
->=20
-> v2: We need to clear drm_device->dev otherwise the debug drm printing
-> after our cleanup hook (e.g. in drm_manged_release) will chase
-> released memory and result in a use-after-free. Not really pretty, but
-> oh well.
->=20
-> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> ---
->  drivers/gpu/drm/drm_drv.c | 48 ++++++++++++++++++++-------------------=
+Summary
+-------
 
->  1 file changed, 25 insertions(+), 23 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index ef79c03e311c..23e5b0e7e041 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -580,6 +580,23 @@ static void drm_fs_inode_free(struct inode *inode)=
+  **SUCCESS**
 
->   *    used.
->   */
-> =20
-> +static void drm_dev_init_release(struct drm_device *dev, void *res)
-> +{
-> +	drm_legacy_ctxbitmap_cleanup(dev);
-> +	drm_legacy_remove_map_hash(dev);
-> +	drm_fs_inode_free(dev->anon_inode);
-> +
-> +	put_device(dev->dev);
-> +	/* Prevent use-after-free in drm_managed_release when debugging is
-> +	 * enabled. Slightly awkward, but can't really be helped. */
-> +	dev->dev =3D NULL;
-> +	mutex_destroy(&dev->master_mutex);
-> +	mutex_destroy(&dev->clientlist_mutex);
-> +	mutex_destroy(&dev->filelist_mutex);
-> +	mutex_destroy(&dev->struct_mutex);
-> +	drm_legacy_destroy_members(dev);
-> +}
-> +
->  /**
->   * drm_dev_init - Initialise new DRM device
->   * @dev: DRM device
-> @@ -647,11 +664,15 @@ int drm_dev_init(struct drm_device *dev,
->  	mutex_init(&dev->clientlist_mutex);
->  	mutex_init(&dev->master_mutex);
-> =20
-> +	ret =3D drmm_add_action(dev, drm_dev_init_release, NULL);
-> +	if (ret)
-> +		return ret;
-> +
+  No regressions found.
 
-Is this code supposed to stay for the long term? As devices are
-allocated dynamically, I can imagine that there will be a call that
-allocates the memory and, at the same time, sets drm_dev_init_release()
-as the release callback.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/index.html
 
-The question is also released to patch 3, where I proposed to rename
-__drm_add_action() to __drmm_kzalloc().
+Possible new issues
+-------------------
 
->  	dev->anon_inode =3D drm_fs_inode_new();
->  	if (IS_ERR(dev->anon_inode)) {
->  		ret =3D PTR_ERR(dev->anon_inode);
->  		DRM_ERROR("Cannot allocate anonymous inode: %d\n", ret);
-> -		goto err_free;
-> +		goto err;
->  	}
-> =20
->  	if (drm_core_check_feature(dev, DRIVER_RENDER)) {
-> @@ -688,19 +709,12 @@ int drm_dev_init(struct drm_device *dev,
->  	if (drm_core_check_feature(dev, DRIVER_GEM))
->  		drm_gem_destroy(dev);
->  err_ctxbitmap:
-> -	drm_legacy_ctxbitmap_cleanup(dev);
-> -	drm_legacy_remove_map_hash(dev);
->  err_minors:
->  	drm_minor_free(dev, DRM_MINOR_PRIMARY);
->  	drm_minor_free(dev, DRM_MINOR_RENDER);
-> -	drm_fs_inode_free(dev->anon_inode);
-> -err_free:
-> -	put_device(dev->dev);
-> -	mutex_destroy(&dev->master_mutex);
-> -	mutex_destroy(&dev->clientlist_mutex);
-> -	mutex_destroy(&dev->filelist_mutex);
-> -	mutex_destroy(&dev->struct_mutex);
-> -	drm_legacy_destroy_members(dev);
-> +err:
-> +	drm_managed_release(dev);
-> +
+  Here are the unknown changes that may have been introduced in Patchwork_16919:
 
-Here's more of a general observation than a comment on the actual patch:
+### IGT changes ###
 
-One odd thing about the overall interface is that there's no way of
-updating the release callback afterwards. In an OOP language, such as
-C++, an error within the constructor would rollback the performed
-actions and return without calling the destructor. Destructors only run
-for fully constructed objects.
+#### Suppressed ####
 
-In our case, the equivalent is to run the init function and set
-drm_dev_init_release() as the final step. The init's rollback-code would
-have to stay, obviously.
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
 
-Best regards
-Thomas
+  * igt@i915_selftest@live@execlists:
+    - {fi-ehl-1}:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8112/fi-ehl-1/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/fi-ehl-1/igt@i915_selftest@live@execlists.html
 
->  	return ret;
->  }
->  EXPORT_SYMBOL(drm_dev_init);
-> @@ -763,20 +777,8 @@ void drm_dev_fini(struct drm_device *dev)
->  	if (drm_core_check_feature(dev, DRIVER_GEM))
->  		drm_gem_destroy(dev);
-> =20
-> -	drm_legacy_ctxbitmap_cleanup(dev);
-> -	drm_legacy_remove_map_hash(dev);
-> -	drm_fs_inode_free(dev->anon_inode);
-> -
->  	drm_minor_free(dev, DRM_MINOR_PRIMARY);
->  	drm_minor_free(dev, DRM_MINOR_RENDER);
-> -
-> -	put_device(dev->dev);
-> -
-> -	mutex_destroy(&dev->master_mutex);
-> -	mutex_destroy(&dev->clientlist_mutex);
-> -	mutex_destroy(&dev->filelist_mutex);
-> -	mutex_destroy(&dev->struct_mutex);
-> -	drm_legacy_destroy_members(dev);
->  }
->  EXPORT_SYMBOL(drm_dev_fini);
-> =20
->=20
+  * igt@runner@aborted:
+    - {fi-ehl-1}:         NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/fi-ehl-1/igt@runner@aborted.html
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16919 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][4] -> [DMESG-FAIL][5] ([fdo#108569])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8112/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_addfb_basic@addfb25-x-tiled-mismatch:
+    - fi-tgl-y:           [PASS][6] -> [DMESG-WARN][7] ([CI#94] / [i915#402])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8112/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled-mismatch.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/fi-tgl-y/igt@kms_addfb_basic@addfb25-x-tiled-mismatch.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_addfb_basic@unused-modifier:
+    - fi-tgl-y:           [DMESG-WARN][8] ([CI#94] / [i915#402]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8112/fi-tgl-y/igt@kms_addfb_basic@unused-modifier.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/fi-tgl-y/igt@kms_addfb_basic@unused-modifier.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
---MDKp7WoPMnzUjYzVxBPTqJPA7ZPFMVduT--
+Participating hosts (44 -> 33)
+------------------------------
 
---X6vy4O3PnOAPQj4mERJNVpmrpdAeVogdK
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+  Additional (4): fi-skl-6770hq fi-bsw-nick fi-skl-6600u fi-bsw-n3050 
+  Missing    (15): fi-bdw-samus fi-kbl-7560u fi-tgl-dsi fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-kbl-7500u fi-gdg-551 fi-cfl-8109u fi-bsw-kefka fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6700k2 fi-kbl-r 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCAAdFiEEchf7rIzpz2NEoWjlaA3BHVMLeiMFAl5oscEACgkQaA3BHVML
-eiOOZwf+Iw0CnNoXLMKDu9JBYQO2Ay/No0n5gRMXl++PAqmeKCxLXLxtKFa4I4nW
-juojR0HDGfE4GHXc6UvAMak1i8b3zTQqmxwOubGJONWlblYr+hlevk1uOBwHjevU
-MaHv3cPdem/+5bXz0k3cULrB1aB4A4n5eca5LwOpEFvgMyGYm6x3a8kIjmpSXnrY
-aIKCGqkPWIw0UEHycdYpjxDgAN8j/dAqovJes+i7HPhbWd+CNFWjsUiBhq1hMzpe
-4R6+Oa0RNR4nse5I4q5ER2SxfguIEwAgSSQvu4WWE1nNN3avblhbjIuCuro+2L+n
-Jb72FZb9zSCC1ADlZhjw03+OXUqqfA==
-=LUgD
------END PGP SIGNATURE-----
+Build changes
+-------------
 
---X6vy4O3PnOAPQj4mERJNVpmrpdAeVogdK--
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8112 -> Patchwork_16919
 
---===============1650323800==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+  CI-20190529: 20190529
+  CI_DRM_8112: 032f2fe5c92eb1db6d417738431153c001a41bcc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16919: 00261fad413afe4c6529c8711b9eb8229811d917 @ git://anongit.freedesktop.org/gfx-ci/linux
 
+
+== Linux commits ==
+
+00261fad413a drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16919/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1650323800==--
