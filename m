@@ -1,32 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53A1F1814BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:26:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2A71814E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 10:33:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 014A36E951;
-	Wed, 11 Mar 2020 09:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7F036E959;
+	Wed, 11 Mar 2020 09:33:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44E526E954
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 09:26:37 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20518595-1500050 
- for multiple; Wed, 11 Mar 2020 09:26:26 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Mar 2020 09:26:24 +0000
-Message-Id: <20200311092624.10012-3-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200311092624.10012-1-chris@chris-wilson.co.uk>
-References: <20200311092624.10012-1-chris@chris-wilson.co.uk>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1937E6E959
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 09:33:14 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 02:33:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="234658034"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga007.fm.intel.com with ESMTP; 11 Mar 2020 02:33:13 -0700
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 11 Mar 2020 02:33:12 -0700
+Received: from shsmsx107.ccr.corp.intel.com (10.239.4.96) by
+ FMSMSX125.amr.corp.intel.com (10.18.125.40) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 11 Mar 2020 02:33:11 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.43]) by
+ SHSMSX107.ccr.corp.intel.com ([169.254.9.232]) with mapi id 14.03.0439.000;
+ Wed, 11 Mar 2020 17:33:09 +0800
+From: "Liu, Chuansheng" <chuansheng.liu@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/debugfs: print more workaround
+ registers
+Thread-Index: AQHV94H5l1oaEPqyOku1Nmpd8kqssahCmN4AgACGhiA=
+Date: Wed, 11 Mar 2020 09:33:08 +0000
+Message-ID: <27240C0AC20F114CBF8149A2696CBE4A6163F3FA@SHSMSX101.ccr.corp.intel.com>
+References: <20200311084704.20468-1-chuansheng.liu@intel.com>
+ <158391872698.28297.4099094935804827720@build.alporthouse.com>
+In-Reply-To: <158391872698.28297.4099094935804827720@build.alporthouse.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.239.127.40]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/gem: Mark up the racy read of the
- mmap_singleton
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: print more workaround
+ registers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,46 +69,37 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[11057.642683] BUG: KCSAN: data-race in i915_gem_mmap [i915] / singleton_release [i915]
-[11057.642717]
-[11057.642740] write (marked) to 0xffff8881f24471a0 of 8 bytes by task 44668 on cpu 2:
-[11057.643162]  singleton_release+0x38/0x60 [i915]
-[11057.643192]  __fput+0x160/0x3c0
-[11057.643217]  ____fput+0x16/0x20
-[11057.643241]  task_work_run+0xba/0x100
-[11057.643263]  exit_to_usermode_loop+0xe4/0xf0
-[11057.643286]  do_syscall_64+0x27e/0x2c0
-[11057.643314]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
-[11057.643339]
-[11057.643359] read to 0xffff8881f24471a0 of 8 bytes by task 44667 on cpu 3:
-[11057.643774]  i915_gem_mmap+0x295/0x670 [i915]
-[11057.643802]  mmap_region+0x62b/0xac0
-[11057.643825]  do_mmap+0x414/0x6b0
-[11057.643848]  vm_mmap_pgoff+0xa9/0xf0
-[11057.643875]  ksys_mmap_pgoff+0x1ac/0x2f0
-[11057.643900]  do_syscall_64+0x6e/0x2c0
-[11057.643924]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+Hi Chris,
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> -----Original Message-----
+> From: Chris Wilson <chris@chris-wilson.co.uk>
+> Sent: Wednesday, March 11, 2020 5:25 PM
+> To: Liu, Chuansheng <chuansheng.liu@intel.com>; intel-
+> gfx@lists.freedesktop.org
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/debugfs: print more workaround
+> registers
+> 
+> Quoting Chuansheng Liu (2020-03-11 08:47:04)
+> > In the node i915_wa_registers, we could print out
+> > more information with whitelist, GT workaround and
+> > engine workaround.
+> 
+> Who's the consumer? We've stopped using this file in igt.
+For debugging convenience.
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index e8cccc131c40..b39c24dae64e 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -775,7 +775,7 @@ static struct file *mmap_singleton(struct drm_i915_private *i915)
- 	struct file *file;
- 
- 	rcu_read_lock();
--	file = i915->gem.mmap_singleton;
-+	file = READ_ONCE(i915->gem.mmap_singleton);
- 	if (file && !get_file_rcu(file))
- 		file = NULL;
- 	rcu_read_unlock();
--- 
-2.20.1
+I am debugging some customer issues based on older kernel version, with this information,
+we can more easily get to know if some HW WAs are missing in their version.
+
+It helps a lot indeed. For example:
+Customer is using 4.19.96, which missed your patch of fixing GPU hang:)
+
+Author: Chris Wilson <chris@chris-wilson.co.uk>
+Date:   Wed Sep 4 11:07:07 2019 +0100
+
+    drm/i915: Restore relaxed padding (OCL_OOB_SUPPRES_ENABLE) for skl+
+
+Best Regards
+Chuansheng
 
 _______________________________________________
 Intel-gfx mailing list
