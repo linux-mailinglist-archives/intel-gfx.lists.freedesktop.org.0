@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7401816E8
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 12:36:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6A79181709
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 12:48:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 049EF6E57E;
-	Wed, 11 Mar 2020 11:36:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C58E89DB2;
+	Wed, 11 Mar 2020 11:48:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85CEC6E57E;
- Wed, 11 Mar 2020 11:36:10 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 04:36:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="353866031"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga001.fm.intel.com with SMTP; 11 Mar 2020 04:36:04 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 11 Mar 2020 13:36:03 +0200
-Date: Wed, 11 Mar 2020 13:36:03 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>
-Message-ID: <20200311113603.GU13686@intel.com>
-References: <20200214175646.25532-1-kai.heng.feng@canonical.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D75BE89DB2;
+ Wed, 11 Mar 2020 11:48:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CFED7A41FB;
+ Wed, 11 Mar 2020 11:48:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200214175646.25532-1-kai.heng.feng@canonical.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v4] drm/i915: Init lspcon after HPD in
- intel_dp_detect()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Liu, Chuansheng" <chuansheng.liu@intel.com>
+Date: Wed, 11 Mar 2020 11:48:53 -0000
+Message-ID: <158392733382.13953.7234913371716254449@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311084704.20468-1-chuansheng.liu@intel.com>
+In-Reply-To: <20200311084704.20468-1-chuansheng.liu@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/debugfs=3A_print_more_workaround_registers?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,163 +38,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- David Airlie <airlied@linux.ie>, Lucas De Marchi <lucas.demarchi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, Feb 15, 2020 at 01:56:27AM +0800, Kai-Heng Feng wrote:
-> On HP 800 G4 DM, if HDMI cable isn't plugged before boot, the HDMI port
-> becomes useless and never responds to cable hotplugging:
-> [    3.031904] [drm:lspcon_init [i915]] *ERROR* Failed to probe lspcon
-> [    3.031945] [drm:intel_ddi_init [i915]] *ERROR* LSPCON init failed on =
-port D
-> =
+== Series Details ==
 
-> Seems like the lspcon chip on the system in question only gets powered
-> after the cable is plugged.
-> =
+Series: drm/i915/debugfs: print more workaround registers
+URL   : https://patchwork.freedesktop.org/series/74571/
+State : success
 
-> So let's call lspcon_init() dynamically to properly initialize the
-> lspcon chip and make HDMI port work.
-> =
+== Summary ==
 
-> Signed-off-by: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> ---
-> v4:
->  - Trust VBT in intel_infoframe_init().
->  - Init lspcon in intel_dp_detect().
-> =
+CI Bug Log - changes from CI_DRM_8116 -> Patchwork_16921
+====================================================
 
-> v3:
->  - Make sure it's handled under long HPD case.
-> =
+Summary
+-------
 
-> v2: =
+  **SUCCESS**
 
->  - Move lspcon_init() inside of intel_dp_hpd_pulse().
-> =
+  No regressions found.
 
->  drivers/gpu/drm/i915/display/intel_ddi.c  | 17 +----------------
->  drivers/gpu/drm/i915/display/intel_dp.c   | 13 ++++++++++++-
->  drivers/gpu/drm/i915/display/intel_hdmi.c |  2 +-
->  3 files changed, 14 insertions(+), 18 deletions(-)
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/index.html
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 33f1dc3d7c1a..ca717434b406 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4741,7 +4741,7 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
-iv, enum port port)
->  		&dev_priv->vbt.ddi_port_info[port];
->  	struct intel_digital_port *intel_dig_port;
->  	struct intel_encoder *encoder;
-> -	bool init_hdmi, init_dp, init_lspcon =3D false;
-> +	bool init_hdmi, init_dp;
->  	enum phy phy =3D intel_port_to_phy(dev_priv, port);
->  =
+Known issues
+------------
 
->  	init_hdmi =3D port_info->supports_dvi || port_info->supports_hdmi;
-> @@ -4754,7 +4754,6 @@ void intel_ddi_init(struct drm_i915_private *dev_pr=
-iv, enum port port)
->  		 * is initialized before lspcon.
->  		 */
->  		init_dp =3D true;
-> -		init_lspcon =3D true;
->  		init_hdmi =3D false;
->  		DRM_DEBUG_KMS("VBT says port %c has lspcon\n", port_name(port));
->  	}
-> @@ -4833,20 +4832,6 @@ void intel_ddi_init(struct drm_i915_private *dev_p=
-riv, enum port port)
->  			goto err;
->  	}
->  =
+  Here are the changes found in Patchwork_16921 that come from known issues:
 
-> -	if (init_lspcon) {
-> -		if (lspcon_init(intel_dig_port))
-> -			/* TODO: handle hdmi info frame part */
-> -			DRM_DEBUG_KMS("LSPCON init success on port %c\n",
-> -				port_name(port));
-> -		else
-> -			/*
-> -			 * LSPCON init faied, but DP init was success, so
-> -			 * lets try to drive as DP++ port.
-> -			 */
-> -			DRM_ERROR("LSPCON init failed on port %c\n",
-> -				port_name(port));
-> -	}
-> -
->  	intel_infoframe_init(intel_dig_port);
->  =
+### IGT changes ###
 
->  	return;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index c7424e2a04a3..43117aa86292 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5663,8 +5663,19 @@ intel_dp_detect(struct drm_connector *connector,
->  	/* Can't disconnect eDP */
->  	if (intel_dp_is_edp(intel_dp))
->  		status =3D edp_detect(intel_dp);
-> -	else if (intel_digital_port_connected(encoder))
-> +	else if (intel_digital_port_connected(encoder)) {
-> +		if (intel_bios_is_lspcon_present(dev_priv, dig_port->base.port) &&
-> +		    !dig_port->lspcon.active) {
-> +			if (lspcon_init(dig_port))
-> +				DRM_DEBUG_KMS("LSPCON init success on port %c\n",
-> +					      port_name(dig_port->base.port));
-> +			else
-> +				DRM_DEBUG_KMS("LSPCON init failed on port %c\n",
-> +					      port_name(dig_port->base.port));
-> +		}
+#### Issues hit ####
 
-I was going to ask what happens when you unplug+replug, but looks like
-we already have lspcon_resume()in intel_dp_detect_dpcd(). This should
-be there as well. In fact I think we should just move all the logic
-into the lspcon code and let it decide on its own whether to take the init
-path or the resume path (assuming there is even any difference between
-the two).
+  * igt@gem_exec_suspend@basic-s3:
+    - fi-skl-6700k2:      [PASS][1] -> [INCOMPLETE][2] ([i915#69])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-skl-6700k2/igt@gem_exec_suspend@basic-s3.html
 
-Not sure what we should do with the lspcon_resume() call in
-intel_dp_encoder_reset()...
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [PASS][3] -> [FAIL][4] ([CI#94])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-> +
->  		status =3D intel_dp_detect_dpcd(intel_dp);
-> +	}
->  	else
->  		status =3D connector_status_disconnected;
->  =
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-hsw-4770:        [PASS][5] -> [SKIP][6] ([fdo#109271]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/=
-i915/display/intel_hdmi.c
-> index 93ac0f296852..27a5aa8cefc9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -3100,7 +3100,7 @@ void intel_infoframe_init(struct intel_digital_port=
- *intel_dig_port)
->  		intel_dig_port->set_infoframes =3D g4x_set_infoframes;
->  		intel_dig_port->infoframes_enabled =3D g4x_infoframes_enabled;
->  	} else if (HAS_DDI(dev_priv)) {
-> -		if (intel_dig_port->lspcon.active) {
-> +		if (intel_bios_is_lspcon_present(dev_priv, intel_dig_port->base.port))=
- {
->  			intel_dig_port->write_infoframe =3D lspcon_write_infoframe;
->  			intel_dig_port->read_infoframe =3D lspcon_read_infoframe;
->  			intel_dig_port->set_infoframes =3D lspcon_set_infoframes;
-> -- =
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][7] -> [INCOMPLETE][8] ([fdo#103927])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
 
-> 2.17.1
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([i915#323])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
--- =
+  
+#### Possible fixes ####
 
-Ville Syrj=E4l=E4
-Intel
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8700k:       [INCOMPLETE][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - fi-bsw-n3050:       [INCOMPLETE][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-bsw-n3050/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-dsi:         [INCOMPLETE][15] ([fdo#108569]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-icl-dsi/igt@i915_selftest@live@hangcheck.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-icl-dsi/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-kbl-7500u:       [FAIL][17] ([fdo#109635] / [i915#262]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8116/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/fi-kbl-7500u/igt@kms_chamelium@dp-crc-fast.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
+
+
+Participating hosts (49 -> 44)
+------------------------------
+
+  Additional (2): fi-skl-6770hq fi-bwr-2160 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8116 -> Patchwork_16921
+
+  CI-20190529: 20190529
+  CI_DRM_8116: ad36774154a4c61ff7b460ab5023b1e82c164ef5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16921: cc774ed296c85cd2125bbbe42fcc7c9fda87c3b5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+cc774ed296c8 drm/i915/debugfs: print more workaround registers
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16921/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
