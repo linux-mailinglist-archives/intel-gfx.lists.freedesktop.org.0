@@ -1,31 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A514F1812B0
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 09:13:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7F6F1812B9
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 09:15:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6F766E921;
-	Wed, 11 Mar 2020 08:13:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F92D6E920;
+	Wed, 11 Mar 2020 08:15:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 213086E920;
- Wed, 11 Mar 2020 08:13:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 185AFA0019;
- Wed, 11 Mar 2020 08:13:26 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D40126E920;
+ Wed, 11 Mar 2020 08:15:42 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 01:15:41 -0700
+X-IronPort-AV: E=Sophos;i="5.70,540,1574150400"; d="scan'208";a="236353114"
+Received: from mkuta-mobl.ger.corp.intel.com (HELO localhost) ([10.249.39.69])
+ by orsmga008-auth.jf.intel.com with
+ ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 11 Mar 2020 01:15:38 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Wambui Karuga <wambui.karugax@gmail.com>, airlied@linux.ie, daniel@ffwll.ch,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <20200310133121.27913-15-wambui.karugax@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200310133121.27913-1-wambui.karugax@gmail.com>
+ <20200310133121.27913-15-wambui.karugax@gmail.com>
+Date: Wed, 11 Mar 2020 10:15:55 +0200
+Message-ID: <87y2s7l32c.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Wed, 11 Mar 2020 08:13:26 -0000
-Message-ID: <158391440608.13949.8344631816222227898@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200310092119.14965-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgbGlz?=
- =?utf-8?q?t=3A_Prevent_compiler_reloads_inside_=27safe=27_list_iteration?=
+Subject: Re: [Intel-gfx] [PATCH v2 14/17] drm/i915: have *_debugfs_init()
+ functions return void.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,130 +46,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 10 Mar 2020, Wambui Karuga <wambui.karugax@gmail.com> wrote:
+> Since commit 987d65d01356 (drm: debugfs: make
+> drm_debugfs_create_files() never fail), drm_debugfs_create_files() never
+> fails and should return void. Therefore, remove its use as the
+> return value of debugfs_init() functions and have the functions return
+> void.
+>
+> v2: convert intel_display_debugfs_register() stub to return void too.
+>
+> Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
 
-Series: list: Prevent compiler reloads inside 'safe' list iteration
-URL   : https://patchwork.freedesktop.org/series/74495/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8108 -> Patchwork_16903
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16903 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@gem_mmap_gtt@basic:
-    - fi-tgl-y:           [PASS][3] -> [DMESG-WARN][4] ([CI#94] / [i915#402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-tgl-y/igt@gem_mmap_gtt@basic.html
-
-  * igt@i915_module_load@reload:
-    - fi-skl-6770hq:      [PASS][5] -> [DMESG-WARN][6] ([i915#92])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-skl-6770hq/igt@i915_module_load@reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-skl-6770hq/igt@i915_module_load@reload.html
-
-  * igt@i915_pm_rpm@basic-pci-d3-state:
-    - fi-skl-6770hq:      [PASS][7] -> [SKIP][8] ([fdo#109271]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-skl-6770hq/igt@i915_pm_rpm@basic-pci-d3-state.html
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-icl-u2:          [PASS][9] -> [FAIL][10] ([i915#976])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][11] -> [FAIL][12] ([fdo#111096] / [i915#323])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - fi-skl-6770hq:      [PASS][13] -> [DMESG-FAIL][14] ([i915#188])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-skl-6770hq/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_addfb_basic@bad-pitch-0:
-    - fi-tgl-y:           [DMESG-WARN][15] ([CI#94] / [i915#402]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-tgl-y/igt@kms_addfb_basic@bad-pitch-0.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-skl-6770hq:      [FAIL][17] ([i915#178]) -> [DMESG-WARN][18] ([i915#92])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8108/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/fi-skl-6770hq/igt@i915_pm_rpm@module-reload.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
-  [i915#178]: https://gitlab.freedesktop.org/drm/intel/issues/178
-  [i915#188]: https://gitlab.freedesktop.org/drm/intel/issues/188
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 
-Participating hosts (50 -> 39)
-------------------------------
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++----
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.h | 4 ++--
+>  drivers/gpu/drm/i915/i915_debugfs.c                  | 8 ++++----
+>  drivers/gpu/drm/i915/i915_debugfs.h                  | 4 ++--
+>  4 files changed, 12 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 1e6eb7f2f72d..424f4e52f783 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1927,7 +1927,7 @@ static const struct {
+>  	{"i915_edp_psr_debug", &i915_edp_psr_debug_fops},
+>  };
+>  
+> -int intel_display_debugfs_register(struct drm_i915_private *i915)
+> +void intel_display_debugfs_register(struct drm_i915_private *i915)
+>  {
+>  	struct drm_minor *minor = i915->drm.primary;
+>  	int i;
+> @@ -1940,9 +1940,9 @@ int intel_display_debugfs_register(struct drm_i915_private *i915)
+>  				    intel_display_debugfs_files[i].fops);
+>  	}
+>  
+> -	return drm_debugfs_create_files(intel_display_debugfs_list,
+> -					ARRAY_SIZE(intel_display_debugfs_list),
+> -					minor->debugfs_root, minor);
+> +	drm_debugfs_create_files(intel_display_debugfs_list,
+> +				 ARRAY_SIZE(intel_display_debugfs_list),
+> +				 minor->debugfs_root, minor);
+>  }
+>  
+>  static int i915_panel_show(struct seq_file *m, void *data)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.h b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+> index a3bea1ce04c2..c922c1745bfe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.h
+> @@ -10,10 +10,10 @@ struct drm_connector;
+>  struct drm_i915_private;
+>  
+>  #ifdef CONFIG_DEBUG_FS
+> -int intel_display_debugfs_register(struct drm_i915_private *i915);
+> +void intel_display_debugfs_register(struct drm_i915_private *i915);
+>  int intel_connector_debugfs_add(struct drm_connector *connector);
+>  #else
+> -static inline int intel_display_debugfs_register(struct drm_i915_private *i915) { return 0; }
+> +static inline void intel_display_debugfs_register(struct drm_i915_private *i915) {}
+>  static inline int intel_connector_debugfs_add(struct drm_connector *connector) { return 0; }
+>  #endif
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+> index 8f2525e4ce0f..de313199c714 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.c
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
+> @@ -2392,7 +2392,7 @@ static const struct i915_debugfs_files {
+>  	{"i915_guc_log_relay", &i915_guc_log_relay_fops},
+>  };
+>  
+> -int i915_debugfs_register(struct drm_i915_private *dev_priv)
+> +void i915_debugfs_register(struct drm_i915_private *dev_priv)
+>  {
+>  	struct drm_minor *minor = dev_priv->drm.primary;
+>  	int i;
+> @@ -2409,7 +2409,7 @@ int i915_debugfs_register(struct drm_i915_private *dev_priv)
+>  				    i915_debugfs_files[i].fops);
+>  	}
+>  
+> -	return drm_debugfs_create_files(i915_debugfs_list,
+> -					I915_DEBUGFS_ENTRIES,
+> -					minor->debugfs_root, minor);
+> +	drm_debugfs_create_files(i915_debugfs_list,
+> +				 I915_DEBUGFS_ENTRIES,
+> +				 minor->debugfs_root, minor);
+>  }
+> diff --git a/drivers/gpu/drm/i915/i915_debugfs.h b/drivers/gpu/drm/i915/i915_debugfs.h
+> index 6da39c76ab5e..1de2736f1248 100644
+> --- a/drivers/gpu/drm/i915/i915_debugfs.h
+> +++ b/drivers/gpu/drm/i915/i915_debugfs.h
+> @@ -12,10 +12,10 @@ struct drm_i915_private;
+>  struct seq_file;
+>  
+>  #ifdef CONFIG_DEBUG_FS
+> -int i915_debugfs_register(struct drm_i915_private *dev_priv);
+> +void i915_debugfs_register(struct drm_i915_private *dev_priv);
+>  void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj);
+>  #else
+> -static inline int i915_debugfs_register(struct drm_i915_private *dev_priv) { return 0; }
+> +static inline void i915_debugfs_register(struct drm_i915_private *dev_priv) {}
+>  static inline void i915_debugfs_describe_obj(struct seq_file *m, struct drm_i915_gem_object *obj) {}
+>  #endif
 
-  Missing    (11): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-ivb-3770 fi-blb-e6850 fi-byt-clapper fi-bdw-samus fi-kbl-r 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8108 -> Patchwork_16903
-
-  CI-20190529: 20190529
-  CI_DRM_8108: 7616c3ce8d78b3c229e4dc27d795246a2677f0a9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5504: d6788bf0404f76b66170e18eb26c85004b5ccb25 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16903: d40a755ea0b3a2f13024b0f912c115e490ec1a15 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d40a755ea0b3 list: Prevent compiler reloads inside 'safe' list iteration
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16903/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
