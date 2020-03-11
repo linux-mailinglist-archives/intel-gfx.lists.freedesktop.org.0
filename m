@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E73181C5A
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 16:33:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48088181C83
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 16:41:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A63766E487;
-	Wed, 11 Mar 2020 15:33:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDFC6E487
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 15:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E8F88089;
+	Wed, 11 Mar 2020 15:41:19 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D4E88089
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 15:41:17 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 08:33:09 -0700
-X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="236485610"
-Received: from zye4-mobl1.amr.corp.intel.com (HELO [10.254.212.29])
- ([10.254.212.29])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 11 Mar 2020 08:33:06 -0700
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200228022843.1936-1-daniele.ceraolospurio@intel.com>
- <20200228022843.1936-5-daniele.ceraolospurio@intel.com>
-From: "Ye, Tony" <tony.ye@intel.com>
-Message-ID: <be6dd380-e87b-9ac7-0185-c3c46e40240b@intel.com>
-Date: Wed, 11 Mar 2020 23:33:02 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2020 08:41:16 -0700
+X-IronPort-AV: E=Sophos;i="5.70,541,1574150400"; d="scan'208";a="231727513"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 11 Mar 2020 08:41:14 -0700
+To: "Ye, Tony" <tony.ye@intel.com>, Intel-gfx@lists.freedesktop.org
+References: <20200310091927.27401-1-tvrtko.ursulin@linux.intel.com>
+ <cef7ba32-4f19-342b-ddcf-56d63371f3c4@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <304510a0-5681-565f-e981-764e7848915d@linux.intel.com>
+Date: Wed, 11 Mar 2020 15:41:12 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200228022843.1936-5-daniele.ceraolospurio@intel.com>
+In-Reply-To: <cef7ba32-4f19-342b-ddcf-56d63371f3c4@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 4/6] drm/i915/debugfs: move uC printers and
- update debugfs file names
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl:
+ WaEnablePreemptionGranularityControlByUMD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,456 +48,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 2/28/2020 10:28 AM, Daniele Ceraolo Spurio wrote:
-> Move the printers to the respective files for clarity. The
-> guc_load_status debugfs has been squashed in the guc_info one, has
-> having separate ones wasn't very useful. The HuC debugfs has been
-> renamed huc_info to match.
-> 
-> While at it, fix the register printed in the HuC debugfs for gen11+.
-> 
-> Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Tony Ye <tony.ye@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc.c     |  44 +++++++
->   drivers/gpu/drm/i915/gt/uc/intel_guc.h     |   2 +
->   drivers/gpu/drm/i915/gt/uc/intel_guc_log.c |  94 ++++++++++++++-
->   drivers/gpu/drm/i915/gt/uc/intel_guc_log.h |   4 +
->   drivers/gpu/drm/i915/gt/uc/intel_huc.c     |  29 +++++
->   drivers/gpu/drm/i915/gt/uc/intel_huc.h     |   2 +
->   drivers/gpu/drm/i915/i915_debugfs.c        | 131 +++------------------
->   7 files changed, 190 insertions(+), 116 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> index 827d75073879..9647002b0e2f 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-> @@ -723,3 +723,47 @@ int intel_guc_allocate_and_map_vma(struct intel_guc *guc, u32 size,
->   
->   	return 0;
->   }
-> +
-> +/**
-> + * intel_guc_load_status - dump information about GuC load status
-> + * @guc: the GuC
-> + * @p: the &drm_printer
-> + *
-> + * Pretty printer for GuC load status.
-> + */
-> +void intel_guc_load_status(const struct intel_guc *guc, struct drm_printer *p)
-> +{
-> +	struct intel_gt *gt = guc_to_gt(guc);
-> +	struct intel_uncore *uncore = gt->uncore;
-> +	intel_wakeref_t wakeref;
-> +
-> +	if (!intel_guc_is_supported(guc)) {
-> +		drm_printf(p, "GuC not supported\n");
-> +		return;
-> +	}
-> +
-> +	if (!intel_guc_is_wanted(guc)) {
-> +		drm_printf(p, "GuC disabled\n");
-> +		return;
-> +	}
-> +
-> +	intel_uc_fw_dump(&guc->fw, p);
-> +
-> +	with_intel_runtime_pm(uncore->rpm, wakeref) {
-> +		u32 status = intel_uncore_read(uncore, GUC_STATUS);
-> +		u32 i;
-> +
-> +		drm_printf(p, "\nGuC status 0x%08x:\n", status);
-> +		drm_printf(p, "\tBootrom status = 0x%x\n",
-> +			   (status & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT);
-> +		drm_printf(p, "\tuKernel status = 0x%x\n",
-> +			   (status & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT);
-> +		drm_printf(p, "\tMIA Core status = 0x%x\n",
-> +			   (status & GS_MIA_MASK) >> GS_MIA_SHIFT);
-> +		drm_puts(p, "\nScratch registers:\n");
-> +		for (i = 0; i < 16; i++) {
-> +			drm_printf(p, "\t%2d: \t0x%x\n",
-> +				   i, intel_uncore_read(uncore, SOFT_SCRATCH(i)));
-> +		}
-> +	}
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 969147bd9973..7d1ae9879b94 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -190,4 +190,6 @@ static inline void intel_guc_disable_msg(struct intel_guc *guc, u32 mask)
->   int intel_guc_reset_engine(struct intel_guc *guc,
->   			   struct intel_engine_cs *engine);
->   
-> +void intel_guc_load_status(const struct intel_guc *guc, struct drm_printer *p);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> index caed0d57e704..fbb73b8d9178 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.c
-> @@ -55,7 +55,7 @@ static int guc_action_control_log(struct intel_guc *guc, bool enable,
->   	return intel_guc_send(guc, action, ARRAY_SIZE(action));
->   }
->   
-> -static inline struct intel_guc *log_to_guc(struct intel_guc_log *log)
-> +static inline struct intel_guc *log_to_guc(const struct intel_guc_log *log)
->   {
->   	return container_of(log, struct intel_guc, log);
->   }
-> @@ -672,3 +672,95 @@ void intel_guc_log_handle_flush_event(struct intel_guc_log *log)
->   {
->   	queue_work(system_highpri_wq, &log->relay.flush_work);
->   }
-> +
-> +static const char *
-> +stringify_guc_log_type(enum guc_log_buffer_type type)
-> +{
-> +	switch (type) {
-> +	case GUC_ISR_LOG_BUFFER:
-> +		return "ISR";
-> +	case GUC_DPC_LOG_BUFFER:
-> +		return "DPC";
-> +	case GUC_CRASH_DUMP_LOG_BUFFER:
-> +		return "CRASH";
-> +	default:
-> +		MISSING_CASE(type);
-> +	}
-> +
-> +	return "";
-> +}
-> +
-> +/**
-> + * intel_guc_log_info - dump information about GuC log relay
-> + * @guc: the GuC
-> + * @p: the &drm_printer
-> + *
-> + * Pretty printer for GuC log info
-> + */
-> +void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p)
-> +{
-> +	enum guc_log_buffer_type type;
-> +
-> +	if (!intel_guc_log_relay_created(log)) {
-> +		drm_puts(p, "GuC log relay not created\n");
-> +		return;
-> +	}
-> +
-> +	drm_puts(p, "GuC logging stats:\n");
-> +
-> +	drm_printf(p, "\tRelay full count: %u\n", log->relay.full_count);
-> +
-> +	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
-> +		drm_printf(p, "\t%s:\tflush count %10u, overflow count %10u\n",
-> +			   stringify_guc_log_type(type),
-> +			   log->stats[type].flush,
-> +			   log->stats[type].sampled_overflow);
-> +	}
-> +}
-> +
-> +/**
-> + * intel_guc_log_dump - dump the contents of the GuC log
-> + * @log: the GuC log
-> + * @p: the &drm_printer
-> + * @dump_load_err: dump the log saved on GuC load error
-> + *
-> + * Pretty printer for the GuC log
-> + */
-> +int intel_guc_log_dump(const struct intel_guc_log *log, struct drm_printer *p,
-> +		       bool dump_load_err)
-> +{
-> +	struct intel_guc *guc = log_to_guc(log);
-> +	struct intel_uc *uc = container_of(guc, struct intel_uc, guc);
-> +	struct drm_i915_gem_object *obj = NULL;
-> +	u32 *map;
-> +	int i = 0;
-> +
-> +	if (!intel_guc_is_supported(guc))
-> +		return -ENODEV;
-> +
-> +	if (dump_load_err)
-> +		obj = uc->load_err_log;
-> +	else if (guc->log.vma)
-> +		obj = guc->log.vma->obj;
-> +
-> +	if (!obj)
-> +		return 0;
-> +
-> +	map = i915_gem_object_pin_map(obj, I915_MAP_WC);
-> +	if (IS_ERR(map)) {
-> +		DRM_DEBUG("Failed to pin object\n");
-> +		drm_puts(p, "(log data unaccessible)\n");
-> +		return PTR_ERR(map);
-> +	}
-> +
-> +	for (i = 0; i < obj->base.size / sizeof(u32); i += 4)
-> +		drm_printf(p, "0x%08x 0x%08x 0x%08x 0x%08x\n",
-> +			   *(map + i), *(map + i + 1),
-> +			   *(map + i + 2), *(map + i + 3));
-> +
-> +	drm_puts(p, "\n");
-> +
-> +	i915_gem_object_unpin_map(obj);
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> index c252c022c5fc..e57b94a1badd 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_log.h
-> @@ -79,4 +79,8 @@ static inline u32 intel_guc_log_get_level(struct intel_guc_log *log)
->   	return log->level;
->   }
->   
-> +void intel_guc_log_info(struct intel_guc_log *log, struct drm_printer *p);
-> +int intel_guc_log_dump(const struct intel_guc_log *log, struct drm_printer *p,
-> +		       bool dump_load_err);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> index d73dc21686e7..093d6988cfb1 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-> @@ -218,3 +218,32 @@ int intel_huc_check_status(struct intel_huc *huc)
->   
->   	return (status & huc->status.mask) == huc->status.value;
->   }
-> +
-> +/**
-> + * intel_huc_load_status - dump information about HuC load status
-> + * @huc: the HuC
-> + * @p: the &drm_printer
-> + *
-> + * Pretty printer for HuC load status.
-> + */
-> +void intel_huc_load_status(const struct intel_huc *huc, struct drm_printer *p)
-> +{
-> +	struct intel_gt *gt = huc_to_gt(huc);
-> +	intel_wakeref_t wakeref;
-> +
-> +	if (!intel_huc_is_supported(huc)) {
-> +		drm_printf(p, "HuC not supported\n");
-> +		return;
-> +	}
-> +
-> +	if (!intel_huc_is_wanted(huc)) {
-> +		drm_printf(p, "HuC disabled\n");
-> +		return;
-> +	}
-> +
-> +	intel_uc_fw_dump(&huc->fw, p);
-> +
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref)
-> +		drm_printf(p, "\nHuC status 0x%08x:\n",
-> +			   intel_uncore_read(gt->uncore, huc->status.reg));
-
-HUC_STATUS register is still available on Gen11+. But if the purpose 
-here is to print the status of huc load/auth, then the change makes sense.
-
-Thanks,
-Tony
-
-> +}
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-> index 19651b46d6a4..f1299c0138e5 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-> @@ -57,4 +57,6 @@ static inline bool intel_huc_is_authenticated(const struct intel_huc *huc)
->   	return intel_uc_fw_is_running(&huc->fw);
->   }
->   
-> +void intel_huc_load_status(const struct intel_huc *huc, struct drm_printer *p);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 37cb8b4bf4dc..1bec4cdeb92f 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -1465,105 +1465,32 @@ static int i915_llc(struct seq_file *m, void *data)
->   	return 0;
->   }
->   
-> -static int i915_huc_load_status_info(struct seq_file *m, void *data)
-> +static int i915_huc_info(struct seq_file *m, void *data)
->   {
->   	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	intel_wakeref_t wakeref;
-> -	struct drm_printer p;
-> -
-> -	if (!HAS_GT_UC(dev_priv))
-> -		return -ENODEV;
-> -
-> -	p = drm_seq_file_printer(m);
-> -	intel_uc_fw_dump(&dev_priv->gt.uc.huc.fw, &p);
-> -
-> -	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref)
-> -		seq_printf(m, "\nHuC status 0x%08x:\n", I915_READ(HUC_STATUS2));
-> -
-> -	return 0;
-> -}
-> -
-> -static int i915_guc_load_status_info(struct seq_file *m, void *data)
-> -{
-> -	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	intel_wakeref_t wakeref;
-> -	struct drm_printer p;
-> +	struct intel_huc *huc = &dev_priv->gt.uc.huc;
-> +	struct drm_printer p = drm_seq_file_printer(m);
->   
-> -	if (!HAS_GT_UC(dev_priv))
-> +	if (!intel_huc_is_supported(huc))
->   		return -ENODEV;
->   
-> -	p = drm_seq_file_printer(m);
-> -	intel_uc_fw_dump(&dev_priv->gt.uc.guc.fw, &p);
-> -
-> -	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
-> -		u32 tmp = I915_READ(GUC_STATUS);
-> -		u32 i;
-> -
-> -		seq_printf(m, "\nGuC status 0x%08x:\n", tmp);
-> -		seq_printf(m, "\tBootrom status = 0x%x\n",
-> -			   (tmp & GS_BOOTROM_MASK) >> GS_BOOTROM_SHIFT);
-> -		seq_printf(m, "\tuKernel status = 0x%x\n",
-> -			   (tmp & GS_UKERNEL_MASK) >> GS_UKERNEL_SHIFT);
-> -		seq_printf(m, "\tMIA Core status = 0x%x\n",
-> -			   (tmp & GS_MIA_MASK) >> GS_MIA_SHIFT);
-> -		seq_puts(m, "\nScratch registers:\n");
-> -		for (i = 0; i < 16; i++) {
-> -			seq_printf(m, "\t%2d: \t0x%x\n",
-> -				   i, I915_READ(SOFT_SCRATCH(i)));
-> -		}
-> -	}
-> +	intel_huc_load_status(huc, &p);
->   
->   	return 0;
->   }
->   
-> -static const char *
-> -stringify_guc_log_type(enum guc_log_buffer_type type)
-> -{
-> -	switch (type) {
-> -	case GUC_ISR_LOG_BUFFER:
-> -		return "ISR";
-> -	case GUC_DPC_LOG_BUFFER:
-> -		return "DPC";
-> -	case GUC_CRASH_DUMP_LOG_BUFFER:
-> -		return "CRASH";
-> -	default:
-> -		MISSING_CASE(type);
-> -	}
-> -
-> -	return "";
-> -}
-> -
-> -static void i915_guc_log_info(struct seq_file *m, struct intel_guc_log *log)
-> -{
-> -	enum guc_log_buffer_type type;
-> -
-> -	if (!intel_guc_log_relay_created(log)) {
-> -		seq_puts(m, "GuC log relay not created\n");
-> -		return;
-> -	}
-> -
-> -	seq_puts(m, "GuC logging stats:\n");
-> -
-> -	seq_printf(m, "\tRelay full count: %u\n",
-> -		   log->relay.full_count);
-> -
-> -	for (type = GUC_ISR_LOG_BUFFER; type < GUC_MAX_LOG_BUFFER; type++) {
-> -		seq_printf(m, "\t%s:\tflush count %10u, overflow count %10u\n",
-> -			   stringify_guc_log_type(type),
-> -			   log->stats[type].flush,
-> -			   log->stats[type].sampled_overflow);
-> -	}
-> -}
-> -
->   static int i915_guc_info(struct seq_file *m, void *data)
->   {
->   	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	struct intel_uc *uc = &dev_priv->gt.uc;
-> +	struct intel_guc *guc = &dev_priv->gt.uc.guc;
-> +	struct drm_printer p = drm_seq_file_printer(m);
->   
-> -	if (!intel_uc_uses_guc(uc))
-> +	if (!intel_guc_is_supported(guc))
->   		return -ENODEV;
->   
-> -	i915_guc_log_info(m, &uc->guc.log);
-> +	intel_guc_load_status(guc, &p);
-> +	drm_puts(&p, "\n");
-> +	intel_guc_log_info(&guc->log, &p);
->   
->   	/* Add more as required ... */
->   
-> @@ -1574,39 +1501,14 @@ static int i915_guc_log_dump(struct seq_file *m, void *data)
->   {
->   	struct drm_info_node *node = m->private;
->   	struct drm_i915_private *dev_priv = node_to_i915(node);
-> +	struct intel_guc *guc = &dev_priv->gt.uc.guc;
->   	bool dump_load_err = !!node->info_ent->data;
-> -	struct drm_i915_gem_object *obj = NULL;
-> -	u32 *log;
-> -	int i = 0;
-> +	struct drm_printer p = drm_seq_file_printer(m);
->   
-> -	if (!HAS_GT_UC(dev_priv))
-> +	if (!intel_guc_is_supported(guc))
->   		return -ENODEV;
->   
-> -	if (dump_load_err)
-> -		obj = dev_priv->gt.uc.load_err_log;
-> -	else if (dev_priv->gt.uc.guc.log.vma)
-> -		obj = dev_priv->gt.uc.guc.log.vma->obj;
-> -
-> -	if (!obj)
-> -		return 0;
-> -
-> -	log = i915_gem_object_pin_map(obj, I915_MAP_WC);
-> -	if (IS_ERR(log)) {
-> -		DRM_DEBUG("Failed to pin object\n");
-> -		seq_puts(m, "(log data unaccessible)\n");
-> -		return PTR_ERR(log);
-> -	}
-> -
-> -	for (i = 0; i < obj->base.size / sizeof(u32); i += 4)
-> -		seq_printf(m, "0x%08x 0x%08x 0x%08x 0x%08x\n",
-> -			   *(log + i), *(log + i + 1),
-> -			   *(log + i + 2), *(log + i + 3));
-> -
-> -	seq_putc(m, '\n');
-> -
-> -	i915_gem_object_unpin_map(obj);
-> -
-> -	return 0;
-> +	return intel_guc_log_dump(&guc->log, &p, dump_load_err);
->   }
->   
->   static int i915_guc_log_level_get(void *data, u64 *val)
-> @@ -2302,10 +2204,9 @@ static const struct drm_info_list i915_debugfs_list[] = {
->   	{"i915_gem_fence_regs", i915_gem_fence_regs_info, 0},
->   	{"i915_gem_interrupt", i915_interrupt_info, 0},
->   	{"i915_guc_info", i915_guc_info, 0},
-> -	{"i915_guc_load_status", i915_guc_load_status_info, 0},
->   	{"i915_guc_log_dump", i915_guc_log_dump, 0},
->   	{"i915_guc_load_err_log_dump", i915_guc_log_dump, 0, (void *)1},
-> -	{"i915_huc_load_status", i915_huc_load_status_info, 0},
-> +	{"i915_huc_info", i915_huc_info, 0},
->   	{"i915_frequency_info", i915_frequency_info, 0},
->   	{"i915_drpc_info", i915_drpc_info, 0},
->   	{"i915_ring_freq_table", i915_ring_freq_table, 0},
-> 
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Ck9uIDExLzAzLzIwMjAgMTU6MTEsIFllLCBUb255IHdyb3RlOgo+IAo+IAo+IE9uIDMvMTAvMjAy
+MCA1OjE5IFBNLCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4gRnJvbTogVHZydGtvIFVyc3VsaW4g
+PHR2cnRrby51cnN1bGluQGludGVsLmNvbT4KPj4KPj4gQ2VydGFpbiB3b3JrbG9hZHMgbmVlZCB0
+aGUgYWJpbGl0eSB0byBkaXNhYmxlIHByZWVtcHRpb24gY29tcGxldGVseSBzbwo+PiBhbGxvdyB0
+aGVtIHRvIGRvIHRoYXQgYnkgd2hpdGVsaXN0aW5nIEdFTjhfQ1NfQ0hJQ0tFTjEuCj4+Cj4+IFNp
+Z25lZC1vZmYtYnk6IFR2cnRrbyBVcnN1bGluIDx0dnJ0a28udXJzdWxpbkBpbnRlbC5jb20+Cj4+
+IENjOiBNaWNoYWwgTXJvemVrIDxtaWNoYWwubXJvemVrQGludGVsLmNvbT4KPj4gQ2M6IFRvbnkg
+WWUgPHRvbnkueWVAaW50ZWwuY29tPgo+PiBDYzogUmFmYWVsIEFudG9nbm9sbGkgPHJhZmFlbC5h
+bnRvZ25vbGxpQGludGVsLmNvbT4KPj4gQ2M6IEphc29uIEVrc3RyYW5kIDxqYXNvbkBqbGVrc3Ry
+YW5kLm5ldD4KPj4gLS0tCj4+IFdlIG5lZWQgY29uZmlybWF0aW9uIGFuZCBhY2tzIGZyb20gYWxs
+IHRocmVlIHVzZXJzcGFjZSBjb21wb25lbnRzIGhlcmUuCj4+IEVzcGVjaWFsbHkgc2luY2UgbXkg
+aW1wcmVzc2lvbiB3YXMgc29tZSBhcmUgZm9yIGFuZCBzb21lIHdlcmUgYWdhaW5zdAo+PiB3aGl0
+ZWxpc3RpbmcgdGhpcyBvbmUuCj4gCj4gTWVkaWEgZG9lc24ndCBuZWVkIHRoaXMgZm9yIFRHTC4g
+QnV0IGl0J3MgYWNjZXB0YWJsZSBpZiBvdGhlciB1c2Vyc3BhY2UgCj4gd2FudHMgdG8gd2hpdGVs
+aXN0IGl0Lgo+IAo+IEFja2VkLWJ5OiBUb255IFllIDx0b255LnllQGludGVsLmNvbT4KCkphc29u
+LCBSYWZhZWwgLSBhbnkgb2JqZWN0aW9ucz8KClJlZ2FyZHMsCgpUdnJ0a28KCgo+IC0tLQo+PiDC
+oCBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jIHwgMyArKysKPj4g
+wqAgMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQo+Pgo+PiBkaWZmIC0tZ2l0IGEvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyAKPj4gYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9ndC9pbnRlbF93b3JrYXJvdW5kcy5jCj4+IGluZGV4IDM5MWYzOWIxZmIyNi4u
+MzdiZWNkZjc3NDI3IDEwMDY0NAo+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRl
+bF93b3JrYXJvdW5kcy5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3dv
+cmthcm91bmRzLmMKPj4gQEAgLTEyNzYsNiArMTI3Niw5IEBAIHN0YXRpYyB2b2lkIHRnbF93aGl0
+ZWxpc3RfYnVpbGQoc3RydWN0IAo+PiBpbnRlbF9lbmdpbmVfY3MgKmVuZ2luZSkKPj4gwqDCoMKg
+wqDCoMKgwqDCoMKgIC8qIFdhXzE4MDY1Mjc1NDk6dGdsICovCj4+IMKgwqDCoMKgwqDCoMKgwqDC
+oCB3aGl0ZWxpc3RfcmVnKHcsIEhJWl9DSElDS0VOKTsKPj4gKwo+PiArwqDCoMKgwqDCoMKgwqAg
+LyogV2FFbmFibGVQcmVlbXB0aW9uR3JhbnVsYXJpdHlDb250cm9sQnlVTUQ6dGdsICovCj4+ICvC
+oMKgwqDCoMKgwqDCoCB3aGl0ZWxpc3RfcmVnKHcsIEdFTjhfQ1NfQ0hJQ0tFTjEpOwo+PiDCoMKg
+wqDCoMKgwqDCoMKgwqAgYnJlYWs7Cj4+IMKgwqDCoMKgwqAgZGVmYXVsdDoKPj4gwqDCoMKgwqDC
+oMKgwqDCoMKgIGJyZWFrOwo+PgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVz
+a3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9p
+bnRlbC1nZngK
