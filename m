@@ -2,50 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABBA718184C
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 13:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF631818BC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 13:50:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C24F89DD8;
-	Wed, 11 Mar 2020 12:42:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BE24893A3;
+	Wed, 11 Mar 2020 12:50:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 952CA6E455
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 12:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
- :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=fxPDu0DtPhrHBO4sjTCx5egaowwjZD7MLKCyF4O/ftg=; b=XXJIaa9f6NAmA/jrdcvqBwQoRg
- 2xfWm6DxdqpzOk71I975lJY0lwrkyVt1zZcMG+wi8d+ZgQr0Id8NnhRxzgdG3h8zou1cWBT+U+rOw
- kcXylEsvuEBVO7GdpyfAFg4/3v1oENoqEMLSsB5zOEWnWn8I4AKOo4YLjEq5JCk68Yld54xuXHn1Y
- WSG/TYoSPAnP7aayqffyFD3J4/hBw2ncQhmQZVT8edTrz9X8VO26HPyDMV2ZzgZtEtFPAzUgLxTzb
- uHMQHj36RoF9lSdmUkn8WPWC4cev+uPy5vLZ3V/o+z0TnK7XI9YM2a8KnjTmFGBxTF/2gqgGJlEkK
- lVikpg1A==;
-Received: from j217100.upc-j.chello.nl ([24.132.217.100]
- helo=noisy.programming.kicks-ass.net)
- by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1jC0gq-0006Kh-03; Wed, 11 Mar 2020 12:42:26 +0000
-Received: from hirez.programming.kicks-ass.net
- (hirez.programming.kicks-ass.net [192.168.1.225])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (Client did not present a certificate)
- by noisy.programming.kicks-ass.net (Postfix) with ESMTPS id 1ACCA3006E0;
- Wed, 11 Mar 2020 13:42:22 +0100 (CET)
-Received: by hirez.programming.kicks-ass.net (Postfix, from userid 1000)
- id EFA6D20225665; Wed, 11 Mar 2020 13:42:21 +0100 (CET)
-Date: Wed, 11 Mar 2020 13:42:21 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Francisco Jerez <currojerez@riseup.net>
-Message-ID: <20200311124221.GO12561@hirez.programming.kicks-ass.net>
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-2-currojerez@riseup.net>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B177C893A3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 12:49:59 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20521391-1500050 
+ for multiple; Wed, 11 Mar 2020 12:49:35 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Mar 2020 12:49:33 +0000
+Message-Id: <20200311124933.8649-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310214203.26459-2-currojerez@riseup.net>
-Subject: Re: [Intel-gfx] [PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY
- global PM QoS limit.
+Subject: [Intel-gfx] [PATCH] drm/i915/gem: Take a copy of the engines for
+ context_barrier_task
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,27 +37,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
- "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>,
- linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 02:41:54PM -0700, Francisco Jerez wrote:
-> +static void cpu_response_frequency_qos_apply(struct pm_qos_request *req,
-> +					     enum pm_qos_req_action action,
-> +					     s32 value)
-> +{
-> +	int ret = pm_qos_update_target(req->qos, &req->node, action, value);
-> +
-> +	if (ret > 0)
-> +		wake_up_all_idle_cpus();
-> +}
+When applying the context-barrier, we only care about the current
+engines, as the next set of engines will be naturally after the barrier.
+So we can skip holding the ctx->engines_mutex while constructing the
+request by taking a sneaky reference to the i915_gem_engines instead.
 
-That's a pretty horrific thing to do; how often do we expect to call
-this?
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 89 ++++++++++++++-------
+ 1 file changed, 58 insertions(+), 31 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 50ecc0b2b235..e2357099a9ed 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -261,6 +261,34 @@ static void free_engines_rcu(struct rcu_head *rcu)
+ 	free_engines(engines);
+ }
+ 
++static int engines_notify(struct i915_sw_fence *fence,
++			  enum i915_sw_fence_notify state)
++{
++	struct i915_gem_engines *engines =
++		container_of(fence, typeof(*engines), fence);
++
++	switch (state) {
++	case FENCE_COMPLETE:
++		if (!list_empty(&engines->link)) {
++			struct i915_gem_context *ctx = engines->ctx;
++			unsigned long flags;
++
++			spin_lock_irqsave(&ctx->stale.lock, flags);
++			list_del(&engines->link);
++			spin_unlock_irqrestore(&ctx->stale.lock, flags);
++		}
++		i915_gem_context_put(engines->ctx);
++		break;
++
++	case FENCE_FREE:
++		init_rcu_head(&engines->rcu);
++		call_rcu(&engines->rcu, free_engines_rcu);
++		break;
++	}
++
++	return NOTIFY_DONE;
++}
++
+ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ {
+ 	const struct intel_gt *gt = &ctx->i915->gt;
+@@ -272,6 +300,8 @@ static struct i915_gem_engines *default_engines(struct i915_gem_context *ctx)
+ 	if (!e)
+ 		return ERR_PTR(-ENOMEM);
+ 
++	i915_sw_fence_init(&e->fence, engines_notify);
++
+ 	for_each_engine(engine, gt, id) {
+ 		struct intel_context *ce;
+ 
+@@ -519,41 +549,12 @@ static void kill_context(struct i915_gem_context *ctx)
+ 	kill_stale_engines(ctx);
+ }
+ 
+-static int engines_notify(struct i915_sw_fence *fence,
+-			  enum i915_sw_fence_notify state)
+-{
+-	struct i915_gem_engines *engines =
+-		container_of(fence, typeof(*engines), fence);
+-
+-	switch (state) {
+-	case FENCE_COMPLETE:
+-		if (!list_empty(&engines->link)) {
+-			struct i915_gem_context *ctx = engines->ctx;
+-			unsigned long flags;
+-
+-			spin_lock_irqsave(&ctx->stale.lock, flags);
+-			list_del(&engines->link);
+-			spin_unlock_irqrestore(&ctx->stale.lock, flags);
+-		}
+-		i915_gem_context_put(engines->ctx);
+-		break;
+-
+-	case FENCE_FREE:
+-		init_rcu_head(&engines->rcu);
+-		call_rcu(&engines->rcu, free_engines_rcu);
+-		break;
+-	}
+-
+-	return NOTIFY_DONE;
+-}
+-
+ static void engines_idle_release(struct i915_gem_context *ctx,
+ 				 struct i915_gem_engines *engines)
+ {
+ 	struct i915_gem_engines_iter it;
+ 	struct intel_context *ce;
+ 
+-	i915_sw_fence_init(&engines->fence, engines_notify);
+ 	INIT_LIST_HEAD(&engines->link);
+ 
+ 	engines->ctx = i915_gem_context_get(ctx);
+@@ -1079,6 +1080,30 @@ static void cb_retire(struct i915_active *base)
+ 	kfree(cb);
+ }
+ 
++static inline struct i915_gem_engines *
++__context_engines_await(const struct i915_gem_context *ctx)
++{
++	struct i915_gem_engines *engines;
++
++	rcu_read_lock();
++	do {
++		engines = rcu_dereference(ctx->engines);
++		if (!engines)
++			break;
++
++		if (!i915_sw_fence_await(&engines->fence))
++			continue;
++
++		if (engines == rcu_access_pointer(ctx->engines))
++			break;
++
++		i915_sw_fence_complete(&engines->fence);
++	} while(1);
++	rcu_read_unlock();
++
++	return engines;
++}
++
+ I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
+ static int context_barrier_task(struct i915_gem_context *ctx,
+ 				intel_engine_mask_t engines,
+@@ -1089,6 +1114,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ {
+ 	struct context_barrier_task *cb;
+ 	struct i915_gem_engines_iter it;
++	struct i915_gem_engines *e;
+ 	struct intel_context *ce;
+ 	int err = 0;
+ 
+@@ -1105,7 +1131,8 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 		return err;
+ 	}
+ 
+-	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
++	e = __context_engines_await(ctx);
++	for_each_gem_engine(ce, e, it) {
+ 		struct i915_request *rq;
+ 
+ 		if (I915_SELFTEST_ONLY(context_barrier_inject_fault &
+@@ -1136,7 +1163,7 @@ static int context_barrier_task(struct i915_gem_context *ctx,
+ 		if (err)
+ 			break;
+ 	}
+-	i915_gem_context_unlock_engines(ctx);
++	i915_sw_fence_complete(&e->fence);
+ 
+ 	cb->task = err ? NULL : task; /* caller needs to unwind instead */
+ 	cb->data = data;
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
