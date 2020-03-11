@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EAB8181200
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 08:33:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0FE918126C
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2020 08:55:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6899B6E454;
-	Wed, 11 Mar 2020 07:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16DAB6E927;
+	Wed, 11 Mar 2020 07:55:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx2.suse.de (mx2.suse.de [195.135.220.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E912B6E444
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Mar 2020 07:33:00 +0000 (UTC)
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
- by mx2.suse.de (Postfix) with ESMTP id 7BF0DAED6;
- Wed, 11 Mar 2020 07:32:59 +0000 (UTC)
-From: Takashi Iwai <tiwai@suse.de>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Wed, 11 Mar 2020 08:32:56 +0100
-Message-Id: <20200311073256.6535-1-tiwai@suse.de>
-X-Mailer: git-send-email 2.16.4
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Use scnprintf() for avoiding
- potential buffer overflow
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8289D6E86F;
+ Wed, 11 Mar 2020 07:55:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 78C5BA00E7;
+ Wed, 11 Mar 2020 07:55:47 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Takashi Iwai" <tiwai@suse.de>
+Date: Wed, 11 Mar 2020 07:55:47 -0000
+Message-ID: <158391334746.13949.17735904652376154356@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311073256.6535-1-tiwai@suse.de>
+In-Reply-To: <20200311073256.6535-1-tiwai@suse.de>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915/gt=3A_Use_scnprintf=28=29_for_avoiding_potential_b?=
+ =?utf-8?q?uffer_overflow?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,53 +39,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Since snprintf() returns the would-be-output size instead of the
-actual output size, the succeeding calls may go beyond the given
-buffer limit.  Fix it by replacing with scnprintf().
+== Series Details ==
 
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Series: drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
+URL   : https://patchwork.freedesktop.org/series/74562/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 53ac3f00909a..418547bfe03b 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1381,13 +1381,13 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 			char hdr[160];
- 			int len;
- 
--			len = snprintf(hdr, sizeof(hdr),
+== Summary ==
+
+$ dim checkpatch origin/drm-tip
+00261fad413a drm/i915/gt: Use scnprintf() for avoiding potential buffer overflow
+-:23: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#23: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1385:
 +			len = scnprintf(hdr, sizeof(hdr),
  				       "\t\tActive[%d]: ",
- 				       (int)(port - execlists->active));
- 			if (!i915_request_signaled(rq)) {
- 				struct intel_timeline *tl = get_timeline(rq);
- 
--				len += snprintf(hdr + len, sizeof(hdr) - len,
-+				len += scnprintf(hdr + len, sizeof(hdr) - len,
- 						"ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
- 						i915_ggtt_offset(rq->ring->vma),
- 						tl ? tl->hwsp_offset : 0,
-@@ -1398,7 +1398,7 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 				if (tl)
- 					intel_timeline_put(tl);
- 			}
--			snprintf(hdr + len, sizeof(hdr) - len, "rq: ");
-+			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
- 			print_request(m, rq, hdr);
- 		}
- 		for (port = execlists->pending; (rq = *port); port++) {
--- 
-2.16.4
+
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
