@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CED2183683
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 17:48:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C551A1836B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 17:57:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01906EB02;
-	Thu, 12 Mar 2020 16:48:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FC386EB03;
+	Thu, 12 Mar 2020 16:57:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 45FC76EB01;
- Thu, 12 Mar 2020 16:48:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3E6B3A0019;
- Thu, 12 Mar 2020 16:48:17 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16F666EB03
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 16:57:18 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 09:57:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="416007937"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga005.jf.intel.com with ESMTP; 12 Mar 2020 09:57:11 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id ABDB15C1DD1; Thu, 12 Mar 2020 18:55:48 +0200 (EET)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200311162300.1838847-7-matthew.d.roper@intel.com>
+References: <20200311162300.1838847-1-matthew.d.roper@intel.com>
+ <20200311162300.1838847-7-matthew.d.roper@intel.com>
+Date: Thu, 12 Mar 2020 18:55:48 +0200
+Message-ID: <877dzp1pij.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Mar 2020 16:48:17 -0000
-Message-ID: <158403169722.4947.10209374893037459394@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200312154708.1720-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200312154708.1720-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Use_igt=5Frandom=5Foffset=28=29?=
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915: Add Wa_1605460711 /
+ Wa_1408767742 to ICL and EHL
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,92 +45,60 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Matt Roper <matthew.d.roper@intel.com> writes:
 
-Series: drm/i915/selftests: Use igt_random_offset()
-URL   : https://patchwork.freedesktop.org/series/74649/
-State : success
+> This workaround appears under two different numbers (and with somewhat
+> confused stepping applicability on ICL).  Ultimately it appears we
+> should just implement this for all stepping of ICL and EHL.
+>
+> Note that this is identical to Wa_1407928979:tgl that already exists in
+> our driver too...yet another number referencing the same actual
+> workaround.
+>
+> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index cbfc8d5ebb3e..5176ad1a3976 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1487,6 +1487,14 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  		wa_write_or(wal,
+>  			    SUBSLICE_UNIT_LEVEL_CLKGATE,
+>  			    GWUNIT_CLKGATE_DIS);
+> +
+> +		/*
+> +		 * Wa_1408767742:icl[a2..forever],ehl[all]
+> +		 * Wa_1605460711:icl[a0..c0]
+> +		 */
+> +		wa_write_or(wal,
+> +			    GEN7_FF_THREAD_MODE,
+> +			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
 
-== Summary ==
+The gen12 assignment is amusing artefact. But we learn these things
+late sometimes. And when we do, we should try to proactively look one gen back.
 
-CI Bug Log - changes from CI_DRM_8127 -> Patchwork_16955
-====================================================
+This was supposed to be fixed in d0, then re-established.
 
-Summary
--------
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16955 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][1] ([i915#877]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-    - fi-skl-lmem:        [INCOMPLETE][3] ([i915#424]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [INCOMPLETE][5] ([i915#1405]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-ivb-3770:        [DMESG-WARN][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-ivb-3770/igt@i915_selftest@live@mman.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/fi-ivb-3770/igt@i915_selftest@live@mman.html
-
-  
-  [i915#1405]: https://gitlab.freedesktop.org/drm/intel/issues/1405
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (42 -> 43)
-------------------------------
-
-  Additional (8): fi-bsw-n3050 fi-cfl-guc fi-snb-2520m fi-kbl-x1275 fi-bsw-kefka fi-kbl-7560u fi-bsw-nick fi-kbl-r 
-  Missing    (7): fi-ilk-m540 fi-tgl-dsi fi-hsw-4200u fi-skl-6770hq fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8127 -> Patchwork_16955
-
-  CI-20190529: 20190529
-  CI_DRM_8127: 6b843f994832ac95eafa8d380399c3aef2cab3e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5506: 59fd8a0d01dac58dc6c7d86ef391ed4393ab5aae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16955: 1860e57c181be4a7405ee70f74c7c1a451330318 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-1860e57c181b drm/i915/selftests: Use igt_random_offset()
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16955/index.html
+>  	}
+>  
+>  	if (IS_GEN_RANGE(i915, 9, 12)) {
+> -- 
+> 2.24.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
