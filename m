@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D4CF183249
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:04:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11534183259
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:06:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF2F66EACC;
-	Thu, 12 Mar 2020 14:04:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C91B6E2E8;
+	Thu, 12 Mar 2020 14:06:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5A96E201;
- Thu, 12 Mar 2020 14:04:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 07:04:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="232063290"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 12 Mar 2020 07:04:35 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Mar 2020 16:04:34 +0200
-Date: Thu, 12 Mar 2020 16:04:34 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200312140434.GG13686@intel.com>
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C75436E201;
+ Thu, 12 Mar 2020 14:06:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BFFF7A0099;
+ Thu, 12 Mar 2020 14:06:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC][PATCH 0/5] Introduce drm scaling filter
- property
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
+Date: Thu, 12 Mar 2020 14:06:09 -0000
+Message-ID: <158402196978.4948.9498083748150446225@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200310160047.20748-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200310160047.20748-1-tvrtko.ursulin@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gen12=3A_Disable_preemption_timeout_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,105 +38,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: mripard@kernel.org, tzimmermann@suse.de, airlied@linux.ie,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- mihail.atanassov@arm.com
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2020 at 12:35:40PM +0530, Pankaj Bharadiya wrote:
-> Integer scaling (IS) is a nearest-neighbor upscaling technique that
-> simply scales up the existing pixels by an integer (i.e., whole
-> number) multiplier. Nearest-neighbor (NN) interpolation works by
-> filling in the missing color values in the upscaled image with that of
-> the coordinate-mapped nearest source pixel value.
-> =
+== Series Details ==
 
-> Both IS and NN preserve the clarity of the original image. In
-> contrast, traditional upscaling algorithms, such as bilinear or
-> bicubic interpolation, result in blurry upscaled images because they
-> employ interpolation techniques that smooth out the transition from
-> one pixel to another.  Therefore, integer scaling is particularly
-> useful for pixel art games that rely on sharp, blocky images to
-> deliver their distinctive look.
-> =
+Series: drm/i915/gen12: Disable preemption timeout (rev4)
+URL   : https://patchwork.freedesktop.org/series/74526/
+State : success
 
-> Many gaming communities have been asking for integer-mode scaling
-> support, some links and background:
-> =
+== Summary ==
 
-> https://software.intel.com/en-us/articles/integer-scaling-support-on-inte=
-l-graphics
-> http://tanalin.com/en/articles/lossless-scaling/
-> https://community.amd.com/thread/209107
-> https://www.nvidia.com/en-us/geforce/forums/game-ready-drivers/13/1002/fe=
-ature-request-nonblurry-upscaling-at-integer-rat/
-> =
+CI Bug Log - changes from CI_DRM_8126 -> Patchwork_16952
+====================================================
 
-> This patch series -
->   - Introduces new scaling filter property to allow userspace to
->     select  the driver's default scaling filter or Nearest-neighbor(NN)
->     filter for scaling operations on crtc/plane.
->   - Implements and enable integer scaling for i915
-> =
+Summary
+-------
 
-> Userspace patch series link: TBD.
+  **SUCCESS**
 
-That needs to be done or this will go nowhere.
+  No regressions found.
 
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/index.html
 
-> Thanks to Shashank for initiating this work. His initial RFC can be
-> found here [1]
-> =
+Known issues
+------------
 
-> [1] https://patchwork.freedesktop.org/patch/337082/
-> =
+  Here are the changes found in Patchwork_16952 that come from known issues:
 
-> Modifications done in this series -
->    - refactored code and incorporated initial review comments and
->      added 2 scaling filter types (default and NN) to begin with.
->    - added scaling filter property support for planes and new API
->      helpers for drivers to setup this property.
->    - rewrote code to enable integer scaling and NN filter for i915
-> =
+### IGT changes ###
 
-> =
+#### Issues hit ####
 
-> Pankaj Bharadiya (5):
->   drm: Introduce scaling filter property
->   drm/drm-kms.rst: Add Scaling filter property documentation
->   drm/i915: Enable scaling filter for plane and pipe
->   drm/i915: Introduce scaling filter related registers and bit fields.
->   drm/i915/display: Add Nearest-neighbor based integer scaling support
-> =
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
 
->  Documentation/gpu/drm-kms.rst                |   6 ++
->  drivers/gpu/drm/drm_atomic_uapi.c            |   8 ++
->  drivers/gpu/drm/drm_crtc.c                   |  16 +++
->  drivers/gpu/drm/drm_mode_config.c            |  13 +++
->  drivers/gpu/drm/drm_plane.c                  |  35 +++++++
->  drivers/gpu/drm/i915/display/intel_display.c | 100 ++++++++++++++++++-
->  drivers/gpu/drm/i915/display/intel_display.h |   2 +
->  drivers/gpu/drm/i915/display/intel_sprite.c  |  32 ++++--
->  drivers/gpu/drm/i915/i915_reg.h              |  21 ++++
->  include/drm/drm_crtc.h                       |  10 ++
->  include/drm/drm_mode_config.h                |   6 ++
->  include/drm/drm_plane.h                      |  14 +++
->  12 files changed, 252 insertions(+), 11 deletions(-)
-> =
+  
+#### Possible fixes ####
 
-> -- =
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-hsw-4770:        [SKIP][3] ([fdo#109271]) -> [PASS][4] +1 similar issue
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
 
-> 2.23.0
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][5] ([i915#323]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
--- =
+  
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
 
-Ville Syrj=E4l=E4
-Intel
+
+Participating hosts (46 -> 36)
+------------------------------
+
+  Missing    (10): fi-hsw-4200u fi-bsw-n3050 fi-skl-6770hq fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ivb-3770 fi-bsw-kefka fi-skl-lmem fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8126 -> Patchwork_16952
+
+  CI-20190529: 20190529
+  CI_DRM_8126: 2bd9e989a5653d4cd710e9dd2b42b0a080f1add8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16952: 29ee5b2d76d9cff0df53a973f7bf9a11e26814dd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+29ee5b2d76d9 drm/i915/gen12: Disable preemption timeout
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
