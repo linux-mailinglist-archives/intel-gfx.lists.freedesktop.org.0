@@ -2,32 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AFFA1828CC
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 07:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7841828CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 07:14:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0751B6EA2B;
-	Thu, 12 Mar 2020 06:14:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DD26EA2D;
+	Thu, 12 Mar 2020 06:14:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 402506EA2B
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 06:14:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB5A6EA2B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 06:14:23 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 23:14:21 -0700
+ 11 Mar 2020 23:14:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,543,1574150400"; d="scan'208";a="242923060"
+X-IronPort-AV: E=Sophos;i="5.70,543,1574150400"; d="scan'208";a="242923075"
 Received: from vandita-desktop.iind.intel.com ([10.223.74.218])
- by orsmga003.jf.intel.com with ESMTP; 11 Mar 2020 23:14:19 -0700
+ by orsmga003.jf.intel.com with ESMTP; 11 Mar 2020 23:14:21 -0700
 From: Vandita Kulkarni <vandita.kulkarni@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Mar 2020 11:08:32 +0530
-Message-Id: <20200312053841.2794-1-vandita.kulkarni@intel.com>
+Date: Thu, 12 Mar 2020 11:08:33 +0530
+Message-Id: <20200312053841.2794-2-vandita.kulkarni@intel.com>
 X-Mailer: git-send-email 2.21.0.5.gaeb582a
+In-Reply-To: <20200312053841.2794-1-vandita.kulkarni@intel.com>
+References: <20200312053841.2794-1-vandita.kulkarni@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [V8 0/9] Add support for mipi dsi cmd mode
+Subject: [Intel-gfx] [V8 1/9] drm/i915/dsi: Configure transcoder operation
+ for command mode.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,27 +49,111 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series contain basic mipi dsi cmd mode enabling
-patches. With comments fixed on V7.
+Configure the transcoder to operate in TE GATE command mode
+and  take TE events from GPIO.
+Also disable the periodic command mode, that GOP would have
+programmed.
 
-Vandita Kulkarni (9):
-  drm/i915/dsi: Configure transcoder operation for command mode.
-  drm/i915/dsi: Add vblank calculation for command mode
-  drm/i915/dsi: Add cmd mode flags in display mode private flags
-  drm/i915/dsi: Add check for periodic command mode
-  drm/i915/dsi: Use private flags to indicate TE in cmd mode
-  drm/i915/dsi: Configure TE interrupt for cmd mode
-  drm/i915/dsi: Add TE handler for dsi cmd mode.
-  drm/i915/dsi: Initiate fame request in cmd mode
-  drm/i915/dsi: Clear the DSI IIR
+v2: Disable util pin (Jani)
+v3: Use intel_de_write (Jani)
 
- drivers/gpu/drm/i915/display/icl_dsi.c        | 168 ++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c  |  12 ++
- .../drm/i915/display/intel_display_types.h    |  10 ++
- drivers/gpu/drm/i915/display/intel_dsi.h      |   3 +
- drivers/gpu/drm/i915/i915_irq.c               | 118 +++++++++++-
- 5 files changed, 297 insertions(+), 14 deletions(-)
+Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi.c | 52 ++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 17cee6f80d8b..7744a6fd5d26 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -744,6 +744,18 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+ 				tmp |= VIDEO_MODE_SYNC_PULSE;
+ 				break;
+ 			}
++		} else {
++			/*
++			 * FIXME: Retrieve this info from VBT.
++			 * As per the spec when dsi transcoder is operating
++			 * in TE GATE mode, TE comes from GPIO
++			 * which is UTIL PIN for DSI 0.
++			 * Also this GPIO would not be used for other
++			 * purposes is an assumption.
++			 */
++			tmp &= ~OP_MODE_MASK;
++			tmp |= CMD_MODE_TE_GATE;
++			tmp |= TE_SOURCE_GPIO;
+ 		}
+ 
+ 		intel_de_write(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
+@@ -1016,6 +1028,32 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+ 	}
+ }
+ 
++static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
++				      bool enable)
++{
++	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
++	u32 tmp;
++
++	/*
++	 * used as TE i/p for DSI0,
++	 * for dual link/DSI1 TE is from slave DSI1
++	 * through GPIO.
++	 */
++	if (is_vid_mode(intel_dsi) || (intel_dsi->ports & BIT(PORT_B)))
++		return;
++
++	tmp = intel_de_read(dev_priv, UTIL_PIN_CTL);
++
++	if (enable) {
++		tmp |= UTIL_PIN_DIRECTION_INPUT;
++		tmp |= UTIL_PIN_ENABLE;
++	} else {
++		tmp &= ~UTIL_PIN_ENABLE;
++	}
++	intel_de_write(dev_priv, UTIL_PIN_CTL, tmp);
++}
++
+ static void
+ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+ 			      const struct intel_crtc_state *crtc_state)
+@@ -1037,6 +1075,9 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+ 	/* setup D-PHY timings */
+ 	gen11_dsi_setup_dphy_timings(encoder, crtc_state);
+ 
++	/* Since transcoder is configured to take events from GPIO */
++	gen11_dsi_config_util_pin(encoder, true);
++
+ 	/* step 4h: setup DSI protocol timeouts */
+ 	gen11_dsi_setup_timeouts(encoder, crtc_state);
+ 
+@@ -1180,6 +1221,15 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+ 	enum transcoder dsi_trans;
+ 	u32 tmp;
+ 
++	/* disable periodic update mode */
++	if (is_cmd_mode(intel_dsi)) {
++		for_each_dsi_port(port, intel_dsi->ports) {
++			tmp = intel_de_read(dev_priv, DSI_CMD_FRMCTL(port));
++			tmp &= ~DSI_PERIODIC_FRAME_UPDATE_ENABLE;
++			intel_de_write(dev_priv, DSI_CMD_FRMCTL(port), tmp);
++		}
++	}
++
+ 	/* put dsi link in ULPS */
+ 	for_each_dsi_port(port, intel_dsi->ports) {
+ 		dsi_trans = dsi_port_to_transcoder(port);
+@@ -1286,6 +1336,8 @@ static void gen11_dsi_disable(struct intel_encoder *encoder,
+ 	/* step3: disable port */
+ 	gen11_dsi_disable_port(encoder);
+ 
++	gen11_dsi_config_util_pin(encoder, false);
++
+ 	/* step4: disable IO power */
+ 	gen11_dsi_disable_io_power(encoder);
+ }
 -- 
 2.21.0.5.gaeb582a
 
