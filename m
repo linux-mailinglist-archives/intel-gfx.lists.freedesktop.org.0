@@ -2,30 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D71C6182EB0
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:11:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77EFF182F06
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:24:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADC056E13F;
-	Thu, 12 Mar 2020 11:11:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1BE26E162;
+	Thu, 12 Mar 2020 11:24:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4A74C6E13D;
- Thu, 12 Mar 2020 11:11:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 45A7CA47E6;
- Thu, 12 Mar 2020 11:11:47 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5F976E14E;
+ Thu, 12 Mar 2020 11:24:46 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 04:24:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,544,1574150400"; d="scan'208";a="354108230"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by fmsmga001.fm.intel.com with ESMTP; 12 Mar 2020 04:24:42 -0700
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, daniels@collabora.com
+Date: Thu, 12 Mar 2020 16:44:44 +0530
+Message-Id: <20200312111449.21202-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Mar 2020 11:11:47 -0000
-Message-ID: <158401150728.4947.1078229991087514070@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200312103548.19962-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200312103548.19962-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/mm=3A_Use_debugobject_to_track_lifetimes?=
+Subject: [Intel-gfx] [PATCH 0/5] Introduce drm scaling filter property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,41 +42,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogZHJtL21tOiBVc2UgZGVidWdvYmplY3QgdG8g
-dHJhY2sgbGlmZXRpbWVzClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3Jn
-L3Nlcmllcy83NDYzOC8KU3RhdGUgOiBmYWlsdXJlCgo9PSBTdW1tYXJ5ID09CgpDQUxMICAgIHNj
-cmlwdHMvY2hlY2tzeXNjYWxscy5zaAogIENBTEwgICAgc2NyaXB0cy9hdG9taWMvY2hlY2stYXRv
-bWljcy5zaAogIERFU0NFTkQgIG9ianRvb2wKICBDSEsgICAgIGluY2x1ZGUvZ2VuZXJhdGVkL2Nv
-bXBpbGUuaAogIENDICAgICAgZHJpdmVycy9ncHUvZHJtL2RybV9tbS5vCmRyaXZlcnMvZ3B1L2Ry
-bS9kcm1fbW0uYzo2ODQ6NjogZXJyb3I6IHJlZGVmaW5pdGlvbiBvZiDigJhfX2RybV9tbV9ub2Rl
-X2luaXTigJkKIHZvaWQgX19kcm1fbW1fbm9kZV9pbml0KHN0cnVjdCBkcm1fbW1fbm9kZSAqbm9k
-ZSkKICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+CkluIGZpbGUgaW5jbHVkZWQgZnJvbSBkcml2ZXJz
-L2dwdS9kcm0vZHJtX21tLmM6NTI6MDoKLi9pbmNsdWRlL2RybS9kcm1fbW0uaDoyODI6MjA6IG5v
-dGU6IHByZXZpb3VzIGRlZmluaXRpb24gb2Yg4oCYX19kcm1fbW1fbm9kZV9pbml04oCZIHdhcyBo
-ZXJlCiBzdGF0aWMgaW5saW5lIHZvaWQgX19kcm1fbW1fbm9kZV9pbml0KHN0cnVjdCBkcm1fbW1f
-bm9kZSAqbm9kZSkgeyB9CiAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+CmRy
-aXZlcnMvZ3B1L2RybS9kcm1fbW0uYzo2OTA6NjogZXJyb3I6IHJlZGVmaW5pdGlvbiBvZiDigJhf
-X2RybV9tbV9ub2RlX2ZpbmnigJkKIHZvaWQgX19kcm1fbW1fbm9kZV9maW5pKHN0cnVjdCBkcm1f
-bW1fbm9kZSAqbm9kZSkKICAgICAgXn5+fn5+fn5+fn5+fn5+fn5+CkluIGZpbGUgaW5jbHVkZWQg
-ZnJvbSBkcml2ZXJzL2dwdS9kcm0vZHJtX21tLmM6NTI6MDoKLi9pbmNsdWRlL2RybS9kcm1fbW0u
-aDoyODM6MjA6IG5vdGU6IHByZXZpb3VzIGRlZmluaXRpb24gb2Yg4oCYX19kcm1fbW1fbm9kZV9m
-aW5p4oCZIHdhcyBoZXJlCiBzdGF0aWMgaW5saW5lIHZvaWQgX19kcm1fbW1fbm9kZV9maW5pKHN0
-cnVjdCBkcm1fbW1fbm9kZSAqbm9kZSkgeyB9CiAgICAgICAgICAgICAgICAgICAgXn5+fn5+fn5+
-fn5+fn5+fn5+CnNjcmlwdHMvTWFrZWZpbGUuYnVpbGQ6MjY3OiByZWNpcGUgZm9yIHRhcmdldCAn
-ZHJpdmVycy9ncHUvZHJtL2RybV9tbS5vJyBmYWlsZWQKbWFrZVszXTogKioqIFtkcml2ZXJzL2dw
-dS9kcm0vZHJtX21tLm9dIEVycm9yIDEKc2NyaXB0cy9NYWtlZmlsZS5idWlsZDo1MDU6IHJlY2lw
-ZSBmb3IgdGFyZ2V0ICdkcml2ZXJzL2dwdS9kcm0nIGZhaWxlZAptYWtlWzJdOiAqKiogW2RyaXZl
-cnMvZ3B1L2RybV0gRXJyb3IgMgpzY3JpcHRzL01ha2VmaWxlLmJ1aWxkOjUwNTogcmVjaXBlIGZv
-ciB0YXJnZXQgJ2RyaXZlcnMvZ3B1JyBmYWlsZWQKbWFrZVsxXTogKioqIFtkcml2ZXJzL2dwdV0g
-RXJyb3IgMgpNYWtlZmlsZToxNjgzOiByZWNpcGUgZm9yIHRhcmdldCAnZHJpdmVycycgZmFpbGVk
-Cm1ha2U6ICoqKiBbZHJpdmVyc10gRXJyb3IgMgoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+This series is the continuation for the RFC that I posted earlier [1]
+
+[1] RFC: https://patchwork.freedesktop.org/series/73884/
+
+Integer scaling (IS) is a nearest-neighbor upscaling technique that
+simply scales up the existing pixels by an integer (i.e., whole
+number) multiplier. Nearest-neighbor (NN) interpolation works by
+filling in the missing color values in the upscaled image with that of
+the coordinate-mapped nearest source pixel value.
+
+Both IS and NN preserve the clarity of the original image. In
+contrast, traditional upscaling algorithms, such as bilinear or
+bicubic interpolation, result in blurry upscaled images because they
+employ interpolation techniques that smooth out the transition from
+one pixel to another.  Therefore, integer scaling is particularly
+useful for pixel art games that rely on sharp, blocky images to
+deliver their distinctive look.
+
+Many gaming communities have been asking for integer-mode scaling
+support, some links and background:
+
+https://software.intel.com/en-us/articles/integer-scaling-support-on-intel-graphics
+http://tanalin.com/en/articles/lossless-scaling/
+https://community.amd.com/thread/209107
+https://www.nvidia.com/en-us/geforce/forums/game-ready-drivers/13/1002/feature-request-nonblurry-upscaling-at-integer-rat/
+
+This patch series -
+  - Introduces new scaling filter properties to allow userspace to
+    select  the driver's default scaling filter or
+    Nearest-neighbor(NN) filter for scaling operations on crtc and plane.
+  - Implements and enable integer scaling for i915
+
+Userspace patch series link: TBD.
+
+Thanks to Shashank for initiating this work. His initial work can be
+found here [2]
+
+[2] https://patchwork.freedesktop.org/patch/337082/
+
+
+Pankaj Bharadiya (5):
+  drm: Introduce plane and CRTC scaling filter properties
+  drm/drm-kms.rst: Add plane and CRTC scaling filter property documentation
+  drm/i915: Introduce scaling filter related registers and bit fields.
+  drm/i915/display: Add Nearest-neighbor based integer scaling support
+  drm/i915: Enable scaling filter for plane and CRTC
+
+ Documentation/gpu/drm-kms.rst                | 12 +++
+ drivers/gpu/drm/drm_atomic_uapi.c            |  8 ++
+ drivers/gpu/drm/drm_crtc.c                   | 33 +++++++
+ drivers/gpu/drm/drm_mode_config.c            | 26 ++++++
+ drivers/gpu/drm/drm_plane.c                  | 33 +++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 98 +++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h |  2 +
+ drivers/gpu/drm/i915/display/intel_sprite.c  | 31 ++++++-
+ drivers/gpu/drm/i915/i915_reg.h              | 48 ++++++++++
+ include/drm/drm_crtc.h                       | 13 +++
+ include/drm/drm_mode_config.h                | 12 +++
+ include/drm/drm_plane.h                      | 13 +++
+ 12 files changed, 326 insertions(+), 3 deletions(-)
+
+-- 
+2.23.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
