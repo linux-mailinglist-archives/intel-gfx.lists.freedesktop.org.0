@@ -1,40 +1,51 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E069183C71
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 23:28:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 904F7183C82
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 23:30:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59F4A6EB49;
-	Thu, 12 Mar 2020 22:28:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790166EB4A;
+	Thu, 12 Mar 2020 22:30:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FC836EB49
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 22:28:40 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4174E6EB4A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 22:30:24 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 15:28:40 -0700
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 15:30:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,546,1574150400"; d="scan'208";a="442218749"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga005.fm.intel.com with ESMTP; 12 Mar 2020 15:28:39 -0700
-Date: Thu, 12 Mar 2020 15:30:02 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>
-Message-ID: <20200312223002.GC8846@intel.com>
-References: <20200310153745.22814-1-animesh.manna@intel.com>
- <20200310153745.22814-4-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,546,1574150400"; d="scan'208";a="261692823"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga002.jf.intel.com with ESMTP; 12 Mar 2020 15:30:23 -0700
+Received: from fmsmsx118.amr.corp.intel.com (10.18.116.18) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 12 Mar 2020 15:30:23 -0700
+Received: from fmsmsx117.amr.corp.intel.com ([169.254.3.253]) by
+ fmsmsx118.amr.corp.intel.com ([169.254.1.221]) with mapi id 14.03.0439.000;
+ Thu, 12 Mar 2020 15:30:22 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v2 4/6] drm/i915: Add Wa_1406306137:icl,ehl
+Thread-Index: AQHV98Fk8bd/1PqAtU6KPRuLlsTXKqhF+28AgAAGWgA=
+Date: Thu, 12 Mar 2020 22:30:21 +0000
+Message-ID: <dcb527e06d97c0ca29407768aebb374d7b17d591.camel@intel.com>
+References: <20200311162300.1838847-1-matthew.d.roper@intel.com>
+ <20200311162300.1838847-5-matthew.d.roper@intel.com>
+ <0d02038c35e6bf5bbccccc56f2d000151f6f952e.camel@intel.com>
+In-Reply-To: <0d02038c35e6bf5bbccccc56f2d000151f6f952e.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.15.8]
+Content-ID: <82A1B4642ECAE24189792A44C18342C9@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200310153745.22814-4-animesh.manna@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v4 3/7] drm/i915/dp: Made
- intel_dp_adjust_train() non-static
+Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915: Add Wa_1406306137:icl,ehl
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,96 +58,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2020 at 09:07:41PM +0530, Animesh Manna wrote:
-> vswing/pre-emphasis adjustment calculation is needed in processing
-> of auto phy compliance request other than link training, so have
-> made non-static function.
-> 
-> No functional change.
-> 
-> v1: initial patch.
-> v2:
-> - used "intel_dp" prefix in function name. (Jani)
-> - used array notation instead pointer for link_status. (Ville)
-> v3: Scrapped the initial patch, modified commit description accordingly.
-> - made non-static function and used intel_dp prefix. (Jani, Manasi)
-> 
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-
-Manasi
-
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 ++++-----
->  drivers/gpu/drm/i915/display/intel_dp_link_training.h | 4 ++++
->  2 files changed, 8 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index a7defb37ab00..e4f1843170b7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -34,9 +34,8 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
->  		      link_status[3], link_status[4], link_status[5]);
->  }
->  
-> -static void
-> -intel_get_adjust_train(struct intel_dp *intel_dp,
-> -		       const u8 link_status[DP_LINK_STATUS_SIZE])
-> +void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
-> +			       const u8 link_status[DP_LINK_STATUS_SIZE])
->  {
->  	u8 v = 0;
->  	u8 p = 0;
-> @@ -219,7 +218,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
->  		voltage = intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
->  
->  		/* Update training set as requested by target */
-> -		intel_get_adjust_train(intel_dp, link_status);
-> +		intel_dp_get_adjust_train(intel_dp, link_status);
->  		if (!intel_dp_update_link_train(intel_dp)) {
->  			drm_err(&i915->drm,
->  				"failed to update link training\n");
-> @@ -338,7 +337,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
->  		}
->  
->  		/* Update training set as requested by target */
-> -		intel_get_adjust_train(intel_dp, link_status);
-> +		intel_dp_get_adjust_train(intel_dp, link_status);
->  		if (!intel_dp_update_link_train(intel_dp)) {
->  			drm_err(&i915->drm,
->  				"failed to update link training\n");
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> index 174566adcc92..01f1dabbb060 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> @@ -6,8 +6,12 @@
->  #ifndef __INTEL_DP_LINK_TRAINING_H__
->  #define __INTEL_DP_LINK_TRAINING_H__
->  
-> +#include <drm/drm_dp_helper.h>
-> +
->  struct intel_dp;
->  
-> +void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
-> +			       const u8 link_status[DP_LINK_STATUS_SIZE]);
->  void intel_dp_start_link_train(struct intel_dp *intel_dp);
->  void intel_dp_stop_link_train(struct intel_dp *intel_dp);
->  
-> -- 
-> 2.24.0
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gVGh1LCAyMDIwLTAzLTEyIGF0IDE1OjA4IC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRlIFNvdXph
+IHdyb3RlOg0KPiBPbiBXZWQsIDIwMjAtMDMtMTEgYXQgMDk6MjIgLTA3MDAsIE1hdHQgUm9wZXIg
+d3JvdGU6DQo+ID4gdjI6DQo+ID4gIC0gTW92ZSB0byBjb250ZXh0IHdvcmthcm91bmRzLiAgUk9X
+X0NISUNLRU40IGlzIHBhcnQgb2YgdGhlDQo+ID4gY29udGV4dA0KPiA+ICAgIGltYWdlIG9uIGdl
+bjExIChhbHRob3VnaCBpdCBpc24ndCBvbiBnZW4xMikuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1i
+eTogTWF0dCBSb3BlciA8bWF0dGhldy5kLnJvcGVyQGludGVsLmNvbT4NCj4gPiAtLS0NCj4gPiAg
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYyB8IDMgKysrDQo+ID4g
+IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgfCAxICsNCj4gPiAg
+MiBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYw0KPiA+IGIvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfd29ya2Fyb3VuZHMuYw0KPiA+IGluZGV4IDNiYmQ4OTI5
+NDI3OS4uMjMxOGI1NWI5NzIyIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2d0L2ludGVsX3dvcmthcm91bmRzLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9n
+dC9pbnRlbF93b3JrYXJvdW5kcy5jDQo+ID4gQEAgLTU4MSw2ICs1ODEsOSBAQCBzdGF0aWMgdm9p
+ZCBpY2xfY3R4X3dvcmthcm91bmRzX2luaXQoc3RydWN0DQo+ID4gaW50ZWxfZW5naW5lX2NzICpl
+bmdpbmUsDQo+ID4gIAl3YV93cml0ZV9tYXNrZWRfb3Iod2FsLCBJVkJfRkJDX1JUX0JBU0VfVVBQ
+RVIsDQo+ID4gIAkJCSAgIDAsIC8qIHdyaXRlLW9ubHkgcmVnaXN0ZXI7IHNraXAgdmFsaWRhdGlv
+bg0KPiA+ICovDQo+ID4gIAkJCSAgIDB4RkZGRkZGRkYpOw0KPiA+ICsNCj4gPiArCS8qIFdhXzE0
+MDYzMDYxMzc6aWNsLGVobCAqLw0KPiA+ICsJd2FfbWFza2VkX2VuKHdhbCwgR0VOOV9ST1dfQ0hJ
+Q0tFTjQsIEdFTjExX0RJU19QSUNLXzJORF9FVSk7DQo+IA0KPiBUaGUgcHJlLWdlbjEyIGRlZmlu
+aXRpb24gb2YgdGhpcyByZWdpc3RlcnMgZG9uJ3QgaGF2ZSBhIG1hc2tlZCBhY2Nlc3MNCj4gYXQg
+bGVhc3QgaGVyZSBvbiB0aGlzIG9uIEJTcGVjIDExNDkyDQoNCk15IGJhZCwgaXQganVzdCBkb24n
+dCBoYXZlIGl0IGluIHRoZSBoZWFkZXIuDQoNClJldmlld2VkLWJ5OiBKb3PDqSBSb2JlcnRvIGRl
+IFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCg0KDQo+IA0KPiA+ICB9DQo+ID4gIA0KPiA+
+ICBzdGF0aWMgdm9pZCB0Z2xfY3R4X3dvcmthcm91bmRzX2luaXQoc3RydWN0IGludGVsX2VuZ2lu
+ZV9jcw0KPiA+ICplbmdpbmUsDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2k5MTVfcmVnLmgNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiBp
+bmRleCA5MmFlOTZjZjViNjQuLmI2OTQxZGEzYjU4OCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
+aTkxNV9yZWcuaA0KPiA+IEBAIC05MTUxLDYgKzkxNTEsNyBAQCBlbnVtIHsNCj4gPiAgDQo+ID4g
+ICNkZWZpbmUgR0VOOV9ST1dfQ0hJQ0tFTjQJCV9NTUlPKDB4ZTQ4YykNCj4gPiAgI2RlZmluZSAg
+IEdFTjEyX0RJU0FCTEVfVERMX1BVU0gJUkVHX0JJVCg5KQ0KPiA+ICsjZGVmaW5lICAgR0VOMTFf
+RElTX1BJQ0tfMk5EX0VVCQlSRUdfQklUKDcpDQo+ID4gIA0KPiA+ICAjZGVmaW5lIEhTV19ST1df
+Q0hJQ0tFTjMJCV9NTUlPKDB4ZTQ5YykNCj4gPiAgI2RlZmluZSAgSFNXX1JPV19DSElDS0VOM19M
+M19HTE9CQUxfQVRPTUlDU19ESVNBQkxFICAgICgxIDw8IDYpDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
