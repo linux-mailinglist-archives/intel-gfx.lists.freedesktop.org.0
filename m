@@ -2,97 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FF2182E79
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52066182ECE
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:16:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09A536E139;
-	Thu, 12 Mar 2020 11:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2EB56E113;
+	Thu, 12 Mar 2020 11:16:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2084.outbound.protection.outlook.com [40.107.220.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D7ED6E139;
- Thu, 12 Mar 2020 11:02:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KqKX/iLNvweK6TndTHeNAuqAedlRoxU1tS0l/yPT7IZ64wt93C0QpZElJu9ecYKAPvvaM9qxthXGz5jQKTxndTRCZZAC37WwJoyUbAqCDdHuF2K+q2ndozjujIwtWhy2TVIuTNDTVlONDvF0tJN2a87uoq0VUz0WtW5sa23lyEi0XP1yOx3e3xk9uifU5Otx18r6Xld9zq6roiuHkn5LYtbsk6q471jJdet67j9zfFM+uUXyCmOvWB7/yDgqIyq8t9MkFP+4Fwl4gvv5AC7bXq+wZyogKnVvrNvjjgy1DYfGoB6asPVH+7DWmog0yLOKECPDPeuPQL00+h3uPjh5GQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zC3pqboiSVsQPai790zsGyCTCfFcg1DNR0C3nvti61s=;
- b=oWEV9D0rFrKx8AtVHWJ+SSLB8X2lUm18DrVIhA6tsmFUdCx8M05mwEGoRiIaHcRQ5xu7Hxx1Y/nDQlcCuQfRIRN97jBLZ/UX8iHcp6mgcn8U89I6L8KSBKWKXgq8S0V7EIYFHn4TdjLywSyvsqIjiuCfc8vSlx9Fl+d9Uuqi1s4IqRemw9MMsHizfFzs7Mw3Rv85PsB5xVR/GzoPDqTN8jOEtysTGjOqwck05UiIPbGnbos1zGqLuY8k4DggZon4y5eDmkG5gAxkYfAVrs8mfy4Q1cddMY5dg5cIoz0DwX0ZlHJtxNH3FB0lg8v4BaTtmebW7r2/PqngqNeBTbgPUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zC3pqboiSVsQPai790zsGyCTCfFcg1DNR0C3nvti61s=;
- b=IZSiO4837KWm2Qtk8+2Ea7pOaK7a0TtMr2R2+ln1ru4Si097tWMQ+5ocl/jdUEihZZVTShIxfy+y7BwiBECJDEGwUMrYP/fUBu0XRB0yPSLJqno/5IqjGGH0h+urRAUvGYmPQrP4fUnW6OhAy2UuxZd9gfzmhBq625FUcousM04=
-Authentication-Results: spf=none (sender IP is )
- smtp.mailfrom=Christian.Koenig@amd.com; 
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com (2603:10b6:3:10c::22)
- by DM5PR12MB1610.namprd12.prod.outlook.com (2603:10b6:4:3::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2793.14; Thu, 12 Mar 2020 11:02:15 +0000
-Received: from DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92]) by DM5PR12MB1705.namprd12.prod.outlook.com
- ([fe80::d40e:7339:8605:bc92%11]) with mapi id 15.20.2793.018; Thu, 12 Mar
- 2020 11:02:15 +0000
-To: Christoph Hellwig <hch@infradead.org>
-References: <20200311135158.3310-1-christian.koenig@amd.com>
- <20200311135158.3310-2-christian.koenig@amd.com>
- <20200311152838.GA24280@infradead.org>
- <f2b46f49-a8d0-9d43-3120-e1ed36fc3a80@gmail.com>
- <20200312101943.GA14618@infradead.org>
- <b5db44eb-1dde-1671-feb0-9e47d120f172@amd.com>
- <20200312104729.GA26031@infradead.org>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-Message-ID: <211ea421-3621-b380-cada-c2432da45172@amd.com>
-Date: Thu, 12 Mar 2020 12:02:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-In-Reply-To: <20200312104729.GA26031@infradead.org>
-Content-Language: en-US
-X-ClientProxiedBy: FR2P281CA0018.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a::28) To DM5PR12MB1705.namprd12.prod.outlook.com
- (2603:10b6:3:10c::22)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D006E113
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 11:16:48 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 04:16:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,544,1574150400"; d="scan'208";a="236602734"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Mar 2020 04:16:46 -0700
+Date: Thu, 12 Mar 2020 16:38:52 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org, lakshminarayana.vudum@intel.com
+Message-ID: <20200312110851.GA15954@intel.com>
+References: <20200311083632.3249-1-anshuman.gupta@intel.com>
+ <158392096781.13949.427719057726996387@emeril.freedesktop.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
- (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
- FR2P281CA0018.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:a::28) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2793.14 via Frontend Transport; Thu, 12 Mar 2020 11:02:13 +0000
-X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 42b0ee90-061a-49bd-c5eb-08d7c674d284
-X-MS-TrafficTypeDiagnostic: DM5PR12MB1610:|DM5PR12MB1610:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR12MB1610AD032C98E9D7A26EF40B83FD0@DM5PR12MB1610.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 0340850FCD
-X-Forefront-Antispam-Report: SFV:NSPM;
- SFS:(10009020)(4636009)(376002)(346002)(366004)(136003)(39860400002)(396003)(199004)(8676002)(6666004)(316002)(36756003)(4326008)(16526019)(186003)(86362001)(2616005)(5660300002)(6486002)(66946007)(66574012)(66556008)(66476007)(31696002)(478600001)(31686004)(81166006)(2906002)(6916009)(8936002)(81156014)(52116002);
- DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1610;
- H:DM5PR12MB1705.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; 
-Received-SPF: None (protection.outlook.com: amd.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s/1Vo6ncBD7szPceRnz7HddP7+yi/rLPdxfeDTllYzNY9H2brF5r7XShEahv9kW1Ez+S3YvLbVwa0nJTWAn1+5Dp0Z+XUk7XkXFCkYlX2e8v5iNP1pLk2xPdfxXRYP27Iv1Y/bhEiMR64aRmxKA8MR4Vhi6cwMPlBDh2LO16dhiNEeLfbwvPpedfEfNsJG8hYxvTvIuTaQRHmyRvPw5LJwt93QJSXxV/pdpgtdzY9OtnSrLrhQ+Uj1wAf4rIo60gCp55C/7vdhdtScUL4QeS8IGeZ3kGvx71thJAO7BGoIvntikZMXPOkOMHKGEx7684UKYGMxZLpE2ZxaoyAF+U4W336/4X2K8ZPtVTlH36kcDZmZk2YmcYQqhIxfr6wpgkZLgRz1+BVk7sc9KbGoT7B4L7jXVtlOdZXnZE8EAwEMY+iPjtPl+W4gQK3yL8H212
-X-MS-Exchange-AntiSpam-MessageData: EZHZkPz4wRLMpUHq9B/EYLqc/jV1wyWHGdgQ/t24U8OiHQychZMWS6kgBoSDnFa4Jv8FAA2aVpFAekbF+dOolIfsHKhM71IB5CLXNR+O0O1hC5iO5WD7yuJvqMqaQlEPKotSNJUr2l5wBGog4HWRcw+nS4XcluaVH2Nn9Qp2STFXPDEJ/K1sPqvzPL+frgUsnJnuwUHGN5iYJ2m6+kfoGw==
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42b0ee90-061a-49bd-c5eb-08d7c674d284
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2020 11:02:14.9236 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DA2eMtUYvUUeHcF0iRdQ3XWuiapRKGlX/ulhpzrLzdVuiFHSuvr4Rwn7xhlZ0uNT
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1610
-Subject: Re: [Intel-gfx] [PATCH 1/6] lib/scatterlist: add sg_set_dma_addr()
- function
+Content-Disposition: inline
+In-Reply-To: <158392096781.13949.427719057726996387@emeril.freedesktop.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] 
+ =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Enable_non-contiguous_pipe_fusing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,38 +47,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David1.Zhou@amd.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, jgg@ziepe.ca,
- linux-media@vger.kernel.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QW0gMTIuMDMuMjAgdW0gMTE6NDcgc2NocmllYiBDaHJpc3RvcGggSGVsbHdpZzoKPiBPbiBUaHUs
-IE1hciAxMiwgMjAyMCBhdCAxMTozMTozNUFNICswMTAwLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3Rl
-Ogo+IFtTTklQXQo+PiBJIG1lYW4gd2UgY291bGQgY29tZSB1cCB3aXRoIGEgbmV3IHN0cnVjdHVy
-ZSBmb3IgdGhpcywgYnV0IHRvIG1lIHRoYXQganVzdAo+PiBsb29rcyBsaWtlIHJlaW52ZW50aW5n
-IHRoZSB3aGVlbC4gRXNwZWNpYWxseSBzaW5jZSBkcml2ZXJzIG5lZWQgdG8gYmUgYWJsZQo+PiB0
-byBoYW5kbGUgYm90aCBJL08gdG8gc3lzdGVtIG1lbW9yeSBhbmQgSS9PIHRvIFBDSWUgQkFScy4K
-PiBUaGUgc3RydWN0dXJlIGZvciBob2xkaW5nIHRoZSBzdHJ1Y3QgcGFnZSBzaWRlIG9mIHRoZSBz
-Y2F0dGVybGlzdCBpcwo+IGNhbGxlZCBzdHJ1Y3QgYmlvX3ZlYywgc28gZmFyIG1vc3RseSB1c2Vk
-IGJ5IHRoZSBibG9jayBhbmQgbmV0d29ya2luZwo+IGNvZGUuCgpZZWFoLCBJJ20gYXdhcmUgb2Yg
-dGhpcy4KCj4gVGhlIHN0cnVjdHVyZSBmb3IgaG9sZGluZyBkbWEgYWRkcmVzc2VzIGRvZXNuJ3Qg
-cmVhbGx5IGV4aXN0Cj4gaW4gYSBnZW5lcmljIGZvcm0sIGJ1dCB3b3VsZCBiZSBhbiBhcnJheSBv
-ZiB0aGVzZSBzdHJ1Y3R1cmVzOgo+Cj4gc3RydWN0IGRtYV9zZyB7Cj4gCWRtYV9hZGRyX3QJYWRk
-cjsKPiAJdTMyCQlsZW47Cj4gfTsKClNvIHRoZSB3aG9sZSBpZGVhIGlzIHRvIG51a2Ugc2NhdHRl
-cmxpc3Qvc2dfdGFibGUgaW4gdGhlIGxvbmcgdGVybSBhbmQgCnN3aXRjaCBvdmVyIHRvIHVzaW5n
-IGJpb192ZWMgYXMgaW5wdXQgYW5kIGRtYV9zZyBhcyBvdXRwdXQgZm9yIGEgRE1BIAptYXBwaW5n
-IG9wZXJhdGlvbi4KCklzIHRoYXQgY29ycmVjdD8gSWYgeWVzIEkgY291bGQgbGl2ZSB3aXRoIHRo
-YXQsIGJ1dCBpdCBtYWtlcyBteSBwYXRjaHNldCAKbXVjaCBtb3JlIGNvbXBsaWNhdGVkLgoKPiBL
-ZWVwaW5nIHRoZW0gc2VwYXJhdGUgaXMgaW1wb3J0YW50IGFzIG1vc3QgSU9NTVUgZHJpdmVycyB3
-aWxsIHJldHVybgo+IGxlc3MgZW50cmllcyB0aGFuIHlvdSBjYW4gZmVlZCB0aGVtLiAgRS5nLiBp
-ZiB5b3VyIGlucHV0IGJvdW5kYXJpZXMKPiBhcmUgNGsgYWxpZ25lZCB5b3Ugd2lsbCB1c3VhbGx5
-IGp1c3QgZ2V0IGEgc2luZ2xlIElPVkEgZW50cnkgYmFjay4KPiBJIHdpbGwgc29vbiBhbHNvIGhh
-dmUgYSBkbWEgbWFwcGluZyBpbnRlcmZhY2UgdGhhdCB3aWxsIHRha2UgYWR2YW50YWdlCj4gb2Yg
-dGhhdCBmYWN0LgoKWWVhaCwgSSBub3RpY2VkIGFzIHdlbGwgdGhhdCB0aGlzIGlzIG5vdCByZWFs
-bHkgd2VsbCBoYW5kbGVkLgoKVGhhbmtzIGZvciB0aGUgZmVlZGJhY2ssCkNocmlzdGlhbi4KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1h
-aWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 2020-03-11 at 10:02:47 +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/i915: Enable non-contiguous pipe fusing
+> URL   : https://patchwork.freedesktop.org/series/74570/
+> State : failure
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from CI_DRM_8113 -> Patchwork_16920
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **FAILURE**
+> 
+>   Serious unknown changes coming with Patchwork_16920 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_16920, please notify your bug team to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+> 
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
+> 
+> Possible new issues
+> -------------------
+> 
+>   Here are the unknown changes that may have been introduced in Patchwork_16920:
+> 
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@i915_selftest@live@hangcheck:
+>     - fi-apl-guc:         [PASS][1] -> [DMESG-WARN][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+Hi Lakshmi ,
+
+Do u have any info on above issue, is it a already known issue?
+
+Thanks,
+Anshuman Gupta.
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in Patchwork_16920 that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@i915_selftest@live@execlists:
+>     - fi-apl-guc:         [PASS][3] -> [INCOMPLETE][4] ([fdo#103927])
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@execlists.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@execlists.html
+> 
+>   * igt@prime_vgem@basic-fence-flip:
+>     - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@gem_exec_suspend@basic-s4-devices:
+>     - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+> 
+>   * igt@kms_chamelium@hdmi-hpd-fast:
+>     - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
+>    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+>    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+> 
+>   * igt@prime_vgem@basic-read:
+>     - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+>    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-read.html
+>    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-read.html
+> 
+>   
+>   [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+>   [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+>   [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+>   [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+>   [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
+> 
+> 
+> Participating hosts (47 -> 44)
+> ------------------------------
+> 
+>   Additional (3): fi-skl-6770hq fi-kbl-7560u fi-gdg-551 
+>   Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * CI: CI-20190529 -> None
+>   * Linux: CI_DRM_8113 -> Patchwork_16920
+> 
+>   CI-20190529: 20190529
+>   CI_DRM_8113: 1e2be4486f17a3f853c134097b068d000e7c6433 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+>   Patchwork_16920: 0514610816580178c8b380ccfb6cb00d2ce8de55 @ git://anongit.freedesktop.org/gfx-ci/linux
+> 
+> 
+> == Linux commits ==
+> 
+> 051461081658 drm/i915: Enable non-contiguous pipe fusing
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
