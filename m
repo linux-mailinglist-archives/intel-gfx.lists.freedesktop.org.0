@@ -1,31 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11534183259
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:06:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB4418329F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:15:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C91B6E2E8;
-	Thu, 12 Mar 2020 14:06:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A53B6EAD3;
+	Thu, 12 Mar 2020 14:15:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C75436E201;
- Thu, 12 Mar 2020 14:06:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFFF7A0099;
- Thu, 12 Mar 2020 14:06:09 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06AFC6EAD3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 14:15:53 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 07:15:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="261515006"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga002.jf.intel.com with ESMTP; 12 Mar 2020 07:15:51 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 12 Mar 2020 19:37:00 +0530
+Message-Id: <20200312140702.14028-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 12 Mar 2020 14:06:09 -0000
-Message-ID: <158402196978.4948.9498083748150446225@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200310160047.20748-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20200310160047.20748-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gen12=3A_Disable_preemption_timeout_=28rev4=29?=
+Subject: [Intel-gfx] [PATCH 0/2] i915 lpsp support for lpsp igt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,92 +40,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series adds i915_lpsp_info connector debugfs.
 
-Series: drm/i915/gen12: Disable preemption timeout (rev4)
-URL   : https://patchwork.freedesktop.org/series/74526/
-State : success
+Test-with: 20200312135642.13845-2-anshuman.gupta@intel.com
 
-== Summary ==
+Anshuman Gupta (2):
+  drm/i915: Power well id for ICL PG3
+  drm/i915: Add i915_lpsp_info debugfs
 
-CI Bug Log - changes from CI_DRM_8126 -> Patchwork_16952
-====================================================
+ .../drm/i915/display/intel_display_debugfs.c  | 65 +++++++++++++++++++
+ .../drm/i915/display/intel_display_power.c    |  6 +-
+ .../drm/i915/display/intel_display_power.h    |  4 +-
+ 3 files changed, 71 insertions(+), 4 deletions(-)
 
-Summary
--------
+-- 
+2.25.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16952 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-hsw-4770:        [SKIP][3] ([fdo#109271]) -> [PASS][4] +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([i915#323]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (46 -> 36)
-------------------------------
-
-  Missing    (10): fi-hsw-4200u fi-bsw-n3050 fi-skl-6770hq fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ivb-3770 fi-bsw-kefka fi-skl-lmem fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8126 -> Patchwork_16952
-
-  CI-20190529: 20190529
-  CI_DRM_8126: 2bd9e989a5653d4cd710e9dd2b42b0a080f1add8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16952: 29ee5b2d76d9cff0df53a973f7bf9a11e26814dd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-29ee5b2d76d9 drm/i915/gen12: Disable preemption timeout
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16952/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
