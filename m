@@ -1,58 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14FBC182F02
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:24:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E13182F25
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 12:29:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 711AF6E16D;
-	Thu, 12 Mar 2020 11:24:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA6466E184;
+	Thu, 12 Mar 2020 11:29:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9046E16D;
- Thu, 12 Mar 2020 11:24:30 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 04:24:30 -0700
-X-IronPort-AV: E=Sophos;i="5.70,544,1574150400"; d="scan'208";a="236799482"
-Received: from jnikula-mobl3.fi.intel.com (HELO localhost) ([10.237.66.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 04:24:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rajat Jain <rajatja@google.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>, Daniel
- Vetter <daniel@ffwll.ch>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Chris
- Wilson
- <chris@chris-wilson.co.uk>, Imre Deak <imre.deak@intel.com>, =?utf-8?Q?Jo?=
- =?utf-8?Q?s=C3=A9?= Roberto
- de Souza <jose.souza@intel.com>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, dri-devel
- <dri-devel@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Mat King <mathewk@google.com>,
- Daniel Thompson <daniel.thompson@linaro.org>, Jonathan Corbet
- <corbet@lwn.net>, Pavel Machek <pavel@denx.de>, Sean Paul
- <seanpaul@google.com>, Duncan Laurie <dlaurie@google.com>, Jesse Barnes
- <jsbarnes@google.com>, Thierry Reding <thierry.reding@gmail.com>, Mark
- Pearson <mpearson@lenovo.com>, Nitin Joshi1 <njoshi1@lenovo.com>,
- Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>, Tomoki Maruichi
- <maruichit@lenovo.com>
-In-Reply-To: <CACK8Z6F7CZckWP_98h=WERmnDgQL3e65VSiLpaks+biWQ1nk7A@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200310000617.20662-1-rajatja@google.com>
- <20200310000617.20662-5-rajatja@google.com>
- <CACK8Z6FsN2WNF8z0OrKv-1sPPwJFeJVYf8taHMZn0QpwLj+t=Q@mail.gmail.com>
- <CACK8Z6F7CZckWP_98h=WERmnDgQL3e65VSiLpaks+biWQ1nk7A@mail.gmail.com>
-Date: Thu, 12 Mar 2020 13:24:18 +0200
-Message-ID: <87v9n9n7dp.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5C8FF6E184;
+ Thu, 12 Mar 2020 11:29:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 54756A0009;
+ Thu, 12 Mar 2020 11:29:24 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 4/4] drm/i915: Add support for integrated
- privacy screen
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Thu, 12 Mar 2020 11:29:24 -0000
+Message-ID: <158401256432.4949.18129859217691358460@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311083632.3249-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200311083632.3249-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Enable_non-contiguous_pipe_fusing?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,27 +38,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rajat Jain <rajatxjain@gmail.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 11 Mar 2020, Rajat Jain <rajatja@google.com> wrote:
-> I got a "failed to apply" email from the patchwork. Can you please let
-> me know on which branch is it trying to apply it? I have currently
-> rebased my patchset to drm-intel-next-queued.
+== Series Details ==
 
-drm-tip branch of https://cgit.freedesktop.org/drm/drm-tip
+Series: drm/i915: Enable non-contiguous pipe fusing
+URL   : https://patchwork.freedesktop.org/series/74570/
+State : success
 
-It's kind of like linux-next of drm.
+== Summary ==
 
-BR,
-Jani.
+CI Bug Log - changes from CI_DRM_8113 -> Patchwork_16920
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16920 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-apl-guc:         [PASS][3] -> [DMESG-WARN][4] ([i915#1430])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-apl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - fi-tgl-y:           [PASS][5] -> [DMESG-WARN][6] ([CI#94] / [i915#402]) +1 similar issue
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([fdo#111096] / [i915#323]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@prime_vgem@basic-read:
+    - fi-tgl-y:           [DMESG-WARN][11] ([CI#94] / [i915#402]) -> [PASS][12] +1 similar issue
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8113/fi-tgl-y/igt@prime_vgem@basic-read.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/fi-tgl-y/igt@prime_vgem@basic-read.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#111096]: https://bugs.freedesktop.org/show_bug.cgi?id=111096
+  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#402]: https://gitlab.freedesktop.org/drm/intel/issues/402
 
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Participating hosts (47 -> 44)
+------------------------------
+
+  Additional (3): fi-skl-6770hq fi-kbl-7560u fi-gdg-551 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8113 -> Patchwork_16920
+
+  CI-20190529: 20190529
+  CI_DRM_8113: 1e2be4486f17a3f853c134097b068d000e7c6433 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16920: 0514610816580178c8b380ccfb6cb00d2ce8de55 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+051461081658 drm/i915: Enable non-contiguous pipe fusing
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16920/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
