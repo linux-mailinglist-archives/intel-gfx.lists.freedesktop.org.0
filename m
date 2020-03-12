@@ -2,30 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882321826F2
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 03:08:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDBC31826FA
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 03:14:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFC56EA10;
-	Thu, 12 Mar 2020 02:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD3486E029;
+	Thu, 12 Mar 2020 02:14:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 39C4D6E52F;
- Thu, 12 Mar 2020 02:08:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D51B16E029;
+ Thu, 12 Mar 2020 02:14:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 31F1BA47DF;
- Thu, 12 Mar 2020 02:08:01 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C6AFDA0094;
+ Thu, 12 Mar 2020 02:14:55 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 12 Mar 2020 02:08:01 -0000
-Message-ID: <158397888117.4949.3355701486812359958@emeril.freedesktop.org>
+Date: Thu, 12 Mar 2020 02:14:55 -0000
+Message-ID: <158397929578.4949.8292886742669222848@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
 In-Reply-To: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_Per_client_engine_busyness_=28rev6=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
+ =?utf-8?q?Per_client_engine_busyness_=28rev6=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,76 +40,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PT0gU2VyaWVzIERldGFpbHMgPT0KClNlcmllczogUGVyIGNsaWVudCBlbmdpbmUgYnVzeW5lc3Mg
-KHJldjYpClVSTCAgIDogaHR0cHM6Ly9wYXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy83
-MDk3Ny8KU3RhdGUgOiB3YXJuaW5nCgo9PSBTdW1tYXJ5ID09CgokIGRpbSBjaGVja3BhdGNoIG9y
-aWdpbi9kcm0tdGlwCjI5MjQ4YThlNWI1YiBkcm0vaTkxNTogRXhwb3NlIGxpc3Qgb2YgY2xpZW50
-cyBpbiBzeXNmcwotOjc0OiBXQVJOSU5HOkZJTEVfUEFUSF9DSEFOR0VTOiBhZGRlZCwgbW92ZWQg
-b3IgZGVsZXRlZCBmaWxlKHMpLCBkb2VzIE1BSU5UQUlORVJTIG5lZWQgdXBkYXRpbmc/CiM3NDog
-Cm5ldyBmaWxlIG1vZGUgMTAwNjQ0CgotOjc5OiBXQVJOSU5HOlNQRFhfTElDRU5TRV9UQUc6IE1p
-c3Npbmcgb3IgbWFsZm9ybWVkIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyIHRhZyBpbiBsaW5lIDEK
-Izc5OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuYzoxOgorLyoK
-Ci06ODA6IFdBUk5JTkc6U1BEWF9MSUNFTlNFX1RBRzogTWlzcGxhY2VkIFNQRFgtTGljZW5zZS1J
-ZGVudGlmaWVyIHRhZyAtIHVzZSBsaW5lIDEgaW5zdGVhZAojODA6IEZJTEU6IGRyaXZlcnMvZ3B1
-L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jOjI6CisgKiBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
-cjogTUlUCgotOjkzOiBDSEVDSzpMSU5FX1NQQUNJTkc6IFBsZWFzZSBkb24ndCB1c2UgbXVsdGlw
-bGUgYmxhbmsgbGluZXMKIzkzOiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9j
-bGllbnQuYzoxNToKKworCgotOjEyODogV0FSTklORzpGVU5DVElPTl9BUkdVTUVOVFM6IGZ1bmN0
-aW9uIGRlZmluaXRpb24gYXJndW1lbnQgJ3N0cnVjdCBkZXZpY2UgKicgc2hvdWxkIGFsc28gaGF2
-ZSBhbiBpZGVudGlmaWVyIG5hbWUKIzEyODogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9kcm1fY2xpZW50LmM6NTA6CisJCXNzaXplX3QgKCpzaG93KShzdHJ1Y3QgZGV2aWNlICosCgot
-OjEyODogV0FSTklORzpGVU5DVElPTl9BUkdVTUVOVFM6IGZ1bmN0aW9uIGRlZmluaXRpb24gYXJn
-dW1lbnQgJ3N0cnVjdCBkZXZpY2VfYXR0cmlidXRlIConIHNob3VsZCBhbHNvIGhhdmUgYW4gaWRl
-bnRpZmllciBuYW1lCiMxMjg6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2Ns
-aWVudC5jOjUwOgorCQlzc2l6ZV90ICgqc2hvdykoc3RydWN0IGRldmljZSAqLAoKLToyNjY6IFdB
-Uk5JTkc6U1BEWF9MSUNFTlNFX1RBRzogTWlzc2luZyBvciBtYWxmb3JtZWQgU1BEWC1MaWNlbnNl
-LUlkZW50aWZpZXIgdGFnIGluIGxpbmUgMQojMjY2OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2RybV9jbGllbnQuaDoxOgorLyoKCi06MjY3OiBXQVJOSU5HOlNQRFhfTElDRU5TRV9U
-QUc6IE1pc3BsYWNlZCBTUERYLUxpY2Vuc2UtSWRlbnRpZmllciB0YWcgLSB1c2UgbGluZSAxIGlu
-c3RlYWQKIzI2NzogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50Lmg6
-MjoKKyAqIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQKCnRvdGFsOiAwIGVycm9ycywgNyB3
-YXJuaW5ncywgMSBjaGVja3MsIDM3MyBsaW5lcyBjaGVja2VkCjc3N2UyYTM1MTZjNSBkcm0vaTkx
-NTogVXBkYXRlIGNsaWVudCBuYW1lIG9uIGNvbnRleHQgY3JlYXRlCi06MTU4OiBFUlJPUjpPUEVO
-X0JSQUNFOiBvcGVuIGJyYWNlICd7JyBmb2xsb3dpbmcgc3RydWN0IGdvIG9uIHRoZSBzYW1lIGxp
-bmUKIzE1ODogRklMRTogZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcm1fY2xpZW50LmM6MTk4
-Ogorc3RydWN0IGNsaWVudF91cGRhdGVfZnJlZQorewoKLToyMDA6IFdBUk5JTkc6T09NX01FU1NB
-R0U6IFBvc3NpYmxlIHVubmVjZXNzYXJ5ICdvdXQgb2YgbWVtb3J5JyBtZXNzYWdlCiMyMDA6IEZJ
-TEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jOjI0MDoKKwlpZiAoIW5h
-bWUpIHsKKwkJZHJtX25vdGljZSgmaTkxNS0+ZHJtLAoKLToyNDI6IENIRUNLOlVOQ09NTUVOVEVE
-X0RFRklOSVRJT046IHN0cnVjdCBtdXRleCBkZWZpbml0aW9uIHdpdGhvdXQgY29tbWVudAojMjQy
-OiBGSUxFOiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2RybV9jbGllbnQuaDozMToKKwlzdHJ1
-Y3QgbXV0ZXggdXBkYXRlX2xvY2s7Cgp0b3RhbDogMSBlcnJvcnMsIDEgd2FybmluZ3MsIDEgY2hl
-Y2tzLCAyMDQgbGluZXMgY2hlY2tlZAozYTE1Y2RiMTZlODAgZHJtL2k5MTU6IE1ha2UgR0VNIGNv
-bnRleHRzIHRyYWNrIERSTSBjbGllbnRzCmY3MTM5NDZlMTU0NyBkcm0vaTkxNTogVXNlIGV4cGxp
-Y2l0IGZsYWcgdG8gbWFyayB1bnJlYWNoYWJsZSBpbnRlbF9jb250ZXh0CjA0ZTkxNjBkMmNhNyBk
-cm0vaTkxNTogVHJhY2sgcnVudGltZSBzcGVudCBpbiB1bnJlYWNoYWJsZSBpbnRlbF9jb250ZXh0
-cwpkZmQ2YWIzNDNiNzYgZHJtL2k5MTU6IFRyYWNrIHJ1bnRpbWUgc3BlbnQgaW4gY2xvc2VkIEdF
-TSBjb250ZXh0cwpiYWM1NmM4NmYzZGEgZHJtL2k5MTU6IFRyYWNrIGFsbCB1c2VyIGNvbnRleHRz
-IHBlciBjbGllbnQKLTo4OTogQ0hFQ0s6VU5DT01NRU5URURfREVGSU5JVElPTjogc3BpbmxvY2tf
-dCBkZWZpbml0aW9uIHdpdGhvdXQgY29tbWVudAojODk6IEZJTEU6IGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2k5MTVfZHJtX2NsaWVudC5oOjQyOgorCXNwaW5sb2NrX3QgY3R4X2xvY2s7Cgp0b3RhbDog
-MCBlcnJvcnMsIDAgd2FybmluZ3MsIDEgY2hlY2tzLCA1OSBsaW5lcyBjaGVja2VkCmMwYWQ0NDVk
-NGJlZSBkcm0vaTkxNTogRXhwb3NlIHBlci1lbmdpbmUgY2xpZW50IGJ1c3luZXNzCi06MjU6IFdB
-Uk5JTkc6Q09NTUlUX0xPR19MT05HX0xJTkU6IFBvc3NpYmxlIHVud3JhcHBlZCBjb21taXQgZGVz
-Y3JpcHRpb24gKHByZWZlciBhIG1heGltdW0gNzUgY2hhcnMgcGVyIGxpbmUpCiMyNTogCiAgICAg
-UmVuZGVyLzNELzAgICA2My43MyUgfOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKWiOKW
-iOKWiOKWiOKWiOKWiOKWiOKWiOKWiCAgICAgICAgICAgfCAgICAgIDMlICAgICAgMCUKCi06MTE0
-OiBXQVJOSU5HOlNUQVRJQ19DT05TVF9DSEFSX0FSUkFZOiBzdGF0aWMgY29uc3QgY2hhciAqIGFy
-cmF5IHNob3VsZCBwcm9iYWJseSBiZSBzdGF0aWMgY29uc3QgY2hhciAqIGNvbnN0CiMxMTQ6IEZJ
-TEU6IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJtX2NsaWVudC5jOjEwMToKK3N0YXRpYyBj
-b25zdCBjaGFyICp1YWJpX2NsYXNzX25hbWVzW10gPSB7Cgp0b3RhbDogMCBlcnJvcnMsIDIgd2Fy
-bmluZ3MsIDAgY2hlY2tzLCAxNjQgbGluZXMgY2hlY2tlZAo2MzNiNTA4OTE0MWQgZHJtL2k5MTU6
-IFRyYWNrIGNvbnRleHQgY3VycmVudCBhY3RpdmUgdGltZQotOjEzODogV0FSTklORzpMSU5FX1NQ
-QUNJTkc6IE1pc3NpbmcgYSBibGFuayBsaW5lIGFmdGVyIGRlY2xhcmF0aW9ucwojMTM4OiBGSUxF
-OiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9ndC9pbnRlbF9jb250ZXh0X3R5cGVzLmg6ODc6CisJCQl1
-MzIgbGFzdDsKKwkJCUk5MTVfU0VMRlRFU1RfREVDTEFSRSh1MzIgbnVtX3VuZGVyZmxvdyk7Cgp0
-b3RhbDogMCBlcnJvcnMsIDEgd2FybmluZ3MsIDAgY2hlY2tzLCAyNDAgbGluZXMgY2hlY2tlZAow
-M2VlOTkzY2RhNWUgZHJtL2k5MTU6IFByZWZlciBzb2Z0d2FyZSB0cmFja2VkIGNvbnRleHQgYnVz
-eW5lc3MKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCklu
-dGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRw
-czovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: Per client engine busyness (rev6)
+URL   : https://patchwork.freedesktop.org/series/70977/
+State : warning
+
+== Summary ==
+
+$ dim sparse origin/drm-tip
+Sparse version: v0.6.0
+Commit: drm/i915: Expose list of clients in sysfs
+Okay!
+
+Commit: drm/i915: Update client name on context create
++drivers/gpu/drm/i915/i915_drm_client.c:132:23:    expected struct pid *pid
++drivers/gpu/drm/i915/i915_drm_client.c:132:23:    got struct pid [noderef] <asn:4> *pid
++drivers/gpu/drm/i915/i915_drm_client.c:132:23: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_drm_client.c:133:21:    expected void const *
++drivers/gpu/drm/i915/i915_drm_client.c:133:21:    got char [noderef] <asn:4> *name
++drivers/gpu/drm/i915/i915_drm_client.c:133:21: warning: incorrect type in argument 1 (different address spaces)
++drivers/gpu/drm/i915/i915_drm_client.c:235:17: error: incompatible types in comparison expression (different address spaces)
+
+Commit: drm/i915: Make GEM contexts track DRM clients
+Okay!
+
+Commit: drm/i915: Use explicit flag to mark unreachable intel_context
+Okay!
+
+Commit: drm/i915: Track runtime spent in unreachable intel_contexts
+Okay!
+
+Commit: drm/i915: Track runtime spent in closed GEM contexts
+Okay!
+
+Commit: drm/i915: Track all user contexts per client
+Okay!
+
+Commit: drm/i915: Expose per-engine client busyness
+Okay!
+
+Commit: drm/i915: Track context current active time
+Okay!
+
+Commit: drm/i915: Prefer software tracked context busyness
+Okay!
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
