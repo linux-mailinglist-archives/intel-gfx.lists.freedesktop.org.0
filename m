@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDBC31826FA
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 03:14:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A2E618270D
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 03:31:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD3486E029;
-	Thu, 12 Mar 2020 02:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A80A66E52F;
+	Thu, 12 Mar 2020 02:31:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D51B16E029;
- Thu, 12 Mar 2020 02:14:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C6A486E52F;
+ Thu, 12 Mar 2020 02:31:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C6AFDA0094;
- Thu, 12 Mar 2020 02:14:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BF9FFA00FD;
+ Thu, 12 Mar 2020 02:31:36 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@linux.intel.com>
-Date: Thu, 12 Mar 2020 02:14:55 -0000
-Message-ID: <158397929578.4949.8292886742669222848@emeril.freedesktop.org>
+To: "Francisco Jerez" <currojerez@riseup.net>
+Date: Thu, 12 Mar 2020 02:31:36 -0000
+Message-ID: <158398029675.4947.17520422184923733416@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Per_client_engine_busyness_=28rev6=29?=
+References: <20200310214203.26459-1-currojerez@riseup.net>
+In-Reply-To: <20200310214203.26459-1-currojerez@riseup.net>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBH?=
+ =?utf-8?q?PU-bound_energy_efficiency_improvements_for_the_intel=5Fpstate_?=
+ =?utf-8?b?ZHJpdmVyICh2MikuIChyZXYyKQ==?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,49 +48,20 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Per client engine busyness (rev6)
-URL   : https://patchwork.freedesktop.org/series/70977/
-State : warning
+Series: GPU-bound energy efficiency improvements for the intel_pstate driver (v2). (rev2)
+URL   : https://patchwork.freedesktop.org/series/74540/
+State : failure
 
 == Summary ==
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915: Expose list of clients in sysfs
-Okay!
-
-Commit: drm/i915: Update client name on context create
-+drivers/gpu/drm/i915/i915_drm_client.c:132:23:    expected struct pid *pid
-+drivers/gpu/drm/i915/i915_drm_client.c:132:23:    got struct pid [noderef] <asn:4> *pid
-+drivers/gpu/drm/i915/i915_drm_client.c:132:23: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_drm_client.c:133:21:    expected void const *
-+drivers/gpu/drm/i915/i915_drm_client.c:133:21:    got char [noderef] <asn:4> *name
-+drivers/gpu/drm/i915/i915_drm_client.c:133:21: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/i915_drm_client.c:235:17: error: incompatible types in comparison expression (different address spaces)
-
-Commit: drm/i915: Make GEM contexts track DRM clients
-Okay!
-
-Commit: drm/i915: Use explicit flag to mark unreachable intel_context
-Okay!
-
-Commit: drm/i915: Track runtime spent in unreachable intel_contexts
-Okay!
-
-Commit: drm/i915: Track runtime spent in closed GEM contexts
-Okay!
-
-Commit: drm/i915: Track all user contexts per client
-Okay!
-
-Commit: drm/i915: Expose per-engine client busyness
-Okay!
-
-Commit: drm/i915: Track context current active time
-Okay!
-
-Commit: drm/i915: Prefer software tracked context busyness
-Okay!
+Applying: PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS limit.
+error: sha1 information is lacking or useless (include/linux/pm_qos.h).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch' to see the failed patch
+Patch failed at 0001 PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS limit.
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 _______________________________________________
 Intel-gfx mailing list
