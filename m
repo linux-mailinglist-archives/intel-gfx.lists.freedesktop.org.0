@@ -1,31 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E7A183995
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 20:35:33 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 344BF18399C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 20:37:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 964906EB32;
-	Thu, 12 Mar 2020 19:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D1D6EB31;
+	Thu, 12 Mar 2020 19:37:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3611B6EB31;
- Thu, 12 Mar 2020 19:35:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 25C3CA0019;
- Thu, 12 Mar 2020 19:35:31 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA626EB31
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 19:37:17 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 12:37:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="236961325"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by orsmga008.jf.intel.com with ESMTP; 12 Mar 2020 12:37:08 -0700
+Received: from fmsmsx101.amr.corp.intel.com (10.18.124.199) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 12 Mar 2020 12:37:08 -0700
+Received: from fmsmsx108.amr.corp.intel.com ([169.254.9.163]) by
+ fmsmsx101.amr.corp.intel.com ([169.254.1.121]) with mapi id 14.03.0439.000;
+ Thu, 12 Mar 2020 12:37:08 -0700
+From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH 02/12] drm/i915: Wrap i915_active in a
+ simple kreffed struct
+Thread-Index: AQHV96liEY8VsuD1a0mtpk83bKDb+KhFW49Q
+Date: Thu, 12 Mar 2020 19:37:07 +0000
+Message-ID: <14063C7AD467DE4B82DEDB5C278E8663F50027C6@FMSMSX108.amr.corp.intel.com>
+References: <20200311133047.30696-1-chris@chris-wilson.co.uk>
+ <20200311133047.30696-2-chris@chris-wilson.co.uk>
+In-Reply-To: <20200311133047.30696-2-chris@chris-wilson.co.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rajat Jain" <rajatja@google.com>
-Date: Thu, 12 Mar 2020 19:35:31 -0000
-Message-ID: <158404173115.4948.15056075209787690387@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200312185629.141280-1-rajatja@google.com>
-In-Reply-To: <20200312185629.141280-1-rajatja@google.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915_Support_for_integrated_privacy_screen?=
+Subject: Re: [Intel-gfx] [PATCH 02/12] drm/i915: Wrap i915_active in a
+ simple kreffed struct
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,101 +61,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+>-----Original Message-----
+>From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Chris
+>Wilson
+>Sent: Wednesday, March 11, 2020 9:31 AM
+>To: intel-gfx@lists.freedesktop.org
+>Subject: [Intel-gfx] [PATCH 02/12] drm/i915: Wrap i915_active in a simple
+>kreffed struct
+>
+>For conveniences of callers that just want to use an i915_active to
+>track a wide array of concurrent timelines, wrap the base i915_active
+>struct inside a kref. This i915_active will self-destruct after use.
+>
+>Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>---
+> drivers/gpu/drm/i915/i915_active.c | 53
+>++++++++++++++++++++++++++++++
+> drivers/gpu/drm/i915/i915_active.h |  4 +++
+> 2 files changed, 57 insertions(+)
+>
+>diff --git a/drivers/gpu/drm/i915/i915_active.c
+>b/drivers/gpu/drm/i915/i915_active.c
+>index c4048628188a..535b8161a597 100644
+>--- a/drivers/gpu/drm/i915/i915_active.c
+>+++ b/drivers/gpu/drm/i915/i915_active.c
+>@@ -937,6 +937,59 @@ void i915_active_noop(struct dma_fence *fence,
+>struct dma_fence_cb *cb)
+> 	active_fence_cb(fence, cb);
+> }
+>
+>+struct auto_active {
+>+	struct i915_active base;
+>+	struct kref ref;
+>+};
+>+
+>+struct i915_active *i915_active_get(struct i915_active *ref)
+>+{
+>+	struct auto_active *aa = container_of(ref, typeof(*aa), base);
+>+
+>+	kref_get(&aa->ref);
 
-Series: drm/i915 Support for integrated privacy screen
-URL   : https://patchwork.freedesktop.org/series/74650/
-State : success
+Should this be:
 
-== Summary ==
+kref_get_unless_zero()?
 
-CI Bug Log - changes from CI_DRM_8127 -> Patchwork_16957
-====================================================
+Mike
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16957 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [PASS][1] -> [FAIL][2] ([CI#94])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][3] ([i915#877]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [INCOMPLETE][5] ([i915#1405]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@mman:
-    - fi-ivb-3770:        [DMESG-WARN][7] ([i915#1405]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/fi-ivb-3770/igt@i915_selftest@live@mman.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/fi-ivb-3770/igt@i915_selftest@live@mman.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#1405]: https://gitlab.freedesktop.org/drm/intel/issues/1405
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (42 -> 37)
-------------------------------
-
-  Additional (7): fi-bsw-n3050 fi-cfl-guc fi-snb-2520m fi-kbl-x1275 fi-bsw-kefka fi-kbl-7560u fi-kbl-r 
-  Missing    (12): fi-ilk-m540 fi-bdw-samus fi-tgl-dsi fi-hsw-4200u fi-skl-6770hq fi-bdw-gvtdvm fi-bsw-cyan fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6600u fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8127 -> Patchwork_16957
-
-  CI-20190529: 20190529
-  CI_DRM_8127: 6b843f994832ac95eafa8d380399c3aef2cab3e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5506: 59fd8a0d01dac58dc6c7d86ef391ed4393ab5aae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16957: 6d59d9dc39bf79232460b974d3909abcf8682925 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-6d59d9dc39bf drm/i915: Enable support for integrated privacy screen
-d25c3af2f2e2 drm/i915: Add helper code for ACPI privacy screen
-50fff7891e7a drm/i915: Lookup and attach ACPI device node for connectors
-500f89acca9c drm/connector: Add support for privacy-screen property
-a0d97f65392d intel_acpi: Rename drm_dev local variable to dev
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16957/index.html
+>+	return &aa->base;
+>+}
+>+
+>+static void auto_release(struct kref *ref)
+>+{
+>+	struct auto_active *aa = container_of(ref, typeof(*aa), ref);
+>+
+>+	i915_active_fini(&aa->base);
+>+	kfree(aa);
+>+}
+>+
+>+void i915_active_put(struct i915_active *ref)
+>+{
+>+	struct auto_active *aa = container_of(ref, typeof(*aa), base);
+>+
+>+	kref_put(&aa->ref, auto_release);
+>+}
+>+
+>+static int auto_active(struct i915_active *ref)
+>+{
+>+	i915_active_get(ref);
+>+	return 0;
+>+}
+>+
+>+static void auto_retire(struct i915_active *ref)
+>+{
+>+	i915_active_put(ref);
+>+}
+>+
+>+struct i915_active *i915_active_create(void)
+>+{
+>+	struct auto_active *aa;
+>+
+>+	aa = kmalloc(sizeof(*aa), GFP_KERNEL);
+>+	if (!aa)
+>+		return NULL;
+>+
+>+	kref_init(&aa->ref);
+>+	i915_active_init(&aa->base, auto_active, auto_retire);
+>+
+>+	return &aa->base;
+>+}
+>+
+> #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> #include "selftests/i915_active.c"
+> #endif
+>diff --git a/drivers/gpu/drm/i915/i915_active.h
+>b/drivers/gpu/drm/i915/i915_active.h
+>index b3282ae7913c..bffbcf7751a7 100644
+>--- a/drivers/gpu/drm/i915/i915_active.h
+>+++ b/drivers/gpu/drm/i915/i915_active.h
+>@@ -221,4 +221,8 @@ void i915_request_add_active_barriers(struct
+>i915_request *rq);
+> void i915_active_print(struct i915_active *ref, struct drm_printer *m);
+> void i915_active_unlock_wait(struct i915_active *ref);
+>
+>+struct i915_active *i915_active_create(void);
+>+struct i915_active *i915_active_get(struct i915_active *ref);
+>+void i915_active_put(struct i915_active *ref);
+>+
+> #endif /* _I915_ACTIVE_H_ */
+>--
+>2.20.1
+>
+>_______________________________________________
+>Intel-gfx mailing list
+>Intel-gfx@lists.freedesktop.org
+>https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
