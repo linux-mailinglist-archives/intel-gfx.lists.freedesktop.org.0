@@ -2,31 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA4D18388B
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 19:24:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C65C1838A5
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 19:27:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C56E6EB21;
-	Thu, 12 Mar 2020 18:24:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 463E76EB1E;
+	Thu, 12 Mar 2020 18:27:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B6AA6EB1D
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 18:24:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20540734-1500050 for multiple; Thu, 12 Mar 2020 18:23:32 +0000
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
+ [IPv6:2607:f8b0:4864:20::e41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 817356E046
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 18:27:29 +0000 (UTC)
+Received: by mail-vs1-xe41.google.com with SMTP id n6so4369206vsc.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 11:27:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=0GMWDhCfWv4j8Ra0VF9ObXJLpJNE8BH/pHTdEoSS+fc=;
+ b=Ek0l5Gh19XhOw0va/Eockerkvs6m1lsv9poOZa0awSRje1PA//T30LddFdvQmxAkfl
+ RSsGo2MmVSVf2XKQNiMA6E9zZpfl1QzsTPOZPT8dx17RXxAIPZlizheYrBQ+b1WJD6gP
+ 9t0pusxGeh1xsfLVt+T9LnN59xkA8Ul9yFPgXC2VzrDMPKSl2I7EAChXfIWpLNMnJc1r
+ UfGJYrDESlh8mHMnURIgVx2YjI1pGOUuDb8rSYx4ufAn9qnJKgmCvL/6ZDgiEgT3RIkM
+ tF2p6p2/KuH+ljo2hgjp1dRt2Akz5g/tSusdTjstn7ZVnxPA1KLaHYSRUzz/McCxLPsc
+ 1nig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=0GMWDhCfWv4j8Ra0VF9ObXJLpJNE8BH/pHTdEoSS+fc=;
+ b=mFp1fZfDthIHMnUrDlkq1kliamo7gNk9Q8tGuDoU4NIBWtdICREwX/geq83FgiBCzt
+ 4JOlOT6XZrtZXBIL5IJBOkJCvaIG6uETK7QjL0hJwF4xoUlsBkuhopACOwIV/MoSqQv+
+ Is/rriaCwDRAYcScuKZIqkKgr+07G9e4hbA1l3Nr24q/zwN0ammrVVl4tS1BTBELtZqc
+ Hb0H2tYGsnflwFO2QyyzJ/xCetG/FVr5iiVORPyQtW5pDzhQ3UuSXoMB+OdbJV+yoOpy
+ cxxRpIPEY/s2MWvDYitOWRisPQCqEgVFP0jOAhxmD5wTDzqwUMeHIOxfLiMzKRPf1ovh
+ z5nA==
+X-Gm-Message-State: ANhLgQ2JE5vbRe4pfLXWBLA15FJOQcXZ6rJ/cghwYR76zj6LfcgFlgKF
+ di1iJUZtl81spnbN+G8M3B8Hodq0ZT7HROlL5vM=
+X-Google-Smtp-Source: ADFU+vunn+FIRwn2Uvemb6wFfJONqUn3T2syUVPIa6k/S3n2LtsAVIhI7McKxMJHxeuRHnafNf1Tzc49TrdTiLT6R3g=
+X-Received: by 2002:a67:de97:: with SMTP id r23mr6849388vsk.23.1584037648545; 
+ Thu, 12 Mar 2020 11:27:28 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAM0jSHPoomPxh-fZrr7QOSeGDz_riqeicsJZKKqX5rTx3xunLQ@mail.gmail.com>
-References: <20200312154708.1720-1-chris@chris-wilson.co.uk>
- <CAM0jSHPoomPxh-fZrr7QOSeGDz_riqeicsJZKKqX5rTx3xunLQ@mail.gmail.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Matthew Auld <matthew.william.auld@gmail.com>
-Message-ID: <158403741159.14209.14979249350584022148@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Thu, 12 Mar 2020 18:23:31 +0000
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: Use igt_random_offset()
+References: <20200311160310.26711-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200311160310.26711-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 12 Mar 2020 18:27:01 +0000
+Message-ID: <CAM0jSHO8+gxYyKB0etFwhssbqYLdA7OwhtqLX4UP+Ku0-fZ-dA@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Drop relocation slowpath
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,54 +60,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Matthew Auld (2020-03-12 17:00:58)
-> On Thu, 12 Mar 2020 at 15:47, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> >
-> > Switch igt_vm_isolation() to using igt_random_offset().
-> >
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Akeem G Abodunrin <akeem.g.abodunrin@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c | 8 +++-----
-> >  1 file changed, 3 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > index 77c7e65de7c3..62157e7567da 100644
-> > --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-> > @@ -1809,7 +1809,6 @@ static int igt_vm_isolation(void *arg)
-> >
-> >         vm_total = ctx_vm(ctx_a)->total;
-> >         GEM_BUG_ON(ctx_vm(ctx_b)->total != vm_total);
-> > -       vm_total -= I915_GTT_PAGE_SIZE;
-> >
-> >         count = 0;
-> >         num_engines = 0;
-> > @@ -1828,10 +1827,9 @@ static int igt_vm_isolation(void *arg)
-> >                         u32 value = 0xc5c5c5c5;
-> >                         u64 offset;
-> >
-> > -                       div64_u64_rem(i915_prandom_u64_state(&prng),
-> > -                                     vm_total, &offset);
-> > -                       offset = round_down(offset, alignof_dword);
-> > -                       offset += I915_GTT_PAGE_SIZE;
-> > +                       offset = igt_random_offset(&prng, 0, vm_total,
-> > +                                                  I915_GTT_PAGE_SIZE,
-> > +                                                  I915_GTT_PAGE_SIZE);
-> 
-> Further down is: GEM_BUG_ON(offset < I915_GTT_PAGE_SIZE);
-
-Makes sense, we need to keep a page for the batch. Thanks will fixup the
-start.
--Chris
+On Wed, 11 Mar 2020 at 16:03, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Since the relocations are no longer performed under a global
+> struct_mutex, or any other lock, that is also held by pagefault handlers,
+> we can relax and allow our fast path to take a fault. As we no longer
+> need to abort the fast path for lock avoidance, we no longer need the
+> slow path handling at all.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
