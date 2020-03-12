@@ -1,41 +1,64 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EBB1830F0
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 14:13:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BB81830EE
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 14:13:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2BA6EAB1;
-	Thu, 12 Mar 2020 13:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0CA36EA97;
+	Thu, 12 Mar 2020 13:13:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [IPv6:2607:7c80:54:e::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B066E6E487;
- Wed, 11 Mar 2020 15:28:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Transfer-Encoding
- :Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-ID:Content-Description;
- bh=SIqPqQL4E4jqHkpffGX9pDEDtDuqr9oIINOLiMZ97lI=; b=ENYhknSFl8/K5NlY4EPf9Auvnj
- qUAA16q+DsyWvkT0HMYKNGi+4561WycRIwnqzsgJJdmC9/iermrLG9eGBd9QEyr3+f6v3jMFOgrpy
- bRgs7v4vVxhl3qRg23yI8uUvzXfwIaAvjN7aiUIrSp1JH4A2ghP0lhPa+osE4j8OucHQVr7uXjbZn
- w/76MEQXIegQl51dZ6XWBuHDMIPxt/8wZom9zWExXNSNA6/BO6FcPYEB+3CCow2/X2Zvh2+vkMLRA
- 61WI+RVKdlxXNDgPB5a0xK3U4wzmAzm5Q1/GHuzpN5IhcZ/0Pn3YUMi8ZcM+0anqiWN5+3I67Ffd0
- cpVtmnFA==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92.3 #3 (Red
- Hat Linux)) id 1jC3Hi-0006RL-K0; Wed, 11 Mar 2020 15:28:38 +0000
-Date: Wed, 11 Mar 2020 08:28:38 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-Message-ID: <20200311152838.GA24280@infradead.org>
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
+ [IPv6:2a00:1450:4864:20::444])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 965F76E106;
+ Thu, 12 Mar 2020 10:14:25 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id n15so6603792wrw.13;
+ Thu, 12 Mar 2020 03:14:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=reply-to:subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-transfer-encoding:content-language;
+ bh=99zCoGvBDUcvfpO9a9LFfTGeDECAtBMxFB8De2EMWp0=;
+ b=DMpTpwApva9r8u9lx0Op6r/whtC4At15bKd8fkbJdGqjQmio4yaGOYfzdcgindAbK5
+ a7IJacyFiFVDhWiooi8BZ1gmXDW51k7Cu4OwA92puB3ehtgeShNeQm/yORTN/rMIZsjP
+ x0tnmnRUeruhgJD/DksHtunDqv65HV+HpSFPKh0Ag5N2owWZVZjBtZ8Fi2gskr1OTNEa
+ k1KAwLcYReLu0/Qda9qtjPmaxH1fDxytxmTHE5Jbwl32hEe/AM4Fshde1kNpgW97hYwD
+ iOh3Hmoez2s6Q7A52Ek10fpT00nYOdsHcoamPgYGt59j9pogB7fbSq3yLAAu1i7xfBRK
+ 0AJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:reply-to:subject:to:cc:references:from
+ :message-id:date:user-agent:mime-version:in-reply-to
+ :content-transfer-encoding:content-language;
+ bh=99zCoGvBDUcvfpO9a9LFfTGeDECAtBMxFB8De2EMWp0=;
+ b=q7qcq4IxboR40MlhNTQ/axgto0OaVwa1tbHC1NwBndmdhQOnWnTCrUW5vv2r74WC16
+ oWLtGUJnNiAzITwZmYfCwGThhti8XfdTTfdwekR0kOp2Co71NFQmky6LKAJkGU93tUoA
+ eYjAS03r+USayTC+tCUepmT4jy5Yvyo5ZaSanZUuYEWDMbXLmdgCRboovrxnvQuo/jtr
+ TvjmPD//e6JDh7ujlzOele5yXPnhjt6wLg+anW3XzCKjXNOy9q0XW/WqIZ0LqWgjWVXV
+ Nc6p2x+8OrY7jG3+OHAUxIVWD+wP8/GqxhR4o3G1HJiAalAwSHYWN/eQYNpsFKknGtO0
+ nzDw==
+X-Gm-Message-State: ANhLgQ18zpH6aJsLSMyKzdXnQ48vDYh+Aa42UbaxQ49LIKbz9NF19HPe
+ teKsrMRNXxca4Zjy6D8p7hxVGam9
+X-Google-Smtp-Source: ADFU+vt9s8OYMtKOql4lFTOfhZHcw/9Pzcas2QNpKDhr/rEHArSKwzODj38Q68fYVw1jBI8UvymV/Q==
+X-Received: by 2002:adf:db84:: with SMTP id u4mr10434358wri.317.1584008064004; 
+ Thu, 12 Mar 2020 03:14:24 -0700 (PDT)
+Received: from ?IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7?
+ ([2a02:908:1252:fb60:be8a:bd56:1f94:86e7])
+ by smtp.gmail.com with ESMTPSA id a9sm27966191wrv.59.2020.03.12.03.14.22
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Thu, 12 Mar 2020 03:14:23 -0700 (PDT)
+To: Christoph Hellwig <hch@infradead.org>
 References: <20200311135158.3310-1-christian.koenig@amd.com>
  <20200311135158.3310-2-christian.koenig@amd.com>
+ <20200311152838.GA24280@infradead.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+Message-ID: <f2b46f49-a8d0-9d43-3120-e1ed36fc3a80@gmail.com>
+Date: Thu, 12 Mar 2020 11:14:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200311135158.3310-2-christian.koenig@amd.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by
- bombadil.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20200311152838.GA24280@infradead.org>
+Content-Language: en-US
 X-Mailman-Approved-At: Thu, 12 Mar 2020 13:13:09 +0000
 Subject: Re: [Intel-gfx] [PATCH 1/6] lib/scatterlist: add sg_set_dma_addr()
  function
@@ -51,30 +74,27 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: christian.koenig@amd.com
 Cc: David1.Zhou@amd.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, hch@infradead.org, jgg@ziepe.ca,
- linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, jgg@ziepe.ca,
+ linux-media@vger.kernel.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 11, 2020 at 02:51:53PM +0100, Christian K=F6nig wrote:
-> This can be used by drivers to setup P2P DMA between device
-> memory which is not backed by struct pages.
-> =
-
-> The drivers of the involved devices are responsible for
-> setting up and tearing down DMA addresses as necessary
-> using dma_map_resource().
-> =
-
-> The page pointer is set to NULL and only the DMA address,
-> length and offset values are valid.
-
-NAK.  The only valid way to fill DMA address in scatterlists is
-dma_map_sg / dma_map_sg_attr.
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QW0gMTEuMDMuMjAgdW0gMTY6Mjggc2NocmllYiBDaHJpc3RvcGggSGVsbHdpZzoKPiBPbiBXZWQs
+IE1hciAxMSwgMjAyMCBhdCAwMjo1MTo1M1BNICswMTAwLCBDaHJpc3RpYW4gS8O2bmlnIHdyb3Rl
+Ogo+PiBUaGlzIGNhbiBiZSB1c2VkIGJ5IGRyaXZlcnMgdG8gc2V0dXAgUDJQIERNQSBiZXR3ZWVu
+IGRldmljZQo+PiBtZW1vcnkgd2hpY2ggaXMgbm90IGJhY2tlZCBieSBzdHJ1Y3QgcGFnZXMuCj4+
+Cj4+IFRoZSBkcml2ZXJzIG9mIHRoZSBpbnZvbHZlZCBkZXZpY2VzIGFyZSByZXNwb25zaWJsZSBm
+b3IKPj4gc2V0dGluZyB1cCBhbmQgdGVhcmluZyBkb3duIERNQSBhZGRyZXNzZXMgYXMgbmVjZXNz
+YXJ5Cj4+IHVzaW5nIGRtYV9tYXBfcmVzb3VyY2UoKS4KPj4KPj4gVGhlIHBhZ2UgcG9pbnRlciBp
+cyBzZXQgdG8gTlVMTCBhbmQgb25seSB0aGUgRE1BIGFkZHJlc3MsCj4+IGxlbmd0aCBhbmQgb2Zm
+c2V0IHZhbHVlcyBhcmUgdmFsaWQuCj4gTkFLLiAgVGhlIG9ubHkgdmFsaWQgd2F5IHRvIGZpbGwg
+RE1BIGFkZHJlc3MgaW4gc2NhdHRlcmxpc3RzIGlzCj4gZG1hX21hcF9zZyAvIGRtYV9tYXBfc2df
+YXR0ci4KCkhvdyBjYW4gd2UgdGhlbiBtYXAgUENJZSBCQVJzIGludG8gYW4gc2NhdHRlcmxpc3Qg
+d2hpY2ggYXJlIG5vdCBiYWNrZWQgCmJ5IHN0cnVjdCBwYWdlcz8KClJlZ2FyZHMsCkNocmlzdGlh
+bi4KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwt
+Z2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8v
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
