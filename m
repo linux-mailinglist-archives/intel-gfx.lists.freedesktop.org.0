@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC3BA183050
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 13:35:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F67718307B
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 13:39:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D1C089954;
-	Thu, 12 Mar 2020 12:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9B406E1E6;
+	Thu, 12 Mar 2020 12:39:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 04CF689834;
- Thu, 12 Mar 2020 12:35:04 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B11896E1E6;
+ Thu, 12 Mar 2020 12:39:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DD43FA47E6;
- Thu, 12 Mar 2020 12:35:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A7CC6A47E6;
+ Thu, 12 Mar 2020 12:39:43 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 12 Mar 2020 12:35:03 -0000
-Message-ID: <158401650387.4948.13095613941086458529@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Thu, 12 Mar 2020 12:39:43 -0000
+Message-ID: <158401678365.4949.16327514998283584134@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200312103548.19962-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200312103548.19962-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/mm=3A_Use_debugobject_to_track_lifetimes_=28rev2=29?=
+References: <20200312111449.21202-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200312111449.21202-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_drm_scaling_filter_property_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,73 +47,115 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/mm: Use debugobject to track lifetimes (rev2)
-URL   : https://patchwork.freedesktop.org/series/74638/
-State : success
+Series: Introduce drm scaling filter property (rev2)
+URL   : https://patchwork.freedesktop.org/series/73883/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8126 -> Patchwork_16949
-====================================================
+$ dim checkpatch origin/drm-tip
+38e9b95fbc63 drm: Introduce plane and CRTC scaling filter properties
+-:136: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#136: FILE: drivers/gpu/drm/drm_mode_config.c:384:
++	prop = drm_property_create_enum(dev, 0,
++				"SCALING_FILTER",
 
-Summary
--------
+-:144: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#144: FILE: drivers/gpu/drm/drm_mode_config.c:392:
++	prop = drm_property_create_enum(dev, 0,
++				"SCALING_FILTER",
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 2 checks, 218 lines checked
+d310d566729e drm/drm-kms.rst: Add plane and CRTC scaling filter property documentation
+-:11: WARNING:TYPO_SPELLING: 'seperate' may be misspelled - perhaps 'separate'?
+#11: 
+* Add seperate documention for plane and CRTC.
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+1e2dfdf86198 drm/i915: Introduce scaling filter related registers and bit fields.
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#71: FILE: drivers/gpu/drm/i915/i915_reg.h:7334:
++#define _SKL_PS_COEF_INDEX_SET0(pipe, id)  _ID(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16949/index.html
+-:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#75: FILE: drivers/gpu/drm/i915/i915_reg.h:7338:
++#define _SKL_PS_COEF_INDEX_SET1(pipe, id)  _ID(pipe,    \
++			_ID(id, _PS_COEF_SET1_INDEX_1A, _PS_COEF_SET1_INDEX_2A), \
++			_ID(id, _PS_COEF_SET1_INDEX_1B, _PS_COEF_SET1_INDEX_2B))
 
-Known issues
-------------
+-:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#79: FILE: drivers/gpu/drm/i915/i915_reg.h:7342:
++#define _SKL_PS_COEF_DATA_SET0(pipe, id)  _ID(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
 
-  Here are the changes found in Patchwork_16949 that come from known issues:
+-:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#83: FILE: drivers/gpu/drm/i915/i915_reg.h:7346:
++#define _SKL_PS_COEF_DATA_SET1(pipe, id)  _ID(pipe,     \
++			_ID(id, _PS_COEF_SET1_DATA_1A, _PS_COEF_SET1_DATA_2A), \
++			_ID(id, _PS_COEF_SET1_DATA_1B, _PS_COEF_SET1_DATA_2B))
 
-### IGT changes ###
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#87: FILE: drivers/gpu/drm/i915/i915_reg.h:7350:
++#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
++			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
 
-#### Possible fixes ####
+-:87: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#87: FILE: drivers/gpu/drm/i915/i915_reg.h:7350:
++#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
++			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
 
-  * igt@i915_pm_rpm@basic-rte:
-    - fi-hsw-4770:        [SKIP][1] ([fdo#109271]) -> [PASS][2] +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16949/fi-hsw-4770/igt@i915_pm_rpm@basic-rte.html
+-:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#91: FILE: drivers/gpu/drm/i915/i915_reg.h:7354:
++#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
++			    _SKL_PS_COEF_DATA_SET1(pipe, id))
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][3] ([i915#323]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8126/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16949/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+-:91: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#91: FILE: drivers/gpu/drm/i915/i915_reg.h:7354:
++#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
++			    _SKL_PS_COEF_DATA_SET1(pipe, id))
 
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+total: 0 errors, 0 warnings, 8 checks, 72 lines checked
+7e25cb888423 drm/i915/display: Add Nearest-neighbor based integer scaling support
+-:77: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:6279:
++{
++
 
+-:95: WARNING:LONG_LINE: line over 100 characters
+#95: FILE: drivers/gpu/drm/i915/display/intel_display.c:6297:
++				intel_de_write_fw(dev_priv, SKL_PS_COEF_DATA_SET(pipe, id, set), val);
 
-Participating hosts (46 -> 41)
-------------------------------
+total: 0 errors, 1 warnings, 1 checks, 80 lines checked
+3ed10cd62efd drm/i915: Enable scaling filter for plane and CRTC
+-:32: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#32: FILE: drivers/gpu/drm/i915/display/intel_display.c:6308:
++skl_scaler_crtc_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
++			  int id, int set, enum drm_crtc_scaling_filter filter)
 
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-tgl-y fi-byt-clapper 
+-:45: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#45: FILE: drivers/gpu/drm/i915/display/intel_display.c:6321:
++
++	}
 
+-:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#75: FILE: drivers/gpu/drm/i915/display/intel_display.c:6360:
++			skl_scaler_crtc_setup_filter(dev_priv, pipe, id, 0,
++						state->scaling_filter);
 
-Build changes
--------------
+-:116: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#116: FILE: drivers/gpu/drm/i915/display/intel_sprite.c:414:
++
++	}
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8126 -> Patchwork_16949
+total: 0 errors, 0 warnings, 4 checks, 124 lines checked
 
-  CI-20190529: 20190529
-  CI_DRM_8126: 2bd9e989a5653d4cd710e9dd2b42b0a080f1add8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5505: 8973d811f3fdfb4ace4aabab2095ce0309881648 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16949: 99485e1feb1bb9577a7752eb0c9bbf7681dd5228 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-99485e1feb1b drm/mm: Use debugobject to track lifetimes
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16949/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
