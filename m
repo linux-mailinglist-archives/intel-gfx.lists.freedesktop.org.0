@@ -1,44 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9979F183027
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 13:27:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 001F2183045
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 13:33:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 036426E1CF;
-	Thu, 12 Mar 2020 12:27:11 +0000 (UTC)
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93F366E13A;
- Thu, 12 Mar 2020 12:27:08 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3653E89893;
+	Thu, 12 Mar 2020 12:32:59 +0000 (UTC)
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14FB289834
+ for <Intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 12:32:57 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 05:27:07 -0700
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 05:32:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,544,1574150400"; d="scan'208";a="235010884"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 12 Mar 2020 05:27:00 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Mar 2020 14:27:00 +0200
-Date: Thu, 12 Mar 2020 14:27:00 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Laxminarayan Bharadiya, Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200312122700.GE13686@intel.com>
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225070545.4482-4-pankaj.laxminarayan.bharadiya@intel.com>
- <20200310160545.GI13686@intel.com>
- <E92BA18FDE0A5B43B7B3DA7FCA031286057B2BE5@BGSMSX107.gar.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,544,1574150400"; d="scan'208";a="277783817"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+ by fmsmga002.fm.intel.com with ESMTP; 12 Mar 2020 05:32:55 -0700
+Received: from irsmsx606.ger.corp.intel.com (163.33.146.139) by
+ IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 12 Mar 2020 12:32:55 +0000
+Received: from irsmsx601.ger.corp.intel.com (163.33.146.7) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 12 Mar 2020 12:32:55 +0000
+Received: from irsmsx601.ger.corp.intel.com ([163.33.146.7]) by
+ irsmsx601.ger.corp.intel.com ([163.33.146.7]) with mapi id 15.01.1713.004;
+ Thu, 12 Mar 2020 12:32:55 +0000
+From: "Mrozek, Michal" <michal.mrozek@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ "Intel-gfx@lists.freedesktop.org" <Intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v3] drm/i915/gen12: Disable preemption timeout
+Thread-Index: AQHV+GV3gtM8E/6h2UaUOIIOSXsn3KhE46sw
+Date: Thu, 12 Mar 2020 12:32:54 +0000
+Message-ID: <e757df2ebc75465eadb87c775a31f616@intel.com>
+References: <20200310162428.4249-1-tvrtko.ursulin@linux.intel.com>
+ <20200312115748.29970-1-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200312115748.29970-1-tvrtko.ursulin@linux.intel.com>
+Accept-Language: pl-PL, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [163.33.253.164]
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <E92BA18FDE0A5B43B7B3DA7FCA031286057B2BE5@BGSMSX107.gar.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC][PATCH 3/5] drm/i915: Enable scaling filter
- for plane and pipe
+Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gen12: Disable preemption
+ timeout
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,238 +64,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "airlied@linux.ie" <airlied@linux.ie>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Nautiyal,
- Ankit K" <ankit.k.nautiyal@intel.com>,
- "mihail.atanassov@arm.com" <mihail.atanassov@arm.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: "stable@vger.kernel.org" <stable@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 12, 2020 at 08:58:42AM +0000, Laxminarayan Bharadiya, Pankaj wr=
-ote:
-> =
+> -----Original Message-----
+> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> Sent: Thursday, March 12, 2020 12:58 PM
+> To: Intel-gfx@lists.freedesktop.org
+> Cc: Ursulin, Tvrtko <tvrtko.ursulin@intel.com>; Chris Wilson <chris@chris-
+> wilson.co.uk>; Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Mrozek,
+> Michal <michal.mrozek@intel.com>; stable@vger.kernel.org
+> Subject: [PATCH v3] drm/i915/gen12: Disable preemption timeout
+> 
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> Allow super long OpenCL workloads which cannot be preempted within the
+> default timeout to run out of the box.
+> 
+> v2:
+>  * Make it stick out more and apply only to RCS. (Chris)
+> 
+> v3:
+>  * Mention platform override in kconfig. (Joonas)
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Michal Mrozek <michal.mrozek@intel.com>
+> Cc: <stable@vger.kernel.org> # v5.6+
+> Acked-by: Chris Wilson <chris@chris-wilson.co.uk>
+> ---
+>  drivers/gpu/drm/i915/Kconfig.profile      |  4 ++++
+>  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 13 +++++++++----
+>  2 files changed, 13 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/Kconfig.profile
+> b/drivers/gpu/drm/i915/Kconfig.profile
+> index ba8767fc0d6e..0bfd276c19fe 100644
+> --- a/drivers/gpu/drm/i915/Kconfig.profile
+> +++ b/drivers/gpu/drm/i915/Kconfig.profile
+> @@ -41,6 +41,10 @@ config DRM_I915_PREEMPT_TIMEOUT
+> 
+>  	  May be 0 to disable the timeout.
+> 
+> +	  The compiled in default may get overridden at driver probe time on
+> +	  certain platforms and certain engines which will be reflected in the
+> +	  sysfs control.
+> +
+>  config DRM_I915_MAX_REQUEST_BUSYWAIT
+>  	int "Busywait for request completion limit (ns)"
+>  	default 8000 # nanoseconds
+> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> index 8eeec87b7d72..3aa8a652c16d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+> @@ -275,6 +275,7 @@ static void intel_engine_sanitize_mmio(struct
+> intel_engine_cs *engine)  static int intel_engine_setup(struct intel_gt *gt, enum
+> intel_engine_id id)  {
+>  	const struct engine_info *info = &intel_engines[id];
+> +	struct drm_i915_private *i915 = gt->i915;
+>  	struct intel_engine_cs *engine;
+> 
+>  	BUILD_BUG_ON(MAX_ENGINE_CLASS >=
+> BIT(GEN11_ENGINE_CLASS_WIDTH)); @@ -301,11 +302,11 @@ static int
+> intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
+>  	engine->id = id;
+>  	engine->legacy_idx = INVALID_ENGINE;
+>  	engine->mask = BIT(id);
+> -	engine->i915 = gt->i915;
+> +	engine->i915 = i915;
+>  	engine->gt = gt;
+>  	engine->uncore = gt->uncore;
+>  	engine->hw_id = engine->guc_id = info->hw_id;
+> -	engine->mmio_base = __engine_mmio_base(gt->i915, info-
+> >mmio_bases);
+> +	engine->mmio_base = __engine_mmio_base(i915, info->mmio_bases);
+> 
+>  	engine->class = info->class;
+>  	engine->instance = info->instance;
+> @@ -322,11 +323,15 @@ static int intel_engine_setup(struct intel_gt *gt, enum
+> intel_engine_id id)
+>  	engine->props.timeslice_duration_ms =
+>  		CONFIG_DRM_I915_TIMESLICE_DURATION;
+> 
+> +	/* Override to uninterruptible for OpenCL workloads. */
+> +	if (INTEL_GEN(i915) == 12 && engine->class == RENDER_CLASS)
+> +		engine->props.preempt_timeout_ms = 0;
+> +
+>  	engine->context_size = intel_engine_context_size(gt, engine->class);
+>  	if (WARN_ON(engine->context_size > BIT(20)))
+>  		engine->context_size = 0;
+>  	if (engine->context_size)
+> -		DRIVER_CAPS(gt->i915)->has_logical_contexts = true;
+> +		DRIVER_CAPS(i915)->has_logical_contexts = true;
+> 
+>  	/* Nothing to do here, execute in order of dependencies */
+>  	engine->schedule = NULL;
+> @@ -342,7 +347,7 @@ static int intel_engine_setup(struct intel_gt *gt, enum
+> intel_engine_id id)
+>  	gt->engine_class[info->class][info->instance] = engine;
+>  	gt->engine[id] = engine;
+> 
+> -	gt->i915->engine[id] = engine;
+> +	i915->engine[id] = engine;
+> 
+>  	return 0;
+>  }
+> --
+> 2.20.1
 
-> =
-
-> > -----Original Message-----
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > Sent: 10 March 2020 21:36
-> > To: Laxminarayan Bharadiya, Pankaj
-> > <pankaj.laxminarayan.bharadiya@intel.com>
-> > Cc: jani.nikula@linux.intel.com; daniel@ffwll.ch; intel-
-> > gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; airlied@lin=
-ux.ie;
-> > maarten.lankhorst@linux.intel.com; tzimmermann@suse.de;
-> > mripard@kernel.org; mihail.atanassov@arm.com; Joonas Lahtinen
-> > <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.co=
-m>;
-> > Chris Wilson <chris@chris-wilson.co.uk>; Souza, Jose
-> > <jose.souza@intel.com>; Juha-Pekka Heikkila
-> > <juhapekka.heikkila@gmail.com>; linux-kernel@vger.kernel.org; Nautiyal,
-> > Ankit K <ankit.k.nautiyal@intel.com>
-> > Subject: Re: [RFC][PATCH 3/5] drm/i915: Enable scaling filter for plane=
- and
-> > pipe
-> > =
-
-> > On Tue, Feb 25, 2020 at 12:35:43PM +0530, Pankaj Bharadiya wrote:
-> > > Attach scaling filter property for crtc and plane and program the
-> > > scaler control register for the selected filter type.
-> > >
-> > > This is preparatory patch to enable Nearest-neighbor integer scaling.
-> > >
-> > > Signed-off-by: Pankaj Bharadiya
-> > > <pankaj.laxminarayan.bharadiya@intel.com>
-> > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++++++++++--
-> > > drivers/gpu/drm/i915/display/intel_sprite.c  | 12 +++++++++++-
-> > >  drivers/gpu/drm/i915/i915_reg.h              |  1 +
-> > >  3 files changed, 27 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > > b/drivers/gpu/drm/i915/display/intel_display.c
-> > > index 3031e64ee518..b5903ef3c5a0 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -6242,6 +6242,8 @@ static void skl_pfit_enable(const struct
-> > intel_crtc_state *crtc_state)
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > >  	enum pipe pipe =3D crtc->pipe;
-> > > +	const struct drm_crtc_state *state =3D &crtc_state->uapi;
-> > > +	u32 scaling_filter =3D PS_FILTER_MEDIUM;
-> > >  	const struct intel_crtc_scaler_state *scaler_state =3D
-> > >  		&crtc_state->scaler_state;
-> > >
-> > > @@ -6258,6 +6260,11 @@ static void skl_pfit_enable(const struct
-> > intel_crtc_state *crtc_state)
-> > >  		pfit_w =3D (crtc_state->pch_pfit.size >> 16) & 0xFFFF;
-> > >  		pfit_h =3D crtc_state->pch_pfit.size & 0xFFFF;
-> > >
-> > > +		if (state->scaling_filter =3D=3D
-> > > +		    DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
-> > > +			scaling_filter =3D PS_FILTER_PROGRAMMED;
-> > > +		}
-> > =
-
-> > Just make that a function that can be used all over.
-> > skl_scaler_filter(scaling_filter) or something.
-> > =
-
-> > > +
-> > >  		hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
-> > >  		vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
-> > >
-> > > @@ -6268,8 +6275,10 @@ static void skl_pfit_enable(const struct
-> > > intel_crtc_state *crtc_state)
-> > >
-> > >  		spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> > >
-> > > -		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id),
-> > PS_SCALER_EN |
-> > > -				  PS_FILTER_MEDIUM | scaler_state-
-> > >scalers[id].mode);
-> > > +		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id),
-> > > +				  PS_SCALER_EN |
-> > > +				  scaling_filter |
-> > > +				  scaler_state->scalers[id].mode);
-> > >  		intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
-> > >  				  PS_Y_PHASE(0) |
-> > PS_UV_RGB_PHASE(uv_rgb_vphase));
-> > >  		intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id), @@
-> > -16695,6
-> > > +16704,10 @@ static int intel_crtc_init(struct drm_i915_private *dev_=
-priv,
-> > enum pipe pipe)
-> > >  		dev_priv->plane_to_crtc_mapping[i9xx_plane] =3D crtc;
-> > >  	}
-> > >
-> > > +
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11)
-> > =
-
-> > gen >=3D 10 actually. Even glk seems to have it but bspec says not to u=
-se it on
-> > glk. Supposedly not validated.
-> > =
-
-> > ilk/snb/ivb pfits also has programmable coefficients actually. So IMO we
-> > should enable this on those as well.
-> =
-
-> OK. I need to explore bspec more for these platforms.
-> To begin with I would like to stick to gen >=3D10.
-
-Sure. You can also have a look at the intel_scaling_coef hacks I posted
-to igt-dev for details on how to drive them all. I already reverse
-engineered them sufficiently so that I was able to program them ;)
-
-> =
-
-> > =
-
-> > The bigger problem will be how is userspace supposed to use this if it'=
-s a crtc
-> > property? Those will not get automagically exposed via xrandr.
-> > =
-
-> > > +		drm_crtc_enable_scaling_filter(&crtc->base);
-> > > +
-> > >  	intel_color_init(crtc);
-> > >
-> > >  	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) !=3D
-> > > crtc->pipe); diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > index 7abeefe8dce5..fd7b31a21723 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-> > > @@ -414,6 +414,12 @@ skl_program_scaler(struct intel_plane *plane,
-> > >  	u16 y_hphase, uv_rgb_hphase;
-> > >  	u16 y_vphase, uv_rgb_vphase;
-> > >  	int hscale, vscale;
-> > > +	const struct drm_plane_state *state =3D &plane_state->uapi;
-> > > +	u32 scaling_filter =3D PS_FILTER_MEDIUM;
-> > > +
-> > > +	if (state->scaling_filter =3D=3D
-> > DRM_SCALING_FILTER_NEAREST_NEIGHBOR) {
-> > > +		scaling_filter =3D PS_FILTER_PROGRAMMED;
-> > > +	}
-> > >
-> > >  	hscale =3D drm_rect_calc_hscale(&plane_state->uapi.src,
-> > >  				      &plane_state->uapi.dst,
-> > > @@ -441,7 +447,8 @@ skl_program_scaler(struct intel_plane *plane,
-> > >  	}
-> > >
-> > >  	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, scaler_id),
-> > > -			  PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler-
-> > >mode);
-> > > +			  scaling_filter | PS_SCALER_EN |
-> > > +			  PS_PLANE_SEL(plane->id) | scaler->mode);
-> > >  	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, scaler_id),
-> > >  			  PS_Y_PHASE(y_vphase) |
-> > PS_UV_RGB_PHASE(uv_rgb_vphase));
-> > >  	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id), @@
-> > > -3104,6 +3111,9 @@ skl_universal_plane_create(struct drm_i915_private
-> > > *dev_priv,
-> > >
-> > >  	drm_plane_create_zpos_immutable_property(&plane->base,
-> > plane_id);
-> > >
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11)
-> > =
-
-> > also gen>=3D10
-> > =
-
-> > Also this patch breaks things as we don't yet have the code to program =
-the
-> > coefficients. So the series needs to be reordered.
-> =
-
-> Will reorder the series.
-> =
-
-> Thanks,
-> Pankaj
-> > =
-
-> > > +		drm_plane_enable_scaling_filter(&plane->base);
-> > > +
-> > >  	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
-> > >
-> > >  	return plane;
-> > > diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > > b/drivers/gpu/drm/i915/i915_reg.h index f45b5e86ec63..34923b1c284c
-> > > 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -7212,6 +7212,7 @@ enum {
-> > >  #define PS_PLANE_SEL(plane) (((plane) + 1) << 25)
-> > >  #define PS_FILTER_MASK         (3 << 23)
-> > >  #define PS_FILTER_MEDIUM       (0 << 23)
-> > > +#define PS_FILTER_PROGRAMMED   (1 << 23)
-> > >  #define PS_FILTER_EDGE_ENHANCE (2 << 23)
-> > >  #define PS_FILTER_BILINEAR     (3 << 23)
-> > >  #define PS_VERT3TAP            (1 << 21)
-> > > --
-> > > 2.23.0
-> > =
-
-> > --
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Acked-by: Michal Mrozek <Michal.mrozek@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
