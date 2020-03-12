@@ -2,33 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E831828BF
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 07:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59B0B182933
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 07:37:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 095AF6EA2A;
-	Thu, 12 Mar 2020 06:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3802F6EA36;
+	Thu, 12 Mar 2020 06:37:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19E526E071;
- Thu, 12 Mar 2020 06:07:48 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 23:07:47 -0700
-X-IronPort-AV: E=Sophos;i="5.70,543,1574150400"; d="scan'208";a="236709824"
-Received: from elsaidmo-mobl.ger.corp.intel.com (HELO localhost)
- ([10.249.39.161])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2020 23:07:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Thu, 12 Mar 2020 08:08:03 +0200
-Message-ID: <87lfo6ksvw.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2C76C6EA36;
+ Thu, 12 Mar 2020 06:37:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25F35A00E7;
+ Thu, 12 Mar 2020 06:37:08 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PULL] drm-intel-fixes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vandita Kulkarni" <vandita.kulkarni@intel.com>
+Date: Thu, 12 Mar 2020 06:37:08 -0000
+Message-ID: <158399502812.4949.2670535842551472271@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200312053841.2794-1-vandita.kulkarni@intel.com>
+In-Reply-To: <20200312053841.2794-1-vandita.kulkarni@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Add_support_for_mipi_dsi_cmd_mode_=28rev7=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,88 +38,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: , dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Dave & Daniel -
+Series: Add support for mipi dsi cmd mode (rev7)
+URL   : https://patchwork.freedesktop.org/series/69290/
+State : warning
 
-Normally I'd like to be slowing down on the fixes by now, but apart from
-the GVT fixes these are all cc: stable GPU fixes. No reason to postpone.
+== Summary ==
 
-BR,
-Jani.
+$ dim checkpatch origin/drm-tip
+ab22e3ce17b0 drm/i915/dsi: Configure transcoder operation for command mode.
+caaa705c0348 drm/i915/dsi: Add vblank calculation for command mode
+-:51: WARNING:LONG_LINE: line over 100 characters
+#51: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:876:
++		line_time_us = (htotal * (bpp / 8) * byte_clk_period_ns) / (1000 * intel_dsi->lane_count);
 
+total: 0 errors, 1 warnings, 0 checks, 79 lines checked
+3830ac46bbb4 drm/i915/dsi: Add cmd mode flags in display mode private flags
+-:30: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:648:
++#define I915_MODE_FLAG_DSI_USE_TE0 (1<<3)
+                                      ^
 
-drm-intel-fixes-2020-03-12:
-drm/i915 fixes for v5.6-rc6:
-- hard lockup fix
-- GVT fixes
-- 32-bit alignment issue fix
-- timeline wait fixes
-- cacheline_retire and free
+-:32: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#32: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:650:
++#define I915_MODE_FLAG_DSI_USE_TE1 (1<<4)
+                                      ^
 
-BR,
-Jani.
+-:34: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#34: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:652:
++#define I915_MODE_FLAG_DSI_PERIODIC_CMD_MODE (1<<5)
+                                                ^
 
-The following changes since commit 2c523b344dfa65a3738e7039832044aa133c75fb:
+total: 0 errors, 0 warnings, 3 checks, 16 lines checked
+2fd6820dac51 drm/i915/dsi: Add check for periodic command mode
+6cddc733fda6 drm/i915/dsi: Use private flags to indicate TE in cmd mode
+1e460ae1ec9b drm/i915/dsi: Configure TE interrupt for cmd mode
+31f2e0015d6a drm/i915/dsi: Add TE handler for dsi cmd mode.
+-:50: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val != CMD_MODE_NO_GATE'
+#50: FILE: drivers/gpu/drm/i915/i915_irq.c:2292:
++	if ((val != CMD_MODE_NO_GATE) && (val != CMD_MODE_TE_GATE)) {
 
-  Linux 5.6-rc5 (2020-03-08 17:44:44 -0700)
+-:50: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'val != CMD_MODE_TE_GATE'
+#50: FILE: drivers/gpu/drm/i915/i915_irq.c:2292:
++	if ((val != CMD_MODE_NO_GATE) && (val != CMD_MODE_TE_GATE)) {
 
-are available in the Git repository at:
+total: 0 errors, 0 warnings, 2 checks, 76 lines checked
+813d63e4f22c drm/i915/dsi: Initiate fame request in cmd mode
+0e6e0377bdd5 drm/i915/dsi: Clear the DSI IIR
 
-  git://anongit.freedesktop.org/drm/drm-intel tags/drm-intel-fixes-2020-03-12
-
-for you to fetch changes up to 14a0d527a479eb2cb6067f9e5e163e1bf35db2a9:
-
-  drm/i915: Defer semaphore priority bumping to a workqueue (2020-03-11 23:12:39 +0200)
-
-----------------------------------------------------------------
-drm/i915 fixes for v5.6-rc6:
-- hard lockup fix
-- GVT fixes
-- 32-bit alignment issue fix
-- timeline wait fixes
-- cacheline_retire and free
-
-----------------------------------------------------------------
-Chris Wilson (5):
-      drm/i915: Actually emit the await_start
-      drm/i915: Return early for await_start on same timeline
-      drm/i915/execlists: Enable timeslice on partial virtual engine dequeue
-      drm/i915/gt: Close race between cacheline_retire and free
-      drm/i915: Defer semaphore priority bumping to a workqueue
-
-Jani Nikula (1):
-      Merge tag 'gvt-fixes-2020-03-10' of https://github.com/intel/gvt-linux into drm-intel-fixes
-
-Matthew Auld (1):
-      drm/i915: be more solid in checking the alignment
-
-Tina Zhang (2):
-      drm/i915/gvt: Fix emulated vbt size issue
-      drm/i915/gvt: Fix dma-buf display blur issue on CFL
-
-Zhenyu Wang (1):
-      drm/i915/gvt: Fix unnecessary schedule timer when no vGPU exits
-
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  3 ++-
- drivers/gpu/drm/i915/gt/intel_lrc.c            | 29 ++++++++++++++++----------
- drivers/gpu/drm/i915/gt/intel_timeline.c       |  8 +++++--
- drivers/gpu/drm/i915/gvt/display.c             |  3 ++-
- drivers/gpu/drm/i915/gvt/opregion.c            |  5 ++---
- drivers/gpu/drm/i915/gvt/vgpu.c                | 12 ++++++++---
- drivers/gpu/drm/i915/i915_request.c            | 28 ++++++++++++++++++-------
- drivers/gpu/drm/i915/i915_request.h            |  2 ++
- drivers/gpu/drm/i915/i915_utils.h              |  5 +++++
- 9 files changed, 66 insertions(+), 29 deletions(-)
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
