@@ -2,39 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453EF1832AF
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 883801833F2
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 15:59:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A7266E209;
-	Thu, 12 Mar 2020 14:18:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E40B16EAE0;
+	Thu, 12 Mar 2020 14:59:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D74806E209
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 14:18:30 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 07:18:30 -0700
-X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="246381389"
-Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
- ([10.252.21.27])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
- 12 Mar 2020 07:18:29 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200312115307.16460-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <2a10300a-14e8-53eb-5219-5d235ded8538@linux.intel.com>
-Date: Thu, 12 Mar 2020 14:18:26 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F27576E2E9;
+ Thu, 12 Mar 2020 14:59:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CBC59A0094;
+ Thu, 12 Mar 2020 14:59:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200312115307.16460-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Wait for RCUs frees before
- asserting idle on unload
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 12 Mar 2020 14:59:36 -0000
+Message-ID: <158402517681.4949.7069419910887330132@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200312103548.19962-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200312103548.19962-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/mm=3A_Use_debugobject_to_track_lifetimes_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,51 +38,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 12/03/2020 11:53, Chris Wilson wrote:
-> During driver unload, we have many asserts that we have released our
-> bookkeeping structs and are idle. In some cases, these struct are
-> protected by RCU and we do not release them until after an RCU grace
-> period.
-> 
-> Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Fixes: 130a95e9098e ("drm/i915/gem: Consolidate ctx->engines[] release")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_gt.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-> index 3dea8881e915..d09f7596cb98 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-> @@ -667,6 +667,9 @@ void intel_gt_driver_release(struct intel_gt *gt)
->   
->   void intel_gt_driver_late_release(struct intel_gt *gt)
->   {
-> +	/* We need to wait for inflight RCU frees to release their grip */
-> +	rcu_barrier();
-> +
->   	intel_uc_driver_late_release(&gt->uc);
->   	intel_gt_fini_requests(gt);
->   	intel_gt_fini_reset(gt);
-> 
+Series: drm/mm: Use debugobject to track lifetimes (rev3)
+URL   : https://patchwork.freedesktop.org/series/74638/
+State : warning
 
-Not sure if GT or GEM is the place, but liberal application seems 
-required anyway nowadays.
+== Summary ==
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+$ dim checkpatch origin/drm-tip
+c869cbdfdc9f drm/mm: Use debugobject to track lifetimes
+-:301: WARNING:TYPO_SPELLING: 'compatiblity' may be misspelled - perhaps 'compatibility'?
+#301: FILE: include/drm/drm_mm.h:278:
++/* stubs for external module compatiblity */
 
-Regards,
+total: 0 errors, 1 warnings, 0 checks, 283 lines checked
 
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
