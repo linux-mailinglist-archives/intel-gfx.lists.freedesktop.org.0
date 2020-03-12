@@ -1,16 +1,16 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A844A183CFF
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 00:05:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B50183D01
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 00:05:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 864286E261;
-	Thu, 12 Mar 2020 23:05:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE1A6EB4D;
+	Thu, 12 Mar 2020 23:05:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 896166E12C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C69976E261
  for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 23:05:03 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
@@ -18,20 +18,20 @@ Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
  12 Mar 2020 16:05:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,546,1574150400"; d="scan'208";a="243193470"
+X-IronPort-AV: E=Sophos;i="5.70,546,1574150400"; d="scan'208";a="243193473"
 Received: from orsosgc001.ra.intel.com ([10.23.184.150])
  by orsmga003.jf.intel.com with ESMTP; 12 Mar 2020 16:05:02 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: Lionel G Landwerlin <lionel.g.landwerlin@intel.com>,
  Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Mar 2020 16:05:00 -0700
-Message-Id: <20200312230502.36898-3-umesh.nerlige.ramappa@intel.com>
+Date: Thu, 12 Mar 2020 16:05:01 -0700
+Message-Id: <20200312230502.36898-4-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200312230502.36898-1-umesh.nerlige.ramappa@intel.com>
 References: <20200312230502.36898-1-umesh.nerlige.ramappa@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/4] drm/i915/perf: move pollin setup to non hw
- specific code
+Subject: [Intel-gfx] [PATCH 3/4] drm/i915/perf: only append status when data
+ is available
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,61 +51,120 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 
-This isn't really gen specific stuff, so just move it to the common
-code.
+The only bit of the status register we currently report in the
+i915-perf stream is the "report loss" bit. Only report this when we
+have some data to report with it. There was a kind of inconsistency
+here in that we could report report loss without appending the reports
+associated with the loss.
 
 v2: Rebase (Umesh)
 
 Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/i915_perf.c | 54 ++++++++++++++++++++------------
+ 1 file changed, 34 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 92c5c75e2a2b..0ec4546f1330 100644
+index 0ec4546f1330..21a63644846f 100644
 --- a/drivers/gpu/drm/i915/i915_perf.c
 +++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -1441,8 +1441,6 @@ static void gen7_init_oa_buffer(struct i915_perf_stream *stream)
- 	 * memory...
- 	 */
- 	memset(stream->oa_buffer.vaddr, 0, OA_BUFFER_SIZE);
--
--	stream->pollin = false;
- }
- 
- static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
-@@ -1497,8 +1495,6 @@ static void gen8_init_oa_buffer(struct i915_perf_stream *stream)
- 	 * memory...
- 	 */
- 	memset(stream->oa_buffer.vaddr, 0, OA_BUFFER_SIZE);
--
--	stream->pollin = false;
- }
- 
- static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
-@@ -1554,8 +1550,6 @@ static void gen12_init_oa_buffer(struct i915_perf_stream *stream)
- 	 */
- 	memset(stream->oa_buffer.vaddr, 0,
- 	       stream->oa_buffer.vma->size);
--
--	stream->pollin = false;
- }
- 
- static int alloc_oa_buffer(struct i915_perf_stream *stream)
-@@ -2626,6 +2620,12 @@ static void gen12_oa_enable(struct i915_perf_stream *stream)
+@@ -663,6 +663,7 @@ static int append_oa_sample(struct i915_perf_stream *stream,
+  * Returns: 0 on success, negative error code on failure.
   */
- static void i915_oa_stream_enable(struct i915_perf_stream *stream)
- {
-+	/*
-+	 * Maybe make ->pollin per-stream state if we support multiple
-+	 * concurrent streams in the future.
-+	 */
-+	stream->pollin = false;
-+
- 	stream->perf->ops.oa_enable(stream);
+ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
++				  u32 oastatus,
+ 				  char __user *buf,
+ 				  size_t count,
+ 				  size_t *offset)
+@@ -709,6 +710,21 @@ static int gen8_append_oa_reports(struct i915_perf_stream *stream,
+ 			  head, tail))
+ 		return -EIO;
  
- 	if (stream->periodic)
++	/*
++	 * If there is nothing to read, don't append the status report yet,
++	 * wait until we have some data available.
++	 */
++	if (!OA_TAKEN(tail, head))
++		return 0;
++
++	if (oastatus & GEN8_OASTATUS_REPORT_LOST) {
++		ret = append_oa_status(stream, buf, count, offset,
++				       DRM_I915_PERF_RECORD_OA_REPORT_LOST);
++		if (ret)
++			return ret;
++		intel_uncore_write(uncore, GEN8_OASTATUS,
++				   oastatus & ~GEN8_OASTATUS_REPORT_LOST);
++	}
+ 
+ 	for (/* none */;
+ 	     (taken = OA_TAKEN(tail, head));
+@@ -921,16 +937,7 @@ static int gen8_oa_read(struct i915_perf_stream *stream,
+ 		oastatus = intel_uncore_read(uncore, oastatus_reg);
+ 	}
+ 
+-	if (oastatus & GEN8_OASTATUS_REPORT_LOST) {
+-		ret = append_oa_status(stream, buf, count, offset,
+-				       DRM_I915_PERF_RECORD_OA_REPORT_LOST);
+-		if (ret)
+-			return ret;
+-		intel_uncore_write(uncore, oastatus_reg,
+-				   oastatus & ~GEN8_OASTATUS_REPORT_LOST);
+-	}
+-
+-	return gen8_append_oa_reports(stream, buf, count, offset);
++	return gen8_append_oa_reports(stream, oastatus, buf, count, offset);
+ }
+ 
+ /**
+@@ -954,6 +961,7 @@ static int gen8_oa_read(struct i915_perf_stream *stream,
+  * Returns: 0 on success, negative error code on failure.
+  */
+ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
++				  u32 oastatus1,
+ 				  char __user *buf,
+ 				  size_t count,
+ 				  size_t *offset)
+@@ -998,6 +1006,21 @@ static int gen7_append_oa_reports(struct i915_perf_stream *stream,
+ 			  head, tail))
+ 		return -EIO;
+ 
++	/*
++	 * If there is nothing to read, don't append the status report yet,
++	 * wait until we have some data available.
++	 */
++	if (!OA_TAKEN(tail, head))
++		return 0;
++
++	if (unlikely(oastatus1 & GEN7_OASTATUS1_REPORT_LOST)) {
++		ret = append_oa_status(stream, buf, count, offset,
++				       DRM_I915_PERF_RECORD_OA_REPORT_LOST);
++		if (ret)
++			return ret;
++		stream->perf->gen7_latched_oastatus1 |=
++			GEN7_OASTATUS1_REPORT_LOST;
++	}
+ 
+ 	for (/* none */;
+ 	     (taken = OA_TAKEN(tail, head));
+@@ -1133,16 +1156,7 @@ static int gen7_oa_read(struct i915_perf_stream *stream,
+ 		oastatus1 = intel_uncore_read(uncore, GEN7_OASTATUS1);
+ 	}
+ 
+-	if (unlikely(oastatus1 & GEN7_OASTATUS1_REPORT_LOST)) {
+-		ret = append_oa_status(stream, buf, count, offset,
+-				       DRM_I915_PERF_RECORD_OA_REPORT_LOST);
+-		if (ret)
+-			return ret;
+-		stream->perf->gen7_latched_oastatus1 |=
+-			GEN7_OASTATUS1_REPORT_LOST;
+-	}
+-
+-	return gen7_append_oa_reports(stream, buf, count, offset);
++	return gen7_append_oa_reports(stream, oastatus1, buf, count, offset);
+ }
+ 
+ /**
 -- 
 2.20.1
 
