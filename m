@@ -1,49 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A13461837FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 18:50:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E5B18386F
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 19:20:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898FB6EB0F;
-	Thu, 12 Mar 2020 17:50:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F20C96EB14;
+	Thu, 12 Mar 2020 18:20:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15F0D6EB0F
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 17:50:44 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C753D6EB14
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 18:20:03 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2020 10:50:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="289793568"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 12 Mar 2020 10:50:41 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 12 Mar 2020 19:50:40 +0200
-Date: Thu, 12 Mar 2020 19:50:40 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Message-ID: <20200312175040.GJ13686@intel.com>
-References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
- <20200102182845.GB11904@intel.com>
- <alpine.DEB.2.21.2001031703180.16459@zeliteleevi>
- <20200106164903.GA1755221@mdroper-desk1.amr.corp.intel.com>
- <alpine.DEB.2.21.2003061749190.2957@eliteleevi.tm.intel.com>
- <s5h4kuxssqr.wl-tiwai@suse.de> <20200310134114.GE13686@intel.com>
- <alpine.DEB.2.21.2003101848170.2957@eliteleevi.tm.intel.com>
- <20200310182522.GN13686@intel.com>
- <alpine.DEB.2.21.2003121833570.2957@eliteleevi.tm.intel.com>
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 11:20:03 -0700
+X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="246457407"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 12 Mar 2020 11:20:02 -0700
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200306100557.2077450-1-lionel.g.landwerlin@intel.com>
+ <20200306100557.2077450-3-lionel.g.landwerlin@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <e1f03b01-998f-ca56-cdd2-0e0621842211@linux.intel.com>
+Date: Thu, 12 Mar 2020 18:19:59 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2003121833570.2957@eliteleevi.tm.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
- constraint back to GLK only
+In-Reply-To: <20200306100557.2077450-3-lionel.g.landwerlin@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/perf: introduce global sseu
+ pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,107 +49,416 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 12, 2020 at 07:27:58PM +0200, Kai Vehmanen wrote:
-> Hey,
-> =
 
-> On Tue, 10 Mar 2020, Ville Syrj=E4l=E4 wrote:
-> =
+On 06/03/2020 10:05, Lionel Landwerlin wrote:
+> On Gen11 powergating half the execution units is a functional
+> requirement when using the VME samplers. Not fullfilling this
+> requirement can lead to hangs.
+> 
+> This unfortunately plays fairly poorly with the NOA requirements. NOA
+> requires a stable power configuration to maintain its configuration.
+> 
+> As a result using OA (and NOA feeding into it) so far has required us
+> to use a power configuration that can work for all contexts. The only
+> power configuration fullfilling this is powergating half the execution
+> units.
+> 
+> This makes performance analysis for 3D workloads somewhat pointless.
+> 
+> Failing to find a solution that would work for everybody, this change
+> introduces a new i915-perf stream open parameter that punts the
+> decision off to userspace. If this parameter is omitted, the existing
+> Gen11 behavior remains (half EU array powergating).
+> 
+> This change takes the initiative to move all perf related sseu
+> configuration into i915_perf.c
+> 
+> v2: Make parameter priviliged if different from default
+> 
+> v3: Fix context modifying its sseu config while i915-perf is enabled
+> 
+> v4: Always consider global sseu a privileged operation (Tvrtko)
+>      Override req_sseu point in intel_sseu_make_rpcs() (Tvrtko)
+>      Remove unrelated changes (Tvrtko)
+> 
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c | 10 +--
+>   drivers/gpu/drm/i915/gem/i915_gem_context.h |  4 +
+>   drivers/gpu/drm/i915/gt/intel_sseu.c        | 33 ++------
+>   drivers/gpu/drm/i915/i915_perf.c            | 84 ++++++++++++++++++++-
+>   drivers/gpu/drm/i915/i915_perf_types.h      |  7 ++
+>   include/uapi/drm/i915_drm.h                 | 11 +++
+>   6 files changed, 116 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index cb6b6be48978..edcbc7eef716 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -1358,10 +1358,10 @@ static int get_ringsize(struct i915_gem_context *ctx,
+>   	return 0;
+>   }
+>   
+> -static int
+> -user_to_context_sseu(struct drm_i915_private *i915,
+> -		     const struct drm_i915_gem_context_param_sseu *user,
+> -		     struct intel_sseu *context)
+> +int
+> +i915_gem_user_to_context_sseu(struct drm_i915_private *i915,
+> +			      const struct drm_i915_gem_context_param_sseu *user,
+> +			      struct intel_sseu *context)
+>   {
+>   	const struct sseu_dev_info *device = &RUNTIME_INFO(i915)->sseu;
+>   
+> @@ -1496,7 +1496,7 @@ static int set_sseu(struct i915_gem_context *ctx,
+>   		goto out_ce;
+>   	}
+>   
+> -	ret = user_to_context_sseu(i915, &user_sseu, &sseu);
+> +	ret = i915_gem_user_to_context_sseu(i915, &user_sseu, &sseu);
+>   	if (ret)
+>   		goto out_ce;
+>   
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> index 57b7ae2893e1..f37c36719b04 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+> @@ -221,4 +221,8 @@ i915_gem_engines_iter_next(struct i915_gem_engines_iter *it);
+>   struct i915_lut_handle *i915_lut_handle_alloc(void);
+>   void i915_lut_handle_free(struct i915_lut_handle *lut);
+>   
+> +int i915_gem_user_to_context_sseu(struct drm_i915_private *i915,
+> +				  const struct drm_i915_gem_context_param_sseu *user,
+> +				  struct intel_sseu *context);
+> +
+>   #endif /* !__I915_GEM_CONTEXT_H__ */
+> diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> index 74f793423231..d173271c7397 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_sseu.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
+> @@ -65,7 +65,6 @@ u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
+>   {
+>   	const struct sseu_dev_info *sseu = &RUNTIME_INFO(i915)->sseu;
+>   	bool subslice_pg = sseu->has_subslice_pg;
+> -	struct intel_sseu ctx_sseu;
+>   	u8 slices, subslices;
+>   	u32 rpcs = 0;
+>   
+> @@ -78,31 +77,13 @@ u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
+>   
+>   	/*
+>   	 * If i915/perf is active, we want a stable powergating configuration
+> -	 * on the system.
+> -	 *
+> -	 * We could choose full enablement, but on ICL we know there are use
+> -	 * cases which disable slices for functional, apart for performance
+> -	 * reasons. So in this case we select a known stable subset.
+> +	 * on the system. Use the configuration pinned by i915/perf.
+>   	 */
+> -	if (!i915->perf.exclusive_stream) {
+> -		ctx_sseu = *req_sseu;
+> -	} else {
+> -		ctx_sseu = intel_sseu_from_device_info(sseu);
+> -
+> -		if (IS_GEN(i915, 11)) {
+> -			/*
+> -			 * We only need subslice count so it doesn't matter
+> -			 * which ones we select - just turn off low bits in the
+> -			 * amount of half of all available subslices per slice.
+> -			 */
+> -			ctx_sseu.subslice_mask =
+> -				~(~0 << (hweight8(ctx_sseu.subslice_mask) / 2));
+> -			ctx_sseu.slice_mask = 0x1;
+> -		}
+> -	}
+> +	if (i915->perf.exclusive_stream)
+> +		req_sseu = &i915->perf.sseu;
+>   
+> -	slices = hweight8(ctx_sseu.slice_mask);
+> -	subslices = hweight8(ctx_sseu.subslice_mask);
+> +	slices = hweight8(req_sseu->slice_mask);
+> +	subslices = hweight8(req_sseu->subslice_mask);
+>   
+>   	/*
+>   	 * Since the SScount bitfield in GEN8_R_PWR_CLK_STATE is only three bits
+> @@ -175,13 +156,13 @@ u32 intel_sseu_make_rpcs(struct drm_i915_private *i915,
+>   	if (sseu->has_eu_pg) {
+>   		u32 val;
+>   
+> -		val = ctx_sseu.min_eus_per_subslice << GEN8_RPCS_EU_MIN_SHIFT;
+> +		val = req_sseu->min_eus_per_subslice << GEN8_RPCS_EU_MIN_SHIFT;
+>   		GEM_BUG_ON(val & ~GEN8_RPCS_EU_MIN_MASK);
+>   		val &= GEN8_RPCS_EU_MIN_MASK;
+>   
+>   		rpcs |= val;
+>   
+> -		val = ctx_sseu.max_eus_per_subslice << GEN8_RPCS_EU_MAX_SHIFT;
+> +		val = req_sseu->max_eus_per_subslice << GEN8_RPCS_EU_MAX_SHIFT;
+>   		GEM_BUG_ON(val & ~GEN8_RPCS_EU_MAX_MASK);
+>   		val &= GEN8_RPCS_EU_MAX_MASK;
+>   
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 86c6abaa3e0e..36e46f3fbdb5 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -344,6 +344,11 @@ static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
+>    * @oa_periodic: Whether to enable periodic OA unit sampling
+>    * @oa_period_exponent: The OA unit sampling period is derived from this
+>    * @engine: The engine (typically rcs0) being monitored by the OA unit
+> + * @sseu: Selected sseu configuration for recording
+> + * @has_sseu: Whther @drm_sseu was specified by userspace
 
-> > On Tue, Mar 10, 2020 at 07:18:58PM +0200, Kai Vehmanen wrote:
-> >> On Tue, 10 Mar 2020, Ville Syrj=E4l=E4 wrote:
-> >>> audio at init time. And we could maybe try to remove the modeset from=
- the
-> >>> put_power() so that at least if you get a blink it's just the one. I =
-did
-> >>
-> >> Hmm, this is interesting and maybe a better compromise for the in-betw=
-een =
+Typo.
 
-> >> generations. Could it be as simple as not setting =
+> + * @drm_sseu: SSEU configuration specified by userspace
+> + * @sseu: internal SSEU configuration computed either with @drm_sseu or a
+> + *        default value (see get_sseu_config())
 
-> > =
+@sseu is mentioned two times here.
 
-> > The logic around the cdclk computation is still a bit messy.
-> > =
+>    *
+>    * As read_properties_unlocked() enumerates and validates the properties given
+>    * to open a stream of metrics the configuration is built up in the structure
+> @@ -363,6 +368,10 @@ struct perf_open_properties {
+>   	int oa_period_exponent;
+>   
+>   	struct intel_engine_cs *engine;
+> +
+> +	bool has_sseu;
+> +	struct drm_i915_gem_context_param_sseu drm_sseu;
+> +	struct intel_sseu sseu;
+>   };
+>   
+>   struct i915_oa_config_bo {
+> @@ -2720,6 +2729,47 @@ static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
+>   	return 0;
+>   }
+>   
+> +static void
+> +get_default_sseu_config(struct intel_sseu *out_sseu,
+> +			struct intel_engine_cs *engine)
+> +{
+> +	const struct sseu_dev_info *devinfo_sseu =
+> +		&RUNTIME_INFO(engine->i915)->sseu;
+> +
+> +	*out_sseu = intel_sseu_from_device_info(devinfo_sseu);
+> +
+> +	if (IS_GEN(engine->i915, 11)) {
+> +		/*
+> +		 * We only need subslice count so it doesn't matter which ones
+> +		 * we select - just turn off low bits in the amount of half of
+> +		 * all available subslices per slice.
+> +		 */
+> +		out_sseu->subslice_mask =
+> +			~(~0 << (hweight8(out_sseu->subslice_mask) / 2));
+> +		out_sseu->slice_mask = 0x1;
+> +	}
+> +}
+> +
+> +static int
+> +get_sseu_config(struct intel_sseu *out_sseu,
+> +		struct intel_engine_cs *engine,
+> +		const struct drm_i915_gem_context_param_sseu *drm_sseu)
+> +{
+> +	struct intel_engine_cs *user_engine;
+> +
+> +	user_engine = intel_engine_lookup_user(
+> +		engine->i915,
+> +		drm_sseu->engine.engine_class,
+> +		drm_sseu->engine.engine_instance);
+> +	if (!user_engine)
+> +		return -EINVAL;
+> +
+> +	if (user_engine != engine)
+> +		return -EINVAL;
 
-> > First draft of just doing the lazy force_min_cdclk reduction in put_pow=
-er():
-> > git://github.com/vsyrjala/linux.git no_cdclk_in_audio_put_power
-> > =
+Do you think it will be useful for the prop to accept struct 
+drm_i915_gem_context_param_sseu, which gives you effectively a redundant 
+engine which you here verify? I suppose it is handy not having to define 
+a new struct in uapi and being trivially able to use the same helper.
 
-> > Very lightly smoke tested, but not sure if it achieves anything useful =
-:P
-> =
+Perhaps you could ignore the engine param and document that? If one day 
+that would make it easier attaching the same sseu config to multiple 
+props. Highly hypothetical I know. No strong feeling either way.
 
-> I tested this today and no issues found. I can see clock bumped if there =
+> +
+> +	return i915_gem_user_to_context_sseu(engine->i915, drm_sseu, out_sseu);
+> +}
+> +
+>   /**
+>    * i915_oa_stream_init - validate combined props for OA stream and init
+>    * @stream: An i915 perf stream
+> @@ -2852,6 +2902,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+>   		goto err_oa_buf_alloc;
+>   
+>   	stream->ops = &i915_oa_stream_ops;
+> +
+> +	perf->sseu = props->sseu;
+>   	WRITE_ONCE(perf->exclusive_stream, stream);
+>   
+>   	ret = i915_perf_stream_enable_sync(stream);
+> @@ -3397,6 +3449,20 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+>   		privileged_op = true;
+>   	}
+>   
+> +	/*
+> +	 * Asking for SSEU configuration is a priviliged operation.
+> +	 */
+> +	if (props->has_sseu) {
+> +		ret = get_sseu_config(&props->sseu, props->engine,
+> +				      &props->drm_sseu);
+> +		if (ret)
+> +			goto err;
+> +
+> +		privileged_op = true;
+> +	} else {
+> +		get_default_sseu_config(&props->sseu, props->engine);
+> +	}
+> +
+>   	/* Similar to perf's kernel.perf_paranoid_cpu sysctl option
+>   	 * we check a dev.i915.perf_stream_paranoid sysctl option
+>   	 * to determine if it's ok to access system wide OA counters
+> @@ -3492,6 +3558,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   {
+>   	u64 __user *uprop = uprops;
+>   	u32 i;
+> +	int ret;
+>   
+>   	memset(props, 0, sizeof(struct perf_open_properties));
+>   
+> @@ -3523,7 +3590,6 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   	for (i = 0; i < n_props; i++) {
+>   		u64 oa_period, oa_freq_hz;
+>   		u64 id, value;
+> -		int ret;
+>   
+>   		ret = get_user(id, uprop);
+>   		if (ret)
+> @@ -3609,6 +3675,16 @@ static int read_properties_unlocked(struct i915_perf *perf,
+>   		case DRM_I915_PERF_PROP_HOLD_PREEMPTION:
+>   			props->hold_preemption = !!value;
+>   			break;
+> +		case DRM_I915_PERF_PROP_GLOBAL_SSEU: {
+> +			if (copy_from_user(&props->drm_sseu,
+> +					   u64_to_user_ptr(value),
+> +					   sizeof(props->drm_sseu))) {
+> +				DRM_DEBUG("Unable to copy global sseu parameter\n");
+> +				return -EFAULT;
+> +			}
+> +			props->has_sseu = true;
 
-> is audio activity, but clock is kept after audio goes back to sleep. =
+You could move the props->sseu init here and then you woudn't have to 
+have the drm_sseu field in the props. It just feels a bit inelegant to 
+have it for transferring data around.
 
-> But then e.g. at next display-off timeout, clk is brought back down.
-> So works as expected.
-> =
+Then if you would also check (or ignore) the sseu engine matches the 
+props engine here, you wouldn't need get_sseu_config(), could just call 
+i915_gem_user_to_context_sseu directly.
 
-> But, but, then I also tested...
-> =
+Would just leave the privileged has_sseu check in the ioctl. (Which also 
+feels a bit strange to me but we talked about it before. :)
 
-> >> One problematic scenario that this doesn't cover:
-> >>  - a single display is used (at low cdclk), and =
+[Comes back later.]
 
-> >>  - audio block goes to runtime suspend while display stays up. =
+But then I see the sseu is actually copied one more time to it's final 
+destination in i915_oa_stream_init. Should you then store just drm_sseu 
+in the props and do the final application into perf->sseu directly in 
+i915_oa_stream_init?
 
-> >> =
+read_properties_unlocked:
+	copy_from_user
+	has_sseu = true
 
-> >> Upon resume (for e.g. UI notification sound), audio will initialize th=
-e =
+i915_perf_open_ioctl_locked:
+	privileged_op = props->has_sseu
 
-> >> HDA bus and call get_power() on i915, even if the notification goes to =
+i915_oa_stream_init
+	if (props->has_sseu)
+		i915_gem_user_to_context_sseu(&perf->sseu, props->sseu)
+	else
+		get_default_sseu_config(&perf->sseu, props->engine);
 
-> =
+What do you think?
 
-> Now actually hitting this requires some effort. On most systems I tried, =
+> +			break;
+> +		}
+>   		case DRM_I915_PERF_PROP_MAX:
+>   			MISSING_CASE(id);
+>   			return -EINVAL;
+> @@ -4382,8 +4458,12 @@ int i915_perf_ioctl_version(void)
+>   	 *    preemption on a particular context so that performance data is
+>   	 *    accessible from a delta of MI_RPC reports without looking at the
+>   	 *    OA buffer.
+> +	 *
+> +	 * 4: Add DRM_I915_PERF_PROP_ALLOWED_SSEU to limit what contexts can
+> +	 *    be run for the duration of the performance recording based on
+> +	 *    their SSEU configuration.
+>   	 */
+> -	return 3;
+> +	return 4;
+>   }
+>   
+>   #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+> diff --git a/drivers/gpu/drm/i915/i915_perf_types.h b/drivers/gpu/drm/i915/i915_perf_types.h
+> index f4ccd2adfee6..32289cbda648 100644
+> --- a/drivers/gpu/drm/i915/i915_perf_types.h
+> +++ b/drivers/gpu/drm/i915/i915_perf_types.h
+> @@ -16,6 +16,7 @@
+>   #include <linux/uuid.h>
+>   #include <linux/wait.h>
+>   
+> +#include "gt/intel_sseu.h"
+>   #include "i915_reg.h"
+>   #include "intel_wakeref.h"
+>   
+> @@ -407,6 +408,12 @@ struct i915_perf {
+>   	 */
+>   	struct i915_perf_stream *exclusive_stream;
+>   
+> +	/**
+> +	 * @sseu: sseu configuration selected to run while perf is active,
+> +	 * applies to all contexts.
+> +	 */
+> +	struct intel_sseu sseu;
+> +
+>   	/**
+>   	 * For rate limiting any notifications of spurious
+>   	 * invalid OA reports
+> diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+> index 2813e579b480..db649d03ab52 100644
+> --- a/include/uapi/drm/i915_drm.h
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -1969,6 +1969,17 @@ enum drm_i915_perf_property_id {
+>   	 */
+>   	DRM_I915_PERF_PROP_HOLD_PREEMPTION,
+>   
+> +	/**
+> +	 * Specifying this pins all contexts to the specified SSEU power
+> +	 * configuration for the duration of the recording.
+> +	 *
+> +	 * This parameter's value is a pointer to a struct
+> +	 * drm_i915_gem_context_param_sseu.
+> +	 *
+> +	 * This property is available in perf revision 4.
+> +	 */
+> +	DRM_I915_PERF_PROP_GLOBAL_SSEU,
+> +
+>   	DRM_I915_PERF_PROP_MAX /* non-ABI */
+>   };
+>   
+> 
 
-> with display active, the clock will stay above the limit for other =
+No major complaints, just bikeshedding it a little bit. :) If you feel 
+it is good enough as is then I agree it is passable.
 
-> reasons, but yup, when this happens, it is pretty, pretty bad.
-> =
+Regards,
 
-> Your no_cdclk_in_audio_put_power patch does reduce the level of annoyance =
-
-> also in this case -- you only get one flash instead of two. But does not =
-
-> seem acceptable still. If you happen to have a system where the condition=
-s =
-
-> are met, then this happens all the time. In case of UI notification sound=
-s =
-
-> being the trigger, we could consider the visual flash as a feature, but =
-
-> probably not widely appreciated. ;) .. and especially as you cannot turn =
-
-> it off.
-> =
-
-> So I think this starts to look that we should move calling glk_force_audi=
-o =
-
-> to bind/unbind pair. I can make a patch for this.
-
-That would stop us from doing dynamic cdclk changes once we get the hw
-that can do that properly. Rather I think I'd just hardcode the 2xbclk
-requirement in i915 for the platforms that suck.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
