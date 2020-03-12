@@ -2,68 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A12A8183207
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 14:51:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A892183224
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 14:54:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA5D6EAC7;
-	Thu, 12 Mar 2020 13:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C1F66EAC9;
+	Thu, 12 Mar 2020 13:54:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from aserp2120.oracle.com (aserp2120.oracle.com [141.146.126.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16A916EAC7
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 13:51:36 +0000 (UTC)
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
- by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02CDmZuG065934;
- Thu, 12 Mar 2020 13:51:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
- h=date : from : to : cc
- : subject : message-id : mime-version : content-type : in-reply-to;
- s=corp-2020-01-29; bh=v9rf0J+IPOAa61+c5iVtPTw+C7M7p8B36+nkXcafbHg=;
- b=akwQanQOd3cDxG8Brs/vDcQ3TXsbjOta/zSeclDBAwGN+YipQjoWuw1xLzjLhx9fznqu
- DDkWCFBDSKyqbquE2oJxeQcnHOwnNoVTZbgDFm06p8fIjIOVORTCfi3zzfZcWgKd1r2d
- 32kWWIxS2YQ0wba9w3/OZBBDAaBY26q1Wjnbm24kcbJuq+SZYM3mXP69hgmOHUrLJiUn
- VZy1hkP1n6RzTavtOC9+7c/UcFoDPjFozBivXoB5VEqI0y0UKYDm4dlB4offJdO5sDAW
- zq17d1kUnte/7mHmkjLqmWP3rP2Ced9hDLDLxzS8bGm/ysWZQoQJjxXegpdq+ypYZ6Df 4A== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
- by aserp2120.oracle.com with ESMTP id 2yp9v6cskv-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 12 Mar 2020 13:51:32 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
- by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02CDoMCK190708;
- Thu, 12 Mar 2020 13:51:32 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
- by aserp3030.oracle.com with ESMTP id 2yqkvmqfm6-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Thu, 12 Mar 2020 13:51:32 +0000
-Received: from abhmp0013.oracle.com (abhmp0013.oracle.com [141.146.116.19])
- by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 02CDpVq3028035;
- Thu, 12 Mar 2020 13:51:31 GMT
-Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
- with ESMTP ; Thu, 12 Mar 2020 06:51:30 -0700
-Date: Thu, 12 Mar 2020 16:51:24 +0300
-From: Dan Carpenter <dan.carpenter@oracle.com>
-To: kbuild@lists.01.org, Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Message-ID: <20200312135124.GK11561@kadam>
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6EE56EAC8;
+ Thu, 12 Mar 2020 13:54:45 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2020 06:54:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,545,1574150400"; d="scan'208";a="235028953"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga007.fm.intel.com with SMTP; 12 Mar 2020 06:54:39 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 12 Mar 2020 15:54:38 +0200
+Date: Thu, 12 Mar 2020 15:54:38 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Laxminarayan Bharadiya, Pankaj" <pankaj.laxminarayan.bharadiya@intel.com>
+Message-ID: <20200312135438.GF13686@intel.com>
+References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200225070545.4482-6-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200310161723.GK13686@intel.com>
+ <E92BA18FDE0A5B43B7B3DA7FCA031286057B2C55@BGSMSX107.gar.corp.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200306100557.2077450-1-lionel.g.landwerlin@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9557
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- suspectscore=0
- mlxlogscore=999 malwarescore=0 adultscore=0 bulkscore=0 mlxscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2003120074
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9557
- signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- spamscore=0 mlxscore=0
- priorityscore=1501 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
- phishscore=0 adultscore=0 clxscore=1011 impostorscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
- definitions=main-2003120074
-Subject: Re: [Intel-gfx] [PATCH v4 1/3] drm/i915/perf: remove generated code
+In-Reply-To: <E92BA18FDE0A5B43B7B3DA7FCA031286057B2C55@BGSMSX107.gar.corp.intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [RFC][PATCH 5/5] drm/i915/display: Add
+ Nearest-neighbor based integer scaling support
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,72 +51,257 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "mripard@kernel.org" <mripard@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@linux.ie" <airlied@linux.ie>, "De Marchi,
+ Lucas" <lucas.demarchi@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "Nautiyal,
+ Ankit K" <ankit.k.nautiyal@intel.com>,
+ "mihail.atanassov@arm.com" <mihail.atanassov@arm.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Lionel,
+On Thu, Mar 12, 2020 at 09:13:24AM +0000, Laxminarayan Bharadiya, Pankaj wr=
+ote:
+> =
 
-Thank you for the patch! Perhaps something to improve:
+> =
 
-url:    https://github.com/0day-ci/linux/commits/Lionel-Landwerlin/drm-i915-perf-remove-generated-code/20200307-024544
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
+> > -----Original Message-----
+> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> > Sent: 10 March 2020 21:47
+> > To: Laxminarayan Bharadiya, Pankaj
+> > <pankaj.laxminarayan.bharadiya@intel.com>
+> > Cc: jani.nikula@linux.intel.com; daniel@ffwll.ch; intel-
+> > gfx@lists.freedesktop.org; dri-devel@lists.freedesktop.org; airlied@lin=
+ux.ie;
+> > maarten.lankhorst@linux.intel.com; tzimmermann@suse.de;
+> > mripard@kernel.org; mihail.atanassov@arm.com; Joonas Lahtinen
+> > <joonas.lahtinen@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.co=
+m>;
+> > Chris Wilson <chris@chris-wilson.co.uk>; Souza, Jose
+> > <jose.souza@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>;
+> > Roper, Matthew D <matthew.d.roper@intel.com>; Deak, Imre
+> > <imre.deak@intel.com>; Shankar, Uma <uma.shankar@intel.com>; linux-
+> > kernel@vger.kernel.org; Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> > Subject: Re: [RFC][PATCH 5/5] drm/i915/display: Add Nearest-neighbor
+> > based integer scaling support
+> > =
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+> > On Tue, Feb 25, 2020 at 12:35:45PM +0530, Pankaj Bharadiya wrote:
+> > > Integer scaling (IS) is a nearest-neighbor upscaling technique that
+> > > simply scales up the existing pixels by an integer (i.e., whole
+> > > number) multiplier.Nearest-neighbor (NN) interpolation works by
+> > > filling in the missing color values in the upscaled image with that of
+> > > the coordinate-mapped nearest source pixel value.
+> > >
+> > > Both IS and NN preserve the clarity of the original image. Integer
+> > > scaling is particularly useful for pixel art games that rely on sharp,
+> > > blocky images to deliver their distinctive look.
+> > >
+> > > Program the scaler filter coefficients to enable the NN filter if
+> > > scaling filter property is set to DRM_SCALING_FILTER_NEAREST_NEIGHBOR
+> > > and enable integer scaling.
+> > >
+> > > Bspec: 49247
+> > >
+> > > Signed-off-by: Pankaj Bharadiya
+> > > <pankaj.laxminarayan.bharadiya@intel.com>
+> > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 83
+> > > +++++++++++++++++++-  drivers/gpu/drm/i915/display/intel_display.h |
+> > > 2 +  drivers/gpu/drm/i915/display/intel_sprite.c  | 20 +++--
+> > >  3 files changed, 97 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index b5903ef3c5a0..6d5f59203258 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -6237,6 +6237,73 @@ void skl_scaler_disable(const struct
+> > intel_crtc_state *old_crtc_state)
+> > >  		skl_detach_scaler(crtc, i);
+> > >  }
+> > >
+> > > +/**
+> > > + *  Theory behind setting nearest-neighbor integer scaling:
+> > > + *
+> > > + *  17 phase of 7 taps requires 119 coefficients in 60 dwords per se=
+t.
+> > > + *  The letter represents the filter tap (D is the center tap) and
+> > > +the number
+> > > + *  represents the coefficient set for a phase (0-16).
+> > > + *
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |Index value | Data value coeffient 1 | Data value coeffi=
+ent 2 |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   00h      |          B0            |          A0      =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   01h      |          D0            |          C0      =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   02h      |          F0            |          E0      =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   03h      |          A1            |          G0      =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   04h      |          C1            |          B1      =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   ...      |          ...           |          ...     =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   38h      |          B16           |          A16     =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   39h      |          D16           |          C16     =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   3Ah      |          F16           |          C16     =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *         |   3Bh      |        Reserved        |          G16     =
+      |
+> > > + *         +------------+------------------------+------------------=
+------+
+> > > + *
+> > > + *  To enable nearest-neighbor scaling:  program scaler coefficents
+> > > +with
+> > > + *  the center tap (Dxx) values set to 1 and all other values set to
+> > > +0 as per
+> > > + *  SCALER_COEFFICIENT_FORMAT
+> > > + *
+> > > + */
+> > > +void skl_setup_nearest_neighbor_filter(struct drm_i915_private
+> > *dev_priv,
+> > > +				  enum pipe pipe, int scaler_id)
+> > =
 
-smatch warnings:
-drivers/gpu/drm/i915/selftests/i915_perf.c:26 alloc_empty_config() warn: returning -1 instead of -ENOMEM is sloppy
-drivers/gpu/drm/i915/selftests/i915_perf.c:43 alloc_empty_config() warn: inconsistent returns 'perf->metrics_lock'.
+> > skl_scaler_...
+> > =
 
-# https://github.com/0day-ci/linux/commit/9da4da9daea4fec31c06906294a6e64e9bd19783
-git remote add linux-review https://github.com/0day-ci/linux
-git remote update linux-review
-git checkout 9da4da9daea4fec31c06906294a6e64e9bd19783
-vim +26 drivers/gpu/drm/i915/selftests/i915_perf.c
+> > > +{
+> > > +
+> > > +	int coeff =3D 0;
+> > > +	int phase =3D 0;
+> > > +	int tap;
+> > > +	int val =3D 0;
+> > =
 
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  19  static int
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  20  alloc_empty_config(struct i915_perf *perf)
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  21  {
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  22  	struct i915_oa_config *oa_config;
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  23  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  24  	oa_config = kzalloc(sizeof(*oa_config), GFP_KERNEL);
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  25  	if (!oa_config)
-9da4da9daea4fe Lionel Landwerlin 2020-03-06 @26  		return -1;
+> > Needlessly wide scope for most of these.
+> > =
 
-return -ENOMEM
+> > > +
+> > > +	/*enable the index auto increment.*/
+> > > +	intel_de_write_fw(dev_priv, SKL_PS_COEF_INDEX_SET0(pipe,
+> > scaler_id),
+> > > +			  _PS_COEE_INDEX_AUTO_INC);
+> > > +
+> > > +	for (phase =3D 0; phase < 17; phase++) {
+> > > +		for (tap =3D 0; tap < 7; tap++) {
+> > > +			coeff++;
+> > =
 
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  27  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  28  	oa_config->perf = perf;
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  29  	kref_init(&oa_config->ref);
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  30  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  31  	strlcpy(oa_config->uuid, TEST_OA_CONFIG_UUID, sizeof(oa_config->uuid));
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  32  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  33  	mutex_lock(&perf->metrics_lock);
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  34  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  35  	oa_config->id = idr_alloc(&perf->metrics_idr, oa_config, 2, 0, GFP_KERNEL);
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  36  	if (oa_config->id < 0)  {
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  37  		i915_oa_config_put(oa_config);
+> > Can be part of the % check.
+> =
 
-unlock
+> OK.
+> =
 
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  38  		return -1;
+> > =
 
-return oa_config->id;
+> > > +			if (tap =3D=3D 3)
+> > > +				val =3D (phase % 2) ? (0x800) : (0x800 << 16);
+> > =
 
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  39  	}
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  40  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  41  	mutex_unlock(&perf->metrics_lock);
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  42  
-9da4da9daea4fe Lionel Landwerlin 2020-03-06 @43  	return 0;
-9da4da9daea4fe Lionel Landwerlin 2020-03-06  44  }
+> > Parens overload.
+> =
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> OK. Will remove.
+> > =
+
+> > > +
+> > > +			if (coeff % 2 =3D=3D 0) {
+> > > +				intel_de_write_fw(dev_priv,
+> > SKL_PS_COEF_DATA_SET0(pipe, scaler_id), val);
+> > > +				val =3D 0;
+> > =
+
+> > Can drop this val=3D0 if you move the variable into tight scope and ini=
+tialize
+> > there.
+> =
+
+> Moving val=3D0 initialization to the tight scope will not work here as we=
+ need
+> to retain "val" and write only when 2 coefficients are ready (since 2 =
+
+> coefficients are packed in 1 dword).
+> =
+
+> e.g. for (12th , 11th)  coefficients, coefficient reg value should be ( (=
+0 << 16) | 0x800).
+> If we initialize val =3D 0 in tight loop, 0 will be written to  coefficie=
+nt register.
+
+Hmm, right. I guess I'd try to rearrange this to iterate the
+registers directly instead of the phases and taps. Something
+like this perhaps:
+
+static int cnl_coef_tap(int i)
+{
+	return i % 7;
+}
+
+static u16 cnl_coef(int t)
+{
+	return t =3D=3D 3 ? 0x0800 : 0x3000;
+}
+
+static void cnl_program_nearest_filter_coefs(void)
+{
+	int i;
+
+	for (i =3D 0; i < 17 * 7; i +=3D 2) {
+		uint32_t tmp;
+		int t;
+
+		t =3D cnl_coef_tap(i);
+		tmp =3D cnl_nearest_filter_coef(t);
+
+		t =3D cnl_coef_tap(i + 1);
+		tmp |=3D cnl_nearest_filter_coef(t) << 16;
+
+		intel_de_write_fw(tmp);
+	}
+}
+
+More readable I think. The downside being all those modulo operations
+but hopefully that's all in the noise when it comes to performance.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
