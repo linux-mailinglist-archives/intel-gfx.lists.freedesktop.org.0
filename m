@@ -1,54 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5816183689
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 17:48:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E82171835F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2020 17:17:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45B776EB04;
-	Thu, 12 Mar 2020 16:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 423836EAF9;
+	Thu, 12 Mar 2020 16:17:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 2115 seconds by postgrey-1.36 at gabe;
- Thu, 12 Mar 2020 16:48:48 UTC
-Received: from ale.deltatee.com (ale.deltatee.com [207.54.116.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30E56EB03;
- Thu, 12 Mar 2020 16:48:48 +0000 (UTC)
-Received: from s0106ac1f6bb1ecac.cg.shawcable.net ([70.73.163.230]
- helo=[192.168.11.155])
- by ale.deltatee.com with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
- (Exim 4.92) (envelope-from <logang@deltatee.com>)
- id 1jCQSb-0001tv-Kl; Thu, 12 Mar 2020 10:13:26 -0600
-To: Jason Gunthorpe <jgg@ziepe.ca>, Christoph Hellwig <hch@infradead.org>
-References: <20200311135158.3310-1-christian.koenig@amd.com>
- <20200311135158.3310-2-christian.koenig@amd.com>
- <20200311152838.GA24280@infradead.org>
- <f2b46f49-a8d0-9d43-3120-e1ed36fc3a80@gmail.com>
- <20200312101943.GA14618@infradead.org>
- <b5db44eb-1dde-1671-feb0-9e47d120f172@amd.com>
- <20200312104729.GA26031@infradead.org> <20200312141928.GK31668@ziepe.ca>
-From: Logan Gunthorpe <logang@deltatee.com>
-Message-ID: <654680ab-5e52-899e-963f-1a511615092a@deltatee.com>
-Date: Thu, 12 Mar 2020 10:13:23 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB7F66EAF9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Mar 2020 16:17:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20538668-1500050 for multiple; Thu, 12 Mar 2020 16:16:58 +0000
 MIME-Version: 1.0
-In-Reply-To: <20200312141928.GK31668@ziepe.ca>
-Content-Language: en-US
-X-SA-Exim-Connect-IP: 70.73.163.230
-X-SA-Exim-Rcpt-To: intel-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
- linaro-mm-sig@lists.linaro.org, dri-devel@lists.freedesktop.org,
- daniel@ffwll.ch, David1.Zhou@amd.com, christian.koenig@amd.com,
- hch@infradead.org, jgg@ziepe.ca
-X-SA-Exim-Mail-From: logang@deltatee.com
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on ale.deltatee.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-8.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- GREYLIST_ISWHITE autolearn=ham autolearn_force=no version=3.4.2
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on ale.deltatee.com)
-Subject: Re: [Intel-gfx] [PATCH 1/6] lib/scatterlist: add sg_set_dma_addr()
- function
+In-Reply-To: <2a10300a-14e8-53eb-5219-5d235ded8538@linux.intel.com>
+References: <20200312115307.16460-1-chris@chris-wilson.co.uk>
+ <2a10300a-14e8-53eb-5219-5d235ded8538@linux.intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158402981798.10732.3247425821079950473@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Thu, 12 Mar 2020 16:16:57 +0000
+Subject: Re: [Intel-gfx] ***UNCHECKED*** Re: [PATCH] drm/i915/gt: Wait for
+ RCUs frees before asserting idle on unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,64 +41,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David1.Zhou@amd.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- linux-media@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CgpPbiAyMDIwLTAzLTEyIDg6MTkgYS5tLiwgSmFzb24gR3VudGhvcnBlIHdyb3RlOgo+IE9uIFRo
-dSwgTWFyIDEyLCAyMDIwIGF0IDAzOjQ3OjI5QU0gLTA3MDAsIENocmlzdG9waCBIZWxsd2lnIHdy
-b3RlOgo+PiBPbiBUaHUsIE1hciAxMiwgMjAyMCBhdCAxMTozMTozNUFNICswMTAwLCBDaHJpc3Rp
-YW4gS8O2bmlnIHdyb3RlOgo+Pj4gQnV0IGhvdyBzaG91bGQgd2UgdGhlbiBkZWFsIHdpdGggYWxs
-IHRoZSBleGlzdGluZyBpbnRlcmZhY2VzIHdoaWNoIGFscmVhZHkKPj4+IHRha2UgYSBzY2F0dGVy
-bGlzdC9zZ190YWJsZSA/Cj4+Pgo+Pj4gVGhlIHdob2xlIERNQS1idWYgZGVzaWduIGFuZCBhIGxv
-dCBvZiBkcml2ZXJzIGFyZSBidWlsZCBhcm91bmQKPj4+IHNjYXR0ZXJsaXN0L3NnX3RhYmxlIGFu
-ZCB0byBtZSB0aGF0IGFjdHVhbGx5IG1ha2VzIHF1aXRlIGEgbG90IG9mIHNlbnNlLgo+Pj4KPj4K
-Pj4gUmVwbGFjZSB0aGVtIHdpdGggYSBzYW5lciBpbnRlcmZhY2UgdGhhdCBkb2Vzbid0IHRha2Ug
-YSBzY2F0dGVybGlzdC4KPj4gQXQgdmVyeSBsZWFzdCBmb3IgbmV3IGZ1bmN0aW9uYWxpdHkgbGlr
-ZSBwZWVyIHRvIHBlZXIgRE1BLCBidXQKPj4gZXNwZWNpYWxseSB0aGlzIGNvZGUgd291bGQgYWxz
-byBiZW5lZml0IGZyb20gYSBnZW5lcmFsIG1vdmUgYXdheQo+PiBmcm9tIHRoZSBzY2F0dGVybGlz
-dC4KPiAKPiBJZiBkbWEgYnVmIGNhbiBkbyBQMlAgSSdkIGxpa2UgdG8gc2VlIHN1cHBvcnQgZm9y
-IGNvbnN1bWluZyBhIGRtYWJ1Zgo+IGluIFJETUEuIExvb2tpbmcgYXQgaG93Li4gdGhlcmUgaXMg
-YW4gZXhpc3Rpbmcgc2dsIGJhc2VkIHBhdGggc3RhcnRpbmcKPiBmcm9tIGdldF91c2VyX3BhZ2Vz
-IHRocm91Z2ggZG1hIG1hcCB0byB0aGUgZHJpdmVycy4gKGliX3VtZW0pCj4gCj4gSSBjYW4gcmVw
-bGFjZSB0aGUgZHJpdmVyIHBhcnQgd2l0aCBzb21ldGhpbmcgZWxzZSAoZG1hX3NnKSwgYnV0IG5v
-dAo+IHVudGlsIHdlIGdldCBhIHdheSB0byBETUEgbWFwIHBhZ2VzIGRpcmVjdGx5IGludG8gdGhh
-dCBzb21ldGhpbmcKPiBlbHNlLi4KPiAKPiBUaGUgbm9uLXBhZ2Ugc2NhdHRlcmxpc3QgaXMgYWxz
-byBhIGJpZyBjb25jZXJuIGZvciBSRE1BIGFzIHdlIGhhdmUKPiBkcml2ZXJzIHRoYXQgd2FudCB0
-aGUgcGFnZSBsaXN0LCBzbyBldmVuIGlmIHdlIGRpZCBhcyB0aGlzIHNlcmllcwo+IGNvbnRlbXBs
-YXRlcyBJJ2QgaGF2ZSBzdGlsbCBoYXZlIHRvIHNwbGl0IHRoZSBkcml2ZXJzIGFuZCBjcmVhdGUg
-dGhlCj4gbm90aW9uIG9mIGEgZG1hLW9ubHkgU0dMLgo+IAo+Pj4gSSBtZWFuIHdlIGNvdWxkIGNv
-bWUgdXAgd2l0aCBhIG5ldyBzdHJ1Y3R1cmUgZm9yIHRoaXMsIGJ1dCB0byBtZSB0aGF0IGp1c3QK
-Pj4+IGxvb2tzIGxpa2UgcmVpbnZlbnRpbmcgdGhlIHdoZWVsLiBFc3BlY2lhbGx5IHNpbmNlIGRy
-aXZlcnMgbmVlZCB0byBiZSBhYmxlCj4+PiB0byBoYW5kbGUgYm90aCBJL08gdG8gc3lzdGVtIG1l
-bW9yeSBhbmQgSS9PIHRvIFBDSWUgQkFScy4KPj4KPj4gVGhlIHN0cnVjdHVyZSBmb3IgaG9sZGlu
-ZyB0aGUgc3RydWN0IHBhZ2Ugc2lkZSBvZiB0aGUgc2NhdHRlcmxpc3QgaXMKPj4gY2FsbGVkIHN0
-cnVjdCBiaW9fdmVjLCBzbyBmYXIgbW9zdGx5IHVzZWQgYnkgdGhlIGJsb2NrIGFuZCBuZXR3b3Jr
-aW5nCj4+IGNvZGUuCj4gCj4gSSBoYXZlbid0IHVzZWQgYmlvX3ZlY3MgYmVmb3JlLCBkbyB0aGV5
-IHN1cHBvcnQgY2hhaW5pbmcgbGlrZSBTR0wgc28KPiB0aGV5IGNhbiBiZSB2ZXJ5IGJpZz8gUkRN
-QSBkbWEgbWFwcyBnaWdhYnl0ZXMgb2YgbWVtb3J5CgpiaW9fdmVjJ3MgdGhlbXNlbHZlcyBkb24n
-dCBzdXBwb3J0IGNoYWluaW5nLi4uIEluIHRoZSBibG9jayBsYXllciB0aGV5CmFyZSB1c2VkIGlu
-IGEgc3RydWN0IGJpbyB3aGljaCBoYW5kbGVzIGNoYWluaW5nLCBzcGxpdHRpbmcgYW5kIG90aGVy
-CmZlYXR1cmVzLiBFYWNoIGJpbywgdGhvdWdoLCBoYXMgYSBsaW1pdCBvZiAyNTYgc2VnbWVudHMg
-dG8gYXZvaWQgaGlnaGVyCm9yZGVyIGFsbG9jYXRpb25zLiBEZXBlbmRpbmcgb24geW91ciB1c2Ug
-Y2FzZSwgeW91IGNvdWxkIHJldXNlIGJpb3Mgb3IKd3JpdGUgeW91ciBvd24gY29udGFpbmVyIHRv
-IGNoYWluIGJpb192ZWNzLgoKPj4gVGhlIHN0cnVjdHVyZSBmb3IgaG9sZGluZyBkbWEgYWRkcmVz
-c2VzIGRvZXNuJ3QgcmVhbGx5IGV4aXN0Cj4+IGluIGEgZ2VuZXJpYyBmb3JtLCBidXQgd291bGQg
-YmUgYW4gYXJyYXkgb2YgdGhlc2Ugc3RydWN0dXJlczoKPj4KPj4gc3RydWN0IGRtYV9zZyB7Cj4+
-IAlkbWFfYWRkcl90CWFkZHI7Cj4+IAl1MzIJCWxlbjsKPj4gfTsKCgo+IFllcywgd2UgZWFzaWx5
-IGhhdmUgcmFuZ2VzIG9mID4xR0IuIFNvIEkgd291bGQgY2VydGFpbmx5IHNheSB1NjQgZm9yIHRo
-ZSBsZW4gaGVyZS4KCkknZCBwcm9iYWJseSBhdm9pZCB0aGUgdTY0IGhlcmUgYW5kIGxlYXZlIHNw
-YWNlIGZvciBzb21lIGZsYWdzIG9yCnNvbWV0aGluZy4gSWYgeW91IGhhdmUgPjFHQiB0byBtYXAg
-eW91IGNhbiBhbHdheXMganVzdCBoYXZlIG11bGl0cGxlCnNlZ21lbnRzLiBXaXRoIDRHQiBwZXIg
-c2VnbWVudCBhbmQgMjU2IHNlZ21lbnRzIHBlciBwYWdlLCBhIHBhZ2Ugb2YgRE1BCnNncyBjYW4g
-ZWFzaWx5IG1hcCAxVEIgb2YgbWVtb3J5IGluIGEgc2luZ2xlIGNhbGwgYW5kIHdpdGggY2hhaW5p
-bmcgb3IKbGFyZ2VyIGFsbG9jYXRpb25zIHlvdSBjYW4gZXh0ZW5kIHRoYXQgZnVydGhlciwgaWYg
-bmVlZGVkLgoKTG9nYW4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
-Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
-LWdmeAo=
+Quoting Tvrtko Ursulin (2020-03-12 14:18:26)
+> 
+> On 12/03/2020 11:53, Chris Wilson wrote:
+> > During driver unload, we have many asserts that we have released our
+> > bookkeeping structs and are idle. In some cases, these struct are
+> > protected by RCU and we do not release them until after an RCU grace
+> > period.
+> > 
+> > Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Fixes: 130a95e9098e ("drm/i915/gem: Consolidate ctx->engines[] release")
+> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/gt/intel_gt.c | 3 +++
+> >   1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > index 3dea8881e915..d09f7596cb98 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> > @@ -667,6 +667,9 @@ void intel_gt_driver_release(struct intel_gt *gt)
+> >   
+> >   void intel_gt_driver_late_release(struct intel_gt *gt)
+> >   {
+> > +     /* We need to wait for inflight RCU frees to release their grip */
+> > +     rcu_barrier();
+> > +
+> >       intel_uc_driver_late_release(&gt->uc);
+> >       intel_gt_fini_requests(gt);
+> >       intel_gt_fini_reset(gt);
+> > 
+> 
+> Not sure if GT or GEM is the place, but liberal application seems 
+> required anyway nowadays.
+> 
+> Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+
+Either after gem_fini_contexts or before here, both have reasonable
+arguments. One being the point of assertion, the other the point of
+expected release.
+-Chris
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
