@@ -2,33 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08523184571
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D877A184598
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:08:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71E416EBBF;
-	Fri, 13 Mar 2020 11:03:27 +0000 (UTC)
-X-Original-To: Intel-gfx@lists.freedesktop.org
-Delivered-To: Intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7FE6EBC0
- for <Intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:03:25 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20547355-1500050 for multiple; Fri, 13 Mar 2020 11:03:19 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F7A66EBC0;
+	Fri, 13 Mar 2020 11:08:08 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06FCB6EBC0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:08:06 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 04:08:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="278180792"
+Received: from costindx-wtg.ger.corp.intel.com (HELO [10.252.38.100])
+ ([10.252.38.100])
+ by fmsmga002.fm.intel.com with ESMTP; 13 Mar 2020 04:08:04 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200312115307.16460-1-chris@chris-wilson.co.uk>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Message-ID: <418fcb31-0c49-4205-1164-3e2078cd8b4e@linux.intel.com>
+Date: Fri, 13 Mar 2020 12:08:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <20200311182618.21513-5-tvrtko.ursulin@linux.intel.com>
-References: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
- <20200311182618.21513-5-tvrtko.ursulin@linux.intel.com>
-To: Intel-gfx@lists.freedesktop.org,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158409739938.10732.16786367266538559650@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 13 Mar 2020 11:03:19 +0000
-Subject: Re: [Intel-gfx] [RFC 04/10] drm/i915: Use explicit flag to mark
- unreachable intel_context
+In-Reply-To: <20200312115307.16460-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Wait for RCUs frees before
+ asserting idle on unload
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,58 +51,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-11 18:26:12)
-> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> 
-> I need to keep the GEM context around a bit longer so adding an explicit
-> flag for syncing execbuf with closed/abandonded contexts.
-> 
-> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Op 12-03-2020 om 12:53 schreef Chris Wilson:
+> During driver unload, we have many asserts that we have released our
+> bookkeeping structs and are idle. In some cases, these struct are
+> protected by RCU and we do not release them until after an RCU grace
+> period.
+>
+> Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Fixes: 130a95e9098e ("drm/i915/gem: Consolidate ctx->engines[] release")
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_context.c    | 3 ++-
->  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
->  drivers/gpu/drm/i915/gt/intel_context_types.h  | 1 +
->  3 files changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> index 0f4150c8d7fe..c49cfec6d616 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-> @@ -568,7 +568,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
->                 int err = 0;
+>  drivers/gpu/drm/i915/gt/intel_gt.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 3dea8881e915..d09f7596cb98 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -667,6 +667,9 @@ void intel_gt_driver_release(struct intel_gt *gt)
 >  
->                 /* serialises with execbuf */
-> -               RCU_INIT_POINTER(ce->gem_context, NULL);
-> +               WRITE_ONCE(ce->closed, true);
+>  void intel_gt_driver_late_release(struct intel_gt *gt)
+>  {
+> +	/* We need to wait for inflight RCU frees to release their grip */
+> +	rcu_barrier();
 > +
->                 if (!intel_context_pin_if_active(ce))
->                         continue;
->  
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 0893ce781a84..17dbe03f8e2e 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -2547,7 +2547,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
->         prev = __i915_request_commit(rq);
->  
->         /* Check that the context wasn't destroyed before submission */
-> -       if (likely(rcu_access_pointer(eb->context->gem_context))) {
-> +       if (likely(!READ_ONCE(eb->context->closed))) {
->                 attr = eb->gem_context->sched;
->  
->                 /*
-> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> index 0f3b68b95c56..bcefebcf6b88 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-> @@ -50,6 +50,7 @@ struct intel_context {
->  
->         struct i915_address_space *vm;
->         struct i915_gem_context __rcu *gem_context;
-> +       bool closed;
+>  	intel_uc_driver_late_release(&gt->uc);
+>  	intel_gt_fini_requests(gt);
+>  	intel_gt_fini_reset(gt);
 
-But we do have intel_context.flags, right?
--Chris
+Is it possible this is causing a hang on exit in gem_exec_parallel when I have an extra bunch of debug options enabled?
+
+Also potentially seems to break selftests on cml :)
+
+otherwise looks sane,
+
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
