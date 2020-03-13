@@ -1,49 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA330184A04
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:54:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC7D184A0B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:55:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5B2C6EBE5;
-	Fri, 13 Mar 2020 14:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B149F6EBE7;
+	Fri, 13 Mar 2020 14:55:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC756EBE5
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:54:38 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 373526EBE4
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:55:33 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 07:54:37 -0700
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 07:55:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="236976193"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga008.fm.intel.com with ESMTP; 13 Mar 2020 07:54:36 -0700
-Date: Fri, 13 Mar 2020 16:54:35 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20200312175040.GJ13686@intel.com>
-Message-ID: <alpine.DEB.2.21.2003131649140.2957@eliteleevi.tm.intel.com>
-References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
- <20200102182845.GB11904@intel.com>
- <alpine.DEB.2.21.2001031703180.16459@zeliteleevi>
- <20200106164903.GA1755221@mdroper-desk1.amr.corp.intel.com>
- <alpine.DEB.2.21.2003061749190.2957@eliteleevi.tm.intel.com>
- <s5h4kuxssqr.wl-tiwai@suse.de> <20200310134114.GE13686@intel.com>
- <alpine.DEB.2.21.2003101848170.2957@eliteleevi.tm.intel.com>
- <20200310182522.GN13686@intel.com>
- <alpine.DEB.2.21.2003121833570.2957@eliteleevi.tm.intel.com>
- <20200312175040.GJ13686@intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="416318465"
+Received: from ebrigham-mobl1.amr.corp.intel.com (HELO intel.com)
+ ([10.252.14.214])
+ by orsmga005.jf.intel.com with ESMTP; 13 Mar 2020 07:55:31 -0700
+Date: Fri, 13 Mar 2020 16:55:30 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20200313145530.GA3001@intel.intel>
+References: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
+ <20200312011631.15262-4-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="-318106570-92365371-1584111212=:2957"
-Content-ID: <alpine.DEB.2.21.2003131653450.2957@eliteleevi.tm.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
- constraint back to GLK only
+Content-Disposition: inline
+In-Reply-To: <20200312011631.15262-4-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 3/6] drm/i915/huc: make "support huc"
+ reflect HW capabilities
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,48 +46,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Hi Daniele,
 
----318106570-92365371-1584111212=:2957
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-Content-ID: <alpine.DEB.2.21.2003131653451.2957@eliteleevi.tm.intel.com>
-
-Hey,
-
-On Thu, 12 Mar 2020, Ville Syrjälä wrote:
-
-> On Thu, Mar 12, 2020 at 07:27:58PM +0200, Kai Vehmanen wrote:
->> So I think this starts to look that we should move calling glk_force_audio 
->> to bind/unbind pair. I can make a patch for this.
+On Wed, Mar 11, 2020 at 06:16:28PM -0700, Daniele Ceraolo Spurio wrote:
+> We currently initialize HuC support based on GuC being enabled in
+> modparam; this means that huc_is_supported() can return false on HW that
+> does have a HuC when enable_guc=0. The rationale for this behavior is
+> that HuC requires GuC for authentication and therefore is not supported
+> by itself. However, we do not allow defining HuC fw wthout GuC fw and
+> selecting HuC in modparam implicitly selects GuC as well, so we can't
+> actually hit a scenario where HuC is selected alone. Therefore, we can
+> flip the support check to reflect the HW capabilities and fw
+> availability, which is more intuitive and will make it cleaner to log
+> HuC the difference between not supported in HW and not selected.
 > 
-> That would stop us from doing dynamic cdclk changes once we get the hw
-> that can do that properly. Rather I think I'd just hardcode the 2xbclk
-> requirement in i915 for the platforms that suck.
+> Removing the difference between GuC and HuC also allows us to simplify
+> the init_early, since we don't need to differentiate the support based
+> on the type of uC.
+> 
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-well, you can always code in both places -- i.e. have the clock 
-constraints set up at bind() for older (the current) platforms, and have a 
-different callplace in get_power() for newer platforms. This code is 
-anyways conditional on the hardware that is used.
+Looks good to me,
 
-I now send a patch implementing this, plus code to at runtime figure
-out the effective BCLK, to the list. Please have a look at comment.
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-Br, Kai
----318106570-92365371-1584111212=:2957
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
----318106570-92365371-1584111212=:2957--
