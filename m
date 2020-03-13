@@ -2,37 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D3A184CE4
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 17:49:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 816F8184D6B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 18:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6E446EC38;
-	Fri, 13 Mar 2020 16:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 263576EC42;
+	Fri, 13 Mar 2020 17:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA306EC33
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 16:49:16 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 613296EC3E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 17:18:11 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 09:49:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="232474687"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga007.jf.intel.com with SMTP; 13 Mar 2020 09:49:13 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Mar 2020 18:49:12 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Fri, 13 Mar 2020 18:48:31 +0200
-Message-Id: <20200313164831.5980-14-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
-References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 10:18:10 -0700
+X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="232482775"
+Received: from pkosiack-mobl2.ger.corp.intel.com (HELO [10.252.21.27])
+ ([10.252.21.27])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-SHA;
+ 13 Mar 2020 10:18:08 -0700
+To: srinivasan.s@intel.com, intel-gfx@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, Francisco Jerez <currojerez@riseup.net>
+References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <c2daee78-0eaf-090e-8a65-3bb6dd773806@linux.intel.com>
+Date: Fri, 13 Mar 2020 17:18:05 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 13/13] drm/i915: Move the port sync DP_TP_CTL
- stuff to the encoder hook
+In-Reply-To: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of
+ Slice/Sub-slice/EU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,127 +48,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCk1v
-dmUgdGhlIGZpbmFsIERQX1RQX0NUTCBmcm9iYmluZyBvZiBwb3J0IHN5bmMgdG8gdGhlIG1hc3Rl
-cgplbmNvZGVyJ3MgZW5hYmxlIGhvb2suIE5vdyBuZWF0bHkgb3V0IG9mIHNpZ2h0IGZyb20gdGhl
-IGhpZ2ggbGV2ZWwKbW9kZXNldCBjb2RlLgoKQW5kIHRodXMgd2UndmUgZWxpbWluYXRlZCBhbGwg
-dGhlIHNwZWNpYWwgY2FzaW5nIG9mIHBvcnQgc3luYwppbiB0aGUgaGlnaCBsZXZlbCBtb2Rlc2V0
-IGNvZGUuCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGlu
-dXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMgICAgIHwgMzcgKysrKysrKysKIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5jIHwgOTkgKysrKy0tLS0tLS0tLS0tLS0tLS0KIDIgZmlsZXMgY2hhbmdlZCwgNTMg
-aW5zZXJ0aW9ucygrKSwgODMgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUv
-ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvaW50ZWxfZGRpLmMKaW5kZXggOTg0NzVjODFmMWRhLi44NTZjNTZmODQ4MzMgMTAwNjQ0Ci0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMKKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwpAQCAtMzU0Nyw2ICszNTQ3LDQxIEBA
-IHZvaWQgaW50ZWxfZGRpX2ZkaV9wb3N0X2Rpc2FibGUoc3RydWN0IGludGVsX2F0b21pY19zdGF0
-ZSAqc3RhdGUsCiAJaW50ZWxfZGVfd3JpdGUoZGV2X3ByaXYsIEZESV9SWF9DVEwoUElQRV9BKSwg
-dmFsKTsKIH0KIAorc3RhdGljIHZvaWQgdHJhbnNfcG9ydF9zeW5jX3N0b3BfbGlua190cmFpbihz
-dHJ1Y3QgaW50ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwKKwkJCQkJICAgIHN0cnVjdCBpbnRlbF9l
-bmNvZGVyICplbmNvZGVyLAorCQkJCQkgICAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUg
-KmNydGNfc3RhdGUpCit7CisJY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5f
-c3RhdGU7CisJc3RydWN0IGRybV9jb25uZWN0b3IgKmNvbm47CisJaW50IGk7CisKKwlpZiAoIWNy
-dGNfc3RhdGUtPnN5bmNfbW9kZV9zbGF2ZXNfbWFzaykKKwkJcmV0dXJuOworCisJZm9yX2VhY2hf
-bmV3X2Nvbm5lY3Rvcl9pbl9zdGF0ZSgmc3RhdGUtPmJhc2UsIGNvbm4sIGNvbm5fc3RhdGUsIGkp
-IHsKKwkJc3RydWN0IGludGVsX2VuY29kZXIgKnNsYXZlX2VuY29kZXIgPQorCQkJdG9faW50ZWxf
-ZW5jb2Rlcihjb25uX3N0YXRlLT5iZXN0X2VuY29kZXIpOworCQlzdHJ1Y3QgaW50ZWxfY3J0YyAq
-c2xhdmVfY3J0YyA9IHRvX2ludGVsX2NydGMoY29ubl9zdGF0ZS0+Y3J0Yyk7CisJCWNvbnN0IHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpzbGF2ZV9jcnRjX3N0YXRlOworCisJCWlmICghc2xhdmVf
-Y3J0YykKKwkJCWNvbnRpbnVlOworCisJCXNsYXZlX2NydGNfc3RhdGUgPQorCQkJaW50ZWxfYXRv
-bWljX2dldF9uZXdfY3J0Y19zdGF0ZShzdGF0ZSwgc2xhdmVfY3J0Yyk7CisKKwkJaWYgKHNsYXZl
-X2NydGNfc3RhdGUtPm1hc3Rlcl90cmFuc2NvZGVyICE9CisJCSAgICBjcnRjX3N0YXRlLT5jcHVf
-dHJhbnNjb2RlcikKKwkJCWNvbnRpbnVlOworCisJCWludGVsX2RwX3N0b3BfbGlua190cmFpbihl
-bmNfdG9faW50ZWxfZHAoc2xhdmVfZW5jb2RlcikpOworCX0KKworCXVzbGVlcF9yYW5nZSgyMDAs
-IDQwMCk7CisKKwlpbnRlbF9kcF9zdG9wX2xpbmtfdHJhaW4oZW5jX3RvX2ludGVsX2RwKGVuY29k
-ZXIpKTsKK30KKwogc3RhdGljIHZvaWQgaW50ZWxfZW5hYmxlX2RkaV9kcChzdHJ1Y3QgaW50ZWxf
-YXRvbWljX3N0YXRlICpzdGF0ZSwKIAkJCQlzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwK
-IAkJCQljb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKQEAgLTM1Njcs
-NiArMzYwMiw4IEBAIHN0YXRpYyB2b2lkIGludGVsX2VuYWJsZV9kZGlfZHAoc3RydWN0IGludGVs
-X2F0b21pY19zdGF0ZSAqc3RhdGUsCiAKIAlpZiAoY3J0Y19zdGF0ZS0+aGFzX2F1ZGlvKQogCQlp
-bnRlbF9hdWRpb19jb2RlY19lbmFibGUoZW5jb2RlciwgY3J0Y19zdGF0ZSwgY29ubl9zdGF0ZSk7
-CisKKwl0cmFuc19wb3J0X3N5bmNfc3RvcF9saW5rX3RyYWluKHN0YXRlLCBlbmNvZGVyLCBjcnRj
-X3N0YXRlKTsKIH0KIAogc3RhdGljIGk5MTVfcmVnX3QKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggODRlNTlmNmFiOGU0Li5jZGFlN2E2ODBlNGEg
-MTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5j
-CisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCkBAIC01
-NDQsMTkgKzU0NCwyNSBAQCBuZWVkc19tb2Rlc2V0KGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0
-YXRlICpzdGF0ZSkKIAlyZXR1cm4gZHJtX2F0b21pY19jcnRjX25lZWRzX21vZGVzZXQoJnN0YXRl
-LT51YXBpKTsKIH0KIAotYm9vbAotaXNfdHJhbnNfcG9ydF9zeW5jX21vZGUoY29uc3Qgc3RydWN0
-IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUpCi17Ci0JcmV0dXJuIChjcnRjX3N0YXRlLT5t
-YXN0ZXJfdHJhbnNjb2RlciAhPSBJTlZBTElEX1RSQU5TQ09ERVIgfHwKLQkJY3J0Y19zdGF0ZS0+
-c3luY19tb2RlX3NsYXZlc19tYXNrKTsKLX0KLQogc3RhdGljIGJvb2wKIGlzX3RyYW5zX3BvcnRf
-c3luY19zbGF2ZShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKIHsK
-IAlyZXR1cm4gY3J0Y19zdGF0ZS0+bWFzdGVyX3RyYW5zY29kZXIgIT0gSU5WQUxJRF9UUkFOU0NP
-REVSOwogfQogCitzdGF0aWMgYm9vbAoraXNfdHJhbnNfcG9ydF9zeW5jX21hc3Rlcihjb25zdCBz
-dHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSkKK3sKKwlyZXR1cm4gY3J0Y19zdGF0
-ZS0+c3luY19tb2RlX3NsYXZlc19tYXNrICE9IDA7Cit9CisKK2Jvb2wKK2lzX3RyYW5zX3BvcnRf
-c3luY19tb2RlKGNvbnN0IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlKQorewor
-CXJldHVybiBpc190cmFuc19wb3J0X3N5bmNfbWFzdGVyKGNydGNfc3RhdGUpIHx8CisJCWlzX3Ry
-YW5zX3BvcnRfc3luY19zbGF2ZShjcnRjX3N0YXRlKTsKK30KKwogLyoKICAqIFBsYXRmb3JtIHNw
-ZWNpZmljIGhlbHBlcnMgdG8gY2FsY3VsYXRlIHRoZSBwb3J0IFBMTCBsb29wYmFjay0gKGNsb2Nr
-Lm0pLAogICogYW5kIHBvc3QtZGl2aWRlciAoY2xvY2sucCkgdmFsdWVzLCBwcmUtIChjbG9jay52
-Y28pIGFuZCBwb3N0LWRpdmlkZWQgZmFzdApAQCAtMTUxMDQsNjMgKzE1MTEwLDYgQEAgc3RhdGlj
-IHZvaWQgaW50ZWxfY29tbWl0X21vZGVzZXRfZW5hYmxlcyhzdHJ1Y3QgaW50ZWxfYXRvbWljX3N0
-YXRlICpzdGF0ZSkKIAl9CiB9CiAKLXN0YXRpYyB2b2lkIGludGVsX3NldF9kcF90cF9jdGxfbm9y
-bWFsKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAotCQkJCSAgICAgICBzdHJ1Y3Qg
-aW50ZWxfY3J0YyAqY3J0YykKLXsKLQlzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqdW5pbml0aWFsaXpl
-ZF92YXIoY29ubik7Ci0Jc3RydWN0IGRybV9jb25uZWN0b3Jfc3RhdGUgKmNvbm5fc3RhdGU7Ci0J
-c3RydWN0IGludGVsX2RwICppbnRlbF9kcDsKLQlpbnQgaTsKLQotCWZvcl9lYWNoX25ld19jb25u
-ZWN0b3JfaW5fc3RhdGUoJnN0YXRlLT5iYXNlLCBjb25uLCBjb25uX3N0YXRlLCBpKSB7Ci0JCWlm
-IChjb25uX3N0YXRlLT5jcnRjID09ICZjcnRjLT5iYXNlKQotCQkJYnJlYWs7Ci0JfQotCWludGVs
-X2RwID0gaW50ZWxfYXR0YWNoZWRfZHAodG9faW50ZWxfY29ubmVjdG9yKGNvbm4pKTsKLQlpbnRl
-bF9kcF9zdG9wX2xpbmtfdHJhaW4oaW50ZWxfZHApOwotfQotCi1zdGF0aWMgdm9pZCBpbnRlbF91
-cGRhdGVfdHJhbnNfcG9ydF9zeW5jX2NydGNzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0
-YXRlLAotCQkJCQkgICAgICAgc3RydWN0IGludGVsX2NydGMgKmNydGMpCi17Ci0Jc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KHN0YXRlLT5iYXNlLmRldik7Ci0JY29uc3Qg
-c3RydWN0IGludGVsX2NydGNfc3RhdGUgKm5ld19zbGF2ZV9jcnRjX3N0YXRlOwotCWNvbnN0IHN0
-cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpuZXdfY3J0Y19zdGF0ZTsKLQlzdHJ1Y3QgaW50ZWxfY3J0
-YyAqc2xhdmVfY3J0YzsKLQlpbnQgaTsKLQotCWZvcl9lYWNoX25ld19pbnRlbF9jcnRjX2luX3N0
-YXRlKHN0YXRlLCBzbGF2ZV9jcnRjLAotCQkJCQkgbmV3X3NsYXZlX2NydGNfc3RhdGUsIGkpIHsK
-LQkJaWYgKG5ld19zbGF2ZV9jcnRjX3N0YXRlLT5tYXN0ZXJfdHJhbnNjb2RlciAhPQotCQkgICAg
-bmV3X2NydGNfc3RhdGUtPmNwdV90cmFuc2NvZGVyKQotCQkJY29udGludWU7Ci0KLQkJZHJtX2Ri
-Z19rbXMoJmk5MTUtPmRybSwKLQkJCSAgICAiVXBkYXRpbmcgdHJhbnNjb2RlciBwb3J0IHN5bmMg
-c2xhdmUgW0NSVEM6JWQ6JXNdXG4iLAotCQkJICAgIHNsYXZlX2NydGMtPmJhc2UuYmFzZS5pZCwg
-c2xhdmVfY3J0Yy0+YmFzZS5uYW1lKTsKLQotCQlpbnRlbF9lbmFibGVfY3J0YyhzdGF0ZSwgc2xh
-dmVfY3J0Yyk7Ci0JfQotCi0JZHJtX2RiZ19rbXMoJmk5MTUtPmRybSwKLQkJICAgICJVcGRhdGlu
-ZyB0cmFuc2NvZGVyIHBvcnQgc3luYyBtYXN0ZXIgW0NSVEM6JWQ6JXNdXG4iLAotCQkgICAgY3J0
-Yy0+YmFzZS5iYXNlLmlkLCBjcnRjLT5iYXNlLm5hbWUpOwotCi0JaW50ZWxfZW5hYmxlX2NydGMo
-c3RhdGUsIGNydGMpOwotCi0JZm9yX2VhY2hfbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUs
-IHNsYXZlX2NydGMsCi0JCQkJCSBuZXdfc2xhdmVfY3J0Y19zdGF0ZSwgaSkgewotCQlpZiAobmV3
-X3NsYXZlX2NydGNfc3RhdGUtPm1hc3Rlcl90cmFuc2NvZGVyICE9Ci0JCSAgICBuZXdfY3J0Y19z
-dGF0ZS0+Y3B1X3RyYW5zY29kZXIpCi0JCQljb250aW51ZTsKLQotCQlpbnRlbF9zZXRfZHBfdHBf
-Y3RsX25vcm1hbChzdGF0ZSwgc2xhdmVfY3J0Yyk7Ci0JfQotCi0JdXNsZWVwX3JhbmdlKDIwMCwg
-NDAwKTsKLQlpbnRlbF9zZXRfZHBfdHBfY3RsX25vcm1hbChzdGF0ZSwgY3J0Yyk7Ci19Ci0KIHN0
-YXRpYyB2b2lkIGljbF9kYnVmX3NsaWNlX3ByZV91cGRhdGUoc3RydWN0IGludGVsX2F0b21pY19z
-dGF0ZSAqc3RhdGUpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9f
-aTkxNShzdGF0ZS0+YmFzZS5kZXYpOwpAQCAtMTUyNjEsMzMgKzE1MjEwLDE3IEBAIHN0YXRpYyB2
-b2lkIHNrbF9jb21taXRfbW9kZXNldF9lbmFibGVzKHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUg
-KnN0YXRlKQogCQkJY29udGludWU7CiAKIAkJaWYgKGludGVsX2RwX21zdF9pc19zbGF2ZV90cmFu
-cyhuZXdfY3J0Y19zdGF0ZSkgfHwKLQkJICAgIGlzX3RyYW5zX3BvcnRfc3luY19zbGF2ZShuZXdf
-Y3J0Y19zdGF0ZSkpCisJCSAgICBpc190cmFuc19wb3J0X3N5bmNfbWFzdGVyKG5ld19jcnRjX3N0
-YXRlKSkKIAkJCWNvbnRpbnVlOwogCiAJCW1vZGVzZXRfcGlwZXMgJj0gfkJJVChwaXBlKTsKIAot
-CQlpZiAoaXNfdHJhbnNfcG9ydF9zeW5jX21vZGUobmV3X2NydGNfc3RhdGUpKSB7Ci0JCQljb25z
-dCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqbmV3X3NsYXZlX2NydGNfc3RhdGU7Ci0JCQlzdHJ1
-Y3QgaW50ZWxfY3J0YyAqc2xhdmVfY3J0YzsKLQkJCWludCBpOwotCi0JCQlpbnRlbF91cGRhdGVf
-dHJhbnNfcG9ydF9zeW5jX2NydGNzKHN0YXRlLCBjcnRjKTsKLQotCQkJZm9yX2VhY2hfbmV3X2lu
-dGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIHNsYXZlX2NydGMsCi0JCQkJCQkJIG5ld19zbGF2ZV9j
-cnRjX3N0YXRlLCBpKSB7Ci0KLQkJCQkvKiBUT0RPOiB1cGRhdGUgZW50cmllc1tdIG9mIHNsYXZl
-ICovCi0JCQkJbW9kZXNldF9waXBlcyAmPSB+QklUKHNsYXZlX2NydGMtPnBpcGUpOwotCQkJfQot
-CQl9IGVsc2UgewotCQkJaW50ZWxfZW5hYmxlX2NydGMoc3RhdGUsIGNydGMpOwotCQl9CisJCWlu
-dGVsX2VuYWJsZV9jcnRjKHN0YXRlLCBjcnRjKTsKIAl9CiAKIAkvKgogCSAqIFRoZW4gd2UgZW5h
-YmxlIGFsbCByZW1haW5pbmcgcGlwZXMgdGhhdCBkZXBlbmQgb24gb3RoZXIKLQkgKiBwaXBlcywg
-cmlnaHQgbm93IGl0IGlzIG9ubHkgTVNUIHNsYXZlcyBhcyBib3RoIHBvcnQgc3luYwotCSAqIHNs
-YXZlIGFuZCBtYXN0ZXIgYXJlIGVuYWJsZWQgdG9nZXRoZXIKKwkgKiBwaXBlczogTVNUIHNsYXZl
-cyBhbmQgcG9ydCBzeW5jIG1hc3RlcnMuCiAJICovCiAJZm9yX2VhY2hfbmV3X2ludGVsX2NydGNf
-aW5fc3RhdGUoc3RhdGUsIGNydGMsIG5ld19jcnRjX3N0YXRlLCBpKSB7CiAJCWVudW0gcGlwZSBw
-aXBlID0gY3J0Yy0+cGlwZTsKLS0gCjIuMjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4v
-bGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+
+Hi,
+
+On 13/03/2020 11:12, srinivasan.s@intel.com wrote:
+> From: Srinivasan S <srinivasan.s@intel.com>
+> 
+>        drm/i915: Context aware user agnostic EU/Slice/Sub-slice control within kernel
+> 
+> This patch sets improves GPU power consumption on Linux kernel based OS such as
+> Chromium OS, Ubuntu, etc. Following are the power savings.
+> 
+> Power savings on GLK-GT1 Bobba platform running on Chrome OS.
+> -----------------------------------------------|
+> App /KPI                | % Power Benefit (mW) |
+> ------------------------|----------------------|
+> Hangout Call- 20 minute |	1.8%           |
+> Youtube 4K VPB          |       14.13%         |
+> WebGL Aquarium          |       13.76%         |
+> Unity3D                 |       6.78%          |
+> 			|		       |
+> ------------------------|----------------------|
+> Chrome PLT              | BatteryLife Improves |
+> 			| by ~45 minute        |
+> -----------------------------------------------|
+> 
+> Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
+> -----------------------------------------------|
+> App /KPI		| % Power Benefit (mW) |
+>                          |----------------------|
+> 			|  Android |  Ubuntu   |
+> ------------------------|----------|-----------|
+> 3D Mark (Ice storm)     | 2.30%    | N.A.      |
+> TRex On screen          | 2.49%    | 2.97%     |
+> Manhattan On screen     | 3.11%    | 4.90%     |
+> Carchase On Screen	| N.A.     | 5.06%     |
+> AnTuTu 6.1.4            | 3.42%    | N.A.      |
+> SynMark2		| N.A.     | 1.7%      |
+> -----------------------------------------------|
+
+Have a look at the result Francisco obtained on Icelake with a different 
+approach: https://patchwork.freedesktop.org/series/74540/
+
+Not all benchmarks overlap but if you are set up to easily test his 
+patches it may be for a mutual benefit.
+
+Regards,
+
+Tvrtko
+
+> We have also observed GPU core residencies improves by 1.035%.
+> 
+> Technical Insights of the patch:
+> Current GPU configuration code for i915 does not allow us to change
+> EU/Slice/Sub-slice configuration dynamically. Its done only once while context
+> is created.
+> 
+> While particular graphics application is running, if we examine the command
+> requests from user space, we observe that command density is not consistent.
+> It means there is scope to change the graphics configuration dynamically even
+> while context is running actively. This patch series proposes the solution to
+> find the active pending load for all active context at given time and based on
+> that, dynamically perform graphics configuration for each context.
+> 
+> We use a hr (high resolution) timer with i915 driver in kernel to get a
+> callback every few milliseconds (this timer value can be configured through
+> debugfs, default is '0' indicating timer is in disabled state i.e. original
+> system without any intervention).In the timer callback, we examine pending
+> commands for a context in the queue, essentially, we intercept them before
+> they are executed by GPU and we update context with required number of EUs.
+> 
+> Two questions, how did we arrive at right timer value? and what's the right
+> number of EUs? For the prior one, empirical data to achieve best performance
+> in least power was considered. For the later one, we roughly categorized number
+> of EUs logically based on platform. Now we compare number of pending commands
+> with a particular threshold and then set number of EUs accordingly with update
+> context. That threshold is also based on experiments & findings. If GPU is able
+> to catch up with CPU, typically there are no pending commands, the EU config
+> would remain unchanged there. In case there are more pending commands we
+> reprogram context with higher number of EUs. Please note, here we are changing
+> EUs even while context is running by examining pending commands every 'x'
+> milliseconds.
+> 
+> Srinivasan S (3):
+>    drm/i915: Get active pending request for given context
+>    drm/i915: set optimum eu/slice/sub-slice configuration based on load
+>      type
+>    drm/i915: Predictive governor to control slice/subslice/eu
+> 
+>   drivers/gpu/drm/i915/Makefile                     |   1 +
+>   drivers/gpu/drm/i915/gem/i915_gem_context.c       |  20 +++++
+>   drivers/gpu/drm/i915/gem/i915_gem_context.h       |   2 +
+>   drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  38 ++++++++
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
+>   drivers/gpu/drm/i915/gt/intel_deu.c               | 104 ++++++++++++++++++++++
+>   drivers/gpu/drm/i915/gt/intel_deu.h               |  31 +++++++
+>   drivers/gpu/drm/i915/gt/intel_lrc.c               |  44 ++++++++-
+>   drivers/gpu/drm/i915/i915_drv.h                   |   6 ++
+>   drivers/gpu/drm/i915/i915_gem.c                   |   4 +
+>   drivers/gpu/drm/i915/i915_params.c                |   4 +
+>   drivers/gpu/drm/i915/i915_params.h                |   1 +
+>   drivers/gpu/drm/i915/intel_device_info.c          |  74 ++++++++++++++-
+>   13 files changed, 325 insertions(+), 5 deletions(-)
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.c
+>   create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.h
+> 
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
