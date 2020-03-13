@@ -1,34 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21029184564
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:01:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08523184571
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:03:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC706EBBE;
-	Fri, 13 Mar 2020 11:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E416EBBF;
+	Fri, 13 Mar 2020 11:03:27 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8A556EBBE
- for <Intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:01:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7FE6EBC0
+ for <Intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:03:25 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20547292-1500050 for multiple; Fri, 13 Mar 2020 11:00:50 +0000
+ 20547355-1500050 for multiple; Fri, 13 Mar 2020 11:03:19 +0000
 MIME-Version: 1.0
-In-Reply-To: <20200311182618.21513-4-tvrtko.ursulin@linux.intel.com>
+In-Reply-To: <20200311182618.21513-5-tvrtko.ursulin@linux.intel.com>
 References: <20200311182618.21513-1-tvrtko.ursulin@linux.intel.com>
- <20200311182618.21513-4-tvrtko.ursulin@linux.intel.com>
+ <20200311182618.21513-5-tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158409725013.10732.7544147489314823427@build.alporthouse.com>
+Message-ID: <158409739938.10732.16786367266538559650@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Fri, 13 Mar 2020 11:00:50 +0000
-Subject: Re: [Intel-gfx] [RFC 03/10] drm/i915: Make GEM contexts track DRM
- clients
+Date: Fri, 13 Mar 2020 11:03:19 +0000
+Subject: Re: [Intel-gfx] [RFC 04/10] drm/i915: Use explicit flag to mark
+ unreachable intel_context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,63 +46,57 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-11 18:26:11)
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 6ca797128aa1..ae236058c87e 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -330,17 +330,17 @@ static void print_context_stats(struct seq_file *m,
->                                 .vm = rcu_access_pointer(ctx->vm),
->                         };
->                         struct drm_file *file = ctx->file_priv->file;
-> -                       struct task_struct *task;
->                         char name[80];
+Quoting Tvrtko Ursulin (2020-03-11 18:26:12)
+> From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> 
+> I need to keep the GEM context around a bit longer so adding an explicit
+> flag for syncing execbuf with closed/abandonded contexts.
+> 
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c    | 3 ++-
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+>  drivers/gpu/drm/i915/gt/intel_context_types.h  | 1 +
+>  3 files changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 0f4150c8d7fe..c49cfec6d616 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -568,7 +568,8 @@ static void engines_idle_release(struct i915_gem_context *ctx,
+>                 int err = 0;
 >  
->                         rcu_read_lock();
+>                 /* serialises with execbuf */
+> -               RCU_INIT_POINTER(ce->gem_context, NULL);
+> +               WRITE_ONCE(ce->closed, true);
 > +
->                         idr_for_each(&file->object_idr, per_file_stats, &stats);
-> -                       rcu_read_unlock();
+>                 if (!intel_context_pin_if_active(ce))
+>                         continue;
 >  
-> -                       rcu_read_lock();
-> -                       task = pid_task(ctx->pid ?: file->pid, PIDTYPE_PID);
->                         snprintf(name, sizeof(name), "%s",
-> -                                task ? task->comm : "<unknown>");
-> +                                I915_SELFTEST_ONLY(!ctx->client) ?
-> +                                "[kernel]" :
-> +                                rcu_dereference(ctx->client->name));
-> +
->                         rcu_read_unlock();
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index 0893ce781a84..17dbe03f8e2e 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -2547,7 +2547,7 @@ static void eb_request_add(struct i915_execbuffer *eb)
+>         prev = __i915_request_commit(rq);
 >  
->                         print_file_stats(m, name, stats);
-> @@ -1059,19 +1059,16 @@ static int i915_context_status(struct seq_file *m, void *unused)
->                 spin_unlock(&i915->gem.contexts.lock);
+>         /* Check that the context wasn't destroyed before submission */
+> -       if (likely(rcu_access_pointer(eb->context->gem_context))) {
+> +       if (likely(!READ_ONCE(eb->context->closed))) {
+>                 attr = eb->gem_context->sched;
 >  
->                 seq_puts(m, "HW context ");
-> -               if (ctx->pid) {
-> -                       struct task_struct *task;
-> -
-> -                       task = get_pid_task(ctx->pid, PIDTYPE_PID);
-> -                       if (task) {
-> -                               seq_printf(m, "(%s [%d]) ",
-> -                                          task->comm, task->pid);
-> -                               put_task_struct(task);
-> -                       }
-> -               } else if (IS_ERR(ctx->file_priv)) {
-> -                       seq_puts(m, "(deleted) ");
-> +
-> +               if (I915_SELFTEST_ONLY(!ctx->client)) {
-> +                       seq_puts(m, "([kernel]) ");
->                 } else {
-> -                       seq_puts(m, "(kernel) ");
-> +                       rcu_read_lock();
-> +                       seq_printf(m, "(%s [%d]) %s",
-> +                                  rcu_dereference(ctx->client->name),
-> +                                  pid_nr(rcu_dereference(ctx->client->pid)),
-> +                                  ctx->client->closed ? "(closed) " : "");
-> +                       rcu_read_unlock();
->                 }
+>                 /*
+> diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> index 0f3b68b95c56..bcefebcf6b88 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_context_types.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+> @@ -50,6 +50,7 @@ struct intel_context {
+>  
+>         struct i915_address_space *vm;
+>         struct i915_gem_context __rcu *gem_context;
+> +       bool closed;
 
-debugfs is not available during selftests, so we don't need to worry.
+But we do have intel_context.flags, right?
 -Chris
 _______________________________________________
 Intel-gfx mailing list
