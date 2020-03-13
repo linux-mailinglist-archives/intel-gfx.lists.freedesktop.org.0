@@ -1,36 +1,49 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72ED41849E5
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:48:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA330184A04
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:54:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9E446EBE2;
-	Fri, 13 Mar 2020 14:48:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5B2C6EBE5;
+	Fri, 13 Mar 2020 14:54:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D72D6EBE2
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:48:42 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC756EBE5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:54:38 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 07:48:41 -0700
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 07:54:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="444331182"
+X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="236976193"
 Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmsmga006.fm.intel.com with ESMTP; 13 Mar 2020 07:48:40 -0700
+ by fmsmga008.fm.intel.com with ESMTP; 13 Mar 2020 07:54:36 -0700
+Date: Fri, 13 Mar 2020 16:54:35 +0200 (EET)
 From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	ville.syrjala@linux.intel.com
-Date: Fri, 13 Mar 2020 16:48:21 +0200
-Message-Id: <20200313144821.29592-2-kai.vehmanen@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
-References: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: move audio CDCLK constraint setup
- to bind/unbind
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+In-Reply-To: <20200312175040.GJ13686@intel.com>
+Message-ID: <alpine.DEB.2.21.2003131649140.2957@eliteleevi.tm.intel.com>
+References: <20191231140007.31728-1-kai.vehmanen@linux.intel.com>
+ <20200102182845.GB11904@intel.com>
+ <alpine.DEB.2.21.2001031703180.16459@zeliteleevi>
+ <20200106164903.GA1755221@mdroper-desk1.amr.corp.intel.com>
+ <alpine.DEB.2.21.2003061749190.2957@eliteleevi.tm.intel.com>
+ <s5h4kuxssqr.wl-tiwai@suse.de> <20200310134114.GE13686@intel.com>
+ <alpine.DEB.2.21.2003101848170.2957@eliteleevi.tm.intel.com>
+ <20200310182522.GN13686@intel.com>
+ <alpine.DEB.2.21.2003121833570.2957@eliteleevi.tm.intel.com>
+ <20200312175040.GJ13686@intel.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+MIME-Version: 1.0
+Content-Type: multipart/mixed; BOUNDARY="-318106570-92365371-1584111212=:2957"
+Content-ID: <alpine.DEB.2.21.2003131653450.2957@eliteleevi.tm.intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Limit audio CDCLK>=2*BCLK
+ constraint back to GLK only
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,100 +56,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: tiwai@suse.de
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When the iDisp HDA interface between display and audio is brought
-out from reset, the link parameters must be correctly set before
-reset. This requires the audio driver to call i915 get_power()
-whenever it brings the HDA audio controller from reset. This is
-e.g. done every time audio controller is resumed from runtime
-suspend.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-The current solution of modifying min_cdclk in get_power()/put_power()
-can lead to display flicker as events such as playback of UI sounds
-may indirectly cause a modeset change.
+---318106570-92365371-1584111212=:2957
+Content-Type: text/plain; CHARSET=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.DEB.2.21.2003131653451.2957@eliteleevi.tm.intel.com>
 
-As we need to extend the CDCLK>=2*BCLK constraint to more platforms
-beyond GLK, a more robust solution is needed to this problem.
+Hey,
 
-This patch moves modifying the min_cdclk at audio component bind
-phase and extends coverage to all gen9+ platforms. This effectively
-guarantees that whenever audio driver is loaded and bound to i915,
-CDCLK is guaranteed to be such that calls to get_power()/put_power()
-do not result in display artifacts.
+On Thu, 12 Mar 2020, Ville Syrjälä wrote:
 
-If 2*BCLK is below lowest CDCLK, this patch has no effect.
+> On Thu, Mar 12, 2020 at 07:27:58PM +0200, Kai Vehmanen wrote:
+>> So I think this starts to look that we should move calling glk_force_audio 
+>> to bind/unbind pair. I can make a patch for this.
+> 
+> That would stop us from doing dynamic cdclk changes once we get the hw
+> that can do that properly. Rather I think I'd just hardcode the 2xbclk
+> requirement in i915 for the platforms that suck.
 
-If a future platform provides means to change CDCLK without
-a modeset, the constraint code can be moved to get/put_power()
-for these platforms.
+well, you can always code in both places -- i.e. have the clock 
+constraints set up at bind() for older (the current) platforms, and have a 
+different callplace in get_power() for newer platforms. This code is 
+anyways conditional on the hardware that is used.
 
-Signed-off-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_audio.c | 20 +++++++++++---------
- 1 file changed, 11 insertions(+), 9 deletions(-)
+I now send a patch implementing this, plus code to at runtime figure
+out the effective BCLK, to the list. Please have a look at comment.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index e6389b9c2044..4e4832741ecf 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -902,10 +902,6 @@ static unsigned long i915_audio_component_get_power(struct device *kdev)
- 				    dev_priv->audio_freq_cntrl);
- 		}
- 
--		/* Force CDCLK to 2*BCLK as long as we need audio powered. */
--		if (IS_GEMINILAKE(dev_priv))
--			glk_force_audio_cdclk(dev_priv, true);
--
- 		if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
- 			intel_de_write(dev_priv, AUD_PIN_BUF_CTL,
- 				       (intel_de_read(dev_priv, AUD_PIN_BUF_CTL) | AUD_PIN_BUF_ENABLE));
-@@ -919,11 +915,7 @@ static void i915_audio_component_put_power(struct device *kdev,
- {
- 	struct drm_i915_private *dev_priv = kdev_to_i915(kdev);
- 
--	/* Stop forcing CDCLK to 2*BCLK if no need for audio to be powered. */
--	if (--dev_priv->audio_power_refcount == 0)
--		if (IS_GEMINILAKE(dev_priv))
--			glk_force_audio_cdclk(dev_priv, false);
--
-+	dev_priv->audio_power_refcount--;
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_AUDIO, cookie);
- }
- 
-@@ -1114,6 +1106,13 @@ static int i915_audio_component_bind(struct device *i915_kdev,
- 					 DL_FLAG_STATELESS)))
- 		return -ENOMEM;
- 
-+	/*
-+	 * To avoid display flicker due to frequent CDCLK changes from
-+	 * get/put_power(), set up CDCLK>=2*BCLK constraint here.
-+	 */
-+	if (INTEL_GEN(dev_priv) >= 9)
-+		glk_force_audio_cdclk(dev_priv, true);
-+
- 	drm_modeset_lock_all(&dev_priv->drm);
- 	acomp->base.ops = &i915_audio_component_ops;
- 	acomp->base.dev = i915_kdev;
-@@ -1132,6 +1131,9 @@ static void i915_audio_component_unbind(struct device *i915_kdev,
- 	struct i915_audio_component *acomp = data;
- 	struct drm_i915_private *dev_priv = kdev_to_i915(i915_kdev);
- 
-+	if (INTEL_GEN(dev_priv) >= 9)
-+		glk_force_audio_cdclk(dev_priv, false);
-+
- 	drm_modeset_lock_all(&dev_priv->drm);
- 	acomp->base.ops = NULL;
- 	acomp->base.dev = NULL;
--- 
-2.17.1
+Br, Kai
+---318106570-92365371-1584111212=:2957
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+---318106570-92365371-1584111212=:2957--
