@@ -2,58 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E898184DAD
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 18:32:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36DDD184DCB
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 18:40:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59CEB6EC3E;
-	Fri, 13 Mar 2020 17:32:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA26E89AC9;
+	Fri, 13 Mar 2020 17:40:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 012466EC3E
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 17:32:18 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 10:32:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="266802201"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
- by fmsmga004.fm.intel.com with ESMTP; 13 Mar 2020 10:32:18 -0700
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 13 Mar 2020 10:32:18 -0700
-Received: from bgsmsx109.gar.corp.intel.com (10.223.4.211) by
- fmsmsx116.amr.corp.intel.com (10.18.116.20) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Fri, 13 Mar 2020 10:32:17 -0700
-Received: from bgsmsx110.gar.corp.intel.com ([169.254.11.98]) by
- BGSMSX109.gar.corp.intel.com ([169.254.10.57]) with mapi id 14.03.0439.000;
- Fri, 13 Mar 2020 23:02:15 +0530
-From: "S, Srinivasan" <srinivasan.s@intel.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "chris@chris-wilson.co.uk" <chris@chris-wilson.co.uk>, Francisco Jerez
- <currojerez@riseup.net>
-Thread-Topic: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of
- Slice/Sub-slice/EU
-Thread-Index: AQHV+SnOF+T1v2mPZU2ClOj8ToO306hGaC+AgABeoCA=
-Date: Fri, 13 Mar 2020 17:32:14 +0000
-Message-ID: <BFA53C78450B204BBCED0B0A62E9EAE7326616D3@BGSMSX110.gar.corp.intel.com>
-References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
- <c2daee78-0eaf-090e-8a65-3bb6dd773806@linux.intel.com>
-In-Reply-To: <c2daee78-0eaf-090e-8a65-3bb6dd773806@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [10.223.10.10]
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7E9B789A92;
+ Fri, 13 Mar 2020 17:40:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6C6A6A00CC;
+ Fri, 13 Mar 2020 17:40:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of
- Slice/Sub-slice/EU
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
+Date: Fri, 13 Mar 2020 17:40:07 -0000
+Message-ID: <158412120741.30351.8552991632804960231@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
+In-Reply-To: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915=3A_use_effective_iDisp_BCL?=
+ =?utf-8?q?K_value_for_CDCLK_calculation?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,137 +39,138 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: series starting with [1/2] drm/i915: use effective iDisp BCLK value for CDCLK calculation
+URL   : https://patchwork.freedesktop.org/series/74682/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8135 -> Patchwork_16966
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_16966 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16966, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_16966:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_parallel@basic:
+    - fi-skl-6770hq:      [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-skl-6770hq/igt@gem_exec_parallel@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-skl-6770hq/igt@gem_exec_parallel@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16966 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][3] -> [INCOMPLETE][4] ([fdo#103927] / [i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][5] -> [DMESG-FAIL][6] ([i915#877])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-dsi:         [DMESG-FAIL][7] ([fdo#108569]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#424]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [INCOMPLETE][11] ([i915#1405]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][13] ([fdo#111407]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bsw-n3050:       [FAIL][15] ([i915#34]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8135/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#1405]: https://gitlab.freedesktop.org/drm/intel/issues/1405
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
 
 
-> -----Original Message-----
-> From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-> Sent: Friday, March 13, 2020 10:48 PM
-> To: S, Srinivasan <srinivasan.s@intel.com>; intel-gfx@lists.freedesktop.org;
-> chris@chris-wilson.co.uk; Francisco Jerez <currojerez@riseup.net>
-> Subject: Re: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of Slice/Sub-
-> slice/EU
-> 
-> 
-> Hi,
-> 
-> On 13/03/2020 11:12, srinivasan.s@intel.com wrote:
-> > From: Srinivasan S <srinivasan.s@intel.com>
-> >
-> >        drm/i915: Context aware user agnostic EU/Slice/Sub-slice control within
-> kernel
-> >
-> > This patch sets improves GPU power consumption on Linux kernel based OS
-> such as
-> > Chromium OS, Ubuntu, etc. Following are the power savings.
-> >
-> > Power savings on GLK-GT1 Bobba platform running on Chrome OS.
-> > -----------------------------------------------|
-> > App /KPI                | % Power Benefit (mW) |
-> > ------------------------|----------------------|
-> > Hangout Call- 20 minute |	1.8%           |
-> > Youtube 4K VPB          |       14.13%         |
-> > WebGL Aquarium          |       13.76%         |
-> > Unity3D                 |       6.78%          |
-> > 			|		       |
-> > ------------------------|----------------------|
-> > Chrome PLT              | BatteryLife Improves |
-> > 			| by ~45 minute        |
-> > -----------------------------------------------|
-> >
-> > Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
-> > -----------------------------------------------|
-> > App /KPI		| % Power Benefit (mW) |
-> >                          |----------------------|
-> > 			|  Android |  Ubuntu   |
-> > ------------------------|----------|-----------|
-> > 3D Mark (Ice storm)     | 2.30%    | N.A.      |
-> > TRex On screen          | 2.49%    | 2.97%     |
-> > Manhattan On screen     | 3.11%    | 4.90%     |
-> > Carchase On Screen	| N.A.     | 5.06%     |
-> > AnTuTu 6.1.4            | 3.42%    | N.A.      |
-> > SynMark2		| N.A.     | 1.7%      |
-> > -----------------------------------------------|
-> 
-> Have a look at the result Francisco obtained on Icelake with a different
-> approach: https://patchwork.freedesktop.org/series/74540/
-> 
-> Not all benchmarks overlap but if you are set up to easily test his
-> patches it may be for a mutual benefit.
-[S, Srinivasan]  Thanks!,  Could we reuse only his gfx related patches alone as below - to focus on our gfx power saving benefits as first step, or could you please let me know the entire patch series needs to be considered or is there any dependency of GPU power on CPU?
-ie., https://patchwork.freedesktop.org/patch/357098/?series=74540&rev=2
-https://patchwork.freedesktop.org/patch/357103/?series=74540&rev=2
-> 
-> Regards,
-> 
-> Tvrtko
-> 
-> > We have also observed GPU core residencies improves by 1.035%.
-> >
-> > Technical Insights of the patch:
-> > Current GPU configuration code for i915 does not allow us to change
-> > EU/Slice/Sub-slice configuration dynamically. Its done only once while context
-> > is created.
-> >
-> > While particular graphics application is running, if we examine the command
-> > requests from user space, we observe that command density is not consistent.
-> > It means there is scope to change the graphics configuration dynamically even
-> > while context is running actively. This patch series proposes the solution to
-> > find the active pending load for all active context at given time and based on
-> > that, dynamically perform graphics configuration for each context.
-> >
-> > We use a hr (high resolution) timer with i915 driver in kernel to get a
-> > callback every few milliseconds (this timer value can be configured through
-> > debugfs, default is '0' indicating timer is in disabled state i.e. original
-> > system without any intervention).In the timer callback, we examine pending
-> > commands for a context in the queue, essentially, we intercept them before
-> > they are executed by GPU and we update context with required number of
-> EUs.
-> >
-> > Two questions, how did we arrive at right timer value? and what's the right
-> > number of EUs? For the prior one, empirical data to achieve best performance
-> > in least power was considered. For the later one, we roughly categorized
-> number
-> > of EUs logically based on platform. Now we compare number of pending
-> commands
-> > with a particular threshold and then set number of EUs accordingly with
-> update
-> > context. That threshold is also based on experiments & findings. If GPU is able
-> > to catch up with CPU, typically there are no pending commands, the EU config
-> > would remain unchanged there. In case there are more pending commands we
-> > reprogram context with higher number of EUs. Please note, here we are
-> changing
-> > EUs even while context is running by examining pending commands every 'x'
-> > milliseconds.
-> >
-> > Srinivasan S (3):
-> >    drm/i915: Get active pending request for given context
-> >    drm/i915: set optimum eu/slice/sub-slice configuration based on load
-> >      type
-> >    drm/i915: Predictive governor to control slice/subslice/eu
-> >
-> >   drivers/gpu/drm/i915/Makefile                     |   1 +
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.c       |  20 +++++
-> >   drivers/gpu/drm/i915/gem/i915_gem_context.h       |   2 +
-> >   drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  38 ++++++++
-> >   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
-> >   drivers/gpu/drm/i915/gt/intel_deu.c               | 104
-> ++++++++++++++++++++++
-> >   drivers/gpu/drm/i915/gt/intel_deu.h               |  31 +++++++
-> >   drivers/gpu/drm/i915/gt/intel_lrc.c               |  44 ++++++++-
-> >   drivers/gpu/drm/i915/i915_drv.h                   |   6 ++
-> >   drivers/gpu/drm/i915/i915_gem.c                   |   4 +
-> >   drivers/gpu/drm/i915/i915_params.c                |   4 +
-> >   drivers/gpu/drm/i915/i915_params.h                |   1 +
-> >   drivers/gpu/drm/i915/intel_device_info.c          |  74 ++++++++++++++-
-> >   13 files changed, 325 insertions(+), 5 deletions(-)
-> >   create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.c
-> >   create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.h
-> >
+Participating hosts (39 -> 44)
+------------------------------
+
+  Additional (11): fi-kbl-7560u fi-tgl-dsi fi-byt-j1900 fi-hsw-peppy fi-glk-dsi fi-snb-2520m fi-ilk-650 fi-gdg-551 fi-bsw-kefka fi-blb-e6850 fi-snb-2600 
+  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8135 -> Patchwork_16966
+
+  CI-20190529: 20190529
+  CI_DRM_8135: 17c19ee50a6cbb514b59f9f2d8d7d4f088a56300 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5508: 89d644600a1a9f08794cc7106b63758df40ce1d8 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16966: d64fcc34c0cd85d0e2013fe81eb0bf561c0d4786 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d64fcc34c0cd drm/i915: move audio CDCLK constraint setup to bind/unbind
+bdf38470761d drm/i915: use effective iDisp BCLK value for CDCLK calculation
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16966/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
