@@ -1,44 +1,100 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41FA8184805
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 14:26:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A39184834
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 14:33:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDB8F6E2B0;
-	Fri, 13 Mar 2020 13:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF9E46E293;
+	Fri, 13 Mar 2020 13:33:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34DD16E2B0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 13:26:17 +0000 (UTC)
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 06:26:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="290024125"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 13 Mar 2020 06:26:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 13 Mar 2020 15:26:11 +0200
-Date: Fri, 13 Mar 2020 15:26:11 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-Message-ID: <20200313132611.GK13686@intel.com>
-References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
- <20200309161204.17792-4-stanislav.lisovskiy@intel.com>
- <20200311160854.GB13686@intel.com>
- <9ffa74c26bc349aab1bd2fe8f427f451@intel.com>
+Received: from NAM04-BN3-obe.outbound.protection.outlook.com
+ (mail-eopbgr680076.outbound.protection.outlook.com [40.107.68.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57C696E293;
+ Fri, 13 Mar 2020 13:33:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bN1HYwEwvBONBC1rO5l1W2hoAVFWuzwKiLyEmlolj1l79ujTAH0jA/BNAgjV7/oH7jP2Qfg5x/aoIoMp+6vjCBXIkCdrDqmE7GkvQJDDX8B1tLex4kMTEn3sAMUu9g4PtoylhxA3b/JPkm5xLDpO+TcPLGvQ5NOM+ZrbBt/wHU63VetRrO8lml4GcJwKfXub3kd9J41qAAEx7GoCpg+bAddihVLKyAVnmqLrNOQ/9iwpxcI7RDeu8L5GwEPVQ8AKCOyyrMPA8ijfuEvHLt5WFgFqCSmLH0ilPBeb4zD4Ql2W0ieejHOvAUm+ZCM6ADbYLrvtXbpD5870C21b30txdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ylnX//eralmqw1boCGRLSksDrlq2UQuXz9e91UJT+oY=;
+ b=UXGKmZN1OuZAZ4oTaHN3KE8tM6hu/Rra1J9KMhsAgCg4iTvAGN+R+AePqKq5NBiqMeFsM62hTrVYUYYcySIU2AzgtxCR+6QdrGASZiFxpdpkxIkWtWNZFwBpmsj8uvLNtwhHY9bYI1bEeBbg00DL78g6sSbu2IegB3jQK6vGcXASPjXs5cr7JM82PKX0RwPZAJmNYpzhmKkKR65veW2mPGXddSQRPqMhv46/MGKG5xYVCeFWNMNFw486jz6etUFg5je6CWCBOK3d0+lwWihaZ2zsn47ik1kqhU/w+MWoHMEoppY30l/gSbwwOYeVUkVy8NIR6JLK4I7NkJbRqdicKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amdcloud.onmicrosoft.com; s=selector2-amdcloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ylnX//eralmqw1boCGRLSksDrlq2UQuXz9e91UJT+oY=;
+ b=O7dKIf+sLv7F9Q3c3BkJ2fY7kASZMn+80uLAgyjB8LoXQ5pBVwGIijL3Yp3xIyvvHBkRZJ0n7vw1ojKihpKEfJnnF+JhAPvRJXJy77rE8ztjkeN9O9g5D6Z7IgyGgkywRzgnt16PPk6nbs9r1zH/4dnMATgnhhMK+AmWPFwle54=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Christian.Koenig@amd.com; 
+Received: from DM5PR12MB1578.namprd12.prod.outlook.com (2603:10b6:4:e::7) by
+ DM5PR12MB1658.namprd12.prod.outlook.com (2603:10b6:4:5::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2793.17; Fri, 13 Mar 2020 13:33:43 +0000
+Received: from DM5PR12MB1578.namprd12.prod.outlook.com
+ ([fe80::113e:3059:1470:c73c]) by DM5PR12MB1578.namprd12.prod.outlook.com
+ ([fe80::113e:3059:1470:c73c%7]) with mapi id 15.20.2793.021; Fri, 13 Mar 2020
+ 13:33:43 +0000
+To: Christoph Hellwig <hch@infradead.org>, Jason Gunthorpe <jgg@ziepe.ca>
+References: <20200311135158.3310-1-christian.koenig@amd.com>
+ <20200311135158.3310-2-christian.koenig@amd.com>
+ <20200311152838.GA24280@infradead.org>
+ <f2b46f49-a8d0-9d43-3120-e1ed36fc3a80@gmail.com>
+ <20200312101943.GA14618@infradead.org>
+ <b5db44eb-1dde-1671-feb0-9e47d120f172@amd.com>
+ <20200312104729.GA26031@infradead.org> <20200312141928.GK31668@ziepe.ca>
+ <20200313112139.GA4913@infradead.org>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Message-ID: <0beef7ca-dd77-b442-5f45-f3a496189731@amd.com>
+Date: Fri, 13 Mar 2020 14:33:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+In-Reply-To: <20200313112139.GA4913@infradead.org>
+Content-Language: en-US
+X-ClientProxiedBy: AM0PR0102CA0048.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208::25) To DM5PR12MB1578.namprd12.prod.outlook.com
+ (2603:10b6:4:e::7)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9ffa74c26bc349aab1bd2fe8f427f451@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state
- helpers
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [IPv6:2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+ (2a02:908:1252:fb60:be8a:bd56:1f94:86e7) by
+ AM0PR0102CA0048.eurprd01.prod.exchangelabs.com (2603:10a6:208::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.16 via Frontend
+ Transport; Fri, 13 Mar 2020 13:33:42 +0000
+X-Originating-IP: [2a02:908:1252:fb60:be8a:bd56:1f94:86e7]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d48c0ca7-2d79-4639-9cdf-08d7c753264f
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1658:|DM5PR12MB1658:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DM5PR12MB165803FB9A82F627DD983FCE83FA0@DM5PR12MB1658.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 034119E4F6
+X-Forefront-Antispam-Report: SFV:NSPM;
+ SFS:(10009020)(4636009)(366004)(136003)(396003)(376002)(346002)(39860400002)(199004)(86362001)(52116002)(81166006)(31696002)(81156014)(5660300002)(4326008)(6486002)(6666004)(478600001)(8676002)(31686004)(186003)(16526019)(2906002)(110136005)(66476007)(66556008)(66946007)(316002)(36756003)(8936002)(2616005);
+ DIR:OUT; SFP:1101; SCL:1; SRVR:DM5PR12MB1658;
+ H:DM5PR12MB1578.namprd12.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; 
+Received-SPF: None (protection.outlook.com: amd.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: dJ9wANfwoC5IJZfK5WDR+HflR2ng8AnvtFdsxslPFfMtcD95MUALMMZabUQn6VxVZUhL1pYu6vIiqAPN0l9736Kej/eCxxSJUC/Xx2wzaU2nx8J/Fs50ESrBRGOJPW+TFd4ThzfTV65/y8IWu3N4fDXf8hewJCqv/5AI935yGgP33CO1W4B+N7e5xWLiwfdivkEWkruNEEPKVR2WgLFqDRHKjjQnnK35k11YsI/4+rdT9ohddKKGqkux2lnjbfJZFE95y35EqscUj98dEqEEnBouAh5CLhh6kW6MkihwuxP3YLjDKkd4V5K9JOJGqRxvAIXHiR3hLhdxdNIoMlxaNhBNMg2uoRX3K3On59uhqo49Y4ftZegievLw5fZuD0Rish6VDunmziz0k+bpXLBvKfOvT6ftJTlhzY5LXAnb+/Be5Wjzg5M7hltpGMo9M1w7
+X-MS-Exchange-AntiSpam-MessageData: NtjCa5SSqEVsxmcYVtUkH8+wkp2hrqH2Zq+Hg/U0ojM9GZxxw3VCHcJsTbYVf8IlF387/tfIxIFLTgO63Sy/6Q3BKrjRONPDuZtjg+zAxI6kPwjh7Vn8luGR0IB2vtO7gQfWr1D96kyrXIWLvD2xwqLmj31dCJvBIO+2BpEpMYcxZ3uxGY9jE4TmhwRQ2AwrRsF9MO6nKoo5IMSemvqpRw==
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d48c0ca7-2d79-4639-9cdf-08d7c753264f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Mar 2020 13:33:43.7288 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3mDCkjTFhm2hZt5VrICpYq/KI3LGzl0xiMPooaR0XY9LpxHJwdFR4Yk4CUdMEdPY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1658
+Subject: Re: [Intel-gfx] [PATCH 1/6] lib/scatterlist: add sg_set_dma_addr()
+ function
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,154 +107,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: David1.Zhou@amd.com, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Logan Gunthorpe <logang@deltatee.com>, linux-media@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 13, 2020 at 08:49:30AM +0000, Lisovskiy, Stanislav wrote:
-> >> Add correspondent helpers to be able to get old/new bandwidth
-> >> global state object.
-> >>
-> >> v2: - Fixed typo in function call
-> >> v3: - Changed new functions naming to use convention proposed
-> >>       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
-> =
+Am 13.03.20 um 12:21 schrieb Christoph Hellwig:
+> On Thu, Mar 12, 2020 at 11:19:28AM -0300, Jason Gunthorpe wrote:
+>> The non-page scatterlist is also a big concern for RDMA as we have
+>> drivers that want the page list, so even if we did as this series
+>> contemplates I'd have still have to split the drivers and create the
+>> notion of a dma-only SGL.
+> The drivers I looked at want a list of IOVA address, aligned to the
+> device "page size".  What other data do drivers want?
 
-> >Still nak on the rename.
-> =
+Well for GPUs I have the requirement that those IOVA addresses allow 
+random access.
 
-> Cool. Discuss it with Jani Nikula then, to have at least some common stra=
-tegy on how to be picky on me.
+That's the reason why we currently convert the sg_table into a linear 
+arrays of addresses and pages. To solve that keeping the length in 
+separate optional array would be ideal for us.
 
-The strategy is either rename all of these functions or none so that we
-don't end up with random inconsistencies all over the place.
+But this is so a special use case that I'm not sure if we want to 
+support this in the common framework or not.
 
-> =
+> Execept for the software protocol stack drivers, which of couse need pages for the
+> stack futher down.
 
-> Best Regards,
-> =
+Yes completely agree.
 
-> Lisovskiy Stanislav
-> ________________________________
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Wednesday, March 11, 2020 6:08:54 PM
-> To: Lisovskiy, Stanislav
-> Cc: intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; Roper=
-, Matthew D
-> Subject: Re: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state helpers
-> =
+For the GPUs I will propose a patch to stop copying the page from the 
+sg_table over into our linear arrays and see if anybody starts to scream.
 
-> On Mon, Mar 09, 2020 at 06:11:59PM +0200, Stanislav Lisovskiy wrote:
-> > Add correspondent helpers to be able to get old/new bandwidth
-> > global state object.
-> >
-> > v2: - Fixed typo in function call
-> > v3: - Changed new functions naming to use convention proposed
-> >       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
-> =
+I don't think so, but probably better to double check.
 
-> Still nak on the rename.
-> =
+Thanks,
+Christian.
 
-> >
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_bw.c | 33 ++++++++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_bw.h |  9 +++++++
-> >  2 files changed, 39 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/=
-i915/display/intel_bw.c
-> > index 58b264bc318d..bdad7476dc7b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> > @@ -374,8 +374,35 @@ static unsigned int intel_bw_data_rate(struct drm_=
-i915_private *dev_priv,
-> >        return data_rate;
-> >  }
-> >
-> > -static struct intel_bw_state *
-> > -intel_atomic_get_bw_state(struct intel_atomic_state *state)
-> > +struct intel_bw_state *
-> > +intel_bw_get_old_state(struct intel_atomic_state *state)
-> > +{
-> > +     struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > +     struct intel_global_state *bw_state;
-> > +
-> > +     bw_state =3D intel_atomic_get_old_global_obj_state(state, &dev_pr=
-iv->bw_obj);
-> > +     if (IS_ERR(bw_state))
-> > +             return ERR_CAST(bw_state);
-> > +
-> > +     return to_intel_bw_state(bw_state);
-> > +}
-> > +
-> > +struct intel_bw_state *
-> > +intel_bw_get_new_state(struct intel_atomic_state *state)
-> > +{
-> > +     struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> > +     struct intel_global_state *bw_state;
-> > +
-> > +     bw_state =3D intel_atomic_get_new_global_obj_state(state, &dev_pr=
-iv->bw_obj);
-> > +
-> > +     if (IS_ERR(bw_state))
-> > +             return ERR_CAST(bw_state);
-> > +
-> > +     return to_intel_bw_state(bw_state);
-> > +}
-> > +
-> > +struct intel_bw_state *
-> > +intel_bw_get_state(struct intel_atomic_state *state)
-> >  {
-> >        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> >        struct intel_global_state *bw_state;
-> > @@ -420,7 +447,7 @@ int intel_bw_atomic_check(struct intel_atomic_state=
- *state)
-> >                    old_active_planes =3D=3D new_active_planes)
-> >                        continue;
-> >
-> > -             bw_state  =3D intel_atomic_get_bw_state(state);
-> > +             bw_state  =3D intel_bw_get_state(state);
-> >                if (IS_ERR(bw_state))
-> >                        return PTR_ERR(bw_state);
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/=
-i915/display/intel_bw.h
-> > index a8aa7624c5aa..b5f61463922f 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> > @@ -24,6 +24,15 @@ struct intel_bw_state {
-> >
-> >  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, =
-base)
-> >
-> > +struct intel_bw_state *
-> > +intel_bw_get_old_state(struct intel_atomic_state *state);
-> > +
-> > +struct intel_bw_state *
-> > +intel_bw_get_new_state(struct intel_atomic_state *state);
-> > +
-> > +struct intel_bw_state *
-> > +intel_bw_get_state(struct intel_atomic_state *state);
-> > +
-> >  void intel_bw_init_hw(struct drm_i915_private *dev_priv);
-> >  int intel_bw_init(struct drm_i915_private *dev_priv);
-> >  int intel_bw_atomic_check(struct intel_atomic_state *state);
-> > --
-> > 2.24.1.485.gad05a3d8e5
-> =
+>
+>> I haven't used bio_vecs before, do they support chaining like SGL so
+>> they can be very big? RDMA dma maps gigabytes of memory
+> bio_vecs itself don't have the chaining, but the bios build around them
+> do.  But each entry can map a huge pile.  If needed we could use the
+> same chaining scheme we use for scatterlists for bio_vecs as well, but
+> lets see if we really end up needing that.
+>
+>> So I'm guessing the path forward is something like
+>>
+>>   - Add some generic dma_sg data structure and helper
+>>   - Add dma mapping code to go from pages to dma_sg
+> That has been on my todo list for a while.  All the DMA consolidatation
+> is to prepare for that and we're finally getting close.
 
-> --
-> Ville Syrj=E4l=E4
-> Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
