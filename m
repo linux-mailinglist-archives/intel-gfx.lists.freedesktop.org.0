@@ -1,43 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34DE2184E79
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 19:17:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD435184F0B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 19:55:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 854A06EC43;
-	Fri, 13 Mar 2020 18:17:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05CF56EC49;
+	Fri, 13 Mar 2020 18:55:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C77FE6EC43
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 18:17:07 +0000 (UTC)
-X-Amp-Result: SKIPPED(no attachment in message)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28AD26EC49
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 18:55:42 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 11:17:06 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 11:55:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="237311628"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga008.jf.intel.com with ESMTP; 13 Mar 2020 11:17:05 -0700
-Date: Fri, 13 Mar 2020 20:17:05 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-In-Reply-To: <20200313151443.GO13686@intel.com>
-Message-ID: <alpine.DEB.2.21.2003131816400.2957@eliteleevi.tm.intel.com>
-References: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
- <20200313144821.29592-2-kai.vehmanen@linux.intel.com>
- <20200313151443.GO13686@intel.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="5.70,549,1574150400"; d="scan'208";a="237326439"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by orsmga008.jf.intel.com with ESMTP; 13 Mar 2020 11:55:39 -0700
+Date: Sat, 14 Mar 2020 00:17:46 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200313184745.GB15954@intel.com>
+References: <20200304125118.12335-1-anshuman.gupta@intel.com>
+ <877e00p7n4.fsf@intel.com> <20200304184520.GH13686@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- BOUNDARY="-318106570-1302833355-1584121445=:2957"
-Content-ID: <alpine.DEB.2.21.2003131955480.2957@eliteleevi.tm.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: move audio CDCLK constraint
- setup to bind/unbind
+Content-Disposition: inline
+In-Reply-To: <20200304184520.GH13686@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/edp: Ignore short pulse when panel
+ powered off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,73 +46,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
----318106570-1302833355-1584121445=:2957
-Content-Type: text/plain; CHARSET=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
-Content-ID: <alpine.DEB.2.21.2003131955481.2957@eliteleevi.tm.intel.com>
-
-Hey,
-
-On Fri, 13 Mar 2020, Ville Syrjälä wrote:
-
-> On Fri, Mar 13, 2020 at 04:48:21PM +0200, Kai Vehmanen wrote:
->> This patch moves modifying the min_cdclk at audio component bind
->> phase and extends coverage to all gen9+ platforms. This effectively
-> 
-> So this will now force BXT to never use the 144 MHz CDCLK too. Is that
-> actually required? I don't remember any reports of failures on BXT.
-
-yes it will force it higher.
-
-I can't really explain why it works. 144Mhz is well above BCLK, so most of 
-the time it will work, but it is still out of spec.
-
-I do know that on more recent hardware (gen12), I will get failures if I 
-don't strictly follow the requirement. GLK is a special case as it has the 
-79Mhz low cdclk. I've not been able to trigger the problem on other old 
-hardware though. So where to draw the line?
-
-It's a fair point that if the old platforms have worked so far, we should 
-not make the change unless there is at least one data point supporting it. 
-So the constraint would then apply for gen12+ and glk.
-
-Now thinking of another possibility, is it possible to hook code to 
-power-up of power domains? E.g. can I hook custom code which is executed 
-in sync with power wells going up and down?
-
-If we could reprogram AUD_FREQ_CNTRL outside the get/put_power() flow 
-(i.e. independently from audio driver), and guarantee that if the display 
-side is powered on, the link params are always correct, it might be 
-possible to get away without calling get_power() from audio controller 
-reset. Worth a shot probably before we merge this.
-
->> +	if (INTEL_GEN(dev_priv) >= 9)
->> +		glk_force_audio_cdclk(dev_priv, true);
-> 
-> Ah, so we still keep it on the i915 side. That seems fine. We can then
-> stop doing this once we get nicer hardware and put it back into to
-> get/put power.
-
-OTOH, if we restrict this to gen12+-and-glk, the glk_ prefix makes sense 
-again.
-
-Br, Kai
----318106570-1302833355-1584121445=:2957
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
----318106570-1302833355-1584121445=:2957--
+T24gMjAyMC0wMy0wNCBhdCAyMDo0NToyMCArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOgo+
+IE9uIFdlZCwgTWFyIDA0LCAyMDIwIGF0IDAzOjMzOjAzUE0gKzAyMDAsIEphbmkgTmlrdWxhIHdy
+b3RlOgo+ID4gT24gV2VkLCAwNCBNYXIgMjAyMCwgQW5zaHVtYW4gR3VwdGEgPGFuc2h1bWFuLmd1
+cHRhQGludGVsLmNvbT4gd3JvdGU6Cj4gPiA+IEZldyBlZHAgcGFuZWxzIGxpa2UgU2hhcnAgaXMg
+dHJpZ2dlcmluZyBzaG9ydCBhbmQgbG9uZwo+ID4gPiBocGQgcHVsc2UgYWZ0ZXIgcGFuZWwgaXMg
+Z2V0dGluZyBwb3dlcmVkIG9mZi4KPiA+ID4gQ3VycmVudGx5IGRyaXZlciBpcyBhbHJlYWR5IGln
+bm9yaW5nIGxvbmcgcHVsc2UgZm9yIGVEUAo+ID4gPiBwYW5lbCBidXQgaW4gb3JkZXIgdG8gcHJv
+Y2VzcyB0aGUgc2hvcnQgcHVsc2UsIGl0IHR1cm5zIG9uCj4gPiA+IHRoZSBWREQgd2hpY2ggcmVx
+dWlyZXMgcGFuZWwgcG93ZXJfY3ljbGVfZGVsYXkgKyBwYW5lbF9wb3dlcl9vbl9kZWxheQo+ID4g
+PiB0aGVzZSBkZWxheSBvbiBTaGFycCBwYW5lbCBpbnRyb2R1Y2VkIHRoZSByZXNwb25zaXZlbmVz
+cyBvdmVyaGVhZAo+ID4gPiBvZiA4MDBtcyBpbiB0aGUgbW9kZXNldCBzZXF1ZW5jZSBhbmQgYXMg
+d2VsbCBpcyBpbiBzdXNwZW5kCj4gPiA+IHNlcXVlbmNlLgo+ID4gPiBJZ25vcmluZyBhbnkgc2hv
+cnQgcHVsc2Ugb25jZSBwYW5lbCBpcyBwb3dlcmVkIG9mZi4KPiA+ID4KPiA+ID4gRklYTUU6IEl0
+IHJlcXVpcmVzIHRvIHdhaXQgZm9yIHBhbmVsX3Bvd2VyX29mZl9kZWxheSBpbiBvcmRlcgo+ID4g
+PiB0byBjaGVjayB0aGUgcGFuZWwgc3RhdHVzLCBhcyBwYW5lbCB0cmlnZ2VycyBzaG9ydCBwdWxz
+ZSBpbW1lZGlhdGVseQo+ID4gPiBhZnRlciB3cml0aW5nIFBQX09GRiB0byBQUF9DVFJMIHJlZ2lz
+dGVyLgo+ID4gPgo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNodW1hbiBHdXB0YSA8YW5zaHVtYW4u
+Z3VwdGFAaW50ZWwuY29tPgo+ID4gPiAtLS0KPiA+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZHAuYyB8IDE5ICsrKysrKysrKysrKysrKysrKysKPiA+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspCj4gPiA+Cj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
+L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
+aXNwbGF5L2ludGVsX2RwLmMKPiA+ID4gaW5kZXggMGE0MTdjZDJhZjJiLi45M2RlMDE1ZjUzMjIg
+MTAwNjQ0Cj4gPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAu
+Ywo+ID4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKPiA+
+ID4gQEAgLTY3NjMsMTAgKzY3NjMsMjQgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBkcm1fZW5jb2Rl
+cl9mdW5jcyBpbnRlbF9kcF9lbmNfZnVuY3MgPSB7Cj4gPiA+ICAJLmRlc3Ryb3kgPSBpbnRlbF9k
+cF9lbmNvZGVyX2Rlc3Ryb3ksCj4gPiA+ICB9Owo+ID4gPiAgCj4gPiA+ICtzdGF0aWMgYm9vbCBp
+c19lZHBfcG93ZXJlZF9vZmYoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCkKPiA+IAo+ID4gV2Ug
+aGF2ZSBhIG51bWJlciBvZiBleGlzdGluZyBlZHBfIHByZWZpeGVkIGZ1bmN0aW9ucywgd2l0aCBp
+bnRlbF8KPiA+IHByZWZpeGVkIHdyYXBwZXJzLiBQbGVhc2UgbWFrZSB0aGlzIGludGVsX2VkcF9o
+YXZlX3BhbmVsX3Bvd2VyKCkuIEVhcmx5Cj4gPiByZXR1cm4gZmFsc2UgZm9yIG5vbi1lRFAuCj4g
+PiAKPiA+IEFsc28gaGFuZGxlIGludGVsX2RwX2lzX2VkcCgpIGluIHRoZSBjYWxsZXIgc28gaXQn
+cyBjbGVhciB3aGF0J3MgYmVpbmcKPiA+IGRvbmUuCj4gPiAKPiA+ID4gK3sKPiA+ID4gKwlpbnRl
+bF93YWtlcmVmX3Qgd2FrZXJlZjsKPiA+ID4gKwlib29sIHBvd2VyZF9vZmYgPSBmYWxzZTsKPiA+
+ID4gKwo+ID4gPiArCWlmIChpbnRlbF9kcF9pc19lZHAoaW50ZWxfZHApKSB7Cj4gPiA+ICsJCXdp
+dGhfcHBzX2xvY2soaW50ZWxfZHAsIHdha2VyZWYpCj4gPiA+ICsJCQlwb3dlcmRfb2ZmID0gIWVk
+cF9oYXZlX3BhbmVsX3Bvd2VyKGludGVsX2RwKTsKPiA+ID4gKwl9Cj4gPiA+ICsKPiA+ID4gKwly
+ZXR1cm4gcG93ZXJkX29mZjsKPiA+ID4gK30KPiA+ID4gKwo+ID4gPiAgZW51bSBpcnFyZXR1cm4K
+PiA+ID4gIGludGVsX2RwX2hwZF9wdWxzZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICppbnRl
+bF9kaWdfcG9ydCwgYm9vbCBsb25nX2hwZCkKPiA+ID4gIHsKPiA+ID4gIAlzdHJ1Y3QgaW50ZWxf
+ZHAgKmludGVsX2RwID0gJmludGVsX2RpZ19wb3J0LT5kcDsKPiA+ID4gKwlzdHJ1Y3QgZHJtX2k5
+MTVfcHJpdmF0ZSAqaTkxNSA9IGRwX3RvX2k5MTUoaW50ZWxfZHApOwo+ID4gPiAgCj4gPiA+ICAJ
+aWYgKGxvbmdfaHBkICYmIGludGVsX2RpZ19wb3J0LT5iYXNlLnR5cGUgPT0gSU5URUxfT1VUUFVU
+X0VEUCkgewo+ID4gPiAgCQkvKgo+ID4gPiBAQCAtNjgxMCw2ICs2ODI0LDExIEBAIGludGVsX2Rw
+X2hwZF9wdWxzZShzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICppbnRlbF9kaWdfcG9ydCwgYm9v
+bCBsb25nX2hwZCkKPiA+ID4gIAlpZiAoIWludGVsX2RwLT5pc19tc3QpIHsKPiA+ID4gIAkJYm9v
+bCBoYW5kbGVkOwo+ID4gPiAgCj4gPiA+ICsJCWlmIChpc19lZHBfcG93ZXJlZF9vZmYoaW50ZWxf
+ZHApKSB7Cj4gPiAKPiA+IEkgd291bGQgbW92ZSB0aGlzIHRvIHRoZSBiZWdpbm5pbmcgb2YgdGhl
+IGZ1bmN0aW9uIGluIHRoZSBzYW1lIGlmCj4gPiBzdGF0ZW1lbnQgYXMgdGhlIGxvbmdfaHBkIGhh
+bmRsaW5nOgo+ID4gCj4gPiAJaWYgKGludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkgJiYKPiA+IAkg
+ICAgKGxvbmdfaHBkIHx8ICFpbnRlbF9lZHBfaGF2ZV9wYW5lbF9wb3dlcihpbnRlbF9kcCkpKQo+
+ID4gCj4gPiBCdXQgbWFrZXMgbWUgd29uZGVyIGlmIHRoYXQgc2hvdWxkIGJlIGNoYW5nZWQgdG8g
+aWdub3JlIGFsbCBocGQgZnJvbSBlRFAKPiA+IGlmIHRoZXJlJ3Mgbm8gcGFuZWwgcG93ZXIgbm9y
+IHZkZC4gVmlsbGU/Cj4gCj4gRnJvbSB3aGF0IEkndmUgc2VlbiBmb3IgZURQIG5vIHZkZCBpbXBs
+aWVzIEhQRCBiZWluZyBkZWFzc2VydGVkLCBoZW5jZQo+IHRoZXJlIGlzIG5vIHdheSB0byBzaWdu
+YWwgc2hvcnQgSFBEcyBhZnRlciB2ZGQgaGFzIGJlZW4gcmVtb3ZlZCAoYXBhcnQKPiBmcm9tIHNv
+bWUgZ2xpdGNoeSBIUEQgbGluZXMgSSBndWVzcykuIFRoaXMgY2FzZSBzb3VuZHMgbGlrZSB0aGVy
+ZSBjb3VsZAo+IGJlIGEgZ2xpdGNoIG9mIHNvbWUgc29ydCBvbiB0aGUgSFBEIGxpbmUgd2hpbGUg
+aXQgaXMgYmVpbmcgZGVhc3NlcnRlZAo+IGFuZCB0aGF0IHRyaWdnZXJzIGEgc2hvcnQgSFBELiBF
+aXRoZXIgdGhhdCBvciB0aGUgcGFuZWwgaXMganVzdCBzdHVwaWQuCj4gCj4gQW55d2F5cywgdmRk
+IGFuZCBwYW5lbCBwb3dlciBhcmUgdGhlIHNhbWUgdGhpbmcgZnJvbSB0aGUgcGFuZWwgUE9WLCBz
+bwo+IGNoZWNraW5nIGJvdGggd291bGQgbWFrZSBzZW5zZS4gSSBjYW4ndCBhY3R1YWxseSBpbWFn
+aW5lIHRoaXMgZXZlbgo+IHdvcmtpbmcgY29ycmVjdGx5IG90aGVyd2lzZSwgdW5sZXNzIHRoZXJl
+IGlzIGFuIGFjdHVhbCBidWcgaW4gb3VyIGNvZGUKPiBhbmQgdGhlIHNwdXJpb3VzIEhQRCBvbmx5
+IGhhcHBlbnMgd2hlbiB3ZSBkaXNhYmxlIHZkZCB2aWEgdGhlIHN0YXRlCj4gbWFjaGluZSByYXRo
+ZXIgdGhhbiB0aGUgb3ZlcnJpZGUgYml0LiBTbyB3aGljaCBpcyBpdD8KSXQgZGlzYWJsZSB2ZGQg
+dmlhIG92ZXJyaWRlIGJpdCwgYXMgZnVydGh0ZXIgaW52ZXN0aWdhdGlvbiBpIHRyaWVkIHRvIApy
+ZW1vdmUgdGhlIHZkZCBvZmYgc2VxdWVuY2UgZnJvbSBlZHBfcGFuZWxfb2ZmLCB0byBjaGVjayBp
+ZiB0aGVyZSBpcyBhbnkKc3B1cmlvdXMgaHBkLCBidXQgdGhlcmUgd2FzIHNwdXJpb3VzIEhQRCBl
+dmVuIHdpdGggVkREIG9uLCBzbyB0aGlzIGxvb2tzCnRoZSBpc3N1ZSBmcm9tIHBhbmVsIHNpZGUg
+b3Igc29tZSBIUEQgbGluZSBnbGljaC4KVGhhbmtzLApBbnNodW1hbiBHdXB0YS4KPiAKPiA+IAo+
+ID4gPiArCQkJZHJtX2luZm8oJmk5MTUtPmRybSwgImVkcCBwYW5lbCBpcyBvZmYsIGlnbm9yaW5n
+IHRoZSBzaG9ydCBwdWxzZVxuIik7Cj4gPiAKPiA+IGRybV9kYmdfa21zKCkgd2lsbCBiZSBlbm91
+Z2guCj4gPiAKPiA+ID4gKwkJCXJldHVybiBJUlFfSEFORExFRDsKPiA+ID4gKwkJfQo+ID4gPiAr
+Cj4gPiA+ICAJCWhhbmRsZWQgPSBpbnRlbF9kcF9zaG9ydF9wdWxzZShpbnRlbF9kcCk7Cj4gPiA+
+ICAKPiA+ID4gIAkJaWYgKCFoYW5kbGVkKQo+ID4gCj4gPiAtLSAKPiA+IEphbmkgTmlrdWxhLCBJ
+bnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKPiAKPiAtLSAKPiBWaWxsZSBTeXJqw6Rs
+w6QKPiBJbnRlbApfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+XwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcK
+aHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
