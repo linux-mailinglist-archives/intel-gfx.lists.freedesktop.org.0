@@ -1,36 +1,36 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738E31845DA
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:23:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47451845DD
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 12:23:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D984B6EBC4;
-	Fri, 13 Mar 2020 11:23:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D2216EBC5;
+	Fri, 13 Mar 2020 11:23:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BFE66EBC4
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:23:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17CB76EBCD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 11:23:26 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 04:23:22 -0700
+ 13 Mar 2020 04:23:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="237191848"
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="237191859"
 Received: from unknown (HELO chromeserver.iind.intel.com) ([10.223.246.82])
- by orsmga008.jf.intel.com with ESMTP; 13 Mar 2020 04:23:20 -0700
+ by orsmga008.jf.intel.com with ESMTP; 13 Mar 2020 04:23:23 -0700
 From: srinivasan.s@intel.com
 To: intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
  tvrtko.ursulin@intel.com
-Date: Fri, 13 Mar 2020 16:42:57 +0530
-Message-Id: <1584097979-158957-2-git-send-email-srinivasan.s@intel.com>
+Date: Fri, 13 Mar 2020 16:42:58 +0530
+Message-Id: <1584097979-158957-3-git-send-email-srinivasan.s@intel.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
 References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
-Subject: [Intel-gfx] [PATCH v7 1/3] drm/i915: Get active pending request for
- given context
+Subject: [Intel-gfx] [PATCH v7 2/3] drm/i915: set optimum eu/slice/sub-slice
+ configuration based on load type
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,92 +51,337 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Srinivasan S <srinivasan.s@intel.com>
 
-This patch gives us the active pending request count which is yet
-to be submitted to the GPU.
+This patch will select optimum eu/slice/sub-slice configuration based on
+type of load (low, medium, high) as input.
+Based on our readings and experiments we have predefined set of optimum
+configuration for each platform(CHT, KBL).
+i915_gem_context_set_load_type will select optimum configuration from
+pre-defined optimum configuration table(opt_config).
 
-V2:
- * Change 64-bit to atomic for request count. (Tvrtko Ursulin)
+It also introduce flag update_render_config which can set by any
+governor.
 
-V3:
- * Remove mutex for request count.
+v2:
+ * Move static optimum_config to device init time.
+ * Rename function to appropriate name, fix data types and patch
+ * ordering.
+ * Rename prev_load_type to pending_load_type. (Tvrtko Ursulin)
+
+v3:
+ * Add safe guard check in i915_gem_context_set_load_type.
+ * Rename struct from optimum_config to i915_sseu_optimum_config to
+   avoid namespace clashes.
+ * Reduces memcpy for space efficient.
  * Rebase.
- * Fixes hitting underflow for predictive request. (Tvrtko Ursulin)
+ * Improved commit message. (Tvrtko Ursulin)
 
-V4:
+v4:
+ * Move optimum config table to file scope. (Tvrtko Ursulin)
+
+v5:
+ * Adds optimal table of slice/sub-slice/EU for Gen 9 GT1.
  * Rebase.
 
-V5:
+v6:
  * Rebase.
+ * Fix warnings.
 
-V6
- * Rebase.
-
-V7
+V7:
  * Added static table of slice/subslice/EU for JSL GEN11-LP.
  * Rebase.
 
 Signed-off-by: Srinivasan S <srinivasan.s@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c       | 1 +
- drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 6 ++++++
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    | 1 +
- drivers/gpu/drm/i915/gt/intel_lrc.c               | 3 +++
- 4 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       | 19 ++++++
+ drivers/gpu/drm/i915/gem/i915_gem_context.h       |  2 +
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 32 ++++++++++
+ drivers/gpu/drm/i915/gt/intel_lrc.c               | 41 ++++++++++++-
+ drivers/gpu/drm/i915/i915_drv.h                   |  4 ++
+ drivers/gpu/drm/i915/intel_device_info.c          | 74 ++++++++++++++++++++++-
+ 6 files changed, 167 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 026999b34abd..d0ff999429ff 100644
+index d0ff999429ff..86f91aa1b688 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -879,6 +879,7 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
- 	}
- 
+@@ -881,9 +881,28 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
  	trace_i915_context_create(ctx);
-+	atomic_set(&ctx->req_cnt, 0);
+ 	atomic_set(&ctx->req_cnt, 0);
  
++	ctx->slice_cnt = hweight8(RUNTIME_INFO(i915)->sseu.slice_mask);
++	ctx->subslice_cnt = hweight8(RUNTIME_INFO(i915)->sseu.subslice_mask[0]);
++	ctx->eu_cnt = RUNTIME_INFO(i915)->sseu.eu_per_subslice;
++
  	return ctx;
  }
+ 
++void i915_gem_context_set_load_type(struct i915_gem_context *ctx,
++				enum gem_load_type type)
++{
++	struct drm_i915_private *dev_priv = ctx->i915;
++
++	if (GEM_WARN_ON(type > LOAD_TYPE_LAST))
++		return;
++
++	/* Call opt_config to get correct configuration for eu,slice,subslice */
++	ctx->slice_cnt = dev_priv->opt_config[type].slice;
++	ctx->subslice_cnt = dev_priv->opt_config[type].subslice;
++	ctx->eu_cnt = dev_priv->opt_config[type].eu;
++	ctx->pending_load_type = type;
++}
++
+ static void init_contexts(struct i915_gem_contexts *gc)
+ {
+ 	spin_lock_init(&gc->lock);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.h b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+index 57b7ae2893e1..70b75dc0cf98 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.h
+@@ -133,6 +133,8 @@ int i915_gem_context_setparam_ioctl(struct drm_device *dev, void *data,
+ 				    struct drm_file *file_priv);
+ int i915_gem_context_reset_stats_ioctl(struct drm_device *dev, void *data,
+ 				       struct drm_file *file);
++void i915_gem_context_set_load_type(struct i915_gem_context *ctx,
++				enum gem_load_type type);
+ 
+ static inline struct i915_gem_context *
+ i915_gem_context_get(struct i915_gem_context *ctx)
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-index 28760bd03265..e26e94a0ab07 100644
+index e26e94a0ab07..1c7fcf584d4e 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
-@@ -172,6 +172,12 @@ struct i915_gem_context {
- 	struct radix_tree_root handles_vma;
+@@ -46,6 +46,19 @@ struct i915_gem_engines_iter {
+ 	const struct i915_gem_engines *engines;
+ };
  
- 	/**
-+	 * req_cnt: tracks the pending commands, based on which we decide to
-+	 * go for low/medium/high load configuration of the GPU.
-+	 */
-+	atomic_t req_cnt;
++enum gem_load_type {
++	LOAD_TYPE_LOW,
++	LOAD_TYPE_MEDIUM,
++	LOAD_TYPE_HIGH,
++	LOAD_TYPE_LAST
++};
 +
-+	/**
++struct i915_sseu_optimum_config {
++	u8 slice;
++	u8 subslice;
++	u8 eu;
++};
++
+ /**
+  * struct i915_gem_context - client state
+  *
+@@ -177,6 +190,25 @@ struct i915_gem_context {
+ 	 */
+ 	atomic_t req_cnt;
+ 
++	/** slice_cnt: used to set the # of slices to be enabled. */
++	u8 slice_cnt;
++
++	/** subslice_cnt: used to set the # of subslices to be enabled. */
++	u8 subslice_cnt;
++
++	/** eu_cnt: used to set the # of eu to be enabled. */
++	u8 eu_cnt;
++
++	/** load_type: The designated load_type (high/medium/low) for a given
++	 *  number of pending commands in the command queue.
++	 */
++	enum gem_load_type load_type;
++
++	/** pending_load_type: The earlier load type that the GPU was configured
++	 *  for (high/medium/low).
++	 */
++	enum gem_load_type pending_load_type;
++
+ 	/**
  	 * @name: arbitrary name, used for user debug
  	 *
- 	 * A name is constructed for the context from the creator's process
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index d3f4f28e9468..2fe9ab20ec97 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -2565,6 +2565,7 @@ i915_gem_do_execbuffer(struct drm_device *dev,
- 	if (batch->private)
- 		intel_engine_pool_mark_active(batch->private, eb.request);
- 
-+	atomic_inc(&eb.gem_context->req_cnt);
- 	trace_i915_request_queue(eb.request, eb.batch_flags);
- 	err = eb_submit(&eb, batch);
- err_request:
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 112531b29f59..c58fc4329944 100644
+index c58fc4329944..3b085b4eb4fb 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2158,6 +2158,9 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+@@ -2996,6 +2996,34 @@ static void execlists_context_unpin(struct intel_context *ce)
+ 	i915_gem_object_unpin_map(ce->state->obj);
+ }
  
- 				submit = true;
- 				last = rq;
++static u32
++get_context_rpcs_config(struct i915_gem_context *ctx)
++{
++	u32 rpcs = 0;
++	struct drm_i915_private *dev_priv = ctx->i915;
 +
-+				if (atomic_read(&rq->context->gem_context->req_cnt) > 0)
-+					atomic_dec(&rq->context->gem_context->req_cnt);
- 			}
- 		}
++	if (INTEL_GEN(dev_priv) < 8)
++		return 0;
++	if (RUNTIME_INFO(dev_priv)->sseu.has_slice_pg) {
++		rpcs |= GEN8_RPCS_S_CNT_ENABLE;
++		rpcs |= ctx->slice_cnt << GEN8_RPCS_S_CNT_SHIFT;
++		rpcs |= GEN8_RPCS_ENABLE;
++	}
++
++	if (RUNTIME_INFO(dev_priv)->sseu.has_subslice_pg) {
++		rpcs |= GEN8_RPCS_SS_CNT_ENABLE;
++		rpcs |= ctx->subslice_cnt << GEN8_RPCS_SS_CNT_SHIFT;
++		rpcs |= GEN8_RPCS_ENABLE;
++	}
++
++	if (RUNTIME_INFO(dev_priv)->sseu.has_eu_pg) {
++		rpcs |= ctx->eu_cnt << GEN8_RPCS_EU_MIN_SHIFT;
++		rpcs |= ctx->eu_cnt << GEN8_RPCS_EU_MAX_SHIFT;
++		rpcs |= GEN8_RPCS_ENABLE;
++	}
++	return rpcs;
++}
++
+ static void
+ __execlists_update_reg_state(const struct intel_context *ce,
+ 			     const struct intel_engine_cs *engine,
+@@ -3014,8 +3042,14 @@ __execlists_update_reg_state(const struct intel_context *ce,
+ 
+ 	/* RPCS */
+ 	if (engine->class == RENDER_CLASS) {
+-		regs[CTX_R_PWR_CLK_STATE] =
+-			intel_sseu_make_rpcs(engine->i915, &ce->sseu);
++		if (engine->i915->predictive_load_enable) {
++			regs[CTX_R_PWR_CLK_STATE] =
++				get_context_rpcs_config(ce->gem_context);
++
++		} else {
++			regs[CTX_R_PWR_CLK_STATE] =
++				intel_sseu_make_rpcs(engine->i915, &ce->sseu);
++		}
+ 
+ 		i915_oa_init_reg_state(ce, engine);
+ 	}
+@@ -3040,6 +3074,9 @@ __execlists_context_pin(struct intel_context *ce,
+ 	ce->lrc_reg_state = vaddr + LRC_STATE_PN * PAGE_SIZE;
+ 	__execlists_update_reg_state(ce, engine, ce->ring->tail);
+ 
++	if (ce->gem_context->load_type != ce->gem_context->pending_load_type)
++		ce->gem_context->load_type = ce->gem_context->pending_load_type;
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 19195bde4921..f039f644b44c 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -926,6 +926,10 @@ struct drm_i915_private {
+ 	/* protects panel power sequencer state */
+ 	struct mutex pps_mutex;
+ 
++	/* optimal slice/subslice/EU configuration state */
++	struct i915_sseu_optimum_config *opt_config;
++	int predictive_load_enable;
++
+ 	unsigned int fsb_freq, mem_freq, is_ddr3;
+ 	unsigned int skl_preferred_vco_freq;
+ 	unsigned int max_cdclk_freq;
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index d7fe12734db8..0af260bbb02d 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -899,6 +899,41 @@ void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	RUNTIME_INFO(i915)->platform_mask[pi] |= mask;
+ }
+ 
++/* static table of slice/subslice/EU for Cherryview */
++static const struct i915_sseu_optimum_config chv_config[LOAD_TYPE_LAST] = {
++	{1, 1, 4},	/* Low */
++	{1, 1, 6},	/* Medium */
++	{1, 2, 6}	/* High */
++};
++
++/* static table of slice/subslice/EU for GLK GT1 */
++static const struct i915_sseu_optimum_config glk_gt1_config[LOAD_TYPE_LAST] = {
++	{1, 2, 2},	/* Low */
++	{1, 2, 3},	/* Medium */
++	{1, 2, 6}	/* High */
++};
++
++/* static table of slice/subslice/EU for KBL GT2 */
++static const struct i915_sseu_optimum_config kbl_gt2_config[LOAD_TYPE_LAST] = {
++	{1, 3, 2},	/* Low */
++	{1, 3, 4},	/* Medium */
++	{1, 3, 8}	/* High */
++};
++
++/* static table of slice/subslice/EU for KBL GT3 */
++static const struct i915_sseu_optimum_config kbl_gt3_config[LOAD_TYPE_LAST] = {
++	{2, 3, 4},	/* Low */
++	{2, 3, 6},	/* Medium */
++	{2, 3, 8}	/* High */
++};
++
++/* static table of slice/subslice/EU for JSL GEN11LP */
++static struct i915_sseu_optimum_config jsl_gen11lp_config[LOAD_TYPE_LAST] = {
++	{1, 4, 4},      /* Low */
++	{1, 4, 6},      /* Medium */
++	{1, 4, 8}       /* High */
++};
++
+ /**
+  * intel_device_info_runtime_init - initialize runtime info
+  * @dev_priv: the i915 device
+@@ -920,6 +955,7 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 	struct intel_device_info *info = mkwrite_device_info(dev_priv);
+ 	struct intel_runtime_info *runtime = RUNTIME_INFO(dev_priv);
+ 	enum pipe pipe;
++	struct i915_sseu_optimum_config *opt_config = NULL;
+ 
+ 	if (INTEL_GEN(dev_priv) >= 10) {
+ 		for_each_pipe(dev_priv, pipe)
+@@ -1027,16 +1063,48 @@ void intel_device_info_runtime_init(struct drm_i915_private *dev_priv)
+ 	/* Initialize slice/subslice/EU info */
+ 	if (IS_HASWELL(dev_priv))
+ 		hsw_sseu_info_init(dev_priv);
+-	else if (IS_CHERRYVIEW(dev_priv))
++	else if (IS_CHERRYVIEW(dev_priv)) {
+ 		cherryview_sseu_info_init(dev_priv);
++		opt_config = (struct i915_sseu_optimum_config *)chv_config;
++		BUILD_BUG_ON(ARRAY_SIZE(chv_config) != LOAD_TYPE_LAST);
++	}
+ 	else if (IS_BROADWELL(dev_priv))
+ 		bdw_sseu_info_init(dev_priv);
+-	else if (IS_GEN(dev_priv, 9))
++	else if (IS_GEN(dev_priv, 9)) {
+ 		gen9_sseu_info_init(dev_priv);
++
++		switch (info->gt) {
++		default: /* fall through */
++		case 1:
++			opt_config = (struct i915_sseu_optimum_config *)
++						glk_gt1_config;
++			BUILD_BUG_ON(ARRAY_SIZE(glk_gt1_config)
++						!= LOAD_TYPE_LAST);
++		break;
++		case 2:
++			opt_config = (struct i915_sseu_optimum_config *)
++						kbl_gt2_config;
++			BUILD_BUG_ON(ARRAY_SIZE(kbl_gt2_config)
++						!= LOAD_TYPE_LAST);
++		break;
++		case 3:
++			opt_config = (struct i915_sseu_optimum_config *)
++						kbl_gt3_config;
++			BUILD_BUG_ON(ARRAY_SIZE(kbl_gt3_config)
++						!= LOAD_TYPE_LAST);
++		break;
++		}
++	}
+ 	else if (IS_GEN(dev_priv, 10))
+ 		gen10_sseu_info_init(dev_priv);
+-	else if (IS_GEN(dev_priv, 11))
++	else if (IS_GEN(dev_priv, 11)) {
+ 		gen11_sseu_info_init(dev_priv);
++				opt_config = &jsl_gen11lp_config[0];
++		BUILD_BUG_ON(ARRAY_SIZE(jsl_gen11lp_config)
++					!= LOAD_TYPE_LAST);
++		if (opt_config)
++			dev_priv->opt_config = opt_config;
++	}
+ 	else if (INTEL_GEN(dev_priv) >= 12)
+ 		gen12_sseu_info_init(dev_priv);
  
 -- 
 2.7.4
