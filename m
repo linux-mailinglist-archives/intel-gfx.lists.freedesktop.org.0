@@ -2,44 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D436218484E
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 14:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B562D18489B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 14:58:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 275C36E9B2;
-	Fri, 13 Mar 2020 13:40:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0855C6EBCA;
+	Fri, 13 Mar 2020 13:58:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33466E9B2
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 13:40:10 +0000 (UTC)
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCA76E9CD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 13:58:02 +0000 (UTC)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2020 06:40:10 -0700
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 06:58:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="442423613"
-Received: from cvogler-mobl.ger.corp.intel.com (HELO [10.249.37.228])
- ([10.249.37.228])
- by fmsmga005.fm.intel.com with ESMTP; 13 Mar 2020 06:40:08 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200306100557.2077450-1-lionel.g.landwerlin@intel.com>
- <20200306100557.2077450-3-lionel.g.landwerlin@intel.com>
- <e1f03b01-998f-ca56-cdd2-0e0621842211@linux.intel.com>
- <0afe1146-f423-88fe-1219-f1c8b126f0b4@linux.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <7894fc07-09a6-62f1-45b1-8344711129a6@intel.com>
-Date: Fri, 13 Mar 2020 15:40:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-MIME-Version: 1.0
-In-Reply-To: <0afe1146-f423-88fe-1219-f1c8b126f0b4@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; 
+ d="scan'208,217";a="235335557"
+Received: from irsmsx107.ger.corp.intel.com ([163.33.3.99])
+ by fmsmga007.fm.intel.com with ESMTP; 13 Mar 2020 06:57:59 -0700
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX107.ger.corp.intel.com (163.33.3.99) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 13 Mar 2020 13:57:58 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX604.ger.corp.intel.com (163.33.146.137) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 13 Mar 2020 13:57:58 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Fri, 13 Mar 2020 13:57:58 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state helpers
+Thread-Index: AQHV9i4Tk0u3HzOHN0aWu4NbMnQsiahDklwAgAKozoaAAE5mgIAABDK0
+Date: Fri, 13 Mar 2020 13:57:58 +0000
+Message-ID: <93708764786145ff9c8ee2c84af6ff41@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-4-stanislav.lisovskiy@intel.com>
+ <20200311160854.GB13686@intel.com>
+ <9ffa74c26bc349aab1bd2fe8f427f451@intel.com>,
+ <20200313132611.GK13686@intel.com>
+In-Reply-To: <20200313132611.GK13686@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v4 3/3] drm/i915/perf: introduce global sseu
- pinning
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.184.70.1]
+MIME-Version: 1.0
+Subject: Re: [Intel-gfx] [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,327 +64,520 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============0131154532=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMTMvMDMvMjAyMCAwMDo0MSwgVHZydGtvIFVyc3VsaW4gd3JvdGU6Cj4KPiBPbiAxMi8wMy8y
-MDIwIDE4OjE5LCBUdnJ0a28gVXJzdWxpbiB3cm90ZToKPj4KPj4gT24gMDYvMDMvMjAyMCAxMDow
-NSwgTGlvbmVsIExhbmR3ZXJsaW4gd3JvdGU6Cj4+PiBPbiBHZW4xMSBwb3dlcmdhdGluZyBoYWxm
-IHRoZSBleGVjdXRpb24gdW5pdHMgaXMgYSBmdW5jdGlvbmFsCj4+PiByZXF1aXJlbWVudCB3aGVu
-IHVzaW5nIHRoZSBWTUUgc2FtcGxlcnMuIE5vdCBmdWxsZmlsbGluZyB0aGlzCj4+PiByZXF1aXJl
-bWVudCBjYW4gbGVhZCB0byBoYW5ncy4KPj4+Cj4+PiBUaGlzIHVuZm9ydHVuYXRlbHkgcGxheXMg
-ZmFpcmx5IHBvb3JseSB3aXRoIHRoZSBOT0EgcmVxdWlyZW1lbnRzLiBOT0EKPj4+IHJlcXVpcmVz
-IGEgc3RhYmxlIHBvd2VyIGNvbmZpZ3VyYXRpb24gdG8gbWFpbnRhaW4gaXRzIGNvbmZpZ3VyYXRp
-b24uCj4+Pgo+Pj4gQXMgYSByZXN1bHQgdXNpbmcgT0EgKGFuZCBOT0EgZmVlZGluZyBpbnRvIGl0
-KSBzbyBmYXIgaGFzIHJlcXVpcmVkIHVzCj4+PiB0byB1c2UgYSBwb3dlciBjb25maWd1cmF0aW9u
-IHRoYXQgY2FuIHdvcmsgZm9yIGFsbCBjb250ZXh0cy4gVGhlIG9ubHkKPj4+IHBvd2VyIGNvbmZp
-Z3VyYXRpb24gZnVsbGZpbGxpbmcgdGhpcyBpcyBwb3dlcmdhdGluZyBoYWxmIHRoZSBleGVjdXRp
-b24KPj4+IHVuaXRzLgo+Pj4KPj4+IFRoaXMgbWFrZXMgcGVyZm9ybWFuY2UgYW5hbHlzaXMgZm9y
-IDNEIHdvcmtsb2FkcyBzb21ld2hhdCBwb2ludGxlc3MuCj4+Pgo+Pj4gRmFpbGluZyB0byBmaW5k
-IGEgc29sdXRpb24gdGhhdCB3b3VsZCB3b3JrIGZvciBldmVyeWJvZHksIHRoaXMgY2hhbmdlCj4+
-PiBpbnRyb2R1Y2VzIGEgbmV3IGk5MTUtcGVyZiBzdHJlYW0gb3BlbiBwYXJhbWV0ZXIgdGhhdCBw
-dW50cyB0aGUKPj4+IGRlY2lzaW9uIG9mZiB0byB1c2Vyc3BhY2UuIElmIHRoaXMgcGFyYW1ldGVy
-IGlzIG9taXR0ZWQsIHRoZSBleGlzdGluZwo+Pj4gR2VuMTEgYmVoYXZpb3IgcmVtYWlucyAoaGFs
-ZiBFVSBhcnJheSBwb3dlcmdhdGluZykuCj4+Pgo+Pj4gVGhpcyBjaGFuZ2UgdGFrZXMgdGhlIGlu
-aXRpYXRpdmUgdG8gbW92ZSBhbGwgcGVyZiByZWxhdGVkIHNzZXUKPj4+IGNvbmZpZ3VyYXRpb24g
-aW50byBpOTE1X3BlcmYuYwo+Pj4KPj4+IHYyOiBNYWtlIHBhcmFtZXRlciBwcml2aWxpZ2VkIGlm
-IGRpZmZlcmVudCBmcm9tIGRlZmF1bHQKPj4+Cj4+PiB2MzogRml4IGNvbnRleHQgbW9kaWZ5aW5n
-IGl0cyBzc2V1IGNvbmZpZyB3aGlsZSBpOTE1LXBlcmYgaXMgZW5hYmxlZAo+Pj4KPj4+IHY0OiBB
-bHdheXMgY29uc2lkZXIgZ2xvYmFsIHNzZXUgYSBwcml2aWxlZ2VkIG9wZXJhdGlvbiAoVHZydGtv
-KQo+Pj4gwqDCoMKgwqAgT3ZlcnJpZGUgcmVxX3NzZXUgcG9pbnQgaW4gaW50ZWxfc3NldV9tYWtl
-X3JwY3MoKSAoVHZydGtvKQo+Pj4gwqDCoMKgwqAgUmVtb3ZlIHVucmVsYXRlZCBjaGFuZ2VzIChU
-dnJ0a28pCj4+Pgo+Pj4gU2lnbmVkLW9mZi1ieTogTGlvbmVsIExhbmR3ZXJsaW4gPGxpb25lbC5n
-LmxhbmR3ZXJsaW5AaW50ZWwuY29tPgo+Pj4gLS0tCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9nZW0vaTkxNV9nZW1fY29udGV4dC5jIHwgMTAgKy0tCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0v
-aTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5oIHzCoCA0ICsKPj4+IMKgIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2d0L2ludGVsX3NzZXUuY8KgwqDCoMKgwqDCoMKgIHwgMzMgKystLS0tLS0KPj4+IMKg
-IGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8
-IDg0IAo+Pj4gKysrKysrKysrKysrKysrKysrKystCj4+PiDCoCBkcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X3BlcmZfdHlwZXMuaMKgwqDCoMKgwqAgfMKgIDcgKysKPj4+IMKgIGluY2x1ZGUvdWFw
-aS9kcm0vaTkxNV9kcm0uaMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMTEgKysr
-Cj4+PiDCoCA2IGZpbGVzIGNoYW5nZWQsIDExNiBpbnNlcnRpb25zKCspLCAzMyBkZWxldGlvbnMo
-LSkKPj4+Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2Vt
-X2NvbnRleHQuYyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRl
-eHQuYwo+Pj4gaW5kZXggY2I2YjZiZTQ4OTc4Li5lZGNiYzdlZWY3MTYgMTAwNjQ0Cj4+PiAtLS0g
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCj4+PiArKysgYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9nZW0vaTkxNV9nZW1fY29udGV4dC5jCj4+PiBAQCAtMTM1OCwx
-MCArMTM1OCwxMCBAQCBzdGF0aWMgaW50IGdldF9yaW5nc2l6ZShzdHJ1Y3QgCj4+PiBpOTE1X2dl
-bV9jb250ZXh0ICpjdHgsCj4+PiDCoMKgwqDCoMKgIHJldHVybiAwOwo+Pj4gwqAgfQo+Pj4gLXN0
-YXRpYyBpbnQKPj4+IC11c2VyX3RvX2NvbnRleHRfc3NldShzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqaTkxNSwKPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IGRybV9p
-OTE1X2dlbV9jb250ZXh0X3BhcmFtX3NzZXUgKnVzZXIsCj4+PiAtwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIHN0cnVjdCBpbnRlbF9zc2V1ICpjb250ZXh0KQo+Pj4gK2ludAo+Pj4gK2k5MTVfZ2Vt
-X3VzZXJfdG9fY29udGV4dF9zc2V1KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LAo+Pj4g
-K8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IGRybV9pOTE1
-X2dlbV9jb250ZXh0X3BhcmFtX3NzZXUgKnVzZXIsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCBzdHJ1Y3QgaW50ZWxfc3NldSAqY29udGV4dCkKPj4+IMKgIHsKPj4+IMKg
-wqDCoMKgwqAgY29uc3Qgc3RydWN0IHNzZXVfZGV2X2luZm8gKmRldmljZSA9ICZSVU5USU1FX0lO
-Rk8oaTkxNSktPnNzZXU7Cj4+PiBAQCAtMTQ5Niw3ICsxNDk2LDcgQEAgc3RhdGljIGludCBzZXRf
-c3NldShzdHJ1Y3QgaTkxNV9nZW1fY29udGV4dCAqY3R4LAo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKg
-IGdvdG8gb3V0X2NlOwo+Pj4gwqDCoMKgwqDCoCB9Cj4+PiAtwqDCoMKgIHJldCA9IHVzZXJfdG9f
-Y29udGV4dF9zc2V1KGk5MTUsICZ1c2VyX3NzZXUsICZzc2V1KTsKPj4+ICvCoMKgwqAgcmV0ID0g
-aTkxNV9nZW1fdXNlcl90b19jb250ZXh0X3NzZXUoaTkxNSwgJnVzZXJfc3NldSwgJnNzZXUpOwo+
-Pj4gwqDCoMKgwqDCoCBpZiAocmV0KQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGdvdG8gb3V0X2Nl
-Owo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250
-ZXh0LmggCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2dlbS9pOTE1X2dlbV9jb250ZXh0LmgK
-Pj4+IGluZGV4IDU3YjdhZTI4OTNlMS4uZjM3YzM2NzE5YjA0IDEwMDY0NAo+Pj4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuaAo+Pj4gKysrIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX2NvbnRleHQuaAo+Pj4gQEAgLTIyMSw0ICsyMjEs
-OCBAQCBpOTE1X2dlbV9lbmdpbmVzX2l0ZXJfbmV4dChzdHJ1Y3QgCj4+PiBpOTE1X2dlbV9lbmdp
-bmVzX2l0ZXIgKml0KTsKPj4+IMKgIHN0cnVjdCBpOTE1X2x1dF9oYW5kbGUgKmk5MTVfbHV0X2hh
-bmRsZV9hbGxvYyh2b2lkKTsKPj4+IMKgIHZvaWQgaTkxNV9sdXRfaGFuZGxlX2ZyZWUoc3RydWN0
-IGk5MTVfbHV0X2hhbmRsZSAqbHV0KTsKPj4+ICtpbnQgaTkxNV9nZW1fdXNlcl90b19jb250ZXh0
-X3NzZXUoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsCj4+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2NvbnRleHRfcGFy
-YW1fc3NldSAqdXNlciwKPj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0
-cnVjdCBpbnRlbF9zc2V1ICpjb250ZXh0KTsKPj4+ICsKPj4+IMKgICNlbmRpZiAvKiAhX19JOTE1
-X0dFTV9DT05URVhUX0hfXyAqLwo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2d0L2ludGVsX3NzZXUuYyAKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3Nl
-dS5jCj4+PiBpbmRleCA3NGY3OTM0MjMyMzEuLmQxNzMyNzFjNzM5NyAxMDA2NDQKPj4+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2d0L2ludGVsX3NzZXUuYwo+Pj4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZ3QvaW50ZWxfc3NldS5jCj4+PiBAQCAtNjUsNyArNjUsNiBAQCB1MzIgaW50
-ZWxfc3NldV9tYWtlX3JwY3Moc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgCj4+PiAqaTkxNSwKPj4+
-IMKgIHsKPj4+IMKgwqDCoMKgwqAgY29uc3Qgc3RydWN0IHNzZXVfZGV2X2luZm8gKnNzZXUgPSAm
-UlVOVElNRV9JTkZPKGk5MTUpLT5zc2V1Owo+Pj4gwqDCoMKgwqDCoCBib29sIHN1YnNsaWNlX3Bn
-ID0gc3NldS0+aGFzX3N1YnNsaWNlX3BnOwo+Pj4gLcKgwqDCoCBzdHJ1Y3QgaW50ZWxfc3NldSBj
-dHhfc3NldTsKPj4+IMKgwqDCoMKgwqAgdTggc2xpY2VzLCBzdWJzbGljZXM7Cj4+PiDCoMKgwqDC
-oMKgIHUzMiBycGNzID0gMDsKPj4+IEBAIC03OCwzMSArNzcsMTMgQEAgdTMyIGludGVsX3NzZXVf
-bWFrZV9ycGNzKHN0cnVjdCBkcm1faTkxNV9wcml2YXRlIAo+Pj4gKmk5MTUsCj4+PiDCoMKgwqDC
-oMKgIC8qCj4+PiDCoMKgwqDCoMKgwqAgKiBJZiBpOTE1L3BlcmYgaXMgYWN0aXZlLCB3ZSB3YW50
-IGEgc3RhYmxlIHBvd2VyZ2F0aW5nIAo+Pj4gY29uZmlndXJhdGlvbgo+Pj4gLcKgwqDCoMKgICog
-b24gdGhlIHN5c3RlbS4KPj4+IC3CoMKgwqDCoCAqCj4+PiAtwqDCoMKgwqAgKiBXZSBjb3VsZCBj
-aG9vc2UgZnVsbCBlbmFibGVtZW50LCBidXQgb24gSUNMIHdlIGtub3cgdGhlcmUgCj4+PiBhcmUg
-dXNlCj4+PiAtwqDCoMKgwqAgKiBjYXNlcyB3aGljaCBkaXNhYmxlIHNsaWNlcyBmb3IgZnVuY3Rp
-b25hbCwgYXBhcnQgZm9yIAo+Pj4gcGVyZm9ybWFuY2UKPj4+IC3CoMKgwqDCoCAqIHJlYXNvbnMu
-IFNvIGluIHRoaXMgY2FzZSB3ZSBzZWxlY3QgYSBrbm93biBzdGFibGUgc3Vic2V0Lgo+Pj4gK8Kg
-wqDCoMKgICogb24gdGhlIHN5c3RlbS4gVXNlIHRoZSBjb25maWd1cmF0aW9uIHBpbm5lZCBieSBp
-OTE1L3BlcmYuCj4+PiDCoMKgwqDCoMKgwqAgKi8KPj4+IC3CoMKgwqAgaWYgKCFpOTE1LT5wZXJm
-LmV4Y2x1c2l2ZV9zdHJlYW0pIHsKPj4+IC3CoMKgwqDCoMKgwqDCoCBjdHhfc3NldSA9ICpyZXFf
-c3NldTsKPj4+IC3CoMKgwqAgfSBlbHNlIHsKPj4+IC3CoMKgwqDCoMKgwqDCoCBjdHhfc3NldSA9
-IGludGVsX3NzZXVfZnJvbV9kZXZpY2VfaW5mbyhzc2V1KTsKPj4+IC0KPj4+IC3CoMKgwqDCoMKg
-wqDCoCBpZiAoSVNfR0VOKGk5MTUsIDExKSkgewo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-LyoKPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBXZSBvbmx5IG5lZWQgc3Vic2xpY2Ug
-Y291bnQgc28gaXQgZG9lc24ndCBtYXR0ZXIKPj4+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-KiB3aGljaCBvbmVzIHdlIHNlbGVjdCAtIGp1c3QgdHVybiBvZmYgbG93IGJpdHMgaW4gdGhlCj4+
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogYW1vdW50IG9mIGhhbGYgb2YgYWxsIGF2YWls
-YWJsZSBzdWJzbGljZXMgcGVyIHNsaWNlLgo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
-Lwo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3R4X3NzZXUuc3Vic2xpY2VfbWFzayA9Cj4+
-PiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIH4ofjAgPDwgKGh3ZWlnaHQ4KGN0eF9z
-c2V1LnN1YnNsaWNlX21hc2spIC8gMikpOwo+Pj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgY3R4
-X3NzZXUuc2xpY2VfbWFzayA9IDB4MTsKPj4+IC3CoMKgwqDCoMKgwqDCoCB9Cj4+PiAtwqDCoMKg
-IH0KPj4+ICvCoMKgwqAgaWYgKGk5MTUtPnBlcmYuZXhjbHVzaXZlX3N0cmVhbSkKPj4+ICvCoMKg
-wqDCoMKgwqDCoCByZXFfc3NldSA9ICZpOTE1LT5wZXJmLnNzZXU7Cj4+PiAtwqDCoMKgIHNsaWNl
-cyA9IGh3ZWlnaHQ4KGN0eF9zc2V1LnNsaWNlX21hc2spOwo+Pj4gLcKgwqDCoCBzdWJzbGljZXMg
-PSBod2VpZ2h0OChjdHhfc3NldS5zdWJzbGljZV9tYXNrKTsKPj4+ICvCoMKgwqAgc2xpY2VzID0g
-aHdlaWdodDgocmVxX3NzZXUtPnNsaWNlX21hc2spOwo+Pj4gK8KgwqDCoCBzdWJzbGljZXMgPSBo
-d2VpZ2h0OChyZXFfc3NldS0+c3Vic2xpY2VfbWFzayk7Cj4+PiDCoMKgwqDCoMKgIC8qCj4+PiDC
-oMKgwqDCoMKgwqAgKiBTaW5jZSB0aGUgU1Njb3VudCBiaXRmaWVsZCBpbiBHRU44X1JfUFdSX0NM
-S19TVEFURSBpcyBvbmx5IAo+Pj4gdGhyZWUgYml0cwo+Pj4gQEAgLTE3NSwxMyArMTU2LDEzIEBA
-IHUzMiBpbnRlbF9zc2V1X21ha2VfcnBjcyhzdHJ1Y3QgCj4+PiBkcm1faTkxNV9wcml2YXRlICpp
-OTE1LAo+Pj4gwqDCoMKgwqDCoCBpZiAoc3NldS0+aGFzX2V1X3BnKSB7Cj4+PiDCoMKgwqDCoMKg
-wqDCoMKgwqAgdTMyIHZhbDsKPj4+IC3CoMKgwqDCoMKgwqDCoCB2YWwgPSBjdHhfc3NldS5taW5f
-ZXVzX3Blcl9zdWJzbGljZSA8PCBHRU44X1JQQ1NfRVVfTUlOX1NISUZUOwo+Pj4gK8KgwqDCoMKg
-wqDCoMKgIHZhbCA9IHJlcV9zc2V1LT5taW5fZXVzX3Blcl9zdWJzbGljZSA8PCAKPj4+IEdFTjhf
-UlBDU19FVV9NSU5fU0hJRlQ7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgR0VNX0JVR19PTih2YWwg
-JiB+R0VOOF9SUENTX0VVX01JTl9NQVNLKTsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCB2YWwgJj0g
-R0VOOF9SUENTX0VVX01JTl9NQVNLOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHJwY3MgfD0gdmFs
-Owo+Pj4gLcKgwqDCoMKgwqDCoMKgIHZhbCA9IGN0eF9zc2V1Lm1heF9ldXNfcGVyX3N1YnNsaWNl
-IDw8IEdFTjhfUlBDU19FVV9NQVhfU0hJRlQ7Cj4+PiArwqDCoMKgwqDCoMKgwqAgdmFsID0gcmVx
-X3NzZXUtPm1heF9ldXNfcGVyX3N1YnNsaWNlIDw8IAo+Pj4gR0VOOF9SUENTX0VVX01BWF9TSElG
-VDsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBHRU1fQlVHX09OKHZhbCAmIH5HRU44X1JQQ1NfRVVf
-TUFYX01BU0spOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHZhbCAmPSBHRU44X1JQQ1NfRVVfTUFY
-X01BU0s7Cj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmLmMg
-Cj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVyZi5jCj4+PiBpbmRleCA4NmM2YWJh
-YTNlMGUuLjM2ZTQ2ZjNmYmRiNSAxMDA2NDQKPj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2k5MTVfcGVyZi5jCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmYuYwo+
-Pj4gQEAgLTM0NCw2ICszNDQsMTEgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpOTE1X29hX2Zvcm1h
-dCAKPj4+IGdlbjEyX29hX2Zvcm1hdHNbSTkxNV9PQV9GT1JNQVRfTUFYXSA9IHsKPj4+IMKgwqAg
-KiBAb2FfcGVyaW9kaWM6IFdoZXRoZXIgdG8gZW5hYmxlIHBlcmlvZGljIE9BIHVuaXQgc2FtcGxp
-bmcKPj4+IMKgwqAgKiBAb2FfcGVyaW9kX2V4cG9uZW50OiBUaGUgT0EgdW5pdCBzYW1wbGluZyBw
-ZXJpb2QgaXMgZGVyaXZlZCAKPj4+IGZyb20gdGhpcwo+Pj4gwqDCoCAqIEBlbmdpbmU6IFRoZSBl
-bmdpbmUgKHR5cGljYWxseSByY3MwKSBiZWluZyBtb25pdG9yZWQgYnkgdGhlIE9BIAo+Pj4gdW5p
-dAo+Pj4gKyAqIEBzc2V1OiBTZWxlY3RlZCBzc2V1IGNvbmZpZ3VyYXRpb24gZm9yIHJlY29yZGlu
-Zwo+Pj4gKyAqIEBoYXNfc3NldTogV2h0aGVyIEBkcm1fc3NldSB3YXMgc3BlY2lmaWVkIGJ5IHVz
-ZXJzcGFjZQo+Pgo+PiBUeXBvLgo+Pgo+Pj4gKyAqIEBkcm1fc3NldTogU1NFVSBjb25maWd1cmF0
-aW9uIHNwZWNpZmllZCBieSB1c2Vyc3BhY2UKPj4+ICsgKiBAc3NldTogaW50ZXJuYWwgU1NFVSBj
-b25maWd1cmF0aW9uIGNvbXB1dGVkIGVpdGhlciB3aXRoIAo+Pj4gQGRybV9zc2V1IG9yIGEKPj4+
-ICsgKsKgwqDCoMKgwqDCoMKgIGRlZmF1bHQgdmFsdWUgKHNlZSBnZXRfc3NldV9jb25maWcoKSkK
-Pj4KPj4gQHNzZXUgaXMgbWVudGlvbmVkIHR3byB0aW1lcyBoZXJlLgo+Pgo+Pj4gwqDCoCAqCj4+
-PiDCoMKgICogQXMgcmVhZF9wcm9wZXJ0aWVzX3VubG9ja2VkKCkgZW51bWVyYXRlcyBhbmQgdmFs
-aWRhdGVzIHRoZSAKPj4+IHByb3BlcnRpZXMgZ2l2ZW4KPj4+IMKgwqAgKiB0byBvcGVuIGEgc3Ry
-ZWFtIG9mIG1ldHJpY3MgdGhlIGNvbmZpZ3VyYXRpb24gaXMgYnVpbHQgdXAgaW4gCj4+PiB0aGUg
-c3RydWN0dXJlCj4+PiBAQCAtMzYzLDYgKzM2OCwxMCBAQCBzdHJ1Y3QgcGVyZl9vcGVuX3Byb3Bl
-cnRpZXMgewo+Pj4gwqDCoMKgwqDCoCBpbnQgb2FfcGVyaW9kX2V4cG9uZW50Owo+Pj4gwqDCoMKg
-wqDCoCBzdHJ1Y3QgaW50ZWxfZW5naW5lX2NzICplbmdpbmU7Cj4+PiArCj4+PiArwqDCoMKgIGJv
-b2wgaGFzX3NzZXU7Cj4+PiArwqDCoMKgIHN0cnVjdCBkcm1faTkxNV9nZW1fY29udGV4dF9wYXJh
-bV9zc2V1IGRybV9zc2V1Owo+Pj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxfc3NldSBzc2V1Owo+Pj4g
-wqAgfTsKPj4+IMKgIHN0cnVjdCBpOTE1X29hX2NvbmZpZ19ibyB7Cj4+PiBAQCAtMjcyMCw2ICsy
-NzI5LDQ3IEBAIHN0YXRpYyBpbnQgCj4+PiBpOTE1X3BlcmZfc3RyZWFtX2VuYWJsZV9zeW5jKHN0
-cnVjdCBpOTE1X3BlcmZfc3RyZWFtICpzdHJlYW0pCj4+PiDCoMKgwqDCoMKgIHJldHVybiAwOwo+
-Pj4gwqAgfQo+Pj4gK3N0YXRpYyB2b2lkCj4+PiArZ2V0X2RlZmF1bHRfc3NldV9jb25maWcoc3Ry
-dWN0IGludGVsX3NzZXUgKm91dF9zc2V1LAo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3Ry
-dWN0IGludGVsX2VuZ2luZV9jcyAqZW5naW5lKQo+Pj4gK3sKPj4+ICvCoMKgwqAgY29uc3Qgc3Ry
-dWN0IHNzZXVfZGV2X2luZm8gKmRldmluZm9fc3NldSA9Cj4+PiArwqDCoMKgwqDCoMKgwqAgJlJV
-TlRJTUVfSU5GTyhlbmdpbmUtPmk5MTUpLT5zc2V1Owo+Pj4gKwo+Pj4gK8KgwqDCoCAqb3V0X3Nz
-ZXUgPSBpbnRlbF9zc2V1X2Zyb21fZGV2aWNlX2luZm8oZGV2aW5mb19zc2V1KTsKPj4+ICsKPj4+
-ICvCoMKgwqAgaWYgKElTX0dFTihlbmdpbmUtPmk5MTUsIDExKSkgewo+Pj4gK8KgwqDCoMKgwqDC
-oMKgIC8qCj4+PiArwqDCoMKgwqDCoMKgwqDCoCAqIFdlIG9ubHkgbmVlZCBzdWJzbGljZSBjb3Vu
-dCBzbyBpdCBkb2Vzbid0IG1hdHRlciB3aGljaCBvbmVzCj4+PiArwqDCoMKgwqDCoMKgwqDCoCAq
-IHdlIHNlbGVjdCAtIGp1c3QgdHVybiBvZmYgbG93IGJpdHMgaW4gdGhlIGFtb3VudCBvZiBoYWxm
-IG9mCj4+PiArwqDCoMKgwqDCoMKgwqDCoCAqIGFsbCBhdmFpbGFibGUgc3Vic2xpY2VzIHBlciBz
-bGljZS4KPj4+ICvCoMKgwqDCoMKgwqDCoMKgICovCj4+PiArwqDCoMKgwqDCoMKgwqAgb3V0X3Nz
-ZXUtPnN1YnNsaWNlX21hc2sgPQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfih+MCA8PCAo
-aHdlaWdodDgob3V0X3NzZXUtPnN1YnNsaWNlX21hc2spIC8gMikpOwo+Pj4gK8KgwqDCoMKgwqDC
-oMKgIG91dF9zc2V1LT5zbGljZV9tYXNrID0gMHgxOwo+Pj4gK8KgwqDCoCB9Cj4+PiArfQo+Pj4g
-Kwo+Pj4gK3N0YXRpYyBpbnQKPj4+ICtnZXRfc3NldV9jb25maWcoc3RydWN0IGludGVsX3NzZXUg
-Km91dF9zc2V1LAo+Pj4gK8KgwqDCoMKgwqDCoMKgIHN0cnVjdCBpbnRlbF9lbmdpbmVfY3MgKmVu
-Z2luZSwKPj4+ICvCoMKgwqDCoMKgwqDCoCBjb25zdCBzdHJ1Y3QgZHJtX2k5MTVfZ2VtX2NvbnRl
-eHRfcGFyYW1fc3NldSAqZHJtX3NzZXUpCj4+PiArewo+Pj4gK8KgwqDCoCBzdHJ1Y3QgaW50ZWxf
-ZW5naW5lX2NzICp1c2VyX2VuZ2luZTsKPj4+ICsKPj4+ICvCoMKgwqAgdXNlcl9lbmdpbmUgPSBp
-bnRlbF9lbmdpbmVfbG9va3VwX3VzZXIoCj4+PiArwqDCoMKgwqDCoMKgwqAgZW5naW5lLT5pOTE1
-LAo+Pj4gK8KgwqDCoMKgwqDCoMKgIGRybV9zc2V1LT5lbmdpbmUuZW5naW5lX2NsYXNzLAo+Pj4g
-K8KgwqDCoMKgwqDCoMKgIGRybV9zc2V1LT5lbmdpbmUuZW5naW5lX2luc3RhbmNlKTsKPj4+ICvC
-oMKgwqAgaWYgKCF1c2VyX2VuZ2luZSkKPj4+ICvCoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVJTlZB
-TDsKPj4+ICsKPj4+ICvCoMKgwqAgaWYgKHVzZXJfZW5naW5lICE9IGVuZ2luZSkKPj4+ICvCoMKg
-wqDCoMKgwqDCoCByZXR1cm4gLUVJTlZBTDsKPj4KPj4gRG8geW91IHRoaW5rIGl0IHdpbGwgYmUg
-dXNlZnVsIGZvciB0aGUgcHJvcCB0byBhY2NlcHQgc3RydWN0IAo+PiBkcm1faTkxNV9nZW1fY29u
-dGV4dF9wYXJhbV9zc2V1LCB3aGljaCBnaXZlcyB5b3UgZWZmZWN0aXZlbHkgYSAKPj4gcmVkdW5k
-YW50IGVuZ2luZSB3aGljaCB5b3UgaGVyZSB2ZXJpZnk/IEkgc3VwcG9zZSBpdCBpcyBoYW5keSBu
-b3QgCj4+IGhhdmluZyB0byBkZWZpbmUgYSBuZXcgc3RydWN0IGluIHVhcGkgYW5kIGJlaW5nIHRy
-aXZpYWxseSBhYmxlIHRvIHVzZSAKPj4gdGhlIHNhbWUgaGVscGVyLgo+Pgo+PiBQZXJoYXBzIHlv
-dSBjb3VsZCBpZ25vcmUgdGhlIGVuZ2luZSBwYXJhbSBhbmQgZG9jdW1lbnQgdGhhdD8gSWYgb25l
-IAo+PiBkYXkgdGhhdCB3b3VsZCBtYWtlIGl0IGVhc2llciBhdHRhY2hpbmcgdGhlIHNhbWUgc3Nl
-dSBjb25maWcgdG8gCj4+IG11bHRpcGxlIHByb3BzLiBIaWdobHkgaHlwb3RoZXRpY2FsIEkga25v
-dy4gTm8gc3Ryb25nIGZlZWxpbmcgZWl0aGVyIAo+PiB3YXkuCj4+Cj4+PiArCj4+PiArwqDCoMKg
-IHJldHVybiBpOTE1X2dlbV91c2VyX3RvX2NvbnRleHRfc3NldShlbmdpbmUtPmk5MTUsIGRybV9z
-c2V1LCAKPj4+IG91dF9zc2V1KTsKPj4+ICt9Cj4+PiArCj4+PiDCoCAvKioKPj4+IMKgwqAgKiBp
-OTE1X29hX3N0cmVhbV9pbml0IC0gdmFsaWRhdGUgY29tYmluZWQgcHJvcHMgZm9yIE9BIHN0cmVh
-bSBhbmQgCj4+PiBpbml0Cj4+PiDCoMKgICogQHN0cmVhbTogQW4gaTkxNSBwZXJmIHN0cmVhbQo+
-Pj4gQEAgLTI4NTIsNiArMjkwMiw4IEBAIHN0YXRpYyBpbnQgaTkxNV9vYV9zdHJlYW1faW5pdChz
-dHJ1Y3QgCj4+PiBpOTE1X3BlcmZfc3RyZWFtICpzdHJlYW0sCj4+PiDCoMKgwqDCoMKgwqDCoMKg
-wqAgZ290byBlcnJfb2FfYnVmX2FsbG9jOwo+Pj4gwqDCoMKgwqDCoCBzdHJlYW0tPm9wcyA9ICZp
-OTE1X29hX3N0cmVhbV9vcHM7Cj4+PiArCj4+PiArwqDCoMKgIHBlcmYtPnNzZXUgPSBwcm9wcy0+
-c3NldTsKPj4+IMKgwqDCoMKgwqAgV1JJVEVfT05DRShwZXJmLT5leGNsdXNpdmVfc3RyZWFtLCBz
-dHJlYW0pOwo+Pj4gwqDCoMKgwqDCoCByZXQgPSBpOTE1X3BlcmZfc3RyZWFtX2VuYWJsZV9zeW5j
-KHN0cmVhbSk7Cj4+PiBAQCAtMzM5Nyw2ICszNDQ5LDIwIEBAIGk5MTVfcGVyZl9vcGVuX2lvY3Rs
-X2xvY2tlZChzdHJ1Y3QgaTkxNV9wZXJmIAo+Pj4gKnBlcmYsCj4+PiDCoMKgwqDCoMKgwqDCoMKg
-wqAgcHJpdmlsZWdlZF9vcCA9IHRydWU7Cj4+PiDCoMKgwqDCoMKgIH0KPj4+ICvCoMKgwqAgLyoK
-Pj4+ICvCoMKgwqDCoCAqIEFza2luZyBmb3IgU1NFVSBjb25maWd1cmF0aW9uIGlzIGEgcHJpdmls
-aWdlZCBvcGVyYXRpb24uCj4+PiArwqDCoMKgwqAgKi8KPj4+ICvCoMKgwqAgaWYgKHByb3BzLT5o
-YXNfc3NldSkgewo+Pj4gK8KgwqDCoMKgwqDCoMKgIHJldCA9IGdldF9zc2V1X2NvbmZpZygmcHJv
-cHMtPnNzZXUsIHByb3BzLT5lbmdpbmUsCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgICZwcm9wcy0+ZHJtX3NzZXUpOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGlm
-IChyZXQpCj4+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBnb3RvIGVycjsKPj4+ICsKPj4+ICvC
-oMKgwqDCoMKgwqDCoCBwcml2aWxlZ2VkX29wID0gdHJ1ZTsKPj4+ICvCoMKgwqAgfSBlbHNlIHsK
-Pj4+ICvCoMKgwqDCoMKgwqDCoCBnZXRfZGVmYXVsdF9zc2V1X2NvbmZpZygmcHJvcHMtPnNzZXUs
-IHByb3BzLT5lbmdpbmUpOwo+Pj4gK8KgwqDCoCB9Cj4+PiArCj4+PiDCoMKgwqDCoMKgIC8qIFNp
-bWlsYXIgdG8gcGVyZidzIGtlcm5lbC5wZXJmX3BhcmFub2lkX2NwdSBzeXNjdGwgb3B0aW9uCj4+
-PiDCoMKgwqDCoMKgwqAgKiB3ZSBjaGVjayBhIGRldi5pOTE1LnBlcmZfc3RyZWFtX3BhcmFub2lk
-IHN5c2N0bCBvcHRpb24KPj4+IMKgwqDCoMKgwqDCoCAqIHRvIGRldGVybWluZSBpZiBpdCdzIG9r
-IHRvIGFjY2VzcyBzeXN0ZW0gd2lkZSBPQSBjb3VudGVycwo+Pj4gQEAgLTM0OTIsNiArMzU1OCw3
-IEBAIHN0YXRpYyBpbnQgcmVhZF9wcm9wZXJ0aWVzX3VubG9ja2VkKHN0cnVjdCAKPj4+IGk5MTVf
-cGVyZiAqcGVyZiwKPj4+IMKgIHsKPj4+IMKgwqDCoMKgwqAgdTY0IF9fdXNlciAqdXByb3AgPSB1
-cHJvcHM7Cj4+PiDCoMKgwqDCoMKgIHUzMiBpOwo+Pj4gK8KgwqDCoCBpbnQgcmV0Owo+Pj4gwqDC
-oMKgwqDCoCBtZW1zZXQocHJvcHMsIDAsIHNpemVvZihzdHJ1Y3QgcGVyZl9vcGVuX3Byb3BlcnRp
-ZXMpKTsKPj4+IEBAIC0zNTIzLDcgKzM1OTAsNiBAQCBzdGF0aWMgaW50IHJlYWRfcHJvcGVydGll
-c191bmxvY2tlZChzdHJ1Y3QgCj4+PiBpOTE1X3BlcmYgKnBlcmYsCj4+PiDCoMKgwqDCoMKgIGZv
-ciAoaSA9IDA7IGkgPCBuX3Byb3BzOyBpKyspIHsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCB1NjQg
-b2FfcGVyaW9kLCBvYV9mcmVxX2h6Owo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIHU2NCBpZCwgdmFs
-dWU7Cj4+PiAtwqDCoMKgwqDCoMKgwqAgaW50IHJldDsKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBy
-ZXQgPSBnZXRfdXNlcihpZCwgdXByb3ApOwo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgIGlmIChyZXQp
-Cj4+PiBAQCAtMzYwOSw2ICszNjc1LDE2IEBAIHN0YXRpYyBpbnQgcmVhZF9wcm9wZXJ0aWVzX3Vu
-bG9ja2VkKHN0cnVjdCAKPj4+IGk5MTVfcGVyZiAqcGVyZiwKPj4+IMKgwqDCoMKgwqDCoMKgwqDC
-oCBjYXNlIERSTV9JOTE1X1BFUkZfUFJPUF9IT0xEX1BSRUVNUFRJT046Cj4+PiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCBwcm9wcy0+aG9sZF9wcmVlbXB0aW9uID0gISF2YWx1ZTsKPj4+IMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGJyZWFrOwo+Pj4gK8KgwqDCoMKgwqDCoMKgIGNhc2Ug
-RFJNX0k5MTVfUEVSRl9QUk9QX0dMT0JBTF9TU0VVOiB7Cj4+PiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBpZiAoY29weV9mcm9tX3VzZXIoJnByb3BzLT5kcm1fc3NldSwKPj4+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB1NjRfdG9fdXNlcl9wdHIodmFsdWUp
-LAo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHNpemVv
-Zihwcm9wcy0+ZHJtX3NzZXUpKSkgewo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCBEUk1fREVCVUcoIlVuYWJsZSB0byBjb3B5IGdsb2JhbCBzc2V1IHBhcmFtZXRlclxuIik7Cj4+
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRUZBVUxUOwo+Pj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgfQo+Pj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcHJvcHMt
-Pmhhc19zc2V1ID0gdHJ1ZTsKPj4KPj4gWW91IGNvdWxkIG1vdmUgdGhlIHByb3BzLT5zc2V1IGlu
-aXQgaGVyZSBhbmQgdGhlbiB5b3Ugd291ZG4ndCBoYXZlIHRvIAo+PiBoYXZlIHRoZSBkcm1fc3Nl
-dSBmaWVsZCBpbiB0aGUgcHJvcHMuIEl0IGp1c3QgZmVlbHMgYSBiaXQgaW5lbGVnYW50IAo+PiB0
-byBoYXZlIGl0IGZvciB0cmFuc2ZlcnJpbmcgZGF0YSBhcm91bmQuCj4+Cj4+IFRoZW4gaWYgeW91
-IHdvdWxkIGFsc28gY2hlY2sgKG9yIGlnbm9yZSkgdGhlIHNzZXUgZW5naW5lIG1hdGNoZXMgdGhl
-IAo+PiBwcm9wcyBlbmdpbmUgaGVyZSwgeW91IHdvdWxkbid0IG5lZWQgZ2V0X3NzZXVfY29uZmln
-KCksIGNvdWxkIGp1c3QgCj4+IGNhbGwgaTkxNV9nZW1fdXNlcl90b19jb250ZXh0X3NzZXUgZGly
-ZWN0bHkuCj4+Cj4+IFdvdWxkIGp1c3QgbGVhdmUgdGhlIHByaXZpbGVnZWQgaGFzX3NzZXUgY2hl
-Y2sgaW4gdGhlIGlvY3RsLiAoV2hpY2ggCj4+IGFsc28gZmVlbHMgYSBiaXQgc3RyYW5nZSB0byBt
-ZSBidXQgd2UgdGFsa2VkIGFib3V0IGl0IGJlZm9yZS4gOikKPj4KPj4gW0NvbWVzIGJhY2sgbGF0
-ZXIuXQo+Pgo+PiBCdXQgdGhlbiBJIHNlZSB0aGUgc3NldSBpcyBhY3R1YWxseSBjb3BpZWQgb25l
-IG1vcmUgdGltZSB0byBpdCdzIAo+PiBmaW5hbCBkZXN0aW5hdGlvbiBpbiBpOTE1X29hX3N0cmVh
-bV9pbml0LiBTaG91bGQgeW91IHRoZW4gc3RvcmUganVzdCAKPj4gZHJtX3NzZXUgaW4gdGhlIHBy
-b3BzIGFuZCBkbyB0aGUgZmluYWwgYXBwbGljYXRpb24gaW50byBwZXJmLT5zc2V1IAo+PiBkaXJl
-Y3RseSBpbiBpOTE1X29hX3N0cmVhbV9pbml0Pwo+Pgo+PiByZWFkX3Byb3BlcnRpZXNfdW5sb2Nr
-ZWQ6Cj4+IMKgwqDCoMKgwqBjb3B5X2Zyb21fdXNlcgo+PiDCoMKgwqDCoMKgaGFzX3NzZXUgPSB0
-cnVlCj4+Cj4+IGk5MTVfcGVyZl9vcGVuX2lvY3RsX2xvY2tlZDoKPj4gwqDCoMKgwqDCoHByaXZp
-bGVnZWRfb3AgPSBwcm9wcy0+aGFzX3NzZXUKPj4KPj4gaTkxNV9vYV9zdHJlYW1faW5pdAo+PiDC
-oMKgwqDCoMKgaWYgKHByb3BzLT5oYXNfc3NldSkKPj4gwqDCoMKgwqDCoMKgwqDCoCBpOTE1X2dl
-bV91c2VyX3RvX2NvbnRleHRfc3NldSgmcGVyZi0+c3NldSwgcHJvcHMtPnNzZXUpCj4+IMKgwqDC
-oMKgwqBlbHNlCj4+IMKgwqDCoMKgwqDCoMKgwqAgZ2V0X2RlZmF1bHRfc3NldV9jb25maWcoJnBl
-cmYtPnNzZXUsIHByb3BzLT5lbmdpbmUpOwo+Pgo+PiBXaGF0IGRvIHlvdSB0aGluaz8KPgo+IEkg
-Zm9yZ290IGk5MTVfZ2VtX3VzZXJfdG9fY29udGV4dF9zc2V1IGFjdHVhbGx5IHZhbGlkYXRlcyB0
-aGUgCj4gcmVxdWVzdGVkIGNvbmZpZ3VyYXRpb24uLiBBcyBzdWNoIGl0IGlzIGJldHRlciB0byBo
-YXZlIGl0IGVhcmxpZXIgCj4gcmF0aGVyIHRoYW4gbGF0ZXIgaW4gdGhlIGNhbGwgY2hhaW4uIFNv
-IGVpdGhlciBzdGljayB3aXRoIHdoYXQgeW91IAo+IGhhdmUgb3IgY29udmVydCB1c2VyIHNzZXUg
-dG8gcHJvcHMtPnNzZXUgaW4gcmVhZF9wcm9wZXJ0aWVzX3VubG9ja2VkLCAKPiBzbyB5b3UgZG9u
-J3QgaGF2ZSB0byBoYXZlIGJvdGggc3NldSBhbmQgZHJtX3NzZXUgaW4gdGhlIHByb3BzIHN0cnVj
-dC4gCj4gV2hhdGV2ZXIgeW91IHByZWZlci4KPgo+IFJlZ2FyZHMsCj4KPiBUdnJ0a28KCgpZZWFo
-LCBlYXJseSBwYXJzaW5nIG1ha2VzIHNlbnNlLgoKClRoYW5rcywKCgotTGlvbmVsCgoKPgo+Cj4+
-PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBicmVhazsKPj4+ICvCoMKgwqDCoMKgwqDCoCB9Cj4+
-PiDCoMKgwqDCoMKgwqDCoMKgwqAgY2FzZSBEUk1fSTkxNV9QRVJGX1BST1BfTUFYOgo+Pj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTUlTU0lOR19DQVNFKGlkKTsKPj4+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHJldHVybiAtRUlOVkFMOwo+Pj4gQEAgLTQzODIsOCArNDQ1OCwxMiBA
-QCBpbnQgaTkxNV9wZXJmX2lvY3RsX3ZlcnNpb24odm9pZCkKPj4+IMKgwqDCoMKgwqDCoCAqwqDC
-oMKgIHByZWVtcHRpb24gb24gYSBwYXJ0aWN1bGFyIGNvbnRleHQgc28gdGhhdCBwZXJmb3JtYW5j
-ZSAKPj4+IGRhdGEgaXMKPj4+IMKgwqDCoMKgwqDCoCAqwqDCoMKgIGFjY2Vzc2libGUgZnJvbSBh
-IGRlbHRhIG9mIE1JX1JQQyByZXBvcnRzIHdpdGhvdXQgCj4+PiBsb29raW5nIGF0IHRoZQo+Pj4g
-wqDCoMKgwqDCoMKgICrCoMKgwqAgT0EgYnVmZmVyLgo+Pj4gK8KgwqDCoMKgICoKPj4+ICvCoMKg
-wqDCoCAqIDQ6IEFkZCBEUk1fSTkxNV9QRVJGX1BST1BfQUxMT1dFRF9TU0VVIHRvIGxpbWl0IHdo
-YXQgCj4+PiBjb250ZXh0cyBjYW4KPj4+ICvCoMKgwqDCoCAqwqDCoMKgIGJlIHJ1biBmb3IgdGhl
-IGR1cmF0aW9uIG9mIHRoZSBwZXJmb3JtYW5jZSByZWNvcmRpbmcgCj4+PiBiYXNlZCBvbgo+Pj4g
-K8KgwqDCoMKgICrCoMKgwqAgdGhlaXIgU1NFVSBjb25maWd1cmF0aW9uLgo+Pj4gwqDCoMKgwqDC
-oMKgICovCj4+PiAtwqDCoMKgIHJldHVybiAzOwo+Pj4gK8KgwqDCoCByZXR1cm4gNDsKPj4+IMKg
-IH0KPj4+IMKgICNpZiBJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9TRUxGVEVTVCkKPj4+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BlcmZfdHlwZXMuaCAKPj4+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9wZXJmX3R5cGVzLmgKPj4+IGluZGV4IGY0Y2NkMmFk
-ZmVlNi4uMzIyODljYmRhNjQ4IDEwMDY0NAo+Pj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-aTkxNV9wZXJmX3R5cGVzLmgKPj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGVy
-Zl90eXBlcy5oCj4+PiBAQCAtMTYsNiArMTYsNyBAQAo+Pj4gwqAgI2luY2x1ZGUgPGxpbnV4L3V1
-aWQuaD4KPj4+IMKgICNpbmNsdWRlIDxsaW51eC93YWl0Lmg+Cj4+PiArI2luY2x1ZGUgImd0L2lu
-dGVsX3NzZXUuaCIKPj4+IMKgICNpbmNsdWRlICJpOTE1X3JlZy5oIgo+Pj4gwqAgI2luY2x1ZGUg
-ImludGVsX3dha2VyZWYuaCIKPj4+IEBAIC00MDcsNiArNDA4LDEyIEBAIHN0cnVjdCBpOTE1X3Bl
-cmYgewo+Pj4gwqDCoMKgwqDCoMKgICovCj4+PiDCoMKgwqDCoMKgIHN0cnVjdCBpOTE1X3BlcmZf
-c3RyZWFtICpleGNsdXNpdmVfc3RyZWFtOwo+Pj4gK8KgwqDCoCAvKioKPj4+ICvCoMKgwqDCoCAq
-IEBzc2V1OiBzc2V1IGNvbmZpZ3VyYXRpb24gc2VsZWN0ZWQgdG8gcnVuIHdoaWxlIHBlcmYgaXMg
-YWN0aXZlLAo+Pj4gK8KgwqDCoMKgICogYXBwbGllcyB0byBhbGwgY29udGV4dHMuCj4+PiArwqDC
-oMKgwqAgKi8KPj4+ICvCoMKgwqAgc3RydWN0IGludGVsX3NzZXUgc3NldTsKPj4+ICsKPj4+IMKg
-wqDCoMKgwqAgLyoqCj4+PiDCoMKgwqDCoMKgwqAgKiBGb3IgcmF0ZSBsaW1pdGluZyBhbnkgbm90
-aWZpY2F0aW9ucyBvZiBzcHVyaW91cwo+Pj4gwqDCoMKgwqDCoMKgICogaW52YWxpZCBPQSByZXBv
-cnRzCj4+PiBkaWZmIC0tZ2l0IGEvaW5jbHVkZS91YXBpL2RybS9pOTE1X2RybS5oIGIvaW5jbHVk
-ZS91YXBpL2RybS9pOTE1X2RybS5oCj4+PiBpbmRleCAyODEzZTU3OWI0ODAuLmRiNjQ5ZDAzYWI1
-MiAxMDA2NDQKPj4+IC0tLSBhL2luY2x1ZGUvdWFwaS9kcm0vaTkxNV9kcm0uaAo+Pj4gKysrIGIv
-aW5jbHVkZS91YXBpL2RybS9pOTE1X2RybS5oCj4+PiBAQCAtMTk2OSw2ICsxOTY5LDE3IEBAIGVu
-dW0gZHJtX2k5MTVfcGVyZl9wcm9wZXJ0eV9pZCB7Cj4+PiDCoMKgwqDCoMKgwqAgKi8KPj4+IMKg
-wqDCoMKgwqAgRFJNX0k5MTVfUEVSRl9QUk9QX0hPTERfUFJFRU1QVElPTiwKPj4+ICvCoMKgwqAg
-LyoqCj4+PiArwqDCoMKgwqAgKiBTcGVjaWZ5aW5nIHRoaXMgcGlucyBhbGwgY29udGV4dHMgdG8g
-dGhlIHNwZWNpZmllZCBTU0VVIHBvd2VyCj4+PiArwqDCoMKgwqAgKiBjb25maWd1cmF0aW9uIGZv
-ciB0aGUgZHVyYXRpb24gb2YgdGhlIHJlY29yZGluZy4KPj4+ICvCoMKgwqDCoCAqCj4+PiArwqDC
-oMKgwqAgKiBUaGlzIHBhcmFtZXRlcidzIHZhbHVlIGlzIGEgcG9pbnRlciB0byBhIHN0cnVjdAo+
-Pj4gK8KgwqDCoMKgICogZHJtX2k5MTVfZ2VtX2NvbnRleHRfcGFyYW1fc3NldS4KPj4+ICvCoMKg
-wqDCoCAqCj4+PiArwqDCoMKgwqAgKiBUaGlzIHByb3BlcnR5IGlzIGF2YWlsYWJsZSBpbiBwZXJm
-IHJldmlzaW9uIDQuCj4+PiArwqDCoMKgwqAgKi8KPj4+ICvCoMKgwqAgRFJNX0k5MTVfUEVSRl9Q
-Uk9QX0dMT0JBTF9TU0VVLAo+Pj4gKwo+Pj4gwqDCoMKgwqDCoCBEUk1fSTkxNV9QRVJGX1BST1Bf
-TUFYIC8qIG5vbi1BQkkgKi8KPj4+IMKgIH07Cj4+Pgo+Pgo+PiBObyBtYWpvciBjb21wbGFpbnRz
-LCBqdXN0IGJpa2VzaGVkZGluZyBpdCBhIGxpdHRsZSBiaXQuIDopIElmIHlvdSAKPj4gZmVlbCBp
-dCBpcyBnb29kIGVub3VnaCBhcyBpcyB0aGVuIEkgYWdyZWUgaXQgaXMgcGFzc2FibGUuCj4+Cj4+
-IFJlZ2FyZHMsCj4+Cj4+IFR2cnRrbwoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+--===============0131154532==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_93708764786145ff9c8ee2c84af6ff41intelcom_"
+
+--_000_93708764786145ff9c8ee2c84af6ff41intelcom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+>> >> Add correspondent helpers to be able to get old/new bandwidth
+>> >> global state object.
+>> >>
+>> >> v2: - Fixed typo in function call
+>> >> v3: - Changed new functions naming to use convention proposed
+>> >>       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
+>>
+>> >Still nak on the rename.
+>>
+>> Cool. Discuss it with Jani Nikula then, to have at least some common str=
+ategy on how to be picky on me.
+
+>The strategy is either rename all of these functions or none so that we
+>don't end up with random inconsistencies all over the place.
+
+
+Initially Jani Nikula wrote that he is trying to encourage people to call f=
+unctions
+
+starting with the module name. OK. Done it.
+
+
+You say that the opposite and nack. Now it just turns out that it is again =
+_me_ - poor minded, who didn't understand that I need to rename
+
+all functions now here as well, including those completely unrelated to tha=
+t patch.
+
+Sure - we have "plenty" of time!
+
+
+Or may be I shouldn't rename - kind of confused now.
+
+
+Best Regards,
+
+Lisovskiy Stanislav
+________________________________
+From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Sent: Friday, March 13, 2020 3:26:11 PM
+To: Lisovskiy, Stanislav
+Cc: intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; Roper, =
+Matthew D
+Subject: Re: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state helpers
+
+On Fri, Mar 13, 2020 at 08:49:30AM +0000, Lisovskiy, Stanislav wrote:
+> >> Add correspondent helpers to be able to get old/new bandwidth
+> >> global state object.
+> >>
+> >> v2: - Fixed typo in function call
+> >> v3: - Changed new functions naming to use convention proposed
+> >>       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
+>
+> >Still nak on the rename.
+>
+> Cool. Discuss it with Jani Nikula then, to have at least some common stra=
+tegy on how to be picky on me.
+
+The strategy is either rename all of these functions or none so that we
+don't end up with random inconsistencies all over the place.
+
+>
+> Best Regards,
+>
+> Lisovskiy Stanislav
+> ________________________________
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Wednesday, March 11, 2020 6:08:54 PM
+> To: Lisovskiy, Stanislav
+> Cc: intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; Roper=
+, Matthew D
+> Subject: Re: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state helpers
+>
+> On Mon, Mar 09, 2020 at 06:11:59PM +0200, Stanislav Lisovskiy wrote:
+> > Add correspondent helpers to be able to get old/new bandwidth
+> > global state object.
+> >
+> > v2: - Fixed typo in function call
+> > v3: - Changed new functions naming to use convention proposed
+> >       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
+>
+> Still nak on the rename.
+>
+> >
+> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_bw.c | 33 ++++++++++++++++++++++---
+> >  drivers/gpu/drm/i915/display/intel_bw.h |  9 +++++++
+> >  2 files changed, 39 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/=
+i915/display/intel_bw.c
+> > index 58b264bc318d..bdad7476dc7b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> > @@ -374,8 +374,35 @@ static unsigned int intel_bw_data_rate(struct drm_=
+i915_private *dev_priv,
+> >        return data_rate;
+> >  }
+> >
+> > -static struct intel_bw_state *
+> > -intel_atomic_get_bw_state(struct intel_atomic_state *state)
+> > +struct intel_bw_state *
+> > +intel_bw_get_old_state(struct intel_atomic_state *state)
+> > +{
+> > +     struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +     struct intel_global_state *bw_state;
+> > +
+> > +     bw_state =3D intel_atomic_get_old_global_obj_state(state, &dev_pr=
+iv->bw_obj);
+> > +     if (IS_ERR(bw_state))
+> > +             return ERR_CAST(bw_state);
+> > +
+> > +     return to_intel_bw_state(bw_state);
+> > +}
+> > +
+> > +struct intel_bw_state *
+> > +intel_bw_get_new_state(struct intel_atomic_state *state)
+> > +{
+> > +     struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> > +     struct intel_global_state *bw_state;
+> > +
+> > +     bw_state =3D intel_atomic_get_new_global_obj_state(state, &dev_pr=
+iv->bw_obj);
+> > +
+> > +     if (IS_ERR(bw_state))
+> > +             return ERR_CAST(bw_state);
+> > +
+> > +     return to_intel_bw_state(bw_state);
+> > +}
+> > +
+> > +struct intel_bw_state *
+> > +intel_bw_get_state(struct intel_atomic_state *state)
+> >  {
+> >        struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
+> >        struct intel_global_state *bw_state;
+> > @@ -420,7 +447,7 @@ int intel_bw_atomic_check(struct intel_atomic_state=
+ *state)
+> >                    old_active_planes =3D=3D new_active_planes)
+> >                        continue;
+> >
+> > -             bw_state  =3D intel_atomic_get_bw_state(state);
+> > +             bw_state  =3D intel_bw_get_state(state);
+> >                if (IS_ERR(bw_state))
+> >                        return PTR_ERR(bw_state);
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/=
+i915/display/intel_bw.h
+> > index a8aa7624c5aa..b5f61463922f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > @@ -24,6 +24,15 @@ struct intel_bw_state {
+> >
+> >  #define to_intel_bw_state(x) container_of((x), struct intel_bw_state, =
+base)
+> >
+> > +struct intel_bw_state *
+> > +intel_bw_get_old_state(struct intel_atomic_state *state);
+> > +
+> > +struct intel_bw_state *
+> > +intel_bw_get_new_state(struct intel_atomic_state *state);
+> > +
+> > +struct intel_bw_state *
+> > +intel_bw_get_state(struct intel_atomic_state *state);
+> > +
+> >  void intel_bw_init_hw(struct drm_i915_private *dev_priv);
+> >  int intel_bw_init(struct drm_i915_private *dev_priv);
+> >  int intel_bw_atomic_check(struct intel_atomic_state *state);
+> > --
+> > 2.24.1.485.gad05a3d8e5
+>
+> --
+> Ville Syrj=E4l=E4
+> Intel
+
+--
+Ville Syrj=E4l=E4
+Intel
+
+--_000_93708764786145ff9c8ee2c84af6ff41intelcom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px">&gt;&gt; &gt;&gt; Add correspondent helpers to be a=
+ble to get old/new bandwidth</span><br style=3D"color:rgb(33,33,33); font-f=
+amily:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,A=
+rial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;&gt; global state object.</span><br style=
+=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot=
+;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:1=
+3.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;&gt;</span><br style=3D"color:rgb(33,33,3=
+3); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot=
+;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;&gt; v2: - Fixed typo in function call</s=
+pan><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;=
+Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont=
+; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;&gt; v3: - Changed new functions naming t=
+o use convention proposed</span><br style=3D"color:rgb(33,33,33); font-fami=
+ly:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Aria=
+l,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+by Jani Nikula, i.e intel_bw_* in intel_bw.c file.</span><br style=3D"color=
+:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;S=
+egoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"=
+>
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;</span><br style=3D"color:rgb(33,33,33); font-=
+family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,=
+Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &gt;Still nak on the rename.</span><br style=
+=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot=
+;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:1=
+3.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;</span><br style=3D"color:rgb(33,33,33); font-=
+family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,=
+Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; Cool. Discuss it with Jani Nikula then, to ha=
+ve at least some common strategy on how to be picky on me.</span><br style=
+=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot=
+;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:1=
+3.3333px">
+<br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Sego=
+e UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; fo=
+nt-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;The strategy is either rename all of these functio=
+ns or none so that we</span><br style=3D"color:rgb(33,33,33); font-family:w=
+f_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sa=
+ns-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;don't end up with random inconsistencies all over =
+the place.</span><br>
+</p>
+<p><br>
+</p>
+<p>Initially Jani Nikula wrote that he is trying to encourage people to cal=
+l functions</p>
+<p>starting with the module name. OK. Done it.</p>
+<p><br>
+</p>
+<p>You say that the opposite and nack. Now it just turns&nbsp;<span style=
+=3D"font-size:12pt">out that it is again _me_ - poor minded, who didn't und=
+erstand that I need to rename</span></p>
+<p>all functions now here as well, including those completely unrelated to =
+that patch.</p>
+<p><span style=3D"font-size:12pt">Sure - we have &quot;plenty&quot; of time=
+!</span></p>
+<p><br>
+</p>
+<p>Or may be I shouldn't rename - kind of confused now.&nbsp;</p>
+<p><br>
+</p>
+<div id=3D"x_Signature">
+<div style=3D"font-family:Tahoma; font-size:13px"><font size=3D"2"><span st=
+yle=3D"font-size:10pt">Best Regards,<br>
+<br>
+Lisovskiy Stanislav <br>
+</span></font></div>
+</div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Ville Syrj=E4l=E4 &=
+lt;ville.syrjala@linux.intel.com&gt;<br>
+<b>Sent:</b> Friday, March 13, 2020 3:26:11 PM<br>
+<b>To:</b> Lisovskiy, Stanislav<br>
+<b>Cc:</b> intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; =
+Roper, Matthew D<br>
+<b>Subject:</b> Re: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state help=
+ers</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Fri, Mar 13, 2020 at 08:49:30AM &#43;0000, Liso=
+vskiy, Stanislav wrote:<br>
+&gt; &gt;&gt; Add correspondent helpers to be able to get old/new bandwidth=
+<br>
+&gt; &gt;&gt; global state object.<br>
+&gt; &gt;&gt;<br>
+&gt; &gt;&gt; v2: - Fixed typo in function call<br>
+&gt; &gt;&gt; v3: - Changed new functions naming to use convention proposed=
+<br>
+&gt; &gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Jani Nikula, i.e intel=
+_bw_* in intel_bw.c file.<br>
+&gt; <br>
+&gt; &gt;Still nak on the rename.<br>
+&gt; <br>
+&gt; Cool. Discuss it with Jani Nikula then, to have at least some common s=
+trategy on how to be picky on me.<br>
+<br>
+The strategy is either rename all of these functions or none so that we<br>
+don't end up with random inconsistencies all over the place.<br>
+<br>
+&gt; <br>
+&gt; Best Regards,<br>
+&gt; <br>
+&gt; Lisovskiy Stanislav<br>
+&gt; ________________________________<br>
+&gt; From: Ville Syrj=E4l=E4 &lt;ville.syrjala@linux.intel.com&gt;<br>
+&gt; Sent: Wednesday, March 11, 2020 6:08:54 PM<br>
+&gt; To: Lisovskiy, Stanislav<br>
+&gt; Cc: intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; Ro=
+per, Matthew D<br>
+&gt; Subject: Re: [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state helper=
+s<br>
+&gt; <br>
+&gt; On Mon, Mar 09, 2020 at 06:11:59PM &#43;0200, Stanislav Lisovskiy wrot=
+e:<br>
+&gt; &gt; Add correspondent helpers to be able to get old/new bandwidth<br>
+&gt; &gt; global state object.<br>
+&gt; &gt;<br>
+&gt; &gt; v2: - Fixed typo in function call<br>
+&gt; &gt; v3: - Changed new functions naming to use convention proposed<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Jani Nikula, i.e intel_bw_=
+* in intel_bw.c file.<br>
+&gt; <br>
+&gt; Still nak on the rename.<br>
+&gt; <br>
+&gt; &gt;<br>
+&gt; &gt; Signed-off-by: Stanislav Lisovskiy &lt;stanislav.lisovskiy@intel.=
+com&gt;<br>
+&gt; &gt; ---<br>
+&gt; &gt;&nbsp; drivers/gpu/drm/i915/display/intel_bw.c | 33 &#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43=
+;&#43;&#43;&#43;&#43;---<br>
+&gt; &gt;&nbsp; drivers/gpu/drm/i915/display/intel_bw.h |&nbsp; 9 &#43;&#43=
+;&#43;&#43;&#43;&#43;&#43;<br>
+&gt; &gt;&nbsp; 2 files changed, 39 insertions(&#43;), 3 deletions(-)<br>
+&gt; &gt;<br>
+&gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gp=
+u/drm/i915/display/intel_bw.c<br>
+&gt; &gt; index 58b264bc318d..bdad7476dc7b 100644<br>
+&gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_bw.c<br>
+&gt; &gt; &#43;&#43;&#43; b/drivers/gpu/drm/i915/display/intel_bw.c<br>
+&gt; &gt; @@ -374,8 &#43;374,35 @@ static unsigned int intel_bw_data_rate(s=
+truct drm_i915_private *dev_priv,<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return data_rate;<br>
+&gt; &gt;&nbsp; }<br>
+&gt; &gt;<br>
+&gt; &gt; -static struct intel_bw_state *<br>
+&gt; &gt; -intel_atomic_get_bw_state(struct intel_atomic_state *state)<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_old_state(struct intel_atomic_state *state)<br>
+&gt; &gt; &#43;{<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *dev_priv =
+=3D to_i915(state-&gt;base.dev);<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_global_state *bw_state=
+;<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; bw_state =3D intel_atomic_get_old_g=
+lobal_obj_state(state, &amp;dev_priv-&gt;bw_obj);<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(bw_state))<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; return ERR_CAST(bw_state);<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return to_intel_bw_state(bw_state);=
+<br>
+&gt; &gt; &#43;}<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_new_state(struct intel_atomic_state *state)<br>
+&gt; &gt; &#43;{<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private *dev_priv =
+=3D to_i915(state-&gt;base.dev);<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_global_state *bw_state=
+;<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; bw_state =3D intel_atomic_get_new_g=
+lobal_obj_state(state, &amp;dev_priv-&gt;bw_obj);<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(bw_state))<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; return ERR_CAST(bw_state);<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return to_intel_bw_state(bw_state);=
+<br>
+&gt; &gt; &#43;}<br>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_state(struct intel_atomic_state *state)<br>
+&gt; &gt;&nbsp; {<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct drm_i915_private=
+ *dev_priv =3D to_i915(state-&gt;base.dev);<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct intel_global_sta=
+te *bw_state;<br>
+&gt; &gt; @@ -420,7 &#43;447,7 @@ int intel_bw_atomic_check(struct intel_at=
+omic_state *state)<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; old_active_planes =3D=3D n=
+ew_active_planes)<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; co=
+ntinue;<br>
+&gt; &gt;<br>
+&gt; &gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; bw_state&nbsp; =3D intel_atomic_get_bw_state(state);<br>
+&gt; &gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; bw_state&nbsp; =3D intel_bw_get_state(state);<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; if (IS_ERR(bw_state))<br>
+&gt; &gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; re=
+turn PTR_ERR(bw_state);<br>
+&gt; &gt;<br>
+&gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gp=
+u/drm/i915/display/intel_bw.h<br>
+&gt; &gt; index a8aa7624c5aa..b5f61463922f 100644<br>
+&gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_bw.h<br>
+&gt; &gt; &#43;&#43;&#43; b/drivers/gpu/drm/i915/display/intel_bw.h<br>
+&gt; &gt; @@ -24,6 &#43;24,15 @@ struct intel_bw_state {<br>
+&gt; &gt;<br>
+&gt; &gt;&nbsp; #define to_intel_bw_state(x) container_of((x), struct intel=
+_bw_state, base)<br>
+&gt; &gt;<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_old_state(struct intel_atomic_state *state);<br=
+>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_new_state(struct intel_atomic_state *state);<br=
+>
+&gt; &gt; &#43;<br>
+&gt; &gt; &#43;struct intel_bw_state *<br>
+&gt; &gt; &#43;intel_bw_get_state(struct intel_atomic_state *state);<br>
+&gt; &gt; &#43;<br>
+&gt; &gt;&nbsp; void intel_bw_init_hw(struct drm_i915_private *dev_priv);<b=
+r>
+&gt; &gt;&nbsp; int intel_bw_init(struct drm_i915_private *dev_priv);<br>
+&gt; &gt;&nbsp; int intel_bw_atomic_check(struct intel_atomic_state *state)=
+;<br>
+&gt; &gt; --<br>
+&gt; &gt; 2.24.1.485.gad05a3d8e5<br>
+&gt; <br>
+&gt; --<br>
+&gt; Ville Syrj=E4l=E4<br>
+&gt; Intel<br>
+<br>
+-- <br>
+Ville Syrj=E4l=E4<br>
+Intel<br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_93708764786145ff9c8ee2c84af6ff41intelcom_--
+
+--===============0131154532==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0131154532==--
