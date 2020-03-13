@@ -1,31 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4357D1842C3
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 09:37:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4879D1842D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 09:42:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 299936E2F3;
-	Fri, 13 Mar 2020 08:37:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DBF66E3AE;
+	Fri, 13 Mar 2020 08:42:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F369A6E2F3;
- Fri, 13 Mar 2020 08:37:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E4710A66C9;
- Fri, 13 Mar 2020 08:37:20 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6D46E3AE
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 08:42:26 +0000 (UTC)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 01:42:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; 
+ d="scan'208,217";a="442348106"
+Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
+ by fmsmga005.fm.intel.com with ESMTP; 13 Mar 2020 01:42:25 -0700
+Received: from irsmsx606.ger.corp.intel.com (163.33.146.139) by
+ IRSMSX154.ger.corp.intel.com (163.33.192.96) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 13 Mar 2020 08:42:24 +0000
+Received: from irsmsx604.ger.corp.intel.com (163.33.146.137) by
+ IRSMSX606.ger.corp.intel.com (163.33.146.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 13 Mar 2020 08:42:24 +0000
+Received: from irsmsx604.ger.corp.intel.com ([163.33.146.137]) by
+ IRSMSX604.ger.corp.intel.com ([163.33.146.137]) with mapi id 15.01.1713.004;
+ Fri, 13 Mar 2020 08:42:24 +0000
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [PATCH v19 2/8] drm/i915: Introduce skl_plane_wm_level accessor.
+Thread-Index: AQHV9i4Qof7mn5aWakO08NrMTq/LhahDkfWAgAKkIwE=
+Date: Fri, 13 Mar 2020 08:42:23 +0000
+Message-ID: <5172187f1f964161b9dbf483c6163d0b@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-3-stanislav.lisovskiy@intel.com>,
+ <20200311160727.GA13686@intel.com>
+In-Reply-To: <20200311160727.GA13686@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.184.70.1]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Fri, 13 Mar 2020 08:37:20 -0000
-Message-ID: <158408864090.30352.4473215368022474516@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200311162300.1838847-1-matthew.d.roper@intel.com>
-In-Reply-To: <20200311162300.1838847-1-matthew.d.roper@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgR2Vu?=
- =?utf-8?q?11_workarounds_=28rev5=29?=
+Subject: Re: [Intel-gfx] [PATCH v19 2/8] drm/i915: Introduce
+ skl_plane_wm_level accessor.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,316 +62,1293 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: multipart/mixed; boundary="===============1066917595=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1066917595==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5172187f1f964161b9dbf483c6163d0bintelcom_"
+
+--_000_5172187f1f964161b9dbf483c6163d0bintelcom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+>>  static int
+>>  skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
+>>  {
+>> @@ -4606,22 +4618,29 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *c=
+rtc_state)
+>>         */
+>>        for (level =3D ilk_wm_max_level(dev_priv); level >=3D 0; level--)=
+ {
+>>                blocks =3D 0;
+>> +
+>>                for_each_plane_id_on_crtc(crtc, plane_id) {
+>> -                     const struct skl_plane_wm *wm =3D
+>> -                             &crtc_state->wm.skl.optimal.planes[plane_i=
+d];
+>> +                     const struct skl_wm_level *wm_level;
+>> +                     const struct skl_wm_level *wm_uv_level;
+>> +                     int color_plane =3D 0;
+
+>These color_plane variables seems kinda pointless. I'd just pass 0/1 direc=
+tly
+>(pretty sure that's what we do elsewhere too).
+
+
+Nope. I have a different view - if this is allowed here. 0/1 passed into fu=
+nction are just a magic
+
+numbers with no meaning - that way you see at least what's the param name a=
+nd it's meaning.
+
+
+Again, _absolutely_ pointless arguing and potentially waste of time instead=
+ of fixing some real thing. Whether those are variables or constants, doesn=
+'t make this code better or worse.
+
+
+>>                        /*
+>>                         * We only disable the watermarks for each plane =
+if
+>> @@ -4732,9 +4765,10 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *cr=
+tc_state)
+>>                         *  planes must be enabled before the level will =
+be used."
+>>                         * So this is actually safe to do.
+>>                         */
+>> -                     if (wm->wm[level].min_ddb_alloc > total[plane_id] =
+||
+>> -                         wm->uv_wm[level].min_ddb_alloc > uv_total[plan=
+e_id])
+>> -                             memset(&wm->wm[level], 0, sizeof(wm->wm[le=
+vel]));
+>> +                     if (wm_level->min_ddb_alloc > total[plane_id] ||
+>> +                         wm_uv_level->min_ddb_alloc > uv_total[plane_id=
+])
+>> +                             memset(&wm->wm[level], 0,
+>> +                                    sizeof(struct skl_wm_level));
+
+> memset(wm_level, 0, sizeof(*wm_level)) ?
+
+
+Again - memset(wm_level, 0, sizeof(*wm_level)) and memset(wm_level, 0, size=
+of(struct skl_wm_level)) are absolutely identical constructs according to C=
+ standard.
+
+And I know that you are going to say that sizeof(*wm_level) won't require t=
+o change type -
+
+well if you are changing the code anyway, this is trivial.
+
+If I have any freedom to express my point of view at all, I'm not going to =
+fix that.
+
+
+Why are we even wasting time for this kind of stuff? Aren't there more seri=
+ous problems no?
+
+I myself have already decades of experience in coding in a rather big proje=
+cts and big companies and can say that those kind of nitpicks are completel=
+y useless waste of time.
+
+
+
+Best Regards,
+
+Lisovskiy Stanislav
+________________________________
+From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Sent: Wednesday, March 11, 2020 6:07:27 PM
+To: Lisovskiy, Stanislav
+Cc: intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; Roper, =
+Matthew D
+Subject: Re: [PATCH v19 2/8] drm/i915: Introduce skl_plane_wm_level accesso=
+r.
+
+On Mon, Mar 09, 2020 at 06:11:58PM +0200, Stanislav Lisovskiy wrote:
+> For future Gen12 SAGV implementation we need to
+> seemlessly alter wm levels calculated, depending
+> on whether we are allowed to enable SAGV or not.
+>
+> So this accessor will give additional flexibility
+> to do that.
+>
+> Currently this accessor is still simply working
+> as "pass-through" function. This will be changed
+> in next coming patches from this series.
+>
+> v2: - plane_id -> plane->id(Ville Syrj=E4l=E4)
+>     - Moved wm_level var to have more local scope
+>       (Ville Syrj=E4l=E4)
+>     - Renamed yuv to color_plane(Ville Syrj=E4l=E4) in
+>       skl_plane_wm_level
+>
+> v3: - plane->id -> plane_id(this time for real, Ville Syrj=E4l=E4)
+>     - Changed colorplane id type from boolean to int as index
+>       (Ville Syrj=E4l=E4)
+>     - Moved crtc_state param so that it is first now
+>       (Ville Syrj=E4l=E4)
+>     - Moved wm_level declaration to tigher scope in
+>       skl_write_plane_wm(Ville Syrj=E4l=E4)
+>
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/intel_pm.c | 85 ++++++++++++++++++++++++++-------
+>  1 file changed, 67 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
+_pm.c
+> index c7928c870b0a..c72fa59a8302 100644
+> --- a/drivers/gpu/drm/i915/intel_pm.c
+> +++ b/drivers/gpu/drm/i915/intel_pm.c
+> @@ -4547,6 +4547,18 @@ icl_get_total_relative_data_rate(struct intel_crtc=
+_state *crtc_state,
+>        return total_data_rate;
+>  }
+>
+> +static const struct skl_wm_level *
+> +skl_plane_wm_level(const struct intel_crtc_state *crtc_state,
+> +                enum plane_id plane_id,
+> +                int level,
+> +                int color_plane)
+> +{
+> +     const struct skl_plane_wm *wm =3D
+> +             &crtc_state->wm.skl.optimal.planes[plane_id];
+> +
+> +     return color_plane =3D=3D 0 ? &wm->wm[level] : &wm->uv_wm[level];
+> +}
+> +
+>  static int
+>  skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)
+>  {
+> @@ -4606,22 +4618,29 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *cr=
+tc_state)
+>         */
+>        for (level =3D ilk_wm_max_level(dev_priv); level >=3D 0; level--) =
+{
+>                blocks =3D 0;
+> +
+>                for_each_plane_id_on_crtc(crtc, plane_id) {
+> -                     const struct skl_plane_wm *wm =3D
+> -                             &crtc_state->wm.skl.optimal.planes[plane_id=
+];
+> +                     const struct skl_wm_level *wm_level;
+> +                     const struct skl_wm_level *wm_uv_level;
+> +                     int color_plane =3D 0;
+
+These color_plane variables seems kinda pointless. I'd just pass 0/1 direct=
+ly
+(pretty sure that's what we do elsewhere too).
+
+> +
+> +                     wm_level =3D skl_plane_wm_level(crtc_state, plane_i=
+d,
+> +                                                   level, color_plane);
+> +                     wm_uv_level =3D skl_plane_wm_level(crtc_state, plan=
+e_id,
+> +                                                      level, color_plane=
+ + 1);
+>
+>                        if (plane_id =3D=3D PLANE_CURSOR) {
+> -                             if (wm->wm[level].min_ddb_alloc > total[PLA=
+NE_CURSOR]) {
+> +                             if (wm_level->min_ddb_alloc > total[PLANE_C=
+URSOR]) {
+>                                        drm_WARN_ON(&dev_priv->drm,
+> -                                                 wm->wm[level].min_ddb_a=
+lloc !=3D U16_MAX);
+> +                                                 wm_level->min_ddb_alloc=
+ !=3D U16_MAX);
+>                                        blocks =3D U32_MAX;
+>                                        break;
+>                                }
+>                                continue;
+>                        }
+>
+> -                     blocks +=3D wm->wm[level].min_ddb_alloc;
+> -                     blocks +=3D wm->uv_wm[level].min_ddb_alloc;
+> +                     blocks +=3D wm_level->min_ddb_alloc;
+> +                     blocks +=3D wm_uv_level->min_ddb_alloc;
+>                }
+>
+>                if (blocks <=3D alloc_size) {
+> @@ -4644,10 +4663,16 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *cr=
+tc_state)
+>         * proportional to its relative data rate.
+>         */
+>        for_each_plane_id_on_crtc(crtc, plane_id) {
+> -             const struct skl_plane_wm *wm =3D
+> -                     &crtc_state->wm.skl.optimal.planes[plane_id];
+> +             const struct skl_wm_level *wm_level;
+> +             const struct skl_wm_level *wm_uv_level;
+>                u64 rate;
+>                u16 extra;
+> +             int color_plane =3D 0;
+> +
+> +             wm_level =3D skl_plane_wm_level(crtc_state, plane_id,
+> +                                           level, color_plane);
+> +             wm_uv_level =3D skl_plane_wm_level(crtc_state, plane_id,
+> +                                              level, color_plane + 1);
+>
+>                if (plane_id =3D=3D PLANE_CURSOR)
+>                        continue;
+> @@ -4663,7 +4688,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crtc=
+_state)
+>                extra =3D min_t(u16, alloc_size,
+>                              DIV64_U64_ROUND_UP(alloc_size * rate,
+>                                                 total_data_rate));
+> -             total[plane_id] =3D wm->wm[level].min_ddb_alloc + extra;
+> +             total[plane_id] =3D wm_level->min_ddb_alloc + extra;
+>                alloc_size -=3D extra;
+>                total_data_rate -=3D rate;
+>
+> @@ -4674,7 +4699,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crtc=
+_state)
+>                extra =3D min_t(u16, alloc_size,
+>                              DIV64_U64_ROUND_UP(alloc_size * rate,
+>                                                 total_data_rate));
+> -             uv_total[plane_id] =3D wm->uv_wm[level].min_ddb_alloc + ext=
+ra;
+> +             uv_total[plane_id] =3D wm_uv_level->min_ddb_alloc + extra;
+>                alloc_size -=3D extra;
+>                total_data_rate -=3D rate;
+>        }
+> @@ -4717,8 +4742,16 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
+c_state)
+>         */
+>        for (level++; level <=3D ilk_wm_max_level(dev_priv); level++) {
+>                for_each_plane_id_on_crtc(crtc, plane_id) {
+> +                     const struct skl_wm_level *wm_level;
+> +                     const struct skl_wm_level *wm_uv_level;
+>                        struct skl_plane_wm *wm =3D
+>                                &crtc_state->wm.skl.optimal.planes[plane_i=
+d];
+> +                     int color_plane =3D 0;
+> +
+> +                     wm_level =3D skl_plane_wm_level(crtc_state, plane_i=
+d,
+> +                                                   level, color_plane);
+> +                     wm_uv_level =3D skl_plane_wm_level(crtc_state, plan=
+e_id,
+> +                                                      level, color_plane=
+ + 1);
+>
+>                        /*
+>                         * We only disable the watermarks for each plane i=
+f
+> @@ -4732,9 +4765,10 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
+c_state)
+>                         *  planes must be enabled before the level will b=
+e used."
+>                         * So this is actually safe to do.
+>                         */
+> -                     if (wm->wm[level].min_ddb_alloc > total[plane_id] |=
+|
+> -                         wm->uv_wm[level].min_ddb_alloc > uv_total[plane=
+_id])
+> -                             memset(&wm->wm[level], 0, sizeof(wm->wm[lev=
+el]));
+> +                     if (wm_level->min_ddb_alloc > total[plane_id] ||
+> +                         wm_uv_level->min_ddb_alloc > uv_total[plane_id]=
+)
+> +                             memset(&wm->wm[level], 0,
+> +                                    sizeof(struct skl_wm_level));
+
+memset(wm_level, 0, sizeof(*wm_level)) ?
+
+Hmm. Also wondering why we're not clearing wm_uv here as well. I suppose
+it might not mater since the hw doesn't use wm_uv (and I fixed the
+"did the wms change?" check to ignore it too). Bit might be nice to clear
+it for consistency. Should be a separate patch though.
+
+>
+>                        /*
+>                         * Wa_1408961008:icl, ehl
+> @@ -4742,9 +4776,14 @@ skl_allocate_pipe_ddb(struct intel_crtc_state *crt=
+c_state)
+>                         */
+>                        if (IS_GEN(dev_priv, 11) &&
+>                            level =3D=3D 1 && wm->wm[0].plane_en) {
+> -                             wm->wm[level].plane_res_b =3D wm->wm[0].pla=
+ne_res_b;
+> -                             wm->wm[level].plane_res_l =3D wm->wm[0].pla=
+ne_res_l;
+> -                             wm->wm[level].ignore_lines =3D wm->wm[0].ig=
+nore_lines;
+> +                             wm_level =3D skl_plane_wm_level(crtc_state,=
+ plane_id,
+> +                                                           0, color_plan=
+e);
+> +                             wm->wm[level].plane_res_b =3D
+> +                                     wm_level->plane_res_b;
+> +                             wm->wm[level].plane_res_l =3D
+> +                                     wm_level->plane_res_l;
+> +                             wm->wm[level].ignore_lines =3D
+> +                                     wm_level->ignore_lines;
+
+I would suggest we want this to read something like:
+
+const struct skl_wm_level *wm_level0 =3D skl_plane_wm_level(...)
+
+wm_level->foo =3D wm_level0->foo;
+...
+
+And with those we can throw out the 'wm' variable from this loop as
+well.
+
+>                        }
+>                }
+>        }
+> @@ -5358,8 +5397,13 @@ void skl_write_plane_wm(struct intel_plane *plane,
+>                &crtc_state->wm.skl.plane_ddb_uv[plane_id];
+>
+>        for (level =3D 0; level <=3D max_level; level++) {
+> +             const struct skl_wm_level *wm_level;
+> +             int color_plane =3D 0;
+> +
+> +             wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level=
+, color_plane);
+> +
+>                skl_write_wm_level(dev_priv, PLANE_WM(pipe, plane_id, leve=
+l),
+> -                                &wm->wm[level]);
+> +                                wm_level);
+>        }
+>        skl_write_wm_level(dev_priv, PLANE_WM_TRANS(pipe, plane_id),
+>                           &wm->trans_wm);
+> @@ -5392,8 +5436,13 @@ void skl_write_cursor_wm(struct intel_plane *plane=
+,
+>                &crtc_state->wm.skl.plane_ddb_y[plane_id];
+>
+>        for (level =3D 0; level <=3D max_level; level++) {
+> +             const struct skl_wm_level *wm_level;
+> +             int color_plane =3D 0;
+> +
+> +             wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level=
+, color_plane);
+> +
+>                skl_write_wm_level(dev_priv, CUR_WM(pipe, level),
+> -                                &wm->wm[level]);
+> +                                wm_level);
+>        }
+>        skl_write_wm_level(dev_priv, CUR_WM_TRANS(pipe), &wm->trans_wm);
+>
+> --
+> 2.24.1.485.gad05a3d8e5
+
+--
+Ville Syrj=E4l=E4
+Intel
+
+--_000_5172187f1f964161b9dbf483c6163d0bintelcom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta content=3D"text/html; charset=3DUTF-8">
+<style type=3D"text/css" style=3D"">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px">&gt;&gt;&nbsp; static int</span><br style=3D"color:=
+rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Se=
+goe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp; skl_allocate_pipe_ddb(struct intel_crtc=
+_state *crtc_state)</span><br style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp; {</span><br style=3D"color:rgb(33,33,33=
+); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;=
+,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; @@ -4606,22 &#43;4618,29 @@ skl_allocate_pipe=
+_ddb(struct intel_crtc_state *crtc_state)</span><br style=3D"color:rgb(33,3=
+3,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&q=
+uot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; */</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_norma=
+l,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,E=
+mojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for=
+ (level =3D ilk_wm_max_level(dev_priv); level &gt;=3D 0; level--) {</span><=
+br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe=
+ UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; fon=
+t-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks =3D 0;</span><br style=
+=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot=
+;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:1=
+3.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;</span><br style=3D"color:rgb(33,33,33);=
+ font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,T=
+ahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for_each_plane_id_on_crtc(crtc=
+, plane_id) {</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-=
+ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif=
+,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; const struct skl_plane_wm *wm =3D</span><br style=3D"color:rgb(33,33,33);=
+ font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,T=
+ahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.sk=
+l.optimal.planes[plane_id];</span><br style=3D"color:rgb(33,33,33); font-fa=
+mily:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Ar=
+ial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; const struct skl_wm_level *wm_level;</span><br style=3D"color:rgb(33,=
+33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&=
+quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; const struct skl_wm_level *wm_uv_level;</span><br style=3D"color:rgb(=
+33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe =
+WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; int color_plane =3D 0;</span><br style=3D"color:rgb(33,33,33); font-f=
+amily:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,A=
+rial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Sego=
+e UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; fo=
+nt-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;These color_plane variables seems kinda pointless.=
+ I'd just pass 0/1 directly</span><br style=3D"color:rgb(33,33,33); font-fa=
+mily:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Ar=
+ial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;(pretty sure that's what we do elsewhere too).</sp=
+an><br>
+</p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><br>
+</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px">Nope. I have a different view -&nbsp;if this is all=
+owed here. 0/1 passed into function are just a magic</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px">numbers with no meaning - that way you see at least=
+ what's the param name and it's&nbsp;meaning.</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><br>
+</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px">Again, _absolutely_ pointless arguing and potential=
+ly waste of time instead of fixing some real thing. Whether
+ those are variables or constants, doesn't make this code better or worse.<=
+/span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><br>
+</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ /*</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,=
+&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,Emo=
+jiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp; * We only disable the watermarks for each plane if<=
+/span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quo=
+t;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFo=
+nt; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; @@ -4732,9 &#43;4765,10 @@ skl_allocate_pipe_=
+ddb(struct intel_crtc_state *crtc_state)</span><br style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp; planes must be enabled =
+before the level will be used.&quot;</span><br style=3D"color:rgb(33,33,33)=
+; font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,=
+Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;* So this is actually safe to d=
+o.</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&=
+quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,Emoj=
+iFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/</span><br style=3D"color:rgb=
+(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe=
+ WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; if (wm-&gt;wm[level].min_ddb_alloc &gt; total[plane_id] ||</span><br styl=
+e=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quo=
+t;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:=
+13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;uv_wm[level].min_ddb_alloc &gt; uv_total[p=
+lane_id])</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_n=
+ormal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,ser=
+if,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;wm-&gt;wm[lev=
+el], 0, sizeof(wm-&gt;wm[level]));</span><br style=3D"color:rgb(33,33,33); =
+font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Ta=
+homa,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; if (wm_level-&gt;min_ddb_alloc &gt; total[plane_id] ||</span><br styl=
+e=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quo=
+t;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:=
+13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_uv_level-&gt;min_ddb_alloc &gt; uv_total[p=
+lane_id])</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_n=
+ormal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,ser=
+if,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;wm-&gt;wm=
+[level], 0,</span><br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui=
+_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,s=
+erif,EmojiFont; font-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; sizeof(struct skl_wm_level));</span><br style=3D"color=
+:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;S=
+egoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"=
+>
+<br style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Sego=
+e UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; fo=
+nt-size:13.3333px">
+<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Se=
+goe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; =
+font-size:13.3333px">&gt;&nbsp;memset(wm_level, 0, sizeof(*wm_level)) ?</sp=
+an><br>
+</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><br>
+</span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px">Again
+ -&nbsp;<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,=
+&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,Emo=
+jiFont; font-size:13.3333px">memset(wm_level, 0, sizeof(*wm_level)) and&nbs=
+p;<span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;=
+Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont=
+; font-size:13.3333px">memset(wm_level,
+ 0, sizeof(struct skl_wm_level)) are absolutely identical constructs accord=
+ing to C&nbsp;standard.</span></span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px">And
+ I know that you are going to say that sizeof(*wm_level) won't require to c=
+hange type -&nbsp;</span></span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px">well
+ if you are changing the code anyway, this is trivial.&nbsp;&nbsp;</span></=
+span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px">If
+ I have any freedom to express my point of view at all, I'm not going to fi=
+x that.</span></span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px"><br>
+</span></span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px">Why
+ are we even wasting time for this kind of stuff? Aren't there more serious=
+ problems no?</span></span></span></span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px">I
+ myself have already&nbsp;decades of experience in coding in a rather big p=
+rojects and big companies and can say&nbsp;</span></span></span></span><spa=
+n style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe =
+UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font=
+-size:13.3333px">that
+ those kind of nitpicks are completely useless waste of time.</span></p>
+<p><span style=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFon=
+t; font-size:13.3333px"><span style=3D"color:rgb(33,33,33); font-family:wf_=
+segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans=
+-serif,serif,EmojiFont; font-size:13.3333px"><span style=3D"color:rgb(33,33=
+,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&quot;,&quot;Segoe WP&qu=
+ot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size:13.3333px"><span sty=
+le=3D"color:rgb(33,33,33); font-family:wf_segoe-ui_normal,&quot;Segoe UI&qu=
+ot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif,serif,EmojiFont; font-size=
+:13.3333px"><br>
+</span></span></span></span></p>
+<p><br>
+</p>
+<div id=3D"x_Signature">
+<div style=3D"font-family:Tahoma; font-size:13px"><font size=3D"2"><span st=
+yle=3D"font-size:10pt">Best Regards,<br>
+<br>
+Lisovskiy Stanislav <br>
+</span></font></div>
+</div>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Ville Syrj=E4l=E4 &=
+lt;ville.syrjala@linux.intel.com&gt;<br>
+<b>Sent:</b> Wednesday, March 11, 2020 6:07:27 PM<br>
+<b>To:</b> Lisovskiy, Stanislav<br>
+<b>Cc:</b> intel-gfx@lists.freedesktop.org; Ausmus, James; Saarinen, Jani; =
+Roper, Matthew D<br>
+<b>Subject:</b> Re: [PATCH v19 2/8] drm/i915: Introduce skl_plane_wm_level =
+accessor.</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">On Mon, Mar 09, 2020 at 06:11:58PM &#43;0200, Stan=
+islav Lisovskiy wrote:<br>
+&gt; For future Gen12 SAGV implementation we need to<br>
+&gt; seemlessly alter wm levels calculated, depending<br>
+&gt; on whether we are allowed to enable SAGV or not.<br>
+&gt; <br>
+&gt; So this accessor will give additional flexibility<br>
+&gt; to do that.<br>
+&gt; <br>
+&gt; Currently this accessor is still simply working<br>
+&gt; as &quot;pass-through&quot; function. This will be changed<br>
+&gt; in next coming patches from this series.<br>
+&gt; <br>
+&gt; v2: - plane_id -&gt; plane-&gt;id(Ville Syrj=E4l=E4)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Moved wm_level var to have more local scope<=
+br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Ville Syrj=E4l=E4)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Renamed yuv to color_plane(Ville Syrj=E4l=E4=
+) in<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skl_plane_wm_level<br>
+&gt; <br>
+&gt; v3: - plane-&gt;id -&gt; plane_id(this time for real, Ville Syrj=E4l=
+=E4)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Changed colorplane id type from boolean to i=
+nt as index<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Ville Syrj=E4l=E4)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Moved crtc_state param so that it is first n=
+ow<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Ville Syrj=E4l=E4)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; - Moved wm_level declaration to tigher scope i=
+n<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skl_write_plane_wm(Ville Syrj=E4l=
+=E4)<br>
+&gt; <br>
+&gt; Signed-off-by: Stanislav Lisovskiy &lt;stanislav.lisovskiy@intel.com&g=
+t;<br>
+&gt; ---<br>
+&gt;&nbsp; drivers/gpu/drm/i915/intel_pm.c | 85 &#43;&#43;&#43;&#43;&#43;&#=
+43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#43;&#=
+43;&#43;&#43;&#43;&#43;&#43;-------<br>
+&gt;&nbsp; 1 file changed, 67 insertions(&#43;), 18 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/in=
+tel_pm.c<br>
+&gt; index c7928c870b0a..c72fa59a8302 100644<br>
+&gt; --- a/drivers/gpu/drm/i915/intel_pm.c<br>
+&gt; &#43;&#43;&#43; b/drivers/gpu/drm/i915/intel_pm.c<br>
+&gt; @@ -4547,6 &#43;4547,18 @@ icl_get_total_relative_data_rate(struct int=
+el_crtc_state *crtc_state,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return total_data_rate;<br>
+&gt;&nbsp; }<br>
+&gt;&nbsp; <br>
+&gt; &#43;static const struct skl_wm_level *<br>
+&gt; &#43;skl_plane_wm_level(const struct intel_crtc_state *crtc_state,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; enum plane_id plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; int level,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; int color_plane)<br>
+&gt; &#43;{<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_plane_wm *wm =3D<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; &amp;crtc_state-&gt;wm.skl.optimal.planes[plane_id];<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp; return color_plane =3D=3D 0 ? &amp;wm-&g=
+t;wm[level] : &amp;wm-&gt;uv_wm[level];<br>
+&gt; &#43;}<br>
+&gt; &#43;<br>
+&gt;&nbsp; static int<br>
+&gt;&nbsp; skl_allocate_pipe_ddb(struct intel_crtc_state *crtc_state)<br>
+&gt;&nbsp; {<br>
+&gt; @@ -4606,22 &#43;4618,29 @@ skl_allocate_pipe_ddb(struct intel_crtc_st=
+ate *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (level =3D ilk_wm_max_le=
+vel(dev_priv); level &gt;=3D 0; level--) {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; blocks =3D 0;<br>
+&gt; &#43;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; for_each_plane_id_on_crtc(crtc, plane_id) {<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_plane_=
+wm *wm =3D<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.skl.optimal.planes[plane_id=
+];<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_wm=
+_level *wm_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_wm=
+_level *wm_uv_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int color_plane =3D=
+ 0;<br>
+<br>
+These color_plane variables seems kinda pointless. I'd just pass 0/1 direct=
+ly<br>
+(pretty sure that's what we do elsewhere too).<br>
+<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_level =3D skl_pl=
+ane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; level, color_plane);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_uv_level =3D skl=
+_plane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; level, color_plane &#43; 1);<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (pla=
+ne_id =3D=3D PLANE_CURSOR) {<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; if (wm-&gt;wm[level].min_ddb_alloc &gt; total[PLAN=
+E_CURSOR]) {<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; if (wm_level-&gt;min_ddb_alloc &gt; total[PLAN=
+E_CURSOR]) {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; drm_WARN_ON(&amp;dev_priv-&gt;drm,<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm-&g=
+t;wm[level].min_ddb_alloc !=3D U16_MAX);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; w=
+m_level-&gt;min_ddb_alloc !=3D U16_MAX);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; blocks =3D U32_MAX;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; break;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp; <br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks &#43;=3D wm-&gt;=
+wm[level].min_ddb_alloc;<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks &#43;=3D wm-&gt;=
+uv_wm[level].min_ddb_alloc;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks &#43;=3D wm_=
+level-&gt;min_ddb_alloc;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blocks &#43;=3D wm_=
+uv_level-&gt;min_ddb_alloc;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; if (blocks &lt;=3D alloc_size) {<br>
+&gt; @@ -4644,10 &#43;4663,16 @@ skl_allocate_pipe_ddb(struct intel_crtc_st=
+ate *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; * proportional to its =
+relative data rate.<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for_each_plane_id_on_crtc(cr=
+tc, plane_id) {<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; const struct skl_plane_wm *wm =3D<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.=
+skl.optimal.planes[plane_id];<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; const struct skl_wm_level *wm_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; const struct skl_wm_level *wm_uv_level;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; u64 rate;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; u16 extra;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; int color_plane =3D 0;<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; wm_level =3D skl_plane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; level, color_plane);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; wm_uv_level =3D skl_plane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; level, color_plane =
+&#43; 1);<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; if (plane_id =3D=3D PLANE_CURSOR)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continu=
+e;<br>
+&gt; @@ -4663,7 &#43;4688,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_stat=
+e *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; extra =3D min_t(u16, alloc_size,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; DIV64_U64_ROUND_UP(alloc_size * rate,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_d=
+ata_rate));<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; total[plane_id] =3D wm-&gt;wm[level].min_ddb_alloc &#43; extra;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; total[plane_id] =3D wm_level-&gt;min_ddb_alloc &#43; extra;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; alloc_size -=3D extra;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; total_data_rate -=3D rate;<br>
+&gt;&nbsp; <br>
+&gt; @@ -4674,7 &#43;4699,7 @@ skl_allocate_pipe_ddb(struct intel_crtc_stat=
+e *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; extra =3D min_t(u16, alloc_size,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; DIV64_U64_ROUND_UP(alloc_size * rate,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; total_d=
+ata_rate));<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; uv_total[plane_id] =3D wm-&gt;uv_wm[level].min_ddb_alloc &#43; extra;<b=
+r>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; uv_total[plane_id] =3D wm_uv_level-&gt;min_ddb_alloc &#43; extra;<b=
+r>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; alloc_size -=3D extra;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; total_data_rate -=3D rate;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt; @@ -4717,8 &#43;4742,16 @@ skl_allocate_pipe_ddb(struct intel_crtc_sta=
+te *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (level&#43;&#43;; level =
+&lt;=3D ilk_wm_max_level(dev_priv); level&#43;&#43;) {<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; for_each_plane_id_on_crtc(crtc, plane_id) {<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_wm=
+_level *wm_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const struct skl_wm=
+_level *wm_uv_level;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct =
+skl_plane_wm *wm =3D<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.skl.optimal=
+.planes[plane_id];<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int color_plane =3D=
+ 0;<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_level =3D skl_pl=
+ane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; level, color_plane);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_uv_level =3D skl=
+_plane_wm_level(crtc_state, plane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; level, color_plane &#43; 1);<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+ We only disable the watermarks for each plane if<br>
+&gt; @@ -4732,9 &#43;4765,10 @@ skl_allocate_pipe_ddb(struct intel_crtc_sta=
+te *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+&nbsp; planes must be enabled before the level will be used.&quot;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+ So this is actually safe to do.<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+/<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (wm-&gt;wm[level].mi=
+n_ddb_alloc &gt; total[plane_id] ||<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ wm-&gt;uv_wm[level].min_ddb_alloc &gt; uv_total[plane_id])<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;wm-&gt;wm[level], 0, sizeof(wm-&gt;wm[=
+level]));<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (wm_level-&gt;mi=
+n_ddb_alloc &gt; total[plane_id] ||<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; wm_uv_level-&gt;min_ddb_alloc &gt; uv_total[plane_id])<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; memset(&amp;wm-&gt;wm[level], 0,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size=
+of(struct skl_wm_level));<br>
+<br>
+memset(wm_level, 0, sizeof(*wm_level)) ?<br>
+<br>
+Hmm. Also wondering why we're not clearing wm_uv here as well. I suppose<br=
+>
+it might not mater since the hw doesn't use wm_uv (and I fixed the<br>
+&quot;did the wms change?&quot; check to ignore it too). Bit might be nice =
+to clear<br>
+it for consistency. Should be a separate patch though.<br>
+<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+ Wa_1408961008:icl, ehl<br>
+&gt; @@ -4742,9 &#43;4776,14 @@ skl_allocate_pipe_ddb(struct intel_crtc_sta=
+te *crtc_state)<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *=
+/<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (IS_=
+GEN(dev_priv, 11) &amp;&amp;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; level =3D=3D 1 &amp;&amp; wm-&gt;wm[0].plane_en) {<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].plane_res_b =3D wm-&gt;wm[0].plan=
+e_res_b;<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].plane_res_l =3D wm-&gt;wm[0].plan=
+e_res_l;<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].ignore_lines =3D wm-&gt;wm[0].ign=
+ore_lines;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_level =3D skl_plane_wm_level(crtc_state, pl=
+ane_id,<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0, color_plane);=
+<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].plane_res_b =3D<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; wm_level-&gt;plane_res_b;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].plane_res_l =3D<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; wm_level-&gt;plane_res_l;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; wm-&gt;wm[level].ignore_lines =3D<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; wm_level-&gt;ignore_lines;<br>
+<br>
+I would suggest we want this to read something like:<br>
+<br>
+const struct skl_wm_level *wm_level0 =3D skl_plane_wm_level(...)<br>
+<br>
+wm_level-&gt;foo =3D wm_level0-&gt;foo;<br>
+...<br>
+<br>
+And with those we can throw out the 'wm' variable from this loop as<br>
+well.<br>
+<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt; @@ -5358,8 &#43;5397,13 @@ void skl_write_plane_wm(struct intel_plane =
+*plane,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.skl.plane_ddb_uv[plane_id];<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (level =3D 0; level &lt;=
+=3D max_level; level&#43;&#43;) {<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; const struct skl_wm_level *wm_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; int color_plane =3D 0;<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level, color_=
+plane);<br>
+&gt; &#43;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; skl_write_wm_level(dev_priv, PLANE_WM(pipe, plane_id, l=
+evel),<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;wm-&gt;wm[level]);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_level);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skl_write_wm_level(dev_priv,=
+ PLANE_WM_TRANS(pipe, plane_id),<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; &amp;wm-&gt;trans_wm);<br>
+&gt; @@ -5392,8 &#43;5436,13 @@ void skl_write_cursor_wm(struct intel_plane=
+ *plane,<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; &amp;crtc_state-&gt;wm.skl.plane_ddb_y[plane_id];<br>
+&gt;&nbsp; <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (level =3D 0; level &lt;=
+=3D max_level; level&#43;&#43;) {<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; const struct skl_wm_level *wm_level;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; int color_plane =3D 0;<br>
+&gt; &#43;<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; wm_level =3D skl_plane_wm_level(crtc_state, plane_id, level, color_=
+plane);<br>
+&gt; &#43;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; skl_write_wm_level(dev_priv, CUR_WM(pipe, level),<br>
+&gt; -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &amp;wm-&gt;wm[level]);<br>
+&gt; &#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; wm_level);<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skl_write_wm_level(dev_priv,=
+ CUR_WM_TRANS(pipe), &amp;wm-&gt;trans_wm);<br>
+&gt;&nbsp; <br>
+&gt; -- <br>
+&gt; 2.24.1.485.gad05a3d8e5<br>
+<br>
+-- <br>
+Ville Syrj=E4l=E4<br>
+Intel<br>
+</div>
+</span></font>
+</body>
+</html>
+
+--_000_5172187f1f964161b9dbf483c6163d0bintelcom_--
+
+--===============1066917595==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Series: Gen11 workarounds (rev5)
-URL   : https://patchwork.freedesktop.org/series/74475/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8127_full -> Patchwork_16956_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_16956_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16956_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_16956_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_whisper@basic-fds-priority:
-    - shard-iclb:         [PASS][1] -> [TIMEOUT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb8/igt@gem_exec_whisper@basic-fds-priority.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb5/igt@gem_exec_whisper@basic-fds-priority.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16956_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-tglb:         [PASS][3] -> [INCOMPLETE][4] ([i915#1402])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-tglb6/igt@gem_ctx_persistence@close-replace-race.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-tglb2/igt@gem_ctx_persistence@close-replace-race.html
-    - shard-iclb:         [PASS][5] -> [INCOMPLETE][6] ([i915#1402])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@gem_ctx_persistence@close-replace-race.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb2/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd:
-    - shard-iclb:         [PASS][7] -> [FAIL][8] ([i915#679])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb4/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd.html
-
-  * igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd1:
-    - shard-iclb:         [PASS][9] -> [INCOMPLETE][10] ([i915#1239])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb4/igt@gem_ctx_persistence@legacy-engines-mixed-process@bsd1.html
-
-  * igt@gem_exec_async@concurrent-writes-bsd:
-    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#112146]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@gem_exec_async@concurrent-writes-bsd.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb2/igt@gem_exec_async@concurrent-writes-bsd.html
-
-  * igt@gem_exec_balancer@smoke:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#110854])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb1/igt@gem_exec_balancer@smoke.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@gem_exec_balancer@smoke.html
-
-  * igt@gem_exec_whisper@basic-fds-all:
-    - shard-tglb:         [PASS][15] -> [INCOMPLETE][16] ([i915#1401])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-tglb8/igt@gem_exec_whisper@basic-fds-all.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-tglb8/igt@gem_exec_whisper@basic-fds-all.html
-
-  * igt@gem_ppgtt@flink-and-close-vma-leak:
-    - shard-tglb:         [PASS][17] -> [FAIL][18] ([i915#644])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-tglb6/igt@gem_ppgtt@flink-and-close-vma-leak.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-tglb2/igt@gem_ppgtt@flink-and-close-vma-leak.html
-
-  * igt@i915_pm_rps@reset:
-    - shard-iclb:         [PASS][19] -> [FAIL][20] ([i915#413])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb1/igt@i915_pm_rps@reset.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@i915_pm_rps@reset.html
-
-  * igt@i915_suspend@sysfs-reader:
-    - shard-apl:          [PASS][21] -> [DMESG-WARN][22] ([i915#180]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-apl3/igt@i915_suspend@sysfs-reader.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-apl6/igt@i915_suspend@sysfs-reader.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-random:
-    - shard-kbl:          [PASS][23] -> [FAIL][24] ([i915#54])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-kbl6/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
-    - shard-apl:          [PASS][25] -> [FAIL][26] ([i915#54])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-apl4/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-64x21-random.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-64x21-sliding:
-    - shard-skl:          [PASS][27] -> [FAIL][28] ([i915#54]) +2 similar issues
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl8/igt@kms_cursor_crc@pipe-b-cursor-64x21-sliding.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl10/igt@kms_cursor_crc@pipe-b-cursor-64x21-sliding.html
-
-  * igt@kms_flip@2x-plain-flip-ts-check:
-    - shard-glk:          [PASS][29] -> [INCOMPLETE][30] ([i915#58] / [k.org#198133])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-glk3/igt@kms_flip@2x-plain-flip-ts-check.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-glk8/igt@kms_flip@2x-plain-flip-ts-check.html
-
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-kbl:          [PASS][31] -> [DMESG-WARN][32] ([i915#180])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-kbl2/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-kbl4/igt@kms_flip@flip-vs-suspend-interruptible.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-skl:          [PASS][33] -> [FAIL][34] ([i915#1188]) +1 similar issue
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl8/igt@kms_hdr@bpc-switch-suspend.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl10/igt@kms_hdr@bpc-switch-suspend.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [PASS][35] -> [FAIL][36] ([fdo#108145])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
-    - shard-skl:          [PASS][37] -> [FAIL][38] ([fdo#108145] / [i915#265])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl8/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl10/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
-
-  * igt@kms_psr@psr2_primary_mmap_cpu:
-    - shard-iclb:         [PASS][39] -> [SKIP][40] ([fdo#109441])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb2/igt@kms_psr@psr2_primary_mmap_cpu.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb4/igt@kms_psr@psr2_primary_mmap_cpu.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [PASS][41] -> [FAIL][42] ([i915#31])
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-apl1/igt@kms_setmode@basic.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-apl6/igt@kms_setmode@basic.html
-
-  * igt@perf_pmu@busy-double-start-vcs1:
-    - shard-iclb:         [PASS][43] -> [SKIP][44] ([fdo#112080]) +2 similar issues
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb1/igt@perf_pmu@busy-double-start-vcs1.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@perf_pmu@busy-double-start-vcs1.html
-
-  * igt@prime_busy@hang-bsd2:
-    - shard-iclb:         [PASS][45] -> [SKIP][46] ([fdo#109276]) +7 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb1/igt@prime_busy@hang-bsd2.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@prime_busy@hang-bsd2.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-skl:          [INCOMPLETE][47] ([i915#1402]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl1/igt@gem_ctx_persistence@close-replace-race.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl5/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_exec_schedule@implicit-write-read-bsd:
-    - shard-iclb:         [SKIP][49] ([i915#677]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb1/igt@gem_exec_schedule@implicit-write-read-bsd.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@gem_exec_schedule@implicit-write-read-bsd.html
-
-  * igt@gem_exec_schedule@promotion-bsd1:
-    - shard-iclb:         [SKIP][51] ([fdo#109276]) -> [PASS][52] +7 similar issues
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb6/igt@gem_exec_schedule@promotion-bsd1.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb4/igt@gem_exec_schedule@promotion-bsd1.html
-
-  * igt@gem_workarounds@suspend-resume:
-    - shard-skl:          [INCOMPLETE][53] ([i915#69]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl6/igt@gem_workarounds@suspend-resume.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl3/igt@gem_workarounds@suspend-resume.html
-
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-kbl:          [DMESG-WARN][55] ([i915#180]) -> [PASS][56] +4 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-kbl4/igt@gem_workarounds@suspend-resume-fd.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-kbl6/igt@gem_workarounds@suspend-resume-fd.html
-
-  * igt@i915_pm_dc@dc5-dpms:
-    - shard-iclb:         [FAIL][57] ([i915#447]) -> [PASS][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@i915_pm_dc@dc5-dpms.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb5/igt@i915_pm_dc@dc5-dpms.html
-
-  * igt@i915_pm_dc@dc6-psr:
-    - shard-iclb:         [FAIL][59] ([i915#454]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb6/igt@i915_pm_dc@dc6-psr.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb7/igt@i915_pm_dc@dc6-psr.html
-
-  * igt@i915_pm_rps@waitboost:
-    - shard-iclb:         [FAIL][61] ([i915#413]) -> [PASS][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb5/igt@i915_pm_rps@waitboost.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb6/igt@i915_pm_rps@waitboost.html
-
-  * igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy:
-    - shard-glk:          [FAIL][63] ([i915#72]) -> [PASS][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-glk7/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-glk6/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-skl:          [FAIL][65] ([IGT#5] / [i915#697]) -> [PASS][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl6/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  * igt@kms_draw_crc@draw-method-xrgb8888-mmap-cpu-xtiled:
-    - shard-skl:          [FAIL][67] ([i915#52] / [i915#54]) -> [PASS][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl3/igt@kms_draw_crc@draw-method-xrgb8888-mmap-cpu-xtiled.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl6/igt@kms_draw_crc@draw-method-xrgb8888-mmap-cpu-xtiled.html
-
-  * igt@kms_flip@flip-vs-expired-vblank:
-    - shard-skl:          [FAIL][69] ([i915#79]) -> [PASS][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl9/igt@kms_flip@flip-vs-expired-vblank.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl5/igt@kms_flip@flip-vs-expired-vblank.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render:
-    - shard-skl:          [FAIL][71] ([i915#49]) -> [PASS][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl6/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-render.html
-
-  * igt@kms_frontbuffer_tracking@psr-suspend:
-    - shard-skl:          [INCOMPLETE][73] ([i915#123] / [i915#69]) -> [PASS][74]
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl10/igt@kms_frontbuffer_tracking@psr-suspend.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl10/igt@kms_frontbuffer_tracking@psr-suspend.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes:
-    - shard-apl:          [DMESG-WARN][75] ([i915#180]) -> [PASS][76] +2 similar issues
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-b-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][77] ([fdo#108145] / [i915#265]) -> [PASS][78]
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-skl4/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_cursor_plane_onoff:
-    - shard-iclb:         [SKIP][79] ([fdo#109441]) -> [PASS][80]
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb4/igt@kms_psr@psr2_cursor_plane_onoff.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb2/igt@kms_psr@psr2_cursor_plane_onoff.html
-
-  * igt@perf_pmu@busy-vcs1:
-    - shard-iclb:         [SKIP][81] ([fdo#112080]) -> [PASS][82] +7 similar issues
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8127/shard-iclb3/igt@perf_pmu@busy-vcs1.html
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/shard-iclb2/igt@perf_pmu@busy-vcs1.html
-
-  
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110854]: https://bugs.freedesktop.org/show_bug.cgi?id=110854
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#123]: https://gitlab.freedesktop.org/drm/intel/issues/123
-  [i915#1239]: https://gitlab.freedesktop.org/drm/intel/issues/1239
-  [i915#1401]: https://gitlab.freedesktop.org/drm/intel/issues/1401
-  [i915#1402]: https://gitlab.freedesktop.org/drm/intel/issues/1402
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
-  [i915#447]: https://gitlab.freedesktop.org/drm/intel/issues/447
-  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#644]: https://gitlab.freedesktop.org/drm/intel/issues/644
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#697]: https://gitlab.freedesktop.org/drm/intel/issues/697
-  [i915#72]: https://gitlab.freedesktop.org/drm/intel/issues/72
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8127 -> Patchwork_16956
-
-  CI-20190529: 20190529
-  CI_DRM_8127: 6b843f994832ac95eafa8d380399c3aef2cab3e5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5506: 59fd8a0d01dac58dc6c7d86ef391ed4393ab5aae @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16956: 61491f4c9a1186b3f5a41b6129854fa3a692bc4c @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16956/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1066917595==--
