@@ -2,30 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FDF1848B9
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A11151848EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2020 15:14:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A79CC6E9CD;
-	Fri, 13 Mar 2020 14:03:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E93E06EBD3;
+	Fri, 13 Mar 2020 14:14:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 298396E9CD;
- Fri, 13 Mar 2020 14:03:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 220E0A0019;
- Fri, 13 Mar 2020 14:03:44 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C8656EBD3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2020 14:14:11 +0000 (UTC)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2020 07:14:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,548,1574150400"; d="scan'208";a="237233436"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by orsmga008.jf.intel.com with SMTP; 13 Mar 2020 07:14:07 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 13 Mar 2020 16:14:07 +0200
+Date: Fri, 13 Mar 2020 16:14:07 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200313141407.GM13686@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-4-stanislav.lisovskiy@intel.com>
+ <20200311160854.GB13686@intel.com>
+ <9ffa74c26bc349aab1bd2fe8f427f451@intel.com>
+ <20200313132611.GK13686@intel.com>
+ <93708764786145ff9c8ee2c84af6ff41@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Navik, Ankit P" <ankit.p.navik@intel.com>
-Date: Fri, 13 Mar 2020 14:03:44 -0000
-Message-ID: <158410822413.30352.216264034713118824@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
-In-Reply-To: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLlNQQVJTRTogd2FybmluZyBmb3Ig?=
- =?utf-8?q?Dynamic_EU_configuration_of_Slice/Sub-slice/EU_=28rev6=29?=
+Content-Disposition: inline
+In-Reply-To: <93708764786145ff9c8ee2c84af6ff41@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v19 3/8] drm/i915: Add intel_bw_get_*_state
+ helpers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,43 +53,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Mar 13, 2020 at 01:57:58PM +0000, Lisovskiy, Stanislav wrote:
+> >> >> Add correspondent helpers to be able to get old/new bandwidth
+> >> >> global state object.
+> >> >>
+> >> >> v2: - Fixed typo in function call
+> >> >> v3: - Changed new functions naming to use convention proposed
+> >> >>       by Jani Nikula, i.e intel_bw_* in intel_bw.c file.
+> >>
+> >> >Still nak on the rename.
+> >>
+> >> Cool. Discuss it with Jani Nikula then, to have at least some common s=
+trategy on how to be picky on me.
+> =
 
-Series: Dynamic EU configuration of Slice/Sub-slice/EU (rev6)
-URL   : https://patchwork.freedesktop.org/series/69980/
-State : warning
+> >The strategy is either rename all of these functions or none so that we
+> >don't end up with random inconsistencies all over the place.
+> =
 
-== Summary ==
+> =
 
-$ dim sparse origin/drm-tip
-Sparse version: v0.6.0
-Commit: drm/i915: Get active pending request for given context
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2162:61:    expected struct atomic_t const [usertype] *v
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2162:61:    got struct atomic_t [noderef] <asn:4> *
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2162:61: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2163:64:    expected struct atomic_t [usertype] *v
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2163:64:    got struct atomic_t [noderef] <asn:4> *
-+drivers/gpu/drm/i915/gt/intel_lrc.c:2163:64: warning: incorrect type in argument 1 (different address spaces)
+> Initially Jani Nikula wrote that he is trying to encourage people to call=
+ functions
+> =
 
-Commit: drm/i915: set optimum eu/slice/sub-slice configuration based on load type
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3047:59:    expected struct i915_gem_context *ctx
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3047:59:    got struct i915_gem_context [noderef] <asn:4> *const gem_context
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3047:59: warning: incorrect type in argument 1 (different address spaces)
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3077:15: warning: dereference of noderef expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3077:45: warning: dereference of noderef expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3078:19: warning: dereference of noderef expression
-+drivers/gpu/drm/i915/gt/intel_lrc.c:3078:48: warning: dereference of noderef expression
+> starting with the module name. OK. Done it.
+> =
 
-Commit: drm/i915: Predictive governor to control slice/subslice/eu
-Okay!
+> =
 
+> You say that the opposite and nack. Now it just turns out that it is agai=
+n _me_ - poor minded, who didn't understand that I need to rename
+> =
+
+> all functions now here as well, including those completely unrelated to t=
+hat patch.
+> =
+
+> Sure - we have "plenty" of time!
+> =
+
+> =
+
+> Or may be I shouldn't rename - kind of confused now.
+
+If you do a mass rename do it as a separate series.
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
