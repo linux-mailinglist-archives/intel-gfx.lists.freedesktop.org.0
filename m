@@ -2,47 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48544185564
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Mar 2020 11:34:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E81B1855B4
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Mar 2020 13:21:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA886E2B4;
-	Sat, 14 Mar 2020 10:33:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 283D489EFF;
+	Sat, 14 Mar 2020 12:21:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9549F6E291
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 10:33:58 +0000 (UTC)
-IronPort-SDR: 1+2tkjCX6xHkHBVdipyRfnIMubX6dAEM2BvdWgFWy2skPpMTUQhiGb33G0vPOyPRAtwQbqHmA8
- 1Wg9ANFwImaA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Mar 2020 03:33:58 -0700
-IronPort-SDR: 5CHqXC4oYqqV5j/00Wjr+GAxCcKPV6YUKjdVbfidYZJuKiFJS5FJbxBdwn6Qu582xeEds4fI2a
- ZbjjRQvLXeAQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,552,1574150400"; 
- d="scan'208,217";a="444584003"
-Received: from rdota-mobl1.ti.intel.com (HELO [10.249.40.30]) ([10.249.40.30])
- by fmsmga006.fm.intel.com with ESMTP; 14 Mar 2020 03:33:56 -0700
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200313143440.2476876-1-lionel.g.landwerlin@intel.com>
- <20200313143440.2476876-3-lionel.g.landwerlin@intel.com>
- <10ecf815-71b1-bdcf-1588-df726698c119@linux.intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <b0596c46-cdde-bcad-f233-27b1464363ea@intel.com>
-Date: Sat, 14 Mar 2020 12:33:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 549316E25C
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 12:21:09 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20559226-1500050 
+ for multiple; Sat, 14 Mar 2020 12:20:58 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Sat, 14 Mar 2020 12:20:52 +0000
+Message-Id: <20200314122058.21472-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <10ecf815-71b1-bdcf-1588-df726698c119@linux.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm/i915/perf: introduce global sseu
- pinning
+Subject: [Intel-gfx] [PATCH 1/7] drm/i915: Move GGTT fence registers under
+ gt/
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,186 +37,317 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============1658242351=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---===============1658242351==
-Content-Type: multipart/alternative;
- boundary="------------C0F9057073F4F39A28D992E7"
-Content-Language: en-US
+Since the fence registers control HW detiling throught the GGTT
+aperture, make them a part of the intel_ggtt under gt/
 
-This is a multi-part message in MIME format.
---------------C0F9057073F4F39A28D992E7
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/Makefile                 |  2 +-
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          |  2 +-
+ .../intel_ggtt_fencing.c}                     | 27 +++++++------------
+ .../intel_ggtt_fencing.h}                     |  9 +++----
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  2 +-
+ drivers/gpu/drm/i915/gt/intel_reset.c         |  2 +-
+ drivers/gpu/drm/i915/gvt/aperture_gm.c        |  2 +-
+ drivers/gpu/drm/i915/i915_drv.c               |  6 ++---
+ drivers/gpu/drm/i915/i915_drv.h               |  1 -
+ drivers/gpu/drm/i915/i915_gem.c               |  2 +-
+ drivers/gpu/drm/i915/i915_vma.h               |  1 -
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  2 +-
+ 12 files changed, 24 insertions(+), 34 deletions(-)
+ rename drivers/gpu/drm/i915/{i915_gem_fence_reg.c => gt/intel_ggtt_fencing.c} (97%)
+ rename drivers/gpu/drm/i915/{i915_gem_fence_reg.h => gt/intel_ggtt_fencing.h} (92%)
 
-On 13/03/2020 17:26, Tvrtko Ursulin wrote:
->
-> On 13/03/2020 14:34, Lionel Landwerlin wrote:
->> On Gen11 powergating half the execution units is a functional
->> requirement when using the VME samplers. Not fullfilling this
->> requirement can lead to hangs.
->>
->> This unfortunately plays fairly poorly with the NOA requirements. NOA
->> requires a stable power configuration to maintain its configuration.
->>
->> As a result using OA (and NOA feeding into it) so far has required us
->> to use a power configuration that can work for all contexts. The only
->> power configuration fullfilling this is powergating half the execution
->> units.
->>
->> This makes performance analysis for 3D workloads somewhat pointless.
->>
->> Failing to find a solution that would work for everybody, this change
->> introduces a new i915-perf stream open parameter that punts the
->> decision off to userspace. If this parameter is omitted, the existing
->> Gen11 behavior remains (half EU array powergating).
->>
->> This change takes the initiative to move all perf related sseu
->> configuration into i915_perf.c
->>
->> v2: Make parameter priviliged if different from default
->>
->> v3: Fix context modifying its sseu config while i915-perf is enabled
->>
->> v4: Always consider global sseu a privileged operation (Tvrtko)
->>      Override req_sseu point in intel_sseu_make_rpcs() (Tvrtko)
->>      Remove unrelated changes (Tvrtko)
->>
->> v5: Some typos (Tvrtko)
->>      Process sseu param in read_properties_unlocked() (Tvrtko)
->
-> git add ? :)
->
-> Regards,
->
-> Tvrtko
-
-
-Oh dear...
-
-Sorry for that.
-
-
--Lionel
-
-
---------------C0F9057073F4F39A28D992E7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 13/03/2020 17:26, Tvrtko Ursulin
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:10ecf815-71b1-bdcf-1588-df726698c119@linux.intel.com"><br>
-      On 13/03/2020 14:34, Lionel Landwerlin wrote:
-      <br>
-      <blockquote type="cite" style="color: #000000;">On Gen11
-        powergating half the execution units is a functional
-        <br>
-        requirement when using the VME samplers. Not fullfilling this
-        <br>
-        requirement can lead to hangs.
-        <br>
-        <br>
-        This unfortunately plays fairly poorly with the NOA
-        requirements. NOA
-        <br>
-        requires a stable power configuration to maintain its
-        configuration.
-        <br>
-        <br>
-        As a result using OA (and NOA feeding into it) so far has
-        required us
-        <br>
-        to use a power configuration that can work for all contexts. The
-        only
-        <br>
-        power configuration fullfilling this is powergating half the
-        execution
-        <br>
-        units.
-        <br>
-        <br>
-        This makes performance analysis for 3D workloads somewhat
-        pointless.
-        <br>
-        <br>
-        Failing to find a solution that would work for everybody, this
-        change
-        <br>
-        introduces a new i915-perf stream open parameter that punts the
-        <br>
-        decision off to userspace. If this parameter is omitted, the
-        existing
-        <br>
-        Gen11 behavior remains (half EU array powergating).
-        <br>
-        <br>
-        This change takes the initiative to move all perf related sseu
-        <br>
-        configuration into i915_perf.c
-        <br>
-        <br>
-        v2: Make parameter priviliged if different from default
-        <br>
-        <br>
-        v3: Fix context modifying its sseu config while i915-perf is
-        enabled
-        <br>
-        <br>
-        v4: Always consider global sseu a privileged operation (Tvrtko)
-        <br>
-             Override req_sseu point in intel_sseu_make_rpcs() (Tvrtko)
-        <br>
-             Remove unrelated changes (Tvrtko)
-        <br>
-        <br>
-        v5: Some typos (Tvrtko)
-        <br>
-             Process sseu param in read_properties_unlocked() (Tvrtko)
-        <br>
-      </blockquote>
-      <br>
-      git add ? <span class="moz-smiley-s1" title=":)"><span>:)</span></span>
-      <br>
-      <br>
-      Regards,
-      <br>
-      <br>
-      Tvrtko
-      <br>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>Oh dear...</p>
-    <p>Sorry for that.</p>
-    <p><br>
-    </p>
-    <p>-Lionel<br>
-    </p>
-  </body>
-</html>
-
---------------C0F9057073F4F39A28D992E7--
-
---===============1658242351==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 9f887a86e555..1b2ed963179c 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -92,6 +92,7 @@ gt-y += \
+ 	gt/intel_engine_pool.o \
+ 	gt/intel_engine_user.o \
+ 	gt/intel_ggtt.o \
++	gt/intel_ggtt_fencing.o \
+ 	gt/intel_gt.o \
+ 	gt/intel_gt_irq.o \
+ 	gt/intel_gt_pm.o \
+@@ -153,7 +154,6 @@ i915-y += \
+ 	  i915_buddy.o \
+ 	  i915_cmd_parser.o \
+ 	  i915_gem_evict.o \
+-	  i915_gem_fence_reg.o \
+ 	  i915_gem_gtt.o \
+ 	  i915_gem.o \
+ 	  i915_globals.o \
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+index aed498a0d032..a7b72fa569a7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+@@ -65,7 +65,7 @@ static int ggtt_init_hw(struct i915_ggtt *ggtt)
+ 					      ggtt->mappable_end);
+ 	}
+ 
+-	i915_ggtt_init_fences(ggtt);
++	intel_ggtt_init_fences(ggtt);
+ 
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/i915/i915_gem_fence_reg.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+similarity index 97%
+rename from drivers/gpu/drm/i915/i915_gem_fence_reg.c
+rename to drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+index d152b648c73c..94af75673a58 100644
+--- a/drivers/gpu/drm/i915/i915_gem_fence_reg.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+@@ -233,16 +233,9 @@ static int fence_update(struct i915_fence_reg *fence,
+ 	int ret;
+ 
+ 	if (vma) {
+-		if (!i915_vma_is_map_and_fenceable(vma))
+-			return -EINVAL;
+-
+-		if (drm_WARN(&uncore->i915->drm,
+-			     !i915_gem_object_get_stride(vma->obj) ||
+-			     !i915_gem_object_get_tiling(vma->obj),
+-			     "bogus fence setup with stride: 0x%x, tiling mode: %i\n",
+-			     i915_gem_object_get_stride(vma->obj),
+-			     i915_gem_object_get_tiling(vma->obj)))
+-			return -EINVAL;
++		GEM_BUG_ON(!i915_vma_is_map_and_fenceable(vma));
++		GEM_BUG_ON(!i915_gem_object_get_stride(vma->obj) ||
++			   !i915_gem_object_get_tiling(vma->obj));
+ 
+ 		ret = i915_vma_sync(vma);
+ 		if (ret)
+@@ -276,7 +269,7 @@ static int fence_update(struct i915_fence_reg *fence,
+ 	/*
+ 	 * We only need to update the register itself if the device is awake.
+ 	 * If the device is currently powered down, we will defer the write
+-	 * to the runtime resume, see i915_gem_restore_fences().
++	 * to the runtime resume, see intel_ggtt_restore_fences().
+ 	 *
+ 	 * This only works for removing the fence register, on acquisition
+ 	 * the caller must hold the rpm wakeref. The fence register must
+@@ -487,14 +480,14 @@ void i915_unreserve_fence(struct i915_fence_reg *fence)
+ }
+ 
+ /**
+- * i915_gem_restore_fences - restore fence state
++ * intel_ggtt_restore_fences - restore fence state
+  * @ggtt: Global GTT
+  *
+  * Restore the hw fence state to match the software tracking again, to be called
+  * after a gpu reset and on resume. Note that on runtime suspend we only cancel
+  * the fences, to be reacquired by the user later.
+  */
+-void i915_gem_restore_fences(struct i915_ggtt *ggtt)
++void intel_ggtt_restore_fences(struct i915_ggtt *ggtt)
+ {
+ 	int i;
+ 
+@@ -746,7 +739,7 @@ static void detect_bit_6_swizzle(struct i915_ggtt *ggtt)
+  * bit 17 of its physical address and therefore being interpreted differently
+  * by the GPU.
+  */
+-static void i915_gem_swizzle_page(struct page *page)
++static void swizzle_page(struct page *page)
+ {
+ 	char temp[64];
+ 	char *vaddr;
+@@ -791,7 +784,7 @@ i915_gem_object_do_bit_17_swizzle(struct drm_i915_gem_object *obj,
+ 	for_each_sgt_page(page, sgt_iter, pages) {
+ 		char new_bit_17 = page_to_phys(page) >> 17;
+ 		if ((new_bit_17 & 0x1) != (test_bit(i, obj->bit_17) != 0)) {
+-			i915_gem_swizzle_page(page);
++			swizzle_page(page);
+ 			set_page_dirty(page);
+ 		}
+ 		i++;
+@@ -836,7 +829,7 @@ i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
+ 	}
+ }
+ 
+-void i915_ggtt_init_fences(struct i915_ggtt *ggtt)
++void intel_ggtt_init_fences(struct i915_ggtt *ggtt)
+ {
+ 	struct drm_i915_private *i915 = ggtt->vm.i915;
+ 	struct intel_uncore *uncore = ggtt->vm.gt->uncore;
+@@ -875,7 +868,7 @@ void i915_ggtt_init_fences(struct i915_ggtt *ggtt)
+ 	}
+ 	ggtt->num_fences = num_fences;
+ 
+-	i915_gem_restore_fences(ggtt);
++	intel_ggtt_restore_fences(ggtt);
+ }
+ 
+ void intel_gt_init_swizzling(struct intel_gt *gt)
+diff --git a/drivers/gpu/drm/i915/i915_gem_fence_reg.h b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
+similarity index 92%
+rename from drivers/gpu/drm/i915/i915_gem_fence_reg.h
+rename to drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
+index 7bd521cd7cd7..3b3eb5bf1b75 100644
+--- a/drivers/gpu/drm/i915/i915_gem_fence_reg.h
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.h
+@@ -22,8 +22,8 @@
+  *
+  */
+ 
+-#ifndef __I915_FENCE_REG_H__
+-#define __I915_FENCE_REG_H__
++#ifndef __INTEL_GGTT_FENCING_H__
++#define __INTEL_GGTT_FENCING_H__
+ 
+ #include <linux/list.h>
+ #include <linux/types.h>
+@@ -53,18 +53,17 @@ struct i915_fence_reg {
+ 	bool dirty;
+ };
+ 
+-/* i915_gem_fence_reg.c */
+ struct i915_fence_reg *i915_reserve_fence(struct i915_ggtt *ggtt);
+ void i915_unreserve_fence(struct i915_fence_reg *fence);
+ 
+-void i915_gem_restore_fences(struct i915_ggtt *ggtt);
++void intel_ggtt_restore_fences(struct i915_ggtt *ggtt);
+ 
+ void i915_gem_object_do_bit_17_swizzle(struct drm_i915_gem_object *obj,
+ 				       struct sg_table *pages);
+ void i915_gem_object_save_bit_17_swizzle(struct drm_i915_gem_object *obj,
+ 					 struct sg_table *pages);
+ 
+-void i915_ggtt_init_fences(struct i915_ggtt *ggtt);
++void intel_ggtt_init_fences(struct i915_ggtt *ggtt);
+ 
+ void intel_gt_init_swizzling(struct intel_gt *gt);
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
+index b3116fe8d180..ce6ff9d3a350 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gtt.h
++++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+@@ -26,7 +26,7 @@
+ #include <drm/drm_mm.h>
+ 
+ #include "gt/intel_reset.h"
+-#include "i915_gem_fence_reg.h"
++#include "gt/intel_ggtt_fencing.h"
+ #include "i915_selftest.h"
+ #include "i915_vma_types.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index 8b170c1876b3..9a15bdf31c7f 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -750,7 +750,7 @@ static int gt_reset(struct intel_gt *gt, intel_engine_mask_t stalled_mask)
+ 	for_each_engine(engine, gt, id)
+ 		__intel_engine_reset(engine, stalled_mask & engine->mask);
+ 
+-	i915_gem_restore_fences(gt->ggtt);
++	intel_ggtt_restore_fences(gt->ggtt);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/i915/gvt/aperture_gm.c b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+index 8b13f091cee2..0d6d59871308 100644
+--- a/drivers/gpu/drm/i915/gvt/aperture_gm.c
++++ b/drivers/gpu/drm/i915/gvt/aperture_gm.c
+@@ -35,7 +35,7 @@
+  */
+ 
+ #include "i915_drv.h"
+-#include "i915_gem_fence_reg.h"
++#include "gt/intel_ggtt_fencing.h"
+ #include "gvt.h"
+ 
+ static int alloc_gm(struct intel_vgpu *vgpu, bool high_gm)
+diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+index 82d9df15b22b..832140f4ea3d 100644
+--- a/drivers/gpu/drm/i915/i915_drv.c
++++ b/drivers/gpu/drm/i915/i915_drv.c
+@@ -1288,7 +1288,7 @@ static int i915_drm_resume(struct drm_device *dev)
+ 		drm_err(&dev_priv->drm, "failed to re-enable GGTT\n");
+ 
+ 	i915_ggtt_resume(&dev_priv->ggtt);
+-	i915_gem_restore_fences(&dev_priv->ggtt);
++	intel_ggtt_restore_fences(&dev_priv->ggtt);
+ 
+ 	intel_csr_ucode_resume(dev_priv);
+ 
+@@ -1606,7 +1606,7 @@ static int intel_runtime_suspend(struct device *kdev)
+ 
+ 		intel_gt_runtime_resume(&dev_priv->gt);
+ 
+-		i915_gem_restore_fences(&dev_priv->ggtt);
++		intel_ggtt_restore_fences(&dev_priv->ggtt);
+ 
+ 		enable_rpm_wakeref_asserts(rpm);
+ 
+@@ -1687,7 +1687,7 @@ static int intel_runtime_resume(struct device *kdev)
+ 	 * we can do is to hope that things will still work (and disable RPM).
+ 	 */
+ 	intel_gt_runtime_resume(&dev_priv->gt);
+-	i915_gem_restore_fences(&dev_priv->ggtt);
++	intel_ggtt_restore_fences(&dev_priv->ggtt);
+ 
+ 	/*
+ 	 * On VLV/CHV display interrupts are part of the display
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 1f5b9a584f71..ddd5b40cbbbc 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -92,7 +92,6 @@
+ #include "intel_wopcm.h"
+ 
+ #include "i915_gem.h"
+-#include "i915_gem_fence_reg.h"
+ #include "i915_gem_gtt.h"
+ #include "i915_gpu_error.h"
+ #include "i915_perf_types.h"
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index ca5420012a22..2c53be0bd9fd 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -1156,7 +1156,7 @@ int i915_gem_init(struct drm_i915_private *dev_priv)
+ 		/* Minimal basic recovery for KMS */
+ 		ret = i915_ggtt_enable_hw(dev_priv);
+ 		i915_ggtt_resume(&dev_priv->ggtt);
+-		i915_gem_restore_fences(&dev_priv->ggtt);
++		intel_ggtt_restore_fences(&dev_priv->ggtt);
+ 		intel_init_clock_gating(dev_priv);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index e1ced1df13e1..2764c277326f 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -33,7 +33,6 @@
+ #include "gem/i915_gem_object.h"
+ 
+ #include "i915_gem_gtt.h"
+-#include "i915_gem_fence_reg.h"
+ 
+ #include "i915_active.h"
+ #include "i915_request.h"
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+index 623759b73bb4..7ea517a21e0b 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+@@ -125,7 +125,7 @@ static void pm_resume(struct drm_i915_private *i915)
+ 	 */
+ 	with_intel_runtime_pm(&i915->runtime_pm, wakeref) {
+ 		i915_ggtt_resume(&i915->ggtt);
+-		i915_gem_restore_fences(&i915->ggtt);
++		intel_ggtt_restore_fences(&i915->ggtt);
+ 
+ 		i915_gem_resume(i915);
+ 	}
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1658242351==--
