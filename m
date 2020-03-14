@@ -1,32 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 106221855B3
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Mar 2020 13:21:17 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A95918562F
+	for <lists+intel-gfx@lfdr.de>; Sat, 14 Mar 2020 19:33:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD9389F77;
-	Sat, 14 Mar 2020 12:21:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 162396E063;
+	Sat, 14 Mar 2020 18:33:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DB5B89F77
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 12:21:09 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20559232-1500050 
- for multiple; Sat, 14 Mar 2020 12:20:59 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Sat, 14 Mar 2020 12:20:58 +0000
-Message-Id: <20200314122058.21472-7-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200314122058.21472-1-chris@chris-wilson.co.uk>
-References: <20200314122058.21472-1-chris@chris-wilson.co.uk>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A479C6E063
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 18:33:52 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id a141so13689994wme.2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 11:33:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Cf59xw3PIHSPMUJhU76WE7ctiNmoYthIYJ0CaqzUGT0=;
+ b=ohEohooUKUhu41PW3PZBR7jkbDmdAjlt4tg3dWD932pawWZlWqQs4RpFwp9K5DxqUe
+ BdkEGQyyfcM/VE2mz3sh2SwQDLtY5/jEdjc6Hjgurc9QlIRx3/PkHe/Ri4eSnuPsIIVF
+ CrYiMWAbG+BPCoz7zh7dbTg+hOdz6tzWJ9UC9ycdMgd0CgPNam6g7lNzuK7S9i/GgMfI
+ KaO3pJWAozgbKFHguAXDgdpq8vYFKBWl56ptgmO1RAsTFlpNsrr4M7fisdyeL8uoctgK
+ VztaquhuBsP2GfoeDt2uJPoewfrFLmRJDMyX3VOFwFlRe5QoHG7XKXvzSRVIeNEI5ZoO
+ c+Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=Cf59xw3PIHSPMUJhU76WE7ctiNmoYthIYJ0CaqzUGT0=;
+ b=A2i1VEmZb0b/+psm4dwte6zbq2GfhcXc8amHlzqomSoBGP+g06jEJy2iXf0sGipiZ8
+ fF58nwK1b0jqkcyR4ajEs2x3o8bBCro9PJitYC1/RoZq8Wwo90iN+O9ubqqBcx0KBTIT
+ Rg8pjyaDc9CgfIrB6mQSeGndiitWwuwPm0VrgM9Y2ctxmWC98WAgl2Im4HH3m8Uq6eww
+ sBrSHahaMeFNf8YEN6Zab+6W+h3+aXMhbZxNxmP+FMSmITVIpbiudK1872aL3mALj+o3
+ p6u5PeM9IQC/5/6TdhSC0nWkewNm4AOwiGJ4HjfJBu5WAS+eJ+o3FBrI7UMrxJn15MsR
+ Wj1A==
+X-Gm-Message-State: ANhLgQ1JPDZzvOmt3mOC9VRJ4t+CJwXGrVaBcg9GOfyHetlG/kJ2hOIL
+ zZCiSCHjZpuOhrkHGa7NyJ8=
+X-Google-Smtp-Source: ADFU+vucyLLZj/uQjdfDCO+Va4gum2svUVpLPO30GkPOqLMlu1ueFNifuR0AAJ2VDdp1qTE2aGP4OQ==
+X-Received: by 2002:a05:600c:d8:: with SMTP id
+ u24mr1246755wmm.42.1584210830348; 
+ Sat, 14 Mar 2020 11:33:50 -0700 (PDT)
+Received: from wambui.zuku.co.ke ([197.237.61.225])
+ by smtp.googlemail.com with ESMTPSA id
+ s127sm22450820wmf.28.2020.03.14.11.33.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 14 Mar 2020 11:33:49 -0700 (PDT)
+From: Wambui Karuga <wambui.karugax@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
+Date: Sat, 14 Mar 2020 21:33:37 +0300
+Message-Id: <20200314183344.17603-1-wambui.karugax@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/gt: Make fence revocation
- unequivocal
+Subject: [Intel-gfx] [PATCH 0/7] drm/i915/gt: convert to struct drm_device
+ based logging macros.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,120 +68,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we must revoke the fence because the VMA is no longer present, or
-because the fence no longer applies, ensure that we do and convert it
-into an error if we try but cannot.
+This patchset continues the conversion of printk based macros to use
+the struct drm_device based drm logging macros focused on the i915/gt
+folder.
+These patches were achieved using both coccinelle and manually.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c | 20 +++++++++++---------
- drivers/gpu/drm/i915/i915_gem.c              | 12 +++++-------
- drivers/gpu/drm/i915/i915_vma.c              |  4 +---
- drivers/gpu/drm/i915/i915_vma.h              |  2 +-
- 4 files changed, 18 insertions(+), 20 deletions(-)
+Wambui Karuga (7):
+  drm/i915/ggtt: convert to drm_device based logging macros.
+  drm/i915/lrc: convert to struct drm_device based logging macros.
+  drm/i915/rc6: convert to struct drm_device based logging macros.
+  drm/i915/renderstate: use struct drm_device based logging macros.
+  drm/i915/ring_submission: use drm_device based logging macros.
+  drm/i915/rps: use struct drm_device based logging macros.
+  drm/i915/workarounds: convert to drm_device based logging macros.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-index f1ded8fbda3a..125713f2d055 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
-@@ -305,23 +305,25 @@ static int fence_update(struct i915_fence_reg *fence,
-  *
-  * This function force-removes any fence from the given object, which is useful
-  * if the kernel wants to do untiled GTT access.
-- *
-- * Returns:
-- *
-- * 0 on success, negative error code on failure.
-  */
--int i915_vma_revoke_fence(struct i915_vma *vma)
-+void i915_vma_revoke_fence(struct i915_vma *vma)
- {
- 	struct i915_fence_reg *fence = vma->fence;
-+	intel_wakeref_t wakeref;
- 
- 	lockdep_assert_held(&vma->vm->mutex);
- 	if (!fence)
--		return 0;
-+		return;
-+
-+	GEM_BUG_ON(fence->vma != vma);
-+	GEM_BUG_ON(!i915_active_is_idle(&fence->active));
-+	GEM_BUG_ON(atomic_read(&fence->pin_count));
- 
--	if (atomic_read(&fence->pin_count))
--		return -EBUSY;
-+	WRITE_ONCE(fence->vma, NULL);
-+	vma->fence = NULL;
- 
--	return fence_update(fence, NULL);
-+	with_intel_runtime_pm_if_in_use(fence_to_uncore(fence)->rpm, wakeref)
-+		fence_write(fence, NULL);
- }
- 
- static struct i915_fence_reg *fence_find(struct i915_ggtt *ggtt)
-diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
-index 762b50b08d73..b0836fc47ae6 100644
---- a/drivers/gpu/drm/i915/i915_gem.c
-+++ b/drivers/gpu/drm/i915/i915_gem.c
-@@ -993,18 +993,16 @@ i915_gem_object_ggtt_pin(struct drm_i915_gem_object *obj,
- 			return ERR_PTR(ret);
- 	}
- 
-+	ret = i915_vma_pin(vma, size, alignment, flags | PIN_GLOBAL);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
- 	if (vma->fence && !i915_gem_object_is_tiled(obj)) {
- 		mutex_lock(&ggtt->vm.mutex);
--		ret = i915_vma_revoke_fence(vma);
-+		i915_vma_revoke_fence(vma);
- 		mutex_unlock(&ggtt->vm.mutex);
--		if (ret)
--			return ERR_PTR(ret);
- 	}
- 
--	ret = i915_vma_pin(vma, size, alignment, flags | PIN_GLOBAL);
--	if (ret)
--		return ERR_PTR(ret);
--
- 	ret = i915_vma_wait_for_bind(vma);
- 	if (ret) {
- 		i915_vma_unpin(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index aedbd056fd45..df197b07ac99 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -1280,9 +1280,7 @@ int __i915_vma_unbind(struct i915_vma *vma)
- 		i915_vma_flush_writes(vma);
- 
- 		/* release the fence reg _after_ flushing */
--		ret = i915_vma_revoke_fence(vma);
--		if (ret)
--			return ret;
-+		i915_vma_revoke_fence(vma);
- 
- 		/* Force a pagefault for domain tracking on next user access */
- 		i915_vma_revoke_mmap(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index b958ad07f212..8ad1daabcd58 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -326,7 +326,7 @@ static inline struct page *i915_vma_first_page(struct i915_vma *vma)
-  * True if the vma has a fence, false otherwise.
-  */
- int __must_check i915_vma_pin_fence(struct i915_vma *vma);
--int __must_check i915_vma_revoke_fence(struct i915_vma *vma);
-+void i915_vma_revoke_fence(struct i915_vma *vma);
- 
- int __i915_vma_pin_fence(struct i915_vma *vma);
- 
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 38 ++++++----
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 14 ++--
+ drivers/gpu/drm/i915/gt/intel_rc6.c           | 35 +++++----
+ drivers/gpu/drm/i915/gt/intel_renderstate.c   |  2 +-
+ .../gpu/drm/i915/gt/intel_ring_submission.c   | 33 ++++----
+ drivers/gpu/drm/i915/gt/intel_rps.c           | 75 +++++++++----------
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  7 +-
+ 7 files changed, 110 insertions(+), 94 deletions(-)
+
 -- 
-2.20.1
+2.25.1
 
 _______________________________________________
 Intel-gfx mailing list
