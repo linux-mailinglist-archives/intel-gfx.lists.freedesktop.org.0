@@ -2,61 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C27A185636
-	for <lists+intel-gfx@lfdr.de>; Sat, 14 Mar 2020 19:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A51DE18569C
+	for <lists+intel-gfx@lfdr.de>; Sun, 15 Mar 2020 01:12:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 726F16E08C;
-	Sat, 14 Mar 2020 18:34:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 523F26E0E9;
+	Sun, 15 Mar 2020 00:12:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBEA66E090
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 18:34:10 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id s14so16224211wrt.8
- for <intel-gfx@lists.freedesktop.org>; Sat, 14 Mar 2020 11:34:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=ZadWXj/98SBM0T2hZ3aY/FgOk8PgIrag3+VO3oxG3Ww=;
- b=lpUT+wQXk8XmD2tjK96dBQMT3OZkz42W54mCap/6J7pVH8Lp5t9NZ+yJN3gj+1h+vw
- LQsOU9DPNVZVNSh3Jl15TBuBHZAYetXSEpZR/EYD6ZDjy97jN4FlSxLCEkqkCTIzf7Wa
- pDJ8eghUvWAn2uXjLBCo9lp8Jv1adbpu9iQr+QFWFjhsw9P8ZL2C+wt6W1QhHPDA+Amq
- /0eajuUnB1kg2ZtlATbKCc9QqCPA2YCI7hu7r0cuchYgMT0D7HyMEY2ZoWmjutT1ls4G
- 6BnF25ynjsmns+PGsSAqkSJNH9WS2tv4+/d0c9kbenYbTFpVoE+0xu09wF7uwQJ+MkVD
- nndw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=ZadWXj/98SBM0T2hZ3aY/FgOk8PgIrag3+VO3oxG3Ww=;
- b=HkGbGSVley9czyVmz1wkzW0zP/tPWBhUx6tlXziDZSd41xTe3KeE6qZ3oftEoB4FjD
- n2VtTTOQWOPA4E5nJAiyIu6tBhab1b931TKrnT/lh1hZv1TI61wxAuNN3nivlZ/APwOK
- IaWj33y+ffw8N06cYc6Sv05bZJLo675BeY1sI/IrDBBc/SY/2t+UxuW/G6aOIxTPykPi
- UD2VgoQiMNZfVODOOalWhjwiW8S7PV+Xrwj2HOMMFE01WwzPkA7GdKXPfgIlW90mq65A
- 7WjuOTOHlhM2cejv+U3IodaOB6CsXQLOP0NMQnj1Q9C4FM0Sk23s9ADKew3Vs543MfwL
- Oqzg==
-X-Gm-Message-State: ANhLgQ1wP3RLjOV4Nt4pv2BvlmzQyzOvKCBKO03VLo+RvxQfafHB0pUz
- byg8zGGQOdlggpuVjcJTmUo=
-X-Google-Smtp-Source: ADFU+vujzQJSWHPK0+aDyngZQDsLWxdvvhQGtYMGjkc1bWiPy/VrO/TLsehGKl7Qkym1OkSfMVoxTw==
-X-Received: by 2002:adf:b245:: with SMTP id y5mr13032249wra.136.1584210849571; 
- Sat, 14 Mar 2020 11:34:09 -0700 (PDT)
-Received: from wambui.zuku.co.ke ([197.237.61.225])
- by smtp.googlemail.com with ESMTPSA id
- s127sm22450820wmf.28.2020.03.14.11.34.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Mar 2020 11:34:09 -0700 (PDT)
-From: Wambui Karuga <wambui.karugax@gmail.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@linux.ie, daniel@ffwll.ch
-Date: Sat, 14 Mar 2020 21:33:44 +0300
-Message-Id: <20200314183344.17603-8-wambui.karugax@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200314183344.17603-1-wambui.karugax@gmail.com>
-References: <20200314183344.17603-1-wambui.karugax@gmail.com>
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A50606E0E9
+ for <intel-gfx@lists.freedesktop.org>; Sun, 15 Mar 2020 00:12:19 +0000 (UTC)
+Received: from capuchin.riseup.net (unknown [10.0.1.176])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 48g0HR139QzFcdy;
+ Sat, 14 Mar 2020 17:12:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1584231139; bh=P5PJ8H8ROdaVr/HgrLWW+G1H4z+fqHMWT/KJQn+l8rA=;
+ h=From:To:Subject:In-Reply-To:References:Date:From;
+ b=Ll3SNM/Ofn0YTb8U2PE9Vb0ICzZczczMXTgix5St8Wwin7n0e/Nj18hFNfVVPS0W2
+ lEu+7xF2UCyKCdz91q1K2BLiokRCMDI4HIIVAFl14roaF9uVUXZd8OT6M1YyEvVF8c
+ EdsExuygYw/u7Ncdxo+Zae6Ohxci4Rf9ZYQ8Hhrw=
+X-Riseup-User-ID: 6FA4442290393BC977E3811727543B11DBE6886C370DC504685566FFACDB7D2C
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by capuchin.riseup.net (Postfix) with ESMTPSA id 48g0HQ4Chsz8tbj;
+ Sat, 14 Mar 2020 17:12:18 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: srinivasan.s@intel.com, intel-gfx@lists.freedesktop.org,
+ chris@chris-wilson.co.uk, tvrtko.ursulin@intel.com
+In-Reply-To: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
+References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
+Date: Sat, 14 Mar 2020 17:12:19 -0700
+Message-ID: <87k13m8oik.fsf@riseup.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 7/7] drm/i915/workarounds: convert to drm_device
- based logging macros.
+Subject: Re: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of
+ Slice/Sub-slice/EU
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,59 +50,231 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0844069282=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace the use of printk based drm logging macros with the struct
-drm_device based logging macros.
+--===============0844069282==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Note that this converts DRM_DEBUG_DRIVER() to drm_dbg().
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
-Signed-off-by: Wambui Karuga <wambui.karugax@gmail.com>
----
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 5176ad1a3976..e96cc7fa0936 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -837,7 +837,7 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 			intel_uncore_read(&i915->uncore, GEN10_MIRROR_FUSE3) &
- 			GEN10_L3BANK_MASK;
- 
--		DRM_DEBUG_DRIVER("L3 fuse = %x\n", l3_fuse);
-+		drm_dbg(&i915->drm, "L3 fuse = %x\n", l3_fuse);
- 		l3_en = ~(l3_fuse << GEN10_L3BANK_PAIR_COUNT | l3_fuse);
- 	} else {
- 		l3_en = ~0;
-@@ -846,7 +846,8 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 	slice = fls(sseu->slice_mask) - 1;
- 	subslice = fls(l3_en & intel_sseu_get_subslices(sseu, slice));
- 	if (!subslice) {
--		DRM_WARN("No common index found between subslice mask %x and L3 bank mask %x!\n",
-+		drm_warn(&i915->drm,
-+			 "No common index found between subslice mask %x and L3 bank mask %x!\n",
- 			 intel_sseu_get_subslices(sseu, slice), l3_en);
- 		subslice = fls(l3_en);
- 		drm_WARN_ON(&i915->drm, !subslice);
-@@ -861,7 +862,7 @@ wa_init_mcr(struct drm_i915_private *i915, struct i915_wa_list *wal)
- 		mcr_mask = GEN8_MCR_SLICE_MASK | GEN8_MCR_SUBSLICE_MASK;
- 	}
- 
--	DRM_DEBUG_DRIVER("MCR slice/subslice = %x\n", mcr);
-+	drm_dbg(&i915->drm, "MCR slice/subslice = %x\n", mcr);
- 
- 	wa_write_masked_or(wal, GEN8_MCR_SELECTOR, mcr_mask, mcr);
- }
--- 
-2.25.1
+srinivasan.s@intel.com writes:
+
+> From: Srinivasan S <srinivasan.s@intel.com>
+>
+>       drm/i915: Context aware user agnostic EU/Slice/Sub-slice control wi=
+thin kernel
+>
+> This patch sets improves GPU power consumption on Linux kernel based OS s=
+uch as
+> Chromium OS, Ubuntu, etc. Following are the power savings.
+>
+> Power savings on GLK-GT1 Bobba platform running on Chrome OS.
+> -----------------------------------------------|
+> App /KPI                | % Power Benefit (mW) |
+> ------------------------|----------------------|
+> Hangout Call- 20 minute |	1.8%           |
+> Youtube 4K VPB          |       14.13%         |
+> WebGL Aquarium          |       13.76%         |
+> Unity3D                 |       6.78%          |
+> 			|		       |
+> ------------------------|----------------------|
+> Chrome PLT              | BatteryLife Improves |
+> 			| by ~45 minute        |
+> -----------------------------------------------|
+>
+> Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
+> -----------------------------------------------|
+> App /KPI		| % Power Benefit (mW) |
+>                         |----------------------|
+> 			|  Android |  Ubuntu   |
+> ------------------------|----------|-----------|
+> 3D Mark (Ice storm)     | 2.30%    | N.A.      |
+> TRex On screen          | 2.49%    | 2.97%     |
+> Manhattan On screen     | 3.11%    | 4.90%     |
+> Carchase On Screen	| N.A.     | 5.06%     |
+> AnTuTu 6.1.4            | 3.42%    | N.A.      |
+> SynMark2		| N.A.     | 1.7%      |
+> -----------------------------------------------|
+>
+
+Did you get any performance (e.g. FPS) measurements from those
+test-cases?  There is quite some potential for this feature to constrain
+the GPU throughput inadvertently, which could lead to an apparent
+reduction in power usage not accompanied by an improvement in energy
+efficiency -- In fact AFAIUI there is some potential for this feature to
+*decrease* the energy efficiency of the system if the GPU would have
+been able to keep all EUs busy at a lower frequency, but the parallelism
+constraint forces it to run at a higher frequency above RPe in order to
+achieve the same throughput, because due to the convexity of the power
+curve of the EU we have:
+
+  P(k * f) > k * P(f)
+
+Where 'k' is the ratio between the EU parallelism without and with SSEU
+control, and f > RPe is the original GPU frequency without SSEU control.
+
+In scenarios like that we *might* seem to be using less power with SSEU
+control if the workload is running longer, but it would end up using
+more energy overall by the time it completes, so it would be good to
+have some performance-per-watt numbers to make sure that's not
+happening.
+
+> We have also observed GPU core residencies improves by 1.035%.
+>
+> Technical Insights of the patch:
+> Current GPU configuration code for i915 does not allow us to change
+> EU/Slice/Sub-slice configuration dynamically. Its done only once while co=
+ntext
+> is created.
+>
+> While particular graphics application is running, if we examine the comma=
+nd
+> requests from user space, we observe that command density is not consiste=
+nt.
+> It means there is scope to change the graphics configuration dynamically =
+even
+> while context is running actively. This patch series proposes the solutio=
+n to
+> find the active pending load for all active context at given time and bas=
+ed on
+> that, dynamically perform graphics configuration for each context.
+>
+> We use a hr (high resolution) timer with i915 driver in kernel to get a
+> callback every few milliseconds (this timer value can be configured throu=
+gh
+> debugfs, default is '0' indicating timer is in disabled state i.e. origin=
+al
+> system without any intervention).In the timer callback, we examine pending
+> commands for a context in the queue, essentially, we intercept them before
+> they are executed by GPU and we update context with required number of EU=
+s.
+>
+
+Given that the EU configuration update is synchronous with command
+submission, do you really need a timer?  It sounds like it would be less
+CPU overhead to adjust the EU count on demand whenever the counter
+reaches or drops below the threshold instead of polling some CPU-side
+data structure.
+
+> Two questions, how did we arrive at right timer value? and what's the rig=
+ht
+> number of EUs? For the prior one, empirical data to achieve best performa=
+nce
+> in least power was considered. For the later one, we roughly categorized =
+number=20
+> of EUs logically based on platform. Now we compare number of pending comm=
+ands
+> with a particular threshold and then set number of EUs accordingly with u=
+pdate
+> context. That threshold is also based on experiments & findings. If GPU i=
+s able
+> to catch up with CPU, typically there are no pending commands, the EU con=
+fig
+> would remain unchanged there. In case there are more pending commands we
+> reprogram context with higher number of EUs. Please note, here we are cha=
+nging
+> EUs even while context is running by examining pending commands every 'x'
+> milliseconds.
+>
+
+I have doubts that the number of requests pending execution is a
+particularly reliable indicator of the optimal number of EUs the
+workload needs enabled, for starters because the execlists submission
+code seems to be able to merge multiple requests into the same port, so
+there might seem to be zero pending commands even if the GPU has a
+backlog of several seconds or minutes worth of work.
+
+But even if you were using an accurate measure of the GPU load, would
+that really be a good indicator of whether the GPU would run more
+efficiently with more or less EUs enabled?  I can think of many
+scenarios where a short-lived GPU request would consume less energy and
+complete faster while running with all EUs enabled (e.g. if it actually
+has enough parallelism to take advantage of all EUs in the system).
+Conversely I can think of some scenarios where a long-running GPU
+request would benefit from SSEU control (e.g. a poorly parallelizable
+but heavy 3D geometry pipeline or GPGPU workload).  The former seems
+more worrying than the latter since it could lead to performance or
+energy efficiency regressions.
+
+IOW it seems to me that the optimal number of EUs enabled is more of a
+function of the internal parallelism constraints of each request rather
+than of the overall GPU load.  You should be able to get some
+understanding of that by e.g. calculating the number of threads loaded
+on the average based on the EU SPM counters, but unfortunately the ones
+you'd need are only available on TGL+ IIRC.  On earlier platforms you
+should be able to achieve the same thing by sampling some FLEXEU
+counters, but you'd likely have to mess with the mux configuration which
+would interfere with OA sampling -- However it sounds like this feature
+may have to be disabled anytime OA is active anyway so that may not be a
+problem after all?
+
+Regards,
+Francisco.
+
+> Srinivasan S (3):
+>   drm/i915: Get active pending request for given context
+>   drm/i915: set optimum eu/slice/sub-slice configuration based on load
+>     type
+>   drm/i915: Predictive governor to control slice/subslice/eu
+>
+>  drivers/gpu/drm/i915/Makefile                     |   1 +
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c       |  20 +++++
+>  drivers/gpu/drm/i915/gem/i915_gem_context.h       |   2 +
+>  drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  38 ++++++++
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
+>  drivers/gpu/drm/i915/gt/intel_deu.c               | 104 ++++++++++++++++=
+++++++
+>  drivers/gpu/drm/i915/gt/intel_deu.h               |  31 +++++++
+>  drivers/gpu/drm/i915/gt/intel_lrc.c               |  44 ++++++++-
+>  drivers/gpu/drm/i915/i915_drv.h                   |   6 ++
+>  drivers/gpu/drm/i915/i915_gem.c                   |   4 +
+>  drivers/gpu/drm/i915/i915_params.c                |   4 +
+>  drivers/gpu/drm/i915/i915_params.h                |   1 +
+>  drivers/gpu/drm/i915/intel_device_info.c          |  74 ++++++++++++++-
+>  13 files changed, 325 insertions(+), 5 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.c
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.h
+>
+> --=20
+> 2.7.4
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--=-=-=--
+
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXm1y4wAKCRCDmTidfVK/
+W6uAAPwKayIdQzSYT8MMZIrDHpBCZuxiubAYUHMs+FRCXTzeFgEAmzNCZGyiqdQx
+mcwTIRR0z4kRyzLTci5UDRamvyXZySA=
+=igNa
+-----END PGP SIGNATURE-----
+--==-=-=--
+
+--===============0844069282==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============0844069282==--
