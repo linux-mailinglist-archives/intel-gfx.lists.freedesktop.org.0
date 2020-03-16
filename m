@@ -2,39 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592021866D9
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 09:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C53771866EB
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 09:50:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A199889F9F;
-	Mon, 16 Mar 2020 08:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE1E56E384;
+	Mon, 16 Mar 2020 08:50:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5B706E393;
- Mon, 16 Mar 2020 08:46:04 +0000 (UTC)
-IronPort-SDR: 0XlVAtMWQlS6wBUOUq/3Qb7Yzi/LSJ/RWnk5E9k87/RzHPKR7XXPaWDE7Aa+ERa6nFvrzeEi+k
- 3TGMtgbX/ojg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 01:46:04 -0700
-IronPort-SDR: 0a/UY/vutT7KL2M3fDrzuXBenb9BYWo/e8tZmUx7k7jlb6GuWSnflQorQ58PXqbgmG8BeZFOrK
- p8LAq162XuVw==
-X-IronPort-AV: E=Sophos;i="5.70,559,1574150400"; d="scan'208";a="417069105"
-Received: from jkrzyszt-desk.igk.intel.com ([172.22.244.18])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 01:46:02 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Date: Mon, 16 Mar 2020 09:45:43 +0100
-Message-Id: <20200316084543.15421-3-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.21.1
-In-Reply-To: <20200316084543.15421-1-janusz.krzysztofik@linux.intel.com>
-References: <20200316084543.15421-1-janusz.krzysztofik@linux.intel.com>
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
+ [IPv6:2a00:1450:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A49C46E397
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 08:50:19 +0000 (UTC)
+Received: by mail-wm1-x343.google.com with SMTP id a141so16994537wme.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 01:50:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=s5+2p2JtBFJn+06U7OWeCCWEHHOTBFjw9F68Yq461sc=;
+ b=aE5eh5kAITHepiGOxbRwJ6sc21TZXh83fXlbpadElGdpVfH98NHHu4KHWyl+xACdSO
+ xx0/9Q3+ywQBmnGpNLtR14Bv7MOntI0EMIEOMerU15MXbRF1WFgueCg6cm1fMBxyeeF+
+ YV9KO4zM30EDGyZrYuS7gAxe7B0P65P4Yi5RA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=s5+2p2JtBFJn+06U7OWeCCWEHHOTBFjw9F68Yq461sc=;
+ b=VRA4lJYak0WaEJHnVgeuaeOh3INf5faxWea+ym5VF5MtbOM3Kdn1PsapoJ2SV9Iq85
+ 5yP18XWIUg2H0EGKEUE+hsZwdW6/YOkTP02lMvIHURvrdEtfe4qR0SkuqOGAkHJ8bxxG
+ uD0eW5/vQrqi7itQt0YAynuV9aWUCWYmFiDuN6/xJvX1/tv8zDoC7Cd5pYlynmX+Hayj
+ OSrPvEMrMRCQ8zxvSHDCqlIg00Yr85S9V09GM3WJLiZquW0uNmeqBrN/DKuBL81x0qtT
+ Gz7EqbAr8tbsE0Rn6YuknLG1EzBEzZxTeUEo379F2RvZ7ObR9Cz8o2aqkA/KKTRkwvW1
+ Bq/Q==
+X-Gm-Message-State: ANhLgQ1eTZXn43ti8nVq8bE/smTQ+ZPHMlv+Z3OUJN+FVS/tOiMWEC2X
+ TdADM7dRlRgMni4Ml+c8kZOBCUj1U99Uk029
+X-Google-Smtp-Source: ADFU+vuAYBZq+FjWjgDFhY0QN8PCp2eAzU0qMHulaSjSlg/aX6n6ET2IVPWgX2Himq02YlgP6cpkHw==
+X-Received: by 2002:a1c:4e14:: with SMTP id g20mr25276610wmh.143.1584348618271; 
+ Mon, 16 Mar 2020 01:50:18 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id a13sm21798818wrh.80.2020.03.16.01.50.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Mar 2020 01:50:17 -0700 (PDT)
+Date: Mon, 16 Mar 2020 09:50:15 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <20200316085015.GF2363188@phenom.ffwll.local>
+References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
+ <20200302222631.3861340-4-daniel.vetter@ffwll.ch>
+ <3afd6c45-1f32-160e-2546-a502b8f1d743@suse.de>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [RESUBMIT PATCH 2/2] tests/gem_userptr_blits: Refresh
- other now MMAP_GTT dependent subtests
+Content-Disposition: inline
+In-Reply-To: <3afd6c45-1f32-160e-2546-a502b8f1d743@suse.de>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
+ drm_device
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,269 +68,223 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Extend initial check for support of MMAP_GTT mapping to userptr with
-equivalent checks for each MMAP_OFFSET mapping type supported by i915
-driver.  Based on that, extend coverage of process-exit-gtt* subtests
-over non-GTT mapping types.  In case of dmabuf-* subtests, use first
-supported mapping type if there are any.
+On Wed, Mar 11, 2020 at 10:14:03AM +0100, Thomas Zimmermann wrote:
+> =
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/i915/gem_userptr_blits.c | 108 ++++++++++++++++++++++++---------
- 1 file changed, 79 insertions(+), 29 deletions(-)
+> =
 
-diff --git a/tests/i915/gem_userptr_blits.c b/tests/i915/gem_userptr_blits.c
-index 975cd9dab..475200930 100644
---- a/tests/i915/gem_userptr_blits.c
-+++ b/tests/i915/gem_userptr_blits.c
-@@ -73,18 +73,30 @@
- 
- static uint32_t userptr_flags = LOCAL_I915_USERPTR_UNSYNCHRONIZED;
- 
--static bool can_gtt_mmap;
-+static bool *can_mmap;
- 
- #define WIDTH 512
- #define HEIGHT 512
- 
- static uint32_t linear[WIDTH*HEIGHT];
- 
--static bool has_gtt_mmap(int i915)
-+static bool has_mmap(int i915, const struct mmap_offset *t)
- {
- 	void *ptr, *map = NULL;
- 	uint32_t handle;
- 
-+	handle = gem_create(i915, PAGE_SIZE);
-+	map = __gem_mmap_offset(i915, handle, 0, PAGE_SIZE, PROT_WRITE,
-+				t->type);
-+	gem_close(i915, handle);
-+	if (map) {
-+		munmap(map, PAGE_SIZE);
-+	} else {
-+		igt_debug("no HW / kernel support for mmap-offset(%s)\n",
-+			  t->name);
-+		return false;
-+	}
-+
- 	igt_assert(posix_memalign(&ptr, PAGE_SIZE, PAGE_SIZE) == 0);
- 
- 	if (__gem_userptr(i915, ptr, 4096, 0,
-@@ -92,9 +104,12 @@ static bool has_gtt_mmap(int i915)
- 		goto out_ptr;
- 	igt_assert(handle != 0);
- 
--	map = __gem_mmap__gtt(i915, handle, 4096, PROT_WRITE);
-+	map = __gem_mmap_offset(i915, handle, 0, 4096, PROT_WRITE, t->type);
- 	if (map)
- 		munmap(map, 4096);
-+	else if (errno == ENODEV)
-+		igt_debug("mmap-offset(%s) banned, lockdep loop prevention\n",
-+			  t->name);
- 
- 	gem_close(i915, handle);
- out_ptr:
-@@ -642,20 +657,25 @@ static int test_invalid_mapping(int fd, const struct mmap_offset *t)
- 	return 0;
- }
- 
--#define PE_GTT_MAP 0x1
--#define PE_BUSY 0x2
--static void test_process_exit(int fd, int flags)
-+#define PE_BUSY 0x1
-+static void test_process_exit(int fd, const struct mmap_offset *mmo, int flags)
- {
--	if (flags & PE_GTT_MAP)
--		igt_require(can_gtt_mmap);
-+	if (mmo)
-+		igt_require_f(can_mmap[mmo->type],
-+			      "HW & kernel support for LLC and mmap-offset(%s) over userptr\n",
-+			      mmo->name);
- 
- 	igt_fork(child, 1) {
- 		uint32_t handle;
- 
- 		handle = create_userptr_bo(fd, sizeof(linear));
- 
--		if (flags & PE_GTT_MAP) {
--			uint32_t *ptr = __gem_mmap__gtt(fd, handle, sizeof(linear), PROT_READ | PROT_WRITE);
-+		if (mmo) {
-+			uint32_t *ptr;
-+
-+			ptr = __gem_mmap_offset(fd, handle, 0, sizeof(linear),
-+						PROT_READ | PROT_WRITE,
-+						mmo->type);
- 			if (ptr)
- 				*ptr = 0;
- 		}
-@@ -933,13 +953,14 @@ static void (* volatile orig_sigbus)(int sig, siginfo_t *info, void *param);
- static volatile unsigned long sigbus_start;
- static volatile long sigbus_cnt = -1;
- 
--static void *umap(int fd, uint32_t handle)
-+static void *umap(int fd, uint32_t handle, const struct mmap_offset *mmo)
- {
- 	void *ptr;
- 
--	if (can_gtt_mmap) {
--		ptr = gem_mmap__gtt(fd, handle, sizeof(linear),
--				    PROT_READ | PROT_WRITE);
-+	if (mmo) {
-+		ptr = __gem_mmap_offset(fd, handle, 0, sizeof(linear),
-+					PROT_READ | PROT_WRITE, mmo->type);
-+		igt_assert(ptr);
- 	} else {
- 		uint32_t tmp = gem_create(fd, sizeof(linear));
- 		igt_assert_eq(copy(fd, tmp, handle), 0);
-@@ -951,16 +972,17 @@ static void *umap(int fd, uint32_t handle)
- }
- 
- static void
--check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2)
-+check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2,
-+	 const struct mmap_offset *mmo)
- {
- 	unsigned char *ptr1, *ptr2;
- 	unsigned long size = sizeof(linear);
- 
--	ptr2 = umap(fd2, handle2);
-+	ptr2 = umap(fd2, handle2, mmo);
- 	if (is_userptr)
- 		ptr1 = is_userptr > 0 ? get_handle_ptr(handle1) : ptr2;
- 	else
--		ptr1 = umap(fd1, handle1);
-+		ptr1 = umap(fd1, handle1, mmo);
- 
- 	igt_assert(ptr1);
- 	igt_assert(ptr2);
-@@ -968,7 +990,7 @@ check_bo(int fd1, uint32_t handle1, int is_userptr, int fd2, uint32_t handle2)
- 	sigbus_start = (unsigned long)ptr2;
- 	igt_assert(memcmp(ptr1, ptr2, sizeof(linear)) == 0);
- 
--	if (can_gtt_mmap) {
-+	if (mmo) {
- 		counter++;
- 		memset(ptr1, counter, size);
- 		memset(ptr2, counter, size);
-@@ -1026,9 +1048,17 @@ static int test_dmabuf(void)
- 	uint32_t handle, handle_import;
- 	int dma_buf_fd = -1;
- 	int ret;
-+	const struct mmap_offset *mmo = NULL;
- 
- 	fd1 = drm_open_driver(DRIVER_INTEL);
- 
-+	for_each_mmap_offset_type(fd1, t)
-+		if (can_mmap[t->type]) {
-+			igt_debug("using mmap-offset(%s)\n", t->name);
-+			mmo = t;
-+			break;
-+	}
-+
- 	handle = create_userptr_bo(fd1, sizeof(linear));
- 	memset(get_handle_ptr(handle), counter, sizeof(linear));
- 
-@@ -1045,17 +1075,17 @@ static int test_dmabuf(void)
- 
- 	fd2 = drm_open_driver(DRIVER_INTEL);
- 	handle_import = prime_fd_to_handle(fd2, dma_buf_fd);
--	check_bo(fd1, handle, 1, fd2, handle_import);
-+	check_bo(fd1, handle, 1, fd2, handle_import, mmo);
- 
- 	/* close dma_buf, check whether nothing disappears. */
- 	close(dma_buf_fd);
--	check_bo(fd1, handle, 1, fd2, handle_import);
-+	check_bo(fd1, handle, 1, fd2, handle_import, mmo);
- 
- 	/* destroy userptr object and expect SIGBUS */
- 	free_userptr_bo(fd1, handle);
- 	close(fd1);
- 
--	if (can_gtt_mmap) {
-+	if (mmo) {
- 		struct sigaction sigact, orig_sigact;
- 
- 		memset(&sigact, 0, sizeof(sigact));
-@@ -1067,7 +1097,7 @@ static int test_dmabuf(void)
- 		orig_sigbus = orig_sigact.sa_sigaction;
- 
- 		sigbus_cnt = 0;
--		check_bo(fd2, handle_import, -1, fd2, handle_import);
-+		check_bo(fd2, handle_import, -1, fd2, handle_import, mmo);
- 		igt_assert(sigbus_cnt > 0);
- 
- 		ret = sigaction(SIGBUS, &orig_sigact, NULL);
-@@ -2030,12 +2060,23 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 	int size = sizeof(linear);
- 
- 	igt_fixture {
-+		unsigned int mmo_max = 0;
-+
- 		fd = drm_open_driver(DRIVER_INTEL);
- 		igt_assert(fd >= 0);
- 		igt_require_gem(fd);
- 		gem_require_blitter(fd);
- 
--		can_gtt_mmap = has_gtt_mmap(fd) && gem_has_llc(fd);
-+		for_each_mmap_offset_type(fd, t)
-+			if (t->type >= mmo_max)
-+				mmo_max = t->type + 1;
-+		igt_assert(mmo_max);
-+
-+		can_mmap = calloc(mmo_max, sizeof(*can_mmap));
-+		igt_assert(can_mmap);
-+
-+		for_each_mmap_offset_type(fd, t)
-+			can_mmap[t->type] = has_mmap(fd, t) && gem_has_llc(fd);
- 
- 		size = sizeof(linear);
- 
-@@ -2193,16 +2234,22 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 		}
- 
- 		igt_subtest("process-exit")
--			test_process_exit(fd, 0);
-+			test_process_exit(fd, NULL, 0);
- 
--		igt_subtest("process-exit-gtt")
--			test_process_exit(fd, PE_GTT_MAP);
-+		igt_describe("Test process exit with userptr object mmapped via mmap-offset");
-+		igt_subtest_with_dynamic("process-exit-mmap")
-+			for_each_mmap_offset_type(fd, t)
-+				igt_dynamic(t->name)
-+					test_process_exit(fd, t, 0);
- 
- 		igt_subtest("process-exit-busy")
--			test_process_exit(fd, PE_BUSY);
-+			test_process_exit(fd, NULL, PE_BUSY);
- 
--		igt_subtest("process-exit-gtt-busy")
--			test_process_exit(fd, PE_GTT_MAP | PE_BUSY);
-+		igt_describe("Test process exit with busy userptr object mmapped via mmap-offset");
-+		igt_subtest_with_dynamic("process-exit-mmap-busy")
-+			for_each_mmap_offset_type(fd, t)
-+				igt_dynamic(t->name)
-+					test_process_exit(fd, t, PE_BUSY);
- 
- 		igt_subtest("create-destroy-sync")
- 			test_create_destroy(fd, 5);
-@@ -2325,4 +2372,7 @@ igt_main_args("c:", NULL, help_str, opt_handler, NULL)
- 
- 	igt_subtest("access-control")
- 		test_access_control(fd);
-+
-+	igt_fixture
-+		free(can_mmap);
- }
--- 
-2.21.1
+> Am 02.03.20 um 23:25 schrieb Daniel Vetter:
+> <...>
+> > +
+> > +int __drmm_add_action(struct drm_device *dev,
+> > +		      drmres_release_t action,
+> > +		      void *data, const char *name)
+> > +{
+> > +	struct drmres *dr;
+> > +	void **void_ptr;
+> > +
+> > +	dr =3D alloc_dr(action, data ? sizeof(void*) : 0,
+> > +		      GFP_KERNEL | __GFP_ZERO,
+> > +		      dev_to_node(dev->dev));
+> > +	if (!dr) {
+> > +		drm_dbg_drmres(dev, "failed to add action %s for %p\n",
+> > +			       name, data);
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	dr->node.name =3D name;
+> =
 
+> Maybe do a kstrdup_const() on name and later a kfree_const() during
+> release. Just in case someone decides to allocate 'name' dynamically.
+
+Makes sense, but a bit of churn since I need a free_dr() helper now :-)
+-Daniel
+
+> =
+
+> > +	if (data) {
+> > +		void_ptr =3D (void **)&dr->data;
+> > +		*void_ptr =3D data;
+> > +	}
+> > +
+> > +	add_dr(dev, dr);
+> > +
+> > +	return 0;
+> > +}
+> > +EXPORT_SYMBOL(__drmm_add_action);
+> > +
+> > +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> > +{
+> > +	struct drmres *dr;
+> > +
+> > +	dr =3D alloc_dr(NULL, size, gfp, dev_to_node(dev->dev));
+> > +	if (!dr) {
+> > +		drm_dbg_drmres(dev, "failed to allocate %zu bytes, %u flags\n",
+> > +			       size, gfp);
+> > +		return NULL;
+> > +	}
+> > +	dr->node.name =3D "kmalloc";
+> > +
+> > +	add_dr(dev, dr);
+> > +
+> > +	return dr->data;
+> > +}
+> > +EXPORT_SYMBOL(drmm_kmalloc);
+> > +
+> > +void drmm_kfree(struct drm_device *dev, void *data)
+> > +{
+> > +	struct drmres *dr_match =3D NULL, *dr;
+> > +	unsigned long flags;
+> > +
+> > +	if (!data)
+> > +		return;
+> > +
+> > +	spin_lock_irqsave(&dev->managed.lock, flags);
+> > +	list_for_each_entry(dr, &dev->managed.resources, node.entry) {
+> > +		if (dr->data =3D=3D data) {
+> > +			dr_match =3D dr;
+> > +			del_dr(dev, dr_match);
+> > +			break;
+> > +		}
+> > +	}
+> > +	spin_unlock_irqrestore(&dev->managed.lock, flags);
+> > +
+> > +	if (WARN_ON(!dr_match))
+> > +		return;
+> > +
+> > +	kfree(dr_match);
+> > +}
+> > +EXPORT_SYMBOL(drmm_kfree);
+> > diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+> > index bb60a949f416..d39132b477dd 100644
+> > --- a/include/drm/drm_device.h
+> > +++ b/include/drm/drm_device.h
+> > @@ -67,6 +67,21 @@ struct drm_device {
+> >  	/** @dev: Device structure of bus-device */
+> >  	struct device *dev;
+> >  =
+
+> > +	/**
+> > +	 * @managed:
+> > +	 *
+> > +	 * Managed resources linked to the lifetime of this &drm_device as
+> > +	 * tracked by @ref.
+> > +	 */
+> > +	struct {
+> > +		/** @managed.resources: managed resources list */
+> > +		struct list_head resources;
+> > +		/** @managed.final_kfree: pointer for final kfree() call */
+> > +		void *final_kfree;
+> > +		/** @managed.lock: protects @managed.resources */
+> > +		spinlock_t lock;
+> > +	} managed;
+> > +
+> >  	/** @driver: DRM driver managing the device */
+> >  	struct drm_driver *driver;
+> >  =
+
+> > diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> > new file mode 100644
+> > index 000000000000..7b5df7d09b19
+> > --- /dev/null
+> > +++ b/include/drm/drm_managed.h
+> > @@ -0,0 +1,30 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +#ifndef _DRM_MANAGED_H_
+> > +#define _DRM_MANAGED_H_
+> > +
+> > +#include <linux/gfp.h>
+> > +#include <linux/types.h>
+> > +
+> > +struct drm_device;
+> > +
+> > +typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
+> > +
+> > +#define drmm_add_action(dev, action, data) \
+> > +	__drmm_add_action(dev, action, data, #action)
+> > +
+> > +int __must_check __drmm_add_action(struct drm_device *dev,
+> > +				   drmres_release_t action,
+> > +				   void *data, const char *name);
+> > +
+> > +void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+> > +
+> > +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __m=
+alloc;
+> > +static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, =
+gfp_t gfp)
+> > +{
+> > +	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
+> > +}
+> > +
+> > +void drmm_kfree(struct drm_device *dev, void *data);
+> > +
+> > +#endif
+> > diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
+> > index ca7cee8e728a..1c9417430d08 100644
+> > --- a/include/drm/drm_print.h
+> > +++ b/include/drm/drm_print.h
+> > @@ -313,6 +313,10 @@ enum drm_debug_category {
+> >  	 * @DRM_UT_DP: Used in the DP code.
+> >  	 */
+> >  	DRM_UT_DP		=3D 0x100,
+> > +	/**
+> > +	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
+> > +	 */
+> > +	DRM_UT_DRMRES		=3D 0x200,
+> >  };
+> >  =
+
+> >  static inline bool drm_debug_enabled(enum drm_debug_category category)
+> > @@ -442,6 +446,8 @@ void drm_dev_dbg(const struct device *dev, enum drm=
+_debug_category category,
+> >  	drm_dev_dbg((drm)->dev, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
+> >  #define drm_dbg_dp(drm, fmt, ...)					\
+> >  	drm_dev_dbg((drm)->dev, DRM_UT_DP, fmt, ##__VA_ARGS__)
+> > +#define drm_dbg_drmres(drm, fmt, ...)					\
+> > +	drm_dev_dbg((drm)->dev, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
+> >  =
+
+> >  =
+
+> >  /*
+> > =
+
+> =
+
+> -- =
+
+> Thomas Zimmermann
+> Graphics Driver Developer
+> SUSE Software Solutions Germany GmbH
+> Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+> (HRB 36809, AG N=FCrnberg)
+> Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
+> =
+
+
+
+
+
+-- =
+
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
