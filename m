@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB9E18741A
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 21:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F005D18741B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 21:34:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 428C889F2E;
-	Mon, 16 Mar 2020 20:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E70B89F08;
+	Mon, 16 Mar 2020 20:34:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3D5589F53;
- Mon, 16 Mar 2020 20:34:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 58A2589F01;
+ Mon, 16 Mar 2020 20:34:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ABC49A41FB;
- Mon, 16 Mar 2020 20:34:22 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4B84AA41FB;
+ Mon, 16 Mar 2020 20:34:47 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
-Date: Mon, 16 Mar 2020 20:34:22 -0000
-Message-ID: <158439086267.18994.3097949581215135928@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 16 Mar 2020 20:34:47 -0000
+Message-ID: <158439088730.18996.16831112640921378079@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200316113744.31203-1-stanislav.lisovskiy@intel.com>
-In-Reply-To: <20200316113744.31203-1-stanislav.lisovskiy@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgQ29u?=
- =?utf-8?q?sider_DBuf_bandwidth_when_calculating_CDCLK?=
+References: <20200316114237.5436-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200316114237.5436-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/15=5D_drm/i915=3A_Move_GGTT_fenc?=
+ =?utf-8?q?e_registers_under_gt/?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,139 +48,68 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Consider DBuf bandwidth when calculating CDCLK
-URL   : https://patchwork.freedesktop.org/series/74739/
-State : failure
+Series: series starting with [01/15] drm/i915: Move GGTT fence registers under gt/
+URL   : https://patchwork.freedesktop.org/series/74740/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8137 -> Patchwork_16978
-====================================================
+$ dim checkpatch origin/drm-tip
+2bf8a0072a07 drm/i915: Move GGTT fence registers under gt/
+-:47: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#47: 
+rename from drivers/gpu/drm/i915/i915_gem_fence_reg.c
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 205 lines checked
+eb984adc50b0 drm/i915/gt: Pull restoration of GGTT fences underneath the GT
+ec7d53e3657f drm/i915: Remove manual save/resume of fence register state
+11c6a912a6f4 drm/i915/gt: Allocate i915_fence_reg array
+fb9609af3e59 drm/i915/gt: Only wait for GPU activity before unbinding a GGTT fence
+047943aa26dd drm/i915/gt: Store the fence details on the fence
+68777e6d26ac drm/i915/gt: Make fence revocation unequivocal
+ca73a0e0d45c drm/i915/gem: Drop cached obj->bind_count
+-:159: WARNING:LONG_LINE: line over 100 characters
+#159: FILE: drivers/gpu/drm/i915/i915_debugfs.c:286:
++		seq_printf(m, "%s: %lu objects, %llu bytes (%llu active, %llu inactive, %llu closed)\n", \
 
-  **FAILURE**
+total: 0 errors, 1 warnings, 0 checks, 228 lines checked
+6e568cc647bc drm/i915: Immediately execute the fenced work
+0e046d2c468f drm/i915/gem: Assign context id for async work
+16a27ae3ea5b drm/i915: Export a preallocate variant of i915_active_acquire()
+c447dbfb9f9e drm/i915/gem: Split eb_vma into its own allocation
+10bf1fdc1a47 drm/i915/gem: Separate the ww_mutex walker into its own list
+-:92: WARNING:LONG_LINE: line over 100 characters
+#92: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1568:
++			list_for_each_entry_safe_continue_reverse(unlock, en, &eb->lock, lock_link) {
 
-  Serious unknown changes coming with Patchwork_16978 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_16978, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pos' - possible side-effects?
+#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++		n = list_prev_entry(pos, member);			\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/index.html
+-:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'n' - possible side-effects?
+#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++		n = list_prev_entry(pos, member);			\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-Possible new issues
--------------------
+-:140: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
+#140: FILE: drivers/gpu/drm/i915/i915_utils.h:269:
++#define list_for_each_entry_safe_continue_reverse(pos, n, head, member)	\
++	for (pos = list_prev_entry(pos, member),			\
++		n = list_prev_entry(pos, member);			\
++	     &pos->member != (head);					\
++	     pos = n, n = list_prev_entry(n, member))
 
-  Here are the unknown changes that may have been introduced in Patchwork_16978:
+total: 0 errors, 1 warnings, 3 checks, 120 lines checked
+dbdbd5f98bb5 drm/i915/gem: Asynchronous GTT unbinding
+671fabf9545b drm/i915/gem: Bind the fence async for execbuf
 
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-hsw-peppy:       [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-hsw-peppy/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-hsw-peppy/igt@debugfs_test@read_all_entries.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-pnv-d510/igt@runner@aborted.html
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-hsw-peppy/igt@runner@aborted.html
-    - fi-gdg-551:         NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-gdg-551/igt@runner@aborted.html
-    - fi-snb-2520m:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-snb-2520m/igt@runner@aborted.html
-    - fi-byt-j1900:       NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-byt-j1900/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][8]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-elk-e7500/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16978 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_suspend@basic-s0:
-    - fi-bdw-5557u:       [PASS][9] -> [INCOMPLETE][10] ([i915#146])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-bdw-5557u/igt@gem_exec_suspend@basic-s0.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-bdw-5557u/igt@gem_exec_suspend@basic-s0.html
-    - fi-bsw-n3050:       [PASS][11] -> [INCOMPLETE][12] ([i915#392])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-bsw-n3050/igt@gem_exec_suspend@basic-s0.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-bsw-n3050/igt@gem_exec_suspend@basic-s0.html
-    - fi-byt-j1900:       [PASS][13] -> [INCOMPLETE][14] ([i915#45])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-byt-j1900/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-apl-guc:         [PASS][15] -> [INCOMPLETE][16] ([fdo#103927] / [i915#1430] / [i915#656])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-apl-guc/igt@i915_selftest@live@execlists.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-apl-guc/igt@i915_selftest@live@execlists.html
-    - fi-icl-dsi:         [PASS][17] -> [INCOMPLETE][18] ([i915#140])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-icl-dsi/igt@i915_selftest@live@execlists.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-icl-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][19] ([CI#94]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          [FAIL][21] ([i915#217]) -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
-  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
-  [i915#146]: https://gitlab.freedesktop.org/drm/intel/issues/146
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
-  [i915#45]: https://gitlab.freedesktop.org/drm/intel/issues/45
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (48 -> 36)
-------------------------------
-
-  Additional (1): fi-tgl-dsi 
-  Missing    (13): fi-bdw-samus fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-cfl-8700k fi-ivb-3770 fi-cfl-8109u fi-bsw-kefka fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6600u fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8137 -> Patchwork_16978
-
-  CI-20190529: 20190529
-  CI_DRM_8137: 5786b5e77cc17a1b494b9bdf3c3f29eedc2e2e7d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5510: e100092d50105463f58db531fa953c70cc58bb10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16978: a2e501b7cf7c01c4cf7e6fc7052a1fc875c9a08f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a2e501b7cf7c drm/i915: Remove unneeded hack now for CDCLK
-01a1b24738fd drm/i915: Adjust CDCLK accordingly to our DBuf bw needs
-70a984e1e806 drm/i915: Decouple cdclk calculation from modeset checks
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16978/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
