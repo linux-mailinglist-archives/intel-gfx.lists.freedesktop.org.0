@@ -1,61 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528F9186431
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 05:24:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2AC618644B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 06:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D92956E32C;
-	Mon, 16 Mar 2020 04:24:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE49A6E33D;
+	Mon, 16 Mar 2020 05:03:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E34C6E32C;
- Mon, 16 Mar 2020 04:24:00 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id f3so12446527wrw.7;
- Sun, 15 Mar 2020 21:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=BFbGXoNRkYhu7pj0FHhokhuVS4Fb4wpUfdzOgdNP9tw=;
- b=JceIzu66t4zKvbngDbCNiU9prpEQgCoNncoNTWT9e5qQCfqAXSLBR+u+irIlQImbaq
- mH8Flvz7Jda5wSnVk6MD4thogX2hRbZ7nDKRg9NevYo/4whe3+cAPs6wdJqvb7Epf7mf
- V4Q2X2RaXnT70Rw7/sKAbGOtDaQv7RglM8XHDxjM/+BRpOLSw31D3HCdA9CY2R67c+d0
- BzuVleLM4Pe/Vvt1W1bu4QQzijmpnaxR0GXrNkp1coCsy7dDiikUKjE7NEKUlyiXqxcw
- wBQdSOi3Bg4lBk/fW9BKbYtGe8+JAxLOG13lzPjaKf7mQagGoRUNEhFEQcrAYfoLArMa
- Z48w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding;
- bh=BFbGXoNRkYhu7pj0FHhokhuVS4Fb4wpUfdzOgdNP9tw=;
- b=Sk1iH4ldrqwo7Xjt9oflvyV0pL/F7oeoxDJMeLH7NapGS6QYvAiPW0T1ubY1htM0r/
- Nffylk6MxauOdd8+rSiomFOqUMDxq5YgTeyQ29QnJtHUDTCbiHawsRmVkz68FpIYX/z5
- vK0Mj9AZr6pLBmiCX4XYgRdZxjiZov+E74MJA4IxDO/cSnuXIBG49S5PyGtZ2JdV4toD
- GatS7VgAUywjWj7FbwCe2s6JtonX3meHelNZOXeiAWzFLYrUQL9h8NOMuIiQJ2EAuv+Q
- mSm7zTq6RRmYQUyCmanGRgku/hlpCCShfFq5ovlsusP48SSrOGpuVOen99VhXbSzpT6J
- lRZQ==
-X-Gm-Message-State: ANhLgQ2yEbE/NY8yT094a7Nyu2s4DiiV6l5Md2lWMfwDEiovb9gR8JOj
- gyxhFXF1ViKUXuDTMzw1NC2lfGtM
-X-Google-Smtp-Source: ADFU+vuFizVUnwKp8sjSDX41wgN++nnQlDMw0iE9GI80KOjHDHLrH3E/muuzK5R8PzwKKrzIOx/n9w==
-X-Received: by 2002:adf:e581:: with SMTP id l1mr19504126wrm.395.1584332638795; 
- Sun, 15 Mar 2020 21:23:58 -0700 (PDT)
-Received: from groovy.localdomain
- (dynamic-2a01-0c23-7803-8800-a85c-f091-4474-9511.c23.pool.telefonica.de.
- [2a01:c23:7803:8800:a85c:f091:4474:9511])
- by smtp.gmail.com with ESMTPSA id z4sm5909800wrr.6.2020.03.15.21.23.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 15 Mar 2020 21:23:58 -0700 (PDT)
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Mon, 16 Mar 2020 05:23:40 +0100
-Message-Id: <20200316042340.4783-1-mario.kleiner.de@gmail.com>
-X-Mailer: git-send-email 2.20.1
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 888C86E33D;
+ Mon, 16 Mar 2020 05:03:09 +0000 (UTC)
+IronPort-SDR: MIAZt1N9eKP3N6u/6iyF/8+4dRMySJDYPQ3ROpKTmNfs5TTun/KqF0j7OIpb1b99CCSrPxtiKD
+ MsjJ8B/H4wng==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2020 22:03:08 -0700
+IronPort-SDR: lhuvBZviN35VdEsvvOj/2qWTCRt8udAuVE1rjS5YSbiYAYX5LDmWusE9qEAOAO2VehSOR12MwC
+ 7rsJEZ/muKog==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,559,1574150400"; d="scan'208";a="233059048"
+Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
+ by orsmga007.jf.intel.com with ESMTP; 15 Mar 2020 22:03:08 -0700
+Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
+ FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Sun, 15 Mar 2020 22:03:07 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
+ BGSMSX153.gar.corp.intel.com ([169.254.2.116]) with mapi id 14.03.0439.000;
+ Mon, 16 Mar 2020 10:33:05 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Mun, Gwan-gyeong" <gwan-gyeong.mun@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v7 01/18] drm: Add DP1.4 VSC SDP Payload related Data
+ Structures
+Thread-Index: AQHV4K97AyUt9viiqE2Ijgjpo3PKW6hK3s1Q
+Date: Mon, 16 Mar 2020 05:03:04 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F824324B9@BGSMSX104.gar.corp.intel.com>
+References: <20200211074657.231405-1-gwan-gyeong.mun@intel.com>
+ <20200211074657.231405-2-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200211074657.231405-2-gwan-gyeong.mun@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/dp: Add dpcd link_rate quirk for Apple
- 15" MBP 2017 (v3)
+Subject: Re: [Intel-gfx] [PATCH v7 01/18] drm: Add DP1.4 VSC SDP Payload
+ related Data Structures
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,104 +65,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This fixes a problem found on the MacBookPro 2017 Retina panel.
 
-The panel reports 10 bpc color depth in its EDID, and the
-firmware chooses link settings at boot which support enough
-bandwidth for 10 bpc (324000 kbit/sec = multiplier 0xc),
-but the DP_MAX_LINK_RATE dpcd register only reports
-2.7 Gbps (multiplier value 0xa) as possible, in direct
-contradiction of what the firmware successfully set up.
 
-This restricts the panel to 8 bpc, not providing the full
-color depth of the panel.
+> -----Original Message-----
+> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Gwan-
+> gyeong Mun
+> Sent: Tuesday, February 11, 2020 1:17 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: linux-fbdev@vger.kernel.org; dri-devel@lists.freedesktop.org
+> Subject: [PATCH v7 01/18] drm: Add DP1.4 VSC SDP Payload related Data Structures
+> 
+> It adds new enumeration definitions for VSC SDP Payload for Pixel
+> Encoding/Colorimetry Format.
+> And it adds a new drm data structure for DP VSC SDP.
+> 
+> enum dp_colorspace and enum dp_colorimetry correspond "Pixel Encoding and
+> Colorimetry Formats". enum dp_dynamic_range corresponds "Dynamic Range".
+> And enum dp_content_type corresponds "Content Type"
+> All of them are based on DP 1.4 spec [Table 2-117: VSC SDP Payload for
+> DB16 through DB18].
+> 
+> v3: Add a new drm data structure for DP VSC SDP
+> v5: Addressed review comments from Uma
+>     - Add kernel docs for added data structures
+>     - Rename enum dp_colorspace to dp_pixelformat
+>     - Polish commit message
+>     - Fix typos
+>     - Drop self-explanatory comments
 
-This patch adds a quirk specific to the MBP 2017 15" Retina
-panel to add the additiional 324000 kbps link rate during
-edp setup.
+Changes look good.
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
-Link to previous discussion of a different attempted fix
-with Ville and Jani:
-
-https://patchwork.kernel.org/patch/11325935/
-
-v2: Follow Jani's proposal of defining quirk_rates[] instead
-    of just appending 324000. This for better clarity.
-
-v3: Rebased onto current drm-tip, as of 16-March-2020. Adapt
-    to new edid_quirks parameter of drm_dp_has_quirk().
-
-Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
-Tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/drm_dp_helper.c         |  2 ++
- drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++++
- include/drm/drm_dp_helper.h             |  7 +++++++
- 3 files changed, 20 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
-index c6fbe6e6bc9d..8ba4531e808d 100644
---- a/drivers/gpu/drm/drm_dp_helper.c
-+++ b/drivers/gpu/drm/drm_dp_helper.c
-@@ -1238,6 +1238,8 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
- 	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
- 	/* Synaptics DP1.4 MST hubs can support DSC without virtual DPCD */
- 	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
-+	/* Apple MacBookPro 2017 15 inch eDP Retina panel reports too low DP_MAX_LINK_RATE */
-+	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
- };
- 
- #undef OUI
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0a417cd2af2b..ef2e06e292d5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -164,6 +164,17 @@ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
- 	};
- 	int i, max_rate;
- 
-+	if (drm_dp_has_quirk(&intel_dp->desc, 0,
-+			     DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
-+		/* Needed, e.g., for Apple MBP 2017, 15 inch eDP Retina panel */
-+		static const int quirk_rates[] = { 162000, 270000, 324000 };
-+
-+		memcpy(intel_dp->sink_rates, quirk_rates, sizeof(quirk_rates));
-+		intel_dp->num_sink_rates = ARRAY_SIZE(quirk_rates);
-+
-+		return;
-+	}
-+
- 	max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
- 
- 	for (i = 0; i < ARRAY_SIZE(dp_rates); i++) {
-diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
-index c6119e4c169a..9d87cdf2740a 100644
---- a/include/drm/drm_dp_helper.h
-+++ b/include/drm/drm_dp_helper.h
-@@ -1548,6 +1548,13 @@ enum drm_dp_quirk {
- 	 * capabilities advertised.
- 	 */
- 	DP_QUIRK_FORCE_DPCD_BACKLIGHT,
-+	/**
-+	 * @DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS:
-+	 *
-+	 * The device supports a link rate of 3.24 Gbps (multiplier 0xc) despite
-+	 * the DP_MAX_LINK_RATE register reporting a lower max multiplier.
-+	 */
-+	DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS,
- };
- 
- /**
--- 
-2.20.1
-
+> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+> ---
+>  include/drm/drm_dp_helper.h | 130 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+> 
+> diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h index
+> 262faf9e5e94..e332f54013d7 100644
+> --- a/include/drm/drm_dp_helper.h
+> +++ b/include/drm/drm_dp_helper.h
+> @@ -1209,6 +1209,136 @@ struct dp_sdp {
+>  #define EDP_VSC_PSR_UPDATE_RFB		(1<<1)
+>  #define EDP_VSC_PSR_CRC_VALUES_VALID	(1<<2)
+> 
+> +/**
+> + * enum dp_pixelformat - drm DP Pixel encoding formats
+> + *
+> + * This enum is used to indicate DP VSC SDP Pixel encoding formats.
+> + * It is based on DP 1.4 spec [Table 2-117: VSC SDP Payload for DB16
+> +through
+> + * DB18]
+> + *
+> + * @DP_PIXELFORMAT_RGB: RGB pixel encoding format
+> + * @DP_PIXELFORMAT_YUV444: YCbCr 4:4:4 pixel encoding format
+> + * @DP_PIXELFORMAT_YUV422: YCbCr 4:2:2 pixel encoding format
+> + * @DP_PIXELFORMAT_YUV420: YCbCr 4:2:0 pixel encoding format
+> + * @DP_PIXELFORMAT_Y_ONLY: Y Only pixel encoding format
+> + * @DP_PIXELFORMAT_RAW: RAW pixel encoding format
+> + * @DP_PIXELFORMAT_RESERVED: Reserved pixel encoding format  */ enum
+> +dp_pixelformat {
+> +	DP_PIXELFORMAT_RGB = 0,
+> +	DP_PIXELFORMAT_YUV444 = 0x1,
+> +	DP_PIXELFORMAT_YUV422 = 0x2,
+> +	DP_PIXELFORMAT_YUV420 = 0x3,
+> +	DP_PIXELFORMAT_Y_ONLY = 0x4,
+> +	DP_PIXELFORMAT_RAW = 0x5,
+> +	DP_PIXELFORMAT_RESERVED = 0x6,
+> +};
+> +
+> +/**
+> + * enum dp_colorimetry - drm DP Colorimetry formats
+> + *
+> + * This enum is used to indicate DP VSC SDP Colorimetry formats.
+> + * It is based on DP 1.4 spec [Table 2-117: VSC SDP Payload for DB16
+> +through
+> + * DB18] and a name of enum member follows DRM_MODE_COLORIMETRY
+> definition.
+> + *
+> + * @DP_COLORIMETRY_DEFAULT: sRGB (IEC 61966-2-1) or
+> + *                          ITU-R BT.601 colorimetry format
+> + * @DP_COLORIMETRY_RGB_WIDE_FIXED: RGB wide gamut fixed point
+> +colorimetry format
+> + * @DP_COLORIMETRY_BT709_YCC: ITU-R BT.709 colorimetry format
+> + * @DP_COLORIMETRY_RGB_WIDE_FLOAT: RGB wide gamut floating point
+> + *                                 (scRGB (IEC 61966-2-2)) colorimetry format
+> + * @DP_COLORIMETRY_XVYCC_601: xvYCC601 colorimetry format
+> + * @DP_COLORIMETRY_OPRGB: OpRGB colorimetry format
+> + * @DP_COLORIMETRY_XVYCC_709: xvYCC709 colorimetry format
+> + * @DP_COLORIMETRY_DCI_P3_RGB: DCI-P3 (SMPTE RP 431-2) colorimetry
+> +format
+> + * @DP_COLORIMETRY_SYCC_601: sYCC601 colorimetry format
+> + * @DP_COLORIMETRY_RGB_CUSTOM: RGB Custom Color Profile colorimetry
+> +format
+> + * @DP_COLORIMETRY_OPYCC_601: opYCC601 colorimetry format
+> + * @DP_COLORIMETRY_BT2020_RGB: ITU-R BT.2020 R' G' B' colorimetry
+> +format
+> + * @DP_COLORIMETRY_BT2020_CYCC: ITU-R BT.2020 Y'c C'bc C'rc colorimetry
+> +format
+> + * @DP_COLORIMETRY_BT2020_YCC: ITU-R BT.2020 Y' C'b C'r colorimetry
+> +format  */ enum dp_colorimetry {
+> +	DP_COLORIMETRY_DEFAULT = 0,
+> +	DP_COLORIMETRY_RGB_WIDE_FIXED = 0x1,
+> +	DP_COLORIMETRY_BT709_YCC = 0x1,
+> +	DP_COLORIMETRY_RGB_WIDE_FLOAT = 0x2,
+> +	DP_COLORIMETRY_XVYCC_601 = 0x2,
+> +	DP_COLORIMETRY_OPRGB = 0x3,
+> +	DP_COLORIMETRY_XVYCC_709 = 0x3,
+> +	DP_COLORIMETRY_DCI_P3_RGB = 0x4,
+> +	DP_COLORIMETRY_SYCC_601 = 0x4,
+> +	DP_COLORIMETRY_RGB_CUSTOM = 0x5,
+> +	DP_COLORIMETRY_OPYCC_601 = 0x5,
+> +	DP_COLORIMETRY_BT2020_RGB = 0x6,
+> +	DP_COLORIMETRY_BT2020_CYCC = 0x6,
+> +	DP_COLORIMETRY_BT2020_YCC = 0x7,
+> +};
+> +
+> +/**
+> + * enum dp_dynamic_range - drm DP Dynamic Range
+> + *
+> + * This enum is used to indicate DP VSC SDP Dynamic Range.
+> + * It is based on DP 1.4 spec [Table 2-117: VSC SDP Payload for DB16
+> +through
+> + * DB18]
+> + *
+> + * @DP_DYNAMIC_RANGE_VESA: VESA range
+> + * @DP_DYNAMIC_RANGE_CTA: CTA range
+> + */
+> +enum dp_dynamic_range {
+> +	DP_DYNAMIC_RANGE_VESA = 0,
+> +	DP_DYNAMIC_RANGE_CTA = 1,
+> +};
+> +
+> +/**
+> + * enum dp_content_type - drm DP Content Type
+> + *
+> + * This enum is used to indicate DP VSC SDP Content Types.
+> + * It is based on DP 1.4 spec [Table 2-117: VSC SDP Payload for DB16
+> +through
+> + * DB18]
+> + * CTA-861-G defines content types and expected processing by a sink
+> +device
+> + *
+> + * @DP_CONTENT_TYPE_NOT_DEFINED: Not defined type
+> + * @DP_CONTENT_TYPE_GRAPHICS: Graphics type
+> + * @DP_CONTENT_TYPE_PHOTO: Photo type
+> + * @DP_CONTENT_TYPE_VIDEO: Video type
+> + * @DP_CONTENT_TYPE_GAME: Game type
+> + */
+> +enum dp_content_type {
+> +	DP_CONTENT_TYPE_NOT_DEFINED = 0x00,
+> +	DP_CONTENT_TYPE_GRAPHICS = 0x01,
+> +	DP_CONTENT_TYPE_PHOTO = 0x02,
+> +	DP_CONTENT_TYPE_VIDEO = 0x03,
+> +	DP_CONTENT_TYPE_GAME = 0x04,
+> +};
+> +
+> +/**
+> + * struct drm_dp_vsc_sdp - drm DP VSC SDP
+> + *
+> + * This structure represents a DP VSC SDP of drm
+> + * It is based on DP 1.4 spec [Table 2-116: VSC SDP Header Bytes] and
+> + * [Table 2-117: VSC SDP Payload for DB16 through DB18]
+> + *
+> + * @sdp_type: secondary-data packet type
+> + * @revision: revision number
+> + * @length: number of valid data bytes
+> + * @pixelformat: pixel encoding format
+> + * @colorimetry: colorimetry format
+> + * @bpc: bit per color
+> + * @dynamic_range: dynamic range information
+> + * @content_type: CTA-861-G defines content types and expected
+> +processing by a sink device  */ struct drm_dp_vsc_sdp {
+> +	unsigned char sdp_type;
+> +	unsigned char revision;
+> +	unsigned char length;
+> +	enum dp_pixelformat pixelformat;
+> +	enum dp_colorimetry colorimetry;
+> +	int bpc;
+> +	enum dp_dynamic_range dynamic_range;
+> +	enum dp_content_type content_type;
+> +};
+> +
+>  int drm_dp_psr_setup_time(const u8 psr_cap[EDP_PSR_RECEIVER_CAP_SIZE]);
+> 
+>  static inline int
+> --
+> 2.25.0
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
