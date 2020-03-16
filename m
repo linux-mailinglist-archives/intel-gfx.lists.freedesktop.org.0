@@ -1,52 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D488186E60
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 16:14:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0BA186E65
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 16:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739D86E451;
-	Mon, 16 Mar 2020 15:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7407B89DB9;
+	Mon, 16 Mar 2020 15:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAFC6E20F;
- Mon, 16 Mar 2020 15:14:17 +0000 (UTC)
-IronPort-SDR: JQjZWIqPBAg6mIhZDLf+0cIxMtsru+9d3oFUpfERRXtojuTAnexHLbX7hPJsG/3mibgsCwPzQB
- LAVGK5Euskzg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 08:14:16 -0700
-IronPort-SDR: SMrdSI+w47upSYJuzeWVXhH/NRV+HgwXOk6Ud/Sh2F8w0MinBcB7rAYKoAxxq9j0TzGHZ6Hr+B
- TSJzpG6GYyYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="262705244"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 16 Mar 2020 08:14:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 16 Mar 2020 17:14:12 +0200
-Date: Mon, 16 Mar 2020 17:14:12 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>,
- jani.nikula@linux.intel.com, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, airlied@linux.ie,
- maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
- mripard@kernel.org, mihail.atanassov@arm.com,
- linux-kernel@vger.kernel.org, ankit.k.nautiyal@intel.com
-Message-ID: <20200316151412.GS13686@intel.com>
-References: <20200225070545.4482-1-pankaj.laxminarayan.bharadiya@intel.com>
- <20200225070545.4482-2-pankaj.laxminarayan.bharadiya@intel.com>
- <20200310160106.GH13686@intel.com>
- <20200316083132.GC2363188@phenom.ffwll.local>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 001E189DB9;
+ Mon, 16 Mar 2020 15:18:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EBD8EA0094;
+ Mon, 16 Mar 2020 15:18:11 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200316083132.GC2363188@phenom.ffwll.local>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [RFC][PATCH 1/5] drm: Introduce scaling filter
- property
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 16 Mar 2020 15:18:11 -0000
+Message-ID: <158437189193.18996.13909320661980484267@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200314103331.2512251-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200314103331.2512251-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5Bv6=2C1/3=5D_drm/i915/perf=3A_remove?=
+ =?utf-8?q?_generated_code?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,79 +39,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 16, 2020 at 09:31:32AM +0100, Daniel Vetter wrote:
-> On Tue, Mar 10, 2020 at 06:01:06PM +0200, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Feb 25, 2020 at 12:35:41PM +0530, Pankaj Bharadiya wrote:
-> > > Introduce new scaling filter property to allow userspace to select
-> > > the driver's default scaling filter or Nearest-neighbor(NN) filter
-> > > for upscaling operations on crtc/plane.
-> > > =
+== Series Details ==
 
-> > > Drivers can set up this property for a plane by calling
-> > > drm_plane_enable_scaling_filter() and for a CRTC by calling
-> > > drm_crtc_enable_scaling_filter().
-> > > =
+Series: series starting with [v6,1/3] drm/i915/perf: remove generated code
+URL   : https://patchwork.freedesktop.org/series/74702/
+State : warning
 
-> > > NN filter works by filling in the missing color values in the upscaled
-> > > image with that of the coordinate-mapped nearest source pixel value.
-> > > =
+== Summary ==
 
-> > > NN filter for integer multiple scaling can be particularly useful for
-> > > for pixel art games that rely on sharp, blocky images to deliver their
-> > > distinctive look.
-> > > =
+$ dim checkpatch origin/drm-tip
+e31b72062fe2 drm/i915/perf: remove generated code
+-:24: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '53f8f541ca', maybe rebased or not pulled?
+#24: 
+commit 53f8f541ca ("lib: Add i915_perf library"), previously this was
 
-> > > Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.=
-com>
-> > > Signed-off-by: Shashank Sharma <shashank.sharma@intel.com>
-> > > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_atomic_uapi.c |  8 +++++++
-> > >  drivers/gpu/drm/drm_crtc.c        | 16 ++++++++++++++
-> > >  drivers/gpu/drm/drm_mode_config.c | 13 ++++++++++++
-> > >  drivers/gpu/drm/drm_plane.c       | 35 +++++++++++++++++++++++++++++=
-++
-> > >  include/drm/drm_crtc.h            | 10 +++++++++
-> > >  include/drm/drm_mode_config.h     |  6 ++++++
-> > >  include/drm/drm_plane.h           | 14 +++++++++++++
-> > >  7 files changed, 102 insertions(+)
-> > > =
+-:205: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#205: 
+deleted file mode 100644
 
-> > > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_=
-atomic_uapi.c
-> > > index a1e5e262bae2..4e3c1f3176e4 100644
-> > > --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> > > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> > > @@ -435,6 +435,8 @@ static int drm_atomic_crtc_set_property(struct dr=
-m_crtc *crtc,
-> > >  		return ret;
-> > >  	} else if (property =3D=3D config->prop_vrr_enabled) {
-> > >  		state->vrr_enabled =3D val;
-> > > +	} else if (property =3D=3D config->scaling_filter_property) {
-> > > +		state->scaling_filter =3D val;
-> > =
+total: 0 errors, 2 warnings, 0 checks, 278 lines checked
+066f2aa79c73 drm/i915/perf: remove redundant power configuration register override
+bbce3b010ffb drm/i915/perf: introduce global sseu pinning
 
-> > I think we want a per-plane/per-crtc prop for this. If we start adding
-> > more filters we are surely going to need different sets for different hw
-> > blocks.
-> =
-
-> In the past we've only done that once we have a demonstrated need. Usually
-> the patch to move the property to a per-object location isn't a lot of
-> churn.
-
-Seems silly to not do it from the start when we already know there is
-hardware out there that has different capabilities per hw block.
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
