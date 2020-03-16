@@ -1,37 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA721186C16
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 14:31:52 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7F6186C17
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 14:31:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8A176E43C;
-	Mon, 16 Mar 2020 13:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D1D76E440;
+	Mon, 16 Mar 2020 13:31:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 153E96E43C
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:31:50 +0000 (UTC)
-IronPort-SDR: zvPp5APKk9Ndz646HKsnqhI3Bs61F/su4udsqHELO8tVczklAcYaSEolYq1FlwFiPWG34fUxQ5
- dLPS2p6CMAbQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6086E440
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:31:53 +0000 (UTC)
+IronPort-SDR: IZCQiGJKZv1vztn+aq7etfpZ4h7jr+4kNbw3Ruoy/MkpTmCr3Kd8BlwuuMKbN49W2Nvxn2k4QA
+ 5qFCxahaQ1+Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 06:31:49 -0700
-IronPort-SDR: CKm4Y3HTXMN2fTtIYh7bqc7LiS+8Z4S2hNRBfUdK5QLAH7Udxf5E3luAlb2SLi9hLZabfhJ3yI
- sdSUPNrsgQAA==
+ 16 Mar 2020 06:31:52 -0700
+IronPort-SDR: Fcc/QQCKooNWbj71C/oRxRpwwiNbkFrms3vYHxO6om/WFmchjJnm5tqREa0Q3i58FzfBehCH62
+ VGIYkWrlRXvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="247457501"
+X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="247457517"
 Received: from unknown (HELO localhost.localdomain) ([10.223.165.29])
- by orsmga006.jf.intel.com with ESMTP; 16 Mar 2020 06:31:47 -0700
+ by orsmga006.jf.intel.com with ESMTP; 16 Mar 2020 06:31:51 -0700
 From: Ankit Navik <ankit.p.navik@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Mar 2020 18:59:48 +0530
-Message-Id: <1584365391-30029-1-git-send-email-ankit.p.navik@intel.com>
+Date: Mon, 16 Mar 2020 18:59:49 +0530
+Message-Id: <1584365391-30029-2-git-send-email-ankit.p.navik@intel.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [Intel-gfx] [PATCH v7 0/3] drm/i915: Context aware user agnostic
- EU/Slice/Sub-slice control within kernel
+In-Reply-To: <1584365391-30029-1-git-send-email-ankit.p.navik@intel.com>
+References: <1584365391-30029-1-git-send-email-ankit.p.navik@intel.com>
+Subject: [Intel-gfx] [PATCH v7 1/3] drm/i915: Get active pending request for
+ given context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,81 +53,107 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch sets improves GPU power consumption on Linux kernel based OS such as
-Chromium OS, Ubuntu, etc. Following are the power savings.
+This patch gives us the active pending request count which is yet
+to be submitted to the GPU.
 
-Power savings on GLK-GT1 Bobba platform running on Chrome OS.
------------------------------------------------|
-App /KPI                | % Power Benefit (mW) |
-------------------------|----------------------|
-Hangout Call- 20 minute |	1.8%           |
-Youtube 4K VPB          |       14.13%         |
-WebGL Aquarium          |       13.76%         |
-Unity3D                 |       6.78%          |
-			|		       |
-------------------------|----------------------|
-Chrome PLT              | BatteryLife Improves |
-			| by ~45 minute        |
------------------------------------------------|
+V2:
+ * Change 64-bit to atomic for request count. (Tvrtko Ursulin)
 
-Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
------------------------------------------------|
-App /KPI              	| % Power Benefit (mW) |
-                        |----------------------|
-			|  Android |  Ubuntu   |
-------------------------|----------|-----------|
-3D Mark (Ice storm)     | 2.30%    | N.A.      |
-TRex On screen          | 2.49%    | 2.97%     |
-Manhattan On screen     | 3.11%    | 4.90%     |
-Carchase On Screen	| N.A.     | 5.06%     |
-AnTuTu 6.1.4            | 3.42%    | N.A.      |
-SynMark2		| N.A.     | 1.7%      |
------------------------------------------------|
+V3:
+ * Remove mutex for request count.
+ * Rebase.
+ * Fixes hitting underflow for predictive request. (Tvrtko Ursulin)
 
-We have also observed GPU core residencies improves by 1.035%.
+V4:
+ * Rebase.
 
-Technical Insights of the patch:
-Current GPU configuration code for i915 does not allow us to change
-EU/Slice/Sub-slice configuration dynamically. Its done only once while context
-is created.
+V5:
+ * Rebase.
 
-While particular graphics application is running, if we examine the command
-requests from user space, we observe that command density is not consistent.
-It means there is scope to change the graphics configuration dynamically even
-while context is running actively. This patch series proposes the solution to
-find the active pending load for all active context at given time and based on
-that, dynamically perform graphics configuration for each context.
+V6:
+ * Rebase.
 
-The feature can be enabled using sysfs. we examine pending
-commands for a context in the queue, essentially, we intercept them before
-they are executed by GPU and we update context with required number of EUs.
+V7:
+ * Rebase.
+ * Add GEM_BUG_ON for req_cnt.
 
-For the prior one, empirical data to achieve best performance in least power
-was considered. For the later one, we roughly categorized number
-of EUs logically based on platform. Now we compare number of pending commands
-with a particular threshold and then set number of EUs accordingly with update
-context. That threshold is also based on experiments & findings. If GPU is able
-to catch up with CPU, typically there are no pending commands, the EU config
-would remain unchanged there. In case there are more pending commands we
-reprogram context with higher number of EUs.
+Cc: Vipin Anand <vipin.anand@intel.com>
+Signed-off-by: Ankit Navik <ankit.p.navik@intel.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       | 1 +
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 5 +++++
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    | 2 ++
+ drivers/gpu/drm/i915/gt/intel_lrc.c               | 9 +++++++++
+ 4 files changed, 17 insertions(+)
 
-Ankit Navik (3):
-  drm/i915: Get active pending request for given context
-  drm/i915: set optimum eu/slice/sub-slice configuration based on load
-    type
-  drm/i915: Predictive governor to control slice/subslice/eu
-
- drivers/gpu/drm/i915/gem/i915_gem_context.c       |  4 ++
- drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 37 +++++++++++
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +
- drivers/gpu/drm/i915/gt/intel_context_sseu.c      |  2 +
- drivers/gpu/drm/i915/gt/intel_context_types.h     |  2 +
- drivers/gpu/drm/i915/gt/intel_lrc.c               | 79 ++++++++++++++++++++++-
- drivers/gpu/drm/i915/i915_drv.h                   |  5 ++
- drivers/gpu/drm/i915/i915_sysfs.c                 | 32 +++++++++
- drivers/gpu/drm/i915/intel_device_info.c          | 55 +++++++++++++++-
- 9 files changed, 214 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 026999b34abd..d0ff999429ff 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -879,6 +879,7 @@ i915_gem_create_context(struct drm_i915_private *i915, unsigned int flags)
+ 	}
+ 
+ 	trace_i915_context_create(ctx);
++	atomic_set(&ctx->req_cnt, 0);
+ 
+ 	return ctx;
+ }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 28760bd03265..a9ba13f8865e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -171,6 +171,11 @@ struct i915_gem_context {
+ 	 */
+ 	struct radix_tree_root handles_vma;
+ 
++	/** req_cnt: tracks the pending commands, based on which we decide to
++	 * go for low/medium/high load configuration of the GPU.
++	 */
++	atomic_t req_cnt;
++
+ 	/**
+ 	 * @name: arbitrary name, used for user debug
+ 	 *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d3f4f28e9468..f90c968f95cd 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -2565,6 +2565,8 @@ i915_gem_do_execbuffer(struct drm_device *dev,
+ 	if (batch->private)
+ 		intel_engine_pool_mark_active(batch->private, eb.request);
+ 
++	atomic_inc(&eb.gem_context->req_cnt);
++
+ 	trace_i915_request_queue(eb.request, eb.batch_flags);
+ 	err = eb_submit(&eb, batch);
+ err_request:
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 112531b29f59..ccfebebb0071 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2143,6 +2143,8 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			}
+ 
+ 			if (__i915_request_submit(rq)) {
++				struct i915_gem_context *ctx;
++
+ 				if (!merge) {
+ 					*port = execlists_schedule_in(last, port - execlists->pending);
+ 					port++;
+@@ -2158,6 +2160,13 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 
+ 				submit = true;
+ 				last = rq;
++
++				ctx = rcu_dereference_protected(
++					rq->context->gem_context, true);
++
++				GEM_BUG_ON(atomic_read(&ctx->req_cnt));
++				if (atomic_read(&ctx->req_cnt) > 0)
++					atomic_dec(&ctx->req_cnt);
+ 			}
+ 		}
+ 
 -- 
 2.7.4
 
