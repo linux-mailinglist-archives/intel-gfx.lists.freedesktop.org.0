@@ -1,43 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF1E18763E
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 00:34:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F0718765A
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 00:47:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF676E4CF;
-	Mon, 16 Mar 2020 23:34:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E086E525;
+	Mon, 16 Mar 2020 23:47:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 931C26E4CF
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 23:34:43 +0000 (UTC)
-IronPort-SDR: JLjN2bPFWdqhKrz13OZNXeiJej25EM/X1l9f2dx+DmayqKoD8IwWm3Sd+HgwPHht/hDWxcecJC
- Fcf39Ttyz2ig==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 16:34:42 -0700
-IronPort-SDR: gb7Xtlhstuxc4yOTzL0eBdcg7hQXvbm1t0hgUFu2y5/HVdUtmOOuwMxeJ8J1RyNXaZOMC9PR6T
- JA/jNJBD9X4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,562,1574150400"; d="scan'208";a="244304240"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga003.jf.intel.com with ESMTP; 16 Mar 2020 16:34:42 -0700
-Date: Mon, 16 Mar 2020 16:36:13 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200316233613.GA24231@intel.com>
-References: <20200316113744.31203-1-stanislav.lisovskiy@intel.com>
- <20200316113744.31203-2-stanislav.lisovskiy@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 28C236E51D;
+ Mon, 16 Mar 2020 23:47:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 21688A0094;
+ Mon, 16 Mar 2020 23:47:53 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200316113744.31203-2-stanislav.lisovskiy@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v1 1/3] drm/i915: Decouple cdclk calculation
- from modeset checks
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 16 Mar 2020 23:47:53 -0000
+Message-ID: <158440247310.18995.15090045018376266004@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200316161447.18410-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200316161447.18410-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Check_for_a_closed_context_when_looking_up_an_engi?=
+ =?utf-8?q?ne?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,90 +39,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 16, 2020 at 01:37:42PM +0200, Stanislav Lisovskiy wrote:
-> We need to calculate cdclk after watermarks/ddb has been calculated
-> as with recent hw CDCLK needs to be adjusted accordingly to DBuf
-> requirements, which is not possible with current code organization.
-> 
-> Setting CDCLK according to DBuf BW requirements and not just rejecting
-> if it doesn't satisfy BW requirements, will allow us to save power when
-> it is possible and gain additional bandwidth when it's needed - i.e
-> boosting both our power management and perfomance capabilities.
-> 
-> This patch is preparation for that, first we now extract modeset
-> calculation from modeset checks, in order to call it after wm/ddb
+== Series Details ==
 
-Did you mean to type extract cdclk calculation from modeset checks?
+Series: drm/i915/gem: Check for a closed context when looking up an engine
+URL   : https://patchwork.freedesktop.org/series/74750/
+State : success
 
-Manasi
+== Summary ==
 
-> has been calculated.
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 22 ++++++++++++++++----
->  1 file changed, 18 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 8f23c4d51c33..cdff3054b344 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14542,6 +14542,14 @@ static int intel_modeset_checks(struct intel_atomic_state *state)
->  			return ret;
->  	}
->  
-> +	return 0;
-> +}
-> +
-> +static int intel_modeset_cdclk(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv = to_i915(state->base.dev);
-> +	int ret;
-> +
->  	ret = intel_modeset_calc_cdclk(state);
->  	if (ret)
->  		return ret;
-> @@ -14879,10 +14887,6 @@ static int intel_atomic_check(struct drm_device *dev,
->  			goto fail;
->  	}
->  
-> -	ret = intel_atomic_check_crtcs(state);
-> -	if (ret)
-> -		goto fail;
-> -
->  	intel_fbc_choose_crtc(dev_priv, state);
->  	ret = calc_watermark_data(state);
->  	if (ret)
-> @@ -14892,6 +14896,16 @@ static int intel_atomic_check(struct drm_device *dev,
->  	if (ret)
->  		goto fail;
->  
-> +	if (any_ms) {
-> +		ret = intel_modeset_cdclk(state);
-> +		if (ret)
-> +			goto fail;
-> +	}
-> +
-> +	ret = intel_atomic_check_crtcs(state);
-> +	if (ret)
-> +		goto fail;
-> +
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		if (!needs_modeset(new_crtc_state) &&
-> -- 
-> 2.24.1.485.gad05a3d8e5
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_8138 -> Patchwork_16984
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16984 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-tgl-y:           [PASS][1] -> [INCOMPLETE][2] ([CI#94] / [i915#470] / [i915#529])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8138/fi-tgl-y/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/fi-tgl-y/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8138/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/fi-skl-guc/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-bwr-2160:        [PASS][5] -> [INCOMPLETE][6] ([i915#1457])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8138/fi-bwr-2160/igt@i915_selftest@live@requests.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/fi-bwr-2160/igt@i915_selftest@live@requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [FAIL][7] ([i915#217]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8138/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#1457]: https://gitlab.freedesktop.org/drm/intel/issues/1457
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (40 -> 44)
+------------------------------
+
+  Additional (8): fi-bdw-5557u fi-hsw-peppy fi-skl-6770hq fi-ilk-650 fi-gdg-551 fi-ivb-3770 fi-cfl-8109u fi-snb-2600 
+  Missing    (4): fi-byt-squawks fi-bsw-cyan fi-bdw-samus fi-hsw-4200u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8138 -> Patchwork_16984
+
+  CI-20190529: 20190529
+  CI_DRM_8138: 652084cff0971058d1acb1746001f89ef8ea7321 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5512: f6fef7eff6f121e5e89afd7e70116f471ccd5b8b @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16984: a3c39e8196a999b51e95f43ebf36887facede60d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a3c39e8196a9 drm/i915/gem: Check for a closed context when looking up an engine
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16984/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
