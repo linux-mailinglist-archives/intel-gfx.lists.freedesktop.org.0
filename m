@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53771866EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 09:50:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7655C186750
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 10:02:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1E56E384;
-	Mon, 16 Mar 2020 08:50:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4779F6E391;
+	Mon, 16 Mar 2020 09:02:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com
- [IPv6:2a00:1450:4864:20::343])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A49C46E397
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 08:50:19 +0000 (UTC)
-Received: by mail-wm1-x343.google.com with SMTP id a141so16994537wme.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 01:50:19 -0700 (PDT)
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 632826E391
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 09:02:46 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id 11so16670003wmo.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 02:02:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:content-transfer-encoding:in-reply-to;
- bh=s5+2p2JtBFJn+06U7OWeCCWEHHOTBFjw9F68Yq461sc=;
- b=aE5eh5kAITHepiGOxbRwJ6sc21TZXh83fXlbpadElGdpVfH98NHHu4KHWyl+xACdSO
- xx0/9Q3+ywQBmnGpNLtR14Bv7MOntI0EMIEOMerU15MXbRF1WFgueCg6cm1fMBxyeeF+
- YV9KO4zM30EDGyZrYuS7gAxe7B0P65P4Yi5RA=
+ bh=T5gNcd3RbLDOue0jCQ/ONE4RBhrPDIw+y8Se0yMLarE=;
+ b=RCmeoDuSeEVKBf3Abl/1gFpG6iodupV1Udpm4nIpUw8kJ62YnmeY4xWWtWSEOyBeSO
+ XWAKb0dbHgum8iCpm7ejpmCQtCDIQQvdL5AsgbmLa0UEJgrx7aSJ5wavdBWTStoN6lVQ
+ 8dplLpEyTmPVOe8lcS97Ki8cUblH6CATm7hs8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:content-transfer-encoding
  :in-reply-to;
- bh=s5+2p2JtBFJn+06U7OWeCCWEHHOTBFjw9F68Yq461sc=;
- b=VRA4lJYak0WaEJHnVgeuaeOh3INf5faxWea+ym5VF5MtbOM3Kdn1PsapoJ2SV9Iq85
- 5yP18XWIUg2H0EGKEUE+hsZwdW6/YOkTP02lMvIHURvrdEtfe4qR0SkuqOGAkHJ8bxxG
- uD0eW5/vQrqi7itQt0YAynuV9aWUCWYmFiDuN6/xJvX1/tv8zDoC7Cd5pYlynmX+Hayj
- OSrPvEMrMRCQ8zxvSHDCqlIg00Yr85S9V09GM3WJLiZquW0uNmeqBrN/DKuBL81x0qtT
- Gz7EqbAr8tbsE0Rn6YuknLG1EzBEzZxTeUEo379F2RvZ7ObR9Cz8o2aqkA/KKTRkwvW1
- Bq/Q==
-X-Gm-Message-State: ANhLgQ1eTZXn43ti8nVq8bE/smTQ+ZPHMlv+Z3OUJN+FVS/tOiMWEC2X
- TdADM7dRlRgMni4Ml+c8kZOBCUj1U99Uk029
-X-Google-Smtp-Source: ADFU+vuAYBZq+FjWjgDFhY0QN8PCp2eAzU0qMHulaSjSlg/aX6n6ET2IVPWgX2Himq02YlgP6cpkHw==
-X-Received: by 2002:a1c:4e14:: with SMTP id g20mr25276610wmh.143.1584348618271; 
- Mon, 16 Mar 2020 01:50:18 -0700 (PDT)
+ bh=T5gNcd3RbLDOue0jCQ/ONE4RBhrPDIw+y8Se0yMLarE=;
+ b=Qox7ZTxoxncyoaYTZpg4OWcMYl306wBTtNS/6YagtC/JY5JjYq7wjaB1PmPDgc0lCq
+ HJlYqO+NyrkaqXinTjnIvjpiaolDV5wZPcS1sVT6ANCdhBmuOw6SeziG8S7BmnWxfJ7t
+ MDzVCZ6YLTzDzlSr5g/A7x71A6MT4cZy8qyk4ezCP5F0VlEwe9kVTxWilsMeYQzC5A7l
+ 8xhhNbnRPtPV5jJc0f4BOsAeWDeCIpTTQB9wNmoTvdxcPdBRFHlqvx8M1N+/rcNmaCNx
+ U88c+oTVxaaNP8dsIEyeAx7u+ecHYThuVEJ+QdP14+cTYL/oy5KF0UTaR5eqeQxvtETY
+ JWbA==
+X-Gm-Message-State: ANhLgQ1a8pCdgG9xzPOO1dnW8Hc5+2B9I4It6Yh+BbMX+USKKRisrfod
+ KK/wfnpXnyrR7zuzd/8mN1HJBg==
+X-Google-Smtp-Source: ADFU+vsdmI1ZYcFDZuBZN7AxVvvGYTeBeJzieg1Y70hgXrPWjLFCyBBgD3Hdak+T487ZLah7sfjkeg==
+X-Received: by 2002:a1c:3d6:: with SMTP id 205mr28431052wmd.155.1584349364977; 
+ Mon, 16 Mar 2020 02:02:44 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id a13sm21798818wrh.80.2020.03.16.01.50.17
+ by smtp.gmail.com with ESMTPSA id w4sm41065423wrl.12.2020.03.16.02.02.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Mar 2020 01:50:17 -0700 (PDT)
-Date: Mon, 16 Mar 2020 09:50:15 +0100
+ Mon, 16 Mar 2020 02:02:44 -0700 (PDT)
+Date: Mon, 16 Mar 2020 10:02:42 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
 To: Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <20200316085015.GF2363188@phenom.ffwll.local>
+Message-ID: <20200316090242.GG2363188@phenom.ffwll.local>
 References: <20200302222631.3861340-1-daniel.vetter@ffwll.ch>
- <20200302222631.3861340-4-daniel.vetter@ffwll.ch>
- <3afd6c45-1f32-160e-2546-a502b8f1d743@suse.de>
+ <20200302222631.3861340-22-daniel.vetter@ffwll.ch>
+ <51a1d5a5-566f-89f0-2edf-5dd557c5f81a@suse.de>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <3afd6c45-1f32-160e-2546-a502b8f1d743@suse.de>
+In-Reply-To: <51a1d5a5-566f-89f0-2edf-5dd557c5f81a@suse.de>
 X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 03/51] drm: add managed resources tied to
- drm_device
+Subject: Re: [Intel-gfx] [PATCH 21/51] drm: Use drmm_ for drm_dev_init
+ cleanup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,200 +68,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Vetter <daniel.vetter@ffwll.ch>,
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
  DRI Development <dri-devel@lists.freedesktop.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 11, 2020 at 10:14:03AM +0100, Thomas Zimmermann wrote:
+On Wed, Mar 11, 2020 at 10:39:13AM +0100, Thomas Zimmermann wrote:
+> Hi
 > =
 
-> =
+> Am 02.03.20 um 23:26 schrieb Daniel Vetter:
+> > Well for the simple stuff at least, vblank, gem and minor cleanup I
+> > want to further split up as a demonstration.
+> > =
 
-> Am 02.03.20 um 23:25 schrieb Daniel Vetter:
-> <...>
-> > +
-> > +int __drmm_add_action(struct drm_device *dev,
-> > +		      drmres_release_t action,
-> > +		      void *data, const char *name)
+> > v2: We need to clear drm_device->dev otherwise the debug drm printing
+> > after our cleanup hook (e.g. in drm_manged_release) will chase
+> > released memory and result in a use-after-free. Not really pretty, but
+> > oh well.
+> > =
+
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_drv.c | 48 ++++++++++++++++++++-------------------
+> >  1 file changed, 25 insertions(+), 23 deletions(-)
+> > =
+
+> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > index ef79c03e311c..23e5b0e7e041 100644
+> > --- a/drivers/gpu/drm/drm_drv.c
+> > +++ b/drivers/gpu/drm/drm_drv.c
+> > @@ -580,6 +580,23 @@ static void drm_fs_inode_free(struct inode *inode)
+> >   *    used.
+> >   */
+> >  =
+
+> > +static void drm_dev_init_release(struct drm_device *dev, void *res)
 > > +{
-> > +	struct drmres *dr;
-> > +	void **void_ptr;
+> > +	drm_legacy_ctxbitmap_cleanup(dev);
+> > +	drm_legacy_remove_map_hash(dev);
+> > +	drm_fs_inode_free(dev->anon_inode);
 > > +
-> > +	dr =3D alloc_dr(action, data ? sizeof(void*) : 0,
-> > +		      GFP_KERNEL | __GFP_ZERO,
-> > +		      dev_to_node(dev->dev));
-> > +	if (!dr) {
-> > +		drm_dbg_drmres(dev, "failed to add action %s for %p\n",
-> > +			       name, data);
-> > +		return -ENOMEM;
-> > +	}
+> > +	put_device(dev->dev);
+> > +	/* Prevent use-after-free in drm_managed_release when debugging is
+> > +	 * enabled. Slightly awkward, but can't really be helped. */
+> > +	dev->dev =3D NULL;
+> > +	mutex_destroy(&dev->master_mutex);
+> > +	mutex_destroy(&dev->clientlist_mutex);
+> > +	mutex_destroy(&dev->filelist_mutex);
+> > +	mutex_destroy(&dev->struct_mutex);
+> > +	drm_legacy_destroy_members(dev);
+> > +}
 > > +
-> > +	dr->node.name =3D name;
+> >  /**
+> >   * drm_dev_init - Initialise new DRM device
+> >   * @dev: DRM device
+> > @@ -647,11 +664,15 @@ int drm_dev_init(struct drm_device *dev,
+> >  	mutex_init(&dev->clientlist_mutex);
+> >  	mutex_init(&dev->master_mutex);
+> >  =
+
+> > +	ret =3D drmm_add_action(dev, drm_dev_init_release, NULL);
+> > +	if (ret)
+> > +		return ret;
+> > +
 > =
 
-> Maybe do a kstrdup_const() on name and later a kfree_const() during
-> release. Just in case someone decides to allocate 'name' dynamically.
+> Is this code supposed to stay for the long term? As devices are
+> allocated dynamically, I can imagine that there will be a call that
+> allocates the memory and, at the same time, sets drm_dev_init_release()
+> as the release callback.
 
-Makes sense, but a bit of churn since I need a free_dr() helper now :-)
+There's a chicken-egg situation here. The plan is to fix this with a
+devm_drm_dev_alloc() macro, which we discussed quite a bit in earlier
+versions. It's just that the patch series is already big as-is, hence this
+is postponed to the next round.
+
+> The question is also released to patch 3, where I proposed to rename
+> __drm_add_action() to __drmm_kzalloc().
+> =
+
+> >  	dev->anon_inode =3D drm_fs_inode_new();
+> >  	if (IS_ERR(dev->anon_inode)) {
+> >  		ret =3D PTR_ERR(dev->anon_inode);
+> >  		DRM_ERROR("Cannot allocate anonymous inode: %d\n", ret);
+> > -		goto err_free;
+> > +		goto err;
+> >  	}
+> >  =
+
+> >  	if (drm_core_check_feature(dev, DRIVER_RENDER)) {
+> > @@ -688,19 +709,12 @@ int drm_dev_init(struct drm_device *dev,
+> >  	if (drm_core_check_feature(dev, DRIVER_GEM))
+> >  		drm_gem_destroy(dev);
+> >  err_ctxbitmap:
+> > -	drm_legacy_ctxbitmap_cleanup(dev);
+> > -	drm_legacy_remove_map_hash(dev);
+> >  err_minors:
+> >  	drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> >  	drm_minor_free(dev, DRM_MINOR_RENDER);
+> > -	drm_fs_inode_free(dev->anon_inode);
+> > -err_free:
+> > -	put_device(dev->dev);
+> > -	mutex_destroy(&dev->master_mutex);
+> > -	mutex_destroy(&dev->clientlist_mutex);
+> > -	mutex_destroy(&dev->filelist_mutex);
+> > -	mutex_destroy(&dev->struct_mutex);
+> > -	drm_legacy_destroy_members(dev);
+> > +err:
+> > +	drm_managed_release(dev);
+> > +
+> =
+
+> Here's more of a general observation than a comment on the actual patch:
+> =
+
+> One odd thing about the overall interface is that there's no way of
+> updating the release callback afterwards. In an OOP language, such as
+> C++, an error within the constructor would rollback the performed
+> actions and return without calling the destructor. Destructors only run
+> for fully constructed objects.
+> =
+
+> In our case, the equivalent is to run the init function and set
+> drm_dev_init_release() as the final step. The init's rollback-code would
+> have to stay, obviously.
+
+See the various drivers later on in the series, the init rollback
+completely disappears once we're done here. If this wouldn't Just Work for
+both final destruction and init rollback there's really no point. There's
+a few ugly corner-cases with getting this boot-strapped though.
 -Daniel
 
 > =
 
-> > +	if (data) {
-> > +		void_ptr =3D (void **)&dr->data;
-> > +		*void_ptr =3D data;
-> > +	}
-> > +
-> > +	add_dr(dev, dr);
-> > +
-> > +	return 0;
-> > +}
-> > +EXPORT_SYMBOL(__drmm_add_action);
-> > +
-> > +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
-> > +{
-> > +	struct drmres *dr;
-> > +
-> > +	dr =3D alloc_dr(NULL, size, gfp, dev_to_node(dev->dev));
-> > +	if (!dr) {
-> > +		drm_dbg_drmres(dev, "failed to allocate %zu bytes, %u flags\n",
-> > +			       size, gfp);
-> > +		return NULL;
-> > +	}
-> > +	dr->node.name =3D "kmalloc";
-> > +
-> > +	add_dr(dev, dr);
-> > +
-> > +	return dr->data;
-> > +}
-> > +EXPORT_SYMBOL(drmm_kmalloc);
-> > +
-> > +void drmm_kfree(struct drm_device *dev, void *data)
-> > +{
-> > +	struct drmres *dr_match =3D NULL, *dr;
-> > +	unsigned long flags;
-> > +
-> > +	if (!data)
-> > +		return;
-> > +
-> > +	spin_lock_irqsave(&dev->managed.lock, flags);
-> > +	list_for_each_entry(dr, &dev->managed.resources, node.entry) {
-> > +		if (dr->data =3D=3D data) {
-> > +			dr_match =3D dr;
-> > +			del_dr(dev, dr_match);
-> > +			break;
-> > +		}
-> > +	}
-> > +	spin_unlock_irqrestore(&dev->managed.lock, flags);
-> > +
-> > +	if (WARN_ON(!dr_match))
-> > +		return;
-> > +
-> > +	kfree(dr_match);
-> > +}
-> > +EXPORT_SYMBOL(drmm_kfree);
-> > diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> > index bb60a949f416..d39132b477dd 100644
-> > --- a/include/drm/drm_device.h
-> > +++ b/include/drm/drm_device.h
-> > @@ -67,6 +67,21 @@ struct drm_device {
-> >  	/** @dev: Device structure of bus-device */
-> >  	struct device *dev;
+> Best regards
+> Thomas
+> =
+
+> >  	return ret;
+> >  }
+> >  EXPORT_SYMBOL(drm_dev_init);
+> > @@ -763,20 +777,8 @@ void drm_dev_fini(struct drm_device *dev)
+> >  	if (drm_core_check_feature(dev, DRIVER_GEM))
+> >  		drm_gem_destroy(dev);
 > >  =
 
-> > +	/**
-> > +	 * @managed:
-> > +	 *
-> > +	 * Managed resources linked to the lifetime of this &drm_device as
-> > +	 * tracked by @ref.
-> > +	 */
-> > +	struct {
-> > +		/** @managed.resources: managed resources list */
-> > +		struct list_head resources;
-> > +		/** @managed.final_kfree: pointer for final kfree() call */
-> > +		void *final_kfree;
-> > +		/** @managed.lock: protects @managed.resources */
-> > +		spinlock_t lock;
-> > +	} managed;
-> > +
-> >  	/** @driver: DRM driver managing the device */
-> >  	struct drm_driver *driver;
+> > -	drm_legacy_ctxbitmap_cleanup(dev);
+> > -	drm_legacy_remove_map_hash(dev);
+> > -	drm_fs_inode_free(dev->anon_inode);
+> > -
+> >  	drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> >  	drm_minor_free(dev, DRM_MINOR_RENDER);
+> > -
+> > -	put_device(dev->dev);
+> > -
+> > -	mutex_destroy(&dev->master_mutex);
+> > -	mutex_destroy(&dev->clientlist_mutex);
+> > -	mutex_destroy(&dev->filelist_mutex);
+> > -	mutex_destroy(&dev->struct_mutex);
+> > -	drm_legacy_destroy_members(dev);
+> >  }
+> >  EXPORT_SYMBOL(drm_dev_fini);
 > >  =
 
-> > diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-> > new file mode 100644
-> > index 000000000000..7b5df7d09b19
-> > --- /dev/null
-> > +++ b/include/drm/drm_managed.h
-> > @@ -0,0 +1,30 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#ifndef _DRM_MANAGED_H_
-> > +#define _DRM_MANAGED_H_
-> > +
-> > +#include <linux/gfp.h>
-> > +#include <linux/types.h>
-> > +
-> > +struct drm_device;
-> > +
-> > +typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
-> > +
-> > +#define drmm_add_action(dev, action, data) \
-> > +	__drmm_add_action(dev, action, data, #action)
-> > +
-> > +int __must_check __drmm_add_action(struct drm_device *dev,
-> > +				   drmres_release_t action,
-> > +				   void *data, const char *name);
-> > +
-> > +void drmm_add_final_kfree(struct drm_device *dev, void *parent);
-> > +
-> > +void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __m=
-alloc;
-> > +static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, =
-gfp_t gfp)
-> > +{
-> > +	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
-> > +}
-> > +
-> > +void drmm_kfree(struct drm_device *dev, void *data);
-> > +
-> > +#endif
-> > diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-> > index ca7cee8e728a..1c9417430d08 100644
-> > --- a/include/drm/drm_print.h
-> > +++ b/include/drm/drm_print.h
-> > @@ -313,6 +313,10 @@ enum drm_debug_category {
-> >  	 * @DRM_UT_DP: Used in the DP code.
-> >  	 */
-> >  	DRM_UT_DP		=3D 0x100,
-> > +	/**
-> > +	 * @DRM_UT_DRMRES: Used in the drm managed resources code.
-> > +	 */
-> > +	DRM_UT_DRMRES		=3D 0x200,
-> >  };
-> >  =
-
-> >  static inline bool drm_debug_enabled(enum drm_debug_category category)
-> > @@ -442,6 +446,8 @@ void drm_dev_dbg(const struct device *dev, enum drm=
-_debug_category category,
-> >  	drm_dev_dbg((drm)->dev, DRM_UT_LEASE, fmt, ##__VA_ARGS__)
-> >  #define drm_dbg_dp(drm, fmt, ...)					\
-> >  	drm_dev_dbg((drm)->dev, DRM_UT_DP, fmt, ##__VA_ARGS__)
-> > +#define drm_dbg_drmres(drm, fmt, ...)					\
-> > +	drm_dev_dbg((drm)->dev, DRM_UT_DRMRES, fmt, ##__VA_ARGS__)
-> >  =
-
-> >  =
-
-> >  /*
 > > =
 
 > =
