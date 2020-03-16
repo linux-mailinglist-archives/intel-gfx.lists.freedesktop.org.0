@@ -1,45 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E4EA186789
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 10:11:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC56F18679D
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 10:16:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8228F89A9A;
-	Mon, 16 Mar 2020 09:11:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 629C489F06;
+	Mon, 16 Mar 2020 09:16:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6A66E3A2
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 09:11:40 +0000 (UTC)
-IronPort-SDR: xrg0K/QPNc0qloC0ayjqeSO/fcyR8ZVgiisHW8N5ImpIrI7d+yy6/VrhWV0+fKAdgdKm+PK1in
- 41ePYZcbYFiw==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D73889F06
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 09:16:12 +0000 (UTC)
+IronPort-SDR: oeeehiDqWbN29XkQmqJidkc1NE1vxfxnWNKP5HZQ+3+r26oNeVvfNNyFv0FdmbfZcTnrnuAdTr
+ lTk2RaxxCDsQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 02:11:40 -0700
-IronPort-SDR: Ja3FAvk6BCew8VQpf9AQ/8xm6UQBFncNtwbOqJqcIPMrNJOBXNVUOPttRJm7y6JB+9ThQOvXO8
- 1VsOgcVFHXNg==
-X-IronPort-AV: E=Sophos;i="5.70,559,1574150400"; d="scan'208";a="417077474"
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2020 02:16:12 -0700
+IronPort-SDR: htBUf/nuWpkZaXdiv4cYGD10NwvpGXWt3muNSu0dnH5L5ylbycHhB1MSFW5YrOUeX58T5AVOD5
+ TqOXC83CC3Ig==
+X-IronPort-AV: E=Sophos;i="5.70,559,1574150400"; d="scan'208";a="417078757"
 Received: from fneumann-mobl1.ger.corp.intel.com (HELO [10.252.38.187])
  ([10.252.38.187])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 02:11:37 -0700
+ 16 Mar 2020 02:16:10 -0700
 To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>,
  intel-gfx@lists.freedesktop.org
-References: <20200314103331.2512251-1-lionel.g.landwerlin@intel.com>
- <20200314103331.2512251-3-lionel.g.landwerlin@intel.com>
+References: <20200313143440.2476876-1-lionel.g.landwerlin@intel.com>
+ <20200313143440.2476876-3-lionel.g.landwerlin@intel.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <f87cbcc7-46db-724e-edae-1da0a14459dd@linux.intel.com>
-Date: Mon, 16 Mar 2020 09:11:34 +0000
+Message-ID: <973845e6-e821-0c05-4e95-128ba961ee84@linux.intel.com>
+Date: Mon, 16 Mar 2020 09:16:08 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200314103331.2512251-3-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200313143440.2476876-3-lionel.g.landwerlin@intel.com>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v6 3/3] drm/i915/perf: introduce global sseu
+Subject: Re: [Intel-gfx] [PATCH v5 3/3] drm/i915/perf: introduce global sseu
  pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,7 +59,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 14/03/2020 10:33, Lionel Landwerlin wrote:
+On 13/03/2020 14:34, Lionel Landwerlin wrote:
 > On Gen11 powergating half the execution units is a functional
 > requirement when using the VME samplers. Not fullfilling this
 > requirement can lead to hangs.
@@ -78,7 +78,13 @@ On 14/03/2020 10:33, Lionel Landwerlin wrote:
 > introduces a new i915-perf stream open parameter that punts the
 > decision off to userspace. If this parameter is omitted, the existing
 > Gen11 behavior remains (half EU array powergating).
-> 
+
+You also need to test the new prop from the IGT, right?
+
+Regards,
+
+Tvrtko
+
 > This change takes the initiative to move all perf related sseu
 > configuration into i915_perf.c
 > 
@@ -93,15 +99,6 @@ On 14/03/2020 10:33, Lionel Landwerlin wrote:
 > v5: Some typos (Tvrtko)
 >      Process sseu param in read_properties_unlocked() (Tvrtko)
 > 
-> v6: Actually commit the bits from v5...
->      Fixup some checkpath warnings
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-
-Regards,
-
-Tvrtko
-
 > Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 > ---
 >   drivers/gpu/drm/i915/gem/i915_gem_context.c | 10 +--
@@ -219,31 +216,32 @@ Tvrtko
 >   		val &= GEN8_RPCS_EU_MAX_MASK;
 >   
 > diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 86c6abaa3e0e..6f0937d318a2 100644
+> index 86c6abaa3e0e..284a4ebd735a 100644
 > --- a/drivers/gpu/drm/i915/i915_perf.c
 > +++ b/drivers/gpu/drm/i915/i915_perf.c
 > @@ -344,6 +344,10 @@ static const struct i915_oa_format gen12_oa_formats[I915_OA_FORMAT_MAX] = {
 >    * @oa_periodic: Whether to enable periodic OA unit sampling
 >    * @oa_period_exponent: The OA unit sampling period is derived from this
 >    * @engine: The engine (typically rcs0) being monitored by the OA unit
-> + * @has_sseu: Whether @sseu was specified by userspace
-> + * @sseu: internal SSEU configuration computed either from the userspace
-> + *        specified configuration in the opening parameters or a default value
-> + *        (see get_default_sseu_config())
+> + * @has_sseu: Whether @drm_sseu was specified by userspace
+> + * @drm_sseu: SSEU configuration specified by userspace
+> + * @sseu: internal SSEU configuration computed either with @drm_sseu or a
+> + *        default value (see get_sseu_config())
 >    *
 >    * As read_properties_unlocked() enumerates and validates the properties given
 >    * to open a stream of metrics the configuration is built up in the structure
-> @@ -363,6 +367,9 @@ struct perf_open_properties {
+> @@ -363,6 +367,10 @@ struct perf_open_properties {
 >   	int oa_period_exponent;
 >   
 >   	struct intel_engine_cs *engine;
 > +
 > +	bool has_sseu;
+> +	struct drm_i915_gem_context_param_sseu drm_sseu;
 > +	struct intel_sseu sseu;
 >   };
 >   
 >   struct i915_oa_config_bo {
-> @@ -2720,6 +2727,46 @@ static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
+> @@ -2720,6 +2728,47 @@ static int i915_perf_stream_enable_sync(struct i915_perf_stream *stream)
 >   	return 0;
 >   }
 >   
@@ -275,9 +273,10 @@ Tvrtko
 > +{
 > +	struct intel_engine_cs *user_engine;
 > +
-> +	user_engine = intel_engine_lookup_user(engine->i915,
-> +					       drm_sseu->engine.engine_class,
-> +					       drm_sseu->engine.engine_instance);
+> +	user_engine = intel_engine_lookup_user(
+> +		engine->i915,
+> +		drm_sseu->engine.engine_class,
+> +		drm_sseu->engine.engine_instance);
 > +	if (!user_engine)
 > +		return -EINVAL;
 > +
@@ -290,7 +289,7 @@ Tvrtko
 >   /**
 >    * i915_oa_stream_init - validate combined props for OA stream and init
 >    * @stream: An i915 perf stream
-> @@ -2852,6 +2899,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
+> @@ -2852,6 +2901,8 @@ static int i915_oa_stream_init(struct i915_perf_stream *stream,
 >   		goto err_oa_buf_alloc;
 >   
 >   	stream->ops = &i915_oa_stream_ops;
@@ -299,22 +298,28 @@ Tvrtko
 >   	WRITE_ONCE(perf->exclusive_stream, stream);
 >   
 >   	ret = i915_perf_stream_enable_sync(stream);
-> @@ -3397,6 +3446,14 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
+> @@ -3397,6 +3448,20 @@ i915_perf_open_ioctl_locked(struct i915_perf *perf,
 >   		privileged_op = true;
 >   	}
 >   
 > +	/*
 > +	 * Asking for SSEU configuration is a priviliged operation.
 > +	 */
-> +	if (props->has_sseu)
+> +	if (props->has_sseu) {
+> +		ret = get_sseu_config(&props->sseu, props->engine,
+> +				      &props->drm_sseu);
+> +		if (ret)
+> +			goto err;
+> +
 > +		privileged_op = true;
-> +	else
+> +	} else {
 > +		get_default_sseu_config(&props->sseu, props->engine);
+> +	}
 > +
 >   	/* Similar to perf's kernel.perf_paranoid_cpu sysctl option
 >   	 * we check a dev.i915.perf_stream_paranoid sysctl option
 >   	 * to determine if it's ok to access system wide OA counters
-> @@ -3492,6 +3549,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> @@ -3492,6 +3557,7 @@ static int read_properties_unlocked(struct i915_perf *perf,
 >   {
 >   	u64 __user *uprop = uprops;
 >   	u32 i;
@@ -322,7 +327,7 @@ Tvrtko
 >   
 >   	memset(props, 0, sizeof(struct perf_open_properties));
 >   
-> @@ -3523,7 +3581,6 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> @@ -3523,7 +3589,6 @@ static int read_properties_unlocked(struct i915_perf *perf,
 >   	for (i = 0; i < n_props; i++) {
 >   		u64 oa_period, oa_freq_hz;
 >   		u64 id, value;
@@ -330,24 +335,16 @@ Tvrtko
 >   
 >   		ret = get_user(id, uprop);
 >   		if (ret)
-> @@ -3609,6 +3666,24 @@ static int read_properties_unlocked(struct i915_perf *perf,
+> @@ -3609,6 +3674,16 @@ static int read_properties_unlocked(struct i915_perf *perf,
 >   		case DRM_I915_PERF_PROP_HOLD_PREEMPTION:
 >   			props->hold_preemption = !!value;
 >   			break;
 > +		case DRM_I915_PERF_PROP_GLOBAL_SSEU: {
-> +			struct drm_i915_gem_context_param_sseu user_sseu;
-> +
-> +			if (copy_from_user(&user_sseu,
+> +			if (copy_from_user(&props->drm_sseu,
 > +					   u64_to_user_ptr(value),
-> +					   sizeof(user_sseu))) {
+> +					   sizeof(props->drm_sseu))) {
 > +				DRM_DEBUG("Unable to copy global sseu parameter\n");
 > +				return -EFAULT;
-> +			}
-> +
-> +			ret = get_sseu_config(&props->sseu, props->engine, &user_sseu);
-> +			if (ret) {
-> +				DRM_DEBUG("Invalid SSEU configuration\n");
-> +				return ret;
 > +			}
 > +			props->has_sseu = true;
 > +			break;
