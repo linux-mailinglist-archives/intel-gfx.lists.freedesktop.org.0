@@ -1,49 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB4C18603F
-	for <lists+intel-gfx@lfdr.de>; Sun, 15 Mar 2020 23:31:02 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528F9186431
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 05:24:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D276E0FD;
-	Sun, 15 Mar 2020 22:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D92956E32C;
+	Mon, 16 Mar 2020 04:24:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263E66E0FD
- for <intel-gfx@lists.freedesktop.org>; Sun, 15 Mar 2020 22:30:58 +0000 (UTC)
-IronPort-SDR: NIMcLfVkndPs+elbYAlM5K0SBEpM6DUtXMA84ohKTp8TAng1LEyFdxrUB2leLYuXAGCY67TK0c
- XpRSSiiUHUBQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2020 15:30:57 -0700
-IronPort-SDR: 3o5rwx6J56Nsd55kLEvBe9XSGMeJ5dDUlFIDv3CenrBywtZOX4ELKecM7VEhegzi0tl+CLyCKE
- pJAiDaeRU05A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,558,1574150400"; d="scan'208";a="354844748"
-Received: from dziadkok-mobl2.ger.corp.intel.com (HELO [10.252.41.136])
- ([10.252.41.136])
- by fmsmga001.fm.intel.com with ESMTP; 15 Mar 2020 15:30:55 -0700
-To: Francisco Jerez <currojerez@riseup.net>, srinivasan.s@intel.com,
- intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk,
- tvrtko.ursulin@intel.com
-References: <1584097979-158957-1-git-send-email-srinivasan.s@intel.com>
- <87k13m8oik.fsf@riseup.net> <2095d198-cb1d-4dd6-c763-e466e4e3de63@intel.com>
- <87d09d8pa7.fsf@riseup.net>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <81e4e583-5621-39c0-63c2-b11521b96eac@intel.com>
-Date: Mon, 16 Mar 2020 00:30:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E34C6E32C;
+ Mon, 16 Mar 2020 04:24:00 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id f3so12446527wrw.7;
+ Sun, 15 Mar 2020 21:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BFbGXoNRkYhu7pj0FHhokhuVS4Fb4wpUfdzOgdNP9tw=;
+ b=JceIzu66t4zKvbngDbCNiU9prpEQgCoNncoNTWT9e5qQCfqAXSLBR+u+irIlQImbaq
+ mH8Flvz7Jda5wSnVk6MD4thogX2hRbZ7nDKRg9NevYo/4whe3+cAPs6wdJqvb7Epf7mf
+ V4Q2X2RaXnT70Rw7/sKAbGOtDaQv7RglM8XHDxjM/+BRpOLSw31D3HCdA9CY2R67c+d0
+ BzuVleLM4Pe/Vvt1W1bu4QQzijmpnaxR0GXrNkp1coCsy7dDiikUKjE7NEKUlyiXqxcw
+ wBQdSOi3Bg4lBk/fW9BKbYtGe8+JAxLOG13lzPjaKf7mQagGoRUNEhFEQcrAYfoLArMa
+ Z48w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=BFbGXoNRkYhu7pj0FHhokhuVS4Fb4wpUfdzOgdNP9tw=;
+ b=Sk1iH4ldrqwo7Xjt9oflvyV0pL/F7oeoxDJMeLH7NapGS6QYvAiPW0T1ubY1htM0r/
+ Nffylk6MxauOdd8+rSiomFOqUMDxq5YgTeyQ29QnJtHUDTCbiHawsRmVkz68FpIYX/z5
+ vK0Mj9AZr6pLBmiCX4XYgRdZxjiZov+E74MJA4IxDO/cSnuXIBG49S5PyGtZ2JdV4toD
+ GatS7VgAUywjWj7FbwCe2s6JtonX3meHelNZOXeiAWzFLYrUQL9h8NOMuIiQJ2EAuv+Q
+ mSm7zTq6RRmYQUyCmanGRgku/hlpCCShfFq5ovlsusP48SSrOGpuVOen99VhXbSzpT6J
+ lRZQ==
+X-Gm-Message-State: ANhLgQ2yEbE/NY8yT094a7Nyu2s4DiiV6l5Md2lWMfwDEiovb9gR8JOj
+ gyxhFXF1ViKUXuDTMzw1NC2lfGtM
+X-Google-Smtp-Source: ADFU+vuFizVUnwKp8sjSDX41wgN++nnQlDMw0iE9GI80KOjHDHLrH3E/muuzK5R8PzwKKrzIOx/n9w==
+X-Received: by 2002:adf:e581:: with SMTP id l1mr19504126wrm.395.1584332638795; 
+ Sun, 15 Mar 2020 21:23:58 -0700 (PDT)
+Received: from groovy.localdomain
+ (dynamic-2a01-0c23-7803-8800-a85c-f091-4474-9511.c23.pool.telefonica.de.
+ [2a01:c23:7803:8800:a85c:f091:4474:9511])
+ by smtp.gmail.com with ESMTPSA id z4sm5909800wrr.6.2020.03.15.21.23.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 15 Mar 2020 21:23:58 -0700 (PDT)
+From: Mario Kleiner <mario.kleiner.de@gmail.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Mon, 16 Mar 2020 05:23:40 +0100
+Message-Id: <20200316042340.4783-1-mario.kleiner.de@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <87d09d8pa7.fsf@riseup.net>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v7 0/3] Dynamic EU configuration of
- Slice/Sub-slice/EU
+Subject: [Intel-gfx] [PATCH] drm/i915/dp: Add dpcd link_rate quirk for Apple
+ 15" MBP 2017 (v3)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,204 +68,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 15/03/2020 20:08, Francisco Jerez wrote:
-> Lionel Landwerlin <lionel.g.landwerlin@intel.com> writes:
->
->> On 15/03/2020 02:12, Francisco Jerez wrote:
->>> srinivasan.s@intel.com writes:
->>>
->>>> From: Srinivasan S <srinivasan.s@intel.com>
->>>>
->>>>         drm/i915: Context aware user agnostic EU/Slice/Sub-slice control within kernel
->>>>
->>>> This patch sets improves GPU power consumption on Linux kernel based OS such as
->>>> Chromium OS, Ubuntu, etc. Following are the power savings.
->>>>
->>>> Power savings on GLK-GT1 Bobba platform running on Chrome OS.
->>>> -----------------------------------------------|
->>>> App /KPI                | % Power Benefit (mW) |
->>>> ------------------------|----------------------|
->>>> Hangout Call- 20 minute |	1.8%           |
->>>> Youtube 4K VPB          |       14.13%         |
->>>> WebGL Aquarium          |       13.76%         |
->>>> Unity3D                 |       6.78%          |
->>>> 			|		       |
->>>> ------------------------|----------------------|
->>>> Chrome PLT              | BatteryLife Improves |
->>>> 			| by ~45 minute        |
->>>> -----------------------------------------------|
->>>>
->>>> Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
->>>> -----------------------------------------------|
->>>> App /KPI		| % Power Benefit (mW) |
->>>>                           |----------------------|
->>>> 			|  Android |  Ubuntu   |
->>>> ------------------------|----------|-----------|
->>>> 3D Mark (Ice storm)     | 2.30%    | N.A.      |
->>>> TRex On screen          | 2.49%    | 2.97%     |
->>>> Manhattan On screen     | 3.11%    | 4.90%     |
->>>> Carchase On Screen	| N.A.     | 5.06%     |
->>>> AnTuTu 6.1.4            | 3.42%    | N.A.      |
->>>> SynMark2		| N.A.     | 1.7%      |
->>>> -----------------------------------------------|
->>>>
->>> Did you get any performance (e.g. FPS) measurements from those
->>> test-cases?  There is quite some potential for this feature to constrain
->>> the GPU throughput inadvertently, which could lead to an apparent
->>> reduction in power usage not accompanied by an improvement in energy
->>> efficiency -- In fact AFAIUI there is some potential for this feature to
->>> *decrease* the energy efficiency of the system if the GPU would have
->>> been able to keep all EUs busy at a lower frequency, but the parallelism
->>> constraint forces it to run at a higher frequency above RPe in order to
->>> achieve the same throughput, because due to the convexity of the power
->>> curve of the EU we have:
->>>
->>>     P(k * f) > k * P(f)
->>>
->>> Where 'k' is the ratio between the EU parallelism without and with SSEU
->>> control, and f > RPe is the original GPU frequency without SSEU control.
->>>
->>> In scenarios like that we *might* seem to be using less power with SSEU
->>> control if the workload is running longer, but it would end up using
->>> more energy overall by the time it completes, so it would be good to
->>> have some performance-per-watt numbers to make sure that's not
->>> happening.
->>>
->>>> We have also observed GPU core residencies improves by 1.035%.
->>>>
->>>> Technical Insights of the patch:
->>>> Current GPU configuration code for i915 does not allow us to change
->>>> EU/Slice/Sub-slice configuration dynamically. Its done only once while context
->>>> is created.
->>>>
->>>> While particular graphics application is running, if we examine the command
->>>> requests from user space, we observe that command density is not consistent.
->>>> It means there is scope to change the graphics configuration dynamically even
->>>> while context is running actively. This patch series proposes the solution to
->>>> find the active pending load for all active context at given time and based on
->>>> that, dynamically perform graphics configuration for each context.
->>>>
->>>> We use a hr (high resolution) timer with i915 driver in kernel to get a
->>>> callback every few milliseconds (this timer value can be configured through
->>>> debugfs, default is '0' indicating timer is in disabled state i.e. original
->>>> system without any intervention).In the timer callback, we examine pending
->>>> commands for a context in the queue, essentially, we intercept them before
->>>> they are executed by GPU and we update context with required number of EUs.
->>>>
->>> Given that the EU configuration update is synchronous with command
->>> submission, do you really need a timer?  It sounds like it would be less
->>> CPU overhead to adjust the EU count on demand whenever the counter
->>> reaches or drops below the threshold instead of polling some CPU-side
->>> data structure.
->>>
->>>> Two questions, how did we arrive at right timer value? and what's the right
->>>> number of EUs? For the prior one, empirical data to achieve best performance
->>>> in least power was considered. For the later one, we roughly categorized number
->>>> of EUs logically based on platform. Now we compare number of pending commands
->>>> with a particular threshold and then set number of EUs accordingly with update
->>>> context. That threshold is also based on experiments & findings. If GPU is able
->>>> to catch up with CPU, typically there are no pending commands, the EU config
->>>> would remain unchanged there. In case there are more pending commands we
->>>> reprogram context with higher number of EUs. Please note, here we are changing
->>>> EUs even while context is running by examining pending commands every 'x'
->>>> milliseconds.
->>>>
->>> I have doubts that the number of requests pending execution is a
->>> particularly reliable indicator of the optimal number of EUs the
->>> workload needs enabled, for starters because the execlists submission
->>> code seems to be able to merge multiple requests into the same port, so
->>> there might seem to be zero pending commands even if the GPU has a
->>> backlog of several seconds or minutes worth of work.
->>>
->>> But even if you were using an accurate measure of the GPU load, would
->>> that really be a good indicator of whether the GPU would run more
->>> efficiently with more or less EUs enabled?  I can think of many
->>> scenarios where a short-lived GPU request would consume less energy and
->>> complete faster while running with all EUs enabled (e.g. if it actually
->>> has enough parallelism to take advantage of all EUs in the system).
->>> Conversely I can think of some scenarios where a long-running GPU
->>> request would benefit from SSEU control (e.g. a poorly parallelizable
->>> but heavy 3D geometry pipeline or GPGPU workload).  The former seems
->>> more worrying than the latter since it could lead to performance or
->>> energy efficiency regressions.
->>>
->>> IOW it seems to me that the optimal number of EUs enabled is more of a
->>> function of the internal parallelism constraints of each request rather
->>> than of the overall GPU load.  You should be able to get some
->>> understanding of that by e.g. calculating the number of threads loaded
->>> on the average based on the EU SPM counters, but unfortunately the ones
->>> you'd need are only available on TGL+ IIRC.  On earlier platforms you
->>> should be able to achieve the same thing by sampling some FLEXEU
->>> counters, but you'd likely have to mess with the mux configuration which
->>> would interfere with OA sampling -- However it sounds like this feature
->>> may have to be disabled anytime OA is active anyway so that may not be a
->>> problem after all?
->>
->> FLEXEU has to be configured on all contexts but does not need the mux
->> configuration.
->>
-> They have a sort of mux controlled through the EU_PERF_CNT_CTL*
-> registers that have to be set up correctly for each counter to count the
-> right event, which would certainly interfere with userspace using OA to
-> gather EU metrics.
+This fixes a problem found on the MacBookPro 2017 Retina panel.
 
+The panel reports 10 bpc color depth in its EDID, and the
+firmware chooses link settings at boot which support enough
+bandwidth for 10 bpc (324000 kbit/sec = multiplier 0xc),
+but the DP_MAX_LINK_RATE dpcd register only reports
+2.7 Gbps (multiplier value 0xa) as possible, in direct
+contradiction of what the firmware successfully set up.
 
-Maybe we're not talking about the same mux then :)
+This restricts the panel to 8 bpc, not providing the full
+color depth of the panel.
 
+This patch adds a quirk specific to the MBP 2017 15" Retina
+panel to add the additiional 324000 kbps link rate during
+edp setup.
 
->
->> I think this feature would have to be shut off everytime you end using
->> OA from userspace though.
->>
-> Yeah, that's probably necessary one way or another.
->
->> -Lionel
->>
->>
->>> Regards,
->>> Francisco.
->>>
->>>> Srinivasan S (3):
->>>>     drm/i915: Get active pending request for given context
->>>>     drm/i915: set optimum eu/slice/sub-slice configuration based on load
->>>>       type
->>>>     drm/i915: Predictive governor to control slice/subslice/eu
->>>>
->>>>    drivers/gpu/drm/i915/Makefile                     |   1 +
->>>>    drivers/gpu/drm/i915/gem/i915_gem_context.c       |  20 +++++
->>>>    drivers/gpu/drm/i915/gem/i915_gem_context.h       |   2 +
->>>>    drivers/gpu/drm/i915/gem/i915_gem_context_types.h |  38 ++++++++
->>>>    drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |   1 +
->>>>    drivers/gpu/drm/i915/gt/intel_deu.c               | 104 ++++++++++++++++++++++
->>>>    drivers/gpu/drm/i915/gt/intel_deu.h               |  31 +++++++
->>>>    drivers/gpu/drm/i915/gt/intel_lrc.c               |  44 ++++++++-
->>>>    drivers/gpu/drm/i915/i915_drv.h                   |   6 ++
->>>>    drivers/gpu/drm/i915/i915_gem.c                   |   4 +
->>>>    drivers/gpu/drm/i915/i915_params.c                |   4 +
->>>>    drivers/gpu/drm/i915/i915_params.h                |   1 +
->>>>    drivers/gpu/drm/i915/intel_device_info.c          |  74 ++++++++++++++-
->>>>    13 files changed, 325 insertions(+), 5 deletions(-)
->>>>    create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.c
->>>>    create mode 100644 drivers/gpu/drm/i915/gt/intel_deu.h
->>>>
->>>> -- 
->>>> 2.7.4
->>>>
->>>> _______________________________________________
->>>> Intel-gfx mailing list
->>>> Intel-gfx@lists.freedesktop.org
->>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
->>>>
->>>> _______________________________________________
->>>> Intel-gfx mailing list
->>>> Intel-gfx@lists.freedesktop.org
->>>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Link to previous discussion of a different attempted fix
+with Ville and Jani:
 
+https://patchwork.kernel.org/patch/11325935/
+
+v2: Follow Jani's proposal of defining quirk_rates[] instead
+    of just appending 324000. This for better clarity.
+
+v3: Rebased onto current drm-tip, as of 16-March-2020. Adapt
+    to new edid_quirks parameter of drm_dp_has_quirk().
+
+Signed-off-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+Tested-by: Mario Kleiner <mario.kleiner.de@gmail.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_dp_helper.c         |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++++
+ include/drm/drm_dp_helper.h             |  7 +++++++
+ 3 files changed, 20 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_dp_helper.c b/drivers/gpu/drm/drm_dp_helper.c
+index c6fbe6e6bc9d..8ba4531e808d 100644
+--- a/drivers/gpu/drm/drm_dp_helper.c
++++ b/drivers/gpu/drm/drm_dp_helper.c
+@@ -1238,6 +1238,8 @@ static const struct dpcd_quirk dpcd_quirk_list[] = {
+ 	{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1', '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
+ 	/* Synaptics DP1.4 MST hubs can support DSC without virtual DPCD */
+ 	{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
++	/* Apple MacBookPro 2017 15 inch eDP Retina panel reports too low DP_MAX_LINK_RATE */
++	{ OUI(0x00, 0x10, 0xfa), DEVICE_ID(101, 68, 21, 101, 98, 97), false, BIT(DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS) },
+ };
+ 
+ #undef OUI
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0a417cd2af2b..ef2e06e292d5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -164,6 +164,17 @@ static void intel_dp_set_sink_rates(struct intel_dp *intel_dp)
+ 	};
+ 	int i, max_rate;
+ 
++	if (drm_dp_has_quirk(&intel_dp->desc, 0,
++			     DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS)) {
++		/* Needed, e.g., for Apple MBP 2017, 15 inch eDP Retina panel */
++		static const int quirk_rates[] = { 162000, 270000, 324000 };
++
++		memcpy(intel_dp->sink_rates, quirk_rates, sizeof(quirk_rates));
++		intel_dp->num_sink_rates = ARRAY_SIZE(quirk_rates);
++
++		return;
++	}
++
+ 	max_rate = drm_dp_bw_code_to_link_rate(intel_dp->dpcd[DP_MAX_LINK_RATE]);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(dp_rates); i++) {
+diff --git a/include/drm/drm_dp_helper.h b/include/drm/drm_dp_helper.h
+index c6119e4c169a..9d87cdf2740a 100644
+--- a/include/drm/drm_dp_helper.h
++++ b/include/drm/drm_dp_helper.h
+@@ -1548,6 +1548,13 @@ enum drm_dp_quirk {
+ 	 * capabilities advertised.
+ 	 */
+ 	DP_QUIRK_FORCE_DPCD_BACKLIGHT,
++	/**
++	 * @DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS:
++	 *
++	 * The device supports a link rate of 3.24 Gbps (multiplier 0xc) despite
++	 * the DP_MAX_LINK_RATE register reporting a lower max multiplier.
++	 */
++	DP_DPCD_QUIRK_CAN_DO_MAX_LINK_RATE_3_24_GBPS,
+ };
+ 
+ /**
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
