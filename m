@@ -1,32 +1,46 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7CD187067
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 17:49:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0423187123
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 18:28:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A70389FEA;
-	Mon, 16 Mar 2020 16:49:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4663F6E20A;
+	Mon, 16 Mar 2020 17:28:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DDCAC89FEA;
- Mon, 16 Mar 2020 16:49:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D583DA47DA;
- Mon, 16 Mar 2020 16:49:54 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5032F6E20A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 17:28:48 +0000 (UTC)
+IronPort-SDR: Wf7ik6io6pqqNhdHH0RX/ZKsE4xF22nU94JZMEtZh/NOesLwE4J0aR8HJ9iwF3VJe3m2A2RduG
+ A7oyAaAgi78w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2020 10:28:47 -0700
+IronPort-SDR: bBtrBpMCn0YNLaBjCOSvzL+6ok6yjgnTWitt0RlfnG57mR/VL5cRcZF5FI16hGNoaia+SkbzcV
+ 4FUOIketdRIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,561,1574150400"; d="scan'208";a="390764445"
+Received: from eliteleevi.tm.intel.com ([10.237.54.20])
+ by orsmga004.jf.intel.com with ESMTP; 16 Mar 2020 10:28:46 -0700
+Date: Mon, 16 Mar 2020 19:28:45 +0200 (EET)
+From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+X-X-Sender: kvehmane@eliteleevi.tm.intel.com
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+In-Reply-To: <alpine.DEB.2.21.2003131816400.2957@eliteleevi.tm.intel.com>
+Message-ID: <alpine.DEB.2.21.2003161921030.2957@eliteleevi.tm.intel.com>
+References: <20200313144821.29592-1-kai.vehmanen@linux.intel.com>
+ <20200313144821.29592-2-kai.vehmanen@linux.intel.com>
+ <20200313151443.GO13686@intel.com>
+ <alpine.DEB.2.21.2003131816400.2957@eliteleevi.tm.intel.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Mon, 16 Mar 2020 16:49:54 -0000
-Message-ID: <158437739484.18994.18409987412638767901@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200314183344.17603-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200314183344.17603-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_convert_to_struct_drm=5Fdevice_based_logging_macros?=
- =?utf-8?q?=2E?=
+Content-Type: multipart/mixed; boundary="-318106570-740426164-1584379727=:2957"
+Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: move audio CDCLK constraint
+ setup to bind/unbind
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,96 +53,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Takashi Iwai <tiwai@suse.de>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Series: drm/i915/gt: convert to struct drm_device based logging macros.
-URL   : https://patchwork.freedesktop.org/series/74707/
-State : success
+---318106570-740426164-1584379727=:2957
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 8BIT
 
-== Summary ==
+Hey Ville and others,
 
-CI Bug Log - changes from CI_DRM_8137 -> Patchwork_16973
-====================================================
+On Fri, 13 Mar 2020, Kai Vehmanen wrote:
+> On Fri, 13 Mar 2020, Ville Syrjälä wrote:
+> Now thinking of another possibility, is it possible to hook code to 
+> power-up of power domains? E.g. can I hook custom code which is executed 
+[...]
+> If we could reprogram AUD_FREQ_CNTRL outside the get/put_power() flow 
+> (i.e. independently from audio driver), and guarantee that if the display 
+> side is powered on, the link params are always correct, it might be 
+> possible to get away without calling get_power() from audio controller 
 
-Summary
--------
+... no need to answer this. I made an ugly hack directly to 
+intel_display_power.c and added a hook to audio restore, but, but, this 
+does not seem to help. I can still hit hangs unless I bump cdclk before 
+the reset -- i.e. restoring AUD_FREQ_CNTRL is not enough.
 
-  **SUCCESS**
+Br, Kai
+---318106570-740426164-1584379727=:2957
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16973/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16973 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][1] ([CI#94]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16973/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8700k:       [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16973/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-icl-u2:          [FAIL][5] ([i915#217]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16973/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (48 -> 44)
-------------------------------
-
-  Additional (2): fi-skl-6770hq fi-tgl-dsi 
-  Missing    (6): fi-kbl-soraka fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8137 -> Patchwork_16973
-
-  CI-20190529: 20190529
-  CI_DRM_8137: 5786b5e77cc17a1b494b9bdf3c3f29eedc2e2e7d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5510: e100092d50105463f58db531fa953c70cc58bb10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16973: 8dfd9a57f09d583da9d2a6829720e9967f846bad @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-8dfd9a57f09d drm/i915/workarounds: convert to drm_device based logging macros.
-e344bc88a34c drm/i915/rps: use struct drm_device based logging macros.
-ad89d4cdd325 drm/i915/ring_submission: use drm_device based logging macros.
-449bd50495fa drm/i915/renderstate: use struct drm_device based logging macros.
-90332a78c06d drm/i915/rc6: convert to struct drm_device based logging macros.
-0d578a154f1b drm/i915/lrc: convert to struct drm_device based logging macros.
-6cfa7991dd93 drm/i915/ggtt: convert to drm_device based logging macros.
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16973/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+---318106570-740426164-1584379727=:2957--
