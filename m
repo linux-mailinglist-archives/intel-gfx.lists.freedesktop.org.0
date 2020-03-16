@@ -2,75 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDC1186850
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 10:56:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94910186881
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 11:03:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B29C89FA7;
-	Mon, 16 Mar 2020 09:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B8CF89B65;
+	Mon, 16 Mar 2020 10:03:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C686489F99
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 09:56:52 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id v11so20348352wrm.9
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 02:56:52 -0700 (PDT)
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
+ [IPv6:2a00:1450:4864:20::442])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9601689B65
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 10:03:44 +0000 (UTC)
+Received: by mail-wr1-x442.google.com with SMTP id d5so20047585wrc.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 03:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:subject:message-id:mail-followup-to:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to; bh=4uFjuIar5NrPLcBZJPObOsb7IgzEi+xWM2W1XFlAhG0=;
- b=MKnh4eqiajGVxiWBSEZMhJK78EufIWCaAajO2U8EZBruc02ewFnzmSll3FPGSyz4Hk
- xPq8uLRmHc0q0D4U9xamBCevqwUDOHipFL6D5kF9zcnF8d7pv6w3+C3wGNepqSZVK7sA
- 1GiLkSHxkP0/BmZATcbxmT7B1ucb7SosFQg/0=
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:in-reply-to;
+ bh=AcRSHSdiOyqt1hfLF4oq0FUotM9AVIQhsg3GLo4T9TA=;
+ b=B2USPv5KbpHIGhkfFrJQCuShva+t1YuJ9supVSZJi7SmeRkQ+Ok1KYee9YtHwBKrRJ
+ yl9Kx1VkDMtstyjHEa8hNZcH1bbmZ1PSKNLF8Wfi1VdxCwTEMpEDz/+R+LbQcMd387Ub
+ aRmOwj1y8nIqpvf7WZqqHh9pJdmqcn05LP20o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
- :references:mime-version:content-disposition
- :content-transfer-encoding:in-reply-to;
- bh=4uFjuIar5NrPLcBZJPObOsb7IgzEi+xWM2W1XFlAhG0=;
- b=rJuH9FEIIKn0bHexUXYPtdXrfKuCo+gHNPZOC1V1NdmKZrOfQDg8QmPvu4Xj/xibRU
- rrUQRcnHRffodLtNlUXvODz6NZ9zNBEDyZlLPFRSyKeOIXDGomWrSBkCmX6B6JTINySC
- neiFT1iRvQztNdYrJ3rMlzjzAX2E7R7BxnlWHGrXJYjMB51vE2ZK020SWiyowEu+a9sR
- 0q+zz5Cw+9vLDU0cqOPAWd96AtKanP1HmvMyQTpzfTgwKc1VAdXoSPQ4gARW1qQ6A4aM
- +rKphni4LYzMJbwWv9OxbLv4RIaw6Ig3RSGcbR7mY7ytsviG8DrtdXPQOB9rp9VXsMbl
- wclQ==
-X-Gm-Message-State: ANhLgQ20Uo6rMwMfkBa1E/Juo/4uGHJfHz+VY2pbuUEd80HnV/jT/7h5
- 9lTSZj//Ebx51j5jKdYo69N/og==
-X-Google-Smtp-Source: ADFU+vtMt31tP7+bdrL8Xnvjkbvor50IyCbDn+WnCnsbJXMAyj9Melvbj6Mpc4exxa3r1An2EKb0dg==
-X-Received: by 2002:a5d:6150:: with SMTP id y16mr35501106wrt.352.1584352611440; 
- Mon, 16 Mar 2020 02:56:51 -0700 (PDT)
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=AcRSHSdiOyqt1hfLF4oq0FUotM9AVIQhsg3GLo4T9TA=;
+ b=NrltaTQ9BVvb5JArHDrD7k20fUL9g9tA4vxVvQXGBjf9+us4nFIs2NAZ97LacWEYpj
+ EPfXNnr/Dh8C04kVpPRQuKuaL1d47X+Hpby+lg7oLb49b59V7KzOES251itQFMWkGh3t
+ yl/1JwqtyYxCY9HJi3o0OxNZEeG5DMxM4D3cToHizTCFocr9rzOrVoa1YCoc+t/jarG7
+ knaPYzrIQ0sylteUxY8CAa+Mb7SsSk3Zn3LYFEnSoEa6PAqJFuv0QTXPnxxRBoDSYPV/
+ n3gdNQE3oo/UVhLhzohjhswsw3MJnJJgRWuLxaVPted9nVTDmJnETDfH3UIenx5/MyUG
+ 8d5Q==
+X-Gm-Message-State: ANhLgQ1b5rXZ3uxH5mcqwuhiEycNNgwi9hsx7TtTduZ0L1nbgfAUCAVA
+ wOAhjlJyBypD5cck5F4216yVGA==
+X-Google-Smtp-Source: ADFU+vtSU5e+h6WkNw2sJ6apKMD24Minuj5xZyJFTkMlwMWGN+xpvYH0bJgEK7m2Qk/CueY//LMKFg==
+X-Received: by 2002:adf:fc81:: with SMTP id g1mr36703578wrr.410.1584353023220; 
+ Mon, 16 Mar 2020 03:03:43 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id i6sm29154761wru.40.2020.03.16.02.56.50
+ by smtp.gmail.com with ESMTPSA id v2sm23290034wme.2.2020.03.16.03.03.41
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Mar 2020 02:56:50 -0700 (PDT)
-Date: Mon, 16 Mar 2020 10:56:49 +0100
+ Mon, 16 Mar 2020 03:03:42 -0700 (PDT)
+Date: Mon, 16 Mar 2020 11:03:40 +0100
 From: Daniel Vetter <daniel@ffwll.ch>
-To: Joe Perches <joe@perches.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Sebastian Duda <sebastian.duda@fau.de>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
-Message-ID: <20200316095649.GK2363188@phenom.ffwll.local>
-Mail-Followup-To: Joe Perches <joe@perches.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>,
- intel-gfx@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Sebastian Duda <sebastian.duda@fau.de>,
- Sumit Semwal <sumit.semwal@linaro.org>, linux-media@vger.kernel.org
-References: <20200304120711.12117-1-lukas.bulwahn@gmail.com>
- <b0296e3a-31f8-635a-f26d-8b0bc490aae3@amd.com>
- <20200306103946.GT2363188@phenom.ffwll.local>
- <155f99baffe11836fc9d794ff297bdcee7831050.camel@perches.com>
- <20200316095007.GI2363188@phenom.ffwll.local>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200316100340.GL2363188@phenom.ffwll.local>
+References: <20200309120151.7675-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200316095007.GI2363188@phenom.ffwll.local>
+In-Reply-To: <20200309120151.7675-1-chris@chris-wilson.co.uk>
 X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH] MAINTAINERS: adjust to reservation.h
- renaming
+Subject: Re: [Intel-gfx] [PATCH] drm: Mark up racy check of
+ drm_gem_object.handle_count
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,103 +65,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 16, 2020 at 10:50:07AM +0100, Daniel Vetter wrote:
-> On Fri, Mar 06, 2020 at 02:56:06AM -0800, Joe Perches wrote:
-> > On Fri, 2020-03-06 at 11:39 +0100, Daniel Vetter wrote:
-> > > On Wed, Mar 04, 2020 at 01:08:32PM +0100, Christian K=F6nig wrote:
-> > > > Am 04.03.20 um 13:07 schrieb Lukas Bulwahn:
-> > > > > Commit 52791eeec1d9 ("dma-buf: rename reservation_object to dma_r=
-esv")
-> > > > > renamed include/linux/reservation.h to include/linux/dma-resv.h, =
-but
-> > > > > missed the reference in the MAINTAINERS entry.
-> > > > > =
+On Mon, Mar 09, 2020 at 12:01:51PM +0000, Chris Wilson wrote:
+> [ 1715.899800] BUG: KCSAN: data-race in drm_gem_handle_create_tail / drm_gem_object_handle_put_unlocked
+> [ 1715.899838]
+> [ 1715.899861] write to 0xffff8881830f3604 of 4 bytes by task 7834 on cpu 1:
+> [ 1715.899896]  drm_gem_handle_create_tail+0x62/0x250
+> [ 1715.899927]  drm_gem_open_ioctl+0xc1/0x160
+> [ 1715.899956]  drm_ioctl_kernel+0xe4/0x120
+> [ 1715.899981]  drm_ioctl+0x297/0x4c7
+> [ 1715.900003]  ksys_ioctl+0x89/0xb0
+> [ 1715.900027]  __x64_sys_ioctl+0x42/0x60
+> [ 1715.900052]  do_syscall_64+0x6e/0x2c0
+> [ 1715.900079]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
+> [ 1715.900100]
+> [ 1715.900119] read to 0xffff8881830f3604 of 4 bytes by task 8137 on cpu 0:
+> [ 1715.900149]  drm_gem_object_handle_put_unlocked+0x31/0x130
+> [ 1715.900180]  drm_gem_object_release_handle+0x93/0xe0
+> [ 1715.900208]  drm_gem_handle_delete+0x7b/0xe0
+> [ 1715.900235]  drm_gem_close_ioctl+0x61/0x80
+> [ 1715.900264]  drm_ioctl_kernel+0xe4/0x120
+> [ 1715.900291]  drm_ioctl+0x297/0x4c7
+> [ 1715.900316]  ksys_ioctl+0x89/0xb0
+> [ 1715.900340]  __x64_sys_ioctl+0x42/0x60
+> [ 1715.900363]  do_syscall_64+0x6e/0x2c0
+> [ 1715.900388]  entry_SYSCALL_64_after_hwframe+0x44/0xa9
 
-> > > > > Since then, ./scripts/get_maintainer.pl --self-test complains:
-> > > > > =
+I'm impressed. The dream that we all get replaced by some scripts might be
+real :-)
 
-> > > > >    warning: no file matches F: include/linux/reservation.h
-> > > > > =
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-> > > > > Adjust the DMA BUFFER SHARING FRAMEWORK entry in MAINTAINERS.
-> > > > > =
+Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
 
-> > > > > Co-developed-by: Sebastian Duda <sebastian.duda@fau.de>
-> > > > > Signed-off-by: Sebastian Duda <sebastian.duda@fau.de>
-> > > > > Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> > > > =
+> ---
+>  drivers/gpu/drm/drm_gem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index a9e4a610445a..37627d06fb06 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -218,7 +218,7 @@ drm_gem_object_handle_put_unlocked(struct drm_gem_object *obj)
+>  	struct drm_device *dev = obj->dev;
+>  	bool final = false;
+>  
+> -	if (WARN_ON(obj->handle_count == 0))
+> +	if (WARN_ON(READ_ONCE(obj->handle_count) == 0))
+>  		return;
+>  
+>  	/*
+> -- 
+> 2.20.1
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-> > > > Reviewed-by: Christian K=F6nig <christian.koenig@amd.com>
-> > > =
-
-> > > You'll push this too?
-> > > -Daniel
-> > > =
-
-> > > > > ---
-> > > > > Christian, please pick this patch.
-> > > > > applies cleanly on current master and next-20200303
-> > > > > =
-
-> > > > >   MAINTAINERS | 2 +-
-> > > > >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > =
-
-> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > index 6158a143a13e..3d6cb2789c9e 100644
-> > > > > --- a/MAINTAINERS
-> > > > > +++ b/MAINTAINERS
-> > > > > @@ -5022,7 +5022,7 @@ L:	dri-devel@lists.freedesktop.org
-> > > > >   L:	linaro-mm-sig@lists.linaro.org (moderated for non-subscriber=
-s)
-> > > > >   F:	drivers/dma-buf/
-> > > > >   F:	include/linux/dma-buf*
-> > > > > -F:	include/linux/reservation.h
-> > > > > +F:	include/linux/dma-resv.h
-> > > > >   F:	include/linux/*fence.h
-> > > > >   F:	Documentation/driver-api/dma-buf.rst
-> > > > >   K:	dma_(buf|fence|resv)
-> > =
-
-> > Slightly unrelated:
-> > =
-
-> > The K: entry matches a lot of other things
-> > and may have a lot of false positive matches
-> > like any variable named dma_buffer
-> > =
-
-> > This should also use (?:...) to avoid a perl
-> > capture group.
-> > =
-
-> > Perhaps:
-> > =
-
-> > K:	'\bdma_(?:buf|fence|resv)\b'
-> =
-
-> Hm either people aren't using get_maintainers.pl consistently, or it
-> doesn't seem to be a real world problem. I'm not seeing any unrelated
-> patches on dri-devel at least.
-> =
-
-> But happy to merge such a patch if it shows up ofc, it's definitely the
-> more correct thing :-)
-
-Ofc as usual if you lean out the window you immediately get to eat your
-hat, right after sending this I got a mail from syzbot about some random
-stuff because of this :-)
-
-I'm gonna do the patch now ...
--Daniel
--- =
-
+-- 
 Daniel Vetter
 Software Engineer, Intel Corporation
 http://blog.ffwll.ch
