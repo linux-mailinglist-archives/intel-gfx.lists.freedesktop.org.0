@@ -1,40 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7851B186967
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 11:49:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8AD0186968
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 11:49:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBC706E3E1;
-	Mon, 16 Mar 2020 10:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C57E6E3E3;
+	Mon, 16 Mar 2020 10:49:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 276366E3E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 10:49:50 +0000 (UTC)
-IronPort-SDR: 2ntVOi+LrqAPJwTtrYqD2T021yGkFP5ZtOQI1FDJuhs8henhcdtS2dubN/BP2wYyPyKKF6LhB7
- fAUILMIrcR+w==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84BE66E3E3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 10:49:53 +0000 (UTC)
+IronPort-SDR: /whVmN50zHrDe9N45AGue48NVTrituelEUeQ+guruQcBcNQMtWvbyaPFwMdyBranTvRr3Ux9vu
+ drvr33kFvtDw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 03:49:50 -0700
-IronPort-SDR: Tz4kbBYA3VFAq54zozpdqc9DLGkUcwjmMibQeA6NA9D4B0mPKAaCl0MXIii/ubfp1uODt7724p
- kth2N5cyXx/Q==
+ 16 Mar 2020 03:49:53 -0700
+IronPort-SDR: xr9hcQkXZSETVfwlHmliIxm9nh5eNBQ8JRBgM90Rdnzfv+/XsmIR8RFE7QfxIXs19aJhdmrQEi
+ /IqwO66eQN2Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="417099536"
+X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="417099551"
 Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.53])
- by orsmga005.jf.intel.com with ESMTP; 16 Mar 2020 03:49:48 -0700
+ by orsmga005.jf.intel.com with ESMTP; 16 Mar 2020 03:49:51 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Mar 2020 16:07:55 +0530
-Message-Id: <20200316103759.12867-4-animesh.manna@intel.com>
+Date: Mon, 16 Mar 2020 16:07:56 +0530
+Message-Id: <20200316103759.12867-5-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20200316103759.12867-1-animesh.manna@intel.com>
 References: <20200316103759.12867-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 3/7] drm/i915/dp: Made
- intel_dp_adjust_train() non-static
+Subject: [Intel-gfx] [PATCH v5 4/7] drm/i915/dp: Preparation for DP phy
+ compliance auto test
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,76 +52,66 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-vswing/pre-emphasis adjustment calculation is needed in processing
-of auto phy compliance request other than link training, so have
-made non-static function.
-
-No functional change.
-
-v1: initial patch.
-v2:
-- used "intel_dp" prefix in function name. (Jani)
-- used array notation instead pointer for link_status. (Ville)
-v3: Scrapped the initial patch, modified commit description accordingly.
-- made non-static function and used intel_dp prefix. (Jani, Manasi)
+During DP phy compliance auto test mode, sink will request
+combination of different test pattern with differnt level of
+vswing, pre-emphasis. Function added to prepare for it.
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 ++++-----
- drivers/gpu/drm/i915/display/intel_dp_link_training.h | 4 ++++
- 2 files changed, 8 insertions(+), 5 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 24 +++++++++++++++++++
+ 2 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a7defb37ab00..e4f1843170b7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -34,9 +34,8 @@ intel_dp_dump_link_status(const u8 link_status[DP_LINK_STATUS_SIZE])
- 		      link_status[3], link_status[4], link_status[5]);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 5e00e611f077..42d0b102c2cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1238,6 +1238,7 @@ struct intel_dp_compliance_data {
+ 	u8 video_pattern;
+ 	u16 hdisplay, vdisplay;
+ 	u8 bpc;
++	struct drm_dp_phy_test_params phytest;
+ };
+ 
+ struct intel_dp_compliance {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0a417cd2af2b..16a4a48c8168 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5001,9 +5001,33 @@ static u8 intel_dp_autotest_edid(struct intel_dp *intel_dp)
+ 	return test_result;
  }
  
--static void
--intel_get_adjust_train(struct intel_dp *intel_dp,
--		       const u8 link_status[DP_LINK_STATUS_SIZE])
-+void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
-+			       const u8 link_status[DP_LINK_STATUS_SIZE])
- {
- 	u8 v = 0;
- 	u8 p = 0;
-@@ -219,7 +218,7 @@ intel_dp_link_training_clock_recovery(struct intel_dp *intel_dp)
- 		voltage = intel_dp->train_set[0] & DP_TRAIN_VOLTAGE_SWING_MASK;
- 
- 		/* Update training set as requested by target */
--		intel_get_adjust_train(intel_dp, link_status);
-+		intel_dp_get_adjust_train(intel_dp, link_status);
- 		if (!intel_dp_update_link_train(intel_dp)) {
- 			drm_err(&i915->drm,
- 				"failed to update link training\n");
-@@ -338,7 +337,7 @@ intel_dp_link_training_channel_equalization(struct intel_dp *intel_dp)
- 		}
- 
- 		/* Update training set as requested by target */
--		intel_get_adjust_train(intel_dp, link_status);
-+		intel_dp_get_adjust_train(intel_dp, link_status);
- 		if (!intel_dp_update_link_train(intel_dp)) {
- 			drm_err(&i915->drm,
- 				"failed to update link training\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-index 174566adcc92..01f1dabbb060 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-@@ -6,8 +6,12 @@
- #ifndef __INTEL_DP_LINK_TRAINING_H__
- #define __INTEL_DP_LINK_TRAINING_H__
- 
-+#include <drm/drm_dp_helper.h>
++static u8 intel_dp_prepare_phytest(struct intel_dp *intel_dp)
++{
++	struct drm_dp_phy_test_params *data =
++		&intel_dp->compliance.test_data.phytest;
 +
- struct intel_dp;
- 
-+void intel_dp_get_adjust_train(struct intel_dp *intel_dp,
-+			       const u8 link_status[DP_LINK_STATUS_SIZE]);
- void intel_dp_start_link_train(struct intel_dp *intel_dp);
- void intel_dp_stop_link_train(struct intel_dp *intel_dp);
++	if (drm_dp_get_phy_test_pattern(&intel_dp->aux, data)) {
++		DRM_DEBUG_KMS("DP Phy Test pattern AUX read failure\n");
++		return DP_TEST_NAK;
++	}
++
++	/*
++	 * link_mst is set to false to avoid executing mst related code
++	 * during compliance testing.
++	 */
++	intel_dp->link_mst = false;
++
++	return DP_TEST_ACK;
++}
++
+ static u8 intel_dp_autotest_phy_pattern(struct intel_dp *intel_dp)
+ {
+ 	u8 test_result = DP_TEST_NAK;
++
++	test_result = intel_dp_prepare_phytest(intel_dp);
++	if (test_result != DP_TEST_ACK)
++		DRM_ERROR("Phy test preparation failed\n");
++
+ 	return test_result;
+ }
  
 -- 
 2.24.0
