@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8AD0186968
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 11:49:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE78F18696B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 11:49:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C57E6E3E3;
-	Mon, 16 Mar 2020 10:49:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22E656E3E5;
+	Mon, 16 Mar 2020 10:49:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84BE66E3E3
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 10:49:53 +0000 (UTC)
-IronPort-SDR: /whVmN50zHrDe9N45AGue48NVTrituelEUeQ+guruQcBcNQMtWvbyaPFwMdyBranTvRr3Ux9vu
- drvr33kFvtDw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D45E96E3E5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 10:49:55 +0000 (UTC)
+IronPort-SDR: /zaAeCgaXTZM0JmAGexu+YnSjIEHBEJwQfNGUBTQl3E/t18JkA13B35F4taonnpfTTMs0TL7tF
+ IIre6yvvsD6g==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 03:49:53 -0700
-IronPort-SDR: xr9hcQkXZSETVfwlHmliIxm9nh5eNBQ8JRBgM90Rdnzfv+/XsmIR8RFE7QfxIXs19aJhdmrQEi
- /IqwO66eQN2Q==
+ 16 Mar 2020 03:49:55 -0700
+IronPort-SDR: SBRGGiG9aTLx0B3WOmdNhAvqmQAHudXTVYn1okxxQahkqeHzjJNbYI5/wdSe1GdTHelswBr6oi
+ B762AVX3FFYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="417099551"
+X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="417099564"
 Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.53])
- by orsmga005.jf.intel.com with ESMTP; 16 Mar 2020 03:49:51 -0700
+ by orsmga005.jf.intel.com with ESMTP; 16 Mar 2020 03:49:54 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Mar 2020 16:07:56 +0530
-Message-Id: <20200316103759.12867-5-animesh.manna@intel.com>
+Date: Mon, 16 Mar 2020 16:07:57 +0530
+Message-Id: <20200316103759.12867-6-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.24.0
 In-Reply-To: <20200316103759.12867-1-animesh.manna@intel.com>
 References: <20200316103759.12867-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v5 4/7] drm/i915/dp: Preparation for DP phy
- compliance auto test
+Subject: [Intel-gfx] [PATCH v5 5/7] drm/i915/dp: Add debugfs entry for DP
+ phy compliance
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,67 +52,45 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During DP phy compliance auto test mode, sink will request
-combination of different test pattern with differnt level of
-vswing, pre-emphasis. Function added to prepare for it.
+These debugfs entry will help testapp to understand the test request
+during dp phy compliance mode.
 
 Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 24 +++++++++++++++++++
- 2 files changed, 25 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 5e00e611f077..42d0b102c2cf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1238,6 +1238,7 @@ struct intel_dp_compliance_data {
- 	u8 video_pattern;
- 	u16 hdisplay, vdisplay;
- 	u8 bpc;
-+	struct drm_dp_phy_test_params phytest;
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 1e6eb7f2f72d..ab20b7ea26f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1326,6 +1326,16 @@ static int i915_displayport_test_data_show(struct seq_file *m, void *data)
+ 					   intel_dp->compliance.test_data.vdisplay);
+ 				seq_printf(m, "bpc: %u\n",
+ 					   intel_dp->compliance.test_data.bpc);
++			} else if (intel_dp->compliance.test_type ==
++				   DP_TEST_LINK_PHY_TEST_PATTERN) {
++				seq_printf(m, "pattern: %d\n",
++					   intel_dp->compliance.test_data.phytest.phy_pattern);
++				seq_printf(m, "Number of lanes: %d\n",
++					   intel_dp->compliance.test_data.phytest.num_lanes);
++				seq_printf(m, "Link Rate: %d\n",
++					   intel_dp->compliance.test_data.phytest.link_rate);
++				seq_printf(m, "level: %02x\n",
++					   intel_dp->train_set[0]);
+ 			}
+ 		} else
+ 			seq_puts(m, "0");
+@@ -1358,7 +1368,7 @@ static int i915_displayport_test_type_show(struct seq_file *m, void *data)
  
- struct intel_dp_compliance {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0a417cd2af2b..16a4a48c8168 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5001,9 +5001,33 @@ static u8 intel_dp_autotest_edid(struct intel_dp *intel_dp)
- 	return test_result;
- }
- 
-+static u8 intel_dp_prepare_phytest(struct intel_dp *intel_dp)
-+{
-+	struct drm_dp_phy_test_params *data =
-+		&intel_dp->compliance.test_data.phytest;
-+
-+	if (drm_dp_get_phy_test_pattern(&intel_dp->aux, data)) {
-+		DRM_DEBUG_KMS("DP Phy Test pattern AUX read failure\n");
-+		return DP_TEST_NAK;
-+	}
-+
-+	/*
-+	 * link_mst is set to false to avoid executing mst related code
-+	 * during compliance testing.
-+	 */
-+	intel_dp->link_mst = false;
-+
-+	return DP_TEST_ACK;
-+}
-+
- static u8 intel_dp_autotest_phy_pattern(struct intel_dp *intel_dp)
- {
- 	u8 test_result = DP_TEST_NAK;
-+
-+	test_result = intel_dp_prepare_phytest(intel_dp);
-+	if (test_result != DP_TEST_ACK)
-+		DRM_ERROR("Phy test preparation failed\n");
-+
- 	return test_result;
- }
- 
+ 		if (encoder && connector->status == connector_status_connected) {
+ 			intel_dp = enc_to_intel_dp(encoder);
+-			seq_printf(m, "%02lx", intel_dp->compliance.test_type);
++			seq_printf(m, "%02lx\n", intel_dp->compliance.test_type);
+ 		} else
+ 			seq_puts(m, "0");
+ 	}
 -- 
 2.24.0
 
