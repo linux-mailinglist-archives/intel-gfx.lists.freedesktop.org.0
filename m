@@ -2,40 +2,36 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2898186BD8
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 14:13:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA721186C16
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 14:31:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857446E43D;
-	Mon, 16 Mar 2020 13:13:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8A176E43C;
+	Mon, 16 Mar 2020 13:31:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73AB06E43D
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:13:47 +0000 (UTC)
-IronPort-SDR: 9gz2IgzOZYqKtO6/aJJTrhsBVoJc+1Q+yXuX1sjTKprsTESviCb7ozucawcCiUqaPh5+xVQw3v
- 673j24Ma7Xxg==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 153E96E43C
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2020 13:31:50 +0000 (UTC)
+IronPort-SDR: zvPp5APKk9Ndz646HKsnqhI3Bs61F/su4udsqHELO8tVczklAcYaSEolYq1FlwFiPWG34fUxQ5
+ dLPS2p6CMAbQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 06:13:46 -0700
-IronPort-SDR: 6D593bmKZrTJCZPkUh1afB7qp/P84Py2iXc/mBgKl/q65msXhGRbGm05M/BlglE1/olFAVYuIR
- 5WZyecDTe8bw==
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="417136584"
-Received: from unknown (HELO localhost) ([10.252.54.59])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2020 06:13:44 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>, "Lankhorst\,
- Maarten" <maarten.lankhorst@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-In-Reply-To: <877e08shcs.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Date: Mon, 16 Mar 2020 15:14:11 +0200
-Message-ID: <87mu8gjvbw.fsf@intel.com>
-MIME-Version: 1.0
-Subject: Re: [Intel-gfx] Fixes that failed to apply to v5.6-rc3
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2020 06:31:49 -0700
+IronPort-SDR: CKm4Y3HTXMN2fTtIYh7bqc7LiS+8Z4S2hNRBfUdK5QLAH7Udxf5E3luAlb2SLi9hLZabfhJ3yI
+ sdSUPNrsgQAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; d="scan'208";a="247457501"
+Received: from unknown (HELO localhost.localdomain) ([10.223.165.29])
+ by orsmga006.jf.intel.com with ESMTP; 16 Mar 2020 06:31:47 -0700
+From: Ankit Navik <ankit.p.navik@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Mar 2020 18:59:48 +0530
+Message-Id: <1584365391-30029-1-git-send-email-ankit.p.navik@intel.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [Intel-gfx] [PATCH v7 0/3] drm/i915: Context aware user agnostic
+ EU/Slice/Sub-slice control within kernel
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,39 +44,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: ankit.p.navik@intel.com
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 27 Feb 2020, Jani Nikula <jani.nikula@intel.com> wrote:
-> Hi all -
->
-> The following commits have been marked as Cc: stable or fixing something
-> in v5.6-rc3 or earlier, but failed to cherry-pick to
-> drm-intel-fixes. Please see if they are worth backporting, and please do
-> so if they are.
+This patch sets improves GPU power consumption on Linux kernel based OS such as
+Chromium OS, Ubuntu, etc. Following are the power savings.
 
-New ones for -rc6:
+Power savings on GLK-GT1 Bobba platform running on Chrome OS.
+-----------------------------------------------|
+App /KPI                | % Power Benefit (mW) |
+------------------------|----------------------|
+Hangout Call- 20 minute |	1.8%           |
+Youtube 4K VPB          |       14.13%         |
+WebGL Aquarium          |       13.76%         |
+Unity3D                 |       6.78%          |
+			|		       |
+------------------------|----------------------|
+Chrome PLT              | BatteryLife Improves |
+			| by ~45 minute        |
+-----------------------------------------------|
 
-003d8b9143a6 ("drm/i915/gem: Only call eb_lookup_vma once during execbuf ioctl")
-520f8350364d ("drm/i915: properly sanity check batch_start_offset")
-07bcfd1291de ("drm/i915/gen12: Disable preemption timeout")
-fb899dd8ea9c ("drm/i915: Apply Wa_1406680159:icl,ehl as an engine workaround")
+Power savings on KBL-GT3 running on  Android and Ubuntu (Linux).
+-----------------------------------------------|
+App /KPI              	| % Power Benefit (mW) |
+                        |----------------------|
+			|  Android |  Ubuntu   |
+------------------------|----------|-----------|
+3D Mark (Ice storm)     | 2.30%    | N.A.      |
+TRex On screen          | 2.49%    | 2.97%     |
+Manhattan On screen     | 3.11%    | 4.90%     |
+Carchase On Screen	| N.A.     | 5.06%     |
+AnTuTu 6.1.4            | 3.42%    | N.A.      |
+SynMark2		| N.A.     | 1.7%      |
+-----------------------------------------------|
 
-BR,
-Jani.
+We have also observed GPU core residencies improves by 1.035%.
 
-> This one was fine to cherry-pick, but caused problematic (for me!)
-> conflicts in drm-tip rebuild:
-> 42fb60de3129 ("drm/i915/gem: Don't leak non-persistent requests on changing engines")
->
-> BR,
-> Jani.
+Technical Insights of the patch:
+Current GPU configuration code for i915 does not allow us to change
+EU/Slice/Sub-slice configuration dynamically. Its done only once while context
+is created.
+
+While particular graphics application is running, if we examine the command
+requests from user space, we observe that command density is not consistent.
+It means there is scope to change the graphics configuration dynamically even
+while context is running actively. This patch series proposes the solution to
+find the active pending load for all active context at given time and based on
+that, dynamically perform graphics configuration for each context.
+
+The feature can be enabled using sysfs. we examine pending
+commands for a context in the queue, essentially, we intercept them before
+they are executed by GPU and we update context with required number of EUs.
+
+For the prior one, empirical data to achieve best performance in least power
+was considered. For the later one, we roughly categorized number
+of EUs logically based on platform. Now we compare number of pending commands
+with a particular threshold and then set number of EUs accordingly with update
+context. That threshold is also based on experiments & findings. If GPU is able
+to catch up with CPU, typically there are no pending commands, the EU config
+would remain unchanged there. In case there are more pending commands we
+reprogram context with higher number of EUs.
+
+Ankit Navik (3):
+  drm/i915: Get active pending request for given context
+  drm/i915: set optimum eu/slice/sub-slice configuration based on load
+    type
+  drm/i915: Predictive governor to control slice/subslice/eu
+
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       |  4 ++
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 37 +++++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +
+ drivers/gpu/drm/i915/gt/intel_context_sseu.c      |  2 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h     |  2 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c               | 79 ++++++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_drv.h                   |  5 ++
+ drivers/gpu/drm/i915/i915_sysfs.c                 | 32 +++++++++
+ drivers/gpu/drm/i915/intel_device_info.c          | 55 +++++++++++++++-
+ 9 files changed, 214 insertions(+), 4 deletions(-)
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.7.4
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
