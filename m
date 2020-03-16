@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21389186FD1
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 17:16:09 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 969DB186FD6
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2020 17:17:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FAE6896A5;
-	Mon, 16 Mar 2020 16:16:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E18326E487;
+	Mon, 16 Mar 2020 16:17:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 339D689458;
- Mon, 16 Mar 2020 16:16:06 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D5D766E46B;
+ Mon, 16 Mar 2020 16:17:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2BD74A41FB;
- Mon, 16 Mar 2020 16:16:06 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1C09A41FB;
+ Mon, 16 Mar 2020 16:17:27 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Wambui Karuga" <wambui.karugax@gmail.com>
-Date: Mon, 16 Mar 2020 16:16:06 -0000
-Message-ID: <158437536617.18994.14643916973593567823@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 16 Mar 2020 16:17:27 -0000
+Message-ID: <158437544785.18995.4908660218806778830@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200314183344.17603-1-wambui.karugax@gmail.com>
-In-Reply-To: <20200314183344.17603-1-wambui.karugax@gmail.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gt=3A_convert_to_struct_drm=5Fdevice_based_logging?=
- =?utf-8?q?_macros=2E?=
+References: <20200314122058.21472-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200314122058.21472-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/7=5D_drm/i915=3A_Move_GGTT_fence_registe?=
+ =?utf-8?q?rs_under_gt/?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,51 +48,122 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gt: convert to struct drm_device based logging macros.
-URL   : https://patchwork.freedesktop.org/series/74707/
-State : warning
+Series: series starting with [1/7] drm/i915: Move GGTT fence registers under gt/
+URL   : https://patchwork.freedesktop.org/series/74703/
+State : failure
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-6cfa7991dd93 drm/i915/ggtt: convert to drm_device based logging macros.
--:84: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#84: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+CI Bug Log - changes from CI_DRM_8137 -> Patchwork_16972
+====================================================
 
-total: 0 errors, 1 warnings, 0 checks, 89 lines checked
-0d578a154f1b drm/i915/lrc: convert to struct drm_device based logging macros.
--:14: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#14: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 44 lines checked
-90332a78c06d drm/i915/rc6: convert to struct drm_device based logging macros.
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+  **FAILURE**
 
-total: 0 errors, 1 warnings, 0 checks, 109 lines checked
-449bd50495fa drm/i915/renderstate: use struct drm_device based logging macros.
-ad89d4cdd325 drm/i915/ring_submission: use drm_device based logging macros.
--:85: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#85: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+  Serious unknown changes coming with Patchwork_16972 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_16972, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-total: 0 errors, 1 warnings, 0 checks, 63 lines checked
-e344bc88a34c drm/i915/rps: use struct drm_device based logging macros.
--:15: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#15: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/index.html
 
-total: 0 errors, 1 warnings, 0 checks, 164 lines checked
-8dfd9a57f09d drm/i915/workarounds: convert to drm_device based logging macros.
--:12: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#12: 
-References: https://lists.freedesktop.org/archives/dri-devel/2020-January/253381.html
+Possible new issues
+-------------------
 
-total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+  Here are the unknown changes that may have been introduced in Patchwork_16972:
 
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_tiled_fence_blits@basic:
+    - fi-blb-e6850:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-blb-e6850/igt@gem_tiled_fence_blits@basic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16972 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4] ([i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+    - fi-icl-y:           [PASS][5] -> [DMESG-FAIL][6] ([fdo#108569])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][7] -> [DMESG-FAIL][8] ([i915#877])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cfl-8700k:       [INCOMPLETE][9] ([i915#656]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-icl-u2:          [FAIL][11] ([i915#217]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-icl-u2/igt@kms_chamelium@hdmi-hpd-fast.html
+    - fi-kbl-7500u:       [FAIL][13] ([i915#323]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8137/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+
+
+Participating hosts (48 -> 45)
+------------------------------
+
+  Additional (2): fi-skl-6770hq fi-tgl-dsi 
+  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8137 -> Patchwork_16972
+
+  CI-20190529: 20190529
+  CI_DRM_8137: 5786b5e77cc17a1b494b9bdf3c3f29eedc2e2e7d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5510: e100092d50105463f58db531fa953c70cc58bb10 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16972: 9eeea446836327fedf640ae8513c72a66c71dedf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+9eeea4468363 drm/i915/gt: Make fence revocation unequivocal
+750dc9e7ceb3 drm/i915/gt: Only wait for GPU activity before unbinding a GGTT fence
+5003f815b7aa drm/i915/gt: Store the fence details on the fence
+9f9e340e8b4d drm/i915/gt: Allocate i915_fence_reg array
+84d01acc1bc9 drm/i915: Remove manual save/resume of fence register state
+4e7c950ab87c drm/i915/gt: Pull restoration of GGTT fences underneath the GT
+cfd159dc30dd drm/i915: Move GGTT fence registers under gt/
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16972/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
