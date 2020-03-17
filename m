@@ -1,53 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB930188DA4
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 20:07:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9944188DC5
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 20:11:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFDDB6E037;
-	Tue, 17 Mar 2020 19:07:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D9A789CE1;
+	Tue, 17 Mar 2020 19:11:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4586E037
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 19:07:02 +0000 (UTC)
-IronPort-SDR: lCkhGVYPHqE1UtIVObptHWlAVxVUnGY3KpRdS/ox/Ql/2dI70eMK6IIdPgTnZpcaXDDZEBNS/h
- Amk+2GswoYYg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2020 12:07:01 -0700
-IronPort-SDR: yUefBVkKaLUcEcnI7tDvPyrp3OsJEYJe15t+GSP5jAXwIMa+tqAKGkbfpHjDgqLJwGS+VTw1ud
- yqB7oMS2G6uA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,565,1574150400"; d="scan'208";a="291080913"
-Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
- by FMSMGA003.fm.intel.com with ESMTP; 17 Mar 2020 12:07:01 -0700
-Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
- FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 17 Mar 2020 12:07:00 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
- FMSMSX152.amr.corp.intel.com ([169.254.6.114]) with mapi id 14.03.0439.000;
- Tue, 17 Mar 2020 12:07:00 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "dh@xmx.ch" <dh@xmx.ch>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [Intel-gfx] Screen Flickering on DELL XPS-13-7390
-Thread-Index: AQHV/I3ikjgm9sz/fEGgqCshU9RIMKhNmwyA
-Date: Tue, 17 Mar 2020 19:07:00 +0000
-Message-ID: <0d5b948a015ca05afca3ddf55c06403a6af9345c.camel@intel.com>
-References: <jdqEyaiHhDwm6lTXjzrj7NoxQwpsPsv79qmpRk9TPXsLQ4atLkaKDAbTVJ6GuKzG03mYIMimWqQGCNNHCpTwfeRXt5XzfiZHXRwY1m5Hlko=@xmx.ch>
-In-Reply-To: <jdqEyaiHhDwm6lTXjzrj7NoxQwpsPsv79qmpRk9TPXsLQ4atLkaKDAbTVJ6GuKzG03mYIMimWqQGCNNHCpTwfeRXt5XzfiZHXRwY1m5Hlko=@xmx.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.24.15.8]
-Content-ID: <95C2D1F6A050B541A612BA325B2C8062@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4801389CE1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 19:11:38 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20594504-1500050 
+ for multiple; Tue, 17 Mar 2020 19:11:24 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Mar 2020 19:11:27 +0000
+Message-Id: <20200317191127.25799-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200317140956.13062-1-chris@chris-wilson.co.uk>
+References: <20200317140956.13062-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] Screen Flickering on DELL XPS-13-7390
+Subject: [Intel-gfx] [PATCH v3] drm/i915/gem: Avoid gem_context->mutex for
+ simple vma lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,39 +44,211 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi
+As we store the handle lookup inside a radix tree, we do not need the
+gem_context->mutex except until we need to insert our lookup into the
+common radix tree. This takes a small bit of rearranging to ensure that
+the lut we insert into the tree is ready prior to actually inserting it
+(as soon as it is exposed via the radixtree, it is visible to any other
+submission).
 
-Please test with drm-tip and file a bug attaching more information
-and logs: 
-https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
+v2: For brownie points, remove the goto spaghetti.
+v3: Tighten up the closed-handle checks.
 
-On Tue, 2020-03-17 at 18:56 +0000, Damian Hischier wrote:
-> Hello
-> 
-> I installed opensuse Tumbleweed linux on a brand new Dell XPS-13-
-> 7390. Already during the installation, the screen started to flicker.
-> Then I installed opensuse 15.1 on the same laptop and it worked
-> without screen flickering. But after I run the online update it
-> started to flicker again. I suspect that there are some changes in
-> the newer kernel versions. Does anybody know why it does work with
-> kernel 4.12.14-lp151.27-default and it doesn't work with a newer
-> kernel. I opened a thread in the opensuse forum:
-> 
-> https://forums.opensuse.org/showthread.php/539492-Screen-flickering-on-DELL-XPS-13-7390?p=2929887#post2929887
-> 
-> There you can see the outputs of inxi. Somebody recommended to ask
-> here for advice. Is there anything I can do to get rid of this screen
-> flickering?
-> 
-> Thank you very much for your help
-> 
-> Sent from ProtonMail, Swiss-based encrypted email.
-> 
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 136 +++++++++++-------
+ 1 file changed, 87 insertions(+), 49 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d3f4f28e9468..9a781a2b144c 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -481,7 +481,7 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 
+ 	GEM_BUG_ON(i915_vma_is_closed(vma));
+ 
+-	ev->vma = i915_vma_get(vma);
++	ev->vma = vma;
+ 	ev->exec = entry;
+ 	ev->flags = entry->flags;
+ 
+@@ -728,77 +728,117 @@ static int eb_select_context(struct i915_execbuffer *eb)
+ 	return 0;
+ }
+ 
+-static int eb_lookup_vmas(struct i915_execbuffer *eb)
++static int __eb_add_lut(struct i915_execbuffer *eb,
++			u32 handle, struct i915_vma *vma)
+ {
+-	struct radix_tree_root *handles_vma = &eb->gem_context->handles_vma;
+-	struct drm_i915_gem_object *obj;
+-	unsigned int i, batch;
++	struct i915_gem_context *ctx = eb->gem_context;
++	struct i915_lut_handle *lut;
+ 	int err;
+ 
+-	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
+-		return -ENOENT;
++	lut = i915_lut_handle_alloc();
++	if (unlikely(!lut))
++		return -ENOMEM;
+ 
+-	INIT_LIST_HEAD(&eb->relocs);
+-	INIT_LIST_HEAD(&eb->unbound);
++	i915_vma_get(vma);
++	if (!atomic_fetch_inc(&vma->open_count))
++		i915_vma_reopen(vma);
++	lut->handle = handle;
++	lut->ctx = ctx;
++
++	/* Check that the context hasn't been closed in the meantime */
++	err = -EINTR;
++	if (!mutex_lock_interruptible(&ctx->mutex)) {
++		err = -ENOENT;
++		if (likely(!i915_gem_context_is_closed(ctx)))
++			err = radix_tree_insert(&ctx->handles_vma, handle, vma);
++		if (err == 0) { /* And nor has this handle */
++			struct drm_i915_gem_object *obj = vma->obj;
++
++			i915_gem_object_lock(obj);
++			if (i915_gem_object_lookup_rcu(eb->file, handle) == obj) {
++				list_add(&lut->obj_link, &obj->lut_list);
++			} else {
++				radix_tree_delete(&ctx->handles_vma, handle);
++				err = -ENOENT;
++			}
++			i915_gem_object_unlock(obj);
++		}
++		mutex_unlock(&ctx->mutex);
++	}
++	if (unlikely(err))
++		goto err;
+ 
+-	batch = eb_batch_index(eb);
++	return 0;
+ 
+-	for (i = 0; i < eb->buffer_count; i++) {
+-		u32 handle = eb->exec[i].handle;
+-		struct i915_lut_handle *lut;
++err:
++	atomic_dec(&vma->open_count);
++	i915_vma_put(vma);
++	i915_lut_handle_free(lut);
++	return err;
++}
++
++static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
++{
++	do {
++		struct drm_i915_gem_object *obj;
+ 		struct i915_vma *vma;
++		int err;
+ 
+-		vma = radix_tree_lookup(handles_vma, handle);
++		rcu_read_lock();
++		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
++		if (likely(vma))
++			vma = i915_vma_tryget(vma);
++		rcu_read_unlock();
+ 		if (likely(vma))
+-			goto add_vma;
++			return vma;
+ 
+ 		obj = i915_gem_object_lookup(eb->file, handle);
+-		if (unlikely(!obj)) {
+-			err = -ENOENT;
+-			goto err_vma;
+-		}
++		if (unlikely(!obj))
++			return ERR_PTR(-ENOENT);
+ 
+ 		vma = i915_vma_instance(obj, eb->context->vm, NULL);
+ 		if (IS_ERR(vma)) {
+-			err = PTR_ERR(vma);
+-			goto err_obj;
++			i915_gem_object_put(obj);
++			return vma;
+ 		}
+ 
+-		lut = i915_lut_handle_alloc();
+-		if (unlikely(!lut)) {
+-			err = -ENOMEM;
+-			goto err_obj;
+-		}
++		err = __eb_add_lut(eb, handle, vma);
++		if (likely(!err))
++			return vma;
+ 
+-		err = radix_tree_insert(handles_vma, handle, vma);
+-		if (unlikely(err)) {
+-			i915_lut_handle_free(lut);
+-			goto err_obj;
+-		}
++		i915_gem_object_put(obj);
++		if (err != -EEXIST)
++			return ERR_PTR(err);
++	} while (1);
++}
+ 
+-		/* transfer ref to lut */
+-		if (!atomic_fetch_inc(&vma->open_count))
+-			i915_vma_reopen(vma);
+-		lut->handle = handle;
+-		lut->ctx = eb->gem_context;
++static int eb_lookup_vmas(struct i915_execbuffer *eb)
++{
++	unsigned int batch = eb_batch_index(eb);
++	unsigned int i;
++	int err = 0;
+ 
+-		i915_gem_object_lock(obj);
+-		list_add(&lut->obj_link, &obj->lut_list);
+-		i915_gem_object_unlock(obj);
++	INIT_LIST_HEAD(&eb->relocs);
++	INIT_LIST_HEAD(&eb->unbound);
++
++	for (i = 0; i < eb->buffer_count; i++) {
++		struct i915_vma *vma;
++
++		vma = eb_lookup_vma(eb, eb->exec[i].handle);
++		if (IS_ERR(vma)) {
++			err = PTR_ERR(vma);
++			break;
++		}
+ 
+-add_vma:
+ 		err = eb_validate_vma(eb, &eb->exec[i], vma);
+-		if (unlikely(err))
+-			goto err_vma;
++		if (unlikely(err)) {
++			i915_vma_put(vma);
++			break;
++		}
+ 
+ 		eb_add_vma(eb, i, batch, vma);
+ 	}
+ 
+-	return 0;
+-
+-err_obj:
+-	i915_gem_object_put(obj);
+-err_vma:
+ 	eb->vma[i].vma = NULL;
+ 	return err;
+ }
+@@ -1494,9 +1534,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+ 
+-	mutex_lock(&eb->gem_context->mutex);
+ 	err = eb_lookup_vmas(eb);
+-	mutex_unlock(&eb->gem_context->mutex);
+ 	if (err)
+ 		return err;
+ 
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
