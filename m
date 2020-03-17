@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C761918896D
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 16:49:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 870931889A8
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 17:00:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31DF289973;
-	Tue, 17 Mar 2020 15:49:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D11F489ED6;
+	Tue, 17 Mar 2020 16:00:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 36C7789949;
- Tue, 17 Mar 2020 15:49:41 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3870689ED3;
+ Tue, 17 Mar 2020 16:00:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24D43A008A;
- Tue, 17 Mar 2020 15:49:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 254BFA0099;
+ Tue, 17 Mar 2020 16:00:39 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 17 Mar 2020 15:49:41 -0000
-Message-ID: <158446018112.5177.11401774479749475985@emeril.freedesktop.org>
+Date: Tue, 17 Mar 2020 16:00:39 -0000
+Message-ID: <158446083912.5177.5303853328949524463@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200316225153.3394-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200316225153.3394-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
- =?utf-8?q?m/i915/gem=3A_Avoid_gem=5Fcontext-=3Emutex_for_simple_vma_looku?=
- =?utf-8?q?p_=28rev3=29?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Avoid_gem=5Fcontext-=3Emutex_for_simple_vma_lookup?=
+ =?utf-8?q?_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,19 +50,71 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: drm/i915/gem: Avoid gem_context->mutex for simple vma lookup (rev3)
 URL   : https://patchwork.freedesktop.org/series/74759/
-State : warning
+State : success
 
 == Summary ==
 
-$ make htmldocs 2>&1 > /dev/null | grep i915
-Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
-Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
-Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
-Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
-WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -internal ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 2
-WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function fence register handling ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 1
-WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function tiling swizzling details ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 1
+CI Bug Log - changes from CI_DRM_8142 -> Patchwork_16996
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16996/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_16996 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [INCOMPLETE][1] ([i915#1430] / [i915#656]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8142/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16996/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+    - fi-kbl-soraka:      [INCOMPLETE][3] ([fdo#112259] / [i915#1430] / [i915#656]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8142/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16996/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Additional (5): fi-bdw-5557u fi-glk-dsi fi-cfl-8109u fi-blb-e6850 fi-skl-6700k2 
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bdw-samus fi-byt-clapper fi-bsw-nick fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8142 -> Patchwork_16996
+
+  CI-20190529: 20190529
+  CI_DRM_8142: 13dfeddee92ca6b9d134e036ae315e93b96023db @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5514: 921758a91a453e8148b3146ad874bbd4ae4364ec @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_16996: 14c937a62591a82e1bc1d11ebc58194af9959877 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+14c937a62591 drm/i915/gem: Avoid gem_context->mutex for simple vma lookup
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16996/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
