@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A5D1884CD
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 14:10:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A3F4188508
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 14:13:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E97B6E108;
-	Tue, 17 Mar 2020 13:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C523C6E109;
+	Tue, 17 Mar 2020 13:13:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C88B6E104;
- Tue, 17 Mar 2020 13:10:05 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6809F6E10C;
+ Tue, 17 Mar 2020 13:12:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2C912A47EB;
- Tue, 17 Mar 2020 13:10:05 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 60C44A0099;
+ Tue, 17 Mar 2020 13:12:59 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 17 Mar 2020 13:10:05 -0000
-Message-ID: <158445060515.5178.5587056525162529905@emeril.freedesktop.org>
+Date: Tue, 17 Mar 2020 13:12:59 -0000
+Message-ID: <158445077936.5179.1341506569650811951@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200316225153.3394-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200316225153.3394-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gem=3A_Avoid_gem=5Fcontext-=3Emutex_for_simple_vma_lookup?=
- =?utf-8?q?_=28rev2=29?=
+References: <20200317122719.1889-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200317122719.1889-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_?=
+ =?utf-8?q?request_throughput_measurement_to_perf?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,114 +48,131 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/gem: Avoid gem_context->mutex for simple vma lookup (rev2)
-URL   : https://patchwork.freedesktop.org/series/74759/
-State : success
+Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
+URL   : https://patchwork.freedesktop.org/series/74769/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8141 -> Patchwork_16991
-====================================================
+$ dim checkpatch origin/drm-tip
+0d574449054f drm/i915/selftests: Add request throughput measurement to perf
+-:96: WARNING:LINE_SPACING: Missing a blank line after declarations
+#96: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1519:
++	struct perf_series *ps = arg;
++	IGT_TIMEOUT(end_time);
 
-Summary
--------
+-:130: WARNING:LINE_SPACING: Missing a blank line after declarations
+#130: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1553:
++	struct i915_request *prev = NULL;
++	IGT_TIMEOUT(end_time);
 
-  **SUCCESS**
+-:165: WARNING:LINE_SPACING: Missing a blank line after declarations
+#165: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1588:
++	struct perf_series *ps = arg;
++	IGT_TIMEOUT(end_time);
 
-  No regressions found.
+-:188: WARNING:LINE_SPACING: Missing a blank line after declarations
+#188: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1611:
++	struct drm_i915_private *i915 = arg;
++	static int (* const func[])(void *arg) = {
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/index.html
+-:196: WARNING:LINE_SPACING: Missing a blank line after declarations
+#196: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1619:
++	struct intel_engine_cs *engine;
++	int (* const *fn)(void *arg);
 
-Possible new issues
--------------------
+-:325: WARNING:LINE_SPACING: Missing a blank line after declarations
+#325: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1748:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-  Here are the unknown changes that may have been introduced in Patchwork_16991:
+-:393: WARNING:LINE_SPACING: Missing a blank line after declarations
+#393: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1816:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-### IGT changes ###
+-:462: WARNING:LINE_SPACING: Missing a blank line after declarations
+#462: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1885:
++	struct intel_context *ce;
++	IGT_TIMEOUT(end_time);
 
-#### Suppressed ####
+-:518: WARNING:LINE_SPACING: Missing a blank line after declarations
+#518: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1941:
++	struct drm_i915_private *i915 = arg;
++	static int (* const func[])(void *arg) = {
 
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
+-:526: WARNING:LINE_SPACING: Missing a blank line after declarations
+#526: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1949:
++	struct intel_engine_cs *engine;
++	int (* const *fn)(void *arg);
 
-  * igt@i915_selftest@live@execlists:
-    - {fi-ehl-1}:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-ehl-1/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-ehl-1/igt@i915_selftest@live@execlists.html
+-:571: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
+#571: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1994:
++		yield(); /* start all threads before we kthread_stop() */
 
-  * igt@runner@aborted:
-    - {fi-ehl-1}:         NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-ehl-1/igt@runner@aborted.html
+total: 0 errors, 11 warnings, 0 checks, 611 lines checked
+22069998921a drm/i915: Wrap i915_active in a simple kreffed struct
+da8602561652 drm/i915/perf: Schedule oa_config after modifying the contexts
+27864e4415fc dma-buf: Prettify typecasts for dma-fence-chain
+e72f695e0d59 dma-buf: Report signaled links inside dma-fence-chain
+6fb945deb41e dma-buf: Exercise dma-fence-chain under selftests
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-  
-Known issues
-------------
+-:61: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#61: FILE: drivers/dma-buf/st-dma-fence-chain.c:24:
++	spinlock_t lock;
 
-  Here are the changes found in Patchwork_16991 that come from known issues:
+-:235: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#235: FILE: drivers/dma-buf/st-dma-fence-chain.c:198:
++		pr_err("Reported %d for find_seqno(0)!\n", err);
 
-### IGT changes ###
+-:244: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#244: FILE: drivers/dma-buf/st-dma-fence-chain.c:207:
++			pr_err("Reported %d for find_seqno(%d:%d)!\n",
 
-#### Issues hit ####
+-:249: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#249: FILE: drivers/dma-buf/st-dma-fence-chain.c:212:
++			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
 
-  * igt@fbdev@mmap:
-    - fi-kbl-7500u:       [PASS][4] -> [SKIP][5] ([fdo#109271])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-kbl-7500u/igt@fbdev@mmap.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-kbl-7500u/igt@fbdev@mmap.html
+-:272: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#272: FILE: drivers/dma-buf/st-dma-fence-chain.c:235:
++			pr_err("Error not reported for future fence: find_seqno(%d:%d)!\n",
 
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][6] -> [FAIL][7] ([fdo#111407])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+-:286: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
+#286: FILE: drivers/dma-buf/st-dma-fence-chain.c:249:
++			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
 
-  
-#### Possible fixes ####
+-:737: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'dma_fence_chain', this function's name, in a string
+#737: FILE: drivers/dma-buf/st-dma-fence-chain.c:700:
++	pr_info("sizeof(dma_fence_chain)=%zu\n",
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [INCOMPLETE][8] ([i915#189]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+total: 0 errors, 7 warnings, 1 checks, 725 lines checked
+c3e54c28d94e dma-buf: Proxy fence, an unsignaled fence placeholder
+-:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#45: 
+new file mode 100644
 
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8700k:       [INCOMPLETE][10] ([i915#656]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
+-:93: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#93: FILE: drivers/dma-buf/dma-fence-proxy.c:18:
++	spinlock_t lock;
 
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
+-:321: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#321: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
++	spinlock_t lock;
 
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+-:481: WARNING:MEMORY_BARRIER: memory barrier without comment
+#481: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
++	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
 
+total: 0 errors, 2 warnings, 2 checks, 852 lines checked
+9a241d62343d drm/syncobj: Allow use of dma-fence-proxy
+25c7bc564fc2 drm/i915/gem: Teach execbuf how to wait on future syncobj
+93996f119438 drm/i915/gem: Allow combining submit-fences with syncobj
+33b7b12c8b42 drm/i915/gt: Declare when we enabled timeslicing
+70b9d252dbbd drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
 
-Participating hosts (47 -> 36)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (12): fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-cfl-guc fi-gdg-551 fi-skl-lmem fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8141 -> Patchwork_16991
-
-  CI-20190529: 20190529
-  CI_DRM_8141: f7be958f2574d30bad18983c3afe2c5401674dfb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5513: 417c926459dacf062f2945d3ba01a3f94551b16f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16991: 3ac212a31ac487c6cb1b1e72ca02963e9e008551 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-3ac212a31ac4 drm/i915/gem: Avoid gem_context->mutex for simple vma lookup
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16991/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
