@@ -2,32 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115BD188468
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 13:38:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C357E1884A1
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 13:58:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E9D66E0E6;
-	Tue, 17 Mar 2020 12:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23E9B89CDB;
+	Tue, 17 Mar 2020 12:58:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6921C6E0E6
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 12:38:52 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20588746-1500050 for multiple; Tue, 17 Mar 2020 12:38:45 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C186B89CC1;
+ Tue, 17 Mar 2020 12:58:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BACC6A008A;
+ Tue, 17 Mar 2020 12:58:32 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200317123546.925339-1-maarten.lankhorst@linux.intel.com>
-References: <20200317123546.925339-1-maarten.lankhorst@linux.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158444872846.6873.14483170949940551980@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 17 Mar 2020 12:38:48 +0000
-Subject: Re: [Intel-gfx] [PATCH] Revert "drm/i915/gem: Drop relocation
- slowpath"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 17 Mar 2020 12:58:32 -0000
+Message-ID: <158444991273.5178.9590337883315125358@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200316225153.3394-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200316225153.3394-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkRPQ1M6IHdhcm5pbmcgZm9yIGRy?=
+ =?utf-8?q?m/i915/gem=3A_Avoid_gem=5Fcontext-=3Emutex_for_simple_vma_looku?=
+ =?utf-8?q?p_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,21 +39,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Maarten Lankhorst (2020-03-17 12:35:46)
-> This reverts commit 7dc8f1143778 ("drm/i915/gem: Drop relocation
-> slowpath"). We need the slowpath relocation for taking ww-mutex
-> inside the page fault handler, and we will take this mutex when
-> pinning all objects.
+== Series Details ==
 
-Don't hold an exclusive lock across the relocation path; it's not
-required.
--Chris
+Series: drm/i915/gem: Avoid gem_context->mutex for simple vma lookup (rev2)
+URL   : https://patchwork.freedesktop.org/series/74759/
+State : warning
+
+== Summary ==
+
+$ make htmldocs 2>&1 > /dev/null | grep i915
+Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
+Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
+Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
+Error: Cannot open file ./drivers/gpu/drm/i915/i915_gem_fence_reg.c
+WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -internal ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 2
+WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function fence register handling ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 1
+WARNING: kernel-doc './scripts/kernel-doc -rst -enable-lineno -function tiling swizzling details ./drivers/gpu/drm/i915/i915_gem_fence_reg.c' failed with return code 1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
