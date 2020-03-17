@@ -2,44 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC714188630
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 14:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB10618868D
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 14:57:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2198789F8E;
-	Tue, 17 Mar 2020 13:46:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8A0E6E13D;
+	Tue, 17 Mar 2020 13:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2376389F8E
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 13:46:40 +0000 (UTC)
-IronPort-SDR: ua/sYPwp6XOPq9/Tk/cBIyOelt3bjAT+pOkh2+0jotSyb+I6Yo6yNHBdhn/u2GaZMxNaIQcDbM
- lEe5/iNo8PKA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2020 06:46:39 -0700
-IronPort-SDR: igttxZtj3Qh9FfOMbYKdDZGHbu3hy38cMUyq8t9uXBjzieZyKlGzfu8qml7ACTYNVFQOv+/AUu
- NNCR/wFYpO6w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,564,1574150400"; d="scan'208";a="236333249"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga007.fm.intel.com with SMTP; 17 Mar 2020 06:46:36 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Mar 2020 15:46:35 +0200
-Date: Tue, 17 Mar 2020 15:46:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200317134635.GV13686@intel.com>
-References: <20200316113744.31203-3-stanislav.lisovskiy@intel.com>
- <20200316224338.14384-1-stanislav.lisovskiy@intel.com>
+Received: from userp2120.oracle.com (userp2120.oracle.com [156.151.31.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBEC46E13D
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 13:57:50 +0000 (UTC)
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+ by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02HDhfck173950;
+ Tue, 17 Mar 2020 13:57:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=date : from : to : cc
+ : subject : message-id : mime-version : content-type : in-reply-to;
+ s=corp-2020-01-29; bh=0SfgphOWfFuibeM/IM0bvFcUlqE73BP6KPKalJjEsT4=;
+ b=jZvzqRmfwHJ+bUEk3XEiCirOrIA3To3qnVNmOREfGhvm8BQH6bJeVC/5ZXhkuJpA1NHa
+ Vja5xONX6R7+c/dWR8E/J4/vYDnXBpfDNZYCiRKr40eBeoB1PUBmUNgDB5JCIayxwwYO
+ 1jH1ogadpxVV7Csidtlx+85AYqIOsEcxfVQAs8LnJn0cFeWjCweTjw8QqlV5nzVaSBBO
+ wDpk2n20TbHYBl4LuWtCvZzcosQOXGsUKL43784+92ngxrEEsxCv78we0sttJBLzjhHH
+ 8zvkAvem/05GA58pM3AJS5btLmL/mFvyyWdZUW46twhQjgnsXyM4vdV+G61nS/v2xsWO uA== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+ by userp2120.oracle.com with ESMTP id 2yrqwn4ujp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 17 Mar 2020 13:57:42 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+ by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 02HDooOF179602;
+ Tue, 17 Mar 2020 13:55:42 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+ by aserp3030.oracle.com with ESMTP id 2ys8trv0mp-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 17 Mar 2020 13:55:41 +0000
+Received: from abhmp0011.oracle.com (abhmp0011.oracle.com [141.146.116.17])
+ by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id 02HDte3b002825;
+ Tue, 17 Mar 2020 13:55:40 GMT
+Received: from kadam (/41.57.98.10) by default (Oracle Beehive Gateway v4.0)
+ with ESMTP ; Tue, 17 Mar 2020 06:55:39 -0700
+Date: Tue, 17 Mar 2020 16:55:32 +0300
+From: Dan Carpenter <dan.carpenter@oracle.com>
+To: kbuild@lists.01.org, Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200317135532.GD4650@kadam>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200316224338.14384-1-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Adjust CDCLK accordingly
- to our DBuf bw needs
+In-Reply-To: <20200316225153.3394-1-chris@chris-wilson.co.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9562
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ phishscore=0 mlxscore=0
+ malwarescore=0 suspectscore=0 mlxlogscore=999 spamscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2003020000
+ definitions=main-2003170060
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9562
+ signatures=668685
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0
+ lowpriorityscore=0 mlxlogscore=999
+ mlxscore=0 bulkscore=0 phishscore=0 spamscore=0 suspectscore=0
+ malwarescore=0 priorityscore=1501 clxscore=1015 adultscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2003170060
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Avoid gem_context->mutex for
+ simple vma lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,345 +77,149 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: intel-gfx@lists.freedesktop.org, kbuild-all@lists.01.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2020 at 12:43:38AM +0200, Stanislav Lisovskiy wrote:
-> According to BSpec max BW per slice is calculated using formula
-> Max BW =3D CDCLK * 64. Currently when calculating min CDCLK we
-> account only per plane requirements, however in order to avoid
-> FIFO underruns we need to estimate accumulated BW consumed by
-> all planes(ddb entries basically) residing on that particular
-> DBuf slice. This will allow us to put CDCLK lower and save power
-> when we don't need that much bandwidth or gain additional
-> performance once plane consumption grows.
-> =
+Hi Chris,
 
-> v2: - Fix long line warning
->     - Limited new DBuf bw checks to only gens >=3D 11
-> =
+Thank you for the patch! Perhaps something to improve:
 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c       | 46 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_bw.h       |  1 +
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 25 ++++++++++
->  drivers/gpu/drm/i915/display/intel_display.c  | 10 +++-
->  .../drm/i915/display/intel_display_power.h    |  1 +
->  drivers/gpu/drm/i915/intel_pm.c               | 34 +++++++++++++-
->  drivers/gpu/drm/i915/intel_pm.h               |  3 ++
->  7 files changed, 117 insertions(+), 3 deletions(-)
-> =
+[auto build test WARNING on drm-intel/for-linux-next]
+[also build test WARNING on drm-tip/drm-tip next-20200316]
+[cannot apply to v5.6-rc6]
+[if your patch is applied to the wrong git tree, please drop us a note to help
+improve the system. BTW, we also suggest to use '--base' option to specify the
+base tree in git format-patch, please see https://stackoverflow.com/a/37406982]
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
-15/display/intel_bw.c
-> index 58b264bc318d..a85125110d7e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -6,6 +6,7 @@
->  #include <drm/drm_atomic_state_helper.h>
->  =
+url:    https://github.com/0day-ci/linux/commits/Chris-Wilson/drm-i915-gem-Avoid-gem_context-mutex-for-simple-vma-lookup/20200317-110430
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next
 
->  #include "intel_bw.h"
-> +#include "intel_pm.h"
->  #include "intel_display_types.h"
->  #include "intel_sideband.h"
->  =
+If you fix the issue, kindly add following tag
+Reported-by: kbuild test robot <lkp@intel.com>
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
 
-> @@ -334,6 +335,51 @@ static unsigned int intel_bw_crtc_data_rate(const st=
-ruct intel_crtc_state *crtc_
->  	return data_rate;
->  }
->  =
+New smatch warnings:
+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:815 eb_lookup_vmas() error: uninitialized symbol 'obj'.
 
-> +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(state->base.dev);
-> +	int max_bw_per_dbuf[DBUF_SLICE_MAX];
-> +	int i =3D 0;
-> +	enum plane_id plane_id;
-> +	struct intel_crtc_state *crtc_state;
-> +	struct intel_crtc *crtc;
-> +	int max_bw =3D 0;
-> +	int min_cdclk;
-> +
-> +	memset(max_bw_per_dbuf, 0, sizeof(max_bw_per_dbuf[0]) * DBUF_SLICE_MAX);
-> +
-> +	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> +		for_each_plane_id_on_crtc(crtc, plane_id) {
-> +			struct skl_ddb_entry *plane_alloc =3D
-> +				&crtc_state->wm.skl.plane_ddb_y[plane_id];
-> +			struct skl_ddb_entry *uv_plane_alloc =3D
-> +				&crtc_state->wm.skl.plane_ddb_uv[plane_id];
-> +			unsigned int data_rate =3D crtc_state->data_rate[plane_id];
-> +			int slice_id =3D 0;
-> +			u32 dbuf_mask =3D skl_ddb_dbuf_slice_mask(dev_priv, plane_alloc);
-> +
-> +			dbuf_mask |=3D skl_ddb_dbuf_slice_mask(dev_priv, uv_plane_alloc);
-> +
-> +			DRM_DEBUG_KMS("Got dbuf mask %x for pipe %c ddb %d-%d plane %d data r=
-ate %d\n",
-> +				      dbuf_mask, pipe_name(crtc->pipe), plane_alloc->start,
-> +				      plane_alloc->end, plane_id, data_rate);
-> +
-> +			while (dbuf_mask !=3D 0) {
-> +				if (dbuf_mask & 1) {
-> +					max_bw_per_dbuf[slice_id] +=3D data_rate;
-> +					max_bw =3D max(max_bw, max_bw_per_dbuf[slice_id]);
-> +				}
-> +				slice_id++;
-> +				dbuf_mask >>=3D 1;
-> +			}
-> +		}
-> +	}
+Old smatch warnings:
+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1111 reloc_move_to_gpu() warn: maybe use && instead of &
+drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1599 eb_move_to_gpu() warn: maybe use && instead of &
+drivers/gpu/drm/i915/gem/i915_gem_context.h:201 i915_gem_context_get_engine() warn: inconsistent indenting
+drivers/gpu/drm/i915/gem/i915_gem_context.h:203 i915_gem_context_get_engine() warn: inconsistent indenting
 
-Something like?
+# https://github.com/0day-ci/linux/commit/88e913b4b889b5b70ae708967ff75a04527b50af
+git remote add linux-review https://github.com/0day-ci/linux
+git remote update linux-review
+git checkout 88e913b4b889b5b70ae708967ff75a04527b50af
+vim +/obj +815 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 
-for_each_plane_id() {
-	for_each_dbuf_slice() {
-		skl_ddb_entry_for_slices(BIT(slice), &ddb_slice);
-		=
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  731  static int eb_lookup_vmas(struct i915_execbuffer *eb)
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  732  {
+8f2a1057d6ec21 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2019-04-25  733  	struct radix_tree_root *handles_vma = &eb->gem_context->handles_vma;
+ac70ebe873f516 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-09-12  734  	struct drm_i915_gem_object *obj;
+                                                                                                                           ^^^^
+Uninitialized
 
-		if (skl_ddb_entries_overlap(&ddb_slice, &ddb[plane_id])))
-			bw[slice] +=3D data_rate;
-	}
-}
+746c8f143afad7 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2018-06-10  735  	unsigned int i, batch;
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  736  	int err;
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  737  
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  738  	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  739  		return -ENOENT;
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  740  
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  741  	INIT_LIST_HEAD(&eb->relocs);
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  742  	INIT_LIST_HEAD(&eb->unbound);
+d55495b4dcce2e drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-15  743  
+746c8f143afad7 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2018-06-10  744  	batch = eb_batch_index(eb);
+746c8f143afad7 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2018-06-10  745  
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  746  	for (i = 0; i < eb->buffer_count; i++) {
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  747  		u32 handle = eb->exec[i].handle;
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  748  		struct i915_lut_handle *lut;
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  749  		struct i915_vma *vma;
+4ff4b44cbb70c2 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  750  
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  751  lookup:
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  752  		rcu_read_lock();
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  753  		vma = radix_tree_lookup(handles_vma, handle);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  754  		if (likely(vma))
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  755  			vma = i915_vma_tryget(vma);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  756  		rcu_read_unlock();
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  757  		if (likely(vma))
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  758  			goto add_vma;
+                                                                                                                ^^^^^^^^^^^^
+Assume we hit this goto
 
-But this seems to borked anyway since we only consider the crtcs in the
-state, and there are those ugly FIXMEs below.
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  759  
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  760  		obj = i915_gem_object_lookup(eb->file, handle);
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  761  		if (unlikely(!obj)) {
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  762  			err = -ENOENT;
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  763  			goto err_vma;
+27173f1f95db5e drivers/gpu/drm/i915/i915_gem_execbuffer.c     Ben Widawsky  2013-08-14  764  		}
+6f65e29acad749 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Ben Widawsky  2013-12-06  765  
+f5d974f9d2a811 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-07-30  766  		vma = i915_vma_instance(obj, eb->context->vm, NULL);
+772b5408e3aac9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chengguang Xu 2019-02-21  767  		if (IS_ERR(vma)) {
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  768  			err = PTR_ERR(vma);
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  769  			goto err_obj;
+27173f1f95db5e drivers/gpu/drm/i915/i915_gem_execbuffer.c     Ben Widawsky  2013-08-14  770  		}
+27173f1f95db5e drivers/gpu/drm/i915/i915_gem_execbuffer.c     Ben Widawsky  2013-08-14  771  
+13f1bfd3b3329b drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2019-02-28  772  		lut = i915_lut_handle_alloc();
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  773  		if (unlikely(!lut)) {
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  774  			err = -ENOMEM;
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  775  			goto err_obj;
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  776  		}
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  777  
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  778  		/* transfer ref to lut */
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  779  		i915_gem_object_get(obj);
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  780  		if (!atomic_fetch_inc(&vma->open_count))
+3365e2268b6bc3 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2018-05-03  781  			i915_vma_reopen(vma);
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  782  		lut->handle = handle;
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  783  		lut->ctx = eb->gem_context;
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  784  
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  785  		mutex_lock(&eb->gem_context->mutex);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  786  		err = -ENOENT;
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  787  		if (unlikely(!i915_gem_context_is_closed(eb->gem_context)))
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  788  			err = radix_tree_insert(handles_vma, handle, vma);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  789  		mutex_unlock(&eb->gem_context->mutex);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  790  		if (unlikely(err)) {
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  791  			atomic_dec(&vma->open_count);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  792  			i915_gem_object_put(obj);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  793  			i915_lut_handle_free(lut);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  794  			i915_gem_object_put(obj);
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  795  			if (err == -EEXIST)
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  796  				goto lookup;
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  797  			goto err_vma;
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  798  		}
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  799  
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  800  		i915_gem_object_lock(obj);
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  801  		list_add(&lut->obj_link, &obj->lut_list);
+155ab8836caa69 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2019-06-06  802  		i915_gem_object_unlock(obj);
+d1b48c1e7184d9 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  803  
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  804  add_vma:
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  805  		err = eb_validate_vma(eb, &eb->exec[i], vma);
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  806  		if (unlikely(err))
+88e913b4b889b5 drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-16  807  			goto err_obj;
 
-I have a feeling what we want is dbuf_state, and track the bw used for =
+And this goto
 
-each slice therein. Should also allow us to flag the cdclk recalculation
-only when things actually change in a way that needs more cdclk, instead =
+dade2a6165fd7b drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  808  
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  809  		eb_add_vma(eb, i, batch, vma);
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  810  	}
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  811  
+003d8b9143a69f drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  812  	return 0;
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  813  
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  814  err_obj:
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16 @815  	i915_gem_object_put(obj);
+                                                                                                                    ^^^
 
-of pessimising every plane enable/disable like you do below.
+170fa29b14fadf drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-08-16  816  err_vma:
+7d6236bb13352c drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c Chris Wilson  2020-03-03  817  	eb->vma[i].vma = NULL;
+2889caa9232109 drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2017-06-16  818  	return err;
+3b96eff447b4ca drivers/gpu/drm/i915/i915_gem_execbuffer.c     Chris Wilson  2013-01-08  819  }
 
-> +
-> +	min_cdclk =3D max_bw / 64;
-> +
-> +	return min_cdclk;
-> +}
-> +
->  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->  			  const struct intel_crtc_state *crtc_state)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/drm/i9=
-15/display/intel_bw.h
-> index a8aa7624c5aa..8a522b571c51 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.h
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.h
-> @@ -29,5 +29,6 @@ int intel_bw_init(struct drm_i915_private *dev_priv);
->  int intel_bw_atomic_check(struct intel_atomic_state *state);
->  void intel_bw_crtc_update(struct intel_bw_state *bw_state,
->  			  const struct intel_crtc_state *crtc_state);
-> +int intel_bw_calc_min_cdclk(struct intel_atomic_state *state);
->  =
-
->  #endif /* __INTEL_BW_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index 0741d643455b..9f2de613642e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -25,6 +25,7 @@
->  #include "intel_cdclk.h"
->  #include "intel_display_types.h"
->  #include "intel_sideband.h"
-> +#include "intel_bw.h"
->  =
-
->  /**
->   * DOC: CDCLK / RAWCLK
-> @@ -1979,11 +1980,19 @@ int intel_crtc_compute_min_cdclk(const struct int=
-el_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv =3D
->  		to_i915(crtc_state->uapi.crtc->dev);
-> +	struct intel_atomic_state *state =3D NULL;
->  	int min_cdclk;
->  =
-
->  	if (!crtc_state->hw.enable)
->  		return 0;
->  =
-
-> +	/*
-> +	 * FIXME: Unfortunately when this gets called from intel_modeset_setup_=
-hw_state
-> +	 * there is no intel_atomic_state at all. So lets not then use it.
-> +	 */
-> +	if (crtc_state->uapi.state)
-> +		state =3D to_intel_atomic_state(crtc_state->uapi.state);
-> +
->  	min_cdclk =3D intel_pixel_rate_to_cdclk(crtc_state);
->  =
-
->  	/* pixel rate mustn't exceed 95% of cdclk with IPS on BDW */
-> @@ -2058,6 +2067,22 @@ int intel_crtc_compute_min_cdclk(const struct inte=
-l_crtc_state *crtc_state)
->  	if (IS_TIGERLAKE(dev_priv))
->  		min_cdclk =3D max(min_cdclk, (int)crtc_state->pixel_rate);
->  =
-
-> +	/*
-> +	 * Similar story as with skl_write_plane_wm and intel_enable_sagv
-> +	 * - in some certain driver parts, we don't have any guarantee that
-> +	 * parent exists. So we might be having a crtc_state without
-> +	 * parent state.
-> +	 */
-> +	if (INTEL_GEN(dev_priv) >=3D 11) {
-> +		if (state) {
-> +			int dbuf_bw_cdclk =3D intel_bw_calc_min_cdclk(state);
-> +
-> +			DRM_DEBUG_KMS("DBuf bw min cdclk %d current min_cdclk %d\n",
-> +				      dbuf_bw_cdclk, min_cdclk);
-> +			min_cdclk =3D max(min_cdclk, dbuf_bw_cdclk);
-> +		}
-> +	}
-> +
->  	if (min_cdclk > dev_priv->max_cdclk_freq) {
->  		drm_dbg_kms(&dev_priv->drm,
->  			    "required cdclk (%d kHz) exceeds max (%d kHz)\n",
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index cdff3054b344..aae5521424c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14632,7 +14632,7 @@ static bool active_planes_affects_min_cdclk(struc=
-t drm_i915_private *dev_priv)
->  	/* See {hsw,vlv,ivb}_plane_ratio() */
->  	return IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv) ||
->  		IS_CHERRYVIEW(dev_priv) || IS_VALLEYVIEW(dev_priv) ||
-> -		IS_IVYBRIDGE(dev_priv);
-> +		IS_IVYBRIDGE(dev_priv) || (INTEL_GEN(dev_priv) >=3D 11);
->  }
->  =
-
->  static int intel_atomic_check_planes(struct intel_atomic_state *state,
-> @@ -14681,6 +14681,14 @@ static int intel_atomic_check_planes(struct inte=
-l_atomic_state *state,
->  		if (hweight8(old_active_planes) =3D=3D hweight8(new_active_planes))
->  			continue;
->  =
-
-> +		/*
-> +		 * active_planes bitmask has been updated, whenever amount
-> +		 * of active planes had changed we need to recalculate CDCLK
-> +		 * as it depends on total bandwidth now, not only min_cdclk
-> +		 * per plane.
-> +		 */
-> +		*need_cdclk_calc =3D true;
-> +
->  		ret =3D intel_crtc_add_planes_to_state(state, crtc, new_active_planes);
->  		if (ret)
->  			return ret;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers=
-/gpu/drm/i915/display/intel_display_power.h
-> index da64a5edae7a..3446c3ce6a4f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> @@ -311,6 +311,7 @@ intel_display_power_put_async(struct drm_i915_private=
- *i915,
->  enum dbuf_slice {
->  	DBUF_S1,
->  	DBUF_S2,
-> +	DBUF_SLICE_MAX
->  };
->  =
-
->  #define with_intel_display_power(i915, domain, wf) \
-> diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel=
-_pm.c
-> index 8375054ba27d..15300c44d9dc 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.c
-> +++ b/drivers/gpu/drm/i915/intel_pm.c
-> @@ -3844,10 +3844,9 @@ icl_get_first_dbuf_slice_offset(u32 dbuf_slice_mas=
-k,
->  	return offset;
->  }
->  =
-
-> -static u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
-> +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv)
->  {
->  	u16 ddb_size =3D INTEL_INFO(dev_priv)->ddb_size;
-> -
->  	drm_WARN_ON(&dev_priv->drm, ddb_size =3D=3D 0);
->  =
-
->  	if (INTEL_GEN(dev_priv) < 11)
-> @@ -3856,6 +3855,37 @@ static u16 intel_get_ddb_size(struct drm_i915_priv=
-ate *dev_priv)
->  	return ddb_size;
->  }
->  =
-
-> +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
-> +			    const struct skl_ddb_entry *entry)
-> +{
-> +	u32 slice_mask =3D 0;
-> +	u16 ddb_size =3D intel_get_ddb_size(dev_priv);
-> +	u16 num_supported_slices =3D INTEL_INFO(dev_priv)->num_supported_dbuf_s=
-lices;
-> +	u16 slice_size =3D ddb_size / num_supported_slices;
-> +	u16 start_slice;
-> +	u16 end_slice;
-> +
-> +	if (!skl_ddb_entry_size(entry))
-> +		return 0;
-> +
-> +	start_slice =3D entry->start / slice_size;
-> +	end_slice =3D (entry->end - 1) / slice_size;
-> +
-> +	DRM_DEBUG_KMS("ddb size %d slices %d slice size %d start slice %d end s=
-lice %d\n",
-> +		      ddb_size, num_supported_slices, slice_size, start_slice, end_sli=
-ce);
-> +
-> +	/*
-> +	 * Per plane DDB entry can in a really worst case be on multiple slices
-> +	 * but single entry is anyway contigious.
-> +	 */
-> +	while (start_slice <=3D end_slice) {
-> +		slice_mask |=3D 1 << start_slice;
-> +		start_slice++;
-> +	}
-> +
-> +	return slice_mask;
-> +}
-> +
->  static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_st=
-ate,
->  				  u8 active_pipes);
->  =
-
-> diff --git a/drivers/gpu/drm/i915/intel_pm.h b/drivers/gpu/drm/i915/intel=
-_pm.h
-> index d60a85421c5a..a9e3835927a8 100644
-> --- a/drivers/gpu/drm/i915/intel_pm.h
-> +++ b/drivers/gpu/drm/i915/intel_pm.h
-> @@ -37,6 +37,9 @@ void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
->  			       struct skl_ddb_entry *ddb_y,
->  			       struct skl_ddb_entry *ddb_uv);
->  void skl_ddb_get_hw_state(struct drm_i915_private *dev_priv);
-> +u16 intel_get_ddb_size(struct drm_i915_private *dev_priv);
-> +u32 skl_ddb_dbuf_slice_mask(struct drm_i915_private *dev_priv,
-> +			    const struct skl_ddb_entry *entry);
->  void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
->  			      struct skl_pipe_wm *out);
->  void g4x_wm_sanitize(struct drm_i915_private *dev_priv);
-> -- =
-
-> 2.24.1.485.gad05a3d8e5
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
