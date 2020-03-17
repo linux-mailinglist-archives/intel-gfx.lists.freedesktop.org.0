@@ -1,35 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D54E188D81
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 19:57:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB930188DA4
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 20:07:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C4CC89BD2;
-	Tue, 17 Mar 2020 18:57:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFDDB6E037;
+	Tue, 17 Mar 2020 19:07:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail2.protonmail.ch (mail2.protonmail.ch [185.70.40.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB3486E817
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 18:57:09 +0000 (UTC)
-Date: Tue, 17 Mar 2020 18:56:58 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xmx.ch;
- s=protonmail; t=1584471427;
- bh=VbxehVJ4tZHTGs8uriC0GhRe8e3NqkBNoC1hqLpp7SA=;
- h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
- b=qNbNdHP3LVcRdx7iReRVMF8FqB02xfaG+iWXBw84/8eZwZpgYCcbqk/VFGUchy0S0
- HmJ7Zf78peE2IgoLocARJT2aOiqDpAB4SZKNERQcRG+aBEfti+DNV8ddQ3UY4Bd3G2
- duD+6Opr+jxbK4Ldj9/gc1dBwmObRoQiY7RJgoHQ=
-To: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-From: Damian Hischier <dh@xmx.ch>
-Message-ID: <jdqEyaiHhDwm6lTXjzrj7NoxQwpsPsv79qmpRk9TPXsLQ4atLkaKDAbTVJ6GuKzG03mYIMimWqQGCNNHCpTwfeRXt5XzfiZHXRwY1m5Hlko=@xmx.ch>
-Feedback-ID: NXUO8uiol7M0sU5UT6sH9C6nz5eQ8a66mgWk9578qhkBMQz_iVu37QRqy-VhzuKMfD9rX9lT-LKN5iO58VC9Bw==:Ext:ProtonMail
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C4586E037
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 19:07:02 +0000 (UTC)
+IronPort-SDR: lCkhGVYPHqE1UtIVObptHWlAVxVUnGY3KpRdS/ox/Ql/2dI70eMK6IIdPgTnZpcaXDDZEBNS/h
+ Amk+2GswoYYg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2020 12:07:01 -0700
+IronPort-SDR: yUefBVkKaLUcEcnI7tDvPyrp3OsJEYJe15t+GSP5jAXwIMa+tqAKGkbfpHjDgqLJwGS+VTw1ud
+ yqB7oMS2G6uA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,565,1574150400"; d="scan'208";a="291080913"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Mar 2020 12:07:01 -0700
+Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 17 Mar 2020 12:07:00 -0700
+Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
+ FMSMSX152.amr.corp.intel.com ([169.254.6.114]) with mapi id 14.03.0439.000;
+ Tue, 17 Mar 2020 12:07:00 -0700
+From: "Souza, Jose" <jose.souza@intel.com>
+To: "dh@xmx.ch" <dh@xmx.ch>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] Screen Flickering on DELL XPS-13-7390
+Thread-Index: AQHV/I3ikjgm9sz/fEGgqCshU9RIMKhNmwyA
+Date: Tue, 17 Mar 2020 19:07:00 +0000
+Message-ID: <0d5b948a015ca05afca3ddf55c06403a6af9345c.camel@intel.com>
+References: <jdqEyaiHhDwm6lTXjzrj7NoxQwpsPsv79qmpRk9TPXsLQ4atLkaKDAbTVJ6GuKzG03mYIMimWqQGCNNHCpTwfeRXt5XzfiZHXRwY1m5Hlko=@xmx.ch>
+In-Reply-To: <jdqEyaiHhDwm6lTXjzrj7NoxQwpsPsv79qmpRk9TPXsLQ4atLkaKDAbTVJ6GuKzG03mYIMimWqQGCNNHCpTwfeRXt5XzfiZHXRwY1m5Hlko=@xmx.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.24.15.8]
+Content-ID: <95C2D1F6A050B541A612BA325B2C8062@intel.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
- DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,HTML_MESSAGE shortcircuit=no
- autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
-Subject: [Intel-gfx] Screen Flickering on DELL XPS-13-7390
+Subject: Re: [Intel-gfx] Screen Flickering on DELL XPS-13-7390
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,87 +60,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Damian Hischier <dh@xmx.ch>
-Content-Type: multipart/mixed; boundary="===============1059919499=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
+Hi
 
---===============1059919499==
-Content-Type: multipart/alternative;
-	boundary="b1_02916f38c3f9aadba268b90362137ffa"
+Please test with drm-tip and file a bug attaching more information
+and logs: 
+https://gitlab.freedesktop.org/drm/intel/-/wikis/How-to-file-i915-bugs
 
-This is a multi-part message in MIME format.
-
---b1_02916f38c3f9aadba268b90362137ffa
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-SGVsbG8KCkkgaW5zdGFsbGVkIG9wZW5zdXNlIFR1bWJsZXdlZWQgbGludXggb24gYSBicmFuZCBu
-ZXcgRGVsbCBYUFMtMTMtNzM5MC4gQWxyZWFkeSBkdXJpbmcgdGhlIGluc3RhbGxhdGlvbiwgdGhl
-IHNjcmVlbiBzdGFydGVkIHRvIGZsaWNrZXIuIFRoZW4gSSBpbnN0YWxsZWQgb3BlbnN1c2UgMTUu
-MSBvbiB0aGUgc2FtZSBsYXB0b3AgYW5kIGl0IHdvcmtlZCB3aXRob3V0IHNjcmVlbiBmbGlja2Vy
-aW5nLiBCdXQgYWZ0ZXIgSSBydW4gdGhlIG9ubGluZSB1cGRhdGUgaXQgc3RhcnRlZCB0byBmbGlj
-a2VyIGFnYWluLiBJIHN1c3BlY3QgdGhhdCB0aGVyZSBhcmUgc29tZSBjaGFuZ2VzIGluIHRoZSBu
-ZXdlciBrZXJuZWwgdmVyc2lvbnMuIERvZXMgYW55Ym9keSBrbm93IHdoeSBpdCBkb2VzIHdvcmsg
-d2l0aCBrZXJuZWwgNC4xMi4xNC1scDE1MS4yNy1kZWZhdWx0IGFuZCBpdCBkb2Vzbid0IHdvcmsg
-d2l0aCBhIG5ld2VyIGtlcm5lbC4gSSBvcGVuZWQgYSB0aHJlYWQgaW4gdGhlIG9wZW5zdXNlIGZv
-cnVtOgoKaHR0cHM6Ly9mb3J1bXMub3BlbnN1c2Uub3JnL3Nob3d0aHJlYWQucGhwLzUzOTQ5Mi1T
-Y3JlZW4tZmxpY2tlcmluZy1vbi1ERUxMLVhQUy0xMy03MzkwP3A9MjkyOTg4NyNwb3N0MjkyOTg4
-NwoKVGhlcmUgeW91IGNhbiBzZWUgdGhlIG91dHB1dHMgb2YgaW54aS4gU29tZWJvZHkgcmVjb21t
-ZW5kZWQgdG8gYXNrIGhlcmUgZm9yIGFkdmljZS4gSXMgdGhlcmUgYW55dGhpbmcgSSBjYW4gZG8g
-dG8gZ2V0IHJpZCBvZiB0aGlzIHNjcmVlbiBmbGlja2VyaW5nPwoKVGhhbmsgeW91IHZlcnkgbXVj
-aCBmb3IgeW91ciBoZWxwCgpTZW50IGZyb20gW1Byb3Rvbk1haWxdKGh0dHBzOi8vcHJvdG9ubWFp
-bC5jb20pLCBTd2lzcy1iYXNlZCBlbmNyeXB0ZWQgZW1haWwu
-
-
---b1_02916f38c3f9aadba268b90362137ffa
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-PGRpdj5IZWxsbzxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkkgaW5zdGFsbGVkIG9wZW5z
-dXNlIFR1bWJsZXdlZWQNCmxpbnV4IG9uIGEgYnJhbmQgbmV3IERlbGwgWFBTLTEzLTczOTAuIEFs
-cmVhZHkgZHVyaW5nIHRoZSBpbnN0YWxsYXRpb24sDQp0aGUgc2NyZWVuIHN0YXJ0ZWQgdG8gZmxp
-Y2tlci4gIFRoZW4gSSBpbnN0YWxsZWQgb3BlbnN1c2UgMTUuMSBvbiB0aGUNCnNhbWUgbGFwdG9w
-IGFuZCBpdCB3b3JrZWQgd2l0aG91dCBzY3JlZW4NCmZsaWNrZXJpbmcuIEJ1dCBhZnRlciBJIHJ1
-biB0aGUgb25saW5lIHVwZGF0ZSBpdCBzdGFydGVkIHRvIGZsaWNrZXINCmFnYWluLiBJIHN1c3Bl
-Y3QgdGhhdCB0aGVyZSBhcmUgc29tZSBjaGFuZ2VzIGluIHRoZSBuZXdlciBrZXJuZWwNCnZlcnNp
-b25zLiBEb2VzIGFueWJvZHkga25vdyB3aHkgaXQgZG9lcyB3b3JrIHdpdGgga2VybmVsDQo0LjEy
-LjE0LWxwMTUxLjI3LWRlZmF1bHQgYW5kIGl0IGRvZXNuJ3Qgd29yayB3aXRoIGEgbmV3ZXIga2Vy
-bmVsLiBJDQpvcGVuZWQgYSB0aHJlYWQgaW4gdGhlIG9wZW5zdXNlIGZvcnVtOjxicj48L2Rpdj48
-ZGl2Pjxicj48L2Rpdj48ZGl2PjxhIGhyZWY9Imh0dHBzOi8vZm9ydW1zLm9wZW5zdXNlLm9yZy9z
-aG93dGhyZWFkLnBocC81Mzk0OTItU2NyZWVuLWZsaWNrZXJpbmctb24tREVMTC1YUFMtMTMtNzM5
-MD9wPTI5Mjk4ODcjcG9zdDI5Mjk4ODciIHRhcmdldD0iX2JsYW5rIiByZWw9Im5vcmVmZXJyZXIg
-bm9mb2xsb3cgbm9vcGVuZXIiPmh0dHBzOi8vZm9ydW1zLm9wZW5zdXNlLm9yZy9zaG93dGhyZWFk
-LnBocC81Mzk0OTItU2NyZWVuLWZsaWNrZXJpbmctb24tREVMTC1YUFMtMTMtNzM5MD9wPTI5Mjk4
-ODcjcG9zdDI5Mjk4ODc8L2E+PGJyPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+VGhlcmUNCiB5
-b3UgY2FuIHNlZSB0aGUgb3V0cHV0cyBvZiBpbnhpLiBTb21lYm9keSByZWNvbW1lbmRlZCB0byBh
-c2sgaGVyZSBmb3INCmFkdmljZS4gSXMgdGhlcmUgYW55dGhpbmcgSSBjYW4gZG8gdG8gZ2V0IHJp
-ZCBvZiB0aGlzIHNjcmVlbiBmbGlja2VyaW5nPzxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2
-PlRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgaGVscDxicj48L2Rpdj48ZGl2Pjxicj48L2Rp
-dj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayI+PGRpdiBjbGFzcz0icHJv
-dG9ubWFpbF9zaWduYXR1cmVfYmxvY2stdXNlciI+PGRpdj5TZW50IGZyb20gPGEgaHJlZj0iaHR0
-cHM6Ly9wcm90b25tYWlsLmNvbSI+UHJvdG9uTWFpbDwvYT4sIFN3aXNzLWJhc2VkIGVuY3J5cHRl
-ZCBlbWFpbC48YnI+PC9kaXY+PC9kaXY+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVf
-YmxvY2stcHJvdG9uIHByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLWVtcHR5Ij48YnI+PC9kaXY+
-PC9kaXY+PGRpdj48YnI+PC9kaXY+
-
-
-
---b1_02916f38c3f9aadba268b90362137ffa--
-
-
---===============1059919499==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+On Tue, 2020-03-17 at 18:56 +0000, Damian Hischier wrote:
+> Hello
+> 
+> I installed opensuse Tumbleweed linux on a brand new Dell XPS-13-
+> 7390. Already during the installation, the screen started to flicker.
+> Then I installed opensuse 15.1 on the same laptop and it worked
+> without screen flickering. But after I run the online update it
+> started to flicker again. I suspect that there are some changes in
+> the newer kernel versions. Does anybody know why it does work with
+> kernel 4.12.14-lp151.27-default and it doesn't work with a newer
+> kernel. I opened a thread in the opensuse forum:
+> 
+> https://forums.opensuse.org/showthread.php/539492-Screen-flickering-on-DELL-XPS-13-7390?p=2929887#post2929887
+> 
+> There you can see the outputs of inxi. Somebody recommended to ask
+> here for advice. Is there anything I can do to get rid of this screen
+> flickering?
+> 
+> Thank you very much for your help
+> 
+> Sent from ProtonMail, Swiss-based encrypted email.
+> 
+> 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1059919499==--
-
