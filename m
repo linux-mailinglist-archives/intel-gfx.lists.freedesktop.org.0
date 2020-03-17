@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43CAB1886E8
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 15:08:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AE261886ED
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2020 15:10:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82C716E13F;
-	Tue, 17 Mar 2020 14:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85CDB6E141;
+	Tue, 17 Mar 2020 14:10:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 89CBE6E13F;
- Tue, 17 Mar 2020 14:08:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 82A39A0088;
- Tue, 17 Mar 2020 14:08:20 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44C046E141
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 14:10:06 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20590094-1500050 
+ for multiple; Tue, 17 Mar 2020 14:09:53 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Mar 2020 14:09:56 +0000
+Message-Id: <20200317140956.13062-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200316225153.3394-1-chris@chris-wilson.co.uk>
+References: <20200316225153.3394-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 17 Mar 2020 14:08:20 -0000
-Message-ID: <158445410050.5180.3362640529301987917@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200317123546.925339-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200317123546.925339-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgUmV2?=
- =?utf-8?q?ert_=22drm/i915/gem=3A_Drop_relocation_slowpath=22?=
+Subject: [Intel-gfx] [PATCH v2] drm/i915/gem: Avoid gem_context->mutex for
+ simple vma lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,92 +39,208 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we store the handle lookup inside a radix tree, we do not need the
+gem_context->mutex except until we need to insert our lookup into the
+common radix tree. This takes a small bit of rearranging to ensure that
+the lut we insert into the tree is ready prior to actually inserting it
+(as soon as it is exposed via the radixtree, it is visible to any other
+submission).
 
-Series: Revert "drm/i915/gem: Drop relocation slowpath"
-URL   : https://patchwork.freedesktop.org/series/74771/
-State : success
+v2: For brownie points, remove the goto spaghetti.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 129 +++++++++++-------
+ 1 file changed, 80 insertions(+), 49 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8141 -> Patchwork_16993
-====================================================
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d3f4f28e9468..e9279ef27259 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -481,7 +481,7 @@ eb_add_vma(struct i915_execbuffer *eb,
+ 
+ 	GEM_BUG_ON(i915_vma_is_closed(vma));
+ 
+-	ev->vma = i915_vma_get(vma);
++	ev->vma = vma;
+ 	ev->exec = entry;
+ 	ev->flags = entry->flags;
+ 
+@@ -728,77 +728,110 @@ static int eb_select_context(struct i915_execbuffer *eb)
+ 	return 0;
+ }
+ 
+-static int eb_lookup_vmas(struct i915_execbuffer *eb)
++static int __eb_add_lut(struct i915_gem_context *ctx,
++			u32 handle, struct i915_vma *vma)
+ {
+-	struct radix_tree_root *handles_vma = &eb->gem_context->handles_vma;
+-	struct drm_i915_gem_object *obj;
+-	unsigned int i, batch;
++	struct drm_i915_gem_object *obj = vma->obj;
++	struct i915_lut_handle *lut;
+ 	int err;
+ 
+-	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
+-		return -ENOENT;
++	lut = i915_lut_handle_alloc();
++	if (unlikely(!lut))
++		return -ENOMEM;
+ 
+-	INIT_LIST_HEAD(&eb->relocs);
+-	INIT_LIST_HEAD(&eb->unbound);
++	i915_vma_get(vma);
++	if (!atomic_fetch_inc(&vma->open_count))
++		i915_vma_reopen(vma);
++	lut->handle = handle;
++	lut->ctx = ctx;
++
++	err = -EINTR;
++	if (!mutex_lock_interruptible(&ctx->mutex)) {
++		err = -ENOENT;
++		if (likely(!i915_gem_context_is_closed(ctx)))
++			err = radix_tree_insert(&ctx->handles_vma, handle, vma);
++		mutex_unlock(&ctx->mutex);
++	}
++	if (unlikely(err))
++		goto err;
+ 
+-	batch = eb_batch_index(eb);
++	i915_gem_object_lock(obj);
++	list_add(&lut->obj_link, &obj->lut_list);
++	i915_gem_object_unlock(obj);
+ 
+-	for (i = 0; i < eb->buffer_count; i++) {
+-		u32 handle = eb->exec[i].handle;
+-		struct i915_lut_handle *lut;
++	return 0;
++
++err:
++	atomic_dec(&vma->open_count);
++	i915_vma_put(vma);
++	i915_lut_handle_free(lut);
++	return err;
++}
++
++static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
++{
++	struct i915_gem_context *ctx = eb->gem_context;
++
++	do {
++		struct drm_i915_gem_object *obj;
+ 		struct i915_vma *vma;
++		int err;
+ 
+-		vma = radix_tree_lookup(handles_vma, handle);
++		rcu_read_lock();
++		vma = radix_tree_lookup(&ctx->handles_vma, handle);
+ 		if (likely(vma))
+-			goto add_vma;
++			vma = i915_vma_tryget(vma);
++		rcu_read_unlock();
++		if (likely(vma))
++			return vma;
+ 
+ 		obj = i915_gem_object_lookup(eb->file, handle);
+-		if (unlikely(!obj)) {
+-			err = -ENOENT;
+-			goto err_vma;
+-		}
++		if (unlikely(!obj))
++			return ERR_PTR(-ENOENT);
+ 
+ 		vma = i915_vma_instance(obj, eb->context->vm, NULL);
+ 		if (IS_ERR(vma)) {
+-			err = PTR_ERR(vma);
+-			goto err_obj;
++			i915_gem_object_put(obj);
++			return vma;
+ 		}
+ 
+-		lut = i915_lut_handle_alloc();
+-		if (unlikely(!lut)) {
+-			err = -ENOMEM;
+-			goto err_obj;
+-		}
++		err = __eb_add_lut(ctx, handle, vma);
++		if (likely(!err))
++			return vma;
+ 
+-		err = radix_tree_insert(handles_vma, handle, vma);
+-		if (unlikely(err)) {
+-			i915_lut_handle_free(lut);
+-			goto err_obj;
+-		}
++		i915_gem_object_put(obj);
++		if (err != -EEXIST)
++			return ERR_PTR(err);
++	} while (1);
++}
+ 
+-		/* transfer ref to lut */
+-		if (!atomic_fetch_inc(&vma->open_count))
+-			i915_vma_reopen(vma);
+-		lut->handle = handle;
+-		lut->ctx = eb->gem_context;
++static int eb_lookup_vmas(struct i915_execbuffer *eb)
++{
++	unsigned int batch = eb_batch_index(eb);
++	unsigned int i;
++	int err = 0;
+ 
+-		i915_gem_object_lock(obj);
+-		list_add(&lut->obj_link, &obj->lut_list);
+-		i915_gem_object_unlock(obj);
++	INIT_LIST_HEAD(&eb->relocs);
++	INIT_LIST_HEAD(&eb->unbound);
++
++	for (i = 0; i < eb->buffer_count; i++) {
++		struct i915_vma *vma;
++
++		vma = eb_lookup_vma(eb, eb->exec[i].handle);
++		if (IS_ERR(vma)) {
++			err = PTR_ERR(vma);
++			break;
++		}
+ 
+-add_vma:
+ 		err = eb_validate_vma(eb, &eb->exec[i], vma);
+-		if (unlikely(err))
+-			goto err_vma;
++		if (unlikely(err)) {
++			i915_vma_put(vma);
++			break;
++		}
+ 
+ 		eb_add_vma(eb, i, batch, vma);
+ 	}
+ 
+-	return 0;
+-
+-err_obj:
+-	i915_gem_object_put(obj);
+-err_vma:
+ 	eb->vma[i].vma = NULL;
+ 	return err;
+ }
+@@ -1494,9 +1527,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+ 
+-	mutex_lock(&eb->gem_context->mutex);
+ 	err = eb_lookup_vmas(eb);
+-	mutex_unlock(&eb->gem_context->mutex);
+ 	if (err)
+ 		return err;
+ 
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16993/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_16993 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#323])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16993/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [INCOMPLETE][3] ([i915#189]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16993/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@execlists:
-    - fi-cfl-8700k:       [INCOMPLETE][5] ([i915#656]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8141/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16993/fi-cfl-8700k/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Additional (1): fi-kbl-7560u 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-guc fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8141 -> Patchwork_16993
-
-  CI-20190529: 20190529
-  CI_DRM_8141: f7be958f2574d30bad18983c3afe2c5401674dfb @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5513: 417c926459dacf062f2945d3ba01a3f94551b16f @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_16993: d42d74d4a36ddf371ee31de8cb126c9e1f8569ea @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d42d74d4a36d Revert "drm/i915/gem: Drop relocation slowpath"
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_16993/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
