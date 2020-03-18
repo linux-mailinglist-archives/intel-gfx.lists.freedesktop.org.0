@@ -1,42 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D78218A725
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 22:41:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F9318A745
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 22:46:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D30236E5D3;
-	Wed, 18 Mar 2020 21:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0856899B0;
+	Wed, 18 Mar 2020 21:46:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40FBA6E948
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 21:40:58 +0000 (UTC)
-IronPort-SDR: F/77POBdrzGqnUIzrQoHrQwrxv4NJIfQha/d/xsvGbEMIzF1pfwaB9lQP01pyZCdDASFykwAfU
- 2PH39q5eOoRA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 14:40:57 -0700
-IronPort-SDR: +EEJpim75Ldic/F6RBtyf1OYtild+Iajs9u+rvV9gmWU5zk/xFBb9Ig/YnefDAa8WEAcxSkqo1
- T/jVgf4O/gTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,569,1574150400"; d="scan'208";a="248318667"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga006.jf.intel.com with ESMTP; 18 Mar 2020 14:40:57 -0700
-Date: Wed, 18 Mar 2020 14:42:32 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Aditya Swarup <aditya.swarup@intel.com>
-Message-ID: <20200318214232.GA6675@intel.com>
-References: <20200307034238.4752-1-aditya.swarup@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 89D118997A;
+ Wed, 18 Mar 2020 21:46:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 83A61A010F;
+ Wed, 18 Mar 2020 21:46:33 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200307034238.4752-1-aditya.swarup@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/tgl: Add definitions for VRR
- registers and bits
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 18 Mar 2020 21:46:33 -0000
+Message-ID: <158456799351.25101.14236662928782276571@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200318185104.21516-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200318185104.21516-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/execlists=3A_Force_single_?=
+ =?utf-8?q?submission_for_sentinels?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,148 +39,210 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Thanks for the revised patch, just one nitcpick below:
+== Series Details ==
 
-On Fri, Mar 06, 2020 at 07:42:38PM -0800, Aditya Swarup wrote:
-> Add definitions for registers grouped under Transcoder VRR function
-> with necessary bitfields.
-> 
-> Bspec: 49268
-> 
-> v2: Use REG_GENMASK, correct tabs/space indentation and move the
-> definitions near the transcoder section.(Jani)
-> 
-> v3: Remove unnecessary prefix from bit/mask definitions.(Manasi)
-> 
-> Cc: Manasi Navare <manasi.d.navare@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_reg.h | 90 +++++++++++++++++++++++++++++++++
->  1 file changed, 90 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 80cf02a6eec1..34bda79e8a62 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4321,6 +4321,96 @@ enum {
->  #define   EXITLINE_MASK		REG_GENMASK(12, 0)
->  #define   EXITLINE_SHIFT	0
->  
-> +/* VRR registers */
-> +#define _TRANS_VRR_CTL_A		0x60420
-> +#define _TRANS_VRR_CTL_B		0x61420
-> +#define _TRANS_VRR_CTL_C		0x62420
-> +#define _TRANS_VRR_CTL_D		0x63420
-> +#define TRANS_VRR_CTL(tran)		_MMIO_TRANS2(tran, _TRANS_VRR_CTL_A)
+Series: series starting with [1/2] drm/i915/execlists: Force single submission for sentinels
+URL   : https://patchwork.freedesktop.org/series/74845/
+State : failure
 
-For all the _MMIO_TRANS macros, the argument should be names trans like everywhere else
-instead of tran
+== Summary ==
 
-Applies everywhere below. With that change you can consider:
+CI Bug Log - changes from CI_DRM_8154 -> Patchwork_17013
+====================================================
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Summary
+-------
 
-Manasi
+  **FAILURE**
 
-> +#define   VRR_CTL_VRR_ENABLE		REG_BIT(31)
-> +#define   VRR_CTL_IGN_MAX_SHIFT		REG_BIT(30)
-> +#define   VRR_CTL_FLIP_LINE_EN		REG_BIT(29)
-> +#define   VRR_CTL_LINE_COUNT_MASK	REG_GENMASK(10, 3)
-> +#define   VRR_CTL_SW_FULLLINE_COUNT	REG_BIT(0)
-> +
-> +#define _TRANS_VRR_VMAX_A		0x60424
-> +#define _TRANS_VRR_VMAX_B		0x61424
-> +#define _TRANS_VRR_VMAX_C		0x62424
-> +#define _TRANS_VRR_VMAX_D		0x63424
-> +#define TRANS_VRR_VMAX(tran)		_MMIO_TRANS2(tran, _TRANS_VRR_VMAX_A)
-> +#define   VRR_VMAX_MASK			REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_VMIN_A		0x60434
-> +#define _TRANS_VRR_VMIN_B		0x61434
-> +#define _TRANS_VRR_VMIN_C		0x62434
-> +#define _TRANS_VRR_VMIN_D		0x63434
-> +#define TRANS_VRR_VMIN(tran)		_MMIO_TRANS2(tran, _TRANS_VRR_VMIN_A)
-> +#define   VRR_VMIN_MASK			REG_GENMASK(15, 0)
-> +
-> +#define _TRANS_VRR_VMAXSHIFT_A		0x60428
-> +#define _TRANS_VRR_VMAXSHIFT_B		0x61428
-> +#define _TRANS_VRR_VMAXSHIFT_C		0x62428
-> +#define _TRANS_VRR_VMAXSHIFT_D		0x63428
-> +#define TRANS_VRR_VMAXSHIFT(tran)	_MMIO_TRANS2(tran, \
-> +					_TRANS_VRR_VMAXSHIFT_A)
-> +#define   VRR_VMAXSHIFT_DEC_MASK	REG_GENMASK(29, 16)
-> +#define   VRR_VMAXSHIFT_DEC		REG_BIT(16)
-> +#define   VRR_VMAXSHIFT_INC_MASK	REG_GENMASK(12, 0)
-> +
-> +#define _TRANS_VRR_STATUS_A		0x6042C
-> +#define _TRANS_VRR_STATUS_B		0x6142C
-> +#define _TRANS_VRR_STATUS_C		0x6242C
-> +#define _TRANS_VRR_STATUS_D		0x6342C
-> +#define TRANS_VRR_STATUS(tran)		_MMIO_TRANS2(tran, _TRANS_VRR_STATUS_A)
-> +#define   VRR_STATUS_VMAX_REACHED	REG_BIT(31)
-> +#define   VRR_STATUS_NOFLIP_TILL_BNDR	REG_BIT(30)
-> +#define   VRR_STATUS_FLIP_BEF_BNDR	REG_BIT(29)
-> +#define   VRR_STATUS_NO_FLIP_FRAME	REG_BIT(28)
-> +#define   VRR_STATUS_VRR_EN_LIVE	REG_BIT(27)
-> +#define   VRR_STATUS_FLIPS_SERVICED	REG_BIT(26)
-> +#define   VRR_STATUS_VBLANK_MASK	REG_GENMASK(22, 20)
-> +#define   STATUS_FSM_IDLE		REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 0)
-> +#define   STATUS_FSM_WAIT_TILL_FDB	REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 1)
-> +#define   STATUS_FSM_WAIT_TILL_FS	REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 2)
-> +#define   STATUS_FSM_WAIT_TILL_FLIP	REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 3)
-> +#define   STATUS_FSM_PIPELINE_FILL	REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 4)
-> +#define   STATUS_FSM_ACTIVE		REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 5)
-> +#define   STATUS_FSM_LEGACY_VBLANK	REG_FIELD_PREP(VRR_STATUS_VBLANK_MASK, 6)
-> +
-> +#define _TRANS_VRR_VTOTAL_PREV_A	0x60480
-> +#define _TRANS_VRR_VTOTAL_PREV_B	0x61480
-> +#define _TRANS_VRR_VTOTAL_PREV_C	0x62480
-> +#define _TRANS_VRR_VTOTAL_PREV_D	0x63480
-> +#define TRANS_VRR_VTOTAL_PREV(tran)	_MMIO_TRANS2(tran, \
-> +					_TRANS_VRR_VTOTAL_PREV_A)
-> +#define   VRR_VTOTAL_FLIP_BEFR_BNDR	REG_BIT(31)
-> +#define   VRR_VTOTAL_FLIP_AFTER_BNDR	REG_BIT(30)
-> +#define   VRR_VTOTAL_FLIP_AFTER_DBLBUF	REG_BIT(29)
-> +#define   VRR_VTOTAL_PREV_FRAME_MASK	REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_FLIPLINE_A		0x60438
-> +#define _TRANS_VRR_FLIPLINE_B		0x61438
-> +#define _TRANS_VRR_FLIPLINE_C		0x62438
-> +#define _TRANS_VRR_FLIPLINE_D		0x63438
-> +#define TRANS_VRR_FLIPLINE(tran)	_MMIO_TRANS2(tran, \
-> +					_TRANS_VRR_FLIPLINE_A)
-> +#define   VRR_FLIPLINE_MASK		REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_VRR_STATUS2_A		0x6043C
-> +#define _TRANS_VRR_STATUS2_B		0x6143C
-> +#define _TRANS_VRR_STATUS2_C		0x6243C
-> +#define _TRANS_VRR_STATUS2_D		0x6343C
-> +#define TRANS_VRR_STATUS2(tran)		_MMIO_TRANS2(tran, _TRANS_VRR_STATUS2_A)
-> +#define   VRR_STATUS2_VERT_LN_CNT_MASK	REG_GENMASK(19, 0)
-> +
-> +#define _TRANS_PUSH_A			0x60A70
-> +#define _TRANS_PUSH_B			0x61A70
-> +#define _TRANS_PUSH_C			0x62A70
-> +#define _TRANS_PUSH_D			0x63A70
-> +#define TRANS_PUSH(tran)		_MMIO_TRANS2(tran, _TRANS_PUSH_A)
-> +#define   TRANS_PUSH_EN			REG_BIT(31)
-> +#define   TRANS_PUSH_SEND		REG_BIT(30)
-> +
->  /*
->   * HSW+ eDP PSR registers
->   *
-> -- 
-> 2.25.0
-> 
+  Serious unknown changes coming with Patchwork_17013 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17013, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17013:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-skl-lmem/igt@gem_exec_parallel@contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-skl-lmem/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-skl-guc:         NOTRUN -> [INCOMPLETE][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-skl-guc/igt@gem_exec_parallel@fds.html
+    - fi-bdw-5557u:       [PASS][4] -> [INCOMPLETE][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-bdw-5557u/igt@gem_exec_parallel@fds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-bdw-5557u/igt@gem_exec_parallel@fds.html
+    - fi-kbl-8809g:       [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-8809g/igt@gem_exec_parallel@fds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-8809g/igt@gem_exec_parallel@fds.html
+    - fi-kbl-r:           [PASS][8] -> [INCOMPLETE][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-r/igt@gem_exec_parallel@fds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-r/igt@gem_exec_parallel@fds.html
+    - fi-kbl-guc:         [PASS][10] -> [INCOMPLETE][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-guc/igt@gem_exec_parallel@fds.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-guc/igt@gem_exec_parallel@fds.html
+    - fi-kbl-7500u:       [PASS][12] -> [INCOMPLETE][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-7500u/igt@gem_exec_parallel@fds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-7500u/igt@gem_exec_parallel@fds.html
+    - fi-kbl-x1275:       [PASS][14] -> [INCOMPLETE][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+    - fi-skl-6700k2:      [PASS][16] -> [INCOMPLETE][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-skl-6700k2/igt@gem_exec_parallel@fds.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-skl-6700k2/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_sync@basic-each:
+    - fi-kbl-soraka:      [PASS][18] -> [INCOMPLETE][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-soraka/igt@gem_sync@basic-each.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-soraka/igt@gem_sync@basic-each.html
+
+  * igt@i915_module_load@reload:
+    - fi-cfl-guc:         [PASS][20] -> [INCOMPLETE][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-cfl-guc/igt@i915_module_load@reload.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-cfl-guc/igt@i915_module_load@reload.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-skl-6600u:       [PASS][22] -> [INCOMPLETE][23]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-skl-6600u/igt@i915_selftest@live@gtt.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-skl-6600u/igt@i915_selftest@live@gtt.html
+
+  * igt@i915_selftest@live@workarounds:
+    - fi-cfl-8700k:       [PASS][24] -> [INCOMPLETE][25]
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-cfl-8700k/igt@i915_selftest@live@workarounds.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_parallel@fds:
+    - {fi-kbl-7560u}:     [PASS][26] -> [INCOMPLETE][27]
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-kbl-7560u/igt@gem_exec_parallel@fds.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-kbl-7560u/igt@gem_exec_parallel@fds.html
+    - {fi-ehl-1}:         [PASS][28] -> [INCOMPLETE][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-ehl-1/igt@gem_exec_parallel@fds.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-ehl-1/igt@gem_exec_parallel@fds.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17013 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-glk-dsi:         [PASS][30] -> [INCOMPLETE][31] ([i915#58] / [k.org#198133])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-glk-dsi/igt@gem_exec_parallel@contexts.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-glk-dsi/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-cml-u2:          [PASS][32] -> [INCOMPLETE][33] ([i915#283])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-cml-u2/igt@gem_exec_parallel@fds.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-cml-u2/igt@gem_exec_parallel@fds.html
+    - fi-cfl-8109u:       [PASS][34] -> [INCOMPLETE][35] ([i915#1147])
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-cfl-8109u/igt@gem_exec_parallel@fds.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-cfl-8109u/igt@gem_exec_parallel@fds.html
+    - fi-icl-guc:         [PASS][36] -> [INCOMPLETE][37] ([i915#1147])
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-icl-guc/igt@gem_exec_parallel@fds.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-icl-guc/igt@gem_exec_parallel@fds.html
+    - fi-icl-dsi:         [PASS][38] -> [INCOMPLETE][39] ([i915#1147])
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-icl-dsi/igt@gem_exec_parallel@fds.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-icl-dsi/igt@gem_exec_parallel@fds.html
+    - fi-icl-y:           [PASS][40] -> [INCOMPLETE][41] ([i915#1147])
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-icl-y/igt@gem_exec_parallel@fds.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-icl-y/igt@gem_exec_parallel@fds.html
+    - fi-apl-guc:         [PASS][42] -> [INCOMPLETE][43] ([fdo#103927])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-apl-guc/igt@gem_exec_parallel@fds.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-apl-guc/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_exec_suspend@basic-s0:
+    - fi-bxt-dsi:         [PASS][44] -> [INCOMPLETE][45] ([fdo#103927])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-bxt-dsi/igt@gem_exec_suspend@basic-s0.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-bxt-dsi/igt@gem_exec_suspend@basic-s0.html
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-bsw-kefka:       [PASS][46] -> [INCOMPLETE][47] ([fdo#105876])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-bsw-kefka/igt@gem_exec_suspend@basic-s4-devices.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-bsw-kefka/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-cml-s:           [PASS][48] -> [INCOMPLETE][49] ([i915#283])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-cml-s/igt@i915_selftest@live@gt_contexts.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-cml-s/igt@i915_selftest@live@gt_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@active:
+    - {fi-tgl-dsi}:       [DMESG-FAIL][50] -> [PASS][51]
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8154/fi-tgl-dsi/igt@i915_selftest@live@active.html
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/fi-tgl-dsi/igt@i915_selftest@live@active.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#105876]: https://bugs.freedesktop.org/show_bug.cgi?id=105876
+  [i915#1147]: https://gitlab.freedesktop.org/drm/intel/issues/1147
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#647]: https://gitlab.freedesktop.org/drm/intel/issues/647
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (47 -> 41)
+------------------------------
+
+  Additional (1): fi-skl-guc 
+  Missing    (7): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8154 -> Patchwork_17013
+
+  CI-20190529: 20190529
+  CI_DRM_8154: 937a904e393752c47b8dfdeed993f04fd75af74d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17013: ffab29c07ccdea554e525652e1f266f28e3f1693 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ffab29c07ccd drm/i915/gem: Wait until the context is finally retired before releasing engines
+bedd207664f2 drm/i915/execlists: Force single submission for sentinels
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17013/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
