@@ -1,31 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D133C18966D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 09:01:11 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6FA18970C
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 09:28:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F416E87C;
-	Wed, 18 Mar 2020 08:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F5D06E89C;
+	Wed, 18 Mar 2020 08:28:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 02EF96E87D;
- Wed, 18 Mar 2020 08:01:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id F1058A0091;
- Wed, 18 Mar 2020 08:01:08 +0000 (UTC)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBD596E89C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 08:28:01 +0000 (UTC)
+IronPort-SDR: HC+7A7YK9uN2AxecV1woYHgGotclteAmXbSwB0upgyXdTqE8jEyCPRlGeA8ZAW/UjqBhISzjcG
+ 1H782y3C6fmw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2020 01:28:01 -0700
+IronPort-SDR: I6A5LKG8FCQGxu7FSZqR473usQ9EtMPfHBOZW2qgeFZ4ocBK/0+CRRIoPiPGUUDrAXKtl+0Cf9
+ ib3oZjx+GgFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,566,1574150400"; d="scan'208";a="236577625"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by fmsmga007.fm.intel.com with ESMTP; 18 Mar 2020 01:27:59 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Mar 2020 13:48:37 +0530
+Message-Id: <20200318081837.23983-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200313185227.21900-1-anshuman.gupta@intel.com>
+References: <20200313185227.21900-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Wed, 18 Mar 2020 08:01:08 -0000
-Message-ID: <158451846898.25102.11800509309271287931@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200316103759.12867-1-animesh.manna@intel.com>
-In-Reply-To: <20200316103759.12867-1-animesh.manna@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgRFAg?=
- =?utf-8?q?Phy_compliance_auto_test_=28rev8=29?=
+Subject: [Intel-gfx] [PATCH v3] drm/i915/edp: Ignore short pulse when panel
+ powered off
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,112 +47,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Few edp panels like Sharp is triggering short and long
+hpd pulse after panel is getting powered off.
+Currently driver is already ignoring long pulse for eDP
+panel but in order to process the short pulse, it turns on
+the VDD which requires panel power_cycle_delay + panel_power_on_delay
+these delay on Sharp panel introduced the responsiveness overhead
+of 800ms in the modeset sequence and as well is in suspend
+sequence.
+Ignoring any short pulse if panel is powered off.
 
-Series: DP Phy compliance auto test (rev8)
-URL   : https://patchwork.freedesktop.org/series/71121/
-State : success
+FIXME: It requires to wait for panel_power_off delay in order
+to check the panel power status due to pps_lock because panel triggers
+short pulse immediately after writing PP_OFF to PP_CTRL register and
+wait_panel_off waits for panel_power_off delay with pps_lock held.
+This still creates responsiveness overhead of panel_power_off delay.
 
-== Summary ==
+v2:
+- checking vdd along with panel power to ignore the hpd. [Jani,Ville]
+v3:
+- safer side check to ignore the long hpd when eDP have power,
+  adding type of hpd to debug log. [Jani]
 
-CI Bug Log - changes from CI_DRM_8145 -> Patchwork_17003
-====================================================
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 +++++++++++++++++++----
+ 1 file changed, 19 insertions(+), 4 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0a417cd2af2b..38e74195101a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6763,19 +6763,34 @@ static const struct drm_encoder_funcs intel_dp_enc_funcs = {
+ 	.destroy = intel_dp_encoder_destroy,
+ };
+ 
++static bool intel_edp_have_power(struct intel_dp *intel_dp)
++{
++	intel_wakeref_t wakeref;
++	bool have_power = false;
++
++	with_pps_lock(intel_dp, wakeref) {
++		have_power = edp_have_panel_power(intel_dp) &&
++						  edp_have_panel_vdd(intel_dp);
++	}
++
++	return have_power;
++}
++
+ enum irqreturn
+ intel_dp_hpd_pulse(struct intel_digital_port *intel_dig_port, bool long_hpd)
+ {
+ 	struct intel_dp *intel_dp = &intel_dig_port->dp;
+ 
+-	if (long_hpd && intel_dig_port->base.type == INTEL_OUTPUT_EDP) {
++	if (intel_dig_port->base.type == INTEL_OUTPUT_EDP &&
++	    (long_hpd || !intel_edp_have_power(intel_dp))) {
+ 		/*
+-		 * vdd off can generate a long pulse on eDP which
++		 * vdd off can generate a long/short pulse on eDP which
+ 		 * would require vdd on to handle it, and thus we
+ 		 * would end up in an endless cycle of
+-		 * "vdd off -> long hpd -> vdd on -> detect -> vdd off -> ..."
++		 * "vdd off -> long/short hpd -> vdd on -> detect -> vdd off -> ..."
+ 		 */
+-		DRM_DEBUG_KMS("ignoring long hpd on eDP [ENCODER:%d:%s]\n",
++		DRM_DEBUG_KMS("ignoring %s hpd on eDP [ENCODER:%d:%s]\n",
++			      long_hpd ? "long" : "short",
+ 			      intel_dig_port->base.base.base.id,
+ 			      intel_dig_port->base.base.name);
+ 		return IRQ_HANDLED;
+-- 
+2.25.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17003 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8145/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_parallel@fds:
-    - fi-glk-dsi:         [INCOMPLETE][3] ([i915#529] / [i915#58] / [k.org#198133]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8145/fi-glk-dsi/igt@gem_exec_parallel@fds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/fi-glk-dsi/igt@gem_exec_parallel@fds.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-lmem:        [INCOMPLETE][5] ([i915#424]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8145/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-bwr-2160:        [INCOMPLETE][7] ([i915#489]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8145/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/fi-bwr-2160/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([fdo#111407]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8145/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#489]: https://gitlab.freedesktop.org/drm/intel/issues/489
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (46 -> 41)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bsw-kefka fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8145 -> Patchwork_17003
-
-  CI-20190529: 20190529
-  CI_DRM_8145: 5e893da0b8c2bfec015c5eaa7981e1ffab1d7c9c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5518: ee05a571255783837b18d626c4dff6cd9613cee2 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17003: af8eebf967773625d3357a6a78ab300562b524c9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-af8eebf96777 drm/i915/dp: Program vswing, pre-emphasis, test-pattern
-7eec3cbabedf drm/i915/dp: Register definition for DP compliance register
-f787b9132698 drm/i915/dp: Add debugfs entry for DP phy compliance
-2c884afe7524 drm/i915/dp: Preparation for DP phy compliance auto test
-be2a0a183afc drm/i915/dp: Made intel_dp_adjust_train() non-static
-22b1b10eb6db drm/dp: get/set phy compliance pattern
-66cfb3c26498 drm/amd/display: Align macro name as per DP spec
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17003/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
