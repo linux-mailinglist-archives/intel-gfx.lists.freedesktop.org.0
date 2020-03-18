@@ -1,45 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9A6618A002
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 16:56:34 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0C3318A04E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 17:16:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E119F89A62;
-	Wed, 18 Mar 2020 15:56:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 784866E91C;
+	Wed, 18 Mar 2020 16:16:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17BE689A62;
- Wed, 18 Mar 2020 15:56:32 +0000 (UTC)
-IronPort-SDR: lauhFlcTzhTOkNXmd3fhx9MdtbqqF6QaPUClxq4VvG6PaeqjeQ8QAWA5G/LfgCsIRSIsP4XfJb
- CdDvYr7zsOOw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 08:56:31 -0700
-IronPort-SDR: d4sMqXC+8h/F9/o/nmCYm47VMGE4+GKhBKPxjjfQaZBiRn+TVGcq9O0SXVNMtt0r3P+viZk4Fp
- /aIdB+AWzu9Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="324228078"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga001.jf.intel.com with SMTP; 18 Mar 2020 08:56:29 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Mar 2020 17:56:28 +0200
-Date: Wed, 18 Mar 2020 17:56:28 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Alex Deucher <alexdeucher@gmail.com>
-Message-ID: <20200318155628.GA13686@intel.com>
-References: <20200313162054.16009-1-ville.syrjala@linux.intel.com>
- <20200313162054.16009-2-ville.syrjala@linux.intel.com>
- <CADnq5_OsVawW3RV+8UhSf-wF0eG4Tp-fOMzsuLfJGJj_aPu-HA@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DBFCF6E91B;
+ Wed, 18 Mar 2020 16:16:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D4A92A47EB;
+ Wed, 18 Mar 2020 16:16:51 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CADnq5_OsVawW3RV+8UhSf-wF0eG4Tp-fOMzsuLfJGJj_aPu-HA@mail.gmail.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/9] drm: Constify topology id
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 18 Mar 2020 16:16:51 -0000
+Message-ID: <158454821184.25101.17519835231382984819@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200318150407.17083-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200318150407.17083-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Wait_until_the_context_is_finally_retired_before_r?=
+ =?utf-8?q?eleasing_engines_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,91 +39,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Maling list - DRI developers <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 13, 2020 at 04:05:00PM -0400, Alex Deucher wrote:
-> On Fri, Mar 13, 2020 at 12:21 PM Ville Syrjala
-> <ville.syrjala@linux.intel.com> wrote:
-> >
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> >
-> > Make the topology id const since we don't want to change it.
-> >
-> > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> Series is:
-> Reviewed-by: Alex Deucher <alexander.deucher@amd.com>
+Series: drm/i915/gem: Wait until the context is finally retired before releasing engines (rev2)
+URL   : https://patchwork.freedesktop.org/series/74836/
+State : failure
 
-Thanks. Series pushed to drm-misc-next.
+== Summary ==
 
-> =
+CI Bug Log - changes from CI_DRM_8148 -> Patchwork_17009
+====================================================
 
-> > ---
-> >  drivers/gpu/drm/drm_connector.c | 4 ++--
-> >  include/drm/drm_connector.h     | 4 ++--
-> >  2 files changed, 4 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_conn=
-ector.c
-> > index 644f0ad10671..462d8caa6e72 100644
-> > --- a/drivers/gpu/drm/drm_connector.c
-> > +++ b/drivers/gpu/drm/drm_connector.c
-> > @@ -2392,7 +2392,7 @@ EXPORT_SYMBOL(drm_mode_put_tile_group);
-> >   * tile group or NULL if not found.
-> >   */
-> >  struct drm_tile_group *drm_mode_get_tile_group(struct drm_device *dev,
-> > -                                              char topology[8])
-> > +                                              const char topology[8])
-> >  {
-> >         struct drm_tile_group *tg;
-> >         int id;
-> > @@ -2422,7 +2422,7 @@ EXPORT_SYMBOL(drm_mode_get_tile_group);
-> >   * new tile group or NULL.
-> >   */
-> >  struct drm_tile_group *drm_mode_create_tile_group(struct drm_device *d=
-ev,
-> > -                                                 char topology[8])
-> > +                                                 const char topology[8=
-])
-> >  {
-> >         struct drm_tile_group *tg;
-> >         int ret;
-> > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > index 19ae6bb5c85b..fd543d1db9b2 100644
-> > --- a/include/drm/drm_connector.h
-> > +++ b/include/drm/drm_connector.h
-> > @@ -1617,9 +1617,9 @@ struct drm_tile_group {
-> >  };
-> >
-> >  struct drm_tile_group *drm_mode_create_tile_group(struct drm_device *d=
-ev,
-> > -                                                 char topology[8]);
-> > +                                                 const char topology[8=
-]);
-> >  struct drm_tile_group *drm_mode_get_tile_group(struct drm_device *dev,
-> > -                                              char topology[8]);
-> > +                                              const char topology[8]);
-> >  void drm_mode_put_tile_group(struct drm_device *dev,
-> >                              struct drm_tile_group *tg);
-> >
-> > --
-> > 2.24.1
-> >
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Summary
+-------
 
--- =
+  **FAILURE**
 
-Ville Syrj=E4l=E4
-Intel
+  Serious unknown changes coming with Patchwork_17009 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17009, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17009:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_parallel@fds:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-skl-lmem/igt@gem_exec_parallel@fds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-skl-lmem/igt@gem_exec_parallel@fds.html
+    - fi-kbl-r:           [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-kbl-r/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-kbl-r/igt@gem_exec_parallel@fds.html
+    - fi-kbl-7500u:       NOTRUN -> [INCOMPLETE][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-kbl-7500u/igt@gem_exec_parallel@fds.html
+    - fi-kbl-x1275:       [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][8]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-skl-6600u/igt@gem_exec_parallel@fds.html
+    - fi-skl-6700k2:      [PASS][9] -> [INCOMPLETE][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-skl-6700k2/igt@gem_exec_parallel@fds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-skl-6700k2/igt@gem_exec_parallel@fds.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17009 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-cml-s:           [PASS][11] -> [INCOMPLETE][12] ([i915#283])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-cml-s/igt@gem_close_race@basic-threads.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-cml-s/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-bxt-dsi:         [PASS][13] -> [INCOMPLETE][14] ([fdo#103927])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-cml-u2:          [PASS][15] -> [INCOMPLETE][16] ([i915#283])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-cml-u2/igt@gem_exec_parallel@fds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-cml-u2/igt@gem_exec_parallel@fds.html
+    - fi-icl-y:           [PASS][17] -> [INCOMPLETE][18] ([i915#1147])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-icl-y/igt@gem_exec_parallel@fds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-icl-y/igt@gem_exec_parallel@fds.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bwr-2160:        [FAIL][19] -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8148/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/fi-bwr-2160/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [i915#1147]: https://gitlab.freedesktop.org/drm/intel/issues/1147
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+
+
+Participating hosts (36 -> 40)
+------------------------------
+
+  Additional (7): fi-glk-dsi fi-kbl-7500u fi-cfl-8109u fi-elk-e7500 fi-kbl-7560u fi-skl-6600u fi-snb-2600 
+  Missing    (3): fi-ctg-p8600 fi-byt-clapper fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8148 -> Patchwork_17009
+
+  CI-20190529: 20190529
+  CI_DRM_8148: 461a6f2c7c0296c282114ac8c0e63536e9f7d095 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17009: be5c49d70e436ba2eee9393e9804f97b0bc7c63f @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+be5c49d70e43 drm/i915/gem: Wait until the context is finally retired before releasing engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17009/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
