@@ -1,58 +1,48 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 410EC18925C
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 00:59:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C896E189264
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 01:03:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0996E261;
-	Tue, 17 Mar 2020 23:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBB566E12C;
+	Wed, 18 Mar 2020 00:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 691F66E12C
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2020 23:59:41 +0000 (UTC)
-IronPort-SDR: cglzqr/gCi7lRtak++BKWm0VNBonKTLJd3iCk8TyQgb5h2zBcz/S8Q8cS/Ef2M0aZo3Idu8thF
- 2MSXlxY1fPNA==
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08E696E12C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 00:03:33 +0000 (UTC)
+IronPort-SDR: Vd3EcjF9YVPIdY8j2CMsMeoTcOrbMLAh3IzChKioQleu9vZWXW9qFuka6Hmy7s09rwhZrL1HH/
+ xg2/HFfzMITA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2020 16:59:40 -0700
-IronPort-SDR: nydFe6WME0U7Kftf6hG2lY3kbmTmusYylPP5BcaWcfwG9mdu2/oXqaPy4Ryfh6P+iMAZHUd7Ze
- C/iSplQHwUUQ==
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2020 17:03:32 -0700
+IronPort-SDR: q+DOQ1qMuP72U2wI9vtjdpCVCgbNoTdL6wvaIuHWgVu+dk6MHBEpQno8hAU4oDcGLP2lXww7ZI
+ F+2jsvcLo7Mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,565,1574150400"; d="scan'208";a="263206767"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
- by orsmga002.jf.intel.com with ESMTP; 17 Mar 2020 16:59:40 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
- ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 17 Mar 2020 16:59:40 -0700
-Received: from orsmsx109.amr.corp.intel.com ([169.254.11.100]) by
- ORSMSX151.amr.corp.intel.com ([169.254.7.134]) with mapi id 14.03.0439.000;
- Tue, 17 Mar 2020 16:59:39 -0700
-From: "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>
-To: "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "currojerez@riseup.net" <currojerez@riseup.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [PATCH 07/10] cpufreq: intel_pstate: Implement VLP controller
- for HWP parts.
-Thread-Index: AQHV9yVZzfN0ydxLQk2N+RiJ1IPVFahN90kA
-Date: Tue, 17 Mar 2020 23:59:39 +0000
-Message-ID: <40db3c86c68abfab406618e2424787c18c119c87.camel@intel.com>
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-8-currojerez@riseup.net>
-In-Reply-To: <20200310214203.26459-8-currojerez@riseup.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.2 (3.34.2-1.fc31) 
-x-originating-ip: [10.135.36.221]
-Content-ID: <7B64E34E94D4384A9569063FFDA9EA9F@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,565,1574150400"; d="scan'208";a="238043017"
+Received: from jwschuli-mobl2.amr.corp.intel.com (HELO [10.252.43.156])
+ ([10.252.43.156])
+ by fmsmga008.fm.intel.com with ESMTP; 17 Mar 2020 17:03:31 -0700
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20200312230502.36898-1-umesh.nerlige.ramappa@intel.com>
+ <20200312230502.36898-2-umesh.nerlige.ramappa@intel.com>
+ <87k13km7dg.wl-ashutosh.dixit@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <26c83304-9f3a-4ac5-c79e-7560e301213e@intel.com>
+Date: Wed, 18 Mar 2020 02:03:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 07/10] cpufreq: intel_pstate: Implement VLP
- controller for HWP parts.
+In-Reply-To: <87k13km7dg.wl-ashutosh.dixit@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/perf: rework aging tail
+ workaround
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,182 +55,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "peterz@infradead.org" <peterz@infradead.org>,
- "rjw@rjwysocki.net" <rjw@rjwysocki.net>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2020-03-10 at 14:42 -0700, Francisco Jerez wrote:
-> This implements a simple variably low-pass-filtering governor in
-> control of the HWP MIN/MAX PERF range based on the previously
-> introduced get_vlp_target_range().  See "cpufreq: intel_pstate:
-> Implement VLP controller target P-state range estimation." for the
-> rationale.
-
-I just gave a try on a pretty idle system with just systemd processes
-and usual background tasks with nomodset. 
-
-I see that there HWP min is getting changed between 4-8. Why are
-changing HWP dynamic range even on an idle system running no where
-close to TDP?
-
-Thanks,
-Srinivas
-
-
-> 
-> Signed-off-by: Francisco Jerez <currojerez@riseup.net>
-> ---
->  drivers/cpufreq/intel_pstate.c | 79
-> +++++++++++++++++++++++++++++++++-
->  1 file changed, 77 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/intel_pstate.c
-> b/drivers/cpufreq/intel_pstate.c
-> index cecadfec8bc1..a01eed40d897 100644
-> --- a/drivers/cpufreq/intel_pstate.c
-> +++ b/drivers/cpufreq/intel_pstate.c
-> @@ -1905,6 +1905,20 @@ static void intel_pstate_reset_vlp(struct
-> cpudata *cpu)
->  	vlp->gain = max(1, div_fp(1000, vlp_params.setpoint_0_pml));
->  	vlp->target.p_base = 0;
->  	vlp->stats.last_response_frequency_hz = vlp_params.avg_hz;
-> +
-> +	if (hwp_active) {
-> +		const uint32_t p0 = max(cpu->pstate.min_pstate,
-> +					cpu->min_perf_ratio);
-> +		const uint32_t p1 = max_t(uint32_t, p0, cpu-
-> >max_perf_ratio);
-> +		const uint64_t hwp_req = (READ_ONCE(cpu-
-> >hwp_req_cached) &
-> +					  ~(HWP_MAX_PERF(~0L) |
-> +					    HWP_MIN_PERF(~0L) |
-> +					    HWP_DESIRED_PERF(~0L))) |
-> +					 HWP_MIN_PERF(p0) |
-> HWP_MAX_PERF(p1);
-> +
-> +		wrmsrl_on_cpu(cpu->cpu, MSR_HWP_REQUEST, hwp_req);
-> +		cpu->hwp_req_cached = hwp_req;
-> +	}
->  }
->  
->  /**
-> @@ -2222,6 +2236,46 @@ static void intel_pstate_adjust_pstate(struct
-> cpudata *cpu)
->  		fp_toint(cpu->iowait_boost * 100));
->  }
->  
-> +static void intel_pstate_adjust_pstate_range(struct cpudata *cpu,
-> +					     const unsigned int
-> range[])
-> +{
-> +	const int from = cpu->hwp_req_cached;
-> +	unsigned int p0, p1, p_min, p_max;
-> +	struct sample *sample;
-> +	uint64_t hwp_req;
-> +
-> +	update_turbo_state();
-> +
-> +	p0 = max(cpu->pstate.min_pstate, cpu->min_perf_ratio);
-> +	p1 = max_t(unsigned int, p0, cpu->max_perf_ratio);
-> +	p_min = clamp_t(unsigned int, range[0], p0, p1);
-> +	p_max = clamp_t(unsigned int, range[1], p0, p1);
-> +
-> +	trace_cpu_frequency(p_max * cpu->pstate.scaling, cpu->cpu);
-> +
-> +	hwp_req = (READ_ONCE(cpu->hwp_req_cached) &
-> +		   ~(HWP_MAX_PERF(~0L) | HWP_MIN_PERF(~0L) |
-> +		     HWP_DESIRED_PERF(~0L))) |
-> +		  HWP_MIN_PERF(vlp_params.debug & 2 ? p0 : p_min) |
-> +		  HWP_MAX_PERF(vlp_params.debug & 4 ? p1 : p_max);
-> +
-> +	if (hwp_req != cpu->hwp_req_cached) {
-> +		wrmsrl(MSR_HWP_REQUEST, hwp_req);
-> +		cpu->hwp_req_cached = hwp_req;
-> +	}
-> +
-> +	sample = &cpu->sample;
-> +	trace_pstate_sample(mul_ext_fp(100, sample->core_avg_perf),
-> +			    fp_toint(sample->busy_scaled),
-> +			    from,
-> +			    hwp_req,
-> +			    sample->mperf,
-> +			    sample->aperf,
-> +			    sample->tsc,
-> +			    get_avg_frequency(cpu),
-> +			    fp_toint(cpu->iowait_boost * 100));
-> +}
-> +
->  static void intel_pstate_update_util(struct update_util_data *data,
-> u64 time,
->  				     unsigned int flags)
->  {
-> @@ -2260,6 +2314,22 @@ static void intel_pstate_update_util(struct
-> update_util_data *data, u64 time,
->  		intel_pstate_adjust_pstate(cpu);
->  }
->  
-> +/**
-> + * Implementation of the cpufreq update_util hook based on the VLP
-> + * controller (see get_vlp_target_range()).
-> + */
-> +static void intel_pstate_update_util_hwp_vlp(struct update_util_data
-> *data,
-> +					     u64 time, unsigned int
-> flags)
-> +{
-> +	struct cpudata *cpu = container_of(data, struct cpudata,
-> update_util);
-> +
-> +	if (update_vlp_sample(cpu, time, flags)) {
-> +		const struct vlp_target_range *target =
-> +			get_vlp_target_range(cpu);
-> +		intel_pstate_adjust_pstate_range(cpu, target->value);
-> +	}
-> +}
-> +
->  static struct pstate_funcs core_funcs = {
->  	.get_max = core_get_max_pstate,
->  	.get_max_physical = core_get_max_pstate_physical,
-> @@ -2389,6 +2459,9 @@ static int intel_pstate_init_cpu(unsigned int
-> cpunum)
->  
->  	intel_pstate_get_cpu_pstates(cpu);
->  
-> +	if (pstate_funcs.update_util ==
-> intel_pstate_update_util_hwp_vlp)
-> +		intel_pstate_reset_vlp(cpu);
-> +
->  	pr_debug("controlling: cpu %d\n", cpunum);
->  
->  	return 0;
-> @@ -2398,7 +2471,8 @@ static void
-> intel_pstate_set_update_util_hook(unsigned int cpu_num)
->  {
->  	struct cpudata *cpu = all_cpu_data[cpu_num];
->  
-> -	if (hwp_active && !hwp_boost)
-> +	if (hwp_active && !hwp_boost &&
-> +	    pstate_funcs.update_util !=
-> intel_pstate_update_util_hwp_vlp)
->  		return;
->  
->  	if (cpu->update_util_set)
-> @@ -2526,7 +2600,8 @@ static int intel_pstate_set_policy(struct
-> cpufreq_policy *policy)
->  		 * was turned off, in that case we need to clear the
->  		 * update util hook.
->  		 */
-> -		if (!hwp_boost)
-> +		if (!hwp_boost && pstate_funcs.update_util !=
-> +				  intel_pstate_update_util_hwp_vlp)
->  			intel_pstate_clear_update_util_hook(policy-
-> >cpu);
->  		intel_pstate_hwp_set(policy->cpu);
->  	}
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gMTYvMDMvMjAyMCAyMToyMywgRGl4aXQsIEFzaHV0b3NoIHdyb3RlOgo+IE9uIFRodSwgMTIg
+TWFyIDIwMjAgMTY6MDQ6NTkgLTA3MDAsIFVtZXNoIE5lcmxpZ2UgUmFtYXBwYSB3cm90ZToKPj4g
+RnJvbTogTGlvbmVsIExhbmR3ZXJsaW4gPGxpb25lbC5nLmxhbmR3ZXJsaW5AaW50ZWwuY29tPgo+
+Pgo+PiBXZSdyZSBhYm91dCB0byBpbnRyb2R1Y2UgYW4gb3B0aW9ucyB0byBvcGVuIHRoZSBwZXJm
+IHN0cmVhbSwgZ2l2aW5nCj4+IHRoZSB1c2VyIGFiaWxpdHkgdG8gY29uZmlndXJlIGhvdyBvZnRl
+biBpdCB3YW50cyB0aGUga2VybmVsIHRvIHBvbGwKPj4gdGhlIE9BIHJlZ2lzdGVycyBmb3IgYXZh
+aWxhYmxlIGRhdGEuCj4+Cj4+IFJpZ2h0IG5vdyB0aGUgd29ya2Fyb3VuZCBhZ2FpbnN0IHRoZSBP
+QSB0YWlsIHBvaW50ZXIgcmFjZSBjb25kaXRpb24KPj4gcmVxdWlyZXMgYXQgbGVhc3QgdHdpY2Ug
+dGhlIGludGVybmFsIGtlcm5lbCBwb2xsaW5nIHRpbWVyIHRvIG1ha2UgYW55Cj4+IGRhdGEgYXZh
+aWxhYmxlLgo+Pgo+PiBUaGlzIGNoYW5nZXMgaW50cm9kdWNlIGNoZWNrcyBvbiB0aGUgT0EgZGF0
+YSB3cml0dGVuIGludG8gdGhlIGNpcmN1bGFyCj4+IGJ1ZmZlciB0byBtYWtlIGFzIG11Y2ggZGF0
+YSBhcyBwb3NzaWJsZSBhdmFpbGFibGUgb24gdGhlIGZpcnN0Cj4+IGl0ZXJhdGlvbiBvZiB0aGUg
+cG9sbGluZyB0aW1lci4KPiBFeGNlbGxlbnQsIHRoaXMgYWJzb2x1dGVseSBuZWVkcyB0byBiZSBk
+b25lLCBJIHdhcyB0aGlua2luZyBpdCBtYXkgYmUKPiBwb3NzaWJsZSBldmVuIHdpdGggdGhlIGFw
+cHJvYWNoIHRha2VuIGluIHRoZSBvcmlnaW5hbCBjb2RlIGJ1dCB0aGUgYXBwcm9hY2gKPiBoZXJl
+IGxvb2tzIGJldHRlci4gSXQgaXMgYWxzbyBhIG5pY2UgY2xlYW51cC4KPgo+PiBAQCAtNTA3LDY0
+ICs0ODcsNzYgQEAgc3RhdGljIGJvb2wgb2FfYnVmZmVyX2NoZWNrX3VubG9ja2VkKHN0cnVjdCBp
+OTE1X3BlcmZfc3RyZWFtICpzdHJlYW0pCj4+Cj4+IAlub3cgPSBrdGltZV9nZXRfbW9ub19mYXN0
+X25zKCk7Cj4+Cj4+IC0JLyogVXBkYXRlIHRoZSBhZ2VkIHRhaWwKPj4gLQkgKgo+PiAtCSAqIEZs
+aXAgdGhlIHRhaWwgcG9pbnRlciBhdmFpbGFibGUgZm9yIHJlYWQoKXMgb25jZSB0aGUgYWdpbmcg
+dGFpbCBpcwo+PiAtCSAqIG9sZCBlbm91Z2ggdG8gdHJ1c3QgdGhhdCB0aGUgY29ycmVzcG9uZGlu
+ZyBkYXRhIHdpbGwgYmUgdmlzaWJsZSB0bwo+PiAtCSAqIHRoZSBDUFUuLi4KPj4gLQkgKgo+PiAt
+CSAqIERvIHRoaXMgYmVmb3JlIHVwZGF0aW5nIHRoZSBhZ2luZyBwb2ludGVyIGluIGNhc2Ugd2Ug
+bWF5IGJlIGFibGUgdG8KPj4gLQkgKiBpbW1lZGlhdGVseSBzdGFydCBhZ2luZyBhIG5ldyBwb2lu
+dGVyIHRvbyAoaWYgbmV3IGRhdGEgaGFzIGJlY29tZQo+PiAtCSAqIGF2YWlsYWJsZSkgd2l0aG91
+dCBuZWVkaW5nIHRvIHdhaXQgZm9yIGEgbGF0ZXIgaHJ0aW1lciBjYWxsYmFjay4KPj4gLQkgKi8K
+Pj4gLQlpZiAoYWdpbmdfdGFpbCAhPSBJTlZBTElEX1RBSUxfUFRSICYmCj4+IC0JICAgICgobm93
+IC0gc3RyZWFtLT5vYV9idWZmZXIuYWdpbmdfdGltZXN0YW1wKSA+Cj4+IC0JICAgICBPQV9UQUlM
+X01BUkdJTl9OU0VDKSkgewo+PiAtCj4+IC0JCWFnZWRfaWR4IF49IDE7Cj4+IC0JCXN0cmVhbS0+
+b2FfYnVmZmVyLmFnZWRfdGFpbF9pZHggPSBhZ2VkX2lkeDsKPj4gKwlpZiAoaHdfdGFpbCA9PSBz
+dHJlYW0tPm9hX2J1ZmZlci5hZ2luZ190YWlsKSB7Cj4+ICsJCS8qIElmIHRoZSBIVyB0YWlsIGhh
+c24ndCBtb3ZlIHNpbmNlIHRoZSBsYXN0IGNoZWNrIGFuZCB0aGUgSFcKPj4gKwkJICogdGFpbCBo
+YXMgYmVlbiBhZ2luZyBmb3IgbG9uZyBlbm91Z2gsIGRlY2xhcmUgaXQgdGhlIG5ldwo+PiArCQkg
+KiB0YWlsLgo+PiArCQkgKi8KPiBJcyB0aGlzIHJlYWxseSBuZWVkZWQ/IFRydWUgd2Ugd2lsbCBu
+ZXZlciByZXR1cm4gdGhlIGxhc3QgcmVwb3J0IGJ1dCBtYXliZQo+IGl0J3Mgb2ssIHNhdmUgc29t
+ZSBjb2RlPwoKCkl0IGRvZXNuJ3QgbG9vayBsaWtlIGEgbG90IG9mIGNvZGUgOikKCgo+Cj4+ICsJ
+CWlmICgobm93IC0gc3RyZWFtLT5vYV9idWZmZXIuYWdpbmdfdGltZXN0YW1wKSA+Cj4gRG8gd2Ug
+bmVlZCB0byBpbml0aWFsaXplICdhZ2luZ190aW1lc3RhbXAgPSBrdGltZV9nZXRfbW9ub19mYXN0
+X25zKCknIHdoZW4KPiB0aGUgc3RyZWFtIGlzIGVuYWJsZWQ/CgoKQXllLi4uIEkgdGhpbmsgYWdp
+bmdfdGFpbCBzaG91bGQgcHJvYmFibHkgYmUgaW5pdGlhbGl6ZWQgdG8gCklOVkFMSURfVEFJTF9Q
+VFIgaW4gaW5pdF9vYV9idWZmZXIoKSB2ZnVuY3MuCgpTbyB0aGF0IG9uIHRoZSBmaXJzdCBjYWxs
+IGl0IG5ldmVyIG1hdGNoZXMgOiBpZiAoaHdfdGFpbCA9PSAKc3RyZWFtLT5vYV9idWZmZXIuYWdp
+bmdfdGFpbCkKCkFuZCB0aGF0IGFnaW5nX3RpbWVzdGFtcCBpcyBzZXQgcHJvcGVybHkuCgoKPgo+
+PiArCQkgICAgT0FfVEFJTF9NQVJHSU5fTlNFQykgewo+PiArCQkJc3RyZWFtLT5vYV9idWZmZXIu
+dGFpbCA9Cj4+ICsJCQkJc3RyZWFtLT5vYV9idWZmZXIuYWdpbmdfdGFpbDsKPj4gKwkJfQo+PiAr
+CX0gZWxzZSB7Cj4+ICsJCXUzMiBoZWFkLCB0YWlsLCBsYW5kZWRfcmVwb3J0X2hlYWRzOwo+Pgo+
+PiAtCQlhZ2VkX3RhaWwgPSBhZ2luZ190YWlsOwo+PiArCQkvKiBOQjogVGhlIGhlYWQgd2Ugb2Jz
+ZXJ2ZSBoZXJlIG1pZ2h0IGVmZmVjdGl2ZWx5IGJlIGEgbGl0dGxlIG91dCBvZgo+PiArCQkgKiBk
+YXRlIChiZXR3ZWVuIGhlYWQgYW5kIHRhaWxzW2FnZWRfaWR4XS5vZmZzZXQgaWYgdGhlcmUgaXMg
+Y3VycmVudGx5Cj4+ICsJCSAqIGEgcmVhZCgpIGluIHByb2dyZXNzLgo+PiArCQkgKi8KPiBJcyB0
+aGlzIGNvbW1lbnQgY29ycmVjdD8gQXJlbid0IHdlIGFyZSB0YWtpbmcgdGhlIHNhbWUgbG9jayB3
+aGVuIHVwZGF0aW5nCj4gaGVhZCBhZnRlciB0aGUgcmVhZD8KCgpJdCBzZWVtcyB0aGUgbWVudGlv
+biBvZiB0YWlsc1thZ2VkX2lkeF0ub2Zmc2V0IGlzIGRlZmluaXRlbHkgb3V0IG9mIGRhdGUuCgoK
+VGhhdCBiZWluZyBzYWlkLCB0aGUgcmVhZCBpcyBjb25jdXJyZW50IHRvIHRoaXMgZnVuY3Rpb24g
+KG9ubHkgdGhlIAp1cGRhdGUgb2YgaGVhZCBpcyBsb2NrZWQpLgoKVGhhdCBtZWFucyB0aGUgcmVh
+ZCBjb2RlIGNhbiBiZSBnb2luZyB0aHJvdWdoIHRoZSByZXBvcnRzIHdoaWxlIHdlJ3JlIApnb2lu
+ZyB0aHJvdWdoIGEgZGlmZmVyZW50IHNldCBvZiByZXBvcnRzIGluIHRoZSBzYW1lIE9BIGJ1ZmZl
+ci4KCgo+Cj4+ICsJCWhlYWQgPSBzdHJlYW0tPm9hX2J1ZmZlci5oZWFkIC0gZ3R0X29mZnNldDsK
+Pj4KPj4gLQkJLyogTWFyayB0aGF0IHdlIG5lZWQgYSBuZXcgcG9pbnRlciB0byBzdGFydCBhZ2lu
+Zy4uLiAqLwo+PiAtCQlzdHJlYW0tPm9hX2J1ZmZlci50YWlsc1shYWdlZF9pZHhdLm9mZnNldCA9
+IElOVkFMSURfVEFJTF9QVFI7Cj4+IC0JCWFnaW5nX3RhaWwgPSBJTlZBTElEX1RBSUxfUFRSOwo+
+PiAtCX0KPj4gKwkJaHdfdGFpbCAtPSBndHRfb2Zmc2V0Owo+Pgo+PiAtCS8qIFVwZGF0ZSB0aGUg
+YWdpbmcgdGFpbAo+PiAtCSAqCj4+IC0JICogV2UgdGhyb3R0bGUgYWdpbmcgdGFpbCB1cGRhdGVz
+IHVudGlsIHdlIGhhdmUgYSBuZXcgdGFpbCB0aGF0Cj4+IC0JICogcmVwcmVzZW50cyA+PSBvbmUg
+cmVwb3J0IG1vcmUgZGF0YSB0aGFuIGlzIGFscmVhZHkgYXZhaWxhYmxlIGZvcgo+PiAtCSAqIHJl
+YWRpbmcuIFRoaXMgZW5zdXJlcyB0aGVyZSB3aWxsIGJlIGVub3VnaCBkYXRhIGZvciBhIHN1Y2Nl
+c3NmdWwKPj4gLQkgKiByZWFkIG9uY2UgdGhpcyBuZXcgcG9pbnRlciBoYXMgYWdlZCBhbmQgZW5z
+dXJlcyB3ZSB3aWxsIGdpdmUgdGhlIG5ldwo+PiAtCSAqIHBvaW50ZXIgdGltZSB0byBhZ2UuCj4+
+IC0JICovCj4+IC0JaWYgKGFnaW5nX3RhaWwgPT0gSU5WQUxJRF9UQUlMX1BUUiAmJgo+PiAtCSAg
+ICAoYWdlZF90YWlsID09IElOVkFMSURfVEFJTF9QVFIgfHwKPj4gLQkgICAgIE9BX1RBS0VOKGh3
+X3RhaWwsIGFnZWRfdGFpbCkgPj0gcmVwb3J0X3NpemUpKSB7Cj4+IC0JCXN0cnVjdCBpOTE1X3Zt
+YSAqdm1hID0gc3RyZWFtLT5vYV9idWZmZXIudm1hOwo+PiAtCQl1MzIgZ3R0X29mZnNldCA9IGk5
+MTVfZ2d0dF9vZmZzZXQodm1hKTsKPj4gLQo+PiAtCQkvKiBCZSBwYXJhbm9pZCBhbmQgZG8gYSBi
+b3VuZHMgY2hlY2sgb24gdGhlIHBvaW50ZXIgcmVhZCBiYWNrCj4+IC0JCSAqIGZyb20gaGFyZHdh
+cmUsIGp1c3QgaW4gY2FzZSBzb21lIHNwdXJpb3VzIGhhcmR3YXJlIGNvbmRpdGlvbgo+PiAtCQkg
+KiBjb3VsZCBwdXQgdGhlIHRhaWwgb3V0IG9mIGJvdW5kcy4uLgo+PiArCQkvKiBXYWxrIHRoZSBz
+dHJlYW0gYmFja3dhcmQgdW50aWwgd2UgZmluZCBhdCBsZWFzdCAyIHJlcG9ydHMKPj4gKwkJICog
+d2l0aCBkd29yZCAwICYgMSBub3QgYXQgMC4gU2luY2UgdGhlIGNpcmN1bGFyIGJ1ZmZlcgo+PiAr
+CQkgKiBwb2ludGVycyBwcm9ncmVzcyBieSBpbmNyZW1lbnRzIG9mIDY0IGJ5dGVzIGFuZCB0aGF0
+Cj4+ICsJCSAqIHJlcG9ydHMgY2FuIGJlIHVwIHRvIDI1NiBieXRlcyBsb25nLCB3ZSBjYW4ndCB0
+ZWxsIHdoZXRoZXIKPj4gKwkJICogYSByZXBvcnQgaGFzIGZ1bGx5IGxhbmRlZCBpbiBtZW1vcnkg
+YmVmb3JlIHRoZSBmaXJzdCAyCj4+ICsJCSAqIGR3b3JkcyBvZiB0aGUgZm9sbG93aW5nIHJlcG9y
+dCBoYXZlIGVmZmVjdGl2ZWx5IGxhbmRlZC4KPj4gKwkJICoKPj4gKwkJICogVGhpcyBpcyBhc3N1
+bWluZyB0aGF0IHRoZSB3cml0ZXMgb2YgdGhlIE9BIHVuaXQgbGFuZCBpbgo+PiArCQkgKiBtZW1v
+cnkgaW4gdGhlIG9yZGVyIHRoZXkgd2VyZSB3cml0dGVuIHRvLgo+PiArCQkgKiBJZiBub3QgOiAo
+4pWvwrDilqHCsO+8ieKVr++4tSDilLvilIHilLsKPj4gCQkgKi8KPj4gLQkJaWYgKGh3X3RhaWwg
+Pj0gZ3R0X29mZnNldCAmJgo+PiAtCQkgICAgaHdfdGFpbCA8IChndHRfb2Zmc2V0ICsgT0FfQlVG
+RkVSX1NJWkUpKSB7Cj4+IC0JCQlzdHJlYW0tPm9hX2J1ZmZlci50YWlsc1shYWdlZF9pZHhdLm9m
+ZnNldCA9Cj4+IC0JCQkJYWdpbmdfdGFpbCA9IGh3X3RhaWw7Cj4+IC0JCQlzdHJlYW0tPm9hX2J1
+ZmZlci5hZ2luZ190aW1lc3RhbXAgPSBub3c7Cj4+IC0JCX0gZWxzZSB7Cj4+IC0JCQlkcm1fZXJy
+KCZzdHJlYW0tPnBlcmYtPmk5MTUtPmRybSwKPj4gLQkJCQkiSWdub3Jpbmcgc3B1cmlvdXMgb3V0
+IG9mIHJhbmdlIE9BIGJ1ZmZlciB0YWlsIHBvaW50ZXIgPSAleFxuIiwKPj4gLQkJCQlod190YWls
+KTsKPj4gKwkJbGFuZGVkX3JlcG9ydF9oZWFkcyA9IDA7Cj4+ICsJCXdoaWxlIChPQV9UQUtFTih0
+YWlsLCBoZWFkKSA+PSByZXBvcnRfc2l6ZSkgewo+PiArCQkJdTMyIHByZXZpb3VzX3RhaWwgPSAo
+dGFpbCAtIHJlcG9ydF9zaXplKSAmIChPQV9CVUZGRVJfU0laRSAtIDEpOwo+PiArCQkJdTggKnJl
+cG9ydCA9IHN0cmVhbS0+b2FfYnVmZmVyLnZhZGRyICsgcHJldmlvdXNfdGFpbDsKPj4gKwkJCXUz
+MiAqcmVwb3J0MzIgPSAodm9pZCAqKSByZXBvcnQ7Cj4gbml0OiBpbnN0ZWFkIG9mIHRoZSAyIHN0
+YXRlbWVudHMgYWJvdmUgd2UgY2FuIGp1c3QgaGF2ZSBhIHNpbmdsZSBzdGF0ZW1lbnQsCj4gYmVj
+YXVzZSBzdHJlYW0tPm9hX2J1ZmZlci52YWRkciBpcyB1OCo6Cj4KPiAJdTMyICpyZXBvcnQzMiA9
+ICh2b2lkICopKHN0cmVhbS0+b2FfYnVmZmVyLnZhZGRyICsgcHJldmlvdXNfdGFpbCk7CgoKTG9v
+a3MgcmlnaHQgOikKCgo+Cj4+ICsKPj4gKwkJCS8qIEhlYWQgb2YgdGhlIHJlcG9ydCBpbmRpY2F0
+ZWQgYnkgdGhlIEhXIHRhaWwgcmVnaXN0ZXIgaGFzCj4+ICsJCQkgKiBpbmRlZWQgbGFuZGVkIGlu
+dG8gbWVtb3J5Lgo+PiArCQkJICovCj4+ICsJCQlpZiAocmVwb3J0MzJbMF0gIT0gMCB8fCByZXBv
+cnQzMlsxXSAhPSAwKSB7Cj4gSnVzdCB3b25kZXJpbmcgaWYgaXQgaXMgc3VmZmljaWVudCB0byBj
+aGVjayBqdXN0IG9uZSBvZiB0aGVzZSB0d28gKHJlcG9ydAo+IHJlYXNvbiBhbmQgdGltZXN0YW1w
+KT8KCgpXZSBjb3VsZCBiZSByZWFsbHkgdW5sdWNreSBhbmQgZ2V0IG9uIHRoZSB0aW1lc3RhbXAg
+PSAwLgoKQnV0IGlmIHRoYXQncyB0aGUgY2FzZSwgd2UgbWlnaHQgaGl0IHRoZSB0aW1lb3V0IGZy
+b20gYWJvdmUgc29vbiBlbm91Z2guCgpPciB3ZSdsbCBzZWUgdGhlIHRhaWwgdXBkYXRlZCBhbmQg
+cHJvYmFibHkgZmluZCBhbm90aGVyIHJlcG9ydCB0aGF0IG1hdGNoZXMuCgoKPgo+PiArCQkJCWxh
+bmRlZF9yZXBvcnRfaGVhZHMrKzsKPiBUaGVvcmV0aWNhbGx5IHdlIHNob3VsZCBiZSBjaGVja2lu
+ZyBmb3IgInR3byBjb25zZWN1dGl2ZSIgcmVwb3J0cywgbm90IGp1c3QKPiBhbnkgdHdvIGFzIHRo
+ZSBjb2RlIGlzIGRvaW5nPyBPciBtYXliZSBpdCdzIG9rIHRvIGp1c3QgY2hlY2sgb25jZSwgaS5l
+LiBpZgo+IGRhdGEgYXQgcHJldmlvdXMgdGFpbCBoYXMgbGFuZGVkIHdlIGNhbiBicmVhayBvdXQg
+b2YgdGhlIGxvb3A/CgoKWWVhaCwgSSB0aGluayB0aGUgY29kZSBpc24ndCBxdWl0ZSAidHdvIGNv
+bnNlY3V0aXZlIi4KCgpOb3cgdGhhdCB5b3UgbWVudGlvbiBpdC4gSXQgc2hvdWxkIGJlICJmaW5k
+IGEgcmVwb3J0IHdpdGggZHdvcmRzWzAsMV0gIT0gCjAgYW5kIGNvbnNpZGVyIHRoZSByZXBvcnQg
+YmVmb3JlIHRoYXQgZnVsbHkgbGFuZGVkIi4KCkFnYWluIGFzc3VtaW5nIHRoZSBtZW1vcnkgY29u
+dHJvbGxlciBtYWtlcyB0aGluZ3MgdmlzaWJsZSBpbiBvcmRlciB0aGV5IAp3ZXJlIHdyaXR0ZW4u
+CgoKPgo+PiArCj4+ICsJCQkJaWYgKGxhbmRlZF9yZXBvcnRfaGVhZHMgPj0gMikKPj4gKwkJCQkJ
+YnJlYWs7Cj4+ICsJCQl9Cj4+ICsKPj4gKwkJCXRhaWwgPSBwcmV2aW91c190YWlsOwo+PiAJCX0K
+Pj4gKwo+PiArCQlpZiAoYWJzKHRhaWwgLSBod190YWlsKSA+PSAoMiAqIHJlcG9ydF9zaXplKSkg
+ewo+IFNob3VsZG4ndCBpdCBiZSBhY2NvdW50ZWQgdGhhdCB0aGlzIGlzIGEgY2lyY3VsYXIgbm90
+IGEgbGluZWFyIGJ1ZmZlcj8KCgpJIHRoaW5rIHlvdSdyZSByaWdodC4KCgo+Cj4+ICsJCQlpZiAo
+X19yYXRlbGltaXQoJnN0cmVhbS0+cGVyZi0+dGFpbF9wb2ludGVyX3JhY2UpKSB7Cj4+ICsJCQkJ
+RFJNX05PVEUoInVubGFuZGVkIHJlcG9ydChzKSBoZWFkPTB4JXggIgo+PiArCQkJCQkgInRhaWw9
+MHgleCBod190YWlsPTB4JXhcbiIsCj4+ICsJCQkJCSBoZWFkLCB0YWlsLCBod190YWlsKTsKPiBC
+ZWNhdXNlIHRoaXMgaXMgYSByYXRlbGltaXRlZCBvdXRwdXQsIHNob3VsZCB3ZSBhbHNvIGluY2x1
+ZGUgYSBjb3VudCBoZXJlCj4gdG8gaW5kaWNhdGUgaG93IG9mdGVuIHRoaXMgaXMgaGFwcGVuaW5n
+PwoKCkkgdGhpbmsgcmF0ZWxpbWl0KCkgd2lsbCBwcmludCBzb21lIGNvdW50cyB3aGVuIGl0IGhh
+cHBlbnMgdG9vIG9mdGVuLgoKCj4KPj4gKwkJCX0KPj4gKwkJfQo+PiArCj4+ICsJCXN0cmVhbS0+
+b2FfYnVmZmVyLnRhaWwgPSBndHRfb2Zmc2V0ICsgdGFpbDsKPj4gKwkJc3RyZWFtLT5vYV9idWZm
+ZXIuYWdpbmdfdGFpbCA9IGd0dF9vZmZzZXQgKyBod190YWlsOwo+PiArCQlzdHJlYW0tPm9hX2J1
+ZmZlci5hZ2luZ190aW1lc3RhbXAgPSBub3c7Cj4+IAl9Cj4+Cj4+IAlzcGluX3VubG9ja19pcnFy
+ZXN0b3JlKCZzdHJlYW0tPm9hX2J1ZmZlci5wdHJfbG9jaywgZmxhZ3MpOwo+IEhtbSwgSSB0aGlu
+ayBJIHdvdWxkIGNvbXB1dGUgdGhlIHZhbHVlIHRvIHJldHVybiBiZWxvdyBhbmQgdGhlbiBkcm9w
+IHRoZQo+IGxvY2ssIGp1c3QgaW4gY2FzZSByZWFkIG1vdmVzIHRoZSBoZWFkPwoKCkNvcnJlY3Qh
+IFRoYW5rcyBmb3Igc3BvdHRpbmcgdGhpcy4KCgo+Cj4+IC0JcmV0dXJuIGFnZWRfdGFpbCA9PSBJ
+TlZBTElEX1RBSUxfUFRSID8KPj4gLQkJZmFsc2UgOiBPQV9UQUtFTihhZ2VkX3RhaWwsIGhlYWQp
+ID49IHJlcG9ydF9zaXplOwo+PiArCXJldHVybiBPQV9UQUtFTihzdHJlYW0tPm9hX2J1ZmZlci50
+YWlsIC0gZ3R0X29mZnNldCwKPj4gKwkJCXN0cmVhbS0+b2FfYnVmZmVyLmhlYWQgLSBndHRfb2Zm
+c2V0KSA+PSByZXBvcnRfc2l6ZTsKPj4gKwo+IERlbGV0ZSBleHRyYSBsaW5lLCBydW4gY2hlY2tw
+YXRjaD8KPgo+PiBAQCAtODM4LDEzICs4MjEsMTAgQEAgc3RhdGljIGludCBnZW44X2FwcGVuZF9v
+YV9yZXBvcnRzKHN0cnVjdCBpOTE1X3BlcmZfc3RyZWFtICpzdHJlYW0sCj4+IAkJfQo+Pgo+PiAJ
+CS8qCj4+IC0JCSAqIFRoZSBhYm92ZSByZWFzb24gZmllbGQgc2FuaXR5IGNoZWNrIGlzIGJhc2Vk
+IG9uCj4+IC0JCSAqIHRoZSBhc3N1bXB0aW9uIHRoYXQgdGhlIE9BIGJ1ZmZlciBpcyBpbml0aWFs
+bHkKPj4gLQkJICogemVyb2VkIGFuZCB3ZSByZXNldCB0aGUgZmllbGQgYWZ0ZXIgY29weWluZyBz
+byB0aGUKPj4gLQkJICogY2hlY2sgaXMgc3RpbGwgbWVhbmluZ2Z1bCBvbmNlIG9sZCByZXBvcnRz
+IHN0YXJ0Cj4+IC0JCSAqIGJlaW5nIG92ZXJ3cml0dGVuLgo+PiArCQkgKiBDbGVhciBvdXQgdGhl
+IGZpcnN0IDIgZHdvcmQgYXMgYSBtZWFuIHRvIGRldGVjdCB1bmxhbmRlZAo+PiArCQkgKiByZXBv
+cnRzLgo+PiAJCSAqLwo+PiAtCQlyZXBvcnQzMlswXSA9IDA7Cj4+ICsJCXJlcG9ydDMyWzBdID0g
+cmVwb3J0MzJbMV0gPSAwOwo+IEFnYWluLCBob3cgYWJvdXQgaW5pdGlhbGl6YXRpb24gaGVyZT8g
+VGhhdCBpcywgc2luY2Ugd2UgYXJlIGRvaW5nIHRoaXMgd2hlbgo+IGNvcHlpbmcgdG8gdXNlciBi
+dWZmZXIsIGlzIHRoZSBnZW0gb2JqZWN0IGFsbG9jYXRlZCBpbiBhbGxvY19vYV9idWZmZXIoKQo+
+IHplcm8nZCBvdXQgdG8gYmVnaW4gd2l0aD8KCgptZW1zZXQgdG8gMCBpbiBpbml0X29hX2J1ZmZl
+ciB2ZnVuY3MuCgoKPgo+PiBAQCAtMTU1OSw4ICsxNTI4LDggQEAgc3RhdGljIHZvaWQgZ2VuMTJf
+aW5pdF9vYV9idWZmZXIoc3RydWN0IGk5MTVfcGVyZl9zdHJlYW0gKnN0cmVhbSkKPj4gCQkJICAg
+Z3R0X29mZnNldCAmIEdFTjEyX09BR19PQVRBSUxQVFJfTUFTSyk7Cj4+Cj4+IAkvKiBNYXJrIHRo
+YXQgd2UgbmVlZCB1cGRhdGVkIHRhaWwgcG9pbnRlcnMgdG8gcmVhZCBmcm9tLi4uICovCj4+IC0J
+c3RyZWFtLT5vYV9idWZmZXIudGFpbHNbMF0ub2Zmc2V0ID0gSU5WQUxJRF9UQUlMX1BUUjsKPj4g
+LQlzdHJlYW0tPm9hX2J1ZmZlci50YWlsc1sxXS5vZmZzZXQgPSBJTlZBTElEX1RBSUxfUFRSOwo+
+PiArCXN0cmVhbS0+b2FfYnVmZmVyLmFnaW5nX3RhaWwgPQo+PiArCQlzdHJlYW0tPm9hX2J1ZmZl
+ci50YWlsID0gZ3R0X29mZnNldDsKPiBXaGF0IGlzIHRoZSByZWFzb24gZm9yIGluaXRpYWxpemlu
+ZyB0aGUgaGVhZCBhbmQgdGFpbCBmaXJzdCB0byBndHRfb2Zmc2V0Cj4gYW5kIGxhdGVyIHN1YnRy
+YWN0aW5nIGl0IG91dD8gSWYgaHdfdGFpbCByZWFkIGZyb20gdGhlIEhXIGhhcyB0aGlzIG9mZnNl
+dAo+IGl0IHNlZW1zIHNpbXBsZXIgdG8ganVzdCBzdWJ0cmFjdCBvdXQgZ3R0X29mZnNldCBmcm9t
+IGh3X3RhaWwgYnV0IGxlYXZlIGFsbAo+IHRoZXNlIHNvZnR3YXJlIGhlYWQvdGFpbCBub3QgaGF2
+ZSBndHRfb2Zmc2V0IChpbml0aWFsaXplZCB0byAwKT8gVGhvdWdoIEkKPiB0aGluayB0aGlzIGlz
+IGFsbCBvdmVyIHRoZSBwbGFjZSBzbyBpdCBpcyBwcm9iYWJseSBiZXR0ZXIgbGVmdCB0byBhCj4g
+c2VwYXJhdGUgbGF0ZXIgcGF0Y2guIFNvIG1heWJlIGxlYXZlIGFzIGlzIGZvciBub3cuCgoKUXVp
+dGUgcG9zc2libHkgd2h5IEkgbGVmdCB0aGUgZ3R0X29mZnNldCBpbiB0aGVyZSA6KQoKTm8gcmVj
+b2xsZWN0aW9uIHRob3VnaC4uLgoKCj4KPiBUaGFua3MhCj4gLS0KPiBBc2h1dG9zaAoKCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWls
+aW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZy
+ZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
