@@ -1,42 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBB7C18A10D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 18:02:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEF418A113
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 18:05:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 441546E2A5;
-	Wed, 18 Mar 2020 17:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B127F6E92F;
+	Wed, 18 Mar 2020 17:05:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F28816E2A5
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 17:02:38 +0000 (UTC)
-IronPort-SDR: AFZl7N5UAMUggjCn4310Ng45TMN9LX1zMrg4WvwKX1J8uuwKg7hbvcAxC+dR7boe3sZIuQ2AHv
- x48kB6kR3URw==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99F3D6E92F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 17:05:19 +0000 (UTC)
+IronPort-SDR: ywOxVD/RUuvH+O78MdevcdCHXDgPyTAt7CYpwx4anbMRUcjNfBISgE9Wi8tOyqAnDyF3GeRYrS
+ E3CETVbBm5MA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 10:02:38 -0700
-IronPort-SDR: H1dAC6vHm26/+Pi99uSyA3LHm4zIpaG1TXAVGw0wmqvGLg4GGunq7UcBcifYC39AL1IUPsB8v7
- jiWjLX5rCrmQ==
+ 18 Mar 2020 10:05:19 -0700
+IronPort-SDR: FlQX+UQOSNy/so7q5CWsTJSeb3mpx8EXQAmo89fMIB0i9CefaqX1SLdhSeWpbXVCnCpDKHAjUX
+ 4j71Bb1bzBjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="291371487"
+X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="233902392"
 Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 18 Mar 2020 10:02:35 -0700
+ by orsmga007.jf.intel.com with SMTP; 18 Mar 2020 10:05:16 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Mar 2020 19:02:35 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Mar 2020 19:02:35 +0200
-Message-Id: <20200318170235.15176-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200313164831.5980-8-ville.syrjala@linux.intel.com>
-References: <20200313164831.5980-8-ville.syrjala@linux.intel.com>
+ Wed, 18 Mar 2020 19:05:15 +0200
+Date: Wed, 18 Mar 2020 19:05:15 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Swati Sharma <swati2.sharma@intel.com>
+Message-ID: <20200318170515.GD13686@intel.com>
+References: <20200317135736.14305-1-swati2.sharma@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 07/13] drm/i915: Store cpu_transcoder_mask in
- device info
+Content-Disposition: inline
+In-Reply-To: <20200317135736.14305-1-swati2.sharma@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v9] drm/i915/color: Extract icl_read_luts()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,233 +50,309 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: jani.nikula@intel.com, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCldl
-IGhhdmUgYSBidW5jaCBvZiBjb2RlIHRoYXQgd291bGQgbGlrZSB0byBrbm93IHdoaWNoCkNQVSB0
-cmFuc2NvZGVycyBhcmUgYWN0dWFsbHkgcHJlc2VudCBpbiB0aGUgaGFyZHdhcmUuIFJhdGhlciB0
-aGFuCnVzZSB2YXJpb3VzIGFkLWhvYyBtZXRob2RzIGxldCdzIGp1c3QgaW5jbHVkZSBhIGZ1bGwg
-Yml0bWFzayBpbgp0aGUgZGV2aWNlIGluZm8sIGFsb25nc2lkZSBwaXBlX21hc2suCgp2MjogUmVi
-YXNlCgpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXgu
-aW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMg
-ICAgIHwgIDYgKystLQogZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5
-LmMgfCAxMyArKy0tLS0tLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5oIHwgIDggKysrKy0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oICAgICAg
-ICAgICAgICB8ICAyICstCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jICAgICAgICAg
-ICAgICB8IDIzICsrKysrKysrKysrKysrKy0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX2Rl
-dmljZV9pbmZvLmMgICAgIHwgMjkgKysrKysrKysrKysrLS0tLS0tLS0KIGRyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2ludGVsX2RldmljZV9pbmZvLmggICAgIHwgIDEgKwogNyBmaWxlcyBjaGFuZ2VkLCA1
-MyBpbnNlcnRpb25zKCspLCAyOSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kZGkuYwppbmRleCA4YmI2YzU4M2FiYjguLjBmZWEyZWMyY2RkOCAxMDA2NDQK
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYworKysgYi9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCkBAIC0xNjg5LDcgKzE2ODksNyBA
-QCBib29sIGludGVsX2RkaV9jb25uZWN0b3JfZ2V0X2h3X3N0YXRlKHN0cnVjdCBpbnRlbF9jb25u
-ZWN0b3IgKmludGVsX2Nvbm5lY3RvcikKIAkJZ290byBvdXQ7CiAJfQogCi0JaWYgKEhBU19UUkFO
-U0NPREVSX0VEUChkZXZfcHJpdikgJiYgcG9ydCA9PSBQT1JUX0EpCisJaWYgKEhBU19UUkFOU0NP
-REVSKGRldl9wcml2LCBUUkFOU0NPREVSX0VEUCkgJiYgcG9ydCA9PSBQT1JUX0EpCiAJCWNwdV90
-cmFuc2NvZGVyID0gVFJBTlNDT0RFUl9FRFA7CiAJZWxzZQogCQljcHVfdHJhbnNjb2RlciA9IChl
-bnVtIHRyYW5zY29kZXIpIHBpcGU7CkBAIC0xNzUxLDcgKzE3NTEsNyBAQCBzdGF0aWMgdm9pZCBp
-bnRlbF9kZGlfZ2V0X2VuY29kZXJfcGlwZXMoc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIs
-CiAJaWYgKCEodG1wICYgRERJX0JVRl9DVExfRU5BQkxFKSkKIAkJZ290byBvdXQ7CiAKLQlpZiAo
-SEFTX1RSQU5TQ09ERVJfRURQKGRldl9wcml2KSAmJiBwb3J0ID09IFBPUlRfQSkgeworCWlmIChI
-QVNfVFJBTlNDT0RFUihkZXZfcHJpdiwgVFJBTlNDT0RFUl9FRFApICYmIHBvcnQgPT0gUE9SVF9B
-KSB7CiAJCXRtcCA9IGludGVsX2RlX3JlYWQoZGV2X3ByaXYsCiAJCQkJICAgIFRSQU5TX0RESV9G
-VU5DX0NUTChUUkFOU0NPREVSX0VEUCkpOwogCkBAIC00MDc2LDcgKzQwNzYsNyBAQCBzdGF0aWMg
-aW50IGludGVsX2RkaV9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2Rl
-ciwKIAllbnVtIHBvcnQgcG9ydCA9IGVuY29kZXItPnBvcnQ7CiAJaW50IHJldDsKIAotCWlmIChI
-QVNfVFJBTlNDT0RFUl9FRFAoZGV2X3ByaXYpICYmIHBvcnQgPT0gUE9SVF9BKQorCWlmIChIQVNf
-VFJBTlNDT0RFUihkZXZfcHJpdiwgVFJBTlNDT0RFUl9FRFApICYmIHBvcnQgPT0gUE9SVF9BKQog
-CQlwaXBlX2NvbmZpZy0+Y3B1X3RyYW5zY29kZXIgPSBUUkFOU0NPREVSX0VEUDsKIAogCWlmIChp
-bnRlbF9jcnRjX2hhc190eXBlKHBpcGVfY29uZmlnLCBJTlRFTF9PVVRQVVRfSERNSSkpIHsKZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMKaW5kZXggNDg0MDk4
-OGRjNThkLi4yOTJjYWM2NGYxYWMgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
-c3BsYXkvaW50ZWxfZGlzcGxheS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkv
-aW50ZWxfZGlzcGxheS5jCkBAIC0xMDg1NSw3ICsxMDg1NSw3IEBAIHN0YXRpYyBib29sIGhzd19n
-ZXRfdHJhbnNjb2Rlcl9zdGF0ZShzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YywKIAkJcGFuZWxfdHJh
-bnNjb2Rlcl9tYXNrIHw9CiAJCQlCSVQoVFJBTlNDT0RFUl9EU0lfMCkgfCBCSVQoVFJBTlNDT0RF
-Ul9EU0lfMSk7CiAKLQlpZiAoSEFTX1RSQU5TQ09ERVJfRURQKGRldl9wcml2KSkKKwlpZiAoSEFT
-X1RSQU5TQ09ERVIoZGV2X3ByaXYsIFRSQU5TQ09ERVJfRURQKSkKIAkJcGFuZWxfdHJhbnNjb2Rl
-cl9tYXNrIHw9IEJJVChUUkFOU0NPREVSX0VEUCk7CiAKIAkvKgpAQCAtMTg3MTIsMTUgKzE4NzEy
-LDYgQEAgdm9pZCBpbnRlbF9tb2Rlc2V0X2RyaXZlcl9yZW1vdmVfbm9pcnEoc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKmk5MTUpCiAKICNpZiBJU19FTkFCTEVEKENPTkZJR19EUk1fSTkxNV9DQVBU
-VVJFX0VSUk9SKQogCi1zdGF0aWMgYm9vbAotaGFzX3RyYW5zY29kZXIoc3RydWN0IGRybV9pOTE1
-X3ByaXZhdGUgKmRldl9wcml2LCBlbnVtIHRyYW5zY29kZXIgY3B1X3RyYW5zY29kZXIpCi17Ci0J
-aWYgKGNwdV90cmFuc2NvZGVyID09IFRSQU5TQ09ERVJfRURQKQotCQlyZXR1cm4gSEFTX1RSQU5T
-Q09ERVJfRURQKGRldl9wcml2KTsKLQllbHNlCi0JCXJldHVybiBJTlRFTF9JTkZPKGRldl9wcml2
-KS0+cGlwZV9tYXNrICYgQklUKGNwdV90cmFuc2NvZGVyKTsKLX0KLQogc3RydWN0IGludGVsX2Rp
-c3BsYXlfZXJyb3Jfc3RhdGUgewogCiAJdTMyIHBvd2VyX3dlbGxfZHJpdmVyOwpAQCAtMTg4Mjks
-NyArMTg4MjAsNyBAQCBpbnRlbF9kaXNwbGF5X2NhcHR1cmVfZXJyb3Jfc3RhdGUoc3RydWN0IGRy
-bV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCWZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGVy
-cm9yLT50cmFuc2NvZGVyKTsgaSsrKSB7CiAJCWVudW0gdHJhbnNjb2RlciBjcHVfdHJhbnNjb2Rl
-ciA9IHRyYW5zY29kZXJzW2ldOwogCi0JCWlmICghaGFzX3RyYW5zY29kZXIoZGV2X3ByaXYsIGNw
-dV90cmFuc2NvZGVyKSkKKwkJaWYgKCFIQVNfVFJBTlNDT0RFUihkZXZfcHJpdiwgY3B1X3RyYW5z
-Y29kZXIpKQogCQkJY29udGludWU7CiAKIAkJZXJyb3ItPnRyYW5zY29kZXJbaV0uYXZhaWxhYmxl
-ID0gdHJ1ZTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGlzcGxheS5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmgK
-aW5kZXggYWRiMTIyNWEzNDgwLi5jYzdmMjg3ODA0ZDcgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5oCkBAIC0zMjAsOSArMzIwLDEzIEBAIGVudW0gcGh5
-X2ZpYSB7CiAJZm9yX2VhY2hfcGlwZShfX2Rldl9wcml2LCBfX3ApIFwKIAkJZm9yX2VhY2hfaWYo
-KF9fbWFzaykgJiBCSVQoX19wKSkKIAotI2RlZmluZSBmb3JfZWFjaF9jcHVfdHJhbnNjb2Rlcl9t
-YXNrZWQoX19kZXZfcHJpdiwgX190LCBfX21hc2spIFwKKyNkZWZpbmUgZm9yX2VhY2hfY3B1X3Ry
-YW5zY29kZXIoX19kZXZfcHJpdiwgX190KSBcCiAJZm9yICgoX190KSA9IDA7IChfX3QpIDwgSTkx
-NV9NQVhfVFJBTlNDT0RFUlM7IChfX3QpKyspCVwKLQkJZm9yX2VhY2hfaWYgKChfX21hc2spICYg
-KDEgPDwgKF9fdCkpKQorCQlmb3JfZWFjaF9pZiAoSU5URUxfSU5GTyhfX2Rldl9wcml2KS0+Y3B1
-X3RyYW5zY29kZXJfbWFzayAmIEJJVChfX3QpKQorCisjZGVmaW5lIGZvcl9lYWNoX2NwdV90cmFu
-c2NvZGVyX21hc2tlZChfX2Rldl9wcml2LCBfX3QsIF9fbWFzaykgXAorCWZvcl9lYWNoX2NwdV90
-cmFuc2NvZGVyKF9fZGV2X3ByaXYsIF9fdCkgXAorCQlmb3JfZWFjaF9pZiAoKF9fbWFzaykgJiBC
-SVQoX190KSkKIAogI2RlZmluZSBmb3JfZWFjaF91bml2ZXJzYWxfcGxhbmUoX19kZXZfcHJpdiwg
-X19waXBlLCBfX3ApCQlcCiAJZm9yICgoX19wKSA9IDA7CQkJCQkJCVwKZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X2Rydi5oCmluZGV4IGE3ZWExZDg1NTM1OS4uZWE5MTcwZmQxNjliIDEwMDY0NAotLS0gYS9kcml2
-ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5
-MTVfZHJ2LmgKQEAgLTE2MDIsNyArMTYwMiw3IEBAIElTX1NVQlBMQVRGT1JNKGNvbnN0IHN0cnVj
-dCBkcm1faTkxNV9wcml2YXRlICppOTE1LAogI2RlZmluZSBIQVNfRERJKGRldl9wcml2KQkJIChJ
-TlRFTF9JTkZPKGRldl9wcml2KS0+ZGlzcGxheS5oYXNfZGRpKQogI2RlZmluZSBIQVNfRlBHQV9E
-QkdfVU5DTEFJTUVEKGRldl9wcml2KSAoSU5URUxfSU5GTyhkZXZfcHJpdiktPmhhc19mcGdhX2Ri
-ZykKICNkZWZpbmUgSEFTX1BTUihkZXZfcHJpdikJCSAoSU5URUxfSU5GTyhkZXZfcHJpdiktPmRp
-c3BsYXkuaGFzX3BzcikKLSNkZWZpbmUgSEFTX1RSQU5TQ09ERVJfRURQKGRldl9wcml2KQkgKElO
-VEVMX0lORk8oZGV2X3ByaXYpLT50cmFuc19vZmZzZXRzW1RSQU5TQ09ERVJfRURQXSAhPSAwKQor
-I2RlZmluZSBIQVNfVFJBTlNDT0RFUihkZXZfcHJpdiwgdHJhbnMpCSAoKElOVEVMX0lORk8oZGV2
-X3ByaXYpLT5jcHVfdHJhbnNjb2Rlcl9tYXNrICYgQklUKHRyYW5zKSkgIT0gMCkKIAogI2RlZmlu
-ZSBIQVNfUkM2KGRldl9wcml2KQkJIChJTlRFTF9JTkZPKGRldl9wcml2KS0+aGFzX3JjNikKICNk
-ZWZpbmUgSEFTX1JDNnAoZGV2X3ByaXYpCQkgKElOVEVMX0lORk8oZGV2X3ByaXYpLT5oYXNfcmM2
-cCkKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jCmluZGV4IDJjODBhMDE5NGM4MC4uNjY3MzhmMmM0ZjI4
-IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3BjaS5jCisrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2k5MTVfcGNpLmMKQEAgLTE2MCw2ICsxNjAsNyBAQAogCUdFTigyKSwg
-XAogCS5pc19tb2JpbGUgPSAxLCBcCiAJLnBpcGVfbWFzayA9IEJJVChQSVBFX0EpIHwgQklUKFBJ
-UEVfQiksIFwKKwkuY3B1X3RyYW5zY29kZXJfbWFzayA9IEJJVChUUkFOU0NPREVSX0EpIHwgQklU
-KFRSQU5TQ09ERVJfQiksIFwKIAkuZGlzcGxheS5oYXNfb3ZlcmxheSA9IDEsIFwKIAkuZGlzcGxh
-eS5jdXJzb3JfbmVlZHNfcGh5c2ljYWwgPSAxLCBcCiAJLmRpc3BsYXkub3ZlcmxheV9uZWVkc19w
-aHlzaWNhbCA9IDEsIFwKQEAgLTE3OSw2ICsxODAsNyBAQAogI2RlZmluZSBJODQ1X0ZFQVRVUkVT
-IFwKIAlHRU4oMiksIFwKIAkucGlwZV9tYXNrID0gQklUKFBJUEVfQSksIFwKKwkuY3B1X3RyYW5z
-Y29kZXJfbWFzayA9IEJJVChUUkFOU0NPREVSX0EpLCBcCiAJLmRpc3BsYXkuaGFzX292ZXJsYXkg
-PSAxLCBcCiAJLmRpc3BsYXkub3ZlcmxheV9uZWVkc19waHlzaWNhbCA9IDEsIFwKIAkuZGlzcGxh
-eS5oYXNfZ21jaCA9IDEsIFwKQEAgLTIxOCw2ICsyMjAsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0
-IGludGVsX2RldmljZV9pbmZvIGk4NjVnX2luZm8gPSB7CiAjZGVmaW5lIEdFTjNfRkVBVFVSRVMg
-XAogCUdFTigzKSwgXAogCS5waXBlX21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpLCBc
-CisJLmNwdV90cmFuc2NvZGVyX21hc2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8IEJJVChUUkFOU0NP
-REVSX0IpLCBcCiAJLmRpc3BsYXkuaGFzX2dtY2ggPSAxLCBcCiAJLmdwdV9yZXNldF9jbG9iYmVy
-c19kaXNwbGF5ID0gdHJ1ZSwgXAogCS5lbmdpbmVfbWFzayA9IEJJVChSQ1MwKSwgXApAQCAtMzAz
-LDYgKzMwNiw3IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gcG52X21f
-aW5mbyA9IHsKICNkZWZpbmUgR0VONF9GRUFUVVJFUyBcCiAJR0VOKDQpLCBcCiAJLnBpcGVfbWFz
-ayA9IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQiksIFwKKwkuY3B1X3RyYW5zY29kZXJfbWFzayA9
-IEJJVChUUkFOU0NPREVSX0EpIHwgQklUKFRSQU5TQ09ERVJfQiksIFwKIAkuZGlzcGxheS5oYXNf
-aG90cGx1ZyA9IDEsIFwKIAkuZGlzcGxheS5oYXNfZ21jaCA9IDEsIFwKIAkuZ3B1X3Jlc2V0X2Ns
-b2JiZXJzX2Rpc3BsYXkgPSB0cnVlLCBcCkBAIC0zNTQsNiArMzU4LDcgQEAgc3RhdGljIGNvbnN0
-IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBnbTQ1X2luZm8gPSB7CiAjZGVmaW5lIEdFTjVfRkVB
-VFVSRVMgXAogCUdFTig1KSwgXAogCS5waXBlX21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBF
-X0IpLCBcCisJLmNwdV90cmFuc2NvZGVyX21hc2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8IEJJVChU
-UkFOU0NPREVSX0IpLCBcCiAJLmRpc3BsYXkuaGFzX2hvdHBsdWcgPSAxLCBcCiAJLmVuZ2luZV9t
-YXNrID0gQklUKFJDUzApIHwgQklUKFZDUzApLCBcCiAJLmhhc19zbm9vcCA9IHRydWUsIFwKQEAg
-LTM4MSw2ICszODYsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGls
-a19tX2luZm8gPSB7CiAjZGVmaW5lIEdFTjZfRkVBVFVSRVMgXAogCUdFTig2KSwgXAogCS5waXBl
-X21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpLCBcCisJLmNwdV90cmFuc2NvZGVyX21h
-c2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8IEJJVChUUkFOU0NPREVSX0IpLCBcCiAJLmRpc3BsYXku
-aGFzX2hvdHBsdWcgPSAxLCBcCiAJLmRpc3BsYXkuaGFzX2ZiYyA9IDEsIFwKIAkuZW5naW5lX21h
-c2sgPSBCSVQoUkNTMCkgfCBCSVQoVkNTMCkgfCBCSVQoQkNTMCksIFwKQEAgLTQzMCw2ICs0MzYs
-NyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIHNuYl9tX2d0Ml9pbmZv
-ID0gewogI2RlZmluZSBHRU43X0ZFQVRVUkVTICBcCiAJR0VOKDcpLCBcCiAJLnBpcGVfbWFzayA9
-IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQikgfCBCSVQoUElQRV9DKSwgXAorCS5jcHVfdHJhbnNj
-b2Rlcl9tYXNrID0gQklUKFRSQU5TQ09ERVJfQSkgfCBCSVQoVFJBTlNDT0RFUl9CKSB8IEJJVChU
-UkFOU0NPREVSX0MpLCBcCiAJLmRpc3BsYXkuaGFzX2hvdHBsdWcgPSAxLCBcCiAJLmRpc3BsYXku
-aGFzX2ZiYyA9IDEsIFwKIAkuZW5naW5lX21hc2sgPSBCSVQoUkNTMCkgfCBCSVQoVkNTMCkgfCBC
-SVQoQkNTMCksIFwKQEAgLTQ4Miw2ICs0ODksNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVs
-X2RldmljZV9pbmZvIGl2Yl9xX2luZm8gPSB7CiAJUExBVEZPUk0oSU5URUxfSVZZQlJJREdFKSwK
-IAkuZ3QgPSAyLAogCS5waXBlX21hc2sgPSAwLCAvKiBsZWdhbCwgbGFzdCBvbmUgd2lucyAqLwor
-CS5jcHVfdHJhbnNjb2Rlcl9tYXNrID0gMCwKIAkuaGFzX2wzX2RwZiA9IDEsCiB9OwogCkBAIC00
-OTAsNiArNDk4LDcgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyB2bHZf
-aW5mbyA9IHsKIAlHRU4oNyksCiAJLmlzX2xwID0gMSwKIAkucGlwZV9tYXNrID0gQklUKFBJUEVf
-QSkgfCBCSVQoUElQRV9CKSwKKwkuY3B1X3RyYW5zY29kZXJfbWFzayA9IEJJVChUUkFOU0NPREVS
-X0EpIHwgQklUKFRSQU5TQ09ERVJfQiksCiAJLmhhc19ydW50aW1lX3BtID0gMSwKIAkuaGFzX3Jj
-NiA9IDEsCiAJLmhhc19ycHMgPSB0cnVlLApAQCAtNTExLDYgKzUyMCw4IEBAIHN0YXRpYyBjb25z
-dCBzdHJ1Y3QgaW50ZWxfZGV2aWNlX2luZm8gdmx2X2luZm8gPSB7CiAjZGVmaW5lIEc3NV9GRUFU
-VVJFUyAgXAogCUdFTjdfRkVBVFVSRVMsIFwKIAkuZW5naW5lX21hc2sgPSBCSVQoUkNTMCkgfCBC
-SVQoVkNTMCkgfCBCSVQoQkNTMCkgfCBCSVQoVkVDUzApLCBcCisJLmNwdV90cmFuc2NvZGVyX21h
-c2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8IEJJVChUUkFOU0NPREVSX0IpIHwgXAorCQlCSVQoVFJB
-TlNDT0RFUl9DKSB8IEJJVChUUkFOU0NPREVSX0VEUCksIFwKIAkuZGlzcGxheS5oYXNfZGRpID0g
-MSwgXAogCS5oYXNfZnBnYV9kYmcgPSAxLCBcCiAJLmRpc3BsYXkuaGFzX3BzciA9IDEsIFwKQEAg
-LTU4MSw2ICs1OTIsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGNo
-dl9pbmZvID0gewogCVBMQVRGT1JNKElOVEVMX0NIRVJSWVZJRVcpLAogCUdFTig4KSwKIAkucGlw
-ZV9tYXNrID0gQklUKFBJUEVfQSkgfCBCSVQoUElQRV9CKSB8IEJJVChQSVBFX0MpLAorCS5jcHVf
-dHJhbnNjb2Rlcl9tYXNrID0gQklUKFRSQU5TQ09ERVJfQSkgfCBCSVQoVFJBTlNDT0RFUl9CKSB8
-IEJJVChUUkFOU0NPREVSX0MpLAogCS5kaXNwbGF5Lmhhc19ob3RwbHVnID0gMSwKIAkuaXNfbHAg
-PSAxLAogCS5lbmdpbmVfbWFzayA9IEJJVChSQ1MwKSB8IEJJVChWQ1MwKSB8IEJJVChCQ1MwKSB8
-IEJJVChWRUNTMCksCkBAIC02NTYsNiArNjY4LDkgQEAgc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRl
-bF9kZXZpY2VfaW5mbyBza2xfZ3Q0X2luZm8gPSB7CiAJLmRpc3BsYXkuaGFzX2hvdHBsdWcgPSAx
-LCBcCiAJLmVuZ2luZV9tYXNrID0gQklUKFJDUzApIHwgQklUKFZDUzApIHwgQklUKEJDUzApIHwg
-QklUKFZFQ1MwKSwgXAogCS5waXBlX21hc2sgPSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpIHwg
-QklUKFBJUEVfQyksIFwKKwkuY3B1X3RyYW5zY29kZXJfbWFzayA9IEJJVChUUkFOU0NPREVSX0Ep
-IHwgQklUKFRSQU5TQ09ERVJfQikgfCBcCisJCUJJVChUUkFOU0NPREVSX0MpIHwgQklUKFRSQU5T
-Q09ERVJfRURQKSB8IFwKKwkJQklUKFRSQU5TQ09ERVJfRFNJX0EpIHwgQklUKFRSQU5TQ09ERVJf
-RFNJX0MpLCBcCiAJLmhhc182NGJpdF9yZWxvYyA9IDEsIFwKIAkuZGlzcGxheS5oYXNfZGRpID0g
-MSwgXAogCS5oYXNfZnBnYV9kYmcgPSAxLCBcCkBAIC03NTksNiArNzc0LDkgQEAgc3RhdGljIGNv
-bnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyBjbmxfaW5mbyA9IHsKICNkZWZpbmUgR0VOMTFf
-RkVBVFVSRVMgXAogCUdFTjEwX0ZFQVRVUkVTLCBcCiAJR0VOMTFfREVGQVVMVF9QQUdFX1NJWkVT
-LCBcCisJLmNwdV90cmFuc2NvZGVyX21hc2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8IEJJVChUUkFO
-U0NPREVSX0IpIHwgXAorCQlCSVQoVFJBTlNDT0RFUl9DKSB8IEJJVChUUkFOU0NPREVSX0VEUCkg
-fCBcCisJCUJJVChUUkFOU0NPREVSX0RTSV8wKSB8IEJJVChUUkFOU0NPREVSX0RTSV8xKSwgXAog
-CS5waXBlX29mZnNldHMgPSB7IFwKIAkJW1RSQU5TQ09ERVJfQV0gPSBQSVBFX0FfT0ZGU0VULCBc
-CiAJCVtUUkFOU0NPREVSX0JdID0gUElQRV9CX09GRlNFVCwgXApAQCAtNzk5LDYgKzgxNywxMCBA
-QCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGVobF9pbmZvID0gewogI2Rl
-ZmluZSBHRU4xMl9GRUFUVVJFUyBcCiAJR0VOMTFfRkVBVFVSRVMsIFwKIAlHRU4oMTIpLCBcCisJ
-LnBpcGVfbWFzayA9IEJJVChQSVBFX0EpIHwgQklUKFBJUEVfQikgfCBCSVQoUElQRV9DKSB8IEJJ
-VChQSVBFX0QpLCBcCisJLmNwdV90cmFuc2NvZGVyX21hc2sgPSBCSVQoVFJBTlNDT0RFUl9BKSB8
-IEJJVChUUkFOU0NPREVSX0IpIHwgXAorCQlCSVQoVFJBTlNDT0RFUl9DKSB8IEJJVChUUkFOU0NP
-REVSX0QpIHwgXAorCQlCSVQoVFJBTlNDT0RFUl9EU0lfMCkgfCBCSVQoVFJBTlNDT0RFUl9EU0lf
-MSksIFwKIAkucGlwZV9vZmZzZXRzID0geyBcCiAJCVtUUkFOU0NPREVSX0FdID0gUElQRV9BX09G
-RlNFVCwgXAogCQlbVFJBTlNDT0RFUl9CXSA9IFBJUEVfQl9PRkZTRVQsIFwKQEAgLTgyMiw3ICs4
-NDQsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RldmljZV9pbmZvIGVobF9pbmZvID0g
-ewogc3RhdGljIGNvbnN0IHN0cnVjdCBpbnRlbF9kZXZpY2VfaW5mbyB0Z2xfaW5mbyA9IHsKIAlH
-RU4xMl9GRUFUVVJFUywKIAlQTEFURk9STShJTlRFTF9USUdFUkxBS0UpLAotCS5waXBlX21hc2sg
-PSBCSVQoUElQRV9BKSB8IEJJVChQSVBFX0IpIHwgQklUKFBJUEVfQykgfCBCSVQoUElQRV9EKSwK
-IAkuZGlzcGxheS5oYXNfbW9kdWxhcl9maWEgPSAxLAogCS5lbmdpbmVfbWFzayA9CiAJCUJJVChS
-Q1MwKSB8IEJJVChCQ1MwKSB8IEJJVChWRUNTMCkgfCBCSVQoVkNTMCkgfCBCSVQoVkNTMiksCmRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5jIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uYwppbmRleCA5ZmY4OWUxNDJmZjEu
-LmRiODQ5NmI0YzM4ZCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2
-aWNlX2luZm8uYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZpY2VfaW5mby5j
-CkBAIC05ODAsMjUgKzk4MCwzMiBAQCB2b2lkIGludGVsX2RldmljZV9pbmZvX3J1bnRpbWVfaW5p
-dChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYpCiAJCQlkcm1faW5mbygmZGV2X3By
-aXYtPmRybSwKIAkJCQkgIkRpc3BsYXkgZnVzZWQgb2ZmLCBkaXNhYmxpbmdcbiIpOwogCQkJaW5m
-by0+cGlwZV9tYXNrID0gMDsKKwkJCWluZm8tPmNwdV90cmFuc2NvZGVyX21hc2sgPSAwOwogCQl9
-IGVsc2UgaWYgKGZ1c2Vfc3RyYXAgJiBJVkJfUElQRV9DX0RJU0FCTEUpIHsKIAkJCWRybV9pbmZv
-KCZkZXZfcHJpdi0+ZHJtLCAiUGlwZUMgZnVzZWQgb2ZmXG4iKTsKIAkJCWluZm8tPnBpcGVfbWFz
-ayAmPSB+QklUKFBJUEVfQyk7CisJCQlpbmZvLT5jcHVfdHJhbnNjb2Rlcl9tYXNrICY9IH5CSVQo
-VFJBTlNDT0RFUl9DKTsKIAkJfQogCX0gZWxzZSBpZiAoSEFTX0RJU1BMQVkoZGV2X3ByaXYpICYm
-IElOVEVMX0dFTihkZXZfcHJpdikgPj0gOSkgewogCQl1MzIgZGZzbSA9IEk5MTVfUkVBRChTS0xf
-REZTTSk7Ci0JCXU4IGVuYWJsZWRfbWFzayA9IGluZm8tPnBpcGVfbWFzazsKIAotCQlpZiAoZGZz
-bSAmIFNLTF9ERlNNX1BJUEVfQV9ESVNBQkxFKQotCQkJZW5hYmxlZF9tYXNrICY9IH5CSVQoUElQ
-RV9BKTsKLQkJaWYgKGRmc20gJiBTS0xfREZTTV9QSVBFX0JfRElTQUJMRSkKLQkJCWVuYWJsZWRf
-bWFzayAmPSB+QklUKFBJUEVfQik7Ci0JCWlmIChkZnNtICYgU0tMX0RGU01fUElQRV9DX0RJU0FC
-TEUpCi0JCQllbmFibGVkX21hc2sgJj0gfkJJVChQSVBFX0MpOworCQlpZiAoZGZzbSAmIFNLTF9E
-RlNNX1BJUEVfQV9ESVNBQkxFKSB7CisJCQlpbmZvLT5waXBlX21hc2sgJj0gfkJJVChQSVBFX0Ep
-OworCQkJaW5mby0+Y3B1X3RyYW5zY29kZXJfbWFzayAmPSB+QklUKFRSQU5TQ09ERVJfQSk7CisJ
-CX0KKwkJaWYgKGRmc20gJiBTS0xfREZTTV9QSVBFX0JfRElTQUJMRSkgeworCQkJaW5mby0+cGlw
-ZV9tYXNrICY9IH5CSVQoUElQRV9CKTsKKwkJCWluZm8tPmNwdV90cmFuc2NvZGVyX21hc2sgJj0g
-fkJJVChUUkFOU0NPREVSX0IpOworCQl9CisJCWlmIChkZnNtICYgU0tMX0RGU01fUElQRV9DX0RJ
-U0FCTEUpIHsKKwkJCWluZm8tPnBpcGVfbWFzayAmPSB+QklUKFBJUEVfQyk7CisJCQlpbmZvLT5j
-cHVfdHJhbnNjb2Rlcl9tYXNrICY9IH5CSVQoVFJBTlNDT0RFUl9DKTsKKwkJfQogCQlpZiAoSU5U
-RUxfR0VOKGRldl9wcml2KSA+PSAxMiAmJgotCQkgICAgKGRmc20gJiBUR0xfREZTTV9QSVBFX0Rf
-RElTQUJMRSkpCi0JCQllbmFibGVkX21hc2sgJj0gfkJJVChQSVBFX0QpOwotCi0JCWluZm8tPnBp
-cGVfbWFzayA9IGVuYWJsZWRfbWFzazsKKwkJICAgIChkZnNtICYgVEdMX0RGU01fUElQRV9EX0RJ
-U0FCTEUpKSB7CisJCQlpbmZvLT5waXBlX21hc2sgJj0gfkJJVChQSVBFX0QpOworCQkJaW5mby0+
-Y3B1X3RyYW5zY29kZXJfbWFzayAmPSB+QklUKFRSQU5TQ09ERVJfRCk7CisJCX0KIAogCQlpZiAo
-ZGZzbSAmIFNLTF9ERlNNX0RJU1BMQVlfSERDUF9ESVNBQkxFKQogCQkJaW5mby0+ZGlzcGxheS5o
-YXNfaGRjcCA9IDA7CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRlbF9kZXZp
-Y2VfaW5mby5oIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAppbmRl
-eCAxZWNiOWRmMmRlOTEuLmNjZTZhNzJjNWViYyAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJt
-L2k5MTUvaW50ZWxfZGV2aWNlX2luZm8uaAorKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pbnRl
-bF9kZXZpY2VfaW5mby5oCkBAIC0xNjgsNiArMTY4LDcgQEAgc3RydWN0IGludGVsX2RldmljZV9p
-bmZvIHsKIAl1MzIgZGlzcGxheV9tbWlvX29mZnNldDsKIAogCXU4IHBpcGVfbWFzazsKKwl1OCBj
-cHVfdHJhbnNjb2Rlcl9tYXNrOwogCiAjZGVmaW5lIERFRklORV9GTEFHKG5hbWUpIHU4IG5hbWU6
-MQogCURFVl9JTkZPX0ZPUl9FQUNIX0ZMQUcoREVGSU5FX0ZMQUcpOwotLSAKMi4yNC4xCgpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFp
-bGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5m
-cmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+On Tue, Mar 17, 2020 at 07:27:36PM +0530, Swati Sharma wrote:
+> For icl+, have hw read out to create hw blob of gamma
+> lut values. icl+ platforms supports multi segmented gamma
+> mode by default, add hw lut creation for this mode.
+> =
+
+> This will be used to validate gamma programming using dsb
+> (display state buffer) which is a tgl specific feature.
+> =
+
+> v2: -readout code for multisegmented gamma has to come
+>      up with some intermediate entries that aren't preserved
+>      in hardware (Jani N)
+>     -linear interpolation (Ville)
+>     -moved common code to check gamma_enable to specific funcs,
+>      since icl doesn't support that
+> v3: -use u16 instead of __u16 [Jani N]
+>     -used single lut [Jani N]
+>     -improved and more readable for loops [Jani N]
+>     -read values directly to actual locations and then fill gaps [Jani N]
+>     -moved cleaning to patch 1 [Jani N]
+>     -renamed icl_read_lut_multi_seg() to icl_read_lut_multi_segment to
+>      make it similar to icl_load_luts()
+>     -renamed icl_compute_interpolated_gamma_blob() to
+>      icl_compute_interpolated_gamma_lut_values() more sensible, I guess
+> v4: -removed interpolated func for creating gamma lut values
+>     -removed readouts of fine and coarse segments, failure to read PAL_PR=
+EC_DATA
+>      correctly
+> v5: -added gamma_enable check inside read_luts()
+> v6: -renamed intel_color_lut_entry_equal() to intel_color_lut_entries_equ=
+al() [Ville]
+>     -changed if-else to switch [Ville]
+>     -removed intel_color_lut_entry_multi_equal() [Ville]
+> v7: -checkpatch warnings
+> v8: -rebased
+> v9: -rebased, aligned with Ville's style of gamma cleanup
+> =
+
+> Signed-off-by: Swati Sharma <swati2.sharma@intel.com>
+> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+
+Hmm. Did I not send out the mail saying that I pushed this? Maybe not.
+
+Well, doing that now. Pushed to dinq. Thanks for the patch and review.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_color.c | 121 ++++++++++++++++++---
+>  drivers/gpu/drm/i915/i915_reg.h            |   6 +
+>  2 files changed, 109 insertions(+), 18 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
+/i915/display/intel_color.c
+> index c1cce93a1c25..98ece9cd7cdd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_color.c
+> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> @@ -460,6 +460,16 @@ static void ilk_lut_10_pack(struct drm_color_lut *en=
+try, u32 val)
+>  	entry->blue =3D intel_color_lut_pack(REG_FIELD_GET(PREC_PALETTE_BLUE_MA=
+SK, val), 10);
+>  }
+>  =
+
+> +static void icl_lut_multi_seg_pack(struct drm_color_lut *entry, u32 ldw,=
+ u32 udw)
+> +{
+> +	entry->red =3D REG_FIELD_GET(PAL_PREC_MULTI_SEG_RED_UDW_MASK, udw) << 6=
+ |
+> +				   REG_FIELD_GET(PAL_PREC_MULTI_SEG_RED_LDW_MASK, ldw);
+> +	entry->green =3D REG_FIELD_GET(PAL_PREC_MULTI_SEG_GREEN_UDW_MASK, udw) =
+<< 6 |
+> +				     REG_FIELD_GET(PAL_PREC_MULTI_SEG_GREEN_LDW_MASK, ldw);
+> +	entry->blue =3D REG_FIELD_GET(PAL_PREC_MULTI_SEG_BLUE_UDW_MASK, udw) <<=
+ 6 |
+> +				    REG_FIELD_GET(PAL_PREC_MULTI_SEG_BLUE_LDW_MASK, ldw);
+> +}
+> +
+>  static void i9xx_color_commit(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -893,7 +903,7 @@ icl_load_gcmax(const struct intel_crtc_state *crtc_st=
+ate,
+>  	struct intel_dsb *dsb =3D intel_dsb_get(crtc);
+>  	enum pipe pipe =3D crtc->pipe;
+>  =
+
+> -	/* Fixme: LUT entries are 16 bit only, so we can prog 0xFFFF max */
+> +	/* FIXME LUT entries are 16 bit only, so we can prog 0xFFFF max */
+>  	intel_dsb_reg_write(dsb, PREC_PAL_GC_MAX(pipe, 0), color->red);
+>  	intel_dsb_reg_write(dsb, PREC_PAL_GC_MAX(pipe, 1), color->green);
+>  	intel_dsb_reg_write(dsb, PREC_PAL_GC_MAX(pipe, 2), color->blue);
+> @@ -1630,6 +1640,24 @@ static int glk_gamma_precision(const struct intel_=
+crtc_state *crtc_state)
+>  	}
+>  }
+>  =
+
+> +static int icl_gamma_precision(const struct intel_crtc_state *crtc_state)
+> +{
+> +	if ((crtc_state->gamma_mode & POST_CSC_GAMMA_ENABLE) =3D=3D 0)
+> +		return 0;
+> +
+> +	switch (crtc_state->gamma_mode & GAMMA_MODE_MODE_MASK) {
+> +	case GAMMA_MODE_MODE_8BIT:
+> +		return 8;
+> +	case GAMMA_MODE_MODE_10BIT:
+> +		return 10;
+> +	case GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED:
+> +		return 16;
+> +	default:
+> +		MISSING_CASE(crtc_state->gamma_mode);
+> +		return 0;
+> +	}
+> +}
+> +
+>  int intel_color_get_gamma_bit_precision(const struct intel_crtc_state *c=
+rtc_state)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> @@ -1641,7 +1669,9 @@ int intel_color_get_gamma_bit_precision(const struc=
+t intel_crtc_state *crtc_stat
+>  		else
+>  			return i9xx_gamma_precision(crtc_state);
+>  	} else {
+> -		if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+> +		if (INTEL_GEN(dev_priv) >=3D 11)
+> +			return icl_gamma_precision(crtc_state);
+> +		else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv))
+>  			return glk_gamma_precision(crtc_state);
+>  		else if (IS_IRONLAKE(dev_priv))
+>  			return ilk_gamma_precision(crtc_state);
+> @@ -1658,9 +1688,9 @@ static bool err_check(struct drm_color_lut *lut1,
+>  		((abs((long)lut2->green - lut1->green)) <=3D err);
+>  }
+>  =
+
+> -static bool intel_color_lut_entry_equal(struct drm_color_lut *lut1,
+> -					struct drm_color_lut *lut2,
+> -					int lut_size, u32 err)
+> +static bool intel_color_lut_entries_equal(struct drm_color_lut *lut1,
+> +					  struct drm_color_lut *lut2,
+> +					  int lut_size, u32 err)
+>  {
+>  	int i;
+>  =
+
+> @@ -1690,16 +1720,8 @@ bool intel_color_lut_equal(struct drm_property_blo=
+b *blob1,
+>  	lut_size2 =3D drm_color_lut_size(blob2);
+>  =
+
+>  	/* check sw and hw lut size */
+> -	switch (gamma_mode) {
+> -	case GAMMA_MODE_MODE_8BIT:
+> -	case GAMMA_MODE_MODE_10BIT:
+> -		if (lut_size1 !=3D lut_size2)
+> -			return false;
+> -		break;
+> -	default:
+> -		MISSING_CASE(gamma_mode);
+> -			return false;
+> -	}
+> +	if (lut_size1 !=3D lut_size2)
+> +		return false;
+>  =
+
+>  	lut1 =3D blob1->data;
+>  	lut2 =3D blob2->data;
+> @@ -1707,11 +1729,16 @@ bool intel_color_lut_equal(struct drm_property_bl=
+ob *blob1,
+>  	err =3D 0xffff >> bit_precision;
+>  =
+
+>  	/* check sw and hw lut entry to be equal */
+> -	switch (gamma_mode) {
+> +	switch (gamma_mode & GAMMA_MODE_MODE_MASK) {
+>  	case GAMMA_MODE_MODE_8BIT:
+>  	case GAMMA_MODE_MODE_10BIT:
+> -		if (!intel_color_lut_entry_equal(lut1, lut2,
+> -						 lut_size2, err))
+> +		if (!intel_color_lut_entries_equal(lut1, lut2,
+> +						   lut_size2, err))
+> +			return false;
+> +		break;
+> +	case GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED:
+> +		if (!intel_color_lut_entries_equal(lut1, lut2,
+> +						   9, err))
+>  			return false;
+>  		break;
+>  	default:
+> @@ -1946,6 +1973,63 @@ static void glk_read_luts(struct intel_crtc_state =
+*crtc_state)
+>  		crtc_state->hw.gamma_lut =3D glk_read_lut_10(crtc, PAL_PREC_INDEX_VALU=
+E(0));
+>  }
+>  =
+
+> +static struct drm_property_blob *
+> +icl_read_lut_multi_segment(struct intel_crtc *crtc)
+> +{
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	int i, lut_size =3D INTEL_INFO(dev_priv)->color.gamma_lut_size;
+> +	enum pipe pipe =3D crtc->pipe;
+> +	struct drm_property_blob *blob;
+> +	struct drm_color_lut *lut;
+> +
+> +	blob =3D drm_property_create_blob(&dev_priv->drm,
+> +					sizeof(struct drm_color_lut) * lut_size,
+> +					NULL);
+> +	if (IS_ERR(blob))
+> +		return NULL;
+> +
+> +	lut =3D blob->data;
+> +
+> +	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe),
+> +		       PAL_PREC_AUTO_INCREMENT);
+> +
+> +	for (i =3D 0; i < 9; i++) {
+> +		u32 ldw =3D intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
+> +		u32 udw =3D intel_de_read(dev_priv, PREC_PAL_MULTI_SEG_DATA(pipe));
+> +
+> +		icl_lut_multi_seg_pack(&lut[i], ldw, udw);
+> +	}
+> +
+> +	intel_de_write(dev_priv, PREC_PAL_MULTI_SEG_INDEX(pipe), 0);
+> +
+> +	/*
+> +	 * FIXME readouts from PAL_PREC_DATA register aren't giving
+> +	 * correct values in the case of fine and coarse segments.
+> +	 * Restricting readouts only for super fine segment as of now.
+> +	 */
+> +
+> +	return blob;
+> +}
+> +
+> +static void icl_read_luts(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +
+> +	if ((crtc_state->gamma_mode & POST_CSC_GAMMA_ENABLE) =3D=3D 0)
+> +		return;
+> +
+> +	switch (crtc_state->gamma_mode & GAMMA_MODE_MODE_MASK) {
+> +	case GAMMA_MODE_MODE_8BIT:
+> +		crtc_state->hw.gamma_lut =3D ilk_read_lut_8(crtc);
+> +		break;
+> +	case GAMMA_MODE_MODE_12BIT_MULTI_SEGMENTED:
+> +		crtc_state->hw.gamma_lut =3D icl_read_lut_multi_segment(crtc);
+> +		break;
+> +	default:
+> +		crtc_state->hw.gamma_lut =3D glk_read_lut_10(crtc, PAL_PREC_INDEX_VALU=
+E(0));
+> +	}
+> +}
+> +
+>  void intel_color_init(struct intel_crtc *crtc)
+>  {
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> @@ -1989,6 +2073,7 @@ void intel_color_init(struct intel_crtc *crtc)
+>  =
+
+>  		if (INTEL_GEN(dev_priv) >=3D 11) {
+>  			dev_priv->display.load_luts =3D icl_load_luts;
+> +			dev_priv->display.read_luts =3D icl_read_luts;
+>  		} else if (IS_CANNONLAKE(dev_priv) || IS_GEMINILAKE(dev_priv)) {
+>  			dev_priv->display.load_luts =3D glk_load_luts;
+>  			dev_priv->display.read_luts =3D glk_read_luts;
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 309cb7d96b35..758ce731c12c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -10739,6 +10739,12 @@ enum skl_power_gate {
+>  =
+
+>  #define _PAL_PREC_MULTI_SEG_DATA_A	0x4A40C
+>  #define _PAL_PREC_MULTI_SEG_DATA_B	0x4AC0C
+> +#define  PAL_PREC_MULTI_SEG_RED_LDW_MASK   REG_GENMASK(29, 24)
+> +#define  PAL_PREC_MULTI_SEG_RED_UDW_MASK   REG_GENMASK(29, 20)
+> +#define  PAL_PREC_MULTI_SEG_GREEN_LDW_MASK REG_GENMASK(19, 14)
+> +#define  PAL_PREC_MULTI_SEG_GREEN_UDW_MASK REG_GENMASK(19, 10)
+> +#define  PAL_PREC_MULTI_SEG_BLUE_LDW_MASK  REG_GENMASK(9, 4)
+> +#define  PAL_PREC_MULTI_SEG_BLUE_UDW_MASK  REG_GENMASK(9, 0)
+>  =
+
+>  #define PREC_PAL_MULTI_SEG_INDEX(pipe)	_MMIO_PIPE(pipe, \
+>  					_PAL_PREC_MULTI_SEG_INDEX_A, \
+> -- =
+
+> 2.25.1
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
