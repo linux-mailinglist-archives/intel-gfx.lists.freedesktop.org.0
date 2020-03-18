@@ -2,44 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C812618A3EC
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 21:44:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CCBE18A724
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 22:39:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 017E96E964;
-	Wed, 18 Mar 2020 20:44:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3A3C6E908;
+	Wed, 18 Mar 2020 21:39:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60CA6E962;
- Wed, 18 Mar 2020 20:44:37 +0000 (UTC)
-IronPort-SDR: k4hnVejjnwu6Fb0n6vtVyg92BEWNNED+o2jCS+J1sSVfBgFkMmBJ3MiZfgSmEezNxsPW6eRCRx
- OhR5abRd2V8g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 13:44:37 -0700
-IronPort-SDR: WYfRcxkLj/LFlJqmjLUuVj57XDZGeQ2mDMVAr9yu5beKwwNST7wG6bgqtBxEo53EF88CnKTxlK
- 1cKaO0tlB6pA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="263510120"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by orsmga002.jf.intel.com with SMTP; 18 Mar 2020 13:44:34 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Mar 2020 22:44:33 +0200
-Date: Wed, 18 Mar 2020 22:44:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <20200318204433.GG13686@intel.com>
-References: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
- <20200318203107.GM2286538@mdroper-desk1.amr.corp.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9F03B6E58E;
+ Wed, 18 Mar 2020 21:39:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9756AA0088;
+ Wed, 18 Mar 2020 21:39:04 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200318203107.GM2286538@mdroper-desk1.amr.corp.intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH] drm: Reject dumb buffers when driver/device
- doesn't support modesetting
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Wed, 18 Mar 2020 21:39:04 -0000
+Message-ID: <158456754459.25099.442377287570417931@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_Port_sync_for_skl+_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,38 +38,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2020 at 01:31:07PM -0700, Matt Roper wrote:
-> On Wed, Mar 18, 2020 at 05:49:59PM +0200, Ville Syrjala wrote:
-> > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > =
+== Series Details ==
 
-> > Currently a driver must not provide a .dumb_create() hook in the
-> > drm_driver structure if it wants to declare dumb buffers as not
-> > supported. So if the same driver wants to support both modeset
-> > and non-modeset devices it would require two distinct drm_driver
-> > structures in order to reject the dumb buffer operations on the
-> > non-modeset devices. That's rather tedious, so let's make life
-> > easier for such drivers by also checking for the DRIVER_MODESET
-> > flag before we declare dumb buffers as supported. Now all the
-> > driver has to do is clear the flag for any device that can't
-> > do modesetting.
-> =
+Series: drm/i915: Port sync for skl+ (rev3)
+URL   : https://patchwork.freedesktop.org/series/74691/
+State : warning
 
-> Will this be a problem for vgem?  I thought it exposed dumb buffers
-> without modesetting support?
+== Summary ==
 
-Well that's disappointing.
+$ dim checkpatch origin/drm-tip
+72dac032db0d drm/i915/mst: Use .compute_config_late() to compute master transcoder
+0124ef44a60a drm/i915: Move TRANS_DDI_FUNC_CTL2 programming where it belongs
+7200689fa007 drm/i915: Drop usless master_transcoder assignments
+aebcfc348cec drm/i915: Move icl_get_trans_port_sync_config() into the DDI code
+6f316fb900f8 drm/i915: Use REG_FIELD_PREP() & co. for TRANS_DDI_FUNC_CTL2
+-:55: WARNING:LONG_LINE: line over 100 characters
+#55: FILE: drivers/gpu/drm/i915/i915_reg.h:9734:
++#define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
 
--- =
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+e832ccd1183a drm/i915: Include port sync state in the state dump
+248ad2bd291b drm/i915: Store cpu_transcoder_mask in device info
+-:96: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#96: FILE: drivers/gpu/drm/i915/display/intel_display.h:323:
++#define for_each_cpu_transcoder(__dev_priv, __t) \
+ 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
++		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
 
-Ville Syrj=E4l=E4
-Intel
+-:96: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t' - possible side-effects?
+#96: FILE: drivers/gpu/drm/i915/display/intel_display.h:323:
++#define for_each_cpu_transcoder(__dev_priv, __t) \
+ 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
++		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
+
+-:99: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#99: FILE: drivers/gpu/drm/i915/display/intel_display.h:325:
++		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
+
+-:101: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#101: FILE: drivers/gpu/drm/i915/display/intel_display.h:327:
++#define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
++	for_each_cpu_transcoder(__dev_priv, __t) \
++		for_each_if ((__mask) & BIT(__t))
+
+-:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t' - possible side-effects?
+#101: FILE: drivers/gpu/drm/i915/display/intel_display.h:327:
++#define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
++	for_each_cpu_transcoder(__dev_priv, __t) \
++		for_each_if ((__mask) & BIT(__t))
+
+-:103: WARNING:SPACING: space prohibited between function name and open parenthesis '('
+#103: FILE: drivers/gpu/drm/i915/display/intel_display.h:329:
++		for_each_if ((__mask) & BIT(__t))
+
+-:116: WARNING:LONG_LINE: line over 100 characters
+#116: FILE: drivers/gpu/drm/i915/i915_drv.h:1605:
++#define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->cpu_transcoder_mask & BIT(trans)) != 0)
+
+total: 2 errors, 3 warnings, 2 checks, 242 lines checked
+2084e75f8c82 drm/i915: Implement port sync for SKL+
+-:209: WARNING:LONG_LINE: line over 100 characters
+#209: FILE: drivers/gpu/drm/i915/i915_reg.h:9704:
++#define  TRANS_DDI_PORT_SYNC_MASTER_SELECT(x)	REG_FIELD_PREP(TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK, (x))
+
+total: 0 errors, 1 warnings, 0 checks, 165 lines checked
+ed313611cd9d drm/i915: Eliminate port sync copy pasta
+a85031aa5231 drm/i915: Fix port sync code to work with >2 pipes
+65906b744e8d drm/i915: Do pipe updates after enables for everyone
+ba9ff9562959 drm/i915: Pass atomic state to encoder hooks
+-:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
++	void (*pre_pll_enable)(struct intel_atomic_state *,
+
+-:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
++	void (*pre_pll_enable)(struct intel_atomic_state *,
+
+-:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
++	void (*pre_pll_enable)(struct intel_atomic_state *,
+
+-:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
++	void (*pre_pll_enable)(struct intel_atomic_state *,
+
+-:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
++	void (*pre_enable)(struct intel_atomic_state *,
+
+-:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
++	void (*pre_enable)(struct intel_atomic_state *,
+
+-:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
++	void (*pre_enable)(struct intel_atomic_state *,
+
+-:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
++	void (*pre_enable)(struct intel_atomic_state *,
+
+-:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
++	void (*enable)(struct intel_atomic_state *,
+
+-:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
++	void (*enable)(struct intel_atomic_state *,
+
+-:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
++	void (*enable)(struct intel_atomic_state *,
+
+-:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
++	void (*enable)(struct intel_atomic_state *,
+
+-:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
++	void (*disable)(struct intel_atomic_state *,
+
+-:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
++	void (*disable)(struct intel_atomic_state *,
+
+-:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
++	void (*disable)(struct intel_atomic_state *,
+
+-:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
++	void (*disable)(struct intel_atomic_state *,
+
+-:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
++	void (*post_disable)(struct intel_atomic_state *,
+
+-:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
++	void (*post_disable)(struct intel_atomic_state *,
+
+-:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
++	void (*post_disable)(struct intel_atomic_state *,
+
+-:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
++	void (*post_disable)(struct intel_atomic_state *,
+
+-:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
++	void (*post_pll_disable)(struct intel_atomic_state *,
+
+-:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
++	void (*post_pll_disable)(struct intel_atomic_state *,
+
+-:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
++	void (*post_pll_disable)(struct intel_atomic_state *,
+
+-:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
++	void (*post_pll_disable)(struct intel_atomic_state *,
+
+-:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
+#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
++	void (*update_pipe)(struct intel_atomic_state *,
+
+-:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
+#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
++	void (*update_pipe)(struct intel_atomic_state *,
+
+-:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
+#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
++	void (*update_pipe)(struct intel_atomic_state *,
+
+-:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
+#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
++	void (*update_pipe)(struct intel_atomic_state *,
+
+total: 0 errors, 28 warnings, 0 checks, 1136 lines checked
+eea643cabc5f drm/i915: Move the port sync DP_TP_CTL stuff to the encoder hook
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
