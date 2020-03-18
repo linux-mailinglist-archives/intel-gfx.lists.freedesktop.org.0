@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EF9189BB2
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 13:12:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31C8189BB5
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 13:12:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE2D6E8D9;
-	Wed, 18 Mar 2020 12:12:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD0206E8DA;
+	Wed, 18 Mar 2020 12:12:12 +0000 (UTC)
 X-Original-To: Intel-gfx@lists.freedesktop.org
 Delivered-To: Intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12DEE6E8D6
- for <Intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 12:12:02 +0000 (UTC)
-IronPort-SDR: y+hP5EKn1HuR+YsBFTGPTLtXaIJeXtMjUomcyZXB8bfRxBHrpRx7SGata0DmiCOBR63NUOVvvo
- seOZiSfU1KrQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D08776E8DA
+ for <Intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 12:12:03 +0000 (UTC)
+IronPort-SDR: Z4R8v2r62YrweLN3WBgIoLIOYOzRB2TP6BVPBv9QBxtj+CfDck9pNzf+BDWX9qk2gU0gHPhoCm
+ S8mKDkI3aiDQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 05:12:01 -0700
-IronPort-SDR: zSBs3C+W9Hm0JtLRU4vp+XIhDCBLaKK3nXWU1nCHRlwURbCjMV3jbuGkH1tTlnRVxJZ6h8T1WK
- qejcZynvtn0w==
+ 18 Mar 2020 05:12:03 -0700
+IronPort-SDR: qd3OlfznKqn3ONudwENc3NeAOFAfIQhbHF586mhJAhU4a4RrNvwuPfIMOIYkI8K6RfzxC2B23I
+ Fx3jx77ShP4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,567,1574150400"; d="scan'208";a="417926214"
+X-IronPort-AV: E=Sophos;i="5.70,567,1574150400"; d="scan'208";a="417926226"
 Received: from unknown (HELO localhost.localdomain) ([10.214.196.8])
- by orsmga005.jf.intel.com with ESMTP; 18 Mar 2020 05:12:00 -0700
+ by orsmga005.jf.intel.com with ESMTP; 18 Mar 2020 05:12:02 -0700
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 To: Intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Mar 2020 12:11:35 +0000
-Message-Id: <20200318121138.909-7-tvrtko.ursulin@linux.intel.com>
+Date: Wed, 18 Mar 2020 12:11:36 +0000
+Message-Id: <20200318121138.909-8-tvrtko.ursulin@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200318121138.909-1-tvrtko.ursulin@linux.intel.com>
 References: <20200318121138.909-1-tvrtko.ursulin@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 06/10] drm/i915: Track runtime spent in closed
- GEM contexts
+Subject: [Intel-gfx] [PATCH 07/10] drm/i915: Track all user contexts per
+ client
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,65 +54,101 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
-As GEM contexts are closed we want to have the DRM client remember how
-much GPU time they used (per class) so later we can used it for smarter
-purposes.
+We soon want to start answering questions like how much GPU time is the
+context belonging to a client which exited still using.
+
+To enable this we start tracking all context belonging to a client on a
+separate list.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 12 +++++++++++-
- drivers/gpu/drm/i915/i915_drm_client.h      |  7 +++++++
- 2 files changed, 18 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c       | 8 ++++++++
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h | 3 +++
+ drivers/gpu/drm/i915/i915_drm_client.c            | 3 +++
+ drivers/gpu/drm/i915/i915_drm_client.h            | 5 +++++
+ 4 files changed, 19 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 5edf79ed6247..912375fb8a3b 100644
+index 912375fb8a3b..9654f0ab3f45 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -355,8 +355,18 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+@@ -358,6 +358,10 @@ static void i915_gem_context_free(struct i915_gem_context *ctx)
+ 	if (client) {
+ 		unsigned int i;
  
- 	GEM_BUG_ON(!i915_gem_context_is_closed(ctx));
- 
--	if (client)
-+	if (client) {
-+		unsigned int i;
++		spin_lock(&client->ctx_lock);
++		list_del_rcu(&ctx->client_link);
++		spin_unlock(&client->ctx_lock);
 +
-+		/* Transfer accumulated runtime to the parent drm client. */
-+		BUILD_BUG_ON(ARRAY_SIZE(client->past_runtime) !=
-+			     ARRAY_SIZE(ctx->past_runtime));
-+		for (i = 0; i < ARRAY_SIZE(client->past_runtime); i++)
-+			atomic64_add(atomic64_read(&ctx->past_runtime[i]),
-+				     &client->past_runtime[i]);
-+
- 		i915_drm_client_put(client);
-+	}
+ 		/* Transfer accumulated runtime to the parent drm client. */
+ 		BUILD_BUG_ON(ARRAY_SIZE(client->past_runtime) !=
+ 			     ARRAY_SIZE(ctx->past_runtime));
+@@ -964,6 +968,10 @@ static int gem_context_register(struct i915_gem_context *ctx,
  
- 	spin_lock(&ctx->i915->gem.contexts.lock);
- 	list_del(&ctx->link);
+ 	ctx->client = client;
+ 
++	spin_lock(&client->ctx_lock);
++	list_add_tail_rcu(&ctx->client_link, &client->ctx_list);
++	spin_unlock(&client->ctx_lock);
++
+ 	return 0;
+ 
+ err:
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index f0d7441aafc8..255fcc469d9b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -103,6 +103,9 @@ struct i915_gem_context {
+ 	/** client: struct i915_drm_client */
+ 	struct i915_drm_client *client;
+ 
++	/** link: &drm_client.context_list */
++	struct list_head client_link;
++
+ 	/**
+ 	 * @ref: reference count
+ 	 *
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index 342a11554573..c88d9ff448e0 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -154,6 +154,9 @@ i915_drm_client_add(struct i915_drm_clients *clients, struct task_struct *task)
+ 
+ 	kref_init(&client->kref);
+ 	mutex_init(&client->update_lock);
++	spin_lock_init(&client->ctx_lock);
++	INIT_LIST_HEAD(&client->ctx_list);
++
+ 	client->clients = clients;
+ 
+ 	ret = xa_alloc_cyclic(&clients->xarray, &client->id, client,
 diff --git a/drivers/gpu/drm/i915/i915_drm_client.h b/drivers/gpu/drm/i915/i915_drm_client.h
-index 11b48383881d..29b116606596 100644
+index 29b116606596..0be27aa9bbda 100644
 --- a/drivers/gpu/drm/i915/i915_drm_client.h
 +++ b/drivers/gpu/drm/i915/i915_drm_client.h
-@@ -15,6 +15,8 @@
+@@ -9,10 +9,12 @@
+ #include <linux/device.h>
+ #include <linux/kobject.h>
+ #include <linux/kref.h>
++#include <linux/list.h>
+ #include <linux/mutex.h>
+ #include <linux/pid.h>
+ #include <linux/rcupdate.h>
  #include <linux/sched.h>
++#include <linux/spinlock.h>
  #include <linux/xarray.h>
  
-+#include "gt/intel_engine_types.h"
-+
- struct i915_drm_clients {
- 	struct xarray xarray;
- 	u32 next_id;
-@@ -41,6 +43,11 @@ struct i915_drm_client {
- 		struct device_attribute pid;
- 		struct device_attribute name;
- 	} attr;
-+
-+	/**
-+	 * @past_runtime: Accumulation of pphwsp runtimes from closed contexts.
-+	 */
-+	atomic64_t past_runtime[MAX_ENGINE_CLASS + 1];
- };
+ #include "gt/intel_engine_types.h"
+@@ -36,6 +38,9 @@ struct i915_drm_client {
+ 	char __rcu *name;
+ 	bool closed;
  
- void i915_drm_clients_init(struct i915_drm_clients *clients);
++	spinlock_t ctx_lock; /* For add/remove from ctx_list. */
++	struct list_head ctx_list; /* List of contexts belonging to client. */
++
+ 	struct i915_drm_clients *clients;
+ 
+ 	struct kobject *root;
 -- 
 2.20.1
 
