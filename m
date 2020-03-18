@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C8AA189FE4
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 16:44:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D15BD189FF1
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 16:50:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2DF389C93;
-	Wed, 18 Mar 2020 15:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0D8D6E918;
+	Wed, 18 Mar 2020 15:50:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8C8C289C61;
- Wed, 18 Mar 2020 15:44:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 879BEA47DF;
- Wed, 18 Mar 2020 15:44:52 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B88B89221;
+ Wed, 18 Mar 2020 15:50:03 +0000 (UTC)
+IronPort-SDR: 0cd87rGpKZJ0GekNsy+7rGp5d1Y39ull0ZzGiwgLTjT4wQ+T0/0NpU8ptwQ0QrK0qyd/NMQe84
+ Q52gxkHpozHw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2020 08:50:02 -0700
+IronPort-SDR: QB3zw/4Gw8CINhKIL96qyqvkRmaS293ysZjJuQD2N0gwcWRe12F7CjBJwEwphQqcPcYhfg1fRh
+ yER6ciEJi/vg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="279778660"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga002.fm.intel.com with SMTP; 18 Mar 2020 08:50:00 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Mar 2020 17:49:59 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 18 Mar 2020 17:49:59 +0200
+Message-Id: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi@etezian.org>
-Date: Wed, 18 Mar 2020 15:44:52 -0000
-Message-ID: <158454629255.25101.12300229155847337654@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200318135837.79467-1-andi@etezian.org>
-In-Reply-To: <20200318135837.79467-1-andi@etezian.org>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBk?=
- =?utf-8?q?rm/i915/gt=3A_move_files_more_files_into_debugfs?=
+Subject: [Intel-gfx] [PATCH] drm: Reject dumb buffers when driver/device
+ doesn't support modesetting
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,42 +47,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/gt: move files more files into debugfs
-URL   : https://patchwork.freedesktop.org/series/74834/
-State : failure
-
-== Summary ==
-
-CALL    scripts/checksyscalls.sh
-  CALL    scripts/atomic/check-atomics.sh
-  DESCEND  objtool
-  CHK     include/generated/compile.h
-  CC [M]  drivers/gpu/drm/i915/gt/debugfs_gt.o
-drivers/gpu/drm/i915/gt/debugfs_gt.c:16:10: fatal error: uc/debugfs_uc.h: No such file or directory
- #include "uc/debugfs_uc.h"
-          ^~~~~~~~~~~~~~~~~
-compilation terminated.
-scripts/Makefile.build:267: recipe for target 'drivers/gpu/drm/i915/gt/debugfs_gt.o' failed
-make[4]: *** [drivers/gpu/drm/i915/gt/debugfs_gt.o] Error 1
-scripts/Makefile.build:505: recipe for target 'drivers/gpu/drm/i915' failed
-make[3]: *** [drivers/gpu/drm/i915] Error 2
-scripts/Makefile.build:505: recipe for target 'drivers/gpu/drm' failed
-make[2]: *** [drivers/gpu/drm] Error 2
-scripts/Makefile.build:505: recipe for target 'drivers/gpu' failed
-make[1]: *** [drivers/gpu] Error 2
-Makefile:1683: recipe for target 'drivers' failed
-make: *** [drivers] Error 2
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCkN1
+cnJlbnRseSBhIGRyaXZlciBtdXN0IG5vdCBwcm92aWRlIGEgLmR1bWJfY3JlYXRlKCkgaG9vayBp
+biB0aGUKZHJtX2RyaXZlciBzdHJ1Y3R1cmUgaWYgaXQgd2FudHMgdG8gZGVjbGFyZSBkdW1iIGJ1
+ZmZlcnMgYXMgbm90CnN1cHBvcnRlZC4gU28gaWYgdGhlIHNhbWUgZHJpdmVyIHdhbnRzIHRvIHN1
+cHBvcnQgYm90aCBtb2Rlc2V0CmFuZCBub24tbW9kZXNldCBkZXZpY2VzIGl0IHdvdWxkIHJlcXVp
+cmUgdHdvIGRpc3RpbmN0IGRybV9kcml2ZXIKc3RydWN0dXJlcyBpbiBvcmRlciB0byByZWplY3Qg
+dGhlIGR1bWIgYnVmZmVyIG9wZXJhdGlvbnMgb24gdGhlCm5vbi1tb2Rlc2V0IGRldmljZXMuIFRo
+YXQncyByYXRoZXIgdGVkaW91cywgc28gbGV0J3MgbWFrZSBsaWZlCmVhc2llciBmb3Igc3VjaCBk
+cml2ZXJzIGJ5IGFsc28gY2hlY2tpbmcgZm9yIHRoZSBEUklWRVJfTU9ERVNFVApmbGFnIGJlZm9y
+ZSB3ZSBkZWNsYXJlIGR1bWIgYnVmZmVycyBhcyBzdXBwb3J0ZWQuIE5vdyBhbGwgdGhlCmRyaXZl
+ciBoYXMgdG8gZG8gaXMgY2xlYXIgdGhlIGZsYWcgZm9yIGFueSBkZXZpY2UgdGhhdCBjYW4ndApk
+byBtb2Rlc2V0dGluZy4KClNpZ25lZC1vZmYtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3ly
+amFsYUBsaW51eC5pbnRlbC5jb20+Ci0tLQogZHJpdmVycy9ncHUvZHJtL2RybV9jbGllbnQuYyAg
+ICAgICAgfCAgMiArLQogZHJpdmVycy9ncHUvZHJtL2RybV9jcnRjX2ludGVybmFsLmggfCAgMSAr
+CiBkcml2ZXJzL2dwdS9kcm0vZHJtX2R1bWJfYnVmZmVycy5jICB8IDEyICsrKysrKysrKy0tLQog
+ZHJpdmVycy9ncHUvZHJtL2RybV9pb2N0bC5jICAgICAgICAgfCAgMiArLQogNCBmaWxlcyBjaGFu
+Z2VkLCAxMiBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS9kcm1fY2xpZW50LmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NsaWVudC5jCmlu
+ZGV4IDZiMGM2ZWY4YjliMy4uY2Y2MWQ4N2I0MzRkIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9k
+cm0vZHJtX2NsaWVudC5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fY2xpZW50LmMKQEAgLTgw
+LDcgKzgwLDcgQEAgaW50IGRybV9jbGllbnRfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LCBz
+dHJ1Y3QgZHJtX2NsaWVudF9kZXYgKmNsaWVudCwKIHsKIAlpbnQgcmV0OwogCi0JaWYgKCFkcm1f
+Y29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX01PREVTRVQpIHx8ICFkZXYtPmRyaXZlci0+
+ZHVtYl9jcmVhdGUpCisJaWYgKCFkcm1faGFzX2R1bWJfYnVmZmVycyhkZXYpKQogCQlyZXR1cm4g
+LUVPUE5PVFNVUFA7CiAKIAlpZiAoZnVuY3MgJiYgIXRyeV9tb2R1bGVfZ2V0KGZ1bmNzLT5vd25l
+cikpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2NydGNfaW50ZXJuYWwuaCBiL2Ry
+aXZlcnMvZ3B1L2RybS9kcm1fY3J0Y19pbnRlcm5hbC5oCmluZGV4IDE2ZjI0MTM0MDNhYS4uYzA4
+ZmYwYjdhNTA5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2NydGNfaW50ZXJuYWwu
+aAorKysgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2NydGNfaW50ZXJuYWwuaApAQCAtOTIsNiArOTIs
+NyBAQCBpbnQgZHJtX21vZGVfZ2V0cmVzb3VyY2VzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCiAK
+IAogLyogZHJtX2R1bWJfYnVmZmVycy5jICovCitib29sIGRybV9oYXNfZHVtYl9idWZmZXJzKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYpOwogaW50IGRybV9tb2RlX2NyZWF0ZV9kdW1iKHN0cnVjdCBk
+cm1fZGV2aWNlICpkZXYsCiAJCQkgc3RydWN0IGRybV9tb2RlX2NyZWF0ZV9kdW1iICphcmdzLAog
+CQkJIHN0cnVjdCBkcm1fZmlsZSAqZmlsZV9wcml2KTsKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9kcm1fZHVtYl9idWZmZXJzLmMgYi9kcml2ZXJzL2dwdS9kcm0vZHJtX2R1bWJfYnVmZmVy
+cy5jCmluZGV4IGQxOGE3NDBmZTBmMS4uOTg1OTUzMDM2MmUyIDEwMDY0NAotLS0gYS9kcml2ZXJz
+L2dwdS9kcm0vZHJtX2R1bWJfYnVmZmVycy5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1fZHVt
+Yl9idWZmZXJzLmMKQEAgLTU1LDEzICs1NSwxOSBAQAogICogYSBoYXJkd2FyZS1zcGVjaWZpYyBp
+b2N0bCB0byBhbGxvY2F0ZSBzdWl0YWJsZSBidWZmZXIgb2JqZWN0cy4KICAqLwogCitib29sIGRy
+bV9oYXNfZHVtYl9idWZmZXJzKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYpCit7CisJcmV0dXJuIGRl
+di0+ZHJpdmVyLT5kdW1iX2NyZWF0ZSAmJgorCQlkcm1fY29yZV9jaGVja19mZWF0dXJlKGRldiwg
+RFJJVkVSX01PREVTRVQpOworfQorCiBpbnQgZHJtX21vZGVfY3JlYXRlX2R1bWIoc3RydWN0IGRy
+bV9kZXZpY2UgKmRldiwKIAkJCSBzdHJ1Y3QgZHJtX21vZGVfY3JlYXRlX2R1bWIgKmFyZ3MsCiAJ
+CQkgc3RydWN0IGRybV9maWxlICpmaWxlX3ByaXYpCiB7CiAJdTMyIGNwcCwgc3RyaWRlLCBzaXpl
+OwogCi0JaWYgKCFkZXYtPmRyaXZlci0+ZHVtYl9jcmVhdGUpCisJaWYgKCFkcm1faGFzX2R1bWJf
+YnVmZmVycyhkZXYpKQogCQlyZXR1cm4gLUVOT1NZUzsKIAlpZiAoIWFyZ3MtPndpZHRoIHx8ICFh
+cmdzLT5oZWlnaHQgfHwgIWFyZ3MtPmJwcCkKIAkJcmV0dXJuIC1FSU5WQUw7CkBAIC0xMTksNyAr
+MTI1LDcgQEAgaW50IGRybV9tb2RlX21tYXBfZHVtYl9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LAogewogCXN0cnVjdCBkcm1fbW9kZV9tYXBfZHVtYiAqYXJncyA9IGRhdGE7CiAKLQlpZiAo
+IWRldi0+ZHJpdmVyLT5kdW1iX2NyZWF0ZSkKKwlpZiAoIWRybV9oYXNfZHVtYl9idWZmZXJzKGRl
+dikpCiAJCXJldHVybiAtRU5PU1lTOwogCiAJaWYgKGRldi0+ZHJpdmVyLT5kdW1iX21hcF9vZmZz
+ZXQpCkBAIC0xMzQsNyArMTQwLDcgQEAgaW50IGRybV9tb2RlX21tYXBfZHVtYl9pb2N0bChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2LAogaW50IGRybV9tb2RlX2Rlc3Ryb3lfZHVtYihzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LCB1MzIgaGFuZGxlLAogCQkJICBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGVfcHJp
+dikKIHsKLQlpZiAoIWRldi0+ZHJpdmVyLT5kdW1iX2NyZWF0ZSkKKwlpZiAoIWRybV9oYXNfZHVt
+Yl9idWZmZXJzKGRldikpCiAJCXJldHVybiAtRU5PU1lTOwogCiAJaWYgKGRldi0+ZHJpdmVyLT5k
+dW1iX2Rlc3Ryb3kpCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2lvY3RsLmMgYi9k
+cml2ZXJzL2dwdS9kcm0vZHJtX2lvY3RsLmMKaW5kZXggOWU0MTk3MmM0YmJjLi40MzdmMWJlZTY4
+NjkgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9kcm1faW9jdGwuYworKysgYi9kcml2ZXJz
+L2dwdS9kcm0vZHJtX2lvY3RsLmMKQEAgLTI2Miw3ICsyNjIsNyBAQCBzdGF0aWMgaW50IGRybV9n
+ZXRjYXAoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwgc3RydWN0IGRybV9maWxl
+ICpmaWxlXwogCiAJc3dpdGNoIChyZXEtPmNhcGFiaWxpdHkpIHsKIAljYXNlIERSTV9DQVBfRFVN
+Ql9CVUZGRVI6Ci0JCWlmIChkZXYtPmRyaXZlci0+ZHVtYl9jcmVhdGUpCisJCWlmIChkcm1faGFz
+X2R1bWJfYnVmZmVycyhkZXYpKQogCQkJcmVxLT52YWx1ZSA9IDE7CiAJCWJyZWFrOwogCWNhc2Ug
+RFJNX0NBUF9WQkxBTktfSElHSF9DUlRDOgotLSAKMi4yNC4xCgpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9pbnRlbC1nZngK
