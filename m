@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30B618A2A1
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC47C18A2BB
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:57:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D6589C86;
-	Wed, 18 Mar 2020 18:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175696E945;
+	Wed, 18 Mar 2020 18:57:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53FD789CAD
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 18:51:23 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20607841-1500050 
- for multiple; Wed, 18 Mar 2020 18:51:06 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Mar 2020 18:51:04 +0000
-Message-Id: <20200318185104.21516-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200318185104.21516-1-chris@chris-wilson.co.uk>
-References: <20200318185104.21516-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8C6E6E91A;
+ Wed, 18 Mar 2020 18:57:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A14CEA010F;
+ Wed, 18 Mar 2020 18:57:50 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915/gem: Wait until the context is
- finally retired before releasing engines
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 18 Mar 2020 18:57:50 -0000
+Message-ID: <158455787065.25101.1206294297968822321@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Port_sync_for_skl+_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,164 +38,94 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we want to percolate information back from the HW, up through the GEM
-context, we need to wait until the intel_context is scheduled out for
-the last time. This is handled by the retirement of the intel_context's
-barrier, i.e. by listening to the pulse after the notional unpin.
+== Series Details ==
 
-To accommodate this, we need to be able to flush the i915_active's
-barriers before awaiting on them. However, this also requires us to
-ensure the context is unpinned *before* the barrier request can be
-signaled, so mark it as a sentinel.
+Series: drm/i915: Port sync for skl+ (rev2)
+URL   : https://patchwork.freedesktop.org/series/74691/
+State : failure
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 17 ++++------
- drivers/gpu/drm/i915/i915_active.c          | 37 ++++++++++++++++-----
- drivers/gpu/drm/i915/i915_active.h          |  3 +-
- 3 files changed, 37 insertions(+), 20 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index c0e476fcd1fa..05fed8797d37 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -570,23 +570,20 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 	engines->ctx = i915_gem_context_get(ctx);
- 
- 	for_each_gem_engine(ce, engines, it) {
--		struct dma_fence *fence;
--		int err = 0;
-+		int err;
- 
- 		/* serialises with execbuf */
- 		RCU_INIT_POINTER(ce->gem_context, NULL);
- 		if (!intel_context_pin_if_active(ce))
- 			continue;
- 
--		fence = i915_active_fence_get(&ce->timeline->last_request);
--		if (fence) {
--			err = i915_sw_fence_await_dma_fence(&engines->fence,
--							    fence, 0,
--							    GFP_KERNEL);
--			dma_fence_put(fence);
--		}
-+		/* Wait until context is finally scheduled out and retired */
-+		err = i915_sw_fence_await_active(&engines->fence,
-+						 &ce->active,
-+						 I915_ACTIVE_AWAIT_ACTIVE |
-+						 I915_ACTIVE_AWAIT_BARRIER);
- 		intel_context_unpin(ce);
--		if (err < 0)
-+		if (err)
- 			goto kill;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index c4048628188a..da7d35f66dd0 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -518,19 +518,18 @@ int i915_active_wait(struct i915_active *ref)
- 	return 0;
- }
- 
--static int __await_active(struct i915_active_fence *active,
--			  int (*fn)(void *arg, struct dma_fence *fence),
--			  void *arg)
-+static int __await_fence(struct i915_active_fence *active,
-+			 int (*fn)(void *arg, struct dma_fence *fence),
-+			 void *arg)
- {
- 	struct dma_fence *fence;
-+	int err;
- 
--	if (is_barrier(active)) /* XXX flush the barrier? */
-+	if (is_barrier(active))
- 		return 0;
- 
- 	fence = i915_active_fence_get(active);
- 	if (fence) {
--		int err;
--
- 		err = fn(arg, fence);
- 		dma_fence_put(fence);
- 		if (err < 0)
-@@ -540,6 +539,22 @@ static int __await_active(struct i915_active_fence *active,
- 	return 0;
- }
- 
-+static int __await_active(struct active_node *it,
-+			  unsigned int flags,
-+			  int (*fn)(void *arg, struct dma_fence *fence),
-+			  void *arg)
-+{
-+	int err;
-+
-+	if (flags & I915_ACTIVE_AWAIT_BARRIER) {
-+		err = flush_barrier(it);
-+		if (err)
-+			return err;
-+	}
-+
-+	return __await_fence(&it->base, fn, arg);
-+}
-+
- static int await_active(struct i915_active *ref,
- 			unsigned int flags,
- 			int (*fn)(void *arg, struct dma_fence *fence),
-@@ -549,16 +564,17 @@ static int await_active(struct i915_active *ref,
- 
- 	/* We must always wait for the exclusive fence! */
- 	if (rcu_access_pointer(ref->excl.fence)) {
--		err = __await_active(&ref->excl, fn, arg);
-+		err = __await_fence(&ref->excl, fn, arg);
- 		if (err)
- 			return err;
- 	}
- 
--	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
-+	if (flags & I915_ACTIVE_AWAIT_ACTIVE &&
-+	    i915_active_acquire_if_busy(ref)) {
- 		struct active_node *it, *n;
- 
- 		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
--			err = __await_active(&it->base, fn, arg);
-+			err = __await_active(it, flags, fn, arg);
- 			if (err)
- 				break;
- 		}
-@@ -852,6 +868,9 @@ void i915_request_add_active_barriers(struct i915_request *rq)
- 		list_add_tail((struct list_head *)node, &rq->fence.cb_list);
- 	}
- 	spin_unlock_irqrestore(&rq->lock, flags);
-+
-+	/* Ensure that all who came before the barrier are flushed out */
-+	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-index b3282ae7913c..9697592235fa 100644
---- a/drivers/gpu/drm/i915/i915_active.h
-+++ b/drivers/gpu/drm/i915/i915_active.h
-@@ -189,7 +189,8 @@ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
- int i915_request_await_active(struct i915_request *rq,
- 			      struct i915_active *ref,
- 			      unsigned int flags);
--#define I915_ACTIVE_AWAIT_ALL BIT(0)
-+#define I915_ACTIVE_AWAIT_ACTIVE BIT(0)
-+#define I915_ACTIVE_AWAIT_BARRIER BIT(1)
- 
- int i915_active_acquire(struct i915_active *ref);
- bool i915_active_acquire_if_busy(struct i915_active *ref);
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_8152 -> Patchwork_17011
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17011 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17011, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17011/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17011:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_exec_fence@basic-busy@vecs0:
+    - fi-cml-u2:          NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17011/fi-cml-u2/igt@gem_exec_fence@basic-busy@vecs0.html
+    - fi-skl-6600u:       NOTRUN -> [DMESG-WARN][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17011/fi-skl-6600u/igt@gem_exec_fence@basic-busy@vecs0.html
+
+  
+
+
+Participating hosts (44 -> 41)
+------------------------------
+
+  Additional (3): fi-cml-u2 fi-bwr-2160 fi-skl-6600u 
+  Missing    (6): fi-ilk-m540 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bdw-samus fi-skl-6700k2 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8152 -> Patchwork_17011
+
+  CI-20190529: 20190529
+  CI_DRM_8152: ce1895bf390da53060aa60a90367b706d92bf431 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17011: 02e6871f0ae39b3d02f496327a16d769b2647f4b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+02e6871f0ae3 drm/i915: Move the port sync DP_TP_CTL stuff to the encoder hook
+50501c73ea1c drm/i915: Pass atomic state to encoder hooks
+f6dcd889212e drm/i915: Do pipe updates after enables for everyone
+04906e4ea040 drm/i915: Fix port sync code to work with >2 pipes
+66a94a458d39 drm/i915: Eliminate port sync copy pasta
+6a7a32a49547 drm/i915: Implement port sync for SKL+
+c806976a0077 drm/i915: Store cpu_transcoder_mask in device info
+03e8d170af68 drm/i915: Include port sync state in the state dump
+ec27107db7e7 drm/i915: Use REG_FIELD_PREP() & co. for TRANS_DDI_FUNC_CTL2
+61ac37e65386 drm/i915: Move icl_get_trans_port_sync_config() into the DDI code
+632673745f50 drm/i915: Drop usless master_transcoder assignments
+2c7d28920dca drm/i915: Move TRANS_DDI_FUNC_CTL2 programming where it belongs
+d2cdf91643a0 drm/i915/mst: Use .compute_config_late() to compute master transcoder
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17011/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
