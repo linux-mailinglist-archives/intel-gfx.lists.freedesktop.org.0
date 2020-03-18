@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E002518A1E3
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 18:46:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4457518A238
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:17:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 485FC6E2AF;
-	Wed, 18 Mar 2020 17:46:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6C389EAE;
+	Wed, 18 Mar 2020 18:17:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 362106E2AF
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 17:46:42 +0000 (UTC)
-IronPort-SDR: Suifl1DD6FKVkwPrDxuoF3fqSWHU1Po6Pe5OenJZu5cnCUACxMO9SgVj8YVXAvZ9pUFdWiItgX
- 459Rwj70Hk9Q==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 10:46:41 -0700
-IronPort-SDR: qvQrQsf2KHgtYshuqDUxQ9vcXE/zFgNV/fdLg43fk6CI0L9NkGRiVXGRYVFpGMae+yboSBQulN
- 1KqEIAVtzq8A==
-X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="263463756"
-Received: from rdvivi-losangeles.jf.intel.com (HELO intel.com)
- ([10.165.21.202])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 10:46:41 -0700
-Date: Wed, 18 Mar 2020 10:47:05 -0700
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200318174705.GE180247@intel.com>
-References: <20200305174538.16234-1-ville.syrjala@linux.intel.com>
- <20200318174515.31637-1-ville.syrjala@linux.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id F400789E5A;
+ Wed, 18 Mar 2020 18:17:44 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ECE86A0091;
+ Wed, 18 Mar 2020 18:17:44 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200318174515.31637-1-ville.syrjala@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: Fix crtc nv12 etc. plane
- bitmasks for DPMS off
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Date: Wed, 18 Mar 2020 18:17:44 -0000
+Message-ID: <158455546493.25102.4019816354122435081@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?=3A_Reject_dumb_buffers_when_driver/device_doesn=27t_support_mo?=
+ =?utf-8?q?desetting?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,142 +39,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2020 at 07:45:15PM +0200, Ville Syrjala wrote:
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> =
+== Series Details ==
 
-> We only consider crtc_state->enable when initially calculating plane
-> visibility. Later on we try to override the plane's state to invisible
-> if the crtc is in DPMS off state (crtc_state->active=3D=3Dfalse).
-> Unfortunately the code doing that only updates the plane_state.visible
-> flag and the crtc_state.active_planes bimask, but forgets to update
-> some of the other plane bitmasks stored in the crtc_state. Namely
-> crtc_state.nv12_planes is left set up based on the original visibility
-> check which makes icl_check_nv12_planes() pick a slave plane for the
-> flagged plane in the bitmask. Later on we hit the watermark code
-> which sees a plane with a slave assigned and it then makes the
-> logical assumption that the master plane must itself be visible.
-> Since the master's plane_state.visible flag was already cleared
-> we get a WARN.
-> =
+Series: drm: Reject dumb buffers when driver/device doesn't support modesetting
+URL   : https://patchwork.freedesktop.org/series/74841/
+State : failure
 
-> Fix the problem by clearing all the plane bitmasks for DPMS off.
-> This is more or less the wrong approach and instead we should
-> calculate all the plane related state purely based crtc_state->enable
-> (to guarantee that the subsequent DPMS on can't fail). However in
-> the past we definitely had some roadblocks to making that happen.
-> Not sure how many are left these days, but let's stick to the current
-> approach since it's a much simpler fix to the immediate problem
-> (the WARN).
-> =
+== Summary ==
 
-> v2: Keep the visible=3Dfalse, it's important (Rodrigo)
-> =
+CI Bug Log - changes from CI_DRM_8151 -> Patchwork_17010
+====================================================
 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Summary
+-------
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+  **FAILURE**
 
-> ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 21 +++++++++++++------
->  .../gpu/drm/i915/display/intel_atomic_plane.h |  2 ++
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 ++----
->  3 files changed, 19 insertions(+), 10 deletions(-)
-> =
+  Serious unknown changes coming with Patchwork_17010 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17010, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.c
-> index 457b258683d3..25dfeb3197aa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -264,6 +264,20 @@ void intel_plane_copy_uapi_to_hw_state(struct intel_=
-plane_state *plane_state,
->  	plane_state->hw.color_range =3D from_plane_state->uapi.color_range;
->  }
->  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/index.html
 
-> +void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
-> +			       struct intel_plane_state *plane_state)
-> +{
-> +	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
-> +
-> +	crtc_state->active_planes &=3D ~BIT(plane->id);
-> +	crtc_state->nv12_planes &=3D ~BIT(plane->id);
-> +	crtc_state->c8_planes &=3D ~BIT(plane->id);
-> +	crtc_state->data_rate[plane->id] =3D 0;
-> +	crtc_state->min_cdclk[plane->id] =3D 0;
-> +
-> +	plane_state->uapi.visible =3D false;
-> +}
-> +
->  int intel_plane_atomic_check_with_state(const struct intel_crtc_state *o=
-ld_crtc_state,
->  					struct intel_crtc_state *new_crtc_state,
->  					const struct intel_plane_state *old_plane_state,
-> @@ -273,12 +287,7 @@ int intel_plane_atomic_check_with_state(const struct=
- intel_crtc_state *old_crtc_
->  	const struct drm_framebuffer *fb =3D new_plane_state->hw.fb;
->  	int ret;
->  =
+Possible new issues
+-------------------
 
-> -	new_crtc_state->active_planes &=3D ~BIT(plane->id);
-> -	new_crtc_state->nv12_planes &=3D ~BIT(plane->id);
-> -	new_crtc_state->c8_planes &=3D ~BIT(plane->id);
-> -	new_crtc_state->data_rate[plane->id] =3D 0;
-> -	new_crtc_state->min_cdclk[plane->id] =3D 0;
-> -	new_plane_state->uapi.visible =3D false;
-> +	intel_plane_set_invisible(new_crtc_state, new_plane_state);
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_17010:
 
->  	if (!new_plane_state->hw.crtc && !old_plane_state->hw.crtc)
->  		return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/=
-gpu/drm/i915/display/intel_atomic_plane.h
-> index a6bbf42bae1f..59dd1fbb02ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
-> @@ -52,5 +52,7 @@ int intel_plane_atomic_calc_changes(const struct intel_=
-crtc_state *old_crtc_stat
->  int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
->  			       struct intel_plane *plane,
->  			       bool *need_cdclk_calc);
-> +void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
-> +			       struct intel_plane_state *plane_state);
->  =
+### IGT changes ###
 
->  #endif /* __INTEL_ATOMIC_PLANE_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 8f23c4d51c33..37bd7ce88ecd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -12377,10 +12377,8 @@ int intel_plane_atomic_calc_changes(const struct=
- intel_crtc_state *old_crtc_stat
->  	 * only combine the results from all planes in the current place?
->  	 */
->  	if (!is_crtc_enabled) {
-> -		plane_state->uapi.visible =3D visible =3D false;
-> -		crtc_state->active_planes &=3D ~BIT(plane->id);
-> -		crtc_state->data_rate[plane->id] =3D 0;
-> -		crtc_state->min_cdclk[plane->id] =3D 0;
-> +		intel_plane_set_invisible(crtc_state, plane_state);
-> +		visible =3D false;
->  	}
->  =
+#### Possible regressions ####
 
->  	if (!was_visible && !visible)
-> -- =
+  * igt@gem_exec_fence@basic-busy@vcs0:
+    - fi-elk-e7500:       NOTRUN -> [DMESG-WARN][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-elk-e7500/igt@gem_exec_fence@basic-busy@vcs0.html
+    - fi-ilk-650:         NOTRUN -> [DMESG-WARN][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-ilk-650/igt@gem_exec_fence@basic-busy@vcs0.html
 
-> 2.24.1
-> =
+  * igt@gem_exec_fence@basic-busy@vecs0:
+    - fi-hsw-peppy:       NOTRUN -> [DMESG-WARN][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-hsw-peppy/igt@gem_exec_fence@basic-busy@vecs0.html
+    - fi-skl-guc:         NOTRUN -> [DMESG-WARN][4]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-skl-guc/igt@gem_exec_fence@basic-busy@vecs0.html
 
+  * igt@runner@aborted:
+    - fi-ilk-650:         NOTRUN -> [FAIL][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-ilk-650/igt@runner@aborted.html
+    - fi-hsw-peppy:       NOTRUN -> [FAIL][6]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-hsw-peppy/igt@runner@aborted.html
+    - fi-elk-e7500:       NOTRUN -> [FAIL][7]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-elk-e7500/igt@runner@aborted.html
+
+  
+
+
+Participating hosts (41 -> 38)
+------------------------------
+
+  Additional (6): fi-hsw-peppy fi-skl-guc fi-bdw-gvtdvm fi-ilk-650 fi-elk-e7500 fi-snb-2600 
+  Missing    (9): fi-ilk-m540 fi-byt-squawks fi-glk-dsi fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-bsw-kefka fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8151 -> Patchwork_17010
+
+  CI-20190529: 20190529
+  CI_DRM_8151: 20887f81adb13a9ff582aa079bb5a7e7fc36b7f5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17010: a77d1080eb589fe2a2178dbada738b8dcd4e9b57 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+a77d1080eb58 drm: Reject dumb buffers when driver/device doesn't support modesetting
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
