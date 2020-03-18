@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574B918A28F
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2403F18A2A2
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:51:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC9AA6E88C;
-	Wed, 18 Mar 2020 18:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7A589CAD;
+	Wed, 18 Mar 2020 18:51:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 63A296E059;
- Wed, 18 Mar 2020 18:45:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BCDDA0088;
- Wed, 18 Mar 2020 18:45:53 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE8789C86
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 18:51:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20607840-1500050 
+ for multiple; Wed, 18 Mar 2020 18:51:06 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Mar 2020 18:51:03 +0000
+Message-Id: <20200318185104.21516-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 18 Mar 2020 18:45:53 -0000
-Message-ID: <158455715334.25099.4160330828717420043@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915=3A_Port_sync_for_skl+_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/execlists: Force single submission
+ for sentinels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,195 +37,179 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Currently, we only combine a sentinel request with a max-priority
+barrier such that a sentinel request is always in ELSP[0] with nothing
+following it. However, we will want to create similar ELSP[] submissions
+providing a full-barrier in the submission queue, but without forcing
+maximum priority. As such I915_FENCE_FLAG_SENTINEL takes on the
+single-submission property and so we can remove the gvt special casing.
 
-Series: drm/i915: Port sync for skl+ (rev2)
-URL   : https://patchwork.freedesktop.org/series/74691/
-State : warning
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ drivers/gpu/drm/i915/gt/intel_context.h       | 24 +++++++-------
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  4 +--
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 33 +++++--------------
+ drivers/gpu/drm/i915/gvt/scheduler.c          |  7 ++--
+ 4 files changed, 26 insertions(+), 42 deletions(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-d2cdf91643a0 drm/i915/mst: Use .compute_config_late() to compute master transcoder
-2c7d28920dca drm/i915: Move TRANS_DDI_FUNC_CTL2 programming where it belongs
-632673745f50 drm/i915: Drop usless master_transcoder assignments
-61ac37e65386 drm/i915: Move icl_get_trans_port_sync_config() into the DDI code
-ec27107db7e7 drm/i915: Use REG_FIELD_PREP() & co. for TRANS_DDI_FUNC_CTL2
--:55: WARNING:LONG_LINE: line over 100 characters
-#55: FILE: drivers/gpu/drm/i915/i915_reg.h:9734:
-+#define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
-
-total: 0 errors, 1 warnings, 0 checks, 34 lines checked
-03e8d170af68 drm/i915: Include port sync state in the state dump
-c806976a0077 drm/i915: Store cpu_transcoder_mask in device info
--:96: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#96: FILE: drivers/gpu/drm/i915/display/intel_display.h:323:
-+#define for_each_cpu_transcoder(__dev_priv, __t) \
- 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
-+		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
-
--:96: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t' - possible side-effects?
-#96: FILE: drivers/gpu/drm/i915/display/intel_display.h:323:
-+#define for_each_cpu_transcoder(__dev_priv, __t) \
- 	for ((__t) = 0; (__t) < I915_MAX_TRANSCODERS; (__t)++)	\
-+		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
-
--:99: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#99: FILE: drivers/gpu/drm/i915/display/intel_display.h:325:
-+		for_each_if (INTEL_INFO(__dev_priv)->cpu_transcoder_mask & BIT(__t))
-
--:101: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#101: FILE: drivers/gpu/drm/i915/display/intel_display.h:327:
-+#define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
-+	for_each_cpu_transcoder(__dev_priv, __t) \
-+		for_each_if ((__mask) & BIT(__t))
-
--:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__t' - possible side-effects?
-#101: FILE: drivers/gpu/drm/i915/display/intel_display.h:327:
-+#define for_each_cpu_transcoder_masked(__dev_priv, __t, __mask) \
-+	for_each_cpu_transcoder(__dev_priv, __t) \
-+		for_each_if ((__mask) & BIT(__t))
-
--:103: WARNING:SPACING: space prohibited between function name and open parenthesis '('
-#103: FILE: drivers/gpu/drm/i915/display/intel_display.h:329:
-+		for_each_if ((__mask) & BIT(__t))
-
--:116: WARNING:LONG_LINE: line over 100 characters
-#116: FILE: drivers/gpu/drm/i915/i915_drv.h:1605:
-+#define HAS_TRANSCODER(dev_priv, trans)	 ((INTEL_INFO(dev_priv)->cpu_transcoder_mask & BIT(trans)) != 0)
-
-total: 2 errors, 3 warnings, 2 checks, 242 lines checked
-6a7a32a49547 drm/i915: Implement port sync for SKL+
--:209: WARNING:LONG_LINE: line over 100 characters
-#209: FILE: drivers/gpu/drm/i915/i915_reg.h:9704:
-+#define  TRANS_DDI_PORT_SYNC_MASTER_SELECT(x)	REG_FIELD_PREP(TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK, (x))
-
-total: 0 errors, 1 warnings, 0 checks, 165 lines checked
-66a94a458d39 drm/i915: Eliminate port sync copy pasta
-04906e4ea040 drm/i915: Fix port sync code to work with >2 pipes
-f6dcd889212e drm/i915: Do pipe updates after enables for everyone
-50501c73ea1c drm/i915: Pass atomic state to encoder hooks
--:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
-+	void (*pre_pll_enable)(struct intel_atomic_state *,
-
--:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
-+	void (*pre_pll_enable)(struct intel_atomic_state *,
-
--:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
-+	void (*pre_pll_enable)(struct intel_atomic_state *,
-
--:558: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#558: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:149:
-+	void (*pre_pll_enable)(struct intel_atomic_state *,
-
--:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
-+	void (*pre_enable)(struct intel_atomic_state *,
-
--:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
-+	void (*pre_enable)(struct intel_atomic_state *,
-
--:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
-+	void (*pre_enable)(struct intel_atomic_state *,
-
--:563: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#563: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:153:
-+	void (*pre_enable)(struct intel_atomic_state *,
-
--:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
-+	void (*enable)(struct intel_atomic_state *,
-
--:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
-+	void (*enable)(struct intel_atomic_state *,
-
--:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
-+	void (*enable)(struct intel_atomic_state *,
-
--:568: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#568: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:157:
-+	void (*enable)(struct intel_atomic_state *,
-
--:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
-+	void (*disable)(struct intel_atomic_state *,
-
--:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
-+	void (*disable)(struct intel_atomic_state *,
-
--:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
-+	void (*disable)(struct intel_atomic_state *,
-
--:576: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#576: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:164:
-+	void (*disable)(struct intel_atomic_state *,
-
--:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
-+	void (*post_disable)(struct intel_atomic_state *,
-
--:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
-+	void (*post_disable)(struct intel_atomic_state *,
-
--:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
-+	void (*post_disable)(struct intel_atomic_state *,
-
--:581: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#581: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:168:
-+	void (*post_disable)(struct intel_atomic_state *,
-
--:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
-+	void (*post_pll_disable)(struct intel_atomic_state *,
-
--:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
-+	void (*post_pll_disable)(struct intel_atomic_state *,
-
--:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
-+	void (*post_pll_disable)(struct intel_atomic_state *,
-
--:586: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#586: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:172:
-+	void (*post_pll_disable)(struct intel_atomic_state *,
-
--:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_atomic_state *' should also have an identifier name
-#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
-+	void (*update_pipe)(struct intel_atomic_state *,
-
--:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'struct intel_encoder *' should also have an identifier name
-#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
-+	void (*update_pipe)(struct intel_atomic_state *,
-
--:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct intel_crtc_state *' should also have an identifier name
-#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
-+	void (*update_pipe)(struct intel_atomic_state *,
-
--:591: WARNING:FUNCTION_ARGUMENTS: function definition argument 'const struct drm_connector_state *' should also have an identifier name
-#591: FILE: drivers/gpu/drm/i915/display/intel_display_types.h:176:
-+	void (*update_pipe)(struct intel_atomic_state *,
-
-total: 0 errors, 28 warnings, 0 checks, 1136 lines checked
-02e6871f0ae3 drm/i915: Move the port sync DP_TP_CTL stuff to the encoder hook
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
+index 18efad255124..ee5d47165c12 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.h
++++ b/drivers/gpu/drm/i915/gt/intel_context.h
+@@ -198,18 +198,6 @@ static inline bool intel_context_set_banned(struct intel_context *ce)
+ 	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
+ }
+ 
+-static inline bool
+-intel_context_force_single_submission(const struct intel_context *ce)
+-{
+-	return test_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
+-}
+-
+-static inline void
+-intel_context_set_single_submission(struct intel_context *ce)
+-{
+-	__set_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
+-}
+-
+ static inline bool
+ intel_context_nopreempt(const struct intel_context *ce)
+ {
+@@ -228,6 +216,18 @@ intel_context_clear_nopreempt(struct intel_context *ce)
+ 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
+ }
+ 
++static inline bool
++intel_context_is_gvt(const struct intel_context *ce)
++{
++	return test_bit(CONTEXT_GVT, &ce->flags);
++}
++
++static inline void
++intel_context_set_gvt(struct intel_context *ce)
++{
++	set_bit(CONTEXT_GVT, &ce->flags);
++}
++
+ static inline u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
+ {
+ 	const u32 period =
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 0f3b68b95c56..fd2703efc10c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -64,8 +64,8 @@ struct intel_context {
+ #define CONTEXT_VALID_BIT		2
+ #define CONTEXT_USE_SEMAPHORES		3
+ #define CONTEXT_BANNED			4
+-#define CONTEXT_FORCE_SINGLE_SUBMISSION	5
+-#define CONTEXT_NOPREEMPT		6
++#define CONTEXT_NOPREEMPT		5
++#define CONTEXT_GVT			6
+ 
+ 	u32 *lrc_reg_state;
+ 	u64 lrc_desc;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 112531b29f59..30a5b4049504 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1579,22 +1579,10 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
+ 		writel(EL_CTRL_LOAD, execlists->ctrl_reg);
+ }
+ 
+-static bool ctx_single_port_submission(const struct intel_context *ce)
+-{
+-	return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
+-		intel_context_force_single_submission(ce));
+-}
+-
+ static bool can_merge_ctx(const struct intel_context *prev,
+ 			  const struct intel_context *next)
+ {
+-	if (prev != next)
+-		return false;
+-
+-	if (ctx_single_port_submission(prev))
+-		return false;
+-
+-	return true;
++	return prev == next;
+ }
+ 
+ static unsigned long i915_request_flags(const struct i915_request *rq)
+@@ -1844,6 +1832,12 @@ static inline void clear_ports(struct i915_request **ports, int count)
+ 	memset_p((void **)ports, NULL, count);
+ }
+ 
++static bool has_sentinel(struct i915_request *prev, struct i915_request *next)
++{
++	return (i915_request_flags(prev) | i915_request_flags(next)) &
++		BIT(I915_FENCE_FLAG_NOPREEMPT);
++}
++
+ static void execlists_dequeue(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+@@ -2125,18 +2119,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				if (last->context == rq->context)
+ 					goto done;
+ 
+-				if (i915_request_has_sentinel(last))
+-					goto done;
+-
+-				/*
+-				 * If GVT overrides us we only ever submit
+-				 * port[0], leaving port[1] empty. Note that we
+-				 * also have to be careful that we don't queue
+-				 * the same context (even though a different
+-				 * request) to the second port.
+-				 */
+-				if (ctx_single_port_submission(last->context) ||
+-				    ctx_single_port_submission(rq->context))
++				if (has_sentinel(last, rq))
+ 					goto done;
+ 
+ 				merge = false;
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+index 1c95bf8cbed0..4fccf4b194b0 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.c
++++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+@@ -204,9 +204,9 @@ static int populate_shadow_context(struct intel_vgpu_workload *workload)
+ 	return 0;
+ }
+ 
+-static inline bool is_gvt_request(struct i915_request *rq)
++static inline bool is_gvt_request(const struct i915_request *rq)
+ {
+-	return intel_context_force_single_submission(rq->context);
++	return intel_context_is_gvt(rq->context);
+ }
+ 
+ static void save_ring_hw_state(struct intel_vgpu *vgpu,
+@@ -401,6 +401,7 @@ intel_gvt_workload_req_alloc(struct intel_vgpu_workload *workload)
+ 		return PTR_ERR(rq);
+ 	}
+ 
++	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
+ 	workload->req = i915_request_get(rq);
+ 	return 0;
+ }
+@@ -1226,7 +1227,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
+ 
+ 		i915_vm_put(ce->vm);
+ 		ce->vm = i915_vm_get(&ppgtt->vm);
+-		intel_context_set_single_submission(ce);
++		intel_context_set_gvt(ce);
+ 
+ 		/* Max ring buffer size */
+ 		if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
