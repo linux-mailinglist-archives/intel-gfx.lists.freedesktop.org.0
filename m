@@ -1,32 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4457518A238
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:17:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4D518A24B
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 19:25:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F6C389EAE;
-	Wed, 18 Mar 2020 18:17:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31506E93E;
+	Wed, 18 Mar 2020 18:25:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F400789E5A;
- Wed, 18 Mar 2020 18:17:44 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ECE86A0091;
- Wed, 18 Mar 2020 18:17:44 +0000 (UTC)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3B736E93E;
+ Wed, 18 Mar 2020 18:25:23 +0000 (UTC)
+IronPort-SDR: lRidyU3vZKJO7Hr4IDjvoWpDvxGWfIZbkZ5rG5MDN/UefC11tIxKdOWw+cYUPGLXI8BYRxlCuW
+ goNpxJWl42AQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2020 11:25:23 -0700
+IronPort-SDR: pozaC+8KXJwAtw6GsZMjIkuvqAXxWmgIT+qQxAtcRX0J4xtd8CjO/CKM8gZl8rz+Tgipvej8qI
+ 600IOayjyMyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,568,1574150400"; d="scan'208";a="291390565"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by FMSMGA003.fm.intel.com with SMTP; 18 Mar 2020 11:25:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Mar 2020 20:25:18 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Date: Wed, 18 Mar 2020 20:25:18 +0200
+Message-Id: <20200318182518.31618-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Date: Wed, 18 Mar 2020 18:17:44 -0000
-Message-ID: <158455546493.25102.4019816354122435081@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200318154959.9017-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?=3A_Reject_dumb_buffers_when_driver/device_doesn=27t_support_mo?=
- =?utf-8?q?desetting?=
+Subject: [Intel-gfx] [PATCH] drm: Skip drm_mode_config_validate() for
+ !modeset
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,97 +47,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm: Reject dumb buffers when driver/device doesn't support modesetting
-URL   : https://patchwork.freedesktop.org/series/74841/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8151 -> Patchwork_17010
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17010 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17010, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17010:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_exec_fence@basic-busy@vcs0:
-    - fi-elk-e7500:       NOTRUN -> [DMESG-WARN][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-elk-e7500/igt@gem_exec_fence@basic-busy@vcs0.html
-    - fi-ilk-650:         NOTRUN -> [DMESG-WARN][2]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-ilk-650/igt@gem_exec_fence@basic-busy@vcs0.html
-
-  * igt@gem_exec_fence@basic-busy@vecs0:
-    - fi-hsw-peppy:       NOTRUN -> [DMESG-WARN][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-hsw-peppy/igt@gem_exec_fence@basic-busy@vecs0.html
-    - fi-skl-guc:         NOTRUN -> [DMESG-WARN][4]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-skl-guc/igt@gem_exec_fence@basic-busy@vecs0.html
-
-  * igt@runner@aborted:
-    - fi-ilk-650:         NOTRUN -> [FAIL][5]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-ilk-650/igt@runner@aborted.html
-    - fi-hsw-peppy:       NOTRUN -> [FAIL][6]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-hsw-peppy/igt@runner@aborted.html
-    - fi-elk-e7500:       NOTRUN -> [FAIL][7]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/fi-elk-e7500/igt@runner@aborted.html
-
-  
-
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Additional (6): fi-hsw-peppy fi-skl-guc fi-bdw-gvtdvm fi-ilk-650 fi-elk-e7500 fi-snb-2600 
-  Missing    (9): fi-ilk-m540 fi-byt-squawks fi-glk-dsi fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-cfl-8109u fi-bsw-kefka fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8151 -> Patchwork_17010
-
-  CI-20190529: 20190529
-  CI_DRM_8151: 20887f81adb13a9ff582aa079bb5a7e7fc36b7f5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17010: a77d1080eb589fe2a2178dbada738b8dcd4e9b57 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-a77d1080eb58 drm: Reject dumb buffers when driver/device doesn't support modesetting
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17010/index.html
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RnJvbTogVmlsbGUgU3lyasOkbMOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT4KCmRy
+bV9tb2RlX2NvbmZpZ19pbml0KCkgbWF5IG5vdCBoYXZlIGJlZW4gY2FsbGVkIHdoZW4gdGhlIGRy
+aXZlci9kZXZpY2UKZG9lc24ndCBzdXBwb3J0IG1vZGVzZXQuIFRoYXQgd2lsbCBjYXVzZSBkcm1f
+bW9kZV9jb25maWdfdmFsaWRhdGUoKQp0byBvb3BzLiBTa2lwIHRoZSB2YWxpZGF0aW9uIGZvciAh
+bW9kZXNldC4KClRPRE86IFdlIG1heSB3YW50IHRvIGNvbnNpZGVyIGNhbGxpbmcgZHJtX21vZGVf
+Y29uZmlnX2luaXQoKQp1bmNvbmRpdGlvbmFsbHkgdG8gYXZvaWQgc2ltaWxhciBpc3N1ZXMgZWxz
+ZXdoZXJlLi4uCgpGaXhlczogNzRkMmFhY2JlODQwICgiZHJtOiBWYWxpZGF0ZSBlbmNvZGVyLT5w
+b3NzaWJsZV9jbG9uZXMiKQpTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5
+cmphbGFAbGludXguaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9kcm1fbW9kZV9jb25m
+aWcuYyB8IDMgKysrCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9ncHUvZHJtL2RybV9tb2RlX2NvbmZpZy5jIGIvZHJpdmVycy9ncHUvZHJtL2Ry
+bV9tb2RlX2NvbmZpZy5jCmluZGV4IDU1MzIyZDcwNDhmNS4uZTFlYzFiYjcwNjhkIDEwMDY0NAot
+LS0gYS9kcml2ZXJzL2dwdS9kcm0vZHJtX21vZGVfY29uZmlnLmMKKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL2RybV9tb2RlX2NvbmZpZy5jCkBAIC02MDgsNiArNjA4LDkgQEAgdm9pZCBkcm1fbW9kZV9j
+b25maWdfdmFsaWRhdGUoc3RydWN0IGRybV9kZXZpY2UgKmRldikKIHsKIAlzdHJ1Y3QgZHJtX2Vu
+Y29kZXIgKmVuY29kZXI7CiAKKwlpZiAoIWRybV9jb3JlX2NoZWNrX2ZlYXR1cmUoZGV2LCBEUklW
+RVJfTU9ERVNFVCkpCisJCXJldHVybjsKKwogCWRybV9mb3JfZWFjaF9lbmNvZGVyKGVuY29kZXIs
+IGRldikKIAkJZml4dXBfZW5jb2Rlcl9wb3NzaWJsZV9jbG9uZXMoZW5jb2Rlcik7CiAKLS0gCjIu
+MjQuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50
+ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBz
+Oi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
