@@ -1,43 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5369818A840
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 23:33:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A445318A84D
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 23:36:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9E276E979;
-	Wed, 18 Mar 2020 22:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB2EA6E978;
+	Wed, 18 Mar 2020 22:35:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A55AE6E979
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 22:33:05 +0000 (UTC)
-IronPort-SDR: cl4nbCQVxT6+Rj6oTl1VZYwfv8VRRyGwwAAVDBLleOPcVxT5QWZAAZjkQcYoYM3ZGhCMmVP4kl
- 5YXtG/o65z8Q==
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E226E978
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 22:35:58 +0000 (UTC)
+IronPort-SDR: zEyBtseqg7Iy36DmS0qZfVGDKubb/m/c4ITjuRpB58/mGwT7Ryg7JH+PVhV2yncYmjML03j4SS
+ UZWY7FcA38pQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2020 15:33:04 -0700
-IronPort-SDR: DvK1YbsPdryxglxMj5zfJ+5OiLPwUGiCJkYwNwucPWHTlGRoNimSXBjg9eHGMiVLLCedwMAg27
- gwOryWCLVtwA==
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2020 15:35:58 -0700
+IronPort-SDR: aQtTZLhXJejV1PUu0uI/J6xUkqnbif3GFaMlS22mIOyHq0e/TeZmkP+AuzuEyygNXafANYDJqu
+ fjUUmcxvE+qA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,569,1574150400"; d="scan'208";a="355842876"
+X-IronPort-AV: E=Sophos;i="5.70,569,1574150400"; d="scan'208";a="279885876"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
  ([10.165.21.211])
- by fmsmga001.fm.intel.com with ESMTP; 18 Mar 2020 15:33:03 -0700
-Date: Wed, 18 Mar 2020 15:34:38 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 18 Mar 2020 15:35:57 -0700
+Date: Wed, 18 Mar 2020 15:37:32 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Message-ID: <20200318223438.GB6675@intel.com>
+Message-ID: <20200318223732.GC6675@intel.com>
 References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
- <20200313164831.5980-3-ville.syrjala@linux.intel.com>
+ <20200313164831.5980-4-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200313164831.5980-3-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200313164831.5980-4-ville.syrjala@linux.intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 02/13] drm/i915: Move TRANS_DDI_FUNC_CTL2
- programming where it belongs
+Subject: Re: [Intel-gfx] [PATCH 03/13] drm/i915: Drop usless
+ master_transcoder assignments
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,232 +56,53 @@ Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 13, 2020 at 06:48:20PM +0200, Ville Syrjala wrote:
+On Fri, Mar 13, 2020 at 06:48:21PM +0200, Ville Syrjala wrote:
 > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > =
 
-> This port sync enable/disable stuff is misplaced. It's just another step
-> of the normal TRANS_DDI_FUNC_CTL enable. Move it to its natural place.
+> The entire crtc state has been reset before readout so
+> master_transcoder is already set to INVALID.
+
+But wont that mean that the master transcoder would be set to 0
+on reset and what we want is actually setting that to INVALID
+
+Manasi
+
 > =
 
 > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c     | 71 +++++++++++---------
->  drivers/gpu/drm/i915/display/intel_display.c | 34 ----------
->  2 files changed, 39 insertions(+), 66 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 2 --
+>  1 file changed, 2 deletions(-)
 > =
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 73d0f4648c06..8d486282eea3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -1558,12 +1558,34 @@ void intel_ddi_enable_transcoder_func(const struc=
-t intel_crtc_state *crtc_state)
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> -	u32 temp;
-> +	u32 ctl;
->  =
-
-> -	temp =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> +	if (INTEL_GEN(dev_priv) >=3D 11) {
-> +		enum transcoder master_transcoder =3D crtc_state->master_transcoder;
-> +		u32 ctl2 =3D 0;
-> +
-> +		if (master_transcoder !=3D INVALID_TRANSCODER) {
-> +			u8 master_select;
-> +
-> +			if (master_transcoder =3D=3D TRANSCODER_EDP)
-> +				master_select =3D 0;
-> +			else
-> +				master_select =3D master_transcoder + 1;
-> +
-> +			ctl2 |=3D PORT_SYNC_MODE_ENABLE |
-> +				(PORT_SYNC_MODE_MASTER_SELECT(master_select) &
-> +				 PORT_SYNC_MODE_MASTER_SELECT_MASK) <<
-> +				PORT_SYNC_MODE_MASTER_SELECT_SHIFT;
-> +		}
-> +
-> +		intel_de_write(dev_priv,
-> +			       TRANS_DDI_FUNC_CTL2(crtc_state->cpu_transcoder), ctl2);
-> +	}
-> +
-> +	ctl =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
-> -		temp |=3D TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
-> -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), temp);
-> +		ctl |=3D TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
-> +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
->  }
->  =
-
->  /*
-> @@ -1576,11 +1598,11 @@ intel_ddi_config_transcoder_func(const struct int=
-el_crtc_state *crtc_state)
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> -	u32 temp;
-> +	u32 ctl;
->  =
-
-> -	temp =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> -	temp &=3D ~TRANS_DDI_FUNC_ENABLE;
-> -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), temp);
-> +	ctl =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> +	ctl &=3D ~TRANS_DDI_FUNC_ENABLE;
-> +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
->  }
->  =
-
->  void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *cr=
-tc_state)
-> @@ -1588,20 +1610,23 @@ void intel_ddi_disable_transcoder_func(const stru=
-ct intel_crtc_state *crtc_state
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> -	u32 val;
-> +	u32 ctl;
->  =
-
-> -	val =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> -	val &=3D ~TRANS_DDI_FUNC_ENABLE;
-> +	if (INTEL_GEN(dev_priv) >=3D 11)
-> +		intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL2(cpu_transcoder), 0);
-
-This should be set to 0 only for the slave where we enable the port sync mo=
-de so
-set it to 0 only if if (old_crtc_state->master_transcoder !=3D INVALID_TRAN=
-SCODER)
-
-This will just ensure that we dont accidently set it to 0 for non slave tra=
-nscoders
-
-Manasi
-
-> +
-> +	ctl =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> +	ctl &=3D ~TRANS_DDI_FUNC_ENABLE;
->  =
-
->  	if (INTEL_GEN(dev_priv) >=3D 12) {
->  		if (!intel_dp_mst_is_master_trans(crtc_state)) {
-> -			val &=3D ~(TGL_TRANS_DDI_PORT_MASK |
-> +			ctl &=3D ~(TGL_TRANS_DDI_PORT_MASK |
->  				 TRANS_DDI_MODE_SELECT_MASK);
->  		}
->  	} else {
-> -		val &=3D ~(TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK);
-> +		ctl &=3D ~(TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK);
->  	}
-> -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), val);
-> +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
->  =
-
->  	if (dev_priv->quirks & QUIRK_INCREASE_DDI_DISABLED_TIME &&
->  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> @@ -3405,21 +3430,6 @@ static void intel_ddi_post_disable_hdmi(struct int=
-el_encoder *encoder,
->  	intel_dp_dual_mode_set_tmds_output(intel_hdmi, false);
->  }
->  =
-
-> -static void icl_disable_transcoder_port_sync(const struct intel_crtc_sta=
-te *old_crtc_state)
-> -{
-> -	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
-> -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -
-> -	if (old_crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
-> -		return;
-> -
-> -	DRM_DEBUG_KMS("Disabling Transcoder Port Sync on Slave Transcoder %s\n",
-> -		      transcoder_name(old_crtc_state->cpu_transcoder));
-> -
-> -	intel_de_write(dev_priv,
-> -		       TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder), 0);
-> -}
-> -
->  static void intel_ddi_post_disable(struct intel_encoder *encoder,
->  				   const struct intel_crtc_state *old_crtc_state,
->  				   const struct drm_connector_state *old_conn_state)
-> @@ -3434,9 +3444,6 @@ static void intel_ddi_post_disable(struct intel_enc=
-oder *encoder,
->  =
-
->  		intel_disable_pipe(old_crtc_state);
->  =
-
-> -		if (INTEL_GEN(dev_priv) >=3D 11)
-> -			icl_disable_transcoder_port_sync(old_crtc_state);
-> -
->  		intel_ddi_disable_transcoder_func(old_crtc_state);
->  =
-
->  		intel_dsc_disable(old_crtc_state);
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
 rm/i915/display/intel_display.c
-> index 8f23c4d51c33..c49b4e6eb3d4 100644
+> index c49b4e6eb3d4..12823d8f6afe 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4998,37 +4998,6 @@ static void icl_set_pipe_chicken(struct intel_crtc=
- *crtc)
->  	intel_de_write(dev_priv, PIPE_CHICKEN(pipe), tmp);
->  }
+> @@ -9364,7 +9364,6 @@ static bool i9xx_get_pipe_config(struct intel_crtc =
+*crtc,
+>  	pipe_config->output_format =3D INTEL_OUTPUT_FORMAT_RGB;
+>  	pipe_config->cpu_transcoder =3D (enum transcoder) crtc->pipe;
+>  	pipe_config->shared_dpll =3D NULL;
+> -	pipe_config->master_transcoder =3D INVALID_TRANSCODER;
 >  =
 
-> -static void icl_enable_trans_port_sync(const struct intel_crtc_state *cr=
-tc_state)
-> -{
-> -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> -	u32 trans_ddi_func_ctl2_val;
-> -	u8 master_select;
-> -
-> -	/*
-> -	 * Configure the master select and enable Transcoder Port Sync for
-> -	 * Slave CRTCs transcoder.
-> -	 */
-> -	if (crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
-> -		return;
-> -
-> -	if (crtc_state->master_transcoder =3D=3D TRANSCODER_EDP)
-> -		master_select =3D 0;
-> -	else
-> -		master_select =3D crtc_state->master_transcoder + 1;
-> -
-> -	/* Set the master select bits for Tranascoder Port Sync */
-> -	trans_ddi_func_ctl2_val =3D (PORT_SYNC_MODE_MASTER_SELECT(master_select=
-) &
-> -				   PORT_SYNC_MODE_MASTER_SELECT_MASK) <<
-> -		PORT_SYNC_MODE_MASTER_SELECT_SHIFT;
-> -	/* Enable Transcoder Port Sync */
-> -	trans_ddi_func_ctl2_val |=3D PORT_SYNC_MODE_ENABLE;
-> -
-> -	intel_de_write(dev_priv,
-> -		       TRANS_DDI_FUNC_CTL2(crtc_state->cpu_transcoder),
-> -		       trans_ddi_func_ctl2_val);
-> -}
-> -
->  static void intel_fdi_normal_train(struct intel_crtc *crtc)
->  {
->  	struct drm_device *dev =3D crtc->base.dev;
-> @@ -7037,9 +7006,6 @@ static void hsw_crtc_enable(struct intel_atomic_sta=
-te *state,
->  	if (!transcoder_is_dsi(cpu_transcoder))
->  		intel_set_pipe_timings(new_crtc_state);
+>  	ret =3D false;
 >  =
 
-> -	if (INTEL_GEN(dev_priv) >=3D 11)
-> -		icl_enable_trans_port_sync(new_crtc_state);
-> -
->  	intel_set_pipe_src_size(new_crtc_state);
+> @@ -10588,7 +10587,6 @@ static bool ilk_get_pipe_config(struct intel_crtc=
+ *crtc,
 >  =
 
->  	if (cpu_transcoder !=3D TRANSCODER_EDP &&
+>  	pipe_config->cpu_transcoder =3D (enum transcoder) crtc->pipe;
+>  	pipe_config->shared_dpll =3D NULL;
+> -	pipe_config->master_transcoder =3D INVALID_TRANSCODER;
+>  =
+
+>  	ret =3D false;
+>  	tmp =3D intel_de_read(dev_priv, PIPECONF(crtc->pipe));
 > -- =
 
 > 2.24.1
