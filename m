@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8124E1895F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 07:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE38C1895DD
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2020 07:33:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2B636E865;
-	Wed, 18 Mar 2020 06:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2E26E86B;
+	Wed, 18 Mar 2020 06:33:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33B16E1F2
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2020 06:46:53 +0000 (UTC)
-IronPort-SDR: n7ktlgUFIYHeW77hSZfpBP+jh69+coSv2AXgveEMpHUN3LhFZiLih/dzrxftc8ZtttwOnfMDrD
- Nck0eiW/cCXg==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD13898CE;
+ Wed, 18 Mar 2020 06:33:48 +0000 (UTC)
+IronPort-SDR: /x+BofHbPQ9iKQhIzy+QqIzZXRyxis7OzcrfAN5BrL9FGTavu0O9g5GeLUqUYcfYSKhDmJoieO
+ AqN4HHYBI6nQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2020 23:46:53 -0700
-IronPort-SDR: 13WGvsWeB0qRQyRhM8Y69UPqtBjGwHwMApig97clr2Me7stp0JV2t0slF51ejDy3PFjWYFGu9I
- lANZ/XqfhiSA==
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2020 23:33:47 -0700
+IronPort-SDR: K7+gMKtNA8TaW+AnPejz2F+zk2rlHLF7TssTAc6SFaE5DPArKsGihfoke2y6HdGMDPgSbe02T/
+ B7hNlJpwVAsg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,566,1574150400"; d="scan'208";a="268250862"
-Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.53])
- by fmsmga004.fm.intel.com with ESMTP; 17 Mar 2020 23:46:52 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Mar 2020 12:05:14 +0530
-Message-Id: <20200318063514.17943-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.24.0
-In-Reply-To: <20200317001320.GC24231@intel.com>
-References: <20200317001320.GC24231@intel.com>
+X-IronPort-AV: E=Sophos;i="5.70,566,1574150400"; d="scan'208";a="417839757"
+Received: from labuser-z97x-ud5h.jf.intel.com ([10.165.21.211])
+ by orsmga005.jf.intel.com with ESMTP; 17 Mar 2020 23:33:47 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue, 17 Mar 2020 23:35:15 -0700
+Message-Id: <20200318063517.3844-1-manasi.d.navare@intel.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v6 6/7] drm/i915/dp: Register definition for DP
- compliance register
+Subject: [Intel-gfx] [PATCH 1/3] drm/dp: DRM DP helper for reading Ignore
+ MSA from DPCD
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,55 +46,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Harry Wentland <harry.wentland@amd.com>,
+ Nicholas Kazlauskas <Nicholas.Kazlauskas@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP_COMP_CTL and DP_COMP_PAT register used to program DP
-compliance pattern.
-
-v1: Initial patch.
-v2: used pipe instead of port in macro definition. [Manasi]
-v3: used trans_offset for offset calculation. [Manasi]
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/i915_reg.h | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 309cb7d96b35..8b6c9fbfe74b 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -9792,6 +9792,22 @@ enum skl_power_gate {
- #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
- #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
- 
-+/* DDI DP Compliance Control */
-+#define _DDI_DP_COMP_CTL_A			0x605F0
-+#define DDI_DP_COMP_CTL(pipe)			_MMIO_TRANS2(pipe, _DDI_DP_COMP_CTL_A)
-+#define   DDI_DP_COMP_CTL_ENABLE		(1 << 31)
-+#define   DDI_DP_COMP_CTL_D10_2			(0 << 28)
-+#define   DDI_DP_COMP_CTL_SCRAMBLED_0		(1 << 28)
-+#define   DDI_DP_COMP_CTL_PRBS7			(2 << 28)
-+#define   DDI_DP_COMP_CTL_CUSTOM80		(3 << 28)
-+#define   DDI_DP_COMP_CTL_HBR2			(4 << 28)
-+#define   DDI_DP_COMP_CTL_SCRAMBLED_1		(5 << 28)
-+#define   DDI_DP_COMP_CTL_HBR2_RESET		(0xFC << 0)
-+
-+/* DDI DP Compliance Pattern */
-+#define _DDI_DP_COMP_PAT_A			0x605F4
-+#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_TRANS2(pipe, _DDI_DP_COMP_PAT_A) + (i) * 4)
-+
- /* Sideband Interface (SBI) is programmed indirectly, via
-  * SBI_ADDR, which contains the register offset; and SBI_DATA,
-  * which contains the payload */
--- 
-2.24.0
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+RFAgc2luayBkZXZpY2Ugc2V0cyB0aGUgSWdub3JlIE1TQSBiaXQgaW4gaXRzCkRQX0RPV05TVFJF
+QU1fUE9SVF9DT1VOVCByZWdpc3RlciB0byBpbmRpY2F0ZSBpdHMgYWJpbGl0eSB0bwppZ25vcmUg
+dGhlIE1TQSB2aWRlbyB0aW1pbmcgcGFyYW1hdGVycyBhbmQgaXRzIGFiaWxpdHkgdG8gc3VwcG9y
+dApzZWFtbGVzcyB2aWRlbyB0aW1pbmcgY2hhbmdlIG92ZXIgYSByYW5nZSBvZiB0aW1pbmcgZXhw
+b3NlZCBieQpEaXNwbGF5SUQgYW5kIEVESUQuClRoaXMgaXMgcmVxdWlyZWQgZm9yIHRoZSBzaW5r
+IHRvIGluZGljYXRlIHRoYXQgaXQgaXMgQWRhcHRpdmUgc3luYwpjYXBhYmxlLgoKQ2M6IEphbmkg
+TmlrdWxhIDxqYW5pLm5pa3VsYUBsaW51eC5pbnRlbC5jb20+CkNjOiBWaWxsZSBTeXJqw6Rsw6Qg
+PHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpDYzogSGFycnkgV2VudGxhbmQgPGhhcnJ5
+LndlbnRsYW5kQGFtZC5jb20+CkNjOiBOaWNob2xhcyBLYXpsYXVza2FzIDxOaWNob2xhcy5LYXps
+YXVza2FzQGFtZC5jb20+ClNpZ25lZC1vZmYtYnk6IE1hbmFzaSBOYXZhcmUgPG1hbmFzaS5kLm5h
+dmFyZUBpbnRlbC5jb20+Ci0tLQogaW5jbHVkZS9kcm0vZHJtX2RwX2hlbHBlci5oIHwgOCArKysr
+KysrKwogMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKQoKZGlmZiAtLWdpdCBhL2luY2x1
+ZGUvZHJtL2RybV9kcF9oZWxwZXIuaCBiL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaAppbmRl
+eCBjNjExOWU0YzE2OWEuLmNjZDZlMmU5ODhiOSAxMDA2NDQKLS0tIGEvaW5jbHVkZS9kcm0vZHJt
+X2RwX2hlbHBlci5oCisrKyBiL2luY2x1ZGUvZHJtL2RybV9kcF9oZWxwZXIuaApAQCAtMTMxNSw2
+ICsxMzE1LDE0IEBAIGRybV9kcF9hbHRlcm5hdGVfc2NyYW1ibGVyX3Jlc2V0X2NhcChjb25zdCB1
+OCBkcGNkW0RQX1JFQ0VJVkVSX0NBUF9TSVpFXSkKIAkJCURQX0FMVEVSTkFURV9TQ1JBTUJMRVJf
+UkVTRVRfQ0FQOwogfQogCisvKiBJZ25vcmUgTVNBIHRpbWluZyBmb3IgQWRhcHRpdmUgU3luYyBz
+dXBwb3J0IG9uIERQIDEuNCAqLworc3RhdGljIGlubGluZSBib29sCitkcm1fZHBfc2lua19pc19j
+YXBhYmxlX3dpdGhvdXRfdGltaW5nX21zYShjb25zdCB1OCBkcGNkW0RQX1JFQ0VJVkVSX0NBUF9T
+SVpFXSkKK3sKKwlyZXR1cm4gZHBjZFtEUF9ET1dOX1NUUkVBTV9QT1JUX0NPVU5UXSAmCisJCURQ
+X01TQV9USU1JTkdfUEFSX0lHTk9SRUQ7Cit9CisKIC8qCiAgKiBEaXNwbGF5UG9ydCBBVVggY2hh
+bm5lbAogICovCi0tIAoyLjE5LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVk
+ZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZv
+L2ludGVsLWdmeAo=
