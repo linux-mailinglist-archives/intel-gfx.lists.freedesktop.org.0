@@ -1,33 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6779B18BEA3
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 18:46:59 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CCFD18BF0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 19:07:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC3D289EFF;
-	Thu, 19 Mar 2020 17:46:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6801D6EA4C;
+	Thu, 19 Mar 2020 18:07:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B39C189EFF;
- Thu, 19 Mar 2020 17:46:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AA418A47EB;
- Thu, 19 Mar 2020 17:46:56 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Thu, 19 Mar 2020 17:46:56 -0000
-Message-ID: <158464001666.17934.9941248460775699188@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200319163844.22783-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200319163844.22783-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Try_to_use_fast+narrow_?=
- =?utf-8?q?link_on_eDP_again_and_fall_back_to_the_old_max_strategy_on_fail?=
- =?utf-8?q?ure?=
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com
+ [IPv6:2a00:1450:4864:20::131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A60136EA4C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 18:07:04 +0000 (UTC)
+Received: by mail-lf1-x131.google.com with SMTP id n20so2411102lfl.10
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 11:07:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id;
+ bh=F8DTtpZqCm0qkMoBgsOb2tz42hlbQMZxVJsanBcXZxs=;
+ b=C5SQsc5MalKP1FDEWLC3AFJajX8i+5IJldO+iGgHeqBO8Po9GP0CSJVHDJ7BoUITOQ
+ 3LNhiBU92RN4JnnwH+QroKH2mXf9UXYHSbJVY8qHQfnBfsMOewB6mmtu8xFlmoYSZuSs
+ 5XlbeJFUfHZFtGc1+CbnyEMEW4gD9awaPcOw8yHitCrOMS4crxAtZgCBLLwnmPtojV1a
+ k2NQ1jnNTHiR2IC/E5bCT2Enl5UpFzMyq0ggnFhai/GYZFDY20epduwbOVpfavt0qzHD
+ RTFmlb40p3ycAhL4JXWPtbKoh/FZtY2VeXJbwt0eVpzDVPGh3rxP0w8YmoUiIJ/X9iKB
+ l7Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id;
+ bh=F8DTtpZqCm0qkMoBgsOb2tz42hlbQMZxVJsanBcXZxs=;
+ b=WrjJrPlDEe6Jd3wf0hWeGny5v0CqnePnzH9L16991470thEWYkmPQsODeVNa3qtxh6
+ sF+do1mncrqsq3DF95Qg1y7FsTvnRfqOs95EvKyD83y4Z/Ga1nx5C3Icy+evF1SZGBvG
+ iNLhP4ELMa5MT86OKm7OyRkAAtTyaJnxhr3MN+nhx5UB++7sQNKIW/WDvphtrwV86wsR
+ Pyx+C0Uyl61cpVjI+s/e9j+FghqHDrz6Tzto+CMm6oGELRMsTcnOK1iSxIpJjL2WMC4D
+ yr5GAVzNFE9klOjvAHEjM5mMEjDomds5VB+YdKSHWHPuQoxtNMmgQRrUbKv/0o5Xo0uh
+ Fdrw==
+X-Gm-Message-State: ANhLgQ0ix/J9JpQEWi6PbljZNR35KWWm8F46QnviRdVcXmiXTvjGnelj
+ WzbgFItWlMrpo1g92y+WNTOwcS0+wsM=
+X-Google-Smtp-Source: ADFU+vtyykR8f3fZpjmqZCWb/p+Odbx5W0K8bBT4zznLMRusG1dlyBDLpPKMRK6dH5K6jSSvb06y6Q==
+X-Received: by 2002:ac2:4476:: with SMTP id y22mr2803341lfl.61.1584641222658; 
+ Thu, 19 Mar 2020 11:07:02 -0700 (PDT)
+Received: from localhost.localdomain (mobile-access-b0485e-106.dhcp.inet.fi.
+ [176.72.94.106])
+ by smtp.gmail.com with ESMTPSA id y8sm1902066lfg.65.2020.03.19.11.07.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Mar 2020 11:07:02 -0700 (PDT)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Mar 2020 20:06:57 +0200
+Message-Id: <20200319180658.5667-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [Intel-gfx] [PATCH 0/1] Test over 32k long stride length on icl+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,91 +62,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Testing part is left with TODO comment for anything older than gen5
 
-Series: series starting with [1/3] drm/i915: Try to use fast+narrow link on eDP again and fall back to the old max strategy on failure
-URL   : https://patchwork.freedesktop.org/series/74879/
-State : success
+Test-with: 20200319180322.5451-1-juhapekka.heikkila@gmail.com
 
-== Summary ==
+Juha-Pekka Heikkila (1):
+  drm/i915: Allow gen11 to use over 32k long strides
 
-CI Bug Log - changes from CI_DRM_8160 -> Patchwork_17025
-====================================================
+ drivers/gpu/drm/i915/display/intel_sprite.c | 30 ++++++++++++++++-----
+ 1 file changed, 24 insertions(+), 6 deletions(-)
 
-Summary
--------
+-- 
+2.17.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17025/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17025 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2] ([i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17025/fi-skl-lmem/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17025/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [PASS][5] -> [FAIL][6] ([fdo#111407])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17025/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (37 -> 40)
-------------------------------
-
-  Additional (6): fi-bsw-n3050 fi-byt-j1900 fi-cfl-8109u fi-skl-6600u fi-bsw-nick fi-skl-6700k2 
-  Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8160 -> Patchwork_17025
-
-  CI-20190529: 20190529
-  CI_DRM_8160: 6ba1729e5025761ab74914f6b8aa3288f493e9c7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5523: cf6d524007ac51a7d5a48503ea3dd5f01fd4ebab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17025: 16f1ad9b88c54b0140a587b8953aaeadb5136843 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-16f1ad9b88c5 drm: Constify adjusted_mode a bit
-09d9ab0a2195 drm: Refactor intel_dp_compute_link_config_*()
-99d00f5603c3 drm/i915: Try to use fast+narrow link on eDP again and fall back to the old max strategy on failure
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17025/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
