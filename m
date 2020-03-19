@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B072018B30C
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 13:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EEAA18B4E2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 14:13:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71D056E149;
-	Thu, 19 Mar 2020 12:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7F6A6E25C;
+	Thu, 19 Mar 2020 13:13:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84B436E149
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 12:11:47 +0000 (UTC)
-IronPort-SDR: pjZTkzynYGh3zpwcYnrBacZYghu3XoGvZOWmV6W5LmzizwMHPol8fQ+G2JQ3Jr4anPFWVyOj7n
- /Lk8DMbY0Y9A==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0486E25C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 13:13:44 +0000 (UTC)
+IronPort-SDR: 7SEswUbsfhAS/qWcFuwUA1Jl2M9bgh4W0TnHqKkUrQ5M2EvqcUGpJoWuib7yesYa7Zlp2MJpi9
+ 1UKAoggwuDng==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2020 05:11:46 -0700
-IronPort-SDR: sIon6JjEVZ5hxYRpgkTc/uQo88AofLwH/eTa/AccRlrLpMx55EJoSIvrPlzaRFQ7RXLE1d0IPH
- 2T9h/c/emo9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; d="scan'208";a="418321868"
-Received: from unknown (HELO [10.252.58.219]) ([10.252.58.219])
- by orsmga005.jf.intel.com with ESMTP; 19 Mar 2020 05:11:44 -0700
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20200318113009.16757-1-uma.shankar@intel.com>
- <1a4bf060-654a-18f0-4913-308d1a5b1990@linux.intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F82435646@BGSMSX104.gar.corp.intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <ff84b94d-2c5b-23bf-88b9-91d230cee569@linux.intel.com>
-Date: Thu, 19 Mar 2020 13:11:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2020 06:13:44 -0700
+IronPort-SDR: vK+khVG8vmaKeT3vYzx29iAAKyDSFEx0/RfDtFFJX1LYWh+F0dVqTk7ReGZfouxLgA+aNguA89
+ T7UDu85hD9Ag==
+X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; d="scan'208";a="238482025"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2020 06:13:42 -0700
+Date: Thu, 19 Mar 2020 15:09:48 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200319130948.GB29594@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-5-stanislav.lisovskiy@intel.com>
+ <20200311163130.GC13686@intel.com>
+ <4aa56e04b7534ec5b8764cc512250604@intel.com>
+ <20200318125055.GX13686@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <E7C9878FBA1C6D42A1CA3F62AEB6945F82435646@BGSMSX104.gar.corp.intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
- for audio codec init
+Content-Disposition: inline
+In-Reply-To: <20200318125055.GX13686@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v19 4/8] drm/i915: Refactor
+ intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,99 +52,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Khor, Swee Aun" <swee.aun.khor@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMTgtMDMtMjAyMCBvbSAxNTozNyBzY2hyZWVmIFNoYW5rYXIsIFVtYToKPgo+PiAtLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQo+PiBGcm9tOiBNYWFydGVuIExhbmtob3JzdCA8bWFhcnRlbi5s
-YW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+PiBTZW50OiBXZWRuZXNkYXksIE1hcmNoIDE4LCAy
-MDIwIDU6NDYgUE0KPj4gVG86IFNoYW5rYXIsIFVtYSA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPjsg
-aW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+PiBDYzogVmlsbGUgU3lyasOkbMOkIDx2
-aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT47IEthaSBWZWhtYW5lbgo+PiA8a2FpLnZlaG1h
-bmVuQGxpbnV4LmludGVsLmNvbT47IEtob3IsIFN3ZWUgQXVuIDxzd2VlLmF1bi5raG9yQGludGVs
-LmNvbT4KPj4gU3ViamVjdDogUmU6IFtQQVRDSF0gZHJtL2k5MTUvZGlzcGxheTogVHJpZ2dlciBN
-b2Rlc2V0IGF0IGJvb3QgZm9yIGF1ZGlvIGNvZGVjIGluaXQKPj4KPj4gT3AgMTgtMDMtMjAyMCBv
-bSAxMjozMCBzY2hyZWVmIFVtYSBTaGFua2FyOgo+Pj4gSWYgZXh0ZXJuYWwgbW9uaXRvcnMgYXJl
-IGNvbm5lY3RlZCBkdXJpbmcgYm9vdCB1cCwgZHJpdmVyIHVzZXMgdGhlCj4+PiBzYW1lIG1vZGUg
-cHJvZ3JhbW1lZCBieSBCSU9TIGFuZCBhdm9pZHMgYSBmdWxsIG1vZGVzZXQuCj4+PiBUaGlzIHJl
-c3VsdHMgaW4gZGlzcGxheSBhdWRpbyBjb2RlYyBsZWZ0IHVuaW5pdGlhbGl6ZWQgYW5kIGRpc3Bs
-YXkKPj4+IGF1ZGlvIGZhaWxzIHRvIHdvcmsgdGlsbCB1c2VyIHRyaWdnZXJzIGEgbW9kZXNldC4K
-Pj4+Cj4+PiBUaGlzIHBhdGNoIGZpeGVzIHRoZSBzYW1lIGJ5IHRyaWdnZXJpbmcgYSBtb2Rlc2V0
-IGF0IGJvb3QuCj4+Pgo+Pj4gQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+Cj4+PiBDYzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0
-QGxpbnV4LmludGVsLmNvbT4KPj4+IENjOiBLYWkgVmVobWFuZW4gPGthaS52ZWhtYW5lbkBsaW51
-eC5pbnRlbC5jb20+Cj4+PiBTaWduZWQtb2ZmLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJA
-aW50ZWwuY29tPgo+Pj4gU2lnbmVkLW9mZi1ieTogU3dlZUF1biBLaG9yIDxzd2VlLmF1bi5raG9y
-QGludGVsLmNvbT4KPj4+IC0tLQo+Pj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGRpLmMgICAgIHwgNCArKysrCj4+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9kaXNwbGF5LmMgfCA4ICsrKysrKysrCj4+PiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkx
-NV9kcnYuaCAgICAgICAgICAgICAgfCAzICsrKwo+Pj4gIDMgZmlsZXMgY2hhbmdlZCwgMTUgaW5z
-ZXJ0aW9ucygrKQo+Pj4KPj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RkaS5jCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZGRpLmMKPj4+IGluZGV4IDczZDBmNDY0OGMwNi4uYmEzODBhZmE3M2E2IDEwMDY0NAo+Pj4gLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+Pj4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYwo+Pj4gQEAgLTM3MDQsNiArMzcw
-NCwxMCBAQCBzdGF0aWMgdm9pZCBpbnRlbF9kZGlfdXBkYXRlX3BpcGUoc3RydWN0IGludGVsX2Vu
-Y29kZXIKPj4gKmVuY29kZXIsCj4+PiAgCQkJCSAgY29uc3Qgc3RydWN0IGludGVsX2NydGNfc3Rh
-dGUgKmNydGNfc3RhdGUsCj4+PiAgCQkJCSAgY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3Jfc3Rh
-dGUgKmNvbm5fc3RhdGUpICB7Cj4+PiArCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJp
-diA9IHRvX2k5MTUoZW5jb2Rlci0+YmFzZS5kZXYpOwo+Pj4gKwo+Pj4gKwkvKiBDbGVhciB0aGUg
-Ym9vdGZsYWcgKi8KPj4+ICsJZGV2X3ByaXYtPmJvb3RmbGFnID0gZmFsc2U7Cj4+Pgo+Pj4gIAlp
-ZiAoIWludGVsX2NydGNfaGFzX3R5cGUoY3J0Y19zdGF0ZSwgSU5URUxfT1VUUFVUX0hETUkpKQo+
-Pj4gIAkJaW50ZWxfZGRpX3VwZGF0ZV9waXBlX2RwKGVuY29kZXIsIGNydGNfc3RhdGUsIGNvbm5f
-c3RhdGUpOyBkaWZmCj4+PiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGlzcGxheS5jCj4+PiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheS5jCj4+PiBpbmRleCA4ZjIzYzRkNTFjMzMuLmExNDg3NTM5NDk1ZiAxMDA2NDQKPj4+IC0t
-LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4+PiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYwo+Pj4gQEAgLTE0
-NzUxLDYgKzE0NzUxLDEwIEBAIHN0YXRpYyBpbnQgaW50ZWxfYXRvbWljX2NoZWNrKHN0cnVjdCBk
-cm1fZGV2aWNlCj4+ICpkZXYsCj4+PiAgCQlpZiAobmV3X2NydGNfc3RhdGUtPmh3Lm1vZGUucHJp
-dmF0ZV9mbGFncyAhPQo+Pj4gIAkJICAgIG9sZF9jcnRjX3N0YXRlLT5ody5tb2RlLnByaXZhdGVf
-ZmxhZ3MpCj4+PiAgCQkJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0gdHJ1ZTsK
-Pj4+ICsKPj4+ICsJCS8qIFNldCBtb2RlX2NoYW5nZSB0byBpbml0IGF1ZGlvIGNvZGUgb25jZSBh
-dCBib290ICovCj4+PiArCQlpZiAoZGV2X3ByaXYtPmJvb3RmbGFnICYmIG5ld19jcnRjX3N0YXRl
-LT5ody5hY3RpdmUpCj4+PiArCQkJbmV3X2NydGNfc3RhdGUtPnVhcGkubW9kZV9jaGFuZ2VkID0g
-dHJ1ZTsKPj4+ICAJfQo+Pj4KPj4+ICAJcmV0ID0gZHJtX2F0b21pY19oZWxwZXJfY2hlY2tfbW9k
-ZXNldChkZXYsICZzdGF0ZS0+YmFzZSk7IEBACj4+PiAtMTc2NTUsMTEgKzE3NjU5LDE1IEBAIHN0
-YXRpYyB2b2lkIGludGVsX3VwZGF0ZV9mZGlfcGxsX2ZyZXEoc3RydWN0Cj4+PiBkcm1faTkxNV9w
-cml2YXRlICpkZXZfcHJpdikKPj4+Cj4+PiAgc3RhdGljIGludCBpbnRlbF9pbml0aWFsX2NvbW1p
-dChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2KSAgewo+Pj4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0
-ZSAqZGV2X3ByaXYgPSB0b19pOTE1KGRldik7Cj4+PiAgCXN0cnVjdCBkcm1fYXRvbWljX3N0YXRl
-ICpzdGF0ZSA9IE5VTEw7Cj4+PiAgCXN0cnVjdCBkcm1fbW9kZXNldF9hY3F1aXJlX2N0eCBjdHg7
-Cj4+PiAgCXN0cnVjdCBpbnRlbF9jcnRjICpjcnRjOwo+Pj4gIAlpbnQgcmV0ID0gMDsKPj4+Cj4+
-PiArCS8qIFNldCBGbGFnIHRvIHRyaWdnZXIgbW9kZXNldCBmb3IgYXVkaW8gY29kZWMgaW5pdCAq
-Lwo+Pj4gKwlkZXZfcHJpdi0+Ym9vdGZsYWcgPSB0cnVlOwo+Pj4gKwo+Pj4gIAlzdGF0ZSA9IGRy
-bV9hdG9taWNfc3RhdGVfYWxsb2MoZGV2KTsKPj4+ICAJaWYgKCFzdGF0ZSkKPj4+ICAJCXJldHVy
-biAtRU5PTUVNOwo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2
-LmgKPj4+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCBpbmRleCBhN2VhMWQ4NTUz
-NTkuLjIwNzE5NmY5NjMyYgo+Pj4gMTAwNjQ0Cj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9pOTE1X2Rydi5oCj4+PiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X2Rydi5oCj4+
-PiBAQCAtMTIxMCw2ICsxMjEwLDkgQEAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgewo+Pj4gIAkg
-KiBOT1RFOiBUaGlzIGlzIHRoZSBkcmkxL3VtcyBkdW5nZW9uLCBkb24ndCBhZGQgc3R1ZmYgaGVy
-ZS4gWW91ciBwYXRjaAo+Pj4gIAkgKiB3aWxsIGJlIHJlamVjdGVkLiBJbnN0ZWFkIGxvb2sgZm9y
-IGEgYmV0dGVyIHBsYWNlLgo+Pj4gIAkgKi8KPj4+ICsKPj4+ICsJLyogRmxhZyB0byB0cmlnZ2Vy
-IG1vZGVzZXQgZm9yIEF1ZGlvIGNvZGVjIGluaXQgb25jZSBkdXJpbmcgYm9vdCAqLwo+Pj4gKwli
-b29sIGJvb3RmbGFnOwo+Pj4gIH07Cj4+Pgo+Pj4gIHN0YXRpYyBpbmxpbmUgc3RydWN0IGRybV9p
-OTE1X3ByaXZhdGUgKnRvX2k5MTUoY29uc3Qgc3RydWN0Cj4+PiBkcm1fZGV2aWNlICpkZXYpCj4+
-IFRoaXMgaXMgbm90IGdvaW5nIHRvIGhlbHAuIFdlIHJlYWQgb3V0IHRoZSBoYXNfYXVkaW8gZmxh
-ZyBub3csIHRoZSBvbmx5IHRoaW5nIHdlIG1pc3MKPj4gaXMgdG8gZW5hYmxlIHRoZSBhdWRpbyBj
-b2RlYy4gVGhpcyBzaG91bGQgYmUgZG9uZSBhZnRlciB0aGUgZmlyc3QgZGV0ZWN0KCksIGluIHRo
-ZQo+PiBtYW5uZXIgd2hpY2ggSSBkZXNjcmliZWQgdG8gZ2V0IHRoZSBjb3JyZWN0IGVsZCB2YWx1
-ZXMuCj4gSGkgTWFhcnRlbiwKPiBBdCB0aGUgdGltZSBvZiBzYW5pdGl6ZSwgd2UgZG9uJ3QgaGF2
-ZSBlZGlkIHNvIGhhc19hdWRpbyBmbGFnIHdpbGwgbm90IGJlIHNldC4gQWxzbyBjb2RlY19lbmFi
-bGUKPiBuZWVkcyBlbmNvZGVyLCBjcnRjX3N0YXRlLCBjb25uX3N0YXRlLiBBbGwgdGhlc2UgYXJl
-IG5vdCB0aGVyZSBhcyBwYXJ0IG9mIGRldGVjdCBjYWxsYmFja3MuCgpUaGV5IGNhbiBiZSB1c2Vk
-LiBZb3UgaGF2ZSBjb25uZWN0aW9uX211dGV4LCBzbyB5b3UgY2FuIGxvb2sgYXQgY29ubmVjdG9y
-LT5zdGF0ZSwKCmlmIHlvdSB0aGVuIGxvY2sgY29ubl9zdGF0ZS0+Y3J0YywgeW91IGNhbiBpbnNw
-ZWN0IGNvbm5fc3RhdGUtPmNydGMtPnN0YXRlIGFzIHdlbGwuCgpjb25uX3N0YXRlLT5lbmNvZGVy
-IGlzIGF2YWlsYWJsZSBhcyB3ZWxsLgoKSXQgbmVlZHMgc29tZSBjYXN0aW5nIHRvIGdldCB0aGUg
-aW50ZWxfWFhfc3RhdGUgYnV0IHlvdSBjYW4gZG8gaXQgc2FmZWx5LgoKfk1hYXJ0ZW4KCj4gV2l0
-aCBjdXJyZW50IGFwcHJvYWNoLCB3ZSBmb3JjZSBhIG1vZGVzZXQganVzdCBkdXJpbmcgYm9vdCBh
-bmQgdGhlbiByZXNldCB0aGUgZmxhZyBzbyB0aGF0IG5vcm1hbAo+IG9wZXJhdGlvbnMgZG9uJ3Qg
-Z2V0IGFmZmVjdGVkLgo+Cj4gUmVnYXJkcywKPiBVbWEgU2hhbmthcgo+Cj4+IH5NYWFydGVuCgoK
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4
-IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlz
-dHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Mar 18, 2020 at 02:50:55PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Wed, Mar 18, 2020 at 11:52:13AM +0000, Lisovskiy, Stanislav wrote:
+> > >> @@ -5829,6 +6068,10 @@ skl_compute_wm(struct intel_atomic_state *sta=
+te)
+> > >>                        return ret;
+> > >>        }
+> > >>
+> > >> +     ret =3D intel_compute_sagv_mask(state);
+> > >> +     if (ret)
+> > >> +             return ret;
+> > =
+
+> > > This seems too early. We haven't even computed the ddb yet.
+> > =
+
+> > =
+
+> > I was thinking about our discussion last week and actually I think ther=
+e are simply two ways how
+> > =
+
+> > to do it.
+> > =
+
+> > =
+
+> > 1) What I do here is: calculate minimum amount required to fit SAGV wm =
+levels into ddb and
+> > =
+
+> > based on that do the ddb allocation accordingly. I.e it is not to early=
+ because actually we have
+> > =
+
+> > already wm levels for sagv and non-sagv calculated - we already can che=
+ck if it can fit into L0
+> > =
+
+> > and then act accordingly.
+> > =
+
+> > However one thing to consider here: as you said besides the minimal req=
+uirements for each plane
+> > =
+
+> > (with or without sagv) there is an extra space being allocated in propo=
+rtion to plane data rate,
+> > =
+
+> > however here we are actually hitting the prioritization issue - i.e we =
+need to decide whether
+> > =
+
+> > it is more important to have SAGV or to have more extra space allocated=
+ to different planes
+> > =
+
+> > proportionally to their needs.
+> > =
+
+> > So in this first approach we always first determine if we fit into mini=
+mum SAGV reqs, turn it
+> > =
+
+> > on if we do and then rest of extra space is allocated among the planes =
+in proportion to data rate.
+> > =
+
+> > So that way we would be more often power efficient but but planes get l=
+ess extra ddb space.
+> > =
+
+> > =
+
+> > 2) In your approach we should calculate ddb first, allocate extra space=
+ proportionally to plane
+> > =
+
+> > data rate needs and only then check if all planes got enough space for =
+L0 SAGV wm after that.
+> > =
+
+> > Then we actually don't even need skl_plane_wm_level accessor, because w=
+e first would be allocating
+> > =
+
+> > using normal wm levels + extra ddb and only then check if all planes fi=
+t into SAGV requirement -
+> > =
+
+> > because that extra space is not actually distributed evenly but in prop=
+ortion to data rate of each
+> > =
+
+> > plane, which means that some planes might lack space for SAGV theoretic=
+ally, because some might be
+> > =
+
+> > getting more or less depending on the data_rate/total_data_rate ratio.
+> > =
+
+> > =
+
+> > My position is such that I'm really not like "my approach should always=
+ win" here, but more searching for
+> > =
+
+> > solution which is more correct from product point of view.
+> > =
+
+> > =
+
+> > Also could be that it doesn't really matter which approach we do take n=
+ow,, but matter more like
+> > =
+
+> > that how fast we deliver.  Because the actual outcome difference betwee=
+n two
+> > =
+
+> > might be minor, while time overhead for changing the approach could be =
+major.
+> =
+
+> Pls fix your MUA. Really hard to read this.
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
+
+I was thinking about our discussion last week and actually I think there ar=
+e simply two ways how
+to do it.
+
+1) What I do here is: calculate minimum amount required to fit SAGV wm leve=
+ls into ddb and
+based on that do the ddb allocation accordingly. I.e it is not to early bec=
+ause actually we have
+already wm levels for sagv and non-sagv calculated - we already can check i=
+f it can fit into L0
+and then act accordingly.
+However one thing to consider here: as you said besides the minimal require=
+ments for each plane
+(with or without sagv) there is an extra space being allocated in proportio=
+n to plane data rate,
+however here we are actually hitting the prioritization issue - i.e we need=
+ to decide whether
+it is more important to have SAGV or to have more extra space allocated to =
+different planes
+proportionally to their needs.
+So in this first approach we always first determine if we fit into minimum =
+SAGV reqs, turn it
+on if we do and then rest of extra space is allocated among the planes in p=
+roportion to data rate.
+So that way we would be more often power efficient but but planes get less =
+extra ddb space.
+
+2) In your approach we should calculate ddb first, allocate extra space pro=
+portionally to plane
+data rate needs and only then check if all planes got enough space for L0 S=
+AGV wm after that.
+Then we actually don't even need skl_plane_wm_level accessor, because we fi=
+rst would be allocating
+using normal wm levels + extra ddb and only then check if all planes fit in=
+to SAGV requirement -
+because that extra space is not actually distributed evenly but in proporti=
+on to data rate of each
+plane, which means that some planes might lack space for SAGV theoretically=
+, because some might be
+getting more or less depending on the data_rate/total_data_rate ratio.
+
+My position is such that I'm really not like "my approach should always win=
+" here, but more searching for
+solution which is more correct from product point of view.
+
+Also could be that it doesn't really matter which approach we do take now,,=
+ but matter more like
+that how fast we deliver.  Because the actual outcome difference between two
+might be minor, while time overhead for changing the approach could be majo=
+r.
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
