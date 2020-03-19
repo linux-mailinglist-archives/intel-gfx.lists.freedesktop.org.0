@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8949C18AE29
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 09:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5799918AEE7
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 10:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC4A36E9B5;
-	Thu, 19 Mar 2020 08:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6246E6E10B;
+	Thu, 19 Mar 2020 09:07:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57A126E9B5
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 08:15:16 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20612488-1500050 
- for multiple; Thu, 19 Mar 2020 08:14:58 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Mar 2020 08:14:56 +0000
-Message-Id: <20200319081456.9218-4-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200319081456.9218-1-chris@chris-wilson.co.uk>
-References: <20200319081456.9218-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CAB196E10A;
+ Thu, 19 Mar 2020 09:07:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C1148A010F;
+ Thu, 19 Mar 2020 09:07:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 4/4] drm/i915/gem: Wait until the context is
- finally retired before releasing engines
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 19 Mar 2020 09:07:14 -0000
+Message-ID: <158460883476.17935.18106910324643083775@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200319081456.9218-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200319081456.9218-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Prefer_=27=25ps=27_for_?=
+ =?utf-8?q?printing_function_symbol_names?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,164 +39,193 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we want to percolate information back from the HW, up through the GEM
-context, we need to wait until the intel_context is scheduled out for
-the last time. This is handled by the retirement of the intel_context's
-barrier, i.e. by listening to the pulse after the notional unpin.
+== Series Details ==
 
-To accommodate this, we need to be able to flush the i915_active's
-barriers before awaiting on them. However, this also requires us to
-ensure the context is unpinned *before* the barrier request can be
-signaled, so mark it as a sentinel.
+Series: series starting with [1/4] drm/i915: Prefer '%ps' for printing function symbol names
+URL   : https://patchwork.freedesktop.org/series/74864/
+State : failure
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 17 ++++------
- drivers/gpu/drm/i915/i915_active.c          | 37 ++++++++++++++++-----
- drivers/gpu/drm/i915/i915_active.h          |  3 +-
- 3 files changed, 37 insertions(+), 20 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index c0e476fcd1fa..05fed8797d37 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -570,23 +570,20 @@ static void engines_idle_release(struct i915_gem_context *ctx,
- 	engines->ctx = i915_gem_context_get(ctx);
- 
- 	for_each_gem_engine(ce, engines, it) {
--		struct dma_fence *fence;
--		int err = 0;
-+		int err;
- 
- 		/* serialises with execbuf */
- 		RCU_INIT_POINTER(ce->gem_context, NULL);
- 		if (!intel_context_pin_if_active(ce))
- 			continue;
- 
--		fence = i915_active_fence_get(&ce->timeline->last_request);
--		if (fence) {
--			err = i915_sw_fence_await_dma_fence(&engines->fence,
--							    fence, 0,
--							    GFP_KERNEL);
--			dma_fence_put(fence);
--		}
-+		/* Wait until context is finally scheduled out and retired */
-+		err = i915_sw_fence_await_active(&engines->fence,
-+						 &ce->active,
-+						 I915_ACTIVE_AWAIT_ACTIVE |
-+						 I915_ACTIVE_AWAIT_BARRIER);
- 		intel_context_unpin(ce);
--		if (err < 0)
-+		if (err)
- 			goto kill;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-index c4048628188a..da7d35f66dd0 100644
---- a/drivers/gpu/drm/i915/i915_active.c
-+++ b/drivers/gpu/drm/i915/i915_active.c
-@@ -518,19 +518,18 @@ int i915_active_wait(struct i915_active *ref)
- 	return 0;
- }
- 
--static int __await_active(struct i915_active_fence *active,
--			  int (*fn)(void *arg, struct dma_fence *fence),
--			  void *arg)
-+static int __await_fence(struct i915_active_fence *active,
-+			 int (*fn)(void *arg, struct dma_fence *fence),
-+			 void *arg)
- {
- 	struct dma_fence *fence;
-+	int err;
- 
--	if (is_barrier(active)) /* XXX flush the barrier? */
-+	if (is_barrier(active))
- 		return 0;
- 
- 	fence = i915_active_fence_get(active);
- 	if (fence) {
--		int err;
--
- 		err = fn(arg, fence);
- 		dma_fence_put(fence);
- 		if (err < 0)
-@@ -540,6 +539,22 @@ static int __await_active(struct i915_active_fence *active,
- 	return 0;
- }
- 
-+static int __await_active(struct active_node *it,
-+			  unsigned int flags,
-+			  int (*fn)(void *arg, struct dma_fence *fence),
-+			  void *arg)
-+{
-+	int err;
-+
-+	if (flags & I915_ACTIVE_AWAIT_BARRIER) {
-+		err = flush_barrier(it);
-+		if (err)
-+			return err;
-+	}
-+
-+	return __await_fence(&it->base, fn, arg);
-+}
-+
- static int await_active(struct i915_active *ref,
- 			unsigned int flags,
- 			int (*fn)(void *arg, struct dma_fence *fence),
-@@ -549,16 +564,17 @@ static int await_active(struct i915_active *ref,
- 
- 	/* We must always wait for the exclusive fence! */
- 	if (rcu_access_pointer(ref->excl.fence)) {
--		err = __await_active(&ref->excl, fn, arg);
-+		err = __await_fence(&ref->excl, fn, arg);
- 		if (err)
- 			return err;
- 	}
- 
--	if (flags & I915_ACTIVE_AWAIT_ALL && i915_active_acquire_if_busy(ref)) {
-+	if (flags & I915_ACTIVE_AWAIT_ACTIVE &&
-+	    i915_active_acquire_if_busy(ref)) {
- 		struct active_node *it, *n;
- 
- 		rbtree_postorder_for_each_entry_safe(it, n, &ref->tree, node) {
--			err = __await_active(&it->base, fn, arg);
-+			err = __await_active(it, flags, fn, arg);
- 			if (err)
- 				break;
- 		}
-@@ -852,6 +868,9 @@ void i915_request_add_active_barriers(struct i915_request *rq)
- 		list_add_tail((struct list_head *)node, &rq->fence.cb_list);
- 	}
- 	spin_unlock_irqrestore(&rq->lock, flags);
-+
-+	/* Ensure that all who came before the barrier are flushed out */
-+	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-index b3282ae7913c..9697592235fa 100644
---- a/drivers/gpu/drm/i915/i915_active.h
-+++ b/drivers/gpu/drm/i915/i915_active.h
-@@ -189,7 +189,8 @@ int i915_sw_fence_await_active(struct i915_sw_fence *fence,
- int i915_request_await_active(struct i915_request *rq,
- 			      struct i915_active *ref,
- 			      unsigned int flags);
--#define I915_ACTIVE_AWAIT_ALL BIT(0)
-+#define I915_ACTIVE_AWAIT_ACTIVE BIT(0)
-+#define I915_ACTIVE_AWAIT_BARRIER BIT(1)
- 
- int i915_active_acquire(struct i915_active *ref);
- bool i915_active_acquire_if_busy(struct i915_active *ref);
--- 
-2.20.1
+CI Bug Log - changes from CI_DRM_8157 -> Patchwork_17020
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17020 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17020, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17020:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@gem_close_race@basic-threads:
+    - fi-icl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-icl-guc/igt@gem_close_race@basic-threads.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-icl-guc/igt@gem_close_race@basic-threads.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-skl-guc:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-skl-guc/igt@gem_exec_parallel@fds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-skl-guc/igt@gem_exec_parallel@fds.html
+    - fi-skl-lmem:        NOTRUN -> [INCOMPLETE][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-skl-lmem/igt@gem_exec_parallel@fds.html
+    - fi-kbl-8809g:       [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-kbl-8809g/igt@gem_exec_parallel@fds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-8809g/igt@gem_exec_parallel@fds.html
+    - fi-kbl-r:           [PASS][8] -> [INCOMPLETE][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-kbl-r/igt@gem_exec_parallel@fds.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-r/igt@gem_exec_parallel@fds.html
+    - fi-kbl-guc:         [PASS][10] -> [INCOMPLETE][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-kbl-guc/igt@gem_exec_parallel@fds.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-guc/igt@gem_exec_parallel@fds.html
+    - fi-kbl-7500u:       [PASS][12] -> [INCOMPLETE][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-kbl-7500u/igt@gem_exec_parallel@fds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-7500u/igt@gem_exec_parallel@fds.html
+    - fi-kbl-x1275:       [PASS][14] -> [INCOMPLETE][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-x1275/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live@gt_contexts:
+    - fi-bsw-nick:        [PASS][16] -> [INCOMPLETE][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-bsw-nick/igt@i915_selftest@live@gt_contexts.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-bsw-nick/igt@i915_selftest@live@gt_contexts.html
+
+  * igt@i915_selftest@live@gtt:
+    - fi-skl-6600u:       [PASS][18] -> [INCOMPLETE][19]
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-skl-6600u/igt@i915_selftest@live@gtt.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-skl-6600u/igt@i915_selftest@live@gtt.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@gem_exec_parallel@fds:
+    - {fi-ehl-1}:         [PASS][20] -> [INCOMPLETE][21]
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-ehl-1/igt@gem_exec_parallel@fds.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-ehl-1/igt@gem_exec_parallel@fds.html
+
+  * igt@gem_sync@basic-each:
+    - {fi-kbl-7560u}:     NOTRUN -> [INCOMPLETE][22]
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-kbl-7560u/igt@gem_sync@basic-each.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17020 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_exec_parallel@contexts:
+    - fi-cml-u2:          [PASS][23] -> [INCOMPLETE][24] ([i915#283])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cml-u2/igt@gem_exec_parallel@contexts.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cml-u2/igt@gem_exec_parallel@contexts.html
+    - fi-bxt-dsi:         [PASS][25] -> [INCOMPLETE][26] ([fdo#103927])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-bxt-dsi/igt@gem_exec_parallel@contexts.html
+
+  * igt@gem_exec_parallel@fds:
+    - fi-cfl-guc:         [PASS][27] -> [INCOMPLETE][28] ([i915#1147])
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cfl-guc/igt@gem_exec_parallel@fds.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cfl-guc/igt@gem_exec_parallel@fds.html
+    - fi-cfl-8109u:       [PASS][29] -> [INCOMPLETE][30] ([i915#1147])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cfl-8109u/igt@gem_exec_parallel@fds.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cfl-8109u/igt@gem_exec_parallel@fds.html
+    - fi-icl-dsi:         [PASS][31] -> [INCOMPLETE][32] ([i915#1147])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-icl-dsi/igt@gem_exec_parallel@fds.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-icl-dsi/igt@gem_exec_parallel@fds.html
+    - fi-cfl-8700k:       [PASS][33] -> [INCOMPLETE][34] ([i915#1147])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cfl-8700k/igt@gem_exec_parallel@fds.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cfl-8700k/igt@gem_exec_parallel@fds.html
+    - fi-icl-y:           [PASS][35] -> [INCOMPLETE][36] ([i915#1147])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-icl-y/igt@gem_exec_parallel@fds.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-icl-y/igt@gem_exec_parallel@fds.html
+    - fi-glk-dsi:         [PASS][37] -> [INCOMPLETE][38] ([i915#58] / [k.org#198133])
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-glk-dsi/igt@gem_exec_parallel@fds.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-glk-dsi/igt@gem_exec_parallel@fds.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][39] -> [INCOMPLETE][40] ([fdo#103927])
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-apl-guc/igt@i915_selftest@live@execlists.html
+    - fi-cml-s:           [PASS][41] -> [INCOMPLETE][42] ([i915#283])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cml-s/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][43] -> [DMESG-FAIL][44] ([i915#877])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8157/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [i915#1147]: https://gitlab.freedesktop.org/drm/intel/issues/1147
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#456]: https://gitlab.freedesktop.org/drm/intel/issues/456
+  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (41 -> 33)
+------------------------------
+
+  Additional (2): fi-skl-lmem fi-kbl-7560u 
+  Missing    (10): fi-kbl-soraka fi-bdw-5557u fi-byt-j1900 fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-bsw-kefka fi-blb-e6850 fi-skl-6700k2 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8157 -> Patchwork_17020
+
+  CI-20190529: 20190529
+  CI_DRM_8157: 4f297a639d15ec6c293b74ff0904de6146b18e4f @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5522: bd2b01af69c9720d54e68a8702a23e4ff3637746 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17020: ef481225fd1e99b8868ca82a25cedd6bfaf43efd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+ef481225fd1e drm/i915/gem: Wait until the context is finally retired before releasing engines
+4a01de3df14d drm/i915/execlists: Force single submission for sentinels
+21b5f174e33e drm/i915/gem: Avoid gem_context->mutex for simple vma lookup
+1d8e090013b0 drm/i915: Prefer '%ps' for printing function symbol names
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17020/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
