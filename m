@@ -1,32 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A62D718AEF0
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 10:12:41 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D51BD18AFB2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 10:19:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CF926E118;
-	Thu, 19 Mar 2020 09:12:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEEF6E9BC;
+	Thu, 19 Mar 2020 09:19:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F36B46E118
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 09:12:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29B076E9BC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 09:19:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20613123-1500050 
- for multiple; Thu, 19 Mar 2020 09:12:31 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20613249-1500050 
+ for multiple; Thu, 19 Mar 2020 09:19:45 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Mar 2020 09:12:30 +0000
-Message-Id: <20200319091230.24295-1-chris@chris-wilson.co.uk>
+Date: Thu, 19 Mar 2020 09:19:38 +0000
+Message-Id: <20200319091943.7815-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200319081456.9218-3-chris@chris-wilson.co.uk>
-References: <20200319081456.9218-3-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Force single submission for
- sentinels
+Subject: [Intel-gfx] [PATCH 1/6] drm/i915: Prefer '%ps' for printing
+ function symbol names
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,172 +42,55 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently, we only combine a sentinel request with a max-priority
-barrier such that a sentinel request is always in ELSP[0] with nothing
-following it. However, we will want to create similar ELSP[] submissions
-providing a full-barrier in the submission queue, but without forcing
-maximum priority. As such I915_FENCE_FLAG_SENTINEL takes on the
-single-submission property and so we can remove the gvt special casing.
+%pS includes the offset, which is useful for return addresses but noise
+when we are pretty printing a known (and expected) function entry point.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/intel_context.h       | 24 +++++++-------
- drivers/gpu/drm/i915/gt/intel_context_types.h |  4 +--
- drivers/gpu/drm/i915/gt/intel_lrc.c           | 33 +++++--------------
- drivers/gpu/drm/i915/gvt/scheduler.c          |  7 ++--
- 4 files changed, 26 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/i915/i915_sw_fence.c          | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_active.c  | 2 +-
+ drivers/gpu/drm/i915/selftests/i915_request.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.h b/drivers/gpu/drm/i915/gt/intel_context.h
-index 18efad255124..ee5d47165c12 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context.h
-@@ -198,18 +198,6 @@ static inline bool intel_context_set_banned(struct intel_context *ce)
- 	return test_and_set_bit(CONTEXT_BANNED, &ce->flags);
- }
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
+index a3d38e089b6e..7daf81f55c90 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence.c
+@@ -421,7 +421,7 @@ static void timer_i915_sw_fence_wake(struct timer_list *t)
+ 	if (!fence)
+ 		return;
  
--static inline bool
--intel_context_force_single_submission(const struct intel_context *ce)
--{
--	return test_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
--}
--
--static inline void
--intel_context_set_single_submission(struct intel_context *ce)
--{
--	__set_bit(CONTEXT_FORCE_SINGLE_SUBMISSION, &ce->flags);
--}
--
- static inline bool
- intel_context_nopreempt(const struct intel_context *ce)
+-	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%pS)\n",
++	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%ps)\n",
+ 		  cb->dma->ops->get_driver_name(cb->dma),
+ 		  cb->dma->ops->get_timeline_name(cb->dma),
+ 		  cb->dma->seqno,
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index 68bbb1580162..54080fb4af4b 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -277,7 +277,7 @@ static struct intel_engine_cs *node_to_barrier(struct active_node *it)
+ 
+ void i915_active_print(struct i915_active *ref, struct drm_printer *m)
  {
-@@ -228,6 +216,18 @@ intel_context_clear_nopreempt(struct intel_context *ce)
- 	clear_bit(CONTEXT_NOPREEMPT, &ce->flags);
- }
+-	drm_printf(m, "active %pS:%pS\n", ref->active, ref->retire);
++	drm_printf(m, "active %ps:%ps\n", ref->active, ref->retire);
+ 	drm_printf(m, "\tcount: %d\n", atomic_read(&ref->count));
+ 	drm_printf(m, "\tpreallocated barriers? %s\n",
+ 		   yesno(!llist_empty(&ref->preallocated_barriers)));
+diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
+index f89d9c42f1fa..7ac9616de9d8 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_request.c
++++ b/drivers/gpu/drm/i915/selftests/i915_request.c
+@@ -1233,7 +1233,7 @@ static int live_parallel_engines(void *arg)
+ 		struct igt_live_test t;
+ 		unsigned int idx;
  
-+static inline bool
-+intel_context_is_gvt(const struct intel_context *ce)
-+{
-+	return test_bit(CONTEXT_GVT, &ce->flags);
-+}
-+
-+static inline void
-+intel_context_set_gvt(struct intel_context *ce)
-+{
-+	set_bit(CONTEXT_GVT, &ce->flags);
-+}
-+
- static inline u64 intel_context_get_total_runtime_ns(struct intel_context *ce)
- {
- 	const u32 period =
-diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
-index 0f3b68b95c56..fd2703efc10c 100644
---- a/drivers/gpu/drm/i915/gt/intel_context_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
-@@ -64,8 +64,8 @@ struct intel_context {
- #define CONTEXT_VALID_BIT		2
- #define CONTEXT_USE_SEMAPHORES		3
- #define CONTEXT_BANNED			4
--#define CONTEXT_FORCE_SINGLE_SUBMISSION	5
--#define CONTEXT_NOPREEMPT		6
-+#define CONTEXT_NOPREEMPT		5
-+#define CONTEXT_GVT			6
- 
- 	u32 *lrc_reg_state;
- 	u64 lrc_desc;
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 112531b29f59..f0c4084c5b9a 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1579,22 +1579,10 @@ static void execlists_submit_ports(struct intel_engine_cs *engine)
- 		writel(EL_CTRL_LOAD, execlists->ctrl_reg);
- }
- 
--static bool ctx_single_port_submission(const struct intel_context *ce)
--{
--	return (IS_ENABLED(CONFIG_DRM_I915_GVT) &&
--		intel_context_force_single_submission(ce));
--}
--
- static bool can_merge_ctx(const struct intel_context *prev,
- 			  const struct intel_context *next)
- {
--	if (prev != next)
--		return false;
--
--	if (ctx_single_port_submission(prev))
--		return false;
--
--	return true;
-+	return prev == next;
- }
- 
- static unsigned long i915_request_flags(const struct i915_request *rq)
-@@ -1844,6 +1832,12 @@ static inline void clear_ports(struct i915_request **ports, int count)
- 	memset_p((void **)ports, NULL, count);
- }
- 
-+static bool has_sentinel(struct i915_request *prev, struct i915_request *next)
-+{
-+	return (i915_request_flags(prev) | i915_request_flags(next)) &
-+		BIT(I915_FENCE_FLAG_SENTINEL);
-+}
-+
- static void execlists_dequeue(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_execlists * const execlists = &engine->execlists;
-@@ -2125,18 +2119,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				if (last->context == rq->context)
- 					goto done;
- 
--				if (i915_request_has_sentinel(last))
--					goto done;
--
--				/*
--				 * If GVT overrides us we only ever submit
--				 * port[0], leaving port[1] empty. Note that we
--				 * also have to be careful that we don't queue
--				 * the same context (even though a different
--				 * request) to the second port.
--				 */
--				if (ctx_single_port_submission(last->context) ||
--				    ctx_single_port_submission(rq->context))
-+				if (has_sentinel(last, rq))
- 					goto done;
- 
- 				merge = false;
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index 1c95bf8cbed0..4fccf4b194b0 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -204,9 +204,9 @@ static int populate_shadow_context(struct intel_vgpu_workload *workload)
- 	return 0;
- }
- 
--static inline bool is_gvt_request(struct i915_request *rq)
-+static inline bool is_gvt_request(const struct i915_request *rq)
- {
--	return intel_context_force_single_submission(rq->context);
-+	return intel_context_is_gvt(rq->context);
- }
- 
- static void save_ring_hw_state(struct intel_vgpu *vgpu,
-@@ -401,6 +401,7 @@ intel_gvt_workload_req_alloc(struct intel_vgpu_workload *workload)
- 		return PTR_ERR(rq);
- 	}
- 
-+	__set_bit(I915_FENCE_FLAG_SENTINEL, &rq->fence.flags);
- 	workload->req = i915_request_get(rq);
- 	return 0;
- }
-@@ -1226,7 +1227,7 @@ int intel_vgpu_setup_submission(struct intel_vgpu *vgpu)
- 
- 		i915_vm_put(ce->vm);
- 		ce->vm = i915_vm_get(&ppgtt->vm);
--		intel_context_set_single_submission(ce);
-+		intel_context_set_gvt(ce);
- 
- 		/* Max ring buffer size */
- 		if (!intel_uc_wants_guc_submission(&engine->gt->uc)) {
+-		snprintf(name, sizeof(name), "%pS", fn);
++		snprintf(name, sizeof(name), "%ps", fn);
+ 		err = igt_live_test_begin(&t, i915, __func__, name);
+ 		if (err)
+ 			break;
 -- 
 2.20.1
 
