@@ -2,47 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EF818B176
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 11:31:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C618B18B184
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 11:32:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A70EC6E9EB;
-	Thu, 19 Mar 2020 10:31:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21CF76E9EC;
+	Thu, 19 Mar 2020 10:32:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35E966E9EB;
- Thu, 19 Mar 2020 10:31:22 +0000 (UTC)
-IronPort-SDR: Dk+KQPi2u6T/SACnIaliriMpBYJTQBb0AwfUkBv7mpAzmN6tApN/UtVxXWvoz4NHsVT/rB926+
- fxBtFlHMEXGg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2020 03:31:21 -0700
-IronPort-SDR: 2yAgaLiSalpvvuCVrGpew6siNmtzlE5IqF5XykfZlWaW0dWmXrZTn2DEE8PM1bW2PuMZElqFKw
- KFxFk/aK2q7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; d="scan'208";a="263687200"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by orsmga002.jf.intel.com with ESMTP; 19 Mar 2020 03:31:15 -0700
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: sameer.lattannavar@intel.com, jani.nikula@linux.intel.com, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ville.syrjala@linux.intel.com, daniels@collabora.com,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@linux.ie>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Imre Deak <imre.deak@intel.com>, Uma Shankar <uma.shankar@intel.com>
-Date: Thu, 19 Mar 2020 15:51:03 +0530
-Message-Id: <20200319102103.28895-6-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20200319102103.28895-1-pankaj.laxminarayan.bharadiya@intel.com>
-References: <20200319102103.28895-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Greylist: delayed 395 seconds by postgrey-1.36 at gabe;
+ Thu, 19 Mar 2020 10:32:38 UTC
+Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
+ [79.96.170.134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC0ED6E9EE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 10:32:38 +0000 (UTC)
+Received: from 185.80.35.16 (185.80.35.16) (HELO kreacher.localnet)
+ by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.341)
+ id 510ce22fdf9eb956; Thu, 19 Mar 2020 11:25:56 +0100
+From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
+To: Francisco Jerez <currojerez@riseup.net>
+Date: Thu, 19 Mar 2020 11:25:56 +0100
+Message-ID: <6173226.NlFJlbPEpo@kreacher>
+In-Reply-To: <20200311192319.13406-1-currojerez@riseup.net>
+References: <87d09iae6f.fsf@riseup.net>
+ <20200311192319.13406-1-currojerez@riseup.net>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 5/5] drm/i915: Enable scaling filter for
- plane and CRTC
+Subject: Re: [Intel-gfx] [PATCHv2 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY
+ global PM QoS limit.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,176 +40,341 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
+ "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>,
+ linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-GEN >= 10 hardware supports the programmable scaler filter.
+On Wednesday, March 11, 2020 8:23:19 PM CET Francisco Jerez wrote:
+> The purpose of this PM QoS limit is to give device drivers additional
+> control over the latency/energy efficiency trade-off made by the PM
+> subsystem (particularly the CPUFREQ governor).  It allows device
+> drivers to set a lower bound on the response latency of PM (defined as
+> the time it takes from wake-up to the CPU reaching a certain
+> steady-state level of performance [e.g. the nominal frequency] in
+> response to a step-function load).  It reports to PM the minimum
+> ramp-up latency considered of use to the application, and explicitly
+> requests PM to filter out oscillations faster than the specified
+> frequency.  It is somewhat complementary to the current
+> CPU_DMA_LATENCY PM QoS class which can be understood as specifying an
+> upper latency bound on the CPU wake-up time, instead of a lower bound
+> on the CPU frequency ramp-up time.
+> 
+> Note that even though this provides a latency constraint it's
+> represented as its reciprocal in Hz units for computational efficiency
+> (since it would take a 64-bit division to compute the number of cycles
+> elapsed from a time increment in nanoseconds and a time bound, while a
+> frequency can simply be multiplied with the time increment).
+> 
+> This implements a MAX constraint so that the strictest (highest
+> response frequency) request is honored.  This means that PM won't
+> provide any guarantee that frequencies greater than the specified
+> bound will be filtered, since that might be incompatible with the
+> constraints specified by another more latency-sensitive application (A
+> more fine-grained result could be achieved with a scheduling-based
+> interface).  The default value needs to be equal to zero (best effort)
+> for it to behave as identity of the MAX operation.
+> 
+> v2: Drop wake_up_all_idle_cpus() call from
+>     cpu_response_frequency_qos_apply() (Peter).
+> 
+> Signed-off-by: Francisco Jerez <currojerez@riseup.net>
+> ---
+>  include/linux/pm_qos.h       |   9 +++
+>  include/trace/events/power.h |  33 +++++----
+>  kernel/power/qos.c           | 138 ++++++++++++++++++++++++++++++++++-
 
-Attach scaling filter property for CRTC and plane for GEN >= 10
-hardwares and program scaler filter based on the selected filter
-type.
+First, the documentation (Documentation/power/pm_qos_interface.rst) needs to be
+updated too to cover the new QoS category.
 
-changes since v1:
-* None
-Changes since RFC:
-* Enable properties for GEN >= 10 platforms (Ville)
-* Do not round off the crtc co-ordinate (Danial Stone, Ville)
-* Add new functions to handle scaling filter setup (Ville)
-* Remove coefficient set 0 hardcoding.
+>  3 files changed, 162 insertions(+), 18 deletions(-)
+> 
+> diff --git a/include/linux/pm_qos.h b/include/linux/pm_qos.h
+> index 4a69d4af3ff8..b522e2194c05 100644
+> --- a/include/linux/pm_qos.h
+> +++ b/include/linux/pm_qos.h
+> @@ -28,6 +28,7 @@ enum pm_qos_flags_status {
+>  #define PM_QOS_LATENCY_ANY_NS	((s64)PM_QOS_LATENCY_ANY * NSEC_PER_USEC)
+>  
+>  #define PM_QOS_CPU_LATENCY_DEFAULT_VALUE	(2000 * USEC_PER_SEC)
+> +#define PM_QOS_CPU_RESPONSE_FREQUENCY_DEFAULT_VALUE 0
 
-Signed-off-by: Shashank Sharma <shashank.sharma@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 32 ++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_sprite.c  | 31 ++++++++++++++++++-
- 2 files changed, 60 insertions(+), 3 deletions(-)
+I would call this PM_QOS_CPU_SCALING_RESPONSE_DEFAULT_VALUE and all of the
+API pieces accordingly.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 791dd908aa89..4b3387ee332e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6309,6 +6309,25 @@ void skl_scaler_setup_nearest_neighbor_filter(struct drm_i915_private *dev_priv,
- 	}
- }
- 
-+static u32
-+skl_scaler_crtc_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
-+			  int id, int set, enum drm_crtc_scaling_filter filter)
-+{
-+	u32 scaler_filter_ctl = PS_FILTER_MEDIUM;
-+
-+	if (filter == DRM_CRTC_SCALING_FILTER_NEAREST_NEIGHBOR) {
-+		skl_scaler_setup_nearest_neighbor_filter(dev_priv, pipe, id,
-+							 set);
-+		scaler_filter_ctl = PS_FILTER_PROGRAMMED |
-+				PS_UV_VERT_FILTER_SELECT(set) |
-+				PS_UV_HORZ_FILTER_SELECT(set) |
-+				PS_Y_VERT_FILTER_SELECT(set) |
-+				PS_Y_HORZ_FILTER_SELECT(set);
-+
-+	}
-+	return scaler_filter_ctl;
-+}
-+
- static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -6316,12 +6335,14 @@ static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 	enum pipe pipe = crtc->pipe;
- 	const struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
-+	const struct drm_crtc_state *state = &crtc_state->uapi;
- 
- 	if (crtc_state->pch_pfit.enabled) {
- 		u16 uv_rgb_hphase, uv_rgb_vphase;
- 		int pfit_w, pfit_h, hscale, vscale;
- 		unsigned long irqflags;
- 		int id;
-+		int scaler_filter_ctl;
- 
- 		if (drm_WARN_ON(&dev_priv->drm,
- 				crtc_state->scaler_state.scaler_id < 0))
-@@ -6340,8 +6361,12 @@ static void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 
- 		spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
- 
--		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id), PS_SCALER_EN |
--				  PS_FILTER_MEDIUM | scaler_state->scalers[id].mode);
-+		scaler_filter_ctl =
-+			skl_scaler_crtc_setup_filter(dev_priv, pipe, id, 0,
-+						state->scaling_filter);
-+		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id),
-+				  PS_SCALER_EN | scaler_filter_ctl |
-+				  scaler_state->scalers[id].mode);
- 		intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
- 				  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
- 		intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
-@@ -16777,6 +16802,9 @@ static int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 		dev_priv->plane_to_crtc_mapping[i9xx_plane] = crtc;
- 	}
- 
-+	if (INTEL_GEN(dev_priv) >= 10)
-+		drm_crtc_enable_scaling_filter(&crtc->base);
-+
- 	intel_color_init(crtc);
- 
- 	intel_crtc_crc_init(crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index deda351719db..ac3fd9843ace 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -395,6 +395,26 @@ skl_plane_max_stride(struct intel_plane *plane,
- 		return min(8192 * cpp, 32768);
- }
- 
-+static u32
-+skl_scaler_plane_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
-+			      int id, int set,
-+			      enum drm_plane_scaling_filter filter)
-+{
-+	u32 scaler_filter_ctl = PS_FILTER_MEDIUM;
-+
-+	if (filter == DRM_PLANE_SCALING_FILTER_NEAREST_NEIGHBOR) {
-+		skl_scaler_setup_nearest_neighbor_filter(dev_priv, pipe, id,
-+							 set);
-+		scaler_filter_ctl = PS_FILTER_PROGRAMMED |
-+				PS_UV_VERT_FILTER_SELECT(set) |
-+				PS_UV_HORZ_FILTER_SELECT(set) |
-+				PS_Y_VERT_FILTER_SELECT(set) |
-+				PS_Y_HORZ_FILTER_SELECT(set);
-+
-+	}
-+	return scaler_filter_ctl;
-+}
-+
- static void
- skl_program_scaler(struct intel_plane *plane,
- 		   const struct intel_crtc_state *crtc_state,
-@@ -406,6 +426,7 @@ skl_program_scaler(struct intel_plane *plane,
- 	int scaler_id = plane_state->scaler_id;
- 	const struct intel_scaler *scaler =
- 		&crtc_state->scaler_state.scalers[scaler_id];
-+	const struct drm_plane_state *state = &plane_state->uapi;
- 	int crtc_x = plane_state->uapi.dst.x1;
- 	int crtc_y = plane_state->uapi.dst.y1;
- 	u32 crtc_w = drm_rect_width(&plane_state->uapi.dst);
-@@ -413,6 +434,7 @@ skl_program_scaler(struct intel_plane *plane,
- 	u16 y_hphase, uv_rgb_hphase;
- 	u16 y_vphase, uv_rgb_vphase;
- 	int hscale, vscale;
-+	int scaler_filter_ctl;
- 
- 	hscale = drm_rect_calc_hscale(&plane_state->uapi.src,
- 				      &plane_state->uapi.dst,
-@@ -439,8 +461,12 @@ skl_program_scaler(struct intel_plane *plane,
- 		uv_rgb_vphase = skl_scaler_calc_phase(1, vscale, false);
- 	}
- 
-+	scaler_filter_ctl =
-+		skl_scaler_plane_setup_filter(dev_priv, pipe, scaler_id, 0,
-+					      state->scaling_filter);
- 	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, scaler_id),
--			  PS_SCALER_EN | PS_PLANE_SEL(plane->id) | scaler->mode);
-+			  PS_SCALER_EN | PS_PLANE_SEL(plane->id) |
-+			  scaler->mode | scaler_filter_ctl);
- 	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, scaler_id),
- 			  PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
- 	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
-@@ -3121,6 +3147,9 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 
- 	drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
- 
-+	if (INTEL_GEN(dev_priv) >= 10)
-+		drm_plane_enable_scaling_filter(&plane->base);
-+
- 	drm_plane_helper_add(&plane->base, &intel_plane_helper_funcs);
- 
- 	return plane;
--- 
-2.23.0
+>  #define PM_QOS_RESUME_LATENCY_DEFAULT_VALUE	PM_QOS_LATENCY_ANY
+>  #define PM_QOS_RESUME_LATENCY_NO_CONSTRAINT	PM_QOS_LATENCY_ANY
+>  #define PM_QOS_RESUME_LATENCY_NO_CONSTRAINT_NS	PM_QOS_LATENCY_ANY_NS
+> @@ -162,6 +163,14 @@ static inline void cpu_latency_qos_update_request(struct pm_qos_request *req,
+>  static inline void cpu_latency_qos_remove_request(struct pm_qos_request *req) {}
+>  #endif
+>  
+> +s32 cpu_response_frequency_qos_limit(void);
+
+For example
+
+cpu_scaling_response_qos_limit()
+
+> +bool cpu_response_frequency_qos_request_active(struct pm_qos_request *req);
+
+cpu_scaling_response_qos_request_active()
+
+and so on.
+
+> +void cpu_response_frequency_qos_add_request(struct pm_qos_request *req,
+> +					    s32 value);
+> +void cpu_response_frequency_qos_update_request(struct pm_qos_request *req,
+> +					       s32 new_value);
+> +void cpu_response_frequency_qos_remove_request(struct pm_qos_request *req);
+> +
+>  #ifdef CONFIG_PM
+>  enum pm_qos_flags_status __dev_pm_qos_flags(struct device *dev, s32 mask);
+>  enum pm_qos_flags_status dev_pm_qos_flags(struct device *dev, s32 mask);
+> diff --git a/include/trace/events/power.h b/include/trace/events/power.h
+> index af5018aa9517..7e4b52e8ca3a 100644
+> --- a/include/trace/events/power.h
+> +++ b/include/trace/events/power.h
+> @@ -359,45 +359,48 @@ DEFINE_EVENT(power_domain, power_domain_target,
+>  );
+>  
+>  /*
+> - * CPU latency QoS events used for global CPU latency QoS list updates
+> + * CPU latency/response frequency QoS events used for global CPU PM
+> + * QoS list updates.
+>   */
+> -DECLARE_EVENT_CLASS(cpu_latency_qos_request,
+> +DECLARE_EVENT_CLASS(pm_qos_request,
+>  
+> -	TP_PROTO(s32 value),
+> +	TP_PROTO(const char *name, s32 value),
+>  
+> -	TP_ARGS(value),
+> +	TP_ARGS(name, value),
+>  
+>  	TP_STRUCT__entry(
+> +		__string(name,			 name		)
+>  		__field( s32,                    value          )
+>  	),
+>  
+>  	TP_fast_assign(
+> +		__assign_str(name, name);
+>  		__entry->value = value;
+>  	),
+>  
+> -	TP_printk("CPU_DMA_LATENCY value=%d",
+> -		  __entry->value)
+> +	TP_printk("pm_qos_class=%s value=%d",
+> +		  __get_str(name), __entry->value)
+>  );
+>  
+> -DEFINE_EVENT(cpu_latency_qos_request, pm_qos_add_request,
+> +DEFINE_EVENT(pm_qos_request, pm_qos_add_request,
+>  
+> -	TP_PROTO(s32 value),
+> +	TP_PROTO(const char *name, s32 value),
+>  
+> -	TP_ARGS(value)
+> +	TP_ARGS(name, value)
+>  );
+>  
+> -DEFINE_EVENT(cpu_latency_qos_request, pm_qos_update_request,
+> +DEFINE_EVENT(pm_qos_request, pm_qos_update_request,
+>  
+> -	TP_PROTO(s32 value),
+> +	TP_PROTO(const char *name, s32 value),
+>  
+> -	TP_ARGS(value)
+> +	TP_ARGS(name, value)
+>  );
+>  
+> -DEFINE_EVENT(cpu_latency_qos_request, pm_qos_remove_request,
+> +DEFINE_EVENT(pm_qos_request, pm_qos_remove_request,
+>  
+> -	TP_PROTO(s32 value),
+> +	TP_PROTO(const char *name, s32 value),
+>  
+> -	TP_ARGS(value)
+> +	TP_ARGS(name, value)
+>  );
+>  
+>  /*
+> diff --git a/kernel/power/qos.c b/kernel/power/qos.c
+> index 32927682bcc4..49f140aa5aa1 100644
+> --- a/kernel/power/qos.c
+> +++ b/kernel/power/qos.c
+> @@ -271,7 +271,7 @@ void cpu_latency_qos_add_request(struct pm_qos_request *req, s32 value)
+>  		return;
+>  	}
+>  
+> -	trace_pm_qos_add_request(value);
+> +	trace_pm_qos_add_request("CPU_DMA_LATENCY", value);
+>  
+>  	req->qos = &cpu_latency_constraints;
+>  	cpu_latency_qos_apply(req, PM_QOS_ADD_REQ, value);
+> @@ -297,7 +297,7 @@ void cpu_latency_qos_update_request(struct pm_qos_request *req, s32 new_value)
+>  		return;
+>  	}
+>  
+> -	trace_pm_qos_update_request(new_value);
+> +	trace_pm_qos_update_request("CPU_DMA_LATENCY", new_value);
+>  
+>  	if (new_value == req->node.prio)
+>  		return;
+> @@ -323,7 +323,7 @@ void cpu_latency_qos_remove_request(struct pm_qos_request *req)
+>  		return;
+>  	}
+>  
+> -	trace_pm_qos_remove_request(PM_QOS_DEFAULT_VALUE);
+> +	trace_pm_qos_remove_request("CPU_DMA_LATENCY", PM_QOS_DEFAULT_VALUE);
+>  
+>  	cpu_latency_qos_apply(req, PM_QOS_REMOVE_REQ, PM_QOS_DEFAULT_VALUE);
+>  	memset(req, 0, sizeof(*req));
+> @@ -424,6 +424,138 @@ static int __init cpu_latency_qos_init(void)
+>  late_initcall(cpu_latency_qos_init);
+>  #endif /* CONFIG_CPU_IDLE */
+>  
+> +/* Definitions related to the CPU response frequency QoS. */
+> +
+> +static struct pm_qos_constraints cpu_response_frequency_constraints = {
+> +	.list = PLIST_HEAD_INIT(cpu_response_frequency_constraints.list),
+> +	.target_value = PM_QOS_CPU_RESPONSE_FREQUENCY_DEFAULT_VALUE,
+> +	.default_value = PM_QOS_CPU_RESPONSE_FREQUENCY_DEFAULT_VALUE,
+> +	.no_constraint_value = PM_QOS_CPU_RESPONSE_FREQUENCY_DEFAULT_VALUE,
+> +	.type = PM_QOS_MAX,
+> +};
+> +
+> +/**
+> + * cpu_response_frequency_qos_limit - Return current system-wide CPU
+> + *				      response frequency QoS limit.
+> + */
+> +s32 cpu_response_frequency_qos_limit(void)
+> +{
+> +	return pm_qos_read_value(&cpu_response_frequency_constraints);
+> +}
+> +EXPORT_SYMBOL_GPL(cpu_response_frequency_qos_limit);
+> +
+> +/**
+> + * cpu_response_frequency_qos_request_active - Check the given PM QoS request.
+> + * @req: PM QoS request to check.
+> + *
+> + * Return: 'true' if @req has been added to the CPU response frequency
+> + * QoS list, 'false' otherwise.
+> + */
+> +bool cpu_response_frequency_qos_request_active(struct pm_qos_request *req)
+> +{
+> +	return req->qos == &cpu_response_frequency_constraints;
+> +}
+> +EXPORT_SYMBOL_GPL(cpu_response_frequency_qos_request_active);
+> +
+> +static void cpu_response_frequency_qos_apply(struct pm_qos_request *req,
+> +					     enum pm_qos_req_action action,
+> +					     s32 value)
+> +{
+> +	pm_qos_update_target(req->qos, &req->node, action, value);
+> +}
+> +
+> +/**
+> + * cpu_response_frequency_qos_add_request - Add new CPU response
+> + *					    frequency QoS request.
+> + * @req: Pointer to a preallocated handle.
+> + * @value: Requested constraint value.
+> + *
+> + * Use @value to initialize the request handle pointed to by @req,
+> + * insert it as a new entry to the CPU response frequency QoS list and
+> + * recompute the effective QoS constraint for that list.
+> + *
+> + * Callers need to save the handle for later use in updates and removal of the
+> + * QoS request represented by it.
+> + */
+> +void cpu_response_frequency_qos_add_request(struct pm_qos_request *req,
+> +					    s32 value)
+> +{
+> +	if (!req)
+> +		return;
+> +
+> +	if (cpu_response_frequency_qos_request_active(req)) {
+> +		WARN(1, KERN_ERR "%s called for already added request\n",
+> +		     __func__);
+> +		return;
+> +	}
+> +
+> +	trace_pm_qos_add_request("CPU_RESPONSE_FREQUENCY", value);
+> +
+> +	req->qos = &cpu_response_frequency_constraints;
+> +	cpu_response_frequency_qos_apply(req, PM_QOS_ADD_REQ, value);
+> +}
+> +EXPORT_SYMBOL_GPL(cpu_response_frequency_qos_add_request);
+> +
+> +/**
+> + * cpu_response_frequency_qos_update_request - Modify existing CPU
+> + *					       response frequency QoS
+> + *					       request.
+> + * @req : QoS request to update.
+> + * @new_value: New requested constraint value.
+> + *
+> + * Use @new_value to update the QoS request represented by @req in the
+> + * CPU response frequency QoS list along with updating the effective
+> + * constraint value for that list.
+> + */
+> +void cpu_response_frequency_qos_update_request(struct pm_qos_request *req,
+> +					       s32 new_value)
+> +{
+> +	if (!req)
+> +		return;
+> +
+> +	if (!cpu_response_frequency_qos_request_active(req)) {
+> +		WARN(1, KERN_ERR "%s called for unknown object\n", __func__);
+> +		return;
+> +	}
+> +
+> +	trace_pm_qos_update_request("CPU_RESPONSE_FREQUENCY", new_value);
+> +
+> +	if (new_value == req->node.prio)
+> +		return;
+> +
+> +	cpu_response_frequency_qos_apply(req, PM_QOS_UPDATE_REQ, new_value);
+> +}
+> +EXPORT_SYMBOL_GPL(cpu_response_frequency_qos_update_request);
+> +
+> +/**
+> + * cpu_response_frequency_qos_remove_request - Remove existing CPU
+> + *					       response frequency QoS
+> + *					       request.
+> + * @req: QoS request to remove.
+> + *
+> + * Remove the CPU response frequency QoS request represented by @req
+> + * from the CPU response frequency QoS list along with updating the
+> + * effective constraint value for that list.
+> + */
+> +void cpu_response_frequency_qos_remove_request(struct pm_qos_request *req)
+> +{
+> +	if (!req)
+> +		return;
+> +
+> +	if (!cpu_response_frequency_qos_request_active(req)) {
+> +		WARN(1, KERN_ERR "%s called for unknown object\n", __func__);
+> +		return;
+> +	}
+> +
+> +	trace_pm_qos_remove_request("CPU_RESPONSE_FREQUENCY",
+> +				    PM_QOS_DEFAULT_VALUE);
+> +
+> +	cpu_response_frequency_qos_apply(req, PM_QOS_REMOVE_REQ,
+> +					 PM_QOS_DEFAULT_VALUE);
+> +	memset(req, 0, sizeof(*req));
+> +}
+> +EXPORT_SYMBOL_GPL(cpu_response_frequency_qos_remove_request);
+> +
+>  /* Definitions related to the frequency QoS below. */
+>  
+>  /**
+> 
+
+
+
 
 _______________________________________________
 Intel-gfx mailing list
