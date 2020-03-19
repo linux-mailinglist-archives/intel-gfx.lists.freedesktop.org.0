@@ -2,58 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F20618C13B
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 21:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F379818C19F
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 21:46:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0112A6EA61;
-	Thu, 19 Mar 2020 20:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7380889C46;
+	Thu, 19 Mar 2020 20:46:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com
- [IPv6:2a00:1450:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8CD06EA61
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 20:22:05 +0000 (UTC)
-Received: by mail-lj1-x242.google.com with SMTP id 19so4017791ljj.7
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 13:22:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references;
- bh=cQuYmFPkKQMwauOoROmtRemqEZvC37zqvdYeTmKrxWo=;
- b=La4oF7L4tKbJZx35h4gwSQl3uiZqCRys4v5jSPKL5TrlFuIDdJGVazxT1dEO+0SU2Y
- yBLSko4oineiHxwwssTu/5r4ouSj3uptAWL0nYt7jElHAnjXiTptF+B5bKYIfRTh5yFA
- 7aJTLZH8CSvw31HizsDQMPFYKwWg7S3Ff8tFPsscz5rTjt1QUpf36KQOW94ucw/E27KY
- Y6OEedsedn2JedziT9n7Zj9yL7sopEw+jVcDi2rYAzvDbvGargRXyIlhpbvX/kqszCsO
- FC3t58k5slwhZOsvRTA0fD5VzEeUX7Xtd3rlYeQP5hW/ylwymNqWeQMbWlPEc5VrSXbQ
- UIuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references;
- bh=cQuYmFPkKQMwauOoROmtRemqEZvC37zqvdYeTmKrxWo=;
- b=U3cGYzcxacXHZyipxtlACNJDGXlHXS5XtrBtmCe+/JyRaqUZaW360XBmsgFJhfHhyO
- qZ4C5Xtuhrls6ZweENu0vSQSQGbwfliuB8TKWxZjlZEx+4n8TDTo6vc2L8V8lkAfp0VO
- Up708AegZv7Op5TBqHUHEP3gPyBZS+boXwZa6a8uy4KIS6UEQg+MS7jou8KiNBHlgwXl
- ebsAkbhpAl26ALpWzpX0wdNMrW4DLlySOuvbdEfxHvU4hH6TPQruCkW/fPqTIJvaDVyi
- cQUS8qt7a9E4LvUfsifY9W6Utmkw3TIooC2mgMTfb8fM2yaCNj8oxrX6aUDHt3C3NMSl
- +0tQ==
-X-Gm-Message-State: ANhLgQ0BRomRz17ntKlVlRXVzv/Yw5kUavz/cI9wH/pFUoqh9bJDpUd4
- 0TzHiUSXT/QLmsX8lbxbi3mvlN9sis8=
-X-Google-Smtp-Source: ADFU+vvp2weI3PxuJKTC0xu2X/CFixuArsbMRjXeswdQbrAQDLm22PnUUwj5yHoKIzRe2ol23Tv8Cg==
-X-Received: by 2002:a2e:90da:: with SMTP id o26mr3309235ljg.254.1584649323768; 
- Thu, 19 Mar 2020 13:22:03 -0700 (PDT)
-Received: from localhost.localdomain (mobile-access-b0485e-106.dhcp.inet.fi.
- [176.72.94.106])
- by smtp.gmail.com with ESMTPSA id p27sm2414203lfo.63.2020.03.19.13.22.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Mar 2020 13:22:03 -0700 (PDT)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Mar 2020 22:21:48 +0200
-Message-Id: <20200319202148.8879-2-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200319202148.8879-1-juhapekka.heikkila@gmail.com>
-References: <20200319202148.8879-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-gfx] [PATCH 1/1] drm/i915: Allow gen11 to use over 32k long
- strides
+X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
+ Thu, 19 Mar 2020 19:41:57 UTC
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
+ [199.106.114.39])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBC36E081
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 19:41:57 +0000 (UTC)
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+ by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Mar 2020 12:35:52 -0700
+Received: from gurus-linux.qualcomm.com ([10.46.162.81])
+ by ironmsg-SD-alpha.qualcomm.com with ESMTP; 19 Mar 2020 12:35:52 -0700
+Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
+ id 267874BBA; Thu, 19 Mar 2020 12:35:52 -0700 (PDT)
+Date: Thu, 19 Mar 2020 12:35:52 -0700
+From: Guru Das Srinagesh <gurus@codeaurora.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Message-ID: <20200319193551.GA23396@codeaurora.org>
+References: <cover.1584473399.git.gurus@codeaurora.org>
+ <19661821c8eb32291e72ec091c267f915c365c52.1584473399.git.gurus@codeaurora.org>
+ <87h7yleb0i.fsf@intel.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <87h7yleb0i.fsf@intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Mailman-Approved-At: Thu, 19 Mar 2020 20:46:23 +0000
+Subject: Re: [Intel-gfx] [PATCH v9 01/11] drm/i915: Use 64-bit division macro
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +46,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-pwm@vger.kernel.org,
+ Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+ David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The stride in bytes must not exceed the size of 8K pixels.
-Linear 64 bpp pixel format maximum stride in tiles is 1024
-which would mean gen11 support 64k long stride.
-
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_sprite.c | 30 ++++++++++++++++-----
- 1 file changed, 24 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index db80367c0dbc..d829c0be923e 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -383,16 +383,34 @@ skl_plane_max_stride(struct intel_plane *plane,
- 		     unsigned int rotation)
- {
- 	const struct drm_format_info *info = drm_format_info(pixel_format);
-+	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	int cpp = info->cpp[0];
-+	int max_stride_bytes;
-+
-+	if (INTEL_GEN(dev_priv) >= 11) {
-+		/*
-+		 * The stride in bytes must not exceed the
-+		 * size of 8K pixels. Linear 64 bpp pixel format
-+		 * Maximum Stride in tiles = 1024
-+		 * which would mean ICL support 64k long stride.
-+		 * Linear modifier seems to not work with maximum length.
-+		 */
-+		if (modifier == DRM_FORMAT_MOD_LINEAR)
-+			max_stride_bytes = 65536-64;
-+		else
-+			max_stride_bytes = 65536;
-+	} else {
-+		/*
-+		 * "The stride in bytes must not exceed the
-+		 * of the size of 8K pixels and 32K bytes."
-+		 */
-+		max_stride_bytes = 32768;
-+	}
- 
--	/*
--	 * "The stride in bytes must not exceed the
--	 * of the size of 8K pixels and 32K bytes."
--	 */
- 	if (drm_rotation_90_or_270(rotation))
--		return min(8192, 32768 / cpp);
-+		return min(8192, max_stride_bytes / cpp);
- 	else
--		return min(8192 * cpp, 32768);
-+		return min(8192 * cpp, max_stride_bytes);
- }
- 
- static void
--- 
-2.17.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+T24gV2VkLCBNYXIgMTgsIDIwMjAgYXQgMDk6MDg6NDVQTSArMDIwMCwgSmFuaSBOaWt1bGEgd3Jv
+dGU6Cj4gT24gVHVlLCAxNyBNYXIgMjAyMCwgR3VydSBEYXMgU3JpbmFnZXNoIDxndXJ1c0Bjb2Rl
+YXVyb3JhLm9yZz4gd3JvdGU6Cj4gPiBTaW5jZSB0aGUgUFdNIGZyYW1ld29yayBpcyBzd2l0Y2hp
+bmcgc3RydWN0IHB3bV9zdGF0ZS5kdXR5X2N5Y2xlJ3MKPiA+IGRhdGF0eXBlIHRvIHU2NCwgcHJl
+cGFyZSBmb3IgdGhpcyB0cmFuc2l0aW9uIGJ5IHVzaW5nIERJVl9ST1VORF9VUF9VTEwKPiA+IHRv
+IGhhbmRsZSBhIDY0LWJpdCBkaXZpZGVuZC4KPiA+Cj4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmku
+bmlrdWxhQGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5s
+YWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxp
+bnV4LmllPgo+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiA+IENjOiBD
+aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+IENjOiAiVmlsbGUgU3ly
+asOkbMOkIiA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogaW50ZWwtZ2Z4
+QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
+cC5vcmcKPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gPiBD
+YzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4K
+PiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBHdXJ1IERhcyBTcmluYWdlc2ggPGd1cnVzQGNvZGVhdXJv
+cmEub3JnPgo+IAo+IFJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwu
+Y29tPgoKVGhhbmtzIQoKPiBBbHNvIGFjayBmb3IgbWVyZ2luZyB0aGlzIHZpYSB3aGljaGV2ZXIg
+dHJlZSB5b3UgcHJlZmVyOyBwbGVhc2UgbGV0IG1lCj4ga25vdyBpZiB5b3Ugd2FudCBtZSB0byB0
+YWtlIHRoaXMgdmlhIGRybS1pbnRlbC4KCkknbSBub3Qgc3VyZSBpZiB0aGlzIHBhdGNoIGNhbiBi
+ZSB0YWtlbiB2aWEgZHJtLWludGVsIGluIGlzb2xhdGlvbiBhcyBpdAppcyBwYXJ0IG9mIGEgc2Vy
+aWVzLi4uIFdpbGwgbGV0IHlvdSBrbm93IGlmIEkgbmVlZCB0byBtYWtlIHN1Y2ggYQpyZXF1ZXN0
+LgoKVGhhbmsgeW91LgoKR3VydSBEYXMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
+bmZvL2ludGVsLWdmeAo=
