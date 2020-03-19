@@ -2,45 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D617718C291
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 22:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A140418C298
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 22:53:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 566626EA8A;
-	Thu, 19 Mar 2020 21:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0B2C6EA34;
+	Thu, 19 Mar 2020 21:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC6E6EA8A
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 21:49:44 +0000 (UTC)
-IronPort-SDR: sgWzSCZHFy+M5uRilF+VW1qxX6dVpMFwfSGc7wJbuVN3Up6i/f4pQx4j4qC7G89HMMhjE0roPe
- 6+HAYY9uoG6A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2020 14:49:44 -0700
-IronPort-SDR: xmQv+Tg7wBZX7hjjTYtQkQ3sBbSVXRtt1kxIQ1Iq1ly9nVvgQAj1fH1BXA1VJ6CS5GIP61zemR
- jRZFB/uo3OOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,573,1574150400"; d="scan'208";a="239048939"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga008.jf.intel.com with ESMTP; 19 Mar 2020 14:49:43 -0700
-Date: Thu, 19 Mar 2020 14:51:20 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200319215119.GA11219@intel.com>
-References: <20200317001320.GC24231@intel.com>
- <20200318063514.17943-1-animesh.manna@intel.com>
- <20200318200415.GA6198@intel.com>
- <ce9d15bf-d05b-305b-f94b-7ad6f5092306@intel.com>
- <20200319160222.GK13686@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B9C36EA34;
+ Thu, 19 Mar 2020 21:53:17 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id EEED4A010F;
+ Thu, 19 Mar 2020 21:53:16 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200319160222.GK13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v6 6/7] drm/i915/dp: Register definition for
- DP compliance register
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Thu, 19 Mar 2020 21:53:16 -0000
+Message-ID: <158465479694.17934.1866489245685122663@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200319211535.114625-1-jose.souza@intel.com>
+In-Reply-To: <20200319211535.114625-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display/fbc=3A_Make_fences_a_nice-to-have_for_GEN9+?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,76 +38,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 19, 2020 at 06:02:22PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Thu, Mar 19, 2020 at 12:09:18PM +0530, Manna, Animesh wrote:
-> > On 19-03-2020 01:34, Manasi Navare wrote:
-> > > On Wed, Mar 18, 2020 at 12:05:14PM +0530, Animesh Manna wrote:
-> > >> DP_COMP_CTL and DP_COMP_PAT register used to program DP
-> > >> compliance pattern.
-> > >>
-> > >> v1: Initial patch.
-> > >> v2: used pipe instead of port in macro definition. [Manasi]
-> > >> v3: used trans_offset for offset calculation. [Manasi]
-> > >>
-> > >> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> > >> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > >> ---
-> > >>   drivers/gpu/drm/i915/i915_reg.h | 16 ++++++++++++++++
-> > >>   1 file changed, 16 insertions(+)
-> > >>
-> > >> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/=
-i915_reg.h
-> > >> index 309cb7d96b35..8b6c9fbfe74b 100644
-> > >> --- a/drivers/gpu/drm/i915/i915_reg.h
-> > >> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > >> @@ -9792,6 +9792,22 @@ enum skl_power_gate {
-> > >>   #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
-> > >>   #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS=
-_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
-> > >>   =
+== Series Details ==
 
-> > >> +/* DDI DP Compliance Control */
-> > >> +#define _DDI_DP_COMP_CTL_A			0x605F0
-> > >> +#define DDI_DP_COMP_CTL(pipe)			_MMIO_TRANS2(pipe, _DDI_DP_COMP_CTL=
-_A)
-> > > Any reason why you couldnt use _MMIO_PIPE2 ?
-> > =
+Series: drm/i915/display/fbc: Make fences a nice-to-have for GEN9+
+URL   : https://patchwork.freedesktop.org/series/74890/
+State : success
 
-> > As DP_COMP_CTL is part of transcoder register group, so I choose _MMIO_=
-TRANS2 for calculation. Yes _MMIO_PIPE2 will also work as the offset differ=
-ence between subsequent pipe is same (0x1000).
-> =
+== Summary ==
 
-> The preference is:
-> 1. _MMIO_PIPE()/etc. for evenly spaced things
-> 2. _MMIO_PIPE2()/etc. for regular but not evenly spaced stuff
-> 3. _PICK() where the above two fail
-> =
+CI Bug Log - changes from CI_DRM_8160 -> Patchwork_17029
+====================================================
 
-> There are probably a few places that do violate that though.
-> We should probably fix those to not give people the wrong ideas.
->
+Summary
+-------
 
-So here since the offsets are regular, we could just use _MMIO_PIPE for bot=
-h DP_COMP_CTL
-and DP_COMP_PAT?
-we could define _A and _B and just use _MMIO_PIPE
+  **SUCCESS**
 
-Animesh, please try to use this as suggested by Ville.
+  No regressions found.
 
-Regards
-Manasi =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/index.html
 
-> -- =
+Known issues
+------------
 
-> Ville Syrj=E4l=E4
-> Intel
+  Here are the changes found in Patchwork_17029 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [PASS][3] -> [DMESG-FAIL][4] ([i915#730] / [i915#933])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+    - fi-cml-s:           [PASS][5] -> [DMESG-FAIL][6] ([i915#877])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+    - fi-skl-lmem:        [PASS][7] -> [INCOMPLETE][8] ([i915#424])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][9] -> [FAIL][10] ([i915#323])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#933]: https://gitlab.freedesktop.org/drm/intel/issues/933
+
+
+Participating hosts (37 -> 40)
+------------------------------
+
+  Additional (6): fi-bsw-n3050 fi-byt-j1900 fi-cfl-8109u fi-skl-6600u fi-bsw-nick fi-skl-6700k2 
+  Missing    (3): fi-byt-clapper fi-byt-squawks fi-bsw-cyan 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8160 -> Patchwork_17029
+
+  CI-20190529: 20190529
+  CI_DRM_8160: 6ba1729e5025761ab74914f6b8aa3288f493e9c7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5523: cf6d524007ac51a7d5a48503ea3dd5f01fd4ebab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17029: e67c9d8b107777dcb7678579240a1def62211d79 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+e67c9d8b1077 drm/i915/display/fbc: Make fences a nice-to-have for GEN9+
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17029/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
