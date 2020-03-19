@@ -2,38 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F379818C19F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 21:46:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEB2018C1AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 21:50:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7380889C46;
-	Thu, 19 Mar 2020 20:46:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F1866EA7A;
+	Thu, 19 Mar 2020 20:50:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 364 seconds by postgrey-1.36 at gabe;
- Thu, 19 Mar 2020 19:41:57 UTC
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com
- [199.106.114.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EBC36E081
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 19:41:57 +0000 (UTC)
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
- by alexa-out-sd-02.qualcomm.com with ESMTP; 19 Mar 2020 12:35:52 -0700
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
- by ironmsg-SD-alpha.qualcomm.com with ESMTP; 19 Mar 2020 12:35:52 -0700
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
- id 267874BBA; Thu, 19 Mar 2020 12:35:52 -0700 (PDT)
-Date: Thu, 19 Mar 2020 12:35:52 -0700
-From: Guru Das Srinagesh <gurus@codeaurora.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Message-ID: <20200319193551.GA23396@codeaurora.org>
-References: <cover.1584473399.git.gurus@codeaurora.org>
- <19661821c8eb32291e72ec091c267f915c365c52.1584473399.git.gurus@codeaurora.org>
- <87h7yleb0i.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A4CB6EA79;
+ Thu, 19 Mar 2020 20:50:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 89F9DA0099;
+ Thu, 19 Mar 2020 20:50:05 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <87h7yleb0i.fsf@intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Mailman-Approved-At: Thu, 19 Mar 2020 20:46:23 +0000
-Subject: Re: [Intel-gfx] [PATCH v9 01/11] drm/i915: Use 64-bit division macro
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Souza, Jose" <jose.souza@intel.com>
+Date: Thu, 19 Mar 2020 20:50:05 -0000
+Message-ID: <158465100556.17932.4920870275259735363@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200318235956.118409-1-jose.souza@intel.com>
+In-Reply-To: <20200318235956.118409-1-jose.souza@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/6=5D_drm/i915/tc/tgl=3A_Implement_TCCOLD?=
+ =?utf-8?q?_sequences_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,38 +39,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-pwm@vger.kernel.org,
- Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
- David Airlie <airlied@linux.ie>, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCBNYXIgMTgsIDIwMjAgYXQgMDk6MDg6NDVQTSArMDIwMCwgSmFuaSBOaWt1bGEgd3Jv
-dGU6Cj4gT24gVHVlLCAxNyBNYXIgMjAyMCwgR3VydSBEYXMgU3JpbmFnZXNoIDxndXJ1c0Bjb2Rl
-YXVyb3JhLm9yZz4gd3JvdGU6Cj4gPiBTaW5jZSB0aGUgUFdNIGZyYW1ld29yayBpcyBzd2l0Y2hp
-bmcgc3RydWN0IHB3bV9zdGF0ZS5kdXR5X2N5Y2xlJ3MKPiA+IGRhdGF0eXBlIHRvIHU2NCwgcHJl
-cGFyZSBmb3IgdGhpcyB0cmFuc2l0aW9uIGJ5IHVzaW5nIERJVl9ST1VORF9VUF9VTEwKPiA+IHRv
-IGhhbmRsZSBhIDY0LWJpdCBkaXZpZGVuZC4KPiA+Cj4gPiBDYzogSmFuaSBOaWt1bGEgPGphbmku
-bmlrdWxhQGxpbnV4LmludGVsLmNvbT4KPiA+IENjOiBKb29uYXMgTGFodGluZW4gPGpvb25hcy5s
-YWh0aW5lbkBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogRGF2aWQgQWlybGllIDxhaXJsaWVkQGxp
-bnV4LmllPgo+ID4gQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbEBmZndsbC5jaD4KPiA+IENjOiBD
-aHJpcyBXaWxzb24gPGNocmlzQGNocmlzLXdpbHNvbi5jby51az4KPiA+IENjOiAiVmlsbGUgU3ly
-asOkbMOkIiA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gPiBDYzogaW50ZWwtZ2Z4
-QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwo+ID4gQ2M6IGRyaS1kZXZlbEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKPiA+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+Cj4gPiBD
-YzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4K
-PiA+Cj4gPiBTaWduZWQtb2ZmLWJ5OiBHdXJ1IERhcyBTcmluYWdlc2ggPGd1cnVzQGNvZGVhdXJv
-cmEub3JnPgo+IAo+IFJldmlld2VkLWJ5OiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAaW50ZWwu
-Y29tPgoKVGhhbmtzIQoKPiBBbHNvIGFjayBmb3IgbWVyZ2luZyB0aGlzIHZpYSB3aGljaGV2ZXIg
-dHJlZSB5b3UgcHJlZmVyOyBwbGVhc2UgbGV0IG1lCj4ga25vdyBpZiB5b3Ugd2FudCBtZSB0byB0
-YWtlIHRoaXMgdmlhIGRybS1pbnRlbC4KCkknbSBub3Qgc3VyZSBpZiB0aGlzIHBhdGNoIGNhbiBi
-ZSB0YWtlbiB2aWEgZHJtLWludGVsIGluIGlzb2xhdGlvbiBhcyBpdAppcyBwYXJ0IG9mIGEgc2Vy
-aWVzLi4uIFdpbGwgbGV0IHlvdSBrbm93IGlmIEkgbmVlZCB0byBtYWtlIHN1Y2ggYQpyZXF1ZXN0
-LgoKVGhhbmsgeW91LgoKR3VydSBEYXMuCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+== Series Details ==
+
+Series: series starting with [1/6] drm/i915/tc/tgl: Implement TCCOLD sequences (rev2)
+URL   : https://patchwork.freedesktop.org/series/74851/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8160 -> Patchwork_17027
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17027/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17027 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [PASS][1] -> [FAIL][2] ([i915#323])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8160/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17027/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+
+
+Participating hosts (37 -> 35)
+------------------------------
+
+  Additional (6): fi-bsw-n3050 fi-byt-j1900 fi-cfl-8109u fi-skl-6600u fi-bsw-nick fi-skl-6700k2 
+  Missing    (8): fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-gdg-551 fi-elk-e7500 fi-bsw-kefka fi-skl-lmem fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8160 -> Patchwork_17027
+
+  CI-20190529: 20190529
+  CI_DRM_8160: 6ba1729e5025761ab74914f6b8aa3288f493e9c7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5523: cf6d524007ac51a7d5a48503ea3dd5f01fd4ebab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17027: 4f6235744a939c05913c4cb014945655ea1d82f3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4f6235744a93 drm/i915/dp: Get TC link reference during DP detection
+9ac70989f9f6 drm/i915/tc/icl: Implement the TC cold exit sequence
+1781e726775b drm/i915/display: Add intel_aux_ch_to_power_domain()
+a940e1299b38 drm/i915/display: Implement intel_display_power_wait_enable_ack()
+80fc6f70f951 drm/i915/display: Add intel_display_power_get_without_ack()
+61f30e252243 drm/i915/tc/tgl: Implement TCCOLD sequences
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17027/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
