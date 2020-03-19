@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF6E518AE27
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 09:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D029818AE26
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 09:15:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF8A86E9AC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD3F86E0FA;
 	Thu, 19 Mar 2020 08:15:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D24D66E9AC
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1EF96E0FA
  for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 08:15:05 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20612485-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20612486-1500050 
  for multiple; Thu, 19 Mar 2020 08:14:57 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Mar 2020 08:14:53 +0000
-Message-Id: <20200319081456.9218-1-chris@chris-wilson.co.uk>
+Date: Thu, 19 Mar 2020 08:14:54 +0000
+Message-Id: <20200319081456.9218-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200319081456.9218-1-chris@chris-wilson.co.uk>
+References: <20200319081456.9218-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915: Prefer '%ps' for printing
- function symbol names
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/gem: Avoid gem_context->mutex for
+ simple vma lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,55 +44,208 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-%pS includes the offset, which is useful for return addresses but noise
-when we are pretty printing a known (and expected) function entry point.
+As we store the handle lookup inside a radix tree, we do not need the
+gem_context->mutex except until we need to insert our lookup into the
+common radix tree. This takes a small bit of rearranging to ensure that
+the lut we insert into the tree is ready prior to actually inserting it
+(as soon as it is exposed via the radixtree, it is visible to any other
+submission).
+
+v2: For brownie points, remove the goto spaghetti.
+v3: Tighten up the closed-handle checks.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/i915_sw_fence.c          | 2 +-
- drivers/gpu/drm/i915/selftests/i915_active.c  | 2 +-
- drivers/gpu/drm/i915/selftests/i915_request.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 136 +++++++++++-------
+ 1 file changed, 87 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index a3d38e089b6e..7daf81f55c90 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -421,7 +421,7 @@ static void timer_i915_sw_fence_wake(struct timer_list *t)
- 	if (!fence)
- 		return;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index d3f4f28e9468..042a9ccf348f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -481,7 +481,7 @@ eb_add_vma(struct i915_execbuffer *eb,
  
--	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%pS)\n",
-+	pr_notice("Asynchronous wait on fence %s:%s:%llx timed out (hint:%ps)\n",
- 		  cb->dma->ops->get_driver_name(cb->dma),
- 		  cb->dma->ops->get_timeline_name(cb->dma),
- 		  cb->dma->seqno,
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 68bbb1580162..54080fb4af4b 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -277,7 +277,7 @@ static struct intel_engine_cs *node_to_barrier(struct active_node *it)
+ 	GEM_BUG_ON(i915_vma_is_closed(vma));
  
- void i915_active_print(struct i915_active *ref, struct drm_printer *m)
+-	ev->vma = i915_vma_get(vma);
++	ev->vma = vma;
+ 	ev->exec = entry;
+ 	ev->flags = entry->flags;
+ 
+@@ -728,77 +728,117 @@ static int eb_select_context(struct i915_execbuffer *eb)
+ 	return 0;
+ }
+ 
+-static int eb_lookup_vmas(struct i915_execbuffer *eb)
++static int __eb_add_lut(struct i915_execbuffer *eb,
++			u32 handle, struct i915_vma *vma)
  {
--	drm_printf(m, "active %pS:%pS\n", ref->active, ref->retire);
-+	drm_printf(m, "active %ps:%ps\n", ref->active, ref->retire);
- 	drm_printf(m, "\tcount: %d\n", atomic_read(&ref->count));
- 	drm_printf(m, "\tpreallocated barriers? %s\n",
- 		   yesno(!llist_empty(&ref->preallocated_barriers)));
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index f89d9c42f1fa..7ac9616de9d8 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -1233,7 +1233,7 @@ static int live_parallel_engines(void *arg)
- 		struct igt_live_test t;
- 		unsigned int idx;
+-	struct radix_tree_root *handles_vma = &eb->gem_context->handles_vma;
+-	struct drm_i915_gem_object *obj;
+-	unsigned int i, batch;
++	struct i915_gem_context *ctx = eb->gem_context;
++	struct i915_lut_handle *lut;
+ 	int err;
  
--		snprintf(name, sizeof(name), "%pS", fn);
-+		snprintf(name, sizeof(name), "%ps", fn);
- 		err = igt_live_test_begin(&t, i915, __func__, name);
- 		if (err)
- 			break;
+-	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
+-		return -ENOENT;
++	lut = i915_lut_handle_alloc();
++	if (unlikely(!lut))
++		return -ENOMEM;
+ 
+-	INIT_LIST_HEAD(&eb->relocs);
+-	INIT_LIST_HEAD(&eb->unbound);
++	i915_vma_get(vma);
++	if (!atomic_fetch_inc(&vma->open_count))
++		i915_vma_reopen(vma);
++	lut->handle = handle;
++	lut->ctx = ctx;
++
++	/* Check that the context hasn't been closed in the meantime */
++	err = -EINTR;
++	if (!mutex_lock_interruptible(&ctx->mutex)) {
++		err = -ENOENT;
++		if (likely(!i915_gem_context_is_closed(ctx)))
++			err = radix_tree_insert(&ctx->handles_vma, handle, vma);
++		if (err == 0) { /* And nor has this handle */
++			struct drm_i915_gem_object *obj = vma->obj;
++
++			i915_gem_object_lock(obj);
++			if (idr_find(&eb->file->object_idr, handle) == obj) {
++				list_add(&lut->obj_link, &obj->lut_list);
++			} else {
++				radix_tree_delete(&ctx->handles_vma, handle);
++				err = -ENOENT;
++			}
++			i915_gem_object_unlock(obj);
++		}
++		mutex_unlock(&ctx->mutex);
++	}
++	if (unlikely(err))
++		goto err;
+ 
+-	batch = eb_batch_index(eb);
++	return 0;
+ 
+-	for (i = 0; i < eb->buffer_count; i++) {
+-		u32 handle = eb->exec[i].handle;
+-		struct i915_lut_handle *lut;
++err:
++	atomic_dec(&vma->open_count);
++	i915_vma_put(vma);
++	i915_lut_handle_free(lut);
++	return err;
++}
++
++static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
++{
++	do {
++		struct drm_i915_gem_object *obj;
+ 		struct i915_vma *vma;
++		int err;
+ 
+-		vma = radix_tree_lookup(handles_vma, handle);
++		rcu_read_lock();
++		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
++		if (likely(vma))
++			vma = i915_vma_tryget(vma);
++		rcu_read_unlock();
+ 		if (likely(vma))
+-			goto add_vma;
++			return vma;
+ 
+ 		obj = i915_gem_object_lookup(eb->file, handle);
+-		if (unlikely(!obj)) {
+-			err = -ENOENT;
+-			goto err_vma;
+-		}
++		if (unlikely(!obj))
++			return ERR_PTR(-ENOENT);
+ 
+ 		vma = i915_vma_instance(obj, eb->context->vm, NULL);
+ 		if (IS_ERR(vma)) {
+-			err = PTR_ERR(vma);
+-			goto err_obj;
++			i915_gem_object_put(obj);
++			return vma;
+ 		}
+ 
+-		lut = i915_lut_handle_alloc();
+-		if (unlikely(!lut)) {
+-			err = -ENOMEM;
+-			goto err_obj;
+-		}
++		err = __eb_add_lut(eb, handle, vma);
++		if (likely(!err))
++			return vma;
+ 
+-		err = radix_tree_insert(handles_vma, handle, vma);
+-		if (unlikely(err)) {
+-			i915_lut_handle_free(lut);
+-			goto err_obj;
+-		}
++		i915_gem_object_put(obj);
++		if (err != -EEXIST)
++			return ERR_PTR(err);
++	} while (1);
++}
+ 
+-		/* transfer ref to lut */
+-		if (!atomic_fetch_inc(&vma->open_count))
+-			i915_vma_reopen(vma);
+-		lut->handle = handle;
+-		lut->ctx = eb->gem_context;
++static int eb_lookup_vmas(struct i915_execbuffer *eb)
++{
++	unsigned int batch = eb_batch_index(eb);
++	unsigned int i;
++	int err = 0;
+ 
+-		i915_gem_object_lock(obj);
+-		list_add(&lut->obj_link, &obj->lut_list);
+-		i915_gem_object_unlock(obj);
++	INIT_LIST_HEAD(&eb->relocs);
++	INIT_LIST_HEAD(&eb->unbound);
++
++	for (i = 0; i < eb->buffer_count; i++) {
++		struct i915_vma *vma;
++
++		vma = eb_lookup_vma(eb, eb->exec[i].handle);
++		if (IS_ERR(vma)) {
++			err = PTR_ERR(vma);
++			break;
++		}
+ 
+-add_vma:
+ 		err = eb_validate_vma(eb, &eb->exec[i], vma);
+-		if (unlikely(err))
+-			goto err_vma;
++		if (unlikely(err)) {
++			i915_vma_put(vma);
++			break;
++		}
+ 
+ 		eb_add_vma(eb, i, batch, vma);
+ 	}
+ 
+-	return 0;
+-
+-err_obj:
+-	i915_gem_object_put(obj);
+-err_vma:
+ 	eb->vma[i].vma = NULL;
+ 	return err;
+ }
+@@ -1494,9 +1534,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+ 
+-	mutex_lock(&eb->gem_context->mutex);
+ 	err = eb_lookup_vmas(eb);
+-	mutex_unlock(&eb->gem_context->mutex);
+ 	if (err)
+ 		return err;
+ 
 -- 
 2.20.1
 
