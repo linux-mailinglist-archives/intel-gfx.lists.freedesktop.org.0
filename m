@@ -1,32 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C6818AFCB
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 10:20:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8688A18AFEC
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 10:21:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45DFF6E9BA;
-	Thu, 19 Mar 2020 09:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA35B6E9C5;
+	Thu, 19 Mar 2020 09:21:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45BC56E9BA
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 09:20:18 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20613254-1500050 
- for multiple; Thu, 19 Mar 2020 09:19:46 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Mar 2020 09:19:43 +0000
-Message-Id: <20200319091943.7815-6-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200319091943.7815-1-chris@chris-wilson.co.uk>
-References: <20200319091943.7815-1-chris@chris-wilson.co.uk>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D598D6E9C5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 09:20:58 +0000 (UTC)
+IronPort-SDR: qFm39HaYnYLC8pQwLLhyDvBXLjukFox+Ene+GUVtY9ux9GB/hoNE8P3WRafGL/UyvtChhEuJEw
+ ujjVV59ht0Yg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2020 02:20:58 -0700
+IronPort-SDR: HkpxeIGBm1xOlWW6Xt39H1H/1c7a46m9143fp/yrE01V0nBdk4ziuoaW6Yqf3UBkc4t5qdVxDy
+ ZTEuDpVdEa5Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; d="scan'208";a="444497779"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+ by fmsmga005.fm.intel.com with ESMTP; 19 Mar 2020 02:20:57 -0700
+Received: from ahiler-desk1.fi.intel.com (10.237.68.143) by
+ IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Mar 2020 09:20:56 +0000
+From: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+Date: Thu, 19 Mar 2020 11:20:34 +0200
+Message-ID: <20200319092034.695709-1-arkadiusz.hiler@intel.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/6] drm/i915/gt: Cancel a hung context if
- already closed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Originating-IP: [10.237.68.143]
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Increase the DDI idle timeout
+ to 500us
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,36 +55,33 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the restored ability to check if a context is closed to decide
-whether or not to immediately ban the context from further execution
-after a hang.
+Bspec says that we should timeout after 500us. Let's match this in the
+code. It may help with few of the timeouts we see here and there.
 
-Fixes: be90e344836a ("drm/i915/gt: Cancel banned contexts after GT reset")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Bspec: 22243, 49190
+Issue: https://gitlab.freedesktop.org/drm/intel/issues/1069
+Suggested-by: Uma Shankar <uma.shankar@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>
+Signed-off-by: Arkadiusz Hiler <arkadiusz.hiler@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_reset.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 9a15bdf31c7f..003f26b42998 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -88,6 +88,11 @@ static bool mark_guilty(struct i915_request *rq)
- 	bool banned;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 73d0f4648c06..28650797fc2f 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -1097,7 +1097,7 @@ static void intel_wait_ddi_buf_idle(struct drm_i915_private *dev_priv,
+ 	i915_reg_t reg = DDI_BUF_CTL(port);
  	int i;
  
-+	if (intel_context_is_closed(rq->context)) {
-+		intel_context_set_banned(rq->context);
-+		return true;
-+	}
-+
- 	rcu_read_lock();
- 	ctx = rcu_dereference(rq->context->gem_context);
- 	if (ctx && !kref_get_unless_zero(&ctx->ref))
+-	for (i = 0; i < 16; i++) {
++	for (i = 0; i < 500; i++) {
+ 		udelay(1);
+ 		if (intel_de_read(dev_priv, reg) & DDI_BUF_IS_IDLE)
+ 			return;
 -- 
-2.20.1
+2.24.1
 
 _______________________________________________
 Intel-gfx mailing list
