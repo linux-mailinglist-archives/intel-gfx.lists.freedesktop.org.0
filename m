@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0A418B9C8
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 15:52:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F53818BA08
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 16:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCE0D6EA1A;
-	Thu, 19 Mar 2020 14:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87596EA20;
+	Thu, 19 Mar 2020 15:02:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C9F56EA1E
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 14:52:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93B366EA20
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 15:02:34 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from localhost (unverified [78.156.65.138]) 
  by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20618672-1500050 for multiple; Thu, 19 Mar 2020 14:52:21 +0000
+ 20618846-1500050 for multiple; Thu, 19 Mar 2020 15:02:31 +0000
 MIME-Version: 1.0
-In-Reply-To: <99ee9e55-1aeb-5cb7-4378-a62f671f4811@linux.intel.com>
+In-Reply-To: <c80cf573-f328-39ac-993d-8a7259ca4152@linux.intel.com>
 References: <20200319091943.7815-1-chris@chris-wilson.co.uk>
- <20200319091943.7815-2-chris@chris-wilson.co.uk>
- <99ee9e55-1aeb-5cb7-4378-a62f671f4811@linux.intel.com>
+ <20200319091943.7815-3-chris@chris-wilson.co.uk>
+ <c80cf573-f328-39ac-993d-8a7259ca4152@linux.intel.com>
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Message-ID: <158462954105.6873.17855848411603572916@build.alporthouse.com>
+Message-ID: <158463015067.6873.9446816716629068800@build.alporthouse.com>
 User-Agent: alot/0.8.1
-Date: Thu, 19 Mar 2020 14:52:21 +0000
-Subject: Re: [Intel-gfx] [PATCH 2/6] drm/i915/gem: Avoid gem_context->mutex
- for simple vma lookup
+Date: Thu, 19 Mar 2020 15:02:30 +0000
+Subject: Re: [Intel-gfx] [PATCH 3/6] drm/i915/execlists: Force single
+ submission for sentinels
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +47,26 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Tvrtko Ursulin (2020-03-19 14:20:04)
+Quoting Tvrtko Ursulin (2020-03-19 14:31:36)
 > 
 > On 19/03/2020 09:19, Chris Wilson wrote:
-> > +static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
-> > +{
-> > +     do {
-> > +             struct drm_i915_gem_object *obj;
-> >               struct i915_vma *vma;
-> > +             int err;
-> >   
-> > -             vma = radix_tree_lookup(handles_vma, handle);
-> > +             rcu_read_lock();
-> > +             vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
+> > +                             if (has_sentinel(last, rq))
+> >                                       goto done;
 > 
-> radix_tree_lookup is documented to be RCU safe okay. How about freeing 
-> VMAs - is that done after a RCU grace period?
+> I am only confused by can_merge_rq saying two sentinel requests can be
+> merged together:
+> 
+>         if (unlikely((i915_request_flags(prev) ^ i915_request_flags(next)) &
+>                      (BIT(I915_FENCE_FLAG_NOPREEMPT) |
+>                       BIT(I915_FENCE_FLAG_SENTINEL))))
+>                 return false;
+> 
+> What am I missing?
 
-As we are still stuck with the horrible i915_vma.kref semantics (yes, I
-know I'm supposed to be fixing that), there are 3 paths which may
-destroy i915_vma: the object (RCU safe), the vm (RCU safe) and
-i915_vma_parked, not safe in any way shape or form.
+I thought it was fine to coalesce consecutive sentinels within the
+context into one.
 
-A quick and dirty solution would be to move i915_vma_parked behind an
-rcu work.
+Except you're thinking about gvt, and not my usage :|
 -Chris
 _______________________________________________
 Intel-gfx mailing list
