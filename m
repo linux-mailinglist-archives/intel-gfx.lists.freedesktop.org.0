@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4CD18B1AE
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 11:45:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCC5B18B1BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2020 11:52:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39F116E9F2;
-	Thu, 19 Mar 2020 10:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36D6F89C17;
+	Thu, 19 Mar 2020 10:52:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from cloudserver094114.home.pl (cloudserver094114.home.pl
- [79.96.170.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEAE26E9F2
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Mar 2020 10:45:51 +0000 (UTC)
-Received: from 185.80.35.16 (185.80.35.16) (HELO kreacher.localnet)
- by serwer1319399.home.pl (79.96.170.134) with SMTP (IdeaSmtpServer 0.83.341)
- id 805a210eedc396b3; Thu, 19 Mar 2020 11:45:50 +0100
-From: "Rafael J. Wysocki" <rjw@rjwysocki.net>
-To: Francisco Jerez <currojerez@riseup.net>
-Date: Thu, 19 Mar 2020 11:45:49 +0100
-Message-ID: <1617795.m7tDuoAjBp@kreacher>
-In-Reply-To: <20200310214203.26459-5-currojerez@riseup.net>
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-5-currojerez@riseup.net>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6538A89C17;
+ Thu, 19 Mar 2020 10:52:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D58FA0099;
+ Thu, 19 Mar 2020 10:52:28 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 04/10] Revert "cpufreq: intel_pstate: Drop
- ->update_util from pstate_funcs"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pankaj Bharadiya" <pankaj.laxminarayan.bharadiya@intel.com>
+Date: Thu, 19 Mar 2020 10:52:28 -0000
+Message-ID: <158461514837.17935.17654093206485164096@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200319102103.28895-1-pankaj.laxminarayan.bharadiya@intel.com>
+In-Reply-To: <20200319102103.28895-1-pankaj.laxminarayan.bharadiya@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_Introduce_drm_scaling_filter_property_=28rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,127 +38,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>, intel-gfx@lists.freedesktop.org,
- "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>,
- linux-pm@vger.kernel.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tuesday, March 10, 2020 10:41:57 PM CET Francisco Jerez wrote:
-> This reverts commit c4f3f70cacba2fa19545389a12d09b606d2ad1cf.  A
-> future commit will introduce a new update_util implementation, so the
-> pstate_funcs table entry is going to be useful.
+== Series Details ==
 
-This basically means that you want to introduce a new scaling algorithm.
+Series: Introduce drm scaling filter property (rev3)
+URL   : https://patchwork.freedesktop.org/series/73883/
+State : warning
 
-In my view that needs to be exposed via scaling_governor so users can
-switch over between this and the existing ones (powersave and performance).
+== Summary ==
 
-That would require the cpufreq core to be updated somewhat to recognize
-an additional CPUFREQ_POLICY_ value, but that should be perfectly doable.
+$ dim checkpatch origin/drm-tip
+51d1ea0ac87f drm: Introduce plane and CRTC scaling filter properties
+-:138: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#138: FILE: drivers/gpu/drm/drm_mode_config.c:384:
++	prop = drm_property_create_enum(dev, 0,
++				"SCALING_FILTER",
 
-And ->
+-:146: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#146: FILE: drivers/gpu/drm/drm_mode_config.c:392:
++	prop = drm_property_create_enum(dev, 0,
++				"SCALING_FILTER",
 
-> Signed-off-by: Francisco Jerez <currojerez@riseup.net>
-> ---
->  drivers/cpufreq/intel_pstate.c | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/cpufreq/intel_pstate.c b/drivers/cpufreq/intel_pstate.c
-> index 7fa869004cf0..8cb5bf419b40 100644
-> --- a/drivers/cpufreq/intel_pstate.c
-> +++ b/drivers/cpufreq/intel_pstate.c
-> @@ -277,6 +277,7 @@ static struct cpudata **all_cpu_data;
->   * @get_scaling:	Callback to get frequency scaling factor
->   * @get_val:		Callback to convert P state to actual MSR write value
->   * @get_vid:		Callback to get VID data for Atom platforms
-> + * @update_util:	Active mode utilization update callback.
->   *
->   * Core and Atom CPU models have different way to get P State limits. This
->   * structure is used to store those callbacks.
-> @@ -290,6 +291,8 @@ struct pstate_funcs {
->  	int (*get_aperf_mperf_shift)(void);
->  	u64 (*get_val)(struct cpudata*, int pstate);
->  	void (*get_vid)(struct cpudata *);
-> +	void (*update_util)(struct update_util_data *data, u64 time,
-> +			    unsigned int flags);
->  };
->  
->  static struct pstate_funcs pstate_funcs __read_mostly;
-> @@ -1877,6 +1880,7 @@ static struct pstate_funcs core_funcs = {
->  	.get_turbo = core_get_turbo_pstate,
->  	.get_scaling = core_get_scaling,
->  	.get_val = core_get_val,
-> +	.update_util = intel_pstate_update_util,
->  };
->  
->  static const struct pstate_funcs silvermont_funcs = {
-> @@ -1887,6 +1891,7 @@ static const struct pstate_funcs silvermont_funcs = {
->  	.get_val = atom_get_val,
->  	.get_scaling = silvermont_get_scaling,
->  	.get_vid = atom_get_vid,
-> +	.update_util = intel_pstate_update_util,
->  };
->  
->  static const struct pstate_funcs airmont_funcs = {
-> @@ -1897,6 +1902,7 @@ static const struct pstate_funcs airmont_funcs = {
->  	.get_val = atom_get_val,
->  	.get_scaling = airmont_get_scaling,
->  	.get_vid = atom_get_vid,
-> +	.update_util = intel_pstate_update_util,
->  };
->  
->  static const struct pstate_funcs knl_funcs = {
-> @@ -1907,6 +1913,7 @@ static const struct pstate_funcs knl_funcs = {
->  	.get_aperf_mperf_shift = knl_get_aperf_mperf_shift,
->  	.get_scaling = core_get_scaling,
->  	.get_val = core_get_val,
-> +	.update_util = intel_pstate_update_util,
->  };
->  
->  #define ICPU(model, policy) \
-> @@ -2013,9 +2020,7 @@ static void intel_pstate_set_update_util_hook(unsigned int cpu_num)
->  	/* Prevent intel_pstate_update_util() from using stale data. */
->  	cpu->sample.time = 0;
->  	cpufreq_add_update_util_hook(cpu_num, &cpu->update_util,
-> -				     (hwp_active ?
-> -				      intel_pstate_update_util_hwp :
-> -				      intel_pstate_update_util));
+total: 0 errors, 0 warnings, 2 checks, 218 lines checked
+dbd02a4bbf34 drm/drm-kms.rst: Add plane and CRTC scaling filter property documentation
+c0c485082dda drm/i915: Introduce scaling filter related registers and bit fields.
+-:73: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#73: FILE: drivers/gpu/drm/i915/i915_reg.h:7337:
++#define _SKL_PS_COEF_INDEX_SET0(pipe, id)  _ID(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A), \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B))
 
--> it should be possible to extend this code to install an update_util matching
-the scaling algo chosen by the user.
+-:77: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#77: FILE: drivers/gpu/drm/i915/i915_reg.h:7341:
++#define _SKL_PS_COEF_INDEX_SET1(pipe, id)  _ID(pipe,    \
++			_ID(id, _PS_COEF_SET1_INDEX_1A, _PS_COEF_SET1_INDEX_2A), \
++			_ID(id, _PS_COEF_SET1_INDEX_1B, _PS_COEF_SET1_INDEX_2B))
 
-> +				     pstate_funcs.update_util);
->  	cpu->update_util_set = true;
->  }
->  
-> @@ -2584,6 +2589,7 @@ static void __init copy_cpu_funcs(struct pstate_funcs *funcs)
->  	pstate_funcs.get_scaling = funcs->get_scaling;
->  	pstate_funcs.get_val   = funcs->get_val;
->  	pstate_funcs.get_vid   = funcs->get_vid;
-> +	pstate_funcs.update_util = funcs->update_util;
->  	pstate_funcs.get_aperf_mperf_shift = funcs->get_aperf_mperf_shift;
->  }
->  
-> @@ -2750,8 +2756,11 @@ static int __init intel_pstate_init(void)
->  	id = x86_match_cpu(hwp_support_ids);
->  	if (id) {
->  		copy_cpu_funcs(&core_funcs);
-> -		if (!no_hwp) {
-> +		if (no_hwp) {
-> +			pstate_funcs.update_util = intel_pstate_update_util;
-> +		} else {
->  			hwp_active++;
-> +			pstate_funcs.update_util = intel_pstate_update_util_hwp;
->  			hwp_mode_bdw = id->driver_data;
->  			intel_pstate.attr = hwp_cpufreq_attrs;
->  			goto hwp_cpu_matched;
-> 
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#81: FILE: drivers/gpu/drm/i915/i915_reg.h:7345:
++#define _SKL_PS_COEF_DATA_SET0(pipe, id)  _ID(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A), \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B))
 
+-:85: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#85: FILE: drivers/gpu/drm/i915/i915_reg.h:7349:
++#define _SKL_PS_COEF_DATA_SET1(pipe, id)  _ID(pipe,     \
++			_ID(id, _PS_COEF_SET1_DATA_1A, _PS_COEF_SET1_DATA_2A), \
++			_ID(id, _PS_COEF_SET1_DATA_1B, _PS_COEF_SET1_DATA_2B))
 
+-:89: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#89: FILE: drivers/gpu/drm/i915/i915_reg.h:7353:
++#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
++			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
 
+-:89: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#89: FILE: drivers/gpu/drm/i915/i915_reg.h:7353:
++#define SKL_PS_COEF_INDEX_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_INDEX_SET0(pipe, id), \
++			    _SKL_PS_COEF_INDEX_SET1(pipe, id))
+
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#93: FILE: drivers/gpu/drm/i915/i915_reg.h:7357:
++#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
++			    _SKL_PS_COEF_DATA_SET1(pipe, id))
+
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#93: FILE: drivers/gpu/drm/i915/i915_reg.h:7357:
++#define SKL_PS_COEF_DATA_SET(pipe, id, set) \
++			_MMIO_PIPE(set, _SKL_PS_COEF_DATA_SET0(pipe, id), \
++			    _SKL_PS_COEF_DATA_SET1(pipe, id))
+
+total: 0 errors, 0 warnings, 8 checks, 72 lines checked
+2bda386ae840 drm/i915/display: Add Nearest-neighbor based integer scaling support
+-:106: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#106: FILE: drivers/gpu/drm/i915/display/intel_display.c:6304:
++		t = skl_coef_tap(i+1);
+ 		                  ^
+
+-:107: CHECK:SPACING: spaces preferred around that '<<' (ctx:VxV)
+#107: FILE: drivers/gpu/drm/i915/display/intel_display.c:6305:
++		tmp |= skl_nearest_filter_coef(t)<<16;
+ 		                                 ^
+
+total: 0 errors, 0 warnings, 2 checks, 86 lines checked
+b7639a6e88a8 drm/i915: Enable scaling filter for plane and CRTC
+-:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#34: FILE: drivers/gpu/drm/i915/display/intel_display.c:6314:
++skl_scaler_crtc_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
++			  int id, int set, enum drm_crtc_scaling_filter filter)
+
+-:47: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#47: FILE: drivers/gpu/drm/i915/display/intel_display.c:6327:
++
++	}
+
+-:77: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#77: FILE: drivers/gpu/drm/i915/display/intel_display.c:6366:
++			skl_scaler_crtc_setup_filter(dev_priv, pipe, id, 0,
++						state->scaling_filter);
+
+-:118: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#118: FILE: drivers/gpu/drm/i915/display/intel_sprite.c:414:
++
++	}
+
+total: 0 errors, 0 warnings, 4 checks, 124 lines checked
 
 _______________________________________________
 Intel-gfx mailing list
