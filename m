@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48A7618D118
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 15:37:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC8318D11C
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 15:37:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89F046EB55;
-	Fri, 20 Mar 2020 14:37:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB956EB51;
+	Fri, 20 Mar 2020 14:37:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAC16EB53
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 14:37:28 +0000 (UTC)
-IronPort-SDR: ZVnb/EGf/LLnF6wnbvSoTxXcN5lxS/ILspSvRH8JRBqPz/jfqXSgFCJOETVHWMoyGQdNK3NfuG
- JcStmXFVjk3Q==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D31A6EB56
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 14:37:32 +0000 (UTC)
+IronPort-SDR: 17Xwgnu0s36iZID9EEBygR2s+OMKBBb1CAjKCS37Jnjw5tDq5Lqxjpars4tbxHaCaSi5nBd023
+ 3fnwFxIEcNxg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 07:37:27 -0700
-IronPort-SDR: VFdh644obYw9jyvhkdApQnsds63EusZDqqQXQED53ZC0pDPEM5HxSK8/uFwmDPIJf44QuBz9xH
- I+HuOiYG+jsQ==
-X-IronPort-AV: E=Sophos;i="5.72,284,1580803200"; d="scan'208";a="245506424"
+ 20 Mar 2020 07:37:32 -0700
+IronPort-SDR: cYLCInDff4i/t9QSCXzP9EeCMpCVBQmDwmq4pOtLH6gRownISS4w+j42YoewUSHTyh+Ud24hoG
+ R1k5noKJuZWQ==
+X-IronPort-AV: E=Sophos;i="5.72,284,1580803200"; d="scan'208";a="245506438"
 Received: from rkamins1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.41.98])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 07:37:26 -0700
+ 20 Mar 2020 07:37:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Mar 2020 16:36:35 +0200
-Message-Id: <307c9f87cb2fbd5d2d67ec6adcde7ab669c2b93f.1584714939.git.jani.nikula@intel.com>
+Date: Fri, 20 Mar 2020 16:36:36 +0200
+Message-Id: <ffdbda0a0fe18354867b3f8c7a83f59f0963711d.1584714939.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1584714939.git.jani.nikula@intel.com>
 References: <cover.1584714939.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 10/13] drm/i915/display: clean up
- intel_PLL_is_valid()
+Subject: [Intel-gfx] [PATCH 11/13] drm/i915/display: use struct drm_device
+ based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,129 +49,162 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com
+Cc: jani.nikula@intel.com, Wambui Karuga <wambui.karugax@gmail.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop useless macro hiding the return. Fix superfluous whitespace. Rename
-function to all lowercase.
+Convert all the DRM_* logging macros to the struct drm_device based
+macros to provide device specific logging.
 
+No functional changes.
+
+Generated using the following semantic patch, originally written by
+Wambui Karuga <wambui.karugax@gmail.com>, with manual fixups on top:
+
+@@
+identifier fn, T;
+@@
+
+fn(...,struct drm_i915_private *T,...) {
+<+...
+(
+-DRM_INFO(
++drm_info(&T->drm,
+...)
+|
+-DRM_NOTE(
++drm_notice(&T->drm,
+...)
+|
+-DRM_ERROR(
++drm_err(&T->drm,
+...)
+|
+-DRM_WARN(
++drm_warn(&T->drm,
+...)
+|
+-DRM_DEBUG_DRIVER(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_KMS(
++drm_dbg_kms(&T->drm,
+...)
+|
+-DRM_DEBUG_ATOMIC(
++drm_dbg_atomic(&T->drm,
+...)
+)
+...+>
+}
+
+@@
+identifier fn, T;
+@@
+
+fn(...) {
+...
+struct drm_i915_private *T = ...;
+<+...
+(
+-DRM_INFO(
++drm_info(&T->drm,
+...)
+|
+-DRM_NOTE(
++drm_notice(&T->drm,
+...)
+|
+-DRM_ERROR(
++drm_err(&T->drm,
+...)
+|
+-DRM_WARN(
++drm_warn(&T->drm,
+...)
+|
+-DRM_DEBUG_DRIVER(
++drm_dbg(&T->drm,
+...)
+|
+-DRM_DEBUG_KMS(
++drm_dbg_kms(&T->drm,
+...)
+|
+-DRM_DEBUG_ATOMIC(
++drm_dbg_atomic(&T->drm,
+...)
+)
+...+>
+}
+
+Cc: Wambui Karuga <wambui.karugax@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 40 ++++++++++----------
- 1 file changed, 19 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 25 +++++++++++---------
+ 1 file changed, 14 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 37bd7ce88ecd..6af8d43ceb0c 100644
+index 6af8d43ceb0c..fe55c7c713f1 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -620,45 +620,43 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
- 	return clock->dot / 5;
- }
- 
--#define INTELPllInvalid(s)   do { /* DRM_DEBUG(s); */ return false; } while (0)
--
- /*
-  * Returns whether the given set of divisors are valid for a given refclk with
-  * the given connectors.
-  */
--static bool intel_PLL_is_valid(struct drm_i915_private *dev_priv,
-+static bool intel_pll_is_valid(struct drm_i915_private *dev_priv,
- 			       const struct intel_limit *limit,
- 			       const struct dpll *clock)
+@@ -2908,6 +2908,7 @@ intel_fb_plane_get_subsampling(int *hsub, int *vsub,
+ static int
+ intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int x, int y)
  {
--	if (clock->n   < limit->n.min   || limit->n.max   < clock->n)
--		INTELPllInvalid("n out of range\n");
--	if (clock->p1  < limit->p1.min  || limit->p1.max  < clock->p1)
--		INTELPllInvalid("p1 out of range\n");
--	if (clock->m2  < limit->m2.min  || limit->m2.max  < clock->m2)
--		INTELPllInvalid("m2 out of range\n");
--	if (clock->m1  < limit->m1.min  || limit->m1.max  < clock->m1)
--		INTELPllInvalid("m1 out of range\n");
-+	if (clock->n < limit->n.min || limit->n.max < clock->n)
-+		return false;
-+	if (clock->p1 < limit->p1.min || limit->p1.max < clock->p1)
-+		return false;
-+	if (clock->m2 < limit->m2.min || limit->m2.max < clock->m2)
-+		return false;
-+	if (clock->m1 < limit->m1.min || limit->m1.max < clock->m1)
-+		return false;
- 
- 	if (!IS_PINEVIEW(dev_priv) && !IS_VALLEYVIEW(dev_priv) &&
- 	    !IS_CHERRYVIEW(dev_priv) && !IS_GEN9_LP(dev_priv))
- 		if (clock->m1 <= clock->m2)
--			INTELPllInvalid("m1 <= m2\n");
-+			return false;
- 
- 	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
- 	    !IS_GEN9_LP(dev_priv)) {
- 		if (clock->p < limit->p.min || limit->p.max < clock->p)
--			INTELPllInvalid("p out of range\n");
-+			return false;
- 		if (clock->m < limit->m.min || limit->m.max < clock->m)
--			INTELPllInvalid("m out of range\n");
-+			return false;
- 	}
- 
- 	if (clock->vco < limit->vco.min || limit->vco.max < clock->vco)
--		INTELPllInvalid("vco out of range\n");
-+		return false;
- 	/* XXX: We may need to be checking "Dot clock" depending on the multiplier,
- 	 * connector, etc., rather than just a single range.
++	struct drm_i915_private *i915 = to_i915(fb->dev);
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+ 	int main_plane;
+ 	int hsub, vsub;
+@@ -2936,7 +2937,8 @@ intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int x, int y)
+ 	 * x/y offsets must match between CCS and the main surface.
  	 */
- 	if (clock->dot < limit->dot.min || limit->dot.max < clock->dot)
--		INTELPllInvalid("dot out of range\n");
-+		return false;
- 
- 	return true;
+ 	if (main_x != ccs_x || main_y != ccs_y) {
+-		DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
++		drm_dbg_kms(&i915->drm,
++			      "Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
+ 			      main_x, main_y,
+ 			      ccs_x, ccs_y,
+ 			      intel_fb->normal[main_plane].x,
+@@ -12882,16 +12884,17 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
+ 	return 0;
  }
-@@ -725,7 +723,7 @@ i9xx_find_best_dpll(const struct intel_limit *limit,
- 					int this_err;
  
- 					i9xx_calc_dpll_params(refclk, &clock);
--					if (!intel_PLL_is_valid(to_i915(dev),
-+					if (!intel_pll_is_valid(to_i915(dev),
- 								limit,
- 								&clock))
- 						continue;
-@@ -781,7 +779,7 @@ pnv_find_best_dpll(const struct intel_limit *limit,
- 					int this_err;
+-static void intel_dump_crtc_timings(const struct drm_display_mode *mode)
++static void intel_dump_crtc_timings(struct drm_i915_private *i915,
++				    const struct drm_display_mode *mode)
+ {
+-	DRM_DEBUG_KMS("crtc timings: %d %d %d %d %d %d %d %d %d, "
+-		      "type: 0x%x flags: 0x%x\n",
+-		      mode->crtc_clock,
+-		      mode->crtc_hdisplay, mode->crtc_hsync_start,
+-		      mode->crtc_hsync_end, mode->crtc_htotal,
+-		      mode->crtc_vdisplay, mode->crtc_vsync_start,
+-		      mode->crtc_vsync_end, mode->crtc_vtotal,
+-		      mode->type, mode->flags);
++	drm_dbg_kms(&i915->drm, "crtc timings: %d %d %d %d %d %d %d %d %d, "
++		    "type: 0x%x flags: 0x%x\n",
++		    mode->crtc_clock,
++		    mode->crtc_hdisplay, mode->crtc_hsync_start,
++		    mode->crtc_hsync_end, mode->crtc_htotal,
++		    mode->crtc_vdisplay, mode->crtc_vsync_start,
++		    mode->crtc_vsync_end, mode->crtc_vtotal,
++		    mode->type, mode->flags);
+ }
  
- 					pnv_calc_dpll_params(refclk, &clock);
--					if (!intel_PLL_is_valid(to_i915(dev),
-+					if (!intel_pll_is_valid(to_i915(dev),
- 								limit,
- 								&clock))
- 						continue;
-@@ -842,7 +840,7 @@ g4x_find_best_dpll(const struct intel_limit *limit,
- 					int this_err;
- 
- 					i9xx_calc_dpll_params(refclk, &clock);
--					if (!intel_PLL_is_valid(to_i915(dev),
-+					if (!intel_pll_is_valid(to_i915(dev),
- 								limit,
- 								&clock))
- 						continue;
-@@ -939,7 +937,7 @@ vlv_find_best_dpll(const struct intel_limit *limit,
- 
- 					vlv_calc_dpll_params(refclk, &clock);
- 
--					if (!intel_PLL_is_valid(to_i915(dev),
-+					if (!intel_pll_is_valid(to_i915(dev),
- 								limit,
- 								&clock))
- 						continue;
-@@ -1008,7 +1006,7 @@ chv_find_best_dpll(const struct intel_limit *limit,
- 
- 			chv_calc_dpll_params(refclk, &clock);
- 
--			if (!intel_PLL_is_valid(to_i915(dev), limit, &clock))
-+			if (!intel_pll_is_valid(to_i915(dev), limit, &clock))
- 				continue;
- 
- 			if (!vlv_PLL_is_optimal(dev, target, &clock, best_clock,
+ static inline void
+@@ -13075,7 +13078,7 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
+ 	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
+ 	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
+ 	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
+-	intel_dump_crtc_timings(&pipe_config->hw.adjusted_mode);
++	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
+ 	drm_dbg_kms(&dev_priv->drm,
+ 		    "port clock: %d, pipe src size: %dx%d, pixel rate %d\n",
+ 		    pipe_config->port_clock,
 -- 
 2.20.1
 
