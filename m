@@ -1,47 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33A418CD0A
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 12:32:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC4118CD08
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 12:32:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3869F6EB0F;
-	Fri, 20 Mar 2020 11:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7E706EB0D;
+	Fri, 20 Mar 2020 11:32:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04DB56EB0E;
- Fri, 20 Mar 2020 11:32:19 +0000 (UTC)
-IronPort-SDR: Y75hap004ADbzgBnscdgClYcd42yyXAyuOFPn0Nw8/SlhKmnFTnSigam0bUNrAPeNMRt3jUWF6
- XDgZXHOVNFYQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 04:32:19 -0700
-IronPort-SDR: +5QzuMkcKoZDSgul7aiXXzOqkseTtVHhEmIXaq8ypBAqPEhgnB0uEfgFjDqqbdHMqYBb3MFyng
- Cq8kcbs4ZJjw==
-X-IronPort-AV: E=Sophos;i="5.72,284,1580803200"; d="scan'208";a="418686722"
-Received: from rkamins1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.41.98])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 04:32:16 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- intel-gfx@lists.freedesktop.org,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Hans Verkuil <hverkuil@xs4all.nl>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-In-Reply-To: <87k13fcm8w.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200211074657.231405-1-gwan-gyeong.mun@intel.com>
- <20200211074657.231405-6-gwan-gyeong.mun@intel.com>
- <87k13fcm8w.fsf@intel.com>
-Date: Fri, 20 Mar 2020 13:32:17 +0200
-Message-ID: <87h7yjcldq.fsf@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C9E916EB0C;
+ Fri, 20 Mar 2020 11:32:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C20ABA47DF;
+ Fri, 20 Mar 2020 11:32:18 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v7 05/18] video/hdmi: Add Unpack only
- function for DRM infoframe
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 20 Mar 2020 11:32:18 -0000
+Message-ID: <158470393876.11037.17588624125780791973@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200320103400.8754-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200320103400.8754-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/execlists=3A_Pull_tasklet_interrupt-bh_local_to_direct_su?=
+ =?utf-8?q?bmission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,164 +39,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 20 Mar 2020, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Tue, 11 Feb 2020, Gwan-gyeong Mun <gwan-gyeong.mun@intel.com> wrote:
->> It adds an unpack only function for DRM infoframe for dynamic range and
->> mastering infoframe readout.
->> It unpacks the information data block contained in the binary buffer into
->> a structured frame of the HDMI Dynamic Range and Mastering (DRM)
->> information frame.
->>
->> In contrast to hdmi_drm_infoframe_unpack() function, it does not verify
->> a checksum.
->>
->> It can be used for unpacking a DP HDR Metadata Infoframe SDP case.
->> DP HDR Metadata Infoframe SDP uses the same Dynamic Range and Mastering
->> (DRM) information (CTA-861-G spec.) such as HDMI DRM infoframe.
->> But DP SDP header and payload structure are different from HDMI DRM
->> Infoframe. Therefore unpacking DRM infoframe for DP requires skipping of
->> a verifying checksum.
->>
->> Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
->> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
->
-> Bartlomiej, can I have your ack for merging this via drm-intel along
-> with the rest of the series, please?
+== Series Details ==
 
-Or Hans or Laurent, from v4l/video point of view.
+Series: drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+URL   : https://patchwork.freedesktop.org/series/74914/
+State : success
 
-Thanks,
-Jani.
+== Summary ==
 
->
-> BR,
-> Jani.
->
->
->> ---
->>  drivers/video/hdmi.c | 58 +++++++++++++++++++++++++++++++-------------
->>  include/linux/hdmi.h |  2 ++
->>  2 files changed, 43 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/video/hdmi.c b/drivers/video/hdmi.c
->> index 9c82e2a0a411..9818836d82b7 100644
->> --- a/drivers/video/hdmi.c
->> +++ b/drivers/video/hdmi.c
->> @@ -1775,20 +1775,18 @@ hdmi_vendor_any_infoframe_unpack(union hdmi_vendor_any_infoframe *frame,
->>  }
->>  
->>  /**
->> - * hdmi_drm_infoframe_unpack() - unpack binary buffer to a HDMI DRM infoframe
->> + * hdmi_drm_infoframe_unpack_only() - unpack binary buffer to a HDMI DRM infoframe
->>   * @frame: HDMI DRM infoframe
->>   * @buffer: source buffer
->>   * @size: size of buffer
->>   *
->> - * Unpacks the information contained in binary @buffer into a structured
->> + * Unpacks the information data block contained in binary @buffer into a structured
->>   * @frame of the HDMI Dynamic Range and Mastering (DRM) information frame.
->> - * Also verifies the checksum as required by section 5.3.5 of the HDMI 1.4
->> - * specification.
->>   *
->>   * Returns 0 on success or a negative error code on failure.
->>   */
->> -static int hdmi_drm_infoframe_unpack(struct hdmi_drm_infoframe *frame,
->> -				     const void *buffer, size_t size)
->> +int hdmi_drm_infoframe_unpack_only(struct hdmi_drm_infoframe *frame,
->> +				   const void *buffer, size_t size)
->>  {
->>  	const u8 *ptr = buffer;
->>  	const u8 *temp;
->> @@ -1797,23 +1795,13 @@ static int hdmi_drm_infoframe_unpack(struct hdmi_drm_infoframe *frame,
->>  	int ret;
->>  	int i;
->>  
->> -	if (size < HDMI_INFOFRAME_SIZE(DRM))
->> -		return -EINVAL;
->> -
->> -	if (ptr[0] != HDMI_INFOFRAME_TYPE_DRM ||
->> -	    ptr[1] != 1 ||
->> -	    ptr[2] != HDMI_DRM_INFOFRAME_SIZE)
->> -		return -EINVAL;
->> -
->> -	if (hdmi_infoframe_checksum(buffer, HDMI_INFOFRAME_SIZE(DRM)) != 0)
->> +	if (size < HDMI_DRM_INFOFRAME_SIZE)
->>  		return -EINVAL;
->>  
->>  	ret = hdmi_drm_infoframe_init(frame);
->>  	if (ret)
->>  		return ret;
->>  
->> -	ptr += HDMI_INFOFRAME_HEADER_SIZE;
->> -
->>  	frame->eotf = ptr[0] & 0x7;
->>  	frame->metadata_type = ptr[1] & 0x7;
->>  
->> @@ -1837,6 +1825,42 @@ static int hdmi_drm_infoframe_unpack(struct hdmi_drm_infoframe *frame,
->>  
->>  	return 0;
->>  }
->> +EXPORT_SYMBOL(hdmi_drm_infoframe_unpack_only);
->> +
->> +/**
->> + * hdmi_drm_infoframe_unpack() - unpack binary buffer to a HDMI DRM infoframe
->> + * @frame: HDMI DRM infoframe
->> + * @buffer: source buffer
->> + * @size: size of buffer
->> + *
->> + * Unpacks the information contained in binary @buffer into a structured
->> + * @frame of the HDMI Dynamic Range and Mastering (DRM) information frame.
->> + * Also verifies the checksum as required by section 5.3.5 of the HDMI 1.4
->> + * specification.
->> + *
->> + * Returns 0 on success or a negative error code on failure.
->> + */
->> +static int hdmi_drm_infoframe_unpack(struct hdmi_drm_infoframe *frame,
->> +				     const void *buffer, size_t size)
->> +{
->> +	const u8 *ptr = buffer;
->> +	int ret;
->> +
->> +	if (size < HDMI_INFOFRAME_SIZE(DRM))
->> +		return -EINVAL;
->> +
->> +	if (ptr[0] != HDMI_INFOFRAME_TYPE_DRM ||
->> +	    ptr[1] != 1 ||
->> +	    ptr[2] != HDMI_DRM_INFOFRAME_SIZE)
->> +		return -EINVAL;
->> +
->> +	if (hdmi_infoframe_checksum(buffer, HDMI_INFOFRAME_SIZE(DRM)) != 0)
->> +		return -EINVAL;
->> +
->> +	ret = hdmi_drm_infoframe_unpack_only(frame, ptr + HDMI_INFOFRAME_HEADER_SIZE,
->> +					     size - HDMI_INFOFRAME_HEADER_SIZE);
->> +	return ret;
->> +}
->>  
->>  /**
->>   * hdmi_infoframe_unpack() - unpack binary buffer to a HDMI infoframe
->> diff --git a/include/linux/hdmi.h b/include/linux/hdmi.h
->> index 9918a6c910c5..afb43efc03e0 100644
->> --- a/include/linux/hdmi.h
->> +++ b/include/linux/hdmi.h
->> @@ -219,6 +219,8 @@ ssize_t hdmi_drm_infoframe_pack(struct hdmi_drm_infoframe *frame, void *buffer,
->>  ssize_t hdmi_drm_infoframe_pack_only(const struct hdmi_drm_infoframe *frame,
->>  				     void *buffer, size_t size);
->>  int hdmi_drm_infoframe_check(struct hdmi_drm_infoframe *frame);
->> +int hdmi_drm_infoframe_unpack_only(struct hdmi_drm_infoframe *frame,
->> +				   const void *buffer, size_t size);
->>  
->>  enum hdmi_spd_sdi {
->>  	HDMI_SPD_SDI_UNKNOWN,
+CI Bug Log - changes from CI_DRM_8163 -> Patchwork_17032
+====================================================
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17032/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17032 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#140])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8163/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17032/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4] ([i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8163/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17032/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
+    - fi-cfl-8109u:       [FAIL][5] ([fdo#103375]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8163/fi-cfl-8109u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17032/fi-cfl-8109u/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
+
+  
+  [fdo#103375]: https://bugs.freedesktop.org/show_bug.cgi?id=103375
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Additional (3): fi-skl-6770hq fi-skl-6600u fi-elk-e7500 
+  Missing    (7): fi-kbl-7560u fi-skl-guc fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ilk-650 fi-blb-e6850 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8163 -> Patchwork_17032
+
+  CI-20190529: 20190529
+  CI_DRM_8163: 710b3af22d17146897a55f01868d8e2d867895d3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5523: cf6d524007ac51a7d5a48503ea3dd5f01fd4ebab @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17032: d22b57277d7c1f4887fed185e7ce1054fcec9f23 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+d22b57277d7c drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17032/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
