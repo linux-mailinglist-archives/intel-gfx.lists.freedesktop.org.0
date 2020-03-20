@@ -1,31 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7D8518D707
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 19:28:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8153F18D70D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 19:31:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC6886EB5F;
-	Fri, 20 Mar 2020 18:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D35906E20E;
+	Fri, 20 Mar 2020 18:31:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CA2A36EB63;
- Fri, 20 Mar 2020 18:28:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C47EDA432F;
- Fri, 20 Mar 2020 18:28:02 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA2BA6E1F9
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:31:52 +0000 (UTC)
+IronPort-SDR: Z+MV0GqhK0TWLeEvBiwO7Wpn5ocOitL4MESi7T5OOeKGhRNQKuJsdcO3vPGCPWGlToCuhkvHeY
+ FQt4Zb4OPl7A==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2020 11:31:52 -0700
+IronPort-SDR: CEGSqdu52h0v7YYpNkK5Nt7UPirrzqFEu4bW5daAjIi6xaR+/VS2EXtHljxComonmP1Ge/uk9Q
+ vet8En79r9mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,285,1580803200"; d="scan'208";a="234590447"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by orsmga007.jf.intel.com with ESMTP; 20 Mar 2020 11:31:51 -0700
+Date: Fri, 20 Mar 2020 11:33:30 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200320183329.GA15035@intel.com>
+References: <20200319163844.22783-1-ville.syrjala@linux.intel.com>
+ <20200319163844.22783-3-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 20 Mar 2020 18:28:02 -0000
-Message-ID: <158472888280.11036.3078977024802537767@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200311155422.3043-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200311155422.3043-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Hotplug_cleanups_=28rev6=29?=
+Content-Disposition: inline
+In-Reply-To: <20200319163844.22783-3-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH 3/3] drm: Constify adjusted_mode a bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,111 +49,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Mar 19, 2020 at 06:38:44PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
 
-Series: drm/i915: Hotplug cleanups (rev6)
-URL   : https://patchwork.freedesktop.org/series/72348/
-State : success
+> The DP link computation functions shouldn't modify the
+> adjusted_mode so make it const.
+> =
 
-== Summary ==
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_8167 -> Patchwork_17038
-====================================================
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
 
-Summary
--------
+Manasi
 
-  **SUCCESS**
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> =
 
-  No regressions found.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 8491ce8b8c15..110d82ee4859 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2181,7 +2181,8 @@ static int intel_dp_dsc_compute_config(struct intel=
+_dp *intel_dp,
+>  {
+>  	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+>  	struct drm_i915_private *dev_priv =3D to_i915(dig_port->base.base.dev);
+> -	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted_mo=
+de;
+> +	const struct drm_display_mode *adjusted_mode =3D
+> +		&pipe_config->hw.adjusted_mode;
+>  	u8 dsc_max_bpc;
+>  	int pipe_bpp;
+>  	int ret;
+> @@ -2296,7 +2297,8 @@ intel_dp_compute_link_config(struct intel_encoder *=
+encoder,
+>  			     struct intel_crtc_state *pipe_config,
+>  			     struct drm_connector_state *conn_state)
+>  {
+> -	struct drm_display_mode *adjusted_mode =3D &pipe_config->hw.adjusted_mo=
+de;
+> +	const struct drm_display_mode *adjusted_mode =3D
+> +		&pipe_config->hw.adjusted_mode;
+>  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>  	struct link_config_limits limits;
+>  	int common_len;
+> -- =
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/index.html
+> 2.24.1
+> =
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17038 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-glk-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#58] / [i915#656] / [k.org#198133])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [FAIL][3] ([fdo#109635] / [i915#217]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][5] ([fdo#111407]) -> [FAIL][6] ([i915#323])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       [FAIL][7] ([i915#1209]) -> [FAIL][8] ([i915#1485] / [i915#192] / [i915#193] / [i915#194])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-kbl-8809g/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
-  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (49 -> 37)
-------------------------------
-
-  Additional (2): fi-skl-6770hq fi-kbl-7560u 
-  Missing    (14): fi-cml-u2 fi-ilk-m540 fi-bdw-5557u fi-cml-s fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-cfl-8109u fi-bsw-kefka fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8167 -> Patchwork_17038
-
-  CI-20190529: 20190529
-  CI_DRM_8167: b51a7e7f4f72cf780661a1e4b479e2b27ddbafc8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5526: f49ebeee9f54d6f23c60a842f75f65561d452ab0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17038: 5ea9c1e2721b47853a773f52d426920ac5c4c633 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-5ea9c1e2721b drm/i915: Use stashed away hpd isr bits in intel_digital_port_connected()
-9bdedc5134f0 drm/i915: Stash hpd status bits under dev_priv
-7a2933ed6c37 drm/i915: Turn intel_digital_port_connected() in a vfunc
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17038/index.html
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
