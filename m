@@ -1,46 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E7318C56F
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 03:46:24 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 740F218C75E
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 07:19:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE4166E030;
-	Fri, 20 Mar 2020 02:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32DF66E03E;
+	Fri, 20 Mar 2020 06:19:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E34C6E030
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 02:46:20 +0000 (UTC)
-Received: from capuchin.riseup.net (unknown [10.0.1.176])
- (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
- (Client CN "*.riseup.net",
- Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
- by mx1.riseup.net (Postfix) with ESMTPS id 48k7Sq4FSxzFdFq;
- Thu, 19 Mar 2020 19:46:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
- t=1584672379; bh=CVkasvIzn+5thv9quZ5c83PuBC12AWJxuBEDKD4gGI4=;
- h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
- b=AIajsIg1sy702R5E2B6yuPUT4SHfikEPpoeBP7jtouKZZaFWXGwv1NisVoxAzU65E
- thdcx60p6XxtK5jq6kw8hW4cWakGPcPFGAvdA5yolsKsu0JUFcOd8H1PGF/UlRXJmA
- 3xCCuqnh6zF4zTi2r/09SHPmlvljzLrjU+6n48qg=
-X-Riseup-User-ID: C423D6455EADAB01BCED61C17DE3DE0E86927745834F2434DFDA7065D016F430
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- by capuchin.riseup.net (Postfix) with ESMTPSA id 48k7Sp4VWBz8tq2;
- Thu, 19 Mar 2020 19:46:18 -0700 (PDT)
-From: Francisco Jerez <currojerez@riseup.net>
-To: chris.p.wilson@intel.com, intel-gfx@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-In-Reply-To: <87k13h78mk.fsf@riseup.net>
-References: <20200310214203.26459-1-currojerez@riseup.net>
- <20200310214203.26459-3-currojerez@riseup.net>
- <158387916218.28297.4489489879582782488@build.alporthouse.com>
- <87r1xzafwn.fsf@riseup.net> <87k13h78mk.fsf@riseup.net>
-Date: Thu, 19 Mar 2020 19:46:19 -0700
-Message-ID: <874kuj68w4.fsf@riseup.net>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAA66E03E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 06:19:44 +0000 (UTC)
+IronPort-SDR: mbI+R2L1RIuuYvdywcnyseeI2/Uyo2mI7yuwHc2THiZ7mdIgVTJ78uM1us+GDWtnorSg2B2AR+
+ t+7rJHPpf4Qw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2020 23:19:43 -0700
+IronPort-SDR: igVVTgsnnFXbziqvCDpq1Tdbii65pTw+ccOdYWpXAfGIfbRQTx5S1Xm8/tW9Ij/DsrRxjG1vX/
+ y7c7kL6nDUwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,283,1580803200"; d="scan'208";a="263975336"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+ by orsmga002.jf.intel.com with ESMTP; 19 Mar 2020 23:19:43 -0700
+Received: from fmsmsx123.amr.corp.intel.com (10.18.125.38) by
+ FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Mar 2020 23:19:42 -0700
+Received: from BGSMSX108.gar.corp.intel.com (10.223.4.192) by
+ fmsmsx123.amr.corp.intel.com (10.18.125.38) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Mar 2020 23:19:42 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
+ BGSMSX108.gar.corp.intel.com ([169.254.8.19]) with mapi id 14.03.0439.000;
+ Fri, 20 Mar 2020 11:49:38 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
+Thread-Index: AQHV/RTdJvWeZ84SjEekeReP5HUDGahP7GUAgAEX5XA=
+Date: Fri, 20 Mar 2020 06:19:37 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F82437F00@BGSMSX104.gar.corp.intel.com>
+References: <20200318113009.16757-1-uma.shankar@intel.com>
+ <469075d16551fe95e2fdadfd6ffd1538a8f3a657.camel@intel.com>
+In-Reply-To: <469075d16551fe95e2fdadfd6ffd1538a8f3a657.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 02/10] drm/i915: Adjust PM QoS response
- frequency based on GPU load.
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,186 +68,90 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Peter Zijlstra <peterz@infradead.org>,
- "Rafael J. Wysocki" <rjw@rjwysocki.net>, "Pandruvada,
- Srinivas" <srinivas.pandruvada@intel.com>
-Content-Type: multipart/mixed; boundary="===============0981146908=="
+Cc: "Khor, Swee Aun" <swee.aun.khor@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0981146908==
-Content-Type: multipart/signed; boundary="==-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
-
---==-=-=
-Content-Type: multipart/mixed; boundary="=-=-="
-
---=-=-=
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Francisco Jerez <currojerez@riseup.net> writes:
-
-> Francisco Jerez <currojerez@riseup.net> writes:
->
->> Chris Wilson <chris@chris-wilson.co.uk> writes:
->>
->>> Quoting Francisco Jerez (2020-03-10 21:41:55)
->>>> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i91=
-5/gt/intel_lrc.c
->>>> index b9b3f78f1324..a5d7a80b826d 100644
->>>> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
->>>> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
->>>> @@ -1577,6 +1577,11 @@ static void execlists_submit_ports(struct intel=
-_engine_cs *engine)
->>>>         /* we need to manually load the submit queue */
->>>>         if (execlists->ctrl_reg)
->>>>                 writel(EL_CTRL_LOAD, execlists->ctrl_reg);
->>>> +
->>>> +       if (execlists_num_ports(execlists) > 1 &&
->>> pending[1] is always defined, the minimum submission is one slot, with
->>> pending[1] as the sentinel NULL.
->>>
->>>> +           execlists->pending[1] &&
->>>> +           !atomic_xchg(&execlists->overload, 1))
->>>> +               intel_gt_pm_active_begin(&engine->i915->gt);
->>>
->>> engine->gt
->>>
->>
->> Applied your suggestions above locally, will probably wait to have a few
->> more changes batched up before sending a v2.
->>
->>>>  }
->>>>=20=20
->>>>  static bool ctx_single_port_submission(const struct intel_context *ce)
->>>> @@ -2213,6 +2218,12 @@ cancel_port_requests(struct intel_engine_execli=
-sts * const execlists)
->>>>         clear_ports(execlists->inflight, ARRAY_SIZE(execlists->infligh=
-t));
->>>>=20=20
->>>>         WRITE_ONCE(execlists->active, execlists->inflight);
->>>> +
->>>> +       if (atomic_xchg(&execlists->overload, 0)) {
->>>> +               struct intel_engine_cs *engine =3D
->>>> +                       container_of(execlists, typeof(*engine), execl=
-ists);
->>>> +               intel_gt_pm_active_end(&engine->i915->gt);
->>>> +       }
->>>>  }
->>>>=20=20
->>>>  static inline void
->>>> @@ -2386,6 +2397,9 @@ static void process_csb(struct intel_engine_cs *=
-engine)
->>>>                         /* port0 completed, advanced to port1 */
->>>>                         trace_ports(execlists, "completed", execlists-=
->active);
->>>>=20=20
->>>> +                       if (atomic_xchg(&execlists->overload, 0))
->>>> +                               intel_gt_pm_active_end(&engine->i915->=
-gt);
->>>
->>> So this looses track if we preempt a dual-ELSP submission with a
->>> single-ELSP submission (and never go back to dual).
->>>
->>
->> Yes, good point.  You're right that if a dual-ELSP submission gets
->> preempted by a single-ELSP submission "overload" will remain signaled
->> until the first completion interrupt arrives (e.g. from the preempting
->> submission).
->>
->>> If you move this to the end of the loop and check
->>>
->>> if (!execlists->active[1] && atomic_xchg(&execlists->overload, 0))
->>> 	intel_gt_pm_active_end(engine->gt);
->>>
->>> so that it covers both preemption/promotion and completion.
->>>
->>
->> That sounds reasonable.
->>
->>> However, that will fluctuate quite rapidly. (And runs the risk of
->>> exceeding the sentinel.)
->>>
->>> An alternative approach would be to couple along
->>> schedule_in/schedule_out
->>>
->>> atomic_set(overload, -1);
->>>
->>> __execlists_schedule_in:
->>> 	if (!atomic_fetch_inc(overload)
->>> 		intel_gt_pm_active_begin(engine->gt);
->>> __execlists_schedule_out:
->>> 	if (!atomic_dec_return(overload)
->>> 		intel_gt_pm_active_end(engine->gt);
->>>
->>> which would mean we are overloaded as soon as we try to submit an
->>> overlapping ELSP.
->>>
->>
->> That sounds good to me too, and AFAICT would have roughly the same
->> behavior as this metric except for the preemption corner case you
->> mention above.  I'll try this and verify that I get approximately the
->> same performance numbers.
->>
->
-> This suggestion seems to lead to some minor regressions, I'm
-> investigating the issue.  Will send a v2 as soon as I have something
-> along the lines of what you suggested running with equivalent
-> performance to v1.
-
-I think I've figured out why both of the alternatives we were talking
-about above lead to a couple percent regressions in latency-sensitive
-workloads: In some scenarios it's possible for execlist_dequeue() to
-execute after the GPU has gone idle, but before we've processed the
-corresponding CSB entries, particularly when called from the
-submit_queue() path.  In that case __execlists_schedule_in() will think
-that the next request is overlapping, and tell CPU power management to
-relax, even though the GPU is starving intermittently.
-
-How about we do the same:
-
-|       if (atomic_xchg(&execlists->overload, 0))
-|               intel_gt_pm_active_end(engine->gt);
-
-as in this patch from process_csb() in response to each completion CSB
-entry, which ensures that the system is considered non-GPU-bound as soon
-as the first context completes.  Subsequently if another CSB entry
-signals a dual-ELSP active-to-idle transition or a dual-ELSP preemption
-we call intel_gt_pm_active_begin() directly from process_csb().  If we
-hit a single-ELSP preemption CSB entry we call intel_gt_pm_active_end()
-instead, in order to avoid the problem you pointed out in your previous
-email.
-
-How does that sound to you?  [Still need to verify that it has
-comparable performance to this patch overall.]
-
-Thanks!
-
---=-=-=--
-
---==-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXnQuewAKCRCDmTidfVK/
-WxXgAP9252cVgsoRyyqdvt7eGw2+bh8imJeFLWlOuS8CyfYJ/gD/fUskudgUkbJU
-y3wMKsCgIOJvzmAfV5/irlRbWLzQoLY=
-=NYsY
------END PGP SIGNATURE-----
---==-=-=--
-
---===============0981146908==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0981146908==--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU291emEsIEpvc2UgPGpv
+c2Uuc291emFAaW50ZWwuY29tPg0KPiBTZW50OiBGcmlkYXksIE1hcmNoIDIwLCAyMDIwIDEyOjM2
+IEFNDQo+IFRvOiBTaGFua2FyLCBVbWEgPHVtYS5zaGFua2FyQGludGVsLmNvbT47IGludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IEtob3IsIFN3ZWUgQXVuIDxzd2VlLmF1bi5r
+aG9yQGludGVsLmNvbT4NCj4gU3ViamVjdDogUmU6IFtJbnRlbC1nZnhdIFtQQVRDSF0gZHJtL2k5
+MTUvZGlzcGxheTogVHJpZ2dlciBNb2Rlc2V0IGF0IGJvb3QgZm9yIGF1ZGlvDQo+IGNvZGVjIGlu
+aXQNCj4gDQo+IE9uIFdlZCwgMjAyMC0wMy0xOCBhdCAxNzowMCArMDUzMCwgVW1hIFNoYW5rYXIg
+d3JvdGU6DQo+ID4gSWYgZXh0ZXJuYWwgbW9uaXRvcnMgYXJlIGNvbm5lY3RlZCBkdXJpbmcgYm9v
+dCB1cCwgZHJpdmVyIHVzZXMgdGhlDQo+ID4gc2FtZSBtb2RlIHByb2dyYW1tZWQgYnkgQklPUyBh
+bmQgYXZvaWRzIGEgZnVsbCBtb2Rlc2V0Lg0KPiA+IFRoaXMgcmVzdWx0cyBpbiBkaXNwbGF5IGF1
+ZGlvIGNvZGVjIGxlZnQgdW5pbml0aWFsaXplZCBhbmQgZGlzcGxheQ0KPiA+IGF1ZGlvIGZhaWxz
+IHRvIHdvcmsgdGlsbCB1c2VyIHRyaWdnZXJzIGEgbW9kZXNldC4NCj4gPg0KPiA+IFRoaXMgcGF0
+Y2ggZml4ZXMgdGhlIHNhbWUgYnkgdHJpZ2dlcmluZyBhIG1vZGVzZXQgYXQgYm9vdC4NCj4gDQo+
+IFdlIGhhZCB0aGUgc2FtZSBpc3N1ZSBmb3IgUFNSLCB0YWtlIGEgbG9vayB0byB0aGUgZml4Og0K
+PiBjb21taXQgMzNlMDU5YTJlNGRmNDU0MzU5ZjY0MmYyMjM1YWYzOWRlOWQzZTkxNA0KPiBkcm0v
+aTkxNS9wc3I6IEZvcmNlIFBTUiBwcm9iZSBvbmx5IGFmdGVyIGZ1bGwgaW5pdGlhbGl6YXRpb24N
+Cj4gDQo+IE1heWJlIG1ha2UgdGhpcyBldmVuIG1vcmUgZ2VuZXJpYy4NCg0KWWVhaCB0aGlzIGxv
+b2tzIHRvIGRlYWxpbmcgd2l0aCBhbG1vc3QgYSBzaW1pbGFyIG5lZWQuIFRoYW5rcyBmb3IgcG9p
+bnRpbmcgdGhpcyBvdXQsDQp3aWxsIHRyeSB0byBjb21lIHVwIHdpdGggYSBnZW5lcmFsaXplZCBz
+b2x1dGlvbi4NCg0KUmVnYXJkcywNClVtYSBTaGFua2FyDQoNCj4gPg0KPiA+IENjOiBWaWxsZSBT
+eXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KPiA+IENjOiBNYWFydGVu
+IExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPg0KPiA+IENjOiBL
+YWkgVmVobWFuZW4gPGthaS52ZWhtYW5lbkBsaW51eC5pbnRlbC5jb20+DQo+ID4gU2lnbmVkLW9m
+Zi1ieTogVW1hIFNoYW5rYXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4NCj4gPiBTaWduZWQtb2Zm
+LWJ5OiBTd2VlQXVuIEtob3IgPHN3ZWUuYXVuLmtob3JAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jICAgICB8IDQgKysrKw0K
+PiA+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDggKysr
+KysrKysNCj4gPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaCAgICAgICAgICAgICAg
+fCAzICsrKw0KPiA+ICAzIGZpbGVzIGNoYW5nZWQsIDE1IGluc2VydGlvbnMoKykNCj4gPg0KPiA+
+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+
+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jDQo+ID4gaW5kZXgg
+NzNkMGY0NjQ4YzA2Li5iYTM4MGFmYTczYTYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUv
+ZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfZGRpLmMNCj4gPiBAQCAtMzcwNCw2ICszNzA0LDEwIEBAIHN0YXRp
+YyB2b2lkIGludGVsX2RkaV91cGRhdGVfcGlwZShzdHJ1Y3QNCj4gPiBpbnRlbF9lbmNvZGVyICpl
+bmNvZGVyLA0KPiA+ICAJCQkJICBjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZQ0KPiA+ICpj
+cnRjX3N0YXRlLA0KPiA+ICAJCQkJICBjb25zdCBzdHJ1Y3QgZHJtX2Nvbm5lY3Rvcl9zdGF0ZQ0K
+PiA+ICpjb25uX3N0YXRlKQ0KPiA+ICB7DQo+ID4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAq
+ZGV2X3ByaXYgPSB0b19pOTE1KGVuY29kZXItPmJhc2UuZGV2KTsNCj4gPiArDQo+ID4gKwkvKiBD
+bGVhciB0aGUgYm9vdGZsYWcgKi8NCj4gPiArCWRldl9wcml2LT5ib290ZmxhZyA9IGZhbHNlOw0K
+PiA+DQo+ID4gIAlpZiAoIWludGVsX2NydGNfaGFzX3R5cGUoY3J0Y19zdGF0ZSwgSU5URUxfT1VU
+UFVUX0hETUkpKQ0KPiA+ICAJCWludGVsX2RkaV91cGRhdGVfcGlwZV9kcChlbmNvZGVyLCBjcnRj
+X3N0YXRlLCBjb25uX3N0YXRlKTsgZGlmZg0KPiA+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ID4gaW5kZXggOGYyM2M0ZDUxYzMzLi5hMTQ4NzUzOTQ5
+NWYgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+aXNwbGF5LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
+c3BsYXkuYw0KPiA+IEBAIC0xNDc1MSw2ICsxNDc1MSwxMCBAQCBzdGF0aWMgaW50IGludGVsX2F0
+b21pY19jaGVjayhzdHJ1Y3QNCj4gPiBkcm1fZGV2aWNlICpkZXYsDQo+ID4gIAkJaWYgKG5ld19j
+cnRjX3N0YXRlLT5ody5tb2RlLnByaXZhdGVfZmxhZ3MgIT0NCj4gPiAgCQkgICAgb2xkX2NydGNf
+c3RhdGUtPmh3Lm1vZGUucHJpdmF0ZV9mbGFncykNCj4gPiAgCQkJbmV3X2NydGNfc3RhdGUtPnVh
+cGkubW9kZV9jaGFuZ2VkID0gdHJ1ZTsNCj4gPiArDQo+ID4gKwkJLyogU2V0IG1vZGVfY2hhbmdl
+IHRvIGluaXQgYXVkaW8gY29kZSBvbmNlIGF0IGJvb3QgKi8NCj4gPiArCQlpZiAoZGV2X3ByaXYt
+PmJvb3RmbGFnICYmIG5ld19jcnRjX3N0YXRlLT5ody5hY3RpdmUpDQo+ID4gKwkJCW5ld19jcnRj
+X3N0YXRlLT51YXBpLm1vZGVfY2hhbmdlZCA9IHRydWU7DQo+ID4gIAl9DQo+ID4NCj4gPiAgCXJl
+dCA9IGRybV9hdG9taWNfaGVscGVyX2NoZWNrX21vZGVzZXQoZGV2LCAmc3RhdGUtPmJhc2UpOyBA
+QA0KPiA+IC0xNzY1NSwxMSArMTc2NTksMTUgQEAgc3RhdGljIHZvaWQgaW50ZWxfdXBkYXRlX2Zk
+aV9wbGxfZnJlcShzdHJ1Y3QNCj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdikNCj4gPg0K
+PiA+ICBzdGF0aWMgaW50IGludGVsX2luaXRpYWxfY29tbWl0KHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYpICB7DQo+ID4gKwlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYgPSB0b19pOTE1
+KGRldik7DQo+ID4gIAlzdHJ1Y3QgZHJtX2F0b21pY19zdGF0ZSAqc3RhdGUgPSBOVUxMOw0KPiA+
+ICAJc3RydWN0IGRybV9tb2Rlc2V0X2FjcXVpcmVfY3R4IGN0eDsNCj4gPiAgCXN0cnVjdCBpbnRl
+bF9jcnRjICpjcnRjOw0KPiA+ICAJaW50IHJldCA9IDA7DQo+ID4NCj4gPiArCS8qIFNldCBGbGFn
+IHRvIHRyaWdnZXIgbW9kZXNldCBmb3IgYXVkaW8gY29kZWMgaW5pdCAqLw0KPiA+ICsJZGV2X3By
+aXYtPmJvb3RmbGFnID0gdHJ1ZTsNCj4gPiArDQo+ID4gIAlzdGF0ZSA9IGRybV9hdG9taWNfc3Rh
+dGVfYWxsb2MoZGV2KTsNCj4gPiAgCWlmICghc3RhdGUpDQo+ID4gIAkJcmV0dXJuIC1FTk9NRU07
+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmgNCj4gPiBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVfZHJ2LmggaW5kZXggYTdlYTFkODU1MzU5Li4yMDcx
+OTZmOTYzMmINCj4gPiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
+X2Rydi5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9kcnYuaA0KPiA+IEBA
+IC0xMjEwLDYgKzEyMTAsOSBAQCBzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSB7DQo+ID4gIAkgKiBO
+T1RFOiBUaGlzIGlzIHRoZSBkcmkxL3VtcyBkdW5nZW9uLCBkb24ndCBhZGQgc3R1ZmYgaGVyZS4N
+Cj4gPiBZb3VyIHBhdGNoDQo+ID4gIAkgKiB3aWxsIGJlIHJlamVjdGVkLiBJbnN0ZWFkIGxvb2sg
+Zm9yIGEgYmV0dGVyIHBsYWNlLg0KPiA+ICAJICovDQo+ID4gKw0KPiA+ICsJLyogRmxhZyB0byB0
+cmlnZ2VyIG1vZGVzZXQgZm9yIEF1ZGlvIGNvZGVjIGluaXQgb25jZSBkdXJpbmcNCj4gPiBib290
+ICovDQo+ID4gKwlib29sIGJvb3RmbGFnOw0KPiA+ICB9Ow0KPiA+DQo+ID4gIHN0YXRpYyBpbmxp
+bmUgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKnRvX2k5MTUoY29uc3Qgc3RydWN0DQo+ID4gZHJt
+X2RldmljZSAqZGV2KQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwt
+Z2Z4Cg==
