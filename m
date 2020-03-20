@@ -2,43 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25CB618D33C
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 16:47:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8145D18D506
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 17:55:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 797E789CF5;
-	Fri, 20 Mar 2020 15:47:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7C196E176;
+	Fri, 20 Mar 2020 16:55:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22CB689CF5
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 15:47:00 +0000 (UTC)
-IronPort-SDR: X6H+JpePFqVF3Sp2qnglUFVy9aWvJ27pgaHt0iktyGeXPX2C1WoDjaudb3mAyFAEYqoqvNIAn8
- vPKXOKB+fh6A==
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6BD6E176
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 16:55:04 +0000 (UTC)
+IronPort-SDR: +25+a82oqGkI1HW+dyCgeTH3NM+Hk4y+SEHAravKcDRLoHj12687869gJblp0HNWUXxFi+u17y
+ j/kdxU3oXXjg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 08:46:59 -0700
-IronPort-SDR: jVaouhUqlVkOBl63cRIwSfFSUqlo1FQzZ4TU9S4Zu1kg+hY1xWP1+SyliQK+6lWCbsekc67ZrF
- PzRFLwgN9ZUg==
-X-IronPort-AV: E=Sophos;i="5.72,285,1580803200"; d="scan'208";a="418753821"
-Received: from ebrown1-mobl1.ger.corp.intel.com (HELO [10.252.54.178])
- ([10.252.54.178])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 08:46:57 -0700
-To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
-References: <20200320034901.102550-1-andi@etezian.org>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <43e3f771-7584-d454-7776-e2b18c830292@linux.intel.com>
-Date: Fri, 20 Mar 2020 15:46:55 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-MIME-Version: 1.0
-In-Reply-To: <20200320034901.102550-1-andi@etezian.org>
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2020 09:55:03 -0700
+IronPort-SDR: jCAhKaP152m1OMusQuyFs6TIZocVnEZp94ljxppF10Qah7D/F1/4Q5cu7QyMwOK4aDg8VbL2eu
+ qF53RBrFRTww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,285,1580803200"; d="scan'208";a="237273838"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+ by fmsmga007.fm.intel.com with ESMTP; 20 Mar 2020 09:55:03 -0700
+Received: from ORSEDG002.ED.cps.intel.com (10.7.248.5) by
+ ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Fri, 20 Mar 2020 09:55:03 -0700
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (104.47.38.51) by
+ edgegateway.intel.com (134.134.137.101) with Microsoft SMTP Server
+ (TLS) id 14.3.439.0; Fri, 20 Mar 2020 09:54:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ipPlGAQF/I9fE9KU6rcLI8HdpLLxHKg8Q9SqpwuByDC2Xro9zlfQAEOJ0jRL9O8rGznM86AxttuGFRj3db6K1fvqWEbJ4RpOXUsDfC1PaG7jrR7cdPfBvtB9zvZbJQp17b00fIAASgI8We6i6WX5hH9E5v/QNAGqY+wVs6TsM5RacZvhWfMKUpsh4Ujqs4LloHiyHp6W1NzjNUF2lXiGdiGt4zFVWtrGoSgzwvRhMkw7PounFqsjouEe4LIp7eHt4Fn9wBPlJDlM2tWUEVtlT/4is9y8IDScUQwF/m1aV3bX8ChnTd64Igz6Czd2HOK7h0vYa1gSNsfsBuTFCel5lA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZlOPcKvjtIYWxqfh5C0q+TUuANHZTTiFaDxSJaGhVGI=;
+ b=MN6F6RNGB1DbOdH9GG9W49QdEnkvPhpj1DaA8S3MfhjPYZdmli9C/opnjGt3erfEEeQ5V47jTaWA0mxN1DpgdzstmAXuJovtcp5M8B2kTO5DQWc9j17xMzJpHwxHBQxuCq7owTqW9ni6Ha1dNY275lycshbTPlhCcZ4wBlmRga8E0ab1tMj90ySv618Hil19ylECidb+jdKuHsEp7FoyUMJc4NMS3dvLNFGo5mo/KeLfL2rSZsEApvE6/0CEVxXaqrN4+KTpG88M+dcJhmivVuH7kFIsJKodvw4FPxkt9qf5ZpGNn1nHCHvOCSjIo76xmEXxul3MdUGz8TQumwhDzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZlOPcKvjtIYWxqfh5C0q+TUuANHZTTiFaDxSJaGhVGI=;
+ b=n+hOjjpTi1cO/QP/fVGNzGzthC9l11jc/f6m/0QImvETkmrY6ioxWEzNoftT49Fq90V5tEs8iZcY8glMObrqfN11hgJRi+vJmBVL44Hdibzd2EP7uS5X0yn4rfFw5mz5thUj8B5SnU9X2dP2zZubcW9KMKfqAxIImXBS1jDkiso=
+Received: from SN6PR11MB3134.namprd11.prod.outlook.com (2603:10b6:805:d9::12)
+ by SN6PR11MB2734.namprd11.prod.outlook.com (2603:10b6:805:59::25)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20; Fri, 20 Mar
+ 2020 16:54:42 +0000
+Received: from SN6PR11MB3134.namprd11.prod.outlook.com
+ ([fe80::8c55:1a2b:2cae:c5bf]) by SN6PR11MB3134.namprd11.prod.outlook.com
+ ([fe80::8c55:1a2b:2cae:c5bf%7]) with mapi id 15.20.2835.017; Fri, 20 Mar 2020
+ 16:54:42 +0000
+From: "Khor, Swee Aun" <swee.aun.khor@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
+Thread-Index: AQHV/RT5mdG1W5elH0yPIMoH1YcKAqhQSJkAgAC8TICAAJghAIAAFylA
+Date: Fri, 20 Mar 2020 16:54:42 +0000
+Message-ID: <SN6PR11MB313483A95ADC942C6ADB4A23AFF50@SN6PR11MB3134.namprd11.prod.outlook.com>
+References: <20200318113009.16757-1-uma.shankar@intel.com>
+ <469075d16551fe95e2fdadfd6ffd1538a8f3a657.camel@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F82437F00@BGSMSX104.gar.corp.intel.com>
+ <20200320152406.GP13686@intel.com>
+In-Reply-To: <20200320152406.GP13686@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915/gt: move files more files into
- debugfs
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=swee.aun.khor@intel.com; 
+x-originating-ip: [192.198.147.209]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9bc64b05-4020-42da-af7c-08d7ccef62d0
+x-ms-traffictypediagnostic: SN6PR11MB2734:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SN6PR11MB2734C350AC23981C1201245EAFF50@SN6PR11MB2734.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:792;
+x-forefront-prvs: 03484C0ABF
+x-forefront-antispam-report: SFV:NSPM;
+ SFS:(10019020)(376002)(136003)(39860400002)(366004)(396003)(346002)(199004)(5660300002)(71200400001)(33656002)(6636002)(52536014)(64756008)(4326008)(9686003)(55016002)(66446008)(66946007)(478600001)(66476007)(66556008)(76116006)(26005)(53546011)(186003)(8676002)(6506007)(81156014)(7696005)(8936002)(110136005)(54906003)(316002)(86362001)(81166006)(2906002);
+ DIR:OUT; SFP:1102; SCL:1; SRVR:SN6PR11MB2734;
+ H:SN6PR11MB3134.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
+ PTR:InfoNoRecords; A:1; 
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: hc54s7Ae4W+V2AyZES04SU7XEvVioHhHwyEPIPyaH4l7nPHNT3/sQZTaOJg3r7IjRKxIfp9xipa3JWnOMb2k42N8i56eBVFFy+DFD45grDx6tVg8m869eZdAMi20TmBX4319McHpayvAjgRffpHQs7feI+J2GOlOxBWB6sFzZxQZlmOGoL0OPV8hSzeSUSuH4qSDPUdGDqlcMYHUmu6q8Yvx77BwNKZErxXOIh28XOyurr3aM8nh9Kn5bGyf95vbgSt9mW3V0dj9dffToAQP3i3ppzR3tyEU5n+dpnN/RmnStaDmYOVW5eWiPUGwMrdu5h+RPRF6nxAl7SA88KZXzNp9himcamqoUo7DrFjvasewO1TyOiYU4KnhK915v0rmNPBM3xp4AgoJcCPMpnoYno5iytvuDVi2CA3PuWBHKCfJP+4giVUorkt2yu0QUflu
+x-ms-exchange-antispam-messagedata: 5trXsKQQrVul5GOUYy11d2B1/uMfMg9Ii979ONCp8rTc7bA6NkQGNyiKnRu73yjMWrQaT0EdAYtULbXnW0lYfk3zPiadI8jzaDH87EPfHlzsBo1GPkAhZPoeK9fk24FWUnKJE5bkAC4D0es4F8r5ow==
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9bc64b05-4020-42da-af7c-08d7ccef62d0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2020 16:54:42.1709 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ypNTyAsbqptp8ypD1KIiiRJeu+A2bAYlKhRRTVSNZMvxNFKmBhNc/chVz5A7bU/mP4g9YEg5K7507nQ2Y+83Ug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2734
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,1173 +118,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+Hi Ville,
+You means this change right? Sure. Will try your suggestion as well. =
 
-On 20/03/2020 03:49, Andi Shyti wrote:
-> From: Andi Shyti <andi.shyti@intel.com>
-> 
-> The following interfaces:
-> 
-> i915_wedged
-> i915_forcewake_user
-> i915_gem_interrupt
-> i915_sseu_status
-> 
-> are dependent on gt values. Put them inside gt/ and drop the
-> "i915_" prefix name. This would be the new structure:
-> 
->    gt
->    |
->    +-- forcewake_user
->    |
->    +-- interrupt_info_show
->    |
->    +-- sseu_status
->    |
->    +-- wedge
-> 
-> Signed-off-by: Andi Shyti <andi.shyti@intel.com>
-> ---
-> Hi,
-> 
-> this patch is the first of a series that aims to refactor the
-> debugfs structure in the i915. Some changes will affect the
-> debugfs framework as well.
-> 
-> It is based on Daniele's series and it applies only on top of
-> that.
-> 
-> Thanks Tvrtko for the review,
-> Andi
-> 
-> Changelog
-> =========
-> v2:
->   - dropped changes on "drop_caches", they were indeed irrelevant
->   - improved interrupt info function
-> 
->   drivers/gpu/drm/i915/gt/debugfs_gt.c    | 464 +++++++++++++++++++++++-
->   drivers/gpu/drm/i915/gt/debugfs_gt_pm.c |  32 ++
->   drivers/gpu/drm/i915/i915_debugfs.c     | 441 +---------------------
->   3 files changed, 499 insertions(+), 438 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt.c b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> index fcbc57e226c3..ab731350daea 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt.c
-> @@ -5,12 +5,472 @@
->    */
->   
->   #include <linux/debugfs.h>
-> +#include <linux/sched/mm.h>
->   
->   #include "debugfs_engines.h"
->   #include "debugfs_gt.h"
->   #include "debugfs_gt_pm.h"
-> -#include "uc/debugfs_uc.h"
->   #include "i915_drv.h"
-> +#include "intel_gt_pm.h"
-> +#include "intel_gt_requests.h"
-> +#include "uc/debugfs_uc.h"
-> +
-> +static void
-> +intel_sseu_copy_subslices(const struct sseu_dev_info *sseu, int slice,
-> +			  u8 *to_mask)
-> +{
-> +	int offset = slice * sseu->ss_stride;
-> +
-> +	memcpy(&to_mask[offset], &sseu->subslice_mask[offset], sseu->ss_stride);
-> +}
-> +
-> +static void cherryview_sseu_device_status(struct intel_gt *gt,
-> +					  struct sseu_dev_info *sseu)
-> +{
-> +#define SS_MAX 2
-> +	const int ss_max = SS_MAX;
-> +	u32 sig1[SS_MAX], sig2[SS_MAX];
-> +	int ss;
-> +
-> +	sig1[0] = intel_uncore_read(gt->uncore, CHV_POWER_SS0_SIG1);
-> +	sig1[1] = intel_uncore_read(gt->uncore, CHV_POWER_SS1_SIG1);
-> +	sig2[0] = intel_uncore_read(gt->uncore, CHV_POWER_SS0_SIG2);
-> +	sig2[1] = intel_uncore_read(gt->uncore, CHV_POWER_SS1_SIG2);
-> +
-> +	for (ss = 0; ss < ss_max; ss++) {
-> +		unsigned int eu_cnt;
-> +
-> +		if (sig1[ss] & CHV_SS_PG_ENABLE)
-> +			/* skip disabled subslice */
-> +			continue;
-> +
-> +		sseu->slice_mask = BIT(0);
-> +		sseu->subslice_mask[0] |= BIT(ss);
-> +		eu_cnt = ((sig1[ss] & CHV_EU08_PG_ENABLE) ? 0 : 2) +
-> +			 ((sig1[ss] & CHV_EU19_PG_ENABLE) ? 0 : 2) +
-> +			 ((sig1[ss] & CHV_EU210_PG_ENABLE) ? 0 : 2) +
-> +			 ((sig2[ss] & CHV_EU311_PG_ENABLE) ? 0 : 2);
-> +		sseu->eu_total += eu_cnt;
-> +		sseu->eu_per_subslice = max_t(unsigned int,
-> +					      sseu->eu_per_subslice, eu_cnt);
-> +	}
-> +#undef SS_MAX
-> +}
-> +
-> +static void gen10_sseu_device_status(struct intel_gt *gt,
-> +				     struct sseu_dev_info *sseu)
-> +{
-> +#define SS_MAX 6
-> +	const struct intel_runtime_info *info = RUNTIME_INFO(gt->i915);
-> +	u32 s_reg[SS_MAX], eu_reg[2 * SS_MAX], eu_mask[2];
-> +	int s, ss;
-> +
-> +	for (s = 0; s < info->sseu.max_slices; s++) {
-> +		/*
-> +		 * FIXME: Valid SS Mask respects the spec and read
-> +		 * only valid bits for those registers, excluding reserved
-> +		 * although this seems wrong because it would leave many
-> +		 * subslices without ACK.
-> +		 */
-> +		s_reg[s] = intel_uncore_read(gt->uncore,
-> +					     GEN10_SLICE_PGCTL_ACK(s)) &
-> +			GEN10_PGCTL_VALID_SS_MASK(s);
-> +		eu_reg[2 * s] = intel_uncore_read(gt->uncore,
-> +						  GEN10_SS01_EU_PGCTL_ACK(s));
-> +		eu_reg[2 * s + 1] = intel_uncore_read(gt->uncore,
-> +						  GEN10_SS23_EU_PGCTL_ACK(s));
-> +	}
-> +
-> +	eu_mask[0] = GEN9_PGCTL_SSA_EU08_ACK |
-> +		     GEN9_PGCTL_SSA_EU19_ACK |
-> +		     GEN9_PGCTL_SSA_EU210_ACK |
-> +		     GEN9_PGCTL_SSA_EU311_ACK;
-> +	eu_mask[1] = GEN9_PGCTL_SSB_EU08_ACK |
-> +		     GEN9_PGCTL_SSB_EU19_ACK |
-> +		     GEN9_PGCTL_SSB_EU210_ACK |
-> +		     GEN9_PGCTL_SSB_EU311_ACK;
-> +
-> +	for (s = 0; s < info->sseu.max_slices; s++) {
-> +		if ((s_reg[s] & GEN9_PGCTL_SLICE_ACK) == 0)
-> +			/* skip disabled slice */
-> +			continue;
-> +
-> +		sseu->slice_mask |= BIT(s);
-> +		intel_sseu_copy_subslices(&info->sseu, s, sseu->subslice_mask);
-> +
-> +		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
-> +			unsigned int eu_cnt;
-> +
-> +			if (info->sseu.has_subslice_pg &&
-> +			    !(s_reg[s] & (GEN9_PGCTL_SS_ACK(ss))))
-> +				/* skip disabled subslice */
-> +				continue;
-> +
-> +			eu_cnt = 2 * hweight32(eu_reg[2 * s + ss / 2] &
-> +					       eu_mask[ss % 2]);
-> +			sseu->eu_total += eu_cnt;
-> +			sseu->eu_per_subslice = max_t(unsigned int,
-> +						      sseu->eu_per_subslice,
-> +						      eu_cnt);
-> +		}
-> +	}
-> +#undef SS_MAX
-> +}
-> +
-> +static void gen9_sseu_device_status(struct intel_gt *gt,
-> +				    struct sseu_dev_info *sseu)
-> +{
-> +#define SS_MAX 3
-> +	const struct intel_runtime_info *info = RUNTIME_INFO(gt->i915);
-> +	u32 s_reg[SS_MAX], eu_reg[2 * SS_MAX], eu_mask[2];
-> +	int s, ss;
-> +
-> +	for (s = 0; s < info->sseu.max_slices; s++) {
-> +		s_reg[s] = intel_uncore_read(gt->uncore,
-> +					     GEN9_SLICE_PGCTL_ACK(s));
-> +		eu_reg[2*s] = intel_uncore_read(gt->uncore,
-> +						GEN9_SS01_EU_PGCTL_ACK(s));
-> +		eu_reg[2*s + 1] = intel_uncore_read(gt->uncore,
-> +						    GEN9_SS23_EU_PGCTL_ACK(s));
-> +	}
-> +
-> +	eu_mask[0] = GEN9_PGCTL_SSA_EU08_ACK |
-> +		     GEN9_PGCTL_SSA_EU19_ACK |
-> +		     GEN9_PGCTL_SSA_EU210_ACK |
-> +		     GEN9_PGCTL_SSA_EU311_ACK;
-> +	eu_mask[1] = GEN9_PGCTL_SSB_EU08_ACK |
-> +		     GEN9_PGCTL_SSB_EU19_ACK |
-> +		     GEN9_PGCTL_SSB_EU210_ACK |
-> +		     GEN9_PGCTL_SSB_EU311_ACK;
-> +
-> +	for (s = 0; s < info->sseu.max_slices; s++) {
-> +		if ((s_reg[s] & GEN9_PGCTL_SLICE_ACK) == 0)
-> +			/* skip disabled slice */
-> +			continue;
-> +
-> +		sseu->slice_mask |= BIT(s);
-> +
-> +		if (IS_GEN9_BC(gt->i915))
-> +			intel_sseu_copy_subslices(&info->sseu, s,
-> +						  sseu->subslice_mask);
-> +
-> +		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
-> +			unsigned int eu_cnt;
-> +			u8 ss_idx = s * info->sseu.ss_stride +
-> +				    ss / BITS_PER_BYTE;
-> +
-> +			if (IS_GEN9_LP(gt->i915)) {
-> +				if (!(s_reg[s] & (GEN9_PGCTL_SS_ACK(ss))))
-> +					/* skip disabled subslice */
-> +					continue;
-> +
-> +				sseu->subslice_mask[ss_idx] |=
-> +					BIT(ss % BITS_PER_BYTE);
-> +			}
-> +
-> +			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
-> +					       eu_mask[ss%2]);
-> +			sseu->eu_total += eu_cnt;
-> +			sseu->eu_per_subslice = max_t(unsigned int,
-> +						      sseu->eu_per_subslice,
-> +						      eu_cnt);
-> +		}
-> +	}
-> +#undef SS_MAX
-> +}
-> +
-> +static void bdw_sseu_device_status(struct intel_gt *gt,
-> +				   struct sseu_dev_info *sseu)
-> +{
-> +	const struct intel_runtime_info *info = RUNTIME_INFO(gt->i915);
-> +	u32 slice_info = intel_uncore_read(gt->uncore, GEN8_GT_SLICE_INFO);
-> +	int s;
-> +
-> +	sseu->slice_mask = slice_info & GEN8_LSLICESTAT_MASK;
-> +
-> +	if (sseu->slice_mask) {
-> +		sseu->eu_per_subslice = info->sseu.eu_per_subslice;
-> +		for (s = 0; s < fls(sseu->slice_mask); s++)
-> +			intel_sseu_copy_subslices(&info->sseu, s,
-> +						  sseu->subslice_mask);
-> +		sseu->eu_total = sseu->eu_per_subslice *
-> +				 intel_sseu_subslice_total(sseu);
-> +
-> +		/* subtract fused off EU(s) from enabled slice(s) */
-> +		for (s = 0; s < fls(sseu->slice_mask); s++) {
-> +			u8 subslice_7eu = info->sseu.subslice_7eu[s];
-> +
-> +			sseu->eu_total -= hweight8(subslice_7eu);
-> +		}
-> +	}
-> +}
-> +
-> +static void print_sseu_info(struct seq_file *m, bool is_available_info,
-> +			    const struct sseu_dev_info *sseu)
-> +{
-> +	struct intel_gt *gt = m->private;
-> +	const char *type = is_available_info ? "Available" : "Enabled";
-> +	int s;
-> +
-> +	seq_printf(m, "  %s Slice Mask: %04x\n", type,
-> +		   sseu->slice_mask);
-> +	seq_printf(m, "  %s Slice Total: %u\n", type,
-> +		   hweight8(sseu->slice_mask));
-> +	seq_printf(m, "  %s Subslice Total: %u\n", type,
-> +		   intel_sseu_subslice_total(sseu));
-> +	for (s = 0; s < fls(sseu->slice_mask); s++) {
-> +		seq_printf(m, "  %s Slice%i subslices: %u\n", type,
-> +			   s, intel_sseu_subslices_per_slice(sseu, s));
-> +	}
-> +	seq_printf(m, "  %s EU Total: %u\n", type,
-> +		   sseu->eu_total);
-> +	seq_printf(m, "  %s EU Per Subslice: %u\n", type,
-> +		   sseu->eu_per_subslice);
-> +
-> +	if (!is_available_info)
-> +		return;
-> +
-> +	seq_printf(m, "  Has Pooled EU: %s\n", yesno(HAS_POOLED_EU(gt->i915)));
-> +	if (HAS_POOLED_EU(gt->i915))
-> +		seq_printf(m, "  Min EU in pool: %u\n", sseu->min_eu_in_pool);
-> +
-> +	seq_printf(m, "  Has Slice Power Gating: %s\n",
-> +		   yesno(sseu->has_slice_pg));
-> +	seq_printf(m, "  Has Subslice Power Gating: %s\n",
-> +		   yesno(sseu->has_subslice_pg));
-> +	seq_printf(m, "  Has EU Power Gating: %s\n",
-> +		   yesno(sseu->has_eu_pg));
-> +}
-> +
-> +static int sseu_status_show(struct seq_file *m, void *unused)
-> +{
-> +	struct intel_gt *gt = m->private;
-> +	const struct intel_runtime_info *info = RUNTIME_INFO(gt->i915);
-> +	struct sseu_dev_info sseu;
-> +	intel_wakeref_t wakeref;
-> +
-> +	if (INTEL_GEN(gt->i915) < 8)
-> +		return -ENODEV;
-> +
-> +	seq_puts(m, "SSEU Device Info\n");
-> +	print_sseu_info(m, true, &info->sseu);
-> +
-> +	seq_puts(m, "SSEU Device Status\n");
-> +	memset(&sseu, 0, sizeof(sseu));
-> +	intel_sseu_set_info(&sseu, info->sseu.max_slices,
-> +			    info->sseu.max_subslices,
-> +			    info->sseu.max_eus_per_subslice);
-> +
-> +	with_intel_runtime_pm(gt->uncore->rpm, wakeref) {
-> +		if (IS_CHERRYVIEW(gt->i915))
-> +			cherryview_sseu_device_status(gt, &sseu);
-> +		else if (IS_BROADWELL(gt->i915))
-> +			bdw_sseu_device_status(gt, &sseu);
-> +		else if (IS_GEN(gt->i915, 9))
-> +			gen9_sseu_device_status(gt, &sseu);
-> +		else if (INTEL_GEN(gt->i915) >= 10)
-> +			gen10_sseu_device_status(gt, &sseu);
-> +	}
-> +
+By the way, what is different between hw.mode and uapi.mode and how we know=
+ which to be used? It used to only base.mode before hw/uapi split patches. =
 
-Nit - I'd cache i915 in a local, I think it reads prettier that way 
-since there are many usages.
 
-> +	print_sseu_info(m, false, &sseu);
-> +
-> +	return 0;
-> +}
-> +DEFINE_GT_DEBUGFS_ATTRIBUTE(sseu_status);
-> +
-> +static int interrupt_info_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_gt *gt = m->private;
-> +	struct intel_uncore *uncore = gt->uncore;
-> +	struct intel_engine_cs *engine;
-> +	enum intel_engine_id id;
-> +	intel_wakeref_t wakeref;
-> +	int i;
-> +
-> +	wakeref = intel_runtime_pm_get(uncore->rpm);
-> +
-> +	if (IS_CHERRYVIEW(gt->i915)) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN8_MASTER_IRQ));
-> +
-> +		seq_printf(m, "Display IER:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IER));
-> +		seq_printf(m, "Display IIR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IIR));
-> +		seq_printf(m, "Display IIR_RW:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IIR_RW));
-> +		seq_printf(m, "Display IMR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IMR));
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14671,8 +14671,8 @@ static int intel_atomic_check(struct drm_device *=
+dev,
+>         /* Catch I915_MODE_FLAG_INHERITED */
+>         for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>                                             new_crtc_state, i) {
+> -               if (new_crtc_state->hw.mode.private_flags !=3D
+> -                   old_crtc_state->hw.mode.private_flags)
+> +               if (new_crtc_state->uapi.mode.private_flags !=3D
+> +                   old_crtc_state->uapi.mode.private_flags)
+>                         new_crtc_state->uapi.mode_changed =3D true;
+>         }
+> =
 
-Display block we can leave out.
-
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
-> +	} else if (INTEL_GEN(gt->i915) >= 11) {
-> +		seq_printf(m, "Master Interrupt Control:  %08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN11_GFX_MSTR_IRQ));
-> +
-> +		seq_printf(m, "Render/Copy Intr Enable:   %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_RENDER_COPY_INTR_ENABLE));
-> +		seq_printf(m, "VCS/VECS Intr Enable:      %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_VCS_VECS_INTR_ENABLE));
-> +		seq_printf(m, "GUC/SG Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GUC_SG_INTR_ENABLE));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Enable: %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_ENABLE));
-> +		seq_printf(m, "Crypto Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_ENABLE));
-> +		seq_printf(m, "GUnit/CSME Intr Enable:\t   %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GUNIT_CSME_INTR_ENABLE));
-> +
-> +		seq_printf(m, "RCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_RCS0_RSVD_INTR_MASK));
-> +		seq_printf(m, "BCS Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_BCS_RSVD_INTR_MASK));
-> +		seq_printf(m, "VCS0/VCS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_VCS0_VCS1_INTR_MASK));
-> +		seq_printf(m, "VCS2/VCS3 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_VCS2_VCS3_INTR_MASK));
-> +		seq_printf(m, "VECS0/VECS1 Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_VECS0_VECS1_INTR_MASK));
-> +		seq_printf(m, "GUC/SG Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GUC_SG_INTR_MASK));
-> +		seq_printf(m, "GPM/WGBOXPERF Intr Mask: %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GPM_WGBOXPERF_INTR_MASK));
-> +		seq_printf(m, "Crypto Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_CRYPTO_RSVD_INTR_MASK));
-> +		seq_printf(m, "Gunit/CSME Intr Mask:\t %08x\n",
-> +			   intel_uncore_read(gt->uncore,
-> +					     GEN11_GUNIT_CSME_INTR_MASK));
-> +
-> +	} else if (INTEL_GEN(gt->i915) >= 8) {
-> +		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN8_MASTER_IRQ));
-> +
-> +		for (i = 0; i < 4; i++) {
-> +			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IMR(i)));
-> +			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IIR(i)));
-> +			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> +				   i, intel_uncore_read(gt->uncore,
-> +							GEN8_GT_IER(i)));
-> +		}
-> +
-> +	} else if (IS_VALLEYVIEW(gt->i915)) {
-> +		seq_printf(m, "Master IER:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_MASTER_IER));
-> +
-> +		seq_printf(m, "Display IER:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IER));
-> +		seq_printf(m, "Display IIR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IIR));
-> +		seq_printf(m, "Display IIR_RW:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IIR_RW));
-> +		seq_printf(m, "Display IMR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, VLV_IMR));
-
-Ditto.
-
-> +
-> +		seq_printf(m, "Render IER:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GTIER));
-> +		seq_printf(m, "Render IIR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GTIIR));
-> +		seq_printf(m, "Render IMR:\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GTIMR));
-> +
-> +		seq_printf(m, "PM IER:\t\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN6_PMIER));
-> +		seq_printf(m, "PM IIR:\t\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN6_PMIIR));
-> +		seq_printf(m, "PM IMR:\t\t%08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN6_PMIMR));
-> +
-> +	} else if (INTEL_GEN(gt->i915) >= 6) {
-
-This is a separate if block in the current code so applies to more 
-platforms.
-
-> +		for_each_engine(engine, gt, id) {
-> +			seq_printf(m,
-> +				   "Graphics Interrupt mask (%s):	%08x\n",
-> +				   engine->name, ENGINE_READ(engine, RING_IMR));
-> +		}
-> +
-> +	} else if (!HAS_PCH_SPLIT(gt->i915)) {
-> +		seq_printf(m, "Interrupt enable:    %08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN2_IER));
-> +		seq_printf(m, "Interrupt identity:  %08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN2_IIR));
-> +		seq_printf(m, "Interrupt mask:      %08x\n",
-> +			   intel_uncore_read(gt->uncore, GEN2_IMR));
-> +	}
-
-And then in current code there is that final else belonging to the first 
-else block, after the HAS_PCH_SPLIT block, which appears to contain some 
-non-display bits in it.
-
-> +
-> +	intel_runtime_pm_put(uncore->rpm, wakeref);
-> +
-> +	return 0;
-> +}
-> +DEFINE_GT_DEBUGFS_ATTRIBUTE(interrupt_info);
-> +
-> +static int wedged_get(void *data, u64 *val)
-> +{
-> +	struct intel_gt *gt = data;
-> +	int ret = intel_gt_terminally_wedged(gt);
-> +
-> +	switch (ret) {
-> +	case -EIO:
-> +		*val = 1;
-> +		return 0;
-> +	case 0:
-> +		*val = 0;
-> +		return 0;
-> +	default:
-> +		return ret;
-> +	}
-> +}
-> +
-> +static int wedged_set(void *data, u64 val)
-> +{
-> +	struct intel_gt *gt = data;
-> +
-> +	/* Flush any previous reset before applying for a new one */
-> +	wait_event(gt->reset.queue,
-> +		   !test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
-> +
-> +	intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
-> +			      "Manually set wedged engine mask = %llx", val);
-> +	return 0;
-> +}
-> +DEFINE_SIMPLE_ATTRIBUTE(wedged_fops, wedged_get, wedged_set, "%llu\n");
-> +
-> +static void __debugfs_gt_register(struct intel_gt *gt, struct dentry *root)
-> +{
-> +	static const struct debugfs_gt_file files[] = {
-> +		{ "sseu_status", &sseu_status_fops, NULL },
-> +		{ "interrupt_info_show", &interrupt_info_fops, NULL },
-> +		{ "wedge", &wedged_fops, NULL },
-> +	};
-> +
-> +	intel_gt_debugfs_register_files(root, files, ARRAY_SIZE(files), gt);
-> +}
->   
->   void debugfs_gt_register(struct intel_gt *gt)
->   {
-> @@ -23,6 +483,8 @@ void debugfs_gt_register(struct intel_gt *gt)
->   	if (IS_ERR(root))
->   		return;
->   
-> +	__debugfs_gt_register(gt, root);
-> +
->   	debugfs_engines_register(gt, root);
->   	debugfs_gt_pm_register(gt, root);
->   
-> diff --git a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> index dc024944873a..5b1f109c4abb 100644
-> --- a/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> +++ b/drivers/gpu/drm/i915/gt/debugfs_gt_pm.c
-> @@ -10,6 +10,7 @@
->   #include "debugfs_gt_pm.h"
->   #include "i915_drv.h"
->   #include "intel_gt.h"
-> +#include "intel_gt_pm.h"
->   #include "intel_llc.h"
->   #include "intel_rc6.h"
->   #include "intel_rps.h"
-> @@ -17,6 +18,36 @@
->   #include "intel_sideband.h"
->   #include "intel_uncore.h"
->   
-> +static int forcewake_user_open(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	atomic_inc(&gt->user_wakeref);
-> +	intel_gt_pm_get(gt);
-> +	if (INTEL_GEN(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_get(gt->uncore);
-> +
-> +	return 0;
-> +}
-> +
-> +static int forcewake_user_release(struct inode *inode, struct file *file)
-> +{
-> +	struct intel_gt *gt = inode->i_private;
-> +
-> +	if (INTEL_GEN(gt->i915) >= 6)
-> +		intel_uncore_forcewake_user_put(gt->uncore);
-> +	intel_gt_pm_put(gt);
-> +	atomic_dec(&gt->user_wakeref);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct file_operations forcewake_user_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = forcewake_user_open,
-> +	.release = forcewake_user_release,
-> +};
-> +
->   static int fw_domains_show(struct seq_file *m, void *data)
->   {
->   	struct intel_gt *gt = m->private;
-> @@ -597,6 +628,7 @@ void debugfs_gt_pm_register(struct intel_gt *gt, struct dentry *root)
->   		{ "drpc", &drpc_fops, NULL },
->   		{ "frequency", &frequency_fops, NULL },
->   		{ "forcewake", &fw_domains_fops, NULL },
-> +		{ "forcewake_user", &forcewake_user_fops, NULL},
->   		{ "llc", &llc_fops, llc_eval },
->   		{ "rps_boost", &rps_boost_fops, rps_eval },
->   	};
-> diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
-> index 4c8a88c64c1d..82607419aebf 100644
-> --- a/drivers/gpu/drm/i915/i915_debugfs.c
-> +++ b/drivers/gpu/drm/i915/i915_debugfs.c
-> @@ -429,26 +429,14 @@ static void gen8_display_interrupt_info(struct seq_file *m)
->   static int i915_interrupt_info(struct seq_file *m, void *data)
->   {
->   	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	struct intel_engine_cs *engine;
->   	intel_wakeref_t wakeref;
-> -	int i, pipe;
-> +	int pipe;
->   
->   	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
->   
->   	if (IS_CHERRYVIEW(dev_priv)) {
->   		intel_wakeref_t pref;
->   
-> -		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> -			   I915_READ(GEN8_MASTER_IRQ));
-> -
-> -		seq_printf(m, "Display IER:\t%08x\n",
-> -			   I915_READ(VLV_IER));
-> -		seq_printf(m, "Display IIR:\t%08x\n",
-> -			   I915_READ(VLV_IIR));
-> -		seq_printf(m, "Display IIR_RW:\t%08x\n",
-> -			   I915_READ(VLV_IIR_RW));
-> -		seq_printf(m, "Display IMR:\t%08x\n",
-> -			   I915_READ(VLV_IMR));
-
-But we want to leave display at top level debugfs no?
-
->   		for_each_pipe(dev_priv, pipe) {
->   			enum intel_display_power_domain power_domain;
->   
-> @@ -477,67 +465,25 @@ static int i915_interrupt_info(struct seq_file *m, void *data)
->   			   I915_READ(DPINVGTT));
->   		intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, pref);
->   
-> -		for (i = 0; i < 4; i++) {
-> -			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IMR(i)));
-> -			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IIR(i)));
-> -			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IER(i)));
-> -		}
-> -
->   		seq_printf(m, "PCU interrupt mask:\t%08x\n",
->   			   I915_READ(GEN8_PCU_IMR));
->   		seq_printf(m, "PCU interrupt identity:\t%08x\n",
->   			   I915_READ(GEN8_PCU_IIR));
->   		seq_printf(m, "PCU interrupt enable:\t%08x\n",
->   			   I915_READ(GEN8_PCU_IER));
-> -	} else if (INTEL_GEN(dev_priv) >= 11) {
-> -		seq_printf(m, "Master Interrupt Control:  %08x\n",
-> -			   I915_READ(GEN11_GFX_MSTR_IRQ));
-> -
-> -		seq_printf(m, "Render/Copy Intr Enable:   %08x\n",
-> -			   I915_READ(GEN11_RENDER_COPY_INTR_ENABLE));
-> -		seq_printf(m, "VCS/VECS Intr Enable:      %08x\n",
-> -			   I915_READ(GEN11_VCS_VECS_INTR_ENABLE));
-> -		seq_printf(m, "GUC/SG Intr Enable:\t   %08x\n",
-> -			   I915_READ(GEN11_GUC_SG_INTR_ENABLE));
-> -		seq_printf(m, "GPM/WGBOXPERF Intr Enable: %08x\n",
-> -			   I915_READ(GEN11_GPM_WGBOXPERF_INTR_ENABLE));
-> -		seq_printf(m, "Crypto Intr Enable:\t   %08x\n",
-> -			   I915_READ(GEN11_CRYPTO_RSVD_INTR_ENABLE));
-> -		seq_printf(m, "GUnit/CSME Intr Enable:\t   %08x\n",
-> -			   I915_READ(GEN11_GUNIT_CSME_INTR_ENABLE));
->   
-> +	} else if (INTEL_GEN(dev_priv) >= 11) {
->   		seq_printf(m, "Display Interrupt Control:\t%08x\n",
->   			   I915_READ(GEN11_DISPLAY_INT_CTL));
->   
->   		gen8_display_interrupt_info(m);
-> -	} else if (INTEL_GEN(dev_priv) >= 8) {
-> -		seq_printf(m, "Master Interrupt Control:\t%08x\n",
-> -			   I915_READ(GEN8_MASTER_IRQ));
-> -
-> -		for (i = 0; i < 4; i++) {
-> -			seq_printf(m, "GT Interrupt IMR %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IMR(i)));
-> -			seq_printf(m, "GT Interrupt IIR %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IIR(i)));
-> -			seq_printf(m, "GT Interrupt IER %d:\t%08x\n",
-> -				   i, I915_READ(GEN8_GT_IER(i)));
-> -		}
->   
-> +	} else if (INTEL_GEN(dev_priv) >= 8) {
->   		gen8_display_interrupt_info(m);
-> +
->   	} else if (IS_VALLEYVIEW(dev_priv)) {
->   		intel_wakeref_t pref;
->   
-> -		seq_printf(m, "Display IER:\t%08x\n",
-> -			   I915_READ(VLV_IER));
-> -		seq_printf(m, "Display IIR:\t%08x\n",
-> -			   I915_READ(VLV_IIR));
-> -		seq_printf(m, "Display IIR_RW:\t%08x\n",
-> -			   I915_READ(VLV_IIR_RW));
-> -		seq_printf(m, "Display IMR:\t%08x\n",
-> -			   I915_READ(VLV_IMR));
->   		for_each_pipe(dev_priv, pipe) {
->   			enum intel_display_power_domain power_domain;
->   
-> @@ -556,23 +502,6 @@ static int i915_interrupt_info(struct seq_file *m, void *data)
->   			intel_display_power_put(dev_priv, power_domain, pref);
->   		}
->   
-> -		seq_printf(m, "Master IER:\t%08x\n",
-> -			   I915_READ(VLV_MASTER_IER));
-> -
-> -		seq_printf(m, "Render IER:\t%08x\n",
-> -			   I915_READ(GTIER));
-> -		seq_printf(m, "Render IIR:\t%08x\n",
-> -			   I915_READ(GTIIR));
-> -		seq_printf(m, "Render IMR:\t%08x\n",
-> -			   I915_READ(GTIMR));
-> -
-> -		seq_printf(m, "PM IER:\t\t%08x\n",
-> -			   I915_READ(GEN6_PMIER));
-> -		seq_printf(m, "PM IIR:\t\t%08x\n",
-> -			   I915_READ(GEN6_PMIIR));
-> -		seq_printf(m, "PM IMR:\t\t%08x\n",
-> -			   I915_READ(GEN6_PMIMR));
-> -
->   		pref = intel_display_power_get(dev_priv, POWER_DOMAIN_INIT);
->   		seq_printf(m, "Port hotplug:\t%08x\n",
->   			   I915_READ(PORT_HOTPLUG_EN));
-> @@ -583,12 +512,6 @@ static int i915_interrupt_info(struct seq_file *m, void *data)
->   		intel_display_power_put(dev_priv, POWER_DOMAIN_INIT, pref);
->   
->   	} else if (!HAS_PCH_SPLIT(dev_priv)) {
-> -		seq_printf(m, "Interrupt enable:    %08x\n",
-> -			   I915_READ(GEN2_IER));
-> -		seq_printf(m, "Interrupt identity:  %08x\n",
-> -			   I915_READ(GEN2_IIR));
-> -		seq_printf(m, "Interrupt mask:      %08x\n",
-> -			   I915_READ(GEN2_IMR));
->   		for_each_pipe(dev_priv, pipe)
->   			seq_printf(m, "Pipe %c stat:         %08x\n",
->   				   pipe_name(pipe),
-> @@ -614,34 +537,6 @@ static int i915_interrupt_info(struct seq_file *m, void *data)
->   			   I915_READ(GTIMR));
->   	}
->   
-> -	if (INTEL_GEN(dev_priv) >= 11) {
-> -		seq_printf(m, "RCS Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_RCS0_RSVD_INTR_MASK));
-> -		seq_printf(m, "BCS Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_BCS_RSVD_INTR_MASK));
-> -		seq_printf(m, "VCS0/VCS1 Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_VCS0_VCS1_INTR_MASK));
-> -		seq_printf(m, "VCS2/VCS3 Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_VCS2_VCS3_INTR_MASK));
-> -		seq_printf(m, "VECS0/VECS1 Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_VECS0_VECS1_INTR_MASK));
-> -		seq_printf(m, "GUC/SG Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_GUC_SG_INTR_MASK));
-> -		seq_printf(m, "GPM/WGBOXPERF Intr Mask: %08x\n",
-> -			   I915_READ(GEN11_GPM_WGBOXPERF_INTR_MASK));
-> -		seq_printf(m, "Crypto Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_CRYPTO_RSVD_INTR_MASK));
-> -		seq_printf(m, "Gunit/CSME Intr Mask:\t %08x\n",
-> -			   I915_READ(GEN11_GUNIT_CSME_INTR_MASK));
-> -
-> -	} else if (INTEL_GEN(dev_priv) >= 6) {
-> -		for_each_uabi_engine(engine, dev_priv) {
-> -			seq_printf(m,
-> -				   "Graphics Interrupt mask (%s):	%08x\n",
-> -				   engine->name, ENGINE_READ(engine, RING_IMR));
-> -		}
-> -	}
-> -
->   	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
->   
->   	return 0;
-> @@ -1355,42 +1250,6 @@ static int i915_wa_registers(struct seq_file *m, void *unused)
->   	return 0;
->   }
->   
-> -static int
-> -i915_wedged_get(void *data, u64 *val)
-> -{
-> -	struct drm_i915_private *i915 = data;
-> -	int ret = intel_gt_terminally_wedged(&i915->gt);
-> -
-> -	switch (ret) {
-> -	case -EIO:
-> -		*val = 1;
-> -		return 0;
-> -	case 0:
-> -		*val = 0;
-> -		return 0;
-> -	default:
-> -		return ret;
-> -	}
-> -}
-> -
-> -static int
-> -i915_wedged_set(void *data, u64 val)
-> -{
-> -	struct drm_i915_private *i915 = data;
-> -
-> -	/* Flush any previous reset before applying for a new one */
-> -	wait_event(i915->gt.reset.queue,
-> -		   !test_bit(I915_RESET_BACKOFF, &i915->gt.reset.flags));
-> -
-> -	intel_gt_handle_error(&i915->gt, val, I915_ERROR_CAPTURE,
-> -			      "Manually set wedged engine mask = %llx", val);
-> -	return 0;
-> -}
-> -
-> -DEFINE_SIMPLE_ATTRIBUTE(i915_wedged_fops,
-> -			i915_wedged_get, i915_wedged_set,
-> -			"%llu\n");
-> -
->   static int
->   i915_perf_noa_delay_set(void *data, u64 val)
->   {
-> @@ -1561,298 +1420,10 @@ i915_cache_sharing_set(void *data, u64 val)
->   	return 0;
->   }
->   
-> -static void
-> -intel_sseu_copy_subslices(const struct sseu_dev_info *sseu, int slice,
-> -			  u8 *to_mask)
-> -{
-> -	int offset = slice * sseu->ss_stride;
-> -
-> -	memcpy(&to_mask[offset], &sseu->subslice_mask[offset], sseu->ss_stride);
-> -}
-> -
->   DEFINE_SIMPLE_ATTRIBUTE(i915_cache_sharing_fops,
->   			i915_cache_sharing_get, i915_cache_sharing_set,
->   			"%llu\n");
->   
-> -static void cherryview_sseu_device_status(struct drm_i915_private *dev_priv,
-> -					  struct sseu_dev_info *sseu)
-> -{
-> -#define SS_MAX 2
-> -	const int ss_max = SS_MAX;
-> -	u32 sig1[SS_MAX], sig2[SS_MAX];
-> -	int ss;
-> -
-> -	sig1[0] = I915_READ(CHV_POWER_SS0_SIG1);
-> -	sig1[1] = I915_READ(CHV_POWER_SS1_SIG1);
-> -	sig2[0] = I915_READ(CHV_POWER_SS0_SIG2);
-> -	sig2[1] = I915_READ(CHV_POWER_SS1_SIG2);
-> -
-> -	for (ss = 0; ss < ss_max; ss++) {
-> -		unsigned int eu_cnt;
-> -
-> -		if (sig1[ss] & CHV_SS_PG_ENABLE)
-> -			/* skip disabled subslice */
-> -			continue;
-> -
-> -		sseu->slice_mask = BIT(0);
-> -		sseu->subslice_mask[0] |= BIT(ss);
-> -		eu_cnt = ((sig1[ss] & CHV_EU08_PG_ENABLE) ? 0 : 2) +
-> -			 ((sig1[ss] & CHV_EU19_PG_ENABLE) ? 0 : 2) +
-> -			 ((sig1[ss] & CHV_EU210_PG_ENABLE) ? 0 : 2) +
-> -			 ((sig2[ss] & CHV_EU311_PG_ENABLE) ? 0 : 2);
-> -		sseu->eu_total += eu_cnt;
-> -		sseu->eu_per_subslice = max_t(unsigned int,
-> -					      sseu->eu_per_subslice, eu_cnt);
-> -	}
-> -#undef SS_MAX
-> -}
-> -
-> -static void gen10_sseu_device_status(struct drm_i915_private *dev_priv,
-> -				     struct sseu_dev_info *sseu)
-> -{
-> -#define SS_MAX 6
-> -	const struct intel_runtime_info *info = RUNTIME_INFO(dev_priv);
-> -	u32 s_reg[SS_MAX], eu_reg[2 * SS_MAX], eu_mask[2];
-> -	int s, ss;
-> -
-> -	for (s = 0; s < info->sseu.max_slices; s++) {
-> -		/*
-> -		 * FIXME: Valid SS Mask respects the spec and read
-> -		 * only valid bits for those registers, excluding reserved
-> -		 * although this seems wrong because it would leave many
-> -		 * subslices without ACK.
-> -		 */
-> -		s_reg[s] = I915_READ(GEN10_SLICE_PGCTL_ACK(s)) &
-> -			GEN10_PGCTL_VALID_SS_MASK(s);
-> -		eu_reg[2 * s] = I915_READ(GEN10_SS01_EU_PGCTL_ACK(s));
-> -		eu_reg[2 * s + 1] = I915_READ(GEN10_SS23_EU_PGCTL_ACK(s));
-> -	}
-> -
-> -	eu_mask[0] = GEN9_PGCTL_SSA_EU08_ACK |
-> -		     GEN9_PGCTL_SSA_EU19_ACK |
-> -		     GEN9_PGCTL_SSA_EU210_ACK |
-> -		     GEN9_PGCTL_SSA_EU311_ACK;
-> -	eu_mask[1] = GEN9_PGCTL_SSB_EU08_ACK |
-> -		     GEN9_PGCTL_SSB_EU19_ACK |
-> -		     GEN9_PGCTL_SSB_EU210_ACK |
-> -		     GEN9_PGCTL_SSB_EU311_ACK;
-> -
-> -	for (s = 0; s < info->sseu.max_slices; s++) {
-> -		if ((s_reg[s] & GEN9_PGCTL_SLICE_ACK) == 0)
-> -			/* skip disabled slice */
-> -			continue;
-> -
-> -		sseu->slice_mask |= BIT(s);
-> -		intel_sseu_copy_subslices(&info->sseu, s, sseu->subslice_mask);
-> -
-> -		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
-> -			unsigned int eu_cnt;
-> -
-> -			if (info->sseu.has_subslice_pg &&
-> -			    !(s_reg[s] & (GEN9_PGCTL_SS_ACK(ss))))
-> -				/* skip disabled subslice */
-> -				continue;
-> -
-> -			eu_cnt = 2 * hweight32(eu_reg[2 * s + ss / 2] &
-> -					       eu_mask[ss % 2]);
-> -			sseu->eu_total += eu_cnt;
-> -			sseu->eu_per_subslice = max_t(unsigned int,
-> -						      sseu->eu_per_subslice,
-> -						      eu_cnt);
-> -		}
-> -	}
-> -#undef SS_MAX
-> -}
-> -
-> -static void gen9_sseu_device_status(struct drm_i915_private *dev_priv,
-> -				    struct sseu_dev_info *sseu)
-> -{
-> -#define SS_MAX 3
-> -	const struct intel_runtime_info *info = RUNTIME_INFO(dev_priv);
-> -	u32 s_reg[SS_MAX], eu_reg[2 * SS_MAX], eu_mask[2];
-> -	int s, ss;
-> -
-> -	for (s = 0; s < info->sseu.max_slices; s++) {
-> -		s_reg[s] = I915_READ(GEN9_SLICE_PGCTL_ACK(s));
-> -		eu_reg[2*s] = I915_READ(GEN9_SS01_EU_PGCTL_ACK(s));
-> -		eu_reg[2*s + 1] = I915_READ(GEN9_SS23_EU_PGCTL_ACK(s));
-> -	}
-> -
-> -	eu_mask[0] = GEN9_PGCTL_SSA_EU08_ACK |
-> -		     GEN9_PGCTL_SSA_EU19_ACK |
-> -		     GEN9_PGCTL_SSA_EU210_ACK |
-> -		     GEN9_PGCTL_SSA_EU311_ACK;
-> -	eu_mask[1] = GEN9_PGCTL_SSB_EU08_ACK |
-> -		     GEN9_PGCTL_SSB_EU19_ACK |
-> -		     GEN9_PGCTL_SSB_EU210_ACK |
-> -		     GEN9_PGCTL_SSB_EU311_ACK;
-> -
-> -	for (s = 0; s < info->sseu.max_slices; s++) {
-> -		if ((s_reg[s] & GEN9_PGCTL_SLICE_ACK) == 0)
-> -			/* skip disabled slice */
-> -			continue;
-> -
-> -		sseu->slice_mask |= BIT(s);
-> -
-> -		if (IS_GEN9_BC(dev_priv))
-> -			intel_sseu_copy_subslices(&info->sseu, s,
-> -						  sseu->subslice_mask);
-> -
-> -		for (ss = 0; ss < info->sseu.max_subslices; ss++) {
-> -			unsigned int eu_cnt;
-> -			u8 ss_idx = s * info->sseu.ss_stride +
-> -				    ss / BITS_PER_BYTE;
-> -
-> -			if (IS_GEN9_LP(dev_priv)) {
-> -				if (!(s_reg[s] & (GEN9_PGCTL_SS_ACK(ss))))
-> -					/* skip disabled subslice */
-> -					continue;
-> -
-> -				sseu->subslice_mask[ss_idx] |=
-> -					BIT(ss % BITS_PER_BYTE);
-> -			}
-> -
-> -			eu_cnt = 2 * hweight32(eu_reg[2*s + ss/2] &
-> -					       eu_mask[ss%2]);
-> -			sseu->eu_total += eu_cnt;
-> -			sseu->eu_per_subslice = max_t(unsigned int,
-> -						      sseu->eu_per_subslice,
-> -						      eu_cnt);
-> -		}
-> -	}
-> -#undef SS_MAX
-> -}
-> -
-> -static void bdw_sseu_device_status(struct drm_i915_private *dev_priv,
-> -				   struct sseu_dev_info *sseu)
-> -{
-> -	const struct intel_runtime_info *info = RUNTIME_INFO(dev_priv);
-> -	u32 slice_info = I915_READ(GEN8_GT_SLICE_INFO);
-> -	int s;
-> -
-> -	sseu->slice_mask = slice_info & GEN8_LSLICESTAT_MASK;
-> -
-> -	if (sseu->slice_mask) {
-> -		sseu->eu_per_subslice = info->sseu.eu_per_subslice;
-> -		for (s = 0; s < fls(sseu->slice_mask); s++)
-> -			intel_sseu_copy_subslices(&info->sseu, s,
-> -						  sseu->subslice_mask);
-> -		sseu->eu_total = sseu->eu_per_subslice *
-> -				 intel_sseu_subslice_total(sseu);
-> -
-> -		/* subtract fused off EU(s) from enabled slice(s) */
-> -		for (s = 0; s < fls(sseu->slice_mask); s++) {
-> -			u8 subslice_7eu = info->sseu.subslice_7eu[s];
-> -
-> -			sseu->eu_total -= hweight8(subslice_7eu);
-> -		}
-> -	}
-> -}
-> -
-> -static void i915_print_sseu_info(struct seq_file *m, bool is_available_info,
-> -				 const struct sseu_dev_info *sseu)
-> -{
-> -	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	const char *type = is_available_info ? "Available" : "Enabled";
-> -	int s;
-> -
-> -	seq_printf(m, "  %s Slice Mask: %04x\n", type,
-> -		   sseu->slice_mask);
-> -	seq_printf(m, "  %s Slice Total: %u\n", type,
-> -		   hweight8(sseu->slice_mask));
-> -	seq_printf(m, "  %s Subslice Total: %u\n", type,
-> -		   intel_sseu_subslice_total(sseu));
-> -	for (s = 0; s < fls(sseu->slice_mask); s++) {
-> -		seq_printf(m, "  %s Slice%i subslices: %u\n", type,
-> -			   s, intel_sseu_subslices_per_slice(sseu, s));
-> -	}
-> -	seq_printf(m, "  %s EU Total: %u\n", type,
-> -		   sseu->eu_total);
-> -	seq_printf(m, "  %s EU Per Subslice: %u\n", type,
-> -		   sseu->eu_per_subslice);
-> -
-> -	if (!is_available_info)
-> -		return;
-> -
-> -	seq_printf(m, "  Has Pooled EU: %s\n", yesno(HAS_POOLED_EU(dev_priv)));
-> -	if (HAS_POOLED_EU(dev_priv))
-> -		seq_printf(m, "  Min EU in pool: %u\n", sseu->min_eu_in_pool);
-> -
-> -	seq_printf(m, "  Has Slice Power Gating: %s\n",
-> -		   yesno(sseu->has_slice_pg));
-> -	seq_printf(m, "  Has Subslice Power Gating: %s\n",
-> -		   yesno(sseu->has_subslice_pg));
-> -	seq_printf(m, "  Has EU Power Gating: %s\n",
-> -		   yesno(sseu->has_eu_pg));
-> -}
-> -
-> -static int i915_sseu_status(struct seq_file *m, void *unused)
-> -{
-> -	struct drm_i915_private *dev_priv = node_to_i915(m->private);
-> -	const struct intel_runtime_info *info = RUNTIME_INFO(dev_priv);
-> -	struct sseu_dev_info sseu;
-> -	intel_wakeref_t wakeref;
-> -
-> -	if (INTEL_GEN(dev_priv) < 8)
-> -		return -ENODEV;
-> -
-> -	seq_puts(m, "SSEU Device Info\n");
-> -	i915_print_sseu_info(m, true, &info->sseu);
-> -
-> -	seq_puts(m, "SSEU Device Status\n");
-> -	memset(&sseu, 0, sizeof(sseu));
-> -	intel_sseu_set_info(&sseu, info->sseu.max_slices,
-> -			    info->sseu.max_subslices,
-> -			    info->sseu.max_eus_per_subslice);
-> -
-> -	with_intel_runtime_pm(&dev_priv->runtime_pm, wakeref) {
-> -		if (IS_CHERRYVIEW(dev_priv))
-> -			cherryview_sseu_device_status(dev_priv, &sseu);
-> -		else if (IS_BROADWELL(dev_priv))
-> -			bdw_sseu_device_status(dev_priv, &sseu);
-> -		else if (IS_GEN(dev_priv, 9))
-> -			gen9_sseu_device_status(dev_priv, &sseu);
-> -		else if (INTEL_GEN(dev_priv) >= 10)
-> -			gen10_sseu_device_status(dev_priv, &sseu);
-> -	}
-> -
-> -	i915_print_sseu_info(m, false, &sseu);
-> -
-> -	return 0;
-> -}
-> -
-> -static int i915_forcewake_open(struct inode *inode, struct file *file)
-> -{
-> -	struct drm_i915_private *i915 = inode->i_private;
-> -	struct intel_gt *gt = &i915->gt;
-> -
-> -	atomic_inc(&gt->user_wakeref);
-> -	intel_gt_pm_get(gt);
-> -	if (INTEL_GEN(i915) >= 6)
-> -		intel_uncore_forcewake_user_get(gt->uncore);
-> -
-> -	return 0;
-> -}
-> -
-> -static int i915_forcewake_release(struct inode *inode, struct file *file)
-> -{
-> -	struct drm_i915_private *i915 = inode->i_private;
-> -	struct intel_gt *gt = &i915->gt;
-> -
-> -	if (INTEL_GEN(i915) >= 6)
-> -		intel_uncore_forcewake_user_put(&i915->uncore);
-> -	intel_gt_pm_put(gt);
-> -	atomic_dec(&gt->user_wakeref);
-> -
-> -	return 0;
-> -}
-> -
-> -static const struct file_operations i915_forcewake_fops = {
-> -	.owner = THIS_MODULE,
-> -	.open = i915_forcewake_open,
-> -	.release = i915_forcewake_release,
-> -};
-> -
->   static const struct drm_info_list i915_debugfs_list[] = {
->   	{"i915_capabilities", i915_capabilities, 0},
->   	{"i915_gem_objects", i915_gem_object_info, 0},
-> @@ -1868,7 +1439,6 @@ static const struct drm_info_list i915_debugfs_list[] = {
->   	{"i915_rcs_topology", i915_rcs_topology, 0},
->   	{"i915_shrinker_info", i915_shrinker_info, 0},
->   	{"i915_wa_registers", i915_wa_registers, 0},
-> -	{"i915_sseu_status", i915_sseu_status, 0},
->   	{"i915_rps_boost_info", i915_rps_boost_info, 0},
->   };
->   #define I915_DEBUGFS_ENTRIES ARRAY_SIZE(i915_debugfs_list)
-> @@ -1878,7 +1448,6 @@ static const struct i915_debugfs_files {
->   	const struct file_operations *fops;
->   } i915_debugfs_files[] = {
->   	{"i915_perf_noa_delay", &i915_perf_noa_delay_fops},
-> -	{"i915_wedged", &i915_wedged_fops},
->   	{"i915_cache_sharing", &i915_cache_sharing_fops},
->   	{"i915_gem_drop_caches", &i915_drop_caches_fops},
->   #if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
-> @@ -1894,8 +1463,6 @@ void i915_debugfs_register(struct drm_i915_private *dev_priv)
->   
->   	i915_debugfs_params(dev_priv);
->   
-> -	debugfs_create_file("i915_forcewake_user", S_IRUSR, minor->debugfs_root,
-> -			    to_i915(minor->dev), &i915_forcewake_fops);
->   	for (i = 0; i < ARRAY_SIZE(i915_debugfs_files); i++) {
->   		debugfs_create_file(i915_debugfs_files[i].name,
->   				    S_IRUGO | S_IWUSR,
-> 
+> ?
 
 Regards,
+SweeAun
 
-Tvrtko
+-----Original Message-----
+From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com> =
+
+Sent: Friday, March 20, 2020 11:24 PM
+To: Shankar, Uma <uma.shankar@intel.com>
+Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org; Kh=
+or, Swee Aun <swee.aun.khor@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot =
+for audio codec init
+
+On Fri, Mar 20, 2020 at 06:19:37AM +0000, Shankar, Uma wrote:
+> =
+
+> =
+
+> > -----Original Message-----
+> > From: Souza, Jose <jose.souza@intel.com>
+> > Sent: Friday, March 20, 2020 12:36 AM
+> > To: Shankar, Uma <uma.shankar@intel.com>; =
+
+> > intel-gfx@lists.freedesktop.org
+> > Cc: Khor, Swee Aun <swee.aun.khor@intel.com>
+> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset =
+
+> > at boot for audio codec init
+> > =
+
+> > On Wed, 2020-03-18 at 17:00 +0530, Uma Shankar wrote:
+> > > If external monitors are connected during boot up, driver uses the =
+
+> > > same mode programmed by BIOS and avoids a full modeset.
+> > > This results in display audio codec left uninitialized and display =
+
+> > > audio fails to work till user triggers a modeset.
+> > >
+> > > This patch fixes the same by triggering a modeset at boot.
+> > =
+
+> > We had the same issue for PSR, take a look to the fix:
+> > commit 33e059a2e4df454359f642f2235af39de9d3e914
+> > drm/i915/psr: Force PSR probe only after full initialization
+> > =
+
+> > Maybe make this even more generic.
+> =
+
+> Yeah this looks to dealing with almost a similar need. Thanks for =
+
+> pointing this out, will try to come up with a generalized solution.
+
+How about just fixing the uapi vs. hw fail I showed instead of adding even =
+more hacks?
+
+--
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
