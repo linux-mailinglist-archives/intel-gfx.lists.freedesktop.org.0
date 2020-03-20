@@ -2,44 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C271718D722
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 19:35:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BCBB18D812
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 20:01:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F18C26E1F9;
-	Fri, 20 Mar 2020 18:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC20D6EB58;
+	Fri, 20 Mar 2020 19:01:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D42B46E1F9
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 18:35:07 +0000 (UTC)
-IronPort-SDR: XcHtwhA0BF0u2Qf1W5EK+KA+l7FI1wkeaJy+VaI5RIotBhopiUGYKKJfCAZXEQr98Y6OF/AiMz
- Efg63DAuDWZA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 11:35:07 -0700
-IronPort-SDR: UrnWjcnba/ulPHYlxxxCKXhNOnzeur3QIvkMtWmyKT11KVAct/ek8ucF7oo6wSlw/jX3cAUaTE
- 49xSTZ+4qgvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,285,1580803200"; d="scan'208";a="264146031"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by orsmga002.jf.intel.com with ESMTP; 20 Mar 2020 11:35:07 -0700
-Date: Fri, 20 Mar 2020 11:36:45 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Message-ID: <20200320183645.GB15035@intel.com>
-References: <20200313164831.5980-1-ville.syrjala@linux.intel.com>
- <20200313164831.5980-3-ville.syrjala@linux.intel.com>
- <20200318223438.GB6675@intel.com>
- <20200319132056.GH13686@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DB8766EB58;
+ Fri, 20 Mar 2020 19:00:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1E588A47EE;
+ Fri, 20 Mar 2020 19:00:59 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200319132056.GH13686@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH 02/13] drm/i915: Move TRANS_DDI_FUNC_CTL2
- programming where it belongs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Fri, 20 Mar 2020 19:00:59 -0000
+Message-ID: <158473085909.11038.7748365962667300286@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Get_rid_of_silly_void*_from_MST_code_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,275 +38,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 19, 2020 at 03:20:56PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Wed, Mar 18, 2020 at 03:34:38PM -0700, Manasi Navare wrote:
-> > On Fri, Mar 13, 2020 at 06:48:20PM +0200, Ville Syrjala wrote:
-> > > From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > =
+== Series Details ==
 
-> > > This port sync enable/disable stuff is misplaced. It's just another s=
-tep
-> > > of the normal TRANS_DDI_FUNC_CTL enable. Move it to its natural place.
-> > > =
+Series: drm/i915: Get rid of silly void* from MST code (rev2)
+URL   : https://patchwork.freedesktop.org/series/74539/
+State : success
 
-> > > Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c     | 71 +++++++++++-------=
---
-> > >  drivers/gpu/drm/i915/display/intel_display.c | 34 ----------
-> > >  2 files changed, 39 insertions(+), 66 deletions(-)
-> > > =
+== Summary ==
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index 73d0f4648c06..8d486282eea3 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -1558,12 +1558,34 @@ void intel_ddi_enable_transcoder_func(const s=
-truct intel_crtc_state *crtc_state)
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > >  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> > > -	u32 temp;
-> > > +	u32 ctl;
-> > >  =
+CI Bug Log - changes from CI_DRM_8167 -> Patchwork_17039
+====================================================
 
-> > > -	temp =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11) {
-> > > +		enum transcoder master_transcoder =3D crtc_state->master_transcode=
-r;
-> > > +		u32 ctl2 =3D 0;
-> > > +
-> > > +		if (master_transcoder !=3D INVALID_TRANSCODER) {
-> > > +			u8 master_select;
-> > > +
-> > > +			if (master_transcoder =3D=3D TRANSCODER_EDP)
-> > > +				master_select =3D 0;
-> > > +			else
-> > > +				master_select =3D master_transcoder + 1;
-> > > +
-> > > +			ctl2 |=3D PORT_SYNC_MODE_ENABLE |
-> > > +				(PORT_SYNC_MODE_MASTER_SELECT(master_select) &
-> > > +				 PORT_SYNC_MODE_MASTER_SELECT_MASK) <<
-> > > +				PORT_SYNC_MODE_MASTER_SELECT_SHIFT;
-> > > +		}
-> > > +
-> > > +		intel_de_write(dev_priv,
-> > > +			       TRANS_DDI_FUNC_CTL2(crtc_state->cpu_transcoder), ctl2);
-> > > +	}
-> > > +
-> > > +	ctl =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> > >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST))
-> > > -		temp |=3D TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
-> > > -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), temp);
-> > > +		ctl |=3D TRANS_DDI_DP_VC_PAYLOAD_ALLOC;
-> > > +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
-> > >  }
-> > >  =
+Summary
+-------
 
-> > >  /*
-> > > @@ -1576,11 +1598,11 @@ intel_ddi_config_transcoder_func(const struct=
- intel_crtc_state *crtc_state)
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > >  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> > > -	u32 temp;
-> > > +	u32 ctl;
-> > >  =
+  **SUCCESS**
 
-> > > -	temp =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> > > -	temp &=3D ~TRANS_DDI_FUNC_ENABLE;
-> > > -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), temp);
-> > > +	ctl =3D intel_ddi_transcoder_func_reg_val_get(crtc_state);
-> > > +	ctl &=3D ~TRANS_DDI_FUNC_ENABLE;
-> > > +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
-> > >  }
-> > >  =
+  No regressions found.
 
-> > >  void intel_ddi_disable_transcoder_func(const struct intel_crtc_state=
- *crtc_state)
-> > > @@ -1588,20 +1610,23 @@ void intel_ddi_disable_transcoder_func(const =
-struct intel_crtc_state *crtc_state
-> > >  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > >  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > >  	enum transcoder cpu_transcoder =3D crtc_state->cpu_transcoder;
-> > > -	u32 val;
-> > > +	u32 ctl;
-> > >  =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/index.html
 
-> > > -	val =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> > > -	val &=3D ~TRANS_DDI_FUNC_ENABLE;
-> > > +	if (INTEL_GEN(dev_priv) >=3D 11)
-> > > +		intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL2(cpu_transcoder), 0);
-> > =
+Known issues
+------------
 
-> > This should be set to 0 only for the slave where we enable the port syn=
-c mode so
-> > set it to 0 only if if (old_crtc_state->master_transcoder !=3D INVALID_=
-TRANSCODER)
-> > =
+  Here are the changes found in Patchwork_17039 that come from known issues:
 
-> > This will just ensure that we dont accidently set it to 0 for non slave=
- transcoders
-> =
+### IGT changes ###
 
-> No, we should just write the value we want for every transcoder. If
-> there are bits in there that should be set then we should set them
-> explicitly. But I didn't think there's anything we want to set.
->
+#### Issues hit ####
 
-Yes for now there is nothing that we need to set.
-So for now,
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
 
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
 
-Manasi
- =
+  
+#### Possible fixes ####
 
-> > =
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][5] ([CI#94]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
-> > Manasi
-> > =
+  * igt@kms_chamelium@hdmi-crc-fast:
+    - fi-icl-u2:          [FAIL][7] ([fdo#109635] / [i915#217]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
 
-> > > +
-> > > +	ctl =3D intel_de_read(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder));
-> > > +	ctl &=3D ~TRANS_DDI_FUNC_ENABLE;
-> > >  =
+  
+#### Warnings ####
 
-> > >  	if (INTEL_GEN(dev_priv) >=3D 12) {
-> > >  		if (!intel_dp_mst_is_master_trans(crtc_state)) {
-> > > -			val &=3D ~(TGL_TRANS_DDI_PORT_MASK |
-> > > +			ctl &=3D ~(TGL_TRANS_DDI_PORT_MASK |
-> > >  				 TRANS_DDI_MODE_SELECT_MASK);
-> > >  		}
-> > >  	} else {
-> > > -		val &=3D ~(TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK);
-> > > +		ctl &=3D ~(TRANS_DDI_PORT_MASK | TRANS_DDI_MODE_SELECT_MASK);
-> > >  	}
-> > > -	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), val);
-> > > +	intel_de_write(dev_priv, TRANS_DDI_FUNC_CTL(cpu_transcoder), ctl);
-> > >  =
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][9] ([fdo#111407]) -> [FAIL][10] ([i915#323])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
 
-> > >  	if (dev_priv->quirks & QUIRK_INCREASE_DDI_DISABLED_TIME &&
-> > >  	    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> > > @@ -3405,21 +3430,6 @@ static void intel_ddi_post_disable_hdmi(struct=
- intel_encoder *encoder,
-> > >  	intel_dp_dual_mode_set_tmds_output(intel_hdmi, false);
-> > >  }
-> > >  =
+  
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
+  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
+  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
 
-> > > -static void icl_disable_transcoder_port_sync(const struct intel_crtc=
-_state *old_crtc_state)
-> > > -{
-> > > -	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc=
-);
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > -
-> > > -	if (old_crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
-> > > -		return;
-> > > -
-> > > -	DRM_DEBUG_KMS("Disabling Transcoder Port Sync on Slave Transcoder %=
-s\n",
-> > > -		      transcoder_name(old_crtc_state->cpu_transcoder));
-> > > -
-> > > -	intel_de_write(dev_priv,
-> > > -		       TRANS_DDI_FUNC_CTL2(old_crtc_state->cpu_transcoder), 0);
-> > > -}
-> > > -
-> > >  static void intel_ddi_post_disable(struct intel_encoder *encoder,
-> > >  				   const struct intel_crtc_state *old_crtc_state,
-> > >  				   const struct drm_connector_state *old_conn_state)
-> > > @@ -3434,9 +3444,6 @@ static void intel_ddi_post_disable(struct intel=
-_encoder *encoder,
-> > >  =
 
-> > >  		intel_disable_pipe(old_crtc_state);
-> > >  =
+Participating hosts (49 -> 39)
+------------------------------
 
-> > > -		if (INTEL_GEN(dev_priv) >=3D 11)
-> > > -			icl_disable_transcoder_port_sync(old_crtc_state);
-> > > -
-> > >  		intel_ddi_disable_transcoder_func(old_crtc_state);
-> > >  =
+  Additional (1): fi-skl-6770hq 
+  Missing    (11): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bdw-samus fi-byt-clapper fi-skl-6600u fi-snb-2600 
 
-> > >  		intel_dsc_disable(old_crtc_state);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
-> > > index 8f23c4d51c33..c49b4e6eb3d4 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > > @@ -4998,37 +4998,6 @@ static void icl_set_pipe_chicken(struct intel_=
-crtc *crtc)
-> > >  	intel_de_write(dev_priv, PIPE_CHICKEN(pipe), tmp);
-> > >  }
-> > >  =
 
-> > > -static void icl_enable_trans_port_sync(const struct intel_crtc_state=
- *crtc_state)
-> > > -{
-> > > -	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> > > -	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
-> > > -	u32 trans_ddi_func_ctl2_val;
-> > > -	u8 master_select;
-> > > -
-> > > -	/*
-> > > -	 * Configure the master select and enable Transcoder Port Sync for
-> > > -	 * Slave CRTCs transcoder.
-> > > -	 */
-> > > -	if (crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER)
-> > > -		return;
-> > > -
-> > > -	if (crtc_state->master_transcoder =3D=3D TRANSCODER_EDP)
-> > > -		master_select =3D 0;
-> > > -	else
-> > > -		master_select =3D crtc_state->master_transcoder + 1;
-> > > -
-> > > -	/* Set the master select bits for Tranascoder Port Sync */
-> > > -	trans_ddi_func_ctl2_val =3D (PORT_SYNC_MODE_MASTER_SELECT(master_se=
-lect) &
-> > > -				   PORT_SYNC_MODE_MASTER_SELECT_MASK) <<
-> > > -		PORT_SYNC_MODE_MASTER_SELECT_SHIFT;
-> > > -	/* Enable Transcoder Port Sync */
-> > > -	trans_ddi_func_ctl2_val |=3D PORT_SYNC_MODE_ENABLE;
-> > > -
-> > > -	intel_de_write(dev_priv,
-> > > -		       TRANS_DDI_FUNC_CTL2(crtc_state->cpu_transcoder),
-> > > -		       trans_ddi_func_ctl2_val);
-> > > -}
-> > > -
-> > >  static void intel_fdi_normal_train(struct intel_crtc *crtc)
-> > >  {
-> > >  	struct drm_device *dev =3D crtc->base.dev;
-> > > @@ -7037,9 +7006,6 @@ static void hsw_crtc_enable(struct intel_atomic=
-_state *state,
-> > >  	if (!transcoder_is_dsi(cpu_transcoder))
-> > >  		intel_set_pipe_timings(new_crtc_state);
-> > >  =
+Build changes
+-------------
 
-> > > -	if (INTEL_GEN(dev_priv) >=3D 11)
-> > > -		icl_enable_trans_port_sync(new_crtc_state);
-> > > -
-> > >  	intel_set_pipe_src_size(new_crtc_state);
-> > >  =
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8167 -> Patchwork_17039
 
-> > >  	if (cpu_transcoder !=3D TRANSCODER_EDP &&
-> > > -- =
+  CI-20190529: 20190529
+  CI_DRM_8167: b51a7e7f4f72cf780661a1e4b479e2b27ddbafc8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5526: f49ebeee9f54d6f23c60a842f75f65561d452ab0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17039: d91996e50770660c5d42c30a8d6c8b746717cb75 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-> > > 2.24.1
-> > > =
 
-> =
+== Linux commits ==
 
-> -- =
+d91996e50770 drm/i915: Get rid of silly void* from MST code
 
-> Ville Syrj=E4l=E4
-> Intel
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
