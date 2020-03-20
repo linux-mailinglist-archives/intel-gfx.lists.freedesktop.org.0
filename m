@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0D218CE08
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 13:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4753718CE18
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 13:55:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 643A76EB25;
-	Fri, 20 Mar 2020 12:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E9896EB29;
+	Fri, 20 Mar 2020 12:55:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1FD26EB25
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 12:52:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93CFB6EB28
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 12:55:50 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20630602-1500050 
- for multiple; Fri, 20 Mar 2020 12:52:22 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20630643-1500050 
+ for multiple; Fri, 20 Mar 2020 12:55:43 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Mar 2020 12:52:21 +0000
-Message-Id: <20200320125221.22822-1-chris@chris-wilson.co.uk>
+Date: Fri, 20 Mar 2020 12:55:42 +0000
+Message-Id: <20200320125542.23226-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200320125221.22822-1-chris@chris-wilson.co.uk>
+References: <20200320125221.22822-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915: Immediately execute the fenced work
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -50,6 +52,9 @@ especially if we plan on executing many such tasks in parallel for this
 client.)
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+We know we have exclusive access to the fence (if pending <= 1) so we
+can just use __set_bit.
 ---
  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  2 +-
  drivers/gpu/drm/i915/i915_sw_fence_work.c      |  5 ++++-
@@ -87,7 +92,7 @@ index 997b2998f1f2..a3a81bb8f2c3 100644
  			fence_complete(f);
  		}
 diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-index 3a22b287e201..90a371e0d183 100644
+index 3a22b287e201..0719d661dc9c 100644
 --- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
 +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
 @@ -32,6 +32,10 @@ struct dma_fence_work {
@@ -108,7 +113,7 @@ index 3a22b287e201..90a371e0d183 100644
 +static inline void dma_fence_work_commit_imm(struct dma_fence_work *f)
 +{
 +	if (atomic_read(&f->chain.pending) <= 1)
-+		set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
++		__set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
 +
 +	dma_fence_work_commit(f);
 +}
