@@ -1,42 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC8318D11C
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 15:37:35 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30B118D11D
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 15:37:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB956EB51;
-	Fri, 20 Mar 2020 14:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 115B16EB57;
+	Fri, 20 Mar 2020 14:37:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D31A6EB56
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 14:37:32 +0000 (UTC)
-IronPort-SDR: 17Xwgnu0s36iZID9EEBygR2s+OMKBBb1CAjKCS37Jnjw5tDq5Lqxjpars4tbxHaCaSi5nBd023
- 3fnwFxIEcNxg==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B434D6EB57
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 14:37:36 +0000 (UTC)
+IronPort-SDR: kO9vrnE1oGRyK+Yg4xx4vY6+oKN16DuQonww9AQqd8UxAb9w3U7QMEg42zv4c+dRWQ9AvVaUwd
+ YqDur3v6Vg1g==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 07:37:32 -0700
-IronPort-SDR: cYLCInDff4i/t9QSCXzP9EeCMpCVBQmDwmq4pOtLH6gRownISS4w+j42YoewUSHTyh+Ud24hoG
- R1k5noKJuZWQ==
-X-IronPort-AV: E=Sophos;i="5.72,284,1580803200"; d="scan'208";a="245506438"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2020 07:37:36 -0700
+IronPort-SDR: 7ExXNBcvCgvgSfeFKgDZjNBaPdwH2WAD66zwVUR6pTYHzWNQZrxjYiQktHY9bmv1UcQnTtyggc
+ TY53EhjoMM+g==
+X-IronPort-AV: E=Sophos;i="5.72,284,1580803200"; d="scan'208";a="446666863"
 Received: from rkamins1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.41.98])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2020 07:37:30 -0700
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2020 07:37:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Mar 2020 16:36:36 +0200
-Message-Id: <ffdbda0a0fe18354867b3f8c7a83f59f0963711d.1584714939.git.jani.nikula@intel.com>
+Date: Fri, 20 Mar 2020 16:36:37 +0200
+Message-Id: <cac03aba0a363c8f704035f1f771c73385235a35.1584714939.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <cover.1584714939.git.jani.nikula@intel.com>
 References: <cover.1584714939.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Subject: [Intel-gfx] [PATCH 11/13] drm/i915/display: use struct drm_device
- based logging
+Subject: [Intel-gfx] [PATCH 12/13] drm/i915/psr: use struct drm_device based
+ logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,67 +144,116 @@ struct drm_i915_private *T = ...;
 Cc: Wambui Karuga <wambui.karugax@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 25 +++++++++++---------
- 1 file changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 47 +++++++++++++-----------
+ 1 file changed, 26 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6af8d43ceb0c..fe55c7c713f1 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2908,6 +2908,7 @@ intel_fb_plane_get_subsampling(int *hsub, int *vsub,
- static int
- intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int x, int y)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index fd9b146e3aba..a0569fdfeb16 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -137,41 +137,42 @@ static void psr_irq_control(struct drm_i915_private *dev_priv)
+ 	intel_de_write(dev_priv, imr_reg, val);
+ }
+ 
+-static void psr_event_print(u32 val, bool psr2_enabled)
++static void psr_event_print(struct drm_i915_private *i915,
++			    u32 val, bool psr2_enabled)
  {
-+	struct drm_i915_private *i915 = to_i915(fb->dev);
- 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
- 	int main_plane;
- 	int hsub, vsub;
-@@ -2936,7 +2937,8 @@ intel_fb_check_ccs_xy(struct drm_framebuffer *fb, int ccs_plane, int x, int y)
- 	 * x/y offsets must match between CCS and the main surface.
- 	 */
- 	if (main_x != ccs_x || main_y != ccs_y) {
--		DRM_DEBUG_KMS("Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
+-	DRM_DEBUG_KMS("PSR exit events: 0x%x\n", val);
++	drm_dbg_kms(&i915->drm, "PSR exit events: 0x%x\n", val);
+ 	if (val & PSR_EVENT_PSR2_WD_TIMER_EXPIRE)
+-		DRM_DEBUG_KMS("\tPSR2 watchdog timer expired\n");
++		drm_dbg_kms(&i915->drm, "\tPSR2 watchdog timer expired\n");
+ 	if ((val & PSR_EVENT_PSR2_DISABLED) && psr2_enabled)
+-		DRM_DEBUG_KMS("\tPSR2 disabled\n");
++		drm_dbg_kms(&i915->drm, "\tPSR2 disabled\n");
+ 	if (val & PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN)
+-		DRM_DEBUG_KMS("\tSU dirty FIFO underrun\n");
++		drm_dbg_kms(&i915->drm, "\tSU dirty FIFO underrun\n");
+ 	if (val & PSR_EVENT_SU_CRC_FIFO_UNDERRUN)
+-		DRM_DEBUG_KMS("\tSU CRC FIFO underrun\n");
++		drm_dbg_kms(&i915->drm, "\tSU CRC FIFO underrun\n");
+ 	if (val & PSR_EVENT_GRAPHICS_RESET)
+-		DRM_DEBUG_KMS("\tGraphics reset\n");
++		drm_dbg_kms(&i915->drm, "\tGraphics reset\n");
+ 	if (val & PSR_EVENT_PCH_INTERRUPT)
+-		DRM_DEBUG_KMS("\tPCH interrupt\n");
++		drm_dbg_kms(&i915->drm, "\tPCH interrupt\n");
+ 	if (val & PSR_EVENT_MEMORY_UP)
+-		DRM_DEBUG_KMS("\tMemory up\n");
++		drm_dbg_kms(&i915->drm, "\tMemory up\n");
+ 	if (val & PSR_EVENT_FRONT_BUFFER_MODIFY)
+-		DRM_DEBUG_KMS("\tFront buffer modification\n");
++		drm_dbg_kms(&i915->drm, "\tFront buffer modification\n");
+ 	if (val & PSR_EVENT_WD_TIMER_EXPIRE)
+-		DRM_DEBUG_KMS("\tPSR watchdog timer expired\n");
++		drm_dbg_kms(&i915->drm, "\tPSR watchdog timer expired\n");
+ 	if (val & PSR_EVENT_PIPE_REGISTERS_UPDATE)
+-		DRM_DEBUG_KMS("\tPIPE registers updated\n");
++		drm_dbg_kms(&i915->drm, "\tPIPE registers updated\n");
+ 	if (val & PSR_EVENT_REGISTER_UPDATE)
+-		DRM_DEBUG_KMS("\tRegister updated\n");
++		drm_dbg_kms(&i915->drm, "\tRegister updated\n");
+ 	if (val & PSR_EVENT_HDCP_ENABLE)
+-		DRM_DEBUG_KMS("\tHDCP enabled\n");
++		drm_dbg_kms(&i915->drm, "\tHDCP enabled\n");
+ 	if (val & PSR_EVENT_KVMR_SESSION_ENABLE)
+-		DRM_DEBUG_KMS("\tKVMR session enabled\n");
++		drm_dbg_kms(&i915->drm, "\tKVMR session enabled\n");
+ 	if (val & PSR_EVENT_VBI_ENABLE)
+-		DRM_DEBUG_KMS("\tVBI enabled\n");
++		drm_dbg_kms(&i915->drm, "\tVBI enabled\n");
+ 	if (val & PSR_EVENT_LPSP_MODE_EXIT)
+-		DRM_DEBUG_KMS("\tLPSP mode exited\n");
++		drm_dbg_kms(&i915->drm, "\tLPSP mode exited\n");
+ 	if ((val & PSR_EVENT_PSR_DISABLE) && !psr2_enabled)
+-		DRM_DEBUG_KMS("\tPSR disabled\n");
++		drm_dbg_kms(&i915->drm, "\tPSR disabled\n");
+ }
+ 
+ void intel_psr_irq_handler(struct drm_i915_private *dev_priv, u32 psr_iir)
+@@ -209,7 +210,7 @@ void intel_psr_irq_handler(struct drm_i915_private *dev_priv, u32 psr_iir)
+ 
+ 			intel_de_write(dev_priv, PSR_EVENT(cpu_transcoder),
+ 				       val);
+-			psr_event_print(val, psr2_enabled);
++			psr_event_print(dev_priv, val, psr2_enabled);
+ 		}
+ 	}
+ 
+@@ -249,18 +250,21 @@ static bool intel_dp_get_alpm_status(struct intel_dp *intel_dp)
+ 
+ static u8 intel_dp_get_sink_sync_latency(struct intel_dp *intel_dp)
+ {
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	u8 val = 8; /* assume the worst if we can't read the value */
+ 
+ 	if (drm_dp_dpcd_readb(&intel_dp->aux,
+ 			      DP_SYNCHRONIZATION_LATENCY_IN_SINK, &val) == 1)
+ 		val &= DP_MAX_RESYNC_FRAME_COUNT_MASK;
+ 	else
+-		DRM_DEBUG_KMS("Unable to get sink synchronization latency, assuming 8 frames\n");
 +		drm_dbg_kms(&i915->drm,
-+			      "Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
- 			      main_x, main_y,
- 			      ccs_x, ccs_y,
- 			      intel_fb->normal[main_plane].x,
-@@ -12882,16 +12884,17 @@ compute_baseline_pipe_bpp(struct intel_crtc *crtc,
- 	return 0;
++			    "Unable to get sink synchronization latency, assuming 8 frames\n");
+ 	return val;
  }
  
--static void intel_dump_crtc_timings(const struct drm_display_mode *mode)
-+static void intel_dump_crtc_timings(struct drm_i915_private *i915,
-+				    const struct drm_display_mode *mode)
+ static u16 intel_dp_get_su_x_granulartiy(struct intel_dp *intel_dp)
  {
--	DRM_DEBUG_KMS("crtc timings: %d %d %d %d %d %d %d %d %d, "
--		      "type: 0x%x flags: 0x%x\n",
--		      mode->crtc_clock,
--		      mode->crtc_hdisplay, mode->crtc_hsync_start,
--		      mode->crtc_hsync_end, mode->crtc_htotal,
--		      mode->crtc_vdisplay, mode->crtc_vsync_start,
--		      mode->crtc_vsync_end, mode->crtc_vtotal,
--		      mode->type, mode->flags);
-+	drm_dbg_kms(&i915->drm, "crtc timings: %d %d %d %d %d %d %d %d %d, "
-+		    "type: 0x%x flags: 0x%x\n",
-+		    mode->crtc_clock,
-+		    mode->crtc_hdisplay, mode->crtc_hsync_start,
-+		    mode->crtc_hsync_end, mode->crtc_htotal,
-+		    mode->crtc_vdisplay, mode->crtc_vsync_start,
-+		    mode->crtc_vsync_end, mode->crtc_vtotal,
-+		    mode->type, mode->flags);
- }
++	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	u16 val;
+ 	ssize_t r;
  
- static inline void
-@@ -13075,7 +13078,7 @@ static void intel_dump_pipe_config(const struct intel_crtc_state *pipe_config,
- 	drm_mode_debug_printmodeline(&pipe_config->hw.mode);
- 	drm_dbg_kms(&dev_priv->drm, "adjusted mode:\n");
- 	drm_mode_debug_printmodeline(&pipe_config->hw.adjusted_mode);
--	intel_dump_crtc_timings(&pipe_config->hw.adjusted_mode);
-+	intel_dump_crtc_timings(dev_priv, &pipe_config->hw.adjusted_mode);
- 	drm_dbg_kms(&dev_priv->drm,
- 		    "port clock: %d, pipe src size: %dx%d, pixel rate %d\n",
- 		    pipe_config->port_clock,
+@@ -273,7 +277,8 @@ static u16 intel_dp_get_su_x_granulartiy(struct intel_dp *intel_dp)
+ 
+ 	r = drm_dp_dpcd_read(&intel_dp->aux, DP_PSR2_SU_X_GRANULARITY, &val, 2);
+ 	if (r != 2)
+-		DRM_DEBUG_KMS("Unable to read DP_PSR2_SU_X_GRANULARITY\n");
++		drm_dbg_kms(&i915->drm,
++			    "Unable to read DP_PSR2_SU_X_GRANULARITY\n");
+ 
+ 	/*
+ 	 * Spec says that if the value read is 0 the default granularity should
 -- 
 2.20.1
 
