@@ -1,30 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBB618CE63
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 14:02:44 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD6D118CE60
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 14:02:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9017C6EB2F;
-	Fri, 20 Mar 2020 13:02:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16DFA6EB2D;
+	Fri, 20 Mar 2020 13:02:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D329E6EB2F
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 13:02:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5BDB6EB2D
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2020 13:02:35 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20630754-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20630755-1500050 
  for multiple; Fri, 20 Mar 2020 13:02:00 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Mar 2020 13:01:56 +0000
-Message-Id: <20200320130159.3922-1-chris@chris-wilson.co.uk>
+Date: Fri, 20 Mar 2020 13:01:57 +0000
+Message-Id: <20200320130159.3922-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200320130159.3922-1-chris@chris-wilson.co.uk>
+References: <20200320130159.3922-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 1/4] drm/i915/gt: Report context-is-closed prior
- to pinning
+Subject: [Intel-gfx] [PATCH 2/4] drm/i915/execlists: Pull tasklet
+ interrupt-bh local to direct submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,43 +44,84 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Our assertion caught that we do try to pin a closed context if userspace
-is viciously racing context-closure with execbuf, so make it fail
-gracefully.
+We dropped calling process_csb prior to handling direct submission in
+order to avoid the nesting of spinlocks and lift process_csb() and the
+majority of the tasklet out of irq-off. However, we do want to avoid
+ksoftirqd latency in the fast path, so try and pull the interrupt-bh
+local to direct submission if we can acquire the tasklet's lock.
 
-Closes: https://gitlab.freedesktop.org/drm/intel/issues/1492
+v2: Tweak the balance to avoid over submitting lite-restores
+
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Francisco Jerez <currojerez@riseup.net>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_context.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 40 +++++++++++++++++++++--------
+ 1 file changed, 29 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index aea992e46c42..7132bf616cc4 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -97,8 +97,6 @@ int __intel_context_do_pin(struct intel_context *ce)
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index f09dd87324b9..0d9c6ea4adaa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2884,29 +2884,47 @@ static void queue_request(struct intel_engine_cs *engine,
+ 	set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+ }
+ 
+-static void __submit_queue_imm(struct intel_engine_cs *engine)
++static bool pending_csb(const struct intel_engine_execlists *el)
  {
- 	int err;
- 
--	GEM_BUG_ON(intel_context_is_closed(ce));
+-	struct intel_engine_execlists * const execlists = &engine->execlists;
 -
- 	if (unlikely(!test_bit(CONTEXT_ALLOC_BIT, &ce->flags))) {
- 		err = intel_context_alloc_state(ce);
- 		if (err)
-@@ -114,6 +112,11 @@ int __intel_context_do_pin(struct intel_context *ce)
- 		goto out_release;
- 	}
+-	if (reset_in_progress(execlists))
+-		return; /* defer until we restart the engine following reset */
+-
+-	if (execlists->tasklet.func == execlists_submission_tasklet)
+-		__execlists_submission_tasklet(engine);
+-	else
+-		tasklet_hi_schedule(&execlists->tasklet);
++	return READ_ONCE(*el->csb_write) != READ_ONCE(el->csb_head);
+ }
  
-+	if (unlikely(intel_context_is_closed(ce))) {
-+		err = -ENOENT;
-+		goto out_release;
+ static void submit_queue(struct intel_engine_cs *engine,
+ 			 const struct i915_request *rq)
+ {
+ 	struct intel_engine_execlists *execlists = &engine->execlists;
++	struct i915_request *inflight;
+ 
+ 	if (rq_prio(rq) <= execlists->queue_priority_hint)
+ 		return;
+ 
++	if (reset_in_progress(execlists))
++		return; /* defer until we restart the engine following reset */
++
++	/* Hopefully we clear execlists->pending[] to let us through */
++	if (execlists->pending[0] && tasklet_trylock(&execlists->tasklet)) {
++		process_csb(engine);
++		tasklet_unlock(&execlists->tasklet);
 +	}
 +
- 	if (likely(!atomic_add_unless(&ce->pin_count, 1, 0))) {
- 		err = intel_context_active_acquire(ce);
- 		if (unlikely(err))
++	/*
++	 * Suppress immediate lite-restores, leave that to the tasklet.
++	 *
++	 * However, we leave the queue_priority_hint unset so that if we do
++	 * submit a second context, we push that into ELSP[1] immediately.
++	 */
++	inflight = execlists_active(&engine->execlists);
++	if (inflight && inflight->context == rq->context)
++		return;
++
+ 	execlists->queue_priority_hint = rq_prio(rq);
+-	__submit_queue_imm(engine);
++	__execlists_submission_tasklet(engine);
++
++	/* Try and pull an interrupt-bh queued on another CPU to here */
++	if (pending_csb(execlists) && tasklet_trylock(&execlists->tasklet)) {
++		process_csb(engine);
++		tasklet_unlock(&execlists->tasklet);
++	}
+ }
+ 
+ static bool ancestor_on_hold(const struct intel_engine_cs *engine,
 -- 
 2.20.1
 
