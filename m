@@ -1,31 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BCBB18D812
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 20:01:06 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6DC18D815
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2020 20:05:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC20D6EB58;
-	Fri, 20 Mar 2020 19:01:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 952676EB5B;
+	Fri, 20 Mar 2020 19:05:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DB8766EB58;
- Fri, 20 Mar 2020 19:00:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A9AAC6EB5B;
+ Fri, 20 Mar 2020 19:05:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1E588A47EE;
- Fri, 20 Mar 2020 19:00:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8709CA010F;
+ Fri, 20 Mar 2020 19:05:03 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Date: Fri, 20 Mar 2020 19:00:59 -0000
-Message-ID: <158473085909.11038.7748365962667300286@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Fri, 20 Mar 2020 19:05:03 -0000
+Message-ID: <158473110352.11039.14093971035862950378@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20200310202752.28454-1-ville.syrjala@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915=3A_Get_rid_of_silly_void*_from_MST_code_=28rev2=29?=
+References: <cover.1584714939.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1584714939.git.jani.nikula@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_drm/i915=3A_drm_device_based_logging_changes?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,100 +47,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915: Get rid of silly void* from MST code (rev2)
-URL   : https://patchwork.freedesktop.org/series/74539/
-State : success
+Series: drm/i915: drm device based logging changes
+URL   : https://patchwork.freedesktop.org/series/74927/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8167 -> Patchwork_17039
-====================================================
+$ dim checkpatch origin/drm-tip
+ddb4a444dd75 drm/i915/ddi: use struct drm_device based logging
+07dd9ea10f43 drm/i915/display_power: use struct drm_device based logging
+df9678067397 drm/i915/dp_aux_backlight: use struct drm_device based logging
+70006dcff1cf drm/i915/dp_mst: use struct drm_device based logging
+96a362dca265 drm/i915/dsi: use struct drm_device based logging
+6d311eabae6b drm/i915/hdmi: use struct drm_device based logging
+2c83198c9de1 drm/i915/dsi: use struct drm_device based logging
+0eea474ebae3 drm/i915/connector: use MISSING_CASE instead of logging
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
 
-Summary
--------
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+b1419778ed0f drm/i915/tv: use struct drm_device based logging
+87560bf44a17 drm/i915/display: clean up intel_PLL_is_valid()
+c057e5d545d4 drm/i915/display: use struct drm_device based logging
+-:113: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#113: FILE: drivers/gpu/drm/i915/display/intel_display.c:2941:
++		drm_dbg_kms(&i915->drm,
++			      "Bad CCS x/y (main %d,%d ccs %d,%d) full (main %d,%d ccs %d,%d)\n",
 
-  **SUCCESS**
+total: 0 errors, 0 warnings, 1 checks, 50 lines checked
+f022c9422f91 drm/i915/psr: use struct drm_device based logging
+5196c0d8ee07 drm/i915/wopcm: convert to drm device based logging
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17039 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][5] ([CI#94]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
-  * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [FAIL][7] ([fdo#109635] / [i915#217]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-
-  
-#### Warnings ####
-
-  * igt@kms_chamelium@hdmi-hpd-fast:
-    - fi-kbl-7500u:       [FAIL][9] ([fdo#111407]) -> [FAIL][10] ([i915#323])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
-
-  
-  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
-  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#323]: https://gitlab.freedesktop.org/drm/intel/issues/323
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (49 -> 39)
-------------------------------
-
-  Additional (1): fi-skl-6770hq 
-  Missing    (11): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bdw-samus fi-byt-clapper fi-skl-6600u fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8167 -> Patchwork_17039
-
-  CI-20190529: 20190529
-  CI_DRM_8167: b51a7e7f4f72cf780661a1e4b479e2b27ddbafc8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5526: f49ebeee9f54d6f23c60a842f75f65561d452ab0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17039: d91996e50770660c5d42c30a8d6c8b746717cb75 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-d91996e50770 drm/i915: Get rid of silly void* from MST code
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17039/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
