@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A965018E237
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Mar 2020 15:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8E318E310
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Mar 2020 17:54:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D606E334;
-	Sat, 21 Mar 2020 14:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF1E6E34A;
+	Sat, 21 Mar 2020 16:53:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A4FA16E332;
- Sat, 21 Mar 2020 14:55:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BB48C6E20F;
+ Sat, 21 Mar 2020 16:53:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9744BA010F;
- Sat, 21 Mar 2020 14:55:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B42A4A011A;
+ Sat, 21 Mar 2020 16:53:55 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Sat, 21 Mar 2020 14:55:15 -0000
-Message-ID: <158480251559.2757.9004100928722988985@emeril.freedesktop.org>
+Date: Sat, 21 Mar 2020 16:53:55 -0000
+Message-ID: <158480963571.2756.4488446635778685390@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20200321135218.6922-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200321135218.6922-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
  =?utf-8?q?ies_starting_with_=5B1/4=5D_drm/i915=3A_Extend_intel=5Fwakeref_?=
- =?utf-8?q?to_support_delayed_puts?=
+ =?utf-8?q?to_support_delayed_puts_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,111 +48,98 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/4] drm/i915: Extend intel_wakeref to support delayed puts
+Series: series starting with [1/4] drm/i915: Extend intel_wakeref to support delayed puts (rev2)
 URL   : https://patchwork.freedesktop.org/series/74938/
-State : failure
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8167 -> Patchwork_17042
+CI Bug Log - changes from CI_DRM_8167 -> Patchwork_17043
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with Patchwork_17042 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17042, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/index.html
 
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17042:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@mman:
-    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-dsi/igt@i915_selftest@live@mman.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/fi-icl-dsi/igt@i915_selftest@live@mman.html
-
-  
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_17042 that come from known issues:
+  Here are the changes found in Patchwork_17043 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [PASS][3] -> [DMESG-FAIL][4] ([i915#877])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6] ([fdo#106070] / [i915#424])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
 
   
 #### Possible fixes ####
 
-  * igt@gem_exec_suspend@basic-s4-devices:
-    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
-
   * igt@kms_chamelium@hdmi-crc-fast:
-    - fi-icl-u2:          [FAIL][9] ([fdo#109635] / [i915#217]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+    - fi-icl-u2:          [FAIL][3] ([fdo#109635] / [i915#217]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/fi-icl-u2/igt@kms_chamelium@hdmi-crc-fast.html
+
+  * igt@kms_chamelium@hdmi-hpd-fast:
+    - fi-kbl-7500u:       [FAIL][5] ([fdo#111407]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/fi-kbl-7500u/igt@kms_chamelium@hdmi-hpd-fast.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][7] ([CI#94]) -> [INCOMPLETE][8] ([CI#94] / [i915#460])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8167/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
 
   
   [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
-  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
   [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [fdo#111407]: https://bugs.freedesktop.org/show_bug.cgi?id=111407
   [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
+  [i915#460]: https://gitlab.freedesktop.org/drm/intel/issues/460
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
 
 
-Participating hosts (49 -> 36)
+Participating hosts (49 -> 42)
 ------------------------------
 
-  Missing    (13): fi-ilk-m540 fi-hsw-4200u fi-byt-j1900 fi-skl-guc fi-byt-squawks fi-bsw-cyan fi-kbl-7500u fi-ctg-p8600 fi-gdg-551 fi-cfl-8109u fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+  Additional (1): fi-kbl-7560u 
+  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-pnv-d510 fi-byt-clapper fi-bdw-samus 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8167 -> Patchwork_17042
+  * Linux: CI_DRM_8167 -> Patchwork_17043
 
   CI-20190529: 20190529
   CI_DRM_8167: b51a7e7f4f72cf780661a1e4b479e2b27ddbafc8 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5526: f49ebeee9f54d6f23c60a842f75f65561d452ab0 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17042: ad93345a88ebe797bf424c9cd6a32375228d30a3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_17043: bed27875a49f92e4f6f2c7d301067b7d3cb3e86c @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-ad93345a88eb drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
-87403a98caa1 drm/i915: Rely on direct submission to the queue
-a4eb01fe1100 drm/i915/gt: Delay release of engine-pm after last retirement
-ba10302d1256 drm/i915: Extend intel_wakeref to support delayed puts
+bed27875a49f drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+1aa7fb03cf0c drm/i915: Rely on direct submission to the queue
+a3349fcb8e49 drm/i915/gt: Delay release of engine-pm after last retirement
+381c9adb228f drm/i915: Extend intel_wakeref to support delayed puts
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17042/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17043/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
