@@ -1,40 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7357E18ECC5
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Mar 2020 22:56:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44B4618F038
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 08:28:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB75D6E02F;
-	Sun, 22 Mar 2020 21:56:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B035F89E50;
+	Mon, 23 Mar 2020 07:28:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 4199 seconds by postgrey-1.36 at gabe;
- Sun, 22 Mar 2020 21:56:34 UTC
-Received: from 8.mo6.mail-out.ovh.net (8.mo6.mail-out.ovh.net [178.33.42.204])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E61F76E02F
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Mar 2020 21:56:34 +0000 (UTC)
-Received: from player772.ha.ovh.net (unknown [10.110.171.173])
- by mo6.mail-out.ovh.net (Postfix) with ESMTP id 12BC620361E
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Mar 2020 21:37:17 +0100 (CET)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player772.ha.ovh.net (Postfix) with ESMTPSA id 9924010BAD92C;
- Sun, 22 Mar 2020 20:37:08 +0000 (UTC)
-Date: Sun, 22 Mar 2020 22:37:07 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200322203707.GA131048@jack.zhora.eu>
-References: <20200322163225.28791-1-chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D42489E50
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:28:22 +0000 (UTC)
+IronPort-SDR: GqbgdHaGw4F0qJev9bpNFAdNrzF586FHf3Z8ctXqVuAQ4P+NNNsJhCdpb0HVnsr4WTKpegD0/q
+ RLEoUW/xza6Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 00:28:21 -0700
+IronPort-SDR: RJwePdvw7hwm0PDjJA/3qu9RbYEPYCYFSwotmuzlRHO2jHgbR/fa+B6d9fy1nOMbEIHM9jgTxH
+ 0Ki0NlW6TDyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,295,1580803200"; d="scan'208";a="419414446"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga005.jf.intel.com with ESMTP; 23 Mar 2020 00:28:19 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Mar 2020 12:43:10 +0530
+Message-Id: <20200323071313.5858-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200322163225.28791-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 14734933558807478793
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudegiedgudegudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeejvddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/gt: Treat idling as a RPS
- downclock event
+Subject: [Intel-gfx] [PATCH v2 0/3] i915 lpsp support for lpsp igt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,30 +44,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com, martin.peres@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+This series adds i915_lpsp_info connector debugfs.
 
-On Sun, Mar 22, 2020 at 04:32:24PM +0000, Chris Wilson wrote:
-> If we park/unpark faster than we can respond to RPS events, we never
-> will process a downlock event after expiring a waitboost, and thus we
-> will forever restart the GPU at max clocks even if the workload switches
-> and doesn't justify full power.
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1500
-> Fixes: 3e7abf814193 ("drm/i915: Extract GT render power state management")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Andi Shyti <andi.shyti@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
+Test-with: 20200323063248.5261-2-anshuman.gupta@intel.com
 
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+Anshuman Gupta (3):
+  drm/i915: Power well id for ICL PG3
+  drm/i915: Add i915_lpsp_info debugfs
+  drm/i915: Add connector dbgfs for all connectors
 
-Thanks,
-Andi
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +
+ .../drm/i915/display/intel_display_debugfs.c  | 102 ++++++++++++++++++
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ .../drm/i915/display/intel_display_power.h    |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 -
+ 6 files changed, 109 insertions(+), 10 deletions(-)
+
+-- 
+2.25.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
