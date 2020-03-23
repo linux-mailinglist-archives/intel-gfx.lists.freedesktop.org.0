@@ -2,56 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5F501901DE
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 00:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11D9A19023D
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 00:50:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 170606E42A;
-	Mon, 23 Mar 2020 23:29:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE206E430;
+	Mon, 23 Mar 2020 23:50:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9836B6E42A
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 23:29:38 +0000 (UTC)
-IronPort-SDR: +rupSrbGNRKdieIeuYMq4ZywYZR9T4nngEVmyQsZ1XeV4OVrB2SIBXHmCjTAkFaR3LxdPT6Tm6
- F8ZO22B1bYCg==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71B4B6E430
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 23:50:16 +0000 (UTC)
+IronPort-SDR: BGoN3kM/zPY6FZ8obc4dKThWf8AEsi4kEUSsN2xkwtazDrs3FWta2YhBJZiqsEtll8CdpqF9w8
+ ogZVzECA2CqQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2020 16:29:37 -0700
-IronPort-SDR: AKE/ER+NpCE423g+9qyweL9EbNXjW+gY79y4nT4bEtJrIPX/2oIXqPfBLrtt4rY+1cYFDBOLSY
- JWM6t2K9NDdw==
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 16:50:14 -0700
+IronPort-SDR: F4b6SCldzvVg3avTz/vKbUuOsUfWMQtPxtOM6ZWzpH1591AdlL3Lqu9/O7pMAiTH7Ncrn8r+2A
+ GEW4qqi3VglA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,298,1580803200"; d="scan'208";a="292737280"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
- by FMSMGA003.fm.intel.com with ESMTP; 23 Mar 2020 16:29:37 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
- ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 23 Mar 2020 16:29:36 -0700
-Received: from orsmsx110.amr.corp.intel.com ([169.254.10.144]) by
- ORSMSX160.amr.corp.intel.com ([169.254.13.166]) with mapi id 14.03.0439.000;
- Mon, 23 Mar 2020 16:29:36 -0700
-From: "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>
-To: "Brown, Len" <len.brown@intel.com>, "linux-pm@vger.kernel.org"
- <linux-pm@vger.kernel.org>, "currojerez@riseup.net" <currojerez@riseup.net>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Thread-Topic: [RFC] GPU-bound energy efficiency improvements for the
- intel_pstate driver (v2).
-Thread-Index: AQHV9yVeF22XkZfUYkCaOD2IBrMsDqhXXN8A
-Date: Mon, 23 Mar 2020 23:29:35 +0000
-Message-ID: <5a7aa1cef880ee5ac3ffe2055745c26f8d124b68.camel@intel.com>
-References: <20200310214203.26459-1-currojerez@riseup.net>
-In-Reply-To: <20200310214203.26459-1-currojerez@riseup.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.34.2 (3.34.2-1.fc31) 
-x-originating-ip: [10.134.90.138]
-Content-ID: <0BF866207E63F942BFF6A86F12CC5D62@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,298,1580803200"; d="scan'208";a="357248391"
+Received: from cwilso3-mobl.fi.intel.com (HELO localhost) ([10.252.46.109])
+ by fmsmga001.fm.intel.com with ESMTP; 23 Mar 2020 16:50:13 -0700
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
- the intel_pstate driver (v2).
+In-Reply-To: <87imiu4scq.fsf@riseup.net>
+References: <20200320130159.3922-2-chris@chris-wilson.co.uk>
+ <20200320174745.19995-1-chris@chris-wilson.co.uk> <871rpm6a9v.fsf@riseup.net>
+ <87tv2i4qsk.fsf@riseup.net>
+ <158495673843.17851.11761890199116661145@build.alporthouse.com>
+ <87imiu4scq.fsf@riseup.net>
+From: Chris Wilson <chris.p.wilson@intel.com>
+To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
+Message-ID: <158500741217.13839.16404244724951422520@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 23 Mar 2020 23:50:12 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Pull tasklet
+ interrupt-bh local to direct submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,191 +51,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "peterz@infradead.org" <peterz@infradead.org>,
- "rjw@rjwysocki.net" <rjw@rjwysocki.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Francisco,
-
-On Tue, 2020-03-10 at 14:41 -0700, Francisco Jerez wrote:
-> This is my second take on improving the energy efficiency of the
-> intel_pstate driver under IO-bound conditions.  The problem and
-> approach to solve it are roughly the same as in my previous series
-> [1]
-> at a high level:
+Quoting Francisco Jerez (2020-03-23 22:30:13)
+> Chris Wilson <chris@chris-wilson.co.uk> writes:
 > 
-> In IO-bound scenarios (by definition) the throughput of the system
-> doesn't improve with increasing CPU frequency beyond the threshold
-> value at which the IO device becomes the bottleneck, however with the
-> current governors (whether HWP is in use or not) the CPU frequency
-> tends to oscillate with the load, often with an amplitude far into
-> the
-> turbo range, leading to severely reduced energy efficiency, which is
-> particularly problematic when a limited TDP budget is shared among a
-> number of cores running some multithreaded workload, or among a CPU
-> core and an integrated GPU.
+> > Quoting Francisco Jerez (2020-03-20 22:14:51)
+> >> Francisco Jerez <currojerez@riseup.net> writes:
+> >> 
+> >> > Chris Wilson <chris@chris-wilson.co.uk> writes:
+> >> >
+> >> >> We dropped calling process_csb prior to handling direct submission in
+> >> >> order to avoid the nesting of spinlocks and lift process_csb() and the
+> >> >> majority of the tasklet out of irq-off. However, we do want to avoid
+> >> >> ksoftirqd latency in the fast path, so try and pull the interrupt-bh
+> >> >> local to direct submission if we can acquire the tasklet's lock.
+> >> >>
+> >> >> v2: Tweak the balance to avoid over submitting lite-restores
+> >> >>
+> >> >> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >> >> Cc: Francisco Jerez <currojerez@riseup.net>
+> >> >> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> >> >> ---
+> >> >>  drivers/gpu/drm/i915/gt/intel_lrc.c    | 44 ++++++++++++++++++++------
+> >> >>  drivers/gpu/drm/i915/gt/selftest_lrc.c |  2 +-
+> >> >>  2 files changed, 36 insertions(+), 10 deletions(-)
+> >> >>
+> >> >> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> >> index f09dd87324b9..dceb65a0088f 100644
+> >> >> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> >> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> >> @@ -2884,17 +2884,17 @@ static void queue_request(struct intel_engine_cs *engine,
+> >> >>      set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> >> >>  }
+> >> >>  
+> >> >> -static void __submit_queue_imm(struct intel_engine_cs *engine)
+> >> >> +static bool pending_csb(const struct intel_engine_execlists *el)
+> >> >>  {
+> >> >> -    struct intel_engine_execlists * const execlists = &engine->execlists;
+> >> >> +    return READ_ONCE(*el->csb_write) != READ_ONCE(el->csb_head);
+> >> >> +}
+> >> >>  
+> >> >> -    if (reset_in_progress(execlists))
+> >> >> -            return; /* defer until we restart the engine following reset */
+> >> >> +static bool skip_lite_restore(struct intel_engine_execlists *el,
+> >> >> +                          const struct i915_request *rq)
+> >> >> +{
+> >> >> +    struct i915_request *inflight = execlists_active(el);
+> >> >>  
+> >> >> -    if (execlists->tasklet.func == execlists_submission_tasklet)
+> >> >> -            __execlists_submission_tasklet(engine);
+> >> >> -    else
+> >> >> -            tasklet_hi_schedule(&execlists->tasklet);
+> >> >> +    return inflight && inflight->context == rq->context;
+> >> >>  }
+> >> >>  
+> >> >>  static void submit_queue(struct intel_engine_cs *engine,
+> >> >> @@ -2905,8 +2905,34 @@ static void submit_queue(struct intel_engine_cs *engine,
+> >> >>      if (rq_prio(rq) <= execlists->queue_priority_hint)
+> >> >>              return;
+> >> >>  
+> >> >> +    if (reset_in_progress(execlists))
+> >> >> +            return; /* defer until we restart the engine following reset */
+> >> >> +
+> >> >> +    /*
+> >> >> +     * Suppress immediate lite-restores, leave that to the tasklet.
+> >> >> +     *
+> >> >> +     * However, we leave the queue_priority_hint unset so that if we do
+> >> >> +     * submit a second context, we push that into ELSP[1] immediately.
+> >> >> +     */
+> >> >> +    if (skip_lite_restore(execlists, rq))
+> >> >> +            return;
+> >> >> +
+> >> > Why do you need to treat lite-restore specially here?
+> >
+> > Lite-restore have a noticeable impact on no-op loads. A part of that is
+> > that a lite-restore is about 1us, and the other part is that the driver
+> > has a lot more work to do. There's a balance point around here for not
+> > needlessly interrupting ourselves and ensuring that there is no bubble.
+> >
 > 
-> Improving the energy efficiency of the CPU improves the throughput of
-> the system in such TDP-limited conditions.  See [4] for some
-> preliminary benchmark results from a Razer Blade Stealth 13 Late
-> 2019/LY320 laptop with an Intel ICL processor and integrated
-> graphics,
-> including throughput results that range up to a ~15% improvement and
-> performance-per-watt results up to a ~43% improvement (estimated via
-> RAPL).  Particularly the throughput results may vary substantially
-> from one platform to another depending on the TDP budget and the
-> balance of load between CPU and GPU.
+> Oh, I see.  But isn't inhibiting the lite restore likely to be fairly
+> costly in some cases as well if it causes the GPU to go idle after the
+> current context completes for as long as it takes the CPU to wake up,
+> process the IRQ and dequeue the next request?
+
+Yes. It's an amusing diversion to try and think how can we do a single
+context submission (well 2) for a sequence of requests, for those
+clients that like to submit N batches at once. From an idle GPU,
+assuming each batch is non-trivial, we want to do something like submit
+batch 1, accumulate, then submit batches 1-N, i.e. skip the intervening
+lite-restores but complete the submission with all the work queued.
+
+> Would it make sense to
+> inhibit lite-restore in roughly the same conditions I set the overload
+> flag?  (since that indicates we'll get an IRQ at least one request
+> *before* the GPU actually goes idle, so there shouldn't be any penalty
+> from inhibiting lite restore).
+
+Yes/no. Once we have multiple contexts scheduled, we won't be doing lite
+restores.
+
+The key problem is that the irq/tasklet-bh latency is unpredictable. Only
+submitting one context at a time costs about 1% in [multi-context]
+transcode throughput. And the cost of lite-restore on that scale is
+barely noticeable.
+
+So it annoys me that we can measure the impact of lite-restore on
+nop-throughput, but in reality we have a self-inflicted regression on
+top of the lite-restore that caught my eye.
+
+Since we don't resubmit more contexts until we receive an ack from the
+HW, the latency in processing that ack actually allowed us to accumulate
+more nops into a single submission. Process that ack earlier and we
+start submitting each nop individually. But we do want to process that
+ack earlier as we know we are handling a request that should be pushed
+to the GPU immediately.
+
+[The age old adage, batching submissions is good for throughput, bad for
+latency. And I have to pinch myself that throughput is easier to
+measure, but latency is the crucial metric.]
+
+> >> > Anyway, trying this out now in combination with my patches now.
+> >> >
+> >> 
+> >> This didn't seem to help (together with your other suggestion to move
+> >> the overload accounting to __execlists_schedule_in/out).  And it makes
+> >> the current -5% SynMark OglMultithread regression with my series go down
+> >> to -10%.  My previous suggestion of moving the
+> >> intel_gt_pm_active_begin() call to process_csb() when the submission is
+> >> ACK'ed by the hardware does seem to help (and it roughly halves the
+> >> OglMultithread regression), possibly because that way we're able to
+> >> determine whether the first context was actually overlapping at the
+> >> point that the second was received by the hardware -- I haven't tested
+> >> it extensively yet though.
+> >
+> > Grumble, it just seems like we are setting and clearing the flag on
+> > completely unrelated events -- which I still think boils down to working
+> > around latency in the driver. Or at least I hope there's an explanation
+> > and bug to fix that improves responsiveness for all.
+> > -Chris
 > 
+> There *might* be a performance issue somewhere introducing latency that
+> the instrumentation I added happens to mitigate, but isn't that a sign
+> that it's fulfilling its purpose of determining when the workload could
+> be sensitive to CPU latency?
 
-You changed the EPP to 0 intentionally or unintentionally. We know that
-all energy optimization will be disabled with this change. 
-This test was done on an ICL system.
+We have latency issues in the tasklet submission. The irq-off lock
+contention along the submission path [execlists_dequeue] is perhaps the
+biggest issue in the driver (at least from lockstats perspective). My
+expectation is that the delay in processing the CSB is affecting the
+'overload' heuristic.
+ 
+> Maybe I didn't explain the idea properly: Given that command submission
+> is asynchronous with the CS processing the previous context, there is no
+> way for us to tell whether a request we just submitted was actually
+> overlapping with the previous one until we read the CSB and see whether
+> it led to an idle-to-active transition.  Only then can we assume that
+> the CPU is sending commands to the GPU quickly enough to keep it busy
+> without interruption.
 
+That sounds like you just want to use the C0 counters.
 
-Basically without your patches on top of linux-next: EPP = 0x80
-$sudo rdmsr -a 0x774
-80002704
-80002704
-80002704
-80002704
-80002704
-80002704
-80002704
-80002704
+But if you want to use the active/idle state as your heuristic, then you
+want something like
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3102159d2b3b..3e08ecd53ecb 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2443,6 +2443,8 @@ static void process_csb(struct intel_engine_cs *engine)
 
-After your patches
-
-$sudo rdmsr -a 0x774
-2704
-2704
-2704
-2704
-2704
-2704
-2704
-2704
-
-I added some prints, basically you change the EPP at startup before
-regular HWP request update path and update on top. So boot up EPP is
-overwritten.
-
-
-[    5.867476] intel_pstate_reset_vlp hwp_req cached:0
-[    5.872426] intel_pstate_reset_vlp hwp_req:404
-[    5.881645] intel_pstate_reset_vlp hwp_req cached:0
-[    5.886634] intel_pstate_reset_vlp hwp_req:404
-[    5.895819] intel_pstate_reset_vlp hwp_req cached:0
-[    5.900958] intel_pstate_reset_vlp hwp_req:404
-[    5.910321] intel_pstate_reset_vlp hwp_req cached:0
-[    5.915406] intel_pstate_reset_vlp hwp_req:404
-[    5.924623] intel_pstate_reset_vlp hwp_req cached:0
-[    5.929564] intel_pstate_reset_vlp hwp_req:404
-[    5.944039] intel_pstate_reset_vlp hwp_req cached:0
-[    5.951672] intel_pstate_reset_vlp hwp_req:404
-[    5.966157] intel_pstate_reset_vlp hwp_req cached:0
-[    5.973808] intel_pstate_reset_vlp hwp_req:404
-[    5.988223] intel_pstate_reset_vlp hwp_req cached:0
-[    5.995823] intel_pstate_reset_vlp hwp_req:404
-[    6.010062] intel_pstate: HWP enabled
-
-Thanks,
-Srinivas
+                        GEM_BUG_ON(execlists->active - execlists->inflight >
+                                   execlists_num_ports(execlists));
++
++                       WRITE_ONCE(execlists->overload, !!*execlists->active);
+                }
+        } while (head != tail);
 
 
+That will be set to true when we have enough work to keep the GPU busy
+into the second context, and only be set to false when the GPU idles.
 
-> One of the main differences relative to my previous version is that
-> the trade-off between energy efficiency and frequency ramp-up latency
-> is now exposed to device drivers through a new PM QoS class [It would
-> make sense to expose it to userspace too eventually but that's beyond
-> the purpose of this series].  The new PM QoS class provides a latency
-> target to CPUFREQ governors which gives them permission to filter out
-> CPU frequency oscillations with a period significantly shorter than
-> the specified target, whenever doing so leads to improved energy
-> efficiency.
-> 
-> This series takes advantage of the new PM QoS class from the i915
-> driver whenever the driver determines that the GPU has become a
-> bottleneck for an extended period of time.  At that point it places a
-> PM QoS ramp-up latency target which causes CPUFREQ to limit the CPU
-> to
-> a reasonably energy-efficient frequency able to at least achieve the
-> required amount of work in a time window approximately equal to the
-> ramp-up latency target (since any longer-term energy efficiency
-> optimization would potentially violate the latency target).  This
-> seems more effective than clamping the CPU frequency to a fixed value
-> directly from various subsystems, since the CPU is a shared resource,
-> so the frequency bound needs to consider the load and latency
-> requirements of all independent workloads running on the same CPU
-> core
-> in order to avoid performance degradation in a multitasking, possibly
-> virtualized environment.
-> 
-> The main limitation of this PM QoS approach is that whenever multiple
-> clients request different ramp-up latency targets, only the strictest
-> (lowest latency) one will apply system-wide, potentially leading to
-> suboptimal energy efficiency for the less latency-sensitive clients,
-> (though it won't artificially limit the CPU throughput of the most
-> latency-sensitive clients as a result of the PM QoS requests placed
-> by
-> less latency-sensitive ones).  In order to address this limitation
-> I'm
-> working on a more complicated solution which integrates with the task
-> scheduler in order to provide response latency control with process
-> granularity (pretty much in the spirit of PELT).  One of the
-> alternatives Rafael and I were discussing was to expose that through
-> a
-> third cgroup clamp on top of the MIN and MAX utilization clamps, but
-> I'm open to any other possibilities regarding what the interface
-> should look like.  Either way the current (scheduling-unaware) PM
-> QoS-based interface should provide most of the benefit except in
-> heavily multitasking environments.
-> 
-> A branch with this series in testable form can be found here [2],
-> based on linux-next from a few days ago.  Another important
-> difference
-> with respect to my previous revision is that the present one targets
-> HWP systems (though for the moment it's only enabled by default on
-> ICL, even though that can be overridden through the kernel command
-> line).  I have WIP code that uses the same governor in order to
-> provide a similar benefit on non-HWP systems (like my previous
-> revision), which can be found in this branch for reference [3] -- I'm
-> planning to finish that up and send it as follow-up to this series
-> assuming people are happy with the overall approach.
-> 
-> Thanks in advance for any review feed-back and test reports.
-> 
-> [PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS
-> limit.
-> [PATCH 02/10] drm/i915: Adjust PM QoS response frequency based on GPU
-> load.
-> [PATCH 03/10] OPTIONAL: drm/i915: Expose PM QoS control parameters
-> via debugfs.
-> [PATCH 04/10] Revert "cpufreq: intel_pstate: Drop ->update_util from
-> pstate_funcs"
-> [PATCH 05/10] cpufreq: intel_pstate: Implement VLP controller
-> statistics and status calculation.
-> [PATCH 06/10] cpufreq: intel_pstate: Implement VLP controller target
-> P-state range estimation.
-> [PATCH 07/10] cpufreq: intel_pstate: Implement VLP controller for HWP
-> parts.
-> [PATCH 08/10] cpufreq: intel_pstate: Enable VLP controller based on
-> ACPI FADT profile and CPUID.
-> [PATCH 09/10] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP
-> controller status.
-> [PATCH 10/10] OPTIONAL: cpufreq: intel_pstate: Expose VLP controller
-> parameters via debugfs.
-> 
-> [1] https://marc.info/?l=linux-pm&m=152221943320908&w=2
-> [2] 
-> https://github.com/curro/linux/commits/intel_pstate-vlp-v2-hwp-only
-> [3] https://github.com/curro/linux/commits/intel_pstate-vlp-v2
-> [4] 
-> http://people.freedesktop.org/~currojerez/intel_pstate-vlp-v2/benchmark-comparison-ICL.log
-> 
+However, just because we switched contexts does not necessarily imply
+that the previous context did substantial work. And there may be lots of
+fun with timeslicing preemptions that do not let a single context run to
+completion. So perhaps,
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 3102159d2b3b..05bb533d556c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -2340,6 +2340,7 @@ static void process_csb(struct intel_engine_cs *engine)
+        rmb();
+
+        ENGINE_TRACE(engine, "cs-irq head=%d, tail=%d\n", head, tail);
++       bool overload = *execlists->active;
+        do {
+                bool promote;
+
+@@ -2443,8 +2444,11 @@ static void process_csb(struct intel_engine_cs *engine)
+
+                        GEM_BUG_ON(execlists->active - execlists->inflight >
+                                   execlists_num_ports(execlists));
++
++                       overload = *execlists->overload; /* active->idle? */
+                }
+        } while (head != tail);
++       WRITE_ONCE(execlists->overload, overload && *execlists->overload);
+
+
+which sets the overload flag if we enter with an active context and
+leave with another active context, without going through an idle state.
+But that will set overload for timeslicing and for high priority
+preemption.
+
+(Now I have to ask whether that's what you had before :)
+ 
+> You might argue that this will introduce a delay in the signalling of
+> overload roughly equal to the latency it takes for the CPU to receive
+> the execlists IRQ with the hardware ACK.  However that seems beneficial
+> since the clearing of overload suffers from the same latency, so the
+> fraction of time that overload is signalled will otherwise be biased as
+> a result of the latency difference, causing overload to be overreported
+> on the average.  Delaying the signalling of overload to the CSB handler
+> means that any systematic latency in our interrupt processing is
+> self-correcting.
+
+That only worries me if we are trying to balance decisions made on
+submission with the async ack. If we can solely use the CSB events that
+worry is moot.
+ 
+> Anyway, I'm open to other suggestions if you have other ideas that at
+> least don't worsen the pre-existing regression from my series.
+
+Likewise, if the best is the current overload semantics then so be it.
+-Chris
+---------------------------------------------------------------------
+Intel Corporation (UK) Limited
+Registered No. 1134945 (England)
+Registered Office: Pipers Way, Swindon SN3 1RJ
+VAT No: 860 2173 47
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
