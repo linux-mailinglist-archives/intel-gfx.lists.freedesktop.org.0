@@ -2,30 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9877018FD27
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 19:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61F9918FD84
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 20:20:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D206E406;
-	Mon, 23 Mar 2020 18:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58E096E059;
+	Mon, 23 Mar 2020 19:20:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 908A16E400;
- Mon, 23 Mar 2020 18:58:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A171A0118;
- Mon, 23 Mar 2020 18:58:43 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFB6F6E059
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 19:20:47 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20666043-1500050 
+ for multiple; Mon, 23 Mar 2020 19:20:30 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Mar 2020 19:20:29 +0000
+Message-Id: <20200323192029.20723-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 23 Mar 2020 18:58:43 -0000
-Message-ID: <158498992353.9810.2744491866390710428@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200323183606.11169-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200323183606.11169-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/mm=3A_Only_allow_sleeping_if_the_caller_permits?=
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Only delay the barrier pm
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,29 +36,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It is strictly sufficient to only delay the intel_engine_pm_put from the
+context barrier (and not from the context exit) in order to prevent the
+gem_exec_nop contention. Adding the delay to the context exit incurs
+noticably extra penalty for soft-rc6.
 
-Series: drm/mm: Only allow sleeping if the caller permits
-URL   : https://patchwork.freedesktop.org/series/74985/
-State : warning
+Fixes: edee52c927ef ("drm/i915/gt: Delay release of engine-pm after last retirement")
+Testcase: igt/i915_pm_rc6_residency/rc6-idle
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_context.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
-
-$ dim checkpatch origin/drm-tip
-80b6656d391a drm/mm: Only allow sleeping if the caller permits
--:174: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#174: FILE: include/drm/drm_mm.h:155:
- };
-+#define DRM_MM_INSERT_MODE GENMASK(29, 0) /* all but the special bits */
-
-total: 0 errors, 0 warnings, 1 checks, 124 lines checked
+diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
+index 622ff425fce9..e4aece20bc80 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context.c
++++ b/drivers/gpu/drm/i915/gt/intel_context.c
+@@ -350,7 +350,7 @@ void intel_context_enter_engine(struct intel_context *ce)
+ void intel_context_exit_engine(struct intel_context *ce)
+ {
+ 	intel_timeline_exit(ce->timeline);
+-	intel_engine_pm_put_delay(ce->engine, 1);
++	intel_engine_pm_put(ce->engine);
+ }
+ 
+ int intel_context_prepare_remote_request(struct intel_context *ce,
+-- 
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
