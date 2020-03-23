@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D21A618F8FE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 16:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0DF18F921
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 17:00:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED9D06E21D;
-	Mon, 23 Mar 2020 15:54:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B003C6E279;
+	Mon, 23 Mar 2020 16:00:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 392666E21D;
- Mon, 23 Mar 2020 15:54:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D3CD76E283;
+ Mon, 23 Mar 2020 16:00:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2CA0DA432F;
- Mon, 23 Mar 2020 15:54:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CDBA3A47DF;
+ Mon, 23 Mar 2020 16:00:36 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Mon, 23 Mar 2020 15:54:17 -0000
-Message-ID: <158497885715.9808.16689429273511635775@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 23 Mar 2020 16:00:36 -0000
+Message-ID: <158497923683.9810.16712886980469152374@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200323130821.47914-1-matthew.auld@intel.com>
-In-Reply-To: <20200323130821.47914-1-matthew.auld@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_mark_huge=5Fgem=5Fobject_as_not_shrinkable?=
+References: <20200323130935.13568-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200323130935.13568-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_series_starting_with_=5B1/4=5D_drm/i915/execlists=3A_Pull_t?=
+ =?utf-8?q?asklet_interrupt-bh_local_to_direct_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,17 +48,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/selftests: mark huge_gem_object as not shrinkable
-URL   : https://patchwork.freedesktop.org/series/74972/
-State : failure
+Series: series starting with [1/4] drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+URL   : https://patchwork.freedesktop.org/series/74973/
+State : warning
 
 == Summary ==
 
-Applying: drm/i915/selftests: mark huge_gem_object as not shrinkable
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
-Falling back to patching base and 3-way merge...
-No changes -- Patch already applied.
+$ dim checkpatch origin/drm-tip
+cc3bda70c931 drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+2e7463a5b755 drm/i915: Immediately execute the fenced work
+-:54: WARNING:AVOID_BUG: Avoid crashing the kernel - try using WARN_ON & recovery code rather than BUG() or BUG_ON()
+#54: FILE: drivers/gpu/drm/i915/i915_sw_fence_work.h:17:
++#define __DBG_BUG_ON(expr) BUG_ON(expr)
+
+total: 0 errors, 1 warnings, 0 checks, 76 lines checked
+c9fc4147269c drm/i915: Allow for different modes of interruptible i915_active_wait
+42c13a451e00 drm/i915/gem: Prevent switching of active GEM context VM
 
 _______________________________________________
 Intel-gfx mailing list
