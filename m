@@ -1,32 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id B87AB190182
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 00:08:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F501901DE
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 00:29:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21A5B6E3EC;
-	Mon, 23 Mar 2020 23:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 170606E42A;
+	Mon, 23 Mar 2020 23:29:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0D1626E3EB;
- Mon, 23 Mar 2020 23:08:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 065D6A47DF;
- Mon, 23 Mar 2020 23:08:52 +0000 (UTC)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9836B6E42A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 23:29:38 +0000 (UTC)
+IronPort-SDR: +rupSrbGNRKdieIeuYMq4ZywYZR9T4nngEVmyQsZ1XeV4OVrB2SIBXHmCjTAkFaR3LxdPT6Tm6
+ F8ZO22B1bYCg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 16:29:37 -0700
+IronPort-SDR: AKE/ER+NpCE423g+9qyweL9EbNXjW+gY79y4nT4bEtJrIPX/2oIXqPfBLrtt4rY+1cYFDBOLSY
+ JWM6t2K9NDdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,298,1580803200"; d="scan'208";a="292737280"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+ by FMSMGA003.fm.intel.com with ESMTP; 23 Mar 2020 16:29:37 -0700
+Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
+ ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Mon, 23 Mar 2020 16:29:36 -0700
+Received: from orsmsx110.amr.corp.intel.com ([169.254.10.144]) by
+ ORSMSX160.amr.corp.intel.com ([169.254.13.166]) with mapi id 14.03.0439.000;
+ Mon, 23 Mar 2020 16:29:36 -0700
+From: "Pandruvada, Srinivas" <srinivas.pandruvada@intel.com>
+To: "Brown, Len" <len.brown@intel.com>, "linux-pm@vger.kernel.org"
+ <linux-pm@vger.kernel.org>, "currojerez@riseup.net" <currojerez@riseup.net>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [RFC] GPU-bound energy efficiency improvements for the
+ intel_pstate driver (v2).
+Thread-Index: AQHV9yVeF22XkZfUYkCaOD2IBrMsDqhXXN8A
+Date: Mon, 23 Mar 2020 23:29:35 +0000
+Message-ID: <5a7aa1cef880ee5ac3ffe2055745c26f8d124b68.camel@intel.com>
+References: <20200310214203.26459-1-currojerez@riseup.net>
+In-Reply-To: <20200310214203.26459-1-currojerez@riseup.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.34.2 (3.34.2-1.fc31) 
+x-originating-ip: [10.134.90.138]
+Content-ID: <0BF866207E63F942BFF6A86F12CC5D62@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 23 Mar 2020 23:08:52 -0000
-Message-ID: <158500493202.9809.14811879396781895379@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200323134348.8513-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200323134348.8513-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_request?=
- =?utf-8?q?_throughput_measurement_to_perf?=
+Subject: Re: [Intel-gfx] [RFC] GPU-bound energy efficiency improvements for
+ the intel_pstate driver (v2).
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,269 +64,191 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "peterz@infradead.org" <peterz@infradead.org>,
+ "rjw@rjwysocki.net" <rjw@rjwysocki.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Francisco,
 
-Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
-URL   : https://patchwork.freedesktop.org/series/74974/
-State : success
+On Tue, 2020-03-10 at 14:41 -0700, Francisco Jerez wrote:
+> This is my second take on improving the energy efficiency of the
+> intel_pstate driver under IO-bound conditions.  The problem and
+> approach to solve it are roughly the same as in my previous series
+> [1]
+> at a high level:
+> 
+> In IO-bound scenarios (by definition) the throughput of the system
+> doesn't improve with increasing CPU frequency beyond the threshold
+> value at which the IO device becomes the bottleneck, however with the
+> current governors (whether HWP is in use or not) the CPU frequency
+> tends to oscillate with the load, often with an amplitude far into
+> the
+> turbo range, leading to severely reduced energy efficiency, which is
+> particularly problematic when a limited TDP budget is shared among a
+> number of cores running some multithreaded workload, or among a CPU
+> core and an integrated GPU.
+> 
+> Improving the energy efficiency of the CPU improves the throughput of
+> the system in such TDP-limited conditions.  See [4] for some
+> preliminary benchmark results from a Razer Blade Stealth 13 Late
+> 2019/LY320 laptop with an Intel ICL processor and integrated
+> graphics,
+> including throughput results that range up to a ~15% improvement and
+> performance-per-watt results up to a ~43% improvement (estimated via
+> RAPL).  Particularly the throughput results may vary substantially
+> from one platform to another depending on the TDP budget and the
+> balance of load between CPU and GPU.
+> 
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8180_full -> Patchwork_17055_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-New tests
----------
-
-  New tests have been introduced between CI_DRM_8180_full and Patchwork_17055_full:
-
-### New IGT tests (3) ###
-
-  * igt@dmabuf@all@dma_fence_chain:
-    - Statuses : 8 pass(s)
-    - Exec time: [7.40, 31.21] s
-
-  * igt@dmabuf@all@dma_fence_proxy:
-    - Statuses : 8 pass(s)
-    - Exec time: [0.03, 0.10] s
-
-  * igt@i915_selftest@perf@request:
-    - Statuses : 7 pass(s)
-    - Exec time: [3.50, 5.59] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17055_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_busy@busy-vcs1:
-    - shard-iclb:         [PASS][1] -> [SKIP][2] ([fdo#112080]) +12 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb4/igt@gem_busy@busy-vcs1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb5/igt@gem_busy@busy-vcs1.html
-
-  * igt@gem_ctx_isolation@vecs0-s3:
-    - shard-iclb:         [PASS][3] -> [INCOMPLETE][4] ([fdo#109100])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb1/igt@gem_ctx_isolation@vecs0-s3.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb3/igt@gem_ctx_isolation@vecs0-s3.html
-
-  * igt@gem_ctx_shared@exec-single-timeline-bsd:
-    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#110841])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb8/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb4/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-
-  * igt@gem_ctx_shared@q-smoketest-bsd2:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276]) +9 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb2/igt@gem_ctx_shared@q-smoketest-bsd2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb6/igt@gem_ctx_shared@q-smoketest-bsd2.html
-
-  * igt@gem_exec_schedule@implicit-read-write-bsd2:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#109276] / [i915#677]) +1 similar issue
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb2/igt@gem_exec_schedule@implicit-read-write-bsd2.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb6/igt@gem_exec_schedule@implicit-read-write-bsd2.html
-
-  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
-    - shard-iclb:         [PASS][11] -> [SKIP][12] ([i915#677]) +3 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb7/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb2/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-
-  * igt@gem_exec_schedule@reorder-wide-bsd:
-    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#112146]) +4 similar issues
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb5/igt@gem_exec_schedule@reorder-wide-bsd.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb4/igt@gem_exec_schedule@reorder-wide-bsd.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-apl:          [PASS][15] -> [DMESG-WARN][16] ([i915#180])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-apl8/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_crc@pipe-b-cursor-suspend:
-    - shard-kbl:          [PASS][17] -> [DMESG-WARN][18] ([i915#180]) +1 similar issue
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-kbl4/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-kbl7/igt@kms_cursor_crc@pipe-b-cursor-suspend.html
-
-  * igt@kms_flip@plain-flip-fb-recreate-interruptible:
-    - shard-glk:          [PASS][19] -> [FAIL][20] ([i915#34])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-glk7/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-glk8/igt@kms_flip@plain-flip-fb-recreate-interruptible.html
-
-  * igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-plflip-blt:
-    - shard-kbl:          [PASS][21] -> [FAIL][22] ([i915#49])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-kbl1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-plflip-blt.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-kbl3/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-plflip-blt.html
-    - shard-apl:          [PASS][23] -> [FAIL][24] ([i915#49])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-apl8/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-plflip-blt.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-apl1/igt@kms_frontbuffer_tracking@fbc-1p-primscrn-indfb-plflip-blt.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a:
-    - shard-skl:          [PASS][25] -> [FAIL][26] ([i915#53])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl3/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl6/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-a.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [PASS][27] -> [FAIL][28] ([fdo#108145]) +1 similar issue
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl6/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-
-  * igt@kms_psr@psr2_cursor_render:
-    - shard-iclb:         [PASS][29] -> [SKIP][30] ([fdo#109441]) +2 similar issues
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb2/igt@kms_psr@psr2_cursor_render.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb6/igt@kms_psr@psr2_cursor_render.html
-
-  * igt@kms_setmode@basic:
-    - shard-apl:          [PASS][31] -> [FAIL][32] ([i915#31])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-apl2/igt@kms_setmode@basic.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-apl3/igt@kms_setmode@basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_isolation@vcs0-s3:
-    - shard-apl:          [DMESG-WARN][33] ([i915#180]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-apl6/igt@gem_ctx_isolation@vcs0-s3.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-apl7/igt@gem_ctx_isolation@vcs0-s3.html
-
-  * igt@gem_ctx_persistence@engines-mixed-process@vcs1:
-    - shard-iclb:         [FAIL][35] ([i915#679]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb4/igt@gem_ctx_persistence@engines-mixed-process@vcs1.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb4/igt@gem_ctx_persistence@engines-mixed-process@vcs1.html
-
-  * igt@gem_ctx_persistence@engines-mixed-process@vecs0:
-    - shard-iclb:         [INCOMPLETE][37] ([i915#1239]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb4/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb4/igt@gem_ctx_persistence@engines-mixed-process@vecs0.html
-
-  * igt@gem_exec_schedule@in-order-bsd:
-    - shard-iclb:         [SKIP][39] ([fdo#112146]) -> [PASS][40] +5 similar issues
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb2/igt@gem_exec_schedule@in-order-bsd.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb6/igt@gem_exec_schedule@in-order-bsd.html
-
-  * igt@gem_exec_schedule@pi-shared-iova-bsd:
-    - shard-iclb:         [SKIP][41] ([i915#677]) -> [PASS][42] +1 similar issue
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb4/igt@gem_exec_schedule@pi-shared-iova-bsd.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb5/igt@gem_exec_schedule@pi-shared-iova-bsd.html
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-glk:          [DMESG-WARN][43] ([i915#716]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-glk1/igt@gen9_exec_parse@allowed-all.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-glk4/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_pm_rps@reset:
-    - shard-tglb:         [FAIL][45] ([i915#413]) -> [PASS][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-tglb5/igt@i915_pm_rps@reset.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-tglb6/igt@i915_pm_rps@reset.html
-
-  * igt@kms_flip@flip-vs-wf_vblank-interruptible:
-    - shard-skl:          [FAIL][47] ([i915#34]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl9/igt@kms_flip@flip-vs-wf_vblank-interruptible.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl2/igt@kms_flip@flip-vs-wf_vblank-interruptible.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [FAIL][49] ([i915#1188]) -> [PASS][50] +1 similar issue
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl4/igt@kms_hdr@bpc-switch-dpms.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl3/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_plane@plane-position-hole-dpms-pipe-b-planes:
-    - shard-snb:          [SKIP][51] ([fdo#109271]) -> [PASS][52] +4 similar issues
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-snb1/igt@kms_plane@plane-position-hole-dpms-pipe-b-planes.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-snb5/igt@kms_plane@plane-position-hole-dpms-pipe-b-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min:
-    - shard-skl:          [FAIL][53] ([fdo#108145]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl1/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl5/igt@kms_plane_alpha_blend@pipe-b-constant-alpha-min.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [FAIL][55] ([fdo#108145] / [i915#265]) -> [PASS][56] +1 similar issue
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl7/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr@psr2_sprite_plane_move:
-    - shard-iclb:         [SKIP][57] ([fdo#109441]) -> [PASS][58] +2 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb7/igt@kms_psr@psr2_sprite_plane_move.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb2/igt@kms_psr@psr2_sprite_plane_move.html
-
-  * igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend:
-    - shard-skl:          [INCOMPLETE][59] ([i915#69]) -> [PASS][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-skl9/igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-skl9/igt@kms_vblank@pipe-a-ts-continuation-dpms-suspend.html
-
-  * igt@perf_pmu@busy-no-semaphores-vcs1:
-    - shard-iclb:         [SKIP][61] ([fdo#112080]) -> [PASS][62] +9 similar issues
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb5/igt@perf_pmu@busy-no-semaphores-vcs1.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb4/igt@perf_pmu@busy-no-semaphores-vcs1.html
-
-  * igt@prime_busy@hang-bsd2:
-    - shard-iclb:         [SKIP][63] ([fdo#109276]) -> [PASS][64] +22 similar issues
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8180/shard-iclb7/igt@prime_busy@hang-bsd2.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/shard-iclb2/igt@prime_busy@hang-bsd2.html
-
-  
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109100]: https://bugs.freedesktop.org/show_bug.cgi?id=109100
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#1239]: https://gitlab.freedesktop.org/drm/intel/issues/1239
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#413]: https://gitlab.freedesktop.org/drm/intel/issues/413
-  [i915#49]: https://gitlab.freedesktop.org/drm/intel/issues/49
-  [i915#53]: https://gitlab.freedesktop.org/drm/intel/issues/53
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
+You changed the EPP to 0 intentionally or unintentionally. We know that
+all energy optimization will be disabled with this change. 
+This test was done on an ICL system.
 
 
-Participating hosts (10 -> 10)
-------------------------------
+Basically without your patches on top of linux-next: EPP = 0x80
+$sudo rdmsr -a 0x774
+80002704
+80002704
+80002704
+80002704
+80002704
+80002704
+80002704
+80002704
 
-  No changes in participating hosts
+
+After your patches
+
+$sudo rdmsr -a 0x774
+2704
+2704
+2704
+2704
+2704
+2704
+2704
+2704
+
+I added some prints, basically you change the EPP at startup before
+regular HWP request update path and update on top. So boot up EPP is
+overwritten.
 
 
-Build changes
--------------
+[    5.867476] intel_pstate_reset_vlp hwp_req cached:0
+[    5.872426] intel_pstate_reset_vlp hwp_req:404
+[    5.881645] intel_pstate_reset_vlp hwp_req cached:0
+[    5.886634] intel_pstate_reset_vlp hwp_req:404
+[    5.895819] intel_pstate_reset_vlp hwp_req cached:0
+[    5.900958] intel_pstate_reset_vlp hwp_req:404
+[    5.910321] intel_pstate_reset_vlp hwp_req cached:0
+[    5.915406] intel_pstate_reset_vlp hwp_req:404
+[    5.924623] intel_pstate_reset_vlp hwp_req cached:0
+[    5.929564] intel_pstate_reset_vlp hwp_req:404
+[    5.944039] intel_pstate_reset_vlp hwp_req cached:0
+[    5.951672] intel_pstate_reset_vlp hwp_req:404
+[    5.966157] intel_pstate_reset_vlp hwp_req cached:0
+[    5.973808] intel_pstate_reset_vlp hwp_req:404
+[    5.988223] intel_pstate_reset_vlp hwp_req cached:0
+[    5.995823] intel_pstate_reset_vlp hwp_req:404
+[    6.010062] intel_pstate: HWP enabled
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8180 -> Patchwork_17055
+Thanks,
+Srinivas
 
-  CI-20190529: 20190529
-  CI_DRM_8180: 257af0ddcea3a234dcb79579600f971edd47353f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5530: 2020d743940f06294d06006bb737be43fcd2881e @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17055: 1342e0cc637a60ab6f963d64298be1d744e2916a @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
-== Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17055/index.html
+> One of the main differences relative to my previous version is that
+> the trade-off between energy efficiency and frequency ramp-up latency
+> is now exposed to device drivers through a new PM QoS class [It would
+> make sense to expose it to userspace too eventually but that's beyond
+> the purpose of this series].  The new PM QoS class provides a latency
+> target to CPUFREQ governors which gives them permission to filter out
+> CPU frequency oscillations with a period significantly shorter than
+> the specified target, whenever doing so leads to improved energy
+> efficiency.
+> 
+> This series takes advantage of the new PM QoS class from the i915
+> driver whenever the driver determines that the GPU has become a
+> bottleneck for an extended period of time.  At that point it places a
+> PM QoS ramp-up latency target which causes CPUFREQ to limit the CPU
+> to
+> a reasonably energy-efficient frequency able to at least achieve the
+> required amount of work in a time window approximately equal to the
+> ramp-up latency target (since any longer-term energy efficiency
+> optimization would potentially violate the latency target).  This
+> seems more effective than clamping the CPU frequency to a fixed value
+> directly from various subsystems, since the CPU is a shared resource,
+> so the frequency bound needs to consider the load and latency
+> requirements of all independent workloads running on the same CPU
+> core
+> in order to avoid performance degradation in a multitasking, possibly
+> virtualized environment.
+> 
+> The main limitation of this PM QoS approach is that whenever multiple
+> clients request different ramp-up latency targets, only the strictest
+> (lowest latency) one will apply system-wide, potentially leading to
+> suboptimal energy efficiency for the less latency-sensitive clients,
+> (though it won't artificially limit the CPU throughput of the most
+> latency-sensitive clients as a result of the PM QoS requests placed
+> by
+> less latency-sensitive ones).  In order to address this limitation
+> I'm
+> working on a more complicated solution which integrates with the task
+> scheduler in order to provide response latency control with process
+> granularity (pretty much in the spirit of PELT).  One of the
+> alternatives Rafael and I were discussing was to expose that through
+> a
+> third cgroup clamp on top of the MIN and MAX utilization clamps, but
+> I'm open to any other possibilities regarding what the interface
+> should look like.  Either way the current (scheduling-unaware) PM
+> QoS-based interface should provide most of the benefit except in
+> heavily multitasking environments.
+> 
+> A branch with this series in testable form can be found here [2],
+> based on linux-next from a few days ago.  Another important
+> difference
+> with respect to my previous revision is that the present one targets
+> HWP systems (though for the moment it's only enabled by default on
+> ICL, even though that can be overridden through the kernel command
+> line).  I have WIP code that uses the same governor in order to
+> provide a similar benefit on non-HWP systems (like my previous
+> revision), which can be found in this branch for reference [3] -- I'm
+> planning to finish that up and send it as follow-up to this series
+> assuming people are happy with the overall approach.
+> 
+> Thanks in advance for any review feed-back and test reports.
+> 
+> [PATCH 01/10] PM: QoS: Add CPU_RESPONSE_FREQUENCY global PM QoS
+> limit.
+> [PATCH 02/10] drm/i915: Adjust PM QoS response frequency based on GPU
+> load.
+> [PATCH 03/10] OPTIONAL: drm/i915: Expose PM QoS control parameters
+> via debugfs.
+> [PATCH 04/10] Revert "cpufreq: intel_pstate: Drop ->update_util from
+> pstate_funcs"
+> [PATCH 05/10] cpufreq: intel_pstate: Implement VLP controller
+> statistics and status calculation.
+> [PATCH 06/10] cpufreq: intel_pstate: Implement VLP controller target
+> P-state range estimation.
+> [PATCH 07/10] cpufreq: intel_pstate: Implement VLP controller for HWP
+> parts.
+> [PATCH 08/10] cpufreq: intel_pstate: Enable VLP controller based on
+> ACPI FADT profile and CPUID.
+> [PATCH 09/10] OPTIONAL: cpufreq: intel_pstate: Add tracing of VLP
+> controller status.
+> [PATCH 10/10] OPTIONAL: cpufreq: intel_pstate: Expose VLP controller
+> parameters via debugfs.
+> 
+> [1] https://marc.info/?l=linux-pm&m=152221943320908&w=2
+> [2] 
+> https://github.com/curro/linux/commits/intel_pstate-vlp-v2-hwp-only
+> [3] https://github.com/curro/linux/commits/intel_pstate-vlp-v2
+> [4] 
+> http://people.freedesktop.org/~currojerez/intel_pstate-vlp-v2/benchmark-comparison-ICL.log
+> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
