@@ -1,31 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07EE018F3CA
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 12:37:01 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8087C18F3D4
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 12:38:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E19A89F99;
-	Mon, 23 Mar 2020 11:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB5D689FBC;
+	Mon, 23 Mar 2020 11:38:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E5CB89FA9;
- Mon, 23 Mar 2020 11:36:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 94EC6A432F;
- Mon, 23 Mar 2020 11:36:57 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F94C89FBC
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 11:38:14 +0000 (UTC)
+IronPort-SDR: JPqzBoWNKCESRhUQ0dyyd5TbqIMmNBC1q2jZFQYDLOFGnkFxzCdUQDO2XJdchXP4Q2Gfu7krx2
+ JnAbLKxF5sqA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 04:38:12 -0700
+IronPort-SDR: MWH/OJgE+N3gMRWNL5WvYvsZh1afB6n3QwAFmBL02R7QBLoRm+OYJY9xggpFj1ryXTII0QM6hQ
+ axpOPc4n1UYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="249584041"
+Received: from enamer-mobl1.ger.corp.intel.com (HELO
+ mwahaha-bdw.ger.corp.intel.com) ([10.251.181.156])
+ by orsmga006.jf.intel.com with ESMTP; 23 Mar 2020 04:38:10 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Mar 2020 11:38:09 +0000
+Message-Id: <20200323113809.41452-1-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Mon, 23 Mar 2020 11:36:57 -0000
-Message-ID: <158496341757.9809.15821395605973062869@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200323071313.5858-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200323071313.5858-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgaTkx?=
- =?utf-8?q?5_lpsp_support_for_lpsp_igt_=28rev3=29?=
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: add some vma_sync
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,86 +45,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The subtest shrink_boom was added as a regression test for some missing
+refcounting on the paging structures, however since the binding is
+potentially async, setting the vm->fault_attr might apply to the purge
+vma, and not the intended explode vma. Also it looks like it might also
+be possible to hit some weird shrinker deadlock where the unbinding of
+one vma allocates memory by flushing and waiting for its
+still-pending-bind operation while holding vm->mutex, which will always
+lands back in the shrinker since we set vm->fault_attr for the selftest.
 
-Series: i915 lpsp support for lpsp igt (rev3)
-URL   : https://patchwork.freedesktop.org/series/74648/
-State : success
+References: https://gitlab.freedesktop.org/drm/intel/issues/1493
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index b342bef5e7c9..029406a2a0b3 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -951,6 +951,8 @@ static int shrink_boom(struct i915_address_space *vm,
+ 		if (err)
+ 			goto err_purge;
+ 
++		i915_vma_sync(vma);
++
+ 		/* Should now be ripe for purging */
+ 		i915_vma_unpin(vma);
+ 
+@@ -974,6 +976,8 @@ static int shrink_boom(struct i915_address_space *vm,
+ 		if (err)
+ 			goto err_explode;
+ 
++		i915_vma_sync(vma);
++
+ 		i915_vma_unpin(vma);
+ 
+ 		i915_gem_object_put(purge);
+-- 
+2.20.1
 
-CI Bug Log - changes from CI_DRM_8175 -> Patchwork_17049
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17049/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17049 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-8809g:       [PASS][1] -> [SKIP][2] ([fdo#109271])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8175/fi-kbl-8809g/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17049/fi-kbl-8809g/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([i915#217])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8175/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17049/fi-icl-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#217]: https://gitlab.freedesktop.org/drm/intel/issues/217
-
-
-Participating hosts (47 -> 42)
-------------------------------
-
-  Missing    (5): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * IGT: IGT_5527 -> IGTPW_4338
-  * Linux: CI_DRM_8175 -> Patchwork_17049
-
-  CI-20190529: 20190529
-  CI_DRM_8175: 75b2b15f2ab26f5373a13ece8e5d40b472333d0e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_4338: https://intel-gfx-ci.01.org/tree/drm-tip/IGTPW_4338/index.html
-  IGT_5527: 0ab05a51a059645d2e12e553a1de1d97451f57c5 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17049: 870cab0334d9bfcb979622504bb1fa545ff2cda8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-870cab0334d9 drm/i915: Add connector dbgfs for all connectors
-6711ab7084cf drm/i915: Add i915_lpsp_info debugfs
-bf39cdd33479 drm/i915: Power well id for ICL PG3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17049/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
