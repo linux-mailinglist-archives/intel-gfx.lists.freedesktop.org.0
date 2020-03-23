@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3EF18F2EE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 11:37:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC64C18F2F2
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 11:38:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14CA389EAC;
-	Mon, 23 Mar 2020 10:37:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2707389DBF;
+	Mon, 23 Mar 2020 10:38:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00CB889F49
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 10:37:26 +0000 (UTC)
-IronPort-SDR: teMCIp61gy3bcAS8D+btyqYPuJEYtHdnH79jfBudnuEpxI6ogUb4m7/TBjwGtpgIKG3MPBgwMJ
- c4dgePN76Tfg==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCE0D89DBF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 10:38:09 +0000 (UTC)
+IronPort-SDR: V70gRFqdpvdRxs8zBOIZqMvvza+VGkogEjxkpeZPooy5lC3I1DEYqCkQg8BcX2obAAwK2L+YcQ
+ dEVoxlEXg5+g==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2020 03:37:25 -0700
-IronPort-SDR: hSEOXkMPMHwbKFo2guY0FesxFbOb1qh3/8hPVaVeOJM05IASREoToZ1AYEGXfELM5Lz005x1Hg
- EJCttWJOWsfA==
-X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="419458850"
+ 23 Mar 2020 03:38:09 -0700
+IronPort-SDR: ZDy3Jm/YQ3axq6dISvhGn9QoQKHEYYWDGHcdKeg0NMlLDFywtDgKrM5eSTsn+qg75+/s0Bbe7h
+ gxvs2br8fkvA==
+X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="419459060"
 Received: from unknown (HELO [10.252.47.179]) ([10.252.47.179])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2020 03:37:24 -0700
+ 23 Mar 2020 03:38:08 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200323092841.22240-1-chris@chris-wilson.co.uk>
- <20200323092841.22240-7-chris@chris-wilson.co.uk>
+ <20200323092841.22240-8-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <ddf2b2b0-1a81-943c-21eb-b7a8595fa3c3@linux.intel.com>
-Date: Mon, 23 Mar 2020 10:37:22 +0000
+Message-ID: <9c23a5be-7baf-2196-e4ef-446caf9d709b@linux.intel.com>
+Date: Mon, 23 Mar 2020 10:38:06 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200323092841.22240-7-chris@chris-wilson.co.uk>
+In-Reply-To: <20200323092841.22240-8-chris@chris-wilson.co.uk>
 Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 7/8] drm/i915: Immediately execute the
- fenced work
+Subject: Re: [Intel-gfx] [PATCH 8/8] drm/i915/gem: Avoid gem_context->mutex
+ for simple vma lookup
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,100 +58,215 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 On 23/03/2020 09:28, Chris Wilson wrote:
-> If the caller allows and we do not have to wait for any signals,
-> immediately execute the work within the caller's process. By doing so we
-> avoid the overhead of scheduling a new task, and the latency in
-> executing it, at the cost of pulling that work back into the immediate
-> context. (Sometimes we still prefer to offload the task to another cpu,
-> especially if we plan on executing many such tasks in parallel for this
-> client.)
+> As we store the handle lookup inside a radix tree, we do not need the
+> gem_context->mutex except until we need to insert our lookup into the
+> common radix tree. This takes a small bit of rearranging to ensure that
+> the lut we insert into the tree is ready prior to actually inserting it
+> (as soon as it is exposed via the radixtree, it is visible to any other
+> submission).
+> 
+> v2: For brownie points, remove the goto spaghetti.
+> v3: Tighten up the closed-handle checks.
 > 
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > ---
->   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  2 +-
->   drivers/gpu/drm/i915/i915_sw_fence_work.c      |  5 ++++-
->   drivers/gpu/drm/i915/i915_sw_fence_work.h      | 12 ++++++++++++
->   drivers/gpu/drm/i915/i915_vma.c                |  2 +-
->   4 files changed, 18 insertions(+), 3 deletions(-)
+>   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 136 +++++++++++-------
+>   1 file changed, 87 insertions(+), 49 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index c2bd5accde0c..e80c6f613feb 100644
+> index e80c6f613feb..c643eec4dca0 100644
 > --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 > +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1784,7 +1784,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->   	dma_resv_add_excl_fence(shadow->resv, &pw->base.dma);
->   	dma_resv_unlock(shadow->resv);
+> @@ -481,7 +481,7 @@ eb_add_vma(struct i915_execbuffer *eb,
 >   
-> -	dma_fence_work_commit(&pw->base);
-> +	dma_fence_work_commit_imm(&pw->base);
+>   	GEM_BUG_ON(i915_vma_is_closed(vma));
+>   
+> -	ev->vma = i915_vma_get(vma);
+> +	ev->vma = vma;
+>   	ev->exec = entry;
+>   	ev->flags = entry->flags;
+>   
+> @@ -728,77 +728,117 @@ static int eb_select_context(struct i915_execbuffer *eb)
 >   	return 0;
->   
->   err_batch_unlock:
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> index 997b2998f1f2..a3a81bb8f2c3 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> @@ -38,7 +38,10 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->   
->   		if (!f->dma.error) {
->   			dma_fence_get(&f->dma);
-> -			queue_work(system_unbound_wq, &f->work);
-> +			if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
-> +				fence_work(&f->work);
-> +			else
-> +				queue_work(system_unbound_wq, &f->work);
->   		} else {
->   			fence_complete(f);
->   		}
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> index 3a22b287e201..0719d661dc9c 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> @@ -32,6 +32,10 @@ struct dma_fence_work {
->   	const struct dma_fence_work_ops *ops;
->   };
->   
-> +enum {
-> +	DMA_FENCE_WORK_IMM = DMA_FENCE_FLAG_USER_BITS,
-> +};
-> +
->   void dma_fence_work_init(struct dma_fence_work *f,
->   			 const struct dma_fence_work_ops *ops);
->   int dma_fence_work_chain(struct dma_fence_work *f, struct dma_fence *signal);
-> @@ -41,4 +45,12 @@ static inline void dma_fence_work_commit(struct dma_fence_work *f)
->   	i915_sw_fence_commit(&f->chain);
 >   }
 >   
-> +static inline void dma_fence_work_commit_imm(struct dma_fence_work *f)
-> +{
-> +	if (atomic_read(&f->chain.pending) <= 1)
-> +		__set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
+> -static int eb_lookup_vmas(struct i915_execbuffer *eb)
+> +static int __eb_add_lut(struct i915_execbuffer *eb,
+> +			u32 handle, struct i915_vma *vma)
+>   {
+> -	struct radix_tree_root *handles_vma = &eb->gem_context->handles_vma;
+> -	struct drm_i915_gem_object *obj;
+> -	unsigned int i, batch;
+> +	struct i915_gem_context *ctx = eb->gem_context;
+> +	struct i915_lut_handle *lut;
+>   	int err;
+>   
+> -	if (unlikely(i915_gem_context_is_closed(eb->gem_context)))
+> -		return -ENOENT;
+> +	lut = i915_lut_handle_alloc();
+> +	if (unlikely(!lut))
+> +		return -ENOMEM;
+>   
+> -	INIT_LIST_HEAD(&eb->relocs);
+> -	INIT_LIST_HEAD(&eb->unbound);
+> +	i915_vma_get(vma);
+> +	if (!atomic_fetch_inc(&vma->open_count))
+> +		i915_vma_reopen(vma);
+> +	lut->handle = handle;
+> +	lut->ctx = ctx;
 > +
+> +	/* Check that the context hasn't been closed in the meantime */
+> +	err = -EINTR;
+> +	if (!mutex_lock_interruptible(&ctx->mutex)) {
+> +		err = -ENOENT;
+> +		if (likely(!i915_gem_context_is_closed(ctx)))
+> +			err = radix_tree_insert(&ctx->handles_vma, handle, vma);
+> +		if (err == 0) { /* And nor has this handle */
+> +			struct drm_i915_gem_object *obj = vma->obj;
+> +
+> +			i915_gem_object_lock(obj);
+> +			if (idr_find(&eb->file->object_idr, handle) == obj) {
+> +				list_add(&lut->obj_link, &obj->lut_list);
+> +			} else {
+> +				radix_tree_delete(&ctx->handles_vma, handle);
+> +				err = -ENOENT;
+> +			}
+> +			i915_gem_object_unlock(obj);
+> +		}
+> +		mutex_unlock(&ctx->mutex);
+> +	}
+> +	if (unlikely(err))
+> +		goto err;
+>   
+> -	batch = eb_batch_index(eb);
+> +	return 0;
+>   
+> -	for (i = 0; i < eb->buffer_count; i++) {
+> -		u32 handle = eb->exec[i].handle;
+> -		struct i915_lut_handle *lut;
+> +err:
+> +	atomic_dec(&vma->open_count);
+> +	i915_vma_put(vma);
+> +	i915_lut_handle_free(lut);
+> +	return err;
+> +}
+> +
+> +static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+> +{
+> +	do {
+> +		struct drm_i915_gem_object *obj;
+>   		struct i915_vma *vma;
+> +		int err;
+>   
+> -		vma = radix_tree_lookup(handles_vma, handle);
+> +		rcu_read_lock();
+> +		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
+> +		if (likely(vma))
+> +			vma = i915_vma_tryget(vma);
+> +		rcu_read_unlock();
+>   		if (likely(vma))
+> -			goto add_vma;
+> +			return vma;
+>   
+>   		obj = i915_gem_object_lookup(eb->file, handle);
+> -		if (unlikely(!obj)) {
+> -			err = -ENOENT;
+> -			goto err_vma;
+> -		}
+> +		if (unlikely(!obj))
+> +			return ERR_PTR(-ENOENT);
+>   
+>   		vma = i915_vma_instance(obj, eb->context->vm, NULL);
+>   		if (IS_ERR(vma)) {
+> -			err = PTR_ERR(vma);
+> -			goto err_obj;
+> +			i915_gem_object_put(obj);
+> +			return vma;
+>   		}
+>   
+> -		lut = i915_lut_handle_alloc();
+> -		if (unlikely(!lut)) {
+> -			err = -ENOMEM;
+> -			goto err_obj;
+> -		}
+> +		err = __eb_add_lut(eb, handle, vma);
+> +		if (likely(!err))
+> +			return vma;
+>   
+> -		err = radix_tree_insert(handles_vma, handle, vma);
+> -		if (unlikely(err)) {
+> -			i915_lut_handle_free(lut);
+> -			goto err_obj;
+> -		}
+> +		i915_gem_object_put(obj);
+> +		if (err != -EEXIST)
+> +			return ERR_PTR(err);
+> +	} while (1);
+> +}
+>   
+> -		/* transfer ref to lut */
+> -		if (!atomic_fetch_inc(&vma->open_count))
+> -			i915_vma_reopen(vma);
+> -		lut->handle = handle;
+> -		lut->ctx = eb->gem_context;
+> +static int eb_lookup_vmas(struct i915_execbuffer *eb)
+> +{
+> +	unsigned int batch = eb_batch_index(eb);
+> +	unsigned int i;
+> +	int err = 0;
+>   
+> -		i915_gem_object_lock(obj);
+> -		list_add(&lut->obj_link, &obj->lut_list);
+> -		i915_gem_object_unlock(obj);
+> +	INIT_LIST_HEAD(&eb->relocs);
+> +	INIT_LIST_HEAD(&eb->unbound);
+> +
+> +	for (i = 0; i < eb->buffer_count; i++) {
+> +		struct i915_vma *vma;
+> +
+> +		vma = eb_lookup_vma(eb, eb->exec[i].handle);
+> +		if (IS_ERR(vma)) {
+> +			err = PTR_ERR(vma);
+> +			break;
+> +		}
+>   
+> -add_vma:
+>   		err = eb_validate_vma(eb, &eb->exec[i], vma);
+> -		if (unlikely(err))
+> -			goto err_vma;
+> +		if (unlikely(err)) {
+> +			i915_vma_put(vma);
+> +			break;
+> +		}
+>   
+>   		eb_add_vma(eb, i, batch, vma);
+>   	}
+>   
+> -	return 0;
+> -
+> -err_obj:
+> -	i915_gem_object_put(obj);
+> -err_vma:
+>   	eb->vma[i].vma = NULL;
+>   	return err;
+>   }
+> @@ -1494,9 +1534,7 @@ static int eb_relocate(struct i915_execbuffer *eb)
+>   {
+>   	int err;
+>   
+> -	mutex_lock(&eb->gem_context->mutex);
+>   	err = eb_lookup_vmas(eb);
+> -	mutex_unlock(&eb->gem_context->mutex);
+>   	if (err)
+>   		return err;
+>   
+> 
 
-What is someone bumps pending to 2 at this point?
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 
 Regards,
 
 Tvrtko
-
-> +	dma_fence_work_commit(f);
-> +}
-> +
->   #endif /* I915_SW_FENCE_WORK_H */
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 08699fa069aa..191577a98390 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -980,7 +980,7 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
->   	mutex_unlock(&vma->vm->mutex);
->   err_fence:
->   	if (work)
-> -		dma_fence_work_commit(&work->base);
-> +		dma_fence_work_commit_imm(&work->base);
->   	if (wakeref)
->   		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
->   err_pages:
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
