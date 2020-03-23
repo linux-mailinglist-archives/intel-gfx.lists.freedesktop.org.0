@@ -1,56 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECB318F754
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:50:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B52D18F747
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:50:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 753EA6E17B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30C096E16B;
 	Mon, 23 Mar 2020 14:50:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
  [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33B0E6E134
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:50:13 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id w10so17455297wrm.4
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:50:13 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A5C66E134
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:50:14 +0000 (UTC)
+Received: by mail-wr1-x444.google.com with SMTP id 65so735485wrl.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:50:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=RpBwJRU6QP8E4fA7oXBnbZ0R6iwlfd2Oj+Tujq20OWQ=;
- b=TwqTg/7Q0oQgHilrtFjCZKm9QjHrAz9GLoAMmoSzcpE7+su605PJQFjM9SmZEeHA0I
- EoaKb/tBlP4lkkRH0YuMHz5jK64SHGfQZCfLG4iOfVDSYvkIv27RnWzGvgkbkezhUgFN
- OPqKEuioQ3xLmZ04ihws5ydp8Yh4yGygGAOyM=
+ bh=C+qwRvOTQBprgCHFV2JnXoXJFc0YxzOIY1i5YWjQEZc=;
+ b=H2ZWKXjO2Tj1DCEiWPj33bKYe44uHab1I3CazyAjmsnoHzuObLpYvc6H5K1pHcRBUO
+ JWr8DgAimBADxVVDUrmk+kkeh8swqCNU9gDDC2LcwA1mekhRxmyo3XGQ30zPF1dbgVX2
+ 4/eKv1eOQ43hxDelasNaZg6ceRFUEbkqQsdPM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=RpBwJRU6QP8E4fA7oXBnbZ0R6iwlfd2Oj+Tujq20OWQ=;
- b=FpGUIQYlubHsN9xEAJZJfz+/MS5SDoiwlZVJMjGcVCBd1ZHvhA9HbUjkb2U9hBZz/D
- k68tQ6aLRWsTBhTnr3Ya6qYhBa+aCy9iF8NcItHnDTel4PZhUdZ/btx0DR4Uyt8sA2gk
- koQzo3H6A40SJ8CnPc8vh8dyxXEnO0WP50dZ7sZD08sc+TOaUY76+vW44sI85/YXeQHu
- iRxo72mt9DKzncZBdXNAxMqCRXJttFN8WM124yfrkfOCLFQuH4jZGke/zmgtg01ssDzO
- hVDO9jMzm5IqV3iyFZyhood3Obfc54yMalXO4kjA0Dl9yoCqT0fXv1kssyjtpwWp/CAi
- 35ow==
-X-Gm-Message-State: ANhLgQ0UiAfCQ1XXLywUmgoGv+sihYFjN7eFS4IIHWoPyzjisOwnA/CE
- 39ARM295OY5y5oYKgFjUpDRrXQ==
-X-Google-Smtp-Source: ADFU+vsLPXJgPUr3JUO+m1Ia1/iH4z4tr0EACEWi8dIu1/kNvXqjA3mlmxX1XKJGoiczZLRV4hJLIA==
-X-Received: by 2002:a5d:540c:: with SMTP id g12mr25688626wrv.178.1584975011884; 
- Mon, 23 Mar 2020 07:50:11 -0700 (PDT)
+ bh=C+qwRvOTQBprgCHFV2JnXoXJFc0YxzOIY1i5YWjQEZc=;
+ b=BxctoKuQQt3Dwof26yJOy2sFtOtEkATjkoCoiyahDHnsnI0+8Wj+/YTb/xpIKzXEpK
+ e9dHMqME75jGXmBXU+mjJLfsl3h1/i4/W43O5Iz5mzaSF+JPIAV3Geyd7SXUa9DazD+p
+ M9HheX1fJVwghUeFI6B8y1cjjOFVP1k0Rp34a0Xd6k/7zkqF8713L5ih26BESnDn3F3z
+ 7uzu+WM4NfSXGCH2FcdqeV2EKhjp/seHlDGixML/b0Hd2mEBGex6QiJnulCfpaU+YQA9
+ p0dpj1X+b8iT7+q6XBfHR0ok0EmWcoKGiq78FL30yNk44265X0wP8QtJvml0WFuZTicv
+ PQYg==
+X-Gm-Message-State: ANhLgQ0WdcbR2O05QsNe8vfx7zF+jq2wvnyTDbopT2AQQYzOC1mxuq/E
+ DgZgGbg4gD9PpxmW0sB+vJp51w==
+X-Google-Smtp-Source: ADFU+vsvxEsTudZYlp5vYiZPLnCBxrD3E9RTP/SRzPMB1ubm/i9BFERXxRdVaZBH/7Nx4KwiBVwX1A==
+X-Received: by 2002:a05:6000:189:: with SMTP id
+ p9mr30469632wrx.391.1584975013150; 
+ Mon, 23 Mar 2020 07:50:13 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s22sm20376522wmc.16.2020.03.23.07.50.10
+ by smtp.gmail.com with ESMTPSA id s22sm20376522wmc.16.2020.03.23.07.50.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Mar 2020 07:50:11 -0700 (PDT)
+ Mon, 23 Mar 2020 07:50:12 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 23 Mar 2020 15:49:10 +0100
-Message-Id: <20200323144950.3018436-12-daniel.vetter@ffwll.ch>
+Date: Mon, 23 Mar 2020 15:49:11 +0100
+Message-Id: <20200323144950.3018436-13-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
 References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 11/51] drm/tidss: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH 12/51] drm/mcde: Use drmm_add_final_kfree
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,7 +66,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Tomi Valkeinen <tomi.valkeinen@ti.com>, Jyri Sarha <jsarha@ti.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
  Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
@@ -74,43 +75,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 With this we can drop the final kfree from the release function.
 
-Acked-by: Jyri Sarha <jsarha@ti.com>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Jyri Sarha <jsarha@ti.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/gpu/drm/tidss/tidss_drv.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/mcde/mcde_drv.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
-index d95e4be2c7b9..32a85628dbec 100644
---- a/drivers/gpu/drm/tidss/tidss_drv.c
-+++ b/drivers/gpu/drm/tidss/tidss_drv.c
-@@ -17,6 +17,7 @@
- #include <drm/drm_fb_helper.h>
+diff --git a/drivers/gpu/drm/mcde/mcde_drv.c b/drivers/gpu/drm/mcde/mcde_drv.c
+index f28cb7a576ba..7474481503a1 100644
+--- a/drivers/gpu/drm/mcde/mcde_drv.c
++++ b/drivers/gpu/drm/mcde/mcde_drv.c
+@@ -72,6 +72,7 @@
+ #include <drm/drm_gem.h>
  #include <drm/drm_gem_cma_helper.h>
- #include <drm/drm_irq.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
 +#include <drm/drm_managed.h>
+ #include <drm/drm_of.h>
  #include <drm/drm_probe_helper.h>
+ #include <drm/drm_panel.h>
+@@ -223,7 +224,6 @@ static void mcde_release(struct drm_device *drm)
  
- #include "tidss_dispc.h"
-@@ -109,8 +110,6 @@ static void tidss_release(struct drm_device *ddev)
- 	tidss_modeset_cleanup(tidss);
- 
- 	drm_dev_fini(ddev);
--
--	kfree(tidss);
+ 	drm_mode_config_cleanup(drm);
+ 	drm_dev_fini(drm);
+-	kfree(mcde);
  }
  
- DEFINE_DRM_GEM_CMA_FOPS(tidss_fops);
-@@ -154,6 +153,7 @@ static int tidss_probe(struct platform_device *pdev)
- 		kfree(ddev);
- 		return ret;
+ DEFINE_DRM_GEM_CMA_FOPS(drm_fops);
+@@ -330,6 +330,7 @@ static int mcde_probe(struct platform_device *pdev)
  	}
-+	drmm_add_final_kfree(ddev, tidss);
+ 	drm = &mcde->drm;
+ 	drm->dev_private = mcde;
++	drmm_add_final_kfree(drm, mcde);
+ 	platform_set_drvdata(pdev, drm);
  
- 	tidss->dev = dev;
- 	tidss->feat = of_device_get_match_data(dev);
+ 	/* Enable continuous updates: this is what Linux' framebuffer expects */
 -- 
 2.25.1
 
