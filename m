@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B02918F1CD
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 10:29:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67DF818F1CE
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 10:29:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF89489DB5;
-	Mon, 23 Mar 2020 09:29:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9851589E9B;
+	Mon, 23 Mar 2020 09:29:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 378D4893C0
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 09:29:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 848D7893EB
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 09:29:20 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20657885-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20657886-1500050 
  for multiple; Mon, 23 Mar 2020 09:28:43 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Mar 2020 09:28:39 +0000
-Message-Id: <20200323092841.22240-6-chris@chris-wilson.co.uk>
+Date: Mon, 23 Mar 2020 09:28:40 +0000
+Message-Id: <20200323092841.22240-7-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200323092841.22240-1-chris@chris-wilson.co.uk>
 References: <20200323092841.22240-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 6/8] drm/i915/execlists: Pull tasklet
- interrupt-bh local to direct submission
+Subject: [Intel-gfx] [PATCH 7/8] drm/i915: Immediately execute the fenced
+ work
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,35 +44,92 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We dropped calling process_csb prior to handling direct submission in
-order to avoid the nesting of spinlocks and lift process_csb() and the
-majority of the tasklet out of irq-off. However, we do want to avoid
-ksoftirqd latency in the fast path, so try and pull the interrupt-bh
-local to direct submission if we can acquire the tasklet's lock.
+If the caller allows and we do not have to wait for any signals,
+immediately execute the work within the caller's process. By doing so we
+avoid the overhead of scheduling a new task, and the latency in
+executing it, at the cost of pulling that work back into the immediate
+context. (Sometimes we still prefer to offload the task to another cpu,
+especially if we plan on executing many such tasks in parallel for this
+client.)
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c |  2 +-
+ drivers/gpu/drm/i915/i915_sw_fence_work.c      |  5 ++++-
+ drivers/gpu/drm/i915/i915_sw_fence_work.h      | 12 ++++++++++++
+ drivers/gpu/drm/i915/i915_vma.c                |  2 +-
+ 4 files changed, 18 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 210f60e14ef4..82dee2141b46 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2891,6 +2891,12 @@ static void __submit_queue_imm(struct intel_engine_cs *engine)
- 	if (reset_in_progress(execlists))
- 		return; /* defer until we restart the engine following reset */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index c2bd5accde0c..e80c6f613feb 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1784,7 +1784,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
+ 	dma_resv_add_excl_fence(shadow->resv, &pw->base.dma);
+ 	dma_resv_unlock(shadow->resv);
  
-+	/* Hopefully we clear execlists->pending[] to let us through */
-+	if (execlists->pending[0] && tasklet_trylock(&execlists->tasklet)) {
-+		process_csb(engine);
-+		tasklet_unlock(&execlists->tasklet);
-+	}
+-	dma_fence_work_commit(&pw->base);
++	dma_fence_work_commit_imm(&pw->base);
+ 	return 0;
+ 
+ err_batch_unlock:
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+index 997b2998f1f2..a3a81bb8f2c3 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
++++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
+@@ -38,7 +38,10 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
+ 
+ 		if (!f->dma.error) {
+ 			dma_fence_get(&f->dma);
+-			queue_work(system_unbound_wq, &f->work);
++			if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
++				fence_work(&f->work);
++			else
++				queue_work(system_unbound_wq, &f->work);
+ 		} else {
+ 			fence_complete(f);
+ 		}
+diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
+index 3a22b287e201..0719d661dc9c 100644
+--- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
++++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
+@@ -32,6 +32,10 @@ struct dma_fence_work {
+ 	const struct dma_fence_work_ops *ops;
+ };
+ 
++enum {
++	DMA_FENCE_WORK_IMM = DMA_FENCE_FLAG_USER_BITS,
++};
 +
- 	__execlists_submission_tasklet(engine);
+ void dma_fence_work_init(struct dma_fence_work *f,
+ 			 const struct dma_fence_work_ops *ops);
+ int dma_fence_work_chain(struct dma_fence_work *f, struct dma_fence *signal);
+@@ -41,4 +45,12 @@ static inline void dma_fence_work_commit(struct dma_fence_work *f)
+ 	i915_sw_fence_commit(&f->chain);
  }
  
++static inline void dma_fence_work_commit_imm(struct dma_fence_work *f)
++{
++	if (atomic_read(&f->chain.pending) <= 1)
++		__set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
++
++	dma_fence_work_commit(f);
++}
++
+ #endif /* I915_SW_FENCE_WORK_H */
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 08699fa069aa..191577a98390 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -980,7 +980,7 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
+ 	mutex_unlock(&vma->vm->mutex);
+ err_fence:
+ 	if (work)
+-		dma_fence_work_commit(&work->base);
++		dma_fence_work_commit_imm(&work->base);
+ 	if (wakeref)
+ 		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
+ err_pages:
 -- 
 2.20.1
 
