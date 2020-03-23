@@ -1,55 +1,34 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB3BA18F211
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 10:43:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A16F18F21B
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 10:45:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 786C589E38;
-	Mon, 23 Mar 2020 09:43:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 38BD289EB7;
+	Mon, 23 Mar 2020 09:45:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com
- [IPv6:2a00:1450:4864:20::241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32EE589E38
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 09:43:56 +0000 (UTC)
-Received: by mail-lj1-x241.google.com with SMTP id 19so13729612ljj.7
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 02:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc:content-transfer-encoding;
- bh=60dWWarp+pfBMOw7TvgU8HHXAk7oJSyIiwUp6H5Vyl4=;
- b=bi51O9CzOBkq1+AGAtk9cmKFBiNklAMnud0fUNJZep5+UQkOBaC2l1cLvghx0AzEgU
- OLPAFLYCe7fbmhTypQDgWBPx43S+IKYSnBVcie5sdMx9kDKWLZ6BFzRAC8hZb57J35yu
- 0Twa5/z4aJ0HcqQvJVxAFjr7H3IB8aWOUI5eBpOIbQE+CnCWEUW8i5x5XXG7WyBGk3uG
- 2KR3kbPn52ROMqdogL/wuI/N0nwWlr+/qMS0JUt+4wNQqgivYUJ/dQ6lNrMbNjs3hzkT
- OpFgk+GjfC5AHsLaTQZyk6an9FrQDQhlb81BLTe+MMRMgybR7PDiF5cOBvc555/i7/qk
- zS/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc:content-transfer-encoding;
- bh=60dWWarp+pfBMOw7TvgU8HHXAk7oJSyIiwUp6H5Vyl4=;
- b=V5hZHP1Mhg/ezqizsE7IcnisFb/bWkE6oTrdYHZyFVjmykqhNJvc+8iZyuCiMbBV7D
- o08SNl0UHNzwGFGV5L2h/+aCl+NAvpOIk7X8IGoSY3Ge+FH6QiAYzLWgSECLBmeEC2+N
- cytds+3U7i1g/svfzOvbiMwhX8dEVPuUjR+m8vM0AY4LC+dsblOhFpk3UABy0QpKgUw3
- J0IWp+EdvYnZJyf65WBurVJiBSGeje3xbiCRYsNDLrOdM5GyHDN2H1pvBLS67UapRc8a
- zwTi0nzK2eBJDHkifosHP+VW0lQv3FubFghlSZcE35uvCaCf+XD7WlW72/SoWk5RoFwN
- bY8w==
-X-Gm-Message-State: ANhLgQ391fXYZHtYB1YInvMVmNrqjZcnFCogQ+K/W36ss3C4l7X34lOW
- SOPD9quelQawUzEfJgDAj0unrvsr50X5qUWqDkjmIw==
-X-Google-Smtp-Source: ADFU+vscL89oD4WGcphnIY+HhiTkAG2D5ATxY3kscl+j7O8ylsvDlGpoVhQDyBPKnxONJ1k/jhlnkwUEyE+BE7x3G24=
-X-Received: by 2002:a2e:95c3:: with SMTP id y3mr13190037ljh.149.1584956634426; 
- Mon, 23 Mar 2020 02:43:54 -0700 (PDT)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C4C89EB7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 09:45:42 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20658082-1500050 for multiple; Mon, 23 Mar 2020 09:45:38 +0000
 MIME-Version: 1.0
-References: <20200323092841.22240-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200323092841.22240-1-chris@chris-wilson.co.uk>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Mon, 23 Mar 2020 09:43:27 +0000
-Message-ID: <CAM0jSHOsW4ezV5M08mzs9Hs72qvg7MiTrG1rbrWVAGK17knJ_w@mail.gmail.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Subject: Re: [Intel-gfx] [PATCH 1/8] drm/i915/gt: Mark timeline->cacheline
- as destroyed after rcu grace period
+In-Reply-To: <87tv2i4qsk.fsf@riseup.net>
+References: <20200320130159.3922-2-chris@chris-wilson.co.uk>
+ <20200320174745.19995-1-chris@chris-wilson.co.uk> <871rpm6a9v.fsf@riseup.net>
+ <87tv2i4qsk.fsf@riseup.net>
+To: Francisco Jerez <currojerez@riseup.net>, intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158495673843.17851.11761890199116661145@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 23 Mar 2020 09:45:38 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Pull tasklet
+ interrupt-bh local to direct submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +41,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Mar 2020 at 09:29, Chris Wilson <chris@chris-wilson.co.uk> wrote:
->
-> Since we take advantage of RCU for some i915_active objects, like the
-> intel_timeline_cacheline, we need to delay the i915_active_fini until
-> after the RCU grace period and we perform the kfree -- that is until
-> after all RCU protected readers.
->
-> <3> [108.204873] ODEBUG: assert_init not available (active state 0) object type: i915_active hint: __cacheline_active+0x0/0x80 [i915]
-> <4> [108.207377] WARNING: CPU: 3 PID: 2342 at lib/debugobjects.c:488 debug_print_object+0x67/0x90
-> <4> [108.207400] Modules linked in: vgem snd_hda_codec_hdmi x86_pkg_temp_thermal coretemp crct10dif_pclmul crc32_pclmul snd_hda_intel ghash_clmulni_intel snd_intel_dspcfg snd_hda_codec ax88179_178a snd_hwdep usbnet btusb snd_hda_core btrtl mii btbcm btintel snd_pcm bluetooth ecdh_generic ecc i915 i2c_hid pinctrl_sunrisepoint pinctrl_intel intel_lpss_pci prime_numbers
-> <4> [108.207587] CPU: 3 PID: 2342 Comm: gem_exec_parall Tainted: G     U            5.6.0-rc6-CI-Patchwork_17047+ #1
-> <4> [108.207609] Hardware name: Google Soraka/Soraka, BIOS MrChromebox-4.10 08/25/2019
-> <4> [108.207639] RIP: 0010:debug_print_object+0x67/0x90
-> <4> [108.207668] Code: 83 c2 01 8b 4b 14 4c 8b 45 00 89 15 87 d2 8a 02 8b 53 10 4c 89 e6 48 c7 c7 38 2b 32 82 48 8b 14 d5 80 2f 07 82 e8 49 d5 b7 ff <0f> 0b 5b 83 05 c3 f6 22 01 01 5d 41 5c c3 83 05 b8 f6 22 01 01 c3
-> <4> [108.207692] RSP: 0018:ffffc90000e7f890 EFLAGS: 00010282
-> <4> [108.207723] RAX: 0000000000000000 RBX: ffffc90000e7f8b0 RCX: 0000000000000001
-> <4> [108.207747] RDX: 0000000080000001 RSI: ffff88817ada8cb8 RDI: 00000000ffffffff
-> <4> [108.207770] RBP: ffffffffa0341cc0 R08: ffff88816b5a8948 R09: 0000000000000000
-> <4> [108.207792] R10: 0000000000000000 R11: 0000000000000000 R12: ffffffff82322d54
-> <4> [108.207814] R13: ffffffffa0341cc0 R14: ffffffff83df9568 R15: ffff88816064f400
-> <4> [108.207839] FS:  00007f437d753700(0000) GS:ffff88817ad80000(0000) knlGS:0000000000000000
-> <4> [108.207863] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> <4> [108.207887] CR2: 00007f2ad1fb5000 CR3: 00000001725d8004 CR4: 00000000003606e0
-> <4> [108.207907] Call Trace:
-> <4> [108.207959]  debug_object_assert_init+0x15c/0x180
-> <4> [108.208475]  ? i915_active_acquire_if_busy+0x10/0x50 [i915]
-> <4> [108.208513]  ? rcu_read_lock_held+0x4d/0x60
-> <4> [108.208970]  i915_active_acquire_if_busy+0x10/0x50 [i915]
-> <4> [108.209380]  intel_timeline_read_hwsp+0x81/0x540 [i915]
-> <4> [108.210262]  __emit_semaphore_wait+0x45/0x1b0 [i915]
-> <4> [108.210726]  ? i915_request_await_dma_fence+0x143/0x560 [i915]
-> <4> [108.211156]  i915_request_await_dma_fence+0x28a/0x560 [i915]
-> <4> [108.211633]  i915_request_await_object+0x24a/0x3f0 [i915]
-> <4> [108.212102]  eb_submit.isra.47+0x58f/0x920 [i915]
-> <4> [108.212622]  i915_gem_do_execbuffer+0x1706/0x2c70 [i915]
-> <4> [108.213071]  ? i915_gem_execbuffer2_ioctl+0xc0/0x470 [i915]
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Quoting Francisco Jerez (2020-03-20 22:14:51)
+> Francisco Jerez <currojerez@riseup.net> writes:
+> 
+> > Chris Wilson <chris@chris-wilson.co.uk> writes:
+> >
+> >> We dropped calling process_csb prior to handling direct submission in
+> >> order to avoid the nesting of spinlocks and lift process_csb() and the
+> >> majority of the tasklet out of irq-off. However, we do want to avoid
+> >> ksoftirqd latency in the fast path, so try and pull the interrupt-bh
+> >> local to direct submission if we can acquire the tasklet's lock.
+> >>
+> >> v2: Tweak the balance to avoid over submitting lite-restores
+> >>
+> >> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> >> Cc: Francisco Jerez <currojerez@riseup.net>
+> >> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/gt/intel_lrc.c    | 44 ++++++++++++++++++++------
+> >>  drivers/gpu/drm/i915/gt/selftest_lrc.c |  2 +-
+> >>  2 files changed, 36 insertions(+), 10 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> index f09dd87324b9..dceb65a0088f 100644
+> >> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> >> @@ -2884,17 +2884,17 @@ static void queue_request(struct intel_engine_cs *engine,
+> >>      set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+> >>  }
+> >>  
+> >> -static void __submit_queue_imm(struct intel_engine_cs *engine)
+> >> +static bool pending_csb(const struct intel_engine_execlists *el)
+> >>  {
+> >> -    struct intel_engine_execlists * const execlists = &engine->execlists;
+> >> +    return READ_ONCE(*el->csb_write) != READ_ONCE(el->csb_head);
+> >> +}
+> >>  
+> >> -    if (reset_in_progress(execlists))
+> >> -            return; /* defer until we restart the engine following reset */
+> >> +static bool skip_lite_restore(struct intel_engine_execlists *el,
+> >> +                          const struct i915_request *rq)
+> >> +{
+> >> +    struct i915_request *inflight = execlists_active(el);
+> >>  
+> >> -    if (execlists->tasklet.func == execlists_submission_tasklet)
+> >> -            __execlists_submission_tasklet(engine);
+> >> -    else
+> >> -            tasklet_hi_schedule(&execlists->tasklet);
+> >> +    return inflight && inflight->context == rq->context;
+> >>  }
+> >>  
+> >>  static void submit_queue(struct intel_engine_cs *engine,
+> >> @@ -2905,8 +2905,34 @@ static void submit_queue(struct intel_engine_cs *engine,
+> >>      if (rq_prio(rq) <= execlists->queue_priority_hint)
+> >>              return;
+> >>  
+> >> +    if (reset_in_progress(execlists))
+> >> +            return; /* defer until we restart the engine following reset */
+> >> +
+> >> +    /*
+> >> +     * Suppress immediate lite-restores, leave that to the tasklet.
+> >> +     *
+> >> +     * However, we leave the queue_priority_hint unset so that if we do
+> >> +     * submit a second context, we push that into ELSP[1] immediately.
+> >> +     */
+> >> +    if (skip_lite_restore(execlists, rq))
+> >> +            return;
+> >> +
+> > Why do you need to treat lite-restore specially here?
+
+Lite-restore have a noticeable impact on no-op loads. A part of that is
+that a lite-restore is about 1us, and the other part is that the driver
+has a lot more work to do. There's a balance point around here for not
+needlessly interrupting ourselves and ensuring that there is no bubble.
+
+> >
+> > Anyway, trying this out now in combination with my patches now.
+> >
+> 
+> This didn't seem to help (together with your other suggestion to move
+> the overload accounting to __execlists_schedule_in/out).  And it makes
+> the current -5% SynMark OglMultithread regression with my series go down
+> to -10%.  My previous suggestion of moving the
+> intel_gt_pm_active_begin() call to process_csb() when the submission is
+> ACK'ed by the hardware does seem to help (and it roughly halves the
+> OglMultithread regression), possibly because that way we're able to
+> determine whether the first context was actually overlapping at the
+> point that the second was received by the hardware -- I haven't tested
+> it extensively yet though.
+
+Grumble, it just seems like we are setting and clearing the flag on
+completely unrelated events -- which I still think boils down to working
+around latency in the driver. Or at least I hope there's an explanation
+and bug to fix that improves responsiveness for all.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
