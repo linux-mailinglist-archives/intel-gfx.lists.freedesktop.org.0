@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEADA18F77B
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:51:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F6E18F77D
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:51:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8370B6E1F6;
-	Mon, 23 Mar 2020 14:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 422496E20B;
+	Mon, 23 Mar 2020 14:50:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com
  [IPv6:2a00:1450:4864:20::441])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24E2D6E1E5
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:50:36 +0000 (UTC)
-Received: by mail-wr1-x441.google.com with SMTP id a25so17466581wrd.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:50:36 -0700 (PDT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0836E209
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:50:37 +0000 (UTC)
+Received: by mail-wr1-x441.google.com with SMTP id h9so17430673wrc.8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
  h=from:to:cc:subject:date:message-id:in-reply-to:references
  :mime-version:content-transfer-encoding;
- bh=LAjebl4oWZaUB8QZzuBxoe0BijHChGG74W9NC4lYj9o=;
- b=CVeI7CglOpk53Jbu38NSc5uumtnfqmjVARZSklkRPF9jGiPcZBFKmFw0qeFcIk6rIn
- aumqOns6etxQVMNZVlkDNM74KkhGL2yZZwcOIxGzMUxMO0om1GgYiD96g8Oz6ywgXRQ6
- 0GLsxTUeozX3N6M7OzW9iRGnz+S4ZIe8o7SGU=
+ bh=atkH2g488R1CB16DuIUv15OUWez2VfrV7sgc1phFlME=;
+ b=SGvCAMB98FzZ1pEOk8bLX89/7AUjmGgznzwANqTHzGZBd6Uj7gXTwmK8bvofbZbHyx
+ FDy6NQ2tzfsubGxaexzHc0bZK5jM3j13LdSmbUApdq1RmkIYtXBYTBFWvyIuKXe4REOz
+ jFdNYkYG5ZNj05NvZdw5WobkJGk+UMw1vh0l4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
  :references:mime-version:content-transfer-encoding;
- bh=LAjebl4oWZaUB8QZzuBxoe0BijHChGG74W9NC4lYj9o=;
- b=UM6Ho8PUjRG24B5k3nbGFLm13LufldQrBL/4UqvlFBwbOTQdwZszS3LleRyb8bM8Xw
- NqcCYLss5qLFMsyGiDkBobA+V0krw/GOVG6ZNrNYBfrXUtVKYGxDsF3DqdBm4ITMt4KO
- 0a/vh58NAiFymkJMxXgM2XcJcwpST3XYfDWI7IXBr9OiFUcDmuAzE1ojNkmSGxcs3Jzc
- JtTq6AIL/w3T0mAf+r40R8s+kICPNx5Yt18brf0ptdBdYAxMZ6oWEypbEqBw2+mc/lTh
- WNIpoLw3W7ferwM2X8UE11LfH7CPw005d229OLlY2y3J2RcRhWs3iGCKYXKBUxc99jv9
- fseA==
-X-Gm-Message-State: ANhLgQ0LE4s251C0y90kNFuKA/XAYMSYJNGuahL1NQ/fP5thmj4Unmu8
- mvHognjBRAYBrY5rHgkpwDIx8w==
-X-Google-Smtp-Source: ADFU+vtQnwT2wHSXNP++KtM4pfXVMK4X4lkQuFKGlbfP+S8m32dR2YQ7Q8a/bYaKVJvmqSX7TubKwQ==
-X-Received: by 2002:adf:f2c7:: with SMTP id d7mr919892wrp.184.1584975034846;
- Mon, 23 Mar 2020 07:50:34 -0700 (PDT)
+ bh=atkH2g488R1CB16DuIUv15OUWez2VfrV7sgc1phFlME=;
+ b=mUPhnPsBeA09HxMDCizTc/kwnIuYauA4trMIPP5Xf4UUuPQPv4xOaFDbp8O6kzIOf0
+ 9LVIPjXYSawC6FygM2pmjaFfvejHAzDKiPHuFsBHBgbF5Wm7mS7rfN0zcBi3Y/xEoJ9T
+ U2HoB4Xvs9zRL7qDylr4qWhZLat3T8CyFKe5PlWOeUllTiPrPfPQkvwcVWuAZ4K1x3kZ
+ 8fO3ZvSCmng63M17e3b4bAnWouHeDPve4+n5lsk9A5g8PazYM1TZ3fE2R2sBBOOhJ8pH
+ GUJHyMszJ9fT4KPkcJoycB3zvf1A6PQ3+x3q/J+vxXNhzw1gI1vNwHDDX7SjY+OdYbbC
+ mIMA==
+X-Gm-Message-State: ANhLgQ1tzmuyWjsVk9zm1I6N31vgexRc37xkzGKT79lU5E2L1J9UY3J/
+ HI9DVixxOa/5lfe6F+dzorUK2g==
+X-Google-Smtp-Source: ADFU+vt5gAk+l64lCZqn/dD1TA9Jzq4OBuX5u3M5SpSxpswWHeLlcPEUYEg93xJ5RfnFHao57jEnjg==
+X-Received: by 2002:adf:8385:: with SMTP id 5mr13374232wre.35.1584975036240;
+ Mon, 23 Mar 2020 07:50:36 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s22sm20376522wmc.16.2020.03.23.07.50.33
+ by smtp.gmail.com with ESMTPSA id s22sm20376522wmc.16.2020.03.23.07.50.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Mar 2020 07:50:34 -0700 (PDT)
+ Mon, 23 Mar 2020 07:50:35 -0700 (PDT)
 From: Daniel Vetter <daniel.vetter@ffwll.ch>
 To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 23 Mar 2020 15:49:27 +0100
-Message-Id: <20200323144950.3018436-29-daniel.vetter@ffwll.ch>
+Date: Mon, 23 Mar 2020 15:49:28 +0100
+Message-Id: <20200323144950.3018436-30-daniel.vetter@ffwll.ch>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
 References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 28/51] drm/bochs: Drop explicit
- drm_mode_config_cleanup
+Subject: [Intel-gfx] [PATCH 29/51] drm/cirrus: Drop explicit
+ drm_mode_config_cleanup call
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,120 +66,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
  Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- virtualization@lists.linux-foundation.org, Gerd Hoffmann <kraxel@redhat.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>,
+ virtualization@lists.linux-foundation.org,
+ =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
+ Gerd Hoffmann <kraxel@redhat.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Sam Ravnborg <sam@ravnborg.org>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead rely on the automatic clean, for which we just need to check
-that drm_mode_config_init succeeded. To avoid an inversion in the
-cleanup we also have to move the dev_private allocation over to
-drmm_kzalloc.
-
-This is made possible by a preceeding patch which added a drmm_
-cleanup action to drm_mode_config_init(), hence all we need to do to
-ensure that drm_mode_config_cleanup() is run on final drm_device
-cleanup is check the new error code for _init().
-
-v2: Explain why this cleanup is possible (Laurent).
-
-v3: Use drmm_mode_config_init() for more clarity (Sam, Thomas)
-
-Acked-by: Gerd Hoffmann <kraxel@redhat.com>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: virtualization@lists.linux-foundation.org
----
- drivers/gpu/drm/bochs/bochs.h     |  1 -
- drivers/gpu/drm/bochs/bochs_drv.c |  6 ++----
- drivers/gpu/drm/bochs/bochs_kms.c | 14 +++++---------
- 3 files changed, 7 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/bochs/bochs.h b/drivers/gpu/drm/bochs/bochs.h
-index 917767173ee6..e5bd1d517a18 100644
---- a/drivers/gpu/drm/bochs/bochs.h
-+++ b/drivers/gpu/drm/bochs/bochs.h
-@@ -92,7 +92,6 @@ void bochs_mm_fini(struct bochs_device *bochs);
- 
- /* bochs_kms.c */
- int bochs_kms_init(struct bochs_device *bochs);
--void bochs_kms_fini(struct bochs_device *bochs);
- 
- /* bochs_fbdev.c */
- extern const struct drm_mode_config_funcs bochs_mode_funcs;
-diff --git a/drivers/gpu/drm/bochs/bochs_drv.c b/drivers/gpu/drm/bochs/bochs_drv.c
-index addb0568c1af..e18c51de1196 100644
---- a/drivers/gpu/drm/bochs/bochs_drv.c
-+++ b/drivers/gpu/drm/bochs/bochs_drv.c
-@@ -7,6 +7,7 @@
- 
- #include <drm/drm_drv.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_managed.h>
- 
- #include "bochs.h"
- 
-@@ -21,10 +22,7 @@ static void bochs_unload(struct drm_device *dev)
- {
- 	struct bochs_device *bochs = dev->dev_private;
- 
--	bochs_kms_fini(bochs);
- 	bochs_mm_fini(bochs);
--	kfree(bochs);
--	dev->dev_private = NULL;
- }
- 
- static int bochs_load(struct drm_device *dev)
-@@ -32,7 +30,7 @@ static int bochs_load(struct drm_device *dev)
- 	struct bochs_device *bochs;
- 	int ret;
- 
--	bochs = kzalloc(sizeof(*bochs), GFP_KERNEL);
-+	bochs = drmm_kzalloc(dev, sizeof(*bochs), GFP_KERNEL);
- 	if (bochs == NULL)
- 		return -ENOMEM;
- 	dev->dev_private = bochs;
-diff --git a/drivers/gpu/drm/bochs/bochs_kms.c b/drivers/gpu/drm/bochs/bochs_kms.c
-index e8cc8156d773..7f4bcfad87e9 100644
---- a/drivers/gpu/drm/bochs/bochs_kms.c
-+++ b/drivers/gpu/drm/bochs/bochs_kms.c
-@@ -134,7 +134,11 @@ const struct drm_mode_config_funcs bochs_mode_funcs = {
- 
- int bochs_kms_init(struct bochs_device *bochs)
- {
--	drm_mode_config_init(bochs->dev);
-+	int ret;
-+
-+	ret = drmm_mode_config_init(bochs->dev);
-+	if (ret)
-+		return ret;
- 
- 	bochs->dev->mode_config.max_width = 8192;
- 	bochs->dev->mode_config.max_height = 8192;
-@@ -160,11 +164,3 @@ int bochs_kms_init(struct bochs_device *bochs)
- 
- 	return 0;
- }
--
--void bochs_kms_fini(struct bochs_device *bochs)
--{
--	if (!bochs->dev->mode_config.num_connector)
--		return;
--
--	drm_mode_config_cleanup(bochs->dev);
--}
--- 
-2.25.1
-
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+V2UgY2FuIGV2ZW4gZGVsZXRlIHRoZSBkcm1fZHJpdmVyLnJlbGVhc2UgaG9vayBub3chCgpUaGlz
+IGlzIG1hZGUgcG9zc2libGUgYnkgYSBwcmVjZWVkaW5nIHBhdGNoIHdoaWNoIGFkZGVkIGEgZHJt
+bV8KY2xlYW51cCBhY3Rpb24gdG8gZHJtX21vZGVfY29uZmlnX2luaXQoKSwgaGVuY2UgYWxsIHdl
+IG5lZWQgdG8gZG8gdG8KZW5zdXJlIHRoYXQgZHJtX21vZGVfY29uZmlnX2NsZWFudXAoKSBpcyBy
+dW4gb24gZmluYWwgZHJtX2RldmljZQpjbGVhbnVwIGlzIGNoZWNrIHRoZSBuZXcgZXJyb3IgY29k
+ZSBmb3IgX2luaXQoKS4KCnYyOiBFeHBsYWluIHdoeSB0aGlzIGNsZWFudXAgaXMgcG9zc2libGUg
+KExhdXJlbnQpLgoKdjM6IFVzZSBkcm1tX21vZGVfY29uZmlnX2luaXQoKSBmb3IgbW9yZSBjbGFy
+aXR5IChTYW0sIFRob21hcykKCkFja2VkLWJ5OiBHZXJkIEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0
+LmNvbT4KQ2M6IFNhbSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4KQWNrZWQtYnk6IFNhbSBS
+YXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4KQ2M6IFRob21hcyBaaW1tZXJtYW5uIDx0emltbWVy
+bWFubkBzdXNlLmRlPgpDYzogTGF1cmVudCBQaW5jaGFydCA8bGF1cmVudC5waW5jaGFydEBpZGVh
+c29uYm9hcmQuY29tPgpTaWduZWQtb2ZmLWJ5OiBEYW5pZWwgVmV0dGVyIDxkYW5pZWwudmV0dGVy
+QGludGVsLmNvbT4KQ2M6IERhdmUgQWlybGllIDxhaXJsaWVkQHJlZGhhdC5jb20+CkNjOiBHZXJk
+IEhvZmZtYW5uIDxrcmF4ZWxAcmVkaGF0LmNvbT4KQ2M6IERhbmllbCBWZXR0ZXIgPGRhbmllbC52
+ZXR0ZXJAZmZ3bGwuY2g+CkNjOiAiTm9yYWxmIFRyw7hubmVzIiA8bm9yYWxmQHRyb25uZXMub3Jn
+PgpDYzogU2FtIFJhdm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPgpDYzogVGhvbWFzIFppbW1lcm1h
+bm4gPHR6aW1tZXJtYW5uQHN1c2UuZGU+CkNjOiB2aXJ0dWFsaXphdGlvbkBsaXN0cy5saW51eC1m
+b3VuZGF0aW9uLm9yZwotLS0KIGRyaXZlcnMvZ3B1L2RybS9jaXJydXMvY2lycnVzLmMgfCAyMSAr
+KysrKysrKysrKy0tLS0tLS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCAx
+MCBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1
+cy5jIGIvZHJpdmVycy9ncHUvZHJtL2NpcnJ1cy9jaXJydXMuYwppbmRleCBhOWQ3ODlhNTY1MzYu
+LmJkODc4NGVhOWQ2NCAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2NpcnJ1cy9jaXJydXMu
+YworKysgYi9kcml2ZXJzL2dwdS9kcm0vY2lycnVzL2NpcnJ1cy5jCkBAIC01MTAsMTEgKzUxMCwx
+NSBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9tb2RlX2NvbmZpZ19mdW5jcyBjaXJydXNfbW9k
+ZV9jb25maWdfZnVuY3MgPSB7CiAJLmF0b21pY19jb21taXQgPSBkcm1fYXRvbWljX2hlbHBlcl9j
+b21taXQsCiB9OwogCi1zdGF0aWMgdm9pZCBjaXJydXNfbW9kZV9jb25maWdfaW5pdChzdHJ1Y3Qg
+Y2lycnVzX2RldmljZSAqY2lycnVzKQorc3RhdGljIGludCBjaXJydXNfbW9kZV9jb25maWdfaW5p
+dChzdHJ1Y3QgY2lycnVzX2RldmljZSAqY2lycnVzKQogewogCXN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYgPSAmY2lycnVzLT5kZXY7CisJaW50IHJldDsKKworCXJldCA9IGRybW1fbW9kZV9jb25maWdf
+aW5pdChkZXYpOworCWlmIChyZXQpCisJCXJldHVybiByZXQ7CiAKLQlkcm1fbW9kZV9jb25maWdf
+aW5pdChkZXYpOwogCWRldi0+bW9kZV9jb25maWcubWluX3dpZHRoID0gMDsKIAlkZXYtPm1vZGVf
+Y29uZmlnLm1pbl9oZWlnaHQgPSAwOwogCWRldi0+bW9kZV9jb25maWcubWF4X3dpZHRoID0gQ0lS
+UlVTX01BWF9QSVRDSCAvIDI7CkBAIC01MjIsMTUgKzUyNiwxMiBAQCBzdGF0aWMgdm9pZCBjaXJy
+dXNfbW9kZV9jb25maWdfaW5pdChzdHJ1Y3QgY2lycnVzX2RldmljZSAqY2lycnVzKQogCWRldi0+
+bW9kZV9jb25maWcucHJlZmVycmVkX2RlcHRoID0gMTY7CiAJZGV2LT5tb2RlX2NvbmZpZy5wcmVm
+ZXJfc2hhZG93ID0gMDsKIAlkZXYtPm1vZGVfY29uZmlnLmZ1bmNzID0gJmNpcnJ1c19tb2RlX2Nv
+bmZpZ19mdW5jczsKKworCXJldHVybiAwOwogfQogCiAvKiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi8KIAotc3RhdGlj
+IHZvaWQgY2lycnVzX3JlbGVhc2Uoc3RydWN0IGRybV9kZXZpY2UgKmRldikKLXsKLQlkcm1fbW9k
+ZV9jb25maWdfY2xlYW51cChkZXYpOwotfQotCiBERUZJTkVfRFJNX0dFTV9GT1BTKGNpcnJ1c19m
+b3BzKTsKIAogc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGNpcnJ1c19kcml2ZXIgPSB7CkBAIC01
+NDQsNyArNTQ1LDYgQEAgc3RhdGljIHN0cnVjdCBkcm1fZHJpdmVyIGNpcnJ1c19kcml2ZXIgPSB7
+CiAKIAkuZm9wcwkJID0gJmNpcnJ1c19mb3BzLAogCURSTV9HRU1fU0hNRU1fRFJJVkVSX09QUywK
+LQkucmVsZWFzZSAgICAgICAgID0gY2lycnVzX3JlbGVhc2UsCiB9OwogCiBzdGF0aWMgaW50IGNp
+cnJ1c19wY2lfcHJvYmUoc3RydWN0IHBjaV9kZXYgKnBkZXYsCkBAIC01OTEsNyArNTkxLDkgQEAg
+c3RhdGljIGludCBjaXJydXNfcGNpX3Byb2JlKHN0cnVjdCBwY2lfZGV2ICpwZGV2LAogCWlmIChj
+aXJydXMtPm1taW8gPT0gTlVMTCkKIAkJZ290byBlcnJfdW5tYXBfdnJhbTsKIAotCWNpcnJ1c19t
+b2RlX2NvbmZpZ19pbml0KGNpcnJ1cyk7CisJcmV0ID0gY2lycnVzX21vZGVfY29uZmlnX2luaXQo
+Y2lycnVzKTsKKwlpZiAocmV0KQorCQlnb3RvIGVycl9jbGVhbnVwOwogCiAJcmV0ID0gY2lycnVz
+X2Nvbm5faW5pdChjaXJydXMpOwogCWlmIChyZXQgPCAwKQpAQCAtNjEzLDcgKzYxNSw2IEBAIHN0
+YXRpYyBpbnQgY2lycnVzX3BjaV9wcm9iZShzdHJ1Y3QgcGNpX2RldiAqcGRldiwKIAlyZXR1cm4g
+MDsKIAogZXJyX2NsZWFudXA6Ci0JZHJtX21vZGVfY29uZmlnX2NsZWFudXAoZGV2KTsKIAlpb3Vu
+bWFwKGNpcnJ1cy0+bW1pbyk7CiBlcnJfdW5tYXBfdnJhbToKIAlpb3VubWFwKGNpcnJ1cy0+dnJh
+bSk7Ci0tIAoyLjI1LjEKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVs
+LWdmeAo=
