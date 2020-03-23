@@ -2,55 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7E618F7AE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:52:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3F18F744
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:50:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE09E88ECE;
-	Mon, 23 Mar 2020 14:51:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB5216E15B;
+	Mon, 23 Mar 2020 14:50:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com
- [IPv6:2a00:1450:4864:20::444])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2BC6E28E
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:51:10 +0000 (UTC)
-Received: by mail-wr1-x444.google.com with SMTP id b2so17408339wrj.10
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 07:51:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=YVQjs4+37pnxpEcPldcEcdF0qfQJapRQKZKURef7qVc=;
- b=J+GdEWz8DhDhx/LV6fqRnUK7zguEkAb5Xm2lnx80GvIN6E+IQyzwtoPwkgD0n3DLXg
- MunRQPb/d36jyP2pBJw6j7+lz5JUMugj1d4hkHfLFQGv6KrfIk0RGIwbuuG8Z/BoHU/4
- UJexswlsvUJBP83cagL/n+TBkYMnDqG99eDik=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=YVQjs4+37pnxpEcPldcEcdF0qfQJapRQKZKURef7qVc=;
- b=NykiFfnty4EDpK1KBJQPiqHI/8BQQxwJAN5bAgS59ScWER4z2lBhXXgG1qnEMtTE8Y
- F99ViJdhEaN9xylcZCs3u9MN0p2i6QGZdmgNC3LDk9bOENX0t9PfT/oFun0CbjH855Dp
- Ji8dORlnnTJIH67WfmPGeA1vs9IU2i4dCOzPiGnK4MpCziOhosWTudzy3LsHXulLB5Qk
- gEoNA9ZIarfRF4Y8b9NYN043XMglOkznADTmOtf2CqZpn/QHA3OlRH4+YAMO7tASJBgz
- qWXfhdB6P4bVGVHFbllO+ZPX5FYBJrxgc78j1NxpqPJex3Ry21U4bQCOb/XZ6Ta5A3kn
- rIFA==
-X-Gm-Message-State: ANhLgQ3/JKgFR10s0ZANMfXiCUjj+h7mdf6wfMyAqMGzfigur9p5/RsI
- ROTixsNXoilQu1JzYfPtFhzUrA==
-X-Google-Smtp-Source: ADFU+vt46bGhEU+lv3y3fDmp3npzePuQZfY3oS8wWIa9UDSf41vmvIG0VPqzvthefAvAY9VnH3KvzA==
-X-Received: by 2002:adf:9321:: with SMTP id 30mr29275788wro.330.1584975068707; 
- Mon, 23 Mar 2020 07:51:08 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id s22sm20376522wmc.16.2020.03.23.07.51.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Mar 2020 07:51:07 -0700 (PDT)
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-To: DRI Development <dri-devel@lists.freedesktop.org>
-Date: Mon, 23 Mar 2020 15:49:50 +0100
-Message-Id: <20200323144950.3018436-52-daniel.vetter@ffwll.ch>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
-References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F24116E152
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:50:12 +0000 (UTC)
+IronPort-SDR: dLucVsbyXPiD5qb5C7awTFIfmMcl6Q8NszvZvT37wCVa9y4T9KgaUjMMiSl0Q1h5YdXJRbcG0N
+ F28Z1YR4SSvA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 07:50:12 -0700
+IronPort-SDR: DJq/eJlBLUXKVDfsUWMdMjzK9eCNDMCim87FEHpTSMA+6zxX+3vrJdOrZf5mAiMiA8cpbyXqUa
+ p/BVfFNxCBwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="357113241"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+ by fmsmga001.fm.intel.com with SMTP; 23 Mar 2020 07:50:09 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 23 Mar 2020 16:50:08 +0200
+Date: Mon, 23 Mar 2020 16:50:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+Message-ID: <20200323145008.GW13686@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-5-stanislav.lisovskiy@intel.com>
+ <20200311163130.GC13686@intel.com>
+ <20200320125141.GA4156@intel.com>
+ <20200323141836.GR13686@intel.com>
+ <20200323143616.GA23620@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 51/51] drm: Add docs for managed resources
+Content-Disposition: inline
+In-Reply-To: <20200323143616.GA23620@intel.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: Re: [Intel-gfx] [PATCH v19 4/8] drm/i915: Refactor
+ intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,360 +56,664 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Vetter <daniel.vetter@intel.com>, Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-All collected together to provide a consistent story in one patch,
-instead of the somewhat bumpy refactor-evolution leading to this.
+On Mon, Mar 23, 2020 at 04:36:16PM +0200, Lisovskiy, Stanislav wrote:
+> On Mon, Mar 23, 2020 at 04:18:36PM +0200, Ville Syrj=E4l=E4 wrote:
+> > On Fri, Mar 20, 2020 at 02:51:41PM +0200, Lisovskiy, Stanislav wrote:
+> > > On Wed, Mar 11, 2020 at 06:31:30PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > On Mon, Mar 09, 2020 at 06:12:00PM +0200, Stanislav Lisovskiy wrote:
+> > > > > Currently intel_can_enable_sagv function contains
+> > > > > a mix of workarounds for different platforms
+> > > > > some of them are not valid for gens >=3D 11 already,
+> > > > > so lets split it into separate functions.
+> > > > > =
 
-Also some thoughts on what the next steps could be:
+> > > > > v2:
+> > > > >     - Rework watermark calculation algorithm to
+> > > > >       attempt to calculate Level 0 watermark
+> > > > >       with added sagv block time latency and
+> > > > >       check if it fits in DBuf in order to
+> > > > >       determine if SAGV can be enabled already
+> > > > >       at this stage, just as BSpec 49325 states.
+> > > > >       if that fails rollback to usual Level 0
+> > > > >       latency and disable SAGV.
+> > > > >     - Remove unneeded tabs(James Ausmus)
+> > > > > =
 
-- Create a macro called devm_drm_dev_alloc() which essentially wraps
-  the kzalloc(); devm_drm_dev_init(); drmm_add_final_kfree() combo.
-  Needs to be a macro since we'll have to do some typeof trickery and
-  casting to make this fully generic for all drivers that embed struct
-  drm_device into their own thing.
+> > > > > v3: Rebased the patch
+> > > > > =
 
-- A lot of the simple drivers now have essentially just
-  drm_dev_unplug(); drm_atomic_helper_shutdown(); as their
-  $bus_driver->remove hook. We could create a devm_mode_config_reset
-  which sets drm_atomic_helper_shutdown as it's cleanup action, and a
-  devm_drm_dev_register with drm_dev_unplug as it's cleanup action,
-  and simple drivers wouldn't have a need for a ->remove function at
-  all, and we could delete them.
+> > > > > v4: - Added back interlaced check for Gen12 and
+> > > > >       added separate function for TGL SAGV check
+> > > > >       (thanks to James Ausmus for spotting)
+> > > > >     - Removed unneeded gen check
+> > > > >     - Extracted Gen12 SAGV decision making code
+> > > > >       to a separate function from skl_compute_wm
+> > > > > =
 
-- For more complicated drivers we need drmm_ versions of a _lot_ more
-  things. All the userspace visible objects (crtc, plane, encoder,
-  crtc), anything else hanging of those (maybe a drmm_get_edid, at
-  least for panels and other built-in stuff).
+> > > > > v5: - Added SAGV global state to dev_priv, because
+> > > > >       we need to track all pipes, not only those
+> > > > >       in atomic state. Each pipe has now correspondent
+> > > > >       bit mask reflecting, whether it can tolerate
+> > > > >       SAGV or not(thanks to Ville Syrjala for suggestions).
+> > > > >     - Now using active flag instead of enable in crc
+> > > > >       usage check.
+> > > > > =
 
-Also some more thoughts on why we're not reusing devm_ with maybe a
-fake struct device embedded into the drm_device (we can't use the
-kdev, since that's in each drm_minor).
+> > > > > v6: - Fixed rebase conflicts
+> > > > > =
 
-- Code review gets extremely tricky, since every time you see a devm_
-  you need to carefully check whether the fake device (with the
-  drm_device lifetim) or the real device (with the lifetim of the
-  underlying physical device and driver binding) are used. That's not
-  going to help at all, and we have enormous amounts of drivers who
-  use devm_ where they really shouldn't. Having different types makes
-  sure the compiler type checks this for us and ensures correctness.
+> > > > > v7: - kms_cursor_legacy seems to get broken because of multiple m=
+emcpy
+> > > > >       calls when copying level 0 water marks for enabled SAGV, to
+> > > > >       fix this now simply using that field right away, without co=
+pying,
+> > > > >       for that introduced a new wm_level accessor which decides w=
+hich
+> > > > >       wm_level to return based on SAGV state.
+> > > > > =
 
-- The set of functions are very much non-overlapping. E.g.
-  devm_ioremap makes total sense, drmm_ioremap has the wrong lifetime,
-  since hw resources need to be cleaned out at driver unbind and wont
-  outlive that like a drm_device. Similar, but other way round for
-  drmm_connector_init (which is the only correct version, devm_ for
-  drm_connector is just buggy). Simply not having the wrong version
-  again prevents bugs.
+> > > > > v8: - Protect crtc_sagv_mask same way as we do for other global s=
+tate
+> > > > >       changes: i.e check if changes are needed, then grab all crt=
+c locks
+> > > > >       to serialize the changes(Ville Syrj=E4l=E4)
+> > > > >     - Add crtc_sagv_mask caching in order to avoid needless recal=
+culations
+> > > > >       (Matthew Roper)
+> > > > >     - Put back Gen12 SAGV switch in order to get it enabled in se=
+parate
+> > > > >       patch(Matthew Roper)
+> > > > >     - Rename *_set_sagv_mask to *_compute_sagv_mask(Matthew Roper)
+> > > > >     - Check if there are no active pipes in intel_can_enable_sagv
+> > > > >       instead of platform specific functions(Matthew Roper), same
+> > > > >       for intel_has_sagv check.
+> > > > > =
 
-Finally I guess this opens a huge todo for all the drivers. I'm
-semi-tempted to do a tree-wide s/devm_kzalloc/drmm_kzalloc/ since most
-likely that'll fix an enormous amount of bugs and most likely not
-cause any issues at all (aside from maybe holding onto memory slightly
-too long).
+> > > > > v9  - Switched to u8 for crtc_sagv_mask(Ville Syrj=E4l=E4)
+> > > > >     - crtc_sagv_mask now is pipe_sagv_mask(Ville Syrj=E4l=E4)
+> > > > >     - Extracted sagv checking logic from skl/icl/tgl_compute_sagv=
+_mask
+> > > > >     - Extracted skl_plane_wm_level function and passing latency to
+> > > > >       separate patches(Ville Syrj=E4l=E4)
+> > > > >     - Removed part of unneeded copy-paste from tgl_check_pipe_fit=
+s_sagv_wm
+> > > > >       (Ville Syrj=E4l=E4)
+> > > > >     - Now using simple assignment for sagv_wm0 as it contains only
+> > > > >       pod types and no pointers(Ville Syrj=E4l=E4)
+> > > > >     - Fixed intel_can_enable_sagv not to do double duty, now it o=
+nly
+> > > > >       check SAGV bits by ANDing those between local and global st=
+ate.
+> > > > >       The SAGV masks are now computed after watermarks are availa=
+ble,
+> > > > >       in order to be able to figure out if ddb ranges are fitting=
+ nicely.
+> > > > >       (Ville Syrj=E4l=E4)
+> > > > >     - Now having uv_sagv_wm0 and sagv_wm0, otherwise we have wron=
+g logic
+> > > > >       when using skl_plane_wm_level accessor, as we had previousl=
+y for
+> > > > >       Gen11+ color plane and regular wm levels, so probably both
+> > > > >       has to be recalculated with additional SAGV block time for =
+Level 0.
+> > > > > =
 
-v2:
-- Doc improvements from Laurent.
-- Also add kerneldoc for the new drmm_add_action_or_reset.
+> > > > > v10: - Starting to use new global state for storing pipe_sagv_mask
+> > > > > =
 
-v3:
-- Remove kerneldoc for drmm_remove_action.
+> > > > > v11: - Fixed rebase conflict with recent drm-tip
+> > > > >      - Check if we really need to recalculate SAGV mask, otherwise
+> > > > >        bail out without making any changes.
+> > > > >      - Use cached SAGV result, instead of recalculating it everyt=
+ime,
+> > > > >        if bw_state hasn't changed.
+> > > > > =
 
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Jonathan Corbet <corbet@lwn.net>
-Cc: linux-doc@vger.kernel.org
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > > > > v12: - Removed WARN from intel_can_enable_sagv, in some of the co=
+mmits
+> > > > >        if we don't recalculated watermarks, bw_state is not recal=
+culated,
+> > > > >        thus leading to SAGV state not recalculated by the commit =
+state,
+> > > > >        which is still calling intel_can_enable_sagv function. Fix=
+ that
+> > > > >        by just analyzing the current global bw_state object - bec=
+ause
+> > > > >        we simply have no other objects related to that.
+> > > > > =
 
-fixup docs
----
- Documentation/gpu/drm-internals.rst |  6 ++++
- drivers/gpu/drm/drm_drv.c           | 18 ++++++++--
- drivers/gpu/drm/drm_managed.c       | 53 +++++++++++++++++++++++++++
- include/drm/drm_drv.h               |  4 +++
- include/drm/drm_managed.h           | 55 +++++++++++++++++++++++++++++
- 5 files changed, 133 insertions(+), 3 deletions(-)
+> > > > > v13: - Rebased, fixed warnings regarding long lines
+> > > > >      - Changed function call sites from intel_atomic_bw* to
+> > > > >        intel_wb_* as was suggested.(Jani Nikula)
+> > > > >      - Taken ddb_state_changed and bw_state_changed into use.
+> > > > > =
 
-diff --git a/Documentation/gpu/drm-internals.rst b/Documentation/gpu/drm-internals.rst
-index a6b6145fda78..12272b168580 100644
---- a/Documentation/gpu/drm-internals.rst
-+++ b/Documentation/gpu/drm-internals.rst
-@@ -138,6 +138,12 @@ Managed Resources
- .. kernel-doc:: drivers/gpu/drm/drm_managed.c
-    :doc: managed resources
- 
-+.. kernel-doc:: drivers/gpu/drm/drm_managed.c
-+   :export:
-+
-+.. kernel-doc:: include/drm/drm_managed.h
-+   :internal:
-+
- Bus-specific Device Registration and PCI Support
- ------------------------------------------------
- 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index ea687c5ead15..72c90a53f946 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -258,9 +258,15 @@ void drm_minor_release(struct drm_minor *minor)
-  * any other resources allocated at device initialization and drop the driver's
-  * reference to &drm_device using drm_dev_put().
-  *
-- * Note that the lifetime rules for &drm_device instance has still a lot of
-- * historical baggage. Hence use the reference counting provided by
-- * drm_dev_get() and drm_dev_put() only carefully.
-+ * Note that any allocation or resource which is visible to userspace must be
-+ * released only when the final drm_dev_put() is called, and not when the
-+ * driver is unbound from the underlying physical struct &device. Best to use
-+ * &drm_device managed resources with drmm_add_action(), drmm_kmalloc() and
-+ * related functions.
-+ *
-+ * devres managed resources like devm_kmalloc() can only be used for resources
-+ * directly related to the underlying hardware device, and only used in code
-+ * paths fully protected by drm_dev_enter() and drm_dev_exit().
-  *
-  * Display driver example
-  * ~~~~~~~~~~~~~~~~~~~~~~
-@@ -604,6 +610,9 @@ static void drm_dev_init_release(struct drm_device *dev, void *res)
-  * arbitrary offset, you must supply a &drm_driver.release callback and control
-  * the finalization explicitly.
-  *
-+ * Note that drivers must call drmm_add_final_kfree() after this function has
-+ * completed successfully.
-+ *
-  * RETURNS:
-  * 0 on success, or error code on failure.
-  */
-@@ -705,6 +714,9 @@ static void devm_drm_dev_init_release(void *data)
-  * Managed drm_dev_init(). The DRM device initialized with this function is
-  * automatically put on driver detach using drm_dev_put().
-  *
-+ * Note that drivers must call drmm_add_final_kfree() after this function has
-+ * completed successfully.
-+ *
-  * RETURNS:
-  * 0 on success, or error code on failure.
-  */
-diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
-index 8abf3a53aeb5..4e678761e6ad 100644
---- a/drivers/gpu/drm/drm_managed.c
-+++ b/drivers/gpu/drm/drm_managed.c
-@@ -20,7 +20,19 @@
-  * Inspired by struct &device managed resources, but tied to the lifetime of
-  * struct &drm_device, which can outlive the underlying physical device, usually
-  * when userspace has some open files and other handles to resources still open.
-+ *
-+ * Release actions can be added with drmm_add_action(), memory allocations can
-+ * be done directly with drmm_kmalloc() and the related functions. Everything
-+ * will be released on the final drm_dev_put() in reverse order of how the
-+ * release actions have been added and memory has been allocated since driver
-+ * loading started with drm_dev_init().
-+ *
-+ * Note that release actions and managed memory can also be added and removed
-+ * during the lifetime of the driver, all the functions are fully concurrent
-+ * safe. But it is recommended to use managed resources only for resources that
-+ * change rarely, if ever, during the lifetime of the &drm_device instance.
-  */
-+
- struct drmres_node {
- 	struct list_head	entry;
- 	drmres_release_t	release;
-@@ -111,6 +123,18 @@ static void add_dr(struct drm_device *dev, struct drmres *dr)
- 		       dr, dr->node.name, (unsigned long) dr->node.size);
- }
- 
-+/**
-+ * drmm_add_final_kfree - add release action for the final kfree()
-+ * @dev: DRM device
-+ * @container: pointer to the kmalloc allocation containing @dev
-+ *
-+ * Since the allocation containing the struct &drm_device must be allocated
-+ * before it can be initialized with drm_dev_init() there's no way to allocate
-+ * that memory with drmm_kmalloc(). To side-step this chicken-egg problem the
-+ * pointer for this final kfree() must be specified by calling this function. It
-+ * will be released in the final drm_dev_put() for @dev, after all other release
-+ * actions installed through drmm_add_action() have been processed.
-+ */
- void drmm_add_final_kfree(struct drm_device *dev, void *container)
- {
- 	WARN_ON(dev->managed.final_kfree);
-@@ -163,6 +187,16 @@ int __drmm_add_action_or_reset(struct drm_device *dev,
- }
- EXPORT_SYMBOL(__drmm_add_action_or_reset);
- 
-+/**
-+ * drmm_kmalloc - &drm_device managed kmalloc()
-+ * @dev: DRM device
-+ * @size: size of the memory allocation
-+ * @gfp: GFP allocation flags
-+ *
-+ * This is a &drm_device managed version of kmalloc(). The allocated memory is
-+ * automatically freed on the final drm_dev_put(). Memory can also be freed
-+ * before the final drm_dev_put() by calling drmm_kfree().
-+ */
- void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
- {
- 	struct drmres *dr;
-@@ -181,6 +215,16 @@ void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
- }
- EXPORT_SYMBOL(drmm_kmalloc);
- 
-+/**
-+ * drmm_kstrdup - &drm_device managed kstrdup()
-+ * @dev: DRM device
-+ * @s: 0-terminated string to be duplicated
-+ * @gfp: GFP allocation flags
-+ *
-+ * This is a &drm_device managed version of kstrdup(). The allocated memory is
-+ * automatically freed on the final drm_dev_put() and works exactly like a
-+ * memory allocation obtained by drmm_kmalloc().
-+ */
- char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
- {
- 	size_t size;
-@@ -197,6 +241,15 @@ char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp)
- }
- EXPORT_SYMBOL_GPL(drmm_kstrdup);
- 
-+/**
-+ * drmm_kfree - &drm_device managed kfree()
-+ * @dev: DRM device
-+ * @data: memory allocation to be freed
-+ *
-+ * This is a &drm_device managed version of kfree() which can be used to
-+ * release memory allocated through drmm_kmalloc() or any of its related
-+ * functions before the final drm_dev_put() of @dev.
-+ */
- void drmm_kfree(struct drm_device *dev, void *data)
- {
- 	struct drmres *dr_match = NULL, *dr;
-diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-index 5a05c2010873..e7c6ea261ed1 100644
---- a/include/drm/drm_drv.h
-+++ b/include/drm/drm_drv.h
-@@ -266,6 +266,10 @@ struct drm_driver {
- 	 *
- 	 * Optional callback for destroying device data after the final
- 	 * reference is released, i.e. the device is being destroyed.
-+	 *
-+	 * This is deprecated, clean up all memory allocations associated with a
-+	 * &drm_device using drmm_add_action(), drmm_kmalloc() and related
-+	 * managed resources functions.
- 	 */
- 	void (*release) (struct drm_device *);
- 
-diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-index 191d8d206ff4..ca4114633bf9 100644
---- a/include/drm/drm_managed.h
-+++ b/include/drm/drm_managed.h
-@@ -11,6 +11,16 @@ struct drm_device;
- 
- typedef void (*drmres_release_t)(struct drm_device *dev, void *res);
- 
-+/**
-+ * drmm_add_action - add a managed release action to a &drm_device
-+ * @dev: DRM device
-+ * @action: function which should be called when @dev is released
-+ * @data: opaque pointer, passed to @action
-+ *
-+ * This function adds the @release action with optional parameter @data to the
-+ * list of cleanup actions for @dev. The cleanup actions will be run in reverse
-+ * order in the final drm_dev_put() call for @dev.
-+ */
- #define drmm_add_action(dev, action, data) \
- 	__drmm_add_action(dev, action, data, #action)
- 
-@@ -18,6 +28,15 @@ int __must_check __drmm_add_action(struct drm_device *dev,
- 				   drmres_release_t action,
- 				   void *data, const char *name);
- 
-+/**
-+ * drmm_add_action_or_reset - add a managed release action to a &drm_device
-+ * @dev: DRM device
-+ * @action: function which should be called when @dev is released
-+ * @data: opaque pointer, passed to @action
-+ *
-+ * Similar to drmm_add_action(), with the only difference that upon failure
-+ * @action is directly called for any cleanup work necessary on failures.
-+ */
- #define drmm_add_action_or_reset(dev, action, data) \
- 	__drmm_add_action_or_reset(dev, action, data, #action)
- 
-@@ -28,10 +47,33 @@ int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
- void drmm_add_final_kfree(struct drm_device *dev, void *container);
- 
- void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
-+
-+/**
-+ * drmm_kzalloc - &drm_device managed kzalloc()
-+ * @dev: DRM device
-+ * @size: size of the memory allocation
-+ * @gfp: GFP allocation flags
-+ *
-+ * This is a &drm_device managed version of kzalloc(). The allocated memory is
-+ * automatically freed on the final drm_dev_put(). Memory can also be freed
-+ * before the final drm_dev_put() by calling drmm_kfree().
-+ */
- static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
- {
- 	return drmm_kmalloc(dev, size, gfp | __GFP_ZERO);
- }
-+
-+/**
-+ * drmm_kmalloc_array - &drm_device managed kmalloc_array()
-+ * @dev: DRM device
-+ * @n: number of array elements to allocate
-+ * @size: size of array member
-+ * @flags: GFP allocation flags
-+ *
-+ * This is a &drm_device managed version of kmalloc_array(). The allocated
-+ * memory is automatically freed on the final drm_dev_put() and works exactly
-+ * like a memory allocation obtained by drmm_kmalloc().
-+ */
- static inline void *drmm_kmalloc_array(struct drm_device *dev,
- 				       size_t n, size_t size, gfp_t flags)
- {
-@@ -42,11 +84,24 @@ static inline void *drmm_kmalloc_array(struct drm_device *dev,
- 
- 	return drmm_kmalloc(dev, bytes, flags);
- }
-+
-+/**
-+ * drmm_kcalloc - &drm_device managed kcalloc()
-+ * @dev: DRM device
-+ * @n: number of array elements to allocate
-+ * @size: size of array member
-+ * @flags: GFP allocation flags
-+ *
-+ * This is a &drm_device managed version of kcalloc(). The allocated memory is
-+ * automatically freed on the final drm_dev_put() and works exactly like a
-+ * memory allocation obtained by drmm_kmalloc().
-+ */
- static inline void *drmm_kcalloc(struct drm_device *dev,
- 				 size_t n, size_t size, gfp_t flags)
- {
- 	return drmm_kmalloc_array(dev, n, size, flags | __GFP_ZERO);
- }
-+
- char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
- 
- void drmm_kfree(struct drm_device *dev, void *data);
--- 
-2.25.1
+> > > > > v14: - total_affected_planes is no longer needed to check for ddb=
+ changes,
+> > > > >        just as active_pipe_changes.
+> > > > > =
 
+> > > > > v15: - Fixed stupid mistake with uninitialized crtc in
+> > > > >        skl_compute_sagv_mask.
+> > > > > =
+
+> > > > > v16: - Convert pipe_sagv_mask to pipe_sagv_reject and now using i=
+nverted
+> > > > >        flag to indicate SAGV readiness for the pipe(Ville Syrj=E4=
+l=E4)
+> > > > >      - Added return value to intel_compute_sagv_mask which call
+> > > > >        intel_atomic_serialize_global_state in order to properly
+> > > > >        propagate EDEADLCK to drm.
+> > > > >      - Based on the discussion with Ville, removed active_pipe_ch=
+anges
+> > > > >        check and also there seems to be no need for checking ddb_=
+state_changes
+> > > > >        as well. Instead we just iterate through crtcs in state - =
+having
+> > > > >        crtc in a state already guarantees that it is at least rea=
+d-locked
+> > > > >        Having additional flag to check if there actually were som=
+e plane
+> > > > >        wm/ddb changes would be probably added later as an optimiz=
+ation.
+> > > > >      - We can't get parent atomic state from crtc_state at commit=
+ stage
+> > > > >        (nice drm feature), also propagating state through functio=
+n call
+> > > > >        chain seems to be overkill and not possible(cursor legacy =
+updates)
+> > > > >        Querying for bw_state object from global state is not poss=
+ible as
+> > > > >        it might get swapped with other global state.
+> > > > >        So... just sticked can_sagv boolean into wm crtc state.
+> > > > > =
+
+> > > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> > > > > Cc: James Ausmus <james.ausmus@intel.com>
+> > > > > ---
+> > > > >  drivers/gpu/drm/i915/display/intel_bw.h       |  18 +
+> > > > >  drivers/gpu/drm/i915/display/intel_display.c  |  23 +-
+> > > > >  .../drm/i915/display/intel_display_types.h    |   3 +
+> > > > >  drivers/gpu/drm/i915/intel_pm.c               | 314 ++++++++++++=
+++++--
+> > > > >  drivers/gpu/drm/i915/intel_pm.h               |   1 +
+> > > > >  5 files changed, 318 insertions(+), 41 deletions(-)
+> > > > > =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gp=
+u/drm/i915/display/intel_bw.h
+> > > > > index b5f61463922f..4083adf4b432 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > > @@ -18,6 +18,24 @@ struct intel_crtc_state;
+> > > > >  struct intel_bw_state {
+> > > > >  	struct intel_global_state base;
+> > > > >  =
+
+> > > > > +	/*
+> > > > > +	 * Contains a bit mask, used to determine, whether correspondent
+> > > > > +	 * pipe allows SAGV or not.
+> > > > > +	 */
+> > > > > +	u8 pipe_sagv_reject;
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * Used to determine if we already had calculated
+> > > > > +	 * SAGV mask for this state once.
+> > > > > +	 */
+> > > > > +	bool sagv_calculated;
+> > > > =
+
+> > > > Why would we even attempt to calculate it many times?
+> > > > =
+
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * Contains final SAGV decision based on current mask,
+> > > > > +	 * to prevent doing the same job over and over again.
+> > > > > +	 */
+> > > > > +	bool can_sagv;
+> > > > =
+
+> > > > This is redundant since it's just sagv_reject=3D=3D0.
+> > > > =
+
+> > > > > +
+> > > > >  	unsigned int data_rate[I915_MAX_PIPES];
+> > > > >  	u8 num_active_planes[I915_MAX_PIPES];
+> > > > >  };
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drive=
+rs/gpu/drm/i915/display/intel_display.c
+> > > > > index 8f23c4d51c33..9e0058a78ea6 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > > @@ -14010,7 +14010,10 @@ static void verify_wm_state(struct intel=
+_crtc *crtc,
+> > > > >  		/* Watermarks */
+> > > > >  		for (level =3D 0; level <=3D max_level; level++) {
+> > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > > -						&sw_plane_wm->wm[level]))
+> > > > > +						&sw_plane_wm->wm[level]) ||
+> > > > > +			   (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > > +						&sw_plane_wm->sagv_wm0) &&
+> > > > > +			   (level =3D=3D 0)))
+> > > > =
+
+> > > > Pointless parens. Also we should do the check as
+> > > > 'level =3D=3D 0 && wm_equals(sagv)' to skip the pointless compariso=
+n when
+> > > > level !=3D 0.
+> > > > =
+
+> > > > I guess we can't read out sagv state due to the silly pcode interfa=
+ce?
+> > > > =
+
+> > > > >  				continue;
+> > > > >  =
+
+> > > > >  			drm_err(&dev_priv->drm,
+> > > > > @@ -14065,7 +14068,10 @@ static void verify_wm_state(struct intel=
+_crtc *crtc,
+> > > > >  		/* Watermarks */
+> > > > >  		for (level =3D 0; level <=3D max_level; level++) {
+> > > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > > -						&sw_plane_wm->wm[level]))
+> > > > > +						&sw_plane_wm->wm[level]) ||
+> > > > > +			   (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > > +						&sw_plane_wm->sagv_wm0) &&
+> > > > > +			   (level =3D=3D 0)))
+> > > > >  				continue;
+> > > > >  =
+
+> > > > >  			drm_err(&dev_priv->drm,
+> > > > > @@ -15544,8 +15550,10 @@ static void intel_atomic_commit_tail(str=
+uct intel_atomic_state *state)
+> > > > >  		 * SKL workaround: bspec recommends we disable the SAGV when we
+> > > > >  		 * have more then one pipe enabled
+> > > > >  		 */
+> > > > > -		if (!intel_can_enable_sagv(state))
+> > > > > -			intel_disable_sagv(dev_priv);
+> > > > > +		if (INTEL_GEN(dev_priv) < 11) {
+> > > > > +			if (!intel_can_enable_sagv(state))
+> > > > > +				intel_disable_sagv(dev_priv);
+> > > > > +		}
+> > > > >  =
+
+> > > > >  		intel_modeset_verify_disabled(dev_priv, state);
+> > > > >  	}
+> > > > > @@ -15645,8 +15653,10 @@ static void intel_atomic_commit_tail(str=
+uct intel_atomic_state *state)
+> > > > >  	if (state->modeset)
+> > > > >  		intel_verify_planes(state);
+> > > > >  =
+
+> > > > > -	if (state->modeset && intel_can_enable_sagv(state))
+> > > > > -		intel_enable_sagv(dev_priv);
+> > > > > +	if (INTEL_GEN(dev_priv) < 11) {
+> > > > > +		if (state->modeset && intel_can_enable_sagv(state))
+> > > > > +			intel_enable_sagv(dev_priv);
+> > > > > +	}
+> > > > >  =
+
+> > > > >  	drm_atomic_helper_commit_hw_done(&state->base);
+> > > > >  =
+
+> > > > > @@ -15798,7 +15808,6 @@ static int intel_atomic_commit(struct drm=
+_device *dev,
+> > > > >  =
+
+> > > > >  	if (state->global_state_changed) {
+> > > > >  		assert_global_state_locked(dev_priv);
+> > > > > -
+> > > > >  		dev_priv->active_pipes =3D state->active_pipes;
+> > > > >  	}
+> > > > >  =
+
+> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b=
+/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > index 5e00e611f077..da0308b87dad 100644
+> > > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > > @@ -669,11 +669,14 @@ struct skl_plane_wm {
+> > > > >  	struct skl_wm_level wm[8];
+> > > > >  	struct skl_wm_level uv_wm[8];
+> > > > >  	struct skl_wm_level trans_wm;
+> > > > > +	struct skl_wm_level sagv_wm0;
+> > > > > +	struct skl_wm_level uv_sagv_wm0;
+> > > > >  	bool is_planar;
+> > > > >  };
+> > > > >  =
+
+> > > > >  struct skl_pipe_wm {
+> > > > >  	struct skl_plane_wm planes[I915_MAX_PLANES];
+> > > > > +	bool can_sagv;
+> > > > >  };
+> > > > >  =
+
+> > > > >  enum vlv_wm_level {
+> > > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i9=
+15/intel_pm.c
+> > > > > index c72fa59a8302..f598b55f4abc 100644
+> > > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > > @@ -43,6 +43,7 @@
+> > > > >  #include "i915_fixed.h"
+> > > > >  #include "i915_irq.h"
+> > > > >  #include "i915_trace.h"
+> > > > > +#include "display/intel_bw.h"
+> > > > >  #include "intel_pm.h"
+> > > > >  #include "intel_sideband.h"
+> > > > >  #include "../../../platform/x86/intel_ips.h"
+> > > > > @@ -3634,7 +3635,7 @@ static bool skl_needs_memory_bw_wa(struct d=
+rm_i915_private *dev_priv)
+> > > > >  	return IS_GEN9_BC(dev_priv) || IS_BROXTON(dev_priv);
+> > > > >  }
+> > > > >  =
+
+> > > > > -static bool
+> > > > > +bool
+> > > > >  intel_has_sagv(struct drm_i915_private *dev_priv)
+> > > > >  {
+> > > > >  	/* HACK! */
+> > > > > @@ -3757,39 +3758,25 @@ intel_disable_sagv(struct drm_i915_privat=
+e *dev_priv)
+> > > > >  	return 0;
+> > > > >  }
+> > > > >  =
+
+> > > > > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > > > +static bool skl_can_enable_sagv_on_pipe(struct intel_crtc_state =
+*crtc_state)
+> > > > =
+
+> > > > This extraction looks to be trivially done as a separate patch.
+> > > > =
+
+> > > > >  {
+> > > > > -	struct drm_device *dev =3D state->base.dev;
+> > > > > +	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> > > > >  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc=
+_state->uapi.state);
+> > > > >  	struct intel_crtc *crtc;
+> > > > >  	struct intel_plane *plane;
+> > > > > -	struct intel_crtc_state *crtc_state;
+> > > > > -	enum pipe pipe;
+> > > > >  	int level, latency;
+> > > > >  =
+
+> > > > > -	if (!intel_has_sagv(dev_priv))
+> > > > > -		return false;
+> > > > > -
+> > > > > -	/*
+> > > > > -	 * If there are no active CRTCs, no additional checks need be p=
+erformed
+> > > > > -	 */
+> > > > > -	if (hweight8(state->active_pipes) =3D=3D 0)
+> > > > > -		return true;
+> > > > > +	crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > > > >  =
+
+> > > > > -	/*
+> > > > > -	 * SKL+ workaround: bspec recommends we disable SAGV when we ha=
+ve
+> > > > > -	 * more then one pipe enabled
+> > > > > -	 */
+> > > > > -	if (hweight8(state->active_pipes) > 1)
+> > > > > +	if ((INTEL_GEN(dev_priv) <=3D 9) && (hweight8(state->active_pip=
+es) > 1))
+> > > > >  		return false;
+> > > > >  =
+
+> > > > > -	/* Since we're now guaranteed to only have one active CRTC... */
+> > > > > -	pipe =3D ffs(state->active_pipes) - 1;
+> > > > > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> > > > > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > > > > -
+> > > > > -	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLAC=
+E)
+> > > > > +	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLAC=
+E) {
+> > > > > +		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
+> > > > > +			      pipe_name(crtc->pipe));
+> > > > >  		return false;
+> > > > > +	}
+> > > > >  =
+
+> > > > >  	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> > > > >  		struct skl_plane_wm *wm =3D
+> > > > > @@ -3816,13 +3803,145 @@ bool intel_can_enable_sagv(struct intel_=
+atomic_state *state)
+> > > > >  		 * incur memory latencies higher than sagv_block_time_us we
+> > > > >  		 * can't enable SAGV.
+> > > > >  		 */
+> > > > > -		if (latency < dev_priv->sagv_block_time_us)
+> > > > > +		if (latency < dev_priv->sagv_block_time_us) {
+> > > > > +			DRM_DEBUG_KMS("Latency %d < sagv block time %d, no SAGV for p=
+ipe %c\n",
+> > > > > +				      latency, dev_priv->sagv_block_time_us, pipe_name(crtc-=
+>pipe));
+> > > > >  			return false;
+> > > > > +		}
+> > > > >  	}
+> > > > >  =
+
+> > > > >  	return true;
+> > > > >  }
+> > > > >  =
+
+> > > > > +static bool
+> > > > > +tgl_can_enable_sagv_on_pipe(struct intel_crtc_state *crtc_state);
+> > > > > +
+> > > > > +static bool intel_calculate_sagv_result(struct intel_bw_state *b=
+w_state)
+> > > > > +{
+> > > > > +	return bw_state->pipe_sagv_reject =3D=3D 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int intel_compute_sagv_mask(struct intel_atomic_state *st=
+ate)
+> > > > > +{
+> > > > > +	int ret;
+> > > > > +	struct drm_device *dev =3D state->base.dev;
+> > > > > +	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > > +	struct intel_crtc *crtc;
+> > > > > +	struct intel_crtc_state *new_crtc_state;
+> > > > > +	struct intel_bw_state *new_bw_state =3D NULL;
+> > > > > +	struct intel_bw_state *old_bw_state =3D NULL;
+> > > > > +	int i;
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * If SAGV is not supported we just can't do anything
+> > > > > +	 * not even set or reject SAGV points - just bail out.
+> > > > > +	 * Thus avoid needless calculations.
+> > > > > +	 */
+> > > > > +	if (!intel_has_sagv(dev_priv))
+> > > > > +		return 0;
+> > > > > +
+> > > > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > > +					 new_crtc_state, i) {
+> > > > > +		bool pipe_sagv_enable;
+> > > > > +
+> > > > > +		new_bw_state =3D intel_bw_get_state(state);
+> > > > > +		old_bw_state =3D intel_bw_get_old_state(state);
+> > > > > +
+> > > > > +		if (IS_ERR_OR_NULL(new_bw_state) || IS_ERR_OR_NULL(old_bw_stat=
+e)) {a
+> > > > > +			WARN(1, "Could not get bw_state\n");
+> > > > > +			return -EINVAL;
+> > > > =
+
+> > > > What is this?
+> > > > =
+
+> > > > > +		}
+> > > > > +
+> > > > > +		new_bw_state->sagv_calculated =3D false;
+> > > > > +
+> > > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
+> > > > > +			pipe_sagv_enable =3D tgl_can_enable_sagv_on_pipe(new_crtc_sta=
+te);
+> > > > > +		else
+> > > > > +			pipe_sagv_enable =3D skl_can_enable_sagv_on_pipe(new_crtc_sta=
+te);
+> > > > > +
+> > > > > +		if (pipe_sagv_enable)
+> > > > > +			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+> > > > > +		else
+> > > > > +			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> > > > > +	}
+> > > > > +
+> > > > > +	if (!new_bw_state || !old_bw_state)
+> > > > > +		return 0;
+> > > > > +
+> > > > > +	new_bw_state->can_sagv =3D intel_calculate_sagv_result(new_bw_s=
+tate);
+> > > > > +	new_bw_state->sagv_calculated =3D true;
+> > > > > +
+> > > > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > > +					 new_crtc_state, i) {
+> > > > > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.optima=
+l;
+> > > > > +
+> > > > > +		/*
+> > > > > +		 * Due to drm limitation at commit state, when
+> > > > > +		 * changes are written the whole atomic state is
+> > > > > +		 * zeroed away =3D> which prevents from using it,
+> > > > > +		 * so just sticking it into pipe wm state for
+> > > > > +		 * keeping it simple - anyway this is related to wm.
+> > > > > +		 * Proper way in ideal universe would be of course not
+> > > > > +		 * to lose parent atomic state object from child crtc_state,
+> > > > > +		 * and stick to OOP programming principles, which had been
+> > > > > +		 * scientifically proven to work.
+> > > > > +		 */
+> > > > > +		pipe_wm->can_sagv =3D new_bw_state->can_sagv;
+> > > > =
+
+> > > > I would probably name that wm->can_sagv as wm->use_sagv_wm so it's =
+clear
+> > > > what it does.
+> > > > =
+
+> > > > > +	}
+> > > > > +
+> > > > > +	/*
+> > > > > +	 * For SAGV we need to account all the pipes,
+> > > > > +	 * not only the ones which are in state currently.
+> > > > > +	 * Grab all locks if we detect that we are actually
+> > > > > +	 * going to do something.
+> > > > > +	 */
+> > > > > +	if (new_bw_state->pipe_sagv_reject !=3D old_bw_state->pipe_sagv=
+_reject) {
+> > > > > +		DRM_DEBUG_KMS("State %p: old sagv mask 0x%x, new sagv mask 0x%=
+x\n",
+> > > > > +			      state,
+> > > > > +			      old_bw_state->pipe_sagv_reject,
+> > > > > +			      new_bw_state->pipe_sagv_reject);
+> > > > > +
+> > > > > +		ret =3D intel_atomic_serialize_global_state(&new_bw_state->bas=
+e);
+> > > > > +		if (ret) {
+> > > > > +			DRM_DEBUG_KMS("Could not serialize global state\n");
+> > > > > +			return ret;
+> > > > > +		}
+> > > > > +	}
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +/*
+> > > > > + * This function to be used before swap state
+> > > > > + */
+> > > > > +bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > > > +{
+> > > > > +	struct drm_device *dev =3D state->base.dev;
+> > > > > +	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > > +	struct intel_bw_state *bw_state;
+> > > > > +
+> > > > > +	if (!intel_has_sagv(dev_priv)) {
+> > > > > +		DRM_DEBUG_KMS("No SAGV support detected\n");
+> > > > > +		return false;
+> > > > > +	}
+> > > > > +
+> > > > > +	bw_state =3D intel_bw_get_state(state);
+> > > > > +
+> > > > > +	if (IS_ERR_OR_NULL(bw_state)) {
+> > > > =
+
+> > > > It can't be NULL. And if you get an error you must propagate it upw=
+ards.
+> > > =
+
+> > > Can you please elaborate what I should do here?
+> > > Just want to save some time without wasting time guessing.
+> > > The options are:
+> > > =
+
+> > > 1) If I propagate an error upwards, I obviously need to change a sign=
+ature
+> > >    to int intel_can_enable_sagv, also if I do that usage at legacy ca=
+llsites
+> > >    for this function will change, i.e you won't be able to call it li=
+ke
+> > >    if (intel_can_enable_sagv()) anymore. Is it that what you want?
+> > >    Should note also that most of the legacy call sites are from commi=
+t_tail
+> > >    which wouldn't even propagate it further, because as you know it i=
+s already
+> > >    point of no return.
+> > =
+
+> > Looks like intel_can_enable_sagv() should not exist anymore. We should
+> > just precompute the sagv mask in the bw atomic check, and then the comm=
+it
+> > time checks will simply become checks of the sagv mask.
+> =
+
+> Was thinking about that, but then the question is how to deal with legacy
+> stuff - for instance, skl doesn't have QGV points at all, as I understand
+> some platforms just have it as a switch so we'll have to have somekind
+> of code like this anyway, i.e just checking if we can and then switch.
+
+We should just have two different ways to calculate whether a pipe can
+do sagv or not, one for skl+ another for icl+. Then we use the
+appropriate method when computing the sagv mask.
+
+> =
+
+> Or basically we would be just inlining the intel_can_enable_sagv to
+> intel_atomic_commit_tail as I understand. Because yep for gen >=3D11
+> it just a matter of pre/post updating qgv points, but for skl we =
+
+> still need some condition to check when we are calling intel_enable/disab=
+le sagv
+> =
+
+> =
+
+> Stan
+> =
+
+> =
+
+> > =
+
+> > -- =
+
+> > Ville Syrj=E4l=E4
+> > Intel
+
+-- =
+
+Ville Syrj=E4l=E4
+Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
