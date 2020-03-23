@@ -2,119 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A568718F6EE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:29:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5294918F718
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 15:40:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6E2C89ECD;
-	Mon, 23 Mar 2020 14:29:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B318089F0B;
+	Mon, 23 Mar 2020 14:40:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8DAF89ECD
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:29:28 +0000 (UTC)
-IronPort-SDR: 1wzFmUqxFgpXBGA5xJzV31+/hjhkl4CXliFwmqKDH5WbEMhU1A4T3pVEp13JYgqOeC1ysPv4xA
- pPn0v3/QykYQ==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2E8489F0B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 14:40:15 +0000 (UTC)
+IronPort-SDR: ltayijbf0bSI1TlJTY3JMl7R8TGviaTklKOcJm+ZXIwtgMPXbCmLubc0maBXJ2PqOqRoceQhqD
+ 9pf0AX7P+G1Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2020 07:29:28 -0700
-IronPort-SDR: 1VRPigsSVDjwUggBX+o6I7pHdJ5QUKtXO+9q6NVrHwD6s6gwNaLxxpJ6napeqhdP9i4FYoPIXw
- s+y99gPk76Og==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="239940624"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
- by orsmga008.jf.intel.com with ESMTP; 23 Mar 2020 07:29:27 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 23 Mar 2020 07:29:27 -0700
-Received: from orsmsx605.amr.corp.intel.com (10.22.229.18) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 23 Mar 2020 07:29:26 -0700
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
- orsmsx605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 23 Mar 2020 07:29:26 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (TLS) id 14.3.439.0; Mon, 23 Mar 2020 07:29:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gdu6GlG2ibUOIKcMsl78URYhOWbLHwfBiftQ4/1mF5nXd72j6D8pfUevWXFWCNvgVwwFpQ+/DiWeKbTi2a13FNdF6/f/vPv0RFjWgOmyZWjP+mnb6olC3sMlgoQ90/LHvQ5qraeDbZpGSpVY7e1BQY6A6r/IXkhaDaYBNFDE0I1A07MaXszBoBwgo3T2gXH+LqGsBRY6fvWy+S06XvMmsqEuH5TKT3ltLqxjHMF8HufKmAEbvph1LpC0eOMKSIsmh9dbEF45HhVaBXCBVo2TNrRrh8WgEH/qhnNf8+z7hieZ62LVCuzEp2vkjH3xZ6D7j+nQ8/zEmueqo3we5dq0fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WbAPgzAiqo6ruH2GD92rs0m6nIUEnOF3SM2GUM7iycQ=;
- b=CykpY84iA9/jTdkqcbCSfJFfWVlvZfEuVRUUyokCkpD4O04Ew8LOXhsXATF5FK9eAyogTla97CDrNpQd8/ED7JweZ+y5Fyv3bfvS8t9vQPrVULBqZ/C3gvDiuouudgc/OxN5uPM6uROgUSJn5QrJ3CVulTDgVeR+rdXVxP70+J9Owza1RBVeq3mudJu3jiB0a0kLKmTRVnC9B1DM41fbV1wkghBlBEtxYvdfo99oqb2kqYrU5t+Cmvw2dr+Snfk8SjEYBSDmmGFXPghARjZ6CjrpdjlI0pfDUwr4Rrop0umlhx4e4Xt0Cw0tQ+s0w57k8VwnXcdT0kuN2ELJQ68lYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WbAPgzAiqo6ruH2GD92rs0m6nIUEnOF3SM2GUM7iycQ=;
- b=QLBl+ex7E20Bt5rz4g7oVOnkUuHCfnudJPAqXhDYJkRld8N5grkuq8ZsDTFx/qL1RGO6oR+tzODZyuG4MWiI9FDrgWJSpT9ixrAwSIly+dwkcvE0TD2C/PNoVrr+tsz+dv/Gl2dmRh5uxQTwHRHtsPrCLqQKCEf/hV9IcMLE9wc=
-Received: from SN6PR11MB3134.namprd11.prod.outlook.com (2603:10b6:805:d9::12)
- by SN6PR11MB2752.namprd11.prod.outlook.com (2603:10b6:805:59::31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.22; Mon, 23 Mar
- 2020 14:29:25 +0000
-Received: from SN6PR11MB3134.namprd11.prod.outlook.com
- ([fe80::8c55:1a2b:2cae:c5bf]) by SN6PR11MB3134.namprd11.prod.outlook.com
- ([fe80::8c55:1a2b:2cae:c5bf%7]) with mapi id 15.20.2835.021; Mon, 23 Mar 2020
- 14:29:25 +0000
-From: "Khor, Swee Aun" <swee.aun.khor@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- "Shankar, Uma" <uma.shankar@intel.com>
-Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
- for audio codec init
-Thread-Index: AQHV/RT5mdG1W5elH0yPIMoH1YcKAqhQSJkAgAC8TICAAJghAIAAFylAgASMiLA=
-Date: Mon, 23 Mar 2020 14:29:25 +0000
-Message-ID: <SN6PR11MB3134E738523673EE95DFEE33AFF00@SN6PR11MB3134.namprd11.prod.outlook.com>
-References: <20200318113009.16757-1-uma.shankar@intel.com>
- <469075d16551fe95e2fdadfd6ffd1538a8f3a657.camel@intel.com>
- <E7C9878FBA1C6D42A1CA3F62AEB6945F82437F00@BGSMSX104.gar.corp.intel.com>
- <20200320152406.GP13686@intel.com>
- <SN6PR11MB313483A95ADC942C6ADB4A23AFF50@SN6PR11MB3134.namprd11.prod.outlook.com>
-In-Reply-To: <SN6PR11MB313483A95ADC942C6ADB4A23AFF50@SN6PR11MB3134.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=swee.aun.khor@intel.com; 
-x-originating-ip: [192.198.147.194]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f1ffb90-d10e-483b-0604-08d7cf36966d
-x-ms-traffictypediagnostic: SN6PR11MB2752:
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SN6PR11MB27524B765135A746B0DC8A89AFF00@SN6PR11MB2752.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0351D213B3
-x-forefront-antispam-report: SFV:NSPM;
- SFS:(10019020)(366004)(39860400002)(376002)(396003)(346002)(136003)(199004)(316002)(53546011)(6506007)(71200400001)(26005)(33656002)(186003)(86362001)(110136005)(54906003)(66556008)(64756008)(66946007)(66476007)(66446008)(76116006)(6636002)(55016002)(5660300002)(8676002)(478600001)(8936002)(9686003)(7696005)(52536014)(4326008)(81156014)(81166006)(2906002);
- DIR:OUT; SFP:1102; SCL:1; SRVR:SN6PR11MB2752;
- H:SN6PR11MB3134.namprd11.prod.outlook.com; FPR:; SPF:None; LANG:en;
- PTR:InfoNoRecords; A:1; 
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KoHxuSkd6eJuJTpl5icjEvf0oYe5jdjMOMPo8EZa0JTYItEp67qTHweWO6OOfZ+1GfD1xKMglCfCuek4sXYY9keSbXBzr1AHRWoGc7Gj+mjYQJY99l+/RZ6PkBVIqQIrmhjE9E282idwkK+0hkWrw1gCGAn1tXU3+uiQwhh0b+xfG32pRW2mSzEg34LlZCYIzrTEeg2bZio9ynU9jH3RUB3MXYlz9nwfnkhbi0QqYd0z+KnwUxZmAOpH64amUgK92PDQdcgQYVoEFBrOYv0FXpPnDo4t/+koFNuQV+xt8ahKNuxMeEdrpB8gUAgjw8SwKgwHeq6G8+yozB3jnU85vbr8qbh1rKrDII5Oe0wvIaur5PHyMGBrcYWz3k0cLusZRiDavZf8b+UfZ5aoHKZ6QdGEa3jxeXGIEPeInUuYUsd7EJ4Arx6TwVNB++tPVlHg
-x-ms-exchange-antispam-messagedata: 9NadEi0COnSrDp/PgRiJ5ThB3Um/sqS10To+XxHy4i0OLqi5auevqsixNfD/+xyaxLkuWs/V15tePIHk3UiQPOmPc/OjGkci4Q21R0UyL1cjJH8DIA5lV8dFhUwL0a2urXdKN1VWunvgaBIEByij7g==
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 07:40:15 -0700
+IronPort-SDR: GUTzORdZ9WS+PMFtwou9lTLlBK8PdealC46vAAIkx18zisfajGz8eSs4rIWE2t4vJXE5MZL1dT
+ m8pWvz/oXUpg==
+X-IronPort-AV: E=Sophos;i="5.72,296,1580803200"; d="scan'208";a="392927915"
+Received: from unknown (HELO intel.com) ([10.237.72.89])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 07:40:13 -0700
+Date: Mon, 23 Mar 2020 16:36:16 +0200
+From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Message-ID: <20200323143616.GA23620@intel.com>
+References: <20200309161204.17792-1-stanislav.lisovskiy@intel.com>
+ <20200309161204.17792-5-stanislav.lisovskiy@intel.com>
+ <20200311163130.GC13686@intel.com>
+ <20200320125141.GA4156@intel.com>
+ <20200323141836.GR13686@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f1ffb90-d10e-483b-0604-08d7cf36966d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Mar 2020 14:29:25.3956 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CEfCyQc3goA5tUxQMhhqE86nTKd8HpGZG06JFXmRydPIxLPcqZr4QmUPTEeW46jYuNcgWbXS11/Zm0ICkeMHhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2752
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
- for audio codec init
+Content-Disposition: inline
+In-Reply-To: <20200323141836.GR13686@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v19 4/8] drm/i915: Refactor
+ intel_can_enable_sagv
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,164 +52,639 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville, =
+On Mon, Mar 23, 2020 at 04:18:36PM +0200, Ville Syrj=E4l=E4 wrote:
+> On Fri, Mar 20, 2020 at 02:51:41PM +0200, Lisovskiy, Stanislav wrote:
+> > On Wed, Mar 11, 2020 at 06:31:30PM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Mon, Mar 09, 2020 at 06:12:00PM +0200, Stanislav Lisovskiy wrote:
+> > > > Currently intel_can_enable_sagv function contains
+> > > > a mix of workarounds for different platforms
+> > > > some of them are not valid for gens >=3D 11 already,
+> > > > so lets split it into separate functions.
+> > > > =
 
+> > > > v2:
+> > > >     - Rework watermark calculation algorithm to
+> > > >       attempt to calculate Level 0 watermark
+> > > >       with added sagv block time latency and
+> > > >       check if it fits in DBuf in order to
+> > > >       determine if SAGV can be enabled already
+> > > >       at this stage, just as BSpec 49325 states.
+> > > >       if that fails rollback to usual Level 0
+> > > >       latency and disable SAGV.
+> > > >     - Remove unneeded tabs(James Ausmus)
+> > > > =
 
-You are right, your suggestion will fix this issue.
+> > > > v3: Rebased the patch
+> > > > =
 
-#Based on dmesg log, uapi mode private flags change is captured
-...
-[   11.404578] fbcon: i915drmfb (fb0) is primary device
-[   11.404743] [drm] SA: intel_atomic_check: uapi change =
+> > > > v4: - Added back interlaced check for Gen12 and
+> > > >       added separate function for TGL SAGV check
+> > > >       (thanks to James Ausmus for spotting)
+> > > >     - Removed unneeded gen check
+> > > >     - Extracted Gen12 SAGV decision making code
+> > > >       to a separate function from skl_compute_wm
+> > > > =
 
-[   11.404744] [drm] SA2: intel_atomic_check: new_crtc_state->uapi.mode.pri=
-vate_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D 1  =
+> > > > v5: - Added SAGV global state to dev_priv, because
+> > > >       we need to track all pipes, not only those
+> > > >       in atomic state. Each pipe has now correspondent
+> > > >       bit mask reflecting, whether it can tolerate
+> > > >       SAGV or not(thanks to Ville Syrjala for suggestions).
+> > > >     - Now using active flag instead of enable in crc
+> > > >       usage check.
+> > > > =
 
-[   11.404744] [drm] SA2: intel_atomic_check: new_crtc_state->uapi.mode.pri=
-vate_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D 0  =
+> > > > v6: - Fixed rebase conflicts
+> > > > =
 
-[   11.404745] [drm] SA2: intel_atomic_check: new_crtc_state->uapi.mode.pri=
-vate_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D 0  =
+> > > > v7: - kms_cursor_legacy seems to get broken because of multiple mem=
+cpy
+> > > >       calls when copying level 0 water marks for enabled SAGV, to
+> > > >       fix this now simply using that field right away, without copy=
+ing,
+> > > >       for that introduced a new wm_level accessor which decides whi=
+ch
+> > > >       wm_level to return based on SAGV state.
+> > > > =
 
-[   11.404799] [drm:intel_atomic_check [i915]] [CONNECTOR:110:HDMI-A-2] Lim=
-iting display bpp to 24 instead of EDID bpp 24, requested bpp 36, max platf=
-orm bpp 36
-[   11.404855] [drm:intel_hdmi_compute_config [i915]] picking 8 bpc for HDM=
-I output (pipe bpp: 24)
-[   11.404898] [drm:intel_atomic_check [i915]] hw max bpp: 24, pipe bpp: 24=
-, dithering: 0
-...
+> > > > v8: - Protect crtc_sagv_mask same way as we do for other global sta=
+te
+> > > >       changes: i.e check if changes are needed, then grab all crtc =
+locks
+> > > >       to serialize the changes(Ville Syrj=E4l=E4)
+> > > >     - Add crtc_sagv_mask caching in order to avoid needless recalcu=
+lations
+> > > >       (Matthew Roper)
+> > > >     - Put back Gen12 SAGV switch in order to get it enabled in sepa=
+rate
+> > > >       patch(Matthew Roper)
+> > > >     - Rename *_set_sagv_mask to *_compute_sagv_mask(Matthew Roper)
+> > > >     - Check if there are no active pipes in intel_can_enable_sagv
+> > > >       instead of platform specific functions(Matthew Roper), same
+> > > >       for intel_has_sagv check.
+> > > > =
 
-#Here is the git diff =
+> > > > v9  - Switched to u8 for crtc_sagv_mask(Ville Syrj=E4l=E4)
+> > > >     - crtc_sagv_mask now is pipe_sagv_mask(Ville Syrj=E4l=E4)
+> > > >     - Extracted sagv checking logic from skl/icl/tgl_compute_sagv_m=
+ask
+> > > >     - Extracted skl_plane_wm_level function and passing latency to
+> > > >       separate patches(Ville Syrj=E4l=E4)
+> > > >     - Removed part of unneeded copy-paste from tgl_check_pipe_fits_=
+sagv_wm
+> > > >       (Ville Syrj=E4l=E4)
+> > > >     - Now using simple assignment for sagv_wm0 as it contains only
+> > > >       pod types and no pointers(Ville Syrj=E4l=E4)
+> > > >     - Fixed intel_can_enable_sagv not to do double duty, now it only
+> > > >       check SAGV bits by ANDing those between local and global stat=
+e.
+> > > >       The SAGV masks are now computed after watermarks are availabl=
+e,
+> > > >       in order to be able to figure out if ddb ranges are fitting n=
+icely.
+> > > >       (Ville Syrj=E4l=E4)
+> > > >     - Now having uv_sagv_wm0 and sagv_wm0, otherwise we have wrong =
+logic
+> > > >       when using skl_plane_wm_level accessor, as we had previously =
+for
+> > > >       Gen11+ color plane and regular wm levels, so probably both
+> > > >       has to be recalculated with additional SAGV block time for Le=
+vel 0.
+> > > > =
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
-/i915/display/intel_display.c
-index 4d1634ed6a1b..b5c56cd513d9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -14108,11 +14108,15 @@ static int intel_atomic_check(struct drm_device *=
-dev,
- 	int ret, i;
- 	bool any_ms =3D false;
- =
+> > > > v10: - Starting to use new global state for storing pipe_sagv_mask
+> > > > =
 
-+	DRM_INFO("SA: intel_atomic_check: uapi change \n");
-+
- 	/* Catch I915_MODE_FLAG_INHERITED */
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
- 					    new_crtc_state, i) {
--		if (new_crtc_state->hw.mode.private_flags !=3D
--		    old_crtc_state->hw.mode.private_flags)
-+
-+		DRM_INFO("SA2: intel_atomic_check: new_crtc_state->uapi.mode.private_fla=
-gs=3D %d, old_crtc_state->uapi.mode.private_flags=3D %d  \n", new_crtc_stat=
-e->uapi.mode.private_flags, old_crtc_state->uapi.mode.private_flags );
-+		if (new_crtc_state->uapi.mode.private_flags !=3D
-+		    old_crtc_state->uapi.mode.private_flags)
- 			new_crtc_state->uapi.mode_changed =3D true;
- 	}
+> > > > v11: - Fixed rebase conflict with recent drm-tip
+> > > >      - Check if we really need to recalculate SAGV mask, otherwise
+> > > >        bail out without making any changes.
+> > > >      - Use cached SAGV result, instead of recalculating it everytim=
+e,
+> > > >        if bw_state hasn't changed.
+> > > > =
 
-Regards,
-SweeAun
+> > > > v12: - Removed WARN from intel_can_enable_sagv, in some of the comm=
+its
+> > > >        if we don't recalculated watermarks, bw_state is not recalcu=
+lated,
+> > > >        thus leading to SAGV state not recalculated by the commit st=
+ate,
+> > > >        which is still calling intel_can_enable_sagv function. Fix t=
+hat
+> > > >        by just analyzing the current global bw_state object - becau=
+se
+> > > >        we simply have no other objects related to that.
+> > > > =
 
------Original Message-----
-From: Khor, Swee Aun =
+> > > > v13: - Rebased, fixed warnings regarding long lines
+> > > >      - Changed function call sites from intel_atomic_bw* to
+> > > >        intel_wb_* as was suggested.(Jani Nikula)
+> > > >      - Taken ddb_state_changed and bw_state_changed into use.
+> > > > =
 
-Sent: Saturday, March 21, 2020 12:55 AM
-To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; Shankar, Uma <uma.sh=
-ankar@intel.com>
-Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org
-Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot =
-for audio codec init
+> > > > v14: - total_affected_planes is no longer needed to check for ddb c=
+hanges,
+> > > >        just as active_pipe_changes.
+> > > > =
 
-Hi Ville,
-You means this change right? Sure. Will try your suggestion as well. =
+> > > > v15: - Fixed stupid mistake with uninitialized crtc in
+> > > >        skl_compute_sagv_mask.
+> > > > =
 
-By the way, what is different between hw.mode and uapi.mode and how we know=
- which to be used? It used to only base.mode before hw/uapi split patches. =
+> > > > v16: - Convert pipe_sagv_mask to pipe_sagv_reject and now using inv=
+erted
+> > > >        flag to indicate SAGV readiness for the pipe(Ville Syrj=E4l=
+=E4)
+> > > >      - Added return value to intel_compute_sagv_mask which call
+> > > >        intel_atomic_serialize_global_state in order to properly
+> > > >        propagate EDEADLCK to drm.
+> > > >      - Based on the discussion with Ville, removed active_pipe_chan=
+ges
+> > > >        check and also there seems to be no need for checking ddb_st=
+ate_changes
+> > > >        as well. Instead we just iterate through crtcs in state - ha=
+ving
+> > > >        crtc in a state already guarantees that it is at least read-=
+locked
+> > > >        Having additional flag to check if there actually were some =
+plane
+> > > >        wm/ddb changes would be probably added later as an optimizat=
+ion.
+> > > >      - We can't get parent atomic state from crtc_state at commit s=
+tage
+> > > >        (nice drm feature), also propagating state through function =
+call
+> > > >        chain seems to be overkill and not possible(cursor legacy up=
+dates)
+> > > >        Querying for bw_state object from global state is not possib=
+le as
+> > > >        it might get swapped with other global state.
+> > > >        So... just sticked can_sagv boolean into wm crtc state.
+> > > > =
 
+> > > > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> > > > Cc: Ville Syrj=E4l=E4 <ville.syrjala@intel.com>
+> > > > Cc: James Ausmus <james.ausmus@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_bw.h       |  18 +
+> > > >  drivers/gpu/drm/i915/display/intel_display.c  |  23 +-
+> > > >  .../drm/i915/display/intel_display_types.h    |   3 +
+> > > >  drivers/gpu/drm/i915/intel_pm.c               | 314 ++++++++++++++=
+++--
+> > > >  drivers/gpu/drm/i915/intel_pm.h               |   1 +
+> > > >  5 files changed, 318 insertions(+), 41 deletions(-)
+> > > > =
 
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14671,8 +14671,8 @@ static int intel_atomic_check(struct drm_device *=
-dev,
->         /* Catch I915_MODE_FLAG_INHERITED */
->         for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->                                             new_crtc_state, i) {
-> -               if (new_crtc_state->hw.mode.private_flags !=3D
-> -                   old_crtc_state->hw.mode.private_flags)
-> +               if (new_crtc_state->uapi.mode.private_flags !=3D
-> +                   old_crtc_state->uapi.mode.private_flags)
->                         new_crtc_state->uapi.mode_changed =3D true;
->         }
-> =
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_bw.h b/drivers/gpu/=
+drm/i915/display/intel_bw.h
+> > > > index b5f61463922f..4083adf4b432 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_bw.h
+> > > > @@ -18,6 +18,24 @@ struct intel_crtc_state;
+> > > >  struct intel_bw_state {
+> > > >  	struct intel_global_state base;
+> > > >  =
 
-> ?
+> > > > +	/*
+> > > > +	 * Contains a bit mask, used to determine, whether correspondent
+> > > > +	 * pipe allows SAGV or not.
+> > > > +	 */
+> > > > +	u8 pipe_sagv_reject;
+> > > > +
+> > > > +	/*
+> > > > +	 * Used to determine if we already had calculated
+> > > > +	 * SAGV mask for this state once.
+> > > > +	 */
+> > > > +	bool sagv_calculated;
+> > > =
 
-Regards,
-SweeAun
+> > > Why would we even attempt to calculate it many times?
+> > > =
 
------Original Message-----
-From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-Sent: Friday, March 20, 2020 11:24 PM
-To: Shankar, Uma <uma.shankar@intel.com>
-Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org; Kh=
-or, Swee Aun <swee.aun.khor@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot =
-for audio codec init
+> > > > +
+> > > > +	/*
+> > > > +	 * Contains final SAGV decision based on current mask,
+> > > > +	 * to prevent doing the same job over and over again.
+> > > > +	 */
+> > > > +	bool can_sagv;
+> > > =
 
-On Fri, Mar 20, 2020 at 06:19:37AM +0000, Shankar, Uma wrote:
-> =
+> > > This is redundant since it's just sagv_reject=3D=3D0.
+> > > =
 
-> =
+> > > > +
+> > > >  	unsigned int data_rate[I915_MAX_PIPES];
+> > > >  	u8 num_active_planes[I915_MAX_PIPES];
+> > > >  };
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers=
+/gpu/drm/i915/display/intel_display.c
+> > > > index 8f23c4d51c33..9e0058a78ea6 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > > @@ -14010,7 +14010,10 @@ static void verify_wm_state(struct intel_c=
+rtc *crtc,
+> > > >  		/* Watermarks */
+> > > >  		for (level =3D 0; level <=3D max_level; level++) {
+> > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > -						&sw_plane_wm->wm[level]))
+> > > > +						&sw_plane_wm->wm[level]) ||
+> > > > +			   (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > +						&sw_plane_wm->sagv_wm0) &&
+> > > > +			   (level =3D=3D 0)))
+> > > =
 
-> > -----Original Message-----
-> > From: Souza, Jose <jose.souza@intel.com>
-> > Sent: Friday, March 20, 2020 12:36 AM
-> > To: Shankar, Uma <uma.shankar@intel.com>; =
+> > > Pointless parens. Also we should do the check as
+> > > 'level =3D=3D 0 && wm_equals(sagv)' to skip the pointless comparison =
+when
+> > > level !=3D 0.
+> > > =
 
-> > intel-gfx@lists.freedesktop.org
-> > Cc: Khor, Swee Aun <swee.aun.khor@intel.com>
-> > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset =
+> > > I guess we can't read out sagv state due to the silly pcode interface?
+> > > =
 
-> > at boot for audio codec init
+> > > >  				continue;
+> > > >  =
+
+> > > >  			drm_err(&dev_priv->drm,
+> > > > @@ -14065,7 +14068,10 @@ static void verify_wm_state(struct intel_c=
+rtc *crtc,
+> > > >  		/* Watermarks */
+> > > >  		for (level =3D 0; level <=3D max_level; level++) {
+> > > >  			if (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > -						&sw_plane_wm->wm[level]))
+> > > > +						&sw_plane_wm->wm[level]) ||
+> > > > +			   (skl_wm_level_equals(&hw_plane_wm->wm[level],
+> > > > +						&sw_plane_wm->sagv_wm0) &&
+> > > > +			   (level =3D=3D 0)))
+> > > >  				continue;
+> > > >  =
+
+> > > >  			drm_err(&dev_priv->drm,
+> > > > @@ -15544,8 +15550,10 @@ static void intel_atomic_commit_tail(struc=
+t intel_atomic_state *state)
+> > > >  		 * SKL workaround: bspec recommends we disable the SAGV when we
+> > > >  		 * have more then one pipe enabled
+> > > >  		 */
+> > > > -		if (!intel_can_enable_sagv(state))
+> > > > -			intel_disable_sagv(dev_priv);
+> > > > +		if (INTEL_GEN(dev_priv) < 11) {
+> > > > +			if (!intel_can_enable_sagv(state))
+> > > > +				intel_disable_sagv(dev_priv);
+> > > > +		}
+> > > >  =
+
+> > > >  		intel_modeset_verify_disabled(dev_priv, state);
+> > > >  	}
+> > > > @@ -15645,8 +15653,10 @@ static void intel_atomic_commit_tail(struc=
+t intel_atomic_state *state)
+> > > >  	if (state->modeset)
+> > > >  		intel_verify_planes(state);
+> > > >  =
+
+> > > > -	if (state->modeset && intel_can_enable_sagv(state))
+> > > > -		intel_enable_sagv(dev_priv);
+> > > > +	if (INTEL_GEN(dev_priv) < 11) {
+> > > > +		if (state->modeset && intel_can_enable_sagv(state))
+> > > > +			intel_enable_sagv(dev_priv);
+> > > > +	}
+> > > >  =
+
+> > > >  	drm_atomic_helper_commit_hw_done(&state->base);
+> > > >  =
+
+> > > > @@ -15798,7 +15808,6 @@ static int intel_atomic_commit(struct drm_d=
+evice *dev,
+> > > >  =
+
+> > > >  	if (state->global_state_changed) {
+> > > >  		assert_global_state_locked(dev_priv);
+> > > > -
+> > > >  		dev_priv->active_pipes =3D state->active_pipes;
+> > > >  	}
+> > > >  =
+
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/d=
+rivers/gpu/drm/i915/display/intel_display_types.h
+> > > > index 5e00e611f077..da0308b87dad 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > @@ -669,11 +669,14 @@ struct skl_plane_wm {
+> > > >  	struct skl_wm_level wm[8];
+> > > >  	struct skl_wm_level uv_wm[8];
+> > > >  	struct skl_wm_level trans_wm;
+> > > > +	struct skl_wm_level sagv_wm0;
+> > > > +	struct skl_wm_level uv_sagv_wm0;
+> > > >  	bool is_planar;
+> > > >  };
+> > > >  =
+
+> > > >  struct skl_pipe_wm {
+> > > >  	struct skl_plane_wm planes[I915_MAX_PLANES];
+> > > > +	bool can_sagv;
+> > > >  };
+> > > >  =
+
+> > > >  enum vlv_wm_level {
+> > > > diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915=
+/intel_pm.c
+> > > > index c72fa59a8302..f598b55f4abc 100644
+> > > > --- a/drivers/gpu/drm/i915/intel_pm.c
+> > > > +++ b/drivers/gpu/drm/i915/intel_pm.c
+> > > > @@ -43,6 +43,7 @@
+> > > >  #include "i915_fixed.h"
+> > > >  #include "i915_irq.h"
+> > > >  #include "i915_trace.h"
+> > > > +#include "display/intel_bw.h"
+> > > >  #include "intel_pm.h"
+> > > >  #include "intel_sideband.h"
+> > > >  #include "../../../platform/x86/intel_ips.h"
+> > > > @@ -3634,7 +3635,7 @@ static bool skl_needs_memory_bw_wa(struct drm=
+_i915_private *dev_priv)
+> > > >  	return IS_GEN9_BC(dev_priv) || IS_BROXTON(dev_priv);
+> > > >  }
+> > > >  =
+
+> > > > -static bool
+> > > > +bool
+> > > >  intel_has_sagv(struct drm_i915_private *dev_priv)
+> > > >  {
+> > > >  	/* HACK! */
+> > > > @@ -3757,39 +3758,25 @@ intel_disable_sagv(struct drm_i915_private =
+*dev_priv)
+> > > >  	return 0;
+> > > >  }
+> > > >  =
+
+> > > > -bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > > +static bool skl_can_enable_sagv_on_pipe(struct intel_crtc_state *c=
+rtc_state)
+> > > =
+
+> > > This extraction looks to be trivially done as a separate patch.
+> > > =
+
+> > > >  {
+> > > > -	struct drm_device *dev =3D state->base.dev;
+> > > > +	struct drm_device *dev =3D crtc_state->uapi.crtc->dev;
+> > > >  	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > +	struct intel_atomic_state *state =3D to_intel_atomic_state(crtc_s=
+tate->uapi.state);
+> > > >  	struct intel_crtc *crtc;
+> > > >  	struct intel_plane *plane;
+> > > > -	struct intel_crtc_state *crtc_state;
+> > > > -	enum pipe pipe;
+> > > >  	int level, latency;
+> > > >  =
+
+> > > > -	if (!intel_has_sagv(dev_priv))
+> > > > -		return false;
+> > > > -
+> > > > -	/*
+> > > > -	 * If there are no active CRTCs, no additional checks need be per=
+formed
+> > > > -	 */
+> > > > -	if (hweight8(state->active_pipes) =3D=3D 0)
+> > > > -		return true;
+> > > > +	crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> > > >  =
+
+> > > > -	/*
+> > > > -	 * SKL+ workaround: bspec recommends we disable SAGV when we have
+> > > > -	 * more then one pipe enabled
+> > > > -	 */
+> > > > -	if (hweight8(state->active_pipes) > 1)
+> > > > +	if ((INTEL_GEN(dev_priv) <=3D 9) && (hweight8(state->active_pipes=
+) > 1))
+> > > >  		return false;
+> > > >  =
+
+> > > > -	/* Since we're now guaranteed to only have one active CRTC... */
+> > > > -	pipe =3D ffs(state->active_pipes) - 1;
+> > > > -	crtc =3D intel_get_crtc_for_pipe(dev_priv, pipe);
+> > > > -	crtc_state =3D to_intel_crtc_state(crtc->base.state);
+> > > > -
+> > > > -	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)
+> > > > +	if (crtc_state->hw.adjusted_mode.flags & DRM_MODE_FLAG_INTERLACE)=
+ {
+> > > > +		DRM_DEBUG_KMS("No SAGV for interlaced mode on pipe %c\n",
+> > > > +			      pipe_name(crtc->pipe));
+> > > >  		return false;
+> > > > +	}
+> > > >  =
+
+> > > >  	for_each_intel_plane_on_crtc(dev, crtc, plane) {
+> > > >  		struct skl_plane_wm *wm =3D
+> > > > @@ -3816,13 +3803,145 @@ bool intel_can_enable_sagv(struct intel_at=
+omic_state *state)
+> > > >  		 * incur memory latencies higher than sagv_block_time_us we
+> > > >  		 * can't enable SAGV.
+> > > >  		 */
+> > > > -		if (latency < dev_priv->sagv_block_time_us)
+> > > > +		if (latency < dev_priv->sagv_block_time_us) {
+> > > > +			DRM_DEBUG_KMS("Latency %d < sagv block time %d, no SAGV for pip=
+e %c\n",
+> > > > +				      latency, dev_priv->sagv_block_time_us, pipe_name(crtc->p=
+ipe));
+> > > >  			return false;
+> > > > +		}
+> > > >  	}
+> > > >  =
+
+> > > >  	return true;
+> > > >  }
+> > > >  =
+
+> > > > +static bool
+> > > > +tgl_can_enable_sagv_on_pipe(struct intel_crtc_state *crtc_state);
+> > > > +
+> > > > +static bool intel_calculate_sagv_result(struct intel_bw_state *bw_=
+state)
+> > > > +{
+> > > > +	return bw_state->pipe_sagv_reject =3D=3D 0;
+> > > > +}
+> > > > +
+> > > > +static int intel_compute_sagv_mask(struct intel_atomic_state *stat=
+e)
+> > > > +{
+> > > > +	int ret;
+> > > > +	struct drm_device *dev =3D state->base.dev;
+> > > > +	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > +	struct intel_crtc *crtc;
+> > > > +	struct intel_crtc_state *new_crtc_state;
+> > > > +	struct intel_bw_state *new_bw_state =3D NULL;
+> > > > +	struct intel_bw_state *old_bw_state =3D NULL;
+> > > > +	int i;
+> > > > +
+> > > > +	/*
+> > > > +	 * If SAGV is not supported we just can't do anything
+> > > > +	 * not even set or reject SAGV points - just bail out.
+> > > > +	 * Thus avoid needless calculations.
+> > > > +	 */
+> > > > +	if (!intel_has_sagv(dev_priv))
+> > > > +		return 0;
+> > > > +
+> > > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > +					 new_crtc_state, i) {
+> > > > +		bool pipe_sagv_enable;
+> > > > +
+> > > > +		new_bw_state =3D intel_bw_get_state(state);
+> > > > +		old_bw_state =3D intel_bw_get_old_state(state);
+> > > > +
+> > > > +		if (IS_ERR_OR_NULL(new_bw_state) || IS_ERR_OR_NULL(old_bw_state)=
+) {a
+> > > > +			WARN(1, "Could not get bw_state\n");
+> > > > +			return -EINVAL;
+> > > =
+
+> > > What is this?
+> > > =
+
+> > > > +		}
+> > > > +
+> > > > +		new_bw_state->sagv_calculated =3D false;
+> > > > +
+> > > > +		if (INTEL_GEN(dev_priv) >=3D 12)
+> > > > +			pipe_sagv_enable =3D tgl_can_enable_sagv_on_pipe(new_crtc_state=
+);
+> > > > +		else
+> > > > +			pipe_sagv_enable =3D skl_can_enable_sagv_on_pipe(new_crtc_state=
+);
+> > > > +
+> > > > +		if (pipe_sagv_enable)
+> > > > +			new_bw_state->pipe_sagv_reject &=3D ~BIT(crtc->pipe);
+> > > > +		else
+> > > > +			new_bw_state->pipe_sagv_reject |=3D BIT(crtc->pipe);
+> > > > +	}
+> > > > +
+> > > > +	if (!new_bw_state || !old_bw_state)
+> > > > +		return 0;
+> > > > +
+> > > > +	new_bw_state->can_sagv =3D intel_calculate_sagv_result(new_bw_sta=
+te);
+> > > > +	new_bw_state->sagv_calculated =3D true;
+> > > > +
+> > > > +	for_each_new_intel_crtc_in_state(state, crtc,
+> > > > +					 new_crtc_state, i) {
+> > > > +		struct skl_pipe_wm *pipe_wm =3D &new_crtc_state->wm.skl.optimal;
+> > > > +
+> > > > +		/*
+> > > > +		 * Due to drm limitation at commit state, when
+> > > > +		 * changes are written the whole atomic state is
+> > > > +		 * zeroed away =3D> which prevents from using it,
+> > > > +		 * so just sticking it into pipe wm state for
+> > > > +		 * keeping it simple - anyway this is related to wm.
+> > > > +		 * Proper way in ideal universe would be of course not
+> > > > +		 * to lose parent atomic state object from child crtc_state,
+> > > > +		 * and stick to OOP programming principles, which had been
+> > > > +		 * scientifically proven to work.
+> > > > +		 */
+> > > > +		pipe_wm->can_sagv =3D new_bw_state->can_sagv;
+> > > =
+
+> > > I would probably name that wm->can_sagv as wm->use_sagv_wm so it's cl=
+ear
+> > > what it does.
+> > > =
+
+> > > > +	}
+> > > > +
+> > > > +	/*
+> > > > +	 * For SAGV we need to account all the pipes,
+> > > > +	 * not only the ones which are in state currently.
+> > > > +	 * Grab all locks if we detect that we are actually
+> > > > +	 * going to do something.
+> > > > +	 */
+> > > > +	if (new_bw_state->pipe_sagv_reject !=3D old_bw_state->pipe_sagv_r=
+eject) {
+> > > > +		DRM_DEBUG_KMS("State %p: old sagv mask 0x%x, new sagv mask 0x%x\=
+n",
+> > > > +			      state,
+> > > > +			      old_bw_state->pipe_sagv_reject,
+> > > > +			      new_bw_state->pipe_sagv_reject);
+> > > > +
+> > > > +		ret =3D intel_atomic_serialize_global_state(&new_bw_state->base);
+> > > > +		if (ret) {
+> > > > +			DRM_DEBUG_KMS("Could not serialize global state\n");
+> > > > +			return ret;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +/*
+> > > > + * This function to be used before swap state
+> > > > + */
+> > > > +bool intel_can_enable_sagv(struct intel_atomic_state *state)
+> > > > +{
+> > > > +	struct drm_device *dev =3D state->base.dev;
+> > > > +	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> > > > +	struct intel_bw_state *bw_state;
+> > > > +
+> > > > +	if (!intel_has_sagv(dev_priv)) {
+> > > > +		DRM_DEBUG_KMS("No SAGV support detected\n");
+> > > > +		return false;
+> > > > +	}
+> > > > +
+> > > > +	bw_state =3D intel_bw_get_state(state);
+> > > > +
+> > > > +	if (IS_ERR_OR_NULL(bw_state)) {
+> > > =
+
+> > > It can't be NULL. And if you get an error you must propagate it upwar=
+ds.
 > > =
 
-> > On Wed, 2020-03-18 at 17:00 +0530, Uma Shankar wrote:
-> > > If external monitors are connected during boot up, driver uses the =
-
-> > > same mode programmed by BIOS and avoids a full modeset.
-> > > This results in display audio codec left uninitialized and display =
-
-> > > audio fails to work till user triggers a modeset.
-> > >
-> > > This patch fixes the same by triggering a modeset at boot.
+> > Can you please elaborate what I should do here?
+> > Just want to save some time without wasting time guessing.
+> > The options are:
 > > =
 
-> > We had the same issue for PSR, take a look to the fix:
-> > commit 33e059a2e4df454359f642f2235af39de9d3e914
-> > drm/i915/psr: Force PSR probe only after full initialization
-> > =
-
-> > Maybe make this even more generic.
+> > 1) If I propagate an error upwards, I obviously need to change a signat=
+ure
+> >    to int intel_can_enable_sagv, also if I do that usage at legacy call=
+sites
+> >    for this function will change, i.e you won't be able to call it like
+> >    if (intel_can_enable_sagv()) anymore. Is it that what you want?
+> >    Should note also that most of the legacy call sites are from commit_=
+tail
+> >    which wouldn't even propagate it further, because as you know it is =
+already
+> >    point of no return.
 > =
 
-> Yeah this looks to dealing with almost a similar need. Thanks for =
+> Looks like intel_can_enable_sagv() should not exist anymore. We should
+> just precompute the sagv mask in the bw atomic check, and then the commit
+> time checks will simply become checks of the sagv mask.
 
-> pointing this out, will try to come up with a generalized solution.
+Was thinking about that, but then the question is how to deal with legacy
+stuff - for instance, skl doesn't have QGV points at all, as I understand
+some platforms just have it as a switch so we'll have to have somekind
+of code like this anyway, i.e just checking if we can and then switch.
 
-How about just fixing the uapi vs. hw fail I showed instead of adding even =
-more hacks?
+Or basically we would be just inlining the intel_can_enable_sagv to
+intel_atomic_commit_tail as I understand. Because yep for gen >=3D11
+it just a matter of pre/post updating qgv points, but for skl we =
 
---
-Ville Syrj=E4l=E4
-Intel
+still need some condition to check when we are calling intel_enable/disable=
+ sagv
+
+
+Stan
+
+
+> =
+
+> -- =
+
+> Ville Syrj=E4l=E4
+> Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
