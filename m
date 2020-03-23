@@ -2,31 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5805A18F602
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 14:44:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7461818F65C
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2020 14:53:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 668456E12C;
-	Mon, 23 Mar 2020 13:44:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 839CF897E0;
+	Mon, 23 Mar 2020 13:53:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC57389D79
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 13:43:58 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20661076-1500050 
- for multiple; Mon, 23 Mar 2020 13:43:51 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Mar 2020 13:43:48 +0000
-Message-Id: <20200323134348.8513-12-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200323134348.8513-1-chris@chris-wilson.co.uk>
-References: <20200323134348.8513-1-chris@chris-wilson.co.uk>
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com
+ [IPv6:2607:f8b0:4864:20::e41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D458897E0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 13:53:41 +0000 (UTC)
+Received: by mail-vs1-xe41.google.com with SMTP id d18so857524vso.7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2020 06:53:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=bbk111No1CllfmXhS4OJRRiJEiHyrtPLgBDfmC91/9Y=;
+ b=Q2JtOVjF8sTHjunuBvcy1lXPFWG2ynaw57gTVINOIcadLFmbcMUGZiZkbJUCDZykjX
+ rOGQGy+YARu9NTb+Lf+VmhtV2KPcGGZjuBRRlyKtOuRyRzLiCeBeFuNsIUPA09Msrern
+ TaUyoor29aFIXf9AnHItwWhsUQ0mRWZM+VTvSD+yY3lV5hcIYAjDojd44AWlEdlesydi
+ j+4KfqDQlRHvq1/UDkhpUhHpiv+KEh1LqmzMq39hlR2cx6FKeTxOfNPazNV8lrEM1FKw
+ zEvFIlYUkjphMdwmuUsvSavvlfdB7xjMxGw2V6p/0mKHuAlrdBuEreWIqZih3UjrnWuv
+ XgJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=bbk111No1CllfmXhS4OJRRiJEiHyrtPLgBDfmC91/9Y=;
+ b=ri5V8OaNhBT0VlDgjlNlCVXp+C3k4Wg2KcJEfaqnRxFV4fvnw7UapdzUXT5bua6B4U
+ pUlYPh+RHee4rMGgmSqVrEqmceJRH5Xz19UkJKin9vxYanRjaG5P2KWP+4qDrdWnel1n
+ adOP7h6Grt4/yefs++h6g1nJZFJQsCuA0y11quAJHdzTVUrqPQ5APzafjgEMQmadLFzG
+ tlOS6JZdmBkkE8mpK9/qF5tmfAX4TxJam9CcKqUzA62IkWX0URK6zXljliwdsZpwJQaW
+ WnsvWC66isTY9bESkuZn2BYTtIRkb8Z5/IrjlaocDP5SaSDjNFTUwqTtp/lfgTTESWEY
+ eX+Q==
+X-Gm-Message-State: ANhLgQ1k51JexlN49oNKQ9VzFxM3ZN3vy/+QeUncrhCyopIZh3NWqq61
+ 0F3eWyCzYCgg/ax4/VEqxNI6PieTntp956PH5zA=
+X-Google-Smtp-Source: ADFU+vvKhlWbe1MeONZEV3G35ve4h/d0Gbu0CXa7Niwl5+P2Wnlyznj+oGxxyji8SWC0YiGxpGLvsgRUHYerNoz/w6M=
+X-Received: by 2002:a67:d982:: with SMTP id u2mr5201388vsj.164.1584971620219; 
+ Mon, 23 Mar 2020 06:53:40 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 12/12] drm/i915/gt: Yield the timeslice if
- caught waiting on a user semaphore
+References: <20200323130821.47914-1-matthew.auld@intel.com>
+ <158496942642.17851.15395283043398460951@build.alporthouse.com>
+In-Reply-To: <158496942642.17851.15395283043398460951@build.alporthouse.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 23 Mar 2020 13:53:13 +0000
+Message-ID: <CAM0jSHM9gThEKh21vzswvLfb3rMbqWaVzu90WVimBza5KvPq+A@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/selftests: mark huge_gem_object as
+ not shrinkable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,225 +62,80 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If we find ourselves waiting on a MI_SEMAPHORE_WAIT, either within the
-user batch or in our own preamble, the engine raises a
-GT_WAIT_ON_SEMAPHORE interrupt. We can unmask that interrupt and so
-respond to a semaphore wait by yielding the timeslice, if we have
-another context to yield to!
+On Mon, 23 Mar 2020 at 13:17, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Quoting Matthew Auld (2020-03-23 13:08:21)
+> > It looks like the callers expect a non-volatile object, but it looks the
+> > shrinker will discard the object pages anyway, thinking that the pages
+> > can be swapped out if the object is marked as WILLNEED. If that's true
+> > then it might be better to mark it as volatile and fix the callers
+> > instead, but on the other hand huge_gem_objects are fairly unique in
+> > that they duplicate pages for the backing store, so maybe shrinking is
+> > not that applicable.
+>
+> Duplication of backing store is irrelevant for the shrinker -- it just
+> deals with trying to make room by releasing objects. If we release the
+> entire object, all duplicate references are released and the pages
+> become recoverable.
 
-The only real complication is that the interrupt is only generated for
-the start of the semaphore wait, and is asynchronous to our
-process_csb() -- that is, we may not have registered the timeslice before
-we see the interrupt. To ensure we don't miss a potential semaphore
-blocking forward progress (e.g. selftests/live_timeslice_preempt) we mark
-the interrupt and apply it to the next timeslice regardless of whether it
-was active at the time.
+Ok. My rough thinking was that the shrinker page accounting(i.e what
+we return) is currently based on obj->base.size, which might be pure
+lies for huge_gem_object.
 
-v2: We use semaphores in preempt-to-busy, within the timeslicing
-implementation itself! Ergo, when we do insert a preemption due to an
-expired timeslice, the new context may start with the missed semaphore
-flagged by the retired context and be yielded, ad infinitum. To avoid
-this, read the context id at the time of the semaphore interrupt and
-only yield if that context is still active.
+>
+> Now as to whether the callers were expecting the object to be volatile
+> (for the backing pages to be discarded on swapping) is another question.
+> The answer would be that originally it was used with perma-pinned pages,
+> so it was never a problem. But looking at the users, they do *not*
+> expect to lose data on swapping.
+>
+> So we need to fix the huge object to not gleefully throw away data,
+> which also means that we cannot shrink it (as there is no backing
+> storage to copy the pages to).
+>
+> So both making the pages as DONTNEED and IS_SHRINKABLE are technically
+> incorrect.
 
-Fixes: 8ee36e048c98 ("drm/i915/execlists: Minimalistic timeslicing")
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Kenneth Graunke <kenneth@whitecape.org>
----
- drivers/gpu/drm/i915/gt/intel_engine_cs.c    |  6 +++
- drivers/gpu/drm/i915/gt/intel_engine_types.h |  9 +++++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c       | 13 ++++++-
- drivers/gpu/drm/i915/gt/intel_lrc.c          | 40 +++++++++++++++++---
- drivers/gpu/drm/i915/i915_reg.h              |  1 +
- 5 files changed, 61 insertions(+), 8 deletions(-)
+Do you mean WILLNEED and IS_SHRINKABLE, if object doesn't also support
+swapping? DONTNEED and IS_SHRINKABLE is correct for volatile objects.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 3aa8a652c16d..883a9b7fe88d 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1295,6 +1295,12 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
- 
- 	if (engine->id == RENDER_CLASS && IS_GEN_RANGE(dev_priv, 4, 7))
- 		drm_printf(m, "\tCCID: 0x%08x\n", ENGINE_READ(engine, CCID));
-+	if (HAS_EXECLISTS(dev_priv)) {
-+		drm_printf(m, "\tEL_STAT_HI: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_HI));
-+		drm_printf(m, "\tEL_STAT_LO: 0x%08x\n",
-+			   ENGINE_READ(engine, RING_EXECLIST_STATUS_LO));
-+	}
- 	drm_printf(m, "\tRING_START: 0x%08x\n",
- 		   ENGINE_READ(engine, RING_START));
- 	drm_printf(m, "\tRING_HEAD:  0x%08x\n",
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index 80cdde712842..ac283ab5d89c 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -156,6 +156,15 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_priolist default_priolist;
- 
-+	/**
-+	 * @yield: CCID at the time of the last semaphore-wait interrupt.
-+	 *
-+	 * Instead of leaving a semaphore busy-spinning on an engine, we would
-+	 * like to switch to another ready context, i.e. yielding the semaphore
-+	 * timeslice.
-+	 */
-+	u32 yield;
-+
- 	/**
- 	 * @error_interrupt: CS Master EIR
- 	 *
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index f0e7fd95165a..875bd0392ffc 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -39,6 +39,13 @@ cs_irq_handler(struct intel_engine_cs *engine, u32 iir)
- 		}
- 	}
- 
-+	if (iir & GT_WAIT_SEMAPHORE_INTERRUPT) {
-+		WRITE_ONCE(engine->execlists.yield,
-+			   ENGINE_READ_FW(engine, RING_EXECLIST_STATUS_HI));
-+		if (del_timer(&engine->execlists.timer))
-+			tasklet = true;
-+	}
-+
- 	if (iir & GT_CONTEXT_SWITCH_INTERRUPT)
- 		tasklet = true;
- 
-@@ -228,7 +235,8 @@ void gen11_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	struct intel_uncore *uncore = gt->uncore;
- 	const u32 dmask = irqs << 16 | irqs;
- 	const u32 smask = irqs << 16;
-@@ -366,7 +374,8 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	const u32 irqs =
- 		GT_CS_MASTER_ERROR_INTERRUPT |
- 		GT_RENDER_USER_INTERRUPT |
--		GT_CONTEXT_SWITCH_INTERRUPT;
-+		GT_CONTEXT_SWITCH_INTERRUPT |
-+		GT_WAIT_SEMAPHORE_INTERRUPT;
- 	const u32 gt_interrupts[] = {
- 		irqs << GEN8_RCS_IRQ_SHIFT | irqs << GEN8_BCS_IRQ_SHIFT,
- 		irqs << GEN8_VCS0_IRQ_SHIFT | irqs << GEN8_VCS1_IRQ_SHIFT,
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 210f60e14ef4..d5093bc9d2dc 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1744,7 +1744,8 @@ static void defer_active(struct intel_engine_cs *engine)
- }
- 
- static bool
--need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
-+need_timeslice(const struct intel_engine_cs *engine,
-+	       const struct i915_request *rq)
- {
- 	int hint;
- 
-@@ -1758,6 +1759,31 @@ need_timeslice(struct intel_engine_cs *engine, const struct i915_request *rq)
- 	return hint >= effective_prio(rq);
- }
- 
-+static bool
-+timeslice_yield(const struct intel_engine_execlists *el,
-+		const struct i915_request *rq)
-+{
-+	/*
-+	 * Once bitten, forever smitten!
-+	 *
-+	 * If the active context ever busy-waited on a semaphore,
-+	 * it will be treated as a hog until the end of its timeslice.
-+	 * The HW only sends an interrupt on the first miss, and we
-+	 * do know if that semaphore has been signaled, or even if it
-+	 * is now stuck on another semaphore. Play safe, yield if it
-+	 * might be stuck -- it will be given a fresh timeslice in
-+	 * the near future.
-+	 */
-+	return upper_32_bits(rq->context->lrc_desc) == READ_ONCE(el->yield);
-+}
-+
-+static bool
-+timeslice_expired(const struct intel_engine_execlists *el,
-+		  const struct i915_request *rq)
-+{
-+	return timer_expired(&el->timer) || timeslice_yield(el, rq);
-+}
-+
- static int
- switch_prio(struct intel_engine_cs *engine, const struct i915_request *rq)
- {
-@@ -1773,8 +1799,7 @@ timeslice(const struct intel_engine_cs *engine)
- 	return READ_ONCE(engine->props.timeslice_duration_ms);
- }
- 
--static unsigned long
--active_timeslice(const struct intel_engine_cs *engine)
-+static unsigned long active_timeslice(const struct intel_engine_cs *engine)
- {
- 	const struct intel_engine_execlists *execlists = &engine->execlists;
- 	const struct i915_request *rq = *execlists->active;
-@@ -1936,13 +1961,14 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 			last = NULL;
- 		} else if (need_timeslice(engine, last) &&
--			   timer_expired(&engine->execlists.timer)) {
-+			   timeslice_expired(execlists, last)) {
- 			ENGINE_TRACE(engine,
--				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
-+				     "expired last=%llx:%lld, prio=%d, hint=%d, yield?=%s\n",
- 				     last->fence.context,
- 				     last->fence.seqno,
- 				     last->sched.attr.priority,
--				     execlists->queue_priority_hint);
-+				     execlists->queue_priority_hint,
-+				     yesno(timeslice_yield(execlists, last)));
- 
- 			ring_set_paused(engine, 1);
- 			defer_active(engine);
-@@ -2203,6 +2229,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 		}
- 		clear_ports(port + 1, last_port - port);
- 
-+		WRITE_ONCE(execlists->yield, -1);
- 		execlists_submit_ports(engine);
- 		set_preempt_timeout(engine, *active);
- 	} else {
-@@ -4438,6 +4465,7 @@ logical_ring_default_irqs(struct intel_engine_cs *engine)
- 	engine->irq_enable_mask = GT_RENDER_USER_INTERRUPT << shift;
- 	engine->irq_keep_mask = GT_CONTEXT_SWITCH_INTERRUPT << shift;
- 	engine->irq_keep_mask |= GT_CS_MASTER_ERROR_INTERRUPT << shift;
-+	engine->irq_keep_mask |= GT_WAIT_SEMAPHORE_INTERRUPT << shift;
- }
- 
- static void rcs_submission_override(struct intel_engine_cs *engine)
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 9c53fe918be6..6e54c0d3241b 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3094,6 +3094,7 @@ static inline bool i915_mmio_reg_valid(i915_reg_t reg)
- #define GT_BSD_CS_ERROR_INTERRUPT		(1 << 15)
- #define GT_BSD_USER_INTERRUPT			(1 << 12)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT_S1	(1 << 11) /* hsw+; rsvd on snb, ivb, vlv */
-+#define GT_WAIT_SEMAPHORE_INTERRUPT		REG_BIT(11) /* bdw+ */
- #define GT_CONTEXT_SWITCH_INTERRUPT		(1 <<  8)
- #define GT_RENDER_L3_PARITY_ERROR_INTERRUPT	(1 <<  5) /* !snb */
- #define GT_RENDER_PIPECTL_NOTIFY_INTERRUPT	(1 <<  4)
--- 
-2.20.1
+GEM_BUG_ON(is_shrinkable(obj) && !is_swappable(obj) && obj->mm.madv ==
+WILLNEED);
 
+>
+> > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c b/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
+> > index fa16f2c3f3ac..2b46c6530da9 100644
+> > --- a/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
+> > +++ b/drivers/gpu/drm/i915/gem/selftests/huge_gem_object.c
+> > @@ -88,8 +88,7 @@ static void huge_put_pages(struct drm_i915_gem_object *obj,
+> >  }
+> >
+> >  static const struct drm_i915_gem_object_ops huge_ops = {
+> > -       .flags = I915_GEM_OBJECT_HAS_STRUCT_PAGE |
+> > -                I915_GEM_OBJECT_IS_SHRINKABLE,
+> > +       .flags = I915_GEM_OBJECT_HAS_STRUCT_PAGE,
+>
+> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
+>
+> but I think the changelog can be clarified and we either include the
+> DONTNEED fixes or follow up.
+> -Chris
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
