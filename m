@@ -2,30 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4253B191D60
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 00:17:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 965CF191DA5
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 00:48:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DBDE891B9;
-	Tue, 24 Mar 2020 23:17:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F86889A60;
+	Tue, 24 Mar 2020 23:48:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 61E8D891B9;
- Tue, 24 Mar 2020 23:17:36 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1E53D89A5D;
+ Tue, 24 Mar 2020 23:48:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BCA9A47DF;
- Tue, 24 Mar 2020 23:17:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AF366A010F;
+ Tue, 24 Mar 2020 23:48:26 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 24 Mar 2020 23:17:36 -0000
-Message-ID: <158509185634.5747.7116566130230315363@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 24 Mar 2020 23:48:26 -0000
+Message-ID: <158509370669.5747.16868414861516310808@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?=5Fdevice_managed_resources_=28rev7=29?=
+References: <20200324201526.16571-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200324201526.16571-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Measure_the_energy_consumed_while_in_RC6_=28?=
+ =?utf-8?q?rev3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,147 +48,101 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm_device managed resources (rev7)
-URL   : https://patchwork.freedesktop.org/series/73633/
-State : success
+Series: drm/i915/selftests: Measure the energy consumed while in RC6 (rev3)
+URL   : https://patchwork.freedesktop.org/series/75035/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8184 -> Patchwork_17074
+CI Bug Log - changes from CI_DRM_8184 -> Patchwork_17075
 ====================================================
 
 Summary
 -------
 
-  **SUCCESS**
+  **FAILURE**
 
-  No regressions found.
+  Serious unknown changes coming with Patchwork_17075 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17075, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/index.html
 
-Known issues
-------------
+Possible new issues
+-------------------
 
-  Here are the changes found in Patchwork_17074 that come from known issues:
+  Here are the unknown changes that may have been introduced in Patchwork_17075:
 
 ### IGT changes ###
 
-#### Issues hit ####
+#### Possible regressions ####
 
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+  * igt@i915_selftest@live@gt_pm:
+    - fi-glk-dsi:         [PASS][1] -> [DMESG-FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
+    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-icl-guc:         [PASS][5] -> [DMESG-FAIL][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-icl-guc/igt@i915_selftest@live@gt_pm.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-icl-guc/igt@i915_selftest@live@gt_pm.html
+    - fi-bxt-dsi:         [PASS][7] -> [DMESG-FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
 
   
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17075 that come from known issues:
+
+### IGT changes ###
+
 #### Possible fixes ####
 
   * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][3] ([i915#877]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+    - fi-cml-s:           [DMESG-FAIL][9] ([i915#877]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
 
   
-#### Warnings ####
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-lmem:        [INCOMPLETE][5] ([i915#424]) -> [DMESG-FAIL][6] ([i915#481])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@runner@aborted:
-    - fi-kbl-8809g:       [FAIL][7] ([i915#1209]) -> [FAIL][8] ([i915#1485] / [i915#192] / [i915#193] / [i915#194])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-kbl-8809g/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/fi-kbl-8809g/igt@runner@aborted.html
-
-  
-  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
-  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#481]: https://gitlab.freedesktop.org/drm/intel/issues/481
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
   [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
 
 
-Participating hosts (40 -> 41)
+Participating hosts (40 -> 42)
 ------------------------------
 
-  Additional (6): fi-kbl-soraka fi-bsw-n3050 fi-byt-j1900 fi-kbl-7500u fi-cfl-8109u fi-kbl-7560u 
-  Missing    (5): fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bdw-samus 
+  Additional (6): fi-kbl-soraka fi-hsw-4770r fi-bsw-n3050 fi-byt-j1900 fi-kbl-7500u fi-cfl-8109u 
+  Missing    (4): fi-ctg-p8600 fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
 
 
 Build changes
 -------------
 
   * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8184 -> Patchwork_17074
+  * Linux: CI_DRM_8184 -> Patchwork_17075
 
   CI-20190529: 20190529
   CI_DRM_8184: 1a72c9d9d3140e92190485d766b9d165932c5b86 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_5535: d1dcf40cc6869ac858586c5ad9f09af6617ce2ee @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17074: 1eab7d6989ddec146d7a4c84db4d5e191891b6fd @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_17075: 73d97df3bf7eca669a5e20e97110111df29f45d3 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 
 == Linux commits ==
 
-1eab7d6989dd drm: Add docs for managed resources
-6b5f55ae0e4b drm/udl: drop drm_driver.release hook
-a18c3359dd5f drm/udl: Drop explicit drm_mode_config_cleanup call
-0b7aec23a492 drm/mipi-dbi: Drop explicit drm_mode_config_cleanup call
-b53161c5e59e drm/mipi-dbi: Move drm_mode_config_init into mipi library
-ae60691f4e71 drm/repaper: Drop explicit drm_mode_config_cleanup call
-0ac911b345c3 drm/gm12u320: Simplify upload work
-de2c1853b136 drm/gm12u320: Use helpers for shutdown/suspend/resume
-9e8af690b11c drm/gm12u320: Use devm_drm_dev_init
-a9be2f852109 drm/gm12u320: More drmm_
-43c7dc5664ae drm/tidss: Drop explicit drm_mode_config_cleanup call
-f7848b464ea3 drm/mtk: Drop explicit drm_mode_config_cleanup call
-171ebef2bd8d drm/shmob: Drop explicit drm_mode_config_cleanup call
-60148391818a drm/stm: Drop explicit drm_mode_config_cleanup call
-eb1e76dbc719 drm/rockchip: Drop explicit drm_mode_config_cleanup call
-582b972d98b2 drm/rcar-du: Drop explicit drm_mode_config_cleanup call
-a7a82feb57b6 drm/pl111: Drop explicit drm_mode_config_cleanup call
-1d46bf8e3214 drm/meson: Drop explicit drm_mode_config_cleanup call
-d91bfa1380e0 drm/mcde: More devm_drm_dev_init
-567631ed96bc drm/mcde: Drop explicit drm_mode_config_cleanup call
-ea853880511a drm/ingenic: Drop explicit drm_mode_config_cleanup call
-d125bb619e9b drm/cirrus: Fully embrace devm_
-d3c19b8672e5 drm/cirrus: Drop explicit drm_mode_config_cleanup call
-49a81974bfbe drm/bochs: Drop explicit drm_mode_config_cleanup
-66b5bf6c1d10 drm/bochs: Remove leftover drm_atomic_helper_shutdown
-6108261bffbc drm: Manage drm_mode_config_init with drmm_
-f0a630503538 drm: Garbage collect drm_dev_fini
-d778e63bdf3d drm: Manage drm_vblank_cleanup with drmm_
-f93ff21e691a drm: Manage drm_gem_init with drmm_
-700aba27b628 drm: manage drm_minor cleanup with drmm_
-089ff2cd9e9a drm: Use drmm_ for drm_dev_init cleanup
-420694797b28 drm: Handle dev->unique with drmm_
-9dd49a7c49aa drm: Cleanups after drmm_add_final_kfree rollout
-573ca830adcd drm/<drivers>: Use drmm_add_final_kfree
-c01b2a8871e0 drm/gm12u320: Use drmm_add_final_kfree
-33e0fb0794f7 drm/ingenic: Use drmm_add_final_kfree
-6d0fb8071168 drm/repaper: Use drmm_add_final_kfree
-e18724e987d7 drm/vkms: Use drmm_add_final_kfree
-3ac713b82bd1 drm/vgem: Use drmm_add_final_kfree
-1058a7ec412b drm/mcde: Use drmm_add_final_kfree
-7712d516462d drm/tidss: Use drmm_add_final_kfree
-79c9d4154407 drm/v3d: Use drmm_add_final_kfree
-993e87f1a49a drm/cirrus: Use drmm_add_final_kfree
-b8bf4addd08d drm/i915: Use drmm_add_final_kfree
-648cc4f29283 drm/qxl: Use drmm_add_final_kfree
-b9562b8c0b3b drm/udl: Use drmm_add_final_kfree
-f5c3aceaaf48 drm/mipi_dbi: Use drmm_add_final_kfree in all drivers
-eb0e9b4246b6 drm: Set final_kfree in drm_dev_alloc
-b262cc982e91 drm: add managed resources tied to drm_device
-d5e9e9dffec3 drm/i915: Don't clear drvdata in ->release
-ccd08fc6b11b mm/sl[uo]b: export __kmalloc_track(_node)_caller
+73d97df3bf7e drm/i915/selftests: Measure the energy consumed while in RC6
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17074/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
