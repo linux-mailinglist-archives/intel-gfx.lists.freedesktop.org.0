@@ -1,31 +1,39 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C398B1913C5
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 15:59:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63FF61913E6
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 16:10:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2442D89722;
-	Tue, 24 Mar 2020 14:59:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B67236E051;
+	Tue, 24 Mar 2020 15:10:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2FA6989722;
- Tue, 24 Mar 2020 14:59:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 285CBA00CC;
- Tue, 24 Mar 2020 14:59:27 +0000 (UTC)
+Received: from 7.mo2.mail-out.ovh.net (7.mo2.mail-out.ovh.net [188.165.48.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84BCB6E051
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 15:10:25 +0000 (UTC)
+Received: from player763.ha.ovh.net (unknown [10.108.42.145])
+ by mo2.mail-out.ovh.net (Postfix) with ESMTP id D45E61C3638
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:03:43 +0100 (CET)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player763.ha.ovh.net (Postfix) with ESMTPSA id 8AE4A10BB8641;
+ Tue, 24 Mar 2020 15:03:40 +0000 (UTC)
+Date: Tue, 24 Mar 2020 17:03:31 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Andi Shyti <andi.shyti@intel.com>
+Message-ID: <20200324150331.GC131880@jack.zhora.eu>
+References: <20200324134232.8773-1-chris@chris-wilson.co.uk>
+ <20200324145351.GA1682@intel.intel>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Tue, 24 Mar 2020 14:59:27 -0000
-Message-ID: <158506196713.5747.1531114032913667517@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200324132530.6204-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200324132530.6204-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJVSUxEOiBmYWlsdXJlIGZvciBp?=
- =?utf-8?q?915_lpsp_support_for_lpsp_igt_=28rev4=29?=
+Content-Disposition: inline
+In-Reply-To: <20200324145351.GA1682@intel.intel>
+X-Ovh-Tracer-Id: 2400137130049585700
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudehuddggeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejieefrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Select the deepest available
+ parking mode for rc6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,26 +46,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi again, Chris,
 
-Series: i915 lpsp support for lpsp igt (rev4)
-URL   : https://patchwork.freedesktop.org/series/74648/
-State : failure
+> > @@ -622,7 +623,14 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+> >  
+> >  	/* Turn off the HW timers and go directly to rc6 */
+> >  	set(uncore, GEN6_RC_CONTROL, GEN6_RC_CTL_RC6_ENABLE);
+> > -	set(uncore, GEN6_RC_STATE, 0x4 << RC_SW_TARGET_STATE_SHIFT);
+> > +
+> > +	if (HAS_RC6pp(rc6_to_i915(rc6)))
+> > +		target = 0x6; /* deepest rc6 */
+> > +	else if (HAS_RC6p(rc6_to_i915(rc6)))
+> > +		target = 0x5; /* deep rc6 */
+> > +	else
+> > +		target = 0x4; /* normal rc6 */
+> 
+> can we put names to these values?
 
-== Summary ==
+actually, you are using these only here and there is a comment to
+them... givinb those values a meaningful define is a bit of a
+formality, I'd say. It's up to you.
 
-Patch is empty.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
+Thanks,
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
