@@ -2,31 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A650F191C74
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 23:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5A4191D22
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 23:55:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F3616E0CC;
-	Tue, 24 Mar 2020 22:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A60C89261;
+	Tue, 24 Mar 2020 22:55:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6FC9D6E550;
- Tue, 24 Mar 2020 22:04:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6CFB4A00CC;
- Tue, 24 Mar 2020 22:04:12 +0000 (UTC)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B829689261
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 22:55:31 +0000 (UTC)
+Received: from bell.riseup.net (unknown [10.0.1.178])
+ (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+ (Client CN "*.riseup.net",
+ Issuer "Sectigo RSA Domain Validation Secure Server CA" (not verified))
+ by mx1.riseup.net (Postfix) with ESMTPS id 48n66C2487zFf8c;
+ Tue, 24 Mar 2020 15:55:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1585090531; bh=8DTxTOUQQbyAucFkdTmv+KqtvTXQYRq4ng6D6Iisf6E=;
+ h=From:To:Subject:In-Reply-To:References:Date:From;
+ b=exlRPaUQCrC/X7P54OApr+Ip5c/0HEDAPSMHIVTCmhSOmUJefmpCu1Yb+xvr85q1B
+ VpWZLAB8CcslI0+BxlWaRcSUROdShDZ7BZIU/dVS0K+ZaRuZ1BRpVn5AestPf55eLp
+ KPY9b+QEcaZhht2ZD6Xnls/tx8jq5fEkM3iDq3js=
+X-Riseup-User-ID: FE020A80C04998F84981DE0C4B0447325A96198EF180D30702DA9298313150F9
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by bell.riseup.net (Postfix) with ESMTPSA id 48n66C0Ml8zJtth;
+ Tue, 24 Mar 2020 15:55:30 -0700 (PDT)
+From: Francisco Jerez <currojerez@riseup.net>
+To: Chris Wilson <chris.p.wilson@intel.com>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <158500741217.13839.16404244724951422520@build.alporthouse.com>
+References: <20200320130159.3922-2-chris@chris-wilson.co.uk>
+ <20200320174745.19995-1-chris@chris-wilson.co.uk> <871rpm6a9v.fsf@riseup.net>
+ <87tv2i4qsk.fsf@riseup.net>
+ <158495673843.17851.11761890199116661145@build.alporthouse.com>
+ <87imiu4scq.fsf@riseup.net>
+ <158500741217.13839.16404244724951422520@build.alporthouse.com>
+Date: Tue, 24 Mar 2020 15:55:33 -0700
+Message-ID: <87sghx2wii.fsf@riseup.net>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Tue, 24 Mar 2020 22:04:12 -0000
-Message-ID: <158508745244.5745.3862884874813069673@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200324201429.29153-1-jose.souza@intel.com>
-In-Reply-To: <20200324201429.29153-1-jose.souza@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5Bv3=2C1/6=5D_drm/i915/tc/tgl=3A_Implement_T?=
- =?utf-8?q?CCOLD_sequences?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Pull tasklet
+ interrupt-bh local to direct submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,260 +54,367 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1646521477=="
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--===============1646521477==
+Content-Type: multipart/signed; boundary="==-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
-Series: series starting with [v3,1/6] drm/i915/tc/tgl: Implement TCCOLD sequences
-URL   : https://patchwork.freedesktop.org/series/75034/
-State : success
+--==-=-=
+Content-Type: multipart/mixed; boundary="=-=-="
 
-== Summary ==
+--=-=-=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-CI Bug Log - changes from CI_DRM_8183_full -> Patchwork_17073_full
-====================================================
+Chris Wilson <chris.p.wilson@intel.com> writes:
 
-Summary
--------
+> Quoting Francisco Jerez (2020-03-23 22:30:13)
+>> Chris Wilson <chris@chris-wilson.co.uk> writes:
+>>=20
+>> > Quoting Francisco Jerez (2020-03-20 22:14:51)
+>> >> Francisco Jerez <currojerez@riseup.net> writes:
+>> >>=20
+>> >> > Chris Wilson <chris@chris-wilson.co.uk> writes:
+>> >> >
+>> >> >> We dropped calling process_csb prior to handling direct submission=
+ in
+>> >> >> order to avoid the nesting of spinlocks and lift process_csb() and=
+ the
+>> >> >> majority of the tasklet out of irq-off. However, we do want to avo=
+id
+>> >> >> ksoftirqd latency in the fast path, so try and pull the interrupt-=
+bh
+>> >> >> local to direct submission if we can acquire the tasklet's lock.
+>> >> >>
+>> >> >> v2: Tweak the balance to avoid over submitting lite-restores
+>> >> >>
+>> >> >> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+>> >> >> Cc: Francisco Jerez <currojerez@riseup.net>
+>> >> >> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> >> >> ---
+>> >> >>  drivers/gpu/drm/i915/gt/intel_lrc.c    | 44 ++++++++++++++++++++-=
+-----
+>> >> >>  drivers/gpu/drm/i915/gt/selftest_lrc.c |  2 +-
+>> >> >>  2 files changed, 36 insertions(+), 10 deletions(-)
+>> >> >>
+>> >> >> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm=
+/i915/gt/intel_lrc.c
+>> >> >> index f09dd87324b9..dceb65a0088f 100644
+>> >> >> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> >> >> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+>> >> >> @@ -2884,17 +2884,17 @@ static void queue_request(struct intel_eng=
+ine_cs *engine,
+>> >> >>      set_bit(I915_FENCE_FLAG_PQUEUE, &rq->fence.flags);
+>> >> >>  }
+>> >> >>=20=20
+>> >> >> -static void __submit_queue_imm(struct intel_engine_cs *engine)
+>> >> >> +static bool pending_csb(const struct intel_engine_execlists *el)
+>> >> >>  {
+>> >> >> -    struct intel_engine_execlists * const execlists =3D &engine->=
+execlists;
+>> >> >> +    return READ_ONCE(*el->csb_write) !=3D READ_ONCE(el->csb_head);
+>> >> >> +}
+>> >> >>=20=20
+>> >> >> -    if (reset_in_progress(execlists))
+>> >> >> -            return; /* defer until we restart the engine followin=
+g reset */
+>> >> >> +static bool skip_lite_restore(struct intel_engine_execlists *el,
+>> >> >> +                          const struct i915_request *rq)
+>> >> >> +{
+>> >> >> +    struct i915_request *inflight =3D execlists_active(el);
+>> >> >>=20=20
+>> >> >> -    if (execlists->tasklet.func =3D=3D execlists_submission_taskl=
+et)
+>> >> >> -            __execlists_submission_tasklet(engine);
+>> >> >> -    else
+>> >> >> -            tasklet_hi_schedule(&execlists->tasklet);
+>> >> >> +    return inflight && inflight->context =3D=3D rq->context;
+>> >> >>  }
+>> >> >>=20=20
+>> >> >>  static void submit_queue(struct intel_engine_cs *engine,
+>> >> >> @@ -2905,8 +2905,34 @@ static void submit_queue(struct intel_engin=
+e_cs *engine,
+>> >> >>      if (rq_prio(rq) <=3D execlists->queue_priority_hint)
+>> >> >>              return;
+>> >> >>=20=20
+>> >> >> +    if (reset_in_progress(execlists))
+>> >> >> +            return; /* defer until we restart the engine followin=
+g reset */
+>> >> >> +
+>> >> >> +    /*
+>> >> >> +     * Suppress immediate lite-restores, leave that to the taskle=
+t.
+>> >> >> +     *
+>> >> >> +     * However, we leave the queue_priority_hint unset so that if=
+ we do
+>> >> >> +     * submit a second context, we push that into ELSP[1] immedia=
+tely.
+>> >> >> +     */
+>> >> >> +    if (skip_lite_restore(execlists, rq))
+>> >> >> +            return;
+>> >> >> +
+>> >> > Why do you need to treat lite-restore specially here?
+>> >
+>> > Lite-restore have a noticeable impact on no-op loads. A part of that is
+>> > that a lite-restore is about 1us, and the other part is that the driver
+>> > has a lot more work to do. There's a balance point around here for not
+>> > needlessly interrupting ourselves and ensuring that there is no bubble.
+>> >
+>>=20
+>> Oh, I see.  But isn't inhibiting the lite restore likely to be fairly
+>> costly in some cases as well if it causes the GPU to go idle after the
+>> current context completes for as long as it takes the CPU to wake up,
+>> process the IRQ and dequeue the next request?
+>
+> Yes. It's an amusing diversion to try and think how can we do a single
+> context submission (well 2) for a sequence of requests, for those
+> clients that like to submit N batches at once. From an idle GPU,
+> assuming each batch is non-trivial, we want to do something like submit
+> batch 1, accumulate, then submit batches 1-N, i.e. skip the intervening
+> lite-restores but complete the submission with all the work queued.
+>
 
-  **SUCCESS**
+I guess ideally you would submit batch 1, then batch 2 (so you don't
+have to rush to feed the GPU once batch 1 terminates), then accumulate
+any further requests until batch 1 completes.  That would reduce the
+number of lite-restores to the minimum you need to keep the GPU at least
+one request ahead.  Though I'm guessing that this would involve using
+the breadcrumbs IRQ to aid command submission so we can tell when batch
+1 terminated, since AFAIUI we won't get any execlists interrupt at that
+point if batch 1 and 2 happened to belong to the same context.
 
-  No regressions found.
+Sigh.  Submitting commands efficiently would be easier if the hardware
+didn't have this annoying restriction of the contexts from different
+ELSP ports having to be different -- Or has the restriction been lifted
+in recent hardware?  At least they gave us 8 ELSP ports on ICL, if only
+we could take advantage of them without having 8 contexts running in
+parallel...
 
-  
+>> Would it make sense to
+>> inhibit lite-restore in roughly the same conditions I set the overload
+>> flag?  (since that indicates we'll get an IRQ at least one request
+>> *before* the GPU actually goes idle, so there shouldn't be any penalty
+>> from inhibiting lite restore).
+>
+> Yes/no. Once we have multiple contexts scheduled, we won't be doing lite
+> restores.
+>
+> The key problem is that the irq/tasklet-bh latency is unpredictable. Only
+> submitting one context at a time costs about 1% in [multi-context]
+> transcode throughput. And the cost of lite-restore on that scale is
+> barely noticeable.
+>
+> So it annoys me that we can measure the impact of lite-restore on
+> nop-throughput, but in reality we have a self-inflicted regression on
+> top of the lite-restore that caught my eye.
+>
+> Since we don't resubmit more contexts until we receive an ack from the
+> HW, the latency in processing that ack actually allowed us to accumulate
+> more nops into a single submission. Process that ack earlier and we
+> start submitting each nop individually. But we do want to process that
+> ack earlier as we know we are handling a request that should be pushed
+> to the GPU immediately.
+>
 
-Known issues
-------------
+Uhm, that's awful.
 
-  Here are the changes found in Patchwork_17073_full that come from known issues:
+> [The age old adage, batching submissions is good for throughput, bad for
+> latency. And I have to pinch myself that throughput is easier to
+> measure, but latency is the crucial metric.]
+>
+>> >> > Anyway, trying this out now in combination with my patches now.
+>> >> >
+>> >>=20
+>> >> This didn't seem to help (together with your other suggestion to move
+>> >> the overload accounting to __execlists_schedule_in/out).  And it makes
+>> >> the current -5% SynMark OglMultithread regression with my series go d=
+own
+>> >> to -10%.  My previous suggestion of moving the
+>> >> intel_gt_pm_active_begin() call to process_csb() when the submission =
+is
+>> >> ACK'ed by the hardware does seem to help (and it roughly halves the
+>> >> OglMultithread regression), possibly because that way we're able to
+>> >> determine whether the first context was actually overlapping at the
+>> >> point that the second was received by the hardware -- I haven't tested
+>> >> it extensively yet though.
+>> >
+>> > Grumble, it just seems like we are setting and clearing the flag on
+>> > completely unrelated events -- which I still think boils down to worki=
+ng
+>> > around latency in the driver. Or at least I hope there's an explanation
+>> > and bug to fix that improves responsiveness for all.
+>> > -Chris
+>>=20
+>> There *might* be a performance issue somewhere introducing latency that
+>> the instrumentation I added happens to mitigate, but isn't that a sign
+>> that it's fulfilling its purpose of determining when the workload could
+>> be sensitive to CPU latency?
+>
+> We have latency issues in the tasklet submission. The irq-off lock
+> contention along the submission path [execlists_dequeue] is perhaps the
+> biggest issue in the driver (at least from lockstats perspective). My
+> expectation is that the delay in processing the CSB is affecting the
+> 'overload' heuristic.
+>=20=20
+>> Maybe I didn't explain the idea properly: Given that command submission
+>> is asynchronous with the CS processing the previous context, there is no
+>> way for us to tell whether a request we just submitted was actually
+>> overlapping with the previous one until we read the CSB and see whether
+>> it led to an idle-to-active transition.  Only then can we assume that
+>> the CPU is sending commands to the GPU quickly enough to keep it busy
+>> without interruption.
+>
+> That sounds like you just want to use the C0 counters.
+>
 
-### IGT changes ###
+I tried to do something like that at some point and got mixed results.
+It would have different behavior from the patch I submitted since it
+would count all the GPU time any engine is active (rather than the time
+there are at least two contexts queued for execution), so it would have
+greater potential for regressions when the GPU is only one request ahead
+of the CPU, though the performance regression would be limited by the
+residency threshold in the steady state (e.g. if you allow the heuristic
+to kick in while you have at least 99% GPU utilization you may still
+have to pay up to a 1% regression in some pessimal cases).  But the
+greatest downside I noticed from using any sort of residency counters is
+that is that there is substantial delay between the GPU going idle and
+it entering a sleep state, so the metric can be fairly biased upwards
+for intermittent workloads (which are frequently latency-sensitive too).
 
-#### Issues hit ####
+> But if you want to use the active/idle state as your heuristic, then you
+> want something like
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/g=
+t/intel_lrc.c
+> index 3102159d2b3b..3e08ecd53ecb 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2443,6 +2443,8 @@ static void process_csb(struct intel_engine_cs *eng=
+ine)
+>
+>                         GEM_BUG_ON(execlists->active - execlists->infligh=
+t >
+>                                    execlists_num_ports(execlists));
+> +
+> +                       WRITE_ONCE(execlists->overload, !!*execlists->act=
+ive);
+>                 }
+>         } while (head !=3D tail);
+>
+>
+> That will be set to true when we have enough work to keep the GPU busy
+> into the second context, and only be set to false when the GPU idles.
+>
+> However, just because we switched contexts does not necessarily imply
+> that the previous context did substantial work. And there may be lots of
+> fun with timeslicing preemptions that do not let a single context run to
+> completion. So perhaps,
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/g=
+t/intel_lrc.c
+> index 3102159d2b3b..05bb533d556c 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2340,6 +2340,7 @@ static void process_csb(struct intel_engine_cs *eng=
+ine)
+>         rmb();
+>
+>         ENGINE_TRACE(engine, "cs-irq head=3D%d, tail=3D%d\n", head, tail);
+> +       bool overload =3D *execlists->active;
+>         do {
+>                 bool promote;
+>
+> @@ -2443,8 +2444,11 @@ static void process_csb(struct intel_engine_cs *en=
+gine)
+>
+>                         GEM_BUG_ON(execlists->active - execlists->infligh=
+t >
+>                                    execlists_num_ports(execlists));
+> +
+> +                       overload =3D *execlists->overload; /* active->idl=
+e? */
+>                 }
+>         } while (head !=3D tail);
+> +       WRITE_ONCE(execlists->overload, overload && *execlists->overload);
+>
+>
+> which sets the overload flag if we enter with an active context and
+> leave with another active context, without going through an idle state.
+> But that will set overload for timeslicing and for high priority
+> preemption.
+>
+> (Now I have to ask whether that's what you had before :)
 
-  * igt@gem_ctx_isolation@vecs0-s3:
-    - shard-skl:          [PASS][1] -> [INCOMPLETE][2] ([i915#69]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl10/igt@gem_ctx_isolation@vecs0-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl5/igt@gem_ctx_isolation@vecs0-s3.html
+Not exactly.  I'm clearing the overload flag unconditionally on any
+completion event since that indicates that we're back to single port
+submission best-case.  If we then go back to dual-ELSP, overload will
+get signalled by a subsequent iteration of process_csb() (rather than
+doing it from execlists_dequeue()).  In addition I got the preemption
+handler to clear the overload flag in cases where that causes us to go
+back to single-ELSP submission, in order to fix the bug you pointed out
+earlier.
 
-  * igt@gem_exec_schedule@implicit-write-read-bsd1:
-    - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#109276] / [i915#677]) +1 similar issue
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb4/igt@gem_exec_schedule@implicit-write-read-bsd1.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb6/igt@gem_exec_schedule@implicit-write-read-bsd1.html
+>=20=20
+>> You might argue that this will introduce a delay in the signalling of
+>> overload roughly equal to the latency it takes for the CPU to receive
+>> the execlists IRQ with the hardware ACK.  However that seems beneficial
+>> since the clearing of overload suffers from the same latency, so the
+>> fraction of time that overload is signalled will otherwise be biased as
+>> a result of the latency difference, causing overload to be overreported
+>> on the average.  Delaying the signalling of overload to the CSB handler
+>> means that any systematic latency in our interrupt processing is
+>> self-correcting.
+>
+> That only worries me if we are trying to balance decisions made on
+> submission with the async ack. If we can solely use the CSB events that
+> worry is moot.
+>=20=20
+>> Anyway, I'm open to other suggestions if you have other ideas that at
+>> least don't worsen the pre-existing regression from my series.
+>
+> Likewise, if the best is the current overload semantics then so be it.
 
-  * igt@gem_exec_schedule@in-order-bsd:
-    - shard-iclb:         [PASS][5] -> [SKIP][6] ([fdo#112146]) +2 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb5/igt@gem_exec_schedule@in-order-bsd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb2/igt@gem_exec_schedule@in-order-bsd.html
+Thanks!
 
-  * igt@gem_exec_schedule@pi-ringfull-bsd2:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276]) +8 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb4/igt@gem_exec_schedule@pi-ringfull-bsd2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb6/igt@gem_exec_schedule@pi-ringfull-bsd2.html
+> -Chris
+> ---------------------------------------------------------------------
+> Intel Corporation (UK) Limited
+> Registered No. 1134945 (England)
+> Registered Office: Pipers Way, Swindon SN3 1RJ
+> VAT No: 860 2173 47
+>
+> This e-mail and any attachments may contain confidential material for
+> the sole use of the intended recipient(s). Any review or distribution
+> by others is strictly prohibited. If you are not the intended
+> recipient, please contact the sender and delete all copies.
 
-  * igt@gem_linear_blits@interruptible:
-    - shard-apl:          [PASS][9] -> [FAIL][10] ([i915#1263])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-apl7/igt@gem_linear_blits@interruptible.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl4/igt@gem_linear_blits@interruptible.html
+--=-=-=--
 
-  * igt@i915_selftest@live@execlists:
-    - shard-apl:          [PASS][11] -> [INCOMPLETE][12] ([fdo#103927] / [i915#656])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-apl4/igt@i915_selftest@live@execlists.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl7/igt@i915_selftest@live@execlists.html
+--==-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  * igt@kms_cursor_crc@pipe-b-cursor-256x85-sliding:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([i915#54])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl3/igt@kms_cursor_crc@pipe-b-cursor-256x85-sliding.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl6/igt@kms_cursor_crc@pipe-b-cursor-256x85-sliding.html
+-----BEGIN PGP SIGNATURE-----
 
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#79])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl6/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl9/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+iHUEAREIAB0WIQST8OekYz69PM20/4aDmTidfVK/WwUCXnqP5QAKCRCDmTidfVK/
+W8FeAP9g2eQBwQiSjo9DmHUhRQuX65CkVZ97gUVkn/ZkAvVPUQD+JHhzGGoI+kge
+cct3qfF83KK/xkvNij5EwGD1e8YbUtQ=
+=wrGz
+-----END PGP SIGNATURE-----
+--==-=-=--
 
-  * igt@kms_flip@flip-vs-suspend:
-    - shard-skl:          [PASS][17] -> [INCOMPLETE][18] ([i915#221])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl2/igt@kms_flip@flip-vs-suspend.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl1/igt@kms_flip@flip-vs-suspend.html
+--===============1646521477==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-  * igt@kms_flip@flip-vs-suspend-interruptible:
-    - shard-kbl:          [PASS][19] -> [DMESG-WARN][20] ([i915#180]) +1 similar issue
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-kbl3/igt@kms_flip@flip-vs-suspend-interruptible.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-kbl7/igt@kms_flip@flip-vs-suspend-interruptible.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-coverage-7efc:
-    - shard-skl:          [PASS][21] -> [FAIL][22] ([fdo#108145])
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl5/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl3/igt@kms_plane_alpha_blend@pipe-a-coverage-7efc.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][23] -> [FAIL][24] ([fdo#108145] / [i915#265]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl9/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl8/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [PASS][25] -> [SKIP][26] ([fdo#109642] / [fdo#111068])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb1/igt@kms_psr2_su@page_flip.html
-
-  * igt@kms_psr@psr2_dpms:
-    - shard-iclb:         [PASS][27] -> [SKIP][28] ([fdo#109441]) +1 similar issue
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb2/igt@kms_psr@psr2_dpms.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb7/igt@kms_psr@psr2_dpms.html
-
-  * igt@kms_psr@suspend:
-    - shard-skl:          [PASS][29] -> [INCOMPLETE][30] ([i915#198])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl7/igt@kms_psr@suspend.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl5/igt@kms_psr@suspend.html
-
-  * igt@perf_pmu@idle-vcs1:
-    - shard-iclb:         [PASS][31] -> [SKIP][32] ([fdo#112080]) +5 similar issues
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb2/igt@perf_pmu@idle-vcs1.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb7/igt@perf_pmu@idle-vcs1.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_ctx_shared@exec-single-timeline-bsd:
-    - shard-iclb:         [SKIP][33] ([fdo#110841]) -> [PASS][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb2/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb7/igt@gem_ctx_shared@exec-single-timeline-bsd.html
-
-  * igt@gem_exec_parallel@contexts:
-    - shard-tglb:         [INCOMPLETE][35] ([i915#470] / [i915#529]) -> [PASS][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-tglb2/igt@gem_exec_parallel@contexts.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-tglb6/igt@gem_exec_parallel@contexts.html
-
-  * igt@gem_exec_schedule@independent-bsd:
-    - shard-iclb:         [SKIP][37] ([fdo#112146]) -> [PASS][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb2/igt@gem_exec_schedule@independent-bsd.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb7/igt@gem_exec_schedule@independent-bsd.html
-
-  * igt@gem_ringfill@basic-default-hang:
-    - shard-tglb:         [INCOMPLETE][39] -> [PASS][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-tglb6/igt@gem_ringfill@basic-default-hang.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-tglb2/igt@gem_ringfill@basic-default-hang.html
-
-  * igt@i915_suspend@fence-restore-tiled2untiled:
-    - shard-apl:          [DMESG-WARN][41] ([i915#180]) -> [PASS][42] +5 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-apl4/igt@i915_suspend@fence-restore-tiled2untiled.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl1/igt@i915_suspend@fence-restore-tiled2untiled.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x64-random:
-    - shard-apl:          [FAIL][43] ([i915#54]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-apl3/igt@kms_cursor_crc@pipe-a-cursor-64x64-random.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl4/igt@kms_cursor_crc@pipe-a-cursor-64x64-random.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][45] ([i915#180]) -> [PASS][46] +3 similar issues
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-kbl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-kbl7/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-64x21-random:
-    - shard-glk:          [FAIL][47] ([i915#54]) -> [PASS][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-glk8/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-glk4/igt@kms_cursor_crc@pipe-c-cursor-64x21-random.html
-
-  * igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:
-    - shard-glk:          [FAIL][49] ([i915#34]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-glk4/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-glk3/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
-
-  * igt@kms_psr@psr2_basic:
-    - shard-iclb:         [SKIP][51] ([fdo#109441]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb3/igt@kms_psr@psr2_basic.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb2/igt@kms_psr@psr2_basic.html
-
-  * igt@kms_setmode@basic:
-    - shard-skl:          [FAIL][53] ([i915#31]) -> [PASS][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-skl6/igt@kms_setmode@basic.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-skl9/igt@kms_setmode@basic.html
-
-  * igt@perf_pmu@busy-check-all-vcs1:
-    - shard-iclb:         [SKIP][55] ([fdo#112080]) -> [PASS][56] +3 similar issues
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb8/igt@perf_pmu@busy-check-all-vcs1.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb4/igt@perf_pmu@busy-check-all-vcs1.html
-
-  * igt@prime_vgem@fence-wait-bsd2:
-    - shard-iclb:         [SKIP][57] ([fdo#109276]) -> [PASS][58] +11 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb8/igt@prime_vgem@fence-wait-bsd2.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb4/igt@prime_vgem@fence-wait-bsd2.html
-
-  
-#### Warnings ####
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-iclb:         [WARN][59] ([i915#1515]) -> [FAIL][60] ([i915#1515])
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-iclb3/igt@i915_pm_rc6_residency@rc6-idle.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-iclb8/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@i915_pm_rpm@cursor:
-    - shard-snb:          [INCOMPLETE][61] ([i915#82]) -> [SKIP][62] ([fdo#109271]) +1 similar issue
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb2/igt@i915_pm_rpm@cursor.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-snb4/igt@i915_pm_rpm@cursor.html
-
-  * igt@runner@aborted:
-    - shard-apl:          [FAIL][63] ([fdo#103927]) -> ([FAIL][64], [FAIL][65]) ([fdo#103927] / [i915#529])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-apl4/igt@runner@aborted.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl7/igt@runner@aborted.html
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/shard-apl7/igt@runner@aborted.html
-
-  
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#1263]: https://gitlab.freedesktop.org/drm/intel/issues/1263
-  [i915#1515]: https://gitlab.freedesktop.org/drm/intel/issues/1515
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#198]: https://gitlab.freedesktop.org/drm/intel/issues/198
-  [i915#221]: https://gitlab.freedesktop.org/drm/intel/issues/221
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#31]: https://gitlab.freedesktop.org/drm/intel/issues/31
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#470]: https://gitlab.freedesktop.org/drm/intel/issues/470
-  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#69]: https://gitlab.freedesktop.org/drm/intel/issues/69
-  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8183 -> Patchwork_17073
-
-  CI-20190529: 20190529
-  CI_DRM_8183: 795894daf2cc32246af94541733e08649d082470 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5535: d1dcf40cc6869ac858586c5ad9f09af6617ce2ee @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17073: ae9ffbf9a4cc21805d5481a736c331b8140b4ba9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17073/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+--===============1646521477==--
