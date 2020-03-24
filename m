@@ -2,37 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 934831914EA
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 16:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F8419146D
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 16:31:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A346899A7;
-	Tue, 24 Mar 2020 15:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA7D6E39C;
+	Tue, 24 Mar 2020 15:31:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 9.mo69.mail-out.ovh.net (9.mo69.mail-out.ovh.net [46.105.56.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 257436E3E7
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 15:42:37 +0000 (UTC)
-Received: from player695.ha.ovh.net (unknown [10.110.115.5])
- by mo69.mail-out.ovh.net (Postfix) with ESMTP id AB964897F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:24:55 +0100 (CET)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player695.ha.ovh.net (Postfix) with ESMTPSA id 9388410A16166;
- Tue, 24 Mar 2020 15:24:52 +0000 (UTC)
-Date: Tue, 24 Mar 2020 17:24:41 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200324152441.GD131880@jack.zhora.eu>
-References: <20200324125233.56308-1-chris@chris-wilson.co.uk>
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5345C6E39C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 15:31:06 +0000 (UTC)
+IronPort-SDR: EMmppNQZVUzWvRgsz0fZuiM6QOYkv/CkUOtItFkV3B/HSRBqavP5JSb3Wq2zwf4SHAkRGoMFhc
+ nzNyQcr46suQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2020 08:31:05 -0700
+IronPort-SDR: SLYVhgdDh3wfibI49b6DSgN5lj9oFx2YAIsOALDsZYSbt7IJT8F47m0ftk2mC0Dte+U3QoEIvH
+ or6bKQKG8Y0Q==
+X-IronPort-AV: E=Sophos;i="5.72,300,1580803200"; d="scan'208";a="419931269"
+Received: from kkarwows-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.56.12])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2020 08:31:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Vandita Kulkarni <vandita.kulkarni@intel.com>,
+ intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200312053841.2794-8-vandita.kulkarni@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200312053841.2794-1-vandita.kulkarni@intel.com>
+ <20200312053841.2794-8-vandita.kulkarni@intel.com>
+Date: Tue, 24 Mar 2020 17:31:12 +0200
+Message-ID: <87blolbwhr.fsf@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200324125233.56308-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 2758173298419941897
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudehuddggeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheileehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rc6_residency: Make
- ringbuffer rc6 fast
+Subject: Re: [Intel-gfx] [V8 7/9] drm/i915/dsi: Add TE handler for dsi cmd
+ mode.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,31 +50,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+On Thu, 12 Mar 2020, Vandita Kulkarni <vandita.kulkarni@intel.com> wrote:
+> In case of dual link, we get the TE on slave.
+> So clear the TE on slave DSI IIR.
+>
+> v2: Pass only relevant masked bits to the handler (Jani)
+>
+> v3: Fix the check for cmd mode in TE handler function.
+>
+> Signed-off-by: Vandita Kulkarni <vandita.kulkarni@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_irq.c | 64 +++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index 89489a247276..2e1418515c9f 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -2262,6 +2262,62 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  		drm_err(&dev_priv->drm, "Unexpected DE Misc interrupt\n");
+>  }
+>  
+> +void gen11_dsi_te_interrupt_handler(struct drm_i915_private *dev_priv,
+> +				    u32 te_trigger)
+> +{
+> +	enum pipe pipe = INVALID_PIPE;
+> +	enum transcoder dsi_trans;
+> +	enum port port;
+> +	u32 val, tmp;
+> +
+> +	/*
+> +	 * Incase of dual link, TE comes from DSI_1
+> +	 * this is to check if dual link is enabled
+> +	 */
+> +	val = I915_READ(TRANS_DDI_FUNC_CTL2(TRANSCODER_DSI_0));
+> +	val &= PORT_SYNC_MODE_ENABLE;
+> +
+> +	/*
+> +	 * if dual link is enabled, then read DSI_0
+> +	 * transcoder registers
+> +	 */
+> +	port = ((te_trigger & DSI1_TE && val) || (te_trigger & DSI0_TE)) ?
+> +						  PORT_A : PORT_B;
+> +	dsi_trans = (port == PORT_A) ? TRANSCODER_DSI_0 : TRANSCODER_DSI_1;
+> +
+> +	/* Check if DSI configured in command mode */
+> +	val = I915_READ(DSI_TRANS_FUNC_CONF(dsi_trans));
+> +	val = val & OP_MODE_MASK;
+> +
+> +	if ((val != CMD_MODE_NO_GATE) && (val != CMD_MODE_TE_GATE)) {
+> +		DRM_ERROR("DSI trancoder not configured in command mode\n");
 
-On Tue, Mar 24, 2020 at 12:52:33PM +0000, Chris Wilson wrote:
-> The legacy ringbuffer submission lacks a fast soft-rc6
-> mechanism as we have no interrupt for an idle ring. As such
-> we are at the mercy of HW RC6... which is not quite as
-> precise as we need to pass this test. Oh well.
-> 
-> Since HW is not fast enough to minimise power draw, tell the driver to
-> park as soon as we know we are idle. One day, we hope for the driver to
-> discover a mechanism to do this for itself, for as this test shows that
-> can save us Watts!
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1516
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+drm_err()
 
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+> +		return;
+> +	}
+> +
+> +	/* Get PIPE for handling VBLANK event */
+> +	val = I915_READ(TRANS_DDI_FUNC_CTL(dsi_trans));
+> +	switch (val & TRANS_DDI_EDP_INPUT_MASK) {
+> +	case TRANS_DDI_EDP_INPUT_A_ON:
+> +		pipe = PIPE_A;
+> +		break;
+> +	case TRANS_DDI_EDP_INPUT_B_ONOFF:
+> +		pipe = PIPE_B;
+> +		break;
+> +	case TRANS_DDI_EDP_INPUT_C_ONOFF:
+> +		pipe = PIPE_C;
+> +		break;
+> +	default:
+> +		DRM_ERROR("Invalid PIPE\n");
 
-Andi
+drm_err()... but don't want to pass INVALID_PIPE to
+intel_handle_vblank() below.
+
+> +	}
+> +
+> +	/* clear TE in dsi IIR */
+> +	port = (te_trigger & DSI1_TE) ? PORT_B : PORT_A;
+> +	tmp = I915_READ(DSI_INTR_IDENT_REG(port));
+> +	I915_WRITE(DSI_INTR_IDENT_REG(port), tmp);
+> +
+> +	drm_handle_vblank(&dev_priv->drm, pipe);
+
+Please use intel_handle_vblank(). It takes into account pipe might not
+match crtc index.
+
+> +}
+> +
+>  static irqreturn_t
+>  gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  {
+> @@ -2328,6 +2384,14 @@ gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  				found = true;
+>  			}
+>  
+> +			if (INTEL_GEN(dev_priv) >= 11) {
+> +				tmp_mask = iir & (DSI0_TE | DSI1_TE);
+> +				if (tmp_mask) {
+> +					gen11_dsi_te_interrupt_handler(dev_priv, tmp_mask);
+> +					found = true;
+> +				}
+> +			}
+> +
+>  			if (!found)
+>  				drm_err(&dev_priv->drm,
+>  					"Unexpected DE Port interrupt\n");
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
