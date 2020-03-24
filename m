@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8593619128A
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 15:12:56 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E7019128B
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 15:13:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E91E6E096;
-	Tue, 24 Mar 2020 14:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219616E2C4;
+	Tue, 24 Mar 2020 14:13:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA4AA6E096;
- Tue, 24 Mar 2020 14:12:53 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3122D6E2C0;
+ Tue, 24 Mar 2020 14:13:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D44E4A011B;
- Tue, 24 Mar 2020 14:12:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2E4B2A011B;
+ Tue, 24 Mar 2020 14:13:24 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Vetter" <daniel.vetter@ffwll.ch>
-Date: Tue, 24 Mar 2020 14:12:53 -0000
-Message-ID: <158505917383.5746.8478562042198191691@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 24 Mar 2020 14:13:24 -0000
+Message-ID: <158505920418.5745.13624269382273564841@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
-In-Reply-To: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm=5Fdevice_managed_resources_=28rev6=29?=
+References: <20200324120718.977-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200324120718.977-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/execlists=3A_Pull_tasklet_?=
+ =?utf-8?q?interrupt-bh_local_to_direct_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,456 +48,266 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm_device managed resources (rev6)
-URL   : https://patchwork.freedesktop.org/series/73633/
-State : warning
+Series: series starting with [1/2] drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+URL   : https://patchwork.freedesktop.org/series/75008/
+State : success
 
 == Summary ==
 
-$ dim checkpatch origin/drm-tip
-ac41bc6ebdf2 mm/sl[uo]b: export __kmalloc_track(_node)_caller
--:58: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 28 lines checked
-7065ea199d00 drm/i915: Don't clear drvdata in ->release
--:20: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0998d0631001 ("device-core: Ensure drvdata = NULL when no driver is bound")'
-#20: 
-commit 0998d0631001288a5974afc0b2a5f568bcdecb4d
-
--:45: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 1 errors, 1 warnings, 0 checks, 9 lines checked
-957fcd9d1be3 drm: add managed resources tied to drm_device
--:72: WARNING:TYPO_SPELLING: 'unecessary' may be misspelled - perhaps 'unnecessary'?
-#72: 
-v8: Remove unecessary {} around if else
-
--:74: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#74: 
-v9: Use kstrdup_const, which requires kfree_const and introducing a free_dr()
-
--:85: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Neil Armstrong <narmstrong@baylibre.com'
-#85: 
-Cc: Neil Armstrong <narmstrong@baylibre.com
-
--:148: CHECK:BRACES: braces {} should be used on all arms of this statement
-#148: FILE: drivers/gpu/drm/drm_drv.c:837:
-+	if (!dev->driver->release && !dev->managed.final_kfree) {
-[...]
--	}
-[...]
-
--:153: WARNING:NEEDLESS_IF: kfree(NULL) is safe and this check is probably not required
-#153: FILE: drivers/gpu/drm/drm_drv.c:841:
-+	} else if (dev->managed.final_kfree)
-+		kfree(dev->managed.final_kfree);
-
--:172: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#172: 
-new file mode 100644
-
--:247: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
-#247: FILE: drivers/gpu/drm/drm_managed.c:71:
-+static __always_inline struct drmres * alloc_dr(drmres_release_t release,
-
--:275: CHECK:SPACING: No space is necessary after a cast
-#275: FILE: drivers/gpu/drm/drm_managed.c:99:
-+		       dr, dr->node.name, (unsigned long) dr->node.size);
-
--:287: CHECK:SPACING: No space is necessary after a cast
-#287: FILE: drivers/gpu/drm/drm_managed.c:111:
-+		       dr, dr->node.name, (unsigned long) dr->node.size);
-
--:293: CHECK:SPACING: No space is necessary after a cast
-#293: FILE: drivers/gpu/drm/drm_managed.c:117:
-+	WARN_ON(dev < (struct drm_device *) container);
-
--:295: CHECK:SPACING: No space is necessary after a cast
-#295: FILE: drivers/gpu/drm/drm_managed.c:119:
-+		(struct drm_device *) (container + ksize(container)));
-
--:307: ERROR:POINTER_LOCATION: "(foo*)" should be "(foo *)"
-#307: FILE: drivers/gpu/drm/drm_managed.c:131:
-+	dr = alloc_dr(action, data ? sizeof(void*) : 0,
-
--:402: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'include/drm/drm_managed.h', please use '/*' instead
-#402: FILE: include/drm/drm_managed.h:1:
-+// SPDX-License-Identifier: GPL-2.0
-
--:402: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#402: FILE: include/drm/drm_managed.h:1:
-+// SPDX-License-Identifier: GPL-2.0
-
--:455: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 3 errors, 7 warnings, 5 checks, 322 lines checked
-63e381527084 drm: Set final_kfree in drm_dev_alloc
--:15: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 0a6659bdc5e8 ("drm/bochs: new driver")'
-#15: 
-commit 0a6659bdc5e8221da99eebb176fd9591435e38de
-
--:25: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit b1df3a2b24a9 ("drm/virtio: add drm_driver.release callback.")'
-#25: 
-commit b1df3a2b24a917f8853d43fe9683c0e360d2c33a
-
--:44: WARNING:BAD_SIGN_OFF: Duplicate signature
-#44: 
-Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-
--:45: WARNING:BAD_SIGN_OFF: Duplicate signature
-#45: 
-Cc: xen-devel@lists.xenproject.org
-
--:87: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 2 errors, 3 warnings, 0 checks, 29 lines checked
-f16c91668297 drm/mipi_dbi: Use drmm_add_final_kfree in all drivers
--:189: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 111 lines checked
-0697ed6f202b drm/udl: Use drmm_add_final_kfree
--:63: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 27 lines checked
-c090dddc6b8c drm/qxl: Use drmm_add_final_kfree
--:47: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 22 lines checked
-eed2f41d15a5 drm/i915: Use drmm_add_final_kfree
--:207: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 136 lines checked
-5ed37ba9f416 drm/cirrus: Use drmm_add_final_kfree
--:28: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:31: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:75: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 3 warnings, 0 checks, 40 lines checked
-8c56b5e11d83 drm/v3d: Use drmm_add_final_kfree
--:122: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 95 lines checked
-9dacc7f38dfb drm/tidss: Use drmm_add_final_kfree
--:41: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 22 lines checked
-01ae6ed51a0a drm/mcde: Use drmm_add_final_kfree
--:39: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 21 lines checked
-f15a68aa6801 drm/vgem: Use drmm_add_final_kfree
--:66: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 38 lines checked
-b0ef050f4289 drm/vkms: Use drmm_add_final_kfree
--:87: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 61 lines checked
-c0de4b200ec6 drm/repaper: Use drmm_add_final_kfree
--:49: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 27 lines checked
-3ad394a63e5a drm/ingenic: Use drmm_add_final_kfree
--:44: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 25 lines checked
-c49d5577ec9f drm/gm12u320: Use drmm_add_final_kfree
--:40: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 21 lines checked
-6ad0417d05cf drm/<drivers>: Use drmm_add_final_kfree
--:77: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 42 lines checked
-e36f91290363 drm: Cleanups after drmm_add_final_kfree rollout
--:67: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 39 lines checked
-6d4c151b90c3 drm: Handle dev->unique with drmm_
--:73: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#73: FILE: include/drm/drm_managed.h:27:
- }
-+char *drmm_kstrdup(struct drm_device *dev, const char *s, gfp_t gfp);
-
--:76: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 1 checks, 46 lines checked
-74ef52e23688 drm: Use drmm_ for drm_dev_init cleanup
--:32: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
-#32: FILE: drivers/gpu/drm/drm_drv.c:591:
-+	 * enabled. Slightly awkward, but can't really be helped. */
-
--:104: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 81 lines checked
-19a37366644e drm: manage drm_minor cleanup with drmm_
--:206: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 160 lines checked
-055e9dd3bcb4 drm: Manage drm_gem_init with drmm_
--:106: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 75 lines checked
-334971b098e9 drm: Manage drm_vblank_cleanup with drmm_
--:150: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#150: FILE: include/drm/drm_managed.h:35:
- }
-+static inline void *drmm_kmalloc_array(struct drm_device *dev,
-
--:160: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#160: FILE: include/drm/drm_managed.h:45:
-+}
-+static inline void *drmm_kcalloc(struct drm_device *dev,
-
--:167: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 2 checks, 119 lines checked
-1ce662c173d3 drm: Garbage collect drm_dev_fini
--:16: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:19: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:271: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 3 warnings, 0 checks, 175 lines checked
-70e26759dd8f drm: Manage drm_mode_config_init with drmm_
--:164: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#164: FILE: drivers/gpu/drm/drm_mode_config.c:384:
-+ * ^Iinitialization$
-
--:233: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 149 lines checked
-e5b3501eda27 drm/bochs: Remove leftover drm_atomic_helper_shutdown
--:8: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 81da8c3b8d3d ("drm/bochs: add drm_driver.release callback.")'
-#8: 
-commit 81da8c3b8d3df6f05b11300b7d17ccd1f3017fab
-
--:31: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 1 errors, 1 warnings, 0 checks, 6 lines checked
-d005b721d19b drm/bochs: Drop explicit drm_mode_config_cleanup
--:11: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#11: 
-This is made possible by a preceeding patch which added a drmm_
-
--:101: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 47 lines checked
-528e651401ed drm/cirrus: Drop explicit drm_mode_config_cleanup call
--:11: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#11: 
-This is made possible by a preceeding patch which added a drmm_
-
--:30: WARNING:BAD_SIGN_OFF: Duplicate signature
-#30: 
-Cc: Sam Ravnborg <sam@ravnborg.org>
-
--:31: WARNING:BAD_SIGN_OFF: Duplicate signature
-#31: 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-
--:34: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:37: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:100: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 6 warnings, 0 checks, 58 lines checked
-e5f31678ee7b drm/cirrus: Fully embrace devm_
--:10: WARNING:TYPO_SPELLING: 'releated' may be misspelled - perhaps 'related'?
-#10: 
-anymore to use devm_ for everything hw releated. Do it, and in the
-
--:23: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:26: WARNING:OBSOLETE: drivers/gpu/drm/cirrus/cirrus.c is marked as 'obsolete' in the MAINTAINERS hierarchy.  No unnecessary modifications please.
-
--:122: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 4 warnings, 0 checks, 93 lines checked
-ed611fd13349 drm/ingenic: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:60: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 29 lines checked
-ccc0b0b1d0a9 drm/mcde: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:90: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 57 lines checked
-80e43e9f281c drm/mcde: More devm_drm_dev_init
--:61: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 37 lines checked
-8c385d74018d drm/meson: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:52: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 17 lines checked
-a1b050a8ea88 drm/pl111: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:72: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 38 lines checked
-6add9dcbdf19 drm/rcar-du: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:25: WARNING:BAD_SIGN_OFF: Duplicate signature
-#25: 
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
--:55: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 3 warnings, 0 checks, 17 lines checked
-4cb10235542a drm/rockchip: Drop explicit drm_mode_config_cleanup call
--:12: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#12: 
-This is made possible by a preceeding patch which added a drmm_
-
--:88: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 42 lines checked
-5ffbf6a4aee2 drm/stm: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:76: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 34 lines checked
-ff985ab38e34 drm/shmob: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:25: WARNING:BAD_SIGN_OFF: Duplicate signature
-#25: 
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
--:65: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 3 warnings, 0 checks, 26 lines checked
-66d9b2158ec4 drm/mtk: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:67: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 33 lines checked
-c44a3d4af53c drm/tidss: Drop explicit drm_mode_config_cleanup call
--:8: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#8: 
-This is made possible by a preceeding patch which added a drmm_
-
--:110: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 55 lines checked
-2da5bd9f20cf drm/gm12u320: More drmm_
--:81: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 50 lines checked
-1703661601e4 drm/gm12u320: Use devm_drm_dev_init
--:89: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 65 lines checked
-fa3edaa138c3 drm/gm12u320: Use helpers for shutdown/suspend/resume
--:9: WARNING:TYPO_SPELLING: 'implemenation' may be misspelled - perhaps 'implementation'?
-#9: 
-Also there's a race in the disconnect implemenation. First shut
-
--:85: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 56 lines checked
-413e133f9a1a drm/gm12u320: Simplify upload work
--:160: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#160: FILE: drivers/gpu/drm/tiny/gm12u320.c:360:
-+		ret = usb_bulk_msg(gm12u320->udev,
-+			usb_sndbulkpipe(gm12u320->udev, DATA_SND_EPT),
-
--:191: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#191: FILE: drivers/gpu/drm/tiny/gm12u320.c:378:
-+	ret = usb_bulk_msg(gm12u320->udev,
-+		usb_sndbulkpipe(gm12u320->udev, DATA_SND_EPT),
-
--:198: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#198: FILE: drivers/gpu/drm/tiny/gm12u320.c:385:
-+	ret = usb_bulk_msg(gm12u320->udev,
-+		usb_rcvbulkpipe(gm12u320->udev, DATA_RCV_EPT),
-
--:307: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 3 checks, 256 lines checked
-d25137f09ee8 drm/repaper: Drop explicit drm_mode_config_cleanup call
--:11: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#11: 
-This is made possible by a preceeding patch which added a drmm_
-
--:65: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 2 warnings, 0 checks, 30 lines checked
-9cc1edd26e3d drm/mipi-dbi: Move drm_mode_config_init into mipi library
--:134: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 66 lines checked
-8f8bfdfd5673 drm/mipi-dbi: Drop explicit drm_mode_config_cleanup call
--:12: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#12: 
-This is made possible by a preceeding patch which added a drmm_
-
--:30: WARNING:BAD_SIGN_OFF: Duplicate signature
-#30: 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-
--:37: WARNING:BAD_SIGN_OFF: Duplicate signature
-#37: 
-Cc: Sam Ravnborg <sam@ravnborg.org>
-
--:170: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 4 warnings, 0 checks, 86 lines checked
-7f5042aeb5dd drm/udl: Drop explicit drm_mode_config_cleanup call
--:14: WARNING:TYPO_SPELLING: 'preceeding' may be misspelled - perhaps 'preceding'?
-#14: 
-This is made possible by a preceeding patch which added a drmm_
-
--:31: WARNING:BAD_SIGN_OFF: Duplicate signature
-#31: 
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-
--:36: WARNING:BAD_SIGN_OFF: Duplicate signature
-#36: 
-Cc: Sam Ravnborg <sam@ravnborg.org>
-
--:110: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 4 warnings, 0 checks, 55 lines checked
-57736893e224 drm/udl: drop drm_driver.release hook
--:94: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 32 lines checked
-f8cd05a8c5a2 drm: Add docs for managed resources
--:337: WARNING:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Daniel Vetter <daniel.vetter@ffwll.ch>'
-
-total: 0 errors, 1 warnings, 0 checks, 230 lines checked
-
+CI Bug Log - changes from CI_DRM_8182_full -> Patchwork_17065_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17065_full that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_busy@busy-vcs1:
+    - shard-iclb:         [PASS][1] -> [SKIP][2] ([fdo#112080]) +10 similar issues
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb2/igt@gem_busy@busy-vcs1.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb7/igt@gem_busy@busy-vcs1.html
+
+  * igt@gem_ctx_persistence@engines-mixed-process@bcs0:
+    - shard-skl:          [PASS][3] -> [FAIL][4] ([i915#679])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl2/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl1/igt@gem_ctx_persistence@engines-mixed-process@bcs0.html
+
+  * igt@gem_ctx_persistence@engines-mixed-process@vcs0:
+    - shard-skl:          [PASS][5] -> [INCOMPLETE][6] ([i915#1239])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl2/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl1/igt@gem_ctx_persistence@engines-mixed-process@vcs0.html
+
+  * igt@gem_ctx_shared@exec-single-timeline-bsd:
+    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#110841])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb6/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb2/igt@gem_ctx_shared@exec-single-timeline-bsd.html
+
+  * igt@gem_exec_schedule@implicit-write-read-bsd:
+    - shard-iclb:         [PASS][9] -> [SKIP][10] ([i915#677])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb5/igt@gem_exec_schedule@implicit-write-read-bsd.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb4/igt@gem_exec_schedule@implicit-write-read-bsd.html
+
+  * igt@gem_exec_schedule@promotion-bsd1:
+    - shard-iclb:         [PASS][11] -> [SKIP][12] ([fdo#109276]) +15 similar issues
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb2/igt@gem_exec_schedule@promotion-bsd1.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb7/igt@gem_exec_schedule@promotion-bsd1.html
+
+  * igt@gem_exec_schedule@reorder-wide-bsd:
+    - shard-iclb:         [PASS][13] -> [SKIP][14] ([fdo#112146]) +3 similar issues
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb6/igt@gem_exec_schedule@reorder-wide-bsd.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb2/igt@gem_exec_schedule@reorder-wide-bsd.html
+
+  * igt@i915_selftest@live@requests:
+    - shard-iclb:         [PASS][15] -> [INCOMPLETE][16] ([fdo#109644] / [fdo#110464])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb4/igt@i915_selftest@live@requests.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb8/igt@i915_selftest@live@requests.html
+
+  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
+    - shard-kbl:          [PASS][17] -> [DMESG-WARN][18] ([i915#165] / [i915#180])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-kbl1/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
+
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
+    - shard-glk:          [PASS][19] -> [FAIL][20] ([IGT#5])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-glk3/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-glk2/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+    - shard-skl:          [PASS][21] -> [FAIL][22] ([i915#79])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl1/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl3/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-hsw:          [PASS][23] -> [INCOMPLETE][24] ([i915#61])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-hsw8/igt@kms_flip@flip-vs-suspend.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-hsw5/igt@kms_flip@flip-vs-suspend.html
+
+  * igt@kms_hdr@bpc-switch-dpms:
+    - shard-skl:          [PASS][25] -> [FAIL][26] ([i915#1188])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl5/igt@kms_hdr@bpc-switch-dpms.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes:
+    - shard-apl:          [PASS][27] -> [DMESG-WARN][28] ([i915#180]) +1 similar issue
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-apl4/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-apl6/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-a-planes.html
+
+  * igt@kms_plane_alpha_blend@pipe-b-coverage-7efc:
+    - shard-skl:          [PASS][29] -> [FAIL][30] ([fdo#108145] / [i915#265])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl2/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl4/igt@kms_plane_alpha_blend@pipe-b-coverage-7efc.html
+
+  * igt@kms_psr@psr2_cursor_mmap_cpu:
+    - shard-iclb:         [PASS][31] -> [SKIP][32] ([fdo#109441]) +2 similar issues
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb2/igt@kms_psr@psr2_cursor_mmap_cpu.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb1/igt@kms_psr@psr2_cursor_mmap_cpu.html
+
+  * igt@kms_vblank@pipe-a-ts-continuation-suspend:
+    - shard-kbl:          [PASS][33] -> [DMESG-WARN][34] ([i915#180]) +5 similar issues
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-kbl7/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-kbl2/igt@kms_vblank@pipe-a-ts-continuation-suspend.html
+
+  * igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend:
+    - shard-iclb:         [PASS][35] -> [INCOMPLETE][36] ([i915#1185] / [i915#140])
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb7/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb3/igt@kms_vblank@pipe-b-ts-continuation-dpms-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_ctx_persistence@legacy-engines-mixed-process@render:
+    - shard-iclb:         [FAIL][37] ([i915#679]) -> [PASS][38]
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb2/igt@gem_ctx_persistence@legacy-engines-mixed-process@render.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb7/igt@gem_ctx_persistence@legacy-engines-mixed-process@render.html
+
+  * igt@gem_exec_balancer@hang:
+    - shard-tglb:         [FAIL][39] ([i915#1277]) -> [PASS][40]
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-tglb1/igt@gem_exec_balancer@hang.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-tglb6/igt@gem_exec_balancer@hang.html
+
+  * igt@gem_exec_schedule@implicit-both-bsd1:
+    - shard-iclb:         [SKIP][41] ([fdo#109276] / [i915#677]) -> [PASS][42] +1 similar issue
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb6/igt@gem_exec_schedule@implicit-both-bsd1.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb2/igt@gem_exec_schedule@implicit-both-bsd1.html
+
+  * igt@gem_exec_schedule@pi-shared-iova-bsd:
+    - shard-iclb:         [SKIP][43] ([i915#677]) -> [PASS][44] +1 similar issue
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb1/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb3/igt@gem_exec_schedule@pi-shared-iova-bsd.html
+
+  * igt@gem_exec_schedule@preempt-other-chain-bsd:
+    - shard-iclb:         [SKIP][45] ([fdo#112146]) -> [PASS][46] +3 similar issues
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb2/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb7/igt@gem_exec_schedule@preempt-other-chain-bsd.html
+
+  * igt@i915_pm_rc6_residency@rc6-idle:
+    - shard-hsw:          [FAIL][47] ([i915#1516]) -> [PASS][48]
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-hsw6/igt@i915_pm_rc6_residency@rc6-idle.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-hsw4/igt@i915_pm_rc6_residency@rc6-idle.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - shard-skl:          [INCOMPLETE][49] ([fdo#108744]) -> [PASS][50]
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl7/igt@i915_selftest@live@hangcheck.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl7/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_cursor_crc@pipe-a-cursor-suspend:
+    - shard-apl:          [DMESG-WARN][51] ([i915#180]) -> [PASS][52]
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-apl8/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-apl1/igt@kms_cursor_crc@pipe-a-cursor-suspend.html
+
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-kbl:          [DMESG-WARN][53] ([i915#180]) -> [PASS][54] +1 similar issue
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-kbl7/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-kbl2/igt@kms_flip@flip-vs-suspend-interruptible.html
+
+  * igt@kms_flip@plain-flip-ts-check-interruptible:
+    - shard-glk:          [FAIL][55] ([i915#34]) -> [PASS][56]
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-glk2/igt@kms_flip@plain-flip-ts-check-interruptible.html
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-glk4/igt@kms_flip@plain-flip-ts-check-interruptible.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-skl:          [FAIL][57] ([i915#1188]) -> [PASS][58] +1 similar issue
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl3/igt@kms_hdr@bpc-switch-suspend.html
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl6/igt@kms_hdr@bpc-switch-suspend.html
+
+  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
+    - shard-skl:          [FAIL][59] ([fdo#108145] / [i915#265]) -> [PASS][60]
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-skl1/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-skl3/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
+
+  * igt@kms_psr@psr2_cursor_blt:
+    - shard-iclb:         [SKIP][61] ([fdo#109441]) -> [PASS][62] +1 similar issue
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb6/igt@kms_psr@psr2_cursor_blt.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
+
+  * igt@perf_pmu@busy-no-semaphores-vcs1:
+    - shard-iclb:         [SKIP][63] ([fdo#112080]) -> [PASS][64] +6 similar issues
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb5/igt@perf_pmu@busy-no-semaphores-vcs1.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb4/igt@perf_pmu@busy-no-semaphores-vcs1.html
+
+  * igt@prime_vgem@fence-wait-bsd2:
+    - shard-iclb:         [SKIP][65] ([fdo#109276]) -> [PASS][66] +15 similar issues
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-iclb6/igt@prime_vgem@fence-wait-bsd2.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-iclb2/igt@prime_vgem@fence-wait-bsd2.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_dc@dc6-dpms:
+    - shard-tglb:         [SKIP][67] ([i915#468]) -> [FAIL][68] ([i915#454])
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-tglb2/igt@i915_pm_dc@dc6-dpms.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-tglb7/igt@i915_pm_dc@dc6-dpms.html
+
+  * igt@i915_pm_rpm@modeset-pc8-residency-stress:
+    - shard-snb:          [INCOMPLETE][69] ([i915#82]) -> [SKIP][70] ([fdo#109271])
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/shard-snb4/igt@i915_pm_rpm@modeset-pc8-residency-stress.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/shard-snb6/igt@i915_pm_rpm@modeset-pc8-residency-stress.html
+
+  
+  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
+  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
+  [fdo#108744]: https://bugs.freedesktop.org/show_bug.cgi?id=108744
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
+  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
+  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
+  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
+  [fdo#110841]: https://bugs.freedesktop.org/show_bug.cgi?id=110841
+  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
+  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
+  [i915#1185]: https://gitlab.freedesktop.org/drm/intel/issues/1185
+  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
+  [i915#1239]: https://gitlab.freedesktop.org/drm/intel/issues/1239
+  [i915#1277]: https://gitlab.freedesktop.org/drm/intel/issues/1277
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#1516]: https://gitlab.freedesktop.org/drm/intel/issues/1516
+  [i915#165]: https://gitlab.freedesktop.org/drm/intel/issues/165
+  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
+  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
+  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
+  [i915#454]: https://gitlab.freedesktop.org/drm/intel/issues/454
+  [i915#468]: https://gitlab.freedesktop.org/drm/intel/issues/468
+  [i915#61]: https://gitlab.freedesktop.org/drm/intel/issues/61
+  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
+  [i915#679]: https://gitlab.freedesktop.org/drm/intel/issues/679
+  [i915#79]: https://gitlab.freedesktop.org/drm/intel/issues/79
+  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
+
+
+Participating hosts (10 -> 10)
+------------------------------
+
+  No changes in participating hosts
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8182 -> Patchwork_17065
+
+  CI-20190529: 20190529
+  CI_DRM_8182: e5245084567cd7f6f93b07baaebf8a2b4d914620 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5531: 79e7382202c104b247a672c61a6186d1f51e4958 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17065: 6cfb39892bf9c0b2cfa57708bb6ae3276f9179fa @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17065/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
