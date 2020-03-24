@@ -2,65 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F40D1191714
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:58:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17E04191710
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:58:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5991F6E174;
-	Tue, 24 Mar 2020 16:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 167BB6E178;
+	Tue, 24 Mar 2020 16:58:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com
- [IPv6:2a00:1450:4864:20::543])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DA16E174
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:58:38 +0000 (UTC)
-Received: by mail-ed1-x543.google.com with SMTP id de14so3204734edb.4
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 09:58:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=WsR634IM9mmhNsoHiRslx4q1ur3OKG9sqLOfW3mTlvE=;
- b=Z4pJJsNRptNjfG3P3MoBuNrYlnzenPIYlkT2d80DcIZW7UeaJ7NzLHI1ja4yIjcDoc
- /iKfJJvm1iYP31UYLTqjCrBqL5Uar8necO8dCIgcOuI51Nj7AidT3P8YaYaCV6jUFzMJ
- fsKqZJnyfGhT7+0lEb4rByJaviH4S/tML+mT4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=WsR634IM9mmhNsoHiRslx4q1ur3OKG9sqLOfW3mTlvE=;
- b=HYB3neTHpCAeUv1lQsZvDJtdMIj5Wyq9XkhatsyKz3JrOFsqbg2dORcL7BOue5cy6C
- hgQXAYDPeKMz1QEu6+poHDHBGOBhzPxhqN3zEHWqlRlbYwQwEqIkbSHqI6j2t5zzFIHO
- noTK4y8e3NS6UfjGApJYk1F8AVBqThyRBWAXiNjgp7/UuI56Y3TfcgmwCoX0TKiqksdb
- cky3RRquuhY2FQRxpOTtDgdiEINFkAP5HpP5FQx1lbSrCf3zi/5AOnbooRkRnfxCAlMv
- ws9ObNqnoLifKFKnclJJ2n3AZWSZpaZhSYgGZaCWRRNfCU2DH+5M7vVyXxU1U8Q6R0jj
- 3NVg==
-X-Gm-Message-State: ANhLgQ2VQYjS1pccSGay1ckjK/1/evsb7ySTMCIyF42COP6+XPYYB/NM
- jQLgx7uZ60HIH3cuMGsCOudqqcRzgtg=
-X-Google-Smtp-Source: ADFU+vs+HKE3IWh4apkjwf+4+Mvkx7Q+WOOiji85VsbcR0OCsXuNq0ZuQwsSjxjCzrS0CDMCwxwX1w==
-X-Received: by 2002:a17:906:ad92:: with SMTP id
- la18mr25531885ejb.326.1585069117038; 
- Tue, 24 Mar 2020 09:58:37 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com.
- [209.85.221.46])
- by smtp.gmail.com with ESMTPSA id v12sm401847edw.51.2020.03.24.09.58.36
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Mar 2020 09:58:36 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id m17so13436749wrw.11
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 09:58:36 -0700 (PDT)
-X-Received: by 2002:a05:6512:10cf:: with SMTP id
- k15mr17550349lfg.142.1585068727556; 
- Tue, 24 Mar 2020 09:52:07 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 823376E174;
+ Tue, 24 Mar 2020 16:58:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 747A0A0071;
+ Tue, 24 Mar 2020 16:58:22 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200324084821.29944-1-masahiroy@kernel.org>
-In-Reply-To: <20200324084821.29944-1-masahiroy@kernel.org>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Tue, 24 Mar 2020 09:51:51 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjEi4VoT8qkBhrBtdZ27shyrPwo0ETpuOdxk5anHtQqhQ@mail.gmail.com>
-Message-ID: <CAHk-=wjEi4VoT8qkBhrBtdZ27shyrPwo0ETpuOdxk5anHtQqhQ@mail.gmail.com>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [Intel-gfx] [PATCH 00/16] x86,
- crypto: remove always-defined CONFIG_AS_* and cosolidate
- Kconfig/Makefiles
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
+Date: Tue, 24 Mar 2020 16:58:22 -0000
+Message-ID: <158506910244.5746.16372327477329982377@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200324153212.6303-1-kai.vehmanen@linux.intel.com>
+In-Reply-To: <20200324153212.6303-1-kai.vehmanen@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_use_forced_codec_wake_on_all_gen9+_platforms?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,36 +38,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- NeilBrown <neilb@suse.de>, dri-devel <dri-devel@lists.freedesktop.org>,
- "H . Peter Anvin" <hpa@zytor.com>, Herbert Xu <herbert@gondor.apana.org.au>,
- Jonathan Corbet <corbet@lwn.net>, the arch/x86 maintainers <x86@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- intel-gfx@lists.freedesktop.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Yuanhan Liu <yuanhan.liu@linux.intel.com>, Kees Cook <keescook@chromium.org>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
- David Airlie <airlied@linux.ie>, Borislav Petkov <bp@alien8.de>,
- Thomas Gleixner <tglx@linutronix.de>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- "David S . Miller" <davem@davemloft.net>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2020 at 1:49 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
->
-> If it is OK to queue this up to Kbuild tree,
-> I will send a pull request to Linus.
+== Series Details ==
 
-Looks fine to me, assuming we didn't now get some confusion due to
-duplicate patches (I think Jason got his tree added to -next already).
+Series: drm/i915: use forced codec wake on all gen9+ platforms
+URL   : https://patchwork.freedesktop.org/series/75024/
+State : success
 
-And yeah, that end result looks much better.
+== Summary ==
 
-             Linus
+CI Bug Log - changes from CI_DRM_8183 -> Patchwork_17070
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17070/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17070 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-icl-dsi:         [PASS][1] -> [INCOMPLETE][2] ([i915#189])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17070/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-8700k:       [DMESG-FAIL][3] ([i915#481]) -> [INCOMPLETE][4] ([i915#424])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17070/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
+    - fi-cfl-guc:         [INCOMPLETE][5] ([fdo#106070] / [i915#424]) -> [DMESG-FAIL][6] ([i915#481])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17070/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+
+  
+  [fdo#106070]: https://bugs.freedesktop.org/show_bug.cgi?id=106070
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#481]: https://gitlab.freedesktop.org/drm/intel/issues/481
+
+
+Participating hosts (45 -> 38)
+------------------------------
+
+  Additional (4): fi-skl-lmem fi-blb-e6850 fi-cfl-8109u fi-kbl-7500u 
+  Missing    (11): fi-hsw-4200u fi-hsw-peppy fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-ivb-3770 fi-bdw-samus fi-byt-clapper fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8183 -> Patchwork_17070
+
+  CI-20190529: 20190529
+  CI_DRM_8183: 795894daf2cc32246af94541733e08649d082470 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5535: d1dcf40cc6869ac858586c5ad9f09af6617ce2ee @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17070: 0d0abab0d1054b2a6cdc0ae5dbab122c231bc502 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0d0abab0d105 drm/i915: use forced codec wake on all gen9+ platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17070/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
