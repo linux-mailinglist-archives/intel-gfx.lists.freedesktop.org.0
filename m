@@ -2,44 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58C061903CF
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 04:17:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB191904DD
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 06:23:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9FB189D42;
-	Tue, 24 Mar 2020 03:17:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A04B06E0B7;
+	Tue, 24 Mar 2020 05:23:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C18589D42
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 03:17:47 +0000 (UTC)
-IronPort-SDR: nx9UGxNEX/L4Q+I4ZnupbX8dJVsQLUpWanBQVuhRE9DGAe3rAyMf6rx3xK+r+N9EtMzRXogA0Q
- emJY1AUKZWmw==
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 321236E0B7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 05:23:10 +0000 (UTC)
+IronPort-SDR: IIxCLLhUQvLrubse8W+rvJTQwJiRcfq7v5C1C+Dim0h/1OF/k7JXrj5RG+nn2sa1t1w7rZs8tV
+ mpAbZQ7Er+uQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2020 20:17:46 -0700
-IronPort-SDR: Wp1ebZp+0FtKJOv/Tnb40dVACG/sbbIHoV51YNawp08BhdxzIAzndFcGStVyCM3Nrle4kj0jQL
- iAxTSnMllwlw==
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2020 22:23:09 -0700
+IronPort-SDR: IVonpOflLbdX9Y7z2GsymzIUk8Akkhn7koDga70UOBzXsrOzZETd5IZ3xd3kUug8LoKHKcWmzU
+ yXY6i1zlTw1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,298,1580803200"; d="scan'208";a="240135278"
-Received: from orsosgc001.ra.intel.com (HELO orsosgc001.amr.corp.intel.com)
- ([10.23.184.150])
- by orsmga008.jf.intel.com with ESMTP; 23 Mar 2020 20:17:46 -0700
-Date: Mon, 23 Mar 2020 20:17:46 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Message-ID: <20200324031746.GB44281@orsosgc001.amr.corp.intel.com>
-References: <20200319225203.29679-1-umesh.nerlige.ramappa@intel.com>
- <20200319225203.29679-2-umesh.nerlige.ramappa@intel.com>
- <87zhc9p9vx.wl-ashutosh.dixit@intel.com>
- <877dzddmmc.wl-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,299,1580803200"; d="scan'208";a="246420446"
+Received: from unknown (HELO amanna.iind.intel.com) ([10.223.74.53])
+ by orsmga003.jf.intel.com with ESMTP; 23 Mar 2020 22:23:07 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Mar 2020 10:41:11 +0530
+Message-Id: <20200324051111.29398-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.24.0
+In-Reply-To: <20200319215119.GA11219@intel.com>
+References: <20200319215119.GA11219@intel.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <877dzddmmc.wl-ashutosh.dixit@intel.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/perf: rework aging tail
- workaround
+Subject: [Intel-gfx] [PATCH v7 6/7] drm/i915/dp: Register definition for DP
+ compliance register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,82 +47,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gU2F0LCBNYXIgMjEsIDIwMjAgYXQgMDk6NDQ6NDNQTSAtMDcwMCwgRGl4aXQsIEFzaHV0b3No
-IHdyb3RlOgo+T24gU2F0LCAyMSBNYXIgMjAyMCAxNjoyNjo0MiAtMDcwMCwgRGl4aXQsIEFzaHV0
-b3NoIHdyb3RlOgo+Pgo+PiBPbiBUaHUsIDE5IE1hciAyMDIwIDE1OjUyOjAxIC0wNzAwLCBVbWVz
-aCBOZXJsaWdlIFJhbWFwcGEgd3JvdGU6Cj4+ID4KPj4gPiBGcm9tOiBMaW9uZWwgTGFuZHdlcmxp
-biA8bGlvbmVsLmcubGFuZHdlcmxpbkBpbnRlbC5jb20+Cj4+Cj4+ID4gQEAgLTQ3NywxNiArNDY4
-LDYgQEAgc3RhdGljIGJvb2wgb2FfYnVmZmVyX2NoZWNrX3VubG9ja2VkKHN0cnVjdCBpOTE1X3Bl
-cmZfc3RyZWFtICpzdHJlYW0pCj4+ID4JICovCj4+ID4Jc3Bpbl9sb2NrX2lycXNhdmUoJnN0cmVh
-bS0+b2FfYnVmZmVyLnB0cl9sb2NrLCBmbGFncyk7Cj4+ID4KPj4gPglod190YWlsID0gc3RyZWFt
-LT5wZXJmLT5vcHMub2FfaHdfdGFpbF9yZWFkKHN0cmVhbSk7Cj4+ID4KPj4gPglod190YWlsICY9
-IH4ocmVwb3J0X3NpemUgLSAxKTsKPj4gPgo+PiA+IEBAIC00OTYsNjQgKzQ3Nyw2NCBAQCBzdGF0
-aWMgYm9vbCBvYV9idWZmZXJfY2hlY2tfdW5sb2NrZWQoc3RydWN0IGk5MTVfcGVyZl9zdHJlYW0g
-KnN0cmVhbSkKPj4gPgo+PiA+CW5vdyA9IGt0aW1lX2dldF9tb25vX2Zhc3RfbnMoKTsKPj4gPgo+
-PiA+ICsJaWYgKGh3X3RhaWwgPT0gc3RyZWFtLT5vYV9idWZmZXIuYWdpbmdfdGFpbCAmJgo+PiA+
-ICsJICAgKG5vdyAtIHN0cmVhbS0+b2FfYnVmZmVyLmFnaW5nX3RpbWVzdGFtcCkgPiBPQV9UQUlM
-X01BUkdJTl9OU0VDKSB7Cj4+ID4gKwkJLyogSWYgdGhlIEhXIHRhaWwgaGFzbid0IG1vdmUgc2lu
-Y2UgdGhlIGxhc3QgY2hlY2sgYW5kIHRoZSBIVwo+PiA+ICsJCSAqIHRhaWwgaGFzIGJlZW4gYWdp
-bmcgZm9yIGxvbmcgZW5vdWdoLCBkZWNsYXJlIGl0IHRoZSBuZXcKPj4gPiArCQkgKiB0YWlsLgo+
-PiA+ICsJCSAqLwo+PiA+ICsJCXN0cmVhbS0+b2FfYnVmZmVyLnRhaWwgPSBzdHJlYW0tPm9hX2J1
-ZmZlci5hZ2luZ190YWlsOwo+PiA+ICsJfSBlbHNlIHsKPj4gPiArCQl1MzIgaGVhZCwgdGFpbDsK
-Pj4gPgo+PiA+ICsJCS8qIE5COiBUaGUgaGVhZCB3ZSBvYnNlcnZlIGhlcmUgbWlnaHQgZWZmZWN0
-aXZlbHkgYmUgYSBsaXR0bGUKPj4gPiArCQkgKiBvdXQgb2YgZGF0ZS4gSWYgYSByZWFkKCkgaXMg
-aW4gcHJvZ3Jlc3MsIHRoZSBoZWFkIGNvdWxkIGJlCj4+ID4gKwkJICogYW55d2hlcmUgYmV0d2Vl
-biB0aGlzIGhlYWQgYW5kIHN0cmVhbS0+b2FfYnVmZmVyLnRhaWwuCj4+ID4gKwkJICovCj4+ID4g
-KwkJaGVhZCA9IHN0cmVhbS0+b2FfYnVmZmVyLmhlYWQgLSBndHRfb2Zmc2V0Owo+PiA+Cj4+ID4g
-KwkJaHdfdGFpbCAtPSBndHRfb2Zmc2V0Owo+PiA+ICsJCXRhaWwgPSBod190YWlsOwo+PiA+Cj4+
-ID4gKwkJLyogV2FsayB0aGUgc3RyZWFtIGJhY2t3YXJkIHVudGlsIHdlIGZpbmQgYSByZXBvcnQg
-d2l0aCBkd29yZCAwCj4+ID4gKwkJICogJiAxIG5vdCBhdCAwLiBTaW5jZSB0aGUgY2lyY3VsYXIg
-YnVmZmVyIHBvaW50ZXJzIHByb2dyZXNzIGJ5Cj4+ID4gKwkJICogaW5jcmVtZW50cyBvZiA2NCBi
-eXRlcyBhbmQgdGhhdCByZXBvcnRzIGNhbiBiZSB1cCB0byAyNTYKPj4gPiArCQkgKiBieXRlcyBs
-b25nLCB3ZSBjYW4ndCB0ZWxsIHdoZXRoZXIgYSByZXBvcnQgaGFzIGZ1bGx5IGxhbmRlZAo+PiA+
-ICsJCSAqIGluIG1lbW9yeSBiZWZvcmUgdGhlIGZpcnN0IDIgZHdvcmRzIG9mIHRoZSBmb2xsb3dp
-bmcgcmVwb3J0Cj4+ID4gKwkJICogaGF2ZSBlZmZlY3RpdmVseSBsYW5kZWQuCj4+ID4gKwkJICoK
-Pj4gPiArCQkgKiBUaGlzIGlzIGFzc3VtaW5nIHRoYXQgdGhlIHdyaXRlcyBvZiB0aGUgT0EgdW5p
-dCBsYW5kIGluCj4+ID4gKwkJICogbWVtb3J5IGluIHRoZSBvcmRlciB0aGV5IHdlcmUgd3JpdHRl
-biB0by4KPj4gPiArCQkgKiBJZiBub3QgOiAo4pWvwrDilqHCsO+8ieKVr++4tSDilLvilIHilLsK
-Pj4gPgkJICovCj4+ID4gKwkJd2hpbGUgKE9BX1RBS0VOKHRhaWwsIGhlYWQpID49IHJlcG9ydF9z
-aXplKSB7Cj4+ID4gKwkJCXUzMiBwcmV2aW91c190YWlsID0gKHRhaWwgLSByZXBvcnRfc2l6ZSkg
-JiAoT0FfQlVGRkVSX1NJWkUgLSAxKTsKPj4gPiArCQkJdTMyICpyZXBvcnQzMiA9ICh2b2lkICop
-KHN0cmVhbS0+b2FfYnVmZmVyLnZhZGRyICsgcHJldmlvdXNfdGFpbCk7Cj4+Cj4+IFNvcnJ5LCB0
-aGlzIGlzIHdyb25nLiBUaGlzIHNob3VsZCBqdXN0IGJlOgo+Pgo+PgkJCXRhaWwgPSAodGFpbCAt
-IHJlcG9ydF9zaXplKSAmIChPQV9CVUZGRVJfU0laRSAtIDEpOwo+PgkJCXJlcG9ydDMyID0gKHZv
-aWQgKikoc3RyZWFtLT5vYV9idWZmZXIudmFkZHIgKyB0YWlsKTsKPj4KPj4gT3RoZXJ3aXNlIHdo
-ZW4gd2UgYnJlYWsgb3V0IG9mIHRoZSBsb29wIGJlbG93IHRhaWwgaXMgc3RpbGwgc2V0IG9uZQo+
-PiByZXBvcnRfc2l6ZSBhaGVhZC4gcHJldmlvdXNfdGFpbCBpcyBub3QgbmVlZGVkLiAoSW4gdGhl
-IHByZXZpb3VzIHZlcnNpb24gb2YKPj4gdGhlIHBhdGNoIHRoaXMgdXNlZCB0byB3b3JrIG91dCBj
-b3JyZWN0bHkpLgo+Pgo+PiA+ICsKPj4gPiArCQkJLyogSGVhZCBvZiB0aGUgcmVwb3J0IGluZGlj
-YXRlZCBieSB0aGUgSFcgdGFpbCByZWdpc3RlciBoYXMKPj4gPiArCQkJICogaW5kZWVkIGxhbmRl
-ZCBpbnRvIG1lbW9yeS4KPj4gPiArCQkJICovCj4+ID4gKwkJCWlmIChyZXBvcnQzMlswXSAhPSAw
-IHx8IHJlcG9ydDMyWzFdICE9IDApCj4+ID4gKwkJCQlicmVhazsKPj4gPiArCj4+ID4gKwkJCXRh
-aWwgPSBwcmV2aW91c190YWlsOwo+PiA+CQl9Cj4KPkFjdHVhbGx5IGEgY291cGxlIG9mIGZ1cnRo
-ZXIgaW1wcm92ZW1lbnRzIHRvIHRoZSBsb29wIGFib3ZlIGFyZQo+cG9zc2libGUuIEZpcnN0IHRo
-ZXJlIGlzIG5vIHJlYXNvbiB0byBzdGFydCBhdCBwcmV2aW91c190YWlsLCB3ZSBjYW4ganVzdAo+
-c3RhcnQgYXQgdGhlIGFsaWduZWQgaHdfdGFpbCBpdHNlbGYuIFRoZXJlZm9yZSB0aGUgbG9vcCBi
-ZWNvbWVzOgo+Cj4JCXdoaWxlIChPQV9UQUtFTih0YWlsLCBoZWFkKSA+PSByZXBvcnRfc2l6ZSkg
-ewo+CQkJdTMyICpyZXBvcnQzMiA9ICh2b2lkICopKHN0cmVhbS0+b2FfYnVmZmVyLnZhZGRyICsg
-dGFpbCk7Cj4KPgkJCWlmIChyZXBvcnQzMlswXSAhPSAwIHx8IHJlcG9ydDMyWzFdICE9IDApCj4J
-CQkJYnJlYWs7Cj4KPgkJCXRhaWwgPSAodGFpbCAtIHJlcG9ydF9zaXplKSAmIChPQV9CVUZGRVJf
-U0laRSAtIDEpOwo+CQl9Cj4KPkZ1cnRoZXIsIHRoZXJlIGlzIG5vIHJlYXNvbiB0byBnbyBiYWNr
-IHRvIHRoZSBoZWFkIGJ1dCBvbmx5IHRvIHRoZSBvbGQKPnRhaWwuIFRoZXJlZm9yZToKPgo+CQlo
-ZWFkID0gc3RyZWFtLT5vYV9idWZmZXIuaGVhZCAtIGd0dF9vZmZzZXQ7Cj4JCW9sZF90YWlsID0g
-c3RyZWFtLT5vYV9idWZmZXIudGFpbCAtIGd0dF9vZmZzZXQ7Cj4KPgkJaHdfdGFpbCAtPSBndHRf
-b2Zmc2V0Owo+CQl0YWlsID0gaHdfdGFpbDsKPgo+CQl3aGlsZSAoT0FfVEFLRU4odGFpbCwgb2xk
-X3RhaWwpID49IHJlcG9ydF9zaXplKSB7Cj4JCQl1MzIgKnJlcG9ydDMyID0gKHZvaWQgKikoc3Ry
-ZWFtLT5vYV9idWZmZXIudmFkZHIgKyB0YWlsKTsKPgo+CQkJaWYgKHJlcG9ydDMyWzBdICE9IDAg
-fHwgcmVwb3J0MzJbMV0gIT0gMCkKPgkJCQlicmVhazsKPgo+CQkJdGFpbCA9ICh0YWlsIC0gcmVw
-b3J0X3NpemUpICYgKE9BX0JVRkZFUl9TSVpFIC0gMSk7Cj4JCX0KPgo+UGxlYXNlIHJldmlldyBh
-bmQgc2VlIGlmIHRoZXNlIHR3byBpbXByb3ZlbWVudHMgYXJlIHBvc3NpYmxlLiBUaGFua3MhCgpJ
-IHRoaW5rIHRoYXQgdGhpcyBpcyBwb3NzaWJsZS4gV2UgY291bGQgY2hlY2sgcmVwb3J0cyBiZXR3
-ZWVuIG9sZF90YWlsIAphbmQgdGFpbCB0byBvcHRpbWl6ZSB0aGUgbnVtYmVyIG9mIHJlcG9ydHMg
-d2UgcmVhZC4gSSB3aWxsIGdpdmUgdGhpcyBhIAp0cnkuCgpUaGFua3MsClVtZXNoCl9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5n
-IGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVk
-ZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+DP_COMP_CTL and DP_COMP_PAT register used to program DP
+compliance pattern.
+
+v1: Initial patch.
+v2: used pipe instead of port in macro definition. [Manasi]
+v3: used trans_offset for offset calculation. [Manasi]
+v4: Used MMIO_PIPE for evenly spaced register offset instead
+MMIO_PIPE2. [Ville]
+
+Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/i915_reg.h | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 309cb7d96b35..465862ed2cf8 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -9792,6 +9792,24 @@ enum skl_power_gate {
+ #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
+ #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
+ 
++/* DDI DP Compliance Control */
++#define _DDI_DP_COMP_CTL_A			0x605F0
++#define _DDI_DP_COMP_CTL_B			0x615F0
++#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
++#define   DDI_DP_COMP_CTL_ENABLE		(1 << 31)
++#define   DDI_DP_COMP_CTL_D10_2			(0 << 28)
++#define   DDI_DP_COMP_CTL_SCRAMBLED_0		(1 << 28)
++#define   DDI_DP_COMP_CTL_PRBS7			(2 << 28)
++#define   DDI_DP_COMP_CTL_CUSTOM80		(3 << 28)
++#define   DDI_DP_COMP_CTL_HBR2			(4 << 28)
++#define   DDI_DP_COMP_CTL_SCRAMBLED_1		(5 << 28)
++#define   DDI_DP_COMP_CTL_HBR2_RESET		(0xFC << 0)
++
++/* DDI DP Compliance Pattern */
++#define _DDI_DP_COMP_PAT_A			0x605F4
++#define _DDI_DP_COMP_PAT_B			0x615F4
++#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
++
+ /* Sideband Interface (SBI) is programmed indirectly, via
+  * SBI_ADDR, which contains the register offset; and SBI_DATA,
+  * which contains the payload */
+-- 
+2.24.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
