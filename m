@@ -1,28 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F4271916FB
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:52:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291401916F6
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:52:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D486E4DE;
-	Tue, 24 Mar 2020 16:52:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC71D6E4F1;
+	Tue, 24 Mar 2020 16:51:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl
  [IPv6:2a02:2308::216:3eff:fe92:dfa3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8CF6E4CA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75BFE6E4C9
  for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:51:53 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Mar 2020 17:51:45 +0100
-Message-Id: <20200324165146.1032624-20-maarten.lankhorst@linux.intel.com>
+Date: Tue, 24 Mar 2020 17:51:46 +0100
+Message-Id: <20200324165146.1032624-21-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200324165146.1032624-1-maarten.lankhorst@linux.intel.com>
 References: <20200324165146.1032624-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 20/21] drm/i915: Add ww locking to
- pin_to_display_plane
+Subject: [Intel-gfx] [PATCH 21/21] drm/i915: Ensure we hold the pin mutex
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,128 +41,62 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_domain.c | 57 ++++++++++++++++------
- 1 file changed, 41 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_renderstate.c | 2 +-
+ drivers/gpu/drm/i915/i915_vma.c             | 9 ++++++++-
+ drivers/gpu/drm/i915/i915_vma.h             | 1 +
+ 3 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-index e9d3b587f562..1833f58fa615 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
-@@ -197,18 +197,12 @@ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
- 	if (ret)
- 		return ret;
+diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+index c39d73142950..df42ba06711a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
++++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
+@@ -207,7 +207,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
+ 	if (err)
+ 		goto err_context;
  
--	ret = i915_gem_object_lock_interruptible(obj, NULL);
--	if (ret)
--		return ret;
--
- 	/* Always invalidate stale cachelines */
- 	if (obj->cache_level != cache_level) {
- 		i915_gem_object_set_cache_coherency(obj, cache_level);
- 		obj->cache_dirty = true;
- 	}
+-	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
++	err = i915_vma_pin_ww(so->vma, &so->ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
+ 	if (err)
+ 		goto err_context;
  
--	i915_gem_object_unlock(obj);
--
- 	/* The cache-level will be applied when each vma is rebound. */
- 	return i915_gem_object_unbind(obj,
- 				      I915_GEM_OBJECT_UNBIND_ACTIVE |
-@@ -255,6 +249,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
- 	struct drm_i915_gem_caching *args = data;
- 	struct drm_i915_gem_object *obj;
- 	enum i915_cache_level level;
-+	struct i915_gem_ww_ctx ww;
- 	int ret = 0;
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index ebec7a12a581..0de4a03b9e12 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -892,6 +892,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ #ifdef CONFIG_PROVE_LOCKING
+ 	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
+ 		WARN_ON(!ww);
++	if (debug_locks && ww && vma->resv)
++		assert_vma_held(vma);
+ #endif
  
- 	switch (args->caching) {
-@@ -293,7 +288,18 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
- 		goto out;
- 	}
+ 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
+@@ -1013,8 +1015,13 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
  
--	ret = i915_gem_object_set_cache_level(obj, level);
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	ret = i915_gem_object_lock(obj, &ww);
-+	if (!ret)
-+		ret = i915_gem_object_set_cache_level(obj, level);
+ 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
+ 
++	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
 +
-+	if (ret == -EDEADLK) {
-+		ret = i915_gem_ww_ctx_backoff(&ww);
-+		if (!ret)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
- 
- out:
- 	i915_gem_object_put(obj);
-@@ -313,6 +319,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 				     unsigned int flags)
+ 	do {
+-		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
++		if (ww)
++			err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
++		else
++			err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
+ 		if (err != -ENOSPC) {
+ 			if (!err) {
+ 				err = i915_vma_wait_for_bind(vma);
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index da577729931f..b730f86e54f4 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -242,6 +242,7 @@ i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
+ static inline int __must_check
+ i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
  {
- 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct i915_gem_ww_ctx ww;
- 	struct i915_vma *vma;
- 	int ret;
- 
-@@ -320,6 +327,11 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 	if (HAS_LMEM(i915) && !i915_gem_object_is_lmem(obj))
- 		return ERR_PTR(-EINVAL);
- 
-+	i915_gem_ww_ctx_init(&ww, true);
-+retry:
-+	ret = i915_gem_object_lock(obj, &ww);
-+	if (ret)
-+		goto err;
- 	/*
- 	 * The display engine is not coherent with the LLC cache on gen6.  As
- 	 * a result, we make sure that the pinning that is about to occur is
-@@ -334,7 +346,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 					      HAS_WT(i915) ?
- 					      I915_CACHE_WT : I915_CACHE_NONE);
- 	if (ret)
--		return ERR_PTR(ret);
-+		goto err;
- 
- 	/*
- 	 * As the user may map the buffer once pinned in the display plane
-@@ -347,19 +359,32 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
- 	vma = ERR_PTR(-ENOSPC);
- 	if ((flags & PIN_MAPPABLE) == 0 &&
- 	    (!view || view->type == I915_GGTT_VIEW_NORMAL))
--		vma = i915_gem_object_ggtt_pin(obj, view, 0, alignment,
--					       flags |
--					       PIN_MAPPABLE |
--					       PIN_NONBLOCK);
--	if (IS_ERR(vma))
--		vma = i915_gem_object_ggtt_pin(obj, view, 0, alignment, flags);
--	if (IS_ERR(vma))
--		return vma;
-+		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, view, 0, alignment,
-+						  flags | PIN_MAPPABLE |
-+						  PIN_NONBLOCK);
-+	if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK))
-+		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, view, 0,
-+						  alignment, flags);
-+	if (IS_ERR(vma)) {
-+		ret = PTR_ERR(vma);
-+		goto err;
-+	}
- 
- 	vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
- 
- 	i915_gem_object_flush_if_display(obj);
- 
-+err:
-+	if (ret == -EDEADLK) {
-+		ret = i915_gem_ww_ctx_backoff(&ww);
-+		if (!ret)
-+			goto retry;
-+	}
-+	i915_gem_ww_ctx_fini(&ww);
-+
-+	if (ret)
-+		return ERR_PTR(ret);
-+
- 	return vma;
++	WARN_ON_ONCE(vma->resv && dma_resv_held(vma->resv));
+ 	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
  }
  
 -- 
