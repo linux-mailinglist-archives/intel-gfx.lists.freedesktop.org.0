@@ -1,41 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C390D191AB2
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 21:13:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D34191AB9
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 21:16:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEA9C6E530;
-	Tue, 24 Mar 2020 20:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A57689893;
+	Tue, 24 Mar 2020 20:16:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 291BC6E52C
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 20:13:16 +0000 (UTC)
-IronPort-SDR: vDcVAu0gE1vAzvENDDsaSKiuWOJZz3b6cQIfqq19/9H0FBnwglZrd9/Dg1jrxCgi80Hjsr1Ebt
- OmH/gxzPcHYA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2020 13:13:14 -0700
-IronPort-SDR: QCtfeY/yjIPGFjWyE0MFz3/AKrBwL1YoxpvK56l9Zzdj38/O3E7Y+dC2uu4gxpQ2/rX9//RgY9
- cV4McvDt7QBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,301,1580803200"; d="scan'208";a="235700561"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.15.8])
- by orsmga007.jf.intel.com with ESMTP; 24 Mar 2020 13:13:14 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 030D089893
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 20:16:01 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20680148-1500050 
+ for multiple; Tue, 24 Mar 2020 20:15:25 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Mar 2020 13:14:29 -0700
-Message-Id: <20200324201429.29153-6-jose.souza@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200324201429.29153-1-jose.souza@intel.com>
-References: <20200324201429.29153-1-jose.souza@intel.com>
+Date: Tue, 24 Mar 2020 20:15:26 +0000
+Message-Id: <20200324201526.16571-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 6/6] drm/i915/dp: Get TC link reference
- during DP detection
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Measure the energy consumed
+ while in RC6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,55 +37,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Cooper Chiou <cooper.chiou@intel.com>,
- Kai-Heng Feng <kai.heng.feng@canonical.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-QXMgbm93IHRoZSBjb3N0IHRvIGxvY2sgYW5kIHVzZSBhIFRDIHBvcnQgaXMgaGlnaGVyIGR1ZSB0
-aGUKaW1wbGVtZW50YXRpb24gb2YgdGhlIFRDQ09MRCBzZXF1ZW5jZXMgaXQgaXMgd29ydHkgdG8g
-aG9sZCBhIHJlZmVyZW5jZQpvZiB0aGUgVEMgcG9ydCB0byBhdm9pZCBhbGwgdGhpcyBsb2NraW5n
-IGF0IGV2ZXJ5IGF1eCB0cmFuc2FjdGlvbgpwYXJ0IG9mIHRoZSBEaXNwbGF5UG9ydCBkZXRlY3Rp
-b24uCgpDYzogSW1yZSBEZWFrIDxpbXJlLmRlYWtAaW50ZWwuY29tPgpDYzogQ29vcGVyIENoaW91
-IDxjb29wZXIuY2hpb3VAaW50ZWwuY29tPgpDYzogS2FpLUhlbmcgRmVuZyA8a2FpLmhlbmcuZmVu
-Z0BjYW5vbmljYWwuY29tPgpTaWduZWQtb2ZmLWJ5OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxq
-b3NlLnNvdXphQGludGVsLmNvbT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwLmMgfCAxOSArKysrKysrKysrKysrKy0tLS0tCiAxIGZpbGUgY2hhbmdlZCwgMTQgaW5z
-ZXJ0aW9ucygrKSwgNSBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2RwLmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2RwLmMKaW5kZXggN2YxYTRlNTVjZGExLi42ZmJmM2JlZWU1NDQgMTAwNjQ0Ci0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYworKysgYi9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMKQEAgLTYwNDEsNiArNjA0MSw3IEBAIGludGVsX2Rw
-X2RldGVjdChzdHJ1Y3QgZHJtX2Nvbm5lY3RvciAqY29ubmVjdG9yLAogCXN0cnVjdCBpbnRlbF9k
-cCAqaW50ZWxfZHAgPSBpbnRlbF9hdHRhY2hlZF9kcCh0b19pbnRlbF9jb25uZWN0b3IoY29ubmVj
-dG9yKSk7CiAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQgPSBkcF90b19kaWdf
-cG9ydChpbnRlbF9kcCk7CiAJc3RydWN0IGludGVsX2VuY29kZXIgKmVuY29kZXIgPSAmZGlnX3Bv
-cnQtPmJhc2U7CisJZW51bSBwaHkgcGh5ID0gaW50ZWxfcG9ydF90b19waHkoZGV2X3ByaXYsIGVu
-Y29kZXItPnBvcnQpOwogCWVudW0gZHJtX2Nvbm5lY3Rvcl9zdGF0dXMgc3RhdHVzOwogCiAJZHJt
-X2RiZ19rbXMoJmRldl9wcml2LT5kcm0sICJbQ09OTkVDVE9SOiVkOiVzXVxuIiwKQEAgLTYwNDks
-MTIgKzYwNTAsMTcgQEAgaW50ZWxfZHBfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25u
-ZWN0b3IsCiAJCSAgICAhZHJtX21vZGVzZXRfaXNfbG9ja2VkKCZkZXZfcHJpdi0+ZHJtLm1vZGVf
-Y29uZmlnLmNvbm5lY3Rpb25fbXV0ZXgpKTsKIAogCS8qIENhbid0IGRpc2Nvbm5lY3QgZURQICov
-Ci0JaWYgKGludGVsX2RwX2lzX2VkcChpbnRlbF9kcCkpCisJaWYgKGludGVsX2RwX2lzX2VkcChp
-bnRlbF9kcCkpIHsKIAkJc3RhdHVzID0gZWRwX2RldGVjdChpbnRlbF9kcCk7Ci0JZWxzZSBpZiAo
-aW50ZWxfZGlnaXRhbF9wb3J0X2Nvbm5lY3RlZChlbmNvZGVyKSkKLQkJc3RhdHVzID0gaW50ZWxf
-ZHBfZGV0ZWN0X2RwY2QoaW50ZWxfZHApOwotCWVsc2UKLQkJc3RhdHVzID0gY29ubmVjdG9yX3N0
-YXR1c19kaXNjb25uZWN0ZWQ7CisJfSBlbHNlIHsKKwkJaWYgKGludGVsX3BoeV9pc190YyhkZXZf
-cHJpdiwgcGh5KSkKKwkJCWludGVsX3RjX3BvcnRfZ2V0X2xpbmsoZGlnX3BvcnQsIDEpOworCisJ
-CWlmIChpbnRlbF9kaWdpdGFsX3BvcnRfY29ubmVjdGVkKGVuY29kZXIpKQorCQkJc3RhdHVzID0g
-aW50ZWxfZHBfZGV0ZWN0X2RwY2QoaW50ZWxfZHApOworCQllbHNlCisJCQlzdGF0dXMgPSBjb25u
-ZWN0b3Jfc3RhdHVzX2Rpc2Nvbm5lY3RlZDsKKwl9CiAKIAlpZiAoc3RhdHVzID09IGNvbm5lY3Rv
-cl9zdGF0dXNfZGlzY29ubmVjdGVkKSB7CiAJCW1lbXNldCgmaW50ZWxfZHAtPmNvbXBsaWFuY2Us
-IDAsIHNpemVvZihpbnRlbF9kcC0+Y29tcGxpYW5jZSkpOwpAQCAtNjEzMiw2ICs2MTM4LDkgQEAg
-aW50ZWxfZHBfZGV0ZWN0KHN0cnVjdCBkcm1fY29ubmVjdG9yICpjb25uZWN0b3IsCiAJaWYgKHN0
-YXR1cyAhPSBjb25uZWN0b3Jfc3RhdHVzX2Nvbm5lY3RlZCAmJiAhaW50ZWxfZHAtPmlzX21zdCkK
-IAkJaW50ZWxfZHBfdW5zZXRfZWRpZChpbnRlbF9kcCk7CiAKKwlpZiAoaW50ZWxfcGh5X2lzX3Rj
-KGRldl9wcml2LCBwaHkpKQorCQlpbnRlbF90Y19wb3J0X3B1dF9saW5rKGRpZ19wb3J0KTsKKwog
-CS8qCiAJICogTWFrZSBzdXJlIHRoZSByZWZzIGZvciBwb3dlciB3ZWxscyBlbmFibGVkIGR1cmlu
-ZyBkZXRlY3QgYXJlCiAJICogZHJvcHBlZCB0byBhdm9pZCBhIG5ldyBkZXRlY3QgY3ljbGUgdHJp
-Z2dlcmVkIGJ5IEhQRCBwb2xsaW5nLgotLSAKMi4yNi4wCgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+Measure and compare the energy consumed, as reported by the rapl MSR,
+by the GPU while in RC0 and RC6 states. Throw an error if RC6 does not
+at least halve the energy consumption of RC0, as this more than likely
+means we failed to enter RC0 correctly.
+
+If we can't measure the energy draw with the MSR, then it will report 0
+for both measurements. This may be worth flagging as a warning? On the
+other hand, it is reported and we can inspect the various machines in CI
+to see if the values are reasonable.
+
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 29 ++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 95b165faeba7..7339758b0c77 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -12,6 +12,22 @@
+ 
+ #include "selftests/i915_random.h"
+ 
++#define MCH_SECP_NRG_STTS              _MMIO(MCHBAR_MIRROR_BASE_SNB + 0x592c)
++
++static u64 energy_uJ(struct intel_rc6 *rc6)
++{
++	unsigned long long power;
++	u32 units;
++
++	if (rdmsrl_safe(MSR_RAPL_POWER_UNIT, &power))
++		return 0;
++
++	units = (power & 0x1f00) >> 8;
++	power = intel_uncore_read_fw(rc6_to_uncore(rc6), MCH_SECP_NRG_STTS);
++
++	return (1000000 * power) >> units; /* convert to uJ */
++}
++
+ static u64 rc6_residency(struct intel_rc6 *rc6)
+ {
+ 	u64 result;
+@@ -31,6 +47,7 @@ int live_rc6_manual(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+ 	struct intel_rc6 *rc6 = &gt->rc6;
++	u64 rc0_energy, rc6_energy;
+ 	intel_wakeref_t wakeref;
+ 	u64 res[2];
+ 	int err = 0;
+@@ -53,9 +70,11 @@ int live_rc6_manual(void *arg)
+ 	__intel_rc6_disable(rc6);
+ 	msleep(1); /* wakeup is not immediate, takes about 100us on icl */
+ 
++	rc0_energy = -energy_uJ(rc6);
+ 	res[0] = rc6_residency(rc6);
+ 	msleep(250);
+ 	res[1] = rc6_residency(rc6);
++	rc0_energy += energy_uJ(rc6);
+ 	if ((res[1] - res[0]) >> 10) {
+ 		pr_err("RC6 residency increased by %lldus while disabled for 250ms!\n",
+ 		       (res[1] - res[0]) >> 10);
+@@ -66,9 +85,11 @@ int live_rc6_manual(void *arg)
+ 	/* Manually enter RC6 */
+ 	intel_rc6_park(rc6);
+ 
++	rc6_energy = -energy_uJ(rc6);
+ 	res[0] = rc6_residency(rc6);
+ 	msleep(100);
+ 	res[1] = rc6_residency(rc6);
++	rc6_energy += energy_uJ(rc6);
+ 
+ 	if (res[1] == res[0]) {
+ 		pr_err("Did not enter RC6! RC6_STATE=%08x, RC6_CONTROL=%08x, residency=%lld\n",
+@@ -78,6 +99,14 @@ int live_rc6_manual(void *arg)
+ 		err = -EINVAL;
+ 	}
+ 
++	pr_info("GPU consumed %llduJ in RC0 and %llduJ in RC6\n",
++		rc0_energy, rc6_energy);
++	if ((rc6_energy >> 10) > (rc0_energy >> 10) / 2) { /* compare mJ */
++		pr_err("GPU leaked energy while in RC6!\n");
++		err = -EINVAL;
++		goto out_unlock;
++	}
++
+ 	/* Restore what should have been the original state! */
+ 	intel_rc6_unpark(rc6);
+ 
+-- 
+2.20.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
