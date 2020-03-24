@@ -1,37 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3B84191598
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:04:55 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9781E1915B6
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:11:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 375386E4A7;
-	Tue, 24 Mar 2020 16:04:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09CFA898EE;
+	Tue, 24 Mar 2020 16:11:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 531886E4AA
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:04:51 +0000 (UTC)
-IronPort-SDR: v7vXcVQ9dwP0x/kIKIzaCW6YDPaY1WTrr3gGWGmYoCz6CTkzOFRjxHFk6ymhoJv2sGp/xmMFAq
- PHt11tfK1fgw==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BDBA898EE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:11:13 +0000 (UTC)
+IronPort-SDR: gpYSSF6WtAvm883fL6Dz1xgEjT5KR2HJm9MV0zgofiIPuGf2kOFZieqrG4cjDBoXefyq8vUcy3
+ yVaBMnw6RW1Q==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2020 09:04:50 -0700
-IronPort-SDR: qgI8F1hm5tqRt675Fr9YXu05EjJEGYQApMmjBBi/ugTmAelBl90FbwIHFmK1j/mT5AxL1hl/c6
- 3+qQp43Oh4Ig==
-X-IronPort-AV: E=Sophos;i="5.72,301,1580803200"; d="scan'208";a="419942359"
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2020 09:11:13 -0700
+IronPort-SDR: T8KYAr2NkpGc9qj1/PmLomjiEiO6s/2S6px07YDCiLcKAtfvdMu5PIdUv8heMOvkOmH5jU/9q6
+ qR9+d6BwbAUQ==
+X-IronPort-AV: E=Sophos;i="5.72,301,1580803200"; d="scan'208";a="419944353"
 Received: from preuss-mobl1.ger.corp.intel.com (HELO [10.252.56.19])
  ([10.252.56.19])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2020 09:04:49 -0700
+ 24 Mar 2020 09:11:11 -0700
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
 References: <20200324120718.977-1-chris@chris-wilson.co.uk>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-Message-ID: <7b893a58-9b3c-97f8-10b9-36f4f2bea4ea@linux.intel.com>
-Date: Tue, 24 Mar 2020 16:04:47 +0000
+Message-ID: <3bcb551d-2c11-6dbd-cc4b-b60c9a79f6b1@linux.intel.com>
+Date: Tue, 24 Mar 2020 16:11:10 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
@@ -63,7 +63,13 @@ On 24/03/2020 12:07, Chris Wilson wrote:
 > majority of the tasklet out of irq-off. However, we do want to avoid
 > ksoftirqd latency in the fast path, so try and pull the interrupt-bh
 > local to direct submission if we can acquire the tasklet's lock.
-> 
+
+Oh and important question - who benefits and how much?
+
+Regards,
+
+Tvrtko
+
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 > Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 > ---
@@ -79,11 +85,7 @@ On 24/03/2020 12:07, Chris Wilson wrote:
 >   		return; /* defer until we restart the engine following reset */
 >   
 > +	/* Hopefully we clear execlists->pending[] to let us through */
-> +	if (execlists->pending[0] && tasklet_trylock(&execlists->tasklet))
-
-Does access to pending needs a READ_ONCE?
-
-  {
+> +	if (execlists->pending[0] && tasklet_trylock(&execlists->tasklet)) {
 > +		process_csb(engine);
 > +		tasklet_unlock(&execlists->tasklet);
 > +	}
@@ -92,15 +94,6 @@ Does access to pending needs a READ_ONCE?
 >   }
 >   
 > 
-
-__execlists_submission_tasklet does check with READ_ONCE.
-
-I think locking is fine, given how normal flow is tasklet -> irqsave 
-engine lock, and here we have the reverse, but a trylock.
-
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
