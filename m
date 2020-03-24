@@ -1,42 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79B61927B6
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 13:05:47 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F131927B3
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 13:05:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 290086E83E;
-	Wed, 25 Mar 2020 12:05:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63AA36E836;
+	Wed, 25 Mar 2020 12:05:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from conuserg-09.nifty.com (conuserg-09.nifty.com [210.131.2.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F5FD6E0FB;
- Tue, 24 Mar 2020 08:49:47 +0000 (UTC)
-Received: from pug.e01.socionext.com (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp
- [153.142.97.92]) (authenticated)
- by conuserg-09.nifty.com with ESMTP id 02O8mgsh011219;
- Tue, 24 Mar 2020 17:48:56 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-09.nifty.com 02O8mgsh011219
+Received: from conssluserg-03.nifty.com (conssluserg-03.nifty.com
+ [210.131.2.82])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36092894D4;
+ Tue, 24 Mar 2020 09:06:42 +0000 (UTC)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com
+ [209.85.222.51]) (authenticated)
+ by conssluserg-03.nifty.com with ESMTP id 02O96O86019224;
+ Tue, 24 Mar 2020 18:06:25 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com 02O96O86019224
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1585039737;
- bh=EKZjb7DWYR4s7jGHGhFrynB+pQ1ESbu9YqfclUuLIXQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RaI62uUSi+TuYSdITao9E3pXoHm2kJAxRS4RfxbanuNPHrpbByYoL80qrDDy7sGwN
- X90uq2aHoq+UrCHqF/zRPDNyc2wcAi7eGIP9Za62TV1/Qk5WmUs0sivkGCQYemyS41
- DuGp3FECM267nLNoF2k25NF4L/hRred/vjOCXO2A0G6iYvj4uNJPZwCVgshLTUcXJE
- n9bb49Yjr5vOBpd6ANIxTfyZw6+JEmzr6/m1RkcqgwljDqtKPzM3Zinl1epQbBWZpN
- qZDG0Ji5Nhyv8Q6+miY/EJuJdt7GGFe4hxi2NcSwqPNsH19b/IriHr/RQC9Dve7o3m
- o1UOYoQEjzHOQ==
-X-Nifty-SrcIP: [153.142.97.92]
+ s=dec2015msa; t=1585040786;
+ bh=qOMGdUkveaVDXO2a8tz7KDZMeyMjPwlo2zkk9aWn2yk=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=r6sgZBXRwNKgjNc3gp3VrRJ8BGpD3C4AIYDGSQ7QzrS7CMakC2dMZ+A9dMeXGVOY8
+ +zO1qesO1TVSqk5RtQRrllqSvP08LfxaHcsNWIAy/EeCzBxyB1l+RVQ9gqXSxM3J4F
+ CLf7E1kL5ZVLmzhI5FGcG1Dqe2s+9p0qATXeWcKwyrlXVYdOabnOnYEa8prbNDwaP9
+ jLyLwxNikwYkNWnQBQWl+aWr40Y0wc2WJ1tqMa+5NksFPu03Wbaz0u0zYCIqUxTNJ3
+ PpJTQMnKcIANxzo6B7ghOPqjaLclXBmS/b/bUOMk8kUMkqrFmBMXLkc0wZdek7B+1W
+ i8auYJP/RYfmQ==
+X-Nifty-SrcIP: [209.85.222.51]
+Received: by mail-ua1-f51.google.com with SMTP id t20so6028762uao.7;
+ Tue, 24 Mar 2020 02:06:25 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ1HaPc8unyQRXZz1/kJaLWZh8RDnxmI3UUjoAqKD4bDMBFbkxU9
+ JQQSwOw5s/TbAfWYp5yS6rAejfr4Ro2X/V8OpfM=
+X-Google-Smtp-Source: ADFU+vtTr9ggPn7FesvFuHnglv5MtvnxnuDVGKuKqUPW04U7K+2TYBqG5kpqPNh3Go/OGTDteyzcCatZgbB4q1/WETc=
+X-Received: by 2002:ab0:3485:: with SMTP id c5mr16446308uar.109.1585040784226; 
+ Tue, 24 Mar 2020 02:06:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200323021053.17319-1-masahiroy@kernel.org>
+In-Reply-To: <20200323021053.17319-1-masahiroy@kernel.org>
 From: Masahiro Yamada <masahiroy@kernel.org>
-To: linux-kernel@vger.kernel.org
-Date: Tue, 24 Mar 2020 17:48:15 +0900
-Message-Id: <20200324084821.29944-11-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200324084821.29944-1-masahiroy@kernel.org>
-References: <20200324084821.29944-1-masahiroy@kernel.org>
+Date: Tue, 24 Mar 2020 18:05:47 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARf0VwM309LsT_HaoF1Jq4Dx0XuFCAOOSr6yHXw50bR9g@mail.gmail.com>
+Message-ID: <CAK7LNARf0VwM309LsT_HaoF1Jq4Dx0XuFCAOOSr6yHXw50bR9g@mail.gmail.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
 X-Mailman-Approved-At: Wed, 25 Mar 2020 12:05:30 +0000
-Subject: [Intel-gfx] [PATCH 10/16] drm/i915: remove always-defined
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: remove always-defined
  CONFIG_AS_MOVNTDQA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,81 +61,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
- Herbert Xu <herbert@gondor.apana.org.au>, intel-gfx@lists.freedesktop.org,
- linux-kbuild@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>,
- Masahiro Yamada <masahiroy@kernel.org>, x86@kernel.org,
- clang-built-linux@googlegroups.com, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, linux-crypto@vger.kernel.org,
- "H . Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- "David S . Miller" <davem@davemloft.net>, Kees Cook <keescook@chromium.org>
-MIME-Version: 1.0
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, David Airlie <airlied@linux.ie>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ clang-built-linux <clang-built-linux@googlegroups.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CONFIG_AS_MOVNTDQA was introduced by commit 0b1de5d58e19 ("drm/i915:
-Use SSE4.1 movntdqa to accelerate reads from WC memory").
+Hi i915 maintainers,
 
-We raise the minimal supported binutils version from time to time.
-The last bump was commit 1fb12b35e5ff ("kbuild: Raise the minimum
-required binutils version to 2.21").
 
-I confirmed the code in $(call as-instr,...) can be assembled by the
-binutils 2.21 assembler and also by LLVM integrated assembler.
+On Mon, Mar 23, 2020 at 11:12 AM Masahiro Yamada <masahiroy@kernel.org> wrote:
+>
+> CONFIG_AS_MOVNTDQA was introduced by commit 0b1de5d58e19 ("drm/i915:
+> Use SSE4.1 movntdqa to accelerate reads from WC memory").
+>
+> We raise the minimal supported binutils version from time to time.
+> The last bump was commit 1fb12b35e5ff ("kbuild: Raise the minimum
+> required binutils version to 2.21").
+>
+> I confirmed the code in $(call as-instr,...) can be assembled by the
+> binutils 2.21 assembler and also by Clang's integrated assembler.
+>
+> Remove CONFIG_AS_MOVNTDQA, which is always defined.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
 
-Remove CONFIG_AS_MOVNTDQA, which is always defined.
 
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
----
+Please discard this.
 
- drivers/gpu/drm/i915/Makefile      | 3 ---
- drivers/gpu/drm/i915/i915_memcpy.c | 5 -----
- 2 files changed, 8 deletions(-)
+I decided to fold this (10/16) into the following big series
+because I was suggested to do so.
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index a1f2411aa21b..e559e53fc634 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -28,9 +28,6 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- CFLAGS_i915_pci.o = $(call cc-disable-warning, override-init)
- CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
- 
--subdir-ccflags-y += \
--	$(call as-instr,movntdqa (%eax)$(comma)%xmm0,-DCONFIG_AS_MOVNTDQA)
--
- subdir-ccflags-y += -I$(srctree)/$(src)
- 
- # Please keep these build lists sorted!
-diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-index fdd550405fd3..7b3b83bd5ab8 100644
---- a/drivers/gpu/drm/i915/i915_memcpy.c
-+++ b/drivers/gpu/drm/i915/i915_memcpy.c
-@@ -35,7 +35,6 @@
- 
- static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
- 
--#ifdef CONFIG_AS_MOVNTDQA
- static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
- {
- 	kernel_fpu_begin();
-@@ -93,10 +92,6 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
- 
- 	kernel_fpu_end();
- }
--#else
--static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len) {}
--static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len) {}
--#endif
- 
- /**
-  * i915_memcpy_from_wc: perform an accelerated *aligned* read from WC
+https://lore.kernel.org/patchwork/project/lkml/list/?series=435391
+
+
+
+
+
 -- 
-2.17.1
-
+Best Regards
+Masahiro Yamada
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
