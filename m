@@ -2,31 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38ACF191464
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 16:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 934831914EA
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 16:42:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86C2A6E3A0;
-	Tue, 24 Mar 2020 15:29:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A346899A7;
+	Tue, 24 Mar 2020 15:42:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2DA6C6E39C;
- Tue, 24 Mar 2020 15:29:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1D6D0A008A;
- Tue, 24 Mar 2020 15:29:36 +0000 (UTC)
+Received: from 9.mo69.mail-out.ovh.net (9.mo69.mail-out.ovh.net [46.105.56.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 257436E3E7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 15:42:37 +0000 (UTC)
+Received: from player695.ha.ovh.net (unknown [10.110.115.5])
+ by mo69.mail-out.ovh.net (Postfix) with ESMTP id AB964897F0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:24:55 +0100 (CET)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player695.ha.ovh.net (Postfix) with ESMTPSA id 9388410A16166;
+ Tue, 24 Mar 2020 15:24:52 +0000 (UTC)
+Date: Tue, 24 Mar 2020 17:24:41 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200324152441.GD131880@jack.zhora.eu>
+References: <20200324125233.56308-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 24 Mar 2020 15:29:36 -0000
-Message-ID: <158506377611.5746.13536580971482282795@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200324134232.8773-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200324134232.8773-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/gt=3A_Select_the_deepest_available_parking_mode_for_rc6_?=
- =?utf-8?b?KHJldjIp?=
+Content-Disposition: inline
+In-Reply-To: <20200324125233.56308-1-chris@chris-wilson.co.uk>
+X-Ovh-Tracer-Id: 2758173298419941897
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudehuddggeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheileehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+Subject: Re: [Intel-gfx] [PATCH i-g-t] i915/i915_pm_rc6_residency: Make
+ ringbuffer rc6 fast
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,110 +45,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Chris,
 
-Series: drm/i915/gt: Select the deepest available parking mode for rc6 (rev2)
-URL   : https://patchwork.freedesktop.org/series/75009/
-State : success
+On Tue, Mar 24, 2020 at 12:52:33PM +0000, Chris Wilson wrote:
+> The legacy ringbuffer submission lacks a fast soft-rc6
+> mechanism as we have no interrupt for an idle ring. As such
+> we are at the mercy of HW RC6... which is not quite as
+> precise as we need to pass this test. Oh well.
+> 
+> Since HW is not fast enough to minimise power draw, tell the driver to
+> park as soon as we know we are idle. One day, we hope for the driver to
+> discover a mechanism to do this for itself, for as this test shows that
+> can save us Watts!
+> 
+> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1516
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-== Summary ==
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
 
-CI Bug Log - changes from CI_DRM_8182 -> Patchwork_17069
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17069 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-kbl-7500u:       [PASS][1] -> [INCOMPLETE][2] ([fdo#112259] / [i915#1430] / [i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][3] ([i915#877]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  
-#### Warnings ####
-
-  * igt@gem_linear_blits@basic:
-    - fi-glk-dsi:         [SKIP][5] ([fdo#109271]) -> [INCOMPLETE][6] ([i915#58] / [k.org#198133])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/fi-glk-dsi/igt@gem_linear_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/fi-glk-dsi/igt@gem_linear_blits@basic.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cfl-8700k:       [DMESG-FAIL][7] ([i915#481]) -> [DMESG-FAIL][8] ([i915#730] / [i915#933])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/fi-cfl-8700k/igt@i915_selftest@live@gem_contexts.html
-    - fi-skl-lmem:        [INCOMPLETE][9] ([i915#424]) -> [DMESG-FAIL][10] ([i915#481])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8182/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
-
-  
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
-  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
-  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
-  [i915#481]: https://gitlab.freedesktop.org/drm/intel/issues/481
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-  [i915#933]: https://gitlab.freedesktop.org/drm/intel/issues/933
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (51 -> 43)
-------------------------------
-
-  Missing    (8): fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8182 -> Patchwork_17069
-
-  CI-20190529: 20190529
-  CI_DRM_8182: e5245084567cd7f6f93b07baaebf8a2b4d914620 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5531: 79e7382202c104b247a672c61a6186d1f51e4958 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17069: 13af5126ab2c821dc4598239827f1508ea657df7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-13af5126ab2c drm/i915/gt: Select the deepest available parking mode for rc6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17069/index.html
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
