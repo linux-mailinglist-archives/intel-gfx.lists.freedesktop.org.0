@@ -1,42 +1,44 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA751191593
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:01:57 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3B84191598
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2020 17:04:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F5876E4A6;
-	Tue, 24 Mar 2020 16:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 375386E4A7;
+	Tue, 24 Mar 2020 16:04:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 798916E4A2
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:01:52 +0000 (UTC)
-IronPort-SDR: UHiKfkYQPlStvqVH5Mi3Xf+s3cog+OKbG7aUpqMNel6hSe68SDc8xMt12B3944OmnC+BJJZTDA
- 272dpBJH0SeQ==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 531886E4AA
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2020 16:04:51 +0000 (UTC)
+IronPort-SDR: v7vXcVQ9dwP0x/kIKIzaCW6YDPaY1WTrr3gGWGmYoCz6CTkzOFRjxHFk6ymhoJv2sGp/xmMFAq
+ PHt11tfK1fgw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2020 09:01:34 -0700
-IronPort-SDR: HuY551oxwNBeDSQZm2Q5RwhS2cN3l7wBCZFTBdVDI75ZXnIZckCzXqDwJfRnHs0GpcIzw+z272
- jSYo+bTIbycw==
-X-IronPort-AV: E=Sophos;i="5.72,301,1580803200"; d="scan'208";a="419940879"
-Received: from kkarwows-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.56.12])
+ 24 Mar 2020 09:04:50 -0700
+IronPort-SDR: qgI8F1hm5tqRt675Fr9YXu05EjJEGYQApMmjBBi/ugTmAelBl90FbwIHFmK1j/mT5AxL1hl/c6
+ 3+qQp43Oh4Ig==
+X-IronPort-AV: E=Sophos;i="5.72,301,1580803200"; d="scan'208";a="419942359"
+Received: from preuss-mobl1.ger.corp.intel.com (HELO [10.252.56.19])
+ ([10.252.56.19])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2020 09:01:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Anshuman Gupta <anshuman.gupta@intel.com>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200324132530.6204-4-anshuman.gupta@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200324132530.6204-1-anshuman.gupta@intel.com>
- <20200324132530.6204-4-anshuman.gupta@intel.com>
-Date: Tue, 24 Mar 2020 18:01:42 +0200
-Message-ID: <875zetbv2x.fsf@intel.com>
+ 24 Mar 2020 09:04:49 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200324120718.977-1-chris@chris-wilson.co.uk>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+Message-ID: <7b893a58-9b3c-97f8-10b9-36f4f2bea4ea@linux.intel.com>
+Date: Tue, 24 Mar 2020 16:04:47 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 3/3] drm/i915: Add connector dbgfs for
- all connectors
+In-Reply-To: <20200324120718.977-1-chris@chris-wilson.co.uk>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915/execlists: Pull tasklet
+ interrupt-bh local to direct submission
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,110 +51,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: ankit.k.nautiyal@intel.com, martin.peres@intel.com
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Mar 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
-> Add connector debugfs attributes for each intel
-> connector which is getting register.
 
-Okay, so this is a good idea, and for that,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-> v2:
-> - adding connector debugfs for each connector in
->   intel_connector_register() to fix CI failure for legacy connectors.
-
-However, it's *not* a good idea for the purpose of registering the lpsp
-debugfs file for every connector out there. There's no point in that, at
-all. You need to register the file only when it makes sense in
-intel_connector_debugfs_add(), and not for every conceivable connector
-out there.
-
-And your igt test absolutely *must* check if the debugfs is there or
-not, and handle it gracefully.
-
-BR,
-Jani.
-
->
-> Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+On 24/03/2020 12:07, Chris Wilson wrote:
+> We dropped calling process_csb prior to handling direct submission in
+> order to avoid the nesting of spinlocks and lift process_csb() and the
+> majority of the tasklet out of irq-off. However, we do want to avoid
+> ksoftirqd latency in the fast path, so try and pull the interrupt-bh
+> local to direct submission if we can acquire the tasklet's lock.
+> 
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_connector.c | 3 +++
->  drivers/gpu/drm/i915/display/intel_dp.c        | 3 ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c      | 3 ---
->  3 files changed, 3 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-> index 903e49659f56..0cf5fe326a0b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_connector.c
-> +++ b/drivers/gpu/drm/i915/display/intel_connector.c
-> @@ -33,6 +33,7 @@
->  
->  #include "i915_drv.h"
->  #include "intel_connector.h"
-> +#include "intel_display_debugfs.h"
->  #include "intel_display_types.h"
->  #include "intel_hdcp.h"
->  
-> @@ -123,6 +124,8 @@ int intel_connector_register(struct drm_connector *connector)
->  		goto err_backlight;
->  	}
->  
-> +	intel_connector_debugfs_add(connector);
-> +
->  	return 0;
->  
->  err_backlight:
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7f1a4e55cda1..c4352d013c29 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -48,7 +48,6 @@
->  #include "intel_audio.h"
->  #include "intel_connector.h"
->  #include "intel_ddi.h"
-> -#include "intel_display_debugfs.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
->  #include "intel_dp_link_training.h"
-> @@ -6204,8 +6203,6 @@ intel_dp_connector_register(struct drm_connector *connector)
->  	if (ret)
->  		return ret;
->  
-> -	intel_connector_debugfs_add(connector);
-> -
->  	DRM_DEBUG_KMS("registering %s bus for %s\n",
->  		      intel_dp->aux.name, connector->kdev->kobj.name);
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 39930232b253..2d4dced7143e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -44,7 +44,6 @@
->  #include "intel_audio.h"
->  #include "intel_connector.h"
->  #include "intel_ddi.h"
-> -#include "intel_display_debugfs.h"
->  #include "intel_display_types.h"
->  #include "intel_dp.h"
->  #include "intel_dpio_phy.h"
-> @@ -2813,8 +2812,6 @@ intel_hdmi_connector_register(struct drm_connector *connector)
->  	if (ret)
->  		return ret;
->  
-> -	intel_connector_debugfs_add(connector);
-> -
->  	intel_hdmi_create_i2c_symlink(connector);
->  
->  	return ret;
+>   drivers/gpu/drm/i915/gt/intel_lrc.c | 6 ++++++
+>   1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 210f60e14ef4..82dee2141b46 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2891,6 +2891,12 @@ static void __submit_queue_imm(struct intel_engine_cs *engine)
+>   	if (reset_in_progress(execlists))
+>   		return; /* defer until we restart the engine following reset */
+>   
+> +	/* Hopefully we clear execlists->pending[] to let us through */
+> +	if (execlists->pending[0] && tasklet_trylock(&execlists->tasklet))
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Does access to pending needs a READ_ONCE?
+
+  {
+> +		process_csb(engine);
+> +		tasklet_unlock(&execlists->tasklet);
+> +	}
+> +
+>   	__execlists_submission_tasklet(engine);
+>   }
+>   
+> 
+
+__execlists_submission_tasklet does check with READ_ONCE.
+
+I think locking is fine, given how normal flow is tasklet -> irqsave 
+engine lock, and here we have the reverse, but a trylock.
+
+Regards,
+
+Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
