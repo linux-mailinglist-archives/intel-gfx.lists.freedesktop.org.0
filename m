@@ -1,47 +1,43 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 565A3192F6E
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 18:35:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6060A192FE4
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 18:53:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7813897E8;
-	Wed, 25 Mar 2020 17:35:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 971EA6E1A3;
+	Wed, 25 Mar 2020 17:53:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD052897E8
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 17:35:46 +0000 (UTC)
-IronPort-SDR: PSous4YWjxnnSyCVtI7cN9k/6Qt6wwQbx8zV3nO8MUUnb1ejQybPe+PiStbWg07zv/eMbFF40v
- HZLIZGDievDQ==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551356E1A3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 17:53:17 +0000 (UTC)
+IronPort-SDR: v/ZrViwVNYnnpguHn8VcuPCe0celBQlPI5cQnAFT5oEXfNew3t45Ai1xfGJ7BQgGath7ibOoUw
+ 873P9qLUqt4w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 10:35:46 -0700
-IronPort-SDR: zoJAJwZ+6BwFXBMsK5d+7v1upvFKhRiu67amVW1hFPQbLpLAw5td5U7y0VwJYJd2lIDXBLPMva
- aTuSXNwL/upQ==
-X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="446695521"
-Received: from johnharr-mobl3.ger.corp.intel.com (HELO [10.212.150.155])
- ([10.212.150.155])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 10:35:45 -0700
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
- <20200312011631.15262-5-daniele.ceraolospurio@intel.com>
- <a594751e-db07-867f-d851-ab059b161d74@Intel.com>
- <83af4518-a3cb-5066-7eff-cf1f2dacf3ab@intel.com>
-From: John Harrison <John.C.Harrison@Intel.com>
-Message-ID: <c90f5adb-f527-728c-49f8-75ad54a7d48e@Intel.com>
-Date: Wed, 25 Mar 2020 10:35:43 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 10:53:16 -0700
+IronPort-SDR: c7+mbDVR5PyGCfCNiueXR88bs64c1pJYh9+V35xbiiGPoDnMRbG+MQTzRpmB2PcvREWsNWXqRR
+ 7voHKThieEvw==
+X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="265593242"
+Received: from yrahamim-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.255.194.58])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 10:53:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+In-Reply-To: <20200325085122.GS2363188@phenom.ffwll.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1584714939.git.jani.nikula@intel.com>
+ <436b6dde60dcba235085c8bb216c841267519fa6.1584714939.git.jani.nikula@intel.com>
+ <20200325085122.GS2363188@phenom.ffwll.local>
+Date: Wed, 25 Mar 2020 19:53:10 +0200
+Message-ID: <87wo78iant.fsf@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <83af4518-a3cb-5066-7eff-cf1f2dacf3ab@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 4/6] drm/i915/debugfs: move uC printers
- and update debugfs file names
+Subject: Re: [Intel-gfx] [PATCH 07/13] drm/i915/dsi: use struct drm_device
+ based logging
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,59 +50,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gMy8yNS8yMDIwIDEwOjE0LCBEYW5pZWxlIENlcmFvbG8gU3B1cmlvIHdyb3RlOgo+IE9uIDMv
-MjUvMjAgMTA6MDUgQU0sIEpvaG4gSGFycmlzb24gd3JvdGU6Cj4+IE9uIDMvMTEvMjAyMCAxODox
-NiwgRGFuaWVsZSBDZXJhb2xvIFNwdXJpbyB3cm90ZToKPj4+IE1vdmUgdGhlIHByaW50ZXJzIHRv
-IHRoZSByZXNwZWN0aXZlIGZpbGVzIGZvciBjbGFyaXR5LiBUaGUKPj4+IGd1Y19sb2FkX3N0YXR1
-cyBkZWJ1Z2ZzIGhhcyBiZWVuIHNxdWFzaGVkIGluIHRoZSBndWNfaW5mbyBvbmUsIGhhcwo+Pj4g
-aGF2aW5nIHNlcGFyYXRlIG9uZXMgd2Fzbid0IHZlcnkgdXNlZnVsLiBUaGUgSHVDIGRlYnVnZnMg
-aGFzIGJlZW4KPj4+IHJlbmFtZWQgaHVjX2luZm8gdG8gbWF0Y2guCj4+Pgo+Pj4gdjI6IGtlZXAg
-cHJpbnRpbmcgSFVDX1NUQVRVUzIgKFRvbnkpLCBhdm9pZCBjb25zdC0+bm9uLWNvbnN0Cj4+PiDC
-oMKgwqDCoCBjb250YWluZXJfb2YgKEphbmkpCj4+Pgo+Pj4gU3VnZ2VzdGVkLWJ5OiBNaWNoYWwg
-V2FqZGVjemtvIDxtaWNoYWwud2FqZGVjemtvQGludGVsLmNvbT4KPj4+IFNpZ25lZC1vZmYtYnk6
-IERhbmllbGUgQ2VyYW9sbyBTcHVyaW8gPGRhbmllbGUuY2VyYW9sb3NwdXJpb0BpbnRlbC5jb20+
-Cj4+PiBDYzogTWljaGFsIFdhamRlY3prbyA8bWljaGFsLndhamRlY3prb0BpbnRlbC5jb20+Cj4+
-PiBDYzogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQEludGVsLmNvbT4KPj4+IENjOiBN
-YXR0aGV3IEJyb3N0IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4KPj4+IENjOiBUb255IFllIDx0
-b255LnllQGludGVsLmNvbT4KPj4+IENjOiBKYW5pIE5pa3VsYSA8amFuaS5uaWt1bGFAbGludXgu
-aW50ZWwuY29tPgo+Pj4gLS0tCj4+PiA8c25pcD4KPj4+Cj4+PiArc3RhdGljIGludCBpOTE1X2h1
-Y19pbmZvKHN0cnVjdCBzZXFfZmlsZSAqbSwgdm9pZCAqZGF0YSkKPj4+IMKgIHsKPj4+IMKgwqDC
-oMKgwqAgc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gbm9kZV90b19pOTE1KG0t
-PnByaXZhdGUpOwo+Pj4gLcKgwqDCoCBpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZjsKPj4+IC3CoMKg
-wqAgc3RydWN0IGRybV9wcmludGVyIHA7Cj4+PiAtCj4+PiAtwqDCoMKgIGlmICghSEFTX0dUX1VD
-KGRldl9wcml2KSkKPj4+IC3CoMKgwqDCoMKgwqDCoCByZXR1cm4gLUVOT0RFVjsKPj4+IC0KPj4+
-IC3CoMKgwqAgcCA9IGRybV9zZXFfZmlsZV9wcmludGVyKG0pOwo+Pj4gLcKgwqDCoCBpbnRlbF91
-Y19md19kdW1wKCZkZXZfcHJpdi0+Z3QudWMuaHVjLmZ3LCAmcCk7Cj4+PiAtCj4+PiAtwqDCoMKg
-IHdpdGhfaW50ZWxfcnVudGltZV9wbSgmZGV2X3ByaXYtPnJ1bnRpbWVfcG0sIHdha2VyZWYpCj4+
-PiAtwqDCoMKgwqDCoMKgwqAgc2VxX3ByaW50ZihtLCAiXG5IdUMgc3RhdHVzIDB4JTA4eDpcbiIs
-IAo+Pj4gSTkxNV9SRUFEKEhVQ19TVEFUVVMyKSk7Cj4+PiAtCj4+PiAtwqDCoMKgIHJldHVybiAw
-Owo+Pj4gLX0KPj4+IC0KPj4+IC1zdGF0aWMgaW50IGk5MTVfZ3VjX2xvYWRfc3RhdHVzX2luZm8o
-c3RydWN0IHNlcV9maWxlICptLCB2b2lkICpkYXRhKQo+Pj4gLXsKPj4+IC3CoMKgwqAgc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gbm9kZV90b19pOTE1KG0tPnByaXZhdGUpOwo+
-Pj4gLcKgwqDCoCBpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZjsKPj4+IC3CoMKgwqAgc3RydWN0IGRy
-bV9wcmludGVyIHA7Cj4+PiArwqDCoMKgIHN0cnVjdCBpbnRlbF9odWMgKmh1YyA9ICZkZXZfcHJp
-di0+Z3QudWMuaHVjOwo+Pj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX3ByaW50ZXIgcCA9IGRybV9zZXFf
-ZmlsZV9wcmludGVyKG0pOwo+Pj4gLcKgwqDCoCBpZiAoIUhBU19HVF9VQyhkZXZfcHJpdikpCj4+
-PiArwqDCoMKgIGlmICghaW50ZWxfaHVjX2lzX3N1cHBvcnRlZChodWMpKQo+Pj4gwqDCoMKgwqDC
-oMKgwqDCoMKgIHJldHVybiAtRU5PREVWOwo+PiBJc24ndCB0aGlzIHRlc3QgZHVwbGljYXRlZCBp
-bnNpZGUgaW50ZWxfaHVjX2xvYWRfc3RhdHVzKCkgd2l0aCBhIAo+PiBwcmludCBvZiAnSHVDIG5v
-dCBzdXBwb3J0ZWQnPyBTbyBubyBuZWVkIHRvIGZhaWwgdGhlIGNhbGwgaGVyZT8KPj4KPgo+IGlu
-dGVsX2h1Y19sb2FkX3N0YXR1cyBpcyBub3cgYSBnZW5lcmljIHByaW50ZXIgd2hpY2ggY2FuIGJl
-IGNhbGxlZCAKPiBmcm9tIG90aGVyIHBsYWNlcywgc28gaXQgbmVlZHMgdG8gcHJpbnQgdXNlZnVs
-IG1lc3NhZ2VzIGluIGFsbCBjYXNlcy4gCj4gRnJvbSB0aGUgZGVidWdmcyBQT1YsIEkgZGlkbid0
-IHdhbnQgdG8gY2hhbmdlIHRoZSBsZWdhY3kgYmVoYXZpb3Igb2YgCj4gcmV0dXJuaW5nIC1FTk9E
-RVYgb24gcGxhdGZvcm1zIHRoYXQgZG9uJ3Qgc3VwcG9ydCB0aGUgYmxvYiwgd2hpY2ggSU1PIAo+
-IGlzIGEgY2xlYXIgZW91Z2ggaW5kaWNhdGlvbiBvZiB0aGUgbGFjayBvZiBzdXBwb3J0LiBOb3Rl
-IHRoYXQgaW4gdGhlIAo+IG5leHQgcGF0Y2ggdGhlIGNvZGUgaXMgY2hhbmdlZCBzbyB0aGF0IHRo
-ZSBkZWJndWZzIGZpbGVzIGFyZSBub3QgZXZlbiAKPiBjcmVhdGVkIGlmIHRoZXJlIGlzIG5vIHVD
-IHN1cHBvcnQgb24gdGhlIHBsYXRmb3JtcyAodGhpcyBpcyBpbiBsaW5lIAo+IHdpdGggd2hhdCB3
-ZSBkbyBmb3Igb3RoZXIgR1QgZmVhdHVyZXMpLgo+Cj4gRGFuaWVsZQo+Ck9rYXkuIFRoYXQgbWFr
-ZXMgc2Vuc2UuCgpSZXZpZXdlZC1ieTogSm9obiBIYXJyaXNvbiA8Sm9obi5DLkhhcnJpc29uQElu
-dGVsLmNvbT4KCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-CkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZwpo
-dHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3RpbmZvL2ludGVsLWdmeAo=
+On Wed, 25 Mar 2020, Daniel Vetter <daniel@ffwll.ch> wrote:
+> On Fri, Mar 20, 2020 at 04:36:32PM +0200, Jani Nikula wrote:
+>> Convert all the DRM_* logging macros to the struct drm_device based
+>> macros to provide device specific logging.
+>> 
+>> No functional changes.
+>
+> Not done with the cocci from Wambui? Please add usual blurb if done with
+> cocci's help.
+
+Hmm, I wonder what crack the cocci part fell into. Added while applying.
+
+Pushed the entire pile, thanks a lot for the reviews.
+
+BR,
+Jani.
+
+>
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/icl_dsi.c       | 10 +++++++---
+>>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 11 +++++------
+>>  drivers/gpu/drm/i915/display/vlv_dsi.c       |  3 ++-
+>>  3 files changed, 14 insertions(+), 10 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> index 17cee6f80d8b..1ca1f377419c 100644
+>> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>> @@ -186,16 +186,19 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
+>>  static int dsi_send_pkt_payld(struct intel_dsi_host *host,
+>>  			      struct mipi_dsi_packet pkt)
+>>  {
+>> +	struct intel_dsi *intel_dsi = host->intel_dsi;
+>> +	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
+>> +
+>>  	/* payload queue can accept *256 bytes*, check limit */
+>>  	if (pkt.payload_length > MAX_PLOAD_CREDIT * 4) {
+>> -		DRM_ERROR("payload size exceeds max queue limit\n");
+>> +		drm_err(&i915->drm, "payload size exceeds max queue limit\n");
+>>  		return -1;
+>>  	}
+>>  
+>>  	/* load data into command payload queue */
+>>  	if (!add_payld_to_queue(host, pkt.payload,
+>>  				pkt.payload_length)) {
+>> -		DRM_ERROR("adding payload to queue failed\n");
+>> +		drm_err(&i915->drm, "adding payload to queue failed\n");
+>>  		return -1;
+>>  	}
+>>  
+>> @@ -1417,6 +1420,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>>  				    struct intel_crtc_state *pipe_config,
+>>  				    struct drm_connector_state *conn_state)
+>>  {
+>> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>  	struct intel_dsi *intel_dsi = container_of(encoder, struct intel_dsi,
+>>  						   base);
+>>  	struct intel_connector *intel_connector = intel_dsi->attached_connector;
+>> @@ -1446,7 +1450,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>>  	pipe_config->clock_set = true;
+>>  
+>>  	if (gen11_dsi_dsc_compute_config(encoder, pipe_config))
+>> -		DRM_DEBUG_KMS("Attempting to use DSC failed\n");
+>> +		drm_dbg_kms(&i915->drm, "Attempting to use DSC failed\n");
+>>  
+>>  	pipe_config->port_clock = afe_clk(encoder, pipe_config) / 5;
+>>  
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> index 574dcfec9577..3c9c05478a03 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> @@ -453,8 +453,7 @@ static inline void i2c_acpi_find_adapter(struct intel_dsi *intel_dsi,
+>>  
+>>  static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const u8 *data)
+>>  {
+>> -	struct drm_device *drm_dev = intel_dsi->base.base.dev;
+>> -	struct device *dev = &drm_dev->pdev->dev;
+>> +	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
+>>  	struct i2c_adapter *adapter;
+>>  	struct i2c_msg msg;
+>>  	int ret;
+>> @@ -471,7 +470,7 @@ static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const u8 *data)
+>>  
+>>  	adapter = i2c_get_adapter(intel_dsi->i2c_bus_num);
+>>  	if (!adapter) {
+>> -		DRM_DEV_ERROR(dev, "Cannot find a valid i2c bus for xfer\n");
+>> +		drm_err(&i915->drm, "Cannot find a valid i2c bus for xfer\n");
+>>  		goto err_bus;
+>>  	}
+>>  
+>> @@ -489,9 +488,9 @@ static const u8 *mipi_exec_i2c(struct intel_dsi *intel_dsi, const u8 *data)
+>>  
+>>  	ret = i2c_transfer(adapter, &msg, 1);
+>>  	if (ret < 0)
+>> -		DRM_DEV_ERROR(dev,
+>> -			      "Failed to xfer payload of size (%u) to reg (%u)\n",
+>> -			      payload_size, reg_offset);
+>
+> One left to fix in i915 per my count, unfortunately tons more of
+> DRM_DEV_ERROR all over drm :-/
+>
+>> +		drm_err(&i915->drm,
+>> +			"Failed to xfer payload of size (%u) to reg (%u)\n",
+>> +			payload_size, reg_offset);
+>>  
+>>  	kfree(payload_data);
+>>  err_alloc:
+>> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> index f4c362dc6e15..456909ee37a7 100644
+>> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>> @@ -875,10 +875,11 @@ static void intel_dsi_disable(struct intel_encoder *encoder,
+>>  			      const struct intel_crtc_state *old_crtc_state,
+>>  			      const struct drm_connector_state *old_conn_state)
+>>  {
+>> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>>  	enum port port;
+>>  
+>> -	DRM_DEBUG_KMS("\n");
+>> +	drm_dbg_kms(&i915->drm, "\n");
+>>  
+>>  	intel_dsi_vbt_exec_sequence(intel_dsi, MIPI_SEQ_BACKLIGHT_OFF);
+>>  	intel_panel_disable_backlight(old_conn_state);
+>
+> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+>
+>> -- 
+>> 2.20.1
+>> 
+>> _______________________________________________
+>> Intel-gfx mailing list
+>> Intel-gfx@lists.freedesktop.org
+>> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
