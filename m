@@ -2,42 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067D7192E20
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 17:26:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78071192E9D
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 17:48:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 659FA6E181;
-	Wed, 25 Mar 2020 16:25:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDF3A6E0BF;
+	Wed, 25 Mar 2020 16:48:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD2FD6E181
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 16:25:58 +0000 (UTC)
-IronPort-SDR: BG7sfQxriheX803W6jA9Lej8axOSC1YwPHv+qf3PLcHBXssM/8tmwm3oprFRZ6zAgxuyRtIHnO
- /nMoRXoeRe+g==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 09:25:58 -0700
-IronPort-SDR: 9ubEwN6z9f6irniC/50O2kAe92EKTGZHxV2CDBeDzNnkP+J5tMzQCxgrRk2EbJXOwEb07RrZwh
- N6nY2bs1lnmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,304,1580803200"; d="scan'208";a="282188702"
-Received: from dceraolo-linux.fm.intel.com (HELO [10.1.27.145]) ([10.1.27.145])
- by fmsmga002.fm.intel.com with ESMTP; 25 Mar 2020 09:25:56 -0700
-To: Andi Shyti <andi.shyti@intel.com>
-References: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
- <20200325014709.GC1682@intel.intel>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <6263082d-fdbe-653f-9dd1-7823faba69e1@intel.com>
-Date: Wed, 25 Mar 2020 09:25:32 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5DA4E6E0A1;
+ Wed, 25 Mar 2020 16:48:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5567EA010F;
+ Wed, 25 Mar 2020 16:48:39 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20200325014709.GC1682@intel.intel>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH v2 0/6] Re-org uC debugfs files and move
- them under GT
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 25 Mar 2020 16:48:39 -0000
+Message-ID: <158515491932.29635.9561512371419479641@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200311160739.21475-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200311160739.21475-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gem=3A_Drop_cached_obj-=3Ebind=5Fcount_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,54 +38,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/gem: Drop cached obj->bind_count (rev2)
+URL   : https://patchwork.freedesktop.org/series/74593/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8188 -> Patchwork_17087
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17087/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17087 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [DMESG-FAIL][1] ([fdo#108569]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8188/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17087/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
 
 
-On 3/24/20 6:47 PM, Andi Shyti wrote:
-> Hi Daniele,
-> 
-> On Wed, Mar 11, 2020 at 06:16:25PM -0700, Daniele Ceraolo Spurio wrote:
->> Rebased on top of Andi's patch. Note that some discussion is still
->> ongoing on that patch.
->>
->> Also dropped the patch that caused a const->non-const conversion and
->> fixed a couple of bugs:
->> - keep printing HUC_STATUS register
->> - correcly set permissions for writable debugfs files
->>
->> Cc: Andi Shyti <andi.shyti@intel.com>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->>
->> Andi Shyti (1):
->>    drm/i915/gt: allow setting generic data pointer
->>
->> Daniele Ceraolo Spurio (5):
->>    drm/i915/guc: drop stage_pool debugfs
->>    drm/i915/huc: make "support huc" reflect HW capabilities
->>    drm/i915/debugfs: move uC printers and update debugfs file names
->>    drm/i915/uc: Move uC debugfs to its own folder under GT
->>    drm/i915/uc: do not free err log on uc_fini
-> 
-> is this series getting in at some point or shall I take this
-> series over?
-> 
+Participating hosts (45 -> 37)
+------------------------------
 
-I've been waiting for a review of the changes on the GuC side (and I've 
-already sent a ping twice). I'm ok if you want to take over and 
-integrate these in your series in the meantime, just keep in mind that I 
-might have to update them if there are negative comments.
+  Additional (1): fi-snb-2520m 
+  Missing    (9): fi-hsw-4770r fi-hsw-4200u fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-ctg-p8600 fi-bsw-kefka fi-bdw-samus 
 
-Daniele
 
-> Andi
-> 
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8188 -> Patchwork_17087
+
+  CI-20190529: 20190529
+  CI_DRM_8188: 4219fcb964cf8f4b110fabb721bbf92997e6b5e7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5537: 190245120758e754813d76b2c6c613413a0dba29 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17087: 52775c70f21b667a93f1ea3821b1aea163ef1c08 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+52775c70f21b drm/i915/gem: Drop cached obj->bind_count
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17087/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
