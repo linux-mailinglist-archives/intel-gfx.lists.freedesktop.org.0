@@ -1,59 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAB9D1923BD
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:10:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AF3C192401
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:27:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBADA6E7D3;
-	Wed, 25 Mar 2020 09:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DADE6E7D7;
+	Wed, 25 Mar 2020 09:27:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7044A6E7D0
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:10:26 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id u10so1886624wro.7
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 02:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=8noF1vh3ZS5Dy+5mjPjbqz54c93TNGQasF4ZB3hwySc=;
- b=Jf6FcP61UfBJ2RJYMbCqr07pjGKucN2ePt2aqOHFivbuBD4gbt/Bo23PMSIVwj6p+5
- 8BUQ8CuFYKsn370Eoa2TC+clGhRNqKCqXx2Fcz4H70Il6QDGPcns8QWSdGElkLRr70VG
- kpixrfd+Fw0nkTwtvnNTfGQrmcuruHzbHBjS0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=8noF1vh3ZS5Dy+5mjPjbqz54c93TNGQasF4ZB3hwySc=;
- b=FRGtDyQU+bxCDanTJzpDXiZua5XCyyJcT49HMiQ6F3GCl8HqyeEMbUbQBSnXuCulbz
- kV79ghgsPGQbU4okAH1tWGJL1hnyfjmhqpU2B5bNGZMvEv93RRojyTyxL7FHtciKiyBI
- YQDs+7MGTR/zRmYgMKf9ejdSJTuCKxNfzqEwPR+1vFIqTGzOYfkjmaHxx2pzONAG1zla
- T3GS04aEsGL1Dv7UCWKonYFoH9dcU+GYftooZ8N0l7SiFo8HnUBNRv3OYKo0eb3mgQT8
- ROSNsTS8gfwI7+YUSWrTu134Te7bfdA4XAuUfhl35xwyxiVZOmlRdMNTeMrc605yTv5K
- wFiw==
-X-Gm-Message-State: ANhLgQ2WgqJo3SmNpLV/3pEnWEkNd2BcaVuCxptEACpXWyfIP4IS11sX
- wkuknz+48DY6Xr75Z+RuKaNz7KCwCcI8Gi7n
-X-Google-Smtp-Source: ADFU+vuOvFPcs4p/NRLDtmgnxZWpwHgk+qmjWWNf0jCLwEXh3Eee2j5+wrzhaY4+EtSFDKpKY0BsGA==
-X-Received: by 2002:adf:dd8f:: with SMTP id x15mr2429406wrl.201.1585127425076; 
- Wed, 25 Mar 2020 02:10:25 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id w11sm33030305wrv.86.2020.03.25.02.10.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Mar 2020 02:10:24 -0700 (PDT)
-Date: Wed, 25 Mar 2020 10:10:22 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200325091022.GY2363188@phenom.ffwll.local>
-References: <cover.1584714939.git.jani.nikula@intel.com>
- <017d9bdc171481da13ba9492492625fc6878844d.1584714939.git.jani.nikula@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B8776E7D7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:27:32 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20684241-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:27:27 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Mar 2020 09:27:28 +0000
+Message-Id: <20200325092728.3880-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <017d9bdc171481da13ba9492492625fc6878844d.1584714939.git.jani.nikula@intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 13/13] drm/i915/wopcm: convert to drm device
- based logging
+Subject: [Intel-gfx] [CI] drm/i915/selftests: Measure the energy consumed
+ while in RC6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,118 +37,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 20, 2020 at 04:36:38PM +0200, Jani Nikula wrote:
-> Prefer drm_dbg() over DRM_DEV_DEBUG_DRIVER() and drm_err() over
-> dev_err().
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/intel_wopcm.c | 22 ++++++++++------------
->  1 file changed, 10 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/intel_wopcm.c b/drivers/gpu/drm/i915/intel_wopcm.c
-> index 2bb9f9f9a50a..2186386a45c8 100644
-> --- a/drivers/gpu/drm/i915/intel_wopcm.c
-> +++ b/drivers/gpu/drm/i915/intel_wopcm.c
-> @@ -86,7 +86,7 @@ void intel_wopcm_init_early(struct intel_wopcm *wopcm)
->  	else
->  		wopcm->size = GEN9_WOPCM_SIZE;
->  
-> -	DRM_DEV_DEBUG_DRIVER(i915->drm.dev, "WOPCM: %uK\n", wopcm->size / 1024);
-> +	drm_dbg(&i915->drm, "WOPCM: %uK\n", wopcm->size / 1024);
->  }
->  
->  static inline u32 context_reserved_size(struct drm_i915_private *i915)
-> @@ -112,7 +112,7 @@ static inline bool gen9_check_dword_gap(struct drm_i915_private *i915,
->  	offset = guc_wopcm_base + GEN9_GUC_WOPCM_OFFSET;
->  	if (offset > guc_wopcm_size ||
->  	    (guc_wopcm_size - offset) < sizeof(u32)) {
-> -		dev_err(i915->drm.dev,
-> +		drm_err(&i915->drm,
->  			"WOPCM: invalid GuC region size: %uK < %uK\n",
->  			guc_wopcm_size / SZ_1K,
->  			(u32)(offset + sizeof(u32)) / SZ_1K);
-> @@ -131,7 +131,7 @@ static inline bool gen9_check_huc_fw_fits(struct drm_i915_private *i915,
->  	 * firmware uploading would fail.
->  	 */
->  	if (huc_fw_size > guc_wopcm_size - GUC_WOPCM_RESERVED) {
-> -		dev_err(i915->drm.dev, "WOPCM: no space for %s: %uK < %uK\n",
-> +		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
->  			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
->  			(guc_wopcm_size - GUC_WOPCM_RESERVED) / SZ_1K,
->  			huc_fw_size / 1024);
-> @@ -166,7 +166,7 @@ static inline bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
->  
->  	size = wopcm_size - ctx_rsvd;
->  	if (unlikely(range_overflows(guc_wopcm_base, guc_wopcm_size, size))) {
-> -		dev_err(i915->drm.dev,
-> +		drm_err(&i915->drm,
->  			"WOPCM: invalid GuC region layout: %uK + %uK > %uK\n",
->  			guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K,
->  			size / SZ_1K);
-> @@ -175,7 +175,7 @@ static inline bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
->  
->  	size = guc_fw_size + GUC_WOPCM_RESERVED + GUC_WOPCM_STACK_RESERVED;
->  	if (unlikely(guc_wopcm_size < size)) {
-> -		dev_err(i915->drm.dev, "WOPCM: no space for %s: %uK < %uK\n",
-> +		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
->  			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_GUC),
->  			guc_wopcm_size / SZ_1K, size / SZ_1K);
->  		return false;
-> @@ -183,7 +183,7 @@ static inline bool __check_layout(struct drm_i915_private *i915, u32 wopcm_size,
->  
->  	size = huc_fw_size + WOPCM_RESERVED_SIZE;
->  	if (unlikely(guc_wopcm_base < size)) {
-> -		dev_err(i915->drm.dev, "WOPCM: no space for %s: %uK < %uK\n",
-> +		drm_err(&i915->drm, "WOPCM: no space for %s: %uK < %uK\n",
->  			intel_uc_fw_type_repr(INTEL_UC_FW_TYPE_HUC),
->  			guc_wopcm_base / SZ_1K, size / SZ_1K);
->  		return false;
-> @@ -242,10 +242,8 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
->  		return;
->  
->  	if (__wopcm_regs_locked(gt->uncore, &guc_wopcm_base, &guc_wopcm_size)) {
-> -		DRM_DEV_DEBUG_DRIVER(i915->drm.dev,
-> -				     "GuC WOPCM is already locked [%uK, %uK)\n",
-> -				     guc_wopcm_base / SZ_1K,
-> -				     guc_wopcm_size / SZ_1K);
-> +		drm_dbg(&i915->drm, "GuC WOPCM is already locked [%uK, %uK)\n",
-> +			guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
->  		goto check;
->  	}
->  
-> @@ -266,8 +264,8 @@ void intel_wopcm_init(struct intel_wopcm *wopcm)
->  	guc_wopcm_size = wopcm->size - ctx_rsvd - guc_wopcm_base;
->  	guc_wopcm_size &= GUC_WOPCM_SIZE_MASK;
->  
-> -	DRM_DEV_DEBUG_DRIVER(i915->drm.dev, "Calculated GuC WOPCM [%uK, %uK)\n",
-> -			     guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
-> +	drm_dbg(&i915->drm, "Calculated GuC WOPCM [%uK, %uK)\n",
-> +		guc_wopcm_base / SZ_1K, guc_wopcm_size / SZ_1K);
->  
->  check:
->  	if (__check_layout(i915, wopcm->size, guc_wopcm_base, guc_wopcm_size,
-> -- 
-> 2.20.1
+Measure and compare the energy consumed, as reported by the rapl MSR,
+by the GPU while in RC0 and RC6 states. Throw an error if RC6 does not
+at least halve the energy consumption of RC0, as this more than likely
+means we failed to enter RC0 correctly.
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+If we can't measure the energy draw with the MSR, then it will report 0
+for both measurements. Since the measurement works on all gen6+, this seems
+worth flagging as an error.
 
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 44 +++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/intel_uncore.c    | 22 +++++++++++++
+ drivers/gpu/drm/i915/intel_uncore.h    |  6 +++-
+ 3 files changed, 70 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 95b165faeba7..2f3316c924a3 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -12,6 +12,22 @@
+ 
+ #include "selftests/i915_random.h"
+ 
++static u64 energy_uJ(struct intel_rc6 *rc6)
++{
++	unsigned long long power;
++	u32 units;
++
++	if (rdmsrl_safe(MSR_RAPL_POWER_UNIT, &power))
++		return 0;
++
++	units = (power & 0x1f00) >> 8;
++
++	if (rdmsrl_safe(MSR_PP1_ENERGY_STATUS, &power))
++		return 0;
++
++	return (1000000 * power) >> units; /* convert to uJ */
++}
++
+ static u64 rc6_residency(struct intel_rc6 *rc6)
+ {
+ 	u64 result;
+@@ -31,7 +47,9 @@ int live_rc6_manual(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+ 	struct intel_rc6 *rc6 = &gt->rc6;
++	u64 rc0_power, rc6_power;
+ 	intel_wakeref_t wakeref;
++	ktime_t dt;
+ 	u64 res[2];
+ 	int err = 0;
+ 
+@@ -54,7 +72,11 @@ int live_rc6_manual(void *arg)
+ 	msleep(1); /* wakeup is not immediate, takes about 100us on icl */
+ 
+ 	res[0] = rc6_residency(rc6);
++	dt = ktime_get();
++	rc0_power = energy_uJ(rc6);
+ 	msleep(250);
++	rc0_power = energy_uJ(rc6) - rc0_power;
++	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+ 	if ((res[1] - res[0]) >> 10) {
+ 		pr_err("RC6 residency increased by %lldus while disabled for 250ms!\n",
+@@ -63,13 +85,24 @@ int live_rc6_manual(void *arg)
+ 		goto out_unlock;
+ 	}
+ 
++	rc0_power = div64_u64(NSEC_PER_SEC * rc0_power, ktime_to_ns(dt));
++	if (!rc0_power) {
++		pr_err("No power measured while in RC0\n");
++		err = -EINVAL;
++		goto out_unlock;
++	}
++
+ 	/* Manually enter RC6 */
+ 	intel_rc6_park(rc6);
+ 
+ 	res[0] = rc6_residency(rc6);
++	intel_uncore_forcewake_flush(rc6_to_uncore(rc6), FORCEWAKE_ALL);
++	dt = ktime_get();
++	rc6_power = energy_uJ(rc6);
+ 	msleep(100);
++	rc6_power = energy_uJ(rc6) - rc6_power;
++	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+-
+ 	if (res[1] == res[0]) {
+ 		pr_err("Did not enter RC6! RC6_STATE=%08x, RC6_CONTROL=%08x, residency=%lld\n",
+ 		       intel_uncore_read_fw(gt->uncore, GEN6_RC_STATE),
+@@ -78,6 +111,15 @@ int live_rc6_manual(void *arg)
+ 		err = -EINVAL;
+ 	}
+ 
++	rc6_power = div64_u64(NSEC_PER_SEC * rc6_power, ktime_to_ns(dt));
++	pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
++		rc0_power, rc6_power);
++	if (2 * rc6_power > rc0_power) {
++		pr_err("GPU leaked energy while in RC6!\n");
++		err = -EINVAL;
++		goto out_unlock;
++	}
++
+ 	/* Restore what should have been the original state! */
+ 	intel_rc6_unpark(rc6);
+ 
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index abb18b90d7c3..9e9ce73890d1 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -734,6 +734,28 @@ void intel_uncore_forcewake_put(struct intel_uncore *uncore,
+ 	spin_unlock_irqrestore(&uncore->lock, irqflags);
+ }
+ 
++/**
++ * intel_uncore_forcewake_flush - flush the delayed release
++ * @uncore: the intel_uncore structure
++ * @fw_domains: forcewake domains to flush
++ */
++void intel_uncore_forcewake_flush(struct intel_uncore *uncore,
++				  enum forcewake_domains fw_domains)
++{
++	struct intel_uncore_forcewake_domain *domain;
++	unsigned int tmp;
++
++	if (!uncore->funcs.force_wake_put)
++		return;
++
++	fw_domains &= uncore->fw_domains;
++	for_each_fw_domain_masked(domain, fw_domains, uncore, tmp) {
++		WRITE_ONCE(domain->active, true);
++		if (hrtimer_cancel(&domain->timer))
++			intel_uncore_fw_release_timer(&domain->timer);
++	}
++}
++
+ /**
+  * intel_uncore_forcewake_put__locked - grab forcewake domain references
+  * @uncore: the intel_uncore structure
+diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
+index dcfa243892c6..8d3aa8b9acf9 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.h
++++ b/drivers/gpu/drm/i915/intel_uncore.h
+@@ -209,7 +209,11 @@ void intel_uncore_forcewake_get(struct intel_uncore *uncore,
+ 				enum forcewake_domains domains);
+ void intel_uncore_forcewake_put(struct intel_uncore *uncore,
+ 				enum forcewake_domains domains);
+-/* Like above but the caller must manage the uncore.lock itself.
++void intel_uncore_forcewake_flush(struct intel_uncore *uncore,
++				  enum forcewake_domains fw_domains);
++
++/*
++ * Like above but the caller must manage the uncore.lock itself.
+  * Must be used with I915_READ_FW and friends.
+  */
+ void intel_uncore_forcewake_get__locked(struct intel_uncore *uncore,
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
