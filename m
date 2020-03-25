@@ -1,59 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD94192398
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:04:04 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id A68B31923AA
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:07:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 595D66E5BB;
-	Wed, 25 Mar 2020 09:04:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D2286E5CC;
+	Wed, 25 Mar 2020 09:07:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com
- [IPv6:2a00:1450:4864:20::443])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74A836E5BB
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:04:00 +0000 (UTC)
-Received: by mail-wr1-x443.google.com with SMTP id a25so1927740wrd.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 02:04:00 -0700 (PDT)
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com
+ [IPv6:2607:f8b0:4864:20::343])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72DA06E5CD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:07:20 +0000 (UTC)
+Received: by mail-ot1-x343.google.com with SMTP id x11so1236448otp.6
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 02:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=yuE7zUGZhokVX1W0myowET7g78e1lXRD9HQLwDSkBrM=;
- b=MwExjZC5L/YEnIlOpL5reLWHS09R5Vv6iarNLrHEeFbs5j4mUaUzxm0zshhfhkGp4u
- 1ud8Fpbtap20KlFZQ5lh1o8dLWkx/ueO933HaBcN+8wuWmoCx8UvShzfKEwsO8KZPA2C
- VT+4QTxh670j9aFy4jbRvtdy4JfLbp3So0bdU=
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=ZygPvDTvZiSXBqVQCOym0t6dkd8zDqMF9JiZ1aKJhYY=;
+ b=GrBCZTaKCniq+cRmK7xHmLyBMCGeyjP4L+83rUbhsRzCpShyB75791UsV7DInqjucQ
+ tD6Eyh/2EmBEL1Sm90LP/Wer0eVAC5dJSPjRYUpkrhsdMIUlv00h4E7mmVyiUEZm9qTl
+ vT2MMiefhZCUzgYKzuSKMJrGl+6OWTfu1eavk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=yuE7zUGZhokVX1W0myowET7g78e1lXRD9HQLwDSkBrM=;
- b=KMKjS7yjm0N2ibjSNzEW2chaBm7a/BywXPoc1ljmnurXlF+0swkb2cSxLzy4aqlf1u
- JOZXQXKACRjbG5Jt5dS3zhmU0ZHJc38tHeWPfs0P6+zsX58TWZJ4JfLpg9eX6GDLVuUR
- g2BviR1VX9nj6pzy7RAu99hO7FEVirBebtCFpGpsIRGLQBzBKYJHq0xAL0k3xNAWKfIx
- TaY6jIRRKnpSMxQ0qgPq1zIm/IWnoB6nL0IpDUTqGT92/yC/eAlHmf806elJJaxg3T+l
- SZ1vj4cTv9qUEDL5zbk98Tbu34Kx39RQi2TysnNf4aN0ltMCwWl67yB8hymIfnSKiskN
- Dyqg==
-X-Gm-Message-State: ANhLgQ2iLDbtbXYE156olNEtH0ZwHW/viM6DAxo1Om+PMuAsbhH8fG1I
- V0r8iGpIMv8WP33VPz9LeshgdFwFzFzGj3Kr
-X-Google-Smtp-Source: ADFU+vuojxroO53YSQA27Mkz+tWbAey2iypOO1iHMnhli3/bP2fWePhM2RAlJitcIsVFH8ttEUioqA==
-X-Received: by 2002:a5d:4ad1:: with SMTP id y17mr2183670wrs.13.1585127038925; 
- Wed, 25 Mar 2020 02:03:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id z188sm8341298wme.46.2020.03.25.02.03.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Mar 2020 02:03:58 -0700 (PDT)
-Date: Wed, 25 Mar 2020 10:03:56 +0100
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <20200325090356.GX2363188@phenom.ffwll.local>
-References: <cover.1584714939.git.jani.nikula@intel.com>
- <cac03aba0a363c8f704035f1f771c73385235a35.1584714939.git.jani.nikula@intel.com>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=ZygPvDTvZiSXBqVQCOym0t6dkd8zDqMF9JiZ1aKJhYY=;
+ b=qC7SW7XhxS1TnPXVv+TMkXUGqNfMQGkw43fVDEm7UBc3hfG3Kt9JIdh2l0b9n4vUWJ
+ nyjmKojTOmdRemQvSAHPw4ZPgYZzrYY1km4sUrOgk/O84InOgPzIIvQqZuAGeNH54UcZ
+ pm4VGN2RhiV3oxOoYK7f+ZOm0Ukv8/bSStEOfqnpp2ub1Uvr5n9W75GfA/m2zFlHIC71
+ Es7OdoMWDQbWAu+6OgeigWqhlI4isU8JVEGbinqm8lbBQyPauSSoo3poynVOjaYzT/fp
+ Cy8E4l/e9y5SCa+lq+TdFVNiV3oQGcv2br/nhXLP9FmutWBaGbwERe3T3Jj3+nzTPB0n
+ p3bg==
+X-Gm-Message-State: ANhLgQ0dH3pGYCDYLndkDxPG2/E+Y0ORngCJ7aqIiKOL5MXGTDW25HrP
+ yL/bJzT5+7RlVVKsVFHlgdVJInbxZ1NIMX5BFHi5fQ==
+X-Google-Smtp-Source: ADFU+vvta+0hCL0Z/uh6AIiUa2nhH9jIurzG8asm2a729Vy8qnLQhIxRQNSFuikKr8gWzG2OjFcteAe1t3cXeaVKhwQ=
+X-Received: by 2002:a4a:4190:: with SMTP id x138mr745297ooa.35.1585127239393; 
+ Wed, 25 Mar 2020 02:07:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <cac03aba0a363c8f704035f1f771c73385235a35.1584714939.git.jani.nikula@intel.com>
-X-Operating-System: Linux phenom 5.3.0-3-amd64 
-Subject: Re: [Intel-gfx] [PATCH 12/13] drm/i915/psr: use struct drm_device
- based logging
+References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
+ <20200323144950.3018436-23-daniel.vetter@ffwll.ch>
+ <20200324213639.GB24902@ravnborg.org>
+In-Reply-To: <20200324213639.GB24902@ravnborg.org>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 25 Mar 2020 10:07:08 +0100
+Message-ID: <CAKMK7uEu2=EV_Pg+vhANnFrAJMLfY8mEm35YCco6zbEHMP8dxw@mail.gmail.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [Intel-gfx] [PATCH 22/51] drm: manage drm_minor cleanup with
+ drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,227 +60,262 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Wambui Karuga <wambui.karugax@gmail.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 20, 2020 at 04:36:37PM +0200, Jani Nikula wrote:
-> Convert all the DRM_* logging macros to the struct drm_device based
-> macros to provide device specific logging.
-> 
-> No functional changes.
-> 
-> Generated using the following semantic patch, originally written by
-> Wambui Karuga <wambui.karugax@gmail.com>, with manual fixups on top:
-> 
-> @@
-> identifier fn, T;
-> @@
-> 
-> fn(...,struct drm_i915_private *T,...) {
-> <+...
-> (
-> -DRM_INFO(
-> +drm_info(&T->drm,
-> ...)
-> |
-> -DRM_NOTE(
-> +drm_notice(&T->drm,
-> ...)
-> |
-> -DRM_ERROR(
-> +drm_err(&T->drm,
-> ...)
-> |
-> -DRM_WARN(
-> +drm_warn(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_DRIVER(
-> +drm_dbg(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_KMS(
-> +drm_dbg_kms(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_ATOMIC(
-> +drm_dbg_atomic(&T->drm,
-> ...)
-> )
-> ...+>
-> }
-> 
-> @@
-> identifier fn, T;
-> @@
-> 
-> fn(...) {
-> ...
-> struct drm_i915_private *T = ...;
-> <+...
-> (
-> -DRM_INFO(
-> +drm_info(&T->drm,
-> ...)
-> |
-> -DRM_NOTE(
-> +drm_notice(&T->drm,
-> ...)
-> |
-> -DRM_ERROR(
-> +drm_err(&T->drm,
-> ...)
-> |
-> -DRM_WARN(
-> +drm_warn(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_DRIVER(
-> +drm_dbg(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_KMS(
-> +drm_dbg_kms(&T->drm,
-> ...)
-> |
-> -DRM_DEBUG_ATOMIC(
-> +drm_dbg_atomic(&T->drm,
-> ...)
-> )
-> ...+>
-> }
-> 
-> Cc: Wambui Karuga <wambui.karugax@gmail.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_psr.c | 47 +++++++++++++-----------
->  1 file changed, 26 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index fd9b146e3aba..a0569fdfeb16 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -137,41 +137,42 @@ static void psr_irq_control(struct drm_i915_private *dev_priv)
->  	intel_de_write(dev_priv, imr_reg, val);
->  }
->  
-> -static void psr_event_print(u32 val, bool psr2_enabled)
-> +static void psr_event_print(struct drm_i915_private *i915,
-> +			    u32 val, bool psr2_enabled)
->  {
-> -	DRM_DEBUG_KMS("PSR exit events: 0x%x\n", val);
-> +	drm_dbg_kms(&i915->drm, "PSR exit events: 0x%x\n", val);
->  	if (val & PSR_EVENT_PSR2_WD_TIMER_EXPIRE)
-> -		DRM_DEBUG_KMS("\tPSR2 watchdog timer expired\n");
-> +		drm_dbg_kms(&i915->drm, "\tPSR2 watchdog timer expired\n");
->  	if ((val & PSR_EVENT_PSR2_DISABLED) && psr2_enabled)
-> -		DRM_DEBUG_KMS("\tPSR2 disabled\n");
-> +		drm_dbg_kms(&i915->drm, "\tPSR2 disabled\n");
->  	if (val & PSR_EVENT_SU_DIRTY_FIFO_UNDERRUN)
-> -		DRM_DEBUG_KMS("\tSU dirty FIFO underrun\n");
-> +		drm_dbg_kms(&i915->drm, "\tSU dirty FIFO underrun\n");
->  	if (val & PSR_EVENT_SU_CRC_FIFO_UNDERRUN)
-> -		DRM_DEBUG_KMS("\tSU CRC FIFO underrun\n");
-> +		drm_dbg_kms(&i915->drm, "\tSU CRC FIFO underrun\n");
->  	if (val & PSR_EVENT_GRAPHICS_RESET)
-> -		DRM_DEBUG_KMS("\tGraphics reset\n");
-> +		drm_dbg_kms(&i915->drm, "\tGraphics reset\n");
->  	if (val & PSR_EVENT_PCH_INTERRUPT)
-> -		DRM_DEBUG_KMS("\tPCH interrupt\n");
-> +		drm_dbg_kms(&i915->drm, "\tPCH interrupt\n");
->  	if (val & PSR_EVENT_MEMORY_UP)
-> -		DRM_DEBUG_KMS("\tMemory up\n");
-> +		drm_dbg_kms(&i915->drm, "\tMemory up\n");
->  	if (val & PSR_EVENT_FRONT_BUFFER_MODIFY)
-> -		DRM_DEBUG_KMS("\tFront buffer modification\n");
-> +		drm_dbg_kms(&i915->drm, "\tFront buffer modification\n");
->  	if (val & PSR_EVENT_WD_TIMER_EXPIRE)
-> -		DRM_DEBUG_KMS("\tPSR watchdog timer expired\n");
-> +		drm_dbg_kms(&i915->drm, "\tPSR watchdog timer expired\n");
->  	if (val & PSR_EVENT_PIPE_REGISTERS_UPDATE)
-> -		DRM_DEBUG_KMS("\tPIPE registers updated\n");
-> +		drm_dbg_kms(&i915->drm, "\tPIPE registers updated\n");
->  	if (val & PSR_EVENT_REGISTER_UPDATE)
-> -		DRM_DEBUG_KMS("\tRegister updated\n");
-> +		drm_dbg_kms(&i915->drm, "\tRegister updated\n");
->  	if (val & PSR_EVENT_HDCP_ENABLE)
-> -		DRM_DEBUG_KMS("\tHDCP enabled\n");
-> +		drm_dbg_kms(&i915->drm, "\tHDCP enabled\n");
->  	if (val & PSR_EVENT_KVMR_SESSION_ENABLE)
-> -		DRM_DEBUG_KMS("\tKVMR session enabled\n");
-> +		drm_dbg_kms(&i915->drm, "\tKVMR session enabled\n");
->  	if (val & PSR_EVENT_VBI_ENABLE)
-> -		DRM_DEBUG_KMS("\tVBI enabled\n");
-> +		drm_dbg_kms(&i915->drm, "\tVBI enabled\n");
->  	if (val & PSR_EVENT_LPSP_MODE_EXIT)
-> -		DRM_DEBUG_KMS("\tLPSP mode exited\n");
-> +		drm_dbg_kms(&i915->drm, "\tLPSP mode exited\n");
->  	if ((val & PSR_EVENT_PSR_DISABLE) && !psr2_enabled)
-> -		DRM_DEBUG_KMS("\tPSR disabled\n");
-> +		drm_dbg_kms(&i915->drm, "\tPSR disabled\n");
->  }
->  
->  void intel_psr_irq_handler(struct drm_i915_private *dev_priv, u32 psr_iir)
-> @@ -209,7 +210,7 @@ void intel_psr_irq_handler(struct drm_i915_private *dev_priv, u32 psr_iir)
->  
->  			intel_de_write(dev_priv, PSR_EVENT(cpu_transcoder),
->  				       val);
-> -			psr_event_print(val, psr2_enabled);
-> +			psr_event_print(dev_priv, val, psr2_enabled);
->  		}
->  	}
->  
-> @@ -249,18 +250,21 @@ static bool intel_dp_get_alpm_status(struct intel_dp *intel_dp)
->  
->  static u8 intel_dp_get_sink_sync_latency(struct intel_dp *intel_dp)
->  {
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	u8 val = 8; /* assume the worst if we can't read the value */
->  
->  	if (drm_dp_dpcd_readb(&intel_dp->aux,
->  			      DP_SYNCHRONIZATION_LATENCY_IN_SINK, &val) == 1)
->  		val &= DP_MAX_RESYNC_FRAME_COUNT_MASK;
->  	else
-> -		DRM_DEBUG_KMS("Unable to get sink synchronization latency, assuming 8 frames\n");
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Unable to get sink synchronization latency, assuming 8 frames\n");
->  	return val;
->  }
->  
->  static u16 intel_dp_get_su_x_granulartiy(struct intel_dp *intel_dp)
->  {
-> +	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->  	u16 val;
->  	ssize_t r;
->  
-> @@ -273,7 +277,8 @@ static u16 intel_dp_get_su_x_granulartiy(struct intel_dp *intel_dp)
->  
->  	r = drm_dp_dpcd_read(&intel_dp->aux, DP_PSR2_SU_X_GRANULARITY, &val, 2);
->  	if (r != 2)
-> -		DRM_DEBUG_KMS("Unable to read DP_PSR2_SU_X_GRANULARITY\n");
-> +		drm_dbg_kms(&i915->drm,
-> +			    "Unable to read DP_PSR2_SU_X_GRANULARITY\n");
->  
->  	/*
->  	 * Spec says that if the value read is 0 the default granularity should
+On Tue, Mar 24, 2020 at 10:36 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> On Mon, Mar 23, 2020 at 03:49:21PM +0100, Daniel Vetter wrote:
+> > The cleanup here is somewhat tricky, since we can't tell apart the
+> > allocated minor index from 0. So register a cleanup action first, and
+> > if the index allocation fails, unregister that cleanup action again to
+> > avoid bad mistakes.
+> >
+> > The kdev for the minor already handles NULL, so no problem there.
+> >
+> > Hence add drmm_remove_action() to the drm_managed library.
+> >
+> > v2: Make pointer math around void ** consistent with what Laurent
+> > suggested.
+> >
+> > v3: Use drmm_add_action_or_reset and remove drmm_remove_action. Noticed
+> > because of some questions from Thomas. This also means we need to move
+> > the drmm_add_action_or_reset helper earlier in the series.
+> >
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_drv.c     | 70 ++++++++++++-----------------------
+> >  drivers/gpu/drm/drm_managed.c | 14 +++++++
+> >  include/drm/drm_managed.h     |  9 ++++-
+> >  3 files changed, 46 insertions(+), 47 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > index a710c53d13a8..25fc2107057c 100644
+> > --- a/drivers/gpu/drm/drm_drv.c
+> > +++ b/drivers/gpu/drm/drm_drv.c
+> > @@ -93,13 +93,25 @@ static struct drm_minor **drm_minor_get_slot(struct drm_device *dev,
+> >       }
+> >  }
+> >
+> > +static void drm_minor_alloc_release(struct drm_device *dev, void *data)
+> > +{
+> > +     struct drm_minor *minor = data;
+> > +     unsigned long flags;
+> > +
+> > +     put_device(minor->kdev);
+> > +
+> > +     spin_lock_irqsave(&drm_minor_lock, flags);
+> > +     idr_remove(&drm_minors_idr, minor->index);
+> > +     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > +}
+> > +
+> >  static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+> >  {
+> >       struct drm_minor *minor;
+> >       unsigned long flags;
+> >       int r;
+> >
+> > -     minor = kzalloc(sizeof(*minor), GFP_KERNEL);
+> > +     minor = drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
+> >       if (!minor)
+> >               return -ENOMEM;
+> >
+> > @@ -117,46 +129,19 @@ static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+> >       idr_preload_end();
+> >
+> >       if (r < 0)
+> > -             goto err_free;
+> > +             return r;
+> >
+> > -     minor->index = r;
+> > +     r = drmm_add_action_or_reset(dev, drm_minor_alloc_release, minor);
+> > +     if (r)
+> > +             return r;
+> >
+> > +     minor->index = r;
+>
+> This looks wrong.
+>
+> We do:
+>         r = idr_alloc(&drm_minors_idr,
+>
+>         And then we loose the value when we reuse r
+>         in the call to drmm_add_action_or_reset().
+>         So the index we assign is the return value of
+>         drmm_add_action_or_reset() and not the ID returned
+>         by idr_alloc()
+>
+> With this fixed:
+>
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+>
+> >       minor->kdev = drm_sysfs_minor_alloc(minor);
+> > -     if (IS_ERR(minor->kdev)) {
+> > -             r = PTR_ERR(minor->kdev);
+> > -             goto err_index;
+> > -     }
+> > +     if (IS_ERR(minor->kdev))
+> > +             return PTR_ERR(minor->kdev);
+> >
+> >       *drm_minor_get_slot(dev, type) = minor;
+> >       return 0;
+> > -
+> > -err_index:
+> > -     spin_lock_irqsave(&drm_minor_lock, flags);
+> > -     idr_remove(&drm_minors_idr, minor->index);
+> > -     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > -err_free:
+> > -     kfree(minor);
+> > -     return r;
+> > -}
+> > -
+> > -static void drm_minor_free(struct drm_device *dev, unsigned int type)
+> > -{
+> > -     struct drm_minor **slot, *minor;
+> > -     unsigned long flags;
+> > -
+> > -     slot = drm_minor_get_slot(dev, type);
+> > -     minor = *slot;
+> > -     if (!minor)
+> > -             return;
+> > -
+> > -     put_device(minor->kdev);
+> > -
+> > -     spin_lock_irqsave(&drm_minor_lock, flags);
+> > -     idr_remove(&drm_minors_idr, minor->index);
+> > -     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > -
+> > -     kfree(minor);
+> > -     *slot = NULL;
+> >  }
+> >
+> >  static int drm_minor_register(struct drm_device *dev, unsigned int type)
+> > @@ -678,16 +663,16 @@ int drm_dev_init(struct drm_device *dev,
+> >       if (drm_core_check_feature(dev, DRIVER_RENDER)) {
+> >               ret = drm_minor_alloc(dev, DRM_MINOR_RENDER);
+> >               if (ret)
+> > -                     goto err_minors;
+> > +                     goto err;
+> >       }
+> >
+> >       ret = drm_minor_alloc(dev, DRM_MINOR_PRIMARY);
+> >       if (ret)
+> > -             goto err_minors;
+> > +             goto err;
+> >
+> >       ret = drm_legacy_create_map_hash(dev);
+> >       if (ret)
+> > -             goto err_minors;
+> > +             goto err;
+> >
+> >       drm_legacy_ctxbitmap_init(dev);
+> >
+> > @@ -695,7 +680,7 @@ int drm_dev_init(struct drm_device *dev,
+> >               ret = drm_gem_init(dev);
+> >               if (ret) {
+> >                       DRM_ERROR("Cannot initialize graphics execution manager (GEM)\n");
+> > -                     goto err_ctxbitmap;
+> > +                     goto err;
+> >               }
+> >       }
+> >
+> > @@ -708,10 +693,6 @@ int drm_dev_init(struct drm_device *dev,
+> >  err_setunique:
+> >       if (drm_core_check_feature(dev, DRIVER_GEM))
+> >               drm_gem_destroy(dev);
+> > -err_ctxbitmap:
+> > -err_minors:
+> > -     drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> > -     drm_minor_free(dev, DRM_MINOR_RENDER);
+> >  err:
+> >       drm_managed_release(dev);
+> >
+> > @@ -776,9 +757,6 @@ void drm_dev_fini(struct drm_device *dev)
+> >
+> >       if (drm_core_check_feature(dev, DRIVER_GEM))
+> >               drm_gem_destroy(dev);
+> > -
+> > -     drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> > -     drm_minor_free(dev, DRM_MINOR_RENDER);
+> >  }
+> >  EXPORT_SYMBOL(drm_dev_fini);
+> >
+> > diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> > index c633c2ef5269..8abf3a53aeb5 100644
+> > --- a/drivers/gpu/drm/drm_managed.c
+> > +++ b/drivers/gpu/drm/drm_managed.c
+> > @@ -149,6 +149,20 @@ int __drmm_add_action(struct drm_device *dev,
+> >  }
+> >  EXPORT_SYMBOL(__drmm_add_action);
+> >
+> > +int __drmm_add_action_or_reset(struct drm_device *dev,
+> > +                            drmres_release_t action,
+> > +                            void *data, const char *name)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret = __drmm_add_action(dev, action, data, name);
+> > +     if (ret)
+> > +             action(dev, data);
+> > +
+> > +     return ret;
+> > +}
+> > +EXPORT_SYMBOL(__drmm_add_action_or_reset);
+> > +
+> >  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> >  {
+> >       struct drmres *dr;
+> > diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> > index 89e6fce9f689..2d1e29a2200c 100644
+> > --- a/include/drm/drm_managed.h
+> > +++ b/include/drm/drm_managed.h
+> > @@ -17,7 +17,14 @@ int __must_check __drmm_add_action(struct drm_device *dev,
+> >                                  drmres_release_t action,
+> >                                  void *data, const char *name);
+> >
+> > -void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+> > +#define drmm_add_action_or_reset(dev, action, data) \
+> > +     __drmm_add_action_or_reset(dev, action, data, #action)
+> > +
+> > +int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
+> > +                                         drmres_release_t action,
+> > +                                         void *data, const char *name);
+> > +
+> > +void drmm_add_final_kfree(struct drm_device *dev, void *container);
+> There is a s/parent/container/ sneaked in here???
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Uh rebase fail, I'll try to move this to the right patch.
+s/parent/container/ was requested by Thomas to clarify the meaning,
+but looks like the fixup ended up in the wrong place :-/
+-Daniel
 
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+>
+> >
+> >  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
+> >  static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> > --
+> > 2.25.1
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
 
 -- 
 Daniel Vetter
 Software Engineer, Intel Corporation
-http://blog.ffwll.ch
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
