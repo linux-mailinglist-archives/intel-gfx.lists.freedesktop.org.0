@@ -1,43 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F533192FF7
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 18:57:43 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D45D5192FFB
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 18:58:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D43896D8;
-	Wed, 25 Mar 2020 17:57:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 284AC6E1A4;
+	Wed, 25 Mar 2020 17:58:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB293896D8
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 17:57:40 +0000 (UTC)
-IronPort-SDR: Xi/XSKdBlPzd5ttfnsskiRDD2sc5/zg+9Qmd5eJg6C9LvoGIHYYn4MceMlmL76LdHFYG6iXdeu
- XT4yu0DUTQGw==
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A604C6E1A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 17:58:56 +0000 (UTC)
+IronPort-SDR: lSRbntJPHZmr8BNEWmUKXySQdZPXTPQVVBhkQnt5XD8Pie2QB/Gu9wN2gqe/c6AEpk4he5w1D8
+ KMVBOE2N9ZCQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 10:57:39 -0700
-IronPort-SDR: u7mcfR9pxbR8kyV7bpQYEhchxb+IlRwYTdyCcTU+CPfo1haz1pogfnVqakCVprvzDqdVfAIx41
- /P2s/o1Ykubw==
-X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="293407637"
-Received: from yrahamim-mobl.ger.corp.intel.com (HELO localhost)
- ([10.255.194.58])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 10:57:37 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20200325085656.GV2363188@phenom.ffwll.local>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1584714939.git.jani.nikula@intel.com>
- <307c9f87cb2fbd5d2d67ec6adcde7ab669c2b93f.1584714939.git.jani.nikula@intel.com>
- <20200325085656.GV2363188@phenom.ffwll.local>
-Date: Wed, 25 Mar 2020 19:57:33 +0200
-Message-ID: <87r1xgiagi.fsf@intel.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 10:58:56 -0700
+IronPort-SDR: P3mBJgcdCa5EA6Ldv543qMaeszPCBSc0I8zou4r0BuFvuzPAJCW0Kz98auRbQBjAMJ4ZTQkwZH
+ PSm7bQHxFgKw==
+X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="393704166"
+Received: from rramir5-mobl3.amr.corp.intel.com (HELO [10.251.140.116])
+ ([10.251.140.116])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 10:58:55 -0700
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
+ <20200312011631.15262-7-daniele.ceraolospurio@intel.com>
+From: John Harrison <John.C.Harrison@Intel.com>
+Message-ID: <8d922c51-a183-247a-69fc-2e5e1119c8be@Intel.com>
+Date: Wed, 25 Mar 2020 10:58:54 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 10/13] drm/i915/display: clean up
- intel_PLL_is_valid()
+In-Reply-To: <20200312011631.15262-7-daniele.ceraolospurio@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v2 6/6] drm/i915/uc: do not free err log on
+ uc_fini
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,157 +52,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 25 Mar 2020, Daniel Vetter <daniel@ffwll.ch> wrote:
-> On Fri, Mar 20, 2020 at 04:36:35PM +0200, Jani Nikula wrote:
->> Drop useless macro hiding the return. Fix superfluous whitespace. Rename
->> function to all lowercase.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On 3/11/2020 18:16, Daniele Ceraolo Spurio wrote:
+> we do call uc_fini if there is an issue while loading the GuC, so we
+> can't delete in there the logs we need to debug the load failure.
+> Moving the log free to driver remove ensures the logs stick around ong
+> enough for us to dump them.
+I think this could be worded better and has a couple of typos.
+
+Otherwise it looks plausible.
+Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+
+> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_gt.c    | 3 +--
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.c | 9 +++++++--
+>   drivers/gpu/drm/i915/gt/uc/intel_uc.h | 1 +
+>   3 files changed, 9 insertions(+), 4 deletions(-)
 >
-> We do lose the debug output, but then I don't think we'll do much bug
-> hunting in here anytime soon, it's all fairly old gmch-style display
-> stuff. Also just realized I'm still pining for an intel_gmch_pll.c ...
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
+> index 3dea8881e915..eda66b0d44bd 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
+> @@ -635,8 +635,7 @@ void intel_gt_driver_remove(struct intel_gt *gt)
+>   {
+>   	__intel_gt_disable(gt);
+>   
+> -	intel_uc_fini_hw(&gt->uc);
+> -	intel_uc_fini(&gt->uc);
+> +	intel_uc_driver_remove(&gt->uc);
+>   
+>   	intel_engines_release(gt);
+>   }
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index a4cbe06e06bd..b11e564ef22e 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -131,6 +131,13 @@ static void __uc_free_load_err_log(struct intel_uc *uc)
+>   		i915_gem_object_put(log);
+>   }
+>   
+> +void intel_uc_driver_remove(struct intel_uc *uc)
+> +{
+> +	intel_uc_fini_hw(uc);
+> +	intel_uc_fini(uc);
+> +	__uc_free_load_err_log(uc);
+> +}
+> +
+>   static inline bool guc_communication_enabled(struct intel_guc *guc)
+>   {
+>   	return intel_guc_ct_enabled(&guc->ct);
+> @@ -311,8 +318,6 @@ static void __uc_fini(struct intel_uc *uc)
+>   {
+>   	intel_huc_fini(&uc->huc);
+>   	intel_guc_fini(&uc->guc);
+> -
+> -	__uc_free_load_err_log(uc);
+>   }
+>   
+>   static int __uc_sanitize(struct intel_uc *uc)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.h b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> index 5ae7b50b7dc1..9c954c589edf 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.h
+> @@ -34,6 +34,7 @@ struct intel_uc {
+>   
+>   void intel_uc_init_early(struct intel_uc *uc);
+>   void intel_uc_driver_late_release(struct intel_uc *uc);
+> +void intel_uc_driver_remove(struct intel_uc *uc);
+>   void intel_uc_init_mmio(struct intel_uc *uc);
+>   void intel_uc_reset_prepare(struct intel_uc *uc);
+>   void intel_uc_suspend(struct intel_uc *uc);
 
-We don't lose the output, because the DRM_DEBUG(s) is wrapped in
-comments... I didn't see the value in having these, as it's part of the
-normal flow.
-
-BR,
-Jani.
-
-
->
-> Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_display.c | 40 ++++++++++----------
->>  1 file changed, 19 insertions(+), 21 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 37bd7ce88ecd..6af8d43ceb0c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -620,45 +620,43 @@ int chv_calc_dpll_params(int refclk, struct dpll *clock)
->>  	return clock->dot / 5;
->>  }
->>  
->> -#define INTELPllInvalid(s)   do { /* DRM_DEBUG(s); */ return false; } while (0)
->> -
->>  /*
->>   * Returns whether the given set of divisors are valid for a given refclk with
->>   * the given connectors.
->>   */
->> -static bool intel_PLL_is_valid(struct drm_i915_private *dev_priv,
->> +static bool intel_pll_is_valid(struct drm_i915_private *dev_priv,
->>  			       const struct intel_limit *limit,
->>  			       const struct dpll *clock)
->>  {
->> -	if (clock->n   < limit->n.min   || limit->n.max   < clock->n)
->> -		INTELPllInvalid("n out of range\n");
->> -	if (clock->p1  < limit->p1.min  || limit->p1.max  < clock->p1)
->> -		INTELPllInvalid("p1 out of range\n");
->> -	if (clock->m2  < limit->m2.min  || limit->m2.max  < clock->m2)
->> -		INTELPllInvalid("m2 out of range\n");
->> -	if (clock->m1  < limit->m1.min  || limit->m1.max  < clock->m1)
->> -		INTELPllInvalid("m1 out of range\n");
->> +	if (clock->n < limit->n.min || limit->n.max < clock->n)
->> +		return false;
->> +	if (clock->p1 < limit->p1.min || limit->p1.max < clock->p1)
->> +		return false;
->> +	if (clock->m2 < limit->m2.min || limit->m2.max < clock->m2)
->> +		return false;
->> +	if (clock->m1 < limit->m1.min || limit->m1.max < clock->m1)
->> +		return false;
->>  
->>  	if (!IS_PINEVIEW(dev_priv) && !IS_VALLEYVIEW(dev_priv) &&
->>  	    !IS_CHERRYVIEW(dev_priv) && !IS_GEN9_LP(dev_priv))
->>  		if (clock->m1 <= clock->m2)
->> -			INTELPllInvalid("m1 <= m2\n");
->> +			return false;
->>  
->>  	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
->>  	    !IS_GEN9_LP(dev_priv)) {
->>  		if (clock->p < limit->p.min || limit->p.max < clock->p)
->> -			INTELPllInvalid("p out of range\n");
->> +			return false;
->>  		if (clock->m < limit->m.min || limit->m.max < clock->m)
->> -			INTELPllInvalid("m out of range\n");
->> +			return false;
->>  	}
->>  
->>  	if (clock->vco < limit->vco.min || limit->vco.max < clock->vco)
->> -		INTELPllInvalid("vco out of range\n");
->> +		return false;
->>  	/* XXX: We may need to be checking "Dot clock" depending on the multiplier,
->>  	 * connector, etc., rather than just a single range.
->>  	 */
->>  	if (clock->dot < limit->dot.min || limit->dot.max < clock->dot)
->> -		INTELPllInvalid("dot out of range\n");
->> +		return false;
->>  
->>  	return true;
->>  }
->> @@ -725,7 +723,7 @@ i9xx_find_best_dpll(const struct intel_limit *limit,
->>  					int this_err;
->>  
->>  					i9xx_calc_dpll_params(refclk, &clock);
->> -					if (!intel_PLL_is_valid(to_i915(dev),
->> +					if (!intel_pll_is_valid(to_i915(dev),
->>  								limit,
->>  								&clock))
->>  						continue;
->> @@ -781,7 +779,7 @@ pnv_find_best_dpll(const struct intel_limit *limit,
->>  					int this_err;
->>  
->>  					pnv_calc_dpll_params(refclk, &clock);
->> -					if (!intel_PLL_is_valid(to_i915(dev),
->> +					if (!intel_pll_is_valid(to_i915(dev),
->>  								limit,
->>  								&clock))
->>  						continue;
->> @@ -842,7 +840,7 @@ g4x_find_best_dpll(const struct intel_limit *limit,
->>  					int this_err;
->>  
->>  					i9xx_calc_dpll_params(refclk, &clock);
->> -					if (!intel_PLL_is_valid(to_i915(dev),
->> +					if (!intel_pll_is_valid(to_i915(dev),
->>  								limit,
->>  								&clock))
->>  						continue;
->> @@ -939,7 +937,7 @@ vlv_find_best_dpll(const struct intel_limit *limit,
->>  
->>  					vlv_calc_dpll_params(refclk, &clock);
->>  
->> -					if (!intel_PLL_is_valid(to_i915(dev),
->> +					if (!intel_pll_is_valid(to_i915(dev),
->>  								limit,
->>  								&clock))
->>  						continue;
->> @@ -1008,7 +1006,7 @@ chv_find_best_dpll(const struct intel_limit *limit,
->>  
->>  			chv_calc_dpll_params(refclk, &clock);
->>  
->> -			if (!intel_PLL_is_valid(to_i915(dev), limit, &clock))
->> +			if (!intel_pll_is_valid(to_i915(dev), limit, &clock))
->>  				continue;
->>  
->>  			if (!vlv_PLL_is_optimal(dev, target, &clock, best_clock,
->> -- 
->> 2.20.1
->> 
->> _______________________________________________
->> Intel-gfx mailing list
->> Intel-gfx@lists.freedesktop.org
->> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
