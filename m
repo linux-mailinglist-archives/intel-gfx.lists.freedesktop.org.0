@@ -2,31 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2350B19347C
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 00:19:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D77521934AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 00:35:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B787B6E866;
-	Wed, 25 Mar 2020 23:19:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C99406E86A;
+	Wed, 25 Mar 2020 23:35:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAAF16E84E;
- Wed, 25 Mar 2020 23:19:47 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20694106-1500050 
- for multiple; Wed, 25 Mar 2020 23:19:37 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2020 23:19:38 +0000
-Message-Id: <20200325231938.527211-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200325231938.527211-1-chris@chris-wilson.co.uk>
-References: <20200325231938.527211-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 352376E86A;
+ Wed, 25 Mar 2020 23:35:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 25A14A0094;
+ Wed, 25 Mar 2020 23:35:10 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/gem_ctx_isolation: Use dynamic
- subtests
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "George Spelvin" <lkml@SDF.ORG>
+Date: Wed, 25 Mar 2020 23:35:10 -0000
+Message-ID: <158517931012.29633.8752419036715299871@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200325192429.GA8865@SDF.ORG>
+In-Reply-To: <20200325192429.GA8865@SDF.ORG>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJp?=
+ =?utf-8?q?vers/gpu/drm/i915/selftests/i915=5Fbuddy=2Ec=3A_Fix_bug?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,160 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert over to the new dynamic subtests for the per-engine tests, and
-in the process switch over to for-each-physical engine iterators.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- tests/i915/gem_ctx_isolation.c | 109 ++++++++++++++++++++-------------
- 1 file changed, 66 insertions(+), 43 deletions(-)
+Series: drivers/gpu/drm/i915/selftests/i915_buddy.c: Fix bug
+URL   : https://patchwork.freedesktop.org/series/75090/
+State : success
 
-diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
-index eff4b1df2..dadab2870 100644
---- a/tests/i915/gem_ctx_isolation.c
-+++ b/tests/i915/gem_ctx_isolation.c
-@@ -888,23 +888,28 @@ static unsigned int __has_context_isolation(int fd)
- 	return value;
- }
- 
-+#define test_each_engine(e, i915, mask) \
-+	__for_each_physical_engine(i915, e) \
-+		for_each_if(mask & (1 << (e)->class)) \
-+			igt_dynamic_f("%s", (e)->name)
-+
- igt_main
- {
- 	unsigned int has_context_isolation = 0;
- 	const struct intel_execution_engine2 *e;
--	int fd = -1;
-+	int i915 = -1;
- 
- 	igt_fixture {
- 		int gen;
- 
--		fd = drm_open_driver(DRIVER_INTEL);
--		igt_require_gem(fd);
--		igt_require(gem_has_contexts(fd));
-+		i915 = drm_open_driver(DRIVER_INTEL);
-+		igt_require_gem(i915);
-+		igt_require(gem_has_contexts(i915));
- 
--		has_context_isolation = __has_context_isolation(fd);
-+		has_context_isolation = __has_context_isolation(i915);
- 		igt_require(has_context_isolation);
- 
--		gen = intel_gen(intel_get_drm_devid(fd));
-+		gen = intel_gen(intel_get_drm_devid(i915));
- 
- 		igt_warn_on_f(gen > LAST_KNOWN_GEN,
- 			      "GEN not recognized! Test needs to be updated to run.\n");
-@@ -913,42 +918,60 @@ igt_main
- 
- 	/* __for_each_physical_engine switches context to all engines. */
- 
--	__for_each_physical_engine(fd, e) {
--		igt_subtest_group {
--			igt_fixture {
--				igt_require(has_context_isolation & (1 << e->class));
--				gem_require_ring(fd, e->flags);
--				igt_fork_hang_detector(fd);
--			}
--
--			igt_subtest_f("%s-nonpriv", e->name)
--				nonpriv(fd, e, 0);
--			igt_subtest_f("%s-nonpriv-switch", e->name)
--				nonpriv(fd, e, DIRTY2);
--
--			igt_subtest_f("%s-clean", e->name)
--				isolation(fd, e, 0);
--			igt_subtest_f("%s-dirty-create", e->name)
--				isolation(fd, e, DIRTY1);
--			igt_subtest_f("%s-dirty-switch", e->name)
--				isolation(fd, e, DIRTY2);
--
--			igt_subtest_f("%s-none", e->name)
--				preservation(fd, e, 0);
--			igt_subtest_f("%s-S3", e->name)
--				preservation(fd, e, S3);
--			igt_subtest_f("%s-S4", e->name)
--				preservation(fd, e, S4);
--
--			igt_fixture {
--				igt_stop_hang_detector();
--			}
--
--			igt_subtest_f("%s-reset", e->name) {
--				igt_hang_t hang = igt_allow_hang(fd, 0, 0);
--				preservation(fd, e, RESET);
--				igt_disallow_hang(fd, hang);
--			}
--		}
-+	igt_fixture {
-+		igt_fork_hang_detector(i915);
-+	}
-+
-+	igt_subtest_with_dynamic("nonpriv") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			nonpriv(i915, e, 0);
-+	}
-+
-+	igt_subtest_with_dynamic("nonpriv-switch") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			nonpriv(i915, e, DIRTY2);
-+	}
-+
-+	igt_subtest_with_dynamic("clean") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			isolation(i915, e, 0);
-+	}
-+
-+	igt_subtest_with_dynamic("dirty-create") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			isolation(i915, e, DIRTY1);
-+	}
-+
-+	igt_subtest_with_dynamic("dirty-switch") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			isolation(i915, e, DIRTY2);
-+	}
-+
-+	igt_subtest_with_dynamic("preservation") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			preservation(i915, e, 0);
-+	}
-+
-+	igt_subtest_with_dynamic("preservation-S3") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			preservation(i915, e, S3);
-+	}
-+
-+	igt_subtest_with_dynamic("preservation-S4") {
-+		test_each_engine(e, i915, has_context_isolation)
-+			preservation(i915, e, S4);
-+	}
-+
-+	igt_fixture {
-+		igt_stop_hang_detector();
-+	}
-+
-+	igt_subtest_with_dynamic("preservation-reset") {
-+		igt_hang_t hang = igt_allow_hang(i915, 0, 0);
-+
-+		test_each_engine(e, i915, has_context_isolation)
-+			preservation(i915, e, RESET);
-+
-+		igt_disallow_hang(i915, hang);
- 	}
- }
--- 
-2.26.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8190 -> Patchwork_17090
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17090/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17090 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-u}:         [DMESG-FAIL][1] ([i915#656]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-tgl-u/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17090/fi-tgl-u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [INCOMPLETE][3] ([fdo#108569]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17090/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (40 -> 34)
+------------------------------
+
+  Additional (7): fi-glk-dsi fi-ilk-650 fi-gdg-551 fi-elk-e7500 fi-bsw-kefka fi-blb-e6850 fi-bsw-nick 
+  Missing    (13): fi-hsw-4770r fi-bdw-samus fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-skl-6600u 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8190 -> Patchwork_17090
+
+  CI-20190529: 20190529
+  CI_DRM_8190: 73f711b364bc85c8a7189487c09431eb1f515ed0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5538: 47becbc9cd1fc7b1b78692f90fd3dcd5a9066965 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17090: 11370081d24e95322f93cb8e80b92473ec70c674 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+11370081d24e drivers/gpu/drm/i915/selftests/i915_buddy.c: Fix bug
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17090/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
