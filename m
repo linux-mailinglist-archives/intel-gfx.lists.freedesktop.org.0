@@ -1,32 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D6CA1923B9
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:09:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C44D1923BA
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 10:09:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E43B26E7D1;
-	Wed, 25 Mar 2020 09:09:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B4A6E5D5;
+	Wed, 25 Mar 2020 09:09:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A1D876E7D5;
- Wed, 25 Mar 2020 09:09:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9B3E0A00C7;
- Wed, 25 Mar 2020 09:09:29 +0000 (UTC)
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com
+ [IPv6:2607:f8b0:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDF836E7D0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 09:09:56 +0000 (UTC)
+Received: by mail-ot1-x341.google.com with SMTP id 111so1207716oth.13
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 02:09:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=l4QDFW7e4AtPtwbwTUFLSR+MBvjLDaDdnb+W/0pduzE=;
+ b=ADxvlj8+gutduKalGkUNpRmWpxFNPzKXJV7nDvrcHNSJSdtojxfF93WLZsdOqmRkLA
+ FV+ko2mCpIZCBA+38AQeFzcKHnBeQwwnG7p0338ndfGdObRDjSgO/dr1HWNGu1hRMoAb
+ vsi8+EIgdq38kQm5idacVWnr2DM8F2VrGphFo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=l4QDFW7e4AtPtwbwTUFLSR+MBvjLDaDdnb+W/0pduzE=;
+ b=os5rTKE1T0j4E+z39ah/hhJj/gkOiDen5wuLnH8xVhbpNlETYfsT59pIggGUxuuwIu
+ w3JAdSOl+sbl5MazjhPjUcaFvL7qTHcSR0rJy3ZEA4/UtMFdbSzXHhlDDkJfWIoRhdYQ
+ CLMlhxmUlbzkDmo0Ty2kTX6wF6uwZgTC5uETwbw2IYk2RnBSTSYqQVGyShfK+dBs+IpN
+ 3gkkqUsyvxl0R6ZDKefAm6PJowacKV8yYOr6oU6Esva0WwXvETnk/woKY/YU4YyVjNyB
+ tOE8V6udppOLdnKbPrEMJsDK56RoWGNdlZZaCojovwUBtGTXmEkNyydMURYpz6T3rANk
+ p4CA==
+X-Gm-Message-State: ANhLgQ3RipGEP8yPooGm3KSIIO8t9PJJB3Fh8KndDo2JqDsZjoPTHgO/
+ +ug4474kfwtq5nOQxbuKWqG0Eywt3AfwgclUa/GJ/g==
+X-Google-Smtp-Source: ADFU+vtvDMT0S5dQMnjf6nk5SNOyu7aSdYINUr0/EkRD1mouH5DX9yZoujNzP3y9ubIOOnMJWWbJR4j3gb6D81fa8bQ=
+X-Received: by 2002:a9d:2056:: with SMTP id n80mr1776386ota.281.1585127396092; 
+ Wed, 25 Mar 2020 02:09:56 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Wed, 25 Mar 2020 09:09:29 -0000
-Message-ID: <158512736963.29635.7230136647104343425@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200324165146.1032624-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20200324165146.1032624-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B01/21=5D_Revert_=22drm/i915/gem=3A_Drop_re?=
- =?utf-8?q?location_slowpath=22?=
+References: <20200323144950.3018436-23-daniel.vetter@ffwll.ch>
+ <20200324203936.3330994-1-daniel.vetter@ffwll.ch>
+ <20200324214201.GA26542@ravnborg.org>
+In-Reply-To: <20200324214201.GA26542@ravnborg.org>
+From: Daniel Vetter <daniel.vetter@ffwll.ch>
+Date: Wed, 25 Mar 2020 10:09:44 +0100
+Message-ID: <CAKMK7uFjkCg+u76=UkrH692SxzSfoyJXGDg0e_1VaZ3LGreRWQ@mail.gmail.com>
+To: Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [Intel-gfx] [PATCH] drm: manage drm_minor cleanup with drmm_
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +59,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
+ Daniel Vetter <daniel.vetter@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 24, 2020 at 10:42 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> On Tue, Mar 24, 2020 at 09:39:36PM +0100, Daniel Vetter wrote:
+> > The cleanup here is somewhat tricky, since we can't tell apart the
+> > allocated minor index from 0. So register a cleanup action first, and
+> > if the index allocation fails, unregister that cleanup action again to
+> > avoid bad mistakes.
+> >
+> > The kdev for the minor already handles NULL, so no problem there.
+> >
+> > Hence add drmm_remove_action() to the drm_managed library.
+> >
+> > v2: Make pointer math around void ** consistent with what Laurent
+> > suggested.
+> >
+> > v3: Use drmm_add_action_or_reset and remove drmm_remove_action. Noticed
+> > because of some questions from Thomas. This also means we need to move
+> > the drmm_add_action_or_reset helper earlier in the series.
+> >
+> > v4: Uh ... fix slightly embarrassing bug CI spotted.
+> Looks like the one I spotted in my review.
+> Saw your mail only after posting.
 
-Series: series starting with [01/21] Revert "drm/i915/gem: Drop relocation slowpath"
-URL   : https://patchwork.freedesktop.org/series/75026/
-State : success
+Yup, but thanks for spotting it in your review too, gives me lots of
+confidence that you really checked all the details - I was totally
+blind and took me an afternoon with the clue bat to find the bug I
+created :-)
 
-== Summary ==
+> One Q below.
+>
+> >
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_drv.c     | 69 ++++++++++++-----------------------
+> >  drivers/gpu/drm/drm_managed.c | 14 +++++++
+> >  include/drm/drm_managed.h     |  9 ++++-
+> >  3 files changed, 46 insertions(+), 46 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> > index a710c53d13a8..50c56ff24c71 100644
+> > --- a/drivers/gpu/drm/drm_drv.c
+> > +++ b/drivers/gpu/drm/drm_drv.c
+> > @@ -93,13 +93,25 @@ static struct drm_minor **drm_minor_get_slot(struct drm_device *dev,
+> >       }
+> >  }
+> >
+> > +static void drm_minor_alloc_release(struct drm_device *dev, void *data)
+> > +{
+> > +     struct drm_minor *minor = data;
+> > +     unsigned long flags;
+> > +
+> > +     put_device(minor->kdev);
+> > +
+> > +     spin_lock_irqsave(&drm_minor_lock, flags);
+> > +     idr_remove(&drm_minors_idr, minor->index);
+> > +     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > +}
+> > +
+> >  static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+> >  {
+> >       struct drm_minor *minor;
+> >       unsigned long flags;
+> >       int r;
+> >
+> > -     minor = kzalloc(sizeof(*minor), GFP_KERNEL);
+> > +     minor = drmm_kzalloc(dev, sizeof(*minor), GFP_KERNEL);
+> >       if (!minor)
+> >               return -ENOMEM;
+> >
+> > @@ -117,46 +129,20 @@ static int drm_minor_alloc(struct drm_device *dev, unsigned int type)
+> >       idr_preload_end();
+> >
+> >       if (r < 0)
+> > -             goto err_free;
+> > +             return r;
+> >
+> >       minor->index = r;
+> >
+> > +     r = drmm_add_action_or_reset(dev, drm_minor_alloc_release, minor);
+> > +     if (r)
+> > +             return r;
+> > +
+> >       minor->kdev = drm_sysfs_minor_alloc(minor);
+> > -     if (IS_ERR(minor->kdev)) {
+> > -             r = PTR_ERR(minor->kdev);
+> > -             goto err_index;
+> > -     }
+> > +     if (IS_ERR(minor->kdev))
+> > +             return PTR_ERR(minor->kdev);
+> >
+> >       *drm_minor_get_slot(dev, type) = minor;
+> >       return 0;
+> > -
+> > -err_index:
+> > -     spin_lock_irqsave(&drm_minor_lock, flags);
+> > -     idr_remove(&drm_minors_idr, minor->index);
+> > -     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > -err_free:
+> > -     kfree(minor);
+> > -     return r;
+> > -}
+> > -
+> > -static void drm_minor_free(struct drm_device *dev, unsigned int type)
+> > -{
+> > -     struct drm_minor **slot, *minor;
+> > -     unsigned long flags;
+> > -
+> > -     slot = drm_minor_get_slot(dev, type);
+> > -     minor = *slot;
+> > -     if (!minor)
+> > -             return;
+> > -
+> > -     put_device(minor->kdev);
+> > -
+> > -     spin_lock_irqsave(&drm_minor_lock, flags);
+> > -     idr_remove(&drm_minors_idr, minor->index);
+> > -     spin_unlock_irqrestore(&drm_minor_lock, flags);
+> > -
+> > -     kfree(minor);
+>
+> > -     *slot = NULL;
+>
+> In drm_minor_alloc_release() there is no equivalent to this
+> NULL assignment.
+> Did you consider if there was any real reason for the NULL assignment?
 
-CI Bug Log - changes from CI_DRM_8183_full -> Patchwork_17071_full
-====================================================
+I think they're just prudence, so that you oops if you do a
+use-after-free. But nowadays we have KASAN (and slab poisoning, and
+lots more stuff), which is massively more powerful at catching these
+kinds of bugs. There's a bunch of these "set to NULL" that I've
+dropped, since with drmm you easily get access to the higher level
+structure that has the pointer to the thing you're cleaning up.
+-Daniel
 
-Summary
--------
+>
+>         Sam
+>
+>
+> >  }
+> >
+> >  static int drm_minor_register(struct drm_device *dev, unsigned int type)
+> > @@ -678,16 +664,16 @@ int drm_dev_init(struct drm_device *dev,
+> >       if (drm_core_check_feature(dev, DRIVER_RENDER)) {
+> >               ret = drm_minor_alloc(dev, DRM_MINOR_RENDER);
+> >               if (ret)
+> > -                     goto err_minors;
+> > +                     goto err;
+> >       }
+> >
+> >       ret = drm_minor_alloc(dev, DRM_MINOR_PRIMARY);
+> >       if (ret)
+> > -             goto err_minors;
+> > +             goto err;
+> >
+> >       ret = drm_legacy_create_map_hash(dev);
+> >       if (ret)
+> > -             goto err_minors;
+> > +             goto err;
+> >
+> >       drm_legacy_ctxbitmap_init(dev);
+> >
+> > @@ -695,7 +681,7 @@ int drm_dev_init(struct drm_device *dev,
+> >               ret = drm_gem_init(dev);
+> >               if (ret) {
+> >                       DRM_ERROR("Cannot initialize graphics execution manager (GEM)\n");
+> > -                     goto err_ctxbitmap;
+> > +                     goto err;
+> >               }
+> >       }
+> >
+> > @@ -708,10 +694,6 @@ int drm_dev_init(struct drm_device *dev,
+> >  err_setunique:
+> >       if (drm_core_check_feature(dev, DRIVER_GEM))
+> >               drm_gem_destroy(dev);
+> > -err_ctxbitmap:
+> > -err_minors:
+> > -     drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> > -     drm_minor_free(dev, DRM_MINOR_RENDER);
+> >  err:
+> >       drm_managed_release(dev);
+> >
+> > @@ -776,9 +758,6 @@ void drm_dev_fini(struct drm_device *dev)
+> >
+> >       if (drm_core_check_feature(dev, DRIVER_GEM))
+> >               drm_gem_destroy(dev);
+> > -
+> > -     drm_minor_free(dev, DRM_MINOR_PRIMARY);
+> > -     drm_minor_free(dev, DRM_MINOR_RENDER);
+> >  }
+> >  EXPORT_SYMBOL(drm_dev_fini);
+> >
+> > diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+> > index 6bce1c892df3..7246a8318137 100644
+> > --- a/drivers/gpu/drm/drm_managed.c
+> > +++ b/drivers/gpu/drm/drm_managed.c
+> > @@ -149,6 +149,20 @@ int __drmm_add_action(struct drm_device *dev,
+> >  }
+> >  EXPORT_SYMBOL(__drmm_add_action);
+> >
+> > +int __drmm_add_action_or_reset(struct drm_device *dev,
+> > +                            drmres_release_t action,
+> > +                            void *data, const char *name)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret = __drmm_add_action(dev, action, data, name);
+> > +     if (ret)
+> > +             action(dev, data);
+> > +
+> > +     return ret;
+> > +}
+> > +EXPORT_SYMBOL(__drmm_add_action_or_reset);
+> > +
+> >  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> >  {
+> >       struct drmres *dr;
+> > diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+> > index 89e6fce9f689..2d1e29a2200c 100644
+> > --- a/include/drm/drm_managed.h
+> > +++ b/include/drm/drm_managed.h
+> > @@ -17,7 +17,14 @@ int __must_check __drmm_add_action(struct drm_device *dev,
+> >                                  drmres_release_t action,
+> >                                  void *data, const char *name);
+> >
+> > -void drmm_add_final_kfree(struct drm_device *dev, void *parent);
+> > +#define drmm_add_action_or_reset(dev, action, data) \
+> > +     __drmm_add_action_or_reset(dev, action, data, #action)
+> > +
+> > +int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
+> > +                                         drmres_release_t action,
+> > +                                         void *data, const char *name);
+> > +
+> > +void drmm_add_final_kfree(struct drm_device *dev, void *container);
+> >
+> >  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
+> >  static inline void *drmm_kzalloc(struct drm_device *dev, size_t size, gfp_t gfp)
+> > --
+> > 2.25.1
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17071_full that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@runner@aborted:
-    - shard-hsw:          ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7]) ([fdo#111870] / [i915#1485]) -> ([FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], [FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FAIL][21], [FAIL][22], [FAIL][23], [FAIL][24], [FAIL][25], [FAIL][26], [FAIL][27], [FAIL][28], [FAIL][29], [FAIL][30], [FAIL][31], [FAIL][32]) ([i915#1485] / [i915#192] / [i915#193] / [i915#194])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw7/igt@runner@aborted.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw7/igt@runner@aborted.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw8/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw2/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw5/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw1/igt@runner@aborted.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-hsw4/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw2/igt@runner@aborted.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw4/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw5/igt@runner@aborted.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw1/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw1/igt@runner@aborted.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw4/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw5/igt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw8/igt@runner@aborted.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw8/igt@runner@aborted.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw2/igt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw4/igt@runner@aborted.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw6/igt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw1/igt@runner@aborted.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw6/igt@runner@aborted.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw6/igt@runner@aborted.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw5/igt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw2/igt@runner@aborted.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw4/igt@runner@aborted.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw8/igt@runner@aborted.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw6/igt@runner@aborted.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw5/igt@runner@aborted.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw2/igt@runner@aborted.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw8/igt@runner@aborted.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw1/igt@runner@aborted.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-hsw6/igt@runner@aborted.html
-    - shard-snb:          ([FAIL][33], [FAIL][34], [FAIL][35], [FAIL][36], [FAIL][37], [FAIL][38], [FAIL][39]) ([fdo#111870] / [i915#1077] / [i915#1485]) -> ([FAIL][40], [FAIL][41], [FAIL][42], [FAIL][43], [FAIL][44], [FAIL][45], [FAIL][46], [FAIL][47], [FAIL][48], [FAIL][49], [FAIL][50], [FAIL][51], [FAIL][52], [FAIL][53], [FAIL][54], [FAIL][55], [FAIL][56], [FAIL][57], [FAIL][58], [FAIL][59], [FAIL][60], [FAIL][61], [FAIL][62], [FAIL][63], [FAIL][64]) ([i915#1077] / [i915#1485])
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb4/igt@runner@aborted.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb5/igt@runner@aborted.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb1/igt@runner@aborted.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb5/igt@runner@aborted.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb6/igt@runner@aborted.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb2/igt@runner@aborted.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8183/shard-snb2/igt@runner@aborted.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb1/igt@runner@aborted.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb5/igt@runner@aborted.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb2/igt@runner@aborted.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb4/igt@runner@aborted.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb2/igt@runner@aborted.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb6/igt@runner@aborted.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb5/igt@runner@aborted.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb4/igt@runner@aborted.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb1/igt@runner@aborted.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb4/igt@runner@aborted.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb4/igt@runner@aborted.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb5/igt@runner@aborted.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb1/igt@runner@aborted.html
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb5/igt@runner@aborted.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb6/igt@runner@aborted.html
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb5/igt@runner@aborted.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb2/igt@runner@aborted.html
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb6/igt@runner@aborted.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb6/igt@runner@aborted.html
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb2/igt@runner@aborted.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb1/igt@runner@aborted.html
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb6/igt@runner@aborted.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb4/igt@runner@aborted.html
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb1/igt@runner@aborted.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/shard-snb2/igt@runner@aborted.html
-
-  
-  [fdo#111870]: https://bugs.freedesktop.org/show_bug.cgi?id=111870
-  [i915#1077]: https://gitlab.freedesktop.org/drm/intel/issues/1077
-  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
-  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
-  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
-  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
 
 
-Participating hosts (10 -> 9)
-------------------------------
-
-  Missing    (1): pig-skl-6260u 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8183 -> Patchwork_17071
-
-  CI-20190529: 20190529
-  CI_DRM_8183: 795894daf2cc32246af94541733e08649d082470 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5535: d1dcf40cc6869ac858586c5ad9f09af6617ce2ee @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17071: a5e02329d0040a10925452a69cf897add229abbd @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17071/index.html
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
++41 (0) 79 365 57 48 - http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
