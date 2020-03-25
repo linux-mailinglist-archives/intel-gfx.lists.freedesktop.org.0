@@ -1,29 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E1E19347B
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 00:19:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2350B19347C
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 00:19:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 596AA6E852;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B787B6E866;
 	Wed, 25 Mar 2020 23:19:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB2B26E852;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAAF16E84E;
  Wed, 25 Mar 2020 23:19:47 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20694105-1500050 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20694106-1500050 
  for multiple; Wed, 25 Mar 2020 23:19:37 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2020 23:19:37 +0000
-Message-Id: <20200325231938.527211-1-chris@chris-wilson.co.uk>
+Date: Wed, 25 Mar 2020 23:19:38 +0000
+Message-Id: <20200325231938.527211-2-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200325231938.527211-1-chris@chris-wilson.co.uk>
+References: <20200325231938.527211-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH i-g-t 1/2] i915/gem_ctx_shared: Use dynamic
+Subject: [Intel-gfx] [PATCH i-g-t 2/2] i915/gem_ctx_isolation: Use dynamic
  subtests
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -48,241 +50,146 @@ in the process switch over to for-each-physical engine iterators.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- tests/i915/gem_ctx_shared.c | 140 +++++++++++++++++++-----------------
- 1 file changed, 75 insertions(+), 65 deletions(-)
+ tests/i915/gem_ctx_isolation.c | 109 ++++++++++++++++++++-------------
+ 1 file changed, 66 insertions(+), 43 deletions(-)
 
-diff --git a/tests/i915/gem_ctx_shared.c b/tests/i915/gem_ctx_shared.c
-index c04931535..2310f8661 100644
---- a/tests/i915/gem_ctx_shared.c
-+++ b/tests/i915/gem_ctx_shared.c
-@@ -200,9 +200,6 @@ static void exec_shared_gtt(int i915, unsigned int ring)
- 	int timeline;
- 	int i;
- 
--	gem_require_ring(i915, ring);
--	igt_require(gem_can_store_dword(i915, ring));
--
- 	clone = gem_context_clone(i915, 0, I915_CONTEXT_CLONE_VM, 0);
- 
- 	/* Find a hole big enough for both objects later */
-@@ -329,6 +326,7 @@ static bool has_single_timeline(int i915)
- 
- static void single_timeline(int i915)
- {
-+	const struct intel_execution_engine2 *e;
- 	struct sync_fence_info rings[64];
- 	struct sync_file_info sync_file_info = {
- 		.num_fences = 1,
-@@ -351,8 +349,8 @@ static void single_timeline(int i915)
- 		gem_context_clone(i915, 0, 0,
- 				  I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE);
- 	n = 0;
--	for_each_engine(e, i915) {
--		spin->execbuf.flags = eb_ring(e) | I915_EXEC_FENCE_OUT;
-+	__for_each_physical_engine(i915, e) {
-+		spin->execbuf.flags = e->flags | I915_EXEC_FENCE_OUT;
- 
- 		gem_execbuf_wr(i915, &spin->execbuf);
- 		sync_file_info.sync_fence_info = to_user_pointer(&rings[n]);
-@@ -374,29 +372,27 @@ static void single_timeline(int i915)
- 
- static void exec_single_timeline(int i915, unsigned int engine)
- {
-+	const struct intel_execution_engine2 *e;
- 	igt_spin_t *spin;
- 	uint32_t ctx;
- 
--	igt_require(gem_ring_has_physical_engine(i915, engine));
--	igt_require(has_single_timeline(i915));
--
- 	/*
- 	 * On an ordinary context, a blockage on one engine doesn't prevent
- 	 * execution on an other.
- 	 */
- 	ctx = 0;
- 	spin = NULL;
--	for_each_physical_engine(e, i915) {
--		if (eb_ring(e) == engine)
-+	__for_each_physical_engine(i915, e) {
-+		if (e->flags == engine)
- 			continue;
- 
- 		if (spin == NULL) {
--			spin = __igt_spin_new(i915, .ctx = ctx, .engine = eb_ring(e));
-+			spin = __igt_spin_new(i915, .ctx = ctx, .engine = e->flags);
- 		} else {
- 			struct drm_i915_gem_execbuffer2 execbuf = {
- 				.buffers_ptr = spin->execbuf.buffers_ptr,
- 				.buffer_count = spin->execbuf.buffer_count,
--				.flags = eb_ring(e),
-+				.flags = e->flags,
- 				.rsvd1 = ctx,
- 			};
- 			gem_execbuf(i915, &execbuf);
-@@ -414,17 +410,17 @@ static void exec_single_timeline(int i915, unsigned int engine)
- 	ctx = gem_context_clone(i915, 0, 0,
- 				I915_CONTEXT_CREATE_FLAGS_SINGLE_TIMELINE);
- 	spin = NULL;
--	for_each_physical_engine(e, i915) {
--		if (eb_ring(e) == engine)
-+	__for_each_physical_engine(i915, e) {
-+		if (e->flags == engine)
- 			continue;
- 
- 		if (spin == NULL) {
--			spin = __igt_spin_new(i915, .ctx = ctx, .engine = eb_ring(e));
-+			spin = __igt_spin_new(i915, .ctx = ctx, .engine = e->flags);
- 		} else {
- 			struct drm_i915_gem_execbuffer2 execbuf = {
- 				.buffers_ptr = spin->execbuf.buffers_ptr,
- 				.buffer_count = spin->execbuf.buffer_count,
--				.flags = eb_ring(e),
-+				.flags = e->flags,
- 				.rsvd1 = ctx,
- 			};
- 			gem_execbuf(i915, &execbuf);
-@@ -731,10 +727,11 @@ static void smoketest(int i915, unsigned ring, unsigned timeout)
- 
- 	nengine = 0;
- 	if (ring == -1) {
--		for_each_physical_engine(e, i915)
--			engines[nengine++] = eb_ring(e);
-+		const struct intel_execution_engine2 *e;
-+
-+		__for_each_physical_engine(i915, e)
-+			engines[nengine++] = e->flags;
- 	} else {
--		gem_require_ring(i915, ring);
- 		engines[nengine++] = ring;
- 	}
- 	igt_require(nengine);
-@@ -784,9 +781,14 @@ static void smoketest(int i915, unsigned ring, unsigned timeout)
- 	munmap(ptr, 4096);
+diff --git a/tests/i915/gem_ctx_isolation.c b/tests/i915/gem_ctx_isolation.c
+index eff4b1df2..dadab2870 100644
+--- a/tests/i915/gem_ctx_isolation.c
++++ b/tests/i915/gem_ctx_isolation.c
+@@ -888,23 +888,28 @@ static unsigned int __has_context_isolation(int fd)
+ 	return value;
  }
  
-+#define for_each_queue(e, i915) \
++#define test_each_engine(e, i915, mask) \
 +	__for_each_physical_engine(i915, e) \
-+		for_each_if(gem_class_can_store_dword(i915, (e)->class)) \
-+			igt_dynamic_f("%s", e->name)
++		for_each_if(mask & (1 << (e)->class)) \
++			igt_dynamic_f("%s", (e)->name)
 +
  igt_main
  {
--	const struct intel_execution_engine *e;
-+	const struct intel_execution_engine2 *e;
- 	int i915 = -1;
+ 	unsigned int has_context_isolation = 0;
+ 	const struct intel_execution_engine2 *e;
+-	int fd = -1;
++	int i915 = -1;
  
  	igt_fixture {
-@@ -812,57 +814,65 @@ igt_main
- 		igt_subtest("single-timeline")
- 			single_timeline(i915);
+ 		int gen;
  
--		igt_subtest("exhaust-shared-gtt")
--			exhaust_shared_gtt(i915, 0);
-+		igt_subtest_with_dynamic("exec-shared-gtt") {
-+			for_each_queue(e, i915)
-+				exec_shared_gtt(i915, e->flags);
-+		}
+-		fd = drm_open_driver(DRIVER_INTEL);
+-		igt_require_gem(fd);
+-		igt_require(gem_has_contexts(fd));
++		i915 = drm_open_driver(DRIVER_INTEL);
++		igt_require_gem(i915);
++		igt_require(gem_has_contexts(i915));
  
--		igt_subtest("exhaust-shared-gtt-lrc")
--			exhaust_shared_gtt(i915, EXHAUST_LRC);
-+		igt_subtest_with_dynamic("exec-single-timeline") {
-+			igt_require(has_single_timeline(i915));
-+			for_each_queue(e, i915)
-+				exec_single_timeline(i915, e->flags);
-+		}
+-		has_context_isolation = __has_context_isolation(fd);
++		has_context_isolation = __has_context_isolation(i915);
+ 		igt_require(has_context_isolation);
  
--		for (e = intel_execution_engines; e->name; e++) {
--			igt_subtest_f("exec-shared-gtt-%s", e->name)
--				exec_shared_gtt(i915, eb_ring(e));
+-		gen = intel_gen(intel_get_drm_devid(fd));
++		gen = intel_gen(intel_get_drm_devid(i915));
+ 
+ 		igt_warn_on_f(gen > LAST_KNOWN_GEN,
+ 			      "GEN not recognized! Test needs to be updated to run.\n");
+@@ -913,42 +918,60 @@ igt_main
+ 
+ 	/* __for_each_physical_engine switches context to all engines. */
+ 
+-	__for_each_physical_engine(fd, e) {
+-		igt_subtest_group {
+-			igt_fixture {
+-				igt_require(has_context_isolation & (1 << e->class));
+-				gem_require_ring(fd, e->flags);
+-				igt_fork_hang_detector(fd);
+-			}
 -
--			igt_subtest_f("exec-single-timeline-%s", e->name)
--				exec_single_timeline(i915, eb_ring(e));
+-			igt_subtest_f("%s-nonpriv", e->name)
+-				nonpriv(fd, e, 0);
+-			igt_subtest_f("%s-nonpriv-switch", e->name)
+-				nonpriv(fd, e, DIRTY2);
 -
--			/*
--			 * Check that the shared contexts operate independently,
--			 * that is requests on one ("queue") can be scheduled
--			 * around another queue. We only check the basics here,
--			 * enough to reduce the queue into just another context,
--			 * and so rely on gem_exec_schedule to prove the rest.
--			 */
--			igt_subtest_group {
--				igt_fixture {
--					gem_require_ring(i915, eb_ring(e));
--					igt_require(gem_can_store_dword(i915, eb_ring(e)));
--					igt_require(gem_scheduler_enabled(i915));
--					igt_require(gem_scheduler_has_ctx_priority(i915));
--				}
+-			igt_subtest_f("%s-clean", e->name)
+-				isolation(fd, e, 0);
+-			igt_subtest_f("%s-dirty-create", e->name)
+-				isolation(fd, e, DIRTY1);
+-			igt_subtest_f("%s-dirty-switch", e->name)
+-				isolation(fd, e, DIRTY2);
 -
--				igt_subtest_f("Q-independent-%s", e->name)
--					independent(i915, eb_ring(e), 0);
+-			igt_subtest_f("%s-none", e->name)
+-				preservation(fd, e, 0);
+-			igt_subtest_f("%s-S3", e->name)
+-				preservation(fd, e, S3);
+-			igt_subtest_f("%s-S4", e->name)
+-				preservation(fd, e, S4);
 -
--				igt_subtest_f("Q-in-order-%s", e->name)
--					reorder(i915, eb_ring(e), EQUAL);
+-			igt_fixture {
+-				igt_stop_hang_detector();
+-			}
 -
--				igt_subtest_f("Q-out-order-%s", e->name)
--					reorder(i915, eb_ring(e), 0);
--
--				igt_subtest_f("Q-promotion-%s", e->name)
--					promotion(i915, eb_ring(e));
--
--				igt_subtest_f("Q-smoketest-%s", e->name)
--					smoketest(i915, eb_ring(e), 5);
-+		/*
-+		 * Check that the shared contexts operate independently,
-+		 * that is requests on one ("queue") can be scheduled
-+		 * around another queue. We only check the basics here,
-+		 * enough to reduce the queue into just another context,
-+		 * and so rely on gem_exec_schedule to prove the rest.
-+		 */
-+		igt_subtest_group {
-+			igt_fixture {
-+				igt_require(gem_scheduler_enabled(i915));
-+				igt_require(gem_scheduler_has_ctx_priority(i915));
-+			}
-+
-+			igt_subtest_with_dynamic("Q-independent") {
-+				for_each_queue(e, i915)
-+					independent(i915, e->flags, 0);
-+			}
-+
-+			igt_subtest_with_dynamic("Q-in-order") {
-+				for_each_queue(e, i915)
-+					reorder(i915, e->flags, EQUAL);
-+			}
-+
-+			igt_subtest_with_dynamic("Q-out-order") {
-+				for_each_queue(e, i915)
-+					reorder(i915, e->flags, 0);
-+			}
-+
-+			igt_subtest_with_dynamic("Q-promotion") {
-+				for_each_queue(e, i915)
-+					promotion(i915, e->flags);
- 			}
+-			igt_subtest_f("%s-reset", e->name) {
+-				igt_hang_t hang = igt_allow_hang(fd, 0, 0);
+-				preservation(fd, e, RESET);
+-				igt_disallow_hang(fd, hang);
+-			}
 -		}
- 
--		igt_subtest("Q-smoketest-all") {
--			igt_require(gem_scheduler_enabled(i915));
--			igt_require(gem_scheduler_has_ctx_priority(i915));
--			smoketest(i915, -1, 30);
-+			igt_subtest_with_dynamic("Q-smoketest") {
-+				for_each_queue(e, i915)
-+					smoketest(i915, e->flags, 5);
-+			}
++	igt_fixture {
++		igt_fork_hang_detector(i915);
++	}
 +
-+			igt_subtest("Q-smoketest-all")
-+				smoketest(i915, -1, 30);
- 		}
- 
-+		igt_subtest("exhaust-shared-gtt")
-+			exhaust_shared_gtt(i915, 0);
++	igt_subtest_with_dynamic("nonpriv") {
++		test_each_engine(e, i915, has_context_isolation)
++			nonpriv(i915, e, 0);
++	}
 +
-+		igt_subtest("exhaust-shared-gtt-lrc")
-+			exhaust_shared_gtt(i915, EXHAUST_LRC);
++	igt_subtest_with_dynamic("nonpriv-switch") {
++		test_each_engine(e, i915, has_context_isolation)
++			nonpriv(i915, e, DIRTY2);
++	}
 +
- 		igt_fixture {
- 			igt_stop_hang_detector();
- 		}
++	igt_subtest_with_dynamic("clean") {
++		test_each_engine(e, i915, has_context_isolation)
++			isolation(i915, e, 0);
++	}
++
++	igt_subtest_with_dynamic("dirty-create") {
++		test_each_engine(e, i915, has_context_isolation)
++			isolation(i915, e, DIRTY1);
++	}
++
++	igt_subtest_with_dynamic("dirty-switch") {
++		test_each_engine(e, i915, has_context_isolation)
++			isolation(i915, e, DIRTY2);
++	}
++
++	igt_subtest_with_dynamic("preservation") {
++		test_each_engine(e, i915, has_context_isolation)
++			preservation(i915, e, 0);
++	}
++
++	igt_subtest_with_dynamic("preservation-S3") {
++		test_each_engine(e, i915, has_context_isolation)
++			preservation(i915, e, S3);
++	}
++
++	igt_subtest_with_dynamic("preservation-S4") {
++		test_each_engine(e, i915, has_context_isolation)
++			preservation(i915, e, S4);
++	}
++
++	igt_fixture {
++		igt_stop_hang_detector();
++	}
++
++	igt_subtest_with_dynamic("preservation-reset") {
++		igt_hang_t hang = igt_allow_hang(i915, 0, 0);
++
++		test_each_engine(e, i915, has_context_isolation)
++			preservation(i915, e, RESET);
++
++		igt_disallow_hang(i915, hang);
+ 	}
+ }
 -- 
 2.26.0
 
