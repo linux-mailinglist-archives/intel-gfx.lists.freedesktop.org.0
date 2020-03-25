@@ -2,43 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BED09192606
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 11:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3D8192633
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 11:52:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 902466E7D9;
-	Wed, 25 Mar 2020 10:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B259B6E7DD;
+	Wed, 25 Mar 2020 10:52:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C68B26E7D9
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 10:43:59 +0000 (UTC)
-IronPort-SDR: ssrXNDSeVvDWKRfhGMvbromGIV/c90jtBjMedaebQ5i9BkH6F+z27m4W7Bmev1SjLe7q6QBlT0
- 3Z+54JTjSasQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 03:43:59 -0700
-IronPort-SDR: sY45zrJCR0u2uRX/OQ6LHedoIMg65kXHDtEDGT9YAGr00NJ1SOACpEUEAtbl3o93K968Zhn9A/
- mRNeQId0cvXg==
-X-IronPort-AV: E=Sophos;i="5.72,304,1580803200"; d="scan'208";a="420274014"
-Received: from popernik-mobl.ger.corp.intel.com (HELO [10.252.39.239])
- ([10.252.39.239])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 03:43:58 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200325101358.12231-1-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <65307902-8163-24cc-0738-b11f3bd982c5@linux.intel.com>
-Date: Wed, 25 Mar 2020 10:43:55 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0E2886E7DC;
+ Wed, 25 Mar 2020 10:52:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05288A0094;
+ Wed, 25 Mar 2020 10:52:14 +0000 (UTC)
 MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 25 Mar 2020 10:52:13 -0000
+Message-ID: <158513353399.29635.4111693247491271416@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200325101358.12231-1-chris@chris-wilson.co.uk>
 In-Reply-To: <20200325101358.12231-1-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Drop setting sibling
- priority hint on virtual engines
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/execlists=3A_Drop_setting_sibling_priority_hint_on_virtua?=
+ =?utf-8?q?l_engines?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,62 +39,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 25/03/2020 10:13, Chris Wilson wrote:
-> We set the priority hint on execlists to avoid executing the tasklet for
-> when we know that there will be no change in execution order. However,
-> as we set it from the virtual engine for all siblings, but only one
-> physical engine may respond, we leave the hint set on the others
-> stopping direct submission that could take place.
-> 
-> If we do not set the hint, we may attempt direct submission even if we
-> don't expect to submit. If we set the hint, we may not do any submission
-> until the tasklet is run (and sometimes we may park the engine before
-> that has had a chance). Ergo there's only a minor ill-effect on mixed
-> virtual/physical engine workloads where we may try and fail to do direct
-> submission more often than required. (Pure virtual / engine workloads
-> will have redundant tasklet execution suppressed as normal.)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/1522
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/intel_lrc.c | 4 +---
->   1 file changed, 1 insertion(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 210f60e14ef4..f88d3b95c4e1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -4985,10 +4985,8 @@ static void virtual_submission_tasklet(unsigned long data)
->   submit_engine:
->   		GEM_BUG_ON(RB_EMPTY_NODE(&node->rb));
->   		node->prio = prio;
-> -		if (first && prio > sibling->execlists.queue_priority_hint) {
-> -			sibling->execlists.queue_priority_hint = prio;
-> +		if (first && prio > sibling->execlists.queue_priority_hint)
->   			tasklet_hi_schedule(&sibling->execlists.tasklet);
-> -		}
->   
->   		spin_unlock(&sibling->active.lock);
->   	}
-> 
+Series: drm/i915/execlists: Drop setting sibling priority hint on virtual engines
+URL   : https://patchwork.freedesktop.org/series/75063/
+State : success
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+== Summary ==
 
-The queue_priority_hint scheme with virtual engine design is a bit 
-problematic, since we have no way to unwind. And it's spreading it's 
-tentacles all over the place. Oh well. Could we one day consider just 
-peeking at the top of the tree(s)
+CI Bug Log - changes from CI_DRM_8185 -> Patchwork_17081
+====================================================
 
-Regards,
+Summary
+-------
 
-Tvrtko
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17081 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([fdo#108569])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8185/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-icl-u2:          [PASS][3] -> [FAIL][4] ([fdo#109635] / [i915#262])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8185/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/fi-icl-u2/igt@kms_chamelium@dp-crc-fast.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_backlight@basic-brightness:
+    - fi-icl-dsi:         [INCOMPLETE][5] ([IGT#81]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8185/fi-icl-dsi/igt@i915_pm_backlight@basic-brightness.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/fi-icl-dsi/igt@i915_pm_backlight@basic-brightness.html
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][7] ([fdo#103927] / [i915#656]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8185/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-lmem:        [INCOMPLETE][9] ([i915#424]) -> [DMESG-FAIL][10] ([i915#481])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8185/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/fi-skl-lmem/igt@i915_selftest@live@gem_contexts.html
+
+  
+  [IGT#81]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/81
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109635]: https://bugs.freedesktop.org/show_bug.cgi?id=109635
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#424]: https://gitlab.freedesktop.org/drm/intel/issues/424
+  [i915#481]: https://gitlab.freedesktop.org/drm/intel/issues/481
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (3): fi-byt-j1900 fi-skl-6700k2 fi-kbl-7500u 
+  Missing    (7): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-snb-2520m fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8185 -> Patchwork_17081
+
+  CI-20190529: 20190529
+  CI_DRM_8185: dbd2532fc5cf023b28bd631b51eea8452739b421 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5537: 190245120758e754813d76b2c6c613413a0dba29 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17081: 191bcdc06878ed4f3c7cb0035d1931f9d33442ba @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+191bcdc06878 drm/i915/execlists: Drop setting sibling priority hint on virtual engines
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17081/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
