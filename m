@@ -2,44 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A41192909
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 13:58:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6927B192914
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 14:01:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9826E857;
-	Wed, 25 Mar 2020 12:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2272891E2;
+	Wed, 25 Mar 2020 13:01:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 922516E857
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 12:58:13 +0000 (UTC)
-IronPort-SDR: 86vAQfE/3NMD8d+JFUoWdHY4ydIAOMQc8uzxZsnKwPB6hyOokAzc5MfHt6jo81NYg5lZ0p/8z2
- vCrW7lKFbzzQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 05:58:13 -0700
-IronPort-SDR: 2RIZ1kOjO0hnalX0oEor8hcLFl5684YwiCk6khC7mp3Kv686cUV3fnvQZjs75iW946O1OEj6Qa
- 3d+aFt9/+Aiw==
-X-IronPort-AV: E=Sophos;i="5.72,304,1580803200"; d="scan'208";a="420302765"
-Received: from popernik-mobl.ger.corp.intel.com (HELO [10.252.39.239])
- ([10.252.39.239])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 05:58:12 -0700
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200325120227.8044-1-chris@chris-wilson.co.uk>
- <20200325120227.8044-2-chris@chris-wilson.co.uk>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-Message-ID: <84bd4838-47a6-0ec2-baf8-e368dace3499@linux.intel.com>
-Date: Wed, 25 Mar 2020 12:58:10 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8F1189CD8
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 13:01:10 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20687225-1500050 
+ for multiple; Wed, 25 Mar 2020 13:00:57 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Mar 2020 13:00:59 +0000
+Message-Id: <20200325130059.30600-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200325120227.8044-2-chris@chris-wilson.co.uk>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH 2/2] drm/i915: Immediately execute the
- fenced work
+Subject: [Intel-gfx] [PATCH] drm/i915/gt: Stage the transfer of the virtual
+ breadcrumb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,117 +37,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We move the virtual breadcrumb from one physical engine to the next, if
+the next virtual request is scheduled on a new physical engine. Since
+the virtual context can only be in one signal queue, we need it to track
+the current physical engine for the new breadcrumbs. However, to move
+the list we need both breadcrumb locks -- and since we cannot take both
+at the same time (unless we are careful and always ensure consistent
+ordering) stage the movement of the signaler via the current virtual
+request.
 
-On 25/03/2020 12:02, Chris Wilson wrote:
-> If the caller allows and we do not have to wait for any signals,
-> immediately execute the work within the caller's process. By doing so we
-> avoid the overhead of scheduling a new task, and the latency in
-> executing it, at the cost of pulling that work back into the immediate
-> context. (Sometimes we still prefer to offload the task to another cpu,
-> especially if we plan on executing many such tasks in parallel for this
-> client.)
-> 
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->   .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
->   drivers/gpu/drm/i915/i915_sw_fence_work.c     |  5 +++-
->   drivers/gpu/drm/i915/i915_sw_fence_work.h     | 23 +++++++++++++++++++
->   drivers/gpu/drm/i915/i915_vma.c               |  2 +-
->   4 files changed, 29 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index 6b3013d20851..c643eec4dca0 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1822,7 +1822,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
->   	dma_resv_add_excl_fence(shadow->resv, &pw->base.dma);
->   	dma_resv_unlock(shadow->resv);
->   
-> -	dma_fence_work_commit(&pw->base);
-> +	dma_fence_work_commit_imm(&pw->base);
->   	return 0;
->   
->   err_batch_unlock:
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> index 997b2998f1f2..a3a81bb8f2c3 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-> @@ -38,7 +38,10 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
->   
->   		if (!f->dma.error) {
->   			dma_fence_get(&f->dma);
-> -			queue_work(system_unbound_wq, &f->work);
-> +			if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
-> +				fence_work(&f->work);
-> +			else
-> +				queue_work(system_unbound_wq, &f->work);
->   		} else {
->   			fence_complete(f);
->   		}
-> diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> index 3a22b287e201..2c409f11c5c5 100644
-> --- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> +++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-> @@ -32,6 +32,10 @@ struct dma_fence_work {
->   	const struct dma_fence_work_ops *ops;
->   };
->   
-> +enum {
-> +	DMA_FENCE_WORK_IMM = DMA_FENCE_FLAG_USER_BITS,
-> +};
-> +
->   void dma_fence_work_init(struct dma_fence_work *f,
->   			 const struct dma_fence_work_ops *ops);
->   int dma_fence_work_chain(struct dma_fence_work *f, struct dma_fence *signal);
-> @@ -41,4 +45,23 @@ static inline void dma_fence_work_commit(struct dma_fence_work *f)
->   	i915_sw_fence_commit(&f->chain);
->   }
->   
-> +/**
-> + * dma_fence_work_commit_imm: Commit the fence, and if possible execute locally.
-> + * @f: the fenced worker
-> + *
-> + * Instead of always scheduling a worker to execute the callback (see
-> + * dma_fence_work_commit()), we try to execute the callback immediately in
-> + * the local context. It is required that the fence be committed before it
-> + * is published, and that no other threads try to tamper with the number
-> + * of asynchronous waits on the fence (or else the callback will be
-> + * executed in the wrong context, i.e. not the callers).
-> + */
-> +static inline void dma_fence_work_commit_imm(struct dma_fence_work *f)
-> +{
-> +	if (atomic_read(&f->chain.pending) <= 1)
-> +		__set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
-> +
-> +	dma_fence_work_commit(f);
-> +}
-> +
->   #endif /* I915_SW_FENCE_WORK_H */
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 08699fa069aa..191577a98390 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -980,7 +980,7 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
->   	mutex_unlock(&vma->vm->mutex);
->   err_fence:
->   	if (work)
-> -		dma_fence_work_commit(&work->base);
-> +		dma_fence_work_commit_imm(&work->base);
->   	if (wakeref)
->   		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
->   err_pages:
-> 
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1510
+Fixes: 6d06779e8672 ("drm/i915: Load balancing across a virtual engine")
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index f88d3b95c4e1..2b0923cb0483 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1663,7 +1663,7 @@ static bool virtual_matches(const struct virtual_engine *ve,
+ }
+ 
+ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
+-				     struct intel_engine_cs *engine)
++				     struct i915_request *rq)
+ {
+ 	struct intel_engine_cs *old = ve->siblings[0];
+ 
+@@ -1671,9 +1671,17 @@ static void virtual_xfer_breadcrumbs(struct virtual_engine *ve,
+ 
+ 	spin_lock(&old->breadcrumbs.irq_lock);
+ 	if (!list_empty(&ve->context.signal_link)) {
+-		list_move_tail(&ve->context.signal_link,
+-			       &engine->breadcrumbs.signalers);
+-		intel_engine_signal_breadcrumbs(engine);
++		list_del_init(&ve->context.signal_link);
++
++		/*
++		 * We cannot acquire the new engine->breadcrumbs.irq_lock
++		 * (as we are holding a breadcrumbs.irq_lock already),
++		 * so attach this request to the signaler on submission.
++		 * The queued irq_work will occur when we finally drop
++		 * the engine->active.lock after dequeue.
++		 */
++		set_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT, &rq->fence.flags);
++		intel_engine_signal_breadcrumbs(rq->engine);
+ 	}
+ 	spin_unlock(&old->breadcrumbs.irq_lock);
+ }
+@@ -2045,7 +2053,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 									engine);
+ 
+ 				if (!list_empty(&ve->context.signals))
+-					virtual_xfer_breadcrumbs(ve, engine);
++					virtual_xfer_breadcrumbs(ve, rq);
+ 
+ 				/*
+ 				 * Move the bound engine to the top of the list
+-- 
+2.20.1
 
-Regards,
-
-Tvrtko
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
