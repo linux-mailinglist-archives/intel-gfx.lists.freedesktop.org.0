@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D599F19279F
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 13:02:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C3E1928A3
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 13:42:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26D016E831;
-	Wed, 25 Mar 2020 12:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BEAF6E15A;
+	Wed, 25 Mar 2020 12:42:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E26A36E835
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 12:02:37 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20686346-1500050 
- for multiple; Wed, 25 Mar 2020 12:02:26 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2020 12:02:27 +0000
-Message-Id: <20200325120227.8044-2-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200325120227.8044-1-chris@chris-wilson.co.uk>
-References: <20200325120227.8044-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD1EB6E143;
+ Wed, 25 Mar 2020 12:42:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D9D2BA47E8;
+ Wed, 25 Mar 2020 12:42:07 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Immediately execute the fenced
- work
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Wed, 25 Mar 2020 12:42:07 -0000
+Message-ID: <158514012788.29636.414731602498724662@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200325120227.8044-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200325120227.8044-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/execlists=3A_Pull_tasklet_?=
+ =?utf-8?q?interrupt-bh_local_to_direct_submission?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,111 +39,79 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-If the caller allows and we do not have to wait for any signals,
-immediately execute the work within the caller's process. By doing so we
-avoid the overhead of scheduling a new task, and the latency in
-executing it, at the cost of pulling that work back into the immediate
-context. (Sometimes we still prefer to offload the task to another cpu,
-especially if we plan on executing many such tasks in parallel for this
-client.)
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
- drivers/gpu/drm/i915/i915_sw_fence_work.c     |  5 +++-
- drivers/gpu/drm/i915/i915_sw_fence_work.h     | 23 +++++++++++++++++++
- drivers/gpu/drm/i915/i915_vma.c               |  2 +-
- 4 files changed, 29 insertions(+), 3 deletions(-)
+Series: series starting with [1/2] drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+URL   : https://patchwork.freedesktop.org/series/75068/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index 6b3013d20851..c643eec4dca0 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1822,7 +1822,7 @@ static int eb_parse_pipeline(struct i915_execbuffer *eb,
- 	dma_resv_add_excl_fence(shadow->resv, &pw->base.dma);
- 	dma_resv_unlock(shadow->resv);
- 
--	dma_fence_work_commit(&pw->base);
-+	dma_fence_work_commit_imm(&pw->base);
- 	return 0;
- 
- err_batch_unlock:
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.c b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-index 997b2998f1f2..a3a81bb8f2c3 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.c
-@@ -38,7 +38,10 @@ fence_notify(struct i915_sw_fence *fence, enum i915_sw_fence_notify state)
- 
- 		if (!f->dma.error) {
- 			dma_fence_get(&f->dma);
--			queue_work(system_unbound_wq, &f->work);
-+			if (test_bit(DMA_FENCE_WORK_IMM, &f->dma.flags))
-+				fence_work(&f->work);
-+			else
-+				queue_work(system_unbound_wq, &f->work);
- 		} else {
- 			fence_complete(f);
- 		}
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence_work.h b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-index 3a22b287e201..2c409f11c5c5 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence_work.h
-+++ b/drivers/gpu/drm/i915/i915_sw_fence_work.h
-@@ -32,6 +32,10 @@ struct dma_fence_work {
- 	const struct dma_fence_work_ops *ops;
- };
- 
-+enum {
-+	DMA_FENCE_WORK_IMM = DMA_FENCE_FLAG_USER_BITS,
-+};
-+
- void dma_fence_work_init(struct dma_fence_work *f,
- 			 const struct dma_fence_work_ops *ops);
- int dma_fence_work_chain(struct dma_fence_work *f, struct dma_fence *signal);
-@@ -41,4 +45,23 @@ static inline void dma_fence_work_commit(struct dma_fence_work *f)
- 	i915_sw_fence_commit(&f->chain);
- }
- 
-+/**
-+ * dma_fence_work_commit_imm: Commit the fence, and if possible execute locally.
-+ * @f: the fenced worker
-+ *
-+ * Instead of always scheduling a worker to execute the callback (see
-+ * dma_fence_work_commit()), we try to execute the callback immediately in
-+ * the local context. It is required that the fence be committed before it
-+ * is published, and that no other threads try to tamper with the number
-+ * of asynchronous waits on the fence (or else the callback will be
-+ * executed in the wrong context, i.e. not the callers).
-+ */
-+static inline void dma_fence_work_commit_imm(struct dma_fence_work *f)
-+{
-+	if (atomic_read(&f->chain.pending) <= 1)
-+		__set_bit(DMA_FENCE_WORK_IMM, &f->dma.flags);
-+
-+	dma_fence_work_commit(f);
-+}
-+
- #endif /* I915_SW_FENCE_WORK_H */
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index 08699fa069aa..191577a98390 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -980,7 +980,7 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- 	mutex_unlock(&vma->vm->mutex);
- err_fence:
- 	if (work)
--		dma_fence_work_commit(&work->base);
-+		dma_fence_work_commit_imm(&work->base);
- 	if (wakeref)
- 		intel_runtime_pm_put(&vma->vm->i915->runtime_pm, wakeref);
- err_pages:
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8186 -> Patchwork_17083
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17083/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17083 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-cfl-guc:         [DMESG-FAIL][1] ([i915#730] / [i915#933]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8186/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17083/fi-cfl-guc/igt@i915_selftest@live@gem_contexts.html
+
+  
+  [i915#730]: https://gitlab.freedesktop.org/drm/intel/issues/730
+  [i915#933]: https://gitlab.freedesktop.org/drm/intel/issues/933
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Additional (4): fi-skl-lmem fi-bwr-2160 fi-skl-6600u fi-snb-2600 
+  Missing    (9): fi-bdw-5557u fi-hsw-4200u fi-byt-j1900 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-blb-e6850 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8186 -> Patchwork_17083
+
+  CI-20190529: 20190529
+  CI_DRM_8186: 1abdd8c4027177dd054471cf58a5e9ec3f2df46d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5537: 190245120758e754813d76b2c6c613413a0dba29 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17083: 0eba3cb69652551e1a54e32cad9c830e932d7683 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+0eba3cb69652 drm/i915: Immediately execute the fenced work
+7a0b5667f8c9 drm/i915/execlists: Pull tasklet interrupt-bh local to direct submission
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17083/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
