@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 965CF191DA5
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 00:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA12191DE7
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 01:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F86889A60;
-	Tue, 24 Mar 2020 23:48:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C86F86E0D5;
+	Wed, 25 Mar 2020 00:08:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1E53D89A5D;
- Tue, 24 Mar 2020 23:48:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AF366A010F;
- Tue, 24 Mar 2020 23:48:26 +0000 (UTC)
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 24 Mar 2020 23:48:26 -0000
-Message-ID: <158509370669.5747.16868414861516310808@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200324201526.16571-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 290076E0D5
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 00:08:41 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20681622-1500050 
+ for multiple; Wed, 25 Mar 2020 00:08:00 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Wed, 25 Mar 2020 00:08:00 +0000
+Message-Id: <20200325000800.12708-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200324201526.16571-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/selftests=3A_Measure_the_energy_consumed_while_in_RC6_=28?=
- =?utf-8?q?rev3=29?=
+References: <20200324201526.16571-1-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Measure the energy consumed
+ while in RC6
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,110 +39,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Measure and compare the energy consumed, as reported by the rapl MSR,
+by the GPU while in RC0 and RC6 states. Throw an error if RC6 does not
+at least halve the energy consumption of RC0, as this more than likely
+means we failed to enter RC0 correctly.
 
-Series: drm/i915/selftests: Measure the energy consumed while in RC6 (rev3)
-URL   : https://patchwork.freedesktop.org/series/75035/
-State : failure
+If we can't measure the energy draw with the MSR, then it will report 0
+for both measurements. Since the measurement works on all gen6+, this seems
+worth flagging as an error.
 
-== Summary ==
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 39 ++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-CI Bug Log - changes from CI_DRM_8184 -> Patchwork_17075
-====================================================
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 95b165faeba7..04c3ba71749f 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -12,6 +12,22 @@
+ 
+ #include "selftests/i915_random.h"
+ 
++static u64 energy_uJ(struct intel_rc6 *rc6)
++{
++	unsigned long long power;
++	u32 units;
++
++	if (rdmsrl_safe(MSR_RAPL_POWER_UNIT, &power))
++		return 0;
++
++	units = (power & 0x1f00) >> 8;
++
++	if (rdmsrl_safe(MSR_PP1_ENERGY_STATUS, &power))
++		return 0;
++
++	return (1000000 * power) >> units; /* convert to uJ */
++}
++
+ static u64 rc6_residency(struct intel_rc6 *rc6)
+ {
+ 	u64 result;
+@@ -31,7 +47,9 @@ int live_rc6_manual(void *arg)
+ {
+ 	struct intel_gt *gt = arg;
+ 	struct intel_rc6 *rc6 = &gt->rc6;
++	u64 rc0_power, rc6_power;
+ 	intel_wakeref_t wakeref;
++	ktime_t dt;
+ 	u64 res[2];
+ 	int err = 0;
+ 
+@@ -53,22 +71,35 @@ int live_rc6_manual(void *arg)
+ 	__intel_rc6_disable(rc6);
+ 	msleep(1); /* wakeup is not immediate, takes about 100us on icl */
+ 
++	dt = ktime_get();
++	rc0_power = energy_uJ(rc6);
+ 	res[0] = rc6_residency(rc6);
+ 	msleep(250);
+ 	res[1] = rc6_residency(rc6);
++	rc0_power = div64_u64(NSEC_PER_SEC * (energy_uJ(rc6) - rc0_power),
++			      ktime_to_ns(ktime_sub(ktime_get(), dt)));
+ 	if ((res[1] - res[0]) >> 10) {
+ 		pr_err("RC6 residency increased by %lldus while disabled for 250ms!\n",
+ 		       (res[1] - res[0]) >> 10);
+ 		err = -EINVAL;
+ 		goto out_unlock;
+ 	}
++	if (!rc0_power) {
++		pr_err("No power measured while in RC0\n");
++		err = -EINVAL;
++		goto out_unlock;
++	}
+ 
+ 	/* Manually enter RC6 */
+ 	intel_rc6_park(rc6);
+ 
++	dt = ktime_get();
++	rc6_power = energy_uJ(rc6);
+ 	res[0] = rc6_residency(rc6);
+ 	msleep(100);
+ 	res[1] = rc6_residency(rc6);
++	rc6_power = div64_u64(NSEC_PER_SEC * (energy_uJ(rc6) - rc6_power),
++			      ktime_to_ns(ktime_sub(ktime_get(), dt)));
+ 
+ 	if (res[1] == res[0]) {
+ 		pr_err("Did not enter RC6! RC6_STATE=%08x, RC6_CONTROL=%08x, residency=%lld\n",
+@@ -78,6 +109,14 @@ int live_rc6_manual(void *arg)
+ 		err = -EINVAL;
+ 	}
+ 
++	pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
++		rc0_power, rc6_power);
++	if ((rc6_power >> 10) > (rc0_power >> 10) / 2) { /* compare mW */
++		pr_err("GPU leaked energy while in RC6!\n");
++		err = -EINVAL;
++		goto out_unlock;
++	}
++
+ 	/* Restore what should have been the original state! */
+ 	intel_rc6_unpark(rc6);
+ 
+-- 
+2.20.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17075 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17075, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17075:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - fi-glk-dsi:         [PASS][1] -> [DMESG-FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-glk-dsi/igt@i915_selftest@live@gt_pm.html
-    - fi-apl-guc:         [PASS][3] -> [DMESG-FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-apl-guc/igt@i915_selftest@live@gt_pm.html
-    - fi-icl-guc:         [PASS][5] -> [DMESG-FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-icl-guc/igt@i915_selftest@live@gt_pm.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-icl-guc/igt@i915_selftest@live@gt_pm.html
-    - fi-bxt-dsi:         [PASS][7] -> [DMESG-FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-bxt-dsi/igt@i915_selftest@live@gt_pm.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17075 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-cml-s:           [DMESG-FAIL][9] ([i915#877]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8184/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/fi-cml-s/igt@i915_selftest@live@gem_contexts.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [i915#877]: https://gitlab.freedesktop.org/drm/intel/issues/877
-
-
-Participating hosts (40 -> 42)
-------------------------------
-
-  Additional (6): fi-kbl-soraka fi-hsw-4770r fi-bsw-n3050 fi-byt-j1900 fi-kbl-7500u fi-cfl-8109u 
-  Missing    (4): fi-ctg-p8600 fi-byt-squawks fi-bsw-cyan fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8184 -> Patchwork_17075
-
-  CI-20190529: 20190529
-  CI_DRM_8184: 1a72c9d9d3140e92190485d766b9d165932c5b86 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5535: d1dcf40cc6869ac858586c5ad9f09af6617ce2ee @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17075: 73d97df3bf7eca669a5e20e97110111df29f45d3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-73d97df3bf7e drm/i915/selftests: Measure the energy consumed while in RC6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17075/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
