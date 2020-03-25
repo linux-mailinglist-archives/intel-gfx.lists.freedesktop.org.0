@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F55E191E99
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 02:33:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E1F191EB4
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 02:47:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70D466E0EF;
-	Wed, 25 Mar 2020 01:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10526E0E7;
+	Wed, 25 Mar 2020 01:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 166C66E0E7;
- Wed, 25 Mar 2020 01:33:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0813BA011B;
- Wed, 25 Mar 2020 01:33:13 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C0B6E0E7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 01:47:14 +0000 (UTC)
+IronPort-SDR: yOHHZWimAHLq7Adp5Ecp1wVLr54JUOFQnAF7tVf0S9su4ZOqF32RXZCdsyW0Fw6PUXlc3oEZrx
+ qXKeS8xA17eA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2020 18:47:14 -0700
+IronPort-SDR: Hxicdm3aXfvdGHN0EDMT0nIRmh8eMwfoe3wuSsphFNZhYJeZACHgmp5ZT6nbPh7QFz/TR8KSXG
+ s3/g38ykDdzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,302,1580803200"; d="scan'208";a="246964254"
+Received: from bguildex-mobl2.ger.corp.intel.com (HELO intel.com)
+ ([10.252.30.30])
+ by orsmga003.jf.intel.com with ESMTP; 24 Mar 2020 18:47:10 -0700
+Date: Wed, 25 Mar 2020 03:47:09 +0200
+From: Andi Shyti <andi.shyti@intel.com>
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Message-ID: <20200325014709.GC1682@intel.intel>
+References: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manasi Navare" <manasi.d.navare@intel.com>
-Date: Wed, 25 Mar 2020 01:33:13 -0000
-Message-ID: <158509999300.29636.7830822913068476029@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200325012201.11376-1-manasi.d.navare@intel.com>
-In-Reply-To: <20200325012201.11376-1-manasi.d.navare@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5Bv2=2C1/2=5D_drm/dp=3A_DRM_DP_helper?=
- =?utf-8?q?_for_reading_Ignore_MSA_from_DPCD?=
+Content-Disposition: inline
+In-Reply-To: <20200312011631.15262-1-daniele.ceraolospurio@intel.com>
+Subject: Re: [Intel-gfx] [PATCH v2 0/6] Re-org uC debugfs files and move
+ them under GT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,30 +48,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Daniele,
 
-Series: series starting with [v2,1/2] drm/dp: DRM DP helper for reading Ignore MSA from DPCD
-URL   : https://patchwork.freedesktop.org/series/75042/
-State : warning
+On Wed, Mar 11, 2020 at 06:16:25PM -0700, Daniele Ceraolo Spurio wrote:
+> Rebased on top of Andi's patch. Note that some discussion is still
+> ongoing on that patch.
+> 
+> Also dropped the patch that caused a const->non-const conversion and
+> fixed a couple of bugs:
+> - keep printing HUC_STATUS register
+> - correcly set permissions for writable debugfs files
+> 
+> Cc: Andi Shyti <andi.shyti@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com> 
+> 
+> Andi Shyti (1):
+>   drm/i915/gt: allow setting generic data pointer
+> 
+> Daniele Ceraolo Spurio (5):
+>   drm/i915/guc: drop stage_pool debugfs
+>   drm/i915/huc: make "support huc" reflect HW capabilities
+>   drm/i915/debugfs: move uC printers and update debugfs file names
+>   drm/i915/uc: Move uC debugfs to its own folder under GT
+>   drm/i915/uc: do not free err log on uc_fini
 
-== Summary ==
+is this series getting in at some point or shall I take this
+series over?
 
-$ dim checkpatch origin/drm-tip
-b3e66fa48b38 drm/dp: DRM DP helper for reading Ignore MSA from DPCD
--:11: WARNING:TYPO_SPELLING: 'paramaters' may be misspelled - perhaps 'parameters'?
-#11: 
-ignore the MSA video timing paramaters and its ability to support
-
-total: 0 errors, 1 warnings, 0 checks, 14 lines checked
-f456eddc0f15 drm/i915/dp: Attach and set drm connector VRR property
-
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
