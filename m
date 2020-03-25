@@ -2,38 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC59819303A
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 19:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B4119303B
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 19:20:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A06C0897F0;
-	Wed, 25 Mar 2020 18:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12176E1D8;
+	Wed, 25 Mar 2020 18:20:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1F08897F0
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 18:20:20 +0000 (UTC)
-IronPort-SDR: s3jHuDb0fIalg5j7Y8YykogG8Di8lQJiRJPBL45E0118S4Jg+vM8diOs3oEdw607VO3RgIhNsu
- J8HLSl0YV1TA==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5C736E1D8;
+ Wed, 25 Mar 2020 18:20:47 +0000 (UTC)
+IronPort-SDR: x1e3gsmSYJHZTKaqSg4d9Ot9jvzsAHHPsTBPuJrtz2Hv2t1t2CiMjGMvNPdAPWh3gaNAgeazCc
+ U3jCUgHM8svA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2020 11:20:20 -0700
-IronPort-SDR: HWD3kn+T5Ct+BXuJ6I862AmECec58v8i6GRivVzaCFFYoEZxuRL7UUpUM7Imy2X0OfiHFL0Ucl
- zEJWvOwFtisA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="240700624"
-Received: from adixit-mobl.amr.corp.intel.com (HELO localhost.localdomain)
- ([10.251.139.88])
- by orsmga008.jf.intel.com with ESMTP; 25 Mar 2020 11:20:19 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2020 11:20:19 -0700
-Message-Id: <98393a3bbd2652886d895e1c3250e43c6e0f1a24.1585160174.git.ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.25.2
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 11:20:47 -0700
+IronPort-SDR: Qq+zrMg+AgOBQf3wjCvW9zqjBhg9vKkLE4Tm2d8ABIPecQfVtooWdr9oHg0guRmlVWYlULGPdZ
+ Vy9JqJqwS0Sw==
+X-IronPort-AV: E=Sophos;i="5.72,305,1580803200"; d="scan'208";a="393709857"
+Received: from yrahamim-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.255.194.58])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 11:20:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ DRI Development <dri-devel@lists.freedesktop.org>
+In-Reply-To: <20200323144950.3018436-3-daniel.vetter@ffwll.ch>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
+ <20200323144950.3018436-3-daniel.vetter@ffwll.ch>
+Date: Wed, 25 Mar 2020 20:20:38 +0200
+Message-ID: <87o8ski9e1.fsf@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for small
- user read buffers
+Subject: Re: [Intel-gfx] [PATCH 02/51] drm/i915: Don't clear drvdata in
+ ->release
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,135 +50,70 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel.vetter@intel.com>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is wrong to block the user thread in the next poll when OA data is
-already available which could not fit in the user buffer provided in
-the previous read. In several cases the exact user buffer size is not
-known. Blocking user space in poll can lead to data loss when the
-buffer size used is smaller than the available data.
+On Mon, 23 Mar 2020, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
+> For two reasons:
+>
+> - The driver core clears this already for us after we're unloaded in
+>   __device_release_driver().
+>
+> - It's way too late, the drm_device ->release callback might massively
+>   outlive the underlying physical device, since a drm_device can't be
 
-This change fixes this issue and allows user space to read all OA data
-even when using a buffer size smaller than the available data using
-multiple non-blocking reads rather than staying blocked in poll till
-the next timer interrupt.
+*can be*?
 
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
----
- drivers/gpu/drm/i915/i915_perf.c | 62 ++++++--------------------------
- 1 file changed, 11 insertions(+), 51 deletions(-)
+>   kept alive by open drm_file or well really anything else userspace
+>   is still hanging onto. So if we clear this ourselves, we should
+>   clear it in the pci ->remove callback, not in the drm_device
+>   ->relase callback.
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 3222f6cd8255..c1a47c030941 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2957,49 +2957,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
- 		gen8_update_reg_state_unlocked(ce, stream);
- }
- 
--/**
-- * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
-- * @stream: An i915 perf stream
-- * @file: An i915 perf stream file
-- * @buf: destination buffer given by userspace
-- * @count: the number of bytes userspace wants to read
-- * @ppos: (inout) file seek position (unused)
-- *
-- * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
-- * ensure that if we've successfully copied any data then reporting that takes
-- * precedence over any internal error status, so the data isn't lost.
-- *
-- * For example ret will be -ENOSPC whenever there is more buffered data than
-- * can be copied to userspace, but that's only interesting if we weren't able
-- * to copy some data because it implies the userspace buffer is too small to
-- * receive a single record (and we never split records).
-- *
-- * Another case with ret == -EFAULT is more of a grey area since it would seem
-- * like bad form for userspace to ask us to overrun its buffer, but the user
-- * knows best:
-- *
-- *   http://yarchive.net/comp/linux/partial_reads_writes.html
-- *
-- * Returns: The number of bytes copied or a negative error code on failure.
-- */
--static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
--				     struct file *file,
--				     char __user *buf,
--				     size_t count,
--				     loff_t *ppos)
--{
--	/* Note we keep the offset (aka bytes read) separate from any
--	 * error status so that the final check for whether we return
--	 * the bytes read with a higher precedence than any error (see
--	 * comment below) doesn't need to be handled/duplicated in
--	 * stream->ops->read() implementations.
--	 */
--	size_t offset = 0;
--	int ret = stream->ops->read(stream, buf, count, &offset);
--
--	return offset ?: (ret ?: -EAGAIN);
--}
--
- /**
-  * i915_perf_read - handles read() FOP for i915 perf stream FDs
-  * @file: An i915 perf stream file
-@@ -3025,6 +2982,8 @@ static ssize_t i915_perf_read(struct file *file,
- {
- 	struct i915_perf_stream *stream = file->private_data;
- 	struct i915_perf *perf = stream->perf;
-+	size_t offset = 0;
-+	int __ret;
- 	ssize_t ret;
- 
- 	/* To ensure it's handled consistently we simply treat all reads of a
-@@ -3048,16 +3007,18 @@ static ssize_t i915_perf_read(struct file *file,
- 				return ret;
- 
- 			mutex_lock(&perf->lock);
--			ret = i915_perf_read_locked(stream, file,
--						    buf, count, ppos);
-+			__ret = stream->ops->read(stream, buf, count, &offset);
- 			mutex_unlock(&perf->lock);
- 		} while (ret == -EAGAIN);
- 	} else {
- 		mutex_lock(&perf->lock);
--		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
-+		__ret = stream->ops->read(stream, buf, count, &offset);
- 		mutex_unlock(&perf->lock);
- 	}
- 
-+	/* Possible values for __ret are 0, -EFAULT, -ENOSPC, -EAGAIN, ... */
-+	ret = offset ?: (__ret ?: -EAGAIN);
-+
- 	/* We allow the poll checking to sometimes report false positive EPOLLIN
- 	 * events where we might actually report EAGAIN on read() if there's
- 	 * not really any data available. In this situation though we don't
-@@ -3065,13 +3026,12 @@ static ssize_t i915_perf_read(struct file *file,
- 	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
- 	 * effectively ensures we back off until the next hrtimer callback
- 	 * before reporting another EPOLLIN event.
-+	 * The exception to this is if ops->read() returned -ENOSPC which means
-+	 * that more OA data is available than could fit in the user provided
-+	 * buffer. In this case we want the next poll() call to not block.
- 	 */
--	if (ret >= 0 || ret == -EAGAIN) {
--		/* Maybe make ->pollin per-stream state if we support multiple
--		 * concurrent streams in the future.
--		 */
-+	if ((ret > 0 || ret == -EAGAIN) && __ret != -ENOSPC)
- 		stream->pollin = false;
--	}
- 
- 	return ret;
- }
+->release
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+>
+> Looking at git history this was fixed in the driver core with
+>
+> commit 0998d0631001288a5974afc0b2a5f568bcdecb4d
+> Author: Hans de Goede <hdegoede@redhat.com>
+> Date:   Wed May 23 00:09:34 2012 +0200
+>
+>     device-core: Ensure drvdata = NULL when no driver is bound
+>
+> v2: Cite the core fix in the commit message (Chris).
+>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_drv.c | 3 ---
+>  1 file changed, 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
+> index 48ba37e35bea..4792051e9e2e 100644
+> --- a/drivers/gpu/drm/i915/i915_drv.c
+> +++ b/drivers/gpu/drm/i915/i915_drv.c
+> @@ -909,9 +909,6 @@ static void i915_driver_destroy(struct drm_i915_private *i915)
+>  
+>  	drm_dev_fini(&i915->drm);
+>  	kfree(i915);
+> -
+> -	/* And make sure we never chase our dangling pointer from pci_dev */
+> -	pci_set_drvdata(pdev, NULL);
+>  }
+>  
+>  /**
+
 -- 
-2.25.2
-
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
