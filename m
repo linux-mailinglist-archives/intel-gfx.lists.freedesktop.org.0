@@ -1,62 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6605192049
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 05:59:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 108BB192221
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2020 09:10:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54E196E0FE;
-	Wed, 25 Mar 2020 04:59:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92E7D6E11C;
+	Wed, 25 Mar 2020 08:10:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com
- [IPv6:2a00:1450:4864:20::442])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3E56E05F;
- Wed, 25 Mar 2020 04:59:45 +0000 (UTC)
-Received: by mail-wr1-x442.google.com with SMTP id a25so1345250wrd.0;
- Tue, 24 Mar 2020 21:59:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=sender:date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to:user-agent;
- bh=h4KOauMe4v1I9pCuRQdOG97Qu/heRc/6J7SU7o8yNwE=;
- b=eym7r4h8AfIsMrgo04iccRS6vIxpRq/GGv4kov4LTgdKGrwEQ7NH5p96msOECxq/Km
- PFH2vIUzNv06GEqB6wtynYt0kuEoT8qZihcaMl24tj6Tk2AOfzlAwPrvl42qfw4f+4BA
- mwcxhRe6qd2i16ficvpLPTPPUAmI6dbtwnpkduuMnFQJMWXpnkJIG2YpPdAjQzG+7JD2
- /LEVW3fOt4bpK1vkzUH2I7xJO0pGRlO83VAENk6A01kvSi5QthsmEOPPw1IAF2Pn84tP
- Nn4vjTJJXt8B1LyLl6/HuK93OxneZMzcfL27zwzGfymxQnQYiRkIQ5350pLXWmGqam49
- sR4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
- :references:mime-version:content-disposition:in-reply-to:user-agent;
- bh=h4KOauMe4v1I9pCuRQdOG97Qu/heRc/6J7SU7o8yNwE=;
- b=GxlZgwoa1vC5ZtPkDq0TFpdoqh4EZ/pUkIyHjuQ/u6rfQa6rdCtxgSmlnw0utueVES
- 8gJI6DEST6lBTpgnGI81kks5go2pqzeSfcaDBlHH6Mr5kBGQCs+Bc2F8Aj1Rco8Inel6
- rrOkSInYUcRccH7O9uQXzzEOOHBo3B7RWNkfmEMq23u3gvdSQ6+k8cSHwJWD/aArQ+ic
- MCit+equFjnQf3MhmxgW1ZgM165lrejoDWPBibhLCJLSPx5W/TsJjb5xzLz4KBKPs6Ds
- 8CsluqfcczHF0wau4c6CPtlsit8VIWM8Py8iX2zyH/9SSvUtW2jdEVYyxFoFSbQXCstZ
- rGsQ==
-X-Gm-Message-State: ANhLgQ32y9L+/iyfzSXAHmUYJx+AcxWd8PM4EMWy7o0h6CNFBFmKB4d8
- lXw5Z/fBHmQ/VzeOwzyHWJo=
-X-Google-Smtp-Source: ADFU+vsMr8RTd3Hle0zy0eB1BsZBBUecnZChYZPKh6yx0k9aeumjW3wG1yR68IBbypixPwr4XlixZw==
-X-Received: by 2002:a5d:474b:: with SMTP id o11mr1225073wrs.4.1585112383933;
- Tue, 24 Mar 2020 21:59:43 -0700 (PDT)
-Received: from gmail.com (54033286.catv.pool.telekom.hu. [84.3.50.134])
- by smtp.gmail.com with ESMTPSA id p16sm7149295wmi.40.2020.03.24.21.59.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Mar 2020 21:59:43 -0700 (PDT)
-Date: Wed, 25 Mar 2020 05:59:40 +0100
-From: Ingo Molnar <mingo@kernel.org>
-To: Masahiro Yamada <masahiroy@kernel.org>
-Message-ID: <20200325045940.GA24974@gmail.com>
-References: <20200324084821.29944-1-masahiroy@kernel.org>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9490B6E11C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 08:10:03 +0000 (UTC)
+IronPort-SDR: DHSVv9SMDV6TUlqb5yJH+qjyBNVu2X1N3zH6bAOfoPe7d/GR17uycZTVplweEHu7EK3xRI/V6G
+ uI5OdMUScxvw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2020 01:10:02 -0700
+IronPort-SDR: tdw4LwBy17Oh+8XMZOcDlRdyaim+EhCXN+SLrjAkJai/4PfB06cvPgb72S+YYm9Jn7qPE4wb43
+ LHNjju3EpuOg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,303,1580803200"; d="scan'208";a="270729444"
+Received: from unknown (HELO intel.com) ([10.223.74.178])
+ by fmsmga004.fm.intel.com with ESMTP; 25 Mar 2020 01:09:59 -0700
+Date: Wed, 25 Mar 2020 13:30:05 +0530
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Message-ID: <20200325080004.GA13323@intel.com>
+References: <20200324132530.6204-1-anshuman.gupta@intel.com>
+ <20200324132530.6204-3-anshuman.gupta@intel.com>
+ <878sjpbvh7.fsf@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200324084821.29944-1-masahiroy@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 00/16] x86,
- crypto: remove always-defined CONFIG_AS_* and cosolidate
- Kconfig/Makefiles
+In-Reply-To: <878sjpbvh7.fsf@intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 2/3] drm/i915: Add i915_lpsp_info debugfs
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,75 +49,232 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-doc@vger.kernel.org, NeilBrown <neilb@suse.de>,
- dri-devel@lists.freedesktop.org, "H . Peter Anvin" <hpa@zytor.com>,
- Peter Zijlstra <a.p.zijlstra@chello.nl>,
- Herbert Xu <herbert@gondor.apana.org.au>, Jonathan Corbet <corbet@lwn.net>,
- x86@kernel.org, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, intel-gfx@lists.freedesktop.org,
- linux-crypto@vger.kernel.org, Yuanhan Liu <yuanhan.liu@linux.intel.com>,
- Kees Cook <keescook@chromium.org>, linux-kbuild@vger.kernel.org,
- David Airlie <airlied@linux.ie>, Borislav Petkov <bp@alien8.de>,
- Thomas Gleixner <tglx@linutronix.de>,
- Linus Torvalds <torvalds@linux-foundation.org>, linux-kernel@vger.kernel.org,
- clang-built-linux@googlegroups.com, "David S . Miller" <davem@davemloft.net>
+Cc: intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ martin.peres@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-* Masahiro Yamada <masahiroy@kernel.org> wrote:
-
-> This series of cleanups was prompted by Linus:
-> https://lkml.org/lkml/2020/3/12/726
+On 2020-03-24 at 17:53:08 +0200, Jani Nikula wrote:
+> On Tue, 24 Mar 2020, Anshuman Gupta <anshuman.gupta@intel.com> wrote:
+> > New i915_pm_lpsp igt solution approach relies on connector specific
+> > debugfs attribute i915_lpsp_info, it exposes whether an output is
+> > capable of driving lpsp and exposes lpsp enablement info.
+> >
+> > v2:
+> > - CI fixup.
+> >
+> > Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_display_debugfs.c  | 104 ++++++++++++++++++
+> >  1 file changed, 104 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > index 424f4e52f783..eb9d88341d48 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> > @@ -9,6 +9,7 @@
+> >  #include "i915_debugfs.h"
+> >  #include "intel_csr.h"
+> >  #include "intel_display_debugfs.h"
+> > +#include "intel_display_power.h"
+> >  #include "intel_display_types.h"
+> >  #include "intel_dp.h"
+> >  #include "intel_fbc.h"
+> > @@ -611,6 +612,95 @@ static void intel_hdcp_info(struct seq_file *m,
+> >  	seq_puts(m, "\n");
+> >  }
+> >  
+> > +static bool intel_have_embedded_panel(struct drm_connector *connector)
+> > +{
+> > +	return connector->connector_type == DRM_MODE_CONNECTOR_DSI ||
+> > +		connector->connector_type == DRM_MODE_CONNECTOR_eDP;
 > 
-> First, this series drop always-on CONFIG_AS_* options.
-> Some of those options were introduced in old days.
-> For example, the check for CONFIG_AS_CFI dates back to 2006.
+> I know you don't care for this use case, but the function naming leads
+> one to believe this checks for at least LVDS panels too.
 > 
-> We raise the minimal tool versions from time to time.
-> Currently, we require binutils 2.21
-> (and we plan to bump it to 2.23 for v5.7-rc1).
+> > +}
+> > +
+> > +static bool intel_have_gen9_lpsp_panel(struct drm_connector *connector)
+> > +{
+> > +	return intel_have_embedded_panel(connector) ||
+> > +		connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort;
+> > +}
+> > +
+> > +static int
+> > +intel_lpsp_power_well_enabled(struct drm_i915_private *dev_priv,
+> > +			      enum i915_power_well_id power_well_id)
+> > +{
+> > +	struct i915_power_domains *power_domains = &dev_priv->power_domains;
+> > +	struct i915_power_well *power_well = NULL, *pw_itr;
+> > +	bool is_enabled;
+> > +
+> > +	mutex_lock(&power_domains->lock);
+> > +
+> > +	for_each_power_well(dev_priv, pw_itr)
+> > +		if (pw_itr->desc->id == power_well_id) {
+> > +			power_well = pw_itr;
+> > +			break;
+> > +		}
 > 
-> After cleaning away the old checks,
-> as-instr calls are moved to Kconfig from Makefiles.
-> (patch 11)
+> I don't think this code has any business looking inside the guts of the
+> power well code. I see that intel_hdcp.c does this kind of loop too, and
+> that *also* shouldn't be doing that.
 > 
-> This allows more Kconfig / Makefile cleanups.
-> Patch 12 is complex, but I double-checked it does the equivalent.
-> 
-> Patch 14 bumps the binutils version to 2.23,
-> and patch 15 removes more CONFIG_AS_* options.
-> 
-> I folded all relevanet patches into this series,
-> as suggested by Jason A. Donenfeld.
-> 
-> If x86 maintainers take care of this series, that's good.
-> 
-> If it is OK to queue this up to Kbuild tree,
-> I will send a pull request to Linus.
-> 
-> Thank you.
+> See intel_display_power_well_is_enabled(). Does what you want, and does
+> it correctly. So really, the whole intel_lpsp_power_well_enabled()
+> function shouldn't be added.
+Thanks Jani for review comments, actually at v1 version i had used 
+used intel_display_power_well_is_enabled,
+but i was getting below DMEAG_WARN on a CI run,
 
-LGTM. I've got these four from Jason A. Donenfeld queued up in 
-tip:WIP.x86/asm:
+"PM wakelock ref not held during HW access"
 
- bd5b1283e41c: ("crypto: Curve25519 - do not pollute dispatcher based on assembler")
- 829f32d78588: ("crypto: X86 - rework configuration, based on Kconfig")
- 95ef9f80ed63: ("x86/build: Probe assembler from Kconfig instead of Kbuild")
- 1651e700664b: ("x86: Fix bitops.h warning with a moved cast")
+Apperently it seemed to me intel_display_power_well_is_enabled() is meant for
+internal use in intel_display_power.c as it was not declared in header and it
+didn't held any PM wakeref.
 
-I suppose these might interact (maybe even conflict), and are topically 
-related.
+May be i require below sequence to use intel_display_power_well_is_enabled,
 
-Would you like to pull these into the kbuild tree? You can find them in:
+wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
+intel_display_power_well_is_enabled()
+intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
 
-   git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git WIP.x86/asm
-
-Thanks,
-
-	Ingo
+Please correct me if i am wrong here.
+> 
+> > +
+> > +	if (drm_WARN_ON(&dev_priv->drm, !power_well)) {
+> > +		mutex_unlock(&power_domains->lock);
+> > +		/* Assume that BIOS has enabled the power well*/
+> > +		return true;
+> > +	}
+> > +
+> > +	is_enabled = !!power_well->count;
+> > +	mutex_unlock(&power_domains->lock);
+> > +
+> > +	return is_enabled;
+> > +}
+> > +
+> > +static void
+> > +intel_lpsp_capable_info(struct seq_file *m, struct drm_connector *connector)
+> > +{
+> > +	struct intel_encoder *encoder =
+> > +			intel_attached_encoder(to_intel_connector(connector));
+> > +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> > +	bool lpsp_capable = false;
+> > +
+> > +	if (IS_TIGERLAKE(dev_priv) && encoder->port <= PORT_C) {
+> > +		lpsp_capable = true;
+> > +	} else if (INTEL_GEN(dev_priv) >= 11 && intel_have_embedded_panel(connector)) {
+> > +		lpsp_capable = true;
+> > +	} else if (INTEL_GEN(dev_priv) >= 9 && (encoder->port == PORT_A &&
+> > +		   intel_have_gen9_lpsp_panel(connector))) {
+> > +		lpsp_capable = true;
+> > +	} else if ((IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) &&
+> > +		   connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
+> > +		lpsp_capable = true;
+> > +	} else {
+> > +		seq_puts(m, "LPSP not supported\n");
+> > +		return;
+> > +	}
+> 
+> The whole if ladder above looks suspect, and I'm not sure your helpers
+> are helping here.
+> 
+> > +
+> > +	lpsp_capable ? seq_puts(m, "LPSP capable\n") : seq_puts(m, "LPSP incapable\n");
+> 
+> lpsp_capable is always true when you end up here.
+> 
+> > +}
+> > +
+> > +static void
+> > +intel_lpsp_enable_info(struct seq_file *m, struct drm_connector *connector)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+> > +	bool is_lpsp = false;
+> > +
+> > +	if (INTEL_GEN(dev_priv) >= 11) {
+> > +		is_lpsp = !intel_lpsp_power_well_enabled(dev_priv,
+> > +							 ICL_DISP_PW_3);
+> > +	} else if (INTEL_GEN(dev_priv) >= 9) {
+> > +		is_lpsp = !intel_lpsp_power_well_enabled(dev_priv,
+> > +							 SKL_DISP_PW_2);
+> > +	} else if (IS_HASWELL(dev_priv) || IS_BROADWELL(dev_priv)) {
+> > +		is_lpsp = !intel_lpsp_power_well_enabled(dev_priv,
+> > +							 HSW_DISP_PW_GLOBAL);
+> 
+> The abstraction should probably be to figure out the correct power well
+> id based on the platform, and then using the generic power well enabled
+> call.
+> 
+> > +	} else {
+> > +		seq_puts(m, "LPSP not supported\n");
+> 
+> The "LPSP not supported" case differs from lpsp capable. Huh?
+My bad while fixing regression on legacy platform i messed it,
+i will fix this.
+> 
+> > +		return;
+> > +	}
+> > +
+> > +	is_lpsp ? seq_puts(m, "LPSP enabled\n") : seq_puts(m, "LPSP disabled\n");
+> > +}
+> > +
+> >  static void intel_dp_info(struct seq_file *m,
+> >  			  struct intel_connector *intel_connector)
+> >  {
+> > @@ -1987,6 +2077,17 @@ static int i915_hdcp_sink_capability_show(struct seq_file *m, void *data)
+> >  }
+> >  DEFINE_SHOW_ATTRIBUTE(i915_hdcp_sink_capability);
+> >  
+> > +static int i915_lpsp_info_show(struct seq_file *m, void *data)
+> > +{
+> > +	struct drm_connector *connector = m->private;
+> > +
+> > +	intel_lpsp_capable_info(m, connector);
+> > +	intel_lpsp_enable_info(m, connector);
+> 
+> I'm not sure having these two separate do you any good. Probably would
+> help *not* separating these.
+> 
+> > +
+> > +	return 0;
+> > +}
+> > +DEFINE_SHOW_ATTRIBUTE(i915_lpsp_info);
+> > +
+> >  static int i915_dsc_fec_support_show(struct seq_file *m, void *data)
+> >  {
+> >  	struct drm_connector *connector = m->private;
+> > @@ -2130,5 +2231,8 @@ int intel_connector_debugfs_add(struct drm_connector *connector)
+> >  		debugfs_create_file("i915_dsc_fec_support", S_IRUGO, root,
+> >  				    connector, &i915_dsc_fec_support_fops);
+> >  
+> > +	debugfs_create_file("i915_lpsp_info", 0444, root,
+> > +			    connector, &i915_lpsp_info_fops);
+> 
+> The question is, why are you creating this for connectors that do not
+> and can not support lpsp to begin with? Your igt test should check for
+> the existence of the file anyway.
+igt checks for file existence and it will assert the subtest but this
+will also fail the test as earlier legacy platform were passing non-lpsp
+i915_pm_rpm test considering all non-edp paneld are non-lpsp
+https://patchwork.freedesktop.org/patch/358652/?series=74647&rev=4
+May be igt lib function i915_output_is_lpsp_capable() should return
+false for lgeacy platform and legacy connector,
+Please correct me if there is any other better way to handle that. 
+> 
+> BR,
+> Jani.
+> 
+> 
+> > +
+> >  	return 0;
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
