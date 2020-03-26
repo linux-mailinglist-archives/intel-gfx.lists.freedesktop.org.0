@@ -2,48 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F259194B69
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 23:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D9C194B99
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 23:35:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 416996E956;
-	Thu, 26 Mar 2020 22:15:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E646E955;
+	Thu, 26 Mar 2020 22:35:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21FD06E372;
- Thu, 26 Mar 2020 22:15:18 +0000 (UTC)
-IronPort-SDR: wlmQXy4IIjcc/35biYP2ojjlLiOd8Usiq0A+dcH204NlVkfUrTYJYHenWCSM0ucZovY6FXLzKu
- r9Tj3PX/L+4w==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 15:15:16 -0700
-IronPort-SDR: CKUk0FCouSsk7al6Cj8rQPk+zMLDVT1BC0SFC1EzauelJhK0bySNnImENlWjDo4/4SL+s6i+Y7
- qWoql0QiJ4nw==
-X-IronPort-AV: E=Sophos;i="5.72,309,1580803200"; d="scan'208";a="420877850"
-Received: from mschuste-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.32.130])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 15:15:12 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nathan Chancellor <natechancellor@gmail.com>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <20200326201158.GA30083@ubuntu-m2-xlarge-x86>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200214054706.33870-1-natechancellor@gmail.com>
- <87v9o965gg.fsf@intel.com>
- <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
- <87o8u1wfqs.fsf@intel.com> <ff302c03-d012-a80d-b818-b7feababb86b@daenzer.net>
- <CAKwvOdnaRG=7mib9vtWX4wkjQXHeUiioonTaZLStMVXfOOSUfw@mail.gmail.com>
- <20200326201158.GA30083@ubuntu-m2-xlarge-x86>
-Date: Fri, 27 Mar 2020 00:15:09 +0200
-Message-ID: <87r1xehifm.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7B596E366
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 22:35:31 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20706638-1500050 
+ for multiple; Thu, 26 Mar 2020 22:35:03 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Mar 2020 22:35:00 +0000
+Message-Id: <20200326223501.19654-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
- eb_relocate_vma
+Subject: [Intel-gfx] [PATCH 1/2] drm/i915/execlists: Prevent GPU death on
+ ELSP[1] promotion to idle context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,33 +37,180 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel =?utf-8?Q?D=C3=A4nzer?= <michel@daenzer.net>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Mar 2020, Nathan Chancellor <natechancellor@gmail.com> wrote:
-> This is the only warning on an x86_64 defconfig build. Apologies if we
-> are being too persistent or nagging but we need guidance from the i915
-> maintainers on which solution they would prefer so it can be picked up.
-> I understand you all are busy and I appreciate the work you all do but
-> I do not want this to fall between the cracks because it is annoying to
-> constantly see this warning.
+In what seems remarkably similar to the w/a required to not reload an
+idle context with HEAD==TAIL, it appears we must prevent the HW from
+switching to an idle context in ELSP[1], while simultaneously trying to
+preempt the HW to run another context and a continuation of the idle
+context (which is no longer idle).
 
-Apologies for the delay. As I replied first thing in this thread, this
-works for me. Thanks for the patch, pushed to drm-intel-next-queued.
+  process_csb: vecs0: cs-irq head=0, tail=1
+  process_csb: vecs0: csb[1]: status=0x00000882:0x00000020
+  trace_ports: vecs0: preempted { 8c0:30!, 0:0 }
+  trace_ports: vecs0: promote { 8b2:32!, 8c0:30 }
+  trace_ports: vecs0: submit { 8b8:32, 8c0:32 }
+  process_csb: vecs0: cs-irq head=1, tail=2
+  process_csb: vecs0: csb[2]: status=0x00000814:0x00000040
+  trace_ports: vecs0: completed { 8b2:32!, 8c0:30 }
+  process_csb: vecs0: cs-irq head=2, tail=5
+  process_csb: vecs0: csb[3]: status=0x00000812:0x00000020
+  trace_ports: vecs0: preempted { 8c0:30!, 0:0 }
+  trace_ports: vecs0: promote { 8b8:32!, 8c0:32 }
+  process_csb: vecs0: csb[4]: status=0x00000814:0x00000060
+  trace_ports: vecs0: completed { 8b8:32!, 8c0:32 }
+  process_csb: vecs0: csb[5]: status=0x00000818:0x00000020
+  trace_ports: vecs0: completed { 8c0:32, 0:0 }
+  process_csb: vecs0: ring:{start:0x00021000, head:03f8, tail:03f8, ctl:00000000, mode:00000200}
+  process_csb: vecs0: rq:{start:00021000, head:03c0, tail:0400, seqno:8c0:32, hwsp:30},
+  process_csb: vecs0: ctx:{start:00021000, head:03f8, tail:03f8},
+  process_csb: GEM_BUG_ON("context completed before request")
 
-BR,
-Jani.
+Fortunately, we just so happen to have a semaphore in place to prevent
+the ring HEAD from proceeding past the end of a request that we can use
+to fix the HEAD in position as we reprogram ELSP.
 
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1501
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 68 ++++++++++++++---------------
+ 1 file changed, 34 insertions(+), 34 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index b12355048501..132816235d8a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1854,7 +1854,7 @@ static inline void clear_ports(struct i915_request **ports, int count)
+ 	memset_p((void **)ports, NULL, count);
+ }
+ 
+-static void execlists_dequeue(struct intel_engine_cs *engine)
++static bool execlists_dequeue(struct intel_engine_cs *engine)
+ {
+ 	struct intel_engine_execlists * const execlists = &engine->execlists;
+ 	struct i915_request **port = execlists->pending;
+@@ -1928,13 +1928,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				     execlists->queue_priority_hint);
+ 			record_preemption(execlists);
+ 
+-			/*
+-			 * Don't let the RING_HEAD advance past the breadcrumb
+-			 * as we unwind (and until we resubmit) so that we do
+-			 * not accidentally tell it to go backwards.
+-			 */
+-			ring_set_paused(engine, 1);
+-
+ 			/*
+ 			 * Note that we have not stopped the GPU at this point,
+ 			 * so we are unwinding the incomplete requests as they
+@@ -1954,7 +1947,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				     last->sched.attr.priority,
+ 				     execlists->queue_priority_hint);
+ 
+-			ring_set_paused(engine, 1);
+ 			defer_active(engine);
+ 
+ 			/*
+@@ -1988,7 +1980,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * of timeslices, our queue might be.
+ 				 */
+ 				start_timeslice(engine);
+-				return;
++				return false;
+ 			}
+ 		}
+ 	}
+@@ -2021,9 +2013,10 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			}
+ 
+ 			if (last && !can_merge_rq(last, rq)) {
++				/* leave this for another sibling */
+ 				spin_unlock(&ve->base.active.lock);
+ 				start_timeslice(engine);
+-				return; /* leave this for another sibling */
++				return false;
+ 			}
+ 
+ 			ENGINE_TRACE(engine,
+@@ -2193,32 +2186,30 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * interrupt for secondary ports).
+ 	 */
+ 	execlists->queue_priority_hint = queue_prio(execlists);
++	if (!submit)
++		return false;
+ 
+-	if (submit) {
+-		*port = execlists_schedule_in(last, port - execlists->pending);
+-		execlists->switch_priority_hint =
+-			switch_prio(engine, *execlists->pending);
+-
+-		/*
+-		 * Skip if we ended up with exactly the same set of requests,
+-		 * e.g. trying to timeslice a pair of ordered contexts
+-		 */
+-		if (!memcmp(active, execlists->pending,
+-			    (port - execlists->pending + 1) * sizeof(*port))) {
+-			do
+-				execlists_schedule_out(fetch_and_zero(port));
+-			while (port-- != execlists->pending);
++	*port = execlists_schedule_in(last, port - execlists->pending);
++	execlists->switch_priority_hint =
++		switch_prio(engine, *execlists->pending);
+ 
+-			goto skip_submit;
+-		}
+-		clear_ports(port + 1, last_port - port);
++	/*
++	 * Skip if we ended up with exactly the same set of requests,
++	 * e.g. trying to timeslice a pair of ordered contexts
++	 */
++	if (!memcmp(active, execlists->pending,
++		    (port - execlists->pending + 1) * sizeof(*port))) {
++		do
++			execlists_schedule_out(fetch_and_zero(port));
++		while (port-- != execlists->pending);
+ 
+-		execlists_submit_ports(engine);
+-		set_preempt_timeout(engine, *active);
+-	} else {
+-skip_submit:
+-		ring_set_paused(engine, 0);
++		return false;
+ 	}
++	clear_ports(port + 1, last_port - port);
++
++	execlists_submit_ports(engine);
++	set_preempt_timeout(engine, *active);
++	return true;
+ }
+ 
+ static void
+@@ -2478,7 +2469,16 @@ static void __execlists_submission_tasklet(struct intel_engine_cs *const engine)
+ 	lockdep_assert_held(&engine->active.lock);
+ 	if (!READ_ONCE(engine->execlists.pending[0])) {
+ 		rcu_read_lock(); /* protect peeking at execlists->active */
+-		execlists_dequeue(engine);
++
++		/*
++		 * Don't let the RING_HEAD advance past the breadcrumb
++		 * as we unwind (and until we resubmit) so that we do
++		 * not accidentally tell it to go backwards.
++		 */
++		ring_set_paused(engine, 1);
++		if (!execlists_dequeue(engine))
++			ring_set_paused(engine, 0);
++
+ 		rcu_read_unlock();
+ 	}
+ }
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
