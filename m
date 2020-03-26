@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773FB193ABE
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 09:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8EE193AC6
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 09:24:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF036E2C8;
-	Thu, 26 Mar 2020 08:22:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 999E76E303;
+	Thu, 26 Mar 2020 08:24:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 227626E2C8;
- Thu, 26 Mar 2020 08:22:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1C5B2A010F;
- Thu, 26 Mar 2020 08:22:46 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 022996E2E6;
+ Thu, 26 Mar 2020 08:24:14 +0000 (UTC)
+IronPort-SDR: Bmw4M9msa7JEm9YKw+QAXqr4E7/vqB/Du/lv/tvwNqzx+hn6ocJGKFPNZ0g8VpwKpb+xlt09jx
+ WZw0EwFr1wFg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 01:24:14 -0700
+IronPort-SDR: 5SWx7LobP7Xk7vAZTAJX2qluD5fcl2KfCQrXaLbWi5S2WCQNBYGo4s5/hFX18gOYhnHfbYeuqC
+ pMs/3FbeTOdQ==
+X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="393901243"
+Received: from mschuste-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.252.32.130])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 01:24:07 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Masahiro Yamada <masahiroy@kernel.org>, linux-kbuild@vger.kernel.org
+In-Reply-To: <20200326080104.27286-10-masahiroy@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20200326080104.27286-1-masahiroy@kernel.org>
+ <20200326080104.27286-10-masahiroy@kernel.org>
+Date: Thu, 26 Mar 2020 10:24:04 +0200
+Message-ID: <87ftdvikwr.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shankar, Uma" <uma.shankar@intel.com>
-Date: Thu, 26 Mar 2020 08:22:46 -0000
-Message-ID: <158521096609.23001.17196512869617027381@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200326074928.10395-1-uma.shankar@intel.com>
-In-Reply-To: <20200326074928.10395-1-uma.shankar@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/display=3A_Fix_mode_private=5Fflags_comparison_at_atomic?=
- =?utf-8?q?=5Fcheck?=
+Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915: remove always-defined
+ CONFIG_AS_MOVNTDQA
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,96 +49,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@linux.ie>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
+ Peter Zijlstra <peterz@infradead.org>, Masahiro Yamada <masahiroy@kernel.org>,
+ x86@kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ clang-built-linux@googlegroups.com, Borislav Petkov <bp@alien8.de>,
+ "H . Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>,
+ intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 26 Mar 2020, Masahiro Yamada <masahiroy@kernel.org> wrote:
+> CONFIG_AS_MOVNTDQA was introduced by commit 0b1de5d58e19 ("drm/i915:
+> Use SSE4.1 movntdqa to accelerate reads from WC memory").
+>
+> We raise the minimal supported binutils version from time to time.
+> The last bump was commit 1fb12b35e5ff ("kbuild: Raise the minimum
+> required binutils version to 2.21").
+>
+> I confirmed the code in $(call as-instr,...) can be assembled by the
+> binutils 2.21 assembler and also by LLVM integrated assembler.
+>
+> Remove CONFIG_AS_MOVNTDQA, which is always defined.
+>
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
 
-Series: drm/i915/display: Fix mode private_flags comparison at atomic_check
-URL   : https://patchwork.freedesktop.org/series/75106/
-State : success
+Ack for merging this via whichever tree you see fit; please let me know
+if you want me to pick this up via drm-intel.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8190 -> Patchwork_17093
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17093/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17093 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2] ([fdo#103927] / [i915#1430] / [i915#656])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17093/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-u}:         [DMESG-FAIL][3] ([i915#656]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-tgl-u/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17093/fi-tgl-u/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-u2:          [INCOMPLETE][5] ([fdo#108569]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17093/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+BR,
+Jani.
 
 
-Participating hosts (40 -> 37)
-------------------------------
+> ---
+>
+> Changes in v2: None
+>
+>  drivers/gpu/drm/i915/Makefile      | 3 ---
+>  drivers/gpu/drm/i915/i915_memcpy.c | 5 -----
+>  2 files changed, 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index a1f2411aa21b..e559e53fc634 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -28,9 +28,6 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
+>  CFLAGS_i915_pci.o = $(call cc-disable-warning, override-init)
+>  CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
+>  
+> -subdir-ccflags-y += \
+> -	$(call as-instr,movntdqa (%eax)$(comma)%xmm0,-DCONFIG_AS_MOVNTDQA)
+> -
+>  subdir-ccflags-y += -I$(srctree)/$(src)
+>  
+>  # Please keep these build lists sorted!
+> diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
+> index fdd550405fd3..7b3b83bd5ab8 100644
+> --- a/drivers/gpu/drm/i915/i915_memcpy.c
+> +++ b/drivers/gpu/drm/i915/i915_memcpy.c
+> @@ -35,7 +35,6 @@
+>  
+>  static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
+>  
+> -#ifdef CONFIG_AS_MOVNTDQA
+>  static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
+>  {
+>  	kernel_fpu_begin();
+> @@ -93,10 +92,6 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
+>  
+>  	kernel_fpu_end();
+>  }
+> -#else
+> -static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len) {}
+> -static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len) {}
+> -#endif
+>  
+>  /**
+>   * i915_memcpy_from_wc: perform an accelerated *aligned* read from WC
 
-  Additional (8): fi-glk-dsi fi-ilk-650 fi-ivb-3770 fi-elk-e7500 fi-bsw-kefka fi-blb-e6850 fi-bsw-nick fi-snb-2600 
-  Missing    (11): fi-bdw-5557u fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-cfl-8109u fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8190 -> Patchwork_17093
-
-  CI-20190529: 20190529
-  CI_DRM_8190: 73f711b364bc85c8a7189487c09431eb1f515ed0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5538: 47becbc9cd1fc7b1b78692f90fd3dcd5a9066965 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17093: c8956fda0a604ceb7e6400886acc9019ab4142e0 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-c8956fda0a60 drm/i915/display: Fix mode private_flags comparison at atomic_check
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17093/index.html
+-- 
+Jani Nikula, Intel Open Source Graphics Center
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
