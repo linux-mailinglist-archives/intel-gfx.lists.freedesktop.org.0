@@ -2,44 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D263193B7D
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 10:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39AF9193B86
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 10:12:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB2686E894;
-	Thu, 26 Mar 2020 09:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 835156E896;
+	Thu, 26 Mar 2020 09:12:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC15F6E894
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 09:09:37 +0000 (UTC)
-IronPort-SDR: /jOuNRR2jBt06SSpDcO5y2h1oglAReXNNORGqDyTkXUom4oraHtSl6LhfjqXoqO2M9u9N223Ai
- +a02dLBk15pw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 02:09:36 -0700
-IronPort-SDR: lZroT+RMKu4hWosViyqUKryFrTXtw4fJzXCBp2VU6LiKKtqh5sok41kGOG358Uxb59vdJY4Coa
- iy+h67JdD+ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="282433881"
-Received: from aschoene-mobl.ger.corp.intel.com (HELO [10.252.56.206])
- ([10.252.56.206])
- by fmsmga002.fm.intel.com with ESMTP; 26 Mar 2020 02:09:35 -0700
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
-References: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <60dd3f4f-7728-89eb-d582-19232967a8bb@intel.com>
-Date: Thu, 26 Mar 2020 11:09:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9B0996E895;
+ Thu, 26 Mar 2020 09:12:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9325CA00C7;
+ Thu, 26 Mar 2020 09:12:22 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for
- small user read buffers
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 26 Mar 2020 09:12:22 -0000
+Message-ID: <158521394257.23002.16436474327908306087@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200326082838.16357-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200326082838.16357-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/display=3A_Remove_useless_but_deadly_local?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,152 +38,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 26/03/2020 06:43, Ashutosh Dixit wrote:
-> It is wrong to block the user thread in the next poll when OA data is
-> already available which could not fit in the user buffer provided in
-> the previous read. In several cases the exact user buffer size is not
-> known. Blocking user space in poll can lead to data loss when the
-> buffer size used is smaller than the available data.
->
-> This change fixes this issue and allows user space to read all OA data
-> even when using a buffer size smaller than the available data using
-> multiple non-blocking reads rather than staying blocked in poll till
-> the next timer interrupt.
->
-> v2: Fix ret value for blocking reads (Umesh)
->
-> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->   drivers/gpu/drm/i915/i915_perf.c | 63 ++++++--------------------------
->   1 file changed, 12 insertions(+), 51 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-> index 3222f6cd8255..e2d083efba6d 100644
-> --- a/drivers/gpu/drm/i915/i915_perf.c
-> +++ b/drivers/gpu/drm/i915/i915_perf.c
-> @@ -2957,49 +2957,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
->   		gen8_update_reg_state_unlocked(ce, stream);
->   }
->   
-> -/**
-> - * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
-> - * @stream: An i915 perf stream
-> - * @file: An i915 perf stream file
-> - * @buf: destination buffer given by userspace
-> - * @count: the number of bytes userspace wants to read
-> - * @ppos: (inout) file seek position (unused)
-> - *
-> - * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
-> - * ensure that if we've successfully copied any data then reporting that takes
-> - * precedence over any internal error status, so the data isn't lost.
-> - *
-> - * For example ret will be -ENOSPC whenever there is more buffered data than
-> - * can be copied to userspace, but that's only interesting if we weren't able
-> - * to copy some data because it implies the userspace buffer is too small to
-> - * receive a single record (and we never split records).
-> - *
-> - * Another case with ret == -EFAULT is more of a grey area since it would seem
-> - * like bad form for userspace to ask us to overrun its buffer, but the user
-> - * knows best:
-> - *
-> - *   http://yarchive.net/comp/linux/partial_reads_writes.html
-> - *
-> - * Returns: The number of bytes copied or a negative error code on failure.
-> - */
-> -static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
-> -				     struct file *file,
-> -				     char __user *buf,
-> -				     size_t count,
-> -				     loff_t *ppos)
-> -{
-> -	/* Note we keep the offset (aka bytes read) separate from any
-> -	 * error status so that the final check for whether we return
-> -	 * the bytes read with a higher precedence than any error (see
-> -	 * comment below) doesn't need to be handled/duplicated in
-> -	 * stream->ops->read() implementations.
-> -	 */
-> -	size_t offset = 0;
-> -	int ret = stream->ops->read(stream, buf, count, &offset);
-> -
-> -	return offset ?: (ret ?: -EAGAIN);
-> -}
-> -
->   /**
->    * i915_perf_read - handles read() FOP for i915 perf stream FDs
->    * @file: An i915 perf stream file
-> @@ -3025,6 +2982,8 @@ static ssize_t i915_perf_read(struct file *file,
->   {
->   	struct i915_perf_stream *stream = file->private_data;
->   	struct i915_perf *perf = stream->perf;
-> +	size_t offset = 0;
-> +	int __ret;
->   	ssize_t ret;
->   
->   	/* To ensure it's handled consistently we simply treat all reads of a
-> @@ -3048,16 +3007,19 @@ static ssize_t i915_perf_read(struct file *file,
->   				return ret;
->   
->   			mutex_lock(&perf->lock);
-> -			ret = i915_perf_read_locked(stream, file,
-> -						    buf, count, ppos);
-> +			__ret = stream->ops->read(stream, buf, count, &offset);
-> +			ret = offset ?: (__ret ?: -EAGAIN);
->   			mutex_unlock(&perf->lock);
->   		} while (ret == -EAGAIN);
->   	} else {
->   		mutex_lock(&perf->lock);
-> -		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
-> +		__ret = stream->ops->read(stream, buf, count, &offset);
-> +		ret = offset ?: (__ret ?: -EAGAIN);
->   		mutex_unlock(&perf->lock);
->   	}
->   
-> +	/* Possible values for __ret are 0, -EFAULT, -ENOSPC, -EAGAIN, ... */
-> +
->   	/* We allow the poll checking to sometimes report false positive EPOLLIN
->   	 * events where we might actually report EAGAIN on read() if there's
->   	 * not really any data available. In this situation though we don't
-> @@ -3065,13 +3027,12 @@ static ssize_t i915_perf_read(struct file *file,
->   	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
->   	 * effectively ensures we back off until the next hrtimer callback
->   	 * before reporting another EPOLLIN event.
-> +	 * The exception to this is if ops->read() returned -ENOSPC which means
-> +	 * that more OA data is available than could fit in the user provided
-> +	 * buffer. In this case we want the next poll() call to not block.
->   	 */
-> -	if (ret >= 0 || ret == -EAGAIN) {
-> -		/* Maybe make ->pollin per-stream state if we support multiple
-> -		 * concurrent streams in the future.
-> -		 */
-> +	if ((ret > 0 || ret == -EAGAIN) && __ret != -ENOSPC)
->   		stream->pollin = false;
-> -	}
->   
->   	return ret;
->   }
+== Series Details ==
 
-I think this reset of the pollin field is in the wrong place in the driver.
+Series: drm/i915/display: Remove useless but deadly local
+URL   : https://patchwork.freedesktop.org/series/75109/
+State : success
 
-The decision of whether pollin is true/false should be based off the 
-difference between head/tail pointers.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8190 -> Patchwork_17094
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17094/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17094 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-guc:         [PASS][1] -> [INCOMPLETE][2] ([fdo#108569])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17094/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [PASS][3] -> [DMESG-WARN][4] ([IGT#4])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17094/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-u}:         [DMESG-FAIL][5] ([i915#656]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-tgl-u/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17094/fi-tgl-u/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
 
 
-In my opinion the best place to do this in at the end of 
-gen7/8_append_oa_reports functions, under the stream->oa_buffer.ptr_lock.
+Participating hosts (40 -> 41)
+------------------------------
 
-If everything has been read up to the tail pointer, then there is 
-nothing to wake up userspace for, otherwise leave pollin untouched.
+  Additional (9): fi-glk-dsi fi-ilk-650 fi-gdg-551 fi-ivb-3770 fi-elk-e7500 fi-bsw-kefka fi-blb-e6850 fi-bsw-nick fi-snb-2600 
+  Missing    (8): fi-hsw-4200u fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-cfl-8109u fi-byt-clapper fi-bdw-samus 
 
 
--Lionel
+Build changes
+-------------
 
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8190 -> Patchwork_17094
+
+  CI-20190529: 20190529
+  CI_DRM_8190: 73f711b364bc85c8a7189487c09431eb1f515ed0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5538: 47becbc9cd1fc7b1b78692f90fd3dcd5a9066965 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17094: 007816da9e131891dace85d46c9bcc3c2ce4deac @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+007816da9e13 drm/i915/display: Remove useless but deadly local
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17094/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
