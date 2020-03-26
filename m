@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7295B193B39
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 09:43:22 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D263193B7D
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 10:09:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE406E0DB;
-	Thu, 26 Mar 2020 08:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB2686E894;
+	Thu, 26 Mar 2020 09:09:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05B2A6E0DB
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 08:43:18 +0000 (UTC)
-IronPort-SDR: XL6yqoG3Bx34dIAfitNDhVeG3QmIcHesihFcizmA4i6K/QlQtvoniKizd/SMHXlmpHXXlDjj+J
- jK4RqTHRUJ1A==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC15F6E894
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 09:09:37 +0000 (UTC)
+IronPort-SDR: /jOuNRR2jBt06SSpDcO5y2h1oglAReXNNORGqDyTkXUom4oraHtSl6LhfjqXoqO2M9u9N223Ai
+ +a02dLBk15pw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 01:43:18 -0700
-IronPort-SDR: 1F/BOCR1/thHynU4oCiY1FojYlZF1Ac2w8vrZRh6jRMmvSM+vmt+9VVCL1oZ6JbS4KVHh0GnE6
- ksEwacmPDFNw==
-X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="420616653"
-Received: from mschuste-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.32.130])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 01:43:16 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200326082838.16357-1-chris@chris-wilson.co.uk>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200326082838.16357-1-chris@chris-wilson.co.uk>
-Date: Thu, 26 Mar 2020 10:43:12 +0200
-Message-ID: <87d08zik0v.fsf@intel.com>
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 02:09:36 -0700
+IronPort-SDR: lZroT+RMKu4hWosViyqUKryFrTXtw4fJzXCBp2VU6LiKKtqh5sok41kGOG358Uxb59vdJY4Coa
+ iy+h67JdD+ww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="282433881"
+Received: from aschoene-mobl.ger.corp.intel.com (HELO [10.252.56.206])
+ ([10.252.56.206])
+ by fmsmga002.fm.intel.com with ESMTP; 26 Mar 2020 02:09:35 -0700
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <60dd3f4f-7728-89eb-d582-19232967a8bb@intel.com>
+Date: Thu, 26 Mar 2020 11:09:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Remove useless but deadly
- local
+In-Reply-To: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for
+ small user read buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,44 +52,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Wambui Karuga <wambui.karugax@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gVGh1LCAyNiBNYXIgMjAyMCwgQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxzb24uY28u
-dWs+IHdyb3RlOgo+IEJld2FyZSBkZXJlZmVyZW5jaW5nIHRoZSBOVUxMIHBvaW50ZXIgcHJpb3Ig
-dG8gY2hlY2tpbmcgZm9yIGl0cwo+IGV4aXN0ZW5jZS4KCkh1aCwgSSBkb24ndCBzZWUgdGhlIGZh
-aWx1cmUgbW9kZS4gUGxlYXNlIGVubGlnaHRlbiBtZS4KCkJSLApKYW5pLgoKPgo+IEZpeGVzOiA0
-MTkxOTA0MjljZDEgKCJkcm0vaTkxNS9oZG1pOiB1c2Ugc3RydWN0IGRybV9kZXZpY2UgYmFzZWQg
-bG9nZ2luZyIpCj4gU2lnbmVkLW9mZi1ieTogQ2hyaXMgV2lsc29uIDxjaHJpc0BjaHJpcy13aWxz
-b24uY28udWs+Cj4gQ2M6IFdhbWJ1aSBLYXJ1Z2EgPHdhbWJ1aS5rYXJ1Z2F4QGdtYWlsLmNvbT4K
-PiBDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVsLmNvbT4KPiBDYzogIlZpbGxlIFN5
-cmrDpGzDpCIgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyB8IDUgKystLS0KPiAgMSBmaWxlIGNo
-YW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPgo+IGRpZmYgLS1naXQgYS9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyBiL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfaGRtaS5jCj4gaW5kZXggMzk1ZGMxOTJiYWEwLi4wMDc2YWJj
-NjM4NTEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9o
-ZG1pLmMKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwo+
-IEBAIC02OTEsNyArNjkxLDYgQEAgdm9pZCBpbnRlbF9yZWFkX2luZm9mcmFtZShzdHJ1Y3QgaW50
-ZWxfZW5jb2RlciAqZW5jb2RlciwKPiAgCQkJICB1bmlvbiBoZG1pX2luZm9mcmFtZSAqZnJhbWUp
-Cj4gIHsKPiAgCXN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmludGVsX2RpZ19wb3J0ID0gZW5j
-X3RvX2RpZ19wb3J0KGVuY29kZXIpOwo+IC0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUg
-PSB0b19pOTE1KGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuZGV2KTsKPiAgCXU4IGJ1ZmZlcltW
-SURFT19ESVBfREFUQV9TSVpFXTsKPiAgCWludCByZXQ7Cj4gIAo+IEBAIC03MDgsMTMgKzcwNywx
-MyBAQCB2b2lkIGludGVsX3JlYWRfaW5mb2ZyYW1lKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNv
-ZGVyLAo+ICAJLyogc2VlIGNvbW1lbnQgYWJvdmUgZm9yIHRoZSByZWFzb24gZm9yIHRoaXMgb2Zm
-c2V0ICovCj4gIAlyZXQgPSBoZG1pX2luZm9mcmFtZV91bnBhY2soZnJhbWUsIGJ1ZmZlciArIDEs
-IHNpemVvZihidWZmZXIpIC0gMSk7Cj4gIAlpZiAocmV0KSB7Cj4gLQkJZHJtX2RiZ19rbXMoJmk5
-MTUtPmRybSwKPiArCQlkcm1fZGJnX2ttcyhlbmNvZGVyLT5iYXNlLmRldiwKPiAgCQkJICAgICJG
-YWlsZWQgdG8gdW5wYWNrIGluZm9mcmFtZSB0eXBlIDB4JTAyeFxuIiwgdHlwZSk7Cj4gIAkJcmV0
-dXJuOwo+ICAJfQo+ICAKPiAgCWlmIChmcmFtZS0+YW55LnR5cGUgIT0gdHlwZSkKPiAtCQlkcm1f
-ZGJnX2ttcygmaTkxNS0+ZHJtLAo+ICsJCWRybV9kYmdfa21zKGVuY29kZXItPmJhc2UuZGV2LAo+
-ICAJCQkgICAgIkZvdW5kIHRoZSB3cm9uZyBpbmZvZnJhbWUgdHlwZSAweCV4IChleHBlY3RlZCAw
-eCUwMngpXG4iLAo+ICAJCQkgICAgZnJhbWUtPmFueS50eXBlLCB0eXBlKTsKPiAgfQoKLS0gCkph
-bmkgTmlrdWxhLCBJbnRlbCBPcGVuIFNvdXJjZSBHcmFwaGljcyBDZW50ZXIKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlz
-dApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0
-b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On 26/03/2020 06:43, Ashutosh Dixit wrote:
+> It is wrong to block the user thread in the next poll when OA data is
+> already available which could not fit in the user buffer provided in
+> the previous read. In several cases the exact user buffer size is not
+> known. Blocking user space in poll can lead to data loss when the
+> buffer size used is smaller than the available data.
+>
+> This change fixes this issue and allows user space to read all OA data
+> even when using a buffer size smaller than the available data using
+> multiple non-blocking reads rather than staying blocked in poll till
+> the next timer interrupt.
+>
+> v2: Fix ret value for blocking reads (Umesh)
+>
+> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c | 63 ++++++--------------------------
+>   1 file changed, 12 insertions(+), 51 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index 3222f6cd8255..e2d083efba6d 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -2957,49 +2957,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+>   		gen8_update_reg_state_unlocked(ce, stream);
+>   }
+>   
+> -/**
+> - * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
+> - * @stream: An i915 perf stream
+> - * @file: An i915 perf stream file
+> - * @buf: destination buffer given by userspace
+> - * @count: the number of bytes userspace wants to read
+> - * @ppos: (inout) file seek position (unused)
+> - *
+> - * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
+> - * ensure that if we've successfully copied any data then reporting that takes
+> - * precedence over any internal error status, so the data isn't lost.
+> - *
+> - * For example ret will be -ENOSPC whenever there is more buffered data than
+> - * can be copied to userspace, but that's only interesting if we weren't able
+> - * to copy some data because it implies the userspace buffer is too small to
+> - * receive a single record (and we never split records).
+> - *
+> - * Another case with ret == -EFAULT is more of a grey area since it would seem
+> - * like bad form for userspace to ask us to overrun its buffer, but the user
+> - * knows best:
+> - *
+> - *   http://yarchive.net/comp/linux/partial_reads_writes.html
+> - *
+> - * Returns: The number of bytes copied or a negative error code on failure.
+> - */
+> -static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
+> -				     struct file *file,
+> -				     char __user *buf,
+> -				     size_t count,
+> -				     loff_t *ppos)
+> -{
+> -	/* Note we keep the offset (aka bytes read) separate from any
+> -	 * error status so that the final check for whether we return
+> -	 * the bytes read with a higher precedence than any error (see
+> -	 * comment below) doesn't need to be handled/duplicated in
+> -	 * stream->ops->read() implementations.
+> -	 */
+> -	size_t offset = 0;
+> -	int ret = stream->ops->read(stream, buf, count, &offset);
+> -
+> -	return offset ?: (ret ?: -EAGAIN);
+> -}
+> -
+>   /**
+>    * i915_perf_read - handles read() FOP for i915 perf stream FDs
+>    * @file: An i915 perf stream file
+> @@ -3025,6 +2982,8 @@ static ssize_t i915_perf_read(struct file *file,
+>   {
+>   	struct i915_perf_stream *stream = file->private_data;
+>   	struct i915_perf *perf = stream->perf;
+> +	size_t offset = 0;
+> +	int __ret;
+>   	ssize_t ret;
+>   
+>   	/* To ensure it's handled consistently we simply treat all reads of a
+> @@ -3048,16 +3007,19 @@ static ssize_t i915_perf_read(struct file *file,
+>   				return ret;
+>   
+>   			mutex_lock(&perf->lock);
+> -			ret = i915_perf_read_locked(stream, file,
+> -						    buf, count, ppos);
+> +			__ret = stream->ops->read(stream, buf, count, &offset);
+> +			ret = offset ?: (__ret ?: -EAGAIN);
+>   			mutex_unlock(&perf->lock);
+>   		} while (ret == -EAGAIN);
+>   	} else {
+>   		mutex_lock(&perf->lock);
+> -		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
+> +		__ret = stream->ops->read(stream, buf, count, &offset);
+> +		ret = offset ?: (__ret ?: -EAGAIN);
+>   		mutex_unlock(&perf->lock);
+>   	}
+>   
+> +	/* Possible values for __ret are 0, -EFAULT, -ENOSPC, -EAGAIN, ... */
+> +
+>   	/* We allow the poll checking to sometimes report false positive EPOLLIN
+>   	 * events where we might actually report EAGAIN on read() if there's
+>   	 * not really any data available. In this situation though we don't
+> @@ -3065,13 +3027,12 @@ static ssize_t i915_perf_read(struct file *file,
+>   	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
+>   	 * effectively ensures we back off until the next hrtimer callback
+>   	 * before reporting another EPOLLIN event.
+> +	 * The exception to this is if ops->read() returned -ENOSPC which means
+> +	 * that more OA data is available than could fit in the user provided
+> +	 * buffer. In this case we want the next poll() call to not block.
+>   	 */
+> -	if (ret >= 0 || ret == -EAGAIN) {
+> -		/* Maybe make ->pollin per-stream state if we support multiple
+> -		 * concurrent streams in the future.
+> -		 */
+> +	if ((ret > 0 || ret == -EAGAIN) && __ret != -ENOSPC)
+>   		stream->pollin = false;
+> -	}
+>   
+>   	return ret;
+>   }
+
+I think this reset of the pollin field is in the wrong place in the driver.
+
+The decision of whether pollin is true/false should be based off the 
+difference between head/tail pointers.
+
+
+In my opinion the best place to do this in at the end of 
+gen7/8_append_oa_reports functions, under the stream->oa_buffer.ptr_lock.
+
+If everything has been read up to the tail pointer, then there is 
+nothing to wake up userspace for, otherwise leave pollin untouched.
+
+
+-Lionel
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
