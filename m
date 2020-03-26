@@ -1,51 +1,37 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1B3193FCC
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 14:33:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDF63194062
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 14:52:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5952D6E8C8;
-	Thu, 26 Mar 2020 13:33:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10167898EA;
+	Thu, 26 Mar 2020 13:52:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com
- [IPv6:2607:f8b0:4864:20::242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC226E0DD
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 13:33:23 +0000 (UTC)
-Received: by mail-oi1-x242.google.com with SMTP id d3so875737oic.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 06:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=S97BsCL/dgbeyphd9w6z8W+7AQfrtvbaDy1tVRACBLI=;
- b=BvhUy9CfFQwd2jnrxzmsYUuj9QSt/hzcCK4Cht8aWbAiqQIUkj2Zs7grL++5am/KUN
- yPj+q8eHT+OetTZihqqMOXF5nhIgdOYW5AAlHLoYL+k6EBRoDjH062/Hp0ZcZh+jghQx
- gMlmnAZlYAx4Xoa1N6cLbs2qIL4cor8aELqps=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=S97BsCL/dgbeyphd9w6z8W+7AQfrtvbaDy1tVRACBLI=;
- b=A1mp9fwODPK1NQQUfpTbHUY66Ip77p3CIVQSXUqWX36nwsSe9xvDow8fS5pi7xzj6T
- qPn20SVGVKx1/DaygdYUmeRUQN6/ni0pbL0Qz7I0AzBiXeP7yhU05C9OhTfRVxn4M0DO
- xdBn4fJeLDrdD+ax6DfILt2vLZWgGiXV6BTUolgCMB+eGLLfIWbirNxr6Tz22pblSTtH
- nbNQVhDngfOzE0uwGvlKEhjwstewKRfFf67tInfOOj+njmbRK44R8AWgoeUv+Nd970ti
- Q2muyVIqZcDhKhfyndlrdEy6F4u7UXK3z1bmhcc3abf3oJd/0hDRg2LUX+2Kv+43Nj5u
- PwbA==
-X-Gm-Message-State: ANhLgQ2GIF/g6IanDVKObrbPAwxAxO2K8WGnFY5fMpdP+2gKewqFA65c
- +67l6V9b0bBMGa6DbpMcvpfYLHFPlY331lFBbB4jwA==
-X-Google-Smtp-Source: ADFU+vslgBo7yJoRvtWQG+5DS52cyhCN6BdxxsHJXUzgpf7+9qzD9tflvUTh/YuA4MVMskcrSJ4EGIJJmxW79/kRdJE=
-X-Received: by 2002:aca:be08:: with SMTP id o8mr1365oif.101.1585229602480;
- Thu, 26 Mar 2020 06:33:22 -0700 (PDT)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 038F7898EA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 13:51:58 +0000 (UTC)
+IronPort-SDR: fT957fOjtjzXeKcUb1QMc3CYr8KQGEtCjrdJ2sV3nZozSA+az4LWSBgPSFLIeiWnf/xkh/0/F7
+ Bg7JqJ4q2RRw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 06:51:58 -0700
+IronPort-SDR: 0ed6lASr2Isq2Hp1eHJoPqeYeAT2dmTdi9N4F83MCpWVy4uSxNiAagXKA3oVU22Lm7IPjKSf76
+ lfCxZTCfdYVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,308,1580803200"; d="scan'208";a="420707693"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga005.jf.intel.com with ESMTP; 26 Mar 2020 06:51:55 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Mar 2020 19:11:39 +0530
+Message-Id: <20200326134142.31997-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
-References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
- <20200323144950.3018436-9-daniel.vetter@ffwll.ch> <87zhc3gt2d.fsf@intel.com>
-In-Reply-To: <87zhc3gt2d.fsf@intel.com>
-From: Daniel Vetter <daniel.vetter@ffwll.ch>
-Date: Thu, 26 Mar 2020 14:33:11 +0100
-Message-ID: <CAKMK7uFVUwqtn=t7h4CQ_xjynK8O6CTCTMswNSYJqr5cq5G6rQ@mail.gmail.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [Intel-gfx] [PATCH 08/51] drm/i915: Use drmm_add_final_kfree
+Subject: [Intel-gfx] [PATCH v3 0/3] i915 lpsp support for lpsp igt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,278 +44,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>,
- Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
- DRI Development <dri-devel@lists.freedesktop.org>,
- Matthew Auld <matthew.auld@intel.com>, Daniel Vetter <daniel.vetter@intel.com>
+Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com, martin.peres@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 26, 2020 at 2:11 PM Jani Nikula <jani.nikula@linux.intel.com> wrote:
->
-> On Mon, 23 Mar 2020, Daniel Vetter <daniel.vetter@ffwll.ch> wrote:
-> > With this we can drop the final kfree from the release function.
-> >
-> > The mock device in the selftests needed it's pci_device split
-> > up from the drm_device. In the future we could simplify this again
-> > by allocating the pci_device as a managed allocation too.
-> >
-> > v2: I overlooked that i915_driver_destroy is also called in the
-> > unwind code of the error path. There we need a drm_dev_put.
-> > Similar for the mock object.
-> >
-> > Now the problem with that is that the drm_driver->release callbacks
-> > for both the real driver and the mock one assume everything has been
-> > set up. Hence going through that path for a partially set up driver
-> > will result in issues. Quickest fix is to disable the ->release() hook
-> > until the driver is fully initialized, and keep the onion unwinding.
-> > Long term would be cleanest to move everything over to drmm_ release
-> > actions, but that's a lot of work for a big driver like i915. Plus
-> > more core work needed first anyway.
-> >
-> > v3: Fix i915_drm pointer wrangling in mock_gem_device. Also switch
-> > over to start using drm_dev_put() to clean up even on the error path.
-> > Aside I think the current error path is leaking the allocation.
-> >
-> > v4: more fixes for intel-gfx-ci, some if it damage from v3 :-/
-> >
-> > Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Andi Shyti <andi.shyti@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Cc: Daniel Vetter <daniel.vetter@ffwll.ch>
-> > Cc: Abdiel Janulgue <abdiel.janulgue@linux.intel.com>
-> > Cc: intel-gfx@lists.freedesktop.org
->
-> Okay, I didn't find any holes in this, and while I wish I had more
-> confidence I checked all the corner cases, this is
->
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->
-> A couple of notes below, don't have to do anything about them. (Maybe
-> better *not* to do anything about them, to move this forward. ;)
->
-> > ---
-> >  drivers/gpu/drm/i915/i915_drv.c               | 10 ++++++-
-> >  drivers/gpu/drm/i915/i915_drv.h               |  3 ++
-> >  .../gpu/drm/i915/selftests/mock_gem_device.c  | 30 ++++++++++++++-----
-> >  3 files changed, 35 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.c b/drivers/gpu/drm/i915/i915_drv.c
-> > index 4792051e9e2e..481313536b5a 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.c
-> > +++ b/drivers/gpu/drm/i915/i915_drv.c
-> > @@ -43,6 +43,7 @@
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_ioctl.h>
-> >  #include <drm/drm_irq.h>
-> > +#include <drm/drm_managed.h>
-> >  #include <drm/drm_probe_helper.h>
-> >
-> >  #include "display/intel_acpi.h"
-> > @@ -890,6 +891,8 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >               return ERR_PTR(err);
-> >       }
-> >
-> > +     drmm_add_final_kfree(&i915->drm, i915);
-> > +
-> >       i915->drm.pdev = pdev;
-> >       pci_set_drvdata(pdev, i915);
-> >
-> > @@ -908,7 +911,6 @@ static void i915_driver_destroy(struct drm_i915_private *i915)
-> >       struct pci_dev *pdev = i915->drm.pdev;
-> >
-> >       drm_dev_fini(&i915->drm);
-> > -     kfree(i915);
-> >  }
-> >
-> >  /**
-> > @@ -992,6 +994,8 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >
-> >       i915_welcome_messages(i915);
-> >
-> > +     i915->do_release = true;
-> > +
->
-> This whole ->do_release thing is obviously a bummer. I did wonder if we
-> could set driver->release to NULL initially, and set it to the proper
-> thing here. It would make drm_dev_put() handle drm_dev_fini() internally
-> too.
->
-> Less obvious? I don't know.
+This series adds i915_lpsp_info connector debugfs.
+v3 has fixed some review comments on patch (2/3)
+and added RB tag on patch (3/3).
 
-Yeah it's not pretty, but I figured I'll go with obvious ugly than too
-clever for my own ugly. The trouble is that i915 is the only big
-driver bothers to correctly unwind everything in ->release, hence it's
-the one driver that really suffers through the valley of ugly here.
-All the others are more or less just terminally broken wrt lifetimes,
-so only get better. Or so simple (like the drivers I already fully
-clean up with this series) that I can get through the valley of ugly
-in one small series of 50 patches for all of them.
+Test-with: 20200326131929.23072-1-anshuman.gupta@intel.com
 
-> >       return 0;
-> >
-> >  out_cleanup_irq:
-> > @@ -1012,6 +1016,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
-> >  out_fini:
-> >       i915_probe_error(i915, "Device initialization failed (%d)\n", ret);
-> >       i915_driver_destroy(i915);
-> > +     drm_dev_put(&i915->drm);
->
-> Also wondered about throwing i915_driver_destroy away, and inlining the
-> drm_dev_fini()...
->
-> >       return ret;
-> >  }
-> >
-> > @@ -1051,6 +1056,9 @@ static void i915_driver_release(struct drm_device *dev)
-> >       struct drm_i915_private *dev_priv = to_i915(dev);
-> >       struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
-> >
-> > +     if (!dev_priv->do_release)
->
-> ...or, calling drm_dev_fini() in this branch, avoiding the need to call
-> it elsewhere.
->
-> *shrug*
->
-> All of it can be done afterwards, if deemed useful.
+Anshuman Gupta (3):
+  drm/i915: Power well id for ICL PG3
+  drm/i915: Add i915_lpsp_info debugfs
+  drm/i915: Add connector dbgfs for all connectors
 
-drm_dev_fini() will be gone a few patches later in the series. So at
-least that ugly disappears and is only for bisecting.
--Daniel
-
->
-> > +             return;
-> > +
-> >       disable_rpm_wakeref_asserts(rpm);
-> >
-> >       i915_gem_driver_release(dev_priv);
-> > diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> > index a7ea1d855359..7ae652723ed7 100644
-> > --- a/drivers/gpu/drm/i915/i915_drv.h
-> > +++ b/drivers/gpu/drm/i915/i915_drv.h
-> > @@ -821,6 +821,9 @@ struct i915_selftest_stash {
-> >  struct drm_i915_private {
-> >       struct drm_device drm;
-> >
-> > +     /* FIXME: Device release actions should all be moved to drmm_ */
-> > +     bool do_release;
-> > +
-> >       const struct intel_device_info __info; /* Use INTEL_INFO() to access. */
-> >       struct intel_runtime_info __runtime; /* Use RUNTIME_INFO() to access. */
-> >       struct intel_driver_caps caps;
-> > diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> > index 754d0eb6beaa..acf889e4b993 100644
-> > --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> > +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-> > @@ -25,6 +25,8 @@
-> >  #include <linux/pm_domain.h>
-> >  #include <linux/pm_runtime.h>
-> >
-> > +#include <drm/drm_managed.h>
-> > +
-> >  #include "gt/intel_gt.h"
-> >  #include "gt/intel_gt_requests.h"
-> >  #include "gt/mock_engine.h"
-> > @@ -55,6 +57,9 @@ static void mock_device_release(struct drm_device *dev)
-> >  {
-> >       struct drm_i915_private *i915 = to_i915(dev);
-> >
-> > +     if (!i915->do_release)
-> > +             goto out;
-> > +
-> >       mock_device_flush(i915);
-> >       intel_gt_driver_remove(&i915->gt);
-> >
-> > @@ -72,7 +77,9 @@ static void mock_device_release(struct drm_device *dev)
-> >       drm_mode_config_cleanup(&i915->drm);
-> >
-> >       drm_dev_fini(&i915->drm);
-> > +out:
-> >       put_device(&i915->drm.pdev->dev);
-> > +     i915->drm.pdev = NULL;
-> >  }
-> >
-> >  static struct drm_driver mock_driver = {
-> > @@ -114,9 +121,14 @@ struct drm_i915_private *mock_gem_device(void)
-> >       struct pci_dev *pdev;
-> >       int err;
-> >
-> > -     pdev = kzalloc(sizeof(*pdev) + sizeof(*i915), GFP_KERNEL);
-> > +     pdev = kzalloc(sizeof(*pdev), GFP_KERNEL);
-> >       if (!pdev)
-> > -             goto err;
-> > +             return NULL;
-> > +     i915 = kzalloc(sizeof(*i915), GFP_KERNEL);
-> > +     if (!i915) {
-> > +             kfree(pdev);
-> > +             return NULL;
-> > +     }
-> >
-> >       device_initialize(&pdev->dev);
-> >       pdev->class = PCI_BASE_CLASS_DISPLAY << 16;
-> > @@ -129,7 +141,6 @@ struct drm_i915_private *mock_gem_device(void)
-> >       pdev->dev.archdata.iommu = (void *)-1;
-> >  #endif
-> >
-> > -     i915 = (struct drm_i915_private *)(pdev + 1);
-> >       pci_set_drvdata(pdev, i915);
-> >
-> >       dev_pm_domain_set(&pdev->dev, &pm_domain);
-> > @@ -141,9 +152,13 @@ struct drm_i915_private *mock_gem_device(void)
-> >       err = drm_dev_init(&i915->drm, &mock_driver, &pdev->dev);
-> >       if (err) {
-> >               pr_err("Failed to initialise mock GEM device: err=%d\n", err);
-> > -             goto put_device;
-> > +             put_device(&pdev->dev);
-> > +             kfree(i915);
-> > +
-> > +             return NULL;
-> >       }
-> >       i915->drm.pdev = pdev;
-> > +     drmm_add_final_kfree(&i915->drm, i915);
-> >
-> >       intel_runtime_pm_init_early(&i915->runtime_pm);
-> >
-> > @@ -188,6 +203,8 @@ struct drm_i915_private *mock_gem_device(void)
-> >       __clear_bit(I915_WEDGED, &i915->gt.reset.flags);
-> >       intel_engines_driver_register(i915);
-> >
-> > +     i915->do_release = true;
-> > +
-> >       return i915;
-> >
-> >  err_context:
-> > @@ -199,8 +216,7 @@ struct drm_i915_private *mock_gem_device(void)
-> >       intel_memory_regions_driver_release(i915);
-> >       drm_mode_config_cleanup(&i915->drm);
-> >       drm_dev_fini(&i915->drm);
-> > -put_device:
-> > -     put_device(&pdev->dev);
-> > -err:
-> > +     drm_dev_put(&i915->drm);
-> > +
-> >       return NULL;
-> >  }
->
-> --
-> Jani Nikula, Intel Open Source Graphics Center
-
-
+ .../gpu/drm/i915/display/intel_connector.c    |   3 +
+ .../drm/i915/display/intel_display_debugfs.c  | 121 ++++++++++++++++++
+ .../drm/i915/display/intel_display_power.c    |   6 +-
+ .../drm/i915/display/intel_display_power.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 -
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   3 -
+ 6 files changed, 130 insertions(+), 10 deletions(-)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-+41 (0) 79 365 57 48 - http://blog.ffwll.ch
+2.25.2
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
