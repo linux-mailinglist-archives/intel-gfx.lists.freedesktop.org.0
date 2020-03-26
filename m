@@ -2,42 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B8B193D37
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 11:47:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E2DE193E04
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 12:36:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6E9A6E2DF;
-	Thu, 26 Mar 2020 10:47:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 414DA6E2F8;
+	Thu, 26 Mar 2020 11:36:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B3C6E2DF
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 10:47:36 +0000 (UTC)
-IronPort-SDR: UMzSIWJswF8BYcSUC8CzQxLcbxQPoaA7LGHvE6oqmlg1rzTbp9gIYRkTgHuhuXEU/Z4lHYht0m
- R+v0zP2W14lQ==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D326E2F8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 11:36:04 +0000 (UTC)
+IronPort-SDR: QQWilq/GUL+LbQNzoNScj0M8n6NcK7tHBYZpF7E6XkdQzIccNHtk9pVEgP7uKo0UUnShQnoTrL
+ Y6EXkFdC5GuQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 03:47:35 -0700
-IronPort-SDR: DJIl6T0/dF8V6tTmn03xQfKAjQccVJ0nsD8SFXnDABcm5SSBjvp1tIelDHY5znhoJmz+AfPPVo
- 3KbF48515k3g==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 04:36:04 -0700
+IronPort-SDR: DmTY3xG14o8TpgQ98axDyfIjWAonZwTnSEYBsdfxlcIcdV8Ga2Vj4tXE3rt9RgfndFPboOkzKW
+ /AYyIw+YX3zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,308,1580803200"; d="scan'208";a="358108724"
-Received: from aschoene-mobl.ger.corp.intel.com (HELO [10.252.60.225])
- ([10.252.60.225])
- by fmsmga001.fm.intel.com with ESMTP; 26 Mar 2020 03:47:33 -0700
-To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20200326074928.10395-1-uma.shankar@intel.com>
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Message-ID: <1ba94cef-ea8a-2271-2915-2837f8eabf21@linux.intel.com>
-Date: Thu, 26 Mar 2020 11:47:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
+X-IronPort-AV: E=Sophos;i="5.72,308,1580803200"; d="scan'208";a="271143816"
+Received: from vipinana-nuc7i7bnh.iind.intel.com ([10.66.179.10])
+ by fmsmga004.fm.intel.com with ESMTP; 26 Mar 2020 04:36:03 -0700
+From: Vipin Anand <vipin.anand@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Mar 2020 17:04:43 +0530
+Message-Id: <20200326113443.30110-1-vipin.anand@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-In-Reply-To: <20200326074928.10395-1-uma.shankar@intel.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Fix mode private_flags
- comparison at atomic_check
+Subject: [Intel-gfx] [PATCH] drm:i915:display: add checks for Gen9 devices
+ with hdr capability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,47 +45,118 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: SweeAun Khor <swee.aun.khor@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T3AgMjYtMDMtMjAyMCBvbSAwODo0OSBzY2hyZWVmIFVtYSBTaGFua2FyOgo+IFRoaXMgcGF0Y2gg
-Zml4ZXMgdGhlIHByaXZhdGVfZmxhZ3Mgb2YgbW9kZSB0byBiZSBjaGVja2VkIGFuZAo+IGNvbXBh
-cmVkIGFnYWluc3QgdWFwaS5tb2RlIGFuZCBub3QgZnJvbSBody5tb2RlLiBUaGlzIGhlbHBzCj4g
-cHJvcGVybHkgdHJpZ2dlciBtb2Rlc2V0IGF0IGJvb3QgaWYgZGVzaXJlZCBieSBkcml2ZXIuCj4K
-PiBJdCBoZWxwcyByZXNvbHZlIGF1ZGlvX2NvZGVjIGluaXRpYWxpemF0aW9uIGlzc3VlcyBpZiBk
-aXNwbGF5Cj4gaXMgY29ubmVjdGVkIGF0IGJvb3QuIEluaXRpYWwgZGlzY3Vzc2lvbiBvbiB0aGlz
-IGlzc3VlIGhhcyBoYXBwZW5lZAo+IG9uIGJlbG93IHRocmVhZDoKPiBodHRwczovL3BhdGNod29y
-ay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzc0ODI4Lwo+Cj4gRml4ZXM6IGh0dHBzOi8vZ2l0bGFi
-LmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzEzNjMKCldyb25nIHVzZSBvZiBmaXhl
-cy4gOikKClVzZSBkaW0gZml4ZXMgb3JpZ2luYWwtY29tbWl0LWlkIHRvIHJlZmVyZW5jZSB0aGUg
-Y29tbWl0LiBBbmQgZm9yIHRoaXMgdXNlIHRoZSBDbG9zZXM6IHRhZy4KCk90aGVyIHRoYW4gdGhh
-dCBsb29rcyBnb29kLiA6KQoKU28gd2l0aCBoZWFkZXJzIGZpeGVkOgoKUmV2aWV3ZWQtQnk6IE1h
-YXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+Cgo+IENj
-OiBWaWxsZSBTeXJqw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgo+IENjOiBNYWFy
-dGVuIExhbmtob3JzdCA8bWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPgo+IENjOiBL
-YWkgVmVobWFuZW4gPGthaS52ZWhtYW5lbkBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IFNvdXphLCBK
-b3NlIDxqb3NlLnNvdXphQGludGVsLmNvbT4KPiBTdWdnZXN0ZWQtYnk6IFZpbGxlIFN5cmrDpCA8
-dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogVW1hIFNoYW5r
-YXIgPHVtYS5zaGFua2FyQGludGVsLmNvbT4KPiBTaWduZWQtb2ZmLWJ5OiBTd2VlQXVuIEtob3Ig
-PHN3ZWUuYXVuLmtob3JAaW50ZWwuY29tPgo+IC0tLQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDQgKystLQo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNl
-cnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQo+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMKPiBpbmRleCBmZTU1YzdjNzEzZjEuLmU2MzA0MjlhZjJjMCAx
-MDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXku
-Ywo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCj4g
-QEAgLTE0NzQ3LDggKzE0NzQ3LDggQEAgc3RhdGljIGludCBpbnRlbF9hdG9taWNfY2hlY2soc3Ry
-dWN0IGRybV9kZXZpY2UgKmRldiwKPiAgCS8qIENhdGNoIEk5MTVfTU9ERV9GTEFHX0lOSEVSSVRF
-RCAqLwo+ICAJZm9yX2VhY2hfb2xkbmV3X2ludGVsX2NydGNfaW5fc3RhdGUoc3RhdGUsIGNydGMs
-IG9sZF9jcnRjX3N0YXRlLAo+ICAJCQkJCSAgICBuZXdfY3J0Y19zdGF0ZSwgaSkgewo+IC0JCWlm
-IChuZXdfY3J0Y19zdGF0ZS0+aHcubW9kZS5wcml2YXRlX2ZsYWdzICE9Cj4gLQkJICAgIG9sZF9j
-cnRjX3N0YXRlLT5ody5tb2RlLnByaXZhdGVfZmxhZ3MpCj4gKwkJaWYgKG5ld19jcnRjX3N0YXRl
-LT51YXBpLm1vZGUucHJpdmF0ZV9mbGFncyAhPQo+ICsJCSAgICBvbGRfY3J0Y19zdGF0ZS0+dWFw
-aS5tb2RlLnByaXZhdGVfZmxhZ3MpCj4gIAkJCW5ld19jcnRjX3N0YXRlLT51YXBpLm1vZGVfY2hh
-bmdlZCA9IHRydWU7Cj4gIAl9Cj4gIAoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fCkludGVsLWdmeCBtYWlsaW5nIGxpc3QKSW50ZWwtZ2Z4QGxpc3RzLmZy
-ZWVkZXNrdG9wLm9yZwpodHRwczovL2xpc3RzLmZyZWVkZXNrdG9wLm9yZy9tYWlsbWFuL2xpc3Rp
-bmZvL2ludGVsLWdmeAo=
+this patch adds hdr capabilities checks for Gen9 devices with
+lspcon support.
+
+Signed-off-by: Vipin Anand <vipin.anand@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c   | 17 +++++++++++++----
+ drivers/gpu/drm/i915/display/intel_lspcon.c |  9 +++++++--
+ 2 files changed, 20 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 9ae2f88cc925..70d0d76ed606 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -833,9 +833,12 @@ intel_hdmi_compute_drm_infoframe(struct intel_encoder *encoder,
+ {
+ 	struct hdmi_drm_infoframe *frame = &crtc_state->infoframes.drm.drm;
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
++	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
+ 	int ret;
+ 
+-	if (!(INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv)))
++	if (!(INTEL_GEN(dev_priv) >= 10 ||
++	      (((INTEL_GEN(dev_priv) >= 9)) &&
++	      intel_dig_port->lspcon.active)))
+ 		return true;
+ 
+ 	if (!crtc_state->has_infoframe)
+@@ -2102,9 +2105,12 @@ static int intel_hdmi_source_max_tmds_clock(struct intel_encoder *encoder)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	const struct ddi_vbt_port_info *info =
+ 		&dev_priv->vbt.ddi_port_info[encoder->port];
++	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
+ 	int max_tmds_clock;
+ 
+-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
++	if (INTEL_GEN(dev_priv) >= 10 ||
++	    (((INTEL_GEN(dev_priv) >= 9)) &&
++			 intel_dig_port->lspcon.active))
+ 		max_tmds_clock = 594000;
+ 	else if (INTEL_GEN(dev_priv) >= 8 || IS_HASWELL(dev_priv))
+ 		max_tmds_clock = 300000;
+@@ -2423,6 +2429,7 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	struct intel_digital_connector_state *intel_conn_state =
+ 		to_intel_digital_connector_state(conn_state);
+ 	bool force_dvi = intel_conn_state->force_audio == HDMI_AUDIO_OFF_DVI;
++	struct intel_digital_port *intel_dig_port = enc_to_dig_port(encoder);
+ 	int ret;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+@@ -2469,7 +2476,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 	pipe_config->lane_count = 4;
+ 
+ 	if (scdc->scrambling.supported && (INTEL_GEN(dev_priv) >= 10 ||
+-					   IS_GEMINILAKE(dev_priv))) {
++					   (((INTEL_GEN(dev_priv) >= 9)) &&
++					    intel_dig_port->lspcon.active))) {
+ 		if (scdc->scrambling.low_rates)
+ 			pipe_config->hdmi_scrambling = true;
+ 
+@@ -3171,7 +3179,8 @@ void intel_hdmi_init_connector(struct intel_digital_port *intel_dig_port,
+ 	connector->doublescan_allowed = 0;
+ 	connector->stereo_allowed = 1;
+ 
+-	if (INTEL_GEN(dev_priv) >= 10 || IS_GEMINILAKE(dev_priv))
++	if (INTEL_GEN(dev_priv) >= 10 ||
++	    (((INTEL_GEN(dev_priv) >= 9)) && intel_dig_port->lspcon.active))
+ 		connector->ycbcr_420_allowed = true;
+ 
+ 	intel_encoder->hpd_pin = intel_hpd_pin_default(dev_priv, port);
+diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
+index 5cede4f07f22..be074acd74f3 100644
+--- a/drivers/gpu/drm/i915/display/intel_lspcon.c
++++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
+@@ -116,6 +116,8 @@ static bool lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
+ 	if (lspcon->vendor == LSPCON_VENDOR_MCA)
+ 		ret = drm_dp_dpcd_read(&dp->aux, DPCD_MCA_LSPCON_HDR_STATUS,
+ 				       &hdr_caps, 1);
++	else if (lspcon->vendor == LSPCON_VENDOR_PARADE)
++		return true;
+ 	else
+ 		return false;
+ 
+@@ -474,7 +476,8 @@ void lspcon_write_infoframe(struct intel_encoder *encoder,
+ 	 * Todo: Add support for Parade later
+ 	 */
+ 	if (type == HDMI_PACKET_TYPE_GAMUT_METADATA &&
+-	    lspcon->vendor != LSPCON_VENDOR_MCA)
++		(lspcon->vendor != LSPCON_VENDOR_MCA ||
++		 lspcon->vendor != LSPCON_VENDOR_PARADE))
+ 		return;
+ 
+ 	if (lspcon->vendor == LSPCON_VENDOR_MCA) {
+@@ -646,7 +649,9 @@ bool lspcon_init(struct intel_digital_port *intel_dig_port)
+ 		return false;
+ 	}
+ 
+-	if (lspcon->vendor == LSPCON_VENDOR_MCA && lspcon->hdr_supported)
++	if ((lspcon->vendor == LSPCON_VENDOR_MCA ||
++	     lspcon->vendor == LSPCON_VENDOR_PARADE) &&
++	     lspcon->hdr_supported)
+ 		drm_object_attach_property(&connector->base,
+ 					   connector->dev->mode_config.hdr_output_metadata_property,
+ 					   0);
+-- 
+2.26.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
