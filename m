@@ -1,57 +1,33 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AD0D195272
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 08:58:00 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 912F9195273
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 08:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 940AB6E9C7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF0D96E9C8;
 	Fri, 27 Mar 2020 07:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from conssluserg-01.nifty.com (conssluserg-01.nifty.com
- [210.131.2.80])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F238E6E05D;
- Thu, 26 Mar 2020 21:13:16 +0000 (UTC)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com
- [209.85.222.49]) (authenticated)
- by conssluserg-01.nifty.com with ESMTP id 02QLCubn023761;
- Fri, 27 Mar 2020 06:12:56 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com 02QLCubn023761
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1585257177;
- bh=yUWTDQTSG+CELwmMJY3M4PyyjvvHxAi5WzaSE/lWqWs=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=02ax5uD7o97ywHVTM+BzqvV5KxZq7HYns7pOohZvn/H/gS5KFk5dbFbsxwdf2UO4S
- 1vqgsJtvu7G6cL6QxIOeeAfB7udsm/QfTFmvxTfuFM4wBO/O48Zk7DfzdkY6eJcLqZ
- IYWMLO9qD356FZlV4oG/s8OoRqthhbrehJW26Vcszqfnjt/CzHVWfnd/4452UUWixv
- BUNH6/d9yw/4kHTvTVnv/QzWGiv0H4p/k0G64hu8GCyt6Nv0WvyS4X5BxKhmC981/N
- xLS1cNma8U/X2FiQX7Cf+UbsbUdRi74RlEOVV/aDPSaYzz5d/uHwb4vaz8fAJ8XJJ5
- UsXN64bnn8b1A==
-X-Nifty-SrcIP: [209.85.222.49]
-Received: by mail-ua1-f49.google.com with SMTP id l18so2727667uak.4;
- Thu, 26 Mar 2020 14:12:56 -0700 (PDT)
-X-Gm-Message-State: ANhLgQ0jhwtHxDrQQ81Dpf0dfykd3AwZ/5DPs/os6xW/ctyceuLUqvMR
- 8BVx9cVcblsIP2lWX2NPQ+tMMdVu3iuTtvwwBFk=
-X-Google-Smtp-Source: ADFU+vt/pF+IMJk2I2eYB42/QwdxfxYfeO3mcmt/FNF9nUsRTsBXsBiH5xt4Zbky0X6BnYqInbOxR2tZvNrmVUvbcYI=
-X-Received: by 2002:a9f:28c5:: with SMTP id d63mr8552249uad.25.1585257175580; 
- Thu, 26 Mar 2020 14:12:55 -0700 (PDT)
+Received: from namei.org (namei.org [65.99.196.166])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DAA66E963
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 23:29:36 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+ by namei.org (8.14.4/8.14.4) with ESMTP id 02QNSlWb015673;
+ Thu, 26 Mar 2020 23:28:47 GMT
+Date: Fri, 27 Mar 2020 10:28:47 +1100 (AEDT)
+From: James Morris <jmorris@namei.org>
+To: Serge Hallyn <serge@hallyn.com>
+In-Reply-To: <20200302001913.GA21145@sl>
+Message-ID: <alpine.LRH.2.21.2003271026290.14767@namei.org>
+References: <c8de937a-0b3a-7147-f5ef-69f467e87a13@linux.intel.com>
+ <3ae0bed5-204e-de81-7647-5f0d8106cd67@linux.intel.com>
+ <20200302001913.GA21145@sl>
+User-Agent: Alpine 2.21 (LRH 202 2017-01-01)
 MIME-Version: 1.0
-References: <20200326080104.27286-1-masahiroy@kernel.org>
- <CAHmME9pnAvgErYkcvvdakvfMY8ZGKfwHHNYzpVtJ913Tgp16CQ@mail.gmail.com>
- <20200326092213.GA100918@gmail.com>
- <CAK7LNAQ7-wpm+g=cXeJ01vGrO1nVjfP-ornKm=SXoDEn4x+DjQ@mail.gmail.com>
- <CAHmME9qnWWYV+eWVmx2yoADB9oecZKj=UgLkdSHe_=MnxedtSQ@mail.gmail.com>
-In-Reply-To: <CAHmME9qnWWYV+eWVmx2yoADB9oecZKj=UgLkdSHe_=MnxedtSQ@mail.gmail.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Fri, 27 Mar 2020 06:12:19 +0900
-X-Gmail-Original-Message-ID: <CAK7LNAQNx0TxWGCzNM-2JqfEJuyDKnLMcqJv8Be_9_Ty5wv5Lg@mail.gmail.com>
-Message-ID: <CAK7LNAQNx0TxWGCzNM-2JqfEJuyDKnLMcqJv8Be_9_Ty5wv5Lg@mail.gmail.com>
-To: "Jason A. Donenfeld" <Jason@zx2c4.com>
 X-Mailman-Approved-At: Fri, 27 Mar 2020 07:57:55 +0000
-Subject: Re: [Intel-gfx] [PATCH v2 00/16] x86,
- crypto: remove always-defined CONFIG_AS_* and cosolidate
- Kconfig/Makefiles
+Subject: Re: [Intel-gfx] [PATCH v7 00/12] Introduce CAP_PERFMON to secure
+ system performance monitoring and observability
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,43 +40,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
- NeilBrown <neilb@suse.de>, dri-devel <dri-devel@lists.freedesktop.org>,
- "H . Peter Anvin" <hpa@zytor.com>, Ingo Molnar <mingo@kernel.org>,
- Herbert Xu <herbert@gondor.apana.org.au>, Jonathan Corbet <corbet@lwn.net>,
- X86 ML <x86@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, intel-gfx@lists.freedesktop.org,
- Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
- Yuanhan Liu <yuanhan.liu@linux.intel.com>,
- Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
- David Airlie <airlied@linux.ie>, Borislav Petkov <bp@alien8.de>,
+Cc: linux-man@vger.kernel.org,
+ "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Alexei Starovoitov <ast@kernel.org>,
+ Stephane Eranian <eranian@google.com>, Paul Mackerras <paulus@samba.org>,
+ Will Deacon <will@kernel.org>, Ingo Molnar <mingo@kernel.org>,
+ Andi Kleen <ak@linux.intel.com>, Jiri Olsa <jolsa@redhat.com>,
+ Igor Lubashev <ilubashe@akamai.com>, oprofile-list@lists.sf.net,
+ Stephen Smalley <sds@tycho.nsa.gov>,
+ "selinux@vger.kernel.org" <selinux@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>,
- Nick Desaulniers <ndesaulniers@google.com>,
- LKML <linux-kernel@vger.kernel.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- "David S. Miller" <davem@davemloft.net>
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ "linux-parisc@vger.kernel.org" <linux-parisc@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ "linux-security-module@vger.kernel.org"
+ <linux-security-module@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ Helge Deller <deller@gmx.de>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 27, 2020 at 5:46 AM Jason A. Donenfeld <Jason@zx2c4.com> wrote:
->
-> On Thu, Mar 26, 2020 at 2:44 PM Masahiro Yamada <masahiroy@kernel.org> wrote:
-> > I collected more Reviewed-by and Acked-by,
-> > then pushed this series to
-> >
-> > git://git.kernel.org/pub/scm/linux/kernel/git/masahiroy/linux-kbuild.git
-> > kbuild-asinstr
->
-> But not the version of the penultimate patch that Nick ack'd....
+On Sun, 1 Mar 2020, Serge Hallyn wrote:
 
-Dropped Nick's Reviewed-by.
+> Thanks, this looks good to me, in keeping with the CAP_SYSLOG break.
+> 
+> Acked-by: Serge E. Hallyn <serge@hallyn.com>
+> 
+> for the set.
+> 
+> James/Ingo/Peter, if noone has remaining objections, whose branch
+> should these go in through?
+> 
+> thanks,
+> -serge
+> 
+> On Tue, Feb 25, 2020 at 12:55:54PM +0300, Alexey Budankov wrote:
+> > 
+> > Hi,
+> > 
+> > Is there anything else I could do in order to move the changes forward
+> > or is something still missing from this patch set?
+> > Could you please share you mind?
+
+Alexey,
+
+It seems some of the previous Acks are not included in this patchset, e.g. 
+https://lkml.org/lkml/2020/1/22/655
+
+Every patch needs a Reviewed-by or Acked-by from maintainers of the code 
+being changed.
+
+You have enough from the security folk, but I can't see any included from 
+the perf folk.
 
 
 -- 
-Best Regards
-Masahiro Yamada
+James Morris
+<jmorris@namei.org>
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
