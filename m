@@ -2,69 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 871FF19486A
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 21:12:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE33C1948AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 21:19:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C08196E214;
-	Thu, 26 Mar 2020 20:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C0E86E353;
+	Thu, 26 Mar 2020 20:19:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
- [IPv6:2607:f8b0:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 351766E214;
- Thu, 26 Mar 2020 20:12:02 +0000 (UTC)
-Received: by mail-oi1-x243.google.com with SMTP id t25so6774220oij.2;
- Thu, 26 Mar 2020 13:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to
- :user-agent; bh=Q+Ax8x2vU+R+U6VbmPmYqkXtNPWfs1Jy/4mzvcdEYZg=;
- b=BphgvEckoK0ht7HlgFAnRZJk+fpNqINscW4e//FspZihcDb25k/h5kIlBffKJljiQS
- peela2MsUVMmRX7nnOcsdPdSygsxdUXaYK2jgEQUcY70x+NLHAF91LcLtSvgFx1pYMVJ
- ISXXyg7ZH8KnI/1rK5mc3eN597BYC7CEeNp6ssy3f91JILcdK3ytTmtPW7QM51hedGWS
- UC1qAymWlYlSDx2YgYJM5ISOrEaMlrp1RhnCao+KrOsOcsTexWQ4UFDeWEaL4ioawW3X
- oAUUW87wFw8TdFXqWfIXbfgAUo3rz0TWin5N6BmLHTqumXF/VuUskIM0KbJTi+kZuXzJ
- OC+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to:user-agent;
- bh=Q+Ax8x2vU+R+U6VbmPmYqkXtNPWfs1Jy/4mzvcdEYZg=;
- b=cSjmYnsv9MLzVH731BKc8wmjh6L5m/KFqvsTH31w6q+y+REKH2DoYdm2pXwiaSH2R/
- VeeTE11ZUv/wFK9h3oFZOzg18MBMpkTJ467ekmWSB1a6vFiR/mvWsvTYzsgFqXdG8KZb
- 35XpvHg07PhYubtZ6JV0bY6taFdlHjFETFTeSV/CO/aQWFysXA13/X+Hw25d4WBXBD+3
- KKsFS5s1KEVwrD0+v1T/OAn+Fal2qrUGwRX1bzo5LwF/iVHUASTsxcqThGf+RWEBayu4
- 7Swp/T/S6ggNnDgGanFQ233DrIo6QVDnpCp6/XJfWLZLzh2o60ayszwmW6c5KPIMltAT
- YORg==
-X-Gm-Message-State: ANhLgQ1Bh5YQw4mktRjp5xutZ4xqODLuspMQDItpkwg93PL5kloMxJmj
- yQ9r4NjQev0U0U7fvf4IVUQ=
-X-Google-Smtp-Source: ADFU+vtPiVQu2F9SE5eGhZSoLiCecLF2dP70MsPljd+2jH7CppiNm5fY/jDEoS7okH0q+UO2gRUPPw==
-X-Received: by 2002:aca:af97:: with SMTP id y145mr1534969oie.24.1585253521437; 
- Thu, 26 Mar 2020 13:12:01 -0700 (PDT)
-Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
- by smtp.gmail.com with ESMTPSA id f45sm880530otf.30.2020.03.26.13.12.00
- (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
- Thu, 26 Mar 2020 13:12:00 -0700 (PDT)
-Date: Thu, 26 Mar 2020 13:11:58 -0700
-From: Nathan Chancellor <natechancellor@gmail.com>
-To: Nick Desaulniers <ndesaulniers@google.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20200326201158.GA30083@ubuntu-m2-xlarge-x86>
-References: <20200214054706.33870-1-natechancellor@gmail.com>
- <87v9o965gg.fsf@intel.com>
- <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
- <87o8u1wfqs.fsf@intel.com>
- <ff302c03-d012-a80d-b818-b7feababb86b@daenzer.net>
- <CAKwvOdnaRG=7mib9vtWX4wkjQXHeUiioonTaZLStMVXfOOSUfw@mail.gmail.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 40F266E2EC;
+ Thu, 26 Mar 2020 20:19:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39092A00E6;
+ Thu, 26 Mar 2020 20:19:25 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CAKwvOdnaRG=7mib9vtWX4wkjQXHeUiioonTaZLStMVXfOOSUfw@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
- eb_relocate_vma
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 26 Mar 2020 20:19:25 -0000
+Message-ID: <158525396520.23002.5231800953749830673@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200326145159.27431-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200326145159.27431-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_request?=
+ =?utf-8?q?_throughput_measurement_to_perf?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,137 +39,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
- LKML <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- clang-built-linux <clang-built-linux@googlegroups.com>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 16, 2020 at 02:41:23PM -0700, Nick Desaulniers wrote:
-> On Fri, Feb 14, 2020 at 7:36 AM Michel D=E4nzer <michel@daenzer.net> wrot=
-e:
-> >
-> > On 2020-02-14 12:49 p.m., Jani Nikula wrote:
-> > > On Fri, 14 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
-> > >> Quoting Jani Nikula (2020-02-14 06:36:15)
-> > >>> On Thu, 13 Feb 2020, Nathan Chancellor <natechancellor@gmail.com> w=
-rote:
-> > >>>> A recent commit in clang added -Wtautological-compare to -Wall, wh=
-ich is
-> > >>>> enabled for i915 after -Wtautological-compare is disabled for the =
-rest
-> > >>>> of the kernel so we see the following warning on x86_64:
-> > >>>>
-> > >>>>  ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1433:22: warnin=
-g:
-> > >>>>  result of comparison of constant 576460752303423487 with expressi=
-on of
-> > >>>>  type 'unsigned int' is always false
-> > >>>>  [-Wtautological-constant-out-of-range-compare]
-> > >>>>          if (unlikely(remain > N_RELOC(ULONG_MAX)))
-> > >>>>             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
-> > >>>>  ../include/linux/compiler.h:78:42: note: expanded from macro 'unl=
-ikely'
-> > >>>>  # define unlikely(x)    __builtin_expect(!!(x), 0)
-> > >>>>                                             ^
-> > >>>>  1 warning generated.
-> > >>>>
-> > >>>> It is not wrong in the case where ULONG_MAX > UINT_MAX but it does=
- not
-> > >>>> account for the case where this file is built for 32-bit x86, where
-> > >>>> ULONG_MAX =3D=3D UINT_MAX and this check is still relevant.
-> > >>>>
-> > >>>> Cast remain to unsigned long, which keeps the generated code the s=
-ame
-> > >>>> (verified with clang-11 on x86_64 and GCC 9.2.0 on x86 and x86_64)=
- and
-> > >>>> the warning is silenced so we can catch more potential issues in t=
-he
-> > >>>> future.
-> > >>>>
-> > >>>> Link: https://github.com/ClangBuiltLinux/linux/issues/778
-> > >>>> Suggested-by: Michel D=E4nzer <michel@daenzer.net>
-> > >>>> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
-> > >>>
-> > >>> Works for me as a workaround,
-> > >>
-> > >> But the whole point was that the compiler could see that it was
-> > >> impossible and not emit the code. Doesn't this break that?
-> > >
-> > > It seems that goal and the warning are fundamentally incompatible.
-> >
-> > Not really:
-> >
-> >     if (sizeof(remain) >=3D sizeof(unsigned long) &&
-> >         unlikely(remain > N_RELOC(ULONG_MAX)))
-> >              return -EINVAL;
-> >
-> > In contrast to the cast, this doesn't generate any machine code on 64-b=
-it:
-> >
-> > https://godbolt.org/z/GmUE4S
-> >
-> > but still generates the same code on 32-bit:
-> >
-> > https://godbolt.org/z/hAoz8L
-> =
+== Series Details ==
 
-> Exactly.
-> =
+Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
+URL   : https://patchwork.freedesktop.org/series/75124/
+State : failure
 
-> This check is only a tautology when `sizeof(long) =3D=3D sizeof(int)` (ie.
-> ILP32 platforms, like 32b x86), notice how BOTH GCC AND Clang generate
-> exactly the same code: https://godbolt.org/z/6ShrDM
-> =
+== Summary ==
 
-> Both compilers eliminate the check when `-m32` is not set, and
-> generate the exact same check otherwise.  How about:
-> ```
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> index d3f4f28e9468..25b9d3f3ad57 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-> @@ -1415,8 +1415,10 @@ static int eb_relocate_vma(struct
-> i915_execbuffer *eb, struct eb_vma *ev)
-> =
+CI Bug Log - changes from CI_DRM_8195 -> Patchwork_17099
+====================================================
 
->         urelocs =3D u64_to_user_ptr(entry->relocs_ptr);
->         remain =3D entry->relocation_count;
-> +#ifndef CONFIG_64BIT
->         if (unlikely(remain > N_RELOC(ULONG_MAX)))
->                 return -EINVAL;
-> +#endif
-> =
+Summary
+-------
 
->         /*
->          * We must check that the entire relocation array is safe
-> ```
-> =
+  **FAILURE**
 
-> We now have 4 proposed solutions:
-> 1. https://lore.kernel.org/lkml/20191123195321.41305-1-natechancellor@gma=
-il.com/
-> 2. https://lore.kernel.org/lkml/20200211050808.29463-1-natechancellor@gma=
-il.com/
-> 3. https://lore.kernel.org/lkml/20200214054706.33870-1-natechancellor@gma=
-il.com/
-> 4. my diff above
-> Let's please come to a resolution on this.
+  Serious unknown changes coming with Patchwork_17099 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17099, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-This is the only warning on an x86_64 defconfig build. Apologies if we
-are being too persistent or nagging but we need guidance from the i915
-maintainers on which solution they would prefer so it can be picked up.
-I understand you all are busy and I appreciate the work you all do but
-I do not want this to fall between the cracks because it is annoying to
-constantly see this warning.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/index.html
 
-Cheers,
-Nathan
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17099:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-lmem:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+    - fi-skl-guc:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-skl-guc/igt@i915_selftest@live@execlists.html
+    - fi-cfl-guc:         [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-cfl-guc/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-cfl-guc/igt@i915_selftest@live@execlists.html
+
+  
+New tests
+---------
+
+  New tests have been introduced between CI_DRM_8195 and Patchwork_17099:
+
+### New IGT tests (2) ###
+
+  * igt@dmabuf@all@dma_fence_chain:
+    - Statuses : 18 pass(s)
+    - Exec time: [7.35, 29.18] s
+
+  * igt@dmabuf@all@dma_fence_proxy:
+    - Statuses : 18 pass(s)
+    - Exec time: [0.03, 0.07] s
+
+  
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17099 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][7] -> [INCOMPLETE][8] ([fdo#103927] / [fdo#112175])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-apl-guc/igt@i915_selftest@live@execlists.html
+    - fi-kbl-x1275:       [PASS][9] -> [INCOMPLETE][10] ([fdo#112259])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-kbl-x1275/igt@i915_selftest@live@execlists.html
+    - fi-cml-s:           [PASS][11] -> [INCOMPLETE][12] ([i915#283])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-cml-s/igt@i915_selftest@live@execlists.html
+    - fi-skl-6700k2:      [PASS][13] -> [INCOMPLETE][14] ([fdo#112175])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+    - fi-cml-u2:          [PASS][15] -> [INCOMPLETE][16] ([fdo#112175] / [i915#283])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-cml-u2/igt@i915_selftest@live@execlists.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-cml-u2/igt@i915_selftest@live@execlists.html
+    - fi-kbl-guc:         [PASS][17] -> [INCOMPLETE][18] ([CI#80] / [fdo#112175] / [fdo#112259])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-kbl-guc/igt@i915_selftest@live@execlists.html
+    - fi-kbl-7500u:       [PASS][19] -> [INCOMPLETE][20] ([fdo#112175] / [fdo#112259])
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-kbl-7500u/igt@i915_selftest@live@execlists.html
+    - fi-kbl-8809g:       [PASS][21] -> [INCOMPLETE][22] ([CI#80] / [fdo#112175] / [fdo#112259])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-guc:         [PASS][23] -> [INCOMPLETE][24] ([fdo#109644] / [fdo#110464])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-icl-guc/igt@i915_selftest@live@requests.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-icl-guc/igt@i915_selftest@live@requests.html
+
+  * igt@kms_chamelium@dp-edid-read:
+    - fi-icl-u2:          [PASS][25] -> [FAIL][26] ([i915#976])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-icl-u2/igt@kms_chamelium@dp-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [INCOMPLETE][27] ([fdo#108569]) -> [PASS][28]
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-dsi:         [DMESG-FAIL][29] ([fdo#108569]) -> [INCOMPLETE][30] ([i915#140])
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][31] ([i915#1209]) -> [FAIL][32] ([i915#1485] / [i915#656])
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8195/fi-kbl-8809g/igt@runner@aborted.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
+  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
+  [fdo#112175]: https://bugs.freedesktop.org/show_bug.cgi?id=112175
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
+
+
+Participating hosts (49 -> 32)
+------------------------------
+
+  Missing    (17): fi-kbl-soraka fi-ilk-m540 fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-snb-2520m fi-ctg-p8600 fi-gdg-551 fi-kbl-7560u fi-byt-n2820 fi-byt-clapper fi-bsw-nick fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8195 -> Patchwork_17099
+
+  CI-20190529: 20190529
+  CI_DRM_8195: bcb3db890b651ee74ca510bbc4dacebdaa65d311 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5539: e7aae12e37771a8b7796ba252574eb832a5839c3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17099: 275b5d3e7247d9a695bc7a2341994784c94ff9bc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+275b5d3e7247 drm/i915/gt: Declare when we enabled timeslicing
+70343118e687 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+92ebe33e0de7 drm/i915/gem: Allow combining submit-fences with syncobj
+399608cd52b2 drm/i915/gem: Teach execbuf how to wait on future syncobj
+68a0bad1f9b4 drm/syncobj: Allow use of dma-fence-proxy
+864706ced80d dma-buf: Proxy fence, an unsignaled fence placeholder
+cb7a78a6b34e dma-buf: Exercise dma-fence-chain under selftests
+e25810547705 dma-buf: Report signaled links inside dma-fence-chain
+c63b2aff058b dma-buf: Prettify typecasts for dma-fence-chain
+20bb84d17d20 drm/i915/perf: Schedule oa_config after modifying the contexts
+b7ab7a745aca drm/i915: Wrap i915_active in a simple kreffed struct
+1d8f9dafbff4 drm/i915/selftests: Add request throughput measurement to perf
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17099/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
