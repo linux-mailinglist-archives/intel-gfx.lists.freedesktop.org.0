@@ -1,39 +1,42 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E2B1193EC2
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 13:23:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 491AA193F3D
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 13:50:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A8C6E33E;
-	Thu, 26 Mar 2020 12:23:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F1A46E8B7;
+	Thu, 26 Mar 2020 12:50:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A10B6E33E
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 12:23:50 +0000 (UTC)
-IronPort-SDR: ExE0BCsh6e3I66aAsPKaR17TpMe0cD4wsk/QxlLLLSyZgC7ksH1w1Vd2OgFNiYqAF3BGzc/vI6
- S2Z4OXiMKeGA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 05:23:49 -0700
-IronPort-SDR: 6/gGtl+0mlQEV6XCTGRzDqQyULy3Feziow46lv4qk0yBmNgLSjkJbiupsGW55gsuHFuxmaFfha
- zbSxdFTnvgFw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,308,1580803200"; d="scan'208";a="393963314"
-Received: from unknown (HELO linuxpresi1-desktop.iind.intel.com)
- ([10.223.74.152])
- by orsmga004.jf.intel.com with ESMTP; 26 Mar 2020 05:23:47 -0700
-From: Uma Shankar <uma.shankar@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 18:21:11 +0530
-Message-Id: <20200326125111.11081-1-uma.shankar@intel.com>
-X-Mailer: git-send-email 2.22.0
-MIME-Version: 1.0
-Subject: [Intel-gfx] [v3] drm/i915/display: Fix mode private_flags
- comparison at atomic_check
+Received: from conuserg-11.nifty.com (conuserg-11.nifty.com [210.131.2.78])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C648B6E0D4;
+ Thu, 26 Mar 2020 08:02:16 +0000 (UTC)
+Received: from pug.e01.socionext.com (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp
+ [153.142.97.92]) (authenticated)
+ by conuserg-11.nifty.com with ESMTP id 02Q81WpT002183;
+ Thu, 26 Mar 2020 17:01:32 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-11.nifty.com 02Q81WpT002183
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+ s=dec2015msa; t=1585209694;
+ bh=pP2B3e2HIi5aiL8gQpMs8wNmwELktRFcv9my7u/AjTs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=bzmVG4HAmlp7LgiUy5yPMNdC2iG1kMMwInKzoNZv1szrMcME6xMVXTR1XOUL1qzoZ
+ UXypNBLGmlWiyFbn8AGEg1DP67vhAiBAU9HRXNv1JINVe7WLdcTRF880YP/6P8P1+9
+ hxP3DnXfQ+AfCFeKc2l0PJ59q8E/XrbPagI9eW55k8R26xEu2vMzfSYDcnSuCE7Ekz
+ cNcbHs5t6C6XtBsfX9LVYo8kSbzcATH2qezUw8lKD/JPtQQxhcQ6uRYK5EQ4Ibf/5f
+ kIk+7YVoFx0fk4BpYs1xrJORYS45omf/l2ivmZpMddWLGj3TlGYyfrTvNHbrcuIME9
+ jBqXd0OeNAqFQ==
+X-Nifty-SrcIP: [153.142.97.92]
+From: Masahiro Yamada <masahiroy@kernel.org>
+To: linux-kbuild@vger.kernel.org
+Date: Thu, 26 Mar 2020 17:00:48 +0900
+Message-Id: <20200326080104.27286-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.17.1
+X-Mailman-Approved-At: Thu, 26 Mar 2020 12:50:17 +0000
+Subject: [Intel-gfx] [PATCH v2 00/16] x86,
+ crypto: remove always-defined CONFIG_AS_* and cosolidate
+ Kconfig/Makefiles
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,45 +49,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: SweeAun Khor <swee.aun.khor@intel.com>, Souza@freedesktop.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "Jason A . Donenfeld" <Jason@zx2c4.com>, linux-doc@vger.kernel.org,
+ NeilBrown <neilb@suse.de>, dri-devel@lists.freedesktop.org,
+ "H . Peter Anvin" <hpa@zytor.com>, Herbert Xu <herbert@gondor.apana.org.au>,
+ Jonathan Corbet <corbet@lwn.net>, Masahiro Yamada <masahiroy@kernel.org>,
+ x86@kernel.org, David Airlie <airlied@linux.ie>,
+ Ingo Molnar <mingo@redhat.com>, linux-crypto@vger.kernel.org,
+ Yuanhan Liu <yuanhan.liu@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ Borislav Petkov <bp@alien8.de>, Thomas Gleixner <tglx@linutronix.de>,
+ Nick Desaulniers <ndesaulniers@google.com>, linux-kernel@vger.kernel.org,
+ Peter Zijlstra <peterz@infradead.org>, clang-built-linux@googlegroups.com,
+ "David S. Miller" <davem@davemloft.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-VGhpcyBwYXRjaCBmaXhlcyB0aGUgcHJpdmF0ZV9mbGFncyBvZiBtb2RlIHRvIGJlIGNoZWNrZWQg
-YW5kCmNvbXBhcmVkIGFnYWluc3QgdWFwaS5tb2RlIGFuZCBub3QgZnJvbSBody5tb2RlLiBUaGlz
-IGhlbHBzCnByb3Blcmx5IHRyaWdnZXIgbW9kZXNldCBhdCBib290IGlmIGRlc2lyZWQgYnkgZHJp
-dmVyLgoKSXQgaGVscHMgcmVzb2x2ZSBhdWRpb19jb2RlYyBpbml0aWFsaXphdGlvbiBpc3N1ZXMg
-aWYgZGlzcGxheQppcyBjb25uZWN0ZWQgYXQgYm9vdC4gSW5pdGlhbCBkaXNjdXNzaW9uIG9uIHRo
-aXMgaXNzdWUgaGFzIGhhcHBlbmVkCm9uIGJlbG93IHRocmVhZDoKaHR0cHM6Ly9wYXRjaHdvcmsu
-ZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy83NDgyOC8KCnYyOiBObyBmdW5jdGlvbmFsIGNoYW5nZS4g
-Rml4ZWQgdGhlIENsb3NlcyB0YWcgYW5kIGFkZGVkCk1hYXJ0ZW4ncyBSQi4KCnYzOiBBZGRlZCBG
-aXhlcyB0YWcuCgpDYzogVmlsbGUgU3lyasOkIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
-bT4KQ2M6IE1hYXJ0ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5j
-b20+CkNjOiBLYWkgVmVobWFuZW4gPGthaS52ZWhtYW5lbkBsaW51eC5pbnRlbC5jb20+CkNjOiBT
-b3V6YSwgSm9zZSA8am9zZS5zb3V6YUBpbnRlbC5jb20+CkZpeGVzOiA1OGQxMjRlYTI3MzkgKCJk
-cm0vaTkxNTogQ29tcGxldGUgY3J0YyBody91YXBpIHNwbGl0LCB2Ni4iKQpDbG9zZXM6IGh0dHBz
-Oi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaW50ZWwvaXNzdWVzLzEzNjMKU3VnZ2VzdGVk
-LWJ5OiBWaWxsZSBTeXJqw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPgpTaWduZWQt
-b2ZmLWJ5OiBVbWEgU2hhbmthciA8dW1hLnNoYW5rYXJAaW50ZWwuY29tPgpTaWduZWQtb2ZmLWJ5
-OiBTd2VlQXVuIEtob3IgPHN3ZWUuYXVuLmtob3JAaW50ZWwuY29tPgpSZXZpZXdlZC1ieTogTWFh
-cnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4KLS0tCiBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDQgKystLQogMSBm
-aWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkKCmRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jCmluZGV4IGZlNTVjN2M3MTNmMS4u
-ZTYzMDQyOWFmMmMwIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXkuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rp
-c3BsYXkuYwpAQCAtMTQ3NDcsOCArMTQ3NDcsOCBAQCBzdGF0aWMgaW50IGludGVsX2F0b21pY19j
-aGVjayhzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAogCS8qIENhdGNoIEk5MTVfTU9ERV9GTEFHX0lO
-SEVSSVRFRCAqLwogCWZvcl9lYWNoX29sZG5ld19pbnRlbF9jcnRjX2luX3N0YXRlKHN0YXRlLCBj
-cnRjLCBvbGRfY3J0Y19zdGF0ZSwKIAkJCQkJICAgIG5ld19jcnRjX3N0YXRlLCBpKSB7Ci0JCWlm
-IChuZXdfY3J0Y19zdGF0ZS0+aHcubW9kZS5wcml2YXRlX2ZsYWdzICE9Ci0JCSAgICBvbGRfY3J0
-Y19zdGF0ZS0+aHcubW9kZS5wcml2YXRlX2ZsYWdzKQorCQlpZiAobmV3X2NydGNfc3RhdGUtPnVh
-cGkubW9kZS5wcml2YXRlX2ZsYWdzICE9CisJCSAgICBvbGRfY3J0Y19zdGF0ZS0+dWFwaS5tb2Rl
-LnByaXZhdGVfZmxhZ3MpCiAJCQluZXdfY3J0Y19zdGF0ZS0+dWFwaS5tb2RlX2NoYW5nZWQgPSB0
-cnVlOwogCX0KIAotLSAKMi4yMi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+This series of cleanups was prompted by Linus:
+https://lkml.org/lkml/2020/3/12/726
+
+First, this series drop always-on CONFIG_AS_* options.
+Some of those options were introduced in old days.
+For example, the check for CONFIG_AS_CFI dates back to 2006.
+
+We raise the minimal tool versions from time to time.
+Currently, we require binutils 2.21
+(and we even plan to bump it to 2.23).
+
+After cleaning away the old checks,
+as-instr calls are moved to Kconfig from Makefiles,
+then more Kconfig / Makefile code is cleaned up.
+
+I folded all relevanet patches into this series,
+as suggested by Jason A. Donenfeld.
+
+The update for v2 is quite small.
+I just swapped the patch order of patch 8 and 11
+instead of moving comments around files,
+which was addressed by Nick Desaulniers.
+
+
+Borislav Petkov (1):
+  Documentation/changes: Raise minimum supported binutils version to
+    2.23
+
+Jason A. Donenfeld (4):
+  x86: probe assembler capabilities via kconfig instead of makefile
+  crypto: x86 - rework configuration based on Kconfig
+  crypto: curve25519 - do not pollute dispatcher based on assembler
+  x86: update AS_* macros to binutils >=2.23, supporting ADX and AVX2
+
+Masahiro Yamada (11):
+  lib/raid6/test: fix build on distros whose /bin/sh is not bash
+  x86: remove unneeded defined(__ASSEMBLY__) check from asm/dwarf2.h
+  x86: remove always-defined CONFIG_AS_CFI
+  x86: remove unneeded (CONFIG_AS_)CFI_SIGNAL_FRAME
+  x86: remove always-defined CONFIG_AS_CFI_SECTIONS
+  x86: remove always-defined CONFIG_AS_SSSE3
+  x86: remove always-defined CONFIG_AS_AVX
+  x86: replace arch macros from compiler with CONFIG_X86_{32,64}
+  drm/i915: remove always-defined CONFIG_AS_MOVNTDQA
+  x86: add comments about the binutils version to support code in
+    as-instr
+  crypto: x86 - clean up poly1305-x86_64-cryptogams.S by 'make clean'
+
+ Documentation/process/changes.rst             |   4 +-
+ arch/x86/Kconfig                              |   2 +
+ arch/x86/Kconfig.assembler                    |  17 ++
+ arch/x86/Makefile                             |  22 ---
+ arch/x86/crypto/Makefile                      | 162 +++++++-----------
+ arch/x86/crypto/aesni-intel_avx-x86_64.S      |   6 -
+ arch/x86/crypto/aesni-intel_glue.c            |  21 +--
+ arch/x86/crypto/blake2s-core.S                |   2 -
+ arch/x86/crypto/chacha_glue.c                 |   6 +-
+ arch/x86/crypto/poly1305-x86_64-cryptogams.pl |  16 --
+ arch/x86/crypto/poly1305_glue.c               |  11 +-
+ arch/x86/crypto/sha1_ssse3_asm.S              |   4 -
+ arch/x86/crypto/sha1_ssse3_glue.c             |  13 --
+ arch/x86/crypto/sha256-avx-asm.S              |   3 -
+ arch/x86/crypto/sha256-avx2-asm.S             |   3 -
+ arch/x86/crypto/sha256_ssse3_glue.c           |  12 --
+ arch/x86/crypto/sha512-avx-asm.S              |   2 -
+ arch/x86/crypto/sha512-avx2-asm.S             |   3 -
+ arch/x86/crypto/sha512_ssse3_glue.c           |  10 --
+ arch/x86/include/asm/dwarf2.h                 |  44 -----
+ arch/x86/include/asm/xor_avx.h                |   9 -
+ drivers/gpu/drm/i915/Makefile                 |   3 -
+ drivers/gpu/drm/i915/i915_memcpy.c            |   5 -
+ include/crypto/curve25519.h                   |   6 +-
+ kernel/signal.c                               |   2 +-
+ lib/raid6/algos.c                             |  12 +-
+ lib/raid6/avx2.c                              |   4 -
+ lib/raid6/recov_avx2.c                        |   6 -
+ lib/raid6/recov_ssse3.c                       |   6 -
+ lib/raid6/test/Makefile                       |   9 +-
+ 30 files changed, 101 insertions(+), 324 deletions(-)
+ create mode 100644 arch/x86/Kconfig.assembler
+
+-- 
+2.17.1
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
