@@ -1,30 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BBE194600
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 19:05:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE6B194635
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 19:13:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C13446E34B;
-	Thu, 26 Mar 2020 18:05:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2236E8FB;
+	Thu, 26 Mar 2020 18:13:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30A7D6E34B
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 18:05:33 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20704293-1500050 
- for multiple; Thu, 26 Mar 2020 18:05:13 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E04CF6E8FB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 18:13:51 +0000 (UTC)
+IronPort-SDR: tTAY0kLjEmWgumFZ5lOwUxrqOYjW28EshyBU2f6dInYnBV10JsP347X10p5986ddn8ppW29G+6
+ 952mpUKJNVuQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 11:13:51 -0700
+IronPort-SDR: DXIG7YFVO8Pnj5bCDo7yPdxfdQgiYUHaFswS14CJmxpBR8VtjmmkxJULGEdgsdZ4v3SVOTCK3R
+ RlydVGqiQhrA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,309,1580803200"; d="scan'208";a="420808160"
+Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
+ ([10.237.72.89])
+ by orsmga005.jf.intel.com with ESMTP; 26 Mar 2020 11:13:49 -0700
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 18:05:11 +0000
-Message-Id: <20200326180511.12200-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Date: Thu, 26 Mar 2020 20:09:55 +0200
+Message-Id: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
+X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Explicitly reset both reg
- and context runtime
+Subject: [Intel-gfx] [PATCH v20 00/10] SAGV support for Gen12+
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,47 +45,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: jani.nikula@intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Upon a GPU reset, we copy the default context image over top of the
-guilty image. This will rollback the CTX_TIMESTAMP register to before
-our value of ce->runtime.last. Reset both back to 0 so that we do not
-encounter an underflow on the next schedule out after resume.
+For Gen11+ platforms BSpec suggests disabling specific
+QGV points separately, depending on bandwidth limitations
+and current display configuration. Thus it required adding
+a new PCode request for disabling QGV points and some
+refactoring of already existing SAGV code.
+Also had to refactor intel_can_enable_sagv function,
+as current seems to be outdated and using skl specific
+workarounds, also not following BSpec for Gen11+.
 
-This should not be a huge issue in practice, as hangs should be rare in
-correct code.
+v17: Had to rebase the whole series.
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 2 ++
- 1 file changed, 2 insertions(+)
+v19: Added some new patches in between, rebased
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index b12355048501..b458f8e17cf5 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -1154,6 +1154,7 @@ static void restore_default_state(struct intel_context *ce,
- 		       engine->context_size - PAGE_SIZE);
- 
- 	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
-+	ce->runtime.last = intel_context_get_runtime(ce);
- }
- 
- static void reset_active(struct i915_request *rq,
-@@ -4581,6 +4582,7 @@ static void init_common_reg_state(u32 * const regs,
- 	regs[CTX_CONTEXT_CONTROL] = ctl;
- 
- 	regs[CTX_RING_CTL] = RING_CTL_SIZE(ring->size) | RING_VALID;
-+	regs[CTX_TIMESTAMP] = 0;
- }
- 
- static void init_wa_bb_reg_state(u32 * const regs,
+v20: Added new patches and rebased the series
+
+Stanislav Lisovskiy (10):
+  drm/i915: Start passing latency as parameter
+  drm/i915: Eliminate magic numbers "0" and "1" from color plane
+  drm/i915: Introduce skl_plane_wm_level accessor.
+  drm/i915: Add intel_atomic_get_bw_*_state helpers
+  drm/i915: Extract gen specific functions from intel_can_enable_sagv
+  drm/i915: Add proper SAGV support for TGL+
+  drm/i915: Added required new PCode commands
+  drm/i915: Rename bw_state to new_bw_state
+  drm/i915: Restrict qgv points which don't have enough bandwidth.
+  drm/i915: Enable SAGV support for Gen12
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 200 +++++--
+ drivers/gpu/drm/i915/display/intel_bw.h       |  24 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  29 +-
+ .../drm/i915/display/intel_display_types.h    |  12 +
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ drivers/gpu/drm/i915/intel_pm.c               | 555 +++++++++++++++---
+ drivers/gpu/drm/i915/intel_pm.h               |   6 +-
+ drivers/gpu/drm/i915/intel_sideband.c         |   2 +
+ 8 files changed, 690 insertions(+), 142 deletions(-)
+
 -- 
-2.20.1
+2.24.1.485.gad05a3d8e5
 
 _______________________________________________
 Intel-gfx mailing list
