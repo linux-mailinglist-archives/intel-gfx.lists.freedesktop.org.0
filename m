@@ -2,65 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA725195270
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 08:57:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F022195275
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 08:58:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 038EC6E9C3;
-	Fri, 27 Mar 2020 07:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2BF66E9C2;
+	Fri, 27 Mar 2020 07:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com
- [64.147.123.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF8ED6E138;
- Thu, 26 Mar 2020 13:04:45 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailnew.west.internal (Postfix) with ESMTP id E8E14602;
- Thu, 26 Mar 2020 09:04:44 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute4.internal (MEProxy); Thu, 26 Mar 2020 09:04:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
- date:from:to:cc:subject:message-id:mime-version:content-type; s=
- fm2; bh=ZNMe83bl6xj3BrLuPRMRlnPdfyYVllJeSb73Lo+Xzhw=; b=f4tM6tai
- 3nsjSfVcTLTbAtwz7VsAG6mgpNfyjz9tt0Kvww+Gqc0EsBbdqzfivgLonk1kWdAW
- H8+iQa0RnxrnX4aPm2qrKuoToouQ9Er+qNMXg9c0qgF8wLigWuyFwFTlU82EoQqI
- jSqxJpvCqj83YqyRVy5HQRP41929+4aePFQJP79dYMADUji4EWAGx1+UAY4rrtST
- ZiNNiV2ES8MRFoQjjj+TSUhrzeXsJf4/6T1P/zenBqhoeSHB4BzdeDdh0FN1L9yz
- 715fBBjT+sPCnJK0Jy7yAqDLWbD0b9+r+xHSWGVcHxTNY/qPZdIxmb9D8Nz4tFwQ
- Grt1eD4JTEUNTA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:message-id
- :mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm2; bh=ZNMe83bl6xj3BrLuPRMRlnPdfyYVl
- lJeSb73Lo+Xzhw=; b=toqRsBwvKLM5BA8/YUsJJnu/iaabMpx7/7nBQwsq6Na0/
- gZPiiON/3t7AJ20s2+mY3PyuDfqyIgLGDNsipAK120sv05Kv4mBwk2ETHS3DQgIM
- gEfGUC9/N2VSOW56u020NIH7BxVHGo7tJXQkEr6DywytOMHDNplR8YYWhQmG0VL0
- aIL8kiZgFJEzBegTTTsR+Bkn6CYNzblNfhFUiJk+VrrXIicL6Tl8DIxUOAbVTIer
- t8y5ZWowPOnetWMNlPhT2zAbXkloBxvz6JPzO1H8pnbW6uzo2HI0z/Vb6pB/vkHL
- WYMnd6m5tT5MgQGI8hDOsSZm4jABn5dp7VQudjAUw==
-X-ME-Sender: <xms:a6h8Xn1xVLXWJtLRh0JjfcEPpTysBxCyVhXvqxuSnNafRNxMMzwbHg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrudehiedggeejucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfggtggusehgtderredttddvnecuhfhrohhmpeforgigihhmvgcu
- tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuffhomhgrihhnpe
- hfrhgvvgguvghskhhtohhprdhorhhgnecukfhppeeltddrkeelrdeikedrjeeinecuvehl
- uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvse
- gtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:a6h8XhTeJejZFKvpMecpcHT8VrKn2PTuwd2Cq3ftMSiAacRA9_SXsQ>
- <xmx:a6h8XrsETiypMVgy_Aoz3KFVU3l96AlAmVgJ9P89qrqW_Vk5mMS_kQ>
- <xmx:a6h8XnILiVqVSb0aPv27G4gGwazflKWRtY9G19QPgPVvd0uPzMDSIA>
- <xmx:bKh8XrIlMmoZf2jRr28bkfq2m5VWVh4hvMDojhwUywq1XMb7kynRxRUDJVE>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr
- [90.89.68.76])
- by mail.messagingengine.com (Postfix) with ESMTPA id B9F7E3280067;
- Thu, 26 Mar 2020 09:04:42 -0400 (EDT)
-Date: Thu, 26 Mar 2020 14:04:41 +0100
-From: Maxime Ripard <maxime@cerno.tech>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Message-ID: <20200326130441.spdlhm3dlvo5jpi2@gilmour.lan>
+Received: from mx.sdf.org (mx.sdf.org [205.166.94.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04F4E8994A
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 20:21:23 +0000 (UTC)
+Received: from sdf.org (IDENT:lkml@faeroes.freeshell.org [205.166.94.9])
+ by mx.sdf.org (8.15.2/8.14.5) with ESMTPS id 02QKLLpC027060
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits) verified NO);
+ Thu, 26 Mar 2020 20:21:21 GMT
+Received: (from lkml@localhost)
+ by sdf.org (8.15.2/8.12.8/Submit) id 02QKLLox002497;
+ Thu, 26 Mar 2020 20:21:21 GMT
+Date: Thu, 26 Mar 2020 20:21:21 +0000
+From: George Spelvin <lkml@SDF.ORG>
+To: Matthew Auld <matthew.william.auld@gmail.com>
+Message-ID: <20200326202121.GC15115@SDF.ORG>
+References: <20200325192429.GA8865@SDF.ORG>
+ <CAM0jSHNGok83kk1Z7vm4rKJw3O1uC=9czSuNfidW6wb900HppQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <CAM0jSHNGok83kk1Z7vm4rKJw3O1uC=9czSuNfidW6wb900HppQ@mail.gmail.com>
 X-Mailman-Approved-At: Fri, 27 Mar 2020 07:57:55 +0000
-Subject: [Intel-gfx] [PULL] drm-misc-next-fixes
+Subject: Re: [Intel-gfx] [PATCH]
+ drivers/gpu/drm/i915/selftests/i915_buddy.c: Fix bug
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,88 +43,23 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: dim-tools@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Maxime Ripard <mripard@kernel.org>, intel-gfx@lists.freedesktop.org
-Content-Type: multipart/mixed; boundary="===============1028691585=="
+Cc: lkml@sdf.org, intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Mar 26, 2020 at 05:04:43PM +0000, Matthew Auld wrote:
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
---===============1028691585==
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="km4vu7u47d3kvioq"
-Content-Disposition: inline
+Thank you!  I got some incomprehensible error emails (reproduced at 
+https://patchwork.freedesktop.org/series/75090/) from the patchwork 
+daemon, complaining about additional test failures.  Obviously, I care, 
+but I can't tell if this is a genuine error, or just a flaky test being 
+sensitive to the exact random number generation algorithm.
 
-
---km4vu7u47d3kvioq
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Daniel, Dave,
-
-Here's the first drm-misc-next-fixes PR for 5.7.
-
-Thanks!
-Maxime
-
-drm-misc-next-fixes-2020-03-26:
-Two main topics in that first drm-misc-next-fixes PR, first a revert of the
-data-mapping property in the DT that turned out to be non-optimal (but
-hasn't reached a stable release yet), and an improvement of a Kconfig help
-text.
-The following changes since commit 6afe6929964bca6847986d0507a555a041f07753:
-
-  drm: Mark up racy check of drm_gem_object.handle_count (2020-03-16 10:31:35 +0000)
-
-are available in the Git repository at:
-
-  git://anongit.freedesktop.org/drm/drm-misc tags/drm-misc-next-fixes-2020-03-26
-
-for you to fetch changes up to d021d751c14752a0266865700f6f212fab40a18c:
-
-  drm/panel-simple: drop use of data-mapping property (2020-03-25 21:59:22 +0100)
-
-----------------------------------------------------------------
-Two main topics in that first drm-misc-next-fixes PR, first a revert of the
-data-mapping property in the DT that turned out to be non-optimal (but
-hasn't reached a stable release yet), and an improvement of a Kconfig help
-text.
-
-----------------------------------------------------------------
-Geert Uytterhoeven (1):
-      dma-buf: Improve CONFIG_DMABUF_MOVE_NOTIFY help text
-
-Sam Ravnborg (2):
-      dt-bindings: display: drop data-mapping from panel-dpi
-      drm/panel-simple: drop use of data-mapping property
-
- .../devicetree/bindings/display/panel/panel-dpi.yaml          | 10 ----------
- drivers/dma-buf/Kconfig                                       | 11 ++++++-----
- drivers/gpu/drm/panel/panel-simple.c                          | 11 -----------
- 3 files changed, 6 insertions(+), 26 deletions(-)
-
---km4vu7u47d3kvioq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXnyoaQAKCRDj7w1vZxhR
-xbRWAP9i9GmwZR80Sk20fMdhNsBL3cLNpD1y3JhqJPo4Q7eZXQEAwn/4iT+BQXmx
-PkNHFfFcuBeTypgt5mL0Pht2kSGUGAM=
-=7eIr
------END PGP SIGNATURE-----
-
---km4vu7u47d3kvioq--
-
---===============1028691585==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+If you understand these messages, do they look like I broke something?
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1028691585==--
