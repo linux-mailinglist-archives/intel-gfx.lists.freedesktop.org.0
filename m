@@ -1,42 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C8EE193AC6
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 09:24:21 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697DF193AD4
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 09:29:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 999E76E303;
-	Thu, 26 Mar 2020 08:24:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140AA6E890;
+	Thu, 26 Mar 2020 08:29:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022996E2E6;
- Thu, 26 Mar 2020 08:24:14 +0000 (UTC)
-IronPort-SDR: Bmw4M9msa7JEm9YKw+QAXqr4E7/vqB/Du/lv/tvwNqzx+hn6ocJGKFPNZ0g8VpwKpb+xlt09jx
- WZw0EwFr1wFg==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 01:24:14 -0700
-IronPort-SDR: 5SWx7LobP7Xk7vAZTAJX2qluD5fcl2KfCQrXaLbWi5S2WCQNBYGo4s5/hFX18gOYhnHfbYeuqC
- pMs/3FbeTOdQ==
-X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="393901243"
-Received: from mschuste-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.252.32.130])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 01:24:07 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Masahiro Yamada <masahiroy@kernel.org>, linux-kbuild@vger.kernel.org
-In-Reply-To: <20200326080104.27286-10-masahiroy@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20200326080104.27286-1-masahiroy@kernel.org>
- <20200326080104.27286-10-masahiroy@kernel.org>
-Date: Thu, 26 Mar 2020 10:24:04 +0200
-Message-ID: <87ftdvikwr.fsf@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADA36E890
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 08:29:23 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20696667-1500050 
+ for multiple; Thu, 26 Mar 2020 08:28:41 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Thu, 26 Mar 2020 08:28:38 +0000
+Message-Id: <20200326082838.16357-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v2 09/16] drm/i915: remove always-defined
- CONFIG_AS_MOVNTDQA
+Subject: [Intel-gfx] [PATCH] drm/i915/display: Remove useless but deadly
+ local
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,90 +37,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
- Peter Zijlstra <peterz@infradead.org>, Masahiro Yamada <masahiroy@kernel.org>,
- x86@kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- clang-built-linux@googlegroups.com, Borislav Petkov <bp@alien8.de>,
- "H . Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>,
- intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Wambui Karuga <wambui.karugax@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Mar 2020, Masahiro Yamada <masahiroy@kernel.org> wrote:
-> CONFIG_AS_MOVNTDQA was introduced by commit 0b1de5d58e19 ("drm/i915:
-> Use SSE4.1 movntdqa to accelerate reads from WC memory").
->
-> We raise the minimal supported binutils version from time to time.
-> The last bump was commit 1fb12b35e5ff ("kbuild: Raise the minimum
-> required binutils version to 2.21").
->
-> I confirmed the code in $(call as-instr,...) can be assembled by the
-> binutils 2.21 assembler and also by LLVM integrated assembler.
->
-> Remove CONFIG_AS_MOVNTDQA, which is always defined.
->
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
-
-Ack for merging this via whichever tree you see fit; please let me know
-if you want me to pick this up via drm-intel.
-
-BR,
-Jani.
-
-
-> ---
->
-> Changes in v2: None
->
->  drivers/gpu/drm/i915/Makefile      | 3 ---
->  drivers/gpu/drm/i915/i915_memcpy.c | 5 -----
->  2 files changed, 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index a1f2411aa21b..e559e53fc634 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -28,9 +28,6 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
->  CFLAGS_i915_pci.o = $(call cc-disable-warning, override-init)
->  CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
->  
-> -subdir-ccflags-y += \
-> -	$(call as-instr,movntdqa (%eax)$(comma)%xmm0,-DCONFIG_AS_MOVNTDQA)
-> -
->  subdir-ccflags-y += -I$(srctree)/$(src)
->  
->  # Please keep these build lists sorted!
-> diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-> index fdd550405fd3..7b3b83bd5ab8 100644
-> --- a/drivers/gpu/drm/i915/i915_memcpy.c
-> +++ b/drivers/gpu/drm/i915/i915_memcpy.c
-> @@ -35,7 +35,6 @@
->  
->  static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
->  
-> -#ifdef CONFIG_AS_MOVNTDQA
->  static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
->  {
->  	kernel_fpu_begin();
-> @@ -93,10 +92,6 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
->  
->  	kernel_fpu_end();
->  }
-> -#else
-> -static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len) {}
-> -static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len) {}
-> -#endif
->  
->  /**
->   * i915_memcpy_from_wc: perform an accelerated *aligned* read from WC
-
--- 
-Jani Nikula, Intel Open Source Graphics Center
-_______________________________________________
-Intel-gfx mailing list
-Intel-gfx@lists.freedesktop.org
-https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+QmV3YXJlIGRlcmVmZXJlbmNpbmcgdGhlIE5VTEwgcG9pbnRlciBwcmlvciB0byBjaGVja2luZyBm
+b3IgaXRzCmV4aXN0ZW5jZS4KCkZpeGVzOiA0MTkxOTA0MjljZDEgKCJkcm0vaTkxNS9oZG1pOiB1
+c2Ugc3RydWN0IGRybV9kZXZpY2UgYmFzZWQgbG9nZ2luZyIpClNpZ25lZC1vZmYtYnk6IENocmlz
+IFdpbHNvbiA8Y2hyaXNAY2hyaXMtd2lsc29uLmNvLnVrPgpDYzogV2FtYnVpIEthcnVnYSA8d2Ft
+YnVpLmthcnVnYXhAZ21haWwuY29tPgpDYzogSmFuaSBOaWt1bGEgPGphbmkubmlrdWxhQGludGVs
+LmNvbT4KQ2M6ICJWaWxsZSBTeXJqw6Rsw6QiIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNv
+bT4KLS0tCiBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYyB8IDUgKyst
+LS0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCgpkaWZm
+IC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1pLmMgYi9kcml2
+ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2hkbWkuYwppbmRleCAzOTVkYzE5MmJhYTAu
+LjAwNzZhYmM2Mzg1MSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
+bnRlbF9oZG1pLmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oZG1p
+LmMKQEAgLTY5MSw3ICs2OTEsNiBAQCB2b2lkIGludGVsX3JlYWRfaW5mb2ZyYW1lKHN0cnVjdCBp
+bnRlbF9lbmNvZGVyICplbmNvZGVyLAogCQkJICB1bmlvbiBoZG1pX2luZm9mcmFtZSAqZnJhbWUp
+CiB7CiAJc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqaW50ZWxfZGlnX3BvcnQgPSBlbmNfdG9f
+ZGlnX3BvcnQoZW5jb2Rlcik7Ci0Jc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19p
+OTE1KGludGVsX2RpZ19wb3J0LT5iYXNlLmJhc2UuZGV2KTsKIAl1OCBidWZmZXJbVklERU9fRElQ
+X0RBVEFfU0laRV07CiAJaW50IHJldDsKIApAQCAtNzA4LDEzICs3MDcsMTMgQEAgdm9pZCBpbnRl
+bF9yZWFkX2luZm9mcmFtZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIAkvKiBzZWUg
+Y29tbWVudCBhYm92ZSBmb3IgdGhlIHJlYXNvbiBmb3IgdGhpcyBvZmZzZXQgKi8KIAlyZXQgPSBo
+ZG1pX2luZm9mcmFtZV91bnBhY2soZnJhbWUsIGJ1ZmZlciArIDEsIHNpemVvZihidWZmZXIpIC0g
+MSk7CiAJaWYgKHJldCkgewotCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAorCQlkcm1fZGJnX2tt
+cyhlbmNvZGVyLT5iYXNlLmRldiwKIAkJCSAgICAiRmFpbGVkIHRvIHVucGFjayBpbmZvZnJhbWUg
+dHlwZSAweCUwMnhcbiIsIHR5cGUpOwogCQlyZXR1cm47CiAJfQogCiAJaWYgKGZyYW1lLT5hbnku
+dHlwZSAhPSB0eXBlKQotCQlkcm1fZGJnX2ttcygmaTkxNS0+ZHJtLAorCQlkcm1fZGJnX2ttcyhl
+bmNvZGVyLT5iYXNlLmRldiwKIAkJCSAgICAiRm91bmQgdGhlIHdyb25nIGluZm9mcmFtZSB0eXBl
+IDB4JXggKGV4cGVjdGVkIDB4JTAyeClcbiIsCiAJCQkgICAgZnJhbWUtPmFueS50eXBlLCB0eXBl
+KTsKIH0KLS0gCjIuMjAuMQoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0
+b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Aub3JnL21haWxtYW4vbGlzdGluZm8vaW50
+ZWwtZ2Z4Cg==
