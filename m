@@ -1,40 +1,67 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE19194069
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 14:52:12 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4C8194034
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 14:46:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B826E8CA;
-	Thu, 26 Mar 2020 13:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E713C6E8C9;
+	Thu, 26 Mar 2020 13:46:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B66D6E8CC
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 13:52:08 +0000 (UTC)
-IronPort-SDR: CyttZgjCH19vl/svFHr+QBen8PqA4Fuun+UdpwCb7PBMtzj7PkCmL0mVtrVD2eA+GR9fpFCla9
- AAxw3LNY23nA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 06:52:07 -0700
-IronPort-SDR: brddzwOSUg1DuF0G5po1zRBRFWG9VuH7T944NIZyShnL8kuXKbJRlk2yV5aVzPaJggrcTyWMCX
- Cu9ghGsl22XA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,308,1580803200"; d="scan'208";a="420707737"
-Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
- by orsmga005.jf.intel.com with ESMTP; 26 Mar 2020 06:52:04 -0700
-From: Anshuman Gupta <anshuman.gupta@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 19:11:42 +0530
-Message-Id: <20200326134142.31997-4-anshuman.gupta@intel.com>
-X-Mailer: git-send-email 2.25.2
-In-Reply-To: <20200326134142.31997-1-anshuman.gupta@intel.com>
-References: <20200326134142.31997-1-anshuman.gupta@intel.com>
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com
+ [IPv6:2a00:1450:4864:20::344])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAF6F6E0EE
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 13:46:43 +0000 (UTC)
+Received: by mail-wm1-x344.google.com with SMTP id d198so6562145wmd.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 06:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ffwll.ch; s=google;
+ h=date:from:to:cc:subject:message-id:mail-followup-to:references
+ :mime-version:content-disposition:in-reply-to;
+ bh=WtrIiLn702c43/5OWwDtdFUHslpiuMl59i84eNI+ASk=;
+ b=Ns2PQ5lKUMdVi1F0G1HQQDkFJnRf8y7UK0OYruKnkFl39mJoqOr46TUKJ7yYcUFhWh
+ 9WwKmR0J4/u1MV901pvTDtFrjU/lUcsQpar006DbgkDjP7cRGILufKi3eOwR6dnHsZCG
+ PN3dFkmSu8Mwq8oaGIqYJptIhkBs1v5hAyTek=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id
+ :mail-followup-to:references:mime-version:content-disposition
+ :in-reply-to;
+ bh=WtrIiLn702c43/5OWwDtdFUHslpiuMl59i84eNI+ASk=;
+ b=XooXKsVOmZ5iIssV/uMVmC/kLwYMBU6zmgRx1131V9Q0W/kqEnIvRoiAfUpCru3mPI
+ A8majDdaUwmn+60D2EhmzFjL9/xE5jbqKqR4Whax4zzcwDcINMcsB4iSqExdRPjg0UYn
+ DF36Dc9/ftZzpNukEjF/8pSOJ4/OZHGO8094/j2eXyyULHg7tGUC4oxJjHpbplbqcprw
+ fKh/5pZrxV0FXyJOt0eL/b4OHY7xBrw4zZPDq734k3tcO5leBe914gNGiZ88oO0XUY8A
+ HzEnVBnfoorSohmTyJBS0fItx6eHVwN2EsWfJH2n6f5+lKFPZ+jUCIJTn+bm4dKlvmE3
+ y5Cw==
+X-Gm-Message-State: ANhLgQ3789PG51iBmdjgRU8QRSCDmEdqGa15UX+l5ZfxrrKcRdHgMmFG
+ sB5wUUIleQ+ogXh4sG5Rl2txTg==
+X-Google-Smtp-Source: ADFU+vv4dsyd/GhJtKso+pL4OaOBZCg49jJhq0gbQGk2tqc7qiUGnH/ge5gCXBcJabOc6d8J9AtpCA==
+X-Received: by 2002:a7b:c385:: with SMTP id s5mr78382wmj.24.1585230402176;
+ Thu, 26 Mar 2020 06:46:42 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
+ by smtp.gmail.com with ESMTPSA id i1sm3623859wrq.89.2020.03.26.06.46.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Mar 2020 06:46:41 -0700 (PDT)
+Date: Thu, 26 Mar 2020 14:46:39 +0100
+From: Daniel Vetter <daniel@ffwll.ch>
+To: DRI Development <dri-devel@lists.freedesktop.org>
+Message-ID: <20200326134639.GA2363188@phenom.ffwll.local>
+Mail-Followup-To: DRI Development <dri-devel@lists.freedesktop.org>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Daniel Vetter <daniel.vetter@intel.com>,
+ Christoph Lameter <cl@linux.com>, Pekka Enberg <penberg@kernel.org>,
+ David Rientjes <rientjes@google.com>,
+ Joonsoo Kim <iamjoonsoo.kim@lge.com>, linux-mm@kvack.org
+References: <20200323144950.3018436-1-daniel.vetter@ffwll.ch>
+ <20200323144950.3018436-2-daniel.vetter@ffwll.ch>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v3 3/3] drm/i915: Add connector dbgfs for all
- connectors
+Content-Disposition: inline
+In-Reply-To: <20200323144950.3018436-2-daniel.vetter@ffwll.ch>
+X-Operating-System: Linux phenom 5.3.0-3-amd64 
+Subject: Re: [Intel-gfx] [PATCH 01/51] mm/sl[uo]b: export
+ __kmalloc_track(_node)_caller
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,93 +74,91 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, ankit.k.nautiyal@intel.com, martin.peres@intel.com
+Cc: linux-mm@kvack.org, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Pekka Enberg <penberg@kernel.org>, Joonsoo Kim <iamjoonsoo.kim@lge.com>,
+ David Rientjes <rientjes@google.com>, Daniel Vetter <daniel.vetter@intel.com>,
+ Christoph Lameter <cl@linux.com>, Andrew Morton <akpm@linux-foundation.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add connector debugfs attributes for each intel
-connector which is getting register.
+On Mon, Mar 23, 2020 at 03:49:00PM +0100, Daniel Vetter wrote:
+> slab does this already, and I want to use this in a memory allocation
+> tracker in drm for stuff that's tied to the lifetime of a drm_device,
+> not the underlying struct device. Kinda like devres, but for drm.
+> 
+> Acked-by: Andrew Morton <akpm@linux-foundation.org>
+> Signed-off-by: Daniel Vetter <daniel.vetter@intel.com>
+> Cc: Christoph Lameter <cl@linux.com>
+> Cc: Pekka Enberg <penberg@kernel.org>
+> Cc: David Rientjes <rientjes@google.com>
+> Cc: Joonsoo Kim <iamjoonsoo.kim@lge.com>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: linux-mm@kvack.org
+> --
+> I plan to merge this through drm-misc-next (with Andrew's ack) once
+> the remainder of the drm series is in shape.
 
-v2:
-- adding connector debugfs for each connector in
-  intel_connector_register() to fix CI failure for legacy connectors.
+Ok I pulled this in now, but it's going to miss the 5.7 merge window, so
+queued for 5.8. Should show up in linux-next right after -rc1.
+-Daniel
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
----
- drivers/gpu/drm/i915/display/intel_connector.c | 3 +++
- drivers/gpu/drm/i915/display/intel_dp.c        | 3 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c      | 3 ---
- 3 files changed, 3 insertions(+), 6 deletions(-)
+> -Daniel
+> ---
+>  mm/slob.c | 2 ++
+>  mm/slub.c | 2 ++
+>  2 files changed, 4 insertions(+)
+> 
+> diff --git a/mm/slob.c b/mm/slob.c
+> index fa53e9f73893..ac2aecfbc7a8 100644
+> --- a/mm/slob.c
+> +++ b/mm/slob.c
+> @@ -524,6 +524,7 @@ void *__kmalloc_track_caller(size_t size, gfp_t gfp, unsigned long caller)
+>  {
+>  	return __do_kmalloc_node(size, gfp, NUMA_NO_NODE, caller);
+>  }
+> +EXPORT_SYMBOL(__kmalloc_track_caller);
+>  
+>  #ifdef CONFIG_NUMA
+>  void *__kmalloc_node_track_caller(size_t size, gfp_t gfp,
+> @@ -531,6 +532,7 @@ void *__kmalloc_node_track_caller(size_t size, gfp_t gfp,
+>  {
+>  	return __do_kmalloc_node(size, gfp, node, caller);
+>  }
+> +EXPORT_SYMBOL(__kmalloc_node_track_caller);
+>  #endif
+>  
+>  void kfree(const void *block)
+> diff --git a/mm/slub.c b/mm/slub.c
+> index 2988dae3f692..a937de5182cc 100644
+> --- a/mm/slub.c
+> +++ b/mm/slub.c
+> @@ -4377,6 +4377,7 @@ void *__kmalloc_track_caller(size_t size, gfp_t gfpflags, unsigned long caller)
+>  
+>  	return ret;
+>  }
+> +EXPORT_SYMBOL(__kmalloc_track_caller);
+>  
+>  #ifdef CONFIG_NUMA
+>  void *__kmalloc_node_track_caller(size_t size, gfp_t gfpflags,
+> @@ -4407,6 +4408,7 @@ void *__kmalloc_node_track_caller(size_t size, gfp_t gfpflags,
+>  
+>  	return ret;
+>  }
+> +EXPORT_SYMBOL(__kmalloc_node_track_caller);
+>  #endif
+>  
+>  #ifdef CONFIG_SYSFS
+> -- 
+> 2.25.1
+> 
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 98ec2ea86c7c..406e96785c76 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -33,6 +33,7 @@
- 
- #include "i915_drv.h"
- #include "intel_connector.h"
-+#include "intel_display_debugfs.h"
- #include "intel_display_types.h"
- #include "intel_hdcp.h"
- 
-@@ -123,6 +124,8 @@ int intel_connector_register(struct drm_connector *connector)
- 		goto err_backlight;
- 	}
- 
-+	intel_connector_debugfs_add(connector);
-+
- 	return 0;
- 
- err_backlight:
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7f1a4e55cda1..c4352d013c29 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -48,7 +48,6 @@
- #include "intel_audio.h"
- #include "intel_connector.h"
- #include "intel_ddi.h"
--#include "intel_display_debugfs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_dp_link_training.h"
-@@ -6204,8 +6203,6 @@ intel_dp_connector_register(struct drm_connector *connector)
- 	if (ret)
- 		return ret;
- 
--	intel_connector_debugfs_add(connector);
--
- 	DRM_DEBUG_KMS("registering %s bus for %s\n",
- 		      intel_dp->aux.name, connector->kdev->kobj.name);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 0076abc63851..1f28153babbf 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -44,7 +44,6 @@
- #include "intel_audio.h"
- #include "intel_connector.h"
- #include "intel_ddi.h"
--#include "intel_display_debugfs.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
- #include "intel_dpio_phy.h"
-@@ -2860,8 +2859,6 @@ intel_hdmi_connector_register(struct drm_connector *connector)
- 	if (ret)
- 		return ret;
- 
--	intel_connector_debugfs_add(connector);
--
- 	intel_hdmi_create_i2c_symlink(connector);
- 
- 	return ret;
 -- 
-2.25.2
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
