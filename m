@@ -1,32 +1,70 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F9AD194773
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 20:30:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 871FF19486A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 21:12:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6B496E91B;
-	Thu, 26 Mar 2020 19:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C08196E214;
+	Thu, 26 Mar 2020 20:12:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5673D6E919;
- Thu, 26 Mar 2020 19:30:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 532CAA47EB;
- Thu, 26 Mar 2020 19:30:24 +0000 (UTC)
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com
+ [IPv6:2607:f8b0:4864:20::243])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 351766E214;
+ Thu, 26 Mar 2020 20:12:02 +0000 (UTC)
+Received: by mail-oi1-x243.google.com with SMTP id t25so6774220oij.2;
+ Thu, 26 Mar 2020 13:12:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to
+ :user-agent; bh=Q+Ax8x2vU+R+U6VbmPmYqkXtNPWfs1Jy/4mzvcdEYZg=;
+ b=BphgvEckoK0ht7HlgFAnRZJk+fpNqINscW4e//FspZihcDb25k/h5kIlBffKJljiQS
+ peela2MsUVMmRX7nnOcsdPdSygsxdUXaYK2jgEQUcY70x+NLHAF91LcLtSvgFx1pYMVJ
+ ISXXyg7ZH8KnI/1rK5mc3eN597BYC7CEeNp6ssy3f91JILcdK3ytTmtPW7QM51hedGWS
+ UC1qAymWlYlSDx2YgYJM5ISOrEaMlrp1RhnCao+KrOsOcsTexWQ4UFDeWEaL4ioawW3X
+ oAUUW87wFw8TdFXqWfIXbfgAUo3rz0TWin5N6BmLHTqumXF/VuUskIM0KbJTi+kZuXzJ
+ OC+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to:user-agent;
+ bh=Q+Ax8x2vU+R+U6VbmPmYqkXtNPWfs1Jy/4mzvcdEYZg=;
+ b=cSjmYnsv9MLzVH731BKc8wmjh6L5m/KFqvsTH31w6q+y+REKH2DoYdm2pXwiaSH2R/
+ VeeTE11ZUv/wFK9h3oFZOzg18MBMpkTJ467ekmWSB1a6vFiR/mvWsvTYzsgFqXdG8KZb
+ 35XpvHg07PhYubtZ6JV0bY6taFdlHjFETFTeSV/CO/aQWFysXA13/X+Hw25d4WBXBD+3
+ KKsFS5s1KEVwrD0+v1T/OAn+Fal2qrUGwRX1bzo5LwF/iVHUASTsxcqThGf+RWEBayu4
+ 7Swp/T/S6ggNnDgGanFQ233DrIo6QVDnpCp6/XJfWLZLzh2o60ayszwmW6c5KPIMltAT
+ YORg==
+X-Gm-Message-State: ANhLgQ1Bh5YQw4mktRjp5xutZ4xqODLuspMQDItpkwg93PL5kloMxJmj
+ yQ9r4NjQev0U0U7fvf4IVUQ=
+X-Google-Smtp-Source: ADFU+vtPiVQu2F9SE5eGhZSoLiCecLF2dP70MsPljd+2jH7CppiNm5fY/jDEoS7okH0q+UO2gRUPPw==
+X-Received: by 2002:aca:af97:: with SMTP id y145mr1534969oie.24.1585253521437; 
+ Thu, 26 Mar 2020 13:12:01 -0700 (PDT)
+Received: from ubuntu-m2-xlarge-x86 ([2604:1380:4111:8b00::1])
+ by smtp.gmail.com with ESMTPSA id f45sm880530otf.30.2020.03.26.13.12.00
+ (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+ Thu, 26 Mar 2020 13:12:00 -0700 (PDT)
+Date: Thu, 26 Mar 2020 13:11:58 -0700
+From: Nathan Chancellor <natechancellor@gmail.com>
+To: Nick Desaulniers <ndesaulniers@google.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20200326201158.GA30083@ubuntu-m2-xlarge-x86>
+References: <20200214054706.33870-1-natechancellor@gmail.com>
+ <87v9o965gg.fsf@intel.com>
+ <158166913989.4660.10674824117292988120@skylake-alporthouse-com>
+ <87o8u1wfqs.fsf@intel.com>
+ <ff302c03-d012-a80d-b818-b7feababb86b@daenzer.net>
+ <CAKwvOdnaRG=7mib9vtWX4wkjQXHeUiioonTaZLStMVXfOOSUfw@mail.gmail.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Thu, 26 Mar 2020 19:30:24 -0000
-Message-ID: <158525102433.23004.10976225336354474992@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200326145159.27431-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200326145159.27431-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_series_starting_with_=5B01/12=5D_drm/i915/selftests=3A_Add_?=
- =?utf-8?q?request_throughput_measurement_to_perf?=
+Content-Disposition: inline
+In-Reply-To: <CAKwvOdnaRG=7mib9vtWX4wkjQXHeUiioonTaZLStMVXfOOSUfw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Cast remain to unsigned long in
+ eb_relocate_vma
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,140 +77,137 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Michel =?iso-8859-1?Q?D=E4nzer?= <michel@daenzer.net>,
+ LKML <linux-kernel@vger.kernel.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Mar 16, 2020 at 02:41:23PM -0700, Nick Desaulniers wrote:
+> On Fri, Feb 14, 2020 at 7:36 AM Michel D=E4nzer <michel@daenzer.net> wrot=
+e:
+> >
+> > On 2020-02-14 12:49 p.m., Jani Nikula wrote:
+> > > On Fri, 14 Feb 2020, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+> > >> Quoting Jani Nikula (2020-02-14 06:36:15)
+> > >>> On Thu, 13 Feb 2020, Nathan Chancellor <natechancellor@gmail.com> w=
+rote:
+> > >>>> A recent commit in clang added -Wtautological-compare to -Wall, wh=
+ich is
+> > >>>> enabled for i915 after -Wtautological-compare is disabled for the =
+rest
+> > >>>> of the kernel so we see the following warning on x86_64:
+> > >>>>
+> > >>>>  ../drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1433:22: warnin=
+g:
+> > >>>>  result of comparison of constant 576460752303423487 with expressi=
+on of
+> > >>>>  type 'unsigned int' is always false
+> > >>>>  [-Wtautological-constant-out-of-range-compare]
+> > >>>>          if (unlikely(remain > N_RELOC(ULONG_MAX)))
+> > >>>>             ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+> > >>>>  ../include/linux/compiler.h:78:42: note: expanded from macro 'unl=
+ikely'
+> > >>>>  # define unlikely(x)    __builtin_expect(!!(x), 0)
+> > >>>>                                             ^
+> > >>>>  1 warning generated.
+> > >>>>
+> > >>>> It is not wrong in the case where ULONG_MAX > UINT_MAX but it does=
+ not
+> > >>>> account for the case where this file is built for 32-bit x86, where
+> > >>>> ULONG_MAX =3D=3D UINT_MAX and this check is still relevant.
+> > >>>>
+> > >>>> Cast remain to unsigned long, which keeps the generated code the s=
+ame
+> > >>>> (verified with clang-11 on x86_64 and GCC 9.2.0 on x86 and x86_64)=
+ and
+> > >>>> the warning is silenced so we can catch more potential issues in t=
+he
+> > >>>> future.
+> > >>>>
+> > >>>> Link: https://github.com/ClangBuiltLinux/linux/issues/778
+> > >>>> Suggested-by: Michel D=E4nzer <michel@daenzer.net>
+> > >>>> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> > >>>
+> > >>> Works for me as a workaround,
+> > >>
+> > >> But the whole point was that the compiler could see that it was
+> > >> impossible and not emit the code. Doesn't this break that?
+> > >
+> > > It seems that goal and the warning are fundamentally incompatible.
+> >
+> > Not really:
+> >
+> >     if (sizeof(remain) >=3D sizeof(unsigned long) &&
+> >         unlikely(remain > N_RELOC(ULONG_MAX)))
+> >              return -EINVAL;
+> >
+> > In contrast to the cast, this doesn't generate any machine code on 64-b=
+it:
+> >
+> > https://godbolt.org/z/GmUE4S
+> >
+> > but still generates the same code on 32-bit:
+> >
+> > https://godbolt.org/z/hAoz8L
+> =
 
-Series: series starting with [01/12] drm/i915/selftests: Add request throughput measurement to perf
-URL   : https://patchwork.freedesktop.org/series/75124/
-State : warning
+> Exactly.
+> =
 
-== Summary ==
+> This check is only a tautology when `sizeof(long) =3D=3D sizeof(int)` (ie.
+> ILP32 platforms, like 32b x86), notice how BOTH GCC AND Clang generate
+> exactly the same code: https://godbolt.org/z/6ShrDM
+> =
 
-$ dim checkpatch origin/drm-tip
-1d8f9dafbff4 drm/i915/selftests: Add request throughput measurement to perf
--:96: WARNING:LINE_SPACING: Missing a blank line after declarations
-#96: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1525:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
+> Both compilers eliminate the check when `-m32` is not set, and
+> generate the exact same check otherwise.  How about:
+> ```
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index d3f4f28e9468..25b9d3f3ad57 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -1415,8 +1415,10 @@ static int eb_relocate_vma(struct
+> i915_execbuffer *eb, struct eb_vma *ev)
+> =
 
--:130: WARNING:LINE_SPACING: Missing a blank line after declarations
-#130: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1559:
-+	struct i915_request *prev = NULL;
-+	IGT_TIMEOUT(end_time);
+>         urelocs =3D u64_to_user_ptr(entry->relocs_ptr);
+>         remain =3D entry->relocation_count;
+> +#ifndef CONFIG_64BIT
+>         if (unlikely(remain > N_RELOC(ULONG_MAX)))
+>                 return -EINVAL;
+> +#endif
+> =
 
--:165: WARNING:LINE_SPACING: Missing a blank line after declarations
-#165: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1594:
-+	struct perf_series *ps = arg;
-+	IGT_TIMEOUT(end_time);
+>         /*
+>          * We must check that the entire relocation array is safe
+> ```
+> =
 
--:188: WARNING:LINE_SPACING: Missing a blank line after declarations
-#188: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1617:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
+> We now have 4 proposed solutions:
+> 1. https://lore.kernel.org/lkml/20191123195321.41305-1-natechancellor@gma=
+il.com/
+> 2. https://lore.kernel.org/lkml/20200211050808.29463-1-natechancellor@gma=
+il.com/
+> 3. https://lore.kernel.org/lkml/20200214054706.33870-1-natechancellor@gma=
+il.com/
+> 4. my diff above
+> Let's please come to a resolution on this.
 
--:196: WARNING:LINE_SPACING: Missing a blank line after declarations
-#196: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1625:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
+This is the only warning on an x86_64 defconfig build. Apologies if we
+are being too persistent or nagging but we need guidance from the i915
+maintainers on which solution they would prefer so it can be picked up.
+I understand you all are busy and I appreciate the work you all do but
+I do not want this to fall between the cracks because it is annoying to
+constantly see this warning.
 
--:325: WARNING:LINE_SPACING: Missing a blank line after declarations
-#325: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1754:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:393: WARNING:LINE_SPACING: Missing a blank line after declarations
-#393: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1822:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:462: WARNING:LINE_SPACING: Missing a blank line after declarations
-#462: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1891:
-+	struct intel_context *ce;
-+	IGT_TIMEOUT(end_time);
-
--:518: WARNING:LINE_SPACING: Missing a blank line after declarations
-#518: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1947:
-+	struct drm_i915_private *i915 = arg;
-+	static int (* const func[])(void *arg) = {
-
--:526: WARNING:LINE_SPACING: Missing a blank line after declarations
-#526: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:1955:
-+	struct intel_engine_cs *engine;
-+	int (* const *fn)(void *arg);
-
--:571: WARNING:YIELD: Using yield() is generally wrong. See yield() kernel-doc (sched/core.c)
-#571: FILE: drivers/gpu/drm/i915/selftests/i915_request.c:2000:
-+		yield(); /* start all threads before we kthread_stop() */
-
-total: 0 errors, 11 warnings, 0 checks, 611 lines checked
-b7ab7a745aca drm/i915: Wrap i915_active in a simple kreffed struct
-20bb84d17d20 drm/i915/perf: Schedule oa_config after modifying the contexts
-c63b2aff058b dma-buf: Prettify typecasts for dma-fence-chain
-e25810547705 dma-buf: Report signaled links inside dma-fence-chain
-cb7a78a6b34e dma-buf: Exercise dma-fence-chain under selftests
--:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#33: 
-new file mode 100644
-
--:61: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#61: FILE: drivers/dma-buf/st-dma-fence-chain.c:24:
-+	spinlock_t lock;
-
--:235: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#235: FILE: drivers/dma-buf/st-dma-fence-chain.c:198:
-+		pr_err("Reported %d for find_seqno(0)!\n", err);
-
--:244: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#244: FILE: drivers/dma-buf/st-dma-fence-chain.c:207:
-+			pr_err("Reported %d for find_seqno(%d:%d)!\n",
-
--:249: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#249: FILE: drivers/dma-buf/st-dma-fence-chain.c:212:
-+			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
-
--:272: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#272: FILE: drivers/dma-buf/st-dma-fence-chain.c:235:
-+			pr_err("Error not reported for future fence: find_seqno(%d:%d)!\n",
-
--:286: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'find_seqno', this function's name, in a string
-#286: FILE: drivers/dma-buf/st-dma-fence-chain.c:249:
-+			pr_err("Incorrect fence reported by find_seqno(%d:%d)\n",
-
--:737: WARNING:EMBEDDED_FUNCTION_NAME: Prefer using '"%s...", __func__' to using 'dma_fence_chain', this function's name, in a string
-#737: FILE: drivers/dma-buf/st-dma-fence-chain.c:700:
-+	pr_info("sizeof(dma_fence_chain)=%zu\n",
-
-total: 0 errors, 7 warnings, 1 checks, 725 lines checked
-864706ced80d dma-buf: Proxy fence, an unsignaled fence placeholder
--:45: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#45: 
-new file mode 100644
-
--:93: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#93: FILE: drivers/dma-buf/dma-fence-proxy.c:18:
-+	spinlock_t lock;
-
--:321: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#321: FILE: drivers/dma-buf/st-dma-fence-proxy.c:20:
-+	spinlock_t lock;
-
--:481: WARNING:MEMORY_BARRIER: memory barrier without comment
-#481: FILE: drivers/dma-buf/st-dma-fence-proxy.c:180:
-+	smp_store_mb(container_of(cb, struct simple_cb, cb)->seen, true);
-
-total: 0 errors, 2 warnings, 2 checks, 852 lines checked
-68a0bad1f9b4 drm/syncobj: Allow use of dma-fence-proxy
-399608cd52b2 drm/i915/gem: Teach execbuf how to wait on future syncobj
-92ebe33e0de7 drm/i915/gem: Allow combining submit-fences with syncobj
-70343118e687 drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
-275b5d3e7247 drm/i915/gt: Declare when we enabled timeslicing
-
+Cheers,
+Nathan
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
