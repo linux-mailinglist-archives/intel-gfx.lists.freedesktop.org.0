@@ -1,32 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D5CD1938D5
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 07:47:13 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ED18193995
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 08:25:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFDA6E27C;
-	Thu, 26 Mar 2020 06:47:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36EA76E29B;
+	Thu, 26 Mar 2020 07:25:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 065976E27C;
- Thu, 26 Mar 2020 06:47:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D9F42A47EB;
- Thu, 26 Mar 2020 06:47:09 +0000 (UTC)
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 795AA6E29B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 07:25:52 +0000 (UTC)
+IronPort-SDR: U56t1SgKRZ2Ov/2pIdp0126FBuRX4T9Shp4HHHBZl2xqk305OySR64gZsT4vWQZQdY5cxajxoX
+ iqPslWJmYNlA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2020 00:25:52 -0700
+IronPort-SDR: F8Plno0dnjrWfU8Z3RMKnjW6P82cGF+svPLvuXRkvtRQyu3wF8m7MkAKWjLfLvLwTbmB4pH1mB
+ kbijScBR3lpA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,307,1580803200"; d="scan'208";a="358062200"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+ by fmsmga001.fm.intel.com with ESMTP; 26 Mar 2020 00:25:52 -0700
+Received: from fmsmsx125.amr.corp.intel.com (10.18.125.40) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 26 Mar 2020 00:25:51 -0700
+Received: from bgsmsx153.gar.corp.intel.com (10.224.23.4) by
+ FMSMSX125.amr.corp.intel.com (10.18.125.40) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 26 Mar 2020 00:25:51 -0700
+Received: from bgsmsx104.gar.corp.intel.com ([169.254.5.111]) by
+ BGSMSX153.gar.corp.intel.com ([169.254.2.145]) with mapi id 14.03.0439.000;
+ Thu, 26 Mar 2020 12:55:47 +0530
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Khor, Swee Aun" <swee.aun.khor@intel.com>,
+ =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Thread-Topic: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
+Thread-Index: AQHV/RTdJvWeZ84SjEekeReP5HUDGahP7GUAgAEX5XCAADyIAIAAGVEAgASOZ4CAAQLnAIADmHFA
+Date: Thu, 26 Mar 2020 07:25:46 +0000
+Message-ID: <E7C9878FBA1C6D42A1CA3F62AEB6945F8243C5A7@BGSMSX104.gar.corp.intel.com>
+References: <20200318113009.16757-1-uma.shankar@intel.com>
+ <469075d16551fe95e2fdadfd6ffd1538a8f3a657.camel@intel.com>
+ <E7C9878FBA1C6D42A1CA3F62AEB6945F82437F00@BGSMSX104.gar.corp.intel.com>
+ <20200320152406.GP13686@intel.com>
+ <SN6PR11MB313483A95ADC942C6ADB4A23AFF50@SN6PR11MB3134.namprd11.prod.outlook.com>
+ <SN6PR11MB3134E738523673EE95DFEE33AFF00@SN6PR11MB3134.namprd11.prod.outlook.com>
+ <SN6PR11MB3134C5E30ACA7E579FF18600AFF10@SN6PR11MB3134.namprd11.prod.outlook.com>
+In-Reply-To: <SN6PR11MB3134C5E30ACA7E579FF18600AFF10@SN6PR11MB3134.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.223.10.10]
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Thu, 26 Mar 2020 06:47:09 -0000
-Message-ID: <158520522987.23003.11456693099445088963@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
-In-Reply-To: <6ec4772094094bb6967f0bd68e68c5e9e5613557.1585197556.git.ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLklHVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Do_not_clear_pollin_for_small_user_read_buffers_?=
- =?utf-8?b?KHJldjIp?=
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boot
+ for audio codec init
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,253 +73,234 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/perf: Do not clear pollin for small user read buffers (rev2)
-URL   : https://patchwork.freedesktop.org/series/75085/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8190_full -> Patchwork_17092_full
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17092_full that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_ctx_isolation@bcs0-s3:
-    - shard-kbl:          [PASS][1] -> [DMESG-WARN][2] ([i915#180] / [i915#93] / [i915#95]) +1 similar issue
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-kbl4/igt@gem_ctx_isolation@bcs0-s3.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-kbl1/igt@gem_ctx_isolation@bcs0-s3.html
-
-  * igt@gem_ctx_isolation@vcs1-nonpriv:
-    - shard-iclb:         [PASS][3] -> [SKIP][4] ([fdo#112080]) +5 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb1/igt@gem_ctx_isolation@vcs1-nonpriv.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb5/igt@gem_ctx_isolation@vcs1-nonpriv.html
-
-  * igt@gem_exec_schedule@implicit-read-write-bsd:
-    - shard-iclb:         [PASS][5] -> [SKIP][6] ([i915#677])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb8/igt@gem_exec_schedule@implicit-read-write-bsd.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb4/igt@gem_exec_schedule@implicit-read-write-bsd.html
-
-  * igt@gem_exec_schedule@implicit-write-read-bsd2:
-    - shard-iclb:         [PASS][7] -> [SKIP][8] ([fdo#109276] / [i915#677])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb1/igt@gem_exec_schedule@implicit-write-read-bsd2.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb3/igt@gem_exec_schedule@implicit-write-read-bsd2.html
-
-  * igt@gem_exec_schedule@preempt-bsd:
-    - shard-iclb:         [PASS][9] -> [SKIP][10] ([fdo#112146]) +6 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb8/igt@gem_exec_schedule@preempt-bsd.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb2/igt@gem_exec_schedule@preempt-bsd.html
-
-  * igt@i915_selftest@live@requests:
-    - shard-iclb:         [PASS][11] -> [INCOMPLETE][12] ([fdo#109644] / [fdo#110464])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb2/igt@i915_selftest@live@requests.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb7/igt@i915_selftest@live@requests.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size:
-    - shard-skl:          [PASS][13] -> [FAIL][14] ([IGT#5])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl9/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl5/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions-varying-size.html
-
-  * igt@kms_draw_crc@draw-method-rgb565-mmap-cpu-untiled:
-    - shard-skl:          [PASS][15] -> [FAIL][16] ([i915#52] / [i915#54])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl3/igt@kms_draw_crc@draw-method-rgb565-mmap-cpu-untiled.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl9/igt@kms_draw_crc@draw-method-rgb565-mmap-cpu-untiled.html
-
-  * igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled:
-    - shard-glk:          [PASS][17] -> [FAIL][18] ([i915#52] / [i915#54])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-glk5/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-glk6/igt@kms_draw_crc@draw-method-rgb565-mmap-gtt-xtiled.html
-
-  * igt@kms_hdr@bpc-switch:
-    - shard-skl:          [PASS][19] -> [FAIL][20] ([i915#1188])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl4/igt@kms_hdr@bpc-switch.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl1/igt@kms_hdr@bpc-switch.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c:
-    - shard-kbl:          [PASS][21] -> [DMESG-WARN][22] ([i915#180]) +2 similar issues
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-kbl7/igt@kms_pipe_crc_basic@suspend-read-crc-pipe-c.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes:
-    - shard-apl:          [PASS][23] -> [DMESG-WARN][24] ([i915#180]) +1 similar issue
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-apl3/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-apl1/igt@kms_plane@plane-panning-bottom-right-suspend-pipe-c-planes.html
-
-  * igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min:
-    - shard-skl:          [PASS][25] -> [FAIL][26] ([fdo#108145]) +1 similar issue
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl7/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl8/igt@kms_plane_alpha_blend@pipe-a-constant-alpha-min.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-coverage-7efc:
-    - shard-skl:          [PASS][27] -> [FAIL][28] ([fdo#108145] / [i915#265])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl2/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-coverage-7efc.html
-
-  * igt@kms_prime@basic-crc:
-    - shard-apl:          [PASS][29] -> [FAIL][30] ([i915#1031] / [i915#95])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-apl4/igt@kms_prime@basic-crc.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-apl6/igt@kms_prime@basic-crc.html
-    - shard-kbl:          [PASS][31] -> [FAIL][32] ([i915#1031] / [i915#93] / [i915#95])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-kbl7/igt@kms_prime@basic-crc.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-kbl3/igt@kms_prime@basic-crc.html
-
-  * igt@kms_psr@psr2_cursor_blt:
-    - shard-iclb:         [PASS][33] -> [SKIP][34] ([fdo#109441]) +1 similar issue
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb2/igt@kms_psr@psr2_cursor_blt.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb7/igt@kms_psr@psr2_cursor_blt.html
-
-  * igt@prime_busy@hang-bsd2:
-    - shard-iclb:         [PASS][35] -> [SKIP][36] ([fdo#109276]) +20 similar issues
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb1/igt@prime_busy@hang-bsd2.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb3/igt@prime_busy@hang-bsd2.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_busy@extended-parallel-vcs1:
-    - shard-iclb:         [SKIP][37] ([fdo#112080]) -> [PASS][38] +10 similar issues
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb6/igt@gem_busy@extended-parallel-vcs1.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb2/igt@gem_busy@extended-parallel-vcs1.html
-
-  * igt@gem_exec_schedule@pi-distinct-iova-bsd:
-    - shard-iclb:         [SKIP][39] ([i915#677]) -> [PASS][40] +1 similar issue
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb2/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb7/igt@gem_exec_schedule@pi-distinct-iova-bsd.html
-
-  * igt@gem_exec_schedule@preemptive-hang-bsd:
-    - shard-iclb:         [SKIP][41] ([fdo#112146]) -> [PASS][42] +3 similar issues
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb2/igt@gem_exec_schedule@preemptive-hang-bsd.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb7/igt@gem_exec_schedule@preemptive-hang-bsd.html
-
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-skl:          [DMESG-WARN][43] ([i915#716]) -> [PASS][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl1/igt@gen9_exec_parse@allowed-all.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl7/igt@gen9_exec_parse@allowed-all.html
-
-  * igt@i915_suspend@debugfs-reader:
-    - shard-apl:          [DMESG-WARN][45] ([i915#180]) -> [PASS][46] +1 similar issue
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-apl6/igt@i915_suspend@debugfs-reader.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-apl6/igt@i915_suspend@debugfs-reader.html
-
-  * igt@kms_cursor_crc@pipe-c-cursor-suspend:
-    - shard-kbl:          [DMESG-WARN][47] ([i915#180]) -> [PASS][48] +2 similar issues
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-kbl7/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-kbl7/igt@kms_cursor_crc@pipe-c-cursor-suspend.html
-
-  * igt@kms_flip@plain-flip-fb-recreate:
-    - shard-skl:          [FAIL][49] ([i915#34]) -> [PASS][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl10/igt@kms_flip@plain-flip-fb-recreate.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl4/igt@kms_flip@plain-flip-fb-recreate.html
-
-  * igt@kms_hdr@bpc-switch-dpms:
-    - shard-skl:          [FAIL][51] ([i915#1188]) -> [PASS][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl6/igt@kms_hdr@bpc-switch-dpms.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl2/igt@kms_hdr@bpc-switch-dpms.html
-
-  * igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min:
-    - shard-skl:          [FAIL][53] ([fdo#108145]) -> [PASS][54] +1 similar issue
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-skl5/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-skl6/igt@kms_plane_alpha_blend@pipe-c-constant-alpha-min.html
-
-  * igt@kms_plane_lowres@pipe-a-tiling-y:
-    - shard-glk:          [FAIL][55] ([i915#899]) -> [PASS][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-glk8/igt@kms_plane_lowres@pipe-a-tiling-y.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-glk7/igt@kms_plane_lowres@pipe-a-tiling-y.html
-
-  * igt@kms_psr@psr2_cursor_plane_move:
-    - shard-iclb:         [SKIP][57] ([fdo#109441]) -> [PASS][58] +2 similar issues
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb6/igt@kms_psr@psr2_cursor_plane_move.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb2/igt@kms_psr@psr2_cursor_plane_move.html
-
-  * igt@prime_vgem@wait-bsd2:
-    - shard-iclb:         [SKIP][59] ([fdo#109276]) -> [PASS][60] +12 similar issues
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb8/igt@prime_vgem@wait-bsd2.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb4/igt@prime_vgem@wait-bsd2.html
-
-  
-#### Warnings ####
-
-  * igt@kms_plane_alpha_blend@pipe-c-alpha-basic:
-    - shard-apl:          [FAIL][61] ([fdo#108145]) -> [FAIL][62] ([fdo#108145] / [i915#95])
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-apl3/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-apl1/igt@kms_plane_alpha_blend@pipe-c-alpha-basic.html
-
-  * igt@kms_psr2_su@page_flip:
-    - shard-iclb:         [FAIL][63] ([i915#608]) -> [SKIP][64] ([fdo#109642] / [fdo#111068])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/shard-iclb2/igt@kms_psr2_su@page_flip.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/shard-iclb4/igt@kms_psr2_su@page_flip.html
-
-  
-  [IGT#5]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/5
-  [fdo#108145]: https://bugs.freedesktop.org/show_bug.cgi?id=108145
-  [fdo#109276]: https://bugs.freedesktop.org/show_bug.cgi?id=109276
-  [fdo#109441]: https://bugs.freedesktop.org/show_bug.cgi?id=109441
-  [fdo#109642]: https://bugs.freedesktop.org/show_bug.cgi?id=109642
-  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
-  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
-  [fdo#111068]: https://bugs.freedesktop.org/show_bug.cgi?id=111068
-  [fdo#112080]: https://bugs.freedesktop.org/show_bug.cgi?id=112080
-  [fdo#112146]: https://bugs.freedesktop.org/show_bug.cgi?id=112146
-  [i915#1031]: https://gitlab.freedesktop.org/drm/intel/issues/1031
-  [i915#1188]: https://gitlab.freedesktop.org/drm/intel/issues/1188
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#265]: https://gitlab.freedesktop.org/drm/intel/issues/265
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#52]: https://gitlab.freedesktop.org/drm/intel/issues/52
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#608]: https://gitlab.freedesktop.org/drm/intel/issues/608
-  [i915#677]: https://gitlab.freedesktop.org/drm/intel/issues/677
-  [i915#716]: https://gitlab.freedesktop.org/drm/intel/issues/716
-  [i915#899]: https://gitlab.freedesktop.org/drm/intel/issues/899
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
 
 
-Participating hosts (10 -> 10)
-------------------------------
+> -----Original Message-----
+> From: Khor, Swee Aun <swee.aun.khor@intel.com>
+> Sent: Tuesday, March 24, 2020 11:26 AM
+> To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>
+> Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org
+> Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boo=
+t for audio
+> codec init
+> =
 
-  No changes in participating hosts
+> Git diff without debug print. Please review. Thanks.
 
+Will send this as a separate patch as this commit header doesn't hold good =
+now.
+Please review the change here: https://patchwork.freedesktop.org/series/751=
+06/
 
-Build changes
--------------
+Thanks Ville, Maarten and Jose for all your inputs. Thanks SweeAun for tryi=
+ng this at your end
+and confirming the change suggested by Ville works to resolve audio codec i=
+ssues.
 
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8190 -> Patchwork_17092
+Regards,
+Uma Shankar
 
-  CI-20190529: 20190529
-  CI_DRM_8190: 73f711b364bc85c8a7189487c09431eb1f515ed0 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5538: 47becbc9cd1fc7b1b78692f90fd3dcd5a9066965 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17092: fae3ed433b36110cf2f05ca2bc9100632293334d @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 4d1634ed6a1b..806cf622fb39 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14108,11 +14108,13 @@ static int intel_atomic_check(struct drm_device
+> *dev,
+>         int ret, i;
+>         bool any_ms =3D false;
+> =
 
-== Logs ==
+> +
+>         /* Catch I915_MODE_FLAG_INHERITED */
+>         for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>                                             new_crtc_state, i) {
+> -               if (new_crtc_state->hw.mode.private_flags !=3D
+> -                   old_crtc_state->hw.mode.private_flags)
+> +
+> +               if (new_crtc_state->uapi.mode.private_flags !=3D
+> +                   old_crtc_state->uapi.mode.private_flags)
+>                         new_crtc_state->uapi.mode_changed =3D true;
+>         }
+> =
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17092/index.html
+> Regards,
+> SweeAun
+> =
+
+> -----Original Message-----
+> From: Khor, Swee Aun
+> Sent: Monday, March 23, 2020 10:29 PM
+> To: 'Ville Syrj=E4l=E4' <ville.syrjala@linux.intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>
+> Cc: Souza, Jose <jose.souza@intel.com>; 'intel-gfx@lists.freedesktop.org'=
+ <intel-
+> gfx@lists.freedesktop.org>
+> Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boo=
+t for audio
+> codec init
+> =
+
+> Hi Ville,
+> =
+
+> You are right, your suggestion will fix this issue.
+> =
+
+> #Based on dmesg log, uapi mode private flags change is captured ...
+> [   11.404578] fbcon: i915drmfb (fb0) is primary device
+> [   11.404743] [drm] SA: intel_atomic_check: uapi change
+> [   11.404744] [drm] SA2: intel_atomic_check: new_crtc_state-
+> >uapi.mode.private_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D=
+ 1
+> [   11.404744] [drm] SA2: intel_atomic_check: new_crtc_state-
+> >uapi.mode.private_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D=
+ 0
+> [   11.404745] [drm] SA2: intel_atomic_check: new_crtc_state-
+> >uapi.mode.private_flags=3D 0, old_crtc_state->uapi.mode.private_flags=3D=
+ 0
+> [   11.404799] [drm:intel_atomic_check [i915]] [CONNECTOR:110:HDMI-A-2]
+> Limiting display bpp to 24 instead of EDID bpp 24, requested bpp 36, max =
+platform
+> bpp 36
+> [   11.404855] [drm:intel_hdmi_compute_config [i915]] picking 8 bpc for H=
+DMI
+> output (pipe bpp: 24)
+> [   11.404898] [drm:intel_atomic_check [i915]] hw max bpp: 24, pipe bpp: =
+24,
+> dithering: 0
+> ...
+> =
+
+> #Here is the git diff
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> b/drivers/gpu/drm/i915/display/intel_display.c
+> index 4d1634ed6a1b..b5c56cd513d9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -14108,11 +14108,15 @@ static int intel_atomic_check(struct drm_device
+> *dev,  int ret, i;  bool any_ms =3D false;
+> =
+
+> +DRM_INFO("SA: intel_atomic_check: uapi change \n");
+> +
+>  /* Catch I915_MODE_FLAG_INHERITED */
+>  for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+>      new_crtc_state, i) {
+> -if (new_crtc_state->hw.mode.private_flags !=3D
+> -    old_crtc_state->hw.mode.private_flags)
+> +
+> +DRM_INFO("SA2: intel_atomic_check:
+> +new_crtc_state->uapi.mode.private_flags=3D %d, old_crtc_state-
+> >uapi.mode.private_flags=3D %d  \n", new_crtc_state->uapi.mode.private_fl=
+ags,
+> old_crtc_state->uapi.mode.private_flags ); if (new_crtc_state-
+> >uapi.mode.private_flags !=3D
+> +    old_crtc_state->uapi.mode.private_flags)
+>  new_crtc_state->uapi.mode_changed =3D true;  }
+> =
+
+> Regards,
+> SweeAun
+> =
+
+> -----Original Message-----
+> From: Khor, Swee Aun
+> Sent: Saturday, March 21, 2020 12:55 AM
+> To: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>
+> Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org
+> Subject: RE: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boo=
+t for audio
+> codec init
+> =
+
+> Hi Ville,
+> You means this change right? Sure. Will try your suggestion as well.
+> By the way, what is different between hw.mode and uapi.mode and how we kn=
+ow
+> which to be used? It used to only base.mode before hw/uapi split patches.
+> =
+
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -14671,8 +14671,8 @@ static int intel_atomic_check(struct drm_device=
+ *dev,
+> >         /* Catch I915_MODE_FLAG_INHERITED */
+> >         for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> >                                             new_crtc_state, i) {
+> > -               if (new_crtc_state->hw.mode.private_flags !=3D
+> > -                   old_crtc_state->hw.mode.private_flags)
+> > +               if (new_crtc_state->uapi.mode.private_flags !=3D
+> > +                   old_crtc_state->uapi.mode.private_flags)
+> >                         new_crtc_state->uapi.mode_changed =3D true;
+> >         }
+> >
+> > ?
+> =
+
+> Regards,
+> SweeAun
+> =
+
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: Friday, March 20, 2020 11:24 PM
+> To: Shankar, Uma <uma.shankar@intel.com>
+> Cc: Souza, Jose <jose.souza@intel.com>; intel-gfx@lists.freedesktop.org; =
+Khor,
+> Swee Aun <swee.aun.khor@intel.com>
+> Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset at boo=
+t for audio
+> codec init
+> =
+
+> On Fri, Mar 20, 2020 at 06:19:37AM +0000, Shankar, Uma wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Souza, Jose <jose.souza@intel.com>
+> > > Sent: Friday, March 20, 2020 12:36 AM
+> > > To: Shankar, Uma <uma.shankar@intel.com>;
+> > > intel-gfx@lists.freedesktop.org
+> > > Cc: Khor, Swee Aun <swee.aun.khor@intel.com>
+> > > Subject: Re: [Intel-gfx] [PATCH] drm/i915/display: Trigger Modeset
+> > > at boot for audio codec init
+> > >
+> > > On Wed, 2020-03-18 at 17:00 +0530, Uma Shankar wrote:
+> > > > If external monitors are connected during boot up, driver uses the
+> > > > same mode programmed by BIOS and avoids a full modeset.
+> > > > This results in display audio codec left uninitialized and display
+> > > > audio fails to work till user triggers a modeset.
+> > > >
+> > > > This patch fixes the same by triggering a modeset at boot.
+> > >
+> > > We had the same issue for PSR, take a look to the fix:
+> > > commit 33e059a2e4df454359f642f2235af39de9d3e914
+> > > drm/i915/psr: Force PSR probe only after full initialization
+> > >
+> > > Maybe make this even more generic.
+> >
+> > Yeah this looks to dealing with almost a similar need. Thanks for
+> > pointing this out, will try to come up with a generalized solution.
+> =
+
+> How about just fixing the uapi vs. hw fail I showed instead of adding eve=
+n more
+> hacks?
+> =
+
+> --
+> Ville Syrj=E4l=E4
+> Intel
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
