@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C5C8194737
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 20:12:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20ABC194758
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 20:18:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 420916E351;
-	Thu, 26 Mar 2020 19:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 130D76E914;
+	Thu, 26 Mar 2020 19:18:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 022F56E351
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 19:12:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 031166E914
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 19:18:53 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20705000-1500050 
- for multiple; Thu, 26 Mar 2020 19:11:53 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20705100-1500050 
+ for multiple; Thu, 26 Mar 2020 19:18:28 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 19:11:51 +0000
-Message-Id: <20200326191151.20890-1-chris@chris-wilson.co.uk>
+Date: Thu, 26 Mar 2020 19:18:26 +0000
+Message-Id: <20200326191826.21279-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200326191151.20890-1-chris@chris-wilson.co.uk>
+References: <20200326191151.20890-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Prevent GPU death on
  ELSP[1] promotion to idle context
@@ -47,6 +49,27 @@ idle context with HEAD==TAIL, it appears we must prevent the HW from
 switching to an idle context in ELSP[1], while simultaneously trying to
 preempt the HW to run another context and a continuation of the idle
 context (which is no longer idle).
+
+  process_csb: vecs0: cs-irq head=0, tail=1
+  process_csb: vecs0: csb[1]: status=0x00000882:0x00000020
+  trace_ports: vecs0: promote { 8b2:32!, 8c0:30 }
+  trace_ports: vecs0: preempted { 8c0:30!, 0:0 }
+  trace_ports: vecs0: submit { 8b8:32, 8c0:32 }
+  process_csb: vecs0: cs-irq head=1, tail=2
+  process_csb: vecs0: csb[2]: status=0x00000814:0x00000040
+  trace_ports: vecs0: completed { 8b2:32!, 8c0:30 }
+  process_csb: vecs0: cs-irq head=2, tail=5
+  process_csb: vecs0: csb[3]: status=0x00000812:0x00000020
+  trace_ports: vecs0: promote { 8b8:32!, 8c0:32 }
+  trace_ports: vecs0: preempted { 8c0:30!, 0:0 }
+  process_csb: vecs0: csb[4]: status=0x00000814:0x00000060
+  trace_ports: vecs0: completed { 8b8:32!, 8c0:32 }
+  process_csb: vecs0: csb[5]: status=0x00000818:0x00000020
+  trace_ports: vecs0: completed { 8c0:32, 0:0 }
+  process_csb: vecs0: ring:{start:0x00021000, head:03f8, tail:03f8, ctl:00000000, mode:00000200}
+  process_csb: vecs0: rq:{start:00021000, head:03c0, tail:0400, seqno:8c0:32, hwsp:30},
+  process_csb: vecs0: ctx:{start:00021000, head:03f8, tail:03f8},
+  process_csb: process_csb:2449 GEM_BUG_ON("context completed before request")
 
 Fortunately, we just so happen to have a semaphore in place to prevent
 the ring HEAD from proceeding past the end of a request that we can use
