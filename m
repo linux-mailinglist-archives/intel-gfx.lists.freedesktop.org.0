@@ -2,42 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB228193F3B
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 13:50:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB4D193F3C
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 13:50:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE38C6E323;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D9D6E36F;
 	Thu, 26 Mar 2020 12:50:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from conuserg-11.nifty.com (conuserg-11.nifty.com [210.131.2.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E36D96E2CD;
- Thu, 26 Mar 2020 08:02:31 +0000 (UTC)
-Received: from pug.e01.socionext.com (p14092-ipngnfx01kyoto.kyoto.ocn.ne.jp
- [153.142.97.92]) (authenticated)
- by conuserg-11.nifty.com with ESMTP id 02Q81Wpc002183;
- Thu, 26 Mar 2020 17:01:48 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conuserg-11.nifty.com 02Q81Wpc002183
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
- s=dec2015msa; t=1585209709;
- bh=1kwyPiyPgRPS8M5GHrXIKo7KAtQM8nhh5IKej8Tf4fs=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Z2HLjPnoIUx7xxf6jaPY/9NQ8gGttNV5mMdLnjDZNtxsBJKHwDKqDX6GG6gz+GDyY
- iyO6HWF3QyaISQjPZANMr+X43SDf2qaOI5FWRpD3LMb4apVJJA6izFbqUq0DOqeMI/
- emOrOGh4itMVgoPMmrF7hzVqPPdP1MQpsGV7PTm1cu+sEn7wr4C5YmoV0iBJOf+uPm
- ESkgTpY0OknKLY3Rf8ROv3uEjAftihyb+fkpJA4DB4VJBbXKUf/yrh4xH0GQ+/nT32
- LUaaMvWCJ5dkybGBL1Ev/BXIcNCZeTihmckWZBHHR9jr3vpK4Ez9i+R4kWoUOCA0EE
- kWEk6RCZjqi0w==
-X-Nifty-SrcIP: [153.142.97.92]
-From: Masahiro Yamada <masahiroy@kernel.org>
-To: linux-kbuild@vger.kernel.org
-Date: Thu, 26 Mar 2020 17:00:57 +0900
-Message-Id: <20200326080104.27286-10-masahiroy@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200326080104.27286-1-masahiroy@kernel.org>
+X-Greylist: delayed 399 seconds by postgrey-1.36 at gabe;
+ Thu, 26 Mar 2020 08:19:48 UTC
+Received: from frisell.zx2c4.com (frisell.zx2c4.com [192.95.5.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0804F6E2C8;
+ Thu, 26 Mar 2020 08:19:47 +0000 (UTC)
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 6ffde851;
+ Thu, 26 Mar 2020 08:05:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=mime-version
+ :references:in-reply-to:from:date:message-id:subject:to:cc
+ :content-type; s=mail; bh=z54i3Rpd8bQwLDnVNFV/yezuxLU=; b=boOyqs
+ mCdG+80LeYcjASWpkQ1zMThj2uZPRyQj63aULJ1eho1PEeJxY053blYBVEDv/+X7
+ OBQ/dBvu36pqu+6GHtzv5FnIDYJ8+m+UpNZddescE9+TJew8ZdyolfWdn7qCgNwm
+ hCDQQZZIBJP70J+3MGGaus93N2IUKDn1UavfBtBSFRk4AtjJCPc/vVInIjmHn4rp
+ 9nXPZ9Perj3Rk83uKKf3OPmeCafWNMnHZ2UW709Lpc/xjEXipaADr7IcjmiVm9Er
+ qA90IZHHNfiJD+f6KrFTRwRM8Vhig7u1XfQF2UZX5KM4Hl2qhbUe96EyxkSi5RwR
+ yE1MyvOm+wrsj6Vw==
+Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id b3d3b47d
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO); 
+ Thu, 26 Mar 2020 08:05:44 +0000 (UTC)
+Received: by mail-io1-f41.google.com with SMTP id q7so1683274iot.10;
+ Thu, 26 Mar 2020 01:13:06 -0700 (PDT)
+X-Gm-Message-State: ANhLgQ1oMwGPdqCvBqKLhrMmJfguDIL/1PrZuoB5xTWn4ohrQWOSUcdX
+ XEVX8WelTiHY3fveQADrM//ePpXvgH4EuBodYwU=
+X-Google-Smtp-Source: ADFU+vsTJTCXcFJHQUwui8dbQzcKfWOUCgQIPLG0bwuItksw1ry6Mg259oUoldQgsVo9bcGoroXnNzuIzCxg8dcm+jA=
+X-Received: by 2002:a02:2a4a:: with SMTP id w71mr6759564jaw.75.1585210385536; 
+ Thu, 26 Mar 2020 01:13:05 -0700 (PDT)
+MIME-Version: 1.0
 References: <20200326080104.27286-1-masahiroy@kernel.org>
+In-Reply-To: <20200326080104.27286-1-masahiroy@kernel.org>
+From: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Thu, 26 Mar 2020 02:12:54 -0600
+X-Gmail-Original-Message-ID: <CAHmME9pnAvgErYkcvvdakvfMY8ZGKfwHHNYzpVtJ913Tgp16CQ@mail.gmail.com>
+Message-ID: <CAHmME9pnAvgErYkcvvdakvfMY8ZGKfwHHNYzpVtJ913Tgp16CQ@mail.gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>
 X-Mailman-Approved-At: Thu, 26 Mar 2020 12:50:17 +0000
-Subject: [Intel-gfx] [PATCH v2 09/16] drm/i915: remove always-defined
- CONFIG_AS_MOVNTDQA
+Subject: Re: [Intel-gfx] [PATCH v2 00/16] x86,
+ crypto: remove always-defined CONFIG_AS_* and cosolidate
+ Kconfig/Makefiles
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,81 +59,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@linux.ie>, "Jason A . Donenfeld" <Jason@zx2c4.com>,
- Peter Zijlstra <peterz@infradead.org>, Masahiro Yamada <masahiroy@kernel.org>,
- x86@kernel.org, Nick Desaulniers <ndesaulniers@google.com>,
- linux-kernel@vger.kernel.org, clang-built-linux@googlegroups.com,
- Borislav Petkov <bp@alien8.de>, dri-devel@lists.freedesktop.org,
- "H . Peter Anvin" <hpa@zytor.com>, Thomas Gleixner <tglx@linutronix.de>,
- intel-gfx@lists.freedesktop.org
-MIME-Version: 1.0
+Cc: linux-doc@vger.kernel.org, NeilBrown <neilb@suse.de>,
+ dri-devel@lists.freedesktop.org, "H . Peter Anvin" <hpa@zytor.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Jonathan Corbet <corbet@lwn.net>,
+ X86 ML <x86@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>,
+ Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+ Yuanhan Liu <yuanhan.liu@linux.intel.com>,
+ Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+ intel-gfx@lists.freedesktop.org, Borislav Petkov <bp@alien8.de>,
+ Thomas Gleixner <tglx@linutronix.de>, David Airlie <airlied@linux.ie>,
+ Nick Desaulniers <ndesaulniers@google.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ clang-built-linux <clang-built-linux@googlegroups.com>,
+ "David S. Miller" <davem@davemloft.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-CONFIG_AS_MOVNTDQA was introduced by commit 0b1de5d58e19 ("drm/i915:
-Use SSE4.1 movntdqa to accelerate reads from WC memory").
+Very little has changed from last time, and this whole series still
+looks good to me. I think I already ack'd most packages, but in case
+it helps:
 
-We raise the minimal supported binutils version from time to time.
-The last bump was commit 1fb12b35e5ff ("kbuild: Raise the minimum
-required binutils version to 2.21").
+Reviewed-by: Jason A. Donenfeld <Jason@zx2c4.com>
 
-I confirmed the code in $(call as-instr,...) can be assembled by the
-binutils 2.21 assembler and also by LLVM integrated assembler.
-
-Remove CONFIG_AS_MOVNTDQA, which is always defined.
-
-Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-Reviewed-by: Nick Desaulniers <ndesaulniers@google.com>
----
-
-Changes in v2: None
-
- drivers/gpu/drm/i915/Makefile      | 3 ---
- drivers/gpu/drm/i915/i915_memcpy.c | 5 -----
- 2 files changed, 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index a1f2411aa21b..e559e53fc634 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -28,9 +28,6 @@ subdir-ccflags-$(CONFIG_DRM_I915_WERROR) += -Werror
- CFLAGS_i915_pci.o = $(call cc-disable-warning, override-init)
- CFLAGS_display/intel_fbdev.o = $(call cc-disable-warning, override-init)
- 
--subdir-ccflags-y += \
--	$(call as-instr,movntdqa (%eax)$(comma)%xmm0,-DCONFIG_AS_MOVNTDQA)
--
- subdir-ccflags-y += -I$(srctree)/$(src)
- 
- # Please keep these build lists sorted!
-diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-index fdd550405fd3..7b3b83bd5ab8 100644
---- a/drivers/gpu/drm/i915/i915_memcpy.c
-+++ b/drivers/gpu/drm/i915/i915_memcpy.c
-@@ -35,7 +35,6 @@
- 
- static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
- 
--#ifdef CONFIG_AS_MOVNTDQA
- static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
- {
- 	kernel_fpu_begin();
-@@ -93,10 +92,6 @@ static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
- 
- 	kernel_fpu_end();
- }
--#else
--static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len) {}
--static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len) {}
--#endif
- 
- /**
-  * i915_memcpy_from_wc: perform an accelerated *aligned* read from WC
--- 
-2.17.1
-
+Since this touches a lot of stuff, it might be best to get it in as
+early as possible during the merge window, as I imagine new code being
+added is going to want to be touching those makefiles too.
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
