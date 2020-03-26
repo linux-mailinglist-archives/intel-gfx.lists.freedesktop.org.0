@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3850194636
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 19:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8567194638
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 19:14:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB586E8FF;
-	Thu, 26 Mar 2020 18:13:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 290E56E902;
+	Thu, 26 Mar 2020 18:14:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4F96E8FF
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 18:13:54 +0000 (UTC)
-IronPort-SDR: a/BZs18Jkpn7GHamlPGXjB9kesNs0xHMzCw/Tm69vp5UO2WGInasnKPxpPdIb1dUeFby3tq+nM
- Vue4jyyQN13g==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B64086E8FF
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 18:13:56 +0000 (UTC)
+IronPort-SDR: 1MRTTKmAWvTt8f6U4MVDh8KNfRS13g46HNMayThYSM1ZZ5ki0l5W+kNhF2jf6ACoOPbD2Du4W+
+ 73FkHncyzCOw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2020 11:13:54 -0700
-IronPort-SDR: NQa2/0RvN9qNQ5JXA4JdZYIB4PIjA4oUPmwrPKmEtXsI8q3/uIKBSevFFWdLgpso6IzWuySYxR
- 638TwFkMsxvQ==
+ 26 Mar 2020 11:13:56 -0700
+IronPort-SDR: iuaO+rj4AKyCdapJKAR3KitMvYMrYGCcdY34Rq+imPu00KON3zylXcLcsGi963FLmaPDn0V34Z
+ i2uWgIFgHGsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,309,1580803200"; d="scan'208";a="420808168"
+X-IronPort-AV: E=Sophos;i="5.72,309,1580803200"; d="scan'208";a="420808177"
 Received: from unknown (HELO slisovsk-Lenovo-ideapad-720S-13IKB.fi.intel.com)
  ([10.237.72.89])
- by orsmga005.jf.intel.com with ESMTP; 26 Mar 2020 11:13:51 -0700
+ by orsmga005.jf.intel.com with ESMTP; 26 Mar 2020 11:13:54 -0700
 From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 20:09:56 +0200
-Message-Id: <20200326181005.11775-2-stanislav.lisovskiy@intel.com>
+Date: Thu, 26 Mar 2020 20:09:57 +0200
+Message-Id: <20200326181005.11775-3-stanislav.lisovskiy@intel.com>
 X-Mailer: git-send-email 2.24.1.485.gad05a3d8e5
 In-Reply-To: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
 References: <20200326181005.11775-1-stanislav.lisovskiy@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v20 01/10] drm/i915: Start passing latency as
- parameter
+Subject: [Intel-gfx] [PATCH v20 02/10] drm/i915: Eliminate magic numbers "0"
+ and "1" from color plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,57 +49,217 @@ List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Cc: jani.nikula@intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-V2UgbmVlZCB0byBzdGFydCBwYXNzaW5nIG1lbW9yeSBsYXRlbmN5IGFzIGEKcGFyYW1ldGVyIHdo
-ZW4gY2FsY3VsYXRpbmcgcGxhbmUgd20gbGV2ZWxzLAphcyBsYXRlbmN5IGNhbiBnZXQgY2hhbmdl
-ZCBpbiBkaWZmZXJlbnQKY2lyY3Vtc3RhbmNlcyhmb3IgZXhhbXBsZSB3aXRoIG9yIHdpdGhvdXQg
-U0FHVikuClNvIHdlIG5lZWQgdG8gYmUgbW9yZSBmbGV4aWJsZSBvbiB0aGF0IG1hdHRlci4KCnYy
-OiBDaGFuZ2VkIGxhdGVuY3kgdHlwZSBmcm9tIHUzMiB0byB1bnNpZ25lZCBpbnQoVmlsbGUgU3ly
-asOkbMOkKQoKUmV2aWV3ZWQtYnk6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51
-eC5pbnRlbC5jb20+ClNpZ25lZC1vZmYtYnk6IFN0YW5pc2xhdiBMaXNvdnNraXkgPHN0YW5pc2xh
-di5saXNvdnNraXlAaW50ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3Bt
-LmMgfCAxMiArKysrKysrKy0tLS0KIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMoKyksIDQg
-ZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0u
-YyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMKaW5kZXggODM3NTA1NGJhMjdkLi5i
-NjMyYjZiYjljM2UgMTAwNjQ0Ci0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2ludGVsX3BtLmMK
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvaW50ZWxfcG0uYwpAQCAtNDAxNiw2ICs0MDE2LDcg
-QEAgc3RhdGljIGludCBza2xfY29tcHV0ZV93bV9wYXJhbXMoY29uc3Qgc3RydWN0IGludGVsX2Ny
-dGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJCQkJIGludCBjb2xvcl9wbGFuZSk7CiBzdGF0aWMgdm9p
-ZCBza2xfY29tcHV0ZV9wbGFuZV93bShjb25zdCBzdHJ1Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0
-Y19zdGF0ZSwKIAkJCQkgaW50IGxldmVsLAorCQkJCSB1bnNpZ25lZCBpbnQgbGF0ZW5jeSwKIAkJ
-CQkgY29uc3Qgc3RydWN0IHNrbF93bV9wYXJhbXMgKndwLAogCQkJCSBjb25zdCBzdHJ1Y3Qgc2ts
-X3dtX2xldmVsICpyZXN1bHRfcHJldiwKIAkJCQkgc3RydWN0IHNrbF93bV9sZXZlbCAqcmVzdWx0
-IC8qIG91dCAqLyk7CkBAIC00MDM4LDcgKzQwMzksOSBAQCBza2xfY3Vyc29yX2FsbG9jYXRpb24o
-Y29uc3Qgc3RydWN0IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3RhdGUsCiAJZHJtX1dBUk5fT04o
-JmRldl9wcml2LT5kcm0sIHJldCk7CiAKIAlmb3IgKGxldmVsID0gMDsgbGV2ZWwgPD0gbWF4X2xl
-dmVsOyBsZXZlbCsrKSB7Ci0JCXNrbF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUsIGxldmVs
-LCAmd3AsICZ3bSwgJndtKTsKKwkJdW5zaWduZWQgaW50IGxhdGVuY3kgPSBkZXZfcHJpdi0+d20u
-c2tsX2xhdGVuY3lbbGV2ZWxdOworCisJCXNrbF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUs
-IGxldmVsLCBsYXRlbmN5LCAmd3AsICZ3bSwgJndtKTsKIAkJaWYgKHdtLm1pbl9kZGJfYWxsb2Mg
-PT0gVTE2X01BWCkKIAkJCWJyZWFrOwogCkBAIC00OTcyLDEyICs0OTc1LDEyIEBAIHN0YXRpYyBi
-b29sIHNrbF93bV9oYXNfbGluZXMoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LCBp
-bnQgbGV2ZWwpCiAKIHN0YXRpYyB2b2lkIHNrbF9jb21wdXRlX3BsYW5lX3dtKGNvbnN0IHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAogCQkJCSBpbnQgbGV2ZWwsCisJCQkJIHVu
-c2lnbmVkIGludCBsYXRlbmN5LAogCQkJCSBjb25zdCBzdHJ1Y3Qgc2tsX3dtX3BhcmFtcyAqd3As
-CiAJCQkJIGNvbnN0IHN0cnVjdCBza2xfd21fbGV2ZWwgKnJlc3VsdF9wcmV2LAogCQkJCSBzdHJ1
-Y3Qgc2tsX3dtX2xldmVsICpyZXN1bHQgLyogb3V0ICovKQogewogCXN0cnVjdCBkcm1faTkxNV9w
-cml2YXRlICpkZXZfcHJpdiA9IHRvX2k5MTUoY3J0Y19zdGF0ZS0+dWFwaS5jcnRjLT5kZXYpOwot
-CXUzMiBsYXRlbmN5ID0gZGV2X3ByaXYtPndtLnNrbF9sYXRlbmN5W2xldmVsXTsKIAl1aW50X2Zp
-eGVkXzE2XzE2X3QgbWV0aG9kMSwgbWV0aG9kMjsKIAl1aW50X2ZpeGVkXzE2XzE2X3Qgc2VsZWN0
-ZWRfcmVzdWx0OwogCXUzMiByZXNfYmxvY2tzLCByZXNfbGluZXMsIG1pbl9kZGJfYWxsb2MgPSAw
-OwpAQCAtNTEwNiw5ICs1MTA5LDEwIEBAIHNrbF9jb21wdXRlX3dtX2xldmVscyhjb25zdCBzdHJ1
-Y3QgaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwKIAogCWZvciAobGV2ZWwgPSAwOyBsZXZl
-bCA8PSBtYXhfbGV2ZWw7IGxldmVsKyspIHsKIAkJc3RydWN0IHNrbF93bV9sZXZlbCAqcmVzdWx0
-ID0gJmxldmVsc1tsZXZlbF07CisJCXVuc2lnbmVkIGludCBsYXRlbmN5ID0gZGV2X3ByaXYtPndt
-LnNrbF9sYXRlbmN5W2xldmVsXTsKIAotCQlza2xfY29tcHV0ZV9wbGFuZV93bShjcnRjX3N0YXRl
-LCBsZXZlbCwgd21fcGFyYW1zLAotCQkJCSAgICAgcmVzdWx0X3ByZXYsIHJlc3VsdCk7CisJCXNr
-bF9jb21wdXRlX3BsYW5lX3dtKGNydGNfc3RhdGUsIGxldmVsLCBsYXRlbmN5LAorCQkJCSAgICAg
-d21fcGFyYW1zLCByZXN1bHRfcHJldiwgcmVzdWx0KTsKIAogCQlyZXN1bHRfcHJldiA9IHJlc3Vs
-dDsKIAl9Ci0tIAoyLjI0LjEuNDg1LmdhZDA1YTNkOGU1CgpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdm
-eEBsaXN0cy5mcmVlZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFp
-bG1hbi9saXN0aW5mby9pbnRlbC1nZngK
+According to many computer science sources - magic values
+in code _are_ _bad_. For many reasons: the reason is that "0"
+or "1" or whatever magic values confuses and doesn't give any
+info why this parameter is this value and what it's meaning
+is.
+I renamed "0" to COLOR_PLANE_Y and "1" to COLOR_PLANE_UV,
+because we in fact already use this naming in many other places
+and function names, when dealing with color planes.
+
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+---
+ .../drm/i915/display/intel_display_types.h    |  5 +++
+ drivers/gpu/drm/i915/intel_pm.c               | 40 +++++++++----------
+ 2 files changed, 25 insertions(+), 20 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 176ab5f1e867..523e0444b373 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -682,6 +682,11 @@ struct skl_plane_wm {
+ 	bool is_planar;
+ };
+ 
++enum color_plane {
++	COLOR_PLANE_Y,
++	COLOR_PLANE_UV
++};
++
+ struct skl_pipe_wm {
+ 	struct skl_plane_wm planes[I915_MAX_PLANES];
+ };
+diff --git a/drivers/gpu/drm/i915/intel_pm.c b/drivers/gpu/drm/i915/intel_pm.c
+index b632b6bb9c3e..9e9a4612d842 100644
+--- a/drivers/gpu/drm/i915/intel_pm.c
++++ b/drivers/gpu/drm/i915/intel_pm.c
+@@ -4013,7 +4013,7 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 				 int width, const struct drm_format_info *format,
+ 				 u64 modifier, unsigned int rotation,
+ 				 u32 plane_pixel_rate, struct skl_wm_params *wp,
+-				 int color_plane);
++				 enum color_plane);
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 int level,
+ 				 unsigned int latency,
+@@ -4035,7 +4035,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+ 				    drm_format_info(DRM_FORMAT_ARGB8888),
+ 				    DRM_FORMAT_MOD_LINEAR,
+ 				    DRM_MODE_ROTATE_0,
+-				    crtc_state->pixel_rate, &wp, 0);
++				    crtc_state->pixel_rate, &wp, COLOR_PLANE_Y);
+ 	drm_WARN_ON(&dev_priv->drm, ret);
+ 
+ 	for (level = 0; level <= max_level; level++) {
+@@ -4431,7 +4431,7 @@ static u8 skl_compute_dbuf_slices(const struct intel_crtc_state *crtc_state,
+ static u64
+ skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 			     const struct intel_plane_state *plane_state,
+-			     int color_plane)
++			     enum color_plane color_plane)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+@@ -4446,7 +4446,7 @@ skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 	if (plane->id == PLANE_CURSOR)
+ 		return 0;
+ 
+-	if (color_plane == 1 &&
++	if (color_plane == COLOR_PLANE_UV &&
+ 	    !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+ 		return 0;
+ 
+@@ -4459,7 +4459,7 @@ skl_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 	height = drm_rect_height(&plane_state->uapi.src) >> 16;
+ 
+ 	/* UV plane does 1/2 pixel sub-sampling */
+-	if (color_plane == 1) {
++	if (color_plane == COLOR_PLANE_UV) {
+ 		width /= 2;
+ 		height /= 2;
+ 	}
+@@ -4489,12 +4489,12 @@ skl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
+ 		u64 rate;
+ 
+ 		/* packed/y */
+-		rate = skl_plane_relative_data_rate(crtc_state, plane_state, 0);
++		rate = skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_PLANE_Y);
+ 		plane_data_rate[plane_id] = rate;
+ 		total_data_rate += rate;
+ 
+ 		/* uv-plane */
+-		rate = skl_plane_relative_data_rate(crtc_state, plane_state, 1);
++		rate = skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_PLANE_UV);
+ 		uv_plane_data_rate[plane_id] = rate;
+ 		total_data_rate += rate;
+ 	}
+@@ -4516,7 +4516,7 @@ icl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
+ 		u64 rate;
+ 
+ 		if (!plane_state->planar_linked_plane) {
+-			rate = skl_plane_relative_data_rate(crtc_state, plane_state, 0);
++			rate = skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_PLANE_Y);
+ 			plane_data_rate[plane_id] = rate;
+ 			total_data_rate += rate;
+ 		} else {
+@@ -4533,12 +4533,12 @@ icl_get_total_relative_data_rate(struct intel_crtc_state *crtc_state,
+ 				continue;
+ 
+ 			/* Y plane rate is calculated on the slave */
+-			rate = skl_plane_relative_data_rate(crtc_state, plane_state, 0);
++			rate = skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_PLANE_Y);
+ 			y_plane_id = plane_state->planar_linked_plane->id;
+ 			plane_data_rate[y_plane_id] = rate;
+ 			total_data_rate += rate;
+ 
+-			rate = skl_plane_relative_data_rate(crtc_state, plane_state, 1);
++			rate = skl_plane_relative_data_rate(crtc_state, plane_state, COLOR_PLANE_UV);
+ 			plane_data_rate[plane_id] = rate;
+ 			total_data_rate += rate;
+ 		}
+@@ -4854,14 +4854,14 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 		      int width, const struct drm_format_info *format,
+ 		      u64 modifier, unsigned int rotation,
+ 		      u32 plane_pixel_rate, struct skl_wm_params *wp,
+-		      int color_plane)
++		      enum color_plane color_plane)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 interm_pbpl;
+ 
+ 	/* only planar format has two planes */
+-	if (color_plane == 1 &&
++	if (color_plane == COLOR_PLANE_UV &&
+ 	    !intel_format_info_is_yuv_semiplanar(format, modifier)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "Non planar format have single plane\n");
+@@ -4878,7 +4878,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+ 
+ 	wp->width = width;
+-	if (color_plane == 1 && wp->is_planar)
++	if (color_plane == COLOR_PLANE_UV && wp->is_planar)
+ 		wp->width /= 2;
+ 
+ 	wp->cpp = format->cpp[color_plane];
+@@ -4945,7 +4945,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ static int
+ skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
+ 			    const struct intel_plane_state *plane_state,
+-			    struct skl_wm_params *wp, int color_plane)
++			    struct skl_wm_params *wp, enum color_plane color_plane)
+ {
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+ 	int width;
+@@ -5187,7 +5187,7 @@ static void skl_compute_transition_wm(const struct intel_crtc_state *crtc_state,
+ 
+ static int skl_build_plane_wm_single(struct intel_crtc_state *crtc_state,
+ 				     const struct intel_plane_state *plane_state,
+-				     enum plane_id plane_id, int color_plane)
++				     enum plane_id plane_id, enum color_plane color_plane)
+ {
+ 	struct skl_plane_wm *wm = &crtc_state->wm.skl.optimal.planes[plane_id];
+ 	struct skl_wm_params wm_params;
+@@ -5216,7 +5216,7 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
+ 
+ 	/* uv plane watermarks must also be validated for NV12/Planar */
+ 	ret = skl_compute_plane_wm_params(crtc_state, plane_state,
+-					  &wm_params, 1);
++					  &wm_params, COLOR_PLANE_UV);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -5237,7 +5237,7 @@ static int skl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 		return 0;
+ 
+ 	ret = skl_build_plane_wm_single(crtc_state, plane_state,
+-					plane_id, 0);
++					plane_id, COLOR_PLANE_Y);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -5270,17 +5270,17 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+ 			fb->format->num_planes == 1);
+ 
+ 		ret = skl_build_plane_wm_single(crtc_state, plane_state,
+-						y_plane_id, 0);
++						y_plane_id, COLOR_PLANE_Y);
+ 		if (ret)
+ 			return ret;
+ 
+ 		ret = skl_build_plane_wm_single(crtc_state, plane_state,
+-						plane_id, 1);
++						plane_id, COLOR_PLANE_UV);
+ 		if (ret)
+ 			return ret;
+ 	} else if (intel_wm_plane_visible(crtc_state, plane_state)) {
+ 		ret = skl_build_plane_wm_single(crtc_state, plane_state,
+-						plane_id, 0);
++						plane_id, COLOR_PLANE_Y);
+ 		if (ret)
+ 			return ret;
+ 	}
+-- 
+2.24.1.485.gad05a3d8e5
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
