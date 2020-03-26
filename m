@@ -1,26 +1,27 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A99193E3D
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 12:49:49 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 044A0193E40
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 12:49:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31BA6E30E;
-	Thu, 26 Mar 2020 11:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80D236E8B3;
+	Thu, 26 Mar 2020 11:49:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F053D6E30C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F19CB6E30E
  for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2020 11:49:30 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Thu, 26 Mar 2020 12:49:20 +0100
-Message-Id: <20200326114922.1820274-19-maarten.lankhorst@linux.intel.com>
+Date: Thu, 26 Mar 2020 12:49:21 +0100
+Message-Id: <20200326114922.1820274-20-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200326114922.1820274-1-maarten.lankhorst@linux.intel.com>
 References: <20200326114922.1820274-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 19/21] drm/i915: Add ww locking to vm_fault_gtt
+Subject: [Intel-gfx] [PATCH 20/21] drm/i915: Add ww locking to
+ pin_to_display_plane
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,107 +41,156 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_mman.c | 51 +++++++++++++++---------
- 1 file changed, 33 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c | 65 ++++++++++++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  1 +
+ 2 files changed, 49 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-index b39c24dae64e..e35e8d0b6938 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_mman.c
-@@ -283,37 +283,46 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 	struct intel_runtime_pm *rpm = &i915->runtime_pm;
- 	struct i915_ggtt *ggtt = &i915->ggtt;
- 	bool write = area->vm_flags & VM_WRITE;
-+	struct i915_gem_ww_ctx ww;
- 	intel_wakeref_t wakeref;
- 	struct i915_vma *vma;
- 	pgoff_t page_offset;
- 	int srcu;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+index e9d3b587f562..def8254b5fc2 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+@@ -37,6 +37,12 @@ void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj)
+ 	i915_gem_object_unlock(obj);
+ }
  
--	/* Sanity check that we allow writing into this object */
--	if (i915_gem_object_is_readonly(obj) && write)
--		return VM_FAULT_SIGBUS;
--
- 	/* We don't use vmf->pgoff since that has the fake offset */
- 	page_offset = (vmf->address - area->vm_start) >> PAGE_SHIFT;
- 
- 	trace_i915_gem_object_fault(obj, page_offset, true, write);
- 
--	ret = i915_gem_object_pin_pages(obj);
-+	wakeref = intel_runtime_pm_get(rpm);
++void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj)
++{
++	if (i915_gem_object_is_framebuffer(obj))
++		__i915_gem_object_flush_for_display(obj);
++}
 +
+ /**
+  * Moves a single object to the WC read, and possibly write domain.
+  * @obj: object to act on
+@@ -197,18 +203,12 @@ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = i915_gem_object_lock_interruptible(obj, NULL);
+-	if (ret)
+-		return ret;
+-
+ 	/* Always invalidate stale cachelines */
+ 	if (obj->cache_level != cache_level) {
+ 		i915_gem_object_set_cache_coherency(obj, cache_level);
+ 		obj->cache_dirty = true;
+ 	}
+ 
+-	i915_gem_object_unlock(obj);
+-
+ 	/* The cache-level will be applied when each vma is rebound. */
+ 	return i915_gem_object_unbind(obj,
+ 				      I915_GEM_OBJECT_UNBIND_ACTIVE |
+@@ -255,6 +255,7 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_i915_gem_caching *args = data;
+ 	struct drm_i915_gem_object *obj;
+ 	enum i915_cache_level level;
++	struct i915_gem_ww_ctx ww;
+ 	int ret = 0;
+ 
+ 	switch (args->caching) {
+@@ -293,7 +294,18 @@ int i915_gem_set_caching_ioctl(struct drm_device *dev, void *data,
+ 		goto out;
+ 	}
+ 
+-	ret = i915_gem_object_set_cache_level(obj, level);
 +	i915_gem_ww_ctx_init(&ww, true);
 +retry:
 +	ret = i915_gem_object_lock(obj, &ww);
- 	if (ret)
--		goto err;
-+		goto err_rpm;
- 
--	wakeref = intel_runtime_pm_get(rpm);
-+	/* Sanity check that we allow writing into this object */
-+	if (i915_gem_object_is_readonly(obj) && write) {
-+		ret = -EFAULT;
-+		goto err_rpm;
-+	}
- 
--	ret = intel_gt_reset_trylock(ggtt->vm.gt, &srcu);
-+	ret = i915_gem_object_pin_pages(obj);
- 	if (ret)
- 		goto err_rpm;
- 
-+	ret = intel_gt_reset_trylock(ggtt->vm.gt, &srcu);
-+	if (ret)
-+		goto err_pages;
++	if (!ret)
++		ret = i915_gem_object_set_cache_level(obj, level);
 +
- 	/* Now pin it into the GTT as needed */
--	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0,
--				       PIN_MAPPABLE |
--				       PIN_NONBLOCK /* NOWARN */ |
--				       PIN_NOEVICT);
--	if (IS_ERR(vma)) {
-+	vma = i915_gem_object_ggtt_pin_ww(obj, &ww, NULL, 0, 0,
-+					  PIN_MAPPABLE |
-+					  PIN_NONBLOCK /* NOWARN */ |
-+					  PIN_NOEVICT);
-+	if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK)) {
- 		/* Use a partial view if it is bigger than available space */
- 		struct i915_ggtt_view view =
- 			compute_partial_view(obj, page_offset, MIN_CHUNK_PAGES);
-@@ -328,11 +337,11 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 		 * all hope that the hardware is able to track future writes.
- 		 */
- 
--		vma = i915_gem_object_ggtt_pin(obj, &view, 0, 0, flags);
--		if (IS_ERR(vma)) {
-+		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
-+		if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK)) {
- 			flags = PIN_MAPPABLE;
- 			view.type = I915_GGTT_VIEW_PARTIAL;
--			vma = i915_gem_object_ggtt_pin(obj, &view, 0, 0, flags);
-+			vma = i915_gem_object_ggtt_pin_ww(obj, &ww, &view, 0, 0, flags);
- 		}
- 
- 		/* The entire mappable GGTT is pinned? Unexpected! */
-@@ -389,10 +398,16 @@ static vm_fault_t vm_fault_gtt(struct vm_fault *vmf)
- 	__i915_vma_unpin(vma);
- err_reset:
- 	intel_gt_reset_unlock(ggtt->vm.gt, srcu);
-+err_pages:
-+	i915_gem_object_unpin_pages(obj);
- err_rpm:
 +	if (ret == -EDEADLK) {
 +		ret = i915_gem_ww_ctx_backoff(&ww);
 +		if (!ret)
 +			goto retry;
 +	}
 +	i915_gem_ww_ctx_fini(&ww);
- 	intel_runtime_pm_put(rpm, wakeref);
--	i915_gem_object_unpin_pages(obj);
--err:
- 	return i915_error_to_vmf_fault(ret);
- }
  
+ out:
+ 	i915_gem_object_put(obj);
+@@ -313,6 +325,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 				     unsigned int flags)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
++	struct i915_gem_ww_ctx ww;
+ 	struct i915_vma *vma;
+ 	int ret;
+ 
+@@ -320,6 +333,11 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 	if (HAS_LMEM(i915) && !i915_gem_object_is_lmem(obj))
+ 		return ERR_PTR(-EINVAL);
+ 
++	i915_gem_ww_ctx_init(&ww, true);
++retry:
++	ret = i915_gem_object_lock(obj, &ww);
++	if (ret)
++		goto err;
+ 	/*
+ 	 * The display engine is not coherent with the LLC cache on gen6.  As
+ 	 * a result, we make sure that the pinning that is about to occur is
+@@ -334,7 +352,7 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 					      HAS_WT(i915) ?
+ 					      I915_CACHE_WT : I915_CACHE_NONE);
+ 	if (ret)
+-		return ERR_PTR(ret);
++		goto err;
+ 
+ 	/*
+ 	 * As the user may map the buffer once pinned in the display plane
+@@ -347,18 +365,31 @@ i915_gem_object_pin_to_display_plane(struct drm_i915_gem_object *obj,
+ 	vma = ERR_PTR(-ENOSPC);
+ 	if ((flags & PIN_MAPPABLE) == 0 &&
+ 	    (!view || view->type == I915_GGTT_VIEW_NORMAL))
+-		vma = i915_gem_object_ggtt_pin(obj, view, 0, alignment,
+-					       flags |
+-					       PIN_MAPPABLE |
+-					       PIN_NONBLOCK);
+-	if (IS_ERR(vma))
+-		vma = i915_gem_object_ggtt_pin(obj, view, 0, alignment, flags);
+-	if (IS_ERR(vma))
+-		return vma;
++		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, view, 0, alignment,
++						  flags | PIN_MAPPABLE |
++						  PIN_NONBLOCK);
++	if (IS_ERR(vma) && vma != ERR_PTR(-EDEADLK))
++		vma = i915_gem_object_ggtt_pin_ww(obj, &ww, view, 0,
++						  alignment, flags);
++	if (IS_ERR(vma)) {
++		ret = PTR_ERR(vma);
++		goto err;
++	}
+ 
+ 	vma->display_alignment = max_t(u64, vma->display_alignment, alignment);
+ 
+-	i915_gem_object_flush_if_display(obj);
++	i915_gem_object_flush_if_display_locked(obj);
++
++err:
++	if (ret == -EDEADLK) {
++		ret = i915_gem_ww_ctx_backoff(&ww);
++		if (!ret)
++			goto retry;
++	}
++	i915_gem_ww_ctx_fini(&ww);
++
++	if (ret)
++		return ERR_PTR(ret);
+ 
+ 	return vma;
+ }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 11b8e2735071..409fd00c8709 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -456,6 +456,7 @@ i915_gem_object_last_write_engine(struct drm_i915_gem_object *obj)
+ void i915_gem_object_set_cache_coherency(struct drm_i915_gem_object *obj,
+ 					 unsigned int cache_level);
+ void i915_gem_object_flush_if_display(struct drm_i915_gem_object *obj);
++void i915_gem_object_flush_if_display_locked(struct drm_i915_gem_object *obj);
+ 
+ int __must_check
+ i915_gem_object_set_to_wc_domain(struct drm_i915_gem_object *obj, bool write);
 -- 
 2.25.1
 
