@@ -1,30 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F851934BD
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 00:48:39 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 181241934EE
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2020 01:18:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D378D6E86E;
-	Wed, 25 Mar 2020 23:48:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DC36E881;
+	Thu, 26 Mar 2020 00:18:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 710F06E86E
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2020 23:48:34 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20694212-1500050 
- for multiple; Wed, 25 Mar 2020 23:48:01 +0000
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2020 23:48:03 +0000
-Message-Id: <20200325234803.6175-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A43B96E221;
+ Thu, 26 Mar 2020 00:18:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9DA4AA0099;
+ Thu, 26 Mar 2020 00:18:25 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915: Drop final few uses of
- drm_i915_private.engine
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Thu, 26 Mar 2020 00:18:25 -0000
+Message-ID: <158518190561.23003.11700520092810697295@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200325234803.6175-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200325234803.6175-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Drop_final_few_uses_of_drm=5Fi915=5Fprivate=2Eengine?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,204 +38,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We've migrated all the heavy users over to the intel_gt, and can finally
-drop the last few users and with that the mirror in dev_priv->engine[].
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Cc: Andi Shyti <andi.shyti@intel.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c       |  2 +-
- .../gpu/drm/i915/gem/selftests/i915_gem_context.c  |  2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c          |  4 ----
- drivers/gpu/drm/i915/i915_drv.h                    |  1 -
- drivers/gpu/drm/i915/i915_irq.c                    |  8 ++++----
- drivers/gpu/drm/i915/selftests/i915_request.c      | 14 ++++++++++----
- drivers/gpu/drm/i915/selftests/mock_gem_device.c   |  6 +++---
- 7 files changed, 19 insertions(+), 18 deletions(-)
+Series: drm/i915: Drop final few uses of drm_i915_private.engine
+URL   : https://patchwork.freedesktop.org/series/75095/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 481187223101..6e1d66323223 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -1342,7 +1342,7 @@ void intel_overlay_setup(struct drm_i915_private *dev_priv)
- 	if (!HAS_OVERLAY(dev_priv))
- 		return;
- 
--	engine = dev_priv->engine[RCS0];
-+	engine = dev_priv->gt.engine[RCS0];
- 	if (!engine || !engine->kernel_context)
- 		return;
- 
-diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-index 54b86cf7f5d2..f4f933240b39 100644
---- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_context.c
-@@ -1925,7 +1925,7 @@ static int mock_context_barrier(void *arg)
- 		goto out;
- 	}
- 
--	rq = igt_request_alloc(ctx, i915->engine[RCS0]);
-+	rq = igt_request_alloc(ctx, i915->gt.engine[RCS0]);
- 	if (IS_ERR(rq)) {
- 		pr_err("Request allocation failed!\n");
- 		goto out;
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 3aa8a652c16d..dff0bbe9e1a6 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -347,8 +347,6 @@ static int intel_engine_setup(struct intel_gt *gt, enum intel_engine_id id)
- 	gt->engine_class[info->class][info->instance] = engine;
- 	gt->engine[id] = engine;
- 
--	i915->engine[id] = engine;
--
- 	return 0;
- }
- 
-@@ -425,8 +423,6 @@ void intel_engines_release(struct intel_gt *gt)
- 		engine->release = NULL;
- 
- 		memset(&engine->reset, 0, sizeof(engine->reset));
--
--		gt->i915->engine[id] = NULL;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index 9bcea97c39de..b09a1c929c94 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -884,7 +884,6 @@ struct drm_i915_private {
- 
- 	struct pci_dev *bridge_dev;
- 
--	struct intel_engine_cs *engine[I915_NUM_ENGINES];
- 	struct rb_root uabi_engines;
- 
- 	struct resource mch_res;
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 9f0653cf0510..1502ab44f1a5 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -3658,7 +3658,7 @@ static irqreturn_t i8xx_irq_handler(int irq, void *arg)
- 		intel_uncore_write16(&dev_priv->uncore, GEN2_IIR, iir);
- 
- 		if (iir & I915_USER_INTERRUPT)
--			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
-+			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
- 
- 		if (iir & I915_MASTER_ERROR_INTERRUPT)
- 			i8xx_error_irq_handler(dev_priv, eir, eir_stuck);
-@@ -3763,7 +3763,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
- 		I915_WRITE(GEN2_IIR, iir);
- 
- 		if (iir & I915_USER_INTERRUPT)
--			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
-+			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
- 
- 		if (iir & I915_MASTER_ERROR_INTERRUPT)
- 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
-@@ -3905,10 +3905,10 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
- 		I915_WRITE(GEN2_IIR, iir);
- 
- 		if (iir & I915_USER_INTERRUPT)
--			intel_engine_signal_breadcrumbs(dev_priv->engine[RCS0]);
-+			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[RCS0]);
- 
- 		if (iir & I915_BSD_USER_INTERRUPT)
--			intel_engine_signal_breadcrumbs(dev_priv->engine[VCS0]);
-+			intel_engine_signal_breadcrumbs(dev_priv->gt.engine[VCS0]);
- 
- 		if (iir & I915_MASTER_ERROR_INTERRUPT)
- 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
-diff --git a/drivers/gpu/drm/i915/selftests/i915_request.c b/drivers/gpu/drm/i915/selftests/i915_request.c
-index 7ac9616de9d8..1dab0360f76a 100644
---- a/drivers/gpu/drm/i915/selftests/i915_request.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_request.c
-@@ -28,6 +28,7 @@
- #include "gem/selftests/mock_context.h"
- 
- #include "gt/intel_engine_pm.h"
-+#include "gt/intel_engine_user.h"
- #include "gt/intel_gt.h"
- 
- #include "i915_random.h"
-@@ -51,6 +52,11 @@ static unsigned int num_uabi_engines(struct drm_i915_private *i915)
- 	return count;
- }
- 
-+static struct intel_engine_cs *rcs0(struct drm_i915_private *i915)
-+{
-+	return intel_engine_lookup_user(i915, I915_ENGINE_CLASS_RENDER, 0);
-+}
-+
- static int igt_add_request(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
-@@ -58,7 +64,7 @@ static int igt_add_request(void *arg)
- 
- 	/* Basic preliminary test to create a request and let it loose! */
- 
--	request = mock_request(i915->engine[RCS0]->kernel_context, HZ / 10);
-+	request = mock_request(rcs0(i915)->kernel_context, HZ / 10);
- 	if (!request)
- 		return -ENOMEM;
- 
-@@ -76,7 +82,7 @@ static int igt_wait_request(void *arg)
- 
- 	/* Submit a request, then wait upon it */
- 
--	request = mock_request(i915->engine[RCS0]->kernel_context, T);
-+	request = mock_request(rcs0(i915)->kernel_context, T);
- 	if (!request)
- 		return -ENOMEM;
- 
-@@ -145,7 +151,7 @@ static int igt_fence_wait(void *arg)
- 
- 	/* Submit a request, treat it as a fence and wait upon it */
- 
--	request = mock_request(i915->engine[RCS0]->kernel_context, T);
-+	request = mock_request(rcs0(i915)->kernel_context, T);
- 	if (!request)
- 		return -ENOMEM;
- 
-@@ -420,7 +426,7 @@ static int mock_breadcrumbs_smoketest(void *arg)
- {
- 	struct drm_i915_private *i915 = arg;
- 	struct smoketest t = {
--		.engine = i915->engine[RCS0],
-+		.engine = rcs0(i915),
- 		.ncontexts = 1024,
- 		.max_batch = 1024,
- 		.request_alloc = __mock_request_alloc
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index 754d0eb6beaa..47fde54150f4 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -178,11 +178,11 @@ struct drm_i915_private *mock_gem_device(void)
- 
- 	mkwrite_device_info(i915)->engine_mask = BIT(0);
- 
--	i915->engine[RCS0] = mock_engine(i915, "mock", RCS0);
--	if (!i915->engine[RCS0])
-+	i915->gt.engine[RCS0] = mock_engine(i915, "mock", RCS0);
-+	if (!i915->gt.engine[RCS0])
- 		goto err_unlock;
- 
--	if (mock_engine_init(i915->engine[RCS0]))
-+	if (mock_engine_init(i915->gt.engine[RCS0]))
- 		goto err_context;
- 
- 	__clear_bit(I915_WEDGED, &i915->gt.reset.flags);
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8190 -> Patchwork_17091
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17091/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17091 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-u}:         [DMESG-FAIL][1] ([i915#656]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-tgl-u/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17091/fi-tgl-u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-u2:          [INCOMPLETE][3] ([fdo#108569]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17091/fi-icl-u2/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Warnings ####
+
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][5] ([i915#1209]) -> [FAIL][6] ([i915#1485] / [i915#192] / [i915#193] / [i915#194])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8190/fi-kbl-8809g/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17091/fi-kbl-8809g/igt@runner@aborted.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
+  [i915#192]: https://gitlab.freedesktop.org/drm/intel/issues/192
+  [i915#193]: https://gitlab.freedesktop.org/drm/intel/issues/193
+  [i915#194]: https://gitlab.freedesktop.org/drm/intel/issues/194
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (40 -> 33)
+------------------------------
+
+  Additional (1): fi-glk-dsi 
+  Missing    (8): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8190 -> Patchwork_17091
+
+  CI-20190529: 20190529
+  CI_DRM_8190: 73f711b364bc85c8a7189487c09431eb1f515ed0 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5538: 47becbc9cd1fc7b1b78692f90fd3dcd5a9066965 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17091: 5d93726b0f962863c2138c1ad13025f63d5e75d4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+5d93726b0f96 drm/i915: Drop final few uses of drm_i915_private.engine
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17091/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
