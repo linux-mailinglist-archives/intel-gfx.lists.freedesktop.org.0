@@ -1,56 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3718F19558D
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 11:45:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C761955DA
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 12:00:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB7D06E9F8;
-	Fri, 27 Mar 2020 10:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2146E9FF;
+	Fri, 27 Mar 2020 11:00:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
- [IPv6:2607:f8b0:4864:20::942])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 847FE6E9F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 10:45:49 +0000 (UTC)
-Received: by mail-ua1-x942.google.com with SMTP id l18so3314494uak.4
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 03:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=a3E+XTxu9wxtN4cBdk+vcb48tcIQ1mb27uaVS+nXiPA=;
- b=nXq7SsYgocuHLD72E/TGOhvKgXLX0ubKB6tge5Bj+UqYrqGDCYLGVjkp3brUOVpQ39
- VSMUgeD+Ya/1AcDmqgxZ2me51vgJ8ypoSn4LUgOCOgG1iLY1zVVsYJtOUPcL9EwjD1bE
- FpbBdSOtI/cx01vaL9T3XdZlWZp6pdxp95Xq18ww4D9pItj2e5to3emG9U+Lw6ubE2IT
- qQGyO6GHn/kVdv7CXW2OHx+IB6jXoHfHg9PrxoNIfmTWuU9x2Ud1c9HlQLwiORFCxPXS
- rT72Y3zEq3VR5oaMx6OANoCfLx00QNCHMFPB6Tg5mPjER0x4U1AaYajn3pwhB7vF+Ae9
- FO3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=a3E+XTxu9wxtN4cBdk+vcb48tcIQ1mb27uaVS+nXiPA=;
- b=pDCLN70Lcj2ffycBl9tg5553+UVaxKFwkje7fRe4nVdfSr+ppkd0SXcoF4dVqvFfnJ
- dSp4OmwN+NL783xTOxlUmVZjxv8Z5rwuiWdttkbh6UUwDMDc0Ldn54D0O3ndwW7/lOfm
- TOQurnmkYqp/yTXld3KgsEQRVd/rWN6eacBLC7uSpGFVcMs+fAfwvqvA8oA6tN5mrqPa
- XPzYaE3YgM4wL4gAnzsX4nB9htmxVUVVBzv+jXlRlrDBSsR3OE0+ijE7Fsz9avCMxkRH
- gywlFuLTztL4X2tnGHsP9GKWVLjyoXZgNyFgPwqvjWjihWJpev2Vja/2UtoOAIi28NnD
- 7ukQ==
-X-Gm-Message-State: ANhLgQ2iF7ImBr5ISVf9EbY5nRCpqjLHEv6ulOxpjm9GapBMzgwysD0Z
- MOQP8AOdE3sMD3gNGGqetrNLX8XQVFIzqFhUtdE=
-X-Google-Smtp-Source: ADFU+vsnX1IC+kRbVSPBbfJYDv9GHl7JNSnxm5l6Ow9cX943Om8opjWbJIEH3UULfcwoBtbILH7ZS3MrGQl8Wrul7uY=
-X-Received: by 2002:ab0:344f:: with SMTP id a15mr10244848uaq.2.1585305947830; 
- Fri, 27 Mar 2020 03:45:47 -0700 (PDT)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF75A6E9FE;
+ Fri, 27 Mar 2020 11:00:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E8DD6A0094;
+ Fri, 27 Mar 2020 11:00:36 +0000 (UTC)
 MIME-Version: 1.0
-References: <20200325192429.GA8865@SDF.ORG>
- <CAM0jSHNGok83kk1Z7vm4rKJw3O1uC=9czSuNfidW6wb900HppQ@mail.gmail.com>
- <20200326202121.GC15115@SDF.ORG>
-In-Reply-To: <20200326202121.GC15115@SDF.ORG>
-From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Fri, 27 Mar 2020 10:45:20 +0000
-Message-ID: <CAM0jSHOk45jFh5p_54Yx8UQA0jmpR8=oCLbXjCScn3pe02Ck+Q@mail.gmail.com>
-To: George Spelvin <lkml@sdf.org>
-Subject: Re: [Intel-gfx] [PATCH]
- drivers/gpu/drm/i915/selftests/i915_buddy.c: Fix bug
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 27 Mar 2020 11:00:36 -0000
+Message-ID: <158530683692.17236.9193225409451452727@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200327092912.20517-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200327092912.20517-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/execlists=3A_Prevent_GPU_death_on_ELSP=5B1=5D_promotion_t?=
+ =?utf-8?q?o_idle_context_=28rev4=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,28 +39,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Mar 2020 at 20:21, George Spelvin <lkml@sdf.org> wrote:
->
-> On Thu, Mar 26, 2020 at 05:04:43PM +0000, Matthew Auld wrote:
-> > Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->
-> Thank you!  I got some incomprehensible error emails (reproduced at
-> https://patchwork.freedesktop.org/series/75090/) from the patchwork
-> daemon, complaining about additional test failures.  Obviously, I care,
-> but I can't tell if this is a genuine error, or just a flaky test being
-> sensitive to the exact random number generation algorithm.
->
-> If you understand these messages, do they look like I broke something?
+== Series Details ==
 
-No, doesn't seem to be related to your change.
+Series: drm/i915/execlists: Prevent GPU death on ELSP[1] promotion to idle context (rev4)
+URL   : https://patchwork.freedesktop.org/series/75130/
+State : success
 
-https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17090/shards-all.html?testfilter=buddy
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8200 -> Patchwork_17113
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17113/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17113 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [INCOMPLETE][2] ([i915#140])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8200/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17113/fi-icl-y/igt@i915_selftest@live@execlists.html
+    - fi-cml-u2:          [PASS][3] -> [INCOMPLETE][4] ([i915#1430] / [i915#283] / [i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8200/fi-cml-u2/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17113/fi-cml-u2/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-dsi:         [PASS][5] -> [INCOMPLETE][6] ([fdo#108569])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8200/fi-icl-dsi/igt@i915_selftest@live@hangcheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17113/fi-icl-dsi/igt@i915_selftest@live@hangcheck.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#647]: https://gitlab.freedesktop.org/drm/intel/issues/647
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (45 -> 34)
+------------------------------
+
+  Additional (1): fi-bwr-2160 
+  Missing    (12): fi-hsw-4770r fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-hsw-peppy fi-glk-dsi fi-byt-squawks fi-bsw-cyan fi-bsw-kefka fi-skl-lmem fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8200 -> Patchwork_17113
+
+  CI-20190529: 20190529
+  CI_DRM_8200: 24b6efcf99779480744bd24670be8d3eabb38fff @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5540: 455faec68e0be5a633b4e4ac8692a2a772263d00 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17113: c9fccb8cc643bed0e4f9f37cfa0a706ef8063c92 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+c9fccb8cc643 drm/i915/execlists: Prevent GPU death on ELSP[1] promotion to idle context
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17113/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
