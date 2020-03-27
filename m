@@ -1,43 +1,40 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA04195DD4
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 19:43:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB74195EED
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 20:45:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 782F96E0E6;
-	Fri, 27 Mar 2020 18:43:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6CE6EA79;
+	Fri, 27 Mar 2020 19:45:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 578236E0E6
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 18:43:13 +0000 (UTC)
-IronPort-SDR: TiMeOgo+AYsIEehUk5Vj5o1yM/Q3cIdFKPwQaumL8Ix8JDN5MBOaRvJcJ5j85++OLpsxDn2A2g
- T5cFPnpOutOw==
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE2E16EA73
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 19:45:30 +0000 (UTC)
+IronPort-SDR: lCqsAPW3F+sod/smG6ivGp1ESY6e/nCJbd+XXM6rfE76f8TqL3/z4dGuq+9QBZpPDFA8d3HrRc
+ i72748ORmHMQ==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2020 11:43:12 -0700
-IronPort-SDR: 8SNsAGu1VbmrJpb7Q0VmI0uU7zVqPoiaEd+u0S3Y+BR6l+XCuIVo3CYp6qtInuo/ST4zk6Kon7
- FE7XJ4X7aqIQ==
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 12:45:30 -0700
+IronPort-SDR: mYpKskuTT0RFdkPJinngfRYe9ewGtMoGyvy8ZFTccZ0YyDwMYi1GWz+X+tsOxhfee32kKW/1wX
+ 6x8YoZOsOCZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,313,1580803200"; d="scan'208";a="447518565"
-Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
- ([10.165.21.211])
- by fmsmga005.fm.intel.com with ESMTP; 27 Mar 2020 11:43:12 -0700
-Date: Fri, 27 Mar 2020 11:45:04 -0700
-From: Manasi Navare <manasi.d.navare@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>
-Message-ID: <20200327184503.GB22190@intel.com>
-References: <20200319215119.GA11219@intel.com>
- <20200324051111.29398-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,313,1580803200"; d="scan'208";a="421209555"
+Received: from rantogno-mobl4.jf.intel.com (HELO
+ rantogno-mobl4.amr.corp.intel.com) ([10.54.72.142])
+ by orsmga005.jf.intel.com with SMTP; 27 Mar 2020 12:45:30 -0700
+Date: Fri, 27 Mar 2020 12:45:30 -0700
+From: Rafael Antognolli <rafael.antognolli@intel.com>
+To: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
+Message-ID: <20200327194530.wm3dlgseis7dfxp6@rantogno-mobl4.amr.corp.intel.com>
+References: <20200326234955.16155-1-swathi.dhanavanthri@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200324051111.29398-1-animesh.manna@intel.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v7 6/7] drm/i915/dp: Register definition for
- DP compliance register
+In-Reply-To: <20200326234955.16155-1-swathi.dhanavanthri@intel.com>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_14010229206 permanent
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,66 +53,58 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2020 at 10:41:11AM +0530, Animesh Manna wrote:
-> DP_COMP_CTL and DP_COMP_PAT register used to program DP
-> compliance pattern.
-> 
-> v1: Initial patch.
-> v2: used pipe instead of port in macro definition. [Manasi]
-> v3: used trans_offset for offset calculation. [Manasi]
-> v4: Used MMIO_PIPE for evenly spaced register offset instead
-> MMIO_PIPE2. [Ville]
-> 
-> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+On Thu, Mar 26, 2020 at 04:49:55PM -0700, Swathi Dhanavanthri wrote:
+> This workaround now applies to all steppings, not just A0.
+> Wa_1409085225 is a temporary A0-only W/A however it is
+> identical to Wa_14010229206 and hence the combined workaround
+> is made permanent.
+> Bspec: 52890
+
+FYI, this patch fixes some corruption I was seeing.
+
+Tested-by: Rafael Antognolli <rafael.antognolli@intel.com>
+
+> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_reg.h | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 309cb7d96b35..465862ed2cf8 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9792,6 +9792,24 @@ enum skl_power_gate {
->  #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
->  #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index e96cc7fa0936..c3c42cf614a9 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -1380,12 +1380,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  			    GEN7_FF_THREAD_MODE,
+>  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
 >  
-> +/* DDI DP Compliance Control */
-> +#define _DDI_DP_COMP_CTL_A			0x605F0
-> +#define _DDI_DP_COMP_CTL_B			0x615F0
-> +#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
-
-This looks good now.
-
-> +#define   DDI_DP_COMP_CTL_ENABLE		(1 << 31)
-> +#define   DDI_DP_COMP_CTL_D10_2			(0 << 28)
-> +#define   DDI_DP_COMP_CTL_SCRAMBLED_0		(1 << 28)
-> +#define   DDI_DP_COMP_CTL_PRBS7			(2 << 28)
-> +#define   DDI_DP_COMP_CTL_CUSTOM80		(3 << 28)
-> +#define   DDI_DP_COMP_CTL_HBR2			(4 << 28)
-> +#define   DDI_DP_COMP_CTL_SCRAMBLED_1		(5 << 28)
-> +#define   DDI_DP_COMP_CTL_HBR2_RESET		(0xFC << 0)
-> +
-> +/* DDI DP Compliance Pattern */
-> +#define _DDI_DP_COMP_PAT_A			0x605F4
-> +#define _DDI_DP_COMP_PAT_B			0x615F4
-> +#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
-
-I still dont understand why we need to use that i argument here and why cant just pipe give us the desired offset
-with _MMIO_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) ?
-
-IMO we should be able to use the above since even here the registers are evenly offseted (0x605F4, 0x615F4, 0x62F54, 0x63F54)
-
-Regards
-Manasi
-
-> +
->  /* Sideband Interface (SBI) is programmed indirectly, via
->   * SBI_ADDR, which contains the register offset; and SBI_DATA,
->   * which contains the payload */
+> -		/*
+> -		 * Wa_1409085225:tgl
+> -		 * Wa_14010229206:tgl
+> -		 */
+> -		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+> -
+>  		/* Wa_1408615072:tgl */
+>  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
+>  			    VSUNIT_CLKGATE_DIS_TGL);
+> @@ -1403,6 +1397,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
+>  		wa_masked_en(wal,
+>  			     GEN9_CS_DEBUG_MODE1,
+>  			     FF_DOP_CLOCK_GATE_DISABLE);
+> +		/*
+> +		 * Wa_1409085225:tgl
+> +		 * Wa_14010229206:tgl
+> +		 */
+> +		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
+>  	}
+>  
+>  	if (IS_GEN(i915, 11)) {
 > -- 
-> 2.24.0
+> 2.20.1
 > 
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
