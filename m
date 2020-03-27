@@ -1,35 +1,35 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD631961C7
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 00:11:38 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F60A1961C8
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 00:16:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB05189C63;
-	Fri, 27 Mar 2020 23:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FE8388071;
+	Fri, 27 Mar 2020 23:16:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3979C89C63
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 23:11:34 +0000 (UTC)
-IronPort-SDR: imS9FKncYq5+WCflaf9P2WPClnAhDT4XZLrV8GP+OIJLG2hTG3Ng8q69Gtk98k32bVCd2f92dC
- wh2YZyHDOcHQ==
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95DF16E02F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 23:16:10 +0000 (UTC)
+IronPort-SDR: +7HDBvnrGfZlsRK6xaxW3J2AA3EAXrYCDSyOD5JCnazhODcma4bDXzY0qyH+hjokOSnHLw0Fk5
+ NxlhUVZx1CWA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2020 16:11:33 -0700
-IronPort-SDR: iFlQAc+b8bcS0zaSq3Ztw6Cqc6O65rkSJh+iK7v4kJ0VHRrScACnnFIDy3YX2az+fGhltCEV0J
- KBkldsPIUWpw==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 16:16:09 -0700
+IronPort-SDR: HLdK3X/OyxueJiI1EMO0apWaEFZvxpl+hZ4fCc6Aj4ANMgqVvsV0+l+E7jmPMYvGGwTwuFUTMi
+ aJ+jCCW3lDHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,314,1580803200"; d="scan'208";a="358630999"
+X-IronPort-AV: E=Sophos;i="5.72,314,1580803200"; d="scan'208";a="271730204"
 Received: from adixit-mobl.amr.corp.intel.com (HELO localhost.localdomain)
  ([10.251.29.122])
- by fmsmga001.fm.intel.com with ESMTP; 27 Mar 2020 16:11:33 -0700
+ by fmsmga004.fm.intel.com with ESMTP; 27 Mar 2020 16:16:09 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Mar 2020 16:11:31 -0700
-Message-Id: <7f5ea67b41ef47b99599fec5473ce216f7e39e91.1585350600.git.ashutosh.dixit@intel.com>
+Date: Fri, 27 Mar 2020 16:16:08 -0700
+Message-Id: <20200327231608.68108-1-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for small
@@ -63,7 +63,8 @@ multiple non-blocking reads rather than staying blocked in poll till
 the next timer interrupt.
 
 v2: Fix ret value for blocking reads (Umesh)
-v2: Remove -EAGAIN from comment (Umesh)
+v3: Mistake during patch send (Ashutosh)
+v4: Remove -EAGAIN from comment (Umesh)
 
 Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
