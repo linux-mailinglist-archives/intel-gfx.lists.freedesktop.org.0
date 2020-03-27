@@ -2,31 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD096195735
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 13:39:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C04519574D
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 13:42:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B4D6E37F;
-	Fri, 27 Mar 2020 12:39:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33A746EA0D;
+	Fri, 27 Mar 2020 12:42:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 36C676E095;
- Fri, 27 Mar 2020 12:39:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2FA00A0088;
- Fri, 27 Mar 2020 12:39:51 +0000 (UTC)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 525066E095;
+ Fri, 27 Mar 2020 12:42:39 +0000 (UTC)
+IronPort-SDR: vxNz8DmvLlWmuZBdKDQmq4XjGJmvMQaPCabU7t/7Y+ZS0VWVGU4aglxseZX8H2GZSkAmyWr1vM
+ xRK+lgqSovUA==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 05:42:38 -0700
+IronPort-SDR: z9sg43L/lQl7f/GI0rKQBfAXDRV0LRpnhoSvnrYdREJ1dotR5jmzRsqpTMonSxbxhSf3Z5c+ln
+ zbPSNK1IViBg==
+X-IronPort-AV: E=Sophos;i="5.72,312,1580803200"; d="scan'208";a="421091081"
+Received: from defretin-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.56.231])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 05:42:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 27 Mar 2020 14:42:23 +0200
+Message-Id: <20200327124229.26461-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Fri, 27 Mar 2020 12:39:51 -0000
-Message-ID: <158531279116.17234.5143869052690762605@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200327112212.16046-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200327112212.16046-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/3=5D_drm/i915=3A_Allow_for_different_mod?=
- =?utf-8?q?es_of_interruptible_i915=5Factive=5Fwait?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Subject: [Intel-gfx] [PATCH RESEND 1/7] drm/dsc: use rc_model_size from DSC
+ config for PPS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,88 +48,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Alex Deucher <alexdeucher@gmail.com>,
+ Harry Wentland <hwentlan@amd.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The PPS is supposed to reflect the DSC config instead of hard coding the
+rc_model_size. Make it so.
 
-Series: series starting with [1/3] drm/i915: Allow for different modes of interruptible i915_active_wait
-URL   : https://patchwork.freedesktop.org/series/75166/
-State : success
+Currently all users of drm_dsc_pps_payload_pack() hard code the size to
+8192 also in the DSC config, so this change should have no impact, other
+than allowing the drivers to use other sizes as needed.
 
-== Summary ==
+Cc: Alex Deucher <alexdeucher@gmail.com>
+Cc: Harry Wentland <hwentlan@amd.com>
+Cc: Manasi Navare <manasi.d.navare@intel.com>
+Cc: Vandita Kulkarni <vandita.kulkarni@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/drm_dsc.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-CI Bug Log - changes from CI_DRM_8201 -> Patchwork_17115
-====================================================
+diff --git a/drivers/gpu/drm/drm_dsc.c b/drivers/gpu/drm/drm_dsc.c
+index 4a475d9696ff..09afbc01ea94 100644
+--- a/drivers/gpu/drm/drm_dsc.c
++++ b/drivers/gpu/drm/drm_dsc.c
+@@ -186,8 +186,7 @@ void drm_dsc_pps_payload_pack(struct drm_dsc_picture_parameter_set *pps_payload,
+ 	pps_payload->flatness_max_qp = dsc_cfg->flatness_max_qp;
+ 
+ 	/* PPS 38, 39 */
+-	pps_payload->rc_model_size =
+-		cpu_to_be16(DSC_RC_MODEL_SIZE_CONST);
++	pps_payload->rc_model_size = cpu_to_be16(dsc_cfg->rc_model_size);
+ 
+ 	/* PPS 40 */
+ 	pps_payload->rc_edge_factor = DSC_RC_EDGE_FACTOR_CONST;
+-- 
+2.20.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17115/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17115 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - fi-elk-e7500:       [PASS][1] -> [FAIL][2] ([i915#34])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8201/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17115/fi-elk-e7500/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-kbl-guc:         [FAIL][3] ([i915#579]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8201/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17115/fi-kbl-guc/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#34]: https://gitlab.freedesktop.org/drm/intel/issues/34
-  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
-
-
-Participating hosts (46 -> 42)
-------------------------------
-
-  Additional (2): fi-skl-6770hq fi-byt-n2820 
-  Missing    (6): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8201 -> Patchwork_17115
-
-  CI-20190529: 20190529
-  CI_DRM_8201: df2dc60809f02d714ddc26136c24d6fc6f5268b6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5541: f3d9a3a5fa9ea281b859a5b81201e6147b9fbad1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17115: 4dc34cd0a34d2ae8cd197ef18469c472361aa03a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4dc34cd0a34d drm/i915/perf: Schedule oa_config after modifying the contexts
-0505b0ddd01b drm/i915: Wrap i915_active in a simple kreffed struct
-78b0c269c4db drm/i915: Allow for different modes of interruptible i915_active_wait
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17115/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
