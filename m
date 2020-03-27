@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A27C1195FEF
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 21:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26422196025
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 21:59:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D34AB6EA86;
-	Fri, 27 Mar 2020 20:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22A246EA87;
+	Fri, 27 Mar 2020 20:59:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B1B06EA89
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:42:18 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20718927-1500050 for multiple; Fri, 27 Mar 2020 20:42:15 +0000
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 131936EA85;
+ Fri, 27 Mar 2020 20:59:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0C399A0094;
+ Fri, 27 Mar 2020 20:59:01 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87blohzgfa.fsf@gaia.fi.intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Fri, 27 Mar 2020 20:59:01 -0000
+Message-ID: <158534274102.17237.7764084914499897405@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200327201433.21864-1-chris@chris-wilson.co.uk>
- <87blohzgfa.fsf@gaia.fi.intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Message-ID: <158534173457.21987.14976812949689647358@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Fri, 27 Mar 2020 20:42:14 +0000
-Subject: Re: [Intel-gfx] [CI] drm/i915/execlists: Workaround switching back
- to a complete context
+In-Reply-To: <20200327201433.21864-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/execlists=3A_Workaround_switching_back_to_a_complete_cont?=
+ =?utf-8?q?ext?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,90 +39,77 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Mika Kuoppala (2020-03-27 20:33:29)
-> Chris Wilson <chris@chris-wilson.co.uk> writes:
-> 
-> > In what seems remarkably similar to the w/a required to not reload an
-> > idle context with HEAD==TAIL, it appears we must prevent the HW from
-> > switching to an idle context in ELSP[1], while simultaneously trying to
-> > preempt the HW to run another context and a continuation of the idle
-> > context (which is no longer idle).
-> >
-> > We can achieve this by preventing the context from completing while we
-> > reload a new ELSP (by applying ring_set_paused(1) across the whole of
-> > dequeue), except this eventually fails due to a lite-restore into a
-> > waiting semaphore does not generate an ACK. Instead, we try to avoid
-> > making the GPU do anything too challenging and not submit a new ELSP
-> > while the interrupts + CSB events appear to have fallen behind the
-> > completed contexts. We expect it to catch up shortly so we queue another
-> > tasklet execution and hope for the best.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/intel/issues/1501
-> > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> > Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-> > Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_lrc.c | 26 +++++++++++++++++++++++---
-> >  1 file changed, 23 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > index b12355048501..5f17ece07858 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> > @@ -1915,11 +1915,26 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
-> >        * of trouble.
-> >        */
-> >       active = READ_ONCE(execlists->active);
-> > -     while ((last = *active) && i915_request_completed(last))
-> > -             active++;
-> >  
-> > -     if (last) {
-> > +     /*
-> > +      * In theory we can skip over completed contexts that have not
-> > +      * yet been processed by events (as those events are in flight):
-> > +      *
-> > +      * while ((last = *active) && i915_request_completed(last))
-> > +      *      active++;
-> > +      *
-> > +      * However, the GPU is cannot handle this as it will ultimately
-> 
-> s/is//
-> 
-> I applaud the straightforward nature of this compared to the pausing.
-> Albeit this seems to have a cost. 
-> 
-> But this should be quite rare event comparatively?
+== Series Details ==
 
-In the grand scheme of things, yes, it should only be short-circuiting
-the interrupt delivery prior to direct submission or a preemption bump.
-But since the request is complete, there should be nothing to stop the
-context from completing, triggering the CSB event and sending the
-interrupt. So it should be, one hopes, about 100ns at most behind.
+Series: drm/i915/execlists: Workaround switching back to a complete context
+URL   : https://patchwork.freedesktop.org/series/75181/
+State : success
 
-> > +      * find itself trying to jump back into a context it has just
-> > +      * completed and barf.
-> > +      */
-> > +
-> > +     if ((last = *active)) {
-> >               if (need_preempt(engine, last, rb)) {
-> > +                     if (i915_request_completed(last)) {
-> > +                             tasklet_hi_schedule(&execlists->tasklet);
-> > +                             return;
-> > +                     }
-> > +
-> 
-> I was pondering of the lost tracing and if you can
-> work it backwards to this condition.
+== Summary ==
 
-We back out, but we will back again and will likely need to preempt
-after we handle the next CSB event. So it's just "gpu is not ready yet,
-no decision made" noise.
--Chris
+CI Bug Log - changes from CI_DRM_8205 -> Patchwork_17119
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17119/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17119 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2] ([IGT#4])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8205/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17119/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Additional (4): fi-hsw-peppy fi-gdg-551 fi-bsw-kefka fi-snb-2600 
+  Missing    (7): fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-glk-dsi fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8205 -> Patchwork_17119
+
+  CI-20190529: 20190529
+  CI_DRM_8205: ab978953f30ee06195d7f77952bd9fc17cb317f7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5543: 779d43cda49c230afd32c37730ad853f02e9d749 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17119: b7cd77b4f576b736131012a656b225084f8c5dff @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+b7cd77b4f576 drm/i915/execlists: Workaround switching back to a complete context
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17119/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
