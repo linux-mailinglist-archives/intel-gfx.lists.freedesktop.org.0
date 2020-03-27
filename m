@@ -2,31 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01000195C76
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 18:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E86D195D4E
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 19:08:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27AD389E08;
-	Fri, 27 Mar 2020 17:21:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B5366EA69;
+	Fri, 27 Mar 2020 18:08:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 909CD89C94;
- Fri, 27 Mar 2020 17:21:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 89E9BA0099;
- Fri, 27 Mar 2020 17:21:19 +0000 (UTC)
+X-Greylist: delayed 603 seconds by postgrey-1.36 at gabe;
+ Fri, 27 Mar 2020 18:08:45 UTC
+Received: from 1.mo2.mail-out.ovh.net (1.mo2.mail-out.ovh.net [46.105.63.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9368D6EA69
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 18:08:45 +0000 (UTC)
+Received: from player795.ha.ovh.net (unknown [10.110.171.40])
+ by mo2.mail-out.ovh.net (Postfix) with ESMTP id F2A551CFA92
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 18:53:15 +0100 (CET)
+Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
+ (Authenticated sender: andi@etezian.org)
+ by player795.ha.ovh.net (Postfix) with ESMTPSA id 8006E10BBFB7A;
+ Fri, 27 Mar 2020 17:53:12 +0000 (UTC)
+Date: Fri, 27 Mar 2020 19:53:11 +0200
+From: Andi Shyti <andi@etezian.org>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <20200327175311.GD186677@jack.zhora.eu>
+References: <20200326142727.31962-1-chris@chris-wilson.co.uk>
+ <20200327162727.GC186677@jack.zhora.eu>
+ <158532690983.19268.11553435615907738505@build.alporthouse.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anshuman Gupta" <anshuman.gupta@intel.com>
-Date: Fri, 27 Mar 2020 17:21:19 -0000
-Message-ID: <158532967953.17236.15107162607415818766@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200327162921.15622-1-anshuman.gupta@intel.com>
-In-Reply-To: <20200327162921.15622-1-anshuman.gupta@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/hdcp=3A_Update_CP_as_per_the_kernel_internal_state_=28rev?=
- =?utf-8?q?2=29?=
+Content-Disposition: inline
+In-Reply-To: <158532690983.19268.11553435615907738505@build.alporthouse.com>
+X-Ovh-Tracer-Id: 4434638260350796297
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudehledguddtfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvuffkfhggtggujgesthdtredttddtvdenucfhrhhomheptehnughiucfuhhihthhiuceorghnughisegvthgviihirghnrdhorhhgqeenucffohhmrghinhepfhhrvggvuggvshhkthhophdrohhrghenucfkpheptddrtddrtddrtddpvddufedrvdegfedrudeguddrieegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelhedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpegrnhguihesvghtvgiiihgrnhdrohhrghdprhgtphhtthhopehinhhtvghlqdhgfhigsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: Differentiate between
+ aliasing-ppgtt and ggtt pinning
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,136 +49,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/i915/hdcp: Update CP as per the kernel internal state (rev2)
-URL   : https://patchwork.freedesktop.org/series/72251/
-State : failure
+Hi Chris,
 
-== Summary ==
+> > On Thu, Mar 26, 2020 at 02:27:27PM +0000, Chris Wilson wrote:
+> > > Userptr causes lockdep to complain when we are using the aliasing-ppgtt
+> > > (and ggtt, but for that it is rightfully so to complain about) in that
+> > > when we revoke the userptr we take a mutex which we also use to revoke
+> > > the mmaps. However, we only revoke mmaps for GGTT bindings and we never
+> > > allow userptr to create a GGTT binding so the warning should be false
+> > > and is simply caused by our conflation of the aliasing-ppgtt with the
+> > > ggtt. So lets try treating the binding into the aliasing-ppgtt as a
+> > > separate lockclass from the ggtt. The downside is that we are
+> > > deliberately suppressing lockdep;s ability to warn us of cycles.
+> >                                 ^^^^
+> > typo
+> > 
+> > > 
+> > > Closes: https://gitlab.freedesktop.org/drm/intel/issues/478
+> > 
+> > I'm not a big fan of links in commit messages, I think they would
+> > be forbidden by law, but I'm not being picky on that.
+> 
+> I'm lazy, I take clickable links.
+> 
+> > I don't know, thogh, why your S-o-b is missing.
+> 
+> I felt uncomfortable with this hack, but it passes CI (but it may be
+> suppressing too much -- I think the code is safe at the moment, but we
+> may lose our sensitivity to future bugs).
 
-CI Bug Log - changes from CI_DRM_8203 -> Patchwork_17118
-====================================================
+We can only hope in CI critical cases are covered well enough...
+in the worst case we can always revert it.
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17118 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17118, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17118:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-icl-u2/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-icl-u2/igt@debugfs_test@read_all_entries.html
-    - fi-icl-guc:         [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-icl-guc/igt@debugfs_test@read_all_entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-icl-guc/igt@debugfs_test@read_all_entries.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-hsw-4770r:       [PASS][5] -> [INCOMPLETE][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-hsw-4770r/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-hsw-4770r/igt@kms_busy@basic@flip.html
-    - fi-hsw-peppy:       [PASS][7] -> [INCOMPLETE][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-hsw-peppy/igt@kms_busy@basic@flip.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-hsw-peppy/igt@kms_busy@basic@flip.html
-    - fi-bdw-5557u:       [PASS][9] -> [INCOMPLETE][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-bdw-5557u/igt@kms_busy@basic@flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-bdw-5557u/igt@kms_busy@basic@flip.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * igt@kms_busy@basic@flip:
-    - {fi-ehl-1}:         [PASS][11] -> [INCOMPLETE][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-ehl-1/igt@kms_busy@basic@flip.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-ehl-1/igt@kms_busy@basic@flip.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17118 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-cml-u2:          [PASS][13] -> [INCOMPLETE][14] ([i915#283])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-cml-u2/igt@debugfs_test@read_all_entries.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-cml-u2/igt@debugfs_test@read_all_entries.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-icl-dsi:         [INCOMPLETE][15] ([i915#189]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8203/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/fi-icl-dsi/igt@i915_pm_rpm@module-reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
-  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
-  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-
-
-Participating hosts (48 -> 41)
-------------------------------
-
-  Additional (1): fi-gdg-551 
-  Missing    (8): fi-ilk-m540 fi-hsw-4200u fi-bsw-n3050 fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8203 -> Patchwork_17118
-
-  CI-20190529: 20190529
-  CI_DRM_8203: 34ff28c25c829ecb3eefbd3682aad352dccd0231 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5543: 779d43cda49c230afd32c37730ad853f02e9d749 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17118: eca8fad39ece5482ab54e70e011fcb2a5a81e6da @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-eca8fad39ece drm/i915/hdcp: Update CP as per the kernel internal state
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17118/index.html
+Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
