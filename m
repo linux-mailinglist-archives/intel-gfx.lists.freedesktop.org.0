@@ -2,40 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFCE0195B2C
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 17:34:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F3D4195B5A
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 17:44:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA8A6E0BA;
-	Fri, 27 Mar 2020 16:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 533046E0CF;
+	Fri, 27 Mar 2020 16:44:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 405 seconds by postgrey-1.36 at gabe;
- Fri, 27 Mar 2020 16:34:19 UTC
-Received: from 10.mo173.mail-out.ovh.net (10.mo173.mail-out.ovh.net
- [46.105.74.148])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1635F6E0BA
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 16:34:19 +0000 (UTC)
-Received: from player691.ha.ovh.net (unknown [10.108.54.119])
- by mo173.mail-out.ovh.net (Postfix) with ESMTP id AAE60135E86
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 17:27:30 +0100 (CET)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player691.ha.ovh.net (Postfix) with ESMTPSA id EE6B310F255AB;
- Fri, 27 Mar 2020 16:27:28 +0000 (UTC)
-Date: Fri, 27 Mar 2020 18:27:27 +0200
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200327162727.GC186677@jack.zhora.eu>
-References: <20200326142727.31962-1-chris@chris-wilson.co.uk>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 863986E0CF
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 16:44:27 +0000 (UTC)
+IronPort-SDR: 7wuzw/q8/VjO9Oc/egLRR/PD41a9E9V1q/bPLxTC/Kv5jTkD0ANiadMXUQdJUBbv9qaKbA/SuY
+ tyUwCXMlxI3Q==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2020 09:44:27 -0700
+IronPort-SDR: WxKfsoti2F7ch4QG3wZ2LXVAGYX3akqSbQ0aVhGYi6An2Sp8XuH1Rl+HbFPC223QpyuziTpcPG
+ dQ2HEL4PtE7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,313,1580803200"; d="scan'208";a="293976516"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by FMSMGA003.fm.intel.com with ESMTP; 27 Mar 2020 09:44:25 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Mar 2020 21:59:21 +0530
+Message-Id: <20200327162921.15622-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200326142727.31962-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 2986449505555694089
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudehledgkeeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheiledurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
-Subject: Re: [Intel-gfx] [PATCH] drm/i915: Differentiate between
- aliasing-ppgtt and ggtt pinning
+Subject: [Intel-gfx] [PATCH v2] drm/i915/hdcp: Update CP as per the kernel
+ internal state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,65 +45,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Content Protection property should be updated as per the kernel
+internal state. Let's say if Content protection is disabled
+by userspace, CP property should be set to UNDESIRED so that
+reauthentication will not happen until userspace request it again,
+but when kernel disables the HDCP due to any DDI disabling sequences
+like modeset/DPMS operation, kernel should set the property to
+DESIRED, so that when opportunity arises, kernel will start the
+HDCP authentication on its own.
 
-On Thu, Mar 26, 2020 at 02:27:27PM +0000, Chris Wilson wrote:
-> Userptr causes lockdep to complain when we are using the aliasing-ppgtt
-> (and ggtt, but for that it is rightfully so to complain about) in that
-> when we revoke the userptr we take a mutex which we also use to revoke
-> the mmaps. However, we only revoke mmaps for GGTT bindings and we never
-> allow userptr to create a GGTT binding so the warning should be false
-> and is simply caused by our conflation of the aliasing-ppgtt with the
-> ggtt. So lets try treating the binding into the aliasing-ppgtt as a
-> separate lockclass from the ggtt. The downside is that we are
-> deliberately suppressing lockdep;s ability to warn us of cycles.
-                                ^^^^
-typo
+Somewhere in the line, state machine to set content protection to
+DESIRED from kernel was broken and IGT coverage was missing for it.
+This patch fixes it.
 
-> 
-> Closes: https://gitlab.freedesktop.org/drm/intel/issues/478
+v2:
+- Fixing hdcp CP state in intel_hdcp_atomic_check(), that will
+  require to check hdcp->value in intel_hdcp_update_pipe() in order
+  to avoid enabling hdcp, if it was already enabled.
 
-I'm not a big fan of links in commit messages, I think they would
-be forbidden by law, but I'm not being picky on that.
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 24 +++++++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-I don't know, thogh, why your S-o-b is missing.
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index cd3b686980b2..ec52e053c57f 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -2087,6 +2087,7 @@ void intel_hdcp_update_pipe(struct intel_encoder *encoder,
+ 		(conn_state->hdcp_content_type != hdcp->content_type &&
+ 		 conn_state->content_protection !=
+ 		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
++	bool not_enabled;
+ 
+ 	/*
+ 	 * During the HDCP encryption session if Type change is requested,
+@@ -2108,8 +2109,12 @@ void intel_hdcp_update_pipe(struct intel_encoder *encoder,
+ 		mutex_unlock(&hdcp->mutex);
+ 	}
+ 
+-	if (conn_state->content_protection ==
+-	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
++	mutex_lock(&hdcp->mutex);
++	not_enabled = hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
++	mutex_unlock(&hdcp->mutex);
++
++	if ((conn_state->content_protection ==
++	    DRM_MODE_CONTENT_PROTECTION_DESIRED && not_enabled) ||
+ 	    content_protection_type_changed)
+ 		intel_hdcp_enable(connector,
+ 				  crtc_state->cpu_transcoder,
+@@ -2159,6 +2164,19 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 		return;
+ 	}
+ 
++	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
++						   new_state->crtc);
++	/*
++	 * Fix the HDCP uapi content protection state in case of modeset.
++	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
++	 * need to be sent if there is transition from ENABLED->DESIRED.
++	 */
++	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
++	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
++	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
++		new_state->content_protection =
++			DRM_MODE_CONTENT_PROTECTION_DESIRED;
++
+ 	/*
+ 	 * Nothing to do if the state didn't change, or HDCP was activated since
+ 	 * the last commit. And also no change in hdcp content type.
+@@ -2171,8 +2189,6 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 			return;
+ 	}
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+-						   new_state->crtc);
+ 	crtc_state->mode_changed = true;
+ }
+ 
+-- 
+2.26.0
 
-> ---
->  drivers/gpu/drm/i915/i915_vma.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-> index 191577a98390..9f4a31cd54ac 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -914,7 +914,8 @@ int i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
->  		wakeref = intel_runtime_pm_get(&vma->vm->i915->runtime_pm);
->  
->  	/* No more allocations allowed once we hold vm->mutex */
-> -	err = mutex_lock_interruptible(&vma->vm->mutex);
-> +	err = mutex_lock_interruptible_nested(&vma->vm->mutex,
-> +					      !(flags & PIN_GLOBAL));
->  	if (err)
->  		goto err_fence;
->  
-> @@ -1320,7 +1321,7 @@ int i915_vma_unbind(struct i915_vma *vma)
->  	if (err)
->  		goto out_rpm;
->  
-> -	err = mutex_lock_interruptible(&vm->mutex);
-> +	err = mutex_lock_interruptible_nested(&vma->vm->mutex, !wakeref);
-
-looks reasonable to me. Thanks!
-
-Are you planning to push it? You have my review for this.
-
-Andi
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
