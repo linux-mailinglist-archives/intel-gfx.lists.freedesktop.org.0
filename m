@@ -2,39 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB74195EED
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 20:45:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72253195F73
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2020 21:14:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D6CE6EA79;
-	Fri, 27 Mar 2020 19:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60D9B6E09E;
+	Fri, 27 Mar 2020 20:14:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE2E16EA73
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 19:45:30 +0000 (UTC)
-IronPort-SDR: lCqsAPW3F+sod/smG6ivGp1ESY6e/nCJbd+XXM6rfE76f8TqL3/z4dGuq+9QBZpPDFA8d3HrRc
- i72748ORmHMQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2020 12:45:30 -0700
-IronPort-SDR: mYpKskuTT0RFdkPJinngfRYe9ewGtMoGyvy8ZFTccZ0YyDwMYi1GWz+X+tsOxhfee32kKW/1wX
- 6x8YoZOsOCZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,313,1580803200"; d="scan'208";a="421209555"
-Received: from rantogno-mobl4.jf.intel.com (HELO
- rantogno-mobl4.amr.corp.intel.com) ([10.54.72.142])
- by orsmga005.jf.intel.com with SMTP; 27 Mar 2020 12:45:30 -0700
-Date: Fri, 27 Mar 2020 12:45:30 -0700
-From: Rafael Antognolli <rafael.antognolli@intel.com>
-To: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-Message-ID: <20200327194530.wm3dlgseis7dfxp6@rantogno-mobl4.amr.corp.intel.com>
-References: <20200326234955.16155-1-swathi.dhanavanthri@intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8EF76E09E
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:14:37 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from build.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20718734-1500050 
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Mar 2020 20:14:33 +0000
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Mar 2020 20:14:33 +0000
+Message-Id: <20200327201433.21864-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200326234955.16155-1-swathi.dhanavanthri@intel.com>
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/tgl: Make Wa_14010229206 permanent
+Subject: [Intel-gfx] [CI] drm/i915/execlists: Workaround switching back to a
+ complete context
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,64 +37,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Mar 26, 2020 at 04:49:55PM -0700, Swathi Dhanavanthri wrote:
-> This workaround now applies to all steppings, not just A0.
-> Wa_1409085225 is a temporary A0-only W/A however it is
-> identical to Wa_14010229206 and hence the combined workaround
-> is made permanent.
-> Bspec: 52890
+In what seems remarkably similar to the w/a required to not reload an
+idle context with HEAD==TAIL, it appears we must prevent the HW from
+switching to an idle context in ELSP[1], while simultaneously trying to
+preempt the HW to run another context and a continuation of the idle
+context (which is no longer idle).
 
-FYI, this patch fixes some corruption I was seeing.
+We can achieve this by preventing the context from completing while we
+reload a new ELSP (by applying ring_set_paused(1) across the whole of
+dequeue), except this eventually fails due to a lite-restore into a
+waiting semaphore does not generate an ACK. Instead, we try to avoid
+making the GPU do anything too challenging and not submit a new ELSP
+while the interrupts + CSB events appear to have fallen behind the
+completed contexts. We expect it to catch up shortly so we queue another
+tasklet execution and hope for the best.
 
-Tested-by: Rafael Antognolli <rafael.antognolli@intel.com>
+Closes: https://gitlab.freedesktop.org/drm/intel/issues/1501
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_lrc.c | 26 +++++++++++++++++++++++---
+ 1 file changed, 23 insertions(+), 3 deletions(-)
 
-> Signed-off-by: Swathi Dhanavanthri <swathi.dhanavanthri@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 11 +++++------
->  1 file changed, 5 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index e96cc7fa0936..c3c42cf614a9 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -1380,12 +1380,6 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  			    GEN7_FF_THREAD_MODE,
->  			    GEN12_FF_TESSELATION_DOP_GATE_DISABLE);
->  
-> -		/*
-> -		 * Wa_1409085225:tgl
-> -		 * Wa_14010229206:tgl
-> -		 */
-> -		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
-> -
->  		/* Wa_1408615072:tgl */
->  		wa_write_or(wal, UNSLICE_UNIT_LEVEL_CLKGATE2,
->  			    VSUNIT_CLKGATE_DIS_TGL);
-> @@ -1403,6 +1397,11 @@ rcs_engine_wa_init(struct intel_engine_cs *engine, struct i915_wa_list *wal)
->  		wa_masked_en(wal,
->  			     GEN9_CS_DEBUG_MODE1,
->  			     FF_DOP_CLOCK_GATE_DISABLE);
-> +		/*
-> +		 * Wa_1409085225:tgl
-> +		 * Wa_14010229206:tgl
-> +		 */
-> +		wa_masked_en(wal, GEN9_ROW_CHICKEN4, GEN12_DISABLE_TDL_PUSH);
->  	}
->  
->  	if (IS_GEN(i915, 11)) {
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index b12355048501..5f17ece07858 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1915,11 +1915,26 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * of trouble.
+ 	 */
+ 	active = READ_ONCE(execlists->active);
+-	while ((last = *active) && i915_request_completed(last))
+-		active++;
+ 
+-	if (last) {
++	/*
++	 * In theory we can skip over completed contexts that have not
++	 * yet been processed by events (as those events are in flight):
++	 *
++	 * while ((last = *active) && i915_request_completed(last))
++	 *	active++;
++	 *
++	 * However, the GPU is cannot handle this as it will ultimately
++	 * find itself trying to jump back into a context it has just
++	 * completed and barf.
++	 */
++
++	if ((last = *active)) {
+ 		if (need_preempt(engine, last, rb)) {
++			if (i915_request_completed(last)) {
++				tasklet_hi_schedule(&execlists->tasklet);
++				return;
++			}
++
+ 			ENGINE_TRACE(engine,
+ 				     "preempting last=%llx:%lld, prio=%d, hint=%d\n",
+ 				     last->fence.context,
+@@ -1947,6 +1962,11 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 			last = NULL;
+ 		} else if (need_timeslice(engine, last) &&
+ 			   timer_expired(&engine->execlists.timer)) {
++			if (i915_request_completed(last)) {
++				tasklet_hi_schedule(&execlists->tasklet);
++				return;
++			}
++
+ 			ENGINE_TRACE(engine,
+ 				     "expired last=%llx:%lld, prio=%d, hint=%d\n",
+ 				     last->fence.context,
+-- 
+2.20.1
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
