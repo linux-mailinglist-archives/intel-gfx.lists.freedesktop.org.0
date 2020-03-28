@@ -2,41 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10039196502
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 11:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C081964FB
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 11:20:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AF456EACB;
-	Sat, 28 Mar 2020 10:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 765E46EACD;
+	Sat, 28 Mar 2020 10:20:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDE46EACB
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 10:21:19 +0000 (UTC)
-IronPort-SDR: 67uV9AtiIZfz1AN2xvTwo/qoVTK5NauJosE00xTeFtgnBCq/6LbeAFzXgORrkb3W0tgET8BE8H
- mXEsmm4fiENQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2020 03:21:18 -0700
-IronPort-SDR: nqBkBfFpEdGSmnhnDfNgKret/B8hsIN1pmeM+5EHR3kml3uWqQcdjWsyPCRXQWPrh1aQsVl8IL
- v8MQYZtYg+dw==
-X-IronPort-AV: E=Sophos;i="5.72,316,1580803200"; d="scan'208";a="421392877"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2020 03:21:16 -0700
-Date: Sat, 28 Mar 2020 12:20:11 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200328102011.GC12322@ideak-desk.fi.intel.com>
-References: <20200324201429.29153-1-jose.souza@intel.com>
- <20200324201429.29153-5-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CB3DD6EACB;
+ Sat, 28 Mar 2020 10:20:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C49E1A0099;
+ Sat, 28 Mar 2020 10:20:12 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200324201429.29153-5-jose.souza@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-Subject: Re: [Intel-gfx] [PATCH v3 5/6] drm/i915/tc/icl: Implement the TC
- cold exit sequence
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Sat, 28 Mar 2020 10:20:12 -0000
+Message-ID: <158539081277.10055.4627764000295087237@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200328091628.20381-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200328091628.20381-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Exercise_lite-restore_on_top_of_a_semaphore_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,297 +39,174 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
-Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org,
- Kai-Heng Feng <kai.heng.feng@canonical.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2020 at 01:14:28PM -0700, Jos=E9 Roberto de Souza wrote:
-> This is required for legacy/static TC ports as IOM is not aware of
-> the connection and will not trigger the TC cold exit.
-> =
+== Series Details ==
 
-> Just request PCODE to exit TCCOLD is not enough as it could enter
-> again be driver makes use of the port, to prevent it BSpec states that
-> aux powerwell should be held.
-> =
+Series: drm/i915/selftests: Exercise lite-restore on top of a semaphore (rev2)
+URL   : https://patchwork.freedesktop.org/series/75187/
+State : failure
 
-> So before detecting the mode, aux power is requested without wait for
-> hardware ack, PCODE is requested to exit TCCOLD and the TC detection
-> sequences follows as normal.
-> After detection if mode is not static aux can be powered off otherwise
-> we need to wait for HW ack as future calls to intel_display_power_get()
-> over aux will not check for HW ack.
+== Summary ==
 
-Based on the earlier comments tc_cold_off would be requested any time a
-legacy AUX power ref is acquired, so we wouldn't need a new no_ack power
-well interface.
+CI Bug Log - changes from CI_DRM_8208 -> Patchwork_17122
+====================================================
 
-> =
+Summary
+-------
 
-> v2:
-> - fixed typo tc_lock_wakeref to tc_cold_wakeref in icl_tc_cold_request()
-> =
+  **FAILURE**
 
-> v3:
-> - fixed non initialized ret in icl_tc_cold_request()
-> - added missing sleep step, initially it was not added because I
-> thought that the aux enable and then HW ack wait would take care of
-> that but that is not the case
-> =
+  Serious unknown changes coming with Patchwork_17122 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17122, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> BSpec: 21750
-> Fixes: https://gitlab.freedesktop.org/drm/intel/issues/1296
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Cooper Chiou <cooper.chiou@intel.com>
-> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  .../drm/i915/display/intel_display_power.c    | 30 +++++++++-
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/i915/display/intel_tc.c       | 60 +++++++++++++++++--
->  drivers/gpu/drm/i915/i915_reg.h               |  1 +
->  4 files changed, 84 insertions(+), 8 deletions(-)
-> =
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/index.html
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
-/gpu/drm/i915/display/intel_display_power.c
-> index a7e531b64e16..71a4c5d790ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -573,8 +573,9 @@ static void icl_tc_port_assert_ref_held(struct drm_i9=
-15_private *dev_priv,
->  #define TGL_AUX_PW_TO_TC_PORT(pw_idx)	((pw_idx) - TGL_PW_CTL_IDX_AUX_TC1)
->  =
+Possible new issues
+-------------------
 
->  static void
-> -icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> -				 struct i915_power_well *power_well)
-> +_icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> +				  struct i915_power_well *power_well,
-> +				  bool wait_ack)
->  {
->  	enum aux_ch aux_ch =3D icl_tc_phy_aux_ch(dev_priv, power_well);
->  	u32 val;
-> @@ -587,7 +588,7 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_priv=
-ate *dev_priv,
->  		val |=3D DP_AUX_CH_CTL_TBT_IO;
->  	intel_de_write(dev_priv, DP_AUX_CH_CTL(aux_ch), val);
->  =
+  Here are the unknown changes that may have been introduced in Patchwork_17122:
 
-> -	hsw_power_well_enable(dev_priv, power_well);
-> +	_hsw_power_well_enable(dev_priv, power_well, wait_ack);
->  =
+### IGT changes ###
 
->  	if (INTEL_GEN(dev_priv) >=3D 12 && !power_well->desc->hsw.is_tc_tbt) {
->  		enum tc_port tc_port;
-> @@ -603,6 +604,20 @@ icl_tc_phy_aux_power_well_enable(struct drm_i915_pri=
-vate *dev_priv,
->  	}
->  }
->  =
+#### Possible regressions ####
 
-> +static void
-> +icl_tc_phy_aux_power_well_enable(struct drm_i915_private *dev_priv,
-> +				 struct i915_power_well *power_well)
-> +{
-> +	_icl_tc_phy_aux_power_well_enable(dev_priv, power_well, true);
-> +}
-> +
-> +static void
-> +icl_tc_phy_aux_power_well_enable_without_ack(struct drm_i915_private *de=
-v_priv,
-> +					     struct i915_power_well *power_well)
-> +{
-> +	_icl_tc_phy_aux_power_well_enable(dev_priv, power_well, false);
-> +}
-> +
->  static void
->  icl_tc_phy_aux_power_well_disable(struct drm_i915_private *dev_priv,
->  				  struct i915_power_well *power_well)
-> @@ -642,6 +657,13 @@ static bool hsw_power_well_enabled(struct drm_i915_p=
-rivate *dev_priv,
->  	return (val & mask) =3D=3D mask;
->  }
->  =
+  * igt@i915_selftest@live@execlists:
+    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-apl-guc/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-apl-guc/igt@i915_selftest@live@execlists.html
+    - fi-skl-lmem:        [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-skl-lmem/igt@i915_selftest@live@execlists.html
+    - fi-skl-6600u:       NOTRUN -> [INCOMPLETE][5]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-skl-6600u/igt@i915_selftest@live@execlists.html
+    - fi-skl-guc:         [PASS][6] -> [INCOMPLETE][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-skl-guc/igt@i915_selftest@live@execlists.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-skl-guc/igt@i915_selftest@live@execlists.html
+    - fi-skl-6700k2:      [PASS][8] -> [INCOMPLETE][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-skl-6700k2/igt@i915_selftest@live@execlists.html
 
-> +static void
-> +hsw_power_well_wait_ack(struct drm_i915_private *dev_priv,
-> +			struct i915_power_well *power_well)
-> +{
-> +	hsw_wait_for_power_well_enable(dev_priv, power_well);
-> +}
-> +
->  static void assert_can_enable_dc9(struct drm_i915_private *dev_priv)
->  {
->  	drm_WARN_ONCE(&dev_priv->drm,
-> @@ -3582,8 +3604,10 @@ static const struct i915_power_well_ops icl_combo_=
-phy_aux_power_well_ops =3D {
->  static const struct i915_power_well_ops icl_tc_phy_aux_power_well_ops =
-=3D {
->  	.sync_hw =3D hsw_power_well_sync_hw,
->  	.enable =3D icl_tc_phy_aux_power_well_enable,
-> +	.enable_without_ack =3D icl_tc_phy_aux_power_well_enable_without_ack,
->  	.disable =3D icl_tc_phy_aux_power_well_disable,
->  	.is_enabled =3D hsw_power_well_enabled,
-> +	.wait_enable_ack =3D hsw_power_well_wait_ack,
->  };
->  =
+  
+Known issues
+------------
 
->  static const struct i915_power_well_regs icl_aux_power_well_regs =3D {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 176ab5f1e867..42954be80435 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1397,6 +1397,7 @@ struct intel_digital_port {
->  	enum tc_port_mode tc_mode;
->  	enum phy_fia tc_phy_fia;
->  	u8 tc_phy_fia_idx;
-> +	intel_wakeref_t tc_cold_wakeref;
->  =
+  Here are the changes found in Patchwork_17122 that come from known issues:
 
->  	void (*write_infoframe)(struct intel_encoder *encoder,
->  				const struct intel_crtc_state *crtc_state,
-> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
-15/display/intel_tc.c
-> index e4c5de5ce874..588fca873b55 100644
-> --- a/drivers/gpu/drm/i915/display/intel_tc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
-> @@ -416,9 +416,6 @@ static void intel_tc_port_reset_mode(struct intel_dig=
-ital_port *dig_port,
->  	enum tc_port_mode old_tc_mode =3D dig_port->tc_mode;
->  =
+### IGT changes ###
 
->  	intel_display_power_flush_work(i915);
-> -	drm_WARN_ON(&i915->drm,
-> -		    intel_display_power_is_enabled(i915,
-> -					intel_aux_power_domain(dig_port)));
+#### Issues hit ####
 
-The flush_work/warn is still needed, but we should do that before
-getting an AUX power ref around FIA accesses.
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-r:           [PASS][10] -> [INCOMPLETE][11] ([fdo#112259])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-kbl-r/igt@i915_selftest@live@execlists.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-kbl-r/igt@i915_selftest@live@execlists.html
+    - fi-glk-dsi:         [PASS][12] -> [INCOMPLETE][13] ([i915#58] / [k.org#198133])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+    - fi-icl-dsi:         [PASS][14] -> [INCOMPLETE][15] ([i915#140])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-icl-dsi/igt@i915_selftest@live@execlists.html
+    - fi-bsw-n3050:       [PASS][16] -> [INCOMPLETE][17] ([i915#392])
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-bsw-n3050/igt@i915_selftest@live@execlists.html
+    - fi-cml-s:           [PASS][18] -> [INCOMPLETE][19] ([i915#283])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-cml-s/igt@i915_selftest@live@execlists.html
+    - fi-cml-u2:          [PASS][20] -> [INCOMPLETE][21] ([i915#283])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-cml-u2/igt@i915_selftest@live@execlists.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-cml-u2/igt@i915_selftest@live@execlists.html
+    - fi-kbl-8809g:       [PASS][22] -> [INCOMPLETE][23] ([CI#80] / [fdo#112259])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
 
->  =
+  * igt@i915_selftest@live@requests:
+    - fi-icl-u2:          [PASS][24] -> [INCOMPLETE][25] ([fdo#109644] / [fdo#110464])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-icl-u2/igt@i915_selftest@live@requests.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-icl-u2/igt@i915_selftest@live@requests.html
 
->  	icl_tc_phy_disconnect(dig_port);
->  	icl_tc_phy_connect(dig_port, required_lanes);
-> @@ -528,6 +525,39 @@ static inline int tgl_tc_cold_request(struct intel_d=
-igital_port *dig_port,
->  	return ret;
->  }
->  =
+  * igt@kms_chamelium@dp-crc-fast:
+    - fi-cml-u2:          [PASS][26] -> [FAIL][27] ([i915#262])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-cml-u2/igt@kms_chamelium@dp-crc-fast.html
 
-> +static inline int icl_tc_cold_request(struct intel_digital_port *dig_por=
-t,
-> +				      bool block)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +	enum intel_display_power_domain aux_domain;
-> +	int ret;
-> +
-> +	aux_domain =3D intel_aux_ch_to_power_domain(dig_port->aux_ch);
-> +
-> +	if (block) {
-> +		dig_port->tc_cold_wakeref =3D
-> +			intel_display_power_get_without_ack(i915, aux_domain);
-> +
-> +		do {
-> +			ret =3D sandybridge_pcode_write_timeout(i915,
-> +							      ICL_PCODE_EXIT_TCCOLD,
-> +							      0, 250, 1);
-> +
-> +		} while (ret =3D=3D -EAGAIN);
-> +
-> +		if (!ret)
-> +			msleep(1);
-> +	} else if (dig_port->tc_mode =3D=3D TC_PORT_LEGACY) {
-> +		drm_WARN_ON(&i915->drm, !dig_port->tc_cold_wakeref);
-> +		intel_display_power_put(i915, aux_domain,
-> +					dig_port->tc_cold_wakeref);
-> +		dig_port->tc_cold_wakeref =3D 0;
-> +		ret =3D 0;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
->  static int tc_cold_request(struct intel_digital_port *dig_port, bool blo=
-ck)
->  {
->  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> @@ -536,8 +566,7 @@ static int tc_cold_request(struct intel_digital_port =
-*dig_port, bool block)
->  	if (INTEL_GEN(i915) >=3D 12)
->  		ret =3D tgl_tc_cold_request(dig_port, block);
->  	else
-> -		/* TODO: implement GEN11 TCCOLD sequences */
-> -		ret =3D 0;
-> +		ret =3D icl_tc_cold_request(dig_port, block);
->  =
+  
+#### Possible fixes ####
 
->  	drm_dbg_kms(&i915->drm, "Port %s: TCCOLD %sblock %s\n",
->  		    dig_port->tc_port_name, (block ? "" : "un"),
-> @@ -546,6 +575,26 @@ static int tc_cold_request(struct intel_digital_port=
- *dig_port, bool block)
->  	return ret;
->  }
->  =
+  * igt@i915_selftest@live@requests:
+    - fi-icl-guc:         [INCOMPLETE][28] ([fdo#109644] / [fdo#110464]) -> [PASS][29]
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-icl-guc/igt@i915_selftest@live@requests.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-icl-guc/igt@i915_selftest@live@requests.html
 
-> +static void tc_cold_after_reset_mode(struct intel_digital_port *dig_port)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
-> +	enum intel_display_power_domain aux_domain;
-> +
-> +	if (INTEL_GEN(i915) >=3D 12)
-> +		return;
-> +
-> +	aux_domain =3D intel_aux_ch_to_power_domain(dig_port->aux_ch);
-> +
-> +	if (dig_port->tc_mode =3D=3D TC_PORT_LEGACY) {
-> +		intel_display_power_wait_enable_ack(i915, aux_domain);
-> +	} else {
-> +		drm_WARN_ON(&i915->drm, !dig_port->tc_cold_wakeref);
-> +		intel_display_power_put(i915, aux_domain,
-> +					dig_port->tc_cold_wakeref);
-> +		dig_port->tc_cold_wakeref =3D 0;
-> +	}
-> +}
-> +
->  static void __intel_tc_port_lock(struct intel_digital_port *dig_port,
->  				 int required_lanes)
->  {
-> @@ -560,6 +609,7 @@ static void __intel_tc_port_lock(struct intel_digital=
-_port *dig_port,
->  		tc_cold_request(dig_port, true);
->  		intel_tc_port_needs_reset(dig_port);
->  		intel_tc_port_reset_mode(dig_port, required_lanes);
-> +		tc_cold_after_reset_mode(dig_port);
->  	}
->  =
+  
+#### Warnings ####
 
->  	drm_WARN_ON(&i915->drm, dig_port->tc_lock_wakeref);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 7e341d9945b3..8d4f40a70a4d 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -9017,6 +9017,7 @@ enum {
->  #define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16)=
- | (0x1 << 8))
->  #define   GEN6_PCODE_READ_D_COMP		0x10
->  #define   GEN6_PCODE_WRITE_D_COMP		0x11
-> +#define   ICL_PCODE_EXIT_TCCOLD			0x12
->  #define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
->  #define   DISPLAY_IPS_CONTROL			0x19
->  #define   TGL_PCODE_TCCOLD				0x26
-> -- =
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [DMESG-FAIL][30] ([fdo#108569]) -> [INCOMPLETE][31] ([i915#140])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-icl-y/igt@i915_selftest@live@execlists.html
 
-> 2.26.0
-> =
+  * igt@runner@aborted:
+    - fi-kbl-8809g:       [FAIL][32] ([i915#1209]) -> [FAIL][33] ([i915#1485] / [i915#656])
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8208/fi-kbl-8809g/igt@runner@aborted.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/fi-kbl-8809g/igt@runner@aborted.html
 
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
+  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#1209]: https://gitlab.freedesktop.org/drm/intel/issues/1209
+  [i915#140]: https://gitlab.freedesktop.org/drm/intel/issues/140
+  [i915#1485]: https://gitlab.freedesktop.org/drm/intel/issues/1485
+  [i915#262]: https://gitlab.freedesktop.org/drm/intel/issues/262
+  [i915#283]: https://gitlab.freedesktop.org/drm/intel/issues/283
+  [i915#392]: https://gitlab.freedesktop.org/drm/intel/issues/392
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#647]: https://gitlab.freedesktop.org/drm/intel/issues/647
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (43 -> 39)
+------------------------------
+
+  Additional (3): fi-hsw-4770 fi-skl-6600u fi-snb-2600 
+  Missing    (7): fi-kbl-soraka fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-blb-e6850 fi-byt-clapper 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8208 -> Patchwork_17122
+
+  CI-20190529: 20190529
+  CI_DRM_8208: 1934751f01410e7fe6978aadcb42b3a5a78b5300 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5543: 779d43cda49c230afd32c37730ad853f02e9d749 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17122: 7273d95159f0cee82a40da689cc57c3075f616c2 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+7273d95159f0 drm/i915/selftests: Exercise lite-restore on top of a semaphore
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17122/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
