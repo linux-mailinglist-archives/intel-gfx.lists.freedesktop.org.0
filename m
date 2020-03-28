@@ -2,31 +2,32 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ECBD196236
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 01:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28888196457
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 08:59:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E4989CF5;
-	Sat, 28 Mar 2020 00:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54E616EAB9;
+	Sat, 28 Mar 2020 07:59:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CAF3D89DA4;
- Sat, 28 Mar 2020 00:01:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C08B1A0BC6;
- Sat, 28 Mar 2020 00:01:34 +0000 (UTC)
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C4C26EAB4;
+ Sat, 28 Mar 2020 07:58:58 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20721407-1500050 for multiple; Sat, 28 Mar 2020 07:58:46 +0000
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Sat, 28 Mar 2020 00:01:34 -0000
-Message-ID: <158535369475.10054.7824820306897306971@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200327231608.68108-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20200327231608.68108-1-ashutosh.dixit@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/perf=3A_Do_not_clear_pollin_for_small_user_read_buffers_?=
- =?utf-8?b?KHJldjQp?=
+In-Reply-To: <20200328000422.98978-1-Jason@zx2c4.com>
+References: <20200328000422.98978-1-Jason@zx2c4.com>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: "Jason A. Donenfeld" <Jason@zx2c4.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID: <158538232569.25292.15795048542441478192@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Sat, 28 Mar 2020 07:58:45 +0000
+Subject: Re: [Intel-gfx] [PATCH] drm/i915: check to see if the FPU is
+ available before using it
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,97 +40,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Quoting Jason A. Donenfeld (2020-03-28 00:04:22)
+> It's not safe to just grab the FPU willy nilly without first checking to
+> see if it's available. This patch adds the usual call to may_use_simd()
+> and falls back to boring memcpy if it's not available.
+ 
+These instructions do not use the fpu, nor are these registers aliased
+over the fpu stack. This description and the may_use_simd() do not
+look like they express the right granularity as to which simd state are
+included
 
-Series: drm/i915/perf: Do not clear pollin for small user read buffers (rev4)
-URL   : https://patchwork.freedesktop.org/series/75085/
-State : success
+> Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+> ---
+>  drivers/gpu/drm/i915/i915_memcpy.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
+> index fdd550405fd3..7c0e022586bc 100644
+> --- a/drivers/gpu/drm/i915/i915_memcpy.c
+> +++ b/drivers/gpu/drm/i915/i915_memcpy.c
+> @@ -24,6 +24,7 @@
+>  
+>  #include <linux/kernel.h>
+>  #include <asm/fpu/api.h>
+> +#include <asm/simd.h>
+>  
+>  #include "i915_memcpy.h"
+>  
+> @@ -38,6 +39,12 @@ static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
+>  #ifdef CONFIG_AS_MOVNTDQA
+>  static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
+>  {
+> +       if (unlikely(!may_use_simd())) {
+> +               memcpy(dst, src, len);
+> +               return;
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8206 -> Patchwork_17121
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17121 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@gt_heartbeat:
-    - fi-apl-guc:         [PASS][1] -> [DMESG-FAIL][2] ([fdo#112406])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8206/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/fi-apl-guc/igt@i915_selftest@live@gt_heartbeat.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-icl-u2:          [PASS][3] -> [INCOMPLETE][4] ([fdo#109644] / [fdo#110464])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8206/fi-icl-u2/igt@i915_selftest@live@requests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/fi-icl-u2/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@debugfs_test@read_all_entries:
-    - fi-icl-u2:          [DMESG-WARN][5] ([i915#289]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8206/fi-icl-u2/igt@debugfs_test@read_all_entries.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/fi-icl-u2/igt@debugfs_test@read_all_entries.html
-
-  * igt@gem_exec_parallel@contexts:
-    - fi-icl-dsi:         [INCOMPLETE][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8206/fi-icl-dsi/igt@gem_exec_parallel@contexts.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/fi-icl-dsi/igt@gem_exec_parallel@contexts.html
-
-  
-  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
-  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
-  [fdo#112406]: https://bugs.freedesktop.org/show_bug.cgi?id=112406
-  [i915#289]: https://gitlab.freedesktop.org/drm/intel/issues/289
-
-
-Participating hosts (49 -> 34)
-------------------------------
-
-  Missing    (15): fi-ilk-m540 fi-bdw-samus fi-hsw-4200u fi-byt-j1900 fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-bwr-2160 fi-kbl-7500u fi-ctg-p8600 fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-skl-6600u fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8206 -> Patchwork_17121
-
-  CI-20190529: 20190529
-  CI_DRM_8206: 584fcbd287863a6ba897f1b671acd7115d611362 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5543: 779d43cda49c230afd32c37730ad853f02e9d749 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17121: 629368ea252e2101ef3c1b5deb7bd0554f4a4ad9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-629368ea252e drm/i915/perf: Do not clear pollin for small user read buffers
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17121/index.html
+Look at caller, return the error and let them decide if they can avoid
+the read from WC, which quite often they can. And no, this is not done
+from interrupt context, we would be crucified if we did.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
