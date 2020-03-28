@@ -2,26 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82FE1964BD
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 10:16:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EEC1964CB
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 10:22:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B3A16EABD;
-	Sat, 28 Mar 2020 09:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D41786EAC1;
+	Sat, 28 Mar 2020 09:22:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0FF06EABD
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 09:16:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A716B6EAC1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 09:22:13 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20722159-1500050 
- for multiple; Sat, 28 Mar 2020 09:16:29 +0000
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20722193-1500050 
+ for multiple; Sat, 28 Mar 2020 09:22:07 +0000
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Sat, 28 Mar 2020 09:16:28 +0000
-Message-Id: <20200328091628.20381-1-chris@chris-wilson.co.uk>
+Date: Sat, 28 Mar 2020 09:22:06 +0000
+Message-Id: <20200328092206.20748-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200328091628.20381-1-chris@chris-wilson.co.uk>
+References: <20200328091628.20381-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/selftests: Exercise lite-restore on
  top of a semaphore
@@ -49,14 +51,14 @@ lite-restore from the next failed semaphore poll.
 
 Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 ---
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 174 +++++++++++++++++++++++++
- 1 file changed, 174 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_lrc.c | 175 +++++++++++++++++++++++++
+ 1 file changed, 175 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index 6f06ba750a0a..e4c8e0999553 100644
+index 6f06ba750a0a..44c694ddbddc 100644
 --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -350,6 +350,179 @@ static int live_unlite_preempt(void *arg)
+@@ -350,6 +350,180 @@ static int live_unlite_preempt(void *arg)
  	return live_unlite_restore(arg, I915_USER_PRIORITY(I915_PRIORITY_MAX));
  }
  
@@ -207,6 +209,7 @@ index 6f06ba750a0a..e4c8e0999553 100644
 +		 */
 +		GEM_BUG_ON(!ring_is_paused(engine));
 +		GEM_BUG_ON(engine->execlists.pending[0]);
++		GEM_BUG_ON(execlists_active(&engine->execlists)->context != ce);
 +
 +		i915_request_get(rq);
 +		i915_request_add(rq);
@@ -236,7 +239,7 @@ index 6f06ba750a0a..e4c8e0999553 100644
  static int live_pin_rewind(void *arg)
  {
  	struct intel_gt *gt = arg;
-@@ -3954,6 +4127,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
+@@ -3954,6 +4128,7 @@ int intel_execlists_live_selftests(struct drm_i915_private *i915)
  		SUBTEST(live_sanitycheck),
  		SUBTEST(live_unlite_switch),
  		SUBTEST(live_unlite_preempt),
