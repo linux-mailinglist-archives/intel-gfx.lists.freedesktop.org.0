@@ -2,39 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6411197E2C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8499D197E2F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:16:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8927F6E3EE;
-	Mon, 30 Mar 2020 14:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDFB48959D;
+	Mon, 30 Mar 2020 14:16:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from frisell.zx2c4.com (frisell.zx2c4.com [192.95.5.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34B206EA97;
- Sat, 28 Mar 2020 00:04:33 +0000 (UTC)
-Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTP id 87312fee;
- Fri, 27 Mar 2020 23:56:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=zx2c4.com; h=from:to:cc
- :subject:date:message-id:mime-version:content-transfer-encoding;
- s=mail; bh=BPXvm8QBjsmfO2gncU0J68R+kso=; b=lHnY9UVPHQV8txCJDSBm
- /qBou90bx9JLt0t32kPkZBBGEybZk6ppAot+UYEZ0daIS/ZNYXnrsvBsuJ4HJPfn
- LfpWFmDgo8tqLIMT1iNLItH9VoM2eLbpMW2iWxyiX4s0KXSWkxPB2VOKUvSamzgO
- fFZEQkLPY8WT6jGtf3UP/tXLT6/HNryWicR6+OO6faN2osiek5NARUqJr0JwZvB+
- wgXDVDt7IHL7wL2n5ecG52dVaHFO/Z7UUiad5D4uTADxfPuyF6uK/tepFZFMdO3e
- xleEYD8fb4ypPR6AVfyvHlijeTLqPLVlqyyotUA5HSzfAbMQdAGNCDhp5G5V0EqQ
- rA==
-Received: by frisell.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id 61147157
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256:NO); 
- Fri, 27 Mar 2020 23:56:58 +0000 (UTC)
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- chris@chris-wilson.co.uk, linux-kernel@vger.kernel.org
-Date: Fri, 27 Mar 2020 18:04:22 -0600
-Message-Id: <20200328000422.98978-1-Jason@zx2c4.com>
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com
+ [IPv6:2a00:1450:4864:20::341])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26DB96EAD0
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 10:41:44 +0000 (UTC)
+Received: by mail-wm1-x341.google.com with SMTP id b12so14284586wmj.3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 03:41:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=L56RXpvi3wqLXmQnpnBpkSpCB5vNNpwy0dv1ZPvyNjw=;
+ b=ENnLkIplXI7xm0YZb+iJkkFAlyzoFiA9T93FgAzX6+uGUo7lrpo0e2plZ5Hx5Oahc5
+ 0liTrWu6ZAnt4HqhVsUFaTORvveegqPm18wl5A5xoBceGWyK612Mp0e1CPdxyYcrzWie
+ wqfoXnHavQzBhY8scogimllnjihdLNZ1j6Atr3mbI1zx0R+Wf/Xf4aEQZRSSUAEZXi9M
+ Dbyzs+MtNe+dzLZn23BvOeqfwcySAJ71l/Tc6NaD8m3DaUPOdwXWevahXgQ2VMmosDZN
+ FHkkFh9iNzi7lbPjThI2uKTj3Elwi3hPaLqyWVllkXMixZEWVXItML20Xb/asR89f11r
+ vF2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=L56RXpvi3wqLXmQnpnBpkSpCB5vNNpwy0dv1ZPvyNjw=;
+ b=l7mKRf39wqB7OSHXb7JSuiiGDkgYMbGlPNi8cWAI3fWoQmII4XlHLbeQqt9f8SgwtJ
+ 8+pq4pM8z8JfneFWOSLkiXZETd7S/nNUk26KDJjVWA/7M8MiuJVKRVED/uxJZLmzGTg0
+ uJrE/G6xAYyMjLKfe/viwBpwVCR2c+dvsuTTUzoqPvGJoPSVfrNQFD8A00yiWhHNzumw
+ lehagWjnQ8syljFRyrJsjLIXrFa8KfoN6gPSlSibV0JEvrsGo+Dy/NtcpicFRMDytyvY
+ XB+2SK/8NKt4g8Iz6EcHZTX/1+AHpO6Ung2HlQjL5wMDRsMzC5thIMETCvfxV5he1Cuf
+ zHtA==
+X-Gm-Message-State: ANhLgQ1KveDLlZuo0YzlCVFshYTYJ6gMII0jcXTnFaZlO65nD8djrF/m
+ CZSXyuRFK172rHgu+OHY7Z8=
+X-Google-Smtp-Source: ADFU+vtRDmCeMKj3R8/Jn7ooxpa6DNsnup+306p3L48gQ45tOqd3G8KubR53mjBj2kerz+EcfHfd3g==
+X-Received: by 2002:a1c:e1c3:: with SMTP id y186mr3288089wmg.151.1585392102635; 
+ Sat, 28 Mar 2020 03:41:42 -0700 (PDT)
+Received: from xyz-CELSIUS-H720.fritz.box (x4d0a625a.dyn.telefonica.de.
+ [77.10.98.90])
+ by smtp.gmail.com with ESMTPSA id j5sm11809962wrr.47.2020.03.28.03.41.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 28 Mar 2020 03:41:42 -0700 (PDT)
+From: Oliver Barta <o.barta89@gmail.com>
+X-Google-Original-From: Oliver Barta <oliver.barta@aptiv.com>
+To: Ramalingam C <ramalingam.c@intel.com>, intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Date: Sat, 28 Mar 2020 11:41:00 +0100
+Message-Id: <20200328104100.12162-1-oliver.barta@aptiv.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 30 Mar 2020 14:16:11 +0000
-Subject: [Intel-gfx] [PATCH] drm/i915: check to see if the FPU is available
- before using it
+Subject: [Intel-gfx] [PATCH v2] drm/i915: HDCP: fix Ri prime check done
+ during link check
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +70,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>,
+ Oliver Barta <oliver.barta@aptiv.com>,
+ Ravisankar Madasamy <ravisankar.madasamy@intel.com>,
+ Sean Paul <seanpaul@chromium.org>, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It's not safe to just grab the FPU willy nilly without first checking to
-see if it's available. This patch adds the usual call to may_use_simd()
-and falls back to boring memcpy if it's not available.
+From: Oliver Barta <oliver.barta@aptiv.com>
 
-Signed-off-by: Jason A. Donenfeld <Jason@zx2c4.com>
+The check was always succeeding even in case of a mismatch due to the
+HDCP_STATUS_ENC bit being set. Make sure both bits are actually set.
+
+Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
+Fixes: 2320175feb74 ("drm/i915: Implement HDCP for HDMI")
 ---
- drivers/gpu/drm/i915/i915_memcpy.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ [v2] rebased on top of latest changes
 
-diff --git a/drivers/gpu/drm/i915/i915_memcpy.c b/drivers/gpu/drm/i915/i915_memcpy.c
-index fdd550405fd3..7c0e022586bc 100644
---- a/drivers/gpu/drm/i915/i915_memcpy.c
-+++ b/drivers/gpu/drm/i915/i915_memcpy.c
-@@ -24,6 +24,7 @@
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 0076abc63851..51a69f330588 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1561,7 +1561,8 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
+ 	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
  
- #include <linux/kernel.h>
- #include <asm/fpu/api.h>
-+#include <asm/simd.h>
- 
- #include "i915_memcpy.h"
- 
-@@ -38,6 +39,12 @@ static DEFINE_STATIC_KEY_FALSE(has_movntdqa);
- #ifdef CONFIG_AS_MOVNTDQA
- static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
- {
-+	if (unlikely(!may_use_simd())) {
-+		memcpy(dst, src, len);
-+		return;
-+	}
-+
-+
- 	kernel_fpu_begin();
- 
- 	while (len >= 4) {
-@@ -67,6 +74,11 @@ static void __memcpy_ntdqa(void *dst, const void *src, unsigned long len)
- 
- static void __memcpy_ntdqu(void *dst, const void *src, unsigned long len)
- {
-+	if (unlikely(!may_use_simd())) {
-+		memcpy(dst, src, len);
-+		return;
-+	}
-+
- 	kernel_fpu_begin();
- 
- 	while (len >= 4) {
+ 	/* Wait for Ri prime match */
+-	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
++	if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
++		     port)) & (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
+ 		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
+ 		drm_err(&i915->drm,
+ 			"Ri' mismatch detected, link check failed (%x)\n",
 -- 
-2.26.0
+2.20.1
 
 _______________________________________________
 Intel-gfx mailing list
