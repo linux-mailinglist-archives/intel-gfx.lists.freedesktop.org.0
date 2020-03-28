@@ -1,32 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795E01964DF
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 10:52:27 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A671964E9
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2020 10:58:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45B916EAC5;
-	Sat, 28 Mar 2020 09:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE99F6EAC3;
+	Sat, 28 Mar 2020 09:58:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D2A216EAC3;
- Sat, 28 Mar 2020 09:52:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 07785A00FD;
- Sat, 28 Mar 2020 09:52:24 +0000 (UTC)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFC8A6EAC3
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2020 09:58:46 +0000 (UTC)
+IronPort-SDR: 4CkiPGtPmTnEU77YDIlYpw8eXeMoUnE8K79XENDffwHJKPzHxMAwvCBOspk8YsEFxg4I4SX79M
+ BkRywvb/ZXjw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2020 02:58:46 -0700
+IronPort-SDR: EIyPMlZD3nM+gJTCsXlj0loYYU7t9nNE4zaUHPmY7X57DiVSQ+OkQaeILv1iLfhT74Ia/PVDGN
+ xCjblUyOAMaA==
+X-IronPort-AV: E=Sophos;i="5.72,315,1580803200"; d="scan'208";a="421389716"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2020 02:58:44 -0700
+Date: Sat, 28 Mar 2020 11:57:39 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
+Message-ID: <20200328095739.GA12322@ideak-desk.fi.intel.com>
+References: <20200324201429.29153-1-jose.souza@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
-Date: Sat, 28 Mar 2020 09:52:24 -0000
-Message-ID: <158538914400.10052.15170481378176841139@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200327072917.3676391-1-gwan-gyeong.mun@intel.com>
-In-Reply-To: <20200327072917.3676391-1-gwan-gyeong.mun@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLklHVDogZmFpbHVyZSBmb3IgSW4g?=
- =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
- =?utf-8?b?KHJldjgp?=
+Content-Disposition: inline
+In-Reply-To: <20200324201429.29153-1-jose.souza@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+Subject: Re: [Intel-gfx] [PATCH v3 1/6] drm/i915/tc/tgl: Implement TCCOLD
+ sequences
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,215 +48,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Reply-To: imre.deak@intel.com
+Cc: Cooper Chiou <cooper.chiou@intel.com>, intel-gfx@lists.freedesktop.org,
+ Kai-Heng Feng <kai.heng.feng@canonical.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Jos=E9,
 
-Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev8)
-URL   : https://patchwork.freedesktop.org/series/72853/
-State : failure
+On Tue, Mar 24, 2020 at 01:14:24PM -0700, Jos=E9 Roberto de Souza wrote:
+> TC ports can enter in TCCOLD to save power and is required to request
+> to PCODE to exit this state before use or read to TC registers.
+> =
 
-== Summary ==
+> For TGL there is a new MBOX command to do that with a parameter to ask
+> PCODE to exit and block TCCOLD entry or unblock TCCOLD entry.
+> For GEN11 the sequence is more complex and will be handled in a
+> separated patch.
+> =
 
-CI Bug Log - changes from CI_DRM_8199_full -> Patchwork_17110_full
-====================================================
+> BSpec: 49294
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: Cooper Chiou <cooper.chiou@intel.com>
+> Cc: Kai-Heng Feng <kai.heng.feng@canonical.com>
+> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_tc.c | 61 ++++++++++++++++++++++++-
+>  drivers/gpu/drm/i915/i915_reg.h         |  3 ++
+>  drivers/gpu/drm/i915/intel_sideband.c   | 22 +++++++++
+>  drivers/gpu/drm/i915/intel_sideband.h   |  4 ++
+>  4 files changed, 88 insertions(+), 2 deletions(-)
+> =
 
-Summary
--------
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i9=
+15/display/intel_tc.c
+> index 9b850c11aa78..e4c5de5ce874 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -7,6 +7,7 @@
+>  #include "intel_display.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp_mst.h"
+> +#include "intel_sideband.h"
+>  #include "intel_tc.h"
+>  =
 
-  **FAILURE**
+>  static const char *tc_port_mode_name(enum tc_port_mode mode)
+> @@ -496,6 +497,55 @@ bool intel_tc_port_connected(struct intel_digital_po=
+rt *dig_port)
+>  	return is_connected;
+>  }
+>  =
 
-  Serious unknown changes coming with Patchwork_17110_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17110_full, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> +static inline int tgl_tc_cold_request(struct intel_digital_port *dig_por=
+t,
+> +				      bool block)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	u32 low_val, high_val;
+> +	u8 tries =3D 0;
+> +	int ret;
+> +
+> +	do {
+> +		low_val =3D 0;
+> +		high_val =3D block ? 0 : TGL_PCODE_EXIT_TCCOLD_DATA_H_UNBLOCK_REQ;
+> +
+> +		ret =3D sandybridge_pcode_write_read_timeout(i915,
+> +							   TGL_PCODE_TCCOLD,
+> +							   &low_val, &high_val,
+> +							   150, 1);
 
-  
+The spec says trying 3 times for 200 usec. Is there a problem if we just
+reuse sandybridge_pcode_read() here which has a 500 usec timeout?
 
-Possible new issues
--------------------
+> +		if (ret =3D=3D 0) {
+> +			if (block &&
+> +			    low_val & TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED)
+> +				ret =3D -EIO;
+> +			else
+> +				break;
+> +		}
+> +
+> +		if (ret !=3D -EAGAIN)
+> +			tries++;
+> +	} while (tries < 3);
+> +
+> +	return ret;
 
-  Here are the unknown changes that may have been introduced in Patchwork_17110_full:
+The return value isn't used and I think we can't do much about it, so
+just make the function a void type and warn about a timeout?
 
-### IGT changes ###
+> +}
+> +
+> +static int tc_cold_request(struct intel_digital_port *dig_port, bool blo=
+ck)
+> +{
+> +	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+> +	int ret;
+> +
+> +	if (INTEL_GEN(i915) >=3D 12)
+> +		ret =3D tgl_tc_cold_request(dig_port, block);
+> +	else
+> +		/* TODO: implement GEN11 TCCOLD sequences */
+> +		ret =3D 0;
+> +
+> +	drm_dbg_kms(&i915->drm, "Port %s: TCCOLD %sblock %s\n",
+> +		    dig_port->tc_port_name, (block ? "" : "un"),
+> +		    (ret =3D=3D 0 ? "succeeded" : "failed"));
+> +
+> +	return ret;
+> +}
+> +
+>  static void __intel_tc_port_lock(struct intel_digital_port *dig_port,
+>  				 int required_lanes)
+>  {
+> @@ -506,9 +556,11 @@ static void __intel_tc_port_lock(struct intel_digita=
+l_port *dig_port,
+>  =
 
-#### Possible regressions ####
+>  	mutex_lock(&dig_port->tc_lock);
+>  =
 
-  * igt@runner@aborted:
-    - shard-tglb:         NOTRUN -> ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], [FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FAIL][21], [FAIL][22], [FAIL][23], [FAIL][24], [FAIL][25])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb5/igt@runner@aborted.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb2/igt@runner@aborted.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb3/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb5/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb2/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb7/igt@runner@aborted.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb6/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb1/igt@runner@aborted.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb8/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb2/igt@runner@aborted.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb1/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb6/igt@runner@aborted.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb3/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb5/igt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb6/igt@runner@aborted.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb1/igt@runner@aborted.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb7/igt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb8/igt@runner@aborted.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb1/igt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb8/igt@runner@aborted.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb7/igt@runner@aborted.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb6/igt@runner@aborted.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb7/igt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb3/igt@runner@aborted.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-tglb2/igt@runner@aborted.html
+> -	if (!dig_port->tc_link_refcount &&
+> -	    intel_tc_port_needs_reset(dig_port))
+> +	if (dig_port->tc_link_refcount =3D=3D 0) {
+> +		tc_cold_request(dig_port, true);
 
-  
-New tests
----------
+I'm not sure if PCODE really refcounts the requests what this would need
+(since we submit the same request for all ports). But for other reasons,
+like the overhead of the request and the AUX PW ack trickery we need on
+ICL, I think we need a tc_cold_off power well/domain. The tc_cold_off
+power ref would be get/put around the FIA access sequence here
+(intel_tc_port_reset_mode()) and would be held whenever we hold an AUX
+power ref.
 
-  New tests have been introduced between CI_DRM_8199_full and Patchwork_17110_full:
+ICL legacy ports would hold an AUX power ref around the FIA access here
+and the AUX power well code would internally do the PCODE request and
+deal with the delayed power well ack (so we don't need to create a new
+interface for that).
 
-### New IGT tests (3) ###
+> +		intel_tc_port_needs_reset(dig_port);
+>  		intel_tc_port_reset_mode(dig_port, required_lanes);
+> +	}
+>  =
 
-  * igt@gem_ctx_isolation@clean:
-    - Statuses :
-    - Exec time: [None] s
+>  	drm_WARN_ON(&i915->drm, dig_port->tc_lock_wakeref);
+>  	dig_port->tc_lock_wakeref =3D wakeref;
+> @@ -524,6 +576,9 @@ void intel_tc_port_unlock(struct intel_digital_port *=
+dig_port)
+>  	struct drm_i915_private *i915 =3D to_i915(dig_port->base.base.dev);
+>  	intel_wakeref_t wakeref =3D fetch_and_zero(&dig_port->tc_lock_wakeref);
+>  =
 
-  * igt@gem_ctx_isolation@dirty-create:
-    - Statuses :
-    - Exec time: [None] s
+> +	if (dig_port->tc_link_refcount =3D=3D 0)
+> +		tc_cold_request(dig_port, false);
+> +
+>  	mutex_unlock(&dig_port->tc_lock);
+>  =
 
-  * igt@gem_ctx_shared@exec-shared-gtt:
-    - Statuses :
-    - Exec time: [None] s
+>  	intel_display_power_put_async(i915, POWER_DOMAIN_DISPLAY_CORE,
+> @@ -548,6 +603,8 @@ void intel_tc_port_put_link(struct intel_digital_port=
+ *dig_port)
+>  {
+>  	mutex_lock(&dig_port->tc_lock);
+>  	dig_port->tc_link_refcount--;
+> +	if (dig_port->tc_link_refcount =3D=3D 0)
+> +		tc_cold_request(dig_port, false);
+>  	mutex_unlock(&dig_port->tc_lock);
+>  }
+>  =
 
-  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index 9c53fe918be6..7e341d9945b3 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -9019,6 +9019,9 @@ enum {
+>  #define   GEN6_PCODE_WRITE_D_COMP		0x11
+>  #define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
+>  #define   DISPLAY_IPS_CONTROL			0x19
+> +#define   TGL_PCODE_TCCOLD				0x26
+> +#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED	REG_BIT(0)
+> +#define     TGL_PCODE_EXIT_TCCOLD_DATA_H_UNBLOCK_REQ	REG_BIT(0)
+>              /* See also IPS_CTL */
+>  #define     IPS_PCODE_CONTROL			(1 << 30)
+>  #define   HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL	0x1A
+> diff --git a/drivers/gpu/drm/i915/intel_sideband.c b/drivers/gpu/drm/i915=
+/intel_sideband.c
+> index 1447e7516cb7..20a9d3970930 100644
+> --- a/drivers/gpu/drm/i915/intel_sideband.c
+> +++ b/drivers/gpu/drm/i915/intel_sideband.c
+> @@ -463,6 +463,28 @@ int sandybridge_pcode_write_timeout(struct drm_i915_=
+private *i915,
+>  	return err;
+>  }
+>  =
 
-Known issues
-------------
+> +int sandybridge_pcode_write_read_timeout(struct drm_i915_private *i915,
+> +					 u32 mbox, u32 *val, u32 *val1,
+> +					 int fast_timeout_us,
+> +					 int slow_timeout_ms)
+> +{
+> +	int err;
+> +
+> +	mutex_lock(&i915->sb_lock);
+> +	err =3D __sandybridge_pcode_rw(i915, mbox, val, val1,
+> +				     fast_timeout_us, slow_timeout_ms,
+> +				     true);
+> +	mutex_unlock(&i915->sb_lock);
+> +
+> +	if (err) {
+> +		drm_dbg(&i915->drm,
+> +			"warning: pcode (write of 0x%08x to mbox %x) mailbox access failed fo=
+r %ps: %d\n",
+> +			*val, mbox, __builtin_return_address(0), err);
+> +	}
+> +
+> +	return err;
+> +}
+> +
+>  static bool skl_pcode_try_request(struct drm_i915_private *i915, u32 mbo=
+x,
+>  				  u32 request, u32 reply_mask, u32 reply,
+>  				  u32 *status)
+> diff --git a/drivers/gpu/drm/i915/intel_sideband.h b/drivers/gpu/drm/i915=
+/intel_sideband.h
+> index 7fb95745a444..1939bebb4e67 100644
+> --- a/drivers/gpu/drm/i915/intel_sideband.h
+> +++ b/drivers/gpu/drm/i915/intel_sideband.h
+> @@ -132,6 +132,10 @@ int sandybridge_pcode_read(struct drm_i915_private *=
+i915, u32 mbox,
+>  int sandybridge_pcode_write_timeout(struct drm_i915_private *i915, u32 m=
+box,
+>  				    u32 val, int fast_timeout_us,
+>  				    int slow_timeout_ms);
+> +int sandybridge_pcode_write_read_timeout(struct drm_i915_private *i915,
+> +					 u32 mbox, u32 *val, u32 *val1,
+> +					 int fast_timeout_us,
+> +					 int slow_timeout_ms);
+>  #define sandybridge_pcode_write(i915, mbox, val)	\
+>  	sandybridge_pcode_write_timeout(i915, mbox, val, 500, 0)
+>  =
 
-  Here are the changes found in Patchwork_17110_full that come from known issues:
+> -- =
 
-### IGT changes ###
+> 2.26.0
+> =
 
-#### Issues hit ####
-
-  * igt@gem_ctx_persistence@close-replace-race:
-    - shard-glk:          [PASS][26] -> [INCOMPLETE][27] ([i915#1492] / [i915#58] / [k.org#198133])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-glk2/igt@gem_ctx_persistence@close-replace-race.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-glk3/igt@gem_ctx_persistence@close-replace-race.html
-
-  * igt@gem_exec_suspend@basic-s3:
-    - shard-kbl:          [PASS][28] -> [DMESG-WARN][29] ([i915#180]) +3 similar issues
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-kbl6/igt@gem_exec_suspend@basic-s3.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-kbl2/igt@gem_exec_suspend@basic-s3.html
-
-  * igt@kms_cursor_crc@pipe-a-cursor-64x21-onscreen:
-    - shard-kbl:          [PASS][30] -> [FAIL][31] ([i915#54] / [i915#93] / [i915#95])
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-kbl3/igt@kms_cursor_crc@pipe-a-cursor-64x21-onscreen.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-kbl3/igt@kms_cursor_crc@pipe-a-cursor-64x21-onscreen.html
-
-  * igt@kms_vblank@pipe-b-ts-continuation-suspend:
-    - shard-apl:          [PASS][32] -> [DMESG-WARN][33] ([i915#180]) +2 similar issues
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-apl3/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-apl7/igt@kms_vblank@pipe-b-ts-continuation-suspend.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_softpin@noreloc-s3:
-    - shard-apl:          [DMESG-WARN][34] ([i915#180]) -> [PASS][35] +1 similar issue
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-apl6/igt@gem_softpin@noreloc-s3.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-apl8/igt@gem_softpin@noreloc-s3.html
-
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-snb:          [TIMEOUT][36] ([i915#1526]) -> [PASS][37]
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-snb2/igt@i915_pm_rc6_residency@rc6-idle.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-snb1/igt@i915_pm_rc6_residency@rc6-idle.html
-
-  * igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy:
-    - shard-glk:          [FAIL][38] ([i915#72]) -> [PASS][39] +1 similar issue
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-glk5/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-glk5/igt@kms_cursor_legacy@2x-long-flip-vs-cursor-legacy.html
-
-  * igt@kms_hdr@bpc-switch-suspend:
-    - shard-kbl:          [DMESG-WARN][40] ([i915#180]) -> [PASS][41] +4 similar issues
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-kbl2/igt@kms_hdr@bpc-switch-suspend.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-kbl6/igt@kms_hdr@bpc-switch-suspend.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload-with-fault-injection:
-    - shard-kbl:          [INCOMPLETE][42] ([i915#879]) -> [INCOMPLETE][43] ([i915#1423] / [i915#879])
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-kbl3/igt@i915_module_load@reload-with-fault-injection.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-kbl1/igt@i915_module_load@reload-with-fault-injection.html
-    - shard-apl:          [INCOMPLETE][44] ([fdo#103927]) -> [INCOMPLETE][45] ([i915#1423])
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-apl7/igt@i915_module_load@reload-with-fault-injection.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-apl1/igt@i915_module_load@reload-with-fault-injection.html
-
-  * igt@i915_pm_rpm@pc8-residency:
-    - shard-snb:          [INCOMPLETE][46] ([i915#82]) -> [SKIP][47] ([fdo#109271])
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-snb4/igt@i915_pm_rpm@pc8-residency.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-snb2/igt@i915_pm_rpm@pc8-residency.html
-
-  * igt@runner@aborted:
-    - shard-kbl:          [FAIL][48] ([i915#92]) -> [FAIL][49] ([i915#1423] / [i915#92])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-kbl3/igt@runner@aborted.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-kbl1/igt@runner@aborted.html
-    - shard-apl:          [FAIL][50] ([fdo#103927]) -> [FAIL][51] ([i915#1423])
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8199/shard-apl7/igt@runner@aborted.html
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/shard-apl1/igt@runner@aborted.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [fdo#103927]: https://bugs.freedesktop.org/show_bug.cgi?id=103927
-  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
-  [i915#1423]: https://gitlab.freedesktop.org/drm/intel/issues/1423
-  [i915#1492]: https://gitlab.freedesktop.org/drm/intel/issues/1492
-  [i915#1526]: https://gitlab.freedesktop.org/drm/intel/issues/1526
-  [i915#180]: https://gitlab.freedesktop.org/drm/intel/issues/180
-  [i915#54]: https://gitlab.freedesktop.org/drm/intel/issues/54
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#72]: https://gitlab.freedesktop.org/drm/intel/issues/72
-  [i915#82]: https://gitlab.freedesktop.org/drm/intel/issues/82
-  [i915#879]: https://gitlab.freedesktop.org/drm/intel/issues/879
-  [i915#92]: https://gitlab.freedesktop.org/drm/intel/issues/92
-  [i915#93]: https://gitlab.freedesktop.org/drm/intel/issues/93
-  [i915#95]: https://gitlab.freedesktop.org/drm/intel/issues/95
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8199 -> Patchwork_17110
-
-  CI-20190529: 20190529
-  CI_DRM_8199: f2777988684dad7195833a8fd3af6d0c80506a38 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5539: e7aae12e37771a8b7796ba252574eb832a5839c3 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17110: e13352f5f6f9293034527947225263c7b41c4cc5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17110/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
