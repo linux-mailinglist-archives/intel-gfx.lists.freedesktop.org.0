@@ -2,33 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B38198163
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C24B198172
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:42:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 349676E0AA;
-	Mon, 30 Mar 2020 16:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48D9D6E14A;
+	Mon, 30 Mar 2020 16:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46AE66E0AA
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 16:38:45 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20742747-1500050 for multiple; Mon, 30 Mar 2020 17:38:25 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C4BB46E122;
+ Mon, 30 Mar 2020 16:42:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B4315A47DF;
+ Mon, 30 Mar 2020 16:42:15 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <87blodrg5n.wl-ashutosh.dixit@intel.com>
-References: <20200330091411.37357-1-lionel.g.landwerlin@intel.com>
- <158556296041.3228.10327206845355852563@build.alporthouse.com>
- <87blodrg5n.wl-ashutosh.dixit@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158558630373.3228.12237015093988279920@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 30 Mar 2020 17:38:23 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: don't read head/tail
- pointers outside critical section
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Mon, 30 Mar 2020 16:42:15 -0000
+Message-ID: <158558653570.13828.10601268814406572462@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200330121644.25277-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200330121644.25277-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/selftests=3A_Check_timeout_before_flush_and_cond_checks_?=
+ =?utf-8?b?KHJldjIp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,52 +39,97 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Dixit, Ashutosh (2020-03-30 16:55:32)
-> On Mon, 30 Mar 2020 03:09:20 -0700, Chris Wilson wrote:
-> >
-> > Quoting Lionel Landwerlin (2020-03-30 10:14:11)
-> > > Reading or writing those fields should only happen under
-> > > stream->oa_buffer.ptr_lock.
-> >
-> > Writing, yes. Reading as a pair, sure. There are other ways you can
-> > ensure that the tail/head are read as one, but fair enough.
-> 
-> Sorry but I am trying to understand exactly what the purpose of
-> stream->oa_buffer.ptr_lock is? This is a classic ring buffer producer
-> consumer situation where producer updates tail and consumer updates
-> head. Since both are u32's can't those operations be done without requiring
-> a lock?
+== Series Details ==
 
-> > >         spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-> > >
-> > > -       return OA_TAKEN(stream->oa_buffer.tail - gtt_offset,
-> > > -                       stream->oa_buffer.head - gtt_offset) >= report_size;
-> > > +       return pollin;
-> 
-> In what way is the original code incorrect? As I mentioned head is u32 and
-> can be read atomically without requiring a lock? We had deliberately moved
-> this code outside the lock so as to pick up the the latest value of head if
-> it had been updated in the consumer (read).
+Series: drm/i915/selftests: Check timeout before flush and cond checks (rev2)
+URL   : https://patchwork.freedesktop.org/series/75126/
+State : failure
 
-It's the pair of reads here. What's the synchronisation between the read
-of tail/head with the update? There's no sync between the reads so
-order is not determined here.
+== Summary ==
 
-So we may see the head updated for an old tail, and so think we have
-plenty to report, when in fact there's none (or someother convolution).
+CI Bug Log - changes from CI_DRM_8214 -> Patchwork_17129
+====================================================
 
-Normal ringbuffer is to sample the head/tail pointers, smp_rmb(), then
-consume the data between head/tail (with the write doing the smp_wmb()
-after updating the data and before moving the tail). [So the normal
-usage of barriers is around access to one of tail/head (the other is
-under your control) and the shared contents.]
--Chris
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17129 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17129, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17129/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17129:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17129/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17129 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-guc:         [PASS][3] -> [INCOMPLETE][4] ([i915#1505])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-icl-guc/igt@i915_selftest@live@requests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17129/fi-icl-guc/igt@i915_selftest@live@requests.html
+
+  
+  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
+
+
+Participating hosts (45 -> 41)
+------------------------------
+
+  Additional (5): fi-bsw-n3050 fi-bwr-2160 fi-snb-2520m fi-kbl-7560u fi-byt-n2820 
+  Missing    (9): fi-hsw-4770r fi-cml-u2 fi-ilk-m540 fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-elk-e7500 fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8214 -> Patchwork_17129
+
+  CI-20190529: 20190529
+  CI_DRM_8214: a2b99403233148c1940fc972caef2a5c456d11b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17129: 97b0985bc49aaf097a68ea8987bdbaec2768373b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+97b0985bc49a drm/i915/selftests: Check timeout before flush and cond checks
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17129/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
