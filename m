@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B05119837C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 20:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9FC1983A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 20:48:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94BD6E195;
-	Mon, 30 Mar 2020 18:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756726E1A3;
+	Mon, 30 Mar 2020 18:48:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2AC7B6E179;
- Mon, 30 Mar 2020 18:38:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24226A0BC6;
- Mon, 30 Mar 2020 18:38:19 +0000 (UTC)
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D33C16E198;
+ Mon, 30 Mar 2020 18:48:15 +0000 (UTC)
+IronPort-SDR: 58w2iK9ZZs4CgEV1ynvnG8G+vyKHgpaUIwRAIcrJgbkWhkxcQ3TEvGcQ13A8qWLHb4QQTifVL2
+ qK4qYytyNhKQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2020 11:48:14 -0700
+IronPort-SDR: Qqp1hwkXNa4EiHzYA/yU4LUpeRHJGhRwitz8twTnoL8DlBxLrT1TmtYKcQ+rOhmcwvWTGfhI+z
+ sb+3zWGva5Tw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,325,1580803200"; d="scan'208";a="267012962"
+Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
+ by orsmga002.jf.intel.com with ESMTP; 30 Mar 2020 11:48:10 -0700
+From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ ville.syrjala@linux.intel.com, daniels@collabora.com
+Date: Tue, 31 Mar 2020 00:08:52 +0530
+Message-Id: <20200330183857.13270-1-pankaj.laxminarayan.bharadiya@intel.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 30 Mar 2020 18:38:19 -0000
-Message-ID: <158559349911.13825.7221221682484214349@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200330125827.5804-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200330125827.5804-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/execlists=3A_Explicitly_reset_both_reg_and_context_runtim?=
- =?utf-8?q?e_=28rev2=29?=
+Subject: [Intel-gfx] [PATCH v3 0/5] Introduce drm scaling filter property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,66 +46,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series is the continuation for the RFC that I posted earlier [1]
 
-Series: drm/i915/execlists: Explicitly reset both reg and context runtime (rev2)
-URL   : https://patchwork.freedesktop.org/series/75127/
-State : success
+[1] RFC: https://patchwork.freedesktop.org/series/73884/
 
-== Summary ==
+Integer scaling (IS) is a nearest-neighbor upscaling technique that
+simply scales up the existing pixels by an integer (i.e., whole
+number) multiplier. Nearest-neighbor (NN) interpolation works by
+filling in the missing color values in the upscaled image with that of
+the coordinate-mapped nearest source pixel value.
 
-CI Bug Log - changes from CI_DRM_8216 -> Patchwork_17132
-====================================================
+Both IS and NN preserve the clarity of the original image. In
+contrast, traditional upscaling algorithms, such as bilinear or
+bicubic interpolation, result in blurry upscaled images because they
+employ interpolation techniques that smooth out the transition from
+one pixel to another.  Therefore, integer scaling is particularly
+useful for pixel art games that rely on sharp, blocky images to
+deliver their distinctive look.
 
-Summary
--------
+Many gaming communities have been asking for integer-mode scaling
+support, some links and background:
 
-  **SUCCESS**
+https://software.intel.com/en-us/articles/integer-scaling-support-on-intel-graphics
+http://tanalin.com/en/articles/lossless-scaling/
+https://community.amd.com/thread/209107
+https://www.nvidia.com/en-us/geforce/forums/game-ready-drivers/13/1002/feature-request-nonblurry-upscaling-at-integer-rat/
 
-  No regressions found.
+This patch series -
+  - Introduces new scaling filter properties to allow userspace to
+    select  the driver's default scaling filter or
+    Nearest-neighbor(NN) filter for scaling operations on crtc and plane.
+  - Implements and enable integer scaling for i915
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17132/index.html
+Userspace patch series link: https://github.com/lrusak/xbmc/pull/24 
 
+Thanks to Shashank for initiating this work. His initial work can be
+found here [2]
 
-Changes
--------
+[2] https://patchwork.freedesktop.org/patch/337082/
 
-  No changes found
+changes since v2:
+* Add per-crtc and per-plane scaling filter property (Ville)
+* Rename/refoctor functions and macros.
+* Duplicate the scaling filter in crtc and plane hw state (Ville)
+ 
+changes since v1: 
+* Add userspace patch link to this cover letter.
+* 4/5 - Rearrange skl_scaler_setup_nearest_neighbor_filter() to iterate
+  the registers directly instead of the phases and taps (Ville)
 
+Pankaj Bharadiya (5):
+  drm: Introduce plane and CRTC scaling filter properties
+  drm/drm-kms.rst: Add plane and CRTC scaling filter property
+    documentation
+  drm/i915: Introduce scaling filter related registers and bit fields.
+  drm/i915/display: Add Nearest-neighbor based integer scaling support
+  drm/i915: Enable scaling filter for plane and CRTC
 
-Participating hosts (45 -> 36)
-------------------------------
+ Documentation/gpu/drm-kms.rst                 |  12 ++
+ drivers/gpu/drm/drm_atomic_uapi.c             |   8 ++
+ drivers/gpu/drm/drm_crtc.c                    |  78 ++++++++++++
+ drivers/gpu/drm/drm_plane.c                   |  78 ++++++++++++
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c  | 116 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h  |   4 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_sprite.c   |  15 ++-
+ drivers/gpu/drm/i915/i915_reg.h               |  22 ++++
+ include/drm/drm_crtc.h                        |  16 +++
+ include/drm/drm_plane.h                       |  21 ++++
+ 12 files changed, 369 insertions(+), 4 deletions(-)
 
-  Additional (4): fi-bdw-5557u fi-ivb-3770 fi-snb-2520m fi-elk-e7500 
-  Missing    (13): fi-hsw-4770r fi-ilk-m540 fi-bsw-n3050 fi-hsw-4200u fi-skl-guc fi-byt-squawks fi-bsw-cyan fi-cfl-guc fi-ctg-p8600 fi-bdw-samus fi-tgl-y fi-bsw-nick fi-skl-6600u 
+-- 
+2.23.0
 
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8216 -> Patchwork_17132
-
-  CI-20190529: 20190529
-  CI_DRM_8216: 4ccea545b3b32da9999542abd56251e4e13bdf04 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17132: 56c1f7f67f817ca22e115c8713e1638353b6d6c2 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-56c1f7f67f81 drm/i915/execlists: Explicitly reset both reg and context runtime
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17132/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
