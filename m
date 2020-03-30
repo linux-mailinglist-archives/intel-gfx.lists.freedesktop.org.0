@@ -1,43 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFB31984BA
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 21:41:29 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B557C1984A1
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 21:38:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 692B56E42A;
-	Mon, 30 Mar 2020 19:41:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E0C06E478;
+	Mon, 30 Mar 2020 19:38:36 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F0946E42A;
- Mon, 30 Mar 2020 19:41:26 +0000 (UTC)
-IronPort-SDR: pDvjJ39+T1LPk3t6Xo6KeXFxLF1g2D67hcErqSQ2tXh0Lyt3vVxWWNFW5IjPzB/3fbyeSq6jYV
- kykVd6l46PLQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 12:41:25 -0700
-IronPort-SDR: 4zFr2/UsFR4Ph5uNlVy2x2qB7jH1qy8NdU+3n/XSf+FHkh+5U3tnuJ+x6f/muwq20tTjdq9jrN
- jq2fW0dN0VAQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,325,1580803200"; d="scan'208";a="359273039"
-Received: from plaxmina-desktop.iind.intel.com ([10.145.162.62])
- by fmsmga001.fm.intel.com with ESMTP; 30 Mar 2020 12:41:21 -0700
-From: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-To: jani.nikula@linux.intel.com, daniel@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>
-Date: Tue, 31 Mar 2020 01:02:08 +0530
-Message-Id: <20200330193208.15038-1-pankaj.laxminarayan.bharadiya@intel.com>
-X-Mailer: git-send-email 2.23.0
+X-Greylist: delayed 483 seconds by postgrey-1.36 at gabe;
+ Mon, 30 Mar 2020 19:38:35 UTC
+Received: from mail-40134.protonmail.ch (mail-40134.protonmail.ch
+ [185.70.40.134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0ADD66E478;
+ Mon, 30 Mar 2020 19:38:35 +0000 (UTC)
+Date: Mon, 30 Mar 2020 19:38:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=emersion.fr;
+ s=protonmail; t=1585597112;
+ bh=uRxchlmJlrLpyPG3Yt8X2ZF+uOCp+7w5Up5lBsHFuPs=;
+ h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
+ b=VMNbAVfCVomQuZ1EKe2lGzEmvsoumCenhlMKTAIsIlCYWQ2N8wQRdzvTLVsCRVrT3
+ CHYN4QFeyWswroHTdV48k6tL7tewVEUX/mkQM3o9tV9UDYmPyEqQai5ZlUMY9MeBCW
+ FGTtEPI2LFZop3bdeTeiORurmZUufGIOVyn0vZJc=
+To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
+From: Simon Ser <contact@emersion.fr>
+Message-ID: <zFLZ_IslN6elEqm_OOvTO2sNHFcy65lv-gNmSyC9Y_S2TdFgH3IteH_z76mojJ6IKFkQtEQZFn8kvF8y_-b6vvXPRbHTqQV94bF_4fX86UE=@emersion.fr>
+In-Reply-To: <20200330183857.13270-3-pankaj.laxminarayan.bharadiya@intel.com>
+References: <20200330183857.13270-1-pankaj.laxminarayan.bharadiya@intel.com>
+ <20200330183857.13270-3-pankaj.laxminarayan.bharadiya@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2] drm/todo: Add todo to make i915 WARN* calls
- drm device specific
+X-Spam-Status: No, score=-1.2 required=7.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+ DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+ autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on mail.protonmail.ch
+Subject: Re: [Intel-gfx] [PATCH v3 2/5] drm/drm-kms.rst: Add plane and CRTC
+ scaling filter property documentation
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,59 +48,48 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Simon Ser <contact@emersion.fr>
+Cc: Maxime Ripard <mripard@kernel.org>,
+ "daniels@collabora.com" <daniels@collabora.com>,
+ Jonathan Corbet <corbet@lwn.net>, David Airlie <airlied@linux.ie>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With below commit, we have new struct drm_device based WARN* macros,
-which include device specific information in the backtrace.
+On Monday, March 30, 2020 8:38 PM, Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com> wrote:
 
-commit dc1a73e50f9c63d4dd928df538082200467dc4b1
-Author: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Date:   Wed Jan 15 09:14:45 2020 +0530
+> diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
+> index 906771e03103..b0335e9d887c 100644
+> --- a/Documentation/gpu/drm-kms.rst
+> +++ b/Documentation/gpu/drm-kms.rst
+> @@ -509,6 +509,18 @@ Variable Refresh Properties
+> .. kernel-doc:: drivers/gpu/drm/drm_connector.c
+> :doc: Variable refresh properties
+>
+> +Plane Scaling Filter Property
+> +-----------------------
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_plane.c
+>
+> -   :doc: Plane scaling filter property
+> -
+>
+> +CRTC Scaling Filter Property
+> +-----------------------
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_crtc.c
+>
+> -   :doc: CRTC scaling filter property
+> -
+>
 
-    drm/print: introduce new struct drm_device based WARN* macros
-
-Majority of the i915 WARN* are already converted to use struct
-drm_device specific drm_WARN* calls. Add new todo entry for
-pending conversions.
-
-Signed-off-by: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
----
-changes since v1:
-* Remove accidentally added unrelated change (Sam)
-* Update commit description by adding space after full stop (Sam)
- 
- Documentation/gpu/todo.rst | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/Documentation/gpu/todo.rst b/Documentation/gpu/todo.rst
-index 37a3a023c114..d009a84384b3 100644
---- a/Documentation/gpu/todo.rst
-+++ b/Documentation/gpu/todo.rst
-@@ -575,6 +575,18 @@ See drivers/gpu/drm/amd/display/TODO for tasks.
- 
- Contact: Harry Wentland, Alex Deucher
- 
-+Make i915 WARN* Calls struct drm_device Specific
-+------------------------------------------------
-+
-+struct drm_device specific drm_WARN* macros include device information in the
-+backtrace, so we know what device the warnings originate from. Convert all the
-+calls of WARN* with drm_WARN* calls in i915. While at it, remove WARN* which
-+are not truly valid.
-+
-+Contact: Jani Nikula
-+
-+Level: Starter
-+
- Bootsplash
- ==========
- 
--- 
-2.23.0
-
+This adds whole new sections just for the scaling filter property.
+Shouldn't we use the existing "Plane properties" section defined in
+drm_blend.c for plane props? (Same for CRTC props.)
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
