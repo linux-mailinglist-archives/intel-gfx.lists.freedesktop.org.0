@@ -2,40 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031F8196DDC
-	for <lists+intel-gfx@lfdr.de>; Sun, 29 Mar 2020 16:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 516DA1972E5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 06:01:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEC116E14F;
-	Sun, 29 Mar 2020 14:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2DC689E9E;
+	Mon, 30 Mar 2020 04:01:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 932A66E14F
- for <intel-gfx@lists.freedesktop.org>; Sun, 29 Mar 2020 14:17:31 +0000 (UTC)
-IronPort-SDR: tz0Hxr6ZBYYs/xbserVwGc7US1QixzE2YEcIxPr6WpAuq0DLBBP4I46JSQdLYzsYsAnizg0GzK
- QqYc3vGrXExQ==
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 246B889E9E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 04:01:50 +0000 (UTC)
+IronPort-SDR: AVnyHsbESq2MNEy7qGTlrswizVWgB/3u0f6CN/ak296GI6CWGvISwH4vKs3a4DndovT7olc2mt
+ WDY8DAVcxqYg==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2020 07:17:31 -0700
-IronPort-SDR: /XZq2tIM/pOb4CADyexJJ4BHmRLplPkZL9Fa60eYQ3jU7tmFFYugQW9Unq5CZvQiNv2KClS5L+
- +e9mHWOjn3bQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,320,1580803200"; d="scan'208";a="421659573"
-Received: from ramaling-i9x.iind.intel.com (HELO intel.com) ([10.99.66.154])
- by orsmga005.jf.intel.com with ESMTP; 29 Mar 2020 07:17:27 -0700
-Date: Sun, 29 Mar 2020 19:47:38 +0530
-From: Ramalingam C <ramalingam.c@intel.com>
-To: Oliver Barta <o.barta89@gmail.com>
-Message-ID: <20200329141738.GA20693@intel.com>
-References: <20200328104100.12162-1-oliver.barta@aptiv.com>
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2020 21:01:50 -0700
+IronPort-SDR: cCbBxz5hhQFkQH0yP2okgdQQeOHYH095Rfp1OdiuKEczMCQx17KL+fV+0O3T1mJiEFYaOLGzob
+ jzhL2nOzWfHQ==
+X-IronPort-AV: E=Sophos;i="5.72,322,1580803200"; d="scan'208";a="394996002"
+Received: from amanna-mobl1.gar.corp.intel.com (HELO [10.215.123.69])
+ ([10.215.123.69])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Mar 2020 21:01:48 -0700
+To: Manasi Navare <manasi.d.navare@intel.com>
+References: <20200319215119.GA11219@intel.com>
+ <20200324051111.29398-1-animesh.manna@intel.com>
+ <20200327184503.GB22190@intel.com>
+From: "Manna, Animesh" <animesh.manna@intel.com>
+Message-ID: <2a3969f3-332c-99e4-a153-e0eb78ae0540@intel.com>
+Date: Mon, 30 Mar 2020 09:31:44 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200328104100.12162-1-oliver.barta@aptiv.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v2] drm/i915: HDCP: fix Ri prime check done
- during link check
+In-Reply-To: <20200327184503.GB22190@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH v7 6/7] drm/i915/dp: Register definition for
+ DP compliance register
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,48 +52,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- Sean Paul <seanpaul@chromium.org>, Oliver Barta <oliver.barta@aptiv.com>,
- Ravisankar Madasamy <ravisankar.madasamy@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Cc: intel-gfx@lists.freedesktop.org
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2020-03-28 at 11:41:00 +0100, Oliver Barta wrote:
-> From: Oliver Barta <oliver.barta@aptiv.com>
-> 
-> The check was always succeeding even in case of a mismatch due to the
-> HDCP_STATUS_ENC bit being set. Make sure both bits are actually set.
-> 
-Looks good to me:
 
-Reviewed-by: Ramalingam C <ramalingam.c@intel.com>
-> Signed-off-by: Oliver Barta <oliver.barta@aptiv.com>
-> Fixes: 2320175feb74 ("drm/i915: Implement HDCP for HDMI")
-> ---
->  [v2] rebased on top of latest changes
-> 
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 0076abc63851..51a69f330588 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1561,7 +1561,8 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *intel_dig_port)
->  	intel_de_write(i915, HDCP_RPRIME(i915, cpu_transcoder, port), ri.reg);
->  
->  	/* Wait for Ri prime match */
-> -	if (wait_for(intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder, port)) &
-> +	if (wait_for((intel_de_read(i915, HDCP_STATUS(i915, cpu_transcoder,
-> +		     port)) & (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC)) ==
->  		     (HDCP_STATUS_RI_MATCH | HDCP_STATUS_ENC), 1)) {
->  		drm_err(&i915->drm,
->  			"Ri' mismatch detected, link check failed (%x)\n",
-> -- 
-> 2.20.1
-> 
+On 28-03-2020 00:15, Manasi Navare wrote:
+> On Tue, Mar 24, 2020 at 10:41:11AM +0530, Animesh Manna wrote:
+>> DP_COMP_CTL and DP_COMP_PAT register used to program DP
+>> compliance pattern.
+>>
+>> v1: Initial patch.
+>> v2: used pipe instead of port in macro definition. [Manasi]
+>> v3: used trans_offset for offset calculation. [Manasi]
+>> v4: Used MMIO_PIPE for evenly spaced register offset instead
+>> MMIO_PIPE2. [Ville]
+>>
+>> Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_reg.h | 18 ++++++++++++++++++
+>>   1 file changed, 18 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+>> index 309cb7d96b35..465862ed2cf8 100644
+>> --- a/drivers/gpu/drm/i915/i915_reg.h
+>> +++ b/drivers/gpu/drm/i915/i915_reg.h
+>> @@ -9792,6 +9792,24 @@ enum skl_power_gate {
+>>   #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
+>>   #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
+>>   
+>> +/* DDI DP Compliance Control */
+>> +#define _DDI_DP_COMP_CTL_A			0x605F0
+>> +#define _DDI_DP_COMP_CTL_B			0x615F0
+>> +#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
+> This looks good now.
+>
+>> +#define   DDI_DP_COMP_CTL_ENABLE		(1 << 31)
+>> +#define   DDI_DP_COMP_CTL_D10_2			(0 << 28)
+>> +#define   DDI_DP_COMP_CTL_SCRAMBLED_0		(1 << 28)
+>> +#define   DDI_DP_COMP_CTL_PRBS7			(2 << 28)
+>> +#define   DDI_DP_COMP_CTL_CUSTOM80		(3 << 28)
+>> +#define   DDI_DP_COMP_CTL_HBR2			(4 << 28)
+>> +#define   DDI_DP_COMP_CTL_SCRAMBLED_1		(5 << 28)
+>> +#define   DDI_DP_COMP_CTL_HBR2_RESET		(0xFC << 0)
+>> +
+>> +/* DDI DP Compliance Pattern */
+>> +#define _DDI_DP_COMP_PAT_A			0x605F4
+>> +#define _DDI_DP_COMP_PAT_B			0x615F4
+>> +#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
+> I still dont understand why we need to use that i argument here and why cant just pipe give us the desired offset
+> with _MMIO_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) ?
+>
+> IMO we should be able to use the above since even here the registers are evenly offseted (0x605F4, 0x615F4, 0x62F54, 0x63F54)
+
+The offset you mentioned above is for respective pipe A,B,C,D. How we can write 80 bit custom pattern in it? For pipe A, need to write 0x605F4, 0x605F8, 0x605FC for writing 80 bit .. rt?
+
+Regards,
+Animesh
+
+>
+> Regards
+> Manasi
+>
+>> +
+>>   /* Sideband Interface (SBI) is programmed indirectly, via
+>>    * SBI_ADDR, which contains the register offset; and SBI_DATA,
+>>    * which contains the payload */
+>> -- 
+>> 2.24.0
+>>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
