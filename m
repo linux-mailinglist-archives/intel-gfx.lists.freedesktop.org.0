@@ -2,46 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88041197DCA
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:03:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C8D197DE5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:09:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4EB16E37C;
-	Mon, 30 Mar 2020 14:02:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4B136E3A4;
+	Mon, 30 Mar 2020 14:09:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 808A96E37C
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:02:57 +0000 (UTC)
-IronPort-SDR: WBe827UyCqCTE/zMx0CXgjVVwSvuRvz1J0xF8VF2gI1ZiHECtstt8AXDKWSCMJrAnp2JBD0eRq
- wzVYhiNqhJsQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 07:02:56 -0700
-IronPort-SDR: pYUwNp4XdAqdmkyAGzAP/d8MvKR+Ln8xizxWeMDLCHks7QnpwcBoFJjRGDNplwrCBy7+BGLasz
- eCdUdOOE2q6Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="448279342"
-Received: from irvmail001.ir.intel.com ([163.33.26.43])
- by fmsmga005.fm.intel.com with ESMTP; 30 Mar 2020 07:02:55 -0700
-Received: from [10.249.134.165] (mwajdecz-mobl.ger.corp.intel.com
- [10.249.134.165])
- by irvmail001.ir.intel.com (8.14.3/8.13.6/MailSET/Hub) with ESMTP id
- 02UE2tv1003794; Mon, 30 Mar 2020 15:02:55 +0100
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-References: <20200330113302.1670-1-michal.wajdeczko@intel.com>
- <158557133270.3228.3738598788092230448@build.alporthouse.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <aed4cc3e-7589-15f1-f1b8-0196f608b449@intel.com>
-Date: Mon, 30 Mar 2020 16:02:53 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 566856E393
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:09:29 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Mar 2020 16:09:04 +0200
+Message-Id: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <158557133270.3228.3738598788092230448@build.alporthouse.com>
-Content-Language: en-US
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Add more errors for
- I915_PARAM_HUC_STATUS
+Subject: [Intel-gfx] [PATCH 01/22] Revert "drm/i915/gem: Drop relocation
+ slowpath"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,125 +32,292 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This reverts commit 7dc8f1143778 ("drm/i915/gem: Drop relocation
+slowpath"). We need the slowpath relocation for taking ww-mutex
+inside the page fault handler, and we will take this mutex when
+pinning all objects.
 
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 239 +++++++++++++++++-
+ 1 file changed, 235 insertions(+), 4 deletions(-)
 
-On 30.03.2020 14:28, Chris Wilson wrote:
-> Quoting Michal Wajdeczko (2020-03-30 12:33:02)
->> There might be many reasons why we failed to successfully
->> load and authenticate HuC firmware, but today we only use
->> single error in case of no HuC hardware. Add some more
->> error codes for most common cases (disabled, not installed,
->> corrupted or mismatched firmware).
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Chris Wilson <chris@chris-wilson.co.uk>
->> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: Tony Ye <tony.ye@intel.com>
->> Cc: Robert M. Fosha <robert.m.fosha@intel.com>
->> ---
->>  drivers/gpu/drm/i915/gt/uc/intel_huc.c | 22 ++++++++++++++++++----
->>  1 file changed, 18 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> index d6097b46600c..1e8073ec343f 100644
->> --- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> +++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
->> @@ -200,9 +200,13 @@ int intel_huc_auth(struct intel_huc *huc)
->>   * This function reads status register to verify if HuC
->>   * firmware was successfully loaded.
->>   *
->> - * Returns: 1 if HuC firmware is loaded and verified,
->> - * 0 if HuC firmware is not loaded and -ENODEV if HuC
->> - * is not present on this platform.
->> + * Returns:
->> + *  * -ENODEV if HuC is not present on this platform,
->> + *  * -EOPNOTSUPP if HuC firmware is disabled,
->> + *  * -ENOPKG if HuC firmware was not installed,
->> + *  * -ENOEXEC if HuC firmware is invalid or mismatched,
->> + *  * 0 if HuC firmware is not running,
->> + *  * 1 if HuC firmware is authenticated and running.
->>   */
->>  int intel_huc_check_status(struct intel_huc *huc)
->>  {
->> @@ -210,8 +214,18 @@ int intel_huc_check_status(struct intel_huc *huc)
->>         intel_wakeref_t wakeref;
->>         u32 status = 0;
->>  
->> -       if (!intel_huc_is_supported(huc))
->> +       switch (__intel_uc_fw_status(&huc->fw)) {
->> +       case INTEL_UC_FIRMWARE_NOT_SUPPORTED:
->>                 return -ENODEV;
-> 
-> No HW support.
-> 
->> +       case INTEL_UC_FIRMWARE_DISABLED:
->> +               return -EOPNOTSUPP;
-> 
-> Override by user [sysadmin]
-> 
->> +       case INTEL_UC_FIRMWARE_MISSING:
->> +               return -ENOPKG;
-> 
-> FILENOTFOUND.
-> 
->> +       case INTEL_UC_FIRMWARE_ERROR:
->> +               return -ENOEXEC;
-> 
-> File corruption.
-> 
-> There's nothing else between us loading the fw and the huc rejecting
-> it?
-> 
-> FIRMWARE_FAIL? That's set as the opposite of FIRMWARE_TRANSFERRED in
-> that we failed to upload the image to the HW. The firmware itself hasn't
-> had a chance to run.
-> 
-> case INTEL_UC_FIRMWARE_FAIL:
-> 	return -ENXIO;
-> 
-> Or is that being overridden to FIRMWARE_ERROR?
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index f347e595a773..347c929b508d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -1480,7 +1480,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 		 * we would try to acquire the struct mutex again. Obviously
+ 		 * this is bad and so lockdep complains vehemently.
+ 		 */
+-		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
++		pagefault_disable();
++		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
++		pagefault_enable();
+ 		if (unlikely(copied)) {
+ 			remain = -EFAULT;
+ 			goto out;
+@@ -1530,6 +1532,236 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
+ 	return remain;
+ }
+ 
++static int
++eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
++{
++	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
++	struct drm_i915_gem_relocation_entry *relocs =
++		u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < entry->relocation_count; i++) {
++		u64 offset = eb_relocate_entry(eb, ev, &relocs[i]);
++
++		if ((s64)offset < 0) {
++			err = (int)offset;
++			goto err;
++		}
++	}
++	err = 0;
++err:
++	reloc_cache_reset(&eb->reloc_cache);
++	return err;
++}
++
++static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
++{
++	const char __user *addr, *end;
++	unsigned long size;
++	char __maybe_unused c;
++
++	size = entry->relocation_count;
++	if (size == 0)
++		return 0;
++
++	if (size > N_RELOC(ULONG_MAX))
++		return -EINVAL;
++
++	addr = u64_to_user_ptr(entry->relocs_ptr);
++	size *= sizeof(struct drm_i915_gem_relocation_entry);
++	if (!access_ok(addr, size))
++		return -EFAULT;
++
++	end = addr + size;
++	for (; addr < end; addr += PAGE_SIZE) {
++		int err = __get_user(c, addr);
++		if (err)
++			return err;
++	}
++	return __get_user(c, end - 1);
++}
++
++static int eb_copy_relocations(const struct i915_execbuffer *eb)
++{
++	struct drm_i915_gem_relocation_entry *relocs;
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++	int err;
++
++	for (i = 0; i < count; i++) {
++		const unsigned int nreloc = eb->exec[i].relocation_count;
++		struct drm_i915_gem_relocation_entry __user *urelocs;
++		unsigned long size;
++		unsigned long copied;
++
++		if (nreloc == 0)
++			continue;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			goto err;
++
++		urelocs = u64_to_user_ptr(eb->exec[i].relocs_ptr);
++		size = nreloc * sizeof(*relocs);
++
++		relocs = kvmalloc_array(size, 1, GFP_KERNEL);
++		if (!relocs) {
++			err = -ENOMEM;
++			goto err;
++		}
++
++		/* copy_from_user is limited to < 4GiB */
++		copied = 0;
++		do {
++			unsigned int len =
++				min_t(u64, BIT_ULL(31), size - copied);
++
++			if (__copy_from_user((char *)relocs + copied,
++					     (char __user *)urelocs + copied,
++					     len))
++				goto end;
++
++			copied += len;
++		} while (copied < size);
++
++		/*
++		 * As we do not update the known relocation offsets after
++		 * relocating (due to the complexities in lock handling),
++		 * we need to mark them as invalid now so that we force the
++		 * relocation processing next time. Just in case the target
++		 * object is evicted and then rebound into its old
++		 * presumed_offset before the next execbuffer - if that
++		 * happened we would make the mistake of assuming that the
++		 * relocations were valid.
++		 */
++		if (!user_access_begin(urelocs, size))
++			goto end;
++
++		for (copied = 0; copied < nreloc; copied++)
++			unsafe_put_user(-1,
++					&urelocs[copied].presumed_offset,
++					end_user);
++		user_access_end();
++
++		eb->exec[i].relocs_ptr = (uintptr_t)relocs;
++	}
++
++	return 0;
++
++end_user:
++	user_access_end();
++end:
++	kvfree(relocs);
++	err = -EFAULT;
++err:
++	while (i--) {
++		relocs = u64_to_ptr(typeof(*relocs), eb->exec[i].relocs_ptr);
++		if (eb->exec[i].relocation_count)
++			kvfree(relocs);
++	}
++	return err;
++}
++
++static int eb_prefault_relocations(const struct i915_execbuffer *eb)
++{
++	const unsigned int count = eb->buffer_count;
++	unsigned int i;
++
++	for (i = 0; i < count; i++) {
++		int err;
++
++		err = check_relocations(&eb->exec[i]);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
++static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
++{
++	bool have_copy = false;
++	struct eb_vma *ev;
++	int err = 0;
++
++repeat:
++	if (signal_pending(current)) {
++		err = -ERESTARTSYS;
++		goto out;
++	}
++
++	/*
++	 * We take 3 passes through the slowpatch.
++	 *
++	 * 1 - we try to just prefault all the user relocation entries and
++	 * then attempt to reuse the atomic pagefault disabled fast path again.
++	 *
++	 * 2 - we copy the user entries to a local buffer here outside of the
++	 * local and allow ourselves to wait upon any rendering before
++	 * relocations
++	 *
++	 * 3 - we already have a local copy of the relocation entries, but
++	 * were interrupted (EAGAIN) whilst waiting for the objects, try again.
++	 */
++	if (!err) {
++		err = eb_prefault_relocations(eb);
++	} else if (!have_copy) {
++		err = eb_copy_relocations(eb);
++		have_copy = err == 0;
++	} else {
++		cond_resched();
++		err = 0;
++	}
++	if (err)
++		goto out;
++
++	list_for_each_entry(ev, &eb->relocs, reloc_link) {
++		if (!have_copy) {
++			pagefault_disable();
++			err = eb_relocate_vma(eb, ev);
++			pagefault_enable();
++			if (err)
++				goto repeat;
++		} else {
++			err = eb_relocate_vma_slow(eb, ev);
++			if (err)
++				goto err;
++		}
++	}
++
++	/*
++	 * Leave the user relocations as are, this is the painfully slow path,
++	 * and we want to avoid the complication of dropping the lock whilst
++	 * having buffers reserved in the aperture and so causing spurious
++	 * ENOSPC for random operations.
++	 */
++
++err:
++	if (err == -EAGAIN)
++		goto repeat;
++
++out:
++	if (have_copy) {
++		const unsigned int count = eb->buffer_count;
++		unsigned int i;
++
++		for (i = 0; i < count; i++) {
++			const struct drm_i915_gem_exec_object2 *entry =
++				&eb->exec[i];
++			struct drm_i915_gem_relocation_entry *relocs;
++
++			if (!entry->relocation_count)
++				continue;
++
++			relocs = u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
++			kvfree(relocs);
++		}
++	}
++
++	return err;
++}
++
+ static int eb_relocate(struct i915_execbuffer *eb)
+ {
+ 	int err;
+@@ -1549,9 +1781,8 @@ static int eb_relocate(struct i915_execbuffer *eb)
+ 		struct eb_vma *ev;
+ 
+ 		list_for_each_entry(ev, &eb->relocs, reloc_link) {
+-			err = eb_relocate_vma(eb, ev);
+-			if (err)
+-				return err;
++			if (eb_relocate_vma(eb, ev))
++				return eb_relocate_slow(eb);
+ 		}
+ 	}
+ 
+-- 
+2.25.1
 
-No, it's not overridden by FIRMWARE_ERROR (since we use FIRMWARE_ERROR
-as final state, while with FIRMWARE_FAIL there is a chance for recovery
-during reset)
-
-Also note that FIRMWARE_FAIL case is covered by the register check that
-we have below, which provides HuC runtime status.
-
-And if we decide to use FIRMWARE_FAIL to report -ENXIO, then it is
-unlikely that we will ever report 0 again for any other fw error that
-could prevent fw from successful load (now recall your and Joonas
-position that this param shall stay as reflection of register read).
-
-Michal
-
-ps. on other hand, if we trust our uc_fw_status() then we can drop that
-register read, finally decouple GET_PARAM from MMIO_READ and fully rely
-on cached status:
-
-case INTEL_UC_FIRMWARE_RUNNING:
-	return 1;
-default:
-	return 0;
-
-see [1] for my earlier attempt, before uc_fw.status was added
-
-[1] https://patchwork.freedesktop.org/patch/306179/?series=60928&rev=1
-
-> 
-> Other than the question of whether there's one more step before the fw
-> is being run [and then able to set HUC_STATUS as it determines for
-> itself],
-> 
-> Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
-> -Chris
-> 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
