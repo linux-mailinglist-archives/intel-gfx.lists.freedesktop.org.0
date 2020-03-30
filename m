@@ -2,25 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9035197DF3
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D9E197E01
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:12:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEC556E3BB;
-	Mon, 30 Mar 2020 14:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0352F89933;
+	Mon, 30 Mar 2020 14:12:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDEA6E3B0
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:09:32 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 16:09:25 +0200
-Message-Id: <20200330140925.3972034-22-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
-References: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A69C89933
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:12:04 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20740858-1500050 for multiple; Mon, 30 Mar 2020 15:12:02 +0100
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 22/22] drm/i915: Ensure we hold the pin mutex
+In-Reply-To: <aed4cc3e-7589-15f1-f1b8-0196f608b449@intel.com>
+References: <20200330113302.1670-1-michal.wajdeczko@intel.com>
+ <158557133270.3228.3738598788092230448@build.alporthouse.com>
+ <aed4cc3e-7589-15f1-f1b8-0196f608b449@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org
+From: Chris Wilson <chris@chris-wilson.co.uk>
+Message-ID: <158557752051.3228.17902248603368004966@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Mon, 30 Mar 2020 15:12:00 +0100
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Add more errors for
+ I915_PARAM_HUC_STATUS
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,69 +47,50 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_renderstate.c | 2 +-
- drivers/gpu/drm/i915/i915_vma.c             | 9 ++++++++-
- drivers/gpu/drm/i915/i915_vma.h             | 1 +
- 3 files changed, 10 insertions(+), 2 deletions(-)
+Quoting Michal Wajdeczko (2020-03-30 15:02:53)
+> 
+> 
+> On 30.03.2020 14:28, Chris Wilson wrote:
+> > There's nothing else between us loading the fw and the huc rejecting
+> > it?
+> > 
+> > FIRMWARE_FAIL? That's set as the opposite of FIRMWARE_TRANSFERRED in
+> > that we failed to upload the image to the HW. The firmware itself hasn't
+> > had a chance to run.
+> > 
+> > case INTEL_UC_FIRMWARE_FAIL:
+> >       return -ENXIO;
+> > 
+> > Or is that being overridden to FIRMWARE_ERROR?
+> 
+> No, it's not overridden by FIRMWARE_ERROR (since we use FIRMWARE_ERROR
+> as final state, while with FIRMWARE_FAIL there is a chance for recovery
+> during reset)
+> 
+> Also note that FIRMWARE_FAIL case is covered by the register check that
+> we have below, which provides HuC runtime status.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_renderstate.c b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-index c39d73142950..df42ba06711a 100644
---- a/drivers/gpu/drm/i915/gt/intel_renderstate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_renderstate.c
-@@ -207,7 +207,7 @@ int intel_renderstate_init(struct intel_renderstate *so,
- 	if (err)
- 		goto err_context;
- 
--	err = i915_vma_pin(so->vma, 0, 0, PIN_GLOBAL | PIN_HIGH);
-+	err = i915_vma_pin_ww(so->vma, &so->ww, 0, 0, PIN_GLOBAL | PIN_HIGH);
- 	if (err)
- 		goto err_context;
- 
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index e3d82be503dc..e22f287ba382 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -892,6 +892,8 @@ int i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- #ifdef CONFIG_PROVE_LOCKING
- 	if (debug_locks && lockdep_is_held(&vma->vm->i915->drm.struct_mutex))
- 		WARN_ON(!ww);
-+	if (debug_locks && ww && vma->resv)
-+		assert_vma_held(vma);
- #endif
- 
- 	BUILD_BUG_ON(PIN_GLOBAL != I915_VMA_GLOBAL_BIND);
-@@ -1032,8 +1034,13 @@ int i915_ggtt_pin(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- 
- 	GEM_BUG_ON(!i915_vma_is_ggtt(vma));
- 
-+	WARN_ON(!ww && vma->resv && dma_resv_held(vma->resv));
-+
- 	do {
--		err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		if (ww)
-+			err = i915_vma_pin_ww(vma, ww, 0, align, flags | PIN_GLOBAL);
-+		else
-+			err = i915_vma_pin(vma, 0, align, flags | PIN_GLOBAL);
- 		if (err != -ENOSPC) {
- 			if (!err) {
- 				err = i915_vma_wait_for_bind(vma);
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index da577729931f..b730f86e54f4 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -242,6 +242,7 @@ i915_vma_pin_ww(struct i915_vma *vma, struct i915_gem_ww_ctx *ww,
- static inline int __must_check
- i915_vma_pin(struct i915_vma *vma, u64 size, u64 alignment, u64 flags)
- {
-+	WARN_ON_ONCE(vma->resv && dma_resv_held(vma->resv));
- 	return i915_vma_pin_ww(vma, NULL, size, alignment, flags);
- }
- 
--- 
-2.25.1
+Yes, if it only reports on the auth failure.
 
+> And if we decide to use FIRMWARE_FAIL to report -ENXIO, then it is
+> unlikely that we will ever report 0 again for any other fw error that
+> could prevent fw from successful load (now recall your and Joonas
+> position that this param shall stay as reflection of register read).
+> 
+> Michal
+> 
+> ps. on other hand, if we trust our uc_fw_status() then we can drop that
+> register read, finally decouple GET_PARAM from MMIO_READ and fully rely
+> on cached status:
+
+imo, that register read is the icing on the cake. We can tell whether
+the FW got to the HW, but we can't tell if the HW was truly happy with
+the FW without asking it.
+
+I look at it as exposing an interface for the final capability bits to
+userspace that the kernel does not have to understand, that go above and
+beyond the kernel loading the firmware and confirming execution.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
