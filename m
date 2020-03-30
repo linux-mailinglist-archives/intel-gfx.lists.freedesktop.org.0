@@ -1,31 +1,47 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3CD9197C77
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 15:09:01 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 454E2197C84
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 15:11:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 417B66E2AF;
-	Mon, 30 Mar 2020 13:08:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9770D89FF9;
+	Mon, 30 Mar 2020 13:11:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8138A6E2A0;
- Mon, 30 Mar 2020 13:08:57 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 79F81A47E6;
- Mon, 30 Mar 2020 13:08:57 +0000 (UTC)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3354C89FF9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 13:11:32 +0000 (UTC)
+IronPort-SDR: ebn2bT3v4BpQyaKkBSKBA8Hr6Ft8tYBqnp/ZG8Lo6vpgT+AiCyxJM1qrJVfJaMX1y9kcWNx4zh
+ dZhJgAPaEP5w==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2020 06:11:31 -0700
+IronPort-SDR: wKhTQzqmyBNHEiaUaCPEKMuC/ZK5SDsjcJDqGX1QwDwUuXtLSphPprkjkkhoOE6rgql99u35XX
+ 0GIilqs/5SDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="242024254"
+Received: from swarupar-mobl.gar.corp.intel.com (HELO [10.249.36.112])
+ ([10.249.36.112])
+ by orsmga008.jf.intel.com with ESMTP; 30 Mar 2020 06:11:29 -0700
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+References: <20200327103209.3099292-1-lionel.g.landwerlin@intel.com>
+ <20200327103209.3099292-2-lionel.g.landwerlin@intel.com>
+ <158530560250.19268.45847609565708891@build.alporthouse.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <8e141e98-b6af-aedb-d2e7-c55d19f59cfc@intel.com>
+Date: Mon, 30 Mar 2020 16:11:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Mon, 30 Mar 2020 13:08:57 -0000
-Message-ID: <158557373747.13825.7964494561520767536@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200330113137.24425-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200330113137.24425-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/execlists=3A_Include_priority_info_in_trace=5Fports?=
+In-Reply-To: <158530560250.19268.45847609565708891@build.alporthouse.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/perf: break OA config buffer
+ object in 2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,113 +54,47 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 27/03/2020 12:40, Chris Wilson wrote:
+> Quoting Lionel Landwerlin (2020-03-27 10:32:07)
+>> We want to enable performance monitoring on multiple contexts to cover
+>> the Iris use case of using 2 GEM contexts (3D & compute).
+>>
+>> So start by breaking the OA configuration BO which contains global &
+>> per context register writes.
+>>
+>> NOA muxes & OA configurations are global, while FLEXEU register
+>> configurations are per context.
+>>
+>> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/i915_perf.c | 194 ++++++++++++++++++++++---------
+>>   1 file changed, 137 insertions(+), 57 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+>> index 3222f6cd8255..f524f50abdef 100644
+>> --- a/drivers/gpu/drm/i915/i915_perf.c
+>> +++ b/drivers/gpu/drm/i915/i915_perf.c
+>> @@ -376,7 +376,8 @@ struct i915_oa_config_bo {
+>>          struct llist_node node;
+>>   
+>>          struct i915_oa_config *oa_config;
+>> -       struct i915_vma *vma;
+>> +       struct i915_vma *ctx_vma;
+>> +       struct i915_vma *global_vma;
+> What's the allocation like? Worth packing into one vma and use an
+> offset?
+> -Chris
 
-Series: drm/i915/execlists: Include priority info in trace_ports
-URL   : https://patchwork.freedesktop.org/series/75229/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8213 -> Patchwork_17126
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17126 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17126, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17126:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-cml-u2:          [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/fi-cml-u2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17126 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-icl-y:           [PASS][3] -> [DMESG-FAIL][4] ([fdo#108569])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-icl-y/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/fi-icl-y/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-icl-u2:          [PASS][5] -> [INCOMPLETE][6] ([fdo#109644] / [fdo#110464])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-icl-u2/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/fi-icl-u2/igt@i915_selftest@live@requests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-bxt-dsi:         [INCOMPLETE][7] ([i915#656]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
-  [fdo#109644]: https://bugs.freedesktop.org/show_bug.cgi?id=109644
-  [fdo#110464]: https://bugs.freedesktop.org/show_bug.cgi?id=110464
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+Good point, thanks!
 
 
-Participating hosts (47 -> 37)
-------------------------------
+-Lionel
 
-  Additional (3): fi-byt-j1900 fi-glk-dsi fi-tgl-y 
-  Missing    (13): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-cfl-8109u fi-elk-e7500 fi-byt-n2820 fi-byt-clapper fi-bdw-samus fi-snb-2600 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8213 -> Patchwork_17126
-
-  CI-20190529: 20190529
-  CI_DRM_8213: 3cebf14c87d0d4508d4cc9c49db14061af752c37 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5544: 477c562fc9932939083d732b77dd7b083c6bc0a1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17126: 50d4d7aa6e6b5f5916662908a47cdf1e46bb5edf @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-50d4d7aa6e6b drm/i915/execlists: Include priority info in trace_ports
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17126/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
