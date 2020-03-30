@@ -1,25 +1,28 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3C8D197DE5
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:09:32 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA072197DE7
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:09:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B136E3A4;
-	Mon, 30 Mar 2020 14:09:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267B76E3B5;
+	Mon, 30 Mar 2020 14:09:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (mblankhorst.nl [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 566856E393
+Received: from mblankhorst.nl (mblankhorst.nl
+ [IPv6:2a02:2308::216:3eff:fe92:dfa3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 641B06E39C
  for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:09:29 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 16:09:04 +0200
-Message-Id: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
+Date: Mon, 30 Mar 2020 16:09:05 +0200
+Message-Id: <20200330140925.3972034-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
+References: <20200330140925.3972034-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 01/22] Revert "drm/i915/gem: Drop relocation
- slowpath"
+Subject: [Intel-gfx] (For CI testing) [PATCH 02/22] perf/core: Only
+ copy-to-user after completely unlocking all locks.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -32,288 +35,244 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 7dc8f1143778 ("drm/i915/gem: Drop relocation
-slowpath"). We need the slowpath relocation for taking ww-mutex
-inside the page fault handler, and we will take this mutex when
-pinning all objects.
+We inadvertently create a dependency on mmap_sem with a whole chain.
 
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
+This breaks any user who wants to take a lock and call rcu_barrier(),
+while also taking that lock inside mmap_sem:
+
+<4> [604.892532] ======================================================
+<4> [604.892534] WARNING: possible circular locking dependency detected
+<4> [604.892536] 5.6.0-rc7-CI-Patchwork_17096+ #1 Tainted: G     U
+<4> [604.892537] ------------------------------------------------------
+<4> [604.892538] kms_frontbuffer/2595 is trying to acquire lock:
+<4> [604.892540] ffffffff8264a558 (rcu_state.barrier_mutex){+.+.}, at: rcu_barrier+0x23/0x190
+<4> [604.892547]
+but task is already holding lock:
+<4> [604.892547] ffff888484716050 (reservation_ww_class_mutex){+.+.}, at: i915_gem_object_pin_to_display_plane+0x89/0x270 [i915]
+<4> [604.892592]
+which lock already depends on the new lock.
+<4> [604.892593]
+the existing dependency chain (in reverse order) is:
+<4> [604.892594]
+-> #6 (reservation_ww_class_mutex){+.+.}:
+<4> [604.892597]        __ww_mutex_lock.constprop.15+0xc3/0x1090
+<4> [604.892598]        ww_mutex_lock+0x39/0x70
+<4> [604.892600]        dma_resv_lockdep+0x10e/0x1f5
+<4> [604.892602]        do_one_initcall+0x58/0x300
+<4> [604.892604]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892605]        kernel_init+0x5/0x100
+<4> [604.892606]        ret_from_fork+0x24/0x50
+<4> [604.892607]
+-> #5 (reservation_ww_class_acquire){+.+.}:
+<4> [604.892609]        dma_resv_lockdep+0xec/0x1f5
+<4> [604.892610]        do_one_initcall+0x58/0x300
+<4> [604.892610]        kernel_init_freeable+0x17b/0x1dc
+<4> [604.892611]        kernel_init+0x5/0x100
+<4> [604.892612]        ret_from_fork+0x24/0x50
+<4> [604.892613]
+-> #4 (&mm->mmap_sem#2){++++}:
+<4> [604.892615]        __might_fault+0x63/0x90
+<4> [604.892617]        _copy_to_user+0x1e/0x80
+<4> [604.892619]        perf_read+0x200/0x2b0
+<4> [604.892621]        vfs_read+0x96/0x160
+<4> [604.892622]        ksys_read+0x9f/0xe0
+<4> [604.892623]        do_syscall_64+0x4f/0x220
+<4> [604.892624]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892625]
+-> #3 (&cpuctx_mutex){+.+.}:
+<4> [604.892626]        __mutex_lock+0x9a/0x9c0
+<4> [604.892627]        perf_event_init_cpu+0xa4/0x140
+<4> [604.892629]        perf_event_init+0x19d/0x1cd
+<4> [604.892630]        start_kernel+0x362/0x4e4
+<4> [604.892631]        secondary_startup_64+0xa4/0xb0
+<4> [604.892631]
+-> #2 (pmus_lock){+.+.}:
+<4> [604.892633]        __mutex_lock+0x9a/0x9c0
+<4> [604.892633]        perf_event_init_cpu+0x6b/0x140
+<4> [604.892635]        cpuhp_invoke_callback+0x9b/0x9d0
+<4> [604.892636]        _cpu_up+0xa2/0x140
+<4> [604.892637]        do_cpu_up+0x61/0xa0
+<4> [604.892639]        smp_init+0x57/0x96
+<4> [604.892639]        kernel_init_freeable+0x87/0x1dc
+<4> [604.892640]        kernel_init+0x5/0x100
+<4> [604.892642]        ret_from_fork+0x24/0x50
+<4> [604.892642]
+-> #1 (cpu_hotplug_lock.rw_sem){++++}:
+<4> [604.892643]        cpus_read_lock+0x34/0xd0
+<4> [604.892644]        rcu_barrier+0xaa/0x190
+<4> [604.892645]        kernel_init+0x21/0x100
+<4> [604.892647]        ret_from_fork+0x24/0x50
+<4> [604.892647]
+-> #0 (rcu_state.barrier_mutex){+.+.}:
+<4> [604.892649]        __lock_acquire+0x1328/0x15d0
+<4> [604.892650]        lock_acquire+0xa7/0x1c0
+<4> [604.892651]        __mutex_lock+0x9a/0x9c0
+<4> [604.892652]        rcu_barrier+0x23/0x190
+<4> [604.892680]        i915_gem_object_unbind+0x29d/0x3f0 [i915]
+<4> [604.892707]        i915_gem_object_pin_to_display_plane+0x141/0x270 [i915]
+<4> [604.892737]        intel_pin_and_fence_fb_obj+0xec/0x1f0 [i915]
+<4> [604.892767]        intel_plane_pin_fb+0x3f/0xd0 [i915]
+<4> [604.892797]        intel_prepare_plane_fb+0x13b/0x5c0 [i915]
+<4> [604.892798]        drm_atomic_helper_prepare_planes+0x85/0x110
+<4> [604.892827]        intel_atomic_commit+0xda/0x390 [i915]
+<4> [604.892828]        drm_atomic_helper_set_config+0x57/0xa0
+<4> [604.892830]        drm_mode_setcrtc+0x1c4/0x720
+<4> [604.892830]        drm_ioctl_kernel+0xb0/0xf0
+<4> [604.892831]        drm_ioctl+0x2e1/0x390
+<4> [604.892833]        ksys_ioctl+0x7b/0x90
+<4> [604.892835]        __x64_sys_ioctl+0x11/0x20
+<4> [604.892835]        do_syscall_64+0x4f/0x220
+<4> [604.892836]        entry_SYSCALL_64_after_hwframe+0x49/0xbe
+<4> [604.892837]
+
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../gpu/drm/i915/gem/i915_gem_execbuffer.c    | 239 +++++++++++++++++-
- 1 file changed, 235 insertions(+), 4 deletions(-)
+ kernel/events/core.c | 59 +++++++++++++++++++++++---------------------
+ 1 file changed, 31 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index f347e595a773..347c929b508d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -1480,7 +1480,9 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
- 		 * we would try to acquire the struct mutex again. Obviously
- 		 * this is bad and so lockdep complains vehemently.
- 		 */
--		copied = __copy_from_user(r, urelocs, count * sizeof(r[0]));
-+		pagefault_disable();
-+		copied = __copy_from_user_inatomic(r, urelocs, count * sizeof(r[0]));
-+		pagefault_enable();
- 		if (unlikely(copied)) {
- 			remain = -EFAULT;
- 			goto out;
-@@ -1530,6 +1532,236 @@ static int eb_relocate_vma(struct i915_execbuffer *eb, struct eb_vma *ev)
- 	return remain;
+diff --git a/kernel/events/core.c b/kernel/events/core.c
+index 085d9263d595..8b95a6512e31 100644
+--- a/kernel/events/core.c
++++ b/kernel/events/core.c
+@@ -4926,20 +4926,20 @@ static int __perf_read_group_add(struct perf_event *leader,
  }
  
-+static int
-+eb_relocate_vma_slow(struct i915_execbuffer *eb, struct eb_vma *ev)
-+{
-+	const struct drm_i915_gem_exec_object2 *entry = ev->exec;
-+	struct drm_i915_gem_relocation_entry *relocs =
-+		u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
-+	unsigned int i;
-+	int err;
-+
-+	for (i = 0; i < entry->relocation_count; i++) {
-+		u64 offset = eb_relocate_entry(eb, ev, &relocs[i]);
-+
-+		if ((s64)offset < 0) {
-+			err = (int)offset;
-+			goto err;
-+		}
-+	}
-+	err = 0;
-+err:
-+	reloc_cache_reset(&eb->reloc_cache);
-+	return err;
-+}
-+
-+static int check_relocations(const struct drm_i915_gem_exec_object2 *entry)
-+{
-+	const char __user *addr, *end;
-+	unsigned long size;
-+	char __maybe_unused c;
-+
-+	size = entry->relocation_count;
-+	if (size == 0)
-+		return 0;
-+
-+	if (size > N_RELOC(ULONG_MAX))
-+		return -EINVAL;
-+
-+	addr = u64_to_user_ptr(entry->relocs_ptr);
-+	size *= sizeof(struct drm_i915_gem_relocation_entry);
-+	if (!access_ok(addr, size))
-+		return -EFAULT;
-+
-+	end = addr + size;
-+	for (; addr < end; addr += PAGE_SIZE) {
-+		int err = __get_user(c, addr);
-+		if (err)
-+			return err;
-+	}
-+	return __get_user(c, end - 1);
-+}
-+
-+static int eb_copy_relocations(const struct i915_execbuffer *eb)
-+{
-+	struct drm_i915_gem_relocation_entry *relocs;
-+	const unsigned int count = eb->buffer_count;
-+	unsigned int i;
-+	int err;
-+
-+	for (i = 0; i < count; i++) {
-+		const unsigned int nreloc = eb->exec[i].relocation_count;
-+		struct drm_i915_gem_relocation_entry __user *urelocs;
-+		unsigned long size;
-+		unsigned long copied;
-+
-+		if (nreloc == 0)
-+			continue;
-+
-+		err = check_relocations(&eb->exec[i]);
-+		if (err)
-+			goto err;
-+
-+		urelocs = u64_to_user_ptr(eb->exec[i].relocs_ptr);
-+		size = nreloc * sizeof(*relocs);
-+
-+		relocs = kvmalloc_array(size, 1, GFP_KERNEL);
-+		if (!relocs) {
-+			err = -ENOMEM;
-+			goto err;
-+		}
-+
-+		/* copy_from_user is limited to < 4GiB */
-+		copied = 0;
-+		do {
-+			unsigned int len =
-+				min_t(u64, BIT_ULL(31), size - copied);
-+
-+			if (__copy_from_user((char *)relocs + copied,
-+					     (char __user *)urelocs + copied,
-+					     len))
-+				goto end;
-+
-+			copied += len;
-+		} while (copied < size);
-+
-+		/*
-+		 * As we do not update the known relocation offsets after
-+		 * relocating (due to the complexities in lock handling),
-+		 * we need to mark them as invalid now so that we force the
-+		 * relocation processing next time. Just in case the target
-+		 * object is evicted and then rebound into its old
-+		 * presumed_offset before the next execbuffer - if that
-+		 * happened we would make the mistake of assuming that the
-+		 * relocations were valid.
-+		 */
-+		if (!user_access_begin(urelocs, size))
-+			goto end;
-+
-+		for (copied = 0; copied < nreloc; copied++)
-+			unsafe_put_user(-1,
-+					&urelocs[copied].presumed_offset,
-+					end_user);
-+		user_access_end();
-+
-+		eb->exec[i].relocs_ptr = (uintptr_t)relocs;
-+	}
-+
-+	return 0;
-+
-+end_user:
-+	user_access_end();
-+end:
-+	kvfree(relocs);
-+	err = -EFAULT;
-+err:
-+	while (i--) {
-+		relocs = u64_to_ptr(typeof(*relocs), eb->exec[i].relocs_ptr);
-+		if (eb->exec[i].relocation_count)
-+			kvfree(relocs);
-+	}
-+	return err;
-+}
-+
-+static int eb_prefault_relocations(const struct i915_execbuffer *eb)
-+{
-+	const unsigned int count = eb->buffer_count;
-+	unsigned int i;
-+
-+	for (i = 0; i < count; i++) {
-+		int err;
-+
-+		err = check_relocations(&eb->exec[i]);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static noinline int eb_relocate_slow(struct i915_execbuffer *eb)
-+{
-+	bool have_copy = false;
-+	struct eb_vma *ev;
-+	int err = 0;
-+
-+repeat:
-+	if (signal_pending(current)) {
-+		err = -ERESTARTSYS;
-+		goto out;
-+	}
-+
-+	/*
-+	 * We take 3 passes through the slowpatch.
-+	 *
-+	 * 1 - we try to just prefault all the user relocation entries and
-+	 * then attempt to reuse the atomic pagefault disabled fast path again.
-+	 *
-+	 * 2 - we copy the user entries to a local buffer here outside of the
-+	 * local and allow ourselves to wait upon any rendering before
-+	 * relocations
-+	 *
-+	 * 3 - we already have a local copy of the relocation entries, but
-+	 * were interrupted (EAGAIN) whilst waiting for the objects, try again.
-+	 */
-+	if (!err) {
-+		err = eb_prefault_relocations(eb);
-+	} else if (!have_copy) {
-+		err = eb_copy_relocations(eb);
-+		have_copy = err == 0;
-+	} else {
-+		cond_resched();
-+		err = 0;
-+	}
-+	if (err)
-+		goto out;
-+
-+	list_for_each_entry(ev, &eb->relocs, reloc_link) {
-+		if (!have_copy) {
-+			pagefault_disable();
-+			err = eb_relocate_vma(eb, ev);
-+			pagefault_enable();
-+			if (err)
-+				goto repeat;
-+		} else {
-+			err = eb_relocate_vma_slow(eb, ev);
-+			if (err)
-+				goto err;
-+		}
-+	}
-+
-+	/*
-+	 * Leave the user relocations as are, this is the painfully slow path,
-+	 * and we want to avoid the complication of dropping the lock whilst
-+	 * having buffers reserved in the aperture and so causing spurious
-+	 * ENOSPC for random operations.
-+	 */
-+
-+err:
-+	if (err == -EAGAIN)
-+		goto repeat;
-+
-+out:
-+	if (have_copy) {
-+		const unsigned int count = eb->buffer_count;
-+		unsigned int i;
-+
-+		for (i = 0; i < count; i++) {
-+			const struct drm_i915_gem_exec_object2 *entry =
-+				&eb->exec[i];
-+			struct drm_i915_gem_relocation_entry *relocs;
-+
-+			if (!entry->relocation_count)
-+				continue;
-+
-+			relocs = u64_to_ptr(typeof(*relocs), entry->relocs_ptr);
-+			kvfree(relocs);
-+		}
-+	}
-+
-+	return err;
-+}
-+
- static int eb_relocate(struct i915_execbuffer *eb)
+ static int perf_read_group(struct perf_event *event,
+-				   u64 read_format, char __user *buf)
++				   u64 read_format, char __user *buf,
++				   u64 **values)
  {
- 	int err;
-@@ -1549,9 +1781,8 @@ static int eb_relocate(struct i915_execbuffer *eb)
- 		struct eb_vma *ev;
+ 	struct perf_event *leader = event->group_leader, *child;
+ 	struct perf_event_context *ctx = leader->ctx;
+ 	int ret;
+-	u64 *values;
  
- 		list_for_each_entry(ev, &eb->relocs, reloc_link) {
--			err = eb_relocate_vma(eb, ev);
--			if (err)
--				return err;
-+			if (eb_relocate_vma(eb, ev))
-+				return eb_relocate_slow(eb);
- 		}
+ 	lockdep_assert_held(&ctx->mutex);
+ 
+-	values = kzalloc(event->read_size, GFP_KERNEL);
+-	if (!values)
++	*values = kzalloc(event->read_size, GFP_KERNEL);
++	if (!*values)
+ 		return -ENOMEM;
+ 
+-	values[0] = 1 + leader->nr_siblings;
++	*values[0] = 1 + leader->nr_siblings;
+ 
+ 	/*
+ 	 * By locking the child_mutex of the leader we effectively
+@@ -4947,47 +4947,42 @@ static int perf_read_group(struct perf_event *event,
+ 	 */
+ 	mutex_lock(&leader->child_mutex);
+ 
+-	ret = __perf_read_group_add(leader, read_format, values);
++	ret = __perf_read_group_add(leader, read_format, *values);
+ 	if (ret)
+ 		goto unlock;
+ 
+ 	list_for_each_entry(child, &leader->child_list, child_list) {
+-		ret = __perf_read_group_add(child, read_format, values);
++		ret = __perf_read_group_add(child, read_format, *values);
+ 		if (ret)
+ 			goto unlock;
  	}
+ 
+-	mutex_unlock(&leader->child_mutex);
+-
+ 	ret = event->read_size;
+-	if (copy_to_user(buf, values, event->read_size))
+-		ret = -EFAULT;
+-	goto out;
+-
+ unlock:
+ 	mutex_unlock(&leader->child_mutex);
+-out:
+-	kfree(values);
++	if (ret < 0)
++		kfree(*values);
+ 	return ret;
+ }
+ 
+ static int perf_read_one(struct perf_event *event,
+-				 u64 read_format, char __user *buf)
++				 u64 read_format, char __user *buf,
++				 u64 **values)
+ {
+ 	u64 enabled, running;
+-	u64 values[4];
+ 	int n = 0;
+ 
+-	values[n++] = __perf_event_read_value(event, &enabled, &running);
++	*values = kzalloc(sizeof(**values) * 4, GFP_KERNEL);
++	if (!*values)
++		return -ENOMEM;
++
++	*values[n++] = __perf_event_read_value(event, &enabled, &running);
+ 	if (read_format & PERF_FORMAT_TOTAL_TIME_ENABLED)
+-		values[n++] = enabled;
++		*values[n++] = enabled;
+ 	if (read_format & PERF_FORMAT_TOTAL_TIME_RUNNING)
+-		values[n++] = running;
++		*values[n++] = running;
+ 	if (read_format & PERF_FORMAT_ID)
+-		values[n++] = primary_event_id(event);
+-
+-	if (copy_to_user(buf, values, n * sizeof(u64)))
+-		return -EFAULT;
++		*values[n++] = primary_event_id(event);
+ 
+ 	return n * sizeof(u64);
+ }
+@@ -5009,7 +5004,8 @@ static bool is_event_hup(struct perf_event *event)
+  * Read the performance event - simple non blocking version for now
+  */
+ static ssize_t
+-__perf_read(struct perf_event *event, char __user *buf, size_t count)
++__perf_read(struct perf_event *event, char __user *buf,
++		    size_t count, u64 **values)
+ {
+ 	u64 read_format = event->attr.read_format;
+ 	int ret;
+@@ -5027,9 +5023,9 @@ __perf_read(struct perf_event *event, char __user *buf, size_t count)
+ 
+ 	WARN_ON_ONCE(event->ctx->parent_ctx);
+ 	if (read_format & PERF_FORMAT_GROUP)
+-		ret = perf_read_group(event, read_format, buf);
++		ret = perf_read_group(event, read_format, buf, values);
+ 	else
+-		ret = perf_read_one(event, read_format, buf);
++		ret = perf_read_one(event, read_format, buf, values);
+ 
+ 	return ret;
+ }
+@@ -5039,6 +5035,7 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ {
+ 	struct perf_event *event = file->private_data;
+ 	struct perf_event_context *ctx;
++	u64 *values;
+ 	int ret;
+ 
+ 	ret = security_perf_event_read(event);
+@@ -5046,9 +5043,15 @@ perf_read(struct file *file, char __user *buf, size_t count, loff_t *ppos)
+ 		return ret;
+ 
+ 	ctx = perf_event_ctx_lock(event);
+-	ret = __perf_read(event, buf, count);
++	ret = __perf_read(event, buf, count, &values);
+ 	perf_event_ctx_unlock(event, ctx);
+ 
++	if (ret > 0) {
++		if (copy_to_user(buf, values, ret))
++			ret = -EFAULT;
++		kfree(values);
++	}
++
+ 	return ret;
+ }
  
 -- 
 2.25.1
