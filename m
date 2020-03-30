@@ -1,45 +1,54 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C53C6198012
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 17:44:44 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D7A198037
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 17:52:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E26CB6E430;
-	Mon, 30 Mar 2020 15:44:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 250886E1A2;
+	Mon, 30 Mar 2020 15:52:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A796E430
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 15:44:42 +0000 (UTC)
-IronPort-SDR: a/VkZWp2wwT2Vh+G7ExyVwA8/EnWBUTVUbGGvUjDm0HiXgB9KmP1yWFrMFQ9VjxPzSwHsaGBkB
- JhyFbSTQgItQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 08:44:41 -0700
-IronPort-SDR: X6N+q4A55ZXOfIfQKPo1nK8+4nPeVme/7O6YvStf1WGJ1d0LePpBDqbt73DosOt0CCvsTq53J0
- qnZAQgu1Ly7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="241655575"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by fmsmga008.fm.intel.com with SMTP; 30 Mar 2020 08:44:38 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 30 Mar 2020 18:44:38 +0300
-Date: Mon, 30 Mar 2020 18:44:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Message-ID: <20200330154438.GL13686@intel.com>
-References: <20200330122354.24752-1-stanislav.lisovskiy@intel.com>
- <20200330122354.24752-2-stanislav.lisovskiy@intel.com>
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com
+ [IPv6:2607:f8b0:4864:20::943])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 659BB6E1A2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 15:52:19 +0000 (UTC)
+Received: by mail-ua1-x943.google.com with SMTP id f9so6465413uaq.8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 08:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=5ftclM61Z/yLZvB8MsAXquH2CGhsXi+REHXREa7IRsM=;
+ b=SrQNJ/PWXNC4QL452QfgSZY6udluUC/lvVJEXLvRqBI5xlbJ4smxCG/1VIDQuJAQGw
+ l2d5T+9Bi4WGt5C5etDFYCzDP/Tq7xEB/gLGSWSWMZPHsPXFRUUe38cyMaZkNERSojw2
+ 5FSLm3b/9TEx2IfwytmNpcacAVv7ekUznnZxClp030tGL0MmcctuB/xEe2X7O0skySQB
+ Dk7BvJGSjFhpveZU8tDth3497rTfC5/pzytt2fmjdC6C54D9WeVWe6sg5Lg7nYS4sDPT
+ pWVnUC+HoYgcFN7hyNXpY7Lim4K8PMs05tx79h1zwWnd/dB3mEjDJplO6YM1xoXS3DCl
+ uALg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=5ftclM61Z/yLZvB8MsAXquH2CGhsXi+REHXREa7IRsM=;
+ b=cbpp1XAXqo8NKFyBx3dxLlurUKUYV2sGumdlu1NcMYBV0O9lhmJZVpeJIt1v0e4dfr
+ rchTCZ7eO3rmGv/Ah7WtcLqWJRGPSBtU9W8IR18Vj93GmTQoyzBPc8RS8WGmP4xbZCq/
+ aPUDOFCQq5uFC9iXIOGp3B0tpwIXJJYMJM0VLpx2bX5fENiQDnD4Khl6VUwJgS/d9JOI
+ WleeHOChfpJGQR/w/+er5bIUqUzazdYRTFr2rbot9Tb2bg1uYpbkF9zI2n5fRZEXsSv7
+ FjikTkE7YNxRJ/n9imzBwFEtok/SHA4YWvRZZR9G4USgqq0R2BD3QQB/pI+1rlPaZelt
+ Dd2w==
+X-Gm-Message-State: AGi0PuZoc/sV7Qyy6dkGqm01m6+WP+sVRRK6vl32Ybc1hhfrlsBo8EAV
+ eVOmIw1k5R2pzwpyXOa9U/68wVZN2djkckOk2naJjLGr
+X-Google-Smtp-Source: APiQypJiLaUZ1jA4bqYTdMr75bXmVo0+NvQrL+53e8Zh+KzExqSPx/lP40c2aqXUE9hvs3mshrlcj3osRXbmGblad3U=
+X-Received: by 2002:ab0:7556:: with SMTP id k22mr8558581uaq.104.1585583538577; 
+ Mon, 30 Mar 2020 08:52:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200330122354.24752-2-stanislav.lisovskiy@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH v3 1/5] drm/i915: Decouple cdclk calculation
- from modeset checks
+References: <20200330113137.24425-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200330113137.24425-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Mon, 30 Mar 2020 16:51:52 +0100
+Message-ID: <CAM0jSHNwDwUU4jq=Dv-gdp7UhLxLUUPg90WGiqDOuRP+gORfDg@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Include priority info
+ in trace_ports
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,106 +61,21 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 30, 2020 at 03:23:50PM +0300, Stanislav Lisovskiy wrote:
-> We need to calculate cdclk after watermarks/ddb has been calculated
-> as with recent hw CDCLK needs to be adjusted accordingly to DBuf
-> requirements, which is not possible with current code organization.
-> =
-
-> Setting CDCLK according to DBuf BW requirements and not just rejecting
-> if it doesn't satisfy BW requirements, will allow us to save power when
-> it is possible and gain additional bandwidth when it's needed - i.e
-> boosting both our power management and perfomance capabilities.
-> =
-
-> This patch is preparation for that, first we now extract modeset
-> calculation from modeset checks, in order to call it after wm/ddb
-> has been calculated.
-> =
-
-> v2: - Extract only intel_modeset_calc_cdclk from intel_modeset_checks
->       (Ville Syrj=E4l=E4)
-> =
-
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
-> =
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 7c45d676c9b7..17d83f37f49f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -14545,10 +14545,6 @@ static int intel_modeset_checks(struct intel_ato=
-mic_state *state)
->  			return ret;
->  	}
->  =
-
-> -	ret =3D intel_modeset_calc_cdclk(state);
-> -	if (ret)
-> -		return ret;
-> -
->  	intel_modeset_clear_plls(state);
->  =
-
->  	if (IS_HASWELL(dev_priv))
-> @@ -14882,10 +14878,6 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  			goto fail;
->  	}
->  =
-
-> -	ret =3D intel_atomic_check_crtcs(state);
-> -	if (ret)
-> -		goto fail;
-> -
->  	intel_fbc_choose_crtc(dev_priv, state);
->  	ret =3D calc_watermark_data(state);
->  	if (ret)
-> @@ -14895,6 +14887,16 @@ static int intel_atomic_check(struct drm_device =
-*dev,
->  	if (ret)
->  		goto fail;
->  =
-
-> +	if (any_ms) {
-> +		ret =3D intel_modeset_calc_cdclk(state);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret =3D intel_atomic_check_crtcs(state);
-> +	if (ret)
-> +		goto fail;
-
-I was thinking we'd do this as two patches. One with just the
-extraction, and another one with the bigger reordering. But I think I
-convinced myself that it should be safe, so maybe a single patch is
-fine.
-
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> +
->  	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
->  					    new_crtc_state, i) {
->  		if (!needs_modeset(new_crtc_state) &&
-> -- =
-
-> 2.24.1.485.gad05a3d8e5
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
+On Mon, 30 Mar 2020 at 12:32, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> Add some extra information into trace_ports to help with reviewing
+> correctness.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
