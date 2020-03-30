@@ -2,39 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510101985E5
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 22:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B341985FC
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 23:04:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DFA86E49D;
-	Mon, 30 Mar 2020 20:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21B2F6E4A7;
+	Mon, 30 Mar 2020 21:04:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BDD86E45E
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 20:59:19 +0000 (UTC)
-IronPort-SDR: m8U/jNGdpoykLq7jmJJhphSDtqXeuk5oI7hxlh+sd4i4XFiAH9+cGN1upwSJDL/SaFYyeZe9Wa
- GFdri7bTa3ag==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 13:59:18 -0700
-IronPort-SDR: gIKuu7KiIrWFsmfxuRqXCwdKKby3mw4LEbOGjmXHFzgO7M3RWP3N745GF/pFb+KerMqPgRiKS3
- G9EgHs16MMQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,325,1580803200"; d="scan'208";a="241724828"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.15.8])
- by fmsmga008.fm.intel.com with ESMTP; 30 Mar 2020 13:59:18 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 14:00:44 -0700
-Message-Id: <20200330210044.130510-3-jose.souza@intel.com>
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+ [209.85.210.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 037906E160;
+ Mon, 30 Mar 2020 16:08:33 +0000 (UTC)
+Received: by mail-pf1-f194.google.com with SMTP id 23so8824989pfj.1;
+ Mon, 30 Mar 2020 09:08:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:resent-from:resent-date:resent-message-id
+ :resent-to:from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding;
+ bh=otJu+eX4lgoyY7c5aWHtihsc0UqeTjjXfeFh1YkhPAI=;
+ b=Ir7pgl4XmClna7cUx96hBHuHNDzL1t4ysmX7aw+6S9+7Xo0GcLS3+DhjBYFPVucnWt
+ 4boW5Bdxy4K3zZUcy7DvwLQXL75/G0JMcMY684Ho8FGH5OqY4ZXDiavPlqBqShYl7fx6
+ JWcbzdWijfmg8HOl3BKkhTu1JuU8WGBok/QCaJw38AwLAxu7pxVtXfqrNO3z4sbnO7Sq
+ zMZ2a+wxV5kBOuhn3SHyUpZvmvv+/s3FuopQGuY9SJfbVPkAZQU70EFXIkgdDWMt8Uiw
+ jrzO8XLCsRlO8fF5WcnKUJjEvvWK22J79VFXRgHTj6HYzH5OKzWOPBhfhTMgMH96KXaH
+ U+/Q==
+X-Gm-Message-State: ANhLgQ1mtEamoQbmuZlWOedgauErYYDIm4RiVfueNN/f7zHlOgF84W3Z
+ skss5248O7SIBtuBR5LQ+tSMP1vX
+X-Google-Smtp-Source: ADFU+vtUqHNgjuHOAKf/E0Ylxd0QWmsVaQoUTr55SFrii17iNHElhjHR64vWnr73zuWsBWm8rCVwLQ==
+X-Received: by 2002:a65:6712:: with SMTP id u18mr13576601pgf.93.1585584513343; 
+ Mon, 30 Mar 2020 09:08:33 -0700 (PDT)
+Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
+ [198.54.129.52])
+ by smtp.gmail.com with ESMTPSA id z30sm10492071pfq.84.2020.03.30.09.08.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 30 Mar 2020 09:08:32 -0700 (PDT)
+Resent-From: Sultan Alsawaf <sultan@kerneltoast.com>
+Resent-Date: Mon, 30 Mar 2020 09:08:29 -0700
+Resent-Message-ID: <20200330160829.GA3400@sultan-box.localdomain>
+Resent-To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Received: from sultan-box.localdomain (static-198-54-129-52.cust.tzulo.com.
+ [198.54.129.52])
+ by smtp.gmail.com with ESMTPSA id y193sm8512447pgd.87.2020.03.29.20.31.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 29 Mar 2020 20:31:06 -0700 (PDT)
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+X-Google-Original-From: Sultan Alsawaf
+To: stable@vger.kernel.org
+Date: Sun, 29 Mar 2020 20:30:55 -0700
+Message-Id: <20200330033057.2629052-1-sultan@kerneltoast.com>
 X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200330210044.130510-1-jose.souza@intel.com>
-References: <20200330210044.130510-1-jose.souza@intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH v2 3/3] drm/i915/tc/icl: Update TC vswing tables
+X-Mailman-Approved-At: Mon, 30 Mar 2020 21:04:09 +0000
+Subject: [Intel-gfx] [PATCH 0/2] A couple of important fixes for i915 on 5.4
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,124 +76,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Sultan Alsawaf <sultan@kerneltoast.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-U3BlY2lmaWNhdGlvbiB3YXMgdXBkYXRlZCB3aXRoIHZzd2luZyB0YWJsZXMgZm9yIGRpZmZlcmVu
-dApjb25maWd1cmF0aW9ucy4KQWxzbyByZW9yZGVyaW5nIGljbF9tZ19waHlfZGRpX2J1Zl90cmFu
-cyBzdHJ1Y3QgdG8gbWF0Y2ggdGFibGUgb3JkZXIuCgpCU3BlYzogMjE3MzUKU2lnbmVkLW9mZi1i
-eTogSm9zw6kgUm9iZXJ0byBkZSBTb3V6YSA8am9zZS5zb3V6YUBpbnRlbC5jb20+Ci0tLQogZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kZGkuYyB8IDkzICsrKysrKysrKysrKysr
-KysrKystLS0tLQogMSBmaWxlIGNoYW5nZWQsIDczIGluc2VydGlvbnMoKyksIDIwIGRlbGV0aW9u
-cygtKQoKZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGRp
-LmMgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RkaS5jCmluZGV4IGRlZGI4
-NjcxMmE5OC4uYzIxNGM5NTY5MTA5IDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2RkaS5jCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfZGRpLmMKQEAgLTU4MywyMyArNTgzLDUxIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgY25sX2Rk
-aV9idWZfdHJhbnMgZWhsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwW10gPSB7CiB9Owog
-CiBzdHJ1Y3QgaWNsX21nX3BoeV9kZGlfYnVmX3RyYW5zIHsKLQl1MzIgY3JpX3R4ZGVlbXBoX292
-ZXJyaWRlXzVfMDsKIAl1MzIgY3JpX3R4ZGVlbXBoX292ZXJyaWRlXzExXzY7CisJdTMyIGNyaV90
-eGRlZW1waF9vdmVycmlkZV81XzA7CiAJdTMyIGNyaV90eGRlZW1waF9vdmVycmlkZV8xN18xMjsK
-IH07CiAKLXN0YXRpYyBjb25zdCBzdHJ1Y3QgaWNsX21nX3BoeV9kZGlfYnVmX3RyYW5zIGljbF9t
-Z19waHlfZGRpX3RyYW5zbGF0aW9uc1tdID0geworc3RhdGljIGNvbnN0IHN0cnVjdCBpY2xfbWdf
-cGh5X2RkaV9idWZfdHJhbnMgaWNsX21nX3BoeV9kZGlfdHJhbnNsYXRpb25zX3Jicl9oYnJbXSA9
-IHsKKwkJCQkvKiBWb2x0YWdlIHN3aW5nICBwcmUtZW1waGFzaXMgKi8KKwl7IDB4MTgsIDB4MDAs
-IDB4MDAgfSwJLyogMCAgICAgICAgICAgICAgMCAgICovCisJeyAweDFELCAweDAwLCAweDA1IH0s
-CS8qIDAgICAgICAgICAgICAgIDEgICAqLworCXsgMHgyNCwgMHgwMCwgMHgwQyB9LAkvKiAwICAg
-ICAgICAgICAgICAyICAgKi8KKwl7IDB4MkIsIDB4MDAsIDB4MTQgfSwJLyogMCAgICAgICAgICAg
-ICAgMyAgICovCisJeyAweDIxLCAweDAwLCAweDAwIH0sCS8qIDEgICAgICAgICAgICAgIDAgICAq
-LworCXsgMHgyQiwgMHgwMCwgMHgwOCB9LAkvKiAxICAgICAgICAgICAgICAxICAgKi8KKwl7IDB4
-MzAsIDB4MDAsIDB4MEYgfSwJLyogMSAgICAgICAgICAgICAgMiAgICovCisJeyAweDMxLCAweDAw
-LCAweDAzIH0sCS8qIDIgICAgICAgICAgICAgIDAgICAqLworCXsgMHgzNCwgMHgwMCwgMHgwQiB9
-LAkvKiAyICAgICAgICAgICAgICAxICAgKi8KKwl7IDB4M0YsIDB4MDAsIDB4MDAgfSwJLyogMyAg
-ICAgICAgICAgICAgMCAgICovCit9OworCitzdGF0aWMgY29uc3Qgc3RydWN0IGljbF9tZ19waHlf
-ZGRpX2J1Zl90cmFucyBpY2xfbWdfcGh5X2RkaV90cmFuc2xhdGlvbnNfaGJyMl9oYnIzW10gPSB7
-CiAJCQkJLyogVm9sdGFnZSBzd2luZyAgcHJlLWVtcGhhc2lzICovCi0JeyAweDAsIDB4MUIsIDB4
-MDAgfSwJLyogMCAgICAgICAgICAgICAgMCAgICovCi0JeyAweDAsIDB4MjMsIDB4MDggfSwJLyog
-MCAgICAgICAgICAgICAgMSAgICovCi0JeyAweDAsIDB4MkQsIDB4MTIgfSwJLyogMCAgICAgICAg
-ICAgICAgMiAgICovCi0JeyAweDAsIDB4MDAsIDB4MDAgfSwJLyogMCAgICAgICAgICAgICAgMyAg
-ICovCi0JeyAweDAsIDB4MjMsIDB4MDAgfSwJLyogMSAgICAgICAgICAgICAgMCAgICovCi0JeyAw
-eDAsIDB4MkIsIDB4MDkgfSwJLyogMSAgICAgICAgICAgICAgMSAgICovCi0JeyAweDAsIDB4MkUs
-IDB4MTEgfSwJLyogMSAgICAgICAgICAgICAgMiAgICovCi0JeyAweDAsIDB4MkYsIDB4MDAgfSwJ
-LyogMiAgICAgICAgICAgICAgMCAgICovCi0JeyAweDAsIDB4MzMsIDB4MEMgfSwJLyogMiAgICAg
-ICAgICAgICAgMSAgICovCi0JeyAweDAsIDB4MDAsIDB4MDAgfSwJLyogMyAgICAgICAgICAgICAg
-MCAgICovCisJeyAweDE4LCAweDAwLCAweDAwIH0sCS8qIDAgICAgICAgICAgICAgIDAgICAqLwor
-CXsgMHgxRCwgMHgwMCwgMHgwNSB9LAkvKiAwICAgICAgICAgICAgICAxICAgKi8KKwl7IDB4MjQs
-IDB4MDAsIDB4MEMgfSwJLyogMCAgICAgICAgICAgICAgMiAgICovCisJeyAweDJCLCAweDAwLCAw
-eDE0IH0sCS8qIDAgICAgICAgICAgICAgIDMgICAqLworCXsgMHgyNiwgMHgwMCwgMHgwMCB9LAkv
-KiAxICAgICAgICAgICAgICAwICAgKi8KKwl7IDB4MkMsIDB4MDAsIDB4MDcgfSwJLyogMSAgICAg
-ICAgICAgICAgMSAgICovCisJeyAweDMzLCAweDAwLCAweDBDIH0sCS8qIDEgICAgICAgICAgICAg
-IDIgICAqLworCXsgMHgyRSwgMHgwMCwgMHgwMCB9LAkvKiAyICAgICAgICAgICAgICAwICAgKi8K
-Kwl7IDB4MzYsIDB4MDAsIDB4MDkgfSwJLyogMiAgICAgICAgICAgICAgMSAgICovCisJeyAweDNG
-LCAweDAwLCAweDAwIH0sCS8qIDMgICAgICAgICAgICAgIDAgICAqLworfTsKKworc3RhdGljIGNv
-bnN0IHN0cnVjdCBpY2xfbWdfcGh5X2RkaV9idWZfdHJhbnMgaWNsX21nX3BoeV9kZGlfdHJhbnNs
-YXRpb25zX2hkbWlbXSA9IHsKKwkJCQkvKiBIRE1JIFByZXNldAlWUwlQcmUtZW1waCAqLworCXsg
-MHgxQSwgMHgwLCAweDAgfSwJLyogMQkJNDAwbVYJMGRCICovCisJeyAweDIwLCAweDAsIDB4MCB9
-LAkvKiAyCQk1MDBtVgkwZEIgKi8KKwl7IDB4MjksIDB4MCwgMHgwIH0sCS8qIDMJCTY1MG1WCTBk
-QiAqLworCXsgMHgzMiwgMHgwLCAweDAgfSwJLyogNAkJODAwbVYJMGRCICovCisJeyAweDNGLCAw
-eDAsIDB4MCB9LAkvKiA1CQkxMDAwbVYJMGRCICovCisJeyAweDNBLCAweDAsIDB4NSB9LAkvKiA2
-CQlGdWxsCS0xLjUgZEIgKi8KKwl7IDB4MzksIDB4MCwgMHg2IH0sCS8qIDcJCUZ1bGwJLTEuOCBk
-QiAqLworCXsgMHgzOCwgMHgwLCAweDcgfSwJLyogOAkJRnVsbAktMiBkQiAqLworCXsgMHgzNywg
-MHgwLCAweDggfSwJLyogOQkJRnVsbAktMi41IGRCICovCisJeyAweDM2LCAweDAsIDB4OSB9LAkv
-KiAxMAkJRnVsbAktMyBkQiAqLwogfTsKIAogc3RydWN0IHRnbF9ka2xfcGh5X2RkaV9idWZfdHJh
-bnMgewpAQCAtOTQzLDYgKzk3MSwyMiBAQCBpY2xfZ2V0X2NvbWJvX2J1Zl90cmFucyhzdHJ1Y3Qg
-ZHJtX2k5MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGludCB0eXBlLCBpbnQgcmF0ZSwKIAlyZXR1cm4g
-aWNsX2NvbWJvX3BoeV9kZGlfdHJhbnNsYXRpb25zX2RwX2hicjI7CiB9CiAKK3N0YXRpYyBjb25z
-dCBzdHJ1Y3QgaWNsX21nX3BoeV9kZGlfYnVmX3RyYW5zICoKK2ljbF9nZXRfbWdfYnVmX3RyYW5z
-KHN0cnVjdCBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwgaW50IHR5cGUsIGludCByYXRlLAor
-CQkgICAgIGludCAqbl9lbnRyaWVzKQoreworCWlmICh0eXBlID09IElOVEVMX09VVFBVVF9IRE1J
-KSB7CisJCSpuX2VudHJpZXMgPSBBUlJBWV9TSVpFKGljbF9tZ19waHlfZGRpX3RyYW5zbGF0aW9u
-c19oZG1pKTsKKwkJcmV0dXJuIGljbF9tZ19waHlfZGRpX3RyYW5zbGF0aW9uc19oZG1pOworCX0g
-ZWxzZSBpZiAocmF0ZSA+IDI3MDAwMCkgeworCQkqbl9lbnRyaWVzID0gQVJSQVlfU0laRShpY2xf
-bWdfcGh5X2RkaV90cmFuc2xhdGlvbnNfaGJyMl9oYnIzKTsKKwkJcmV0dXJuIGljbF9tZ19waHlf
-ZGRpX3RyYW5zbGF0aW9uc19oYnIyX2hicjM7CisJfQorCisJKm5fZW50cmllcyA9IEFSUkFZX1NJ
-WkUoaWNsX21nX3BoeV9kZGlfdHJhbnNsYXRpb25zX3Jicl9oYnIpOworCXJldHVybiBpY2xfbWdf
-cGh5X2RkaV90cmFuc2xhdGlvbnNfcmJyX2hicjsKK30KKwogc3RhdGljIGNvbnN0IHN0cnVjdCBj
-bmxfZGRpX2J1Zl90cmFucyAqCiBlaGxfZ2V0X2NvbWJvX2J1Zl90cmFucyhzdHJ1Y3QgZHJtX2k5
-MTVfcHJpdmF0ZSAqZGV2X3ByaXYsIGludCB0eXBlLCBpbnQgcmF0ZSwKIAkJCWludCAqbl9lbnRy
-aWVzKQpAQCAtOTg4LDcgKzEwMzIsOCBAQCBzdGF0aWMgaW50IGludGVsX2RkaV9oZG1pX2xldmVs
-KHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVyKQogCQkJaWNsX2dldF9jb21ib19idWZfdHJh
-bnMoZGV2X3ByaXYsIElOVEVMX09VVFBVVF9IRE1JLAogCQkJCQkJMCwgJm5fZW50cmllcyk7CiAJ
-CWVsc2UKLQkJCW5fZW50cmllcyA9IEFSUkFZX1NJWkUoaWNsX21nX3BoeV9kZGlfdHJhbnNsYXRp
-b25zKTsKKwkJCWljbF9nZXRfbWdfYnVmX3RyYW5zKGRldl9wcml2LCBJTlRFTF9PVVRQVVRfSERN
-SSwgMCwKKwkJCQkJICAgICAmbl9lbnRyaWVzKTsKIAkJZGVmYXVsdF9lbnRyeSA9IG5fZW50cmll
-cyAtIDE7CiAJfSBlbHNlIGlmIChJU19DQU5OT05MQUtFKGRldl9wcml2KSkgewogCQljbmxfZ2V0
-X2J1Zl90cmFuc19oZG1pKGRldl9wcml2LCAmbl9lbnRyaWVzKTsKQEAgLTIwNjIsNyArMjEwNyw4
-IEBAIHU4IGludGVsX2RkaV9kcF92b2x0YWdlX21heChzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5j
-b2RlcikKIAkJCWljbF9nZXRfY29tYm9fYnVmX3RyYW5zKGRldl9wcml2LCBlbmNvZGVyLT50eXBl
-LAogCQkJCQkJaW50ZWxfZHAtPmxpbmtfcmF0ZSwgJm5fZW50cmllcyk7CiAJCWVsc2UKLQkJCW5f
-ZW50cmllcyA9IEFSUkFZX1NJWkUoaWNsX21nX3BoeV9kZGlfdHJhbnNsYXRpb25zKTsKKwkJCWlj
-bF9nZXRfbWdfYnVmX3RyYW5zKGRldl9wcml2LCBlbmNvZGVyLT50eXBlLAorCQkJCQkgICAgIGlu
-dGVsX2RwLT5saW5rX3JhdGUsICZuX2VudHJpZXMpOwogCX0gZWxzZSBpZiAoSVNfQ0FOTk9OTEFL
-RShkZXZfcHJpdikpIHsKIAkJaWYgKGVuY29kZXItPnR5cGUgPT0gSU5URUxfT1VUUFVUX0VEUCkK
-IAkJCWNubF9nZXRfYnVmX3RyYW5zX2VkcChkZXZfcHJpdiwgJm5fZW50cmllcyk7CkBAIC0yMzc3
-LDE3ICsyNDIzLDIzIEBAIHN0YXRpYyB2b2lkIGljbF9jb21ib19waHlfZGRpX3Zzd2luZ19zZXF1
-ZW5jZShzdHJ1Y3QgaW50ZWxfZW5jb2RlciAqZW5jb2RlciwKIH0KIAogc3RhdGljIHZvaWQgaWNs
-X21nX3BoeV9kZGlfdnN3aW5nX3NlcXVlbmNlKHN0cnVjdCBpbnRlbF9lbmNvZGVyICplbmNvZGVy
-LAotCQkJCQkgICBpbnQgbGlua19jbG9jaywKLQkJCQkJICAgdTMyIGxldmVsKQorCQkJCQkgICBp
-bnQgbGlua19jbG9jaywgdTMyIGxldmVsLAorCQkJCQkgICBlbnVtIGludGVsX291dHB1dF90eXBl
-IHR5cGUpCiB7CiAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2ID0gdG9faTkxNShl
-bmNvZGVyLT5iYXNlLmRldik7CiAJZW51bSB0Y19wb3J0IHRjX3BvcnQgPSBpbnRlbF9wb3J0X3Rv
-X3RjKGRldl9wcml2LCBlbmNvZGVyLT5wb3J0KTsKIAljb25zdCBzdHJ1Y3QgaWNsX21nX3BoeV9k
-ZGlfYnVmX3RyYW5zICpkZGlfdHJhbnNsYXRpb25zOwogCXUzMiBuX2VudHJpZXMsIHZhbDsKLQlp
-bnQgbG47CisJaW50IGxuLCByYXRlID0gMDsKKworCWlmICh0eXBlICE9IElOVEVMX09VVFBVVF9I
-RE1JKSB7CisJCXN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAgPSBlbmNfdG9faW50ZWxfZHAoZW5j
-b2Rlcik7CisKKwkJcmF0ZSA9IGludGVsX2RwLT5saW5rX3JhdGU7CisJfQogCi0Jbl9lbnRyaWVz
-ID0gQVJSQVlfU0laRShpY2xfbWdfcGh5X2RkaV90cmFuc2xhdGlvbnMpOwotCWRkaV90cmFuc2xh
-dGlvbnMgPSBpY2xfbWdfcGh5X2RkaV90cmFuc2xhdGlvbnM7CisJZGRpX3RyYW5zbGF0aW9ucyA9
-IGljbF9nZXRfbWdfYnVmX3RyYW5zKGRldl9wcml2LCB0eXBlLCByYXRlLAorCQkJCQkJJm5fZW50
-cmllcyk7CiAJLyogVGhlIHRhYmxlIGRvZXMgbm90IGhhdmUgdmFsdWVzIGZvciBsZXZlbCAzIGFu
-ZCBsZXZlbCA5LiAqLwogCWlmIChsZXZlbCA+PSBuX2VudHJpZXMgfHwgbGV2ZWwgPT0gMyB8fCBs
-ZXZlbCA9PSA5KSB7CiAJCWRybV9kYmdfa21zKCZkZXZfcHJpdi0+ZHJtLApAQCAtMjUxMSw3ICsy
-NTYzLDggQEAgc3RhdGljIHZvaWQgaWNsX2RkaV92c3dpbmdfc2VxdWVuY2Uoc3RydWN0IGludGVs
-X2VuY29kZXIgKmVuY29kZXIsCiAJaWYgKGludGVsX3BoeV9pc19jb21ibyhkZXZfcHJpdiwgcGh5
-KSkKIAkJaWNsX2NvbWJvX3BoeV9kZGlfdnN3aW5nX3NlcXVlbmNlKGVuY29kZXIsIGxldmVsLCB0
-eXBlKTsKIAllbHNlCi0JCWljbF9tZ19waHlfZGRpX3Zzd2luZ19zZXF1ZW5jZShlbmNvZGVyLCBs
-aW5rX2Nsb2NrLCBsZXZlbCk7CisJCWljbF9tZ19waHlfZGRpX3Zzd2luZ19zZXF1ZW5jZShlbmNv
-ZGVyLCBsaW5rX2Nsb2NrLCBsZXZlbCwKKwkJCQkJICAgICAgIHR5cGUpOwogfQogCiBzdGF0aWMg
-dm9pZAotLSAKMi4yNi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVlZGVza3Rv
-cC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5mby9pbnRl
-bC1nZngK
+From: Sultan Alsawaf <sultan@kerneltoast.com>
+
+Hi,
+
+This patchset contains fixes for two pesky i915 bugs that exist in 5.4.
+
+The first bug, fixed by
+"drm/i915/gt: Schedule request retirement when timeline idles" upstream, is very
+high power consumption by i915 hardware due to an old commit that broke the RC6
+power state for the iGPU on Skylake+. On my laptop, a Dell Precision 5540 with
+an i9-9880H, the idle power consumption of my laptop with this commit goes down
+from 10 W to 2 W, saving a massive 8 W of power. On other Skylake+ laptops I
+tested, this commit reduced idle power consumption by at least a few watts. The
+difference in power consumption can be observed by running `powertop` while
+disconnected from the charger, or by using the intel-undervolt tool [1] and
+running `intel-undervolt measure` which doesn't require being disconnected from
+the charger. The psys measurement from intel-undervolt is the one of interest.
+
+Backporting this commit was not trivial due to i915's high rate of churn, but
+the backport didn't require changing any code from the original commit; it only
+required moving code around and not altering some #includes.
+
+The second bug causes severe graphical corruption and flickering on laptops
+which support an esoteric power-saving mechanism called Panel Self Refresh
+(PSR). Enabled by default in 5.0, PSR causes graphical corruption to the point
+of unusability on many Dell laptops made within the past few years, since they
+typically support PSR. A bug was filed with Intel a while ago for this with more
+information [2]. I suspect most the community hasn't been affected by this bug
+because ThinkPads and many other laptops I checked didn't support PSR. As of
+writing, the issues I observed with PSR are fixed in Intel's drm-tip branch, but
+i915 suffers from so much churn that backporting the individual PSR fixes is
+infeasible (and an Intel engineer attested to this, saying that the PSR fixes in
+drm-tip wouldn't be backported [3]). Disabling PSR by default brings us back to
+pre-5.0 behavior, and from my tests with functional PSR in the drm-tip kernel,
+I didn't observe any reduction in power consumption with PSR enabled, so there
+isn't much lost from turning it off. Also, Ubuntu now ships with PSR disabled by
+default in its affected kernels, so there is distro support behind this change.
+
+Thanks,
+Sultan
+
+[1] https://github.com/kitsunyan/intel-undervolt
+[2] https://gitlab.freedesktop.org/drm/intel/issues/425
+[3] https://gitlab.freedesktop.org/drm/intel/issues/425#note_416130
+
+Chris Wilson (1):
+  drm/i915/gt: Schedule request retirement when timeline idles
+
+Sultan Alsawaf (1):
+  drm/i915: Disable Panel Self Refresh (PSR) by default
+
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |  2 +
+ drivers/gpu/drm/i915/gt/intel_engine_types.h  |  8 ++
+ drivers/gpu/drm/i915/gt/intel_lrc.c           |  8 ++
+ drivers/gpu/drm/i915/gt/intel_timeline.c      |  1 +
+ .../gpu/drm/i915/gt/intel_timeline_types.h    |  3 +
+ drivers/gpu/drm/i915/i915_params.c            |  3 +-
+ drivers/gpu/drm/i915/i915_params.h            |  2 +-
+ drivers/gpu/drm/i915/i915_request.c           | 73 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_request.h           |  4 +
+ 9 files changed, 101 insertions(+), 3 deletions(-)
+
+-- 
+2.26.0
+
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
