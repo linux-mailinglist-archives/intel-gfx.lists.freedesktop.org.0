@@ -1,40 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD079197816
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 11:55:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 814EF19781A
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 11:56:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 069906E11B;
-	Mon, 30 Mar 2020 09:55:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C47C9896E4;
+	Mon, 30 Mar 2020 09:56:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3286C6E069
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 09:55:32 +0000 (UTC)
-IronPort-SDR: jFTfv19qdkT5kJu0HSscYzksKsy+IXdU0rIF01Su/hbezZxkvaghEXqFL2KwmF2ZZN8ftginSM
- aDYfp5cF2bCA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 02:55:31 -0700
-IronPort-SDR: G8wkIEGd/Nd+YeiTI/dXUQx9zmpQORbd1x0swAJy+yBHYyTVUAwQqdsZOVp5kqOmCmN3gpN6cE
- 40RqXVj4PzIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,323,1580803200"; d="scan'208";a="248650470"
-Received: from ideak-desk.fi.intel.com ([10.237.72.183])
- by orsmga003.jf.intel.com with ESMTP; 30 Mar 2020 02:55:31 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 12:54:25 +0300
-Message-Id: <20200330095425.29113-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.23.1
-In-Reply-To: <20200330095425.29113-1-imre.deak@intel.com>
-References: <20200330095425.29113-1-imre.deak@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A85F8896E4;
+ Mon, 30 Mar 2020 09:56:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A1F86A73C8;
+ Mon, 30 Mar 2020 09:56:14 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 2/2] drm/i915: Extend hotplug detect retry on
- TypeC connectors to 5 seconds
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Date: Mon, 30 Mar 2020 09:56:14 -0000
+Message-ID: <158556217465.13827.13213572232945061317@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200330091411.37357-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20200330091411.37357-1-lionel.g.landwerlin@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/perf=3A_don=27t_read_head/tail_pointers_outside_critical_?=
+ =?utf-8?q?section?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,60 +39,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On TypeC ports if a sink deasserts/reasserts its HPD signal, generating
-a hotplug interrupt without the sink getting unplugged/replugged from
-the connector, there can be an up to 3 seconds delay until the AUX
-channel gets functional. To avoid detection failures this delay causes
-retry the detection for 5 seconds.
+== Series Details ==
 
-I noticed this on ICL/TGL RVPs and a DELL XPS 13 7390 ICL laptop.
+Series: drm/i915/perf: don't read head/tail pointers outside critical section
+URL   : https://patchwork.freedesktop.org/series/75220/
+State : success
 
-References: https://gitlab.freedesktop.org/drm/intel/issues/1067
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 4f508bf70f3b..2d947ff83488 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4371,7 +4371,10 @@ static enum intel_hotplug_state
- intel_ddi_hotplug(struct intel_encoder *encoder,
- 		  struct intel_connector *connector)
- {
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-+	enum phy phy = intel_port_to_phy(i915, encoder->port);
-+	bool is_tc = intel_phy_is_tc(i915, phy);
- 	struct drm_modeset_acquire_ctx ctx;
- 	enum intel_hotplug_state state;
- 	int ret;
-@@ -4414,8 +4417,15 @@ intel_ddi_hotplug(struct intel_encoder *encoder,
- 	 * valid EDID. To solve this schedule another detection cycle if this
- 	 * time around we didn't detect any change in the sink's connection
- 	 * status.
-+	 *
-+	 * Type-c connectors which get their HPD signal deasserted then
-+	 * reasserted, without unplugging/replugging the sink from the
-+	 * connector, introduce a delay until the AUX channel communication
-+	 * becomes functional. Retry the detection for 5 seconds on type-c
-+	 * connectors to account for this delay.
- 	 */
--	if (state == INTEL_HOTPLUG_UNCHANGED && !connector->hotplug_retries &&
-+	if (state == INTEL_HOTPLUG_UNCHANGED &&
-+	    connector->hotplug_retries < (is_tc ? 5 : 1) &&
- 	    !dig_port->dp.is_mst)
- 		state = INTEL_HOTPLUG_RETRY;
- 
--- 
-2.23.1
+CI Bug Log - changes from CI_DRM_8212 -> Patchwork_17124
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17124/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17124 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([fdo#108569])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8212/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17124/fi-icl-y/igt@i915_selftest@live@execlists.html
+    - fi-kbl-soraka:      [PASS][3] -> [INCOMPLETE][4] ([fdo#112259] / [i915#656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8212/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17124/fi-kbl-soraka/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_timelines:
+    - {fi-tgl-u}:         [DMESG-FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8212/fi-tgl-u/igt@i915_selftest@live@gt_timelines.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17124/fi-tgl-u/igt@i915_selftest@live@gt_timelines.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [fdo#112259]: https://bugs.freedesktop.org/show_bug.cgi?id=112259
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Additional (5): fi-cml-u2 fi-cml-s fi-skl-6770hq fi-cfl-8700k fi-cfl-8109u 
+  Missing    (6): fi-byt-squawks fi-bsw-cyan fi-apl-guc fi-ctg-p8600 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8212 -> Patchwork_17124
+
+  CI-20190529: 20190529
+  CI_DRM_8212: 68b152390f915c189e2dd0b29eec557d5d8be9a8 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5544: 477c562fc9932939083d732b77dd7b083c6bc0a1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17124: 97a65e4f417fc62caa75e155ad3d50179e5db9dd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+97a65e4f417f drm/i915/perf: don't read head/tail pointers outside critical section
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17124/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
