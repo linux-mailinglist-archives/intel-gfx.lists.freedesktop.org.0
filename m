@@ -1,27 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34B28198871
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:42:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6976B198872
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5114F6E4FE;
-	Mon, 30 Mar 2020 23:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A88AA6E4FF;
+	Mon, 30 Mar 2020 23:43:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 735A86E4FE
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 23:42:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 103136E4FF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 23:43:32 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
 Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20745829-1500050 
- for multiple; Tue, 31 Mar 2020 00:42:07 +0100
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20745835-1500050 
+ for multiple; Tue, 31 Mar 2020 00:43:20 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
 To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2020 00:42:05 +0100
-Message-Id: <20200330234205.25928-1-chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 00:43:18 +0100
+Message-Id: <20200330234318.30638-1-chris@chris-wilson.co.uk>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200330234205.25928-1-chris@chris-wilson.co.uk>
+References: <20200330234205.25928-1-chris@chris-wilson.co.uk>
 MIME-Version: 1.0
 Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Double check breadcrumb
  before crying foul
@@ -82,7 +84,7 @@ Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
  1 file changed, 22 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3d5f3f7677bb..4199c81ce5c7 100644
+index 3d5f3f7677bb..afeca7eb1e3a 100644
 --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
 +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
 @@ -2418,8 +2418,6 @@ static void process_csb(struct intel_engine_cs *engine)
@@ -139,7 +141,7 @@ index 3d5f3f7677bb..4199c81ce5c7 100644
  
 -				GEM_BUG_ON("context completed before request");
 +				/* Still? Declare it caput! */
-+				if (!i915_request_completed(*execlists->active) &&
++				if (!i915_request_completed(rq) &&
 +				    !reset_in_progress(execlists))
 +					GEM_BUG_ON("context completed before request");
  			}
