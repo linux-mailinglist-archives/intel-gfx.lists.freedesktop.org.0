@@ -1,35 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3D9E197E01
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:12:08 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB2C197E39
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:19:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0352F89933;
-	Mon, 30 Mar 2020 14:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA0A56E3E7;
+	Mon, 30 Mar 2020 14:19:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A69C89933
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:12:04 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20740858-1500050 for multiple; Mon, 30 Mar 2020 15:12:02 +0100
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0CA556E3E7;
+ Mon, 30 Mar 2020 14:19:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 05EFFA00FD;
+ Mon, 30 Mar 2020 14:19:24 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <aed4cc3e-7589-15f1-f1b8-0196f608b449@intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Mon, 30 Mar 2020 14:19:23 -0000
+Message-ID: <158557796399.13825.15444444201682584383@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20200330113302.1670-1-michal.wajdeczko@intel.com>
- <158557133270.3228.3738598788092230448@build.alporthouse.com>
- <aed4cc3e-7589-15f1-f1b8-0196f608b449@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org
-From: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <158557752051.3228.17902248603368004966@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Mon, 30 Mar 2020 15:12:00 +0100
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/huc: Add more errors for
- I915_PARAM_HUC_STATUS
+In-Reply-To: <20200330113302.1670-1-michal.wajdeczko@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/huc=3A_Add_more_errors_for_I915=5FPARAM=5FHUC=5FSTATUS?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,55 +38,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Michal Wajdeczko (2020-03-30 15:02:53)
-> 
-> 
-> On 30.03.2020 14:28, Chris Wilson wrote:
-> > There's nothing else between us loading the fw and the huc rejecting
-> > it?
-> > 
-> > FIRMWARE_FAIL? That's set as the opposite of FIRMWARE_TRANSFERRED in
-> > that we failed to upload the image to the HW. The firmware itself hasn't
-> > had a chance to run.
-> > 
-> > case INTEL_UC_FIRMWARE_FAIL:
-> >       return -ENXIO;
-> > 
-> > Or is that being overridden to FIRMWARE_ERROR?
-> 
-> No, it's not overridden by FIRMWARE_ERROR (since we use FIRMWARE_ERROR
-> as final state, while with FIRMWARE_FAIL there is a chance for recovery
-> during reset)
-> 
-> Also note that FIRMWARE_FAIL case is covered by the register check that
-> we have below, which provides HuC runtime status.
+== Series Details ==
 
-Yes, if it only reports on the auth failure.
+Series: drm/i915/huc: Add more errors for I915_PARAM_HUC_STATUS
+URL   : https://patchwork.freedesktop.org/series/75230/
+State : success
 
-> And if we decide to use FIRMWARE_FAIL to report -ENXIO, then it is
-> unlikely that we will ever report 0 again for any other fw error that
-> could prevent fw from successful load (now recall your and Joonas
-> position that this param shall stay as reflection of register read).
-> 
-> Michal
-> 
-> ps. on other hand, if we trust our uc_fw_status() then we can drop that
-> register read, finally decouple GET_PARAM from MMIO_READ and fully rely
-> on cached status:
+== Summary ==
 
-imo, that register read is the icing on the cake. We can tell whether
-the FW got to the HW, but we can't tell if the HW was truly happy with
-the FW without asking it.
+CI Bug Log - changes from CI_DRM_8213 -> Patchwork_17127
+====================================================
 
-I look at it as exposing an interface for the final capability bits to
-userspace that the kernel does not have to understand, that go above and
-beyond the kernel loading the firmware and confirming execution.
--Chris
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17127/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17127 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-icl-y:           [PASS][1] -> [DMESG-FAIL][2] ([fdo#108569])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-icl-y/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17127/fi-icl-y/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-bxt-dsi:         [INCOMPLETE][3] ([i915#656]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8213/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17127/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  [fdo#108569]: https://bugs.freedesktop.org/show_bug.cgi?id=108569
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (47 -> 42)
+------------------------------
+
+  Additional (5): fi-hsw-4770r fi-bsw-n3050 fi-byt-j1900 fi-glk-dsi fi-tgl-y 
+  Missing    (10): fi-ilk-m540 fi-hsw-4200u fi-skl-6770hq fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-gdg-551 fi-bsw-kefka fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8213 -> Patchwork_17127
+
+  CI-20190529: 20190529
+  CI_DRM_8213: 3cebf14c87d0d4508d4cc9c49db14061af752c37 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5544: 477c562fc9932939083d732b77dd7b083c6bc0a1 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17127: 05764bf4913c5b0ea98ec5ffe935b58f12623805 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+05764bf4913c drm/i915/huc: Add more errors for I915_PARAM_HUC_STATUS
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17127/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
