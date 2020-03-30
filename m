@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953C81987E3
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:15:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4641B1987F3
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:19:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6752A6E4CF;
-	Mon, 30 Mar 2020 23:15:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81AE489D87;
+	Mon, 30 Mar 2020 23:19:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D23EB6E4CF;
- Mon, 30 Mar 2020 23:15:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E03A89D87;
+ Mon, 30 Mar 2020 23:19:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C06D6A47E8;
- Mon, 30 Mar 2020 23:15:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37C10A47E8;
+ Mon, 30 Mar 2020 23:19:46 +0000 (UTC)
 MIME-Version: 1.0
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Date: Mon, 30 Mar 2020 23:15:32 -0000
-Message-ID: <158561013276.13827.16105657830922264729@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Mon, 30 Mar 2020 23:19:46 -0000
+Message-ID: <158561038619.13827.14908602027304864777@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20200330152244.11316-1-imre.deak@intel.com>
-In-Reply-To: <20200330152244.11316-1-imre.deak@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
- =?utf-8?q?/i915/icl+=3A_Don=27t_enable_DDI_IO_power_on_a_TypeC_port_in_TB?=
- =?utf-8?q?T_mode?=
+References: <20200330162356.162361-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200330162356.162361-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
+ =?utf-8?q?for_In_order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP?=
+ =?utf-8?q?_SDPs_=28rev9=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,85 +48,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/icl+: Don't enable DDI IO power on a TypeC port in TBT mode
-URL   : https://patchwork.freedesktop.org/series/75253/
-State : success
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev9)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_8219 -> Patchwork_17137
-====================================================
+$ dim checkpatch origin/drm-tip
+38f26ed437b1 video/hdmi: Add Unpack only function for DRM infoframe
+e58de153b99b drm/i915/dp: Read out DP SDPs
+10cbc3f7cd79 drm: Add logging function for DP VSC SDP
+96c9d0bf88ac drm/i915: Include HDMI DRM infoframe in the crtc state dump
+c9cbe7b7bd25 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+0845eae4c199 drm/i915: Include DP VSC SDP in the crtc state dump
+bcd2ab9c0373 drm/i915: Program DP SDPs with computed configs
+561b303fba93 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+e6bbd6890567 drm/i915: Add state readout for DP VSC SDP
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#82: FILE: drivers/gpu/drm/i915/display/intel_display.c:13710:
++#define PIPE_CONF_CHECK_DP_VSC_SDP(name) do { \
++	if (!intel_compare_dp_vsc_sdp(&current_config->infoframes.name, \
++				      &pipe_config->infoframes.name)) { \
++		pipe_config_dp_vsc_sdp_mismatch(dev_priv, fastset, __stringify(name), \
++						&current_config->infoframes.name, \
++						&pipe_config->infoframes.name); \
++		ret = false; \
++	} \
++} while (0)
 
-Summary
--------
+total: 0 errors, 0 warnings, 1 checks, 74 lines checked
+de9f8e3bc14c drm/i915: Fix enabled infoframe states of lspcon
+0256e6feea41 drm/i915: Program DP SDPs on pipe updates
+016763fca759 drm/i915: Stop sending DP SDPs on ddi disable
+f8e40f339fb2 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+025e44f9037e drm/i915/psr: Use new DP VSC SDP compute routine on PSR
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17137/index.html
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17137 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@dp-edid-read:
-    - fi-cml-u2:          [PASS][1] -> [FAIL][2] ([i915#976])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17137/fi-cml-u2/igt@kms_chamelium@dp-edid-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@execlists:
-    - {fi-tgl-u}:         [DMESG-FAIL][3] -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-tgl-u/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17137/fi-tgl-u/igt@i915_selftest@live@execlists.html
-
-  * igt@i915_selftest@live@requests:
-    - fi-icl-guc:         [INCOMPLETE][5] ([i915#1505]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-icl-guc/igt@i915_selftest@live@requests.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17137/fi-icl-guc/igt@i915_selftest@live@requests.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
-  [i915#976]: https://gitlab.freedesktop.org/drm/intel/issues/976
-
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Additional (6): fi-bdw-5557u fi-kbl-7500u fi-kbl-x1275 fi-cfl-8109u fi-kbl-7560u fi-kbl-r 
-  Missing    (8): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-tgl-y fi-byt-clapper fi-bsw-nick fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8219 -> Patchwork_17137
-
-  CI-20190529: 20190529
-  CI_DRM_8219: 42de3b3c94078845ceed586199c039622561b522 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17137: acd2a5c369724ba657f993e073c5bd424fa7b991 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-acd2a5c36972 drm/i915/icl+: Don't enable DDI IO power on a TypeC port in TBT mode
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17137/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
