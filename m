@@ -2,30 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8EE9198098
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 130D9198129
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:25:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC4406E160;
-	Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A18F6E45F;
+	Mon, 30 Mar 2020 16:25:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4B6BE6E160;
- Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 452C4A0099;
- Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA12E6E452
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 16:25:42 +0000 (UTC)
+IronPort-SDR: pgPkboC/Is+jKtiecRlpSA/qm1VyFqp5ZHPkB3lFSQ/y3BcWyLM0tspB7wwMU3kVUTosX2ViHh
+ cQubctiInZzQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2020 09:25:42 -0700
+IronPort-SDR: o6phQN5rpUGx/iOmXv+u67+KgKyM3scHaGLte8xE9qUWq9JngNkkOWemADs5fyGq6opdiqHTNs
+ nOr1KADRqsdA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,325,1580803200"; d="scan'208";a="237398151"
+Received: from unknown (HELO genxfsim-desktop.iind.intel.com) ([10.223.74.178])
+ by orsmga007.jf.intel.com with ESMTP; 30 Mar 2020 09:25:39 -0700
+From: Anshuman Gupta <anshuman.gupta@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Mar 2020 21:42:48 +0530
+Message-Id: <20200330161248.26923-1-anshuman.gupta@intel.com>
+X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200327162921.15622-1-anshuman.gupta@intel.com>
+References: <20200327162921.15622-1-anshuman.gupta@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Mon, 30 Mar 2020 16:10:21 -0000
-Message-ID: <158558462128.13828.14811532020248083425@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200330113338.1713-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20200330113338.1713-1-michal.wajdeczko@intel.com>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
- =?utf-8?q?/i915/huc=3A_Fix_HuC_register_used_in_debugfs?=
+Subject: [Intel-gfx] [CI v2] drm/i915/hdcp: Update CP as per the kernel
+ internal state
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,102 +47,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Content Protection property should be updated as per the kernel
+internal state. Let's say if Content protection is disabled
+by userspace, CP property should be set to UNDESIRED so that
+reauthentication will not happen until userspace request it again,
+but when kernel disables the HDCP due to any DDI disabling sequences
+like modeset/DPMS operation, kernel should set the property to
+DESIRED, so that when opportunity arises, kernel will start the
+HDCP authentication on its own.
 
-Series: drm/i915/huc: Fix HuC register used in debugfs
-URL   : https://patchwork.freedesktop.org/series/75231/
-State : failure
+Somewhere in the line, state machine to set content protection to
+DESIRED from kernel was broken and IGT coverage was missing for it.
+This patch fixes it.
 
-== Summary ==
+v2:
+- Fixing hdcp CP state in intel_hdcp_atomic_check(), that will
+  require to check hdcp->value in intel_hdcp_update_pipe() in order
+  to avoid enabling hdcp, if it was already enabled.
 
-CI Bug Log - changes from CI_DRM_8214 -> Patchwork_17128
-====================================================
+Cc: Ramalingam C <ramalingam.c@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Anshuman Gupta <anshuman.gupta@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 27 +++++++++++++++++++----
+ 1 file changed, 23 insertions(+), 4 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index cd3b686980b2..9b3870ba1a4d 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -2087,6 +2087,7 @@ void intel_hdcp_update_pipe(struct intel_encoder *encoder,
+ 		(conn_state->hdcp_content_type != hdcp->content_type &&
+ 		 conn_state->content_protection !=
+ 		 DRM_MODE_CONTENT_PROTECTION_UNDESIRED);
++	bool desired_and_not_enabled = false;
+ 
+ 	/*
+ 	 * During the HDCP encryption session if Type change is requested,
+@@ -2109,8 +2110,15 @@ void intel_hdcp_update_pipe(struct intel_encoder *encoder,
+ 	}
+ 
+ 	if (conn_state->content_protection ==
+-	    DRM_MODE_CONTENT_PROTECTION_DESIRED ||
+-	    content_protection_type_changed)
++	    DRM_MODE_CONTENT_PROTECTION_DESIRED) {
++		mutex_lock(&hdcp->mutex);
++		/* Avoid enabling hdcp, if it already ENABLED */
++		desired_and_not_enabled =
++			hdcp->value != DRM_MODE_CONTENT_PROTECTION_ENABLED;
++		mutex_unlock(&hdcp->mutex);
++	}
++
++	if (desired_and_not_enabled || content_protection_type_changed)
+ 		intel_hdcp_enable(connector,
+ 				  crtc_state->cpu_transcoder,
+ 				  (u8)conn_state->hdcp_content_type);
+@@ -2159,6 +2167,19 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 		return;
+ 	}
+ 
++	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
++						   new_state->crtc);
++	/*
++	 * Fix the HDCP uapi content protection state in case of modeset.
++	 * FIXME: As per HDCP content protection property uapi doc, an uevent()
++	 * need to be sent if there is transition from ENABLED->DESIRED.
++	 */
++	if (drm_atomic_crtc_needs_modeset(crtc_state) &&
++	    (old_cp == DRM_MODE_CONTENT_PROTECTION_ENABLED &&
++	    new_cp != DRM_MODE_CONTENT_PROTECTION_UNDESIRED))
++		new_state->content_protection =
++			DRM_MODE_CONTENT_PROTECTION_DESIRED;
++
+ 	/*
+ 	 * Nothing to do if the state didn't change, or HDCP was activated since
+ 	 * the last commit. And also no change in hdcp content type.
+@@ -2171,8 +2192,6 @@ void intel_hdcp_atomic_check(struct drm_connector *connector,
+ 			return;
+ 	}
+ 
+-	crtc_state = drm_atomic_get_new_crtc_state(new_state->state,
+-						   new_state->crtc);
+ 	crtc_state->mode_changed = true;
+ }
+ 
+-- 
+2.26.0
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17128 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17128, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17128:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
-    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17128 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@execlists:
-    - fi-glk-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#58] / [i915#656] / [k.org#198133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-glk-dsi/igt@i915_selftest@live@execlists.html
-    - fi-bxt-dsi:         [PASS][5] -> [INCOMPLETE][6] ([i915#656])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
-
-  
-  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
-  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
-  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
-
-
-Participating hosts (45 -> 40)
-------------------------------
-
-  Additional (6): fi-kbl-soraka fi-bsw-n3050 fi-bwr-2160 fi-snb-2520m fi-kbl-7560u fi-byt-n2820 
-  Missing    (11): fi-hsw-4770r fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-cfl-8109u fi-bsw-kefka fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8214 -> Patchwork_17128
-
-  CI-20190529: 20190529
-  CI_DRM_8214: a2b99403233148c1940fc972caef2a5c456d11b2 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17128: 61ec43b796ab8e05e27920bc8e5328727cf24098 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-61ec43b796ab drm/i915/huc: Fix HuC register used in debugfs
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
