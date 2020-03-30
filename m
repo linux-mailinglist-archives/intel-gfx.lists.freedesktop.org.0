@@ -1,44 +1,38 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F12E197F07
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 16:50:39 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7B05197F7F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 17:23:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A0866E415;
-	Mon, 30 Mar 2020 14:50:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A26526E421;
+	Mon, 30 Mar 2020 15:22:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A71D6E418
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 14:50:36 +0000 (UTC)
-IronPort-SDR: oVTEOYDIzgJGs3RP+7iHXkmde7d1E1jLesEWaemn+Gs9C+bfuJFl7awMbrZ9uWAIuA5K+6SqdR
- Brp2v/l/oO2g==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A1086E421
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 15:22:57 +0000 (UTC)
+IronPort-SDR: es7ZResrBrnckvm/TyzWkc6woM03p3vWiwvulYJe1mffCp1tPmO5MDgpVHOdbg9VeoZqb4nBtl
+ cnbxmg4Jcw8w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 07:50:35 -0700
-IronPort-SDR: 2llc8Z9p5D7bW3+b4vzZFFwqiVifWNIj3qZ+8pn7Jgeq8GQalBpdqX2nrAYchtK5nIXJYbkM3U
- 1DaM9W02D45A==
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2020 08:22:46 -0700
+IronPort-SDR: VPsHJZfrK7HppLj1wlNQEaTO2HIfOiOdtz+dyMZJjicCB9DfuV2IOxCItKP6sT2BP3gQg8PWkm
+ MATqeatPWQcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="294602459"
-Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
- by FMSMGA003.fm.intel.com with SMTP; 30 Mar 2020 07:50:33 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 30 Mar 2020 17:50:32 +0300
-Date: Mon, 30 Mar 2020 17:50:32 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20200330145032.GJ13686@intel.com>
-References: <20200327213413.166623-1-jose.souza@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="248733724"
+Received: from ideak-desk.fi.intel.com ([10.237.72.183])
+ by orsmga003.jf.intel.com with ESMTP; 30 Mar 2020 08:22:45 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Mon, 30 Mar 2020 18:22:44 +0300
+Message-Id: <20200330152244.11316-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.23.1
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200327213413.166623-1-jose.souza@intel.com>
-X-Patchwork-Hint: comment
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915/dp: Return the right vswing
- tables
+Subject: [Intel-gfx] [PATCH] drm/i915/icl+: Don't enable DDI IO power on a
+ TypeC port in TBT mode
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,90 +45,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: stable@vger.kernel.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Mar 27, 2020 at 02:34:11PM -0700, Jos=E9 Roberto de Souza wrote:
-> DDI ports have its encoders initialized with INTEL_OUTPUT_DDI type and
-> later eDP ports that have the type changed to INTEL_OUTPUT_EDP.
-> But for all other DDI ports it can drive HDMI or DP depending on what
-> user connects to the ports.
-> =
+The DDI IO power well must not be enabled for a TypeC port in TBT mode,
+ensure this during driver loading/system resume.
 
-> ehl_get_combo_buf_trans() and tgl_get_combo_buf_trans() was checking
-> for INTEL_OUTPUT_DP that was never true, causing eDP vswing tables
-> being used.
-> =
+This gets rid of error messages like
+[drm] *ERROR* power well DDI E TC2 IO state mismatch (refcount 1/enabled 0)
 
-> So here changing the check to INTEL_OUTPUT_DDI, HDMI cases will be
-> correctly handled as it do not use encoder->type, instead it calls the
-> functions with INTEL_OUTPUT_HDMI as type parameter and HDMI don't have
-> retraining.
-> =
+and avoids leaking the power ref when disabling the output.
 
-> Fixes: bd3cf6f7ce20 ("drm/i915/dp/tgl+: Update combo phy vswing tables")
-> Cc: Clinton A Taylor <clinton.a.taylor@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Jos=E9 Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> =
+Cc: <stable@vger.kernel.org> # v5.4+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 916a802af788..7af1572d4f1d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -947,7 +947,7 @@ static const struct cnl_ddi_buf_trans *
->  ehl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
- rate,
->  			int *n_entries)
->  {
-> -	if (type =3D=3D INTEL_OUTPUT_DP && rate > 270000) {
-> +	if (type =3D=3D INTEL_OUTPUT_DDI && rate > 270000) {
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 916a802af788..654151d9a6db 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -1899,7 +1899,11 @@ static void intel_ddi_get_power_domains(struct intel_encoder *encoder,
+ 		return;
+ 
+ 	dig_port = enc_to_dig_port(encoder);
+-	intel_display_power_get(dev_priv, dig_port->ddi_io_power_domain);
++
++	if (!intel_phy_is_tc(dev_priv, phy) ||
++	    dig_port->tc_mode != TC_PORT_TBT_ALT)
++		intel_display_power_get(dev_priv,
++					dig_port->ddi_io_power_domain);
+ 
+ 	/*
+ 	 * AUX power is only needed for (e)DP mode, and for HDMI mode on TC
+-- 
+2.23.1
 
-Please no. I'd rather not see "DDI" here. We want to check which mode
-we're driving the output in, and "DDI" isn't one of the valid choices.
-
-The fact that we sometimes pass in encoder->type is a bit of shortcut
-to make the DP vs. EDP distinction. And so far every function knew to
-only compare the value against EDP/HDMI and neve against DP. Looks like
-someone broke that (admittedly crappy) convention.
-
-We should probably fix this a bit higher up and make sure we only ever
-pass in EDP/DP/HDMI, never DDI.
-
->  		*n_entries =3D ARRAY_SIZE(ehl_combo_phy_ddi_translations_hbr2_hbr3);
->  		return ehl_combo_phy_ddi_translations_hbr2_hbr3;
->  	}
-> @@ -959,7 +959,7 @@ static const struct cnl_ddi_buf_trans *
->  tgl_get_combo_buf_trans(struct drm_i915_private *dev_priv, int type, int=
- rate,
->  			int *n_entries)
->  {
-> -	if (type !=3D INTEL_OUTPUT_DP) {
-> +	if (type !=3D INTEL_OUTPUT_DDI) {
->  		return icl_get_combo_buf_trans(dev_priv, type, rate, n_entries);
->  	} else if (rate > 270000) {
->  		*n_entries =3D ARRAY_SIZE(tgl_combo_phy_ddi_translations_dp_hbr2);
-> -- =
-
-> 2.26.0
-> =
-
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
