@@ -2,29 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F2E519860E
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 23:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B7719861D
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 23:11:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6A126E4AA;
-	Mon, 30 Mar 2020 21:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B08089A4B;
+	Mon, 30 Mar 2020 21:11:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C049A6E4AA
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 21:06:56 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20745093-1500050 
- for multiple; Mon, 30 Mar 2020 22:06:49 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 22:06:47 +0100
-Message-Id: <20200330210647.3343-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EB95689A4B;
+ Mon, 30 Mar 2020 21:11:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E3EFDA00E7;
+ Mon, 30 Mar 2020 21:11:22 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gem: Utilize rcu iteration of context
- engines
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kai Vehmanen" <kai.vehmanen@linux.intel.com>
+Date: Mon, 30 Mar 2020 21:11:22 -0000
+Message-ID: <158560268291.13826.6825280533151306362@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200330144421.11632-1-kai.vehmanen@linux.intel.com>
+In-Reply-To: <20200330144421.11632-1-kai.vehmanen@linux.intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_do_AUD=5FFREQ=5FCNTRL_state_save_on_all_gen9+_platform?=
+ =?utf-8?q?s_=28rev2=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,112 +39,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we can peek at GEM->engines[] and obtain a reference to them
-using RCU, do so for instances where we can safely iterate the
-potentially old copy of the engines. For setting, we can do this when we
-know the engine properties are copied over before swapping, so we know
-the new engines already have the global property and we update the old
-before they are discarded. For reading, we only need to be safe; as we
-do so on behalf of the user, their races are their own problem.
+== Series Details ==
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 53 +++++++++++----------
- 1 file changed, 27 insertions(+), 26 deletions(-)
+Series: drm/i915: do AUD_FREQ_CNTRL state save on all gen9+ platforms (rev2)
+URL   : https://patchwork.freedesktop.org/series/74664/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 50e7580f9337..b2f5eec59a37 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -757,21 +757,46 @@ __create_context(struct drm_i915_private *i915)
- 	return ERR_PTR(err);
- }
- 
-+static inline struct i915_gem_engines *
-+__context_engines_await(const struct i915_gem_context *ctx)
-+{
-+	struct i915_gem_engines *engines;
-+
-+	rcu_read_lock();
-+	do {
-+		engines = rcu_dereference(ctx->engines);
-+		GEM_BUG_ON(!engines);
-+
-+		if (unlikely(!i915_sw_fence_await(&engines->fence)))
-+			continue;
-+
-+		if (likely(engines == rcu_access_pointer(ctx->engines)))
-+			break;
-+
-+		i915_sw_fence_complete(&engines->fence);
-+	} while (1);
-+	rcu_read_unlock();
-+
-+	return engines;
-+}
-+
- static int
- context_apply_all(struct i915_gem_context *ctx,
- 		  int (*fn)(struct intel_context *ce, void *data),
- 		  void *data)
- {
- 	struct i915_gem_engines_iter it;
-+	struct i915_gem_engines *e;
- 	struct intel_context *ce;
- 	int err = 0;
- 
--	for_each_gem_engine(ce, i915_gem_context_lock_engines(ctx), it) {
-+	e = __context_engines_await(ctx);
-+	for_each_gem_engine(ce, e, it) {
- 		err = fn(ce, data);
- 		if (err)
- 			break;
- 	}
--	i915_gem_context_unlock_engines(ctx);
-+	i915_sw_fence_complete(&e->fence);
- 
- 	return err;
- }
-@@ -1069,30 +1094,6 @@ static void cb_retire(struct i915_active *base)
- 	kfree(cb);
- }
- 
--static inline struct i915_gem_engines *
--__context_engines_await(const struct i915_gem_context *ctx)
--{
--	struct i915_gem_engines *engines;
--
--	rcu_read_lock();
--	do {
--		engines = rcu_dereference(ctx->engines);
--		if (unlikely(!engines))
--			break;
--
--		if (unlikely(!i915_sw_fence_await(&engines->fence)))
--			continue;
--
--		if (likely(engines == rcu_access_pointer(ctx->engines)))
--			break;
--
--		i915_sw_fence_complete(&engines->fence);
--	} while (1);
--	rcu_read_unlock();
--
--	return engines;
--}
--
- I915_SELFTEST_DECLARE(static intel_engine_mask_t context_barrier_inject_fault);
- static int context_barrier_task(struct i915_gem_context *ctx,
- 				intel_engine_mask_t engines,
--- 
-2.20.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_8218 -> Patchwork_17136
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17136/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17136 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-u2:          [PASS][1] -> [INCOMPLETE][2] ([i915#1505])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8218/fi-icl-u2/igt@i915_selftest@live@requests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17136/fi-icl-u2/igt@i915_selftest@live@requests.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-icl-dsi:         [INCOMPLETE][3] ([i915#189]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8218/fi-icl-dsi/igt@i915_pm_rpm@basic-rte.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17136/fi-icl-dsi/igt@i915_pm_rpm@basic-rte.html
+
+  
+#### Warnings ####
+
+  * igt@i915_pm_rpm@basic-rte:
+    - fi-kbl-guc:         [FAIL][5] ([i915#579]) -> [SKIP][6] ([fdo#109271])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8218/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17136/fi-kbl-guc/igt@i915_pm_rpm@basic-rte.html
+
+  
+  [fdo#109271]: https://bugs.freedesktop.org/show_bug.cgi?id=109271
+  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
+  [i915#189]: https://gitlab.freedesktop.org/drm/intel/issues/189
+  [i915#579]: https://gitlab.freedesktop.org/drm/intel/issues/579
+
+
+Participating hosts (46 -> 38)
+------------------------------
+
+  Additional (6): fi-bdw-5557u fi-bsw-n3050 fi-gdg-551 fi-ivb-3770 fi-bsw-kefka fi-bsw-nick 
+  Missing    (14): fi-hsw-4770r fi-ilk-m540 fi-bdw-samus fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-cfl-8109u fi-skl-lmem fi-kbl-7560u fi-byt-clapper fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8218 -> Patchwork_17136
+
+  CI-20190529: 20190529
+  CI_DRM_8218: 34c4b933b4daa72079af3d5506113695a6ea10ea @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17136: bf7760c4d68f32856c655df7de7c868cbfd9bd4a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bf7760c4d68f drm/i915: do AUD_FREQ_CNTRL state save on all gen9+ platforms
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17136/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
