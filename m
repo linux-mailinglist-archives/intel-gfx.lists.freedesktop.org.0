@@ -1,41 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8398198082
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:09:15 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8EE9198098
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 18:10:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3B846E433;
-	Mon, 30 Mar 2020 16:09:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC4406E160;
+	Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 418F36E433
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 16:09:13 +0000 (UTC)
-IronPort-SDR: dQsFLxrgvOP3HsgwBGtKDlXyTZl+y6tc8671tbFpxgNoWAY4CmACMpeRIcgoS6mm90X7tlPpdl
- owgf1woqe6Kw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 09:09:12 -0700
-IronPort-SDR: 7JmpjAPa8SZpHa3H7XxotGWoCeR1Si9xO/Jm2pn2OXGukwnLOsaArQRVgf6y7NCfhhzdXog7iA
- uYDBAqkKGKlg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,324,1580803200"; d="scan'208";a="237393896"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga007.jf.intel.com with ESMTP; 30 Mar 2020 09:09:11 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id 6ED145C0C01; Mon, 30 Mar 2020 19:07:34 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200327112212.16046-1-chris@chris-wilson.co.uk>
-References: <20200327112212.16046-1-chris@chris-wilson.co.uk>
-Date: Mon, 30 Mar 2020 19:07:34 +0300
-Message-ID: <87zhbxq115.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B6BE6E160;
+ Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 452C4A0099;
+ Mon, 30 Mar 2020 16:10:21 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 1/3] drm/i915: Allow for different modes of
- interruptible i915_active_wait
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Mon, 30 Mar 2020 16:10:21 -0000
+Message-ID: <158558462128.13828.14811532020248083425@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200330113338.1713-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20200330113338.1713-1-michal.wajdeczko@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgZHJt?=
+ =?utf-8?q?/i915/huc=3A_Fix_HuC_register_used_in_debugfs?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,101 +38,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Allow some users the discretion to not immediately return on a normal
-> signal. Hopefully, they will opt to use TASK_KILLABLE instead.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> ---
->  drivers/gpu/drm/i915/i915_active.c           |  6 ++++--
->  drivers/gpu/drm/i915/i915_active.h           |  6 +++++-
->  drivers/gpu/drm/i915/selftests/i915_active.c | 10 +++++-----
->  3 files changed, 14 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index a0d31f7bfb42..7b685032cc1e 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -496,7 +496,7 @@ static int flush_lazy_signals(struct i915_active *ref)
->  	return err;
->  }
->  
-> -int i915_active_wait(struct i915_active *ref)
-> +int __i915_active_wait(struct i915_active *ref, int state)
->  {
->  	int err;
+Series: drm/i915/huc: Fix HuC register used in debugfs
+URL   : https://patchwork.freedesktop.org/series/75231/
+State : failure
 
-minor gripe: s/state/task_state
+== Summary ==
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+CI Bug Log - changes from CI_DRM_8214 -> Patchwork_17128
+====================================================
 
->  
-> @@ -511,7 +511,9 @@ int i915_active_wait(struct i915_active *ref)
->  	if (err)
->  		return err;
->  
-> -	if (wait_var_event_interruptible(ref, i915_active_is_idle(ref)))
-> +	if (!i915_active_is_idle(ref) &&
-> +	    ___wait_var_event(ref, i915_active_is_idle(ref),
-> +			      state, 0, 0, schedule()))
->  		return -EINTR;
->  
->  	flush_work(&ref->work);
-> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> index b3282ae7913c..4f9aa7bab514 100644
-> --- a/drivers/gpu/drm/i915/i915_active.h
-> +++ b/drivers/gpu/drm/i915/i915_active.h
-> @@ -181,7 +181,11 @@ static inline bool i915_active_has_exclusive(struct i915_active *ref)
->  	return rcu_access_pointer(ref->excl.fence);
->  }
->  
-> -int i915_active_wait(struct i915_active *ref);
-> +int __i915_active_wait(struct i915_active *ref, int state);
-> +static inline int i915_active_wait(struct i915_active *ref)
-> +{
-> +	return __i915_active_wait(ref, TASK_INTERRUPTIBLE);
-> +}
->  
->  int i915_sw_fence_await_active(struct i915_sw_fence *fence,
->  			       struct i915_active *ref,
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-> index 54080fb4af4b..4002c984c2e0 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_active.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-> @@ -153,7 +153,7 @@ static int live_active_wait(void *arg)
->  	if (IS_ERR(active))
->  		return PTR_ERR(active);
->  
-> -	i915_active_wait(&active->base);
-> +	__i915_active_wait(&active->base, TASK_UNINTERRUPTIBLE);
->  	if (!READ_ONCE(active->retired)) {
->  		struct drm_printer p = drm_err_printer(__func__);
->  
-> @@ -228,11 +228,11 @@ static int live_active_barrier(void *arg)
->  	}
->  
->  	i915_active_release(&active->base);
-> +	if (err)
-> +		goto out;
->  
-> -	if (err == 0)
-> -		err = i915_active_wait(&active->base);
-> -
-> -	if (err == 0 && !READ_ONCE(active->retired)) {
-> +	__i915_active_wait(&active->base, TASK_UNINTERRUPTIBLE);
-> +	if (!READ_ONCE(active->retired)) {
->  		pr_err("i915_active not retired after flushing barriers!\n");
->  		err = -EINVAL;
->  	}
-> -- 
-> 2.20.1
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17128 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17128, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17128:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - fi-apl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-apl-guc/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17128 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-glk-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#58] / [i915#656] / [k.org#198133])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-glk-dsi/igt@i915_selftest@live@execlists.html
+    - fi-bxt-dsi:         [PASS][5] -> [INCOMPLETE][6] ([i915#656])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8214/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/fi-bxt-dsi/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#58]: https://gitlab.freedesktop.org/drm/intel/issues/58
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+  [k.org#198133]: https://bugzilla.kernel.org/show_bug.cgi?id=198133
+
+
+Participating hosts (45 -> 40)
+------------------------------
+
+  Additional (6): fi-kbl-soraka fi-bsw-n3050 fi-bwr-2160 fi-snb-2520m fi-kbl-7560u fi-byt-n2820 
+  Missing    (11): fi-hsw-4770r fi-ilk-m540 fi-bdw-5557u fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-cfl-8109u fi-bsw-kefka fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8214 -> Patchwork_17128
+
+  CI-20190529: 20190529
+  CI_DRM_8214: a2b99403233148c1940fc972caef2a5c456d11b2 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17128: 61ec43b796ab8e05e27920bc8e5328727cf24098 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+61ec43b796ab drm/i915/huc: Fix HuC register used in debugfs
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17128/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
