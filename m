@@ -2,40 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D49D8198500
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 21:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3729519851B
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2020 22:07:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D1A26E0DF;
-	Mon, 30 Mar 2020 19:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92B106E48E;
+	Mon, 30 Mar 2020 20:07:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B21026E0DF
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 19:57:42 +0000 (UTC)
-IronPort-SDR: MlinFc2xK9JM1CAiCQb5euFAcxbKmAKxmuPCl3FcHa4ji9B7CqcCjoQIR8A4wTDVDObiPQxXtL
- uXtDB6OGa2sQ==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 12:57:42 -0700
-IronPort-SDR: UmuYsEoJHyl00AXNhyDN6FBROB331LAlXZb8IpttUvDTB2hxiosS+0hRxGnT78kIaMXl77Q30S
- kYcJVJUynoLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,325,1580803200"; d="scan'208";a="237455345"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga007.jf.intel.com with ESMTP; 30 Mar 2020 12:57:40 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id C22485C0C01; Mon, 30 Mar 2020 22:56:03 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200330125827.5804-1-chris@chris-wilson.co.uk>
-References: <20200330125827.5804-1-chris@chris-wilson.co.uk>
-Date: Mon, 30 Mar 2020 22:56:03 +0300
-Message-ID: <87tv25pqgc.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C49286E48E;
+ Mon, 30 Mar 2020 20:07:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BD9C9A47E8;
+ Mon, 30 Mar 2020 20:07:21 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Explicitly reset both
- reg and context runtime
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jason A. Donenfeld" <Jason@zx2c4.com>
+Date: Mon, 30 Mar 2020 20:07:21 -0000
+Message-ID: <158559884174.13826.8347426218266883070@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200328000422.98978-1-Jason@zx2c4.com>
+In-Reply-To: <20200328000422.98978-1-Jason@zx2c4.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_check_to_see_if_the_FPU_is_available_before_using_it?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,94 +38,83 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Upon a GPU reset, we copy the default context image over top of the
-> guilty image. This will rollback the CTX_TIMESTAMP register to before
-> our value of ce->runtime.last. Reset both back to 0 so that we do not
-> encounter an underflow on the next schedule out after resume.
->
-> This should not be a huge issue in practice, as hangs should be rare in
-> correct code.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Series: drm/i915: check to see if the FPU is available before using it
+URL   : https://patchwork.freedesktop.org/series/75249/
+State : success
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c | 24 +++++++++++++-----------
->  1 file changed, 13 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 9104796673dc..d53078b345be 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -238,6 +238,17 @@ __execlists_update_reg_state(const struct intel_context *ce,
->  			     const struct intel_engine_cs *engine,
->  			     u32 head);
->  
-> +static u32 intel_context_get_runtime(const struct intel_context *ce)
-> +{
-> +	/*
-> +	 * We can use either ppHWSP[16] which is recorded before the context
-> +	 * switch (and so excludes the cost of context switches) or use the
-> +	 * value from the context image itself, which is saved/restored earlier
-> +	 * and so includes the cost of the save.
-> +	 */
-> +	return READ_ONCE(ce->lrc_reg_state[CTX_TIMESTAMP]);
-> +}
-> +
->  static void mark_eio(struct i915_request *rq)
->  {
->  	if (i915_request_completed(rq))
-> @@ -1154,6 +1165,7 @@ static void restore_default_state(struct intel_context *ce,
->  		       engine->context_size - PAGE_SIZE);
->  
->  	execlists_init_reg_state(regs, ce, engine, ce->ring, false);
-> +	ce->runtime.last = intel_context_get_runtime(ce);
->  }
->  
->  static void reset_active(struct i915_request *rq,
-> @@ -1195,17 +1207,6 @@ static void reset_active(struct i915_request *rq,
->  	ce->lrc_desc |= CTX_DESC_FORCE_RESTORE;
->  }
->  
-> -static u32 intel_context_get_runtime(const struct intel_context *ce)
-> -{
-> -	/*
-> -	 * We can use either ppHWSP[16] which is recorded before the context
-> -	 * switch (and so excludes the cost of context switches) or use the
-> -	 * value from the context image itself, which is saved/restored earlier
-> -	 * and so includes the cost of the save.
-> -	 */
-> -	return READ_ONCE(ce->lrc_reg_state[CTX_TIMESTAMP]);
-> -}
-> -
->  static void st_update_runtime_underflow(struct intel_context *ce, s32 dt)
->  {
->  #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-> @@ -4601,6 +4602,7 @@ static void init_common_reg_state(u32 * const regs,
->  	regs[CTX_CONTEXT_CONTROL] = ctl;
->  
->  	regs[CTX_RING_CTL] = RING_CTL_SIZE(ring->size) | RING_VALID;
-> +	regs[CTX_TIMESTAMP] = 0;
->  }
->  
->  static void init_wa_bb_reg_state(u32 * const regs,
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_8217 -> Patchwork_17134
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17134/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17134 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-cml-s:           [DMESG-FAIL][1] ([i915#841]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8217/fi-cml-s/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17134/fi-cml-s/igt@i915_selftest@live@execlists.html
+    - {fi-tgl-u}:         [DMESG-FAIL][3] -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8217/fi-tgl-u/igt@i915_selftest@live@execlists.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17134/fi-tgl-u/igt@i915_selftest@live@execlists.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#841]: https://gitlab.freedesktop.org/drm/intel/issues/841
+
+
+Participating hosts (45 -> 38)
+------------------------------
+
+  Additional (3): fi-skl-guc fi-bdw-5557u fi-skl-6600u 
+  Missing    (10): fi-bsw-n3050 fi-hsw-4200u fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-cfl-8109u fi-bsw-kefka fi-blb-e6850 fi-byt-clapper fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8217 -> Patchwork_17134
+
+  CI-20190529: 20190529
+  CI_DRM_8217: f4a6243de1bb9c5be618b8d2cb4ced7610153465 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17134: 90ca26365082ea560e6753d808afff2033e43d9d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+90ca26365082 drm/i915: check to see if the FPU is available before using it
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17134/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
