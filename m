@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9808198853
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7628119886D
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:40:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE576E4E3;
-	Mon, 30 Mar 2020 23:31:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DE686E4FB;
+	Mon, 30 Mar 2020 23:40:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06CAE6E4D7
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 23:31:46 +0000 (UTC)
-IronPort-SDR: C0TP2MzZLZnc+asKPLebvgk3oqFGfUq1PIoG8f9zruZ2RTJku82eu16dBbYWxKIy1CrER9kl0h
- sNbSdFFDIrdw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 16:31:42 -0700
-IronPort-SDR: WF0z2zp0MvjjlACsnVwaS6HnkRppetxxRFatmbrX7lGMFemjmUyliaOeEigMluWpnwGiKF0Q3j
- lj1RXaidvjpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,326,1580803200"; d="scan'208";a="242190314"
-Received: from josouza-mobl2.jf.intel.com (HELO josouza-MOBL2.intel.com)
- ([10.24.15.8])
- by orsmga008.jf.intel.com with ESMTP; 30 Mar 2020 16:31:42 -0700
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2020 16:33:04 -0700
-Message-Id: <20200330233304.406215-3-jose.souza@intel.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200330233304.406215-1-jose.souza@intel.com>
-References: <20200330233304.406215-1-jose.souza@intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7AB966E4FB;
+ Mon, 30 Mar 2020 23:40:11 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62AAAA47E1;
+ Mon, 30 Mar 2020 23:40:11 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH 3/3] drm/i915/fbc: Apply WA 529 to all GEN9
- platforms
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gwan-gyeong Mun" <gwan-gyeong.mun@intel.com>
+Date: Mon, 30 Mar 2020 23:40:11 -0000
+Message-ID: <158561161137.13828.17056048467337010365@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200330162356.162361-1-gwan-gyeong.mun@intel.com>
+In-Reply-To: <20200330162356.162361-1-gwan-gyeong.mun@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3IgSW4g?=
+ =?utf-8?q?order_to_readout_DP_SDPs=2C_refactors_the_handling_of_DP_SDPs_?=
+ =?utf-8?b?KHJldjkp?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,34 +39,123 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SXQgd2FzIG1pc3NpbmcgR0xLIGFuZCBjYXVzaW5nIHNvbWUgQ1JDIG1pc21hdGNoZXMuCgpCU3Bl
-YzogMjE2NjQKQ2M6IFZpbGxlIFN5cmrDpGzDpCA8dmlsbGUuc3lyamFsYUBsaW51eC5pbnRlbC5j
-b20+ClNpZ25lZC1vZmYtYnk6IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50
-ZWwuY29tPgotLS0KIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJjLmMgfCA2
-ICsrKy0tLQogMSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkK
-CmRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmMuYwppbmRleCA1NmJjZDZjNTJh
-MDIuLjQ3YThiN2ExODcwYSAxMDA2NDQKLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mYmMuYworKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Zi
-Yy5jCkBAIC0yODMsOCArMjgzLDggQEAgc3RhdGljIHZvaWQgZ2VuN19mYmNfYWN0aXZhdGUoc3Ry
-dWN0IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2KQogCXUzMiBkcGZjX2N0bDsKIAlpbnQgdGhy
-ZXNob2xkID0gZGV2X3ByaXYtPmZiYy50aHJlc2hvbGQ7CiAKLQkvKiBEaXNwbGF5IFdBICMwNTI5
-OiBza2wsIGtibCwgYnh0LiAqLwotCWlmIChJU19HRU45X0JDKGRldl9wcml2KSB8fCBJU19CUk9Y
-VE9OKGRldl9wcml2KSkgeworCS8qIERpc3BsYXkgV0EgIzA1Mjk6IEdFTjkgKi8KKwlpZiAoSVNf
-R0VOKGRldl9wcml2LCA5KSkgewogCQl1MzIgdmFsID0gaW50ZWxfZGVfcmVhZChkZXZfcHJpdiwg
-Q0hJQ0tFTl9NSVNDXzQpOwogCiAJCXZhbCAmPSB+KEZCQ19TVFJJREVfT1ZFUlJJREUgfCBGQkNf
-U1RSSURFX01BU0spOwpAQCAtMTIxMiw3ICsxMjEyLDcgQEAgdm9pZCBpbnRlbF9mYmNfZW5hYmxl
-KHN0cnVjdCBpbnRlbF9hdG9taWNfc3RhdGUgKnN0YXRlLAogCQlnb3RvIG91dDsKIAl9CiAKLQlp
-ZiAoKElTX0dFTjlfQkMoZGV2X3ByaXYpIHx8IElTX0JST1hUT04oZGV2X3ByaXYpKSAmJgorCWlm
-IChJU19HRU4oZGV2X3ByaXYsIDkpICYmCiAJICAgIHBsYW5lX3N0YXRlLT5ody5mYi0+bW9kaWZp
-ZXIgIT0gSTkxNV9GT1JNQVRfTU9EX1hfVElMRUQpCiAJCWNhY2hlLT5nZW45X3dhX2NmYl9zdHJp
-ZGUgPQogCQkJRElWX1JPVU5EX1VQKGNhY2hlLT5wbGFuZS5zcmNfdywgMzIgKiBmYmMtPnRocmVz
-aG9sZCkgKiA4OwotLSAKMi4yNi4wCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpJbnRlbC1nZnggbWFpbGluZyBsaXN0CkludGVsLWdmeEBsaXN0cy5mcmVl
-ZGVza3RvcC5vcmcKaHR0cHM6Ly9saXN0cy5mcmVlZGVza3RvcC5vcmcvbWFpbG1hbi9saXN0aW5m
-by9pbnRlbC1nZngK
+== Series Details ==
+
+Series: In order to readout DP SDPs, refactors the handling of DP SDPs (rev9)
+URL   : https://patchwork.freedesktop.org/series/72853/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_8219 -> Patchwork_17138
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17138 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17138, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17138/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17138:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@runner@aborted:
+    - fi-icl-guc:         NOTRUN -> [FAIL][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17138/fi-icl-guc/igt@runner@aborted.html
+
+  
+#### Suppressed ####
+
+  The following results come from untrusted machines, tests, or statuses.
+  They do not affect the overall result.
+
+  * igt@runner@aborted:
+    - {fi-tgl-u}:         NOTRUN -> [FAIL][2]
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17138/fi-tgl-u/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17138 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-dsi:         [PASS][3] -> [INCOMPLETE][4] ([i915#1505])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-icl-dsi/igt@i915_selftest@live@requests.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17138/fi-icl-dsi/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
+
+
+Participating hosts (44 -> 38)
+------------------------------
+
+  Additional (3): fi-kbl-7560u fi-kbl-x1275 fi-kbl-r 
+  Missing    (9): fi-hsw-4200u fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-hsw-4770 fi-gdg-551 fi-byt-n2820 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8219 -> Patchwork_17138
+
+  CI-20190529: 20190529
+  CI_DRM_8219: 42de3b3c94078845ceed586199c039622561b522 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17138: 025e44f9037e5c174b128843f2e9e9eec57fb4d4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+025e44f9037e drm/i915/psr: Use new DP VSC SDP compute routine on PSR
+f8e40f339fb2 drm/i915/dp: Add compute routine for DP PSR VSC SDP
+016763fca759 drm/i915: Stop sending DP SDPs on ddi disable
+0256e6feea41 drm/i915: Program DP SDPs on pipe updates
+de9f8e3bc14c drm/i915: Fix enabled infoframe states of lspcon
+e6bbd6890567 drm/i915: Add state readout for DP VSC SDP
+561b303fba93 drm/i915: Add state readout for DP HDR Metadata Infoframe SDP
+bcd2ab9c0373 drm/i915: Program DP SDPs with computed configs
+0845eae4c199 drm/i915: Include DP VSC SDP in the crtc state dump
+c9cbe7b7bd25 drm/i915: Include DP HDR Metadata Infoframe SDP in the crtc state dump
+96c9d0bf88ac drm/i915: Include HDMI DRM infoframe in the crtc state dump
+10cbc3f7cd79 drm: Add logging function for DP VSC SDP
+e58de153b99b drm/i915/dp: Read out DP SDPs
+38f26ed437b1 video/hdmi: Add Unpack only function for DRM infoframe
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17138/index.html
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
