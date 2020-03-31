@@ -2,38 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3851997ED
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 15:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9423819980B
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 16:03:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70DFE6E834;
-	Tue, 31 Mar 2020 13:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA68E6E838;
+	Tue, 31 Mar 2020 14:03:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 088756E834
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 13:54:20 +0000 (UTC)
-IronPort-SDR: 5tAvcF4/mW9hJAmW4WQNm/ld3vkwoVI+AI6/4VGze8pxeSrWM8fgnZi6HQdoOaTNHDrnb7onBr
- c5WPRI3hxhPA==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2020 06:54:20 -0700
-IronPort-SDR: K5dN08ym8wPsEA6e2rYpNfGTMNo0YAwBuQkdVJyibQTVmENtCDopN3mccLu1Pa/C0ZaqejFDPb
- 14eUHataOLYA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="272762039"
-Received: from rosetta.fi.intel.com ([10.237.72.194])
- by fmsmga004.fm.intel.com with ESMTP; 31 Mar 2020 06:54:19 -0700
-Received: by rosetta.fi.intel.com (Postfix, from userid 1000)
- id 2D8488442B9; Tue, 31 Mar 2020 16:54:05 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2020 16:54:03 +0300
-Message-Id: <20200331135403.16906-1-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [Intel-gfx] [PATCH] drm/i915: Report all failed registers for ctx
- isolation
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9FAD66E836;
+ Tue, 31 Mar 2020 14:03:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 988CDA432F;
+ Tue, 31 Mar 2020 14:03:15 +0000 (UTC)
+MIME-Version: 1.0
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 14:03:15 -0000
+Message-ID: <158566339559.5566.7395689291612644017@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200331094239.23145-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200331094239.23145-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/gt=3A_Include_the_execlists_CCID_of_each_port_in_the_engi?=
+ =?utf-8?q?ne_dump?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,97 +39,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-MIME-Version: 1.0
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For CI it is enough to point out a single failure
-in isolation. However it is beneficial to gather
-info in logs for transients further down
-the line.
+== Series Details ==
 
-Do not stop into first comparison failure but
-continue probing forward.
+Series: drm/i915/gt: Include the execlists CCID of each port in the engine dump
+URL   : https://patchwork.freedesktop.org/series/75298/
+State : success
 
-v2: for all engines and poisons (Chris)
+== Summary ==
 
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Reviewed-by: Chris Wilson <chris@chris-wilson.co.uk>
----
- drivers/gpu/drm/i915/gt/selftest_lrc.c | 25 +++++++++++++------------
- 1 file changed, 13 insertions(+), 12 deletions(-)
+CI Bug Log - changes from CI_DRM_8223 -> Patchwork_17150
+====================================================
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index d3e163c93e22..d5b170adff1c 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -5170,7 +5170,6 @@ static int compare_isolation(struct intel_engine_cs *engine,
- 					       A[0][x], B[0][x], B[1][x],
- 					       poison, lrc[dw + 1]);
- 					err = -EINVAL;
--					break;
- 				}
- 			}
- 			dw += 2;
-@@ -5309,6 +5308,7 @@ static int live_lrc_isolation(void *arg)
- 		0xffffffff,
- 		0xffff0000,
- 	};
-+	int err = 0;
- 
- 	/*
- 	 * Our goal is try and verify that per-context state cannot be
-@@ -5319,7 +5319,6 @@ static int live_lrc_isolation(void *arg)
- 	 */
- 
- 	for_each_engine(engine, gt, id) {
--		int err = 0;
- 		int i;
- 
- 		/* Just don't even ask */
-@@ -5330,23 +5329,25 @@ static int live_lrc_isolation(void *arg)
- 		intel_engine_pm_get(engine);
- 		if (engine->pinned_default_state) {
- 			for (i = 0; i < ARRAY_SIZE(poison); i++) {
--				err = __lrc_isolation(engine, poison[i]);
--				if (err)
--					break;
-+				int result;
- 
--				err = __lrc_isolation(engine, ~poison[i]);
--				if (err)
--					break;
-+				result = __lrc_isolation(engine, poison[i]);
-+				if (result && !err)
-+					err = result;
-+
-+				result = __lrc_isolation(engine, ~poison[i]);
-+				if (result && !err)
-+					err = result;
- 			}
- 		}
- 		intel_engine_pm_put(engine);
--		if (igt_flush_test(gt->i915))
-+		if (igt_flush_test(gt->i915)) {
- 			err = -EIO;
--		if (err)
--			return err;
-+			break;
-+		}
- 	}
- 
--	return 0;
-+	return err;
- }
- 
- static void garbage_reset(struct intel_engine_cs *engine,
--- 
-2.17.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17150/index.html
+
+
+Changes
+-------
+
+  No changes found
+
+
+Participating hosts (41 -> 37)
+------------------------------
+
+  Additional (6): fi-bdw-5557u fi-hsw-peppy fi-skl-guc fi-bwr-2160 fi-kbl-7500u fi-ivb-3770 
+  Missing    (10): fi-bdw-samus fi-hsw-4200u fi-snb-2520m fi-ctg-p8600 fi-cfl-8109u fi-kbl-7560u fi-byt-clapper fi-bsw-nick fi-skl-6600u fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8223 -> Patchwork_17150
+
+  CI-20190529: 20190529
+  CI_DRM_8223: 1d63647b277eabde6a0a6f1b68b6569482ff4063 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5548: d9e70dc1b35633b7d5c81cbfa165e331189eb260 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17150: fed75169a8a6f90d25d54dd6132ed6b9faaab629 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+fed75169a8a6 drm/i915/gt: Include the execlists CCID of each port in the engine dump
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17150/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
