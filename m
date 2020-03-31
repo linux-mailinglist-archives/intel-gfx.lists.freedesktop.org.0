@@ -2,31 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C3319A22F
-	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 01:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4557C19A254
+	for <lists+intel-gfx@lfdr.de>; Wed,  1 Apr 2020 01:14:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 247E36E89F;
-	Tue, 31 Mar 2020 23:01:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E6F16E373;
+	Tue, 31 Mar 2020 23:14:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 53E8A6E373;
- Tue, 31 Mar 2020 23:01:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4DBDFA66C9;
- Tue, 31 Mar 2020 23:01:34 +0000 (UTC)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40E8C6E373
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 23:14:34 +0000 (UTC)
+IronPort-SDR: YiTQ4nYD3RKOPXdULFQOC1thn0PmApN8QBU8br8Bv1cytpU7pifKZ/XXNJRRS5Z0kPJo8iCRHs
+ l0df1O869oMQ==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2020 16:14:33 -0700
+IronPort-SDR: 6l/Tdkca55zB5/l8IZ/aovEClnRc0+i3ab6WWgEvqa+eDohiEmb3Ae0F/AL1/CtiF0ypLKpEaS
+ nAzU8HtnQadQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,329,1580803200"; d="scan'208";a="422471806"
+Received: from adixit-mobl.amr.corp.intel.com (HELO localhost.localdomain)
+ ([10.212.195.197])
+ by orsmga005.jf.intel.com with ESMTP; 31 Mar 2020 16:14:33 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Mar 2020 16:14:32 -0700
+Message-Id: <20200331231432.2850-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.25.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 31 Mar 2020 23:01:34 -0000
-Message-ID: <158569569429.5564.11334528634840512953@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200331162150.3635-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200331162150.3635-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcg?=
- =?utf-8?q?for_drm/i915/gem=3A_Ignore_readonly_failures_when_updating_relo?=
- =?utf-8?q?cs?=
+Subject: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for small
+ user read buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,41 +46,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+It is wrong to block the user thread in the next poll when OA data is
+already available which could not fit in the user buffer provided in
+the previous read. In several cases the exact user buffer size is not
+known. Blocking user space in poll can lead to data loss when the
+buffer size used is smaller than the available data.
 
-Series: drm/i915/gem: Ignore readonly failures when updating relocs
-URL   : https://patchwork.freedesktop.org/series/75331/
-State : warning
+This change fixes this issue and allows user space to read all OA data
+even when using a buffer size smaller than the available data using
+multiple non-blocking reads rather than staying blocked in poll till
+the next timer interrupt.
 
-== Summary ==
+v2: Fix ret value for blocking reads (Umesh)
+v3: Mistake during patch send (Ashutosh)
+v4: Remove -EAGAIN from comment (Umesh)
+v5: Improve condition for clearing pollin and return (Lionel)
+v6: Improve blocking read loop and other cleanups (Lionel)
 
-$ dim checkpatch origin/drm-tip
-6b39b83d1e26 drm/i915/gem: Ignore readonly failures when updating relocs
--:7: WARNING:TYPO_SPELLING: 'commited' may be misspelled - perhaps 'committed'?
-#7: 
-already commited to modifying the execobjects, or have indeed done so
+Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+---
+ drivers/gpu/drm/i915/i915_perf.c | 61 ++++++--------------------------
+ 1 file changed, 11 insertions(+), 50 deletions(-)
 
--:13: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#13: 
-References: fddcd00a49e9 ("drm/i915: Force the slow path after a user-write error")
-
--:13: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit fddcd00a49e9 ("drm/i915: Force the slow path after a user-write error")'
-#13: 
-References: fddcd00a49e9 ("drm/i915: Force the slow path after a user-write error")
-
--:32: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#32: FILE: drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:1544:
-+					   &urelocs[r-stack].presumed_offset);
- 					             ^
-
-total: 1 errors, 2 warnings, 1 checks, 12 lines checked
+diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+index 28e3d76fa2e6..2f78b147bb2d 100644
+--- a/drivers/gpu/drm/i915/i915_perf.c
++++ b/drivers/gpu/drm/i915/i915_perf.c
+@@ -2963,49 +2963,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+ 		gen8_update_reg_state_unlocked(ce, stream);
+ }
+ 
+-/**
+- * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
+- * @stream: An i915 perf stream
+- * @file: An i915 perf stream file
+- * @buf: destination buffer given by userspace
+- * @count: the number of bytes userspace wants to read
+- * @ppos: (inout) file seek position (unused)
+- *
+- * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
+- * ensure that if we've successfully copied any data then reporting that takes
+- * precedence over any internal error status, so the data isn't lost.
+- *
+- * For example ret will be -ENOSPC whenever there is more buffered data than
+- * can be copied to userspace, but that's only interesting if we weren't able
+- * to copy some data because it implies the userspace buffer is too small to
+- * receive a single record (and we never split records).
+- *
+- * Another case with ret == -EFAULT is more of a grey area since it would seem
+- * like bad form for userspace to ask us to overrun its buffer, but the user
+- * knows best:
+- *
+- *   http://yarchive.net/comp/linux/partial_reads_writes.html
+- *
+- * Returns: The number of bytes copied or a negative error code on failure.
+- */
+-static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
+-				     struct file *file,
+-				     char __user *buf,
+-				     size_t count,
+-				     loff_t *ppos)
+-{
+-	/* Note we keep the offset (aka bytes read) separate from any
+-	 * error status so that the final check for whether we return
+-	 * the bytes read with a higher precedence than any error (see
+-	 * comment below) doesn't need to be handled/duplicated in
+-	 * stream->ops->read() implementations.
+-	 */
+-	size_t offset = 0;
+-	int ret = stream->ops->read(stream, buf, count, &offset);
+-
+-	return offset ?: (ret ?: -EAGAIN);
+-}
+-
+ /**
+  * i915_perf_read - handles read() FOP for i915 perf stream FDs
+  * @file: An i915 perf stream file
+@@ -3031,7 +2988,8 @@ static ssize_t i915_perf_read(struct file *file,
+ {
+ 	struct i915_perf_stream *stream = file->private_data;
+ 	struct i915_perf *perf = stream->perf;
+-	ssize_t ret;
++	size_t offset = 0;
++	int ret;
+ 
+ 	/* To ensure it's handled consistently we simply treat all reads of a
+ 	 * disabled stream as an error. In particular it might otherwise lead
+@@ -3054,13 +3012,12 @@ static ssize_t i915_perf_read(struct file *file,
+ 				return ret;
+ 
+ 			mutex_lock(&perf->lock);
+-			ret = i915_perf_read_locked(stream, file,
+-						    buf, count, ppos);
++			ret = stream->ops->read(stream, buf, count, &offset);
+ 			mutex_unlock(&perf->lock);
+-		} while (ret == -EAGAIN);
++		} while (!offset && !ret);
+ 	} else {
+ 		mutex_lock(&perf->lock);
+-		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
++		ret = stream->ops->read(stream, buf, count, &offset);
+ 		mutex_unlock(&perf->lock);
+ 	}
+ 
+@@ -3071,11 +3028,15 @@ static ssize_t i915_perf_read(struct file *file,
+ 	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
+ 	 * effectively ensures we back off until the next hrtimer callback
+ 	 * before reporting another EPOLLIN event.
++	 * The exception to this is if ops->read() returned -ENOSPC which means
++	 * that more OA data is available than could fit in the user provided
++	 * buffer. In this case we want the next poll() call to not block.
+ 	 */
+-	if (ret >= 0 || ret == -EAGAIN)
++	if (ret != -ENOSPC)
+ 		stream->pollin = false;
+ 
+-	return ret;
++	/* Possible values for ret are 0, -EFAULT, -ENOSPC, -EIO, ... */
++	return offset ?: (ret ?: -EAGAIN);
+ }
+ 
+ static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer)
+-- 
+2.25.2
 
 _______________________________________________
 Intel-gfx mailing list
