@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3AF1996FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 15:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 078C41996FE
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 15:09:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2306E6E117;
-	Tue, 31 Mar 2020 13:08:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5760A6E323;
+	Tue, 31 Mar 2020 13:09:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9B266E117
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 13:08:21 +0000 (UTC)
-IronPort-SDR: ZtPG7K8dMQNAkgBkskzncXuZJnWtGv+FybjkLGw+ui1Uu4ba1c6wd8bwErgCEe8kWxGoJRoYuH
- smxbdAfr8f7g==
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7E76E323
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 13:09:23 +0000 (UTC)
+IronPort-SDR: MZlamVjl2BxKI6KF64TwcqAzDmIcoVExtSMexonUFsVZsWqcNXqxGd08KQTO0kbzp9DYI8mxmU
+ VS2CE9/9GD5A==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2020 06:08:21 -0700
-IronPort-SDR: r2nSJNTZjyImP4LRQkytP03YTuC6Uqz8JV97Rts/FJ6f8RB2TaV69JJe7ASOZHrZgWAJnSPKU/
- aF04VIZ2FP+w==
+ 31 Mar 2020 06:09:22 -0700
+IronPort-SDR: DdGVX40j+lPfGyTKLGGZ97/euhkWZjVwykgF3KSJAdoAwqkmhfvOpvZGLpnAQg66MfRWMJEB+s
+ aGaMUmenCvFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="448672180"
+X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="395486369"
 Received: from gaia.fi.intel.com ([10.237.72.192])
- by fmsmga005.fm.intel.com with ESMTP; 31 Mar 2020 06:08:19 -0700
+ by orsmga004.jf.intel.com with ESMTP; 31 Mar 2020 06:09:21 -0700
 Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id DF3035C0D7B; Tue, 31 Mar 2020 16:06:41 +0300 (EEST)
+ id 369255C0D7B; Tue, 31 Mar 2020 16:07:44 +0300 (EEST)
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200331120502.14713-1-chris@chris-wilson.co.uk>
-References: <20200331120502.14713-1-chris@chris-wilson.co.uk>
-Date: Tue, 31 Mar 2020 16:06:41 +0300
-Message-ID: <87lfngptb2.fsf@gaia.fi.intel.com>
+In-Reply-To: <20200331091459.29179-1-chris@chris-wilson.co.uk>
+References: <20200331091459.29179-1-chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 16:07:44 +0300
+Message-ID: <87imikpt9b.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include a few tracek for
- timeslicing
+Subject: Re: [Intel-gfx] [PATCH 1/4] drm/i915/selftests: Tidy up an error
+ message for live_error_interrupt
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,87 +56,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-> Add a few telltales to see when timeslicing is being enabled.
+> Since we don't wait for the error interrupt to reset, restart and then
+> complete the guilty request, clean up the error messages.
 >
 > Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
 Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/gt/intel_lrc.c   | 20 +++++++++++++++++---
->  drivers/gpu/drm/i915/i915_scheduler.c |  6 ++++++
->  2 files changed, 23 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/gt/selftest_lrc.c | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> index 744737e57d1d..55bf3cdf3b38 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-> @@ -1814,16 +1814,25 @@ active_timeslice(const struct intel_engine_cs *engine)
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> index d3e163c93e22..b929e52a8f5a 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
+> @@ -649,9 +649,9 @@ static int live_error_interrupt(void *arg)
+>  						 error_repr(p->error[i]));
 >  
->  static void set_timeslice(struct intel_engine_cs *engine)
->  {
-> +	unsigned long duration;
-> +
->  	if (!intel_engine_has_timeslices(engine))
->  		return;
->  
-> -	set_timer_ms(&engine->execlists.timer, active_timeslice(engine));
-> +	duration = active_timeslice(engine);
-> +	ENGINE_TRACE(engine, "bump timeslicing, interval:%lu", duration);
-> +
-> +	set_timer_ms(&engine->execlists.timer, duration);
->  }
->  
->  static void start_timeslice(struct intel_engine_cs *engine)
->  {
->  	struct intel_engine_execlists *execlists = &engine->execlists;
-> -	int prio = queue_prio(execlists);
-> +	const int prio = queue_prio(execlists);
-> +	unsigned long duration;
-> +
-> +	if (!intel_engine_has_timeslices(engine))
-> +		return;
->  
->  	WRITE_ONCE(execlists->switch_priority_hint, prio);
->  	if (prio == INT_MIN)
-> @@ -1832,7 +1841,12 @@ static void start_timeslice(struct intel_engine_cs *engine)
->  	if (timer_pending(&execlists->timer))
->  		return;
->  
-> -	set_timer_ms(&execlists->timer, timeslice(engine));
-> +	duration = timeslice(engine);
-> +	ENGINE_TRACE(engine,
-> +		     "start timeslicing, prio:%d, interval:%lu",
-> +		     prio, duration);
-> +
-> +	set_timer_ms(&execlists->timer, duration);
->  }
->  
->  static void record_preemption(struct intel_engine_execlists *execlists)
-> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-> index 68b06a7ba667..065176cb0258 100644
-> --- a/drivers/gpu/drm/i915/i915_scheduler.c
-> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
-> @@ -209,6 +209,12 @@ static void kick_submission(struct intel_engine_cs *engine,
->  	if (!inflight)
->  		goto unlock;
->  
-> +	ENGINE_TRACE(engine,
-> +		     "bumping queue-priority-hint:%d for rq:%llx:%lld, inflight:%llx:%lld prio %d\n",
-> +		     prio,
-> +		     rq->fence.context, rq->fence.seqno,
-> +		     inflight->fence.context, inflight->fence.seqno,
-> +		     inflight->sched.attr.priority);
->  	engine->execlists.queue_priority_hint = prio;
->  
->  	/*
+>  				if (!i915_request_started(client[i])) {
+> -					pr_debug("%s: %s request not stated!\n",
+> -						 engine->name,
+> -						 error_repr(p->error[i]));
+> +					pr_err("%s: %s request not started!\n",
+> +					       engine->name,
+> +					       error_repr(p->error[i]));
+>  					err = -ETIME;
+>  					goto out;
+>  				}
+> @@ -659,9 +659,10 @@ static int live_error_interrupt(void *arg)
+>  				/* Kick the tasklet to process the error */
+>  				intel_engine_flush_submission(engine);
+>  				if (client[i]->fence.error != p->error[i]) {
+> -					pr_err("%s: %s request completed with wrong error code: %d\n",
+> +					pr_err("%s: %s request (%s) with wrong error code: %d\n",
+>  					       engine->name,
+>  					       error_repr(p->error[i]),
+> +					       i915_request_completed(client[i]) ? "completed" : "running",
+>  					       client[i]->fence.error);
+>  					err = -EINVAL;
+>  					goto out;
 > -- 
 > 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
