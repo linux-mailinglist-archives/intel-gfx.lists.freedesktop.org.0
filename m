@@ -2,44 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C2E11988CD
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 02:20:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 758E71988D8
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 02:25:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B7646E506;
-	Tue, 31 Mar 2020 00:20:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A266E507;
+	Tue, 31 Mar 2020 00:24:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7112A6E506
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 00:20:53 +0000 (UTC)
-IronPort-SDR: jCek0qbeVwI8nl4UQT5ONB/tkqQxcrlDwdltknrakpe8TDFbhqjeRVsYCH3ywL5E4bmPVnzwQu
- 48qOvFRi61zg==
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11A9C6E507;
+ Tue, 31 Mar 2020 00:24:57 +0000 (UTC)
+IronPort-SDR: XUmbojtpybORhtTgUikPyJ6C0Y18HhveS682Ia+zrnJXWkDdqmcHzAlQczrkIxD4TVTroFo73d
+ +lNgO7nRoqgw==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2020 17:20:52 -0700
-IronPort-SDR: jLaWF66M956bGxOQFMLE89GmW0zp1CgwRXlXYo0RCniAla1Lu8gDusROiIBz1X1d6rz9p5b7S2
- PPz/zW86QuFQ==
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2020 17:24:56 -0700
+IronPort-SDR: KH3SHm0aQp34+2Z5Lh6YxYWeB1LUtsIEB8Rv1L0KDNbH4BXfMDxzP6uuXBPK/4qv5QJiB0X+kM
+ CWfpUMxtaddQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,326,1580803200"; d="scan'208";a="395310262"
+X-IronPort-AV: E=Sophos;i="5.72,326,1580803200"; d="scan'208";a="327912934"
 Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
  ([10.165.21.211])
- by orsmga004.jf.intel.com with ESMTP; 30 Mar 2020 17:20:52 -0700
-Date: Mon, 30 Mar 2020 17:22:50 -0700
+ by orsmga001.jf.intel.com with ESMTP; 30 Mar 2020 17:24:56 -0700
+Date: Mon, 30 Mar 2020 17:26:54 -0700
 From: Manasi Navare <manasi.d.navare@intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Message-ID: <20200331002250.GA6703@intel.com>
-References: <20200319215119.GA11219@intel.com>
- <20200324051111.29398-1-animesh.manna@intel.com>
- <20200327184503.GB22190@intel.com>
- <2a3969f3-332c-99e4-a153-e0eb78ae0540@intel.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Message-ID: <20200331002654.GB6703@intel.com>
+References: <20200325012201.11376-1-manasi.d.navare@intel.com>
+ <20200325012201.11376-2-manasi.d.navare@intel.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <2a3969f3-332c-99e4-a153-e0eb78ae0540@intel.com>
+In-Reply-To: <20200325012201.11376-2-manasi.d.navare@intel.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
-Subject: Re: [Intel-gfx] [PATCH v7 6/7] drm/i915/dp: Register definition for
- DP compliance register
+Subject: Re: [Intel-gfx] [PATCH v2 2/2] drm/i915/dp: Attach and set drm
+ connector VRR property
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,87 +50,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Mar 30, 2020 at 09:31:44AM +0530, Manna, Animesh wrote:
-> 
-> On 28-03-2020 00:15, Manasi Navare wrote:
-> >On Tue, Mar 24, 2020 at 10:41:11AM +0530, Animesh Manna wrote:
-> >>DP_COMP_CTL and DP_COMP_PAT register used to program DP
-> >>compliance pattern.
-> >>
-> >>v1: Initial patch.
-> >>v2: used pipe instead of port in macro definition. [Manasi]
-> >>v3: used trans_offset for offset calculation. [Manasi]
-> >>v4: Used MMIO_PIPE for evenly spaced register offset instead
-> >>MMIO_PIPE2. [Ville]
-> >>
-> >>Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
-> >>Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> >>---
-> >>  drivers/gpu/drm/i915/i915_reg.h | 18 ++++++++++++++++++
-> >>  1 file changed, 18 insertions(+)
-> >>
-> >>diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> >>index 309cb7d96b35..465862ed2cf8 100644
-> >>--- a/drivers/gpu/drm/i915/i915_reg.h
-> >>+++ b/drivers/gpu/drm/i915/i915_reg.h
-> >>@@ -9792,6 +9792,24 @@ enum skl_power_gate {
-> >>  #define  DDI_BUF_BALANCE_LEG_ENABLE	(1 << 31)
-> >>  #define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
-> >>+/* DDI DP Compliance Control */
-> >>+#define _DDI_DP_COMP_CTL_A			0x605F0
-> >>+#define _DDI_DP_COMP_CTL_B			0x615F0
-> >>+#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
-> >This looks good now.
-> >
-> >>+#define   DDI_DP_COMP_CTL_ENABLE		(1 << 31)
-> >>+#define   DDI_DP_COMP_CTL_D10_2			(0 << 28)
-> >>+#define   DDI_DP_COMP_CTL_SCRAMBLED_0		(1 << 28)
-> >>+#define   DDI_DP_COMP_CTL_PRBS7			(2 << 28)
-> >>+#define   DDI_DP_COMP_CTL_CUSTOM80		(3 << 28)
-> >>+#define   DDI_DP_COMP_CTL_HBR2			(4 << 28)
-> >>+#define   DDI_DP_COMP_CTL_SCRAMBLED_1		(5 << 28)
-> >>+#define   DDI_DP_COMP_CTL_HBR2_RESET		(0xFC << 0)
-> >>+
-> >>+/* DDI DP Compliance Pattern */
-> >>+#define _DDI_DP_COMP_PAT_A			0x605F4
-> >>+#define _DDI_DP_COMP_PAT_B			0x615F4
-> >>+#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
-> >I still dont understand why we need to use that i argument here and why cant just pipe give us the desired offset
-> >with _MMIO_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) ?
-> >
-> >IMO we should be able to use the above since even here the registers are evenly offseted (0x605F4, 0x615F4, 0x62F54, 0x63F54)
-> 
-> The offset you mentioned above is for respective pipe A,B,C,D. How we can write 80 bit custom pattern in it? For pipe A, need to write 0x605F4, 0x605F8, 0x605FC for writing 80 bit .. rt?
->
-
-Ah okay its for making sure we write 32 bits at a time, got it thanks.
-
-With that
-
-Reviewed-by: Manasi Navare <manasi.d.navare@intel.com>
+@Jani @Ville, this is the one we had discussed on IRC, could you
+take a look at this patch?
 
 Manasi
- 
-> Regards,
-> Animesh
-> 
-> >
-> >Regards
-> >Manasi
-> >
-> >>+
-> >>  /* Sideband Interface (SBI) is programmed indirectly, via
-> >>   * SBI_ADDR, which contains the register offset; and SBI_DATA,
-> >>   * which contains the payload */
-> >>-- 
-> >>2.24.0
-> >>
+
+On Tue, Mar 24, 2020 at 06:22:01PM -0700, Manasi Navare wrote:
+> From: Aditya Swarup <aditya.swarup@intel.com>
+> =
+
+> This function sets the VRR property for connector based
+> on the platform support, EDID monitor range and DP sink
+> DPCD capability of outputing video without msa
+> timing information.
+> =
+
+> v2:
+> * Just set this in intel_dp_get_modes instead of new hook (Jani)
+> =
+
+> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Aditya Swarup <aditya.swarup@intel.com>
+> Signed-off-by: Manasi Navare <manasi.d.navare@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index ef2e06e292d5..95db4e783893 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5843,6 +5843,23 @@ intel_dp_force(struct drm_connector *connector)
+>  	intel_display_power_put(dev_priv, aux_domain, wakeref);
+>  }
+>  =
+
+> +static bool intel_dp_is_vrr_capable(struct drm_connector *connector)
+> +{
+> +	struct intel_dp *intel_dp =3D intel_attached_dp(to_intel_connector(conn=
+ector));
+> +	const struct drm_display_info *info =3D &connector->display_info;
+> +	struct drm_i915_private *dev_priv =3D to_i915(connector->dev);
+> +
+> +	/*
+> +	 * DP Sink is capable of Variable refresh video timings if
+> +	 * Ignore MSA bit is set in DPCD.
+> +	 * EDID monitor range also should be atleast 10 for reasonable
+> +	 * Adaptive sync/ VRR end user experience.
+> +	 */
+> +	return INTEL_GEN(dev_priv) >=3D 12 &&
+> +		drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd) &&
+> +		info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
+> +}
+> +
+>  static int intel_dp_get_modes(struct drm_connector *connector)
+>  {
+>  	struct intel_connector *intel_connector =3D to_intel_connector(connecto=
+r);
+> @@ -5853,6 +5870,10 @@ static int intel_dp_get_modes(struct drm_connector=
+ *connector)
+>  		int ret =3D intel_connector_update_modes(connector, edid);
+>  		if (ret)
+>  			return ret;
+> +
+> +		if (intel_dp_is_vrr_capable(connector))
+> +			drm_connector_set_vrr_capable_property(connector,
+> +							       true);
+>  	}
+>  =
+
+>  	/* if eDP has no EDID, fall back to fixed mode */
+> @@ -6880,6 +6901,9 @@ intel_dp_add_properties(struct intel_dp *intel_dp, =
+struct drm_connector *connect
+>  		connector->state->scaling_mode =3D DRM_MODE_SCALE_ASPECT;
+>  =
+
+>  	}
+> +
+> +	if (INTEL_GEN(dev_priv) >=3D 12)
+> +		drm_connector_attach_vrr_capable_property(connector);
+>  }
+>  =
+
+>  static void intel_dp_init_panel_power_timestamps(struct intel_dp *intel_=
+dp)
+> -- =
+
+> 2.19.1
+> =
+
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
