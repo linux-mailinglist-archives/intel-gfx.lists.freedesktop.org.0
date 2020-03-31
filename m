@@ -1,39 +1,31 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C29B19A0FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 23:44:02 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34D8B19A12C
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 23:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04F9D6E89E;
-	Tue, 31 Mar 2020 21:44:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86F206E34C;
+	Tue, 31 Mar 2020 21:47:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 396 seconds by postgrey-1.36 at gabe;
- Tue, 31 Mar 2020 21:43:59 UTC
-Received: from 8.mo179.mail-out.ovh.net (8.mo179.mail-out.ovh.net
- [46.105.75.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 199F16E89E
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 21:43:59 +0000 (UTC)
-Received: from player695.ha.ovh.net (unknown [10.110.115.173])
- by mo179.mail-out.ovh.net (Postfix) with ESMTP id 983621620D4
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 23:37:20 +0200 (CEST)
-Received: from etezian.org (213-243-141-64.bb.dnainternet.fi [213.243.141.64])
- (Authenticated sender: andi@etezian.org)
- by player695.ha.ovh.net (Postfix) with ESMTPSA id 0B49510DD97C3;
- Tue, 31 Mar 2020 21:37:15 +0000 (UTC)
-Date: Wed, 1 Apr 2020 00:37:14 +0300
-From: Andi Shyti <andi@etezian.org>
-To: Chris Wilson <chris@chris-wilson.co.uk>
-Message-ID: <20200331213714.GD26946@jack.zhora.eu>
-References: <20200331162150.3635-1-chris@chris-wilson.co.uk>
+Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD71C6E34C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 21:47:13 +0000 (UTC)
+X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
+ x-ip-name=78.156.65.138; 
+Received: from localhost (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
+ 20757661-1500050 for multiple; Tue, 31 Mar 2020 22:46:59 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200331162150.3635-1-chris@chris-wilson.co.uk>
-X-Ovh-Tracer-Id: 13262819428621402633
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduhedrtddtgddufedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvffukfhfgggtuggjsehttdertddttddvnecuhfhrohhmpeetnhguihcuufhhhihtihcuoegrnhguihesvghtvgiiihgrnhdrohhrgheqnecukfhppedtrddtrddtrddtpddvudefrddvgeefrddugedurdeigeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrheileehrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprghnughisegvthgviihirghnrdhorhhgpdhrtghpthhtohepihhnthgvlhdqghhfgieslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+In-Reply-To: <20200331213714.GD26946@jack.zhora.eu>
+References: <20200331162150.3635-1-chris@chris-wilson.co.uk>
+ <20200331213714.GD26946@jack.zhora.eu>
+From: Chris Wilson <chris@chris-wilson.co.uk>
+To: Andi Shyti <andi@etezian.org>
+Message-ID: <158569121875.5852.2944993465722614214@build.alporthouse.com>
+User-Agent: alot/0.8.1
+Date: Tue, 31 Mar 2020 22:46:58 +0100
 Subject: Re: [Intel-gfx] [PATCH] drm/i915/gem: Ignore readonly failures when
  updating relocs
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -54,28 +46,32 @@ Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Chris,
+Quoting Andi Shyti (2020-03-31 22:37:14)
+> Hi Chris,
+> 
+> > If the user passes in a readonly reloc[], by the time we notice we have
+> > already commited to modifying the execobjects, or have indeed done so
+> > already. Reporting the failure just compounds the issue as we have no
+> > second pass to fall back to anymore.
+> 
+> It's also written in the comment, btw.
+> 
+> > Testcase: igt/gem_exec_reloc/readonly
+> 
+> if one day we will change igt, we can't fix this commit.
 
-> If the user passes in a readonly reloc[], by the time we notice we have
-> already commited to modifying the execobjects, or have indeed done so
-> already. Reporting the failure just compounds the issue as we have no
-> second pass to fall back to anymore.
+Heh, I'm old, I've been using this from the inception of igt even though
+it's not formalized anywhere. All it is is a clue that there is some
+code somewhere that exercises this patch in some way.
 
-It's also written in the comment, btw.
-
-> Testcase: igt/gem_exec_reloc/readonly
-
-if one day we will change igt, we can't fix this commit.
-
-> Fixes: 7dc8f1143778 ("drm/i915/gem: Drop relocation slowpath")
-> References: fddcd00a49e9 ("drm/i915: Force the slow path after a user-write error")
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-
-Reviewed-by: Andi Shyti <andi.shyti@intel.com>
-
-Andi
+And short of including the test code in the patch... Hey wait that's what
+selftests are so -- only execbuf2 is not amenable to unit testing atm, or
+at least no effect has been spent doing so. A new interface would be
+built around testing, but we might still struggle to create valid user
+addresses. I think there's a way to do so with set_fs(USER_DS) but I am
+not sure. Or we use usermodehelper to wrap the testcode and run it from
+userspace but included as part of the driver sources.
+-Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
