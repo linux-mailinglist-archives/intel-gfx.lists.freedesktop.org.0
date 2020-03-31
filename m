@@ -2,31 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37EDA199927
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 17:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F25F199935
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 17:07:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11BA46E844;
-	Tue, 31 Mar 2020 15:03:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F55F6E83E;
+	Tue, 31 Mar 2020 15:07:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6C44D6E842;
- Tue, 31 Mar 2020 15:03:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 658E4A0071;
- Tue, 31 Mar 2020 15:03:41 +0000 (UTC)
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com
+ [IPv6:2607:f8b0:4864:20::942])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8F256E83E
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 15:07:49 +0000 (UTC)
+Received: by mail-ua1-x942.google.com with SMTP id l18so7794697uak.4
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 08:07:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=VEnIRN7gs5winkgBmG4qJkOevSACutGdIkW1fdG63F8=;
+ b=at0tpdqyNOMKLLAgdbB721uamkoaTjrVaOtlLjFfCFpU6/eJ3EwNFb2dYeWDbvgAyP
+ ERsJXqZtpvKqpoyEWKoItRKTohB8NwYPOdu9ATwKiOWcCpxFQlkKDy4j56bXm5xuxw4I
+ 3S6f4xEMXBlPuomTDSquQ7pco1n0xXPkvn0cezogPBkhZ0uGbgtCpVvizGlNgYp+zEYo
+ mAnUCNKN6VRhDbqDojBXYczPt5SlI6DcxjTK53vP7PI+L30owlq6aZmveV+sUJhZYRdq
+ D89w+IXm76aAIOf/JZH0bu0RHJMD+Gixh+oQroTuukO+LjJYgLb0c6syR26TLOn1zSLJ
+ 9RVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=VEnIRN7gs5winkgBmG4qJkOevSACutGdIkW1fdG63F8=;
+ b=icWe/YAvCLkq/2z5d0RU5yEfxHuMcW9NKXJKJzGTyp4k2eu90RGBoIokdYIY/WdmVO
+ qUvzDd8AIZGiAUDCSsAe91bBcNzwaDxQSupu41M9pV8YL9FiYVUSbN8Y3uj9Ss5yrF3N
+ 24CNy8ERBTUm8YTVjGbBXQ99TLBbPeXxV3dwFPVTGwbU8vYGp+JleEabb5/D5b4tbzfg
+ Pc7mzkl/rxo6UNClY4j/BJdhdnpnpZb06mlQj9UWcH21Thjn8GQhSyLxLKbNcdawGUSW
+ o+4LFagbaBWugB8hWqueSKkSZAK8R6CI4Gj5vkODDcxeqMGxUnm85clLFJTJ4tVUQ1Vj
+ s4kQ==
+X-Gm-Message-State: AGi0PuYw49JAGUekJHCVxerl1x1S4Nv/1vLWLZPguJbdMC4h8xWCRZR5
+ NAReTLrx4X9YTMoXdXIWPFa3kEZK9DoseWSkJCo=
+X-Google-Smtp-Source: APiQypLIBkM7sUv/g3FHK9Oj6OA0PuadczzwZDyh5gsNmWlTHJ3APUj0tNFmtEb3FoYLBjHDquAEVL7zpJUkXi6Dymo=
+X-Received: by 2002:ab0:2085:: with SMTP id r5mr12497147uak.95.1585667269071; 
+ Tue, 31 Mar 2020 08:07:49 -0700 (PDT)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chris Wilson" <chris@chris-wilson.co.uk>
-Date: Tue, 31 Mar 2020 15:03:41 -0000
-Message-ID: <158566702138.5566.7820881410526217115@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20200331101635.16897-1-chris@chris-wilson.co.uk>
-In-Reply-To: <20200331101635.16897-1-chris@chris-wilson.co.uk>
-Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
- =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Add_request_t?=
- =?utf-8?q?hroughput_measurement_to_perf?=
+References: <20200331124202.4497-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200331124202.4497-1-chris@chris-wilson.co.uk>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Tue, 31 Mar 2020 16:07:21 +0100
+Message-ID: <CAM0jSHPOY4So442J1O0zW75cBwM4rCPm1CN0YVOMLMJhU=uhfw@mail.gmail.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Fill all the unused space in
+ the GGTT
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,102 +61,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
+Cc: Intel Graphics Development <intel-gfx@lists.freedesktop.org>,
+ Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 31 Mar 2020 at 13:42, Chris Wilson <chris@chris-wilson.co.uk> wrote:
+>
+> When we allocate space in the GGTT we may have to allocate a larger
+> region than will be populated by the object to accommodate fencing. Make
+> sure that this space beyond the end of the buffer points safely into
+> scratch space, in case the HW tries to access it anyway (e.g. fenced
+> access to the last tile row).
+>
+> Reported-by: Imre Deak <imre.deak@intel.com>
+> References: https://gitlab.freedesktop.org/drm/intel/-/issues/1554
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Imre Deak <imre.deak@intel.com>
+> Cc: stable@vger.kernel.org
 
-Series: series starting with [1/2] drm/i915/selftests: Add request throughput measurement to perf
-URL   : https://patchwork.freedesktop.org/series/75301/
-State : failure
+Do we not need similar treatment for gen6? It seems to also play
+tricks with the nop clear range, or did we disable gen7 ppgtt in the
+end?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_8223 -> Patchwork_17152
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_17152 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_17152, please notify your bug team to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/index.html
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_17152:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-icl-guc:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8223/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
-
-  * igt@runner@aborted:
-    - fi-icl-guc:         NOTRUN -> [FAIL][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-icl-guc/igt@runner@aborted.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_17152 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_chamelium@common-hpd-after-suspend:
-    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([IGT#4])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8223/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
-
-  
-  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
-
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (5): fi-hsw-peppy fi-skl-guc fi-bwr-2160 fi-kbl-7500u fi-ivb-3770 
-  Missing    (6): fi-hsw-4200u fi-ctg-p8600 fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
-
-
-Build changes
--------------
-
-  * CI: CI-20190529 -> None
-  * Linux: CI_DRM_8223 -> Patchwork_17152
-
-  CI-20190529: 20190529
-  CI_DRM_8223: 1d63647b277eabde6a0a6f1b68b6569482ff4063 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_5548: d9e70dc1b35633b7d5c81cbfa165e331189eb260 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
-  Patchwork_17152: 4542d6196afe80c755c038e4b7966acc72f32b0d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-== Linux commits ==
-
-4542d6196afe drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
-94cc68dbc29b drm/i915/selftests: Add request throughput measurement to perf
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/index.html
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
