@@ -2,58 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19081198D3B
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 09:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BDB198D78
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 09:52:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E822A6E2BC;
-	Tue, 31 Mar 2020 07:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4931B6E59B;
+	Tue, 31 Mar 2020 07:52:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com
- [IPv6:2a00:1450:4864:20::243])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C236E2BC;
- Tue, 31 Mar 2020 07:42:13 +0000 (UTC)
-Received: by mail-lj1-x243.google.com with SMTP id r24so20951834ljd.4;
- Tue, 31 Mar 2020 00:42:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:in-reply-to:references
- :mime-version; bh=N9QpK/ItyTAxowsy1TIOtOpzig8vysrETNeagGxVa6Q=;
- b=W8roYyTU85e6yzrj/8C8bUmC4uXnu4X+2BNC/SWemwpUDMfLBxmujxS+Ni3KALrR8w
- 3sBPDwoty5Pcmr2cA8XNXq33rlnViJ8+B8MmtDNKZ0HvDv1B75gN3vA1mvKq26qHGxU3
- jNYE5l7ztKu2Xo7SnGsxXDvSVmlGFBmY9VI1BpTykV9Y5hPY4k10Rl9Cskuwg+aw9gWe
- zsE/ix+yqun11YwKI7CM9QU1/1iTk6kauCMFmdrqOGtgjx7cmR0x/cRyn/yinvf2OAdz
- P7brYNFoSqM0PI0LpL2alBeP4tLGoG9QcQvxty+35OhDzXNlXLfnALUxM0gWEe6BCLVt
- OHgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
- :references:mime-version;
- bh=N9QpK/ItyTAxowsy1TIOtOpzig8vysrETNeagGxVa6Q=;
- b=P0DNxVPbj4LPTkBl/z6aRUTU7wcdNcSd1S56gpjenfMquFRNKA6HvYoi7TSinkN52v
- N/hUdFKq9HbLkNE/7TovwY9vof2wON5GOO5WqAHnoaD09SirDtHBKv7KjiwL4iWPxj2q
- KWcCcs1KaZ+OsLQ6o5VyL09ZbE9Cke9NHKHKQV0lpjunvytlA+WVgLGsBcOgF45Pojlj
- 1Ui3kjQ0hdDv3pqJOh1HcITVzdiI6NWsHpHoo4a7yNVW41GlGuXXugydq1zHV7vTOtPz
- jL3xzVWf6OVLKNOue3sWcpHSaYgsW42JvqSfGtC8A32WRzzK+hy8IkGBISryxX82C0X1
- 1Stg==
-X-Gm-Message-State: AGi0PuZaJ7qbvvfviBIShj6bNQiub5yegEbPuuAowls79oKaOXpELAO1
- HbzPdfWQRKGgUqPyRntVPNA=
-X-Google-Smtp-Source: APiQypKgm5ZX7fHZoqpqt1huzOGegg2k+hwd8YARG2GGYrtejQX1Vg6cZ6vJUU7sEwzKnP4M9p4flw==
-X-Received: by 2002:a2e:2a03:: with SMTP id q3mr9313397ljq.216.1585640531380; 
- Tue, 31 Mar 2020 00:42:11 -0700 (PDT)
-Received: from eldfell.localdomain ([194.136.85.206])
- by smtp.gmail.com with ESMTPSA id m12sm8025450lji.50.2020.03.31.00.42.10
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 31 Mar 2020 00:42:11 -0700 (PDT)
-Date: Tue, 31 Mar 2020 10:41:59 +0300
-From: Pekka Paalanen <ppaalanen@gmail.com>
-To: Pankaj Bharadiya <pankaj.laxminarayan.bharadiya@intel.com>
-Message-ID: <20200331104159.74612c6f@eldfell.localdomain>
-In-Reply-To: <E3R30o5qjRxRLwfN8lAXK7vOlsZquoDyWBCyOM-vMFydzPZRwt7eooF86fBNKECvvLAzSsFWC-jWfu5RXyxIIAAwJmcGS3HULQvvYO8m0X4=@emersion.fr>
-References: <20200330183857.13270-1-pankaj.laxminarayan.bharadiya@intel.com>
- <E3R30o5qjRxRLwfN8lAXK7vOlsZquoDyWBCyOM-vMFydzPZRwt7eooF86fBNKECvvLAzSsFWC-jWfu5RXyxIIAAwJmcGS3HULQvvYO8m0X4=@emersion.fr>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAF96E59B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 07:52:33 +0000 (UTC)
+IronPort-SDR: dZ1L6LvM4AzHjkBkGYrikbkDMoxC5sPpJ9JuMPyvSbox5SLbvdLh92XfJ3HklcOqOB1hFJ2JxS
+ yfEjEVnKMqcw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2020 00:52:32 -0700
+IronPort-SDR: NMvfMtsVaoRpw79KP6Qxyrh2MsAEblt7DnAdPTsoME/FrKDzy0hetETWsreWpPMrpFWlJljDrw
+ 1IFjw7LbsHKA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="267194800"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by orsmga002.jf.intel.com with ESMTP; 31 Mar 2020 00:52:31 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id 47ADF5C0D7B; Tue, 31 Mar 2020 10:50:54 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200330234318.30638-1-chris@chris-wilson.co.uk>
+References: <20200330234205.25928-1-chris@chris-wilson.co.uk>
+ <20200330234318.30638-1-chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 10:50:54 +0300
+Message-ID: <87r1x9otcx.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH v3 0/5] Introduce drm scaling filter property
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/execlists: Double check breadcrumb
+ before crying foul
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,78 +49,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Simon Ser <contact@emersion.fr>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "daniels@collabora.com" <daniels@collabora.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Content-Type: multipart/mixed; boundary="===============1428576847=="
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1428576847==
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/e.3EtJf/VLD6KJ.kUi_KInM"; protocol="application/pgp-signature"
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
---Sig_/e.3EtJf/VLD6KJ.kUi_KInM
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+>   process_csb: 0000:00:02.0 bcs0: cs-irq head=4, tail=5
+>   process_csb: 0000:00:02.0 bcs0: csb[5]: status=0x00008002:0x60000020
+>   trace_ports: 0000:00:02.0 bcs0: preempted { ff84:45154! prio 2 }
+>   trace_ports: 0000:00:02.0 bcs0: promote { ff84:45155* prio 2 }
+>   trace_ports: 0000:00:02.0 bcs0: submit { ff84:45156 prio 2 }
+>
+>   process_csb: 0000:00:02.0 bcs0: cs-irq head=5, tail=6
+>   process_csb: 0000:00:02.0 bcs0: csb[6]: status=0x00000018:0x60000020
+>   trace_ports: 0000:00:02.0 bcs0: completed { ff84:45155* prio 2 }
+>   process_csb: 0000:00:02.0 bcs0: ring:{start:0x00178000, head:0928, tail:0928, ctl:00000000, mode:00000200}
+>   process_csb: 0000:00:02.0 bcs0: rq:{start:00178000, head:08b0, tail:08f0, seqno:ff84:45155, hwsp:45156},
+>   process_csb: 0000:00:02.0 bcs0: ctx:{start:00178000, head:e000928, tail:0928},
+>   process_csb: GEM_BUG_ON("context completed before request")
+>
+> In this sequence, we can see that although we have submitted the next
+> request [ff84:45156] to HW (via ELSP[]) it has not yet reported the
+> lite-restore. Instead, we see the completion event of the currently
+> active request [ff85:45155] but at the time of processing that event,
+> the breadcrumb has not yet been written. Though by the time we do print
+> out the debug info, the seqno write of ff85:45156 has landed!
 
-On Mon, 30 Mar 2020 19:30:27 +0000
-Simon Ser <contact@emersion.fr> wrote:
+I see it.
 
-> Hi,
->=20
-> On Monday, March 30, 2020 8:38 PM, Pankaj Bharadiya <pankaj.laxminarayan.=
-bharadiya@intel.com> wrote:
->=20
-> > Userspace patch series link: https://github.com/lrusak/xbmc/pull/24 =20
->=20
-> This pull request is against a fork, not the official Kodi repository.
-> Are there any plans to upstream the change so that users can benefit
-> from it? Is there a reason why this pull request hasn't been opened
-> against the official repo?
+But I have now a more generic confusion about the sequence:
+why would the same context preempt itself?
 
-That is an excellent observation. Merge requests against forks do not
-count:
-https://www.kernel.org/doc/html/latest/gpu/drm-uapi.html#open-source-usersp=
-ace-requirements
+>   trace_ports: 0000:00:02.0 bcs0: preempted { ff84:45154! prio 2 }
+>   trace_ports: 0000:00:02.0 bcs0: promote { ff84:45155* prio 2 }
 
+>
+> Therefore there is a serialisation problem between the seqno writes and
+> CS events, not just between the CS buffer and its head/tail pointers as
+> previously observed on Icelake.
+>
+> This is not a huge problem, as we don't strictly rely on the breadcrumb
+> to determine HW activity, but it may indicate that interrupt delivery is
+> before the seqno write, aka bringing back the plague of missed
+> interrupts from yesteryear. However, there is no indication of this
+> wider problem, so let's just flush the seqno read before reporting an
+> error. If it persists after the fresh read we can worry again.
 
-Thanks,
-pq
+Well you are preempting part of my concerns.
 
---Sig_/e.3EtJf/VLD6KJ.kUi_KInM
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+Still you will have a serialision point now only with debug builds.
+So I assume the rest of the request completion flow is ambivalent of
+intr seqno coherency and we can cope with this is only for debug...
 
------BEGIN PGP SIGNATURE-----
+Being in generic read hwsp path would be expensive and thus overkill?
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAl6C9EcACgkQI1/ltBGq
-qqdCuA/+LzHCFS35Dde8svqqD7u7y5ZYsdWq7IL3umgU8jS7FICLYDeCJNYMQncm
-k+WPvkPvLYLjIRjmjaC3JpDl8wlzuShUdaXku2prnK/CmBmuSS/TYo5S8j+FBUIf
-gPqP4/1weWgmwuUaY5ditOBzQqfTD5KODbZu7jskumDEaZBN2OGVrIkfLimRCIEm
-f3BxdDcBhoi3hH0eYumptkqmCaKFk7XbIR0tzdn+XKinWeJNLTrNkIv7tuUVPyoM
-tqTU4Z6lsua82YPUVCyMpg1XZSfIHwJM85aZWffmtzhtMuTPrPbtdeJyWC+Ly+fV
-arRlFADkz2ev88oObzQMywX1GLhSbTEMFX+J2xC5agl5XQZg24brvjFZy28SIKRo
-XHxztU6dqTCCPHAgATgQPO3wwGaiRoWO8ePQ+D8+NZ560srZPiCljBdtafwRsliW
-5HlM+pWXT+SVh33iVnJaM82261xtb998TBvdLYSVA5zFae1+VGKP2uFjuMORgvLc
-bNPuZcYIcc09D9LMPrsMPiWrnoDQF2HQn0zUsDrRmA63Ixs/cP7C/iH4MpbKJc0u
-PU4VtNv+UjkAWOi0Rw7U1aAkoc1PZI3L42dbU3qYWOnTPR7C6xAraS40jUEE/Gez
-/eAk6UqL8gtA7l3Hm/DISabpkKysGZeonQDgzmqTgfL8FusXcMs=
-=CiKo
------END PGP SIGNATURE-----
+Could we lift the flushing to the non show_debug path to be always
+part of process_csb cycle?
 
---Sig_/e.3EtJf/VLD6KJ.kUi_KInM--
+-Mika
 
---===============1428576847==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+> Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c | 29 ++++++++++++++++++++++-------
+>  1 file changed, 22 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 3d5f3f7677bb..afeca7eb1e3a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -2418,8 +2418,6 @@ static void process_csb(struct intel_engine_cs *engine)
+>  		if (promote) {
+>  			struct i915_request * const *old = execlists->active;
+>  
+> -			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
+> -
+>  			ring_set_paused(engine, 0);
+>  
+>  			/* Point active to the new ELSP; prevent overwriting */
+> @@ -2432,6 +2430,7 @@ static void process_csb(struct intel_engine_cs *engine)
+>  				execlists_schedule_out(*old++);
+>  
+>  			/* switch pending to inflight */
+> +			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
+>  			memcpy(execlists->inflight,
+>  			       execlists->pending,
+>  			       execlists_num_ports(execlists) *
+> @@ -2453,13 +2452,26 @@ static void process_csb(struct intel_engine_cs *engine)
+>  			 * user interrupt and CSB is processed.
+>  			 */
+>  			if (GEM_SHOW_DEBUG() &&
+> -			    !i915_request_completed(*execlists->active) &&
+> -			    !reset_in_progress(execlists)) {
+> -				struct i915_request *rq __maybe_unused =
+> -					*execlists->active;
+> +			    !i915_request_completed(*execlists->active)) {
+> +				struct i915_request *rq = *execlists->active;
+>  				const u32 *regs __maybe_unused =
+>  					rq->context->lrc_reg_state;
+>  
+> +				/*
+> +				 * Flush the breadcrumb before crying foul.
+> +				 *
+> +				 * Since we have hit this on icl and seen the
+> +				 * breadcrumb advance as we print out the debug
+> +				 * info (so the problem corrected itself without
+> +				 * lasting damage), and we know that icl suffers
+> +				 * from missing global observation points in
+> +				 * execlists, presume that affects even more
+> +				 * coherency.
+> +				 */
+> +				mb();
+> +				clflush((void *)READ_ONCE(rq->hwsp_seqno));
+> +				mb();
+> +
+>  				ENGINE_TRACE(engine,
+>  					     "ring:{start:0x%08x, head:%04x, tail:%04x, ctl:%08x, mode:%08x}\n",
+>  					     ENGINE_READ(engine, RING_START),
+> @@ -2480,7 +2492,10 @@ static void process_csb(struct intel_engine_cs *engine)
+>  					     regs[CTX_RING_HEAD],
+>  					     regs[CTX_RING_TAIL]);
+>  
+> -				GEM_BUG_ON("context completed before request");
+> +				/* Still? Declare it caput! */
+> +				if (!i915_request_completed(rq) &&
+> +				    !reset_in_progress(execlists))
+> +					GEM_BUG_ON("context completed before request");
+>  			}
+>  
+>  			execlists_schedule_out(*execlists->active++);
+> -- 
+> 2.20.1
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============1428576847==--
