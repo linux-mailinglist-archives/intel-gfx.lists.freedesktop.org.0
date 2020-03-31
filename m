@@ -2,40 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B70B31998DB
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 16:46:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37EDA199927
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 17:03:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9B5E89CC4;
-	Tue, 31 Mar 2020 14:46:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11BA46E844;
+	Tue, 31 Mar 2020 15:03:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8973689CC4
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 14:46:12 +0000 (UTC)
-IronPort-SDR: 1ZOcYipXIbYN8gRioj+e0Xe0/rLbwt0VX168MD3asLrc49+odyQGU5B/DZaSwCQ3WsKrAgIebZ
- G6U1B2/o1SSw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2020 07:46:09 -0700
-IronPort-SDR: YMs3FS5WwYHaPwMRRrGaDio+07+SLU0c5pLO6aHFalGw+EL10jdOcfVJ3WV9FcxXYYQ28lmphy
- 3vWDzy0p90EQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,328,1580803200"; d="scan'208";a="328104622"
-Received: from gaia.fi.intel.com ([10.237.72.192])
- by orsmga001.jf.intel.com with ESMTP; 31 Mar 2020 07:46:07 -0700
-Received: by gaia.fi.intel.com (Postfix, from userid 1000)
- id D97C45C0D7B; Tue, 31 Mar 2020 17:44:29 +0300 (EEST)
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
-In-Reply-To: <20200331094239.23145-1-chris@chris-wilson.co.uk>
-References: <20200331094239.23145-1-chris@chris-wilson.co.uk>
-Date: Tue, 31 Mar 2020 17:44:29 +0300
-Message-ID: <87d08spos2.fsf@gaia.fi.intel.com>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6C44D6E842;
+ Tue, 31 Mar 2020 15:03:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 658E4A0071;
+ Tue, 31 Mar 2020 15:03:41 +0000 (UTC)
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include the execlists CCID of
- each port in the engine dump
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 15:03:41 -0000
+Message-ID: <158566702138.5566.7820881410526217115@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200331101635.16897-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200331101635.16897-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyXIEZpLkNJLkJBVDogZmFpbHVyZSBmb3Igc2Vy?=
+ =?utf-8?q?ies_starting_with_=5B1/2=5D_drm/i915/selftests=3A_Add_request_t?=
+ =?utf-8?q?hroughput_measurement_to_perf?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,167 +39,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Chris Wilson <chris@chris-wilson.co.uk> writes:
+== Series Details ==
 
-> Since we print out EXECLISTS_STATUS in the dump, also print out the CCID
-> of each context so we can cross check between the two.
->
-> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+Series: series starting with [1/2] drm/i915/selftests: Add request throughput measurement to perf
+URL   : https://patchwork.freedesktop.org/series/75301/
+State : failure
 
-Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+== Summary ==
 
-> ---
->  drivers/gpu/drm/i915/gt/intel_engine_cs.c | 105 ++++++++++++----------
->  1 file changed, 56 insertions(+), 49 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> index dff0bbe9e1a6..b01af08eaaf7 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-> @@ -1221,6 +1221,49 @@ static void print_request(struct drm_printer *m,
->  		   name);
->  }
->  
-> +static struct intel_timeline *get_timeline(struct i915_request *rq)
-> +{
-> +	struct intel_timeline *tl;
-> +
-> +	/*
-> +	 * Even though we are holding the engine->active.lock here, there
-> +	 * is no control over the submission queue per-se and we are
-> +	 * inspecting the active state at a random point in time, with an
-> +	 * unknown queue. Play safe and make sure the timeline remains valid.
-> +	 * (Only being used for pretty printing, one extra kref shouldn't
-> +	 * cause a camel stampede!)
-> +	 */
-> +	rcu_read_lock();
-> +	tl = rcu_dereference(rq->timeline);
-> +	if (!kref_get_unless_zero(&tl->kref))
-> +		tl = NULL;
-> +	rcu_read_unlock();
-> +
-> +	return tl;
-> +}
-> +
-> +static int print_ring(char *buf, int sz, struct i915_request *rq)
-> +{
-> +	int len = 0;
-> +
-> +	if (!i915_request_signaled(rq)) {
-> +		struct intel_timeline *tl = get_timeline(rq);
-> +
-> +		len = scnprintf(buf, sz,
-> +				"ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
-> +				i915_ggtt_offset(rq->ring->vma),
-> +				tl ? tl->hwsp_offset : 0,
-> +				hwsp_seqno(rq),
-> +				DIV_ROUND_CLOSEST_ULL(intel_context_get_total_runtime_ns(rq->context),
-> +						      1000 * 1000));
-> +
-> +		if (tl)
-> +			intel_timeline_put(tl);
-> +	}
-> +
-> +	return len;
-> +}
-> +
->  static void hexdump(struct drm_printer *m, const void *buf, size_t len)
->  {
->  	const size_t rowsize = 8 * sizeof(u32);
-> @@ -1250,27 +1293,6 @@ static void hexdump(struct drm_printer *m, const void *buf, size_t len)
->  	}
->  }
->  
-> -static struct intel_timeline *get_timeline(struct i915_request *rq)
-> -{
-> -	struct intel_timeline *tl;
-> -
-> -	/*
-> -	 * Even though we are holding the engine->active.lock here, there
-> -	 * is no control over the submission queue per-se and we are
-> -	 * inspecting the active state at a random point in time, with an
-> -	 * unknown queue. Play safe and make sure the timeline remains valid.
-> -	 * (Only being used for pretty printing, one extra kref shouldn't
-> -	 * cause a camel stampede!)
-> -	 */
-> -	rcu_read_lock();
-> -	tl = rcu_dereference(rq->timeline);
-> -	if (!kref_get_unless_zero(&tl->kref))
-> -		tl = NULL;
-> -	rcu_read_unlock();
-> -
-> -	return tl;
-> -}
-> -
->  static const char *repr_timer(const struct timer_list *t)
->  {
->  	if (!READ_ONCE(t->expires))
-> @@ -1383,39 +1405,24 @@ static void intel_engine_print_registers(struct intel_engine_cs *engine,
->  			int len;
->  
->  			len = scnprintf(hdr, sizeof(hdr),
-> -					"\t\tActive[%d]: ",
-> -					(int)(port - execlists->active));
-> -			if (!i915_request_signaled(rq)) {
-> -				struct intel_timeline *tl = get_timeline(rq);
-> -
-> -				len += scnprintf(hdr + len, sizeof(hdr) - len,
-> -						 "ring:{start:%08x, hwsp:%08x, seqno:%08x, runtime:%llums}, ",
-> -						 i915_ggtt_offset(rq->ring->vma),
-> -						 tl ? tl->hwsp_offset : 0,
-> -						 hwsp_seqno(rq),
-> -						 DIV_ROUND_CLOSEST_ULL(intel_context_get_total_runtime_ns(rq->context),
-> -								       1000 * 1000));
-> -
-> -				if (tl)
-> -					intel_timeline_put(tl);
-> -			}
-> +					"\t\tActive[%d]: ccid:%08x, ",
-> +					(int)(port - execlists->active),
-> +					upper_32_bits(rq->context->lrc_desc));
-> +			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
->  			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
->  			print_request(m, rq, hdr);
->  		}
->  		for (port = execlists->pending; (rq = *port); port++) {
-> -			struct intel_timeline *tl = get_timeline(rq);
-> -			char hdr[80];
-> -
-> -			snprintf(hdr, sizeof(hdr),
-> -				 "\t\tPending[%d] ring:{start:%08x, hwsp:%08x, seqno:%08x}, rq: ",
-> -				 (int)(port - execlists->pending),
-> -				 i915_ggtt_offset(rq->ring->vma),
-> -				 tl ? tl->hwsp_offset : 0,
-> -				 hwsp_seqno(rq));
-> -			print_request(m, rq, hdr);
-> +			char hdr[160];
-> +			int len;
->  
-> -			if (tl)
-> -				intel_timeline_put(tl);
-> +			len = scnprintf(hdr, sizeof(hdr),
-> +					"\t\tPending[%d]: ccid:%08x, ",
-> +					(int)(port - execlists->pending),
-> +					upper_32_bits(rq->context->lrc_desc));
-> +			len += print_ring(hdr + len, sizeof(hdr) - len, rq);
-> +			scnprintf(hdr + len, sizeof(hdr) - len, "rq: ");
-> +			print_request(m, rq, hdr);
->  		}
->  		rcu_read_unlock();
->  		execlists_active_unlock_bh(execlists);
-> -- 
-> 2.20.1
->
-> _______________________________________________
-> Intel-gfx mailing list
-> Intel-gfx@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+CI Bug Log - changes from CI_DRM_8223 -> Patchwork_17152
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_17152 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_17152, please notify your bug team to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/index.html
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_17152:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-icl-guc:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8223/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-icl-guc/igt@i915_selftest@live@hangcheck.html
+
+  * igt@runner@aborted:
+    - fi-icl-guc:         NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-icl-guc/igt@runner@aborted.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17152 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_chamelium@common-hpd-after-suspend:
+    - fi-cml-u2:          [PASS][4] -> [DMESG-WARN][5] ([IGT#4])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8223/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/fi-cml-u2/igt@kms_chamelium@common-hpd-after-suspend.html
+
+  
+  [IGT#4]: https://gitlab.freedesktop.org/drm/igt-gpu-tools/issues/4
+
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (5): fi-hsw-peppy fi-skl-guc fi-bwr-2160 fi-kbl-7500u fi-ivb-3770 
+  Missing    (6): fi-hsw-4200u fi-ctg-p8600 fi-skl-lmem fi-blb-e6850 fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8223 -> Patchwork_17152
+
+  CI-20190529: 20190529
+  CI_DRM_8223: 1d63647b277eabde6a0a6f1b68b6569482ff4063 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5548: d9e70dc1b35633b7d5c81cbfa165e331189eb260 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17152: 4542d6196afe80c755c038e4b7966acc72f32b0d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+4542d6196afe drm/i915/gt: Yield the timeslice if caught waiting on a user semaphore
+94cc68dbc29b drm/i915/selftests: Add request throughput measurement to perf
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17152/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
