@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0672199C29
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 18:53:40 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC08199C70
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 19:02:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C6C66E862;
-	Tue, 31 Mar 2020 16:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62C886E86A;
+	Tue, 31 Mar 2020 17:02:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86E536E862
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 16:53:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D57616E865;
+ Tue, 31 Mar 2020 17:02:52 +0000 (UTC)
 X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
  x-ip-name=78.156.65.138; 
-Received: from localhost (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP (TLS) id
- 20755206-1500050 for multiple; Tue, 31 Mar 2020 17:53:33 +0100
-MIME-Version: 1.0
-In-Reply-To: <20200331164508.51514-1-andi@etezian.org>
-References: <20200331164508.51514-1-andi@etezian.org>
+Received: from haswell.alporthouse.com (unverified [78.156.65.138]) 
+ by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20755350-1500050 
+ for multiple; Tue, 31 Mar 2020 18:02:45 +0100
 From: Chris Wilson <chris@chris-wilson.co.uk>
-To: Andi Shyti <andi@etezian.org>, Intel GFX <intel-gfx@lists.freedesktop.org>
-Message-ID: <158567361246.5852.4972436644557691162@build.alporthouse.com>
-User-Agent: alot/0.8.1
-Date: Tue, 31 Mar 2020 17:53:32 +0100
-Subject: Re: [Intel-gfx] [PATCH v3] drm/i915/gt: move remaining debugfs
- interfaces into gt
+To: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Mar 2020 18:02:44 +0100
+Message-Id: <20200331170244.1073896-1-chris@chris-wilson.co.uk>
+X-Mailer: git-send-email 2.26.0
+In-Reply-To: <20200331162320.968537-2-chris@chris-wilson.co.uk>
+References: <20200331162320.968537-2-chris@chris-wilson.co.uk>
+MIME-Version: 1.0
+Subject: [Intel-gfx] [PATCH i-g-t v2] i915/gem_exec_reloc: Smoke test
+ parallel relocations
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,62 +39,207 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Cc: igt-dev@lists.freedesktop.org, Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Andi Shyti (2020-03-31 17:45:08)
-> +static void intel_sseu_copy_subslices(const struct sseu_dev_info *sseu,
-> +                                     int slice, u8 *to_mask)
-> +{
-> +       int offset = slice * sseu->ss_stride;
-> +
-> +       memcpy(&to_mask[offset], &sseu->subslice_mask[offset], sseu->ss_stride);
-> +}
+Check we can handle active gpu relocations across multiple engines
+simultaneously without blocking unrelated contexts.
 
-Worth moving all the sseu into their file? There's quite a few of them
-and each quite chunky.
+Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
+---
+ tests/i915/gem_exec_reloc.c | 159 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
 
-> +static int interrupt_info_show(struct seq_file *m, void *data)
+diff --git a/tests/i915/gem_exec_reloc.c b/tests/i915/gem_exec_reloc.c
+index 275cf6ae9..02bda0f29 100644
+--- a/tests/i915/gem_exec_reloc.c
++++ b/tests/i915/gem_exec_reloc.c
+@@ -21,6 +21,9 @@
+  * IN THE SOFTWARE.
+  */
+ 
++#include <signal.h>
++#include <sys/ioctl.h>
++
+ #include "igt.h"
+ #include "igt_dummyload.h"
+ 
+@@ -704,6 +707,159 @@ static void basic_softpin(int fd)
+ 	gem_close(fd, obj[1].handle);
+ }
+ 
++static struct drm_i915_gem_relocation_entry *
++parallel_relocs(int count, unsigned long *out)
++{
++	struct drm_i915_gem_relocation_entry *reloc;
++	unsigned long sz;
++	int i;
++
++	sz = count * sizeof(*reloc);
++	sz = ALIGN(sz, 4096);
++
++	reloc = mmap(0, sz, PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
++	igt_assert(reloc != MAP_FAILED);
++	for (i = 0; i < count; i++) {
++		reloc[i].target_handle = 0;
++		reloc[i].presumed_offset = ~0ull;
++		reloc[i].offset = 8 * i;
++		reloc[i].delta = i;
++		reloc[i].read_domains = I915_GEM_DOMAIN_INSTRUCTION;
++		reloc[i].write_domain = 0;
++	}
++	mprotect(reloc, sz, PROT_READ);
++
++	*out = sz;
++	return reloc;
++}
++
++static uint32_t __batch_create(int i915, uint32_t offset)
++{
++	const uint32_t bbe = MI_BATCH_BUFFER_END;
++	uint32_t handle;
++
++	handle = gem_create(i915, ALIGN(offset + 4, 4096));
++	gem_write(i915, handle, offset, &bbe, sizeof(bbe));
++
++	return handle;
++}
++
++static uint32_t batch_create(int i915)
++{
++	return __batch_create(i915, 0);
++}
++
++static int __execbuf(int i915, struct drm_i915_gem_execbuffer2 *execbuf)
++{
++	int err;
++
++	err = 0;
++	if (ioctl(i915, DRM_IOCTL_I915_GEM_EXECBUFFER2, execbuf)) {
++		err = -errno;
++		igt_assume(err);
++	}
++
++	errno = 0;
++	return err;
++}
++
++static void sighandler(int sig)
++{
++}
++
++static void parallel_child(int i915,
++			   const struct intel_execution_engine2 *engine,
++			   struct drm_i915_gem_relocation_entry *reloc,
++			   uint32_t common)
++{
++	igt_spin_t *spin = __igt_spin_new(i915, .engine = engine->flags);
++	struct drm_i915_gem_exec_object2 reloc_target = {
++		.handle = gem_create(i915, 32 * 1024 * 8),
++		.relocation_count = 32 * 1024,
++		.relocs_ptr = to_user_pointer(reloc),
++	};
++	struct drm_i915_gem_exec_object2 obj[3] = {
++		reloc_target,
++		{ .handle = common },
++		spin->obj[1],
++	};
++	struct drm_i915_gem_execbuffer2 execbuf = {
++		.buffers_ptr = to_user_pointer(obj),
++		.buffer_count = ARRAY_SIZE(obj),
++		.flags = engine->flags | I915_EXEC_HANDLE_LUT,
++	};
++	struct sigaction act = {
++		.sa_handler = sighandler,
++	};
++	unsigned long count = 0;
++
++	sigaction(SIGINT, &act, NULL);
++	for (;;) {
++		int err = __execbuf(i915, &execbuf);
++		if (err == -EINTR)
++			break;
++
++		igt_assert_eq(err, 0);
++		count++;
++	}
++
++	igt_info("%s: count %lu\n", engine->name, count);
++	igt_spin_free(i915, spin);
++}
++
++static void kill_children(int sig)
++{
++	signal(sig, SIG_IGN);
++	kill(-getpgrp(), SIGINT);
++	signal(sig, SIG_DFL);
++}
++
++static void parallel(int i915)
++{
++	const struct intel_execution_engine2 *e;
++	struct drm_i915_gem_relocation_entry *reloc;
++	uint32_t common = gem_create(i915, 4096);
++	uint32_t batch = batch_create(i915);
++	unsigned long reloc_sz;
++	uint32_t ctx;
++
++	reloc = parallel_relocs(32 * 1024, &reloc_sz);
++
++	__for_each_physical_engine(i915, e) {
++		igt_fork(child, 1)
++			parallel_child(i915, e, reloc, common);
++	}
++	sleep(2);
++
++	if (gem_scheduler_enabled(i915)) {
++		uint32_t ctx = gem_context_clone_with_engines(i915, 0);
++
++		__for_each_physical_engine(i915, e) {
++			struct drm_i915_gem_exec_object2 obj[2] = {
++				{ .handle = common },
++				{ .handle = batch },
++			};
++			struct drm_i915_gem_execbuffer2 execbuf = {
++				.buffers_ptr = to_user_pointer(obj),
++				.buffer_count = ARRAY_SIZE(obj),
++				.flags = e->flags,
++				.rsvd1 = ctx,
++			};
++			gem_execbuf(i915, &execbuf);
++		}
++
++		gem_context_destroy(i915, ctx);
++	}
++	gem_sync(i915, batch);
++	gem_close(i915, batch);
++
++	kill_children(SIGINT);
++	igt_waitchildren();
++
++	gem_close(i915, common);
++	munmap(reloc, reloc_sz);
++}
++
+ igt_main
+ {
+ 	const struct intel_execution_engine2 *e;
+@@ -826,6 +982,9 @@ igt_main
+ 		}
+ 	}
+ 
++	igt_subtest("basic-parallel")
++		parallel(fd);
++
+ 	igt_fixture
+ 		close(fd);
+ }
+-- 
+2.26.0
 
-And if we start there, we might end up with debugfs_gt_irq.c as well?
-(Not that I see any use for this debugfs info :)
-
-> +static int reset_get(void *data, u64 *val)
-> +{
-> +       struct intel_gt *gt = data;
-> +       int ret = intel_gt_terminally_wedged(gt);
-> +
-> +       switch (ret) {
-> +       case -EIO:
-> +               *val = 1;
-> +               return 0;
-> +       case 0:
-> +               *val = 0;
-> +               return 0;
-> +       default:
-> +               return ret;
-> +       }
-
-reset_get? Ok if you document it as reporting wedged status :)
-
-> +}
-> +
-> +static int reset_set(void *data, u64 val)
-> +{
-> +       struct intel_gt *gt = data;
-> +
-> +       /* Flush any previous reset before applying for a new one */
-> +       wait_event(gt->reset.queue,
-> +                  !test_bit(I915_RESET_BACKOFF, &gt->reset.flags));
-> +
-> +       intel_gt_handle_error(gt, val, I915_ERROR_CAPTURE,
-> +                             "Manually set wedged engine mask = %llx", val);
-
-No hint of i915_wedged any more. Just "Manual reset engine mask %llx",
-or somesuch will do.
--Chris
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
