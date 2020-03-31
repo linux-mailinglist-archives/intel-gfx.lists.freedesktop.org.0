@@ -1,41 +1,45 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706CC198CC3
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 09:13:43 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71A84198CFC
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 09:34:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69F236E277;
-	Tue, 31 Mar 2020 07:13:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC7DC6E55C;
+	Tue, 31 Mar 2020 07:34:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A39A6E264;
- Tue, 31 Mar 2020 07:13:39 +0000 (UTC)
-IronPort-SDR: SYmYrJODhBpwFn38jOTLwnmjupK5D4PNVGUHg14T3tTMJ3soeHSx192SQLRL3OFtk+hCrkC8x8
- 0h/+4ei4JZZg==
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A007F6E55C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 07:34:14 +0000 (UTC)
+IronPort-SDR: EWxFX4pX4KDuhsV8pskRrfEML5jQsg/5PBBl78j4Qq9vtilWwKRMuvLODDcXoGhOU36ZtGJTV3
+ dEzXPgiTdMOw==
+X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2020 00:13:38 -0700
-IronPort-SDR: epxaWChsaovu6LP13hOcJhaf9ePm57pW4b6Fr0Nu+74czL3biyIemQBVVqW6z0y01uhqFwM0T3
- Ax/PJfxNkb8w==
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2020 00:34:12 -0700
+IronPort-SDR: RnSIJeZvq0uO2OHx7czaZNsb/h7JAzhIOh7NMi7/ZPPm4DgFg5H5FJEBOKgayz+DP54V2cuni3
+ lIdv7yvygRuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; 
- d="asc'?scan'208";a="248962943"
-Received: from zhen-hp.sh.intel.com (HELO zhen-hp) ([10.239.160.147])
- by orsmga003.jf.intel.com with ESMTP; 31 Mar 2020 00:13:36 -0700
-Date: Tue, 31 Mar 2020 15:00:25 +0800
-From: Zhenyu Wang <zhenyuw@linux.intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Message-ID: <20200331070025.GB16629@zhen-hp.sh.intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="294850332"
+Received: from dpohl-mobl.amr.corp.intel.com (HELO [10.252.59.74])
+ ([10.252.59.74])
+ by FMSMGA003.fm.intel.com with ESMTP; 31 Mar 2020 00:34:11 -0700
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>, intel-gfx@lists.freedesktop.org
+References: <20200331052222.76525-1-ashutosh.dixit@intel.com>
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <ec657de2-e38a-c27c-ef08-3a12e34aaa2a@intel.com>
+Date: Tue, 31 Mar 2020 10:34:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.10.0 (2018-05-17)
-Subject: [Intel-gfx] [PULL] gvt-next-fixes
+In-Reply-To: <20200331052222.76525-1-ashutosh.dixit@intel.com>
+Content-Language: en-US
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/perf: Do not clear pollin for
+ small user read buffers
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,97 +52,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>,
- intel-gvt-dev <intel-gvt-dev@lists.freedesktop.org>, "Lv,
- Zhiyuan" <zhiyuan.lv@intel.com>, "Yuan, Hang" <hang.yuan@intel.com>
-Content-Type: multipart/mixed; boundary="===============0562318024=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 31/03/2020 08:22, Ashutosh Dixit wrote:
+> It is wrong to block the user thread in the next poll when OA data is
+> already available which could not fit in the user buffer provided in
+> the previous read. In several cases the exact user buffer size is not
+> known. Blocking user space in poll can lead to data loss when the
+> buffer size used is smaller than the available data.
+>
+> This change fixes this issue and allows user space to read all OA data
+> even when using a buffer size smaller than the available data using
+> multiple non-blocking reads rather than staying blocked in poll till
+> the next timer interrupt.
+>
+> v2: Fix ret value for blocking reads (Umesh)
+> v3: Mistake during patch send (Ashutosh)
+> v4: Remove -EAGAIN from comment (Umesh)
+> v5: Improve condition for clearing pollin and return (Lionel)
+>
+> Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
---===============0562318024==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="J2SCkAp4GZ/dPZZf"
-Content-Disposition: inline
+
+I forgot to mention this needs to be Cc: stable.
+
+Still one nit below which should make the remaining function a bit simpler.
 
 
---J2SCkAp4GZ/dPZZf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your time.
 
 
-Hi,
+-Lionel
 
-Here's more queued gvt fixes for 5.7. Please see details below.
 
-Thanks
---
-The following changes since commit a61ac1e75105a077ec1efd6923ae3c619f862304:
+> ---
+>   drivers/gpu/drm/i915/i915_perf.c | 62 +++++++-------------------------
+>   1 file changed, 13 insertions(+), 49 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
+> index c74ebac50015..9c21f28f89a7 100644
+> --- a/drivers/gpu/drm/i915/i915_perf.c
+> +++ b/drivers/gpu/drm/i915/i915_perf.c
+> @@ -2914,49 +2914,6 @@ void i915_oa_init_reg_state(const struct intel_context *ce,
+>   		gen8_update_reg_state_unlocked(ce, stream);
+>   }
+>   
+> -/**
+> - * i915_perf_read_locked - &i915_perf_stream_ops->read with error normalisation
+> - * @stream: An i915 perf stream
+> - * @file: An i915 perf stream file
+> - * @buf: destination buffer given by userspace
+> - * @count: the number of bytes userspace wants to read
+> - * @ppos: (inout) file seek position (unused)
+> - *
+> - * Besides wrapping &i915_perf_stream_ops->read this provides a common place to
+> - * ensure that if we've successfully copied any data then reporting that takes
+> - * precedence over any internal error status, so the data isn't lost.
+> - *
+> - * For example ret will be -ENOSPC whenever there is more buffered data than
+> - * can be copied to userspace, but that's only interesting if we weren't able
+> - * to copy some data because it implies the userspace buffer is too small to
+> - * receive a single record (and we never split records).
+> - *
+> - * Another case with ret == -EFAULT is more of a grey area since it would seem
+> - * like bad form for userspace to ask us to overrun its buffer, but the user
+> - * knows best:
+> - *
+> - *   http://yarchive.net/comp/linux/partial_reads_writes.html
+> - *
+> - * Returns: The number of bytes copied or a negative error code on failure.
+> - */
+> -static ssize_t i915_perf_read_locked(struct i915_perf_stream *stream,
+> -				     struct file *file,
+> -				     char __user *buf,
+> -				     size_t count,
+> -				     loff_t *ppos)
+> -{
+> -	/* Note we keep the offset (aka bytes read) separate from any
+> -	 * error status so that the final check for whether we return
+> -	 * the bytes read with a higher precedence than any error (see
+> -	 * comment below) doesn't need to be handled/duplicated in
+> -	 * stream->ops->read() implementations.
+> -	 */
+> -	size_t offset = 0;
+> -	int ret = stream->ops->read(stream, buf, count, &offset);
+> -
+> -	return offset ?: (ret ?: -EAGAIN);
+> -}
+> -
+>   /**
+>    * i915_perf_read - handles read() FOP for i915 perf stream FDs
+>    * @file: An i915 perf stream file
+> @@ -2982,7 +2939,8 @@ static ssize_t i915_perf_read(struct file *file,
+>   {
+>   	struct i915_perf_stream *stream = file->private_data;
+>   	struct i915_perf *perf = stream->perf;
+> -	ssize_t ret;
+> +	size_t offset = 0;
+> +	int __ret;
+>   
+>   	/* To ensure it's handled consistently we simply treat all reads of a
+>   	 * disabled stream as an error. In particular it might otherwise lead
+> @@ -2992,6 +2950,8 @@ static ssize_t i915_perf_read(struct file *file,
+>   		return -EIO;
+>   
+>   	if (!(file->f_flags & O_NONBLOCK)) {
+> +		ssize_t ret;
+> +
+>   		/* There's the small chance of false positives from
+>   		 * stream->ops->wait_unlocked.
+>   		 *
+> @@ -3005,13 +2965,13 @@ static ssize_t i915_perf_read(struct file *file,
+>   				return ret;
+>   
+>   			mutex_lock(&perf->lock);
+> -			ret = i915_perf_read_locked(stream, file,
+> -						    buf, count, ppos);
+> +			__ret = stream->ops->read(stream, buf, count, &offset);
 
-  drm/i915/gvt: Wean gvt off using dev_priv (2020-03-06 10:08:10 +0800)
 
-are available in the Git repository at:
+I think you can keep using ret and just change the loop to while (ret >= 
+0) (which means no failure).
 
-  https://github.com/intel/gvt-linux.git tags/gvt-next-fixes-2020-03-31
+You will get -ENOSPC when the whole buffer is filled or some other error 
+which should trigger stream closure.
 
-for you to fetch changes up to eb0ff8074e0baecba2cd0c7813f6cfa99bafc430:
+Finally you can 0 if nothing was written but there was nothing to read 
+and that keeps the read going.
 
-  drm/i915/gvt: Fix klocwork issues about data size (2020-03-27 15:37:58 +0=
-800)
 
-----------------------------------------------------------------
-gvt-next-fixes-2020-03-31
+> +			ret = offset ?: (__ret ?: -EAGAIN);
+>   			mutex_unlock(&perf->lock);
+>   		} while (ret == -EAGAIN);
+>   	} else {
+>   		mutex_lock(&perf->lock);
+> -		ret = i915_perf_read_locked(stream, file, buf, count, ppos);
+> +		__ret = stream->ops->read(stream, buf, count, &offset);
+>   		mutex_unlock(&perf->lock);
+>   	}
+>   
+> @@ -3022,11 +2982,15 @@ static ssize_t i915_perf_read(struct file *file,
+>   	 * and read() returning -EAGAIN. Clearing the oa.pollin state here
+>   	 * effectively ensures we back off until the next hrtimer callback
+>   	 * before reporting another EPOLLIN event.
+> +	 * The exception to this is if ops->read() returned -ENOSPC which means
+> +	 * that more OA data is available than could fit in the user provided
+> +	 * buffer. In this case we want the next poll() call to not block.
+>   	 */
+> -	if (ret >= 0 || ret == -EAGAIN)
+> +	if (__ret != -ENOSPC)
+>   		stream->pollin = false;
+>   
+> -	return ret;
+> +	/* Possible values for __ret are 0, -EFAULT, -ENOSPC, -EIO, ... */
+> +	return offset ?: (__ret ?: -EAGAIN);
+>   }
+>   
+>   static enum hrtimer_restart oa_poll_check_timer_cb(struct hrtimer *hrtimer)
 
-- Fix non-privilege access warning (Tina)
-- Fix display port type (Tina)
-- BDW cmd parser missed SWTESS_BASE_ADDRESS (Yan)
-- Bypass length check of LRI (Yan)
-- Fix one klocwork warning (Tina)
-
-----------------------------------------------------------------
-Tina Zhang (3):
-      drm/i915/gvt: Add some regs to force-to-nonpriv whitelist
-      drm/i915/gvt: Fix display port type issue
-      drm/i915/gvt: Fix klocwork issues about data size
-
-Yan Zhao (2):
-      drm/i915/gvt: add support to command SWTESS_BASE_ADDRESS
-      drm/i915/gvt: do not check len & max_len for lri
-
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 16 ++++------------
- drivers/gpu/drm/i915/gvt/display.c    |  6 +++---
- drivers/gpu/drm/i915/gvt/handlers.c   |  8 ++++++--
- drivers/gpu/drm/i915/gvt/scheduler.c  |  4 ++--
- 4 files changed, 15 insertions(+), 19 deletions(-)
-
---=20
-Open Source Technology Center, Intel ltd.
-
-$gpg --keyserver wwwkeys.pgp.net --recv-keys 4D781827
-
---J2SCkAp4GZ/dPZZf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQTXuabgHDW6LPt9CICxBBozTXgYJwUCXoLqiQAKCRCxBBozTXgY
-J+FjAJ4iogpEw5mlKaWiFrI+7bEx/HdRNACfa19i7zwIvQkyazWiMUFpSaEFgtA=
-=mm84
------END PGP SIGNATURE-----
-
---J2SCkAp4GZ/dPZZf--
-
---===============0562318024==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
 https://lists.freedesktop.org/mailman/listinfo/intel-gfx
-
---===============0562318024==--
