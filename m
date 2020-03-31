@@ -1,41 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2DE2199FE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 22:19:23 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBE3199FC3
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 22:07:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C0736E884;
-	Tue, 31 Mar 2020 20:19:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D856E882;
+	Tue, 31 Mar 2020 20:07:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com
- [199.106.114.38])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F2A26E881;
- Tue, 31 Mar 2020 19:59:43 +0000 (UTC)
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
- by alexa-out-sd-01.qualcomm.com with ESMTP; 31 Mar 2020 12:59:41 -0700
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
- by ironmsg01-sd.qualcomm.com with ESMTP; 31 Mar 2020 12:59:40 -0700
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
- id 3E60B4BE8; Tue, 31 Mar 2020 12:59:40 -0700 (PDT)
-Date: Tue, 31 Mar 2020 12:59:40 -0700
-From: Guru Das Srinagesh <gurus@codeaurora.org>
-To: Daniel Thompson <daniel.thompson@linaro.org>
-Message-ID: <20200331195939.GA25781@codeaurora.org>
-References: <cover.1584650604.git.gurus@codeaurora.org>
- <20200321114703.GB4672@kadam>
- <20200330191506.GA29534@codeaurora.org>
- <20200330202636.njjo4savgzf3g6yx@holly.lan>
- <20200330210012.GA27611@codeaurora.org>
- <20200331134804.xxrjaestztcazalc@holly.lan>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D69356E210;
+ Tue, 31 Mar 2020 20:07:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D08CFA00CC;
+ Tue, 31 Mar 2020 20:07:16 +0000 (UTC)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200331134804.xxrjaestztcazalc@holly.lan>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Mailman-Approved-At: Tue, 31 Mar 2020 20:19:19 +0000
-Subject: Re: [Intel-gfx] [PATCH v10 00/12] Convert PWM period and duty cycle
- to u64
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chris Wilson" <chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 20:07:16 -0000
+Message-ID: <158568523682.5565.4712072066229822013@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200331114852.11583-1-chris@chris-wilson.co.uk>
+In-Reply-To: <20200331114852.11583-1-chris@chris-wilson.co.uk>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915=3A_Defer_kicking_the_tasklet_until_all_rescheduling_is_co?=
+ =?utf-8?q?mplete?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,91 +39,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kate Stewart <kstewart@linuxfoundation.org>, linux-fbdev@vger.kernel.org,
- David Airlie <airlied@linux.ie>, "Wesley W. Terpstra" <wesley@sifive.com>,
- Michael Turquette <mturquette@baylibre.com>, Kamil Debski <kamil@wypas.org>,
- dri-devel@lists.freedesktop.org, Liam Girdwood <lgirdwood@gmail.com>,
- Atish Patra <atish.patra@wdc.com>,
- Benjamin Gaignard <benjamin.gaignard@linaro.org>,
- linux-riscv@lists.infradead.org, Lee Jones <lee.jones@linaro.org>,
- linux-clk@vger.kernel.org, Alexandre Torgue <alexandre.torgue@st.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Axel Lin <axel.lin@ingics.com>,
- Arnd Bergmann <arnd@arndb.de>, Alexander Shiyan <shc_work@mail.ru>,
- Fabio Estevam <festevam@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
- NXP Linux Team <linux-imx@nxp.com>, Mukesh Ojha <mojha@codeaurora.org>,
- Gerald Baeza <gerald.baeza@st.com>, intel-gfx@lists.freedesktop.org,
- Dan Carpenter <dan.carpenter@oracle.com>, linux-media@vger.kernel.org,
- linux-pwm@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
- Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
- Mark Brown <broonie@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
- Thomas Gleixner <tglx@linutronix.de>, Fabrice Gasnier <fabrice.gasnier@st.com>,
- Ding Xiang <dingxiang@cmss.chinamobile.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Allison Randal <allison@lohutok.net>, linux-hwmon@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>, Anson Huang <Anson.Huang@nxp.com>,
- Richard Fontana <rfontana@redhat.com>, Stephen Boyd <sboyd@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, linux-kernel@vger.kernel.org,
- Yash Shah <yash.shah@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Guenter Roeck <linux@roeck-us.net>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Mar 31, 2020 at 02:48:04PM +0100, Daniel Thompson wrote:
-> On Mon, Mar 30, 2020 at 02:00:12PM -0700, Guru Das Srinagesh wrote:
-> > On Mon, Mar 30, 2020 at 09:26:36PM +0100, Daniel Thompson wrote:
-> > > On Mon, Mar 30, 2020 at 12:15:07PM -0700, Guru Das Srinagesh wrote:
-> > > > On Sat, Mar 21, 2020 at 02:47:03PM +0300, Dan Carpenter wrote:
-> > > > > This is a giant CC list.
-> > > > 
-> > > > Yes, this is because I received feedback [1] on an earlier patchset
-> > > > directing me to add the reviewers of patches to the cover letter as
-> > > > well so that they get some context for the patch.
-> > > > ...
-> > > > [1] https://www.spinics.net/lists/linux-pwm/msg11735.html
-> > > 
-> > > Strictly speaking I only asked for backlight maintainers to be Cc:ed.
-> > > I was fairly careful to be specific since I'm aware there are a variety
-> > > of differing habits when putting together the Cc: list for covering
-> > > letters.
-> > > 
-> > > With the original patch header the purpose of the patch I was Cc:ed on
-> > > was impossible to determine without the covering letter.
-> > 
-> > I suspect this might be the case for all the other reviewers as well -
-> > that they also would appreciate context for the specific patch they are
-> > being added to review.
-> > 
-> > I wasn't entirely sure what the convention was, so I applied your
-> > suggestion to all the files. How do you suggest I handle this in my next
-> > patchset? I fully agree that such a large CC list does look really
-> > ungainly.
-> 
-> IHMO there should not be a mechanical convention. Instead your goal
-> needs to be how to make it as easy as possible to review your patches.
-> 
-> Think about it this way: Each person in the To: of a patch (and maybe
-> also Cc: depending on how you construct things) is a person you are
-> asking to review and comment on the patch. If that person will find it
-> easier to review the patch if they are included in the cover letter then
-> either they should be included or you should improve the patch
-> description of the patch itself (sometimes both).
-> 
-> Either way it is about optimizing the patchset for readability. More
-> people read them than write them.
+== Series Details ==
 
-Thank you for the explanation! I shall keep your suggestions in mind
-while sending out future patchsets.
+Series: drm/i915: Defer kicking the tasklet until all rescheduling is complete
+URL   : https://patchwork.freedesktop.org/series/75314/
+State : success
 
-Thank you.
+== Summary ==
 
-Guru Das.
+CI Bug Log - changes from CI_DRM_8228 -> Patchwork_17157
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17157/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17157 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-skl-6600u:       [PASS][1] -> [INCOMPLETE][2] ([i915#1430] / [i915#656])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8228/fi-skl-6600u/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17157/fi-skl-6600u/igt@i915_selftest@live@execlists.html
+
+  
+  [i915#1430]: https://gitlab.freedesktop.org/drm/intel/issues/1430
+  [i915#656]: https://gitlab.freedesktop.org/drm/intel/issues/656
+
+
+Participating hosts (48 -> 36)
+------------------------------
+
+  Additional (1): fi-kbl-soraka 
+  Missing    (13): fi-bdw-5557u fi-bsw-n3050 fi-byt-j1900 fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ilk-650 fi-ctg-p8600 fi-cfl-8109u fi-kbl-7560u fi-byt-clapper fi-bdw-samus 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8228 -> Patchwork_17157
+
+  CI-20190529: 20190529
+  CI_DRM_8228: 1f33fcd4f840355af75a61ce7204f39bafc52018 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5548: d9e70dc1b35633b7d5c81cbfa165e331189eb260 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17157: 465308989a7180d6bd0bfeab1e9195e466f7e990 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+465308989a71 drm/i915: Defer kicking the tasklet until all rescheduling is complete
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17157/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
