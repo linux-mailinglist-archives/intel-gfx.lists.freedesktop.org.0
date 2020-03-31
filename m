@@ -2,29 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id D77851996B9
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 14:42:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF3AF1996FD
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 15:08:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 426CE6E31A;
-	Tue, 31 Mar 2020 12:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2306E6E117;
+	Tue, 31 Mar 2020 13:08:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D30F6E31A
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 12:42:40 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20751955-1500050 
- for multiple; Tue, 31 Mar 2020 13:42:03 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2020 13:42:02 +0100
-Message-Id: <20200331124202.4497-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9B266E117
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Mar 2020 13:08:21 +0000 (UTC)
+IronPort-SDR: ZtPG7K8dMQNAkgBkskzncXuZJnWtGv+FybjkLGw+ui1Uu4ba1c6wd8bwErgCEe8kWxGoJRoYuH
+ smxbdAfr8f7g==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2020 06:08:21 -0700
+IronPort-SDR: r2nSJNTZjyImP4LRQkytP03YTuC6Uqz8JV97Rts/FJ6f8RB2TaV69JJe7ASOZHrZgWAJnSPKU/
+ aF04VIZ2FP+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; d="scan'208";a="448672180"
+Received: from gaia.fi.intel.com ([10.237.72.192])
+ by fmsmga005.fm.intel.com with ESMTP; 31 Mar 2020 06:08:19 -0700
+Received: by gaia.fi.intel.com (Postfix, from userid 1000)
+ id DF3035C0D7B; Tue, 31 Mar 2020 16:06:41 +0300 (EEST)
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org
+In-Reply-To: <20200331120502.14713-1-chris@chris-wilson.co.uk>
+References: <20200331120502.14713-1-chris@chris-wilson.co.uk>
+Date: Tue, 31 Mar 2020 16:06:41 +0300
+Message-ID: <87lfngptb2.fsf@gaia.fi.intel.com>
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/gt: Fill all the unused space in the
- GGTT
+Subject: Re: [Intel-gfx] [PATCH] drm/i915/gt: Include a few tracek for
+ timeslicing
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,70 +48,95 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matthew Auld <matthew.auld@intel.com>, stable@vger.kernel.org,
- Chris Wilson <chris@chris-wilson.co.uk>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When we allocate space in the GGTT we may have to allocate a larger
-region than will be populated by the object to accommodate fencing. Make
-sure that this space beyond the end of the buffer points safely into
-scratch space, in case the HW tries to access it anyway (e.g. fenced
-access to the last tile row).
+Chris Wilson <chris@chris-wilson.co.uk> writes:
 
-Reported-by: Imre Deak <imre.deak@intel.com>
-References: https://gitlab.freedesktop.org/drm/intel/-/issues/1554
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: stable@vger.kernel.org
----
- drivers/gpu/drm/i915/gt/intel_ggtt.c | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+> Add a few telltales to see when timeslicing is being enabled.
+>
+> Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index d8944dabed55..ad56059651b8 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -191,10 +191,11 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
- 				     enum i915_cache_level level,
- 				     u32 flags)
- {
-+	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, 0);
- 	struct i915_ggtt *ggtt = i915_vm_to_ggtt(vm);
- 	struct sgt_iter sgt_iter;
--	gen8_pte_t __iomem *gtt_entries;
--	const gen8_pte_t pte_encode = gen8_ggtt_pte_encode(0, level, 0);
-+	gen8_pte_t __iomem *gte;
-+	gen8_pte_t __iomem *end;
- 	dma_addr_t addr;
- 
- 	/*
-@@ -202,10 +203,16 @@ static void gen8_ggtt_insert_entries(struct i915_address_space *vm,
- 	 * not to allow the user to override access to a read only page.
- 	 */
- 
--	gtt_entries = (gen8_pte_t __iomem *)ggtt->gsm;
--	gtt_entries += vma->node.start / I915_GTT_PAGE_SIZE;
-+	gte = (gen8_pte_t __iomem *)ggtt->gsm;
-+	gte += vma->node.start / I915_GTT_PAGE_SIZE;
-+	end = gte + vma->node.size / I915_GTT_PAGE_SIZE;
- 	for_each_sgt_daddr(addr, sgt_iter, vma->pages)
--		gen8_set_pte(gtt_entries++, pte_encode | addr);
-+		gen8_set_pte(gte++, pte_encode | addr);
-+	GEM_BUG_ON(gte > end);
-+
-+	/* Fill the allocated but "unused" space beyond the end of the buffer */
-+	while (gte < end)
-+		gen8_set_pte(gte++, vm->scratch[0].encode);
- 
- 	/*
- 	 * We want to flush the TLBs only after we're certain all the PTE
--- 
-2.20.1
+Reviewed-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
+> ---
+>  drivers/gpu/drm/i915/gt/intel_lrc.c   | 20 +++++++++++++++++---
+>  drivers/gpu/drm/i915/i915_scheduler.c |  6 ++++++
+>  2 files changed, 23 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> index 744737e57d1d..55bf3cdf3b38 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_lrc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+> @@ -1814,16 +1814,25 @@ active_timeslice(const struct intel_engine_cs *engine)
+>  
+>  static void set_timeslice(struct intel_engine_cs *engine)
+>  {
+> +	unsigned long duration;
+> +
+>  	if (!intel_engine_has_timeslices(engine))
+>  		return;
+>  
+> -	set_timer_ms(&engine->execlists.timer, active_timeslice(engine));
+> +	duration = active_timeslice(engine);
+> +	ENGINE_TRACE(engine, "bump timeslicing, interval:%lu", duration);
+> +
+> +	set_timer_ms(&engine->execlists.timer, duration);
+>  }
+>  
+>  static void start_timeslice(struct intel_engine_cs *engine)
+>  {
+>  	struct intel_engine_execlists *execlists = &engine->execlists;
+> -	int prio = queue_prio(execlists);
+> +	const int prio = queue_prio(execlists);
+> +	unsigned long duration;
+> +
+> +	if (!intel_engine_has_timeslices(engine))
+> +		return;
+>  
+>  	WRITE_ONCE(execlists->switch_priority_hint, prio);
+>  	if (prio == INT_MIN)
+> @@ -1832,7 +1841,12 @@ static void start_timeslice(struct intel_engine_cs *engine)
+>  	if (timer_pending(&execlists->timer))
+>  		return;
+>  
+> -	set_timer_ms(&execlists->timer, timeslice(engine));
+> +	duration = timeslice(engine);
+> +	ENGINE_TRACE(engine,
+> +		     "start timeslicing, prio:%d, interval:%lu",
+> +		     prio, duration);
+> +
+> +	set_timer_ms(&execlists->timer, duration);
+>  }
+>  
+>  static void record_preemption(struct intel_engine_execlists *execlists)
+> diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+> index 68b06a7ba667..065176cb0258 100644
+> --- a/drivers/gpu/drm/i915/i915_scheduler.c
+> +++ b/drivers/gpu/drm/i915/i915_scheduler.c
+> @@ -209,6 +209,12 @@ static void kick_submission(struct intel_engine_cs *engine,
+>  	if (!inflight)
+>  		goto unlock;
+>  
+> +	ENGINE_TRACE(engine,
+> +		     "bumping queue-priority-hint:%d for rq:%llx:%lld, inflight:%llx:%lld prio %d\n",
+> +		     prio,
+> +		     rq->fence.context, rq->fence.seqno,
+> +		     inflight->fence.context, inflight->fence.seqno,
+> +		     inflight->sched.attr.priority);
+>  	engine->execlists.queue_priority_hint = prio;
+>  
+>  	/*
+> -- 
+> 2.20.1
+>
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
