@@ -1,32 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6976B198872
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 01:43:36 +0200 (CEST)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFC6C1988BD
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2020 02:15:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A88AA6E4FF;
-	Mon, 30 Mar 2020 23:43:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBF56E504;
+	Tue, 31 Mar 2020 00:15:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fireflyinternet.com (mail.fireflyinternet.com [109.228.58.192])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 103136E4FF
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Mar 2020 23:43:32 +0000 (UTC)
-X-Default-Received-SPF: pass (skip=forwardok (res=PASS))
- x-ip-name=78.156.65.138; 
-Received: from build.alporthouse.com (unverified [78.156.65.138]) 
- by fireflyinternet.com (Firefly Internet (M1)) with ESMTP id 20745835-1500050 
- for multiple; Tue, 31 Mar 2020 00:43:20 +0100
-From: Chris Wilson <chris@chris-wilson.co.uk>
-To: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2020 00:43:18 +0100
-Message-Id: <20200330234318.30638-1-chris@chris-wilson.co.uk>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200330234205.25928-1-chris@chris-wilson.co.uk>
-References: <20200330234205.25928-1-chris@chris-wilson.co.uk>
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 79A746E504;
+ Tue, 31 Mar 2020 00:15:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 737F8A00CC;
+ Tue, 31 Mar 2020 00:15:40 +0000 (UTC)
 MIME-Version: 1.0
-Subject: [Intel-gfx] [PATCH] drm/i915/execlists: Double check breadcrumb
- before crying foul
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anshuman Gupta" <anshuman.gupta@intel.com>
+Date: Tue, 31 Mar 2020 00:15:40 -0000
+Message-ID: <158561374044.5564.12191482256916479383@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20200327162921.15622-1-anshuman.gupta@intel.com>
+In-Reply-To: <20200327162921.15622-1-anshuman.gupta@intel.com>
+Subject: [Intel-gfx] =?utf-8?b?4pyTIEZpLkNJLkJBVDogc3VjY2VzcyBmb3IgZHJt?=
+ =?utf-8?q?/i915/hdcp=3A_Update_CP_as_per_the_kernel_internal_state_=28rev?=
+ =?utf-8?q?3=29?=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,117 +39,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: Chris Wilson <chris@chris-wilson.co.uk>
+Reply-To: intel-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-  process_csb: 0000:00:02.0 bcs0: cs-irq head=4, tail=5
-  process_csb: 0000:00:02.0 bcs0: csb[5]: status=0x00008002:0x60000020
-  trace_ports: 0000:00:02.0 bcs0: preempted { ff84:45154! prio 2 }
-  trace_ports: 0000:00:02.0 bcs0: promote { ff84:45155* prio 2 }
-  trace_ports: 0000:00:02.0 bcs0: submit { ff84:45156 prio 2 }
+== Series Details ==
 
-  process_csb: 0000:00:02.0 bcs0: cs-irq head=5, tail=6
-  process_csb: 0000:00:02.0 bcs0: csb[6]: status=0x00000018:0x60000020
-  trace_ports: 0000:00:02.0 bcs0: completed { ff84:45155* prio 2 }
-  process_csb: 0000:00:02.0 bcs0: ring:{start:0x00178000, head:0928, tail:0928, ctl:00000000, mode:00000200}
-  process_csb: 0000:00:02.0 bcs0: rq:{start:00178000, head:08b0, tail:08f0, seqno:ff84:45155, hwsp:45156},
-  process_csb: 0000:00:02.0 bcs0: ctx:{start:00178000, head:e000928, tail:0928},
-  process_csb: GEM_BUG_ON("context completed before request")
+Series: drm/i915/hdcp: Update CP as per the kernel internal state (rev3)
+URL   : https://patchwork.freedesktop.org/series/72251/
+State : success
 
-In this sequence, we can see that although we have submitted the next
-request [ff84:45156] to HW (via ELSP[]) it has not yet reported the
-lite-restore. Instead, we see the completion event of the currently
-active request [ff85:45155] but at the time of processing that event,
-the breadcrumb has not yet been written. Though by the time we do print
-out the debug info, the seqno write of ff85:45156 has landed!
+== Summary ==
 
-Therefore there is a serialisation problem between the seqno writes and
-CS events, not just between the CS buffer and its head/tail pointers as
-previously observed on Icelake.
+CI Bug Log - changes from CI_DRM_8219 -> Patchwork_17139
+====================================================
 
-This is not a huge problem, as we don't strictly rely on the breadcrumb
-to determine HW activity, but it may indicate that interrupt delivery is
-before the seqno write, aka bringing back the plague of missed
-interrupts from yesteryear. However, there is no indication of this
-wider problem, so let's just flush the seqno read before reporting an
-error. If it persists after the fresh read we can worry again.
+Summary
+-------
 
-Signed-off-by: Chris Wilson <chris@chris-wilson.co.uk>
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/i915/gt/intel_lrc.c | 29 ++++++++++++++++++++++-------
- 1 file changed, 22 insertions(+), 7 deletions(-)
+  **SUCCESS**
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
-index 3d5f3f7677bb..afeca7eb1e3a 100644
---- a/drivers/gpu/drm/i915/gt/intel_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
-@@ -2418,8 +2418,6 @@ static void process_csb(struct intel_engine_cs *engine)
- 		if (promote) {
- 			struct i915_request * const *old = execlists->active;
- 
--			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
--
- 			ring_set_paused(engine, 0);
- 
- 			/* Point active to the new ELSP; prevent overwriting */
-@@ -2432,6 +2430,7 @@ static void process_csb(struct intel_engine_cs *engine)
- 				execlists_schedule_out(*old++);
- 
- 			/* switch pending to inflight */
-+			GEM_BUG_ON(!assert_pending_valid(execlists, "promote"));
- 			memcpy(execlists->inflight,
- 			       execlists->pending,
- 			       execlists_num_ports(execlists) *
-@@ -2453,13 +2452,26 @@ static void process_csb(struct intel_engine_cs *engine)
- 			 * user interrupt and CSB is processed.
- 			 */
- 			if (GEM_SHOW_DEBUG() &&
--			    !i915_request_completed(*execlists->active) &&
--			    !reset_in_progress(execlists)) {
--				struct i915_request *rq __maybe_unused =
--					*execlists->active;
-+			    !i915_request_completed(*execlists->active)) {
-+				struct i915_request *rq = *execlists->active;
- 				const u32 *regs __maybe_unused =
- 					rq->context->lrc_reg_state;
- 
-+				/*
-+				 * Flush the breadcrumb before crying foul.
-+				 *
-+				 * Since we have hit this on icl and seen the
-+				 * breadcrumb advance as we print out the debug
-+				 * info (so the problem corrected itself without
-+				 * lasting damage), and we know that icl suffers
-+				 * from missing global observation points in
-+				 * execlists, presume that affects even more
-+				 * coherency.
-+				 */
-+				mb();
-+				clflush((void *)READ_ONCE(rq->hwsp_seqno));
-+				mb();
-+
- 				ENGINE_TRACE(engine,
- 					     "ring:{start:0x%08x, head:%04x, tail:%04x, ctl:%08x, mode:%08x}\n",
- 					     ENGINE_READ(engine, RING_START),
-@@ -2480,7 +2492,10 @@ static void process_csb(struct intel_engine_cs *engine)
- 					     regs[CTX_RING_HEAD],
- 					     regs[CTX_RING_TAIL]);
- 
--				GEM_BUG_ON("context completed before request");
-+				/* Still? Declare it caput! */
-+				if (!i915_request_completed(rq) &&
-+				    !reset_in_progress(execlists))
-+					GEM_BUG_ON("context completed before request");
- 			}
- 
- 			execlists_schedule_out(*execlists->active++);
--- 
-2.20.1
+  No regressions found.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/index.html
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_17139 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@execlists:
+    - fi-kbl-8809g:       [PASS][1] -> [INCOMPLETE][2] ([CI#80] / [i915#529])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/fi-kbl-8809g/igt@i915_selftest@live@execlists.html
+
+  
+#### Possible fixes ####
+
+  * igt@gem_exec_suspend@basic-s4-devices:
+    - fi-tgl-y:           [FAIL][3] ([CI#94]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/fi-tgl-y/igt@gem_exec_suspend@basic-s4-devices.html
+
+  * igt@i915_selftest@live@execlists:
+    - {fi-tgl-u}:         [DMESG-FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-tgl-u/igt@i915_selftest@live@execlists.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/fi-tgl-u/igt@i915_selftest@live@execlists.html
+
+  * igt@i915_selftest@live@requests:
+    - fi-icl-guc:         [INCOMPLETE][7] ([i915#1505]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_8219/fi-icl-guc/igt@i915_selftest@live@requests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/fi-icl-guc/igt@i915_selftest@live@requests.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [CI#80]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/80
+  [CI#94]: https://gitlab.freedesktop.org/gfx-ci/i915-infra/issues/94
+  [i915#1505]: https://gitlab.freedesktop.org/drm/intel/issues/1505
+  [i915#529]: https://gitlab.freedesktop.org/drm/intel/issues/529
+
+
+Participating hosts (44 -> 39)
+------------------------------
+
+  Additional (6): fi-bdw-5557u fi-kbl-7500u fi-kbl-x1275 fi-cfl-8109u fi-kbl-7560u fi-kbl-r 
+  Missing    (11): fi-hsw-4200u fi-hsw-peppy fi-byt-squawks fi-bsw-cyan fi-ctg-p8600 fi-bsw-kefka fi-skl-lmem fi-byt-n2820 fi-byt-clapper fi-bdw-samus fi-snb-2600 
+
+
+Build changes
+-------------
+
+  * CI: CI-20190529 -> None
+  * Linux: CI_DRM_8219 -> Patchwork_17139
+
+  CI-20190529: 20190529
+  CI_DRM_8219: 42de3b3c94078845ceed586199c039622561b522 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_5545: 9e5bfd10d56f81b98e0229c6bb14670221fd0b54 @ git://anongit.freedesktop.org/xorg/app/intel-gpu-tools
+  Patchwork_17139: bb5b9cb43eccfff0c03a56c7d397a8bb499d46fd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+
+== Linux commits ==
+
+bb5b9cb43ecc drm/i915/hdcp: Update CP as per the kernel internal state
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_17139/index.html
 _______________________________________________
 Intel-gfx mailing list
 Intel-gfx@lists.freedesktop.org
