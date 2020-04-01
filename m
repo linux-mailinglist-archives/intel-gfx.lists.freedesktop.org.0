@@ -2,54 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1290F19B901
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 01:36:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B9B19B912
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Apr 2020 01:51:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7592289CB5;
-	Wed,  1 Apr 2020 23:36:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFE216E9BE;
+	Wed,  1 Apr 2020 23:51:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53DB989CB5
- for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 23:36:55 +0000 (UTC)
-IronPort-SDR: XJObCggWZMKigZImI+JA+8VKhUctIPoCBI7bvDpnx7St9iUoyKcKC/tOcPoMLlRNgOtvrBKbNV
- 81kTKMFqvmLQ==
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5376E9BE
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2020 23:51:22 +0000 (UTC)
+IronPort-SDR: V3O9uTKQJU8bhyALXSvApHpbJcplhvMkP4L2UbYLA/AaGGQxBjIaxySugSzKnwzqKlf5pOmySS
+ nExDjNHBBrbA==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2020 16:36:54 -0700
-IronPort-SDR: A5yavOxx5qNjgnjrAurGSU7dlhrNvWXO0LYbiLlFMMYQFGqpjKb3+hmJqGBlnFrvUutyJZz63q
- /O2tzHMuJViw==
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2020 16:51:21 -0700
+IronPort-SDR: J1GcdEr/BOhEkATbjX+U0pXWoOL/B2PznJVbxvBBUVx8d1MuhsPY10189aadKcz/wqyl8mwjS9
+ UovV8qfVAGUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,333,1580803200"; d="scan'208";a="328633366"
-Received: from fmsmsx108.amr.corp.intel.com ([10.18.124.206])
- by orsmga001.jf.intel.com with ESMTP; 01 Apr 2020 16:36:54 -0700
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
- FMSMSX108.amr.corp.intel.com (10.18.124.206) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Wed, 1 Apr 2020 16:36:54 -0700
-Received: from fmsmsx116.amr.corp.intel.com ([169.254.2.62]) by
- FMSMSX110.amr.corp.intel.com ([169.254.14.196]) with mapi id 14.03.0439.000;
- Wed, 1 Apr 2020 16:36:53 -0700
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>
-Thread-Topic: [PATCH 6/6] drm/i915/tc/tgl: Implement TC cold sequences
-Thread-Index: AQHWB74SO2mG1KTtdk2b0w8z0wrDS6hkr6KAgACzZwA=
-Date: Wed, 1 Apr 2020 23:36:53 +0000
-Message-ID: <eef0b4f48045463d47ed8f78953b9f7613975d64.camel@intel.com>
-References: <20200401004120.408586-1-jose.souza@intel.com>
- <20200401004120.408586-6-jose.souza@intel.com>
- <20200401125557.GE24964@ideak-desk.fi.intel.com>
-In-Reply-To: <20200401125557.GE24964@ideak-desk.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.134.59.23]
-Content-ID: <AD2C699DFA7E5F428DFB66BB4DE824EC@intel.com>
+X-IronPort-AV: E=Sophos;i="5.72,333,1580803200"; d="scan'208";a="240665853"
+Received: from labuser-z97x-ud5h.jf.intel.com (HELO intel.com)
+ ([10.165.21.211])
+ by fmsmga007.fm.intel.com with ESMTP; 01 Apr 2020 16:51:21 -0700
+Date: Wed, 1 Apr 2020 16:53:23 -0700
+From: Manasi Navare <manasi.d.navare@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Message-ID: <20200401235322.GB14630@intel.com>
+References: <20200212161738.28141-1-ville.syrjala@linux.intel.com>
+ <20200212161738.28141-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-gfx] [PATCH 6/6] drm/i915/tc/tgl: Implement TC cold
- sequences
+Content-Disposition: inline
+In-Reply-To: <20200212161738.28141-5-ville.syrjala@linux.intel.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+Subject: Re: [Intel-gfx] [PATCH v2 4/8] drm/i915: Flatten a bunch of the
+ pfit functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,193 +50,464 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Chiou, Cooper" <cooper.chiou@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "kai.heng.feng@canonical.com" <kai.heng.feng@canonical.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: intel-gfx@lists.freedesktop.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-T24gV2VkLCAyMDIwLTA0LTAxIGF0IDE1OjU1ICswMzAwLCBJbXJlIERlYWsgd3JvdGU6DQo+IE9u
-IFR1ZSwgTWFyIDMxLCAyMDIwIGF0IDA1OjQxOjIwUE0gLTA3MDAsIEpvc8OpIFJvYmVydG8gZGUg
-U291emENCj4gd3JvdGU6DQo+ID4gVEMgcG9ydHMgY2FuIGVudGVyIGluIFRDQ09MRCB0byBzYXZl
-IHBvd2VyIGFuZCBpcyByZXF1aXJlZCB0bw0KPiA+IHJlcXVlc3QNCj4gPiB0byBQQ09ERSB0byBl
-eGl0IHRoaXMgc3RhdGUgYmVmb3JlIHVzZSBvciByZWFkIHRvIFRDIHJlZ2lzdGVycy4NCj4gPiAN
-Cj4gPiBGb3IgVEdMIHRoZXJlIGlzIGEgbmV3IE1CT1ggY29tbWFuZCB0byBkbyB0aGF0IHdpdGgg
-YSBwYXJhbWV0ZXIgdG8NCj4gPiBhc2sNCj4gPiBQQ09ERSB0byBleGl0IGFuZCBibG9jayBUQ0NP
-TEQgZW50cnkgb3IgdW5ibG9jayBUQ0NPTEQgZW50cnkuDQo+ID4gDQo+ID4gU28gYWRkaW5nIGEg
-bmV3IHBvd2VyIGRvbWFpbiB0byByZXVzZSB0aGUgcmVmY291bnQgYW5kIG9ubHkgYWxsb3cNCj4g
-PiBUQyBjb2xkIHdoZW4gYWxsIFRDIHBvcnRzIGFyZSBub3QgaW4gdXNlLg0KPiA+IA0KPiA+IEJT
-cGVjOiA0OTI5NA0KPiA+IENjOiBJbXJlIERlYWsgPGltcmUuZGVha0BpbnRlbC5jb20+DQo+ID4g
-Q2M6IENvb3BlciBDaGlvdSA8Y29vcGVyLmNoaW91QGludGVsLmNvbT4NCj4gPiBDYzogS2FpLUhl
-bmcgRmVuZyA8a2FpLmhlbmcuZmVuZ0BjYW5vbmljYWwuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6
-IEpvc8OpIFJvYmVydG8gZGUgU291emEgPGpvc2Uuc291emFAaW50ZWwuY29tPg0KPiA+IC0tLQ0K
-PiA+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmMgICAgfCA0NiAr
-KysrKysrKysrKysrKw0KPiA+ICAuLi4vZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bv
-d2VyLmggICAgfCAgMSArDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-dGMuYyAgICAgICB8IDYzDQo+ID4gKysrKysrKysrKysrKysrLS0tLQ0KPiA+ICBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3RjLmggICAgICAgfCAgMSArDQo+ID4gIGRyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmggICAgICAgICAgICAgICB8ICAzICsNCj4gPiAgNSBmaWxl
-cyBjaGFuZ2VkLCAxMDMgaW5zZXJ0aW9ucygrKSwgMTEgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4g
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9w
-b3dlci5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlf
-cG93ZXIuYw0KPiA+IGluZGV4IDFjY2Q1N2Q2NDVjNy4uNWRlMTE1NTgzMTQ2IDEwMDY0NA0KPiA+
-IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5j
-DQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bv
-d2VyLmMNCj4gPiBAQCAtMjg0Miw2ICsyODQyLDggQEAgdm9pZCBpbnRlbF9kaXNwbGF5X3Bvd2Vy
-X3B1dChzdHJ1Y3QNCj4gPiBkcm1faTkxNV9wcml2YXRlICpkZXZfcHJpdiwNCj4gPiAgI2RlZmlu
-ZSBUR0xfQVVYX0lfVEJUNl9JT19QT1dFUl9ET01BSU5TICgJXA0KPiA+ICAJQklUX1VMTChQT1dF
-Ul9ET01BSU5fQVVYX0lfVEJUKSkNCj4gPiAgDQo+ID4gKyNkZWZpbmUgVEdMX1RDX0NPTERfT0ZG
-IChCSVRfVUxMKFBPV0VSX0RPTUFJTl9UQ19DT0xEX09GRikpDQo+IA0KPiBUR0xfVENfQ09MRF9P
-RkZfUE9XRVJfRE9NQUlOUw0KDQpPa2F5DQoNCj4gYW5kIHNob3VsZCBhbHNvIGluY2x1ZGUgYWxs
-IHRoZSBBVVggcG93ZXIgZG9tYWlucy4NCg0KU28gd2Ugd291bGQgY2FsbCBpbnRlbF9kaXNwbGF5
-X3Bvd2VyX2dldCgpIGluIGludGVsX3RjIHdpdGggYXV4IGRvbWFpbg0KaW5zdGVhZCBvZiBQT1dF
-Ul9ET01BSU5fVENfQ09MRF9PRkY/DQoNCj4gDQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3Qgc3Ry
-dWN0IGk5MTVfcG93ZXJfd2VsbF9vcHMNCj4gPiBpOXh4X2Fsd2F5c19vbl9wb3dlcl93ZWxsX29w
-cyA9IHsNCj4gPiAgCS5zeW5jX2h3ID0gaTl4eF9wb3dlcl93ZWxsX3N5bmNfaHdfbm9vcCwNCj4g
-PiAgCS5lbmFibGUgPSBpOXh4X2Fsd2F5c19vbl9wb3dlcl93ZWxsX25vb3AsDQo+ID4gQEAgLTM5
-NDQsNiArMzk0Niw0NCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGk5MTVfcG93ZXJfd2VsbF9kZXNj
-DQo+ID4gZWhsX3Bvd2VyX3dlbGxzW10gPSB7DQo+ID4gIAl9LA0KPiA+ICB9Ow0KPiA+ICANCj4g
-PiArc3RhdGljIHZvaWQNCj4gPiArdGdsX3RjX2NvbGRfb2ZmX3Bvd2VyX3dlbGxfZW5hYmxlKHN0
-cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1LA0KPiA+ICsJCQkJICBzdHJ1Y3QgaTkxNV9wb3dl
-cl93ZWxsICpwb3dlcl93ZWxsKQ0KPiA+ICt7DQo+ID4gKwlpbnRlbF90Y190Z2xfdGNfY29sZF9y
-ZXF1ZXN0KGk5MTUsIHRydWUpOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgdm9pZA0KPiA+
-ICt0Z2xfdGNfY29sZF9vZmZfcG93ZXJfd2VsbF9kaXNhYmxlKHN0cnVjdCBkcm1faTkxNV9wcml2
-YXRlICppOTE1LA0KPiA+ICsJCQkJICAgc3RydWN0IGk5MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2Vs
-bCkNCj4gPiArew0KPiA+ICsJaW50ZWxfdGNfdGdsX3RjX2NvbGRfcmVxdWVzdChpOTE1LCBmYWxz
-ZSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkDQo+ID4gK3RnbF90Y19jb2xkX29m
-Zl9wb3dlcl93ZWxsX3N5bmNfaHcoc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUsDQo+ID4g
-KwkJCQkgICBzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsICpwb3dlcl93ZWxsKQ0KPiA+ICt7DQo+ID4g
-KwlpZiAocG93ZXJfd2VsbC0+Y291bnQgPiAwKQ0KPiA+ICsJCXRnbF90Y19jb2xkX29mZl9wb3dl
-cl93ZWxsX2VuYWJsZShpOTE1LCBwb3dlcl93ZWxsKTsNCj4gPiArCWVsc2UNCj4gPiArCQl0Z2xf
-dGNfY29sZF9vZmZfcG93ZXJfd2VsbF9kaXNhYmxlKGk5MTUsIHBvd2VyX3dlbGwpOw0KPiA+ICt9
-DQo+ID4gKw0KPiA+ICtzdGF0aWMgYm9vbCB0Z2xfdGNfY29sZF9vZmZfcG93ZXJfd2VsbF9pc19l
-bmFibGVkKHN0cnVjdA0KPiA+IGRybV9pOTE1X3ByaXZhdGUgKmRldl9wcml2LA0KPiA+ICsJCQkJ
-CQkgIHN0cnVjdA0KPiA+IGk5MTVfcG93ZXJfd2VsbCAqcG93ZXJfd2VsbCkNCj4gPiArew0KPiA+
-ICsJLyogVGhlcmUgaXMgbm8gd2F5IHRvIGp1c3QgcmVhZCBpdCBmcm9tIFBDT0RFICovDQo+ID4g
-KwlyZXR1cm4gZmFsc2U7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
-aTkxNV9wb3dlcl93ZWxsX29wcyB0Z2xfdGNfY29sZF9vZmZfb3BzID0gew0KPiA+ICsJLnN5bmNf
-aHcgPSB0Z2xfdGNfY29sZF9vZmZfcG93ZXJfd2VsbF9zeW5jX2h3LA0KPiA+ICsJLmVuYWJsZSA9
-IHRnbF90Y19jb2xkX29mZl9wb3dlcl93ZWxsX2VuYWJsZSwNCj4gPiArCS5kaXNhYmxlID0gdGds
-X3RjX2NvbGRfb2ZmX3Bvd2VyX3dlbGxfZGlzYWJsZSwNCj4gPiArCS5pc19lbmFibGVkID0gdGds
-X3RjX2NvbGRfb2ZmX3Bvd2VyX3dlbGxfaXNfZW5hYmxlZCwNCj4gPiArfTsNCj4gPiArDQo+ID4g
-IHN0YXRpYyBjb25zdCBzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsX2Rlc2MgdGdsX3Bvd2VyX3dlbGxz
-W10gPSB7DQo+ID4gIAl7DQo+ID4gIAkJLm5hbWUgPSAiYWx3YXlzLW9uIiwNCj4gPiBAQCAtNDI3
-MSw2ICs0MzExLDEyIEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3QgaTkxNV9wb3dlcl93ZWxsX2Rlc2MN
-Cj4gPiB0Z2xfcG93ZXJfd2VsbHNbXSA9IHsNCj4gPiAgCQkJLmhzdy5pcnFfcGlwZV9tYXNrID0g
-QklUKFBJUEVfRCksDQo+ID4gIAkJfSwNCj4gPiAgCX0sDQo+ID4gKwl7DQo+ID4gKwkJLm5hbWUg
-PSAiVEMgY29sZCBvZmYiLA0KPiA+ICsJCS5kb21haW5zID0gUE9XRVJfRE9NQUlOX1RDX0NPTERf
-T0ZGLA0KPiANCj4gVEdMX1RDX0NPTERfT0ZGX1BPV0VSX0RPTUFJTlMNCj4gDQo+ID4gKwkJLm9w
-cyA9ICZ0Z2xfdGNfY29sZF9vZmZfb3BzLA0KPiA+ICsJCS5pZCA9IERJU1BfUFdfSURfTk9ORSwN
-Cj4gPiArCX0sDQo+ID4gIH07DQo+ID4gIA0KPiA+ICBzdGF0aWMgaW50DQo+ID4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oDQo+
-ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfcG93ZXIuaA0K
-PiA+IGluZGV4IGRhNjRhNWVkYWU3YS4uMDcwNDU3ZTdiOTQ4IDEwMDY0NA0KPiA+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV9wb3dlci5oDQo+ID4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3Bvd2VyLmgNCj4g
-PiBAQCAtNzYsNiArNzYsNyBAQCBlbnVtIGludGVsX2Rpc3BsYXlfcG93ZXJfZG9tYWluIHsNCj4g
-PiAgCVBPV0VSX0RPTUFJTl9NT0RFU0VULA0KPiA+ICAJUE9XRVJfRE9NQUlOX0dUX0lSUSwNCj4g
-PiAgCVBPV0VSX0RPTUFJTl9EUExMX0RDX09GRiwNCj4gPiArCVBPV0VSX0RPTUFJTl9UQ19DT0xE
-X09GRiwNCj4gPiAgCVBPV0VSX0RPTUFJTl9JTklULA0KPiA+ICANCj4gPiAgCVBPV0VSX0RPTUFJ
-Tl9OVU0sDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50
-ZWxfdGMuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+
-ID4gaW5kZXggYjZkNjdmMDY5ZWY3Li41OGYxOTAzNzQxMWEgMTAwNjQ0DQo+ID4gLS0tIGEvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+ID4gKysrIGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+ID4gQEAgLTUwNywxMSArNTA3LDE2IEBA
-IHN0YXRpYyB2b2lkIF9faW50ZWxfdGNfcG9ydF9sb2NrKHN0cnVjdA0KPiA+IGludGVsX2RpZ2l0
-YWxfcG9ydCAqZGlnX3BvcnQsDQo+ID4gIA0KPiA+ICAJbXV0ZXhfbG9jaygmZGlnX3BvcnQtPnRj
-X2xvY2spOw0KPiA+ICANCj4gPiAtCWlmIChJTlRFTF9HRU4oaTkxNSkgPT0gMTEgJiYgZGlnX3Bv
-cnQtPnRjX2xpbmtfcmVmY291bnQgPT0gMCkgew0KPiA+IC0JCWVudW0gaW50ZWxfZGlzcGxheV9w
-b3dlcl9kb21haW4gYXV4X2RvbWFpbjsNCj4gPiArCWlmIChkaWdfcG9ydC0+dGNfbGlua19yZWZj
-b3VudCA9PSAwKSB7DQo+ID4gKwkJZW51bSBpbnRlbF9kaXNwbGF5X3Bvd2VyX2RvbWFpbiBkb21h
-aW47DQo+ID4gIA0KPiA+IC0JCWF1eF9kb21haW4gPSBpbnRlbF9hdXhfY2hfdG9fcG93ZXJfZG9t
-YWluKGRpZ19wb3J0LQ0KPiA+ID5hdXhfY2gpOw0KPiA+IC0JCWRpZ19wb3J0LT50Y19jb2xkX3dh
-a2VyZWYgPQ0KPiA+IGludGVsX2Rpc3BsYXlfcG93ZXJfZ2V0KGk5MTUsIGF1eF9kb21haW4pOw0K
-PiA+ICsJCWlmIChJTlRFTF9HRU4oaTkxNSkgPT0gMTEpDQo+ID4gKwkJCWRvbWFpbiA9IGludGVs
-X2F1eF9jaF90b19wb3dlcl9kb21haW4oZGlnX3BvcnQtDQo+ID4gPmF1eF9jaCk7DQo+ID4gKwkJ
-ZWxzZQ0KPiA+ICsJCQlkb21haW4gPSBQT1dFUl9ET01BSU5fVENfQ09MRF9PRkY7DQo+ID4gKw0K
-PiA+ICsJCWRpZ19wb3J0LT50Y19jb2xkX3dha2VyZWYgPQ0KPiA+IGludGVsX2Rpc3BsYXlfcG93
-ZXJfZ2V0KGk5MTUsDQo+ID4gKwkJCQkJCQkJICAgIGRvbQ0KPiA+IGFpbik7DQo+ID4gIAl9DQo+
-ID4gIA0KPiA+ICAJaWYgKCFkaWdfcG9ydC0+dGNfbGlua19yZWZjb3VudCAmJg0KPiA+IEBAIC01
-MjcsMTggKzUzMiwyMyBAQCB2b2lkIGludGVsX3RjX3BvcnRfbG9jayhzdHJ1Y3QNCj4gPiBpbnRl
-bF9kaWdpdGFsX3BvcnQgKmRpZ19wb3J0KQ0KPiA+ICAJX19pbnRlbF90Y19wb3J0X2xvY2soZGln
-X3BvcnQsIDEpOw0KPiA+ICB9DQo+ID4gIA0KPiA+IC1zdGF0aWMgdm9pZCBpY2xfdGNfY29sZF91
-bmJsb2NrKHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQNCj4gPiAqZGlnX3BvcnQpDQo+ID4gK3N0
-YXRpYyB2b2lkIHRjX2NvbGRfdW5ibG9jayhzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdf
-cG9ydCkNCj4gPiAgew0KPiA+ICAJc3RydWN0IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19p
-OTE1KGRpZ19wb3J0LQ0KPiA+ID5iYXNlLmJhc2UuZGV2KTsNCj4gPiAtCWVudW0gaW50ZWxfZGlz
-cGxheV9wb3dlcl9kb21haW4gYXV4X2RvbWFpbjsNCj4gPiArCWVudW0gaW50ZWxfZGlzcGxheV9w
-b3dlcl9kb21haW4gZG9tYWluOw0KPiA+ICAJaW50ZWxfd2FrZXJlZl90IHRjX2NvbGRfd2FrZXJl
-ZjsNCj4gPiAgDQo+ID4gLQlpZiAoSU5URUxfR0VOKGk5MTUpICE9IDExIHx8IGRpZ19wb3J0LT50
-Y19saW5rX3JlZmNvdW50ID4gMCkNCj4gPiArCWlmIChkaWdfcG9ydC0+dGNfbGlua19yZWZjb3Vu
-dCA+IDApDQo+IA0KPiBZb3UgY291bGQgZHJvcCB0aGUgcmVmIHdoZW5ldmVyIHdha2VyZWYgcGFz
-c2VkIHRvIHRoaXMgZnVuY3Rpb24gaXMNCj4gbm90IE5VTEwuIA0KPiANCj4gPiAgCQlyZXR1cm47
-DQo+ID4gIA0KPiA+ICAJdGNfY29sZF93YWtlcmVmID0gZmV0Y2hfYW5kX3plcm8oJmRpZ19wb3J0
-LT50Y19jb2xkX3dha2VyZWYpOw0KPiA+IC0JYXV4X2RvbWFpbiA9IGludGVsX2F1eF9jaF90b19w
-b3dlcl9kb21haW4oZGlnX3BvcnQtPmF1eF9jaCk7DQo+ID4gLQlpbnRlbF9kaXNwbGF5X3Bvd2Vy
-X3B1dF9hc3luYyhpOTE1LCBhdXhfZG9tYWluLA0KPiA+IHRjX2NvbGRfd2FrZXJlZik7DQo+ID4g
-Kw0KPiA+ICsJaWYgKElOVEVMX0dFTihpOTE1KSA9PSAxMSkNCj4gPiArCQlkb21haW4gPSBpbnRl
-bF9hdXhfY2hfdG9fcG93ZXJfZG9tYWluKGRpZ19wb3J0LQ0KPiA+ID5hdXhfY2gpOw0KPiA+ICsJ
-ZWxzZQ0KPiA+ICsJCWRvbWFpbiA9IFBPV0VSX0RPTUFJTl9UQ19DT0xEX09GRjsNCj4gPiArDQo+
-ID4gKwlpbnRlbF9kaXNwbGF5X3Bvd2VyX3B1dF9hc3luYyhpOTE1LCBkb21haW4sIHRjX2NvbGRf
-d2FrZXJlZik7DQo+ID4gIH0NCj4gPiAgDQo+ID4gIHZvaWQgaW50ZWxfdGNfcG9ydF91bmxvY2so
-c3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3BvcnQpDQo+ID4gQEAgLTU0Niw3ICs1NTYs
-NyBAQCB2b2lkIGludGVsX3RjX3BvcnRfdW5sb2NrKHN0cnVjdA0KPiA+IGludGVsX2RpZ2l0YWxf
-cG9ydCAqZGlnX3BvcnQpDQo+ID4gIAlzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRv
-X2k5MTUoZGlnX3BvcnQtDQo+ID4gPmJhc2UuYmFzZS5kZXYpOw0KPiA+ICAJaW50ZWxfd2FrZXJl
-Zl90IHdha2VyZWYgPSBmZXRjaF9hbmRfemVybygmZGlnX3BvcnQtDQo+ID4gPnRjX2xvY2tfd2Fr
-ZXJlZik7DQo+ID4gIA0KPiA+IC0JaWNsX3RjX2NvbGRfdW5ibG9jayhkaWdfcG9ydCk7DQo+ID4g
-Kwl0Y19jb2xkX3VuYmxvY2soZGlnX3BvcnQpOw0KPiA+ICANCj4gPiAgCW11dGV4X3VubG9jaygm
-ZGlnX3BvcnQtPnRjX2xvY2spOw0KPiA+ICANCj4gPiBAQCAtNTcxLDcgKzU4MSw3IEBAIHZvaWQg
-aW50ZWxfdGNfcG9ydF9wdXRfbGluayhzdHJ1Y3QNCj4gPiBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
-Z19wb3J0KQ0KPiA+ICB7DQo+ID4gIAltdXRleF9sb2NrKCZkaWdfcG9ydC0+dGNfbG9jayk7DQo+
-ID4gIAlkaWdfcG9ydC0+dGNfbGlua19yZWZjb3VudC0tOw0KPiA+IC0JaWNsX3RjX2NvbGRfdW5i
-bG9jayhkaWdfcG9ydCk7DQo+ID4gKwl0Y19jb2xkX3VuYmxvY2soZGlnX3BvcnQpOw0KPiA+ICAJ
-bXV0ZXhfdW5sb2NrKCZkaWdfcG9ydC0+dGNfbG9jayk7DQo+ID4gIH0NCj4gPiAgDQo+ID4gQEAg
-LTYxMSwzICs2MjEsMzQgQEAgdm9pZCBpbnRlbF90Y19pY2xfdGNfY29sZF9leGl0KHN0cnVjdA0K
-PiA+IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUpDQo+ID4gIAkJZHJtX2RiZ19rbXMoJmk5MTUtPmRy
-bSwgIlRDIGNvbGQgYmxvY2sgJXNcbiIsDQo+ID4gIAkJCSAgICAocmV0ID09IDAgPyAic3VjY2Vl
-ZGVkIiA6ICJmYWlsZWQiKSk7DQo+ID4gIH0NCj4gPiArDQo+ID4gK3ZvaWQNCj4gPiAraW50ZWxf
-dGNfdGdsX3RjX2NvbGRfcmVxdWVzdChzdHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwgYm9v
-bA0KPiA+IGJsb2NrKQ0KPiA+ICt7DQo+ID4gKwl1MzIgbG93X3ZhbCwgaGlnaF92YWw7DQo+ID4g
-Kwl1OCB0cmllcyA9IDA7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiArCWRvIHsNCj4gPiAr
-CQlsb3dfdmFsID0gMDsNCj4gPiArCQloaWdoX3ZhbCA9IGJsb2NrID8gMCA6DQo+ID4gVEdMX1BD
-T0RFX0VYSVRfVENDT0xEX0RBVEFfSF9VTkJMT0NLX1JFUTsNCj4gPiArDQo+ID4gKwkJcmV0ID0g
-c2FuZHlicmlkZ2VfcGNvZGVfcmVhZChpOTE1LCBUR0xfUENPREVfVENDT0xELA0KPiA+ICZsb3df
-dmFsLA0KPiA+ICsJCQkJCSAgICAgJmhpZ2hfdmFsKTsNCj4gPiArCQlpZiAocmV0ID09IDApIHsN
-Cj4gPiArCQkJaWYgKGJsb2NrICYmDQo+ID4gKwkJCSAgICAobG93X3ZhbCAmDQo+ID4gVEdMX1BD
-T0RFX0VYSVRfVENDT0xEX0RBVEFfTF9FWElUX0ZBSUxFRCkpDQo+ID4gKwkJCQlyZXQgPSAtRUlP
-Ow0KPiA+ICsJCQllbHNlDQo+ID4gKwkJCQlicmVhazsNCj4gPiArCQl9DQo+ID4gKw0KPiA+ICsJ
-CWlmIChyZXQgIT0gLUVBR0FJTikNCj4gPiArCQkJdHJpZXMrKzsNCj4gPiArCX0gd2hpbGUgKHRy
-aWVzIDwgMyk7DQo+ID4gKw0KPiA+ICsJaWYgKHJldCkNCj4gPiArCQlkcm1fZGJnX2ttcygmaTkx
-NS0+ZHJtLCAiVEMgY29sZCAlc2Jsb2NrICVzXG4iLA0KPiA+ICsJCQkgICAgKGJsb2NrID8gIiIg
-OiAidW4iKSwNCj4gPiArCQkJICAgIChyZXQgPT0gMCA/ICJzdWNjZWVkZWQiIDogImZhaWxlZCIp
-KTsNCj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3RjLmgNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMu
-aA0KPiA+IGluZGV4IDE2OGQ4ODk2ZmNmZC4uOGJiMzU4Y2M4ZjE1IDEwMDY0NA0KPiA+IC0tLSBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuaA0KPiA+ICsrKyBiL2RyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuaA0KPiA+IEBAIC0zMSw1ICszMSw2IEBA
-IHZvaWQgaW50ZWxfdGNfcG9ydF9pbml0KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQNCj4gPiAq
-ZGlnX3BvcnQsIGJvb2wgaXNfbGVnYWN5KTsNCj4gPiAgDQo+ID4gIHUzMiBpbnRlbF90Y19wb3J0
-X2xpdmVfc3RhdHVzX21hc2soc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydA0KPiA+ICpkaWdfcG9y
-dCk7DQo+ID4gIHZvaWQgaW50ZWxfdGNfaWNsX3RjX2NvbGRfZXhpdChzdHJ1Y3QgZHJtX2k5MTVf
-cHJpdmF0ZSAqaTkxNSk7DQo+ID4gK3ZvaWQgaW50ZWxfdGNfdGdsX3RjX2NvbGRfcmVxdWVzdChz
-dHJ1Y3QgZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSwNCj4gPiBib29sIGJsb2NrKTsNCj4gPiAgDQo+
-ID4gICNlbmRpZiAvKiBfX0lOVEVMX1RDX0hfXyAqLw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1
-X3JlZy5oDQo+ID4gaW5kZXggYjExMTgxNWQ2NTk2Li41NTQ4ZjNiNTZjMGIgMTAwNjQ0DQo+ID4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiA+ICsrKyBiL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2k5MTVfcmVnLmgNCj4gPiBAQCAtOTExMCw2ICs5MTEwLDkgQEAgZW51bSB7
-DQo+ID4gICNkZWZpbmUgICBJQ0xfUENPREVfRVhJVF9UQ0NPTEQJCQkweDEyDQo+ID4gICNkZWZp
-bmUgICBIU1dfUENPREVfREVfV1JJVEVfRlJFUV9SRVEJCTB4MTcNCj4gPiAgI2RlZmluZSAgIERJ
-U1BMQVlfSVBTX0NPTlRST0wJCQkweDE5DQo+ID4gKyNkZWZpbmUgICBUR0xfUENPREVfVENDT0xE
-CQkJMHgyNg0KPiA+ICsjZGVmaW5lICAgICBUR0xfUENPREVfRVhJVF9UQ0NPTERfREFUQV9MX0VY
-SVRfRkFJTEVEICAgUkVHX0JJVCgwKQ0KPiA+ICsjZGVmaW5lICAgICBUR0xfUENPREVfRVhJVF9U
-Q0NPTERfREFUQV9IX1VOQkxPQ0tfUkVRICAgUkVHX0JJVCgwKQ0KPiA+ICAgICAgICAgICAgICAv
-KiBTZWUgYWxzbyBJUFNfQ1RMICovDQo+ID4gICNkZWZpbmUgICAgIElQU19QQ09ERV9DT05UUk9M
-CQkJKDEgPDwgMzApDQo+ID4gICNkZWZpbmUgICBIU1dfUENPREVfRFlOQU1JQ19EVVRZX0NZQ0xF
-X0NPTlRST0wJMHgxQQ0KPiA+IC0tIA0KPiA+IDIuMjYuMA0KPiA+IA0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KSW50ZWwtZ2Z4IG1haWxpbmcgbGlzdApJ
-bnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnCmh0dHBzOi8vbGlzdHMuZnJlZWRlc2t0b3Au
-b3JnL21haWxtYW4vbGlzdGluZm8vaW50ZWwtZ2Z4Cg==
+On Wed, Feb 12, 2020 at 06:17:34PM +0200, Ville Syrjala wrote:
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> =
+
+> Most of the pfit functions are of the form:
+> =
+
+> func()
+> {
+> 	if (pfit_enabled) {
+> 		...
+> 	}
+> }
+> =
+
+> Flip the pfit_enabled check around to flatten the functions.
+> =
+
+> And while we're touching all this let's do the usual
+> s/pipe_config/crtc_state/ replacement.
+> =
+
+> Signed-off-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 233 +++++++++----------
+>  1 file changed, 115 insertions(+), 118 deletions(-)
+> =
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index becc6322b7dc..796e27c4aece 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6233,42 +6233,42 @@ static void skl_pfit_enable(const struct intel_cr=
+tc_state *crtc_state)
+>  	enum pipe pipe =3D crtc->pipe;
+>  	const struct intel_crtc_scaler_state *scaler_state =3D
+>  		&crtc_state->scaler_state;
+> +	u16 uv_rgb_hphase, uv_rgb_vphase;
+> +	int pfit_w, pfit_h, hscale, vscale;
+> +	unsigned long irqflags;
+> +	int id;
+>  =
+
+> -	if (crtc_state->pch_pfit.enabled) {
+> -		u16 uv_rgb_hphase, uv_rgb_vphase;
+> -		int pfit_w, pfit_h, hscale, vscale;
+> -		unsigned long irqflags;
+> -		int id;
+> +	if (!crtc_state->pch_pfit.enabled)
+> +		return;
+>  =
+
+> -		if (WARN_ON(crtc_state->scaler_state.scaler_id < 0))
+> -			return;
+> +	if (WARN_ON(crtc_state->scaler_state.scaler_id < 0))
+> +		return;
+>  =
+
+> -		pfit_w =3D (crtc_state->pch_pfit.size >> 16) & 0xFFFF;
+> -		pfit_h =3D crtc_state->pch_pfit.size & 0xFFFF;
+> +	pfit_w =3D (crtc_state->pch_pfit.size >> 16) & 0xFFFF;
+> +	pfit_h =3D crtc_state->pch_pfit.size & 0xFFFF;
+>  =
+
+> -		hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
+> -		vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
+> +	hscale =3D (crtc_state->pipe_src_w << 16) / pfit_w;
+> +	vscale =3D (crtc_state->pipe_src_h << 16) / pfit_h;
+>  =
+
+> -		uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
+> -		uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+> +	uv_rgb_hphase =3D skl_scaler_calc_phase(1, hscale, false);
+> +	uv_rgb_vphase =3D skl_scaler_calc_phase(1, vscale, false);
+>  =
+
+> -		id =3D scaler_state->scaler_id;
+> +	id =3D scaler_state->scaler_id;
+>  =
+
+> -		spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+> +	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+>  =
+
+> -		intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id), PS_SCALER_EN |
+> -				  PS_FILTER_MEDIUM | scaler_state->scalers[id].mode);
+> -		intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
+> -				  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
+> -		intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
+> -				  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+> -		intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
+> -				  crtc_state->pch_pfit.pos);
+> -		intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
+> -				  crtc_state->pch_pfit.size);
+> +	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id), PS_SCALER_EN |
+> +			  PS_FILTER_MEDIUM | scaler_state->scalers[id].mode);
+> +	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
+> +			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
+> +	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
+> +			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
+> +	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
+> +			  crtc_state->pch_pfit.pos);
+> +	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
+> +			  crtc_state->pch_pfit.size);
+>  =
+
+> -		spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+> -	}
+> +	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+>  }
+>  =
+
+>  static void ilk_pfit_enable(const struct intel_crtc_state *crtc_state)
+> @@ -6277,22 +6277,23 @@ static void ilk_pfit_enable(const struct intel_cr=
+tc_state *crtc_state)
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	enum pipe pipe =3D crtc->pipe;
+>  =
+
+> -	if (crtc_state->pch_pfit.enabled) {
+> -		/* Force use of hard-coded filter coefficients
+> -		 * as some pre-programmed values are broken,
+> -		 * e.g. x201.
+> -		 */
+> -		if (IS_IVYBRIDGE(dev_priv) || IS_HASWELL(dev_priv))
+> -			intel_de_write(dev_priv, PF_CTL(pipe),
+> -				       PF_ENABLE | PF_FILTER_MED_3x3 | PF_PIPE_SEL_IVB(pipe));
+> -		else
+> -			intel_de_write(dev_priv, PF_CTL(pipe),
+> -				       PF_ENABLE | PF_FILTER_MED_3x3);
+> -		intel_de_write(dev_priv, PF_WIN_POS(pipe),
+> -			       crtc_state->pch_pfit.pos);
+> -		intel_de_write(dev_priv, PF_WIN_SZ(pipe),
+> -			       crtc_state->pch_pfit.size);
+
+Why dont we use the intel_de_write_fw() everywhere?
+
+Manasi
+
+> -	}
+> +	if (!crtc_state->pch_pfit.enabled)
+> +		return;
+> +
+> +	/* Force use of hard-coded filter coefficients
+> +	 * as some pre-programmed values are broken,
+> +	 * e.g. x201.
+> +	 */
+> +	if (IS_IVYBRIDGE(dev_priv) || IS_HASWELL(dev_priv))
+> +		intel_de_write(dev_priv, PF_CTL(pipe), PF_ENABLE |
+> +			       PF_FILTER_MED_3x3 | PF_PIPE_SEL_IVB(pipe));
+> +	else
+> +		intel_de_write(dev_priv, PF_CTL(pipe), PF_ENABLE |
+> +			       PF_FILTER_MED_3x3);
+> +	intel_de_write(dev_priv, PF_WIN_POS(pipe),
+> +		       crtc_state->pch_pfit.pos);
+> +	intel_de_write(dev_priv, PF_WIN_SZ(pipe),
+> +		       crtc_state->pch_pfit.size);
+>  }
+>  =
+
+>  void hsw_enable_ips(const struct intel_crtc_state *crtc_state)
+> @@ -7107,11 +7108,12 @@ void ilk_pfit_disable(const struct intel_crtc_sta=
+te *old_crtc_state)
+>  =
+
+>  	/* To avoid upsetting the power well on haswell only disable the pfit if
+>  	 * it's in use. The hw state code will make sure we get this right. */
+> -	if (old_crtc_state->pch_pfit.enabled) {
+> -		intel_de_write(dev_priv, PF_CTL(pipe), 0);
+> -		intel_de_write(dev_priv, PF_WIN_POS(pipe), 0);
+> -		intel_de_write(dev_priv, PF_WIN_SZ(pipe), 0);
+> -	}
+> +	if (!old_crtc_state->pch_pfit.enabled)
+> +		return;
+> +
+> +	intel_de_write(dev_priv, PF_CTL(pipe), 0);
+> +	intel_de_write(dev_priv, PF_WIN_POS(pipe), 0);
+> +	intel_de_write(dev_priv, PF_WIN_SZ(pipe), 0);
+>  }
+>  =
+
+>  static void ilk_crtc_disable(struct intel_atomic_state *state,
+> @@ -7927,39 +7929,35 @@ static bool intel_crtc_supports_double_wide(const=
+ struct intel_crtc *crtc)
+>  		(crtc->pipe =3D=3D PIPE_A || IS_I915G(dev_priv));
+>  }
+>  =
+
+> -static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *pipe_confi=
+g)
+> +static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
+>  {
+> -	u32 pixel_rate;
+> -
+> -	pixel_rate =3D pipe_config->hw.adjusted_mode.crtc_clock;
+> +	u32 pixel_rate =3D crtc_state->hw.adjusted_mode.crtc_clock;
+> +	u32 pfit_size =3D crtc_state->pch_pfit.size;
+> +	u64 pipe_w, pipe_h, pfit_w, pfit_h;
+>  =
+
+>  	/*
+>  	 * We only use IF-ID interlacing. If we ever use
+>  	 * PF-ID we'll need to adjust the pixel_rate here.
+>  	 */
+>  =
+
+> -	if (pipe_config->pch_pfit.enabled) {
+> -		u64 pipe_w, pipe_h, pfit_w, pfit_h;
+> -		u32 pfit_size =3D pipe_config->pch_pfit.size;
+> -
+> -		pipe_w =3D pipe_config->pipe_src_w;
+> -		pipe_h =3D pipe_config->pipe_src_h;
+> +	if (!crtc_state->pch_pfit.enabled)
+> +		return pixel_rate;
+>  =
+
+> -		pfit_w =3D (pfit_size >> 16) & 0xFFFF;
+> -		pfit_h =3D pfit_size & 0xFFFF;
+> -		if (pipe_w < pfit_w)
+> -			pipe_w =3D pfit_w;
+> -		if (pipe_h < pfit_h)
+> -			pipe_h =3D pfit_h;
+> +	pipe_w =3D crtc_state->pipe_src_w;
+> +	pipe_h =3D crtc_state->pipe_src_h;
+>  =
+
+> -		if (WARN_ON(!pfit_w || !pfit_h))
+> -			return pixel_rate;
+> +	pfit_w =3D (pfit_size >> 16) & 0xFFFF;
+> +	pfit_h =3D pfit_size & 0xFFFF;
+> +	if (pipe_w < pfit_w)
+> +		pipe_w =3D pfit_w;
+> +	if (pipe_h < pfit_h)
+> +		pipe_h =3D pfit_h;
+>  =
+
+> -		pixel_rate =3D div_u64(mul_u32_u32(pixel_rate, pipe_w * pipe_h),
+> -				     pfit_w * pfit_h);
+> -	}
+> +	if (WARN_ON(!pfit_w || !pfit_h))
+> +		return pixel_rate;
+>  =
+
+> -	return pixel_rate;
+> +	return div_u64(mul_u32_u32(pixel_rate, pipe_w * pipe_h),
+> +		       pfit_w * pfit_h);
+>  }
+>  =
+
+>  static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_=
+state)
+> @@ -9153,9 +9151,9 @@ static bool i9xx_has_pfit(struct drm_i915_private *=
+dev_priv)
+>  		IS_PINEVIEW(dev_priv) || IS_MOBILE(dev_priv);
+>  }
+>  =
+
+> -static void i9xx_get_pfit_config(struct intel_crtc *crtc,
+> -				 struct intel_crtc_state *pipe_config)
+> +static void i9xx_get_pfit_config(struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	u32 tmp;
+>  =
+
+> @@ -9175,9 +9173,9 @@ static void i9xx_get_pfit_config(struct intel_crtc =
+*crtc,
+>  			return;
+>  	}
+>  =
+
+> -	pipe_config->gmch_pfit.control =3D tmp;
+> -	pipe_config->gmch_pfit.pgm_ratios =3D intel_de_read(dev_priv,
+> -							  PFIT_PGM_RATIOS);
+> +	crtc_state->gmch_pfit.control =3D tmp;
+> +	crtc_state->gmch_pfit.pgm_ratios =3D
+> +		intel_de_read(dev_priv, PFIT_PGM_RATIOS);
+>  }
+>  =
+
+>  static void vlv_crtc_clock_get(struct intel_crtc *crtc,
+> @@ -9427,7 +9425,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc =
+*crtc,
+>  	intel_get_pipe_timings(crtc, pipe_config);
+>  	intel_get_pipe_src_size(crtc, pipe_config);
+>  =
+
+> -	i9xx_get_pfit_config(crtc, pipe_config);
+> +	i9xx_get_pfit_config(pipe_config);
+>  =
+
+>  	if (INTEL_GEN(dev_priv) >=3D 4) {
+>  		/* No way to read it out on pipes B and C */
+> @@ -10393,37 +10391,37 @@ static void ilk_get_fdi_m_n_config(struct intel=
+_crtc *crtc,
+>  				     &pipe_config->fdi_m_n, NULL);
+>  }
+>  =
+
+> -static void skl_get_pfit_config(struct intel_crtc *crtc,
+> -				struct intel_crtc_state *pipe_config)
+> +static void skl_get_pfit_config(struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_device *dev =3D crtc->base.dev;
+> -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> -	struct intel_crtc_scaler_state *scaler_state =3D &pipe_config->scaler_s=
+tate;
+> -	u32 ps_ctrl =3D 0;
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+> +	struct intel_crtc_scaler_state *scaler_state =3D &crtc_state->scaler_st=
+ate;
+>  	int id =3D -1;
+>  	int i;
+>  =
+
+>  	/* find scaler attached to this pipe */
+>  	for (i =3D 0; i < crtc->num_scalers; i++) {
+> -		ps_ctrl =3D intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
+> -		if (ps_ctrl & PS_SCALER_EN && !(ps_ctrl & PS_PLANE_SEL_MASK)) {
+> -			id =3D i;
+> -			pipe_config->pch_pfit.enabled =3D true;
+> -			pipe_config->pch_pfit.pos =3D intel_de_read(dev_priv,
+> -								  SKL_PS_WIN_POS(crtc->pipe, i));
+> -			pipe_config->pch_pfit.size =3D intel_de_read(dev_priv,
+> -								   SKL_PS_WIN_SZ(crtc->pipe, i));
+> -			scaler_state->scalers[i].in_use =3D true;
+> -			break;
+> -		}
+> +		u32 tmp;
+> +
+> +		tmp =3D intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
+> +		if ((tmp & (PS_SCALER_EN | PS_PLANE_SEL_MASK)) !=3D PS_SCALER_EN)
+> +			continue;
+> +
+> +		id =3D i;
+> +		crtc_state->pch_pfit.enabled =3D true;
+> +		crtc_state->pch_pfit.pos =3D
+> +			intel_de_read(dev_priv, SKL_PS_WIN_POS(crtc->pipe, i));
+> +		crtc_state->pch_pfit.size =3D
+> +			intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
+> +		scaler_state->scalers[i].in_use =3D true;
+> +		break;
+>  	}
+>  =
+
+>  	scaler_state->scaler_id =3D id;
+> -	if (id >=3D 0) {
+> +	if (id >=3D 0)
+>  		scaler_state->scaler_users |=3D (1 << SKL_CRTC_INDEX);
+> -	} else {
+> +	else
+>  		scaler_state->scaler_users &=3D ~(1 << SKL_CRTC_INDEX);
+> -	}
+>  }
+>  =
+
+>  static void
+> @@ -10559,30 +10557,29 @@ skl_get_initial_plane_config(struct intel_crtc =
+*crtc,
+>  	kfree(intel_fb);
+>  }
+>  =
+
+> -static void ilk_get_pfit_config(struct intel_crtc *crtc,
+> -				struct intel_crtc_state *pipe_config)
+> +static void ilk_get_pfit_config(struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_device *dev =3D crtc->base.dev;
+> -	struct drm_i915_private *dev_priv =3D to_i915(dev);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	u32 tmp;
+>  =
+
+>  	tmp =3D intel_de_read(dev_priv, PF_CTL(crtc->pipe));
+> +	if ((tmp & PF_ENABLE) =3D=3D 0)
+> +		return;
+>  =
+
+> -	if (tmp & PF_ENABLE) {
+> -		pipe_config->pch_pfit.enabled =3D true;
+> -		pipe_config->pch_pfit.pos =3D intel_de_read(dev_priv,
+> -							  PF_WIN_POS(crtc->pipe));
+> -		pipe_config->pch_pfit.size =3D intel_de_read(dev_priv,
+> -							   PF_WIN_SZ(crtc->pipe));
+> -
+> -		/* We currently do not free assignements of panel fitters on
+> -		 * ivb/hsw (since we don't use the higher upscaling modes which
+> -		 * differentiates them) so just WARN about this case for now. */
+> -		if (IS_GEN(dev_priv, 7)) {
+> -			WARN_ON((tmp & PF_PIPE_SEL_MASK_IVB) !=3D
+> -				PF_PIPE_SEL_IVB(crtc->pipe));
+> -		}
+> -	}
+> +	crtc_state->pch_pfit.enabled =3D true;
+> +	crtc_state->pch_pfit.pos =3D
+> +		intel_de_read(dev_priv, PF_WIN_POS(crtc->pipe));
+> +	crtc_state->pch_pfit.size =3D
+> +		intel_de_read(dev_priv, PF_WIN_SZ(crtc->pipe));
+> +
+> +	/*
+> +	 * We currently do not free assignements of panel fitters on
+> +	 * ivb/hsw (since we don't use the higher upscaling modes which
+> +	 * differentiates them) so just WARN about this case for now.
+> +	 */
+> +	WARN_ON(IS_GEN(dev_priv, 7) &&
+> +		(tmp & PF_PIPE_SEL_MASK_IVB) !=3D PF_PIPE_SEL_IVB(crtc->pipe));
+>  }
+>  =
+
+>  static bool ilk_get_pipe_config(struct intel_crtc *crtc,
+> @@ -10694,7 +10691,7 @@ static bool ilk_get_pipe_config(struct intel_crtc=
+ *crtc,
+>  	intel_get_pipe_timings(crtc, pipe_config);
+>  	intel_get_pipe_src_size(crtc, pipe_config);
+>  =
+
+> -	ilk_get_pfit_config(crtc, pipe_config);
+> +	ilk_get_pfit_config(pipe_config);
+>  =
+
+>  	ret =3D true;
+>  =
+
+> @@ -11219,9 +11216,9 @@ static bool hsw_get_pipe_config(struct intel_crtc=
+ *crtc,
+>  		power_domain_mask |=3D BIT_ULL(power_domain);
+>  =
+
+>  		if (INTEL_GEN(dev_priv) >=3D 9)
+> -			skl_get_pfit_config(crtc, pipe_config);
+> +			skl_get_pfit_config(pipe_config);
+>  		else
+> -			ilk_get_pfit_config(crtc, pipe_config);
+> +			ilk_get_pfit_config(pipe_config);
+>  	}
+>  =
+
+>  	if (hsw_crtc_supports_ips(crtc)) {
+> -- =
+
+> 2.24.1
+> =
+
+> _______________________________________________
+> Intel-gfx mailing list
+> Intel-gfx@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/intel-gfx
+_______________________________________________
+Intel-gfx mailing list
+Intel-gfx@lists.freedesktop.org
+https://lists.freedesktop.org/mailman/listinfo/intel-gfx
